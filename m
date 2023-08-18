@@ -2,126 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C46B2780A7D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 537A9780A81
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:52:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359314AbjHRKvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 06:51:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36894 "EHLO
+        id S1376262AbjHRKwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 06:52:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1376457AbjHRKuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:50:52 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 170A030D8
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:50:50 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9aa1d3029so11180891fa.2
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:50:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692355848; x=1692960648;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=/6jSuC3ZsL86KaAv6TVYVHDxBfpmKhlmD3RAmvNe8sk=;
-        b=pOnXW89U6brNuKK/AsmE6yGcJmK+NS/BagDJ19+oEhKVzU5kAvyvtrWZALLfV9el89
-         7oYOiXALMHrplRHsmE+t1FsHxjOFO9cNjte3OWeN9lDeo7zo9ICbNh5WDPprVRgK9tY3
-         X3U9Tsw5lt85RvXOEnEtpXcfXdPkRbPF+/t3guUPGvdTupHNbCWE+mmKTt7HnA6+rgyc
-         Q2EqUKgGiqRL/LenfKrS+rjEOLXUBuYosRIqfvgFp3mdog2pRyRuxwE0QKARlzenCbVD
-         JNn02uuzIEjvDPHjHSYZDWijblJYMAaauVdz1rEm5lNNfjR4y48TTWeWKbQpY41/aitb
-         cRJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692355848; x=1692960648;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/6jSuC3ZsL86KaAv6TVYVHDxBfpmKhlmD3RAmvNe8sk=;
-        b=Q1Zzm4E9b6J8krkyILbQjyOmp6TRjZ04Kl2+qoES83jOyNU2ySCwBM0WlndJKIaexJ
-         PmhBUMq+SzdDfq86/mDjncq3cM7m7QqlBxWvn/N7zyPIMA35ltHmscwJ0B2kjj/Ua7cz
-         vyDYU8L6AmvSJgxG/20ojydnR1yhsosajD6P1Oznzh6D6JTPmFe8lCQwahTFJwZaBDj5
-         aWRqZjSoEJ1bzI4A2iNgQWzYuLvYB7Ygvx/VZZt4hAZerWsW73Hd6Jw+Qiu+zFv7slRt
-         LwyjJgOYVIf86LE459LYJSUG1m7Es5sg/yn/zk4x+KIjrf4ejUY0LTiqZwLi+EP1GZq6
-         Y62A==
-X-Gm-Message-State: AOJu0Yydo5ER8kht/FQ+VnPY8BvN2xXoa24MHOU5AsK0MW/1yH0OSmAY
-        igBiAFmHUA55PidedSWYwbtwhg==
-X-Google-Smtp-Source: AGHT+IFqoRW48KQkQdO1pml8q37zXJP7n6MGoUYfyI9Q5r2eyiksZbegQMSfkLp3eJ820lFmYO6dxQ==
-X-Received: by 2002:a2e:7410:0:b0:2b7:364e:91ec with SMTP id p16-20020a2e7410000000b002b7364e91ecmr1558338ljc.13.1692355848303;
-        Fri, 18 Aug 2023 03:50:48 -0700 (PDT)
-Received: from [192.168.1.101] (abxh52.neoplus.adsl.tpnet.pl. [83.9.1.52])
-        by smtp.gmail.com with ESMTPSA id c20-20020a2e9d94000000b002b9e5afa14csm366121ljj.42.2023.08.18.03.50.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 03:50:47 -0700 (PDT)
-Message-ID: <ef33eee3-42a7-419b-bbe4-e4fe681156ca@linaro.org>
-Date:   Fri, 18 Aug 2023 12:50:46 +0200
+        with ESMTP id S1359170AbjHRKvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:51:50 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFF930C2;
+        Fri, 18 Aug 2023 03:51:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692355908; x=1723891908;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NasYqMbJN04Siu00UXGAENlSJ0u2H0gH+U2YTbLmkKw=;
+  b=nBB+QyXlEvh93SuR95BKQzmAPr6pWz9KG7N85ONyjl2b+lV4yMddKhWM
+   5fkf1uDXprAdSNReasxyHSmZbFy3dVMCoCn+a/ScXOJbcODRKnycHUPAO
+   hBXKfjVEFO/NGfDcmfn/BEj2rD4czXSGPZ0yeavG0RWlCtnP1GABj7aR0
+   YqKiv6jnnbtuOXpetdEBpLMS9t47veIDPAYR/g6BlIUNFS3Aguli1gQgL
+   QCLfXaRHZUF6s57f19RiPQDFd2gOgerObMeApcZFrLvLwX4zeitDaarJ3
+   qu89RkTt0EYLAJVlSBlgxbNfx+MLhVCWKzT2GcmKXQqs+zSOB0r42V1du
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="376833201"
+X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; 
+   d="scan'208";a="376833201"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Aug 2023 03:51:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="805113206"
+X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; 
+   d="scan'208";a="805113206"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga004.fm.intel.com with ESMTP; 18 Aug 2023 03:51:44 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qWx4w-004UHC-1D;
+        Fri, 18 Aug 2023 13:51:42 +0300
+Date:   Fri, 18 Aug 2023 13:51:42 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        isaacmanjarres@google.com, rmk+kernel@armlinux.org.uk,
+        hdegoede@redhat.com, ulf.hansson@linaro.org, rafael@kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2] of/platform: increase refcount of fwnode
+Message-ID: <ZN9NPiOscOPXJom+@smile.fi.intel.com>
+References: <20230818015932.2650041-1-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: Use QCOM_SCM_VMID defines for qcom,vmid
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230818-qcom-vmid-defines-v1-1-45b610c96b13@fairphone.com>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230818-qcom-vmid-defines-v1-1-45b610c96b13@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230818015932.2650041-1-peng.fan@oss.nxp.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.08.2023 10:06, Luca Weiss wrote:
-> Since we have those defines available in a header, let's use them
-> everywhere where qcom,vmid property is used.
+On Fri, Aug 18, 2023 at 09:59:32AM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> commit 0f8e5651095b
+> ("of/platform: Propagate firmware node by calling device_set_node()")
+> use of_fwnode_handle to replace of_node_get, which introduces a side
+> effect that the refcount is not increased. Then the out of tree
+> jailhouse hypervisor enable/disable test will trigger kernel dump in
+> of_overlay_remove, with the following sequence
+> "
+>    of_changeset_revert(&overlay_changeset);
+>    of_changeset_destroy(&overlay_changeset);
+>    of_overlay_remove(&overlay_id);
+> "
+> 
+> So increase the refcount to avoid issues.
 
-Konrad
+...
+
+> This patch also release the refcount when releasing amba device to avoid
+> refcount leakage.
+
+> --- a/drivers/amba/bus.c
+> +++ b/drivers/amba/bus.c
+> @@ -528,6 +528,7 @@ static void amba_device_release(struct device *dev)
+>  {
+>  	struct amba_device *d = to_amba_device(dev);
+>  
+> +	of_node_put(d->dev.of_node);
+>  	if (d->res.parent)
+>  		release_resource(&d->res);
+>  	mutex_destroy(&d->periphid_lock);
+
+As I said, this change should be in a separate patch with the correct Fixes tag.
+
+> index 267d8c9a5612..d328bbb679c7 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -175,7 +175,7 @@ struct platform_device *of_device_alloc(struct device_node *np,
+>  	}
+>  
+>  	/* setup generic device info */
+> -	device_set_node(&dev->dev, of_fwnode_handle(np));
+> +	device_set_node(&dev->dev, of_fwnode_handle(of_node_get(np)));
+>  	dev->dev.parent = parent ? : &platform_bus;
+>  
+>  	if (bus_id)
+> @@ -273,7 +273,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+>  	dev->dev.dma_mask = &dev->dev.coherent_dma_mask;
+>  
+>  	/* setup generic device info */
+> -	device_set_node(&dev->dev, of_fwnode_handle(node));
+> +	device_set_node(&dev->dev, of_fwnode_handle(of_node_get(node)));
+>  	dev->dev.parent = parent ? : &platform_bus;
+>  	dev->dev.platform_data = platform_data;
+>  	if (bus_id)
+
+Without AMBA changes,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+thank you for fixing this!
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
