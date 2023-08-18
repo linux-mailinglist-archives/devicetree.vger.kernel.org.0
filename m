@@ -2,110 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E975780EA3
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0482780EE4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:16:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378007AbjHRPK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 11:10:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49750 "EHLO
+        id S1378042AbjHRPPs convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Aug 2023 11:15:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378006AbjHRPKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:10:54 -0400
-Received: from mail-qk1-x72f.google.com (mail-qk1-x72f.google.com [IPv6:2607:f8b0:4864:20::72f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F96FE5F;
-        Fri, 18 Aug 2023 08:10:53 -0700 (PDT)
-Received: by mail-qk1-x72f.google.com with SMTP id af79cd13be357-76d84238f01so63882385a.2;
-        Fri, 18 Aug 2023 08:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692371452; x=1692976252;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bArMg3pWRFuQXJwECjeBn7psgnBpJoxWz+Fn+NBhMDY=;
-        b=DzcHASW60vyltqv9kr0kQPHk4Bsak0E2AIysRxVCx3aRD35A5IkYnzmQHzbOj+HJXj
-         KmD6g5j0dnJ1BJbEcod2h+7nAiM0m6JHGjLk0VmGKyiDXilDuhEq5h/aUVHkUlu3W5WH
-         v1joelEJc8m0+G80T0XJ2HueUE0vXRkfv58CJYELMgQcUtjesI1v+9VH5Dxcc17FBcZC
-         P8CVixxzSK1JD//BKXl3dX46d3kdAZZdrj6gYbV9GhpnHLPRKd1Cge7XaR/TQSV1q2Re
-         Hrn3CbKpLWIWjVof3YKF8JtsCqr5xxzDdiFNBpInViwd1F/xPeNryE6gCU/3sfCaYvAz
-         ZXZg==
+        with ESMTP id S1378093AbjHRPPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:15:20 -0400
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE43A4215;
+        Fri, 18 Aug 2023 08:14:52 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-58fa51a0d97so523887b3.3;
+        Fri, 18 Aug 2023 08:14:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692371452; x=1692976252;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1692371692; x=1692976492;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=bArMg3pWRFuQXJwECjeBn7psgnBpJoxWz+Fn+NBhMDY=;
-        b=AuikQvqc2+3zoRTOLtodadZpzhC/zTHVmqAycSRh4x+lvdiF7Hp8ZazCHXzRIuyj5h
-         6cFcCurzru4xdKCISmTu7CBWDmAWgs7vgYJZfIzBn5nEqLfwmk7+zpTEBuaVXXK+IhXf
-         TaIJjqoiE3cWuSDP/daXKK+PjmcVz15iRWeDTqiEW9bMrXDY1gk3s1eLAod6SoHOdkl/
-         WtpIgb9jE0gh5zo97dJyBeSvkUsIidntTgZSgafwBcDbSfkFx5NUHZ4hH6nf0wnP0MlI
-         Ku76S6O9VikD+JLozoOiJcpnH2jms+RhODO+HhEzjYGsaGKQdoft6eMSzw6DI/4r7TEQ
-         vgFg==
-X-Gm-Message-State: AOJu0YxSXT51oEKF03JKASFWZfEXdLonzM9ZIzN5IOYtzR8vGMhtb73v
-        IFk2JgIElH7wnMWBFGTmW9yjp4R0ydE=
-X-Google-Smtp-Source: AGHT+IGPnn/O3RXYq3Iyv0ZiSRLwxYjzhBZfo8UAzn8PikmJGHGuqN/7pt5DAurYOTGcKs+ybHhTqw==
-X-Received: by 2002:a37:ad04:0:b0:76d:2764:f3b3 with SMTP id f4-20020a37ad04000000b0076d2764f3b3mr2916869qkm.56.1692371452681;
-        Fri, 18 Aug 2023 08:10:52 -0700 (PDT)
-Received: from localhost.localdomain (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id w3-20020a05620a148300b0076cbcf8ad3bsm576239qkj.55.2023.08.18.08.10.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Aug 2023 08:10:51 -0700 (PDT)
-From:   Trevor Woerner <twoerner@gmail.com>
-To:     drew@beagleboard.org,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        bh=3kFRmkOh3XuMA2gWBBRIRaAERRIZ+1fGvWjwZ6Mr+RA=;
+        b=d92uu+H8mcVvEd0LMdT3elhtK/VaybTRi/T97jfDOgmtewbp98OJsTHkVE+grjHeIQ
+         I/yZKgXXWrVwM0AwZFpMnEEZvKffQ0FyBInVqg+j26pSQN/O2eHc/MqJmnDJ8hwHUEhY
+         K4vTZoyBSi6jKAG6mTLTik+Dt3qwqALz8bTG/VBvDWCEctMm3YXIGBiCMqZxOaAcgUGj
+         T5baMfZHiEhgIeGs0a/f1g79/KKYNJxUT7S+EkstqicjSc2icKPqP5pMc3cACRXIjLQS
+         cCoFgPn5VcxOGFLG+n0cHs1KlidamCSxNxkBno4Tgqyv7vme5VBZ5pbh+VvCyEclD7K3
+         c5Yw==
+X-Gm-Message-State: AOJu0Yx6vAYtMb67EHNXpfSVrx7XFrHueIW5uBrVBvMmjrRyPTdw9V4H
+        +Unh0QQHKenNQG8CUGo9KGlXNYF3dvVbFzOY
+X-Google-Smtp-Source: AGHT+IHGIxaNZYH94t6VLkphLLB/TjYpWIizpfEfVI4HRNpCpat/Z3psadibj6yBYz0xfhn21va97g==
+X-Received: by 2002:a81:77d6:0:b0:576:8a5a:87e5 with SMTP id s205-20020a8177d6000000b005768a5a87e5mr2916934ywc.26.1692371691817;
+        Fri, 18 Aug 2023 08:14:51 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id h6-20020a816c06000000b005707f542f62sm547522ywc.25.2023.08.18.08.14.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Aug 2023 08:14:51 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-c5ffb6cda23so990841276.0;
+        Fri, 18 Aug 2023 08:14:51 -0700 (PDT)
+X-Received: by 2002:a25:86cd:0:b0:c1a:5904:fe8e with SMTP id
+ y13-20020a2586cd000000b00c1a5904fe8emr2927238ybm.34.1692371691436; Fri, 18
+ Aug 2023 08:14:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230818075600.24277-1-biju.das.jz@bp.renesas.com> <20230818075600.24277-4-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230818075600.24277-4-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 18 Aug 2023 17:14:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU26kSUJYb_=hyTZ3DoUYHQ3tZmv7cxKw2n672zRYzVxA@mail.gmail.com>
+Message-ID: <CAMuHMdU26kSUJYb_=hyTZ3DoUYHQ3tZmv7cxKw2n672zRYzVxA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] dt-bindings: iio: magnetometer:
+ asahi-kasei,ak8975: Drop deprecated enums
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: [PATCH v2 4/4] ARM: dts: am335x-pocketbeagle: add missing GPIO mux
-Date:   Fri, 18 Aug 2023 11:10:37 -0400
-Message-ID: <20230818151039.40566-5-twoerner@gmail.com>
-X-Mailer: git-send-email 2.41.0.327.gaa9166bcc0ba
-In-Reply-To: <20230818151039.40566-1-twoerner@gmail.com>
-References: <20230818151039.40566-1-twoerner@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the default MODE setting of a GPIO pin that was missing from the device
-tree (i.e. P2.20/gpio2_00). This is to ensure the GPIO pins match the
-pocketbeagle wiring expectations.
+Hi Biju,
 
-Signed-off-by: Trevor Woerner <twoerner@gmail.com>
----
- arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Thanks for your patch!
 
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts b/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts
-index fe4a1dbd8d88..051c8f04be21 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts
-+++ b/arch/arm/boot/dts/ti/omap/am335x-pocketbeagle.dts
-@@ -267,6 +267,16 @@ AM33XX_PADCONF(AM335X_PIN_GPMC_AD14, PIN_INPUT_PULLUP, MUX_MODE7)
- 		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
- 	};
- 
-+	/* P2_20 (ZCZ ball T13) gpio2_00 0x888 */
-+	P2_20_gpio: P2-20-gpio-pins {
-+		pinctrl-single,pins = <
-+			AM33XX_PADCONF(AM335X_PIN_GPMC_CSN3, PIN_INPUT_PULLUP, MUX_MODE7)
-+		>;
-+		pinctrl-single,bias-pullup   =   < 0x10  0x10  0x00  0x18>;
-+		pinctrl-single,bias-pulldown   = < 0x10  0x00  0x10  0x18>;
-+	};
-+
-+
- 	/* P2_10 (ZCZ ball R14) gpio1_20 0x850 PIN 20 */
- 	P2_10_gpio: P2-10-gpio-pins {
- 		pinctrl-single,pins = <
--- 
-2.41.0.327.gaa9166bcc0ba
+On Fri, Aug 18, 2023 at 9:56 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Drop deprecated enums from bindings as it is been here for a long time.
 
+The single user ever in the upstream kernel was fixed in commit
+9846210b1ec9bbaa ("ARM: tegra: seaboard: add missing DT vendor
+prefixes") in v3.8 back in 2012.
+And it had to be fixed again 9 years later in commit fa0fdb78cb5d4cde
+("ARM: dts: am335x: Use correct vendor prefix for Asahi Kasei Corp.").
+
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+> --- a/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/asahi-kasei,ak8975.yaml
+> @@ -18,13 +18,6 @@ properties:
+>            - asahi-kasei,ak09911
+>            - asahi-kasei,ak09912
+>            - asahi-kasei,ak09916
+> -      - enum:
+> -          - ak8975
+> -          - ak8963
+> -          - ak09911
+> -          - ak09912
+> -          - ak09916
+> -        deprecated: true
+>
+>    reg:
+>      maxItems: 1
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
