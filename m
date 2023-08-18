@@ -2,174 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89635780743
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 10:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00DCC78075B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 10:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239392AbjHRIgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 04:36:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46740 "EHLO
+        id S235362AbjHRIoA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 04:44:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230294AbjHRIgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 04:36:22 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 781373A94;
-        Fri, 18 Aug 2023 01:36:21 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37I5aDHQ024491;
-        Fri, 18 Aug 2023 08:36:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=v/kACXt63NJxIGkn0xwWK1EDATP14TEgK+yK4c43CoE=;
- b=L/0OWBDFD0MhMyee/l0TRAqoyuVVRaEMz5bW37kEkGnTMJWUgkHyYSpwkRB9Vt6MyBVc
- aVFIFNzQ/F9g58yl4GcwalpDTrecnlkYM/N8E1XXJXQPrinsVXpU+npoxgnIVG0lwqhR
- 8CTM4b52aEkFt56FGWp/bK2Lqath0PVZckos8XIGgbKx0F/OW1S975QWYgbTtas1lAE1
- WJxCkQJhUAe9gz2AD4IFIu9uzB0f3f6kxGJF9flfh0O73Evi9jXJ0+a8byGE5aJ7STvz
- KVTpG/smS61amORUji638B7oC1uUPrvMWc8uqpAvZu2jEGxzg+RjSu8PVzX9AXNx7aLV Jg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3she6ptyrt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Aug 2023 08:36:00 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37I8ZxX3015377
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 18 Aug 2023 08:35:59 GMT
-Received: from [10.253.34.149] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 18 Aug
- 2023 01:35:55 -0700
-Message-ID: <6ee2129b-04c6-4978-03d6-835e3a10e665@quicinc.com>
-Date:   Fri, 18 Aug 2023 16:35:52 +0800
+        with ESMTP id S1358695AbjHRIni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 04:43:38 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EC883A94
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 01:43:34 -0700 (PDT)
+Received: from v0.lan (bband-dyn221.178-41-211.t-com.sk [178.41.211.221])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id B0A2C3F434;
+        Fri, 18 Aug 2023 10:43:30 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: [PATCH 0/3] Add support for H616 Thermal system
+Date:   Fri, 18 Aug 2023 10:43:15 +0200
+Message-Id: <20230818-ths-h616-v1-0-0e1e058b9c7a@somainline.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 3/4] clk: qcom: common: add _qcom_cc_really_probe
-Content-Language: en-US
-To:     Bjorn Andersson <andersson@kernel.org>
-CC:     <agross@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230815085205.9868-1-quic_luoj@quicinc.com>
- <20230815085205.9868-4-quic_luoj@quicinc.com>
- <2dcu7jjwd2bhjbzxrxbfif566nupznb5n4oadnqha4h45w2n2g@4uy2pxkj5bvj>
-From:   Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <2dcu7jjwd2bhjbzxrxbfif566nupznb5n4oadnqha4h45w2n2g@4uy2pxkj5bvj>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U4o7DFOgkh6_T-S-KHKiGnRlRMNjstDc
-X-Proofpoint-ORIG-GUID: U4o7DFOgkh6_T-S-KHKiGnRlRMNjstDc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-18_10,2023-08-17_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 clxscore=1015 spamscore=0 suspectscore=0 bulkscore=0
- adultscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308180080
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-B4-Tracking: v=1; b=H4sIACMv32QC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDC0NT3ZKMYt0MM0MzXXPzJKOUJFMzUyMTSyWg8oKi1LTMCrBR0bG1tQD
+ 4NbNwWgAAAA==
+To:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Alan Ma <tech@biqu3d.com>,
+        Luke Harrison <bttuniversity@biqu3d.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin@biqu3d.com>,
+        Martin Botka <martin.botka@somainline.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692348210; l=1200;
+ i=martin.botka@somainline.org; s=20230811; h=from:subject:message-id;
+ bh=oPf+y+X9G61ZiyJ0sWXCSR3pYFSNT3sI7CxnPTuVGUk=;
+ b=CiPh4dzgiTuqa3g7g56zD4Z7eL8tPj0JiSuc5fl5HtJB6DB+t5+GrUBrD2B22CSKZoTyMO9H/
+ nVu3pUsBIwgCNGIBjwFE6qv+d56vJ7GTum4m0uTkjeC3Cd/9FC4OWXy
+X-Developer-Key: i=martin.botka@somainline.org; a=ed25519;
+ pk=aTCd3jmwU8GrJidWg3DSKLpdVMcpFzXzCSLXLR6NtWU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
+This patch series adds support to thermal system
+found in H616 SoC.
 
-On 8/18/2023 11:14 AM, Bjorn Andersson wrote:
-> On Tue, Aug 15, 2023 at 04:52:04PM +0800, Luo Jie wrote:
->> Add the common function _qcom_cc_really_probe, which takes
->> struct device as parameter.
-> 
-> This commit message completely fails to describe the problem/issue the
-> change is solving. So when we look back in the git history, there will
-> be no indication of why things looks like they do.
-> 
-Thanks for the comments, i will update the commit message in detail on 
-the issue resolved in the next patch set.
+There are 4 thermal sensors in this SoC.
+One for GPU, CPU, DRAM and VE.
 
->>
->> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->> ---
->>   drivers/clk/qcom/common.c | 10 ++++++++--
->>   drivers/clk/qcom/common.h |  2 ++
->>   2 files changed, 10 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/clk/qcom/common.c b/drivers/clk/qcom/common.c
->> index 75f09e6e057e..4cbdbfb65606 100644
->> --- a/drivers/clk/qcom/common.c
->> +++ b/drivers/clk/qcom/common.c
->> @@ -234,11 +234,10 @@ static struct clk_hw *qcom_cc_clk_hw_get(struct of_phandle_args *clkspec,
->>   	return cc->rclks[idx] ? &cc->rclks[idx]->hw : NULL;
->>   }
->>   
->> -int qcom_cc_really_probe(struct platform_device *pdev,
->> +int _qcom_cc_really_probe(struct device *dev,
->>   			 const struct qcom_cc_desc *desc, struct regmap *regmap)
->>   {
->>   	int i, ret;
->> -	struct device *dev = &pdev->dev;
->>   	struct qcom_reset_controller *reset;
->>   	struct qcom_cc *cc;
->>   	struct gdsc_desc *scd;
->> @@ -305,6 +304,13 @@ int qcom_cc_really_probe(struct platform_device *pdev,
->>   
->>   	return 0;
->>   }
->> +EXPORT_SYMBOL_GPL(_qcom_cc_really_probe);
->> +
->> +int qcom_cc_really_probe(struct platform_device *pdev,
->> +			 const struct qcom_cc_desc *desc, struct regmap *regmap)
-> 
-> Why do we want to keep this wrapper around?
-> 
-There are many existed clock controller drivers using this wrapper 
-qcom_cc_really_probe, so i still keep this wrapper.
+Trips while unused for now until cpufreq is implemented
+(WIP) are required by dt-bindings and thus included here.
 
-do we need to remove this wrapper and update the existed drivers to use 
-_qcom_cc_really_probe?
-> 
-> PS. Please give some time before posting v5, I would like to understand
-> the MDIO regmap operations in patch 4 better before commenting on it.
-> 
-> Regards,
-> Bjorn
-> 
-Sure, the MDIO read/write operations need to check whether the MDIO bus 
-is in busy state, the poll and sleep are taken to check.
+Cheers,
+Martin
 
-Thanks Bjorn for your time and review comments.
->> +{
->> +	return _qcom_cc_really_probe(&pdev->dev, desc, regmap);
->> +}
->>   EXPORT_SYMBOL_GPL(qcom_cc_really_probe);
->>   
->>   int qcom_cc_probe(struct platform_device *pdev, const struct qcom_cc_desc *desc)
->> diff --git a/drivers/clk/qcom/common.h b/drivers/clk/qcom/common.h
->> index 9c8f7b798d9f..9710ade9bf15 100644
->> --- a/drivers/clk/qcom/common.h
->> +++ b/drivers/clk/qcom/common.h
->> @@ -58,6 +58,8 @@ extern int qcom_cc_register_sleep_clk(struct device *dev);
->>   
->>   extern struct regmap *qcom_cc_map(struct platform_device *pdev,
->>   				  const struct qcom_cc_desc *desc);
->> +extern int _qcom_cc_really_probe(struct device *dev,
->> +			 const struct qcom_cc_desc *desc, struct regmap *regmap);
->>   extern int qcom_cc_really_probe(struct platform_device *pdev,
->>   				const struct qcom_cc_desc *desc,
->>   				struct regmap *regmap);
->> -- 
->> 2.17.1
->>
+---------------
+
+Hello,
+Im very much not sure if the trips should be included or not.
+Since they are not optional part I decided to add them but
+please let me know.
+
+Cheers,
+Martin
+
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Martin Botka (3):
+      dt-bindings: thermal: sun8i: Add binding for H616 THS controller
+      thermal: sun8i: Add support for H616 THS controller
+      arm64: dts: allwinner: h616: Add thermal sensor and thermal zones
+
+ .../bindings/thermal/allwinner,sun8i-a83t-ths.yaml |   3 +
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     |  87 ++++++++++++++++
+ drivers/thermal/sun8i_thermal.c                    | 115 +++++++++++++++++++++
+ 3 files changed, 205 insertions(+)
+---
+base-commit: a25793039a9cd5ac67d38a86dd2eb414abb93aa6
+change-id: 20230815-ths-h616-77b2db565249
+
+Best regards,
+-- 
+Martin Botka <martin.botka@somainline.org>
+
