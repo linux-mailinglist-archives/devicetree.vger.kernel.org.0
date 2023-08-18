@@ -2,463 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E49B780837
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:25:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 104DB78083C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:28:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359046AbjHRJZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45426 "EHLO
+        id S1359066AbjHRJ1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 05:27:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359045AbjHRJY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:24:58 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E2E30E6
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:24:46 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fe2fb9b4d7so6848325e9.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:24:46 -0700 (PDT)
+        with ESMTP id S1359065AbjHRJ1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:27:19 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6C7359D
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:27:16 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4ff933f9ca8so992403e87.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:27:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1692350685; x=1692955485;
+        d=linaro.org; s=google; t=1692350834; x=1692955634;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=dGeud8/LCN66PtLt+JkTQZpCvrnUyZTBaR7+fmpgOZQ=;
-        b=RWm0QTDvw9f41zFPdUGKkb4IJbKr6MTveOi/uWPyhS4F1kO3Orv7ApuiD5PGllFr6w
-         /+xsiTCtivnl+OZ5aV3KkKvPFGFgmX8MpS7kKn/KZmACOHGWjqTeXPWzfgmRHx66gny5
-         jIuL1NESET1iSbUmmX0AnXibEMnSKe4i6JPIzfpa59jeM5Q6FD8JmoOqKXyNc3ltCnwc
-         Ark2wHTAozDmj5LNuiYe0POAkKcB0ZTPYPAzy/XxM+0HYb6EZl0jNqEHCV64eGBCfobd
-         vDNGMttOKiRjgm8+9Hi+QQN2XOt0vVwtOuJKm1tbghDN43kuwNHFq/ZYZOV3/eF/wopJ
-         9YIQ==
+        bh=5Z87GGNmltjqzIqop3zxYjONMRgy+B5FGC3FUHfgldc=;
+        b=ZiSo256GEEWvCvqeRaLUi7wPkeCTYrpO5vZpQ5cB5mXkLBzzyuQijhBSCk878IbH1Y
+         bjKO4EvazNihA8WFg9dk0cb20ZwztmGt/raZVzghmDySYEX9Ut8XNW26iPlv0GDOj1K+
+         3Jkr+w2nFr+j07NVXSzPqRjKMmXGh+TXSuVKOR/pr5AZSjDv9kuOHsTcnBImK/3JehyG
+         JlggT1XuZ/rZOpPuVWLaKdkSyA4S6haFPaD5ZzHJjwfZ9OXlxQt0DYSjDy/3J6wFGpvR
+         NJLij0l3QzvukuFjPdB9kSIAnAZjoy2tTHADmjW6AgOShnNR0UfrvlhbSNWNw/GvfSC7
+         tyzg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692350685; x=1692955485;
+        d=1e100.net; s=20221208; t=1692350834; x=1692955634;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dGeud8/LCN66PtLt+JkTQZpCvrnUyZTBaR7+fmpgOZQ=;
-        b=cdl9zY8rvoARdlVTlctsOe/517SzVscZTossBiAELESapwa/+pkTQrwLiJf9+tt758
-         nECsaW/4TutNR8XVcJ3y4Nrg9m/4QO5jy4DsicYoGKtEi0WDLUsxkK1TCZeB3z9Nvyxt
-         Hnb1L6ngtAktQTsMLD0u028/RCJt0gkxJv6M+WkpP42OuycLKxyCbcV9bnKPgiDf6MuO
-         lGR8ptTUQrw9d0Oga+Qb9d/ziMhRP0k7dery4Zxa5XLGy30+wbWsY6Pszwp2yhzYiArK
-         wDoba5Z+7IwETVZRsiPu/rmMdfQdpUcRgSuW+/WZL2cEF8pmbPuad9aPw16Shaa1lJby
-         3kHg==
-X-Gm-Message-State: AOJu0YxDAEKmg5fbInQugNcKsXe7TYQ8zJVMHSxBtyuI8Wrsr/+cgQ8w
-        ey8ZoGZFy6YEy9uXeehELIKVtw==
-X-Google-Smtp-Source: AGHT+IFTvP3Wf65NjXpx47x/yisJ7n5vuQ+OEFbehrvfi4VTsb45m2Zk3RNJbV/U6pmRWt7sWCtDlQ==
-X-Received: by 2002:adf:f043:0:b0:315:a1f9:8667 with SMTP id t3-20020adff043000000b00315a1f98667mr1446492wro.23.1692350684666;
-        Fri, 18 Aug 2023 02:24:44 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id t12-20020a5d6a4c000000b003179d5aee63sm2114923wrw.91.2023.08.18.02.24.43
+        bh=5Z87GGNmltjqzIqop3zxYjONMRgy+B5FGC3FUHfgldc=;
+        b=SljkUTYDPFltnyemGSu5rdnjhgDw28lbBf3MAh1MCdJS8uizoMaVVmrisIoIY2TrKQ
+         b2RNdedCCqBr7/0Zkq2cdZuSrnE4xo3isyj4T8Enbs0RjKZl2WY4c/pn+IfGGU4sTWIB
+         ETtnT3OmfxOixxWqNKkoNeIuFR5MyoOYv8Dh93OnU/VGHFVnKwb/OUky1r1haOdcOaFW
+         W0tyVpnSOtgVBO5u2F3ZmL5W5QGdPWARwoE/R7hA281+Kud4G8AhhgL88sWt20w5t+kt
+         mB2p7ZUoOYHPhAYb+eS3+VAxithO5CsxY3BGmW3a9ua0LsJHsuNiSDIBq6+iNYAQbwqK
+         vUaw==
+X-Gm-Message-State: AOJu0YzVEi6CkL7mDkeYcrkUWklZOKzeeUu62bwER1CW36k/MKaKpivp
+        pFM0oTP5Lh3JpdxIue1RadZWWQ==
+X-Google-Smtp-Source: AGHT+IG0CT97L1dSo3YOtkbV8RuaYY6ec7OJaGEK/3YWxB0YJdX8qmnprfp2re3OtDgPIJ4dCVQBcw==
+X-Received: by 2002:ac2:4a7c:0:b0:4fe:c53:1824 with SMTP id q28-20020ac24a7c000000b004fe0c531824mr1256242lfp.40.1692350834534;
+        Fri, 18 Aug 2023 02:27:14 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id n12-20020a170906688c00b00982be08a9besm966046ejr.172.2023.08.18.02.27.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 02:24:44 -0700 (PDT)
-Message-ID: <7d932461-bb81-5a6e-4252-fa56ddf2ace5@nexus-software.ie>
-Date:   Fri, 18 Aug 2023 10:24:43 +0100
+        Fri, 18 Aug 2023 02:27:14 -0700 (PDT)
+Message-ID: <baa64cff-885a-2ecb-8a0f-3b820e55e1b8@linaro.org>
+Date:   Fri, 18 Aug 2023 11:27:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH] arm64: dts: qcom: Use QCOM_SCM_VMID defines for qcom,vmid
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 2/4] net: stmmac: dwc-qos: Add FSD EQoS support
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230818-qcom-vmid-defines-v1-1-45b610c96b13@fairphone.com>
-From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
-In-Reply-To: <20230818-qcom-vmid-defines-v1-1-45b610c96b13@fairphone.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Sriranjani P <sriranjani.p@samsung.com>, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, richardcochran@gmail.com,
+        alexandre.torgue@foss.st.com, joabreu@synopsys.com,
+        mcoquelin.stm32@gmail.com, alim.akhtar@samsung.com,
+        linux-fsd@tesla.com, pankaj.dubey@samsung.com,
+        swathi.ks@samsung.com, ravi.patel@samsung.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        'Chandrasekar R' <rcsekar@samsung.com>,
+        'Suresh Siddha' <ssiddha@tesla.com>
+References: <20230814112539.70453-1-sriranjani.p@samsung.com>
+ <CGME20230814112612epcas5p275cffb4d3dae86c6090ca246083631c4@epcas5p2.samsung.com>
+ <20230814112539.70453-3-sriranjani.p@samsung.com>
+ <b224ccaf-d70f-8f65-4b2f-6f4798841558@linaro.org>
+ <001201d9d00c$5413a9a0$fc3afce0$@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <001201d9d00c$5413a9a0$fc3afce0$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,NO_DNS_FOR_FROM,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/08/2023 09:06, Luca Weiss wrote:
-> Since we have those defines available in a header, let's use them
-> everywhere where qcom,vmid property is used.
+On 16/08/2023 08:38, Sriranjani P wrote:
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->   arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi          | 2 +-
->   arch/arm64/boot/dts/qcom/msm8996.dtsi                        | 3 ++-
->   arch/arm64/boot/dts/qcom/msm8998.dtsi                        | 3 ++-
->   arch/arm64/boot/dts/qcom/sc7180.dtsi                         | 3 ++-
->   arch/arm64/boot/dts/qcom/sc7280.dtsi                         | 3 ++-
->   arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts          | 3 ++-
->   arch/arm64/boot/dts/qcom/sc8180x-primus.dts                  | 3 ++-
->   arch/arm64/boot/dts/qcom/sdm630.dtsi                         | 3 ++-
->   arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi               | 2 +-
->   arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi          | 2 +-
->   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
->   arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts           | 2 +-
->   arch/arm64/boot/dts/qcom/sdm845.dtsi                         | 2 +-
->   arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts            | 3 ++-
->   arch/arm64/boot/dts/qcom/sm8150.dtsi                         | 3 ++-
->   arch/arm64/boot/dts/qcom/sm8350.dtsi                         | 3 ++-
->   arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi      | 2 +-
->   arch/arm64/boot/dts/qcom/sm8450.dtsi                         | 3 ++-
->   arch/arm64/boot/dts/qcom/sm8550.dtsi                         | 3 ++-
->   19 files changed, 31 insertions(+), 19 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> index bcd2397eb373..baa7472b7a28 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> @@ -117,7 +117,7 @@ rmtfs@f6c00000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		/delete-node/ mba@91500000;
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> index c8e0986425ab..6ba9da9e6a8b 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> @@ -9,6 +9,7 @@
->   #include <dt-bindings/clock/qcom,rpmcc.h>
->   #include <dt-bindings/interconnect/qcom,msm8996.h>
->   #include <dt-bindings/interconnect/qcom,msm8996-cbf.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/power/qcom-rpmpd.h>
->   #include <dt-bindings/soc/qcom,apr.h>
-> @@ -538,7 +539,7 @@ rmtfs_mem: rmtfs {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		mpss_mem: mpss@88800000 {
-> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> index f180047cacb0..aac23a8ef6c8 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-> @@ -6,6 +6,7 @@
->   #include <dt-bindings/clock/qcom,gpucc-msm8998.h>
->   #include <dt-bindings/clock/qcom,mmcc-msm8998.h>
->   #include <dt-bindings/clock/qcom,rpmcc.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/power/qcom-rpmpd.h>
->   #include <dt-bindings/gpio/gpio.h>
->   
-> @@ -56,7 +57,7 @@ rmtfs_mem: memory@88f00000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		spss_mem: memory@8ab00000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index a79c0f2e1879..d57418113b36 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -11,6 +11,7 @@
->   #include <dt-bindings/clock/qcom,lpasscorecc-sc7180.h>
->   #include <dt-bindings/clock/qcom,rpmh.h>
->   #include <dt-bindings/clock/qcom,videocc-sc7180.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/interconnect/qcom,icc.h>
->   #include <dt-bindings/interconnect/qcom,osm-l3.h>
->   #include <dt-bindings/interconnect/qcom,sc7180.h>
-> @@ -687,7 +688,7 @@ rmtfs_mem: memory@94600000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 925428a5f6ae..042908048d09 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -13,6 +13,7 @@
->   #include <dt-bindings/clock/qcom,rpmh.h>
->   #include <dt-bindings/clock/qcom,videocc-sc7280.h>
->   #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/interconnect/qcom,osm-l3.h>
->   #include <dt-bindings/interconnect/qcom,sc7280.h>
-> @@ -156,7 +157,7 @@ rmtfs_mem: memory@9c900000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> index abc66613ccaa..3ea07d094b60 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
-> @@ -6,6 +6,7 @@
->   
->   /dts-v1/;
->   
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/input/gpio-keys.h>
->   #include <dt-bindings/input/input.h>
-> @@ -130,7 +131,7 @@ rmtfs_mem: rmtfs-region@85500000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		wlan_mem: wlan-region@8bc00000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> index 834e6f9fb7c8..fd2fab4895b3 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
-> @@ -6,6 +6,7 @@
->   
->   /dts-v1/;
->   
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/input/gpio-keys.h>
->   #include <dt-bindings/input/input.h>
-> @@ -135,7 +136,7 @@ rmtfs_mem: rmtfs-region@85500000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		wlan_mem: wlan-region@8bc00000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> index ec6003212c4d..c17719086085 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> @@ -8,6 +8,7 @@
->   #include <dt-bindings/clock/qcom,gpucc-sdm660.h>
->   #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
->   #include <dt-bindings/clock/qcom,rpmcc.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/interconnect/qcom,sdm660.h>
->   #include <dt-bindings/power/qcom-rpmpd.h>
->   #include <dt-bindings/gpio/gpio.h>
-> @@ -453,7 +454,7 @@ rmtfs_mem: memory@85e00000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		smem_region: smem-mem@86000000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> index f942c5afea9b..99dafc6716e7 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> @@ -111,7 +111,7 @@ rmtfs_mem: memory@f0801000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		/* rmtfs upper guard */
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> index 122c7128dea9..b523b5fff702 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-> @@ -90,7 +90,7 @@ rmtfs_mem: rmtfs-mem@f5b01000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   		rmtfs_upper_guard: rmtfs-upper-guard@f5d01000 {
->   			no-map;
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> index 9d6faeb65624..93b1582e807d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
-> @@ -111,7 +111,7 @@ rmtfs_mem: memory@f6301000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> index 6db12abaa88d..e386b504e978 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
-> @@ -108,7 +108,7 @@ rmtfs_mem: memory@f6301000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 055ca80c0075..eede4b18fb98 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -813,7 +813,7 @@ rmtfs_mem: rmtfs@88f00000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		qseecom_mem: qseecom@8ab00000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> index 18171c5d8a38..136e273d09a7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> @@ -8,6 +8,7 @@
->   /* PMK8350 (in reality a PMK8003) is configured to use SID6 instead of 0 */
->   #define PMK8350_SID 6
->   
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
->   #include <dt-bindings/input/input.h>
-> @@ -75,7 +76,7 @@ memory@efe01000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index a7c3020a5de4..fd5c3139f4ce 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -5,6 +5,7 @@
->    */
->   
->   #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/power/qcom-rpmpd.h>
->   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> @@ -720,7 +721,7 @@ rmtfs_mem: memory@89b00000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		camera_mem: memory@8b700000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> index 00604bf7724f..4989a3971c94 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-> @@ -10,6 +10,7 @@
->   #include <dt-bindings/clock/qcom,gpucc-sm8350.h>
->   #include <dt-bindings/clock/qcom,rpmh.h>
->   #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/interconnect/qcom,sm8350.h>
->   #include <dt-bindings/mailbox/qcom-ipcc.h>
-> @@ -503,7 +504,7 @@ rmtfs_mem: memory@9b800000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		hyp_reserved_mem: memory@d0000000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
-> index 001fb2723fbb..8b29fcf483a3 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
-> @@ -80,7 +80,7 @@ rmtfs_mem: memory@f3300000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		ramoops@ffc00000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 2a60cf8bd891..09a0c35dd514 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -10,6 +10,7 @@
->   #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
->   #include <dt-bindings/clock/qcom,sm8450-videocc.h>
->   #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/mailbox/qcom-ipcc.h>
->   #include <dt-bindings/phy/phy-qcom-qmp.h>
-> @@ -540,7 +541,7 @@ rmtfs_mem: memory@9fd00000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		xbl_sc_mem2: memory@a6e00000 {
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index d115960bdeec..1a3bbd62e540 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -10,6 +10,7 @@
->   #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
->   #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
->   #include <dt-bindings/dma/qcom-gpi.h>
-> +#include <dt-bindings/firmware/qcom,scm.h>
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
->   #include <dt-bindings/interconnect/qcom,sm8550-rpmh.h>
-> @@ -570,7 +571,7 @@ rmtfs_mem: rmtfs-region@d4a80000 {
->   			no-map;
->   
->   			qcom,client-id = <1>;
-> -			qcom,vmid = <15>;
-> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
->   		};
->   
->   		mpss_dsm_mem: mpss-dsm-region@d4d00000 {
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@linaro.org]
+>> Sent: 15 August 2023 01:21
+>> To: Sriranjani P <sriranjani.p@samsung.com>; davem@davemloft.net;
+>> edumazet@google.com; kuba@kernel.org; pabeni@redhat.com;
+>> robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> conor+dt@kernel.org; richardcochran@gmail.com;
+>> alexandre.torgue@foss.st.com; joabreu@synopsys.com;
+>> mcoquelin.stm32@gmail.com; alim.akhtar@samsung.com; linux-
+>> fsd@tesla.com; pankaj.dubey@samsung.com; swathi.ks@samsung.com;
+>> ravi.patel@samsung.com
+>> Cc: netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; linux-samsung-soc@vger.kernel.org; linux-arm-
+>> kernel@lists.infradead.org; Chandrasekar R <rcsekar@samsung.com>;
+>> Suresh Siddha <ssiddha@tesla.com>
+>> Subject: Re: [PATCH v3 2/4] net: stmmac: dwc-qos: Add FSD EQoS support
+>>
+>> On 14/08/2023 13:25, Sriranjani P wrote:
+>>> The FSD SoC contains two instance of the Synopsys DWC ethernet QOS IP
+>> core.
+>>> The binding that it uses is slightly different from existing ones
+>>> because of the integration (clocks, resets).
+>>>
+>>> For FSD SoC, a mux switch is needed between internal and external clocks.
+>>> By default after reset internal clock is used but for receiving
+>>> packets properly, external clock is needed. Mux switch to external
+>>> clock happens only when the external clock is present.
+>>>
+>>> Signed-off-by: Chandrasekar R <rcsekar@samsung.com>
+>>> Signed-off-by: Suresh Siddha <ssiddha@tesla.com>
+>>> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
+>>> Signed-off-by: Sriranjani P <sriranjani.p@samsung.com>
+>>> ---
+>>
+>>
+>>> +static int dwc_eqos_setup_rxclock(struct platform_device *pdev, int
+>>> +ins_num) {
+>>> +	struct device_node *np = pdev->dev.of_node;
+>>> +	struct regmap *syscon;
+>>> +	unsigned int reg;
+>>> +
+>>> +	if (np && of_property_read_bool(np, "fsd-rx-clock-skew")) {
+>>> +		syscon = syscon_regmap_lookup_by_phandle_args(np,
+>>> +							      "fsd-rx-clock-
+>> skew",
+>>> +							      1, &reg);
+>>> +		if (IS_ERR(syscon)) {
+>>> +			dev_err(&pdev->dev,
+>>> +				"couldn't get the rx-clock-skew syscon!\n");
+>>> +			return PTR_ERR(syscon);
+>>> +		}
+>>> +
+>>> +		regmap_write(syscon, reg, rx_clock_skew_val[ins_num]);
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int fsd_eqos_clk_init(struct fsd_eqos_plat_data *plat,
+>>> +			     struct plat_stmmacenet_data *data) {
+>>> +	int ret = 0, i;
+>>> +
+>>> +	const struct fsd_eqos_variant *fsd_eqos_v_data =
+>>> +						plat->fsd_eqos_inst_var;
+>>> +
+>>> +	plat->clks = devm_kcalloc(plat->dev, fsd_eqos_v_data->num_clks,
+>>> +				  sizeof(*plat->clks), GFP_KERNEL);
+>>> +	if (!plat->clks)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	for (i = 0; i < fsd_eqos_v_data->num_clks; i++)
+>>> +		plat->clks[i].id = fsd_eqos_v_data->clk_list[i];
+>>> +
+>>> +	ret = devm_clk_bulk_get(plat->dev, fsd_eqos_v_data->num_clks,
+>>> +				plat->clks);
+>>
+>> Instead of duplicating entire clock management with existing code, you
+>> should extend/rework existing one.
+>>
+>> This code is unfortunately great example how not to stuff vendor code into
+>> upstream project. :(
 > 
-> ---
-> base-commit: 7271b2a530428b879443b274c191b34536a4ea11
-> change-id: 20230818-qcom-vmid-defines-adc1794c6d01
+> I will check again if I can extend existing one to support FSD platform specific requirement.
 > 
-> Best regards,
+>>
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>>> +static int fsd_clks_endisable(void *priv, bool enabled) {
+>>> +	int ret, num_clks;
+>>> +	struct fsd_eqos_plat_data *plat = priv;
+>>> +
+>>> +	num_clks = plat->fsd_eqos_inst_var->num_clks;
+>>> +
+>>> +	if (enabled) {
+>>> +		ret = clk_bulk_prepare_enable(num_clks, plat->clks);
+>>> +		if (ret) {
+>>> +			dev_err(plat->dev, "Clock enable failed, err = %d\n",
+>> ret);
+>>> +			return ret;
+>>> +		}
+>>> +	} else {
+>>> +		clk_bulk_disable_unprepare(num_clks, plat->clks);
+>>> +	}
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int fsd_eqos_probe(struct platform_device *pdev,
+>>> +			  struct plat_stmmacenet_data *data,
+>>> +			  struct stmmac_resources *res)
+>>> +{
+>>> +	struct fsd_eqos_plat_data *priv_plat;
+>>> +	struct device_node *np = pdev->dev.of_node;
+>>> +	int ret = 0;
+>>> +
+>>> +	priv_plat = devm_kzalloc(&pdev->dev, sizeof(*priv_plat),
+>> GFP_KERNEL);
+>>> +	if (!priv_plat) {
+>>> +		ret = -ENOMEM;
+>>
+>> return -ENOMEM
+> 
+> Will fix this in v4.
+> 
+>>
+>>> +		goto error;
+>>> +	}
+>>> +
+>>> +	priv_plat->dev = &pdev->dev;
+>>> +	data->bus_id = of_alias_get_id(np, "eth");
+>>
+>> No, you cannot do like this. Aliases are board specific and are based on
+>> labeling on the board.
+> 
+> So if I understood this correctly, I need to move alias in the board specific DTS file 
 
-Obvioiusly correct
+This part: yes
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> and I can use this, because we have to handle rx-clock-skew differently for the two instances in the FSD platform.
+
+Not really. Do you expect it to work correctly if given EQoS instance
+receives different alias, e.g. 5?
+
+> Another approach we took in v1, by specifying the value to be programmed in rx-clock-skew property itself, but it seems it is not a preferred approach. 
+> I can see that in drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c +436 common code is already using this API and getting alias id, so I can probably use the same rather getting same again here, but I have to specify alias in DTS file.
+
+Getting alias ID is okay in general. It is used to provide user-visible
+ID of the devices (see mmc). Using such alias to configure hardware is
+abuse of the alias, because of the reasons I said - how is it supposed
+to work if alias is 5 (this is perfectly valid alias)?
+
+I suspect that all this is to substitute missing abstractions, like
+clocks, phys or resets...
+
+Best regards,
+Krzysztof
+
