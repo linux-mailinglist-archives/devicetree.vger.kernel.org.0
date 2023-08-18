@@ -2,768 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63FCE780FD2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493A1780FD8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:07:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378398AbjHRQGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 12:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53370 "EHLO
+        id S1378236AbjHRQGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 12:06:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378397AbjHRQGg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:06:36 -0400
-Received: from forward101c.mail.yandex.net (forward101c.mail.yandex.net [178.154.239.212])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4694E42;
-        Fri, 18 Aug 2023 09:06:33 -0700 (PDT)
-Received: from mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net [IPv6:2a02:6b8:c14:150a:0:640:1aa5:0])
-        by forward101c.mail.yandex.net (Yandex) with ESMTP id 197E660055;
-        Fri, 18 Aug 2023 19:06:32 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id A6lUUeCWp4Y0-uTWNfsHR;
-        Fri, 18 Aug 2023 19:06:30 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail; t=1692374791;
-        bh=Ftwzf5qFNvW2/+Amxgbq4E4TA6BxE0HtcptUWp4V73Q=;
-        h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
-        b=pSTogzgcHURxa/mZNXH7FTqW24KYfSHyclWcTIzbmf7jIda8Zd2WD2T1ZNY1AgZMo
-         oweLGHrW3fPbh4HaDPMJ+DH7TgUWQzivzhri4d2I2j5lBoQgYBYst+uRmxpMCOeR6C
-         ac8JGAuE8kFsj6UzzJY3PPmOYK0WH20+LeoKEVds=
-Authentication-Results: mail-nwsmtp-smtp-production-main-60.sas.yp-c.yandex.net; dkim=pass header.i=@6tel.net
-From:   Muhammed Efe Cetin <efectn@6tel.net>
-To:     linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        heiko@sntech.de, sebastian.reichel@collabora.com, jonas@kwiboo.se,
-        megi@xff.cz, Muhammed Efe Cetin <efectn@6tel.net>
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: Add Orange Pi 5
-Date:   Fri, 18 Aug 2023 19:05:51 +0300
-Message-ID: <201e8df24c3a2f25c13d3f1d129f8be4fe2eb97a.1692372351.git.efectn@6tel.net>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <cover.1692372351.git.efectn@6tel.net>
-References: <cover.1692372351.git.efectn@6tel.net>
+        with ESMTP id S1344992AbjHRQGU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:06:20 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1297FE42;
+        Fri, 18 Aug 2023 09:06:18 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 060BB1FB;
+        Fri, 18 Aug 2023 09:06:58 -0700 (PDT)
+Received: from [10.57.91.158] (unknown [10.57.91.158])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 007453F762;
+        Fri, 18 Aug 2023 09:06:14 -0700 (PDT)
+Message-ID: <6ef158ef-c592-64fe-d204-4e7a526b4e47@arm.com>
+Date:   Fri, 18 Aug 2023 17:06:14 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,T_SPF_PERMERROR,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [RFC PATCH] iommu: arm-smmu-nvidia: Add default domain type
+ implementation op
+Content-Language: en-GB
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Baolu Lu <baolu.lu@linux.intel.com>
+Cc:     Stanimir Varbanov <stanimir.varbanov@suse.com>,
+        Stanimir Varbanov <svarbanov@suse.de>,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20230710082252.9702-1-svarbanov@suse.de> <ZKvgG4-IzqiYPSUT@orome>
+ <93026b47-3b72-8439-486e-e0cda21dd0fe@suse.com> <ZK17X4ueSI5rWKVL@orome>
+ <ZK_8uU2XJAWMk23M@orome>
+ <2a6fe812-3881-8dc9-1e7e-237ce7490155@linux.intel.com>
+ <ZLDxrDMoLsniQx4x@orome>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <ZLDxrDMoLsniQx4x@orome>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
-Sdmmc, SPI Flash, PMIC.
+On 2023-07-14 07:56, Thierry Reding wrote:
+> On Fri, Jul 14, 2023 at 11:14:08AM +0800, Baolu Lu wrote:
+>> On 2023/7/13 21:31, Thierry Reding wrote:
+>>> On Tue, Jul 11, 2023 at 05:55:11PM +0200, Thierry Reding wrote:
+>>>> On Tue, Jul 11, 2023 at 01:58:34PM +0300, Stanimir Varbanov wrote:
+>>>>> Hi Thierry,
+>>>>>
+>>>>> Thank you for the comments!
+>>>>>
+>>>>> On 7/10/23 13:40, Thierry Reding wrote:
+>>>>>> On Mon, Jul 10, 2023 at 11:22:52AM +0300, Stanimir Varbanov wrote:
+>>>>>>> Add def_domain_type implementation op and override default IOMMU
+>>>>>>> domain Kconfig option (CONFIG_IOMMU_DEFAULT_PASSTHROUGH=y), which
+>>>>>>> could be enabled on some distros. The current quirk has been done
+>>>>>>> for Tegra234 machine, because I found the issue on it. The issue
+>>>>>>> itself appears on USB host controller which cannot be initialized
+>>>>>>> without IOMMU translation. Something more, we proved that IOMMU
+>>>>>>> translation is needed for display and GPU drivers as well.
+>>>>>>>
+>>>>>>> I evaluated few possible options to solve that:
+>>>>>>>
+>>>>>>>    a) select default IOMMU domain from .def_domain_type op
+>>>>>>>    b) Unset CONFIG_IOMMU_DEFAULT_PASSTHROUGH=n
+>>>>>>>    c) add iommu.passthrough=0 on the kernel cmdline
+>>>>>>>    d) firmware - ACPI / DT
+>>>>>>>
+>>>>>>> a) This option is implemented in the proposed patch.
+>>>>>>>
+>>>>>>> b) Since that the community has agreed that pass-through is preferred
+>>>>>>> as a default IOMMU domain option because this will avoid performance
+>>>>>>> impacts on some of the platforms [1]. On the other side we have examples
+>>>>>>> where you cannot even install Linux distribution on a machine where the
+>>>>>>> storage media cannot be detected and the system just hangs.
+>>>>>>
+>>>>>> That's not how I read that thread. It sounds more to me like Will and
+>>>>>> Robin had ideas on how to improve the performance and were planning to
+>>>>>> address these issues. It doesn't exactly sound to me like there was
+>>>>>> concensus to make passthrough the default.
+>>>>>>
+>>>>>> Having said that, given that it's possible for distributions and users
+>>>>>> to set CONFIG_IOMMU_DEFAULT_PASSTHROUGH=y, I think it would be useful in
+>>>>>> general to have a way of enforcing IOMMU translations if it's needed by
+>>>>>> the hardware.
+>>>>>
+>>>>> Exactly, the problem is that some platforms prefer passthrough to avoid
+>>>>> performance impacts but others cannot even boot the kernel (and thus
+>>>>> installation failure). Passing iommu.passthrough=0 should be an
+>>>>> administrator decision, balancing between security and performance.
+>>>>>
+>>>>> On the other hand the aforementioned mail thread gave some performance
+>>>>> numbers which might be are outdated having the improvements made in smmu
+>>>>> driver in mind. Unfortunately, I cannot confirm that the performance has
+>>>>> been improved during that time.
+>>>>>
+>>>>>>
+>>>>>> I'm not sure I fully understand the particular problems that you're
+>>>>>> seeing on Tegra234, though. I'm not aware of anything in the USB host
+>>>>>> controller driver (or hardware, for that matter) that would require the
+>>>>>> IOMMU to be enabled. The only peculiarity that I can think of is the
+>>>>>> firmware, which is typically loaded by an early bootloader and therefore
+>>>>>> might perhaps need the IOMMU to properly map this in the kernel.
+>>>>>> However, my understanding is that this firmware is loaded into special
+>>>>>> carveout regions which don't require remapping.
+>>>>>
+>>>>> On Jetson Orin AGX (R35.2.1) I see these errors:
+>>>>>
+>>>>> tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000080:
+>>>>> EMEM address decode error (EMEM decode error)
+>>>>>
+>>>>> tegra-xusb 3610000.usb: Error while assigning device slot ID
+>>>>> tegra-xusb 3610000.usb: Max number of devices this xHCI host supports is 36.
+>>>>> usb usb2-port3: couldn't allocate usb_device
+>>>>> tegra-mc 2c00000.memory-controller: unknown: write @0x0000000000000090:
+>>>>> EMEM address decode error (EMEM decode error)
+>>>>> tegra-xusb 3610000.usb: Error while assigning device slot ID
+>>>>> tegra-xusb 3610000.usb: Max number of devices this xHCI host supports is 36.
+>>>>> usb usb1-port3: couldn't allocate usb_device
+>>>>>
+>>>>> tegra-mc 2c00000.memory-controller: unknown: write @0x00000000000000a0:
+>>>>> EMEM address decode error (EMEM decode error)
+>>>>> tegra-xusb 3610000.usb: Error while assigning device slot ID
+>>>>> tegra-xusb 3610000.usb: Max number of devices this xHCI host supports is 36.
+>>>>> usb usb1-port4: couldn't allocate usb_device
+>>>>>
+>>>>>>
+>>>>>> However, passthrough is admittedly not something that we've thoroughly
+>>>>>> tested, so it's possible you're running into a use-case that I'm not
+>>>>>> aware of. In that case, could you provide a few more specifics (such as
+>>>>>> the DTB and .config) of your build configuration so that I can try and
+>>>>>> reproduce?
+>>>>>
+>>>>> To reproduce you have to add iommu.passthrough=1 on kernel cmdline. The
+>>>>> dtb is from Jetpack.
+>>>>
+>>>> I was able to reproduce this on Jetson Orin NX (the differences to AGX
+>>>> Orin should be negligible in this context), though I ended up patching
+>>>> the DTB to disable all SMMUs. What fixed it for me was to drop the
+>>>> dma-coherent property from the usb@3610000 node. Can you try that on
+>>>> your end to see if that works for you as well?
+>>>>
+>>>> Not that that's a proper solution, of course, but just trying to find
+>>>> out if there's perhaps something else going on.
+>>>>
+>>>>   From the looks of it, it seems like these devices aren't actually DMA
+>>>> coherent inherently, but rather the SMMU translations make the accesses
+>>>> to memory coherent. I'm trying to find out the exact details, but if it
+>>>> turns out to be the case, then what we really want is a way for an IOMMU
+>>>> to mark any devices that get attached to it as DMA coherent. It's not
+>>>> sufficient to hard-code this in DT because there are various ways in
+>>>> which device can end up not attached to an IOMMU despite what the DT
+>>>> says.
+>>>>
+>>>> Jason, or anyone of the IOMMU folks, any thoughts on how this could be
+>>>> achieved? DT already has a way of walking up the "DMA hierarchy" looking
+>>>> for a DMA coherent parent, but again, making this rely entirely on DT
+>>>> seems insufficient.
+>>>
+>>> I've got a bit more information on what's happening here. There are
+>>> three different ways that a device's memory accesses can coherent on
+>>> Tegra: 1) when translated through the ARM SMMU, 2) some devices can
+>>> force coherency through configuration registers and 3) each device can
+>>> be forced to be coherent via the memory controller.
+>>>
+>>> Option 3) is not something we have much control over because this is
+>>> configured during early boot and the corresponding registers locked
+>>> down, so the OS can at maximum read out the configuration.
+>>>
+>>> Option 1) is what is typically used, so a common pattern is that if we
+>>> enable IOMMU translations via DT, we also set dma-coherent. Conversely,
+>>> if IOMMU translations are disabled via DT, the dma-coherent property
+>>> should also be removed because by default most devices will not be
+>>> hardcoded to be DMA coherent via option 3). Most device drivers will
+>>> also not program the device's configuration registers.
+>>>
+>>> As a result the desired configuration is to always enable SMMU and rely
+>>> on the SMMU translations to provide DMA coherency. As we've seen this
+>>> can be problematic, because the device tree doesn't always tell the true
+>>> story. For example even if the iommus property exists, the device may
+>>> not end up attached to the IOMMU for a number of reasons (the IOMMU
+>>> could itself be disabled, a kernel command-line option could prevent the
+>>> attachment, or a device could even be detached explicitly).
+>>>
+>>> So I think what we want to avoid is to mark all device tree nodes as
+>>> dma-coherent because it can lead to inconsistencies. A better option
+>>> would be to have this property inherited via the IOMMU if the IOMMU
+>>> translations themselves cause the coherency to be established. Now it
+>>> seems like DT already contains a way of doing that via the "DMA parent".
+>>> This works by looking up a special interconnects path called "dma-mem".
+>>> We already use this on Tegra to make the memory controller the DMA
+>>> parent of all memory clients (i.e. all DMA capable hardware blocks) in
+>>> order to enforce a bus-level DMA mask.
+>>>
+>>> However, in order for the DMA parent mechanism to work for IOMMU, we'd
+>>> need to redirect the DMA parent to be the IOMMU, but in that case we
+>>> loose the link to the memory controller. Unless, perhaps, if there's a
+>>> way to construct an ICC path from device to IOMMU and then to memory
+>>> controller and external memory controller (EMC).
+>>>
+>>> For reference, here's roughly what the data path looks like on Tegra:
+>>>
+>>> 	device --> MC --> SMMU enabled --> SMMU --> EMC --> DRAM
+>>> 	              |                          ^
+>>> 	              --> SMMU bypass -----------|
+>>>
+>>> SMMU can be enabled/disabled per device via a stream ID override
+>>> register in the memory controller.
+>>>
+>>> The biggest downside of that mechanism is still that it's a static
+>>> configuration and doesn't respect the actual runtime attachment of a
+>>> device to an IOMMU.
+>>>
+>>> Adding the DT folks to see if they have any good ideas on how best to
+>>> represent this from a DT point of view. Would it perhaps be an option
+>>> to consider the iommus property when walking up the DMA ancestry?
+>>
+>> Is it possible to handle this dynamically in the code? Say, set device
+>> to be DMA coherent in probe_finalize callback of Tegra iommu driver if
+>> the IOMMU translation for this device is on. And clear it in the iommu
+>> release device path.
+>>
+>> Normally we switch the DMA ops in the probe_finalize callback and iommu
+>> device release.
+> 
+> Yeah, I had looked into this as well. Intel, AMD and VirtIO all seem to
+> do this during .probe_finalize(), whereas on ARM64 this happens as part
+> of the bus' .dma_configure() callback.
+> 
+> One thing that we could potentially do is fiddle with the struct device
+> .dma_coherent member in .probe_finalize() and .release_device(), but I'm
+> not sure about the potential ramifications. That is, do we have places
+> in the code that assume dev->dma_coherent to be statically set during
+> device instantiation?
+> 
+> We would have to default to not marking devices as dma-coherent in DT
+> for that to work, though, because otherwise if someone were to disable
+> the IOMMU altogether, .probe_finalize() and .release_device() would
+> never get called and we'd never get a chance to override.
+> 
+> I wonder if we could also use this to dynamically switch a device into
+> coherent mode. For example, if it is marked as dma-coherent in device
+> tree but doesn't end up as dev->dma_coherent when the driver probes, we
+> could try and force coherency via the device's configuration registers.
 
-Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 687 ++++++++++++++++++
- 2 files changed, 688 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+Indeed, if the device itself can control the memory attributes it 
+outputs, then take a look at most users of device_get_dma_attr() for 
+examples of doing exactly that.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index e7728007fd1b..c29386106b7a 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -105,3 +105,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-indiedroid-nova.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-khadas-edge2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-new file mode 100644
-index 000000000000..f396b1285d73
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
-@@ -0,0 +1,687 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include "rk3588s.dtsi"
-+
-+/ {
-+	model = "Xunlong Orange Pi 5";
-+	compatible = "xunlong,orangepi-5", "rockchip,rk3588s";
-+
-+	aliases {
-+		mmc0 = &sdmmc;
-+		serial2 = &uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 =<&leds_gpio>;
-+
-+		led-1 {
-+			label = "status_led";
-+			gpios = <&gpio1 RK_PA2 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+		poll-interval = <100>;
-+
-+		button-recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <1000>;
-+		};
-+	};
-+
-+	vcc5v0_sys: vcc5v0-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_1v1_nldo_s3";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc_3v3_sd_s0: vcc-3v3-sd-s0-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc_3v3_sd_s0";
-+		enable-active-low;
-+		regulator-boot-on;
-+		gpios = <&gpio4 RK_PB5 GPIO_ACTIVE_LOW>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	vbus_typec: vbus_typec-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vbus_typec";
-+		enable-active-high;
-+		gpio = <&gpio3 RK_PC0 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&typec5v_pwren>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+
-+	vcc3v3_pcie20: vcc3v3-pcie20-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_pcie20";
-+		enable-active-high;
-+		regulator-boot-on;
-+		startup-delay-us = <50000>;
-+		gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc5v0_sys>;
-+	};
-+};
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&combphy2_psu {
-+	status = "okay";
-+};
-+
-+&cpu_b0 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+	mem-supply = <&vdd_cpu_big0_mem_s0>;
-+};
-+
-+&cpu_b1 {
-+	cpu-supply = <&vdd_cpu_big0_s0>;
-+	mem-supply = <&vdd_cpu_big0_mem_s0>;
-+};
-+
-+&cpu_b2 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+	mem-supply = <&vdd_cpu_big1_mem_s0>;
-+};
-+
-+&cpu_b3 {
-+	cpu-supply = <&vdd_cpu_big1_s0>;
-+	mem-supply = <&vdd_cpu_big1_mem_s0>;
-+};
-+
-+&cpu_l0 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
-+};
-+
-+&cpu_l1 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
-+};
-+
-+&cpu_l2 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
-+};
-+
-+&cpu_l3 {
-+	cpu-supply = <&vdd_cpu_lit_s0>;
-+	mem-supply = <&vdd_cpu_lit_mem_s0>;
-+};
-+
-+&gmac1 {
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy1>;
-+	phy-mode = "rgmii-rxid";
-+	pinctrl-0 = <&gmac1_miim
-+		     &gmac1_tx_bus2
-+		     &gmac1_rx_bus2
-+		     &gmac1_rgmii_clk
-+		     &gmac1_rgmii_bus>;
-+	pinctrl-names = "default";
-+	snps,reset-gpio = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 20000 100000>;
-+	tx_delay = <0x42>;
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0m2_xfer>;
-+	status = "okay";
-+
-+	vdd_cpu_big0_s0: vdd_cpu_big0_mem_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu_big0_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	vdd_cpu_big1_s0: vdd_cpu_big1_mem_s0: regulator@43 {
-+		compatible = "rockchip,rk8603", "rockchip,rk8602";
-+		reg = <0x43>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu_big1_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <1050000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+
-+	vdd_npu_s0: vdd_npu_mem_s0: regulator@42 {
-+		compatible = "rockchip,rk8602";
-+		reg = <0x42>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_npu_s0";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <550000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c6m3_xfer>;
-+	status = "okay";
-+
-+	hym8563: rtc@51 {
-+		compatible = "haoyu,hym8563";
-+		reg = <0x51>;
-+		#clock-cells = <0>;
-+		clock-output-names = "hym8563";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hym8563_int>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
-+		wakeup-source;
-+	};
-+};
-+
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+	};
-+};
-+
-+&pcie2x1l2 {
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_pcie20>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	gpio-func {
-+		leds_gpio: leds-gpio {
-+			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	hym8563 {
-+		hym8563_int: hym8563-int {
-+			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb-typec {
-+		usbc0_int: usbc0-int {
-+			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+
-+		typec5v_pwren: typec5v-pwren {
-+			rockchip,pins = <3 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&saradc {
-+	vref-supply = <&avcc_1v8_s0>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	max-frequency = <150000000>;
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_3v3_sd_s0>;
-+	vqmmc-supply = <&vccio_sd_s0>;
-+	status = "okay";
-+};
-+
-+&sfc {
-+	pinctrl-0 = <&fspim0_pins>;
-+	pinctrl-names = "default";
-+	max-freq = <100000000>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0x0>;
-+		spi-max-frequency = <100000000>;
-+		spi-tx-bus-width = <1>;
-+		spi-rx-bus-width = <4>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+	};
-+};
-+
-+&spi2 {
-+	status = "okay";
-+	assigned-clocks = <&cru CLK_SPI2>;
-+	assigned-clock-rates = <200000000>;
-+	num-cs = <1>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
-+
-+	pmic@0 {
-+		compatible = "rockchip,rk806";
-+		reg = <0x0>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
-+				<&rk806_dvs2_null>, <&rk806_dvs3_null>;
-+		spi-max-frequency = <1000000>;
-+
-+		vcc1-supply = <&vcc5v0_sys>;
-+		vcc2-supply = <&vcc5v0_sys>;
-+		vcc3-supply = <&vcc5v0_sys>;
-+		vcc4-supply = <&vcc5v0_sys>;
-+		vcc5-supply = <&vcc5v0_sys>;
-+		vcc6-supply = <&vcc5v0_sys>;
-+		vcc7-supply = <&vcc5v0_sys>;
-+		vcc8-supply = <&vcc5v0_sys>;
-+		vcc9-supply = <&vcc5v0_sys>;
-+		vcc10-supply = <&vcc5v0_sys>;
-+		vcc11-supply = <&vcc_2v0_pldo_s3>;
-+		vcc12-supply = <&vcc5v0_sys>;
-+		vcc13-supply = <&vcc_1v1_nldo_s3>;
-+		vcc14-supply = <&vcc_1v1_nldo_s3>;
-+		vcca-supply = <&vcc5v0_sys>;
-+
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+
-+		rk806_dvs1_null: dvs1-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs2_null: dvs2-null-pins {
-+			pins = "gpio_pwrctrl2";
-+			function = "pin_fun0";
-+		};
-+
-+		rk806_dvs3_null: dvs3-null-pins {
-+			pins = "gpio_pwrctrl3";
-+			function = "pin_fun0";
-+		};
-+
-+		regulators {
-+			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
-+				regulator-name = "vdd_gpu_s0";
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+				regulator-enable-ramp-delay = <400>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
-+				regulator-name = "vdd_cpu_lit_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_log_s0: dcdc-reg3 {
-+				regulator-name = "vdd_log_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <750000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
-+				regulator-name = "vdd_vdenc_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <550000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_ddr_s0: dcdc-reg5 {
-+				regulator-name = "vdd_ddr_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <675000>;
-+				regulator-max-microvolt = <900000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			vdd2_ddr_s3: dcdc-reg6 {
-+				regulator-name = "vdd2_ddr_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_2v0_pldo_s3: dcdc-reg7 {
-+				regulator-name = "vdd_2v0_pldo_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <2000000>;
-+				regulator-max-microvolt = <2000000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <2000000>;
-+				};
-+			};
-+
-+			vcc_3v3_s3: dcdc-reg8 {
-+				regulator-name = "vcc_3v3_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vddq_ddr_s0: dcdc-reg9 {
-+				regulator-name = "vddq_ddr_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s3: dcdc-reg10 {
-+				regulator-name = "vcc_1v8_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avcc_1v8_s0: pldo-reg1 {
-+				regulator-name = "avcc_1v8_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8_s0: pldo-reg2 {
-+				regulator-name = "vcc_1v8_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			avdd_1v2_s0: pldo-reg3 {
-+				regulator-name = "avdd_1v2_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1200000>;
-+				regulator-max-microvolt = <1200000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3_s0: pldo-reg4 {
-+				regulator-name = "vcc_3v3_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd_s0: pldo-reg5 {
-+				regulator-name = "vccio_sd_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			pldo6_s3: pldo-reg6 {
-+				regulator-name = "pldo6_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_0v75_s3: nldo-reg1 {
-+				regulator-name = "vdd_0v75_s3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <750000>;
-+				};
-+			};
-+
-+			vdd_ddr_pll_s0: nldo-reg2 {
-+				regulator-name = "vdd_ddr_pll_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+					regulator-suspend-microvolt = <850000>;
-+				};
-+			};
-+
-+			avdd_0v75_s0: nldo-reg3 {
-+				regulator-name = "avdd_0v75_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_0v85_s0: nldo-reg4 {
-+				regulator-name = "vdd_0v85_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <850000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_0v75_s0: nldo-reg5 {
-+				regulator-name = "vdd_0v75_s0";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <750000>;
-+				regulator-max-microvolt = <750000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&tsadc {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	pinctrl-0 = <&uart2m0_xfer>;
-+	status = "okay";
-+};
-+
-+&u2phy2 {
-+	status = "okay";
-+};
-+
-+&u2phy2_host {
-+	status = "okay";
-+};
-+
-+&u2phy3 {
-+	status = "okay";
-+};
-+
-+&u2phy3_host {
-+	status = "okay";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
-+
-+&wdt {
-+	status = "okay";
-+};
--- 
-2.41.0
+> I don't know yet if that's really a good idea, though. For correctness
+> it would be enough if we can detect at runtime whether a device is DMA
+> coherent or not via the IOMMU.
 
+It would be pretty trivial to hook up dynamic coherency through the 
+IOMMU API too, but the problem is that in general the IOMMU doesn't 
+necessarily know. In ACPI, IORT includes the nifty "Coherent Path to 
+Memory" attribute, but no equivalent exists for DT. A "dma-coherent" 
+property on the IOMMU node only says that the IOMMU's own memory 
+accesses are coherent, but that doesn't guarantee that all of its 
+translation interfaces are on coherent paths as well.
+
+Thanks,
+Robin.
