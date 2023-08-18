@@ -2,205 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A95A6780C44
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 15:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D68C6780C64
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 15:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1377005AbjHRNHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 09:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54902 "EHLO
+        id S1377112AbjHRNSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 09:18:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1377011AbjHRNHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 09:07:49 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37B293A9A
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 06:07:44 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F3DA01C0005;
-        Fri, 18 Aug 2023 13:07:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1692364063;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dD//loP9QtgReRBOtZXeatvKNMJueOSLRqawga/87Cw=;
-        b=THS/0FAGl+h4FMEYqyhvhS5xaNpbASdABm+l/L+yVM4iviSxedz/kz6Bnuv9rD3j7wrhbJ
-        6rEX1Cgp/3+3tRW2dojYOVHgvnqn+TObFE2MtR/OLLbEiHJn71ALXnl2TmzvSIRyVu2TGY
-        az4572AQ4H+cwiLL9bp5ICL3wkO9SBEafxTXloXjmd9vTlbveJuhmAzJXWPCRCPXFuYcf8
-        hE8jz5quJmnOMmELtyus1tup7JT0k8VNwWao3K7fVvma5DEBTmyE5Z29Rn2iaQmiyGJUWY
-        z4PQvZwPv3BaYAl05m3HcCTJwPqKcE3tRqfGkGcHYv8qM5tJGHz6NUGAs/ikJA==
-Date:   Fri, 18 Aug 2023 15:07:39 +0200
-From:   Luca Ceresoli <luca.ceresoli@bootlin.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1377057AbjHRNSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 09:18:13 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33F552723;
+        Fri, 18 Aug 2023 06:18:11 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37IDHqio037438;
+        Fri, 18 Aug 2023 08:17:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692364672;
+        bh=zg9d5TGVW5s8yRHMyUt4DTkSBYI+AJt/U8GKFUE5DEk=;
+        h=From:To:CC:Subject:Date;
+        b=zEbRYdH3k+/xZrRayGsXtLOybti72SFbB9doM4GGnWCleoI5xhcRtaiZf+wyuIRjh
+         dOJAE/giC9TrPZl2K9MpB8YZweDInxn8TEejSXOlHncG2wd2CSk1sbVCe/+FiYSrR5
+         lslI7b3Vu/aOX26pmYhLxmvg/NFBu+xcTemYUykw=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37IDHqdI126008
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Aug 2023 08:17:52 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
+ Aug 2023 08:17:51 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 18 Aug 2023 08:17:51 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37IDHoUH021192;
+        Fri, 18 Aug 2023 08:17:51 -0500
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+        Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Marek Vasut <marex@denx.de>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, Liu Ying <victor.liu@nxp.com>,
-        dri-devel@lists.freedesktop.org,
-        Robert Foss <robert.foss@linaro.org>,
-        patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH v2 4/4] drm/bridge: imx: add driver for HDMI TX Parallel
- Video Interface
-Message-ID: <20230818150739.474dd0a1@booty>
-In-Reply-To: <20221216210742.3233382-4-l.stach@pengutronix.de>
-References: <20221216210742.3233382-1-l.stach@pengutronix.de>
-        <20221216210742.3233382-4-l.stach@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        Conor Dooley <conor+dt@kernel.org>
+CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Jai Luthra <j-luthra@ti.com>, Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH 0/2] Add DSS support for TI AM62A7 SoC
+Date:   Fri, 18 Aug 2023 18:47:48 +0530
+Message-ID: <20230818131750.4779-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
+This patch series adds a new compatible for the Display SubSystem (DSS)
+controller on TI's AM62A7 SoC. It further adds the required support, for
+the same, in the tidss driver.
 
-On Fri, 16 Dec 2022 22:07:42 +0100
-Lucas Stach <l.stach@pengutronix.de> wrote:
+The DSS controller is similar to the recently added AM625 DSS, with the
+key difference being the absence of VP1 output on the SoC. The VP1 in
+AM62A7 DSS is tied off and cannot be used, unlike in AM625, where the
+VP1 was connected to 2 OLDI TXes. The video pipeline that corresponds to
+VP1 still exists and can be used to overlay planes on the VP2's primary
+plane. This can be done using the overlay managers inside the SoC.
+Moreover, DSS VP2 can output Full-HD RGB888 DPI video signals.
 
-> This IP block is found in the HDMI subsystem of the i.MX8MP SoC. It has a
-> full timing generator and can switch between different video sources. On
-> the i.MX8MP however the only supported source is the LCDIF. The block
-> just needs to be powered up and told about the polarity of the video
-> sync signals to act in bypass mode.
-> 
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> Tested-by: Marek Vasut <marex@denx.de>
-> ---
->  drivers/gpu/drm/bridge/imx/Kconfig           |   7 +
->  drivers/gpu/drm/bridge/imx/Makefile          |   1 +
->  drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c | 202 +++++++++++++++++++
->  3 files changed, 210 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-> 
-> diff --git a/drivers/gpu/drm/bridge/imx/Kconfig b/drivers/gpu/drm/bridge/imx/Kconfig
-> index d828d8bfd893..e6cc4000bccd 100644
-> --- a/drivers/gpu/drm/bridge/imx/Kconfig
-> +++ b/drivers/gpu/drm/bridge/imx/Kconfig
-> @@ -53,4 +53,11 @@ config DRM_IMX8MP_DW_HDMI_BRIDGE
->  	  Choose this to enable support for the internal HDMI encoder found
->  	  on the i.MX8MP SoC.
->  
-> +config DRM_IMX8MP_HDMI_PVI
-> +	tristate "i.MX8MP HDMI PVI bridge support"
-> +	depends on OF
-> +	help
-> +	  Choose this to enable support for the internal HDMI TX Parallel
-> +	  Video Interface found on the i.MX8MP SoC.
-> +
->  endif # ARCH_MXC || COMPILE_TEST
-> diff --git a/drivers/gpu/drm/bridge/imx/Makefile b/drivers/gpu/drm/bridge/imx/Makefile
-> index 03b0074ae538..b0fd56550dad 100644
-> --- a/drivers/gpu/drm/bridge/imx/Makefile
-> +++ b/drivers/gpu/drm/bridge/imx/Makefile
-> @@ -9,3 +9,4 @@ obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK) += imx8qxp-pixel-link.o
->  obj-$(CONFIG_DRM_IMX8QXP_PIXEL_LINK_TO_DPI) += imx8qxp-pxl2dpi.o
->  
->  obj-$(CONFIG_DRM_IMX8MP_DW_HDMI_BRIDGE) += imx8mp-hdmi.o
-> +obj-$(CONFIG_DRM_IMX8MP_HDMI_PVI) += imx8mp-hdmi-pvi.o
-> diff --git a/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-> new file mode 100644
-> index 000000000000..30d40c21dabb
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c
-> @@ -0,0 +1,202 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +
-> +/*
-> + * Copyright (C) 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-> + */
-> +
-> +#include <drm/drm_atomic_helper.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_crtc.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#define HTX_PVI_CTL	0x0
+I have tested these patches on AM62A7 SK-EVM, which converts DPI signals
+to HDMI on the platform using the Sil9022A HDMI transmitter. All the
+patches, required to enable display on AM62A7-SK, can be found on my
+github fork[0] in the branch "next_am62a".
 
-Personally I would s/CTL/CTRL/, to be consistent with the manual and
-thus more search-friendly.
+Regards
+Aradhya
 
-> +#define  PVI_CTL_OP_VSYNC_POL	BIT(18)
-> +#define  PVI_CTL_OP_HSYNC_POL	BIT(17)
-> +#define  PVI_CTL_OP_DE_POL	BIT(16)
-> +#define  PVI_CTL_INP_VSYNC_POL	BIT(14)
-> +#define  PVI_CTL_INP_HSYNC_POL	BIT(13)
-> +#define  PVI_CTL_INP_DE_POL	BIT(12)
-> +#define  PVI_CTL_INPUT_LCDIF	BIT(2)
-
-According to the reference manual there is actually a 2-bit field here:
-HTX_PVI_MODE, using bits 2:1, and whose "LCDIF" value is 0b10. Thus
-while it obviously won't change the resulting code, it seems more
-correct to define this as (2 << 1).
-
-> +static void imx8mp_hdmi_pvi_bridge_enable(struct drm_bridge *bridge,
-> +					  struct drm_bridge_state *bridge_state)
-> +{
-> +	struct drm_atomic_state *state = bridge_state->base.state;
-> +	struct imx8mp_hdmi_pvi *pvi = to_imx8mp_hdmi_pvi(bridge);
-> +	struct drm_connector_state *conn_state;
-> +	const struct drm_display_mode *mode;
-> +	struct drm_crtc_state *crtc_state;
-> +	struct drm_connector *connector;
-> +	u32 bus_flags, val;
-> +
-> +	connector = drm_atomic_get_new_connector_for_encoder(state, bridge->encoder);
-> +	conn_state = drm_atomic_get_new_connector_state(state, connector);
-> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-> +
-> +	if (WARN_ON(pm_runtime_resume_and_get(pvi->dev)))
-> +		return;
-> +
-> +	mode = &crtc_state->adjusted_mode;
-> +
-> +	val = PVI_CTL_INPUT_LCDIF;
-> +
-> +	if (mode->flags & DRM_MODE_FLAG_PVSYNC)
-> +		val |= PVI_CTL_OP_VSYNC_POL | PVI_CTL_INP_VSYNC_POL;
-> +
-> +	if (mode->flags & DRM_MODE_FLAG_PHSYNC)
-> +		val |= PVI_CTL_OP_HSYNC_POL | PVI_CTL_INP_HSYNC_POL;
-> +
-> +	if (pvi->next_bridge->timings)
-> +		bus_flags = pvi->next_bridge->timings->input_bus_flags;
-> +	else if (bridge_state)
-> +		bus_flags = bridge_state->input_bus_cfg.flags;
-> +
-> +	if (bus_flags & DRM_BUS_FLAG_DE_HIGH)
-> +		val |= PVI_CTL_OP_DE_POL | PVI_CTL_INP_DE_POL;
-> +
-> +	writel(val, pvi->regs + HTX_PVI_CTL);
-> +	val |= PVI_CTL_EN;
-> +	writel(val, pvi->regs + HTX_PVI_CTL);
-
-I guess I'm missing something here: why can't one just write the
-register once, with the enable bit set? I tried removing the first
-writel() and everything seems to work just the same.
-
-With these fixed:
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-
-And definitely:
-[Tested on a custom board using modetest on v6.5-rc6]
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+[0]: https://github.com/aradhya07/linux-ab/tree/next_am62a
 
 
+Aradhya Bhatia (2):
+  dt-bindings: display: ti: Add support for am62a7 dss
+  drivers/tidss: Add support for AM62A7 DSS
 
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 14 +++++
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 53 +++++++++++++++++++
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  2 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |  1 +
+ 4 files changed, 70 insertions(+)
+
+
+base-commit: 47762f08697484cf0c2f2904b8c52375ed26c8cb
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.40.1
+
