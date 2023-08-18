@@ -2,276 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B2BE780901
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19A7C7809BB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351171AbjHRJyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:54:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
+        id S1358000AbjHRKMK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 06:12:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348579AbjHRJyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:54:16 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1B972684
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:54:14 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-589bcdaa8a4so7368307b3.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:54:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692352454; x=1692957254;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=fVPjDm8HorQLjo/yGS/TQrlKCK/Hh3TZugvhtXaUnQo=;
-        b=K9RQcwkSaorQV8anfnfFNjMCCeTMj8DNZgdJQfZa6fInikTTfIQuh0qhu+KRGcYGou
-         kn7wd1mgqZhN5RtqodFl7oyV6FXDmcXCcSVyvskxFIny5EYq40jC64ZPidjrU61d5ArE
-         vJwx3Du2V8SOJFR8GYSzNykZ7GhE8dxO35X8SP7a40CElGdR8v3M8aIh/6BEPQANiqRp
-         fQy1Xlh1ZKznT2GF3B9XGfzUheYxn+KdcIYtCF0PoHxSi0YjvnWZ53tqpSG7MdrO0AQC
-         EDV0KjHrdePVXdlf7vXiUPf39yMf2qUixhnuwz1d03HSF7sJ1YJ62bVWeLjRnqvQCaJH
-         MGxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692352454; x=1692957254;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fVPjDm8HorQLjo/yGS/TQrlKCK/Hh3TZugvhtXaUnQo=;
-        b=YQ9DfTclA0DB85CEHY7f11f8a6kctdiAFDvgp8YkvIN7xCZ38+oln6N4kXsjrqUgO2
-         iq1Hh7vpGdGukH5O+xpClF4Wnx2wUItQXfEXZ13vWH+XwpVB7p+97Oz2OGuWr0T7H/q8
-         CsKevsDFSsluxnlFR/+GlQQfkpcWAOylkLvDsOlSF0Kc5cAtot/IyxQyWDseomUreDPi
-         hbSufwcfhCgYXnyx8D0A2uLYrVD1MJfmKkc6TmiU9Y9Y4ezykGEwQkqGn+HuBdEkhs0q
-         p1J3Bvw91qWyvjJzH1UEGQc0H2V7WLoxZrVBne1avWYEQXHJtyNef8KvYGGKICP/7VxR
-         Le/g==
-X-Gm-Message-State: AOJu0YyM7JwzBprx4kDjJasJzi4iPm0cBKiNcakrLUOCGak5DjuYK4pj
-        k7uRuWVQMAdVJxNtdL0GVs0zdFUX8VuP0G5YzY6kdw==
-X-Google-Smtp-Source: AGHT+IEm6n1dM60mXSBXUI2E/PxHjdx0Fn8Kz9P0EXQ13JgUGlttBDwkyPiVbbzMldRPIyW8lREamJf3uyLEpnPJ0zQ=
-X-Received: by 2002:a0d:d947:0:b0:579:f163:dc2f with SMTP id
- b68-20020a0dd947000000b00579f163dc2fmr2092357ywe.3.1692352454002; Fri, 18 Aug
- 2023 02:54:14 -0700 (PDT)
+        with ESMTP id S1359771AbjHRKLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:11:42 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2720630E6;
+        Fri, 18 Aug 2023 03:11:15 -0700 (PDT)
+Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.57])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4RRyFS5rFdztRwB;
+        Fri, 18 Aug 2023 18:06:20 +0800 (CST)
+Received: from huawei.com (10.175.112.208) by kwepemm600013.china.huawei.com
+ (7.193.23.68) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Fri, 18 Aug
+ 2023 18:09:58 +0800
+From:   Guo Mengqi <guomengqi3@huawei.com>
+To:     <vkoul@kernel.org>, <dmaengine@vger.kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>
+CC:     <guomengqi3@huawei.com>, <xuqiang36@huawei.com>,
+        <chenweilong@huawei.com>
+Subject: [PATCH v2 0/2] Add dma controller for hisi ascend310/910 
+Date:   Fri, 18 Aug 2023 18:01:26 +0800
+Message-ID: <20230818100128.112491-1-guomengqi3@huawei.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20230703085555.30285-1-quic_mkshah@quicinc.com> <20230703085555.30285-4-quic_mkshah@quicinc.com>
-In-Reply-To: <20230703085555.30285-4-quic_mkshah@quicinc.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 18 Aug 2023 11:53:37 +0200
-Message-ID: <CAPDyKFp0kLERmTecV3ryaNae0bDDwRbgiYHpYvPgL-ivrQOeTw@mail.gmail.com>
-Subject: Re: [RESEND v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for
- cpuidle states
-To:     andersson@kernel.org, Maulik Shah <quic_mkshah@quicinc.com>
-Cc:     dianders@chromium.org, swboyd@chromium.org, wingers@google.com,
-        linux-arm-msm@vger.kernel.org, jwerner@chromium.org,
-        quic_lsrao@quicinc.com, quic_rjendra@quicinc.com,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.175.112.208]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemm600013.china.huawei.com (7.193.23.68)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- trimmed cc list
+The patch set add driver and device-tree bindings for a dma controller
+on hisi ascend310/910 platform.
 
-Hi Bjorn,
+Changes in v2:
+	- Use common driver apis: dev_xxx() devm_xxx()
+	- Fix dts-binding properties, based on feedbacks
+	- If iommu sva feature is disabled, probe will not lead to failure
 
-On Mon, 3 Jul 2023 at 10:56, Maulik Shah <quic_mkshah@quicinc.com> wrote:
->
-> Add power-domains for cpuidle states to use psci os-initiated idle states.
->
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+Guo Mengqi (2):
+  dmaengine: Add HiSilicon Ascend SDMA engine support
+  dt-bindings: dma: hisi: Add bindings for Hisi Ascend sdma
 
-Would it be possible to pick this up for v6.6? It's been ready to be
-applied for a long time, sorry for nagging about this.
+ .../bindings/dma/hisi,ascend-sdma.yaml        |  75 ++
+ drivers/dma/Kconfig                           |   9 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/ascend_sdma.c                     | 817 ++++++++++++++++++
+ 4 files changed, 902 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
+ create mode 100644 drivers/dma/ascend_sdma.c
 
-Kind regards
-Uffe
+-- 
+2.17.1
 
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
->  1 file changed, 73 insertions(+), 25 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index a0e8db8270e7..84208a6c673d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -170,9 +170,8 @@
->                         reg = <0x0 0x0>;
->                         clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -                                          &LITTLE_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD0>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_0>;
->                         operating-points-v2 = <&cpu0_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -198,9 +197,8 @@
->                         reg = <0x0 0x100>;
->                         clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -                                          &LITTLE_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD1>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_100>;
->                         operating-points-v2 = <&cpu0_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -221,9 +219,8 @@
->                         reg = <0x0 0x200>;
->                         clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -                                          &LITTLE_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD2>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_200>;
->                         operating-points-v2 = <&cpu0_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -244,9 +241,8 @@
->                         reg = <0x0 0x300>;
->                         clocks = <&cpufreq_hw 0>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&LITTLE_CPU_SLEEP_0
-> -                                          &LITTLE_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD3>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_300>;
->                         operating-points-v2 = <&cpu0_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -267,9 +263,8 @@
->                         reg = <0x0 0x400>;
->                         clocks = <&cpufreq_hw 1>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -                                          &BIG_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD4>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_400>;
->                         operating-points-v2 = <&cpu4_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -290,9 +285,8 @@
->                         reg = <0x0 0x500>;
->                         clocks = <&cpufreq_hw 1>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -                                          &BIG_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD5>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_500>;
->                         operating-points-v2 = <&cpu4_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -313,9 +307,8 @@
->                         reg = <0x0 0x600>;
->                         clocks = <&cpufreq_hw 1>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -                                          &BIG_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD6>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_600>;
->                         operating-points-v2 = <&cpu4_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -336,9 +329,8 @@
->                         reg = <0x0 0x700>;
->                         clocks = <&cpufreq_hw 2>;
->                         enable-method = "psci";
-> -                       cpu-idle-states = <&BIG_CPU_SLEEP_0
-> -                                          &BIG_CPU_SLEEP_1
-> -                                          &CLUSTER_SLEEP_0>;
-> +                       power-domains = <&CPU_PD7>;
-> +                       power-domain-names = "psci";
->                         next-level-cache = <&L2_700>;
->                         operating-points-v2 = <&cpu7_opp_table>;
->                         interconnects = <&gem_noc MASTER_APPSS_PROC 3 &mc_virt SLAVE_EBI1 3>,
-> @@ -431,9 +423,11 @@
->                                 min-residency-us = <5555>;
->                                 local-timer-stop;
->                         };
-> +               };
->
-> +               domain-idle-states {
->                         CLUSTER_SLEEP_0: cluster-sleep-0 {
-> -                               compatible = "arm,idle-state";
-> +                               compatible = "domain-idle-state";
->                                 idle-state-name = "cluster-power-down";
->                                 arm,psci-suspend-param = <0x40003444>;
->                                 entry-latency-us = <3263>;
-> @@ -811,6 +805,59 @@
->         psci {
->                 compatible = "arm,psci-1.0";
->                 method = "smc";
-> +
-> +               CPU_PD0: cpu0 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD1: cpu1 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD2: cpu2 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD3: cpu3 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&LITTLE_CPU_SLEEP_0 &LITTLE_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD4: cpu4 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD5: cpu5 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD6: cpu6 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CPU_PD7: cpu7 {
-> +                       #power-domain-cells = <0>;
-> +                       power-domains = <&CLUSTER_PD>;
-> +                       domain-idle-states = <&BIG_CPU_SLEEP_0 &BIG_CPU_SLEEP_1>;
-> +               };
-> +
-> +               CLUSTER_PD: cpu-cluster0 {
-> +                       #power-domain-cells = <0>;
-> +                       domain-idle-states = <&CLUSTER_SLEEP_0>;
-> +               };
->         };
->
->         qspi_opp_table: opp-table-qspi {
-> @@ -5291,6 +5338,7 @@
->                                           <SLEEP_TCS   3>,
->                                           <WAKE_TCS    3>,
->                                           <CONTROL_TCS 1>;
-> +                       power-domains = <&CLUSTER_PD>;
->
->                         apps_bcm_voter: bcm-voter {
->                                 compatible = "qcom,bcm-voter";
-> --
-> 2.17.1
->
