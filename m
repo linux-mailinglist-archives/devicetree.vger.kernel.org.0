@@ -2,95 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B525C7808AF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:36:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C12D17808BD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:37:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359219AbjHRJgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:36:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34104 "EHLO
+        id S1359268AbjHRJg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 05:36:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351630AbjHRJfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:35:53 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5626912B
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:35:51 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-525656acf4bso892112a12.0
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:35:51 -0700 (PDT)
+        with ESMTP id S1359321AbjHRJgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:36:20 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9164D30E6
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:36:18 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-991c786369cso87248966b.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:36:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692351350; x=1692956150;
+        d=linaro.org; s=google; t=1692351377; x=1692956177;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hfNi7JSKPZId/vX/i5U5Vygp+2lX7VCsOltrQFE5gZ0=;
-        b=yHkzXIub7BNebiOEltNrfpmP9qkFHgVPPbK/hyeP3OR8/bXppY3+1W9MISAePwiZgd
-         xu6/2dUbf2N6aPr7eTI3NybNOE59RDNSRNjDSrmBr0viI9mvFV4+vnI4/F8suNYLGUdQ
-         ZePFWghl9W2o6uW3YXJgAs/o57zIYIW0ZO5zzAvYW1WYpYpKhVP6/GH3EIumSCvbKFP1
-         l3khRxp0NYdi28yjb+JLgbWPukHIt0VoZUg+VgHR74APUofjDcT8wfieNDDwpj62Fa6T
-         Hfo9S3jpZGY2mIFZrZuEibRjQRmOGrcFR/4gRWvhvHFlQM+45vY7RtzNjv4EErc7T5cT
-         49zQ==
+        bh=pojQP3VcjaTAfkflB+qDNh1uppY7RUN/tPX2gdHvZ+0=;
+        b=YDy+nWd4tJjRzSq5DW0Kv30dxkag6C9FF2d/pYPAtXmJGrte8N0KSLg0VeJzP10R0B
+         Tj4VMbOndG32N6YvljuQFfQlFsPd0c2W2Zh65weV2QQRGH9LS3OEpA1ZQwHz7OvmQhGn
+         DmZCtElsxAwefcYOMK6OGj2p/WnpLFpymIz4IKxbTTlcka9GE4WmwdY0LQc32sDbib9s
+         5qDZacLZ9OfCFD33QnC/KivLNLo5QNfWAM6bpcphC/xmpvWMoSs+7m/QO8yBB+UWW3sC
+         iCUqUAq4y4SxeZ67VjVAfPyyssqPYrKO1Tdq75iRi3CpZljcXCcIgMnCCNsChbdSN0Py
+         o4mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692351350; x=1692956150;
+        d=1e100.net; s=20221208; t=1692351377; x=1692956177;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hfNi7JSKPZId/vX/i5U5Vygp+2lX7VCsOltrQFE5gZ0=;
-        b=BLEs80Kk2WKA1Hgq7T6SthClYHOQxQAVwGbKg9demkltdMcKTHYNf3yoIqSm7O2Yzc
-         JffwDLYVv0vmbtls8LSMSJ5Bh7DG+WSkG55zTZB6ZCI0c1sOO1fYp2MxyAVFmWhu6T1y
-         4zq8U8+ly+EvaeMB+vNVlPn1e7s71C3d3fDw7b7d38Nex6y874z+j/Q+K2PQIcTBBAXm
-         A106//eCCQlGL0qAmY9ehtUoFWjhc0bfQfBJ0a+2uwyQSdw8c2evbbmE44zq1x8plfkj
-         dta12/UKuTnDxOFt++JFlHTUNs7HlfLHyA+oIteZn4NBH6SgG4ZWi9UuXk+Ww42MTfIS
-         BOow==
-X-Gm-Message-State: AOJu0YwI6nHln4gmbIXR7M4Fl42RO4oRg9yPdjmWluH4k753KqHNbJZS
-        w7r17tbxY2pJMSySrxDnHgyUuw==
-X-Google-Smtp-Source: AGHT+IEPujuSa8cOVqm2zhubowgpe/JPUlxLAAhtqQfJagG/gJ2jSmeyd2nx58vbQzxtgVkR9p8p1A==
-X-Received: by 2002:a05:6402:1204:b0:528:88f5:eafc with SMTP id c4-20020a056402120400b0052888f5eafcmr1849520edw.23.1692351349845;
-        Fri, 18 Aug 2023 02:35:49 -0700 (PDT)
+        bh=pojQP3VcjaTAfkflB+qDNh1uppY7RUN/tPX2gdHvZ+0=;
+        b=ZnjEBpgajI7ztG+sRGefbm9QW8DeLl1Ut++IioOCIwl9WdhNTsSTA4tUN7aIDD3XA5
+         qng7jovuiTOrBze6d4/obNswk/eJ1N5IJx5x5E5cMoB/TR/JfaseeKkygd+r39WUgHmE
+         GDzvlYGDy5DmPnl8Uc3OXyL+eMTOzqxTeEbnPjvQZ1+nkuGAOCi42auDuyjrnOVhGSeD
+         h3SoVEiFvtzFLcW+CC95uhDj4gHLS/du4Y93FxssEMjWn7KsUgmYknb1YeF+9pjMveqx
+         ELQSiDDazA7x2a8/8Z67AX89R/cbNmhdsKaD1jBf/fZt7jSqCQgpLvSuw/AnEzuERUDW
+         4AnQ==
+X-Gm-Message-State: AOJu0Yxrok3ovj5uHx3eLaMbkXhUj+WFW0JEWNrKkQL+YXQGPjoljH0g
+        zBeIUCkJ/YcajNf/kI/uAmf8dw==
+X-Google-Smtp-Source: AGHT+IGpi5/nJ8BH5V60Hk1l8J1WbWXXDbIrJJ0bQxgnf97IOpUc+BszdnppOwVZa0TiAK43Gq+ugw==
+X-Received: by 2002:a17:907:2cf8:b0:993:ec0b:1a24 with SMTP id hz24-20020a1709072cf800b00993ec0b1a24mr1518119ejc.7.1692351377162;
+        Fri, 18 Aug 2023 02:36:17 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id g3-20020aa7c583000000b005224d960e66sm860433edq.96.2023.08.18.02.35.48
+        by smtp.gmail.com with ESMTPSA id x17-20020a170906b09100b0099cf44adf2csm977071ejy.46.2023.08.18.02.36.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 02:35:49 -0700 (PDT)
-Message-ID: <be72501f-f7dd-38b6-cf2d-326185ae7e91@linaro.org>
-Date:   Fri, 18 Aug 2023 11:35:47 +0200
+        Fri, 18 Aug 2023 02:36:16 -0700 (PDT)
+Message-ID: <b7f937d1-87f9-6c88-d494-8930e8d6aaf6@linaro.org>
+Date:   Fri, 18 Aug 2023 11:36:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: hwmon: add renesas,isl28022
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: versaclock3: Document
+ clock-output-names
 Content-Language: en-US
-To:     =?UTF-8?Q?Carsten_Spie=c3=9f?= <mail@carsten-spiess.de>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-References: <cover.1692033412.git.mail@carsten-spiess.de>
- <3f98be38377cc556619c6876f6dcec2d54102271.1692033412.git.mail@carsten-spiess.de>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20230817142211.311366-1-biju.das.jz@bp.renesas.com>
+ <20230817142211.311366-2-biju.das.jz@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <3f98be38377cc556619c6876f6dcec2d54102271.1692033412.git.mail@carsten-spiess.de>
+In-Reply-To: <20230817142211.311366-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2023 16:29, Carsten Spieß wrote:
-> Add dt-bindings for Renesas ISL28022 power monitor.
+On 17/08/2023 16:22, Biju Das wrote:
+> Document clock-output-names property and fix the "assigned-clock-rates"
+> for each clock output in the example based on Table 3. ("Output Source")
+> in the 5P35023 datasheet(ie: {REF,SE1,SE2,SE3,DIFF1,DIFF2}).
 > 
-> Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
+> While at it, replace clocks phandle in the example from x1_x2->x1 as
+> X2 is a different 32768 kHz crystal.
+> 
+> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Closes: https://lore.kernel.org/all/CAMuHMdUHD+bEco=WYTYWsTAyRt3dTQQt4Xpaejss0Y2ZpLCMNg@mail.gmail.com/
+> Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock generator bindings")
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
