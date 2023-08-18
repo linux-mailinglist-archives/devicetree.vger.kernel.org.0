@@ -2,156 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CA7878101F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13E1F781022
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1378566AbjHRQRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 12:17:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40656 "EHLO
+        id S1351280AbjHRQSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 12:18:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378551AbjHRQRK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:17:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07FBF3C20;
-        Fri, 18 Aug 2023 09:17:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7EAB5632A4;
-        Fri, 18 Aug 2023 16:17:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0D4AC433CA;
-        Fri, 18 Aug 2023 16:17:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692375427;
-        bh=O8XBIBBk0FYxR5vEAg82+4dXJYu4QAEIUj/8K7HRlF4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R6iwyWymuSO2IAHS6/PPVsQVuZOaComfb1+XEFnHku/bZxMWY9duAP1YR4sOUzcY8
-         Ik+kG0+Nfc/Q+dE/zUQ/dvDsTsvWSNSnQeEZohZ3cBg6AGnxB+SDX0N7B5O7506UbM
-         2A4ACjIcYK+hM//hes65nalSgHFHOvaDBZXVzCBAQidb3BeK7Im2yh+9lh6n3Vjrxw
-         BLIBA1e/X9Jn4CmAInYjaDmnryLTitCSmvdKdamxEZtB+C7yYuC32G7xD7fp3pjQ5t
-         N6RwZeMDoKnrQXy0+X6rGKJrNL7Fv/Nbkr0eoNYD/icVAot412LFwsIFbLNoVbYouA
-         b+vjCZzEp7+1g==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2bba74ddf1bso15698411fa.2;
-        Fri, 18 Aug 2023 09:17:07 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yz8oB7Je9IOfWX88cES9KlIjA0jA06MW6cDxEs1pe9WP+rlgFdg
-        sMnUbE0arzj27vF49KZuCfzXhw59y58H1HUmqw==
-X-Google-Smtp-Source: AGHT+IE0UcVXVraEd/bHX7b1u5IHcFO1oZW/xhIzbTW9gXsjV66mo00T6vYZ8BuBZI4CdZ+9YJ2EIk40s3AKvmsIV08=
-X-Received: by 2002:a2e:9c11:0:b0:2bb:9293:b44e with SMTP id
- s17-20020a2e9c11000000b002bb9293b44emr2027042lji.5.1692375425873; Fri, 18 Aug
- 2023 09:17:05 -0700 (PDT)
+        with ESMTP id S1378614AbjHRQSA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:18:00 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFCB43C0F;
+        Fri, 18 Aug 2023 09:17:56 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37IEF1nY027431;
+        Fri, 18 Aug 2023 16:17:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=qcppdkim1;
+ bh=j9c1MjBvndUUD0TxkCug1qPVfaYbpXY3IoHMvL5w/sY=;
+ b=WuGYNq+ygsXOuG1Qv4TY2Gp4lNEQPb261Jl9+b0fUcJDaoOBmfzjWxps2wmBW6b5ZnzP
+ V+DFgNcZgVnkdajVGVFox7JINsq8qwQ4Srf7QcfmqJ1cDn4yVMc25A9lYEe/wz90OlTG
+ egiWcRFtRjQytAVpiUFBYYwEicRltfi5wIa1eZouL3ugizqt6kilKUiMC6U6cruWyxyh
+ Mu4Vt/oMjDyK/W/Yw6TA2pMWNg6jUNBYooU/Pu/2IhwmKJKW8bQqd0ZhtrsB0zwjUcL1
+ VVSbUsrsgWqgZ3ENxet0FSsrN6rRv78WSzFO/2aO4p7JYp7gMXqFxmb3DT/7ujZi4Fxo WA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3she6puu9v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 18 Aug 2023 16:17:41 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37IGHeg8023145
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 18 Aug 2023 16:17:40 GMT
+Received: from hu-omprsing-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Fri, 18 Aug 2023 09:17:36 -0700
+From:   Om Prakash Singh <quic_omprsing@quicinc.com>
+To:     <konrad.dybcio@linaro.org>
+CC:     <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
+        <robh+dt@kernel.org>, <vkoul@kernel.org>
+Subject: [PATCH 1/3] dt-bindings: crypto: qcom,prng: Add SM8450
+Date:   Fri, 18 Aug 2023 21:47:20 +0530
+Message-ID: <20230818161720.3644424-1-quic_omprsing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230811-topic-8450_prng-v1-1-01becceeb1ee@linaro.org>
+References: <20230811-topic-8450_prng-v1-1-01becceeb1ee@linaro.org>
 MIME-Version: 1.0
-References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org>
- <20230801-dt-changeset-fixes-v2-2-c2b701579dee@kernel.org> <CAMuHMdX4gqPLv5ZWiWe-B+bQtHSfF9AxZTKWisFZEKa29Ge2KQ@mail.gmail.com>
-In-Reply-To: <CAMuHMdX4gqPLv5ZWiWe-B+bQtHSfF9AxZTKWisFZEKa29Ge2KQ@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 18 Aug 2023 11:16:53 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+2nz9MCLffKEHxygUbMNisNAFh_i-8BaZjXy_eDHEi0g@mail.gmail.com>
-Message-ID: <CAL_Jsq+2nz9MCLffKEHxygUbMNisNAFh_i-8BaZjXy_eDHEi0g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/6] of: dynamic: Refactor action prints to not use
- "%pOF" inside devtree_lock
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: P6NqFDmgGxE9u9dndGXxY_OvX-K5PqC0
+X-Proofpoint-ORIG-GUID: P6NqFDmgGxE9u9dndGXxY_OvX-K5PqC0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-18_20,2023-08-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 clxscore=1011 spamscore=0 suspectscore=0 bulkscore=0
+ adultscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
+ mlxlogscore=587 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308180149
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 18, 2023 at 10:36=E2=80=AFAM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
->
-> Hi Rob,
->
-> On Sat, Aug 5, 2023 at 12:42=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
-te:
-> > While originally it was fine to format strings using "%pOF" while
-> > holding devtree_lock, this now causes a deadlock.  Lockdep reports:
-> >
-> >     of_get_parent from of_fwnode_get_parent+0x18/0x24
-> >     ^^^^^^^^^^^^^
-> >     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
-> >     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
-> >     fwnode_full_name_string from device_node_string+0x1a0/0x404
-> >     device_node_string from pointer+0x3c0/0x534
-> >     pointer from vsnprintf+0x248/0x36c
-> >     vsnprintf from vprintk_store+0x130/0x3b4
-> >
-> > Fix this by moving the printing in __of_changeset_entry_apply() outside
-> > the lock. As the only difference in the the multiple prints is the
-> > action name, use the existing "action_names" to refactor the prints int=
-o
-> > a single print.
-> >
-> > Fixes: a92eb7621b9fb2c2 ("lib/vsprintf: Make use of fwnode API to obtai=
-n node names and separators")
-> > Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > v5 (v2 in this series):
-> >  - Move majority of refactoring to separate patch and minimize the fix
-> >    to just moving the print out of the locked section.
->
-> Thanks for your patch!
->
-> > --- a/drivers/of/dynamic.c
-> > +++ b/drivers/of/dynamic.c
->
-> > @@ -648,20 +634,17 @@ static int __of_changeset_entry_apply(struct of_c=
-hangeset_entry *ce)
-> >                 }
-> >
-> >                 ret =3D __of_update_property(ce->np, ce->prop, &old_pro=
-p);
-> > -               if (ret) {
-> > -                       pr_err("changeset: update_property failed @%pOF=
-/%s\n",
-> > -                               ce->np,
-> > -                               ce->prop->name);
-> > -                       break;
-> > -               }
-> >                 break;
-> >         default:
-> >                 ret =3D -EINVAL;
-> >         }
-> >         raw_spin_unlock_irqrestore(&devtree_lock, flags);
-> >
-> > -       if (ret)
-> > +       if (ret) {
-> > +               pr_err("changeset: apply failed: cset<%p> %-15s %pOF:%s=
-\n",
->
-> Printing the cset pointer will (needlessly?) complicate the EXPECT_*()
-> handling in the unit test.
-
-That's added largely because the other prints which I rework later in
-this series had them. Either printing the changeset ptr is useful or
-it isn't. I think people running the unittest and the post-processor
-can easily enough filter this out when looking at the results.
-Honestly, even I probably run it less than once a cycle.
-
->
-> > +                      ce, action_names[ce->action], ce->np, ce->prop->=
-name);
->
-> This should check ce->action to avoid an out-of-bounds access beyond
-> the end of action_names[].
-
-Indeed.
-
-I think I'll add "invalid" to action_names names and then do something
-like: "(ce->action < FOO) ? ce->action : 0".
-
-Rob
+Instead of having SoC name "qcom,sm8450-prng-ee" we could use "qcom,rng-ee" as
+new IP core is not longer pseudo random number generator. so "prng" can be
+changed to "rng". Clock configuration is not needed on sm8550 as well. So it is
+better to use generic compatible string.
