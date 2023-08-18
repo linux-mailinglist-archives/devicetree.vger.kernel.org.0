@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E01C67807AF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F357807F9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357778AbjHRJBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:01:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
+        id S1358930AbjHRJHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 05:07:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358866AbjHRJAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:00:48 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F11A422C
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:00:29 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5234f46c6f9so826613a12.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:00:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692349228; x=1692954028;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=heuC0cWplAK1NglFOzZDeC2xnlspFSMTnnYe2bM5vx4=;
-        b=WKQw/chb9bV6bIGy1mPCcib2IlIQ2KwUyVDtuMDFuq6TsJGyuIDSGW3ytzeNGyZOBr
-         ovHpTj5R1qhYzer006jAJ8LpHJ0547npQLiPQcRRWcbW48ENGSzaML7oJsDYV/xvFH7A
-         Ei7ieAjF+fDfCVRC+QEp3uJetKW/JFvQfYCd+M7lNNaMS3GVR+8h+ar2HKIjsHLkx+qk
-         0UJ1ZgprnHeTiNOxgZN7hRgkEE9afvfriSYTSUIs/r9onNv0fGzLdttcUs/fyf7Y7FN4
-         dwZ56G5YBqgSflVmq4zbKuWmGRFf+JyZBb/r6R9EUWW1MpmDRc3CKcy+oZc9Ye48G1iC
-         Dcng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692349228; x=1692954028;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=heuC0cWplAK1NglFOzZDeC2xnlspFSMTnnYe2bM5vx4=;
-        b=EvBu6Fv8b2dLTT+rNSmgeOQmVFe8k6GRa9vCtoo01hJk3dPcO3yoIfioOHOl/5ESe4
-         zQPndBtEVx8WzqOLF+cA7rdAMh3PEKM8ErMkAln4YU5DGws7NMIogoixxkTMgTYRS9zg
-         ViJL6+DHZtKpY20fT4M0hxMHPZdym6EIQGED/OxnVmPpuqWb3gwX60bsrIJkpHvMCbYY
-         K3pUGkR6lMtJUW6OWpfmYvZQNIyjk0YkpMPBzfLJ672YcmTVTSVL/RofWAbcIU4Q/7tl
-         B7ZtwttL3FuJ6DLNvX2b7KLNRGMPssRnLt9r6MU9WNDx1+nKBJq98bJU0GspJ2dkqwNF
-         PXzA==
-X-Gm-Message-State: AOJu0YwIAbiGX/G3GvzoEblRTOqIlZqKanLrSSAE//idGGpzwCU6tddJ
-        jhGZXKTvI3vzcMs7tkob/3/xmg==
-X-Google-Smtp-Source: AGHT+IFQaQZq9Fc0VhUMc133YKSkQkSJvNeHeV8yr8CPs9lQHjka9E2nS9HYaY4dQG57AxA96nPFGA==
-X-Received: by 2002:aa7:d4da:0:b0:523:406a:5f6 with SMTP id t26-20020aa7d4da000000b00523406a05f6mr1676868edr.12.1692349228076;
-        Fri, 18 Aug 2023 02:00:28 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id z12-20020aa7cf8c000000b005256d4d58a6sm848044edx.18.2023.08.18.02.00.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 02:00:27 -0700 (PDT)
-Message-ID: <fa75415c-89fa-451b-2418-9f2fd6fab93f@linaro.org>
-Date:   Fri, 18 Aug 2023 11:00:26 +0200
+        with ESMTP id S1358987AbjHRJHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:07:06 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB24100;
+        Fri, 18 Aug 2023 02:07:04 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37I96ZKE055690;
+        Fri, 18 Aug 2023 04:06:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692349595;
+        bh=upWGZ08Ag7ZkIKjE4aoKarr1uV5vkbFFohJdu5uXs3s=;
+        h=From:To:CC:Subject:In-Reply-To:References:Date;
+        b=MEZFUUAL8lzfFn1grmOljrTXC4qaUMc4GBjop3lqh/SkFkbY8yE1vDXd/ddguSrnK
+         1bLQDyP22c5QuksnhKToIvnCd2kAGNtBwTSLzpg/HTxSRnQwgV+vPaeure6avUk6gm
+         6QU6l1qwLcAnKKLOtIHFW8sk8d6CLVJENpRq5kDw=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37I96ZW5106682
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Aug 2023 04:06:35 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 18
+ Aug 2023 04:06:35 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 18 Aug 2023 04:06:35 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37I96Ynp051919;
+        Fri, 18 Aug 2023 04:06:35 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+To:     Eric Biggers <ebiggers@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [EXTERNAL] Re: [PATCH v2 0/6] Add support for Texas Instruments
+ MCRC64 engine
+In-Reply-To: <20230812030116.GF971@sol.localdomain>
+References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
+ <20230812030116.GF971@sol.localdomain>
+Date:   Fri, 18 Aug 2023 14:36:34 +0530
+Message-ID: <87h6owen39.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: st,stpmic1: Add missing
- unevaluatedProperties for each regulator
-Content-Language: en-US
-To:     Lee Jones <lee@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        pascal Paillet <p.paillet@foss.st.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230725123740.149559-1-krzysztof.kozlowski@linaro.org>
- <11b08764-87bd-1d9b-a1d2-603193231f40@linaro.org>
- <20230817115234.GC986605@google.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230817115234.GC986605@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,49 +76,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2023 13:52, Lee Jones wrote:
-> On Tue, 25 Jul 2023, Krzysztof Kozlowski wrote:
-> 
->> On 25/07/2023 14:37, Krzysztof Kozlowski wrote:
->>> Each regulator node, which references common regulator.yaml schema,
->>> should disallow additional or unevaluated properties.  Otherwise
->>> mistakes in properties will go unnoticed.  unevaluatedProperties:false
->>> requires listing existing properties (present in example and in other
->>> regulators of this device).
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->>>  Documentation/devicetree/bindings/mfd/st,stpmic1.yaml | 10 ++++++++++
->>>  1 file changed, 10 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
->>> index 97c61097f9e2..1a1ced489ef7 100644
->>> --- a/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/st,stpmic1.yaml
->>> @@ -189,6 +189,16 @@ properties:
->>>  
->>>        "^(buck[1-4]|ldo[1-6]|boost|vref_ddr|pwr_sw[1-2])$":
->>>          $ref: ../regulator/regulator.yaml
->>> +        unevaluatedProperties: false
->>> +
->>> +        properties:
->>> +          interrupts:
->>> +            maxItems: 1
->>> +
->>> +          st,mask-reset:
->>> +            description: mask reset for this regulator, the regulator configuration
->>> +              is maintained during pmic reset.
->>> +            $ref: /schemas/types.yaml#/definitions/flag
->>
->> After further testing I see this patch is wrong. There are already
->> buck[1-4] entries, so this is duplicating things. I will send v2.
-> 
-> Are you still planning on resending this set?
-> 
+Eric Biggers <ebiggers@kernel.org> writes:
 
-I already did and you took it. Email subject was different, though:
+> On Fri, Aug 11, 2023 at 12:58:47AM +0530, Kamlesh Gurudasani wrote:
+>> Add support for MCRC64 engine to calculate 64-bit CRC in Full-CPU mode
+>> 
+>> MCRC64 engine calculates 64-bit cyclic redundancy checks (CRC)
+>> according to the ISO 3309 standard.
+>> 
+>> The ISO 3309 64-bit CRC model parameters are as follows:
+>>     Generator Polynomial: x^64 + x^4 + x^3 + x + 1
+>>     Polynomial Value: 0x000000000000001B
+>>     Initial value: 0x0000000000000000
+>>     Reflected Input: False
+>>     Reflected Output: False
+>>     Xor Final: 0x0000000000000000
+>> 
+>> Tested with
+>> CONFIG_CRYPTO_MANAGER_DISABLE_TESTS is not set
+>> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y
+>> 
+>> and tcrypt,
+>> sudo modprobe tcrypt mode=329 sec=1
+>> 
+>> User space application implemented using algif_hash,
+>> https://gist.github.com/ti-kamlesh/73abfcc1a33318bb3b199d36b6209e59
+>> 
+>> Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
+>
+> I do not see any in-kernel user of this CRC variant being introduced, which
+> leaves algif_hash as the only use case.
+>
+> Can you elaborate on the benefit this brings to your application?  Yes, it
+> allows you to use your hardware CRC engine.  But, that comes with all the
+> overhead from the syscalls, algif_hash, and the driver.  How does performance
+> compare to a properly optimized software CRC implementation on your platform,
+> i.e. an implementation using carryless multiplication instructions (e.g. ARMv8
+> CE) if available on your platform, otherwise an implementation using the
+> slice-by-8 or slice-by-16 method?
+>
+> - Eric
+Hi Eric,
 
-https://lore.kernel.org/all/20230726065633.74924-1-krzysztof.kozlowski@linaro.org/
-Best regards,
-Krzysztof
+We are more interested in offload than performance, with splice system
+call and DMA mode in driver(will be implemented after this series gets
+merged), good amount of cpu cycles will be saved.
+
+There is one more mode(auto mode) in mcrc64 which helps to verify crc64
+values against pre calculated crc64, saving the efforts of comparing in
+userspace.
+
+Current generic implementation of crc64-iso(part of this series)
+gives 173 Mb/s of speed as opposed to mcrc64 which gives speed of 812
+Mb/s when tested with tcrypt.
+
+Regard,
+Kamlesh
 
