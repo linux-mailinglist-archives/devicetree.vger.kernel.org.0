@@ -2,165 +2,463 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A3B2780833
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E49B780837
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:25:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350551AbjHRJX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 05:23:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44818 "EHLO
+        id S1359046AbjHRJZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 05:25:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344184AbjHRJXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:23:02 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11205358D
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:23:01 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-991c786369cso85655066b.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:23:00 -0700 (PDT)
+        with ESMTP id S1359045AbjHRJY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 05:24:58 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E2E30E6
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:24:46 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fe2fb9b4d7so6848325e9.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 02:24:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692350579; x=1692955379;
+        d=nexus-software-ie.20221208.gappssmtp.com; s=20221208; t=1692350685; x=1692955485;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pO/NLfSXQCGnKg4+bEM0fLqxGi3J0/6qioKdfhMjmdo=;
-        b=nOTMo+/1Nw73rHt39/57JPvg8AsFjBbuGVIRDhbSLc9e9KEsQhYu2qCHwlHXrm7kUn
-         QwdXc0JDCMyvRljUROn2cOHO03isnm6xLcG0vz8OhYXxtGH6KjtC8zF+/2Ltar+s0PZm
-         vkPw8nJwF5xBeSvs84CB/vJ5uCmbdqyVdvpWWA39YIQ7tDWd5ObhOT1TPoJctvyixJWd
-         antEv6SML394RmMhEtniBfsR6ierMCyMRaZ9L9ZK+qIaoY+WvhxvlezxAeitjZfzE+GY
-         fAzGGf0gUR3Rbblxj7emd0z/pIpTZb5x58pRdZ2O7Ik46Ya7OQmsuN3tVeenahjDAXA5
-         4sFw==
+        bh=dGeud8/LCN66PtLt+JkTQZpCvrnUyZTBaR7+fmpgOZQ=;
+        b=RWm0QTDvw9f41zFPdUGKkb4IJbKr6MTveOi/uWPyhS4F1kO3Orv7ApuiD5PGllFr6w
+         /+xsiTCtivnl+OZ5aV3KkKvPFGFgmX8MpS7kKn/KZmACOHGWjqTeXPWzfgmRHx66gny5
+         jIuL1NESET1iSbUmmX0AnXibEMnSKe4i6JPIzfpa59jeM5Q6FD8JmoOqKXyNc3ltCnwc
+         Ark2wHTAozDmj5LNuiYe0POAkKcB0ZTPYPAzy/XxM+0HYb6EZl0jNqEHCV64eGBCfobd
+         vDNGMttOKiRjgm8+9Hi+QQN2XOt0vVwtOuJKm1tbghDN43kuwNHFq/ZYZOV3/eF/wopJ
+         9YIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692350579; x=1692955379;
+        d=1e100.net; s=20221208; t=1692350685; x=1692955485;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pO/NLfSXQCGnKg4+bEM0fLqxGi3J0/6qioKdfhMjmdo=;
-        b=TmTIl7doq5AsrTRCum5LPxLlv57dEW84p7sFh/ah7/pzsNOc0UVBVzmE3uH8iyvCLs
-         wxFwgLKtuIkoZS2cZCnottfPlB36fNLQzF1DXUd74mIYoL7CBlIo2CmISqfYJMvG201Y
-         Dhl9I7jS/IlfL+PCqLKnLwdorqEyYzXtV9gw2emPRMM6iePws6nleKPc/Ld5Lop9JLxF
-         G//oEbtHurX+2QxMRqsj0otS0qb+J5xFgsLEevHIgD469LxQG4wC2rR+L5YJJzrBE0yR
-         msfsUj2SZLcWZASh02DS4KyThmkIiYKQW+AP6J1nCiMJ9ilpBPgzb404oDO+J/2Y3cOv
-         M22w==
-X-Gm-Message-State: AOJu0Yz8aV8n2+VyNMkW7lOYFK9A4EP7ooeXb/oT6geHj9LSVem7UrB/
-        9MOu95wTqoP+bxEJa+lBnSNnfw==
-X-Google-Smtp-Source: AGHT+IFw9N3TQC1B1E4pRPOoPEQa1tQS+7EU7C2gCPA40q+AD0dhQe3+j9nAbySNev9yshEM1YHHWg==
-X-Received: by 2002:a17:906:311b:b0:99d:e417:d6f6 with SMTP id 27-20020a170906311b00b0099de417d6f6mr1477184ejx.32.1692350579419;
-        Fri, 18 Aug 2023 02:22:59 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id k21-20020a1709063fd500b0099bcf1c07c6sm956182ejj.138.2023.08.18.02.22.58
+        bh=dGeud8/LCN66PtLt+JkTQZpCvrnUyZTBaR7+fmpgOZQ=;
+        b=cdl9zY8rvoARdlVTlctsOe/517SzVscZTossBiAELESapwa/+pkTQrwLiJf9+tt758
+         nECsaW/4TutNR8XVcJ3y4Nrg9m/4QO5jy4DsicYoGKtEi0WDLUsxkK1TCZeB3z9Nvyxt
+         Hnb1L6ngtAktQTsMLD0u028/RCJt0gkxJv6M+WkpP42OuycLKxyCbcV9bnKPgiDf6MuO
+         lGR8ptTUQrw9d0Oga+Qb9d/ziMhRP0k7dery4Zxa5XLGy30+wbWsY6Pszwp2yhzYiArK
+         wDoba5Z+7IwETVZRsiPu/rmMdfQdpUcRgSuW+/WZL2cEF8pmbPuad9aPw16Shaa1lJby
+         3kHg==
+X-Gm-Message-State: AOJu0YxDAEKmg5fbInQugNcKsXe7TYQ8zJVMHSxBtyuI8Wrsr/+cgQ8w
+        ey8ZoGZFy6YEy9uXeehELIKVtw==
+X-Google-Smtp-Source: AGHT+IFTvP3Wf65NjXpx47x/yisJ7n5vuQ+OEFbehrvfi4VTsb45m2Zk3RNJbV/U6pmRWt7sWCtDlQ==
+X-Received: by 2002:adf:f043:0:b0:315:a1f9:8667 with SMTP id t3-20020adff043000000b00315a1f98667mr1446492wro.23.1692350684666;
+        Fri, 18 Aug 2023 02:24:44 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id t12-20020a5d6a4c000000b003179d5aee63sm2114923wrw.91.2023.08.18.02.24.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 02:22:58 -0700 (PDT)
-Message-ID: <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
-Date:   Fri, 18 Aug 2023 11:22:57 +0200
+        Fri, 18 Aug 2023 02:24:44 -0700 (PDT)
+Message-ID: <7d932461-bb81-5a6e-4252-fa56ddf2ace5@nexus-software.ie>
+Date:   Fri, 18 Aug 2023 10:24:43 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+ Thunderbird/102.8.0
+Subject: Re: [PATCH] arm64: dts: qcom: Use QCOM_SCM_VMID defines for qcom,vmid
 Content-Language: en-US
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
- <20230808-stand-cheddar-b76b0b7509a0@spud>
- <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
- <20230808-esquire-epidemic-f9bd74ffde25@spud>
- <CABqG17jm938MaEeqS03WeryVWSRBS7Bqq2Vwq9SL4QOGqXU43A@mail.gmail.com>
- <b3eebd2b-c73b-fdc7-2b2b-07e97db26d92@linaro.org>
- <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20230818-qcom-vmid-defines-v1-1-45b610c96b13@fairphone.com>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <20230818-qcom-vmid-defines-v1-1-45b610c96b13@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,NO_DNS_FOR_FROM,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 10:51, Naresh Solanki wrote:
-> Hi Krzysztof,
+On 18/08/2023 09:06, Luca Weiss wrote:
+> Since we have those defines available in a header, let's use them
+> everywhere where qcom,vmid property is used.
 > 
-> On Tue, 15 Aug 2023 at 01:02, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 11/08/2023 18:00, Naresh Solanki wrote:
->>> Hi,
->>>
->>> On Tue, 8 Aug 2023 at 19:58, Conor Dooley <conor@kernel.org> wrote:
->>>>
->>>> On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
->>>>> On 8/8/23 04:46, Conor Dooley wrote:
->>>>>> On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
->>>>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->>>>>>>
->>>>>>> The TDA38640 chip has different output control mechanisms depending on
->>>>>>> its mode of operation. When the chip is in SVID mode, only
->>>>>>> hardware-based output control is supported via ENABLE pin. However, when
->>>>>>> it operates in PMBus mode, software control works perfectly.
->>>>>>>
->>>>>>> To enable software control as a workaround in SVID mode, add the DT
->>>>>>> property 'infineon,en-svid-control'. This property will enable the
->>>>>>> workaround, which utilizes ENABLE pin polarity flipping for output when
->>>>>>> the chip is in SVID mode.
->>>>>>
->>>>>> Why do you need a custom property for this? How come it is not possible
->>>>>> to determine what bus you are on?
->>>>>>
->>>>>
->>>>> That is not the point. Yes, it can be detected if the control method is
->>>>> PMBus or SVID. However, in SVID mode, SVID is supposed to control the
->>>>> output, not PMBUs. This is bypassed by controlling the polarity of the
->>>>> (physical) output enable signal. We do _not_ want this enabled automatically
->>>>> in SVID mode. Its side effects on random boards using this chip are unknown.
->>>>> Thus, this needs a property which specifically enables this functionality
->>>>> for users who _really_ need to use it and (hopefully) know what they are
->>>>> doing.
->>>>
->>>> Hmm, reading this it makes a lot more sense why this is a property - I
->>>> guess I just struggled to understand the commit message here,
->>>> particularly what the benefit of using the workaround is. I'm still
->>>> having difficulty parsing the commit & property text though - its
->>>> unclear to me when you would need to use it - so I will stay out
->>>> of the way & let Rob or Krzysztof handle things.
->>>
->>> To provide context, my system employs a unique power sequence
->>> strategy utilizing a BMC (Baseboard Management Controller),
->>> rendering the reliance on the ENABLE pin unnecessary.
->>> In this configuration, the ENABLE pin is grounded in the hardware.
->>> While most regulators facilitate PMBus Operation for output control,
->>> the TDA38640 chip, when in SVID mode, is constrained by the
->>> ENABLE pin to align with Intel specifications.
->>> My communication with Infineon confirmed that the recommended
->>> approach is to invert the Enable Pin for my use case.
->>>
->>> Since this is not typically the use case for most setup & hence DT property
->>> is must for enabling the special case.
->>>
->>> For further insight into my setup's power sequence strategy, you can
->>> refer to the following link: https://github.com/9elements/pwrseqd
->>>
->>
->> This justifies to me the property, but still you described desired
->> driver behavior, not the hardware characteristic. Don't describe what
->> you want to control, but describe the entire system.
-> I guess by entire system you mean how the regulators(including
-> TDA38640) connected & operated in our setup ?
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi          | 2 +-
+>   arch/arm64/boot/dts/qcom/msm8996.dtsi                        | 3 ++-
+>   arch/arm64/boot/dts/qcom/msm8998.dtsi                        | 3 ++-
+>   arch/arm64/boot/dts/qcom/sc7180.dtsi                         | 3 ++-
+>   arch/arm64/boot/dts/qcom/sc7280.dtsi                         | 3 ++-
+>   arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts          | 3 ++-
+>   arch/arm64/boot/dts/qcom/sc8180x-primus.dts                  | 3 ++-
+>   arch/arm64/boot/dts/qcom/sdm630.dtsi                         | 3 ++-
+>   arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi               | 2 +-
+>   arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi          | 2 +-
+>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi | 2 +-
+>   arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts           | 2 +-
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi                         | 2 +-
+>   arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts            | 3 ++-
+>   arch/arm64/boot/dts/qcom/sm8150.dtsi                         | 3 ++-
+>   arch/arm64/boot/dts/qcom/sm8350.dtsi                         | 3 ++-
+>   arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi      | 2 +-
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi                         | 3 ++-
+>   arch/arm64/boot/dts/qcom/sm8550.dtsi                         | 3 ++-
+>   19 files changed, 31 insertions(+), 19 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> index bcd2397eb373..baa7472b7a28 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+> @@ -117,7 +117,7 @@ rmtfs@f6c00000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		/delete-node/ mba@91500000;
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index c8e0986425ab..6ba9da9e6a8b 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -9,6 +9,7 @@
+>   #include <dt-bindings/clock/qcom,rpmcc.h>
+>   #include <dt-bindings/interconnect/qcom,msm8996.h>
+>   #include <dt-bindings/interconnect/qcom,msm8996-cbf.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/power/qcom-rpmpd.h>
+>   #include <dt-bindings/soc/qcom,apr.h>
+> @@ -538,7 +539,7 @@ rmtfs_mem: rmtfs {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		mpss_mem: mpss@88800000 {
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> index f180047cacb0..aac23a8ef6c8 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
+> @@ -6,6 +6,7 @@
+>   #include <dt-bindings/clock/qcom,gpucc-msm8998.h>
+>   #include <dt-bindings/clock/qcom,mmcc-msm8998.h>
+>   #include <dt-bindings/clock/qcom,rpmcc.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/power/qcom-rpmpd.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   
+> @@ -56,7 +57,7 @@ rmtfs_mem: memory@88f00000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		spss_mem: memory@8ab00000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> index a79c0f2e1879..d57418113b36 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -11,6 +11,7 @@
+>   #include <dt-bindings/clock/qcom,lpasscorecc-sc7180.h>
+>   #include <dt-bindings/clock/qcom,rpmh.h>
+>   #include <dt-bindings/clock/qcom,videocc-sc7180.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/interconnect/qcom,icc.h>
+>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>   #include <dt-bindings/interconnect/qcom,sc7180.h>
+> @@ -687,7 +688,7 @@ rmtfs_mem: memory@94600000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index 925428a5f6ae..042908048d09 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -13,6 +13,7 @@
+>   #include <dt-bindings/clock/qcom,rpmh.h>
+>   #include <dt-bindings/clock/qcom,videocc-sc7280.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+>   #include <dt-bindings/interconnect/qcom,sc7280.h>
+> @@ -156,7 +157,7 @@ rmtfs_mem: memory@9c900000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> index abc66613ccaa..3ea07d094b60 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> @@ -6,6 +6,7 @@
+>   
+>   /dts-v1/;
+>   
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/input/gpio-keys.h>
+>   #include <dt-bindings/input/input.h>
+> @@ -130,7 +131,7 @@ rmtfs_mem: rmtfs-region@85500000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		wlan_mem: wlan-region@8bc00000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+> index 834e6f9fb7c8..fd2fab4895b3 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8180x-primus.dts
+> @@ -6,6 +6,7 @@
+>   
+>   /dts-v1/;
+>   
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/input/gpio-keys.h>
+>   #include <dt-bindings/input/input.h>
+> @@ -135,7 +136,7 @@ rmtfs_mem: rmtfs-region@85500000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		wlan_mem: wlan-region@8bc00000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index ec6003212c4d..c17719086085 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -8,6 +8,7 @@
+>   #include <dt-bindings/clock/qcom,gpucc-sdm660.h>
+>   #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
+>   #include <dt-bindings/clock/qcom,rpmcc.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/interconnect/qcom,sdm660.h>
+>   #include <dt-bindings/power/qcom-rpmpd.h>
+>   #include <dt-bindings/gpio/gpio.h>
+> @@ -453,7 +454,7 @@ rmtfs_mem: memory@85e00000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		smem_region: smem-mem@86000000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> index f942c5afea9b..99dafc6716e7 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> @@ -111,7 +111,7 @@ rmtfs_mem: memory@f0801000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		/* rmtfs upper guard */
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> index 122c7128dea9..b523b5fff702 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+> @@ -90,7 +90,7 @@ rmtfs_mem: rmtfs-mem@f5b01000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   		rmtfs_upper_guard: rmtfs-upper-guard@f5d01000 {
+>   			no-map;
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> index 9d6faeb65624..93b1582e807d 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi
+> @@ -111,7 +111,7 @@ rmtfs_mem: memory@f6301000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> index 6db12abaa88d..e386b504e978 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts
+> @@ -108,7 +108,7 @@ rmtfs_mem: memory@f6301000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 055ca80c0075..eede4b18fb98 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -813,7 +813,7 @@ rmtfs_mem: rmtfs@88f00000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		qseecom_mem: qseecom@8ab00000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> index 18171c5d8a38..136e273d09a7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> @@ -8,6 +8,7 @@
+>   /* PMK8350 (in reality a PMK8003) is configured to use SID6 instead of 0 */
+>   #define PMK8350_SID 6
+>   
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
+>   #include <dt-bindings/input/input.h>
+> @@ -75,7 +76,7 @@ memory@efe01000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   	};
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index a7c3020a5de4..fd5c3139f4ce 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -5,6 +5,7 @@
+>    */
+>   
+>   #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/power/qcom-rpmpd.h>
+>   #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+> @@ -720,7 +721,7 @@ rmtfs_mem: memory@89b00000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		camera_mem: memory@8b700000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index 00604bf7724f..4989a3971c94 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -10,6 +10,7 @@
+>   #include <dt-bindings/clock/qcom,gpucc-sm8350.h>
+>   #include <dt-bindings/clock/qcom,rpmh.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/interconnect/qcom,sm8350.h>
+>   #include <dt-bindings/mailbox/qcom-ipcc.h>
+> @@ -503,7 +504,7 @@ rmtfs_mem: memory@9b800000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		hyp_reserved_mem: memory@d0000000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+> index 001fb2723fbb..8b29fcf483a3 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara.dtsi
+> @@ -80,7 +80,7 @@ rmtfs_mem: memory@f3300000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		ramoops@ffc00000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 2a60cf8bd891..09a0c35dd514 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -10,6 +10,7 @@
+>   #include <dt-bindings/clock/qcom,sm8450-dispcc.h>
+>   #include <dt-bindings/clock/qcom,sm8450-videocc.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/mailbox/qcom-ipcc.h>
+>   #include <dt-bindings/phy/phy-qcom-qmp.h>
+> @@ -540,7 +541,7 @@ rmtfs_mem: memory@9fd00000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		xbl_sc_mem2: memory@a6e00000 {
+> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> index d115960bdeec..1a3bbd62e540 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+> @@ -10,6 +10,7 @@
+>   #include <dt-bindings/clock/qcom,sm8550-tcsr.h>
+>   #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/firmware/qcom,scm.h>
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>   #include <dt-bindings/interconnect/qcom,sm8550-rpmh.h>
+> @@ -570,7 +571,7 @@ rmtfs_mem: rmtfs-region@d4a80000 {
+>   			no-map;
+>   
+>   			qcom,client-id = <1>;
+> -			qcom,vmid = <15>;
+> +			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
+>   		};
+>   
+>   		mpss_dsm_mem: mpss-dsm-region@d4d00000 {
+> 
+> ---
+> base-commit: 7271b2a530428b879443b274c191b34536a4ea11
+> change-id: 20230818-qcom-vmid-defines-adc1794c6d01
+> 
+> Best regards,
 
-I mean, property name and description should say what is the
-characteristic of the hardware/firmware/entire system.
+Obvioiusly correct
 
-
-Best regards,
-Krzysztof
-
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
