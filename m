@@ -2,222 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72A38780797
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 10:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A13A7807A0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 11:00:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1358804AbjHRI6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 04:58:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57206 "EHLO
+        id S1358832AbjHRI7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 04:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358866AbjHRI6d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 04:58:33 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBEAC35A9
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 01:58:20 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99cdb0fd093so84033766b.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 01:58:20 -0700 (PDT)
+        with ESMTP id S1358828AbjHRI7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 04:59:16 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AAF235B3
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 01:59:11 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4ff91f2d7e2so894129e87.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 01:59:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692349099; x=1692953899;
+        d=linaro.org; s=google; t=1692349150; x=1692953950;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/40FOI+UE8uhwsIlRFkslsjReirMmwIe+IGd1ZVdpFo=;
-        b=YKM6U+LTpYp7c8EOnDaASoMJGFXCPiJkrh2+y0FqD0bjv32x4sRcmCS824KIEFxtPZ
-         d0s/b7Amr/GSx/mX5PUAyAxBhns/LTRRF8nFqpMRoqXWhJvYhcsHdzVejXUK0JLDksyN
-         7S38DNLN/h7FrLVeTAVGL5IfFpMFBuQ/mPYg0xk69SnQ/mFd7p8PguMZPW/wT+9xeXqA
-         5iC6iovhPfkqun3APfjuk/BKJPogJLcbAK0kr26g0naexUN7dUSTCi4Ndb35chOIJN3k
-         dEpoY5ZKNFP+aQgw86jaWn+L+gn/u8JCdbJKrBAQ3ujIc6OqTJJ2SNuut6KaTIEluzvi
-         TEGQ==
+        bh=xJm4S8usi6aiGwBH5M9kQvrP7KTSyu9RrSuKCbpG3qc=;
+        b=uhWStpwsgqhysvBfgJM2Y4/I23javHbK8RpVUJTsKU2LIHQGgHEztHaUQaHH+00WMU
+         A0MxbS+x+GBeUeKrhhD5PzIiUAfQzsqvEppREpmYsL597po+xJPOfyjsIIJ8WDXrOkoM
+         kxece0OZmjftOcz+gD0JD3TKqHCDpwptqQFsyEe4uuxmISCoCzqWLRo/oXQWCnMwoBVm
+         nEALUpEMxEeAXEGPK7PAQOlXzKi96Ez66WWF9c3wG8pcaxDY0nRHXqAksN5CjO9J7+Xl
+         saDyo9jfyZa81Nc3VNc1I9Lgqb58WnUvNxixtDZp/MhnOVqwyw8G/nhrnNcNPKdXqfC6
+         lyGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692349099; x=1692953899;
+        d=1e100.net; s=20221208; t=1692349150; x=1692953950;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/40FOI+UE8uhwsIlRFkslsjReirMmwIe+IGd1ZVdpFo=;
-        b=Ge1sitpBcj5/16Zevwlsegjr7j8BpIbGz07aUxpPbSX6QUbOJ7uDfvjMnbSDya2z77
-         QidUnVDv9hgLKDJ0Hy/IDjDpK9tNhH+vW0b24owQwOS1sSuNZxqvX2fPt842TnO90+th
-         6AGFDy4oKNMnvD5ij+vaYd38W2lu6vUVa/AlKFNTDme+XHIuBE2u5iYCHWr1BA4cgxDI
-         5yvZYaadFrc5f6jfwrq3SACmtvGvKUXDxuThnv9yfjWqCkTnuJ/dBKDRTHMcvJpSIrCZ
-         014CTLQxcUYxAX21G8AfAotNhZZrLqN0Jnx0CoC5aJ53spX595nDyFAvUnBJe5WLsMd7
-         ofSw==
-X-Gm-Message-State: AOJu0YwmXskXz4nmH7pOm61sBdlwSaWylAwP0uVmeuheN3d/9PQm9czJ
-        b4SxslwixIVBzNO4oft0oiinJg==
-X-Google-Smtp-Source: AGHT+IHNfzvAReyhNChJ6SQpO7U/Wyncr2M/c5O30YcdW/3a4hBsY/s5yg78Yyf/ywvyZabdJJ3kwQ==
-X-Received: by 2002:a17:906:5342:b0:957:2e48:5657 with SMTP id j2-20020a170906534200b009572e485657mr1446984ejo.68.1692349099131;
-        Fri, 18 Aug 2023 01:58:19 -0700 (PDT)
+        bh=xJm4S8usi6aiGwBH5M9kQvrP7KTSyu9RrSuKCbpG3qc=;
+        b=PkfdTQVHqTH4sGFR8R7xD8coCxnJvgbuH8qdmKKrjmnQTBrhCmVXApC/wpE+wGaslh
+         iNXt8Ed+bvtI4yaCkveYNi+8qQg1oQhYC2Shb133E8TKTQmk8lH/6es7gPeQC44vIcuo
+         08MWMZFbmsyPmD/ujpndZBbXy9p+KO0cCPX1cKd2pLij9mjFE87TXw6bzWkJM7Nf4LXZ
+         TK2+0BORGlPN1Us1NSKQ/BPuL24rZ7K6+Gy7rKg+3hxbk+0prFDnP5rJ4XfndkNJfpkb
+         Oi9z3hR5H2WkgzULl9ZLGTj38i9W5GPmpmBK7WlCcNU8QPqFp6q+4lmVurDDtemjWdo2
+         OZSQ==
+X-Gm-Message-State: AOJu0Yzv31tG787ZcDx9JJUTa0PqPwDmh56MOy8/Sl7tDQcHX128lnX3
+        lIyVtadzrfyLWQk+fU8D0M1u7j5npqqK2dHApUEVSA==
+X-Google-Smtp-Source: AGHT+IHhngfMVyaJ/vZRalrs4RKZIIe8Zsyq7PkcVRaJypLYHHr1czYftbfcIR3E9G5BsBjw3kIcqg==
+X-Received: by 2002:ac2:5b0c:0:b0:4f8:5885:61e with SMTP id v12-20020ac25b0c000000b004f85885061emr1196962lfn.40.1692349149818;
+        Fri, 18 Aug 2023 01:59:09 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id m15-20020a1709062acf00b009930042510csm919060eje.222.2023.08.18.01.58.18
+        by smtp.gmail.com with ESMTPSA id x12-20020aa7cd8c000000b0052595b17fd4sm841685edv.26.2023.08.18.01.59.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Aug 2023 01:58:18 -0700 (PDT)
-Message-ID: <1d643d2a-2aa9-6b36-7f5e-bdd01fd2979f@linaro.org>
-Date:   Fri, 18 Aug 2023 10:58:17 +0200
+        Fri, 18 Aug 2023 01:59:09 -0700 (PDT)
+Message-ID: <10495cea-b8bb-df1d-3971-6a635ba301fb@linaro.org>
+Date:   Fri, 18 Aug 2023 10:59:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] arm64: dts: meson-g12: Fix clock order for
- amlogic,axg-tdm-iface devices
+Subject: Re: [PATCH v3 1/7] dt-bindings: soc: qcom: Add qcom,pbs bindings
 Content-Language: en-US
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Alexander Stein <alexander.stein@mailbox.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-References: <20230808161755.31594-1-alexander.stein@mailbox.org>
- <7ha5uyes3f.fsf@baylibre.com>
- <3f437e5b-2bae-384a-0a08-216a4ec55bde@linaro.org>
- <7ho7j572ue.fsf@baylibre.com>
+To:     Rob Herring <robh@kernel.org>,
+        Anjelique Melendez <quic_amelende@quicinc.com>
+Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, luca.weiss@fairphone.com,
+        konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
+        quic_subbaram@quicinc.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20230814235918.10396-1-quic_amelende@quicinc.com>
+ <20230814235918.10396-2-quic_amelende@quicinc.com>
+ <102328fa-5699-4731-d639-079bce8863a5@linaro.org>
+ <20230817162624.GA1444880-robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7ho7j572ue.fsf@baylibre.com>
+In-Reply-To: <20230817162624.GA1444880-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/08/2023 23:53, Kevin Hilman wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> writes:
-> 
->> On 10/08/2023 19:15, Kevin Hilman wrote:
->>> DT maintainers,
+On 17/08/2023 18:26, Rob Herring wrote:
+> On Tue, Aug 15, 2023 at 10:36:39PM +0200, Krzysztof Kozlowski wrote:
+>> On 15/08/2023 01:59, Anjelique Melendez wrote:
+>>> Add binding for the Qualcomm Programmable Boot Sequencer device.
 >>>
->>> Alexander Stein <alexander.stein@mailbox.org> writes:
+>>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+>>> ---
+>>>  .../bindings/soc/qcom/qcom,pbs.yaml           | 46 +++++++++++++++++++
+>>>  1 file changed, 46 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
 >>>
->>>> Binding specify order of clocks as:
->>>> 1. "sclk"
->>>> 2. "lrclk"
->>>> 3. "mclk"
->>>> Adjust clocks accordingly. Fixes warnings:
->>>
->>> I understand this patch is to fix DT warnings (and thank you Alexander
->>> for fixing warnings!) ... *but* the underlying requirement being
->>> enforced by the schema here seems completely wrong to me, and a step
->>> backwards.
->>>
->>> Sorry if this is a FAQ someplace, but I couldn't find an explanation for
->>> this.  One of the main goals of introducing names in the first place was
->>> to get rid of ordering requirements.
+>>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
+>>> new file mode 100644
+>>> index 000000000000..b502ca72266a
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,pbs.yaml
+>>> @@ -0,0 +1,46 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soc/qcom/qcom,pbs.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Qualcomm Technologies, Inc. Programmable Boot Sequencer
+>>> +
+>>> +maintainers:
+>>> +  - Anjelique Melendez <quic_amelende@quicinc.com>
+>>> +
+>>> +description: |
+>>> +  The Qualcomm Technologies, Inc. Programmable Boot Sequencer (PBS)
+>>> +  supports triggering power up and power down sequences for clients
+>>> +  upon request.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - qcom,pmi632-pbs
+>>> +      - const: qcom,pbs
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/spmi/spmi.h>
+>>> +
+>>> +    pmic@0 {
 >>
->> Not entirely. The names was just a helper for cases when order is not
->> fixed,
+>> This should be rather just "pmic", because the examples have
+>> address-cells=1 and size-cells=1, which is not correct in this context.
 > 
-> Exactly, "when order is not fixed."  This is the case for lots of
-> hardware today (not just clocks), and is precisely what we need to
-> describe multiple, optional and independent (unordered) clocks.
+> But there's a 'reg' property so you can't drop the unit-address. The bus 
+> node (spmi) needs to be added.
 
-Minority of bindings require relaxed order, literally I remember just few.
-
-> 
->> but even with the names for every regular case the order was
->> always strict. We always expect these to be ordered.
-> 
-> I'm not sure who the "we" is you're referring to, but this expectation
-
-DT maintainers. Previously only Rob, now "we".
-
-> is new to me, and honestly a bit surprising.  Before DT schema, driver &
-> DT writers could happily describe their hardware using names for
-> optional and unordered resources.
-
-You talk only about Linux and not even all of its drivers (because
-several took by IDs), what about all other users of bindings?
-
-> 
->>> Now the DT schema is enforcing
->>> ordering requirements, but the drivers don't need ordering, so what is
->>> the point of enforcing ordering requirements?
->>
->> Because names are not everything.  One OS implementation might still
->> take by indices, even if names are provided, so you cannot change the
->> order.
-> 
-> Wait, isn't this an "OS-ism" imposing requirements on the DT that are
-> not at all about describing hardware?
-> 
-> Strictly ordering resources in DT that are completely independent (and
-> unordered!) in hardware seems to be a big step away from the general
-> guidance of "describe the hardware, not OS-isms".
-
-Bindings do not describe hardware (although this is usually what I write
-in emails to simplify the discussion), but the interface between various
-implementations and representation of hardware (DTS).
-
-> 
-> And so far, we've only been talking about clocks, but the ordering
-> implications here apply to resets, pinctrl, regulators and probably
-> others as well.  All of these subsystems today have some way to describe
-> unordered & independent resources using names.  Yet, what you are
-> implying here applies to all of these subsystems: even where names are
-> used, these resources must be strictly ordered in DT.
-
-Yes, we expect them since long time as strictly ordered, unless
-exception is needed - which is then encoded in the bindings. Every email
-from Rob since some years was saying this, recent my talks and my emails.
-
->  From my
-> perspective, this is a new requirement.  Do you have any pointers to
-> where this was discussed & decided?  Admittedly, I do not follow DT
-> schema developments closely, but new requirements like this have
-> implications that I hope were discussed publically.
-
-I don't have resources, except that I recall vaguely that Rob said
-original ePAPR or PowerPC was requiring it.
-
-> 
->> Few bindings allow relaxed approach here, but these are written that way
->> to allow mixing order.
-> 
-> Right, "mixing order" is another way of saying unordered, which is an
-> accurate description of lots of hardware out there.
-> 
->> For few other bindings (e.g. newer Qualcomm clock controllers) we just
->> dropped the names entirely, because they bring little value and also
->> code for lookup by name is slower than by index.
-> 
-> I can see that names might bring little value if there aren't
-> independent optional clocks.  I can also see that making that choice for
-> perf reasons being a design choice, but that also a case of an OS design
-> choice impacting the DT, and not really about describing the hardware.
-> 
-> IMO, this design should be a choice of the driver writer who is most
-> likely to best understand the hardware.  Being forced into that strict
-> ordering requirement by DT schema when that is not an accurate
-> description of the hardware seems to be enforcing the wrong thing for
-> the wrong reasons.
-
-No one enforces strict order when the hardware is not like this. I wrote
-it before in the quote above and again in this email.
-
-> 
-> Now that I've ranted a bit, maybe our time would be better spent if we
-> get practical and discuss a concrete example.  This other thread[1] has
-> a specific example, and ends with a specific question from Jerome about
-> how one should actually model a specific piece of hardware with current
-> DT schema.
-
-The same as other cases. I cannot find examples, because there are
-really just few real world cases like this. Maybe
-qcom,sc7280-lpass-rx-macro.
-
-But remember - people confuse clock which is not strictly required. E.g.
-if UFS is not yet implemented, we can skip UFS-clock parent in some
-clock-controller because UFS driver does not exist thus we do not care
-about proper parenting and frequency of UFS.
-
-Now, that UFS clock is not optional. It must be there for proper
-representation of hardware. We only allow to skip it if OS drivers are
-half-developed.
-
+reg also can be dropped. I am not sure whether parent PMIC bus is
+important here.
 
 Best regards,
 Krzysztof
