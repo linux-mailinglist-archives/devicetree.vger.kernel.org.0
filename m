@@ -2,55 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE05D780A4B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:39:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF40F780A4C
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243623AbjHRKij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 06:38:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49698 "EHLO
+        id S1358841AbjHRKjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 06:39:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356537AbjHRKhg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:37:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B93D046BD
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:37:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 485D365263
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 10:37:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B957C433C7;
-        Fri, 18 Aug 2023 10:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692355025;
-        bh=OP44zoyZRydQoPpmXwomo3eR9ok2A68yWmb4eibJNkk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gWXIivvX4aYpc+VGO4CHr2Zwg4FIRrqBBrgBgGNbHuNSZ0nYodXtxFzE4WHI/sp+B
-         OEUuYDKMK3wiiR3oNf4XlTmUMWtbiZeoY/editeJEXgultsXmsnfij7YpfcqxDXqkB
-         pkAs/bYqnYgluFAXNRZOvuFozh0CadVpeW8ePEPJhyf5+vPBPYGeyrgBrrBJkyHN7m
-         BREU/1y1y7aBuh7r2bc2iQ03ruseMA9uFToedjQqFw9apBhVYE4JR25Xw+TdoK01pN
-         Kp1XSsbcZVFrCC94pztfg414VqcxuadpUenjVSfnLTgxIT8A2UVrN0UHRHbv12VC/M
-         wYbAxD3axGKUg==
-Message-ID: <24f8b0c3-6f77-b4fd-0532-04bc0cd2eea6@kernel.org>
-Date:   Fri, 18 Aug 2023 12:37:01 +0200
+        with ESMTP id S1358836AbjHRKhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:37:53 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AD4092D4A;
+        Fri, 18 Aug 2023 03:37:51 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CA532D75;
+        Fri, 18 Aug 2023 03:38:31 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7C1263F762;
+        Fri, 18 Aug 2023 03:37:48 -0700 (PDT)
+Date:   Fri, 18 Aug 2023 11:37:46 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        Alan Ma <tech@biqu3d.com>,
+        Luke Harrison <bttuniversity@biqu3d.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin@biqu3d.com>
+Subject: Re: [PATCH 1/3] dt-bindings: thermal: sun8i: Add binding for H616
+ THS controller
+Message-ID: <20230818113746.5b86d766@donnerap.manchester.arm.com>
+In-Reply-To: <20230818-ths-h616-v1-1-0e1e058b9c7a@somainline.org>
+References: <20230818-ths-h616-v1-0-0e1e058b9c7a@somainline.org>
+        <20230818-ths-h616-v1-1-0e1e058b9c7a@somainline.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 02/17] dt-bindings: gpu: Add Imagination Technologies
- PowerVR GPU
-Content-Language: en-US
-To:     Sarah Walker <sarah.walker@imgtec.com>, devicetree@vger.kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, Frank Binns <frank.binns@imgtec.com>
-References: <20230816082725.164880-1-sarah.walker@imgtec.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230816082725.164880-1-sarah.walker@imgtec.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,21 +64,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 10:27, Sarah Walker wrote:
-> Add the device tree binding documentation for the Series AXE GPU used in
-> TI AM62 SoCs.
+On Fri, 18 Aug 2023 10:43:16 +0200
+Martin Botka <martin.botka@somainline.org> wrote:
+
+> Add binding for H616 THS controller.
+
+You could add:
+This controller is similar to the H6, but covers four sensors and uses
+slightly different calibration methods.
+
+One minor question below:
+
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+>  .../devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml          | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> Co-developed-by: Frank Binns <frank.binns@imgtec.com>
-> Signed-off-by: Frank Binns <frank.binns@imgtec.com>
-> Signed-off-by: Sarah Walker <sarah.walker@imgtec.com>
+> diff --git a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> index fbd4212285e2..79692f8360f5 100644
+> --- a/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/allwinner,sun8i-a83t-ths.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - allwinner,sun50i-a100-ths
+>        - allwinner,sun50i-h5-ths
+>        - allwinner,sun50i-h6-ths
+> +      - allwinner,sun50i-h616-ths
+>  
+>    clocks:
+>      minItems: 1
+> @@ -63,6 +64,7 @@ allOf:
+>              enum:
+>                - allwinner,sun50i-a100-ths
+>                - allwinner,sun50i-h6-ths
+> +              - allwinner,sun50i-h616-ths
+>  
+>      then:
+>        properties:
+> @@ -107,6 +109,7 @@ allOf:
+>                - allwinner,sun50i-a100-ths
+>                - allwinner,sun50i-h5-ths
+>                - allwinner,sun50i-h6-ths
+> +              - allwinner,sun50i-h616-ths
 
-This is a duplicated patch sent only to few people. The original patch
-was sent to other people.
+I wonder if this list can be negated. Because what this currently says is:
+"Every controller except the A83T one requires clocks and resets."
+Can we write this more explicitly?
 
-Such process won't work. You cannot send two of the same patches to
-different set of people and expect they magically merge somewhere in the
-cloud.
+Regardless:
 
-Best regards,
-Krzysztof
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Cheers,
+Andre
+
+
+>  
+>      then:
+>        required:
+> 
 
