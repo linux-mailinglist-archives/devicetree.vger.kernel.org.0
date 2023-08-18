@@ -2,141 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 746DF780F49
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0B3780F53
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 17:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235939AbjHRPfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 11:35:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34868 "EHLO
+        id S1378135AbjHRPg6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Aug 2023 11:36:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1378207AbjHRPfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:35:54 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09AE22D59;
-        Fri, 18 Aug 2023 08:35:53 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-76d7a05552aso65338185a.3;
-        Fri, 18 Aug 2023 08:35:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692372952; x=1692977752;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=exNo+UsQcHTn5E4VhXDma0UbCxlKMm5pq8zEtdARRFs=;
-        b=FqJon+Cbb9L56LIXhoezOrzlknoAMq9WgmGkXmfyRm+VEQxrHYEy4CjieG06vh8JSu
-         zPr+QOIMfADDlKVqDmsluyFFCZV8yNxu5yt8UDLkTgPPMqUsFwiI09CvaGK3UkExJNVs
-         2Gfnjcnh14Q9xoy35F9i23+lL4OgT3a2ZN2Kz0mLoCdh4f+m9+L3nHTUICy5IL9Eu5uX
-         zMsnXoiwsY8LrE03s7LqQvIYCqdVyZLyJeovZgGrL7UpZ4EkR/27N8xo9nHR9gC0/8rV
-         VNvfleohUKDRaQXW+FjH5vkIuL9/+PA80d7RdDLCn8FIRU+LcfW6YGV1G0CdGu++uBxD
-         TkBg==
+        with ESMTP id S1378290AbjHRPgy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 11:36:54 -0400
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D43114486;
+        Fri, 18 Aug 2023 08:36:39 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-58c5642701fso10694797b3.0;
+        Fri, 18 Aug 2023 08:36:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692372952; x=1692977752;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=exNo+UsQcHTn5E4VhXDma0UbCxlKMm5pq8zEtdARRFs=;
-        b=efQGagTXILBkXYQMbYyC05vsT751qBJLpczVuUYiOlh0aHX0yLzxS/czla9v69ZUDU
-         hQCP5a+fZkHn8rFVg0Q71/CiBzaIiiZK7fxLM2Klp8ixBoJIZkcMfibYL0fSNqKNW00n
-         2x/u/mdjBEFM6VPjgS9CfHYdwNI4tAfmV5PONTNVeiJmQCmomsWu5iIAIRmd8bQpdzUK
-         3cvYf9evWSsK07HmV/H1BBeFmPIGj3yEqXC842yvKftDp7PSUZcdH7d0SyeIBR0Bqj8K
-         3SxthWCC6xYfgZtt2SA/ZRt8ZxWp96PmVF8v1YflTWAB+DMdSkWs3XHL9XlQTr/rCSVl
-         WPyg==
-X-Gm-Message-State: AOJu0YzkcQPbwpv+IKbHTfU3/cB5HWfGC9wQVB//u1eqW095mnlNKQ4C
-        aow3r8/Zqakf/pIgagA8E1sSMav98MwiGg==
-X-Google-Smtp-Source: AGHT+IFzXkHclsRgM7QuUp9nfoxlu2eCobpTUxGWWJgz46BjOqq5dRrsFENKGEUATdTLng1t6tN9Hw==
-X-Received: by 2002:ad4:452e:0:b0:647:12a5:5f10 with SMTP id l14-20020ad4452e000000b0064712a55f10mr3217069qvu.21.1692372952045;
-        Fri, 18 Aug 2023 08:35:52 -0700 (PDT)
-Received: from abdel ([174.95.13.129])
-        by smtp.gmail.com with ESMTPSA id u26-20020a0cb69a000000b0064729a2f44csm750758qvd.142.2023.08.18.08.35.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Aug 2023 08:35:51 -0700 (PDT)
-Date:   Fri, 18 Aug 2023 11:35:41 -0400
-From:   Abdel Alkuor <alkuor@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        conor+dt@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        abdelalkuor@geotab.com
-Subject: Re: [PATCH] dt-bindings: usb: Add binding for ti,tps25750
-Message-ID: <ZN+PzWuiLRsSVcmU@abdel>
-References: <20230817235212.441254-1-alkuor@gmail.com>
- <eba26f0e-40dd-3661-b089-bc34c9426000@linaro.org>
+        d=1e100.net; s=20221208; t=1692372998; x=1692977798;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s9AXPzldZmE7nVYO/NeTZiuKawvhGBVFZgya8X30Oeo=;
+        b=DCAIIDkIT2FLCJfO1UeXany5o5Ey1CIufqN74metmrBTVnwGI7EYqv14Tf5n39wqCl
+         ByCPMruDFcjokOtX2/yEl0OMORzeNo6ij/hnEKRbdW8SRN8PAQ5bypTPMXmZBbt3VwCu
+         hU50KISEJQUFjCLXbnWNtu5bnfZJcz71EB6uVhFnrsiMnnbDnq8iAGZy1Md07kxO3nPQ
+         ri9IcSsFQWQLS7BKJHd4rTk0fwwCaJjjTL4POyjWRUw1b5tQh2+s+ilW7cfmy+6iS/QO
+         eMOd34WLLy6KYe2xSvctTUjLpbLhm7d7oL0Mq0eoWPcMOiNSnAZXN7zNOjWXmQAC76jH
+         1lqQ==
+X-Gm-Message-State: AOJu0YwALQQAexBlvWsGTKrw5iK6fcz9vDXKCboFYK2EEbd8ZmD0LG43
+        DJz/USqna4tYsRsi4mFFXIISYWLAJqCv+t8g
+X-Google-Smtp-Source: AGHT+IH9r148FYTAuPC1zMmlcAMMH2ul4XmMsCqTt6O/wOil+dtsLwbZsuDOjHnTtcuLmQq/8ZEKlA==
+X-Received: by 2002:a81:5346:0:b0:58c:53ad:ee3f with SMTP id h67-20020a815346000000b0058c53adee3fmr2778515ywb.34.1692372998594;
+        Fri, 18 Aug 2023 08:36:38 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id c13-20020a814e0d000000b0058c668e46cbsm501347ywb.46.2023.08.18.08.36.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Aug 2023 08:36:38 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d63c0a6568fso1034079276.0;
+        Fri, 18 Aug 2023 08:36:37 -0700 (PDT)
+X-Received: by 2002:a25:e087:0:b0:d12:77c7:b362 with SMTP id
+ x129-20020a25e087000000b00d1277c7b362mr3123378ybg.26.1692372997759; Fri, 18
+ Aug 2023 08:36:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <eba26f0e-40dd-3661-b089-bc34c9426000@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230801-dt-changeset-fixes-v2-0-c2b701579dee@kernel.org> <20230801-dt-changeset-fixes-v2-2-c2b701579dee@kernel.org>
+In-Reply-To: <20230801-dt-changeset-fixes-v2-2-c2b701579dee@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 18 Aug 2023 17:36:26 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX4gqPLv5ZWiWe-B+bQtHSfF9AxZTKWisFZEKa29Ge2KQ@mail.gmail.com>
+Message-ID: <CAMuHMdX4gqPLv5ZWiWe-B+bQtHSfF9AxZTKWisFZEKa29Ge2KQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] of: dynamic: Refactor action prints to not use
+ "%pOF" inside devtree_lock
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 18, 2023 at 11:31:35AM +0200, Krzysztof Kozlowski wrote:
-> Where is any user of it? DTS, driver or 3rd party upstream open-source
-> project?
+Hi Rob,
+
+On Sat, Aug 5, 2023 at 12:42 AM Rob Herring <robh@kernel.org> wrote:
+> While originally it was fine to format strings using "%pOF" while
+> holding devtree_lock, this now causes a deadlock.  Lockdep reports:
 >
-Yes, for Geotab. We are working on bringing up a new BSP and we have tps25750
-which doesn't have a driver in Linux yet. We developed the driver but I thought
-I needed to get the dt-bindings accepted first before sending the patch for
-the driver.
-
-Sorry, this is my first time contributing to Linux. Maybe this question
-was asked before but for some reason I couldn't find it.
-
-What is usually the process? Should I upload the driver too?
-
-> 
-> A nit, subject: drop second/last, redundant "binding for". The
-> "dt-bindings" prefix is already stating that these are bindings.
+>     of_get_parent from of_fwnode_get_parent+0x18/0x24
+>     ^^^^^^^^^^^^^
+>     of_fwnode_get_parent from fwnode_count_parents+0xc/0x28
+>     fwnode_count_parents from fwnode_full_name_string+0x18/0xac
+>     fwnode_full_name_string from device_node_string+0x1a0/0x404
+>     device_node_string from pointer+0x3c0/0x534
+>     pointer from vsnprintf+0x248/0x36c
+>     vsnprintf from vprintk_store+0x130/0x3b4
 >
-
-> > +      - ti,tps25750
-> 
-> Blank line
-> 
-> > +  reg:
-
-> > +  interrupts:
-> > +    description: |
-> 
-> Drop description
+> Fix this by moving the printing in __of_changeset_entry_apply() outside
+> the lock. As the only difference in the the multiple prints is the
+> action name, use the existing "action_names" to refactor the prints into
+> a single print.
 >
+> Fixes: a92eb7621b9fb2c2 ("lib/vsprintf: Make use of fwnode API to obtain node names and separators")
+> Reported-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v5 (v2 in this series):
+>  - Move majority of refactoring to separate patch and minimize the fix
+>    to just moving the print out of the locked section.
 
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: irq
-> 
-> Drop interrupt-names, it is useless in this form.
-> 
+Thanks for your patch!
 
-> > +  firmware-name:
-> > +    description: |
-> > +      Should contain the name of the default patch binary
-> > +      file located on the firmware search path which is
-> > +      used to switch the controller into APP mode
-> 
-> maxItems: 1
-> 
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
 
-> > +        tps25750: tps25750@21 {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> 
-> > +            compatible = "ti,tps25750";
-> > +            reg = <0x21>;
-> > +
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+> @@ -648,20 +634,17 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
+>                 }
+>
+>                 ret = __of_update_property(ce->np, ce->prop, &old_prop);
+> -               if (ret) {
+> -                       pr_err("changeset: update_property failed @%pOF/%s\n",
+> -                               ce->np,
+> -                               ce->prop->name);
+> -                       break;
+> -               }
+>                 break;
+>         default:
+>                 ret = -EINVAL;
+>         }
+>         raw_spin_unlock_irqrestore(&devtree_lock, flags);
+>
+> -       if (ret)
+> +       if (ret) {
+> +               pr_err("changeset: apply failed: cset<%p> %-15s %pOF:%s\n",
 
-Thanks for the review. I've addressed your comments in v2
+Printing the cset pointer will (needlessly?) complicate the EXPECT_*()
+handling in the unit test.
 
-Best Regards,
-Abdel
+> +                      ce, action_names[ce->action], ce->np, ce->prop->name);
+
+This should check ce->action to avoid an out-of-bounds access beyond
+the end of action_names[].
+
+>                 return ret;
+> +       }
+>
+>         switch (ce->action) {
+>         case OF_RECONFIG_ATTACH_NODE:
+
+The rest LGTM to me.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
