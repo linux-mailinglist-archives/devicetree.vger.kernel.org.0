@@ -2,77 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D4B4780A00
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B27F9780A04
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1359789AbjHRK1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 06:27:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52300 "EHLO
+        id S1353484AbjHRK3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 06:29:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359801AbjHRK05 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:26:57 -0400
-Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 987814221;
-        Fri, 18 Aug 2023 03:26:55 -0700 (PDT)
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-        id 1qWwgh-005Gkf-AK; Fri, 18 Aug 2023 18:26:40 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 18 Aug 2023 18:26:39 +0800
-Date:   Fri, 18 Aug 2023 18:26:39 +0800
-From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S1359708AbjHRK3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:29:17 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC8E62701
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:29:15 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso94848266b.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:29:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692354554; x=1692959354;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HIXdHmbJ/1H+7sVStqZs6MCT28eORkXsThJXsBANxyU=;
+        b=kZZuRn+2N/u+2djWTn9I0tqO9da2n6zBwV0W7bFuBfVxZFYtQ9anaguWhkEo7sVbGd
+         zbjjzjTkGYGZ61VZPrswwdxIihftexIcSMQ/SSBnqH7bJ3DbBkNHhFSVK9H6YfFgzTAZ
+         ZL7MCjzNFZfKa3LBC/jFGUgqfXhAfd3mcjbQCne0EiGTHvN2K6ZxulcXnwLss1QcMJnD
+         jlOdfDIiHY4YQJPzRn5AKi1p8zCZBSJF6rRUJe8vEJDuO9252keS1ErpklpVyEcT+a0+
+         ikEXiIbPGR6yQf133kqxdeKgXYLDJrQgXRe11vIO994AZ3y/Z8wyUFHfnN6PyFQnttQ7
+         QqIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692354554; x=1692959354;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HIXdHmbJ/1H+7sVStqZs6MCT28eORkXsThJXsBANxyU=;
+        b=aw8JjYWBMBVW4d9jmge3qb5b2Q+d+3mXRo4Zhudk44nAGihlwpwgGIImsIJ6zbsbwM
+         5tf/XmQ+fJAS1mGH6A0iYGcRExdHnZXSYdnJAZ9KFIkvS6myKqorEc03F6E72fj1+s6g
+         fwY/7qbpA2GZV2PDUvtA1YGpsuUWlySnUaI4Fsml6NtOl2p9uBhbKUXoVB4k9YFX1Lj+
+         l0ms0ojmtkUQ5PfwyeXC+y59kU8CL6L6Kd78RcNsqyoHh2UgpFMWjRlo1q+pkRBR5woC
+         /5FYF/CuBHqVbkJT2hlk2JsyL0cMB6B4fEWjFyluoSkQqPGTYDqzvlYW7NRe5pcsAmpj
+         f7sA==
+X-Gm-Message-State: AOJu0YzNfVOzgmOjTh78ZAZ2QXDsqFsJEsdlxb6yIIXhJB7CPZI0dJSU
+        SAXWJMKXAtpRjxl0PnFpLle2+w==
+X-Google-Smtp-Source: AGHT+IGyaHg28rUIREhoYmqbDtr2UtDKWZmkPT4qvdhoOEqX0b2crmbXQiLYzf5Z3vgW3SHSSt89Og==
+X-Received: by 2002:a17:907:7792:b0:99c:3b4:940c with SMTP id ky18-20020a170907779200b0099c03b4940cmr1690618ejc.7.1692354554437;
+        Fri, 18 Aug 2023 03:29:14 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id fy3-20020a170906b7c300b009894b476310sm994053ejb.163.2023.08.18.03.29.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Aug 2023 03:29:14 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Introduce PRNG on SM8450
-Message-ID: <ZN9HX3ce01Zwdu3k@gondor.apana.org.au>
-References: <20230811-topic-8450_prng-v1-0-01becceeb1ee@linaro.org>
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Subject: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: fix order of clocks on Exynos5433
+Date:   Fri, 18 Aug 2023 12:29:11 +0200
+Message-Id: <20230818102911.18388-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230811-topic-8450_prng-v1-0-01becceeb1ee@linaro.org>
-X-Spam-Status: No, score=2.7 required=5.0 tests=BAYES_00,HELO_DYNAMIC_IPADDR2,
-        PDS_RDNS_DYNAMIC_FP,RCVD_IN_DNSWL_BLOCKED,RDNS_DYNAMIC,SPF_HELO_NONE,
-        SPF_PASS,TVD_RCVD_IP,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: **
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 11, 2023 at 10:50:55PM +0200, Konrad Dybcio wrote:
-> SM8450's PRNG seems to be the same good ol' IP, except without a core
-> clock.
-> 
-> For a lack of a better idea on how to test it, /proc/crypto reports that
-> the selftest has gone through..
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> Konrad Dybcio (3):
->       dt-bindings: crypto: qcom,prng: Add SM8450
->       crypto: qcom-rng: Make the core clock optional regardless of ACPI presence
->       arm64: dts: qcom: sm8450: Add PRNG
-> 
->  .../devicetree/bindings/crypto/qcom,prng.yaml      | 24 +++++++++++++++++-----
->  arch/arm64/boot/dts/qcom/sm8450.dtsi               |  5 +++++
->  drivers/crypto/qcom-rng.c                          | 10 +++------
->  3 files changed, 27 insertions(+), 12 deletions(-)
-> ---
-> base-commit: 21ef7b1e17d039053edaeaf41142423810572741
-> change-id: 20230811-topic-8450_prng-6af00873db4d
+The Exynos5433 DTSI had always different order of DWC USB3 controller
+clocks than the binding.  The order in the binding was introduced in the
+commit 949ea75b7ba4 ("dt-bindings: usb: samsung,exynos-dwc3: convert to
+dtschema") converting to DT schema.  The Linux driver does not care
+about order and was always getting clocks by name.  Therefore assume the
+DTS is the preferred order and correct the binding.
 
-Patches 1-2 applied.  Thanks.
+Fixes: 949ea75b7ba4 ("dt-bindings: usb: samsung,exynos-dwc3: convert to dtschema")
+Cc: Sam Protsenko <semen.protsenko@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+index 240f41b7133a..deeed2bca2cd 100644
+--- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+@@ -82,8 +82,8 @@ allOf:
+           items:
+             - const: aclk
+             - const: susp_clk
+-            - const: pipe_pclk
+             - const: phyclk
++            - const: pipe_pclk
+ 
+   - if:
+       properties:
 -- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+2.34.1
+
