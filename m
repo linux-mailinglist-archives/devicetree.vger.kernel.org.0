@@ -2,453 +2,351 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011067811BD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 19:22:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D261A7810B6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 18:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1379000AbjHRRVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 13:21:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51598 "EHLO
+        id S1359140AbjHRQoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 12:44:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1379017AbjHRRVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 13:21:21 -0400
-Received: from pegase1.c-s.fr (unknown [90.115.179.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EDD64210;
-        Fri, 18 Aug 2023 10:21:19 -0700 (PDT)
-Received: from localhost (mailhub3.si.c-s.fr [192.168.12.233])
-        by localhost (Postfix) with ESMTP id 4RS7081Zjnz9vjl;
-        Fri, 18 Aug 2023 18:40:24 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase1.c-s.fr ([192.168.12.234])
-        by localhost (pegase1.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id ZdBsb51iqtzc; Fri, 18 Aug 2023 18:40:24 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase1.c-s.fr (Postfix) with ESMTP id 4RS6zp740Kz9vhq;
-        Fri, 18 Aug 2023 18:40:06 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id E9A808B763;
-        Fri, 18 Aug 2023 18:40:06 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id U-vlUOJ5AxeO; Fri, 18 Aug 2023 18:40:06 +0200 (CEST)
-Received: from PO20335.IDSI0.si.c-s.fr (PO17626.IDSI0.si.c-s.fr [172.19.54.29])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id D14BA8B76E;
-        Fri, 18 Aug 2023 18:40:04 +0200 (CEST)
-Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 37IGe1wE142062
-        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-        Fri, 18 Aug 2023 18:40:01 +0200
-Received: (from chleroy@localhost)
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 37IGe1RS142060;
-        Fri, 18 Aug 2023 18:40:01 +0200
-X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to christophe.leroy@csgroup.eu using -f
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
+        with ESMTP id S1378830AbjHRQnv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 12:43:51 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36B753C2D;
+        Fri, 18 Aug 2023 09:43:27 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so1748128e87.1;
+        Fri, 18 Aug 2023 09:43:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692376992; x=1692981792;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oYtXL0NSPo2Sx9mZURNXbPMFWhwK0lv2QJZL2BTRUR4=;
+        b=qSJtTnZdvdHBXYcPooneO8b/Ois76IP5qr2V0N+pftktfru7hy/+IqaQOH36SIFBcq
+         /FRBqwVcmGy9mAcp9yxq7Ve6tILFgFEnoMG/qDpjlZQJdeWabDW0jW3/h9pEcmTDW2jL
+         acb2LtP0RZ3yYT/1ffiu303p+l6MfYtjpPipJZtHUnD92sqRPRNk/+PgCCGZks1GSViE
+         +EDZL2eXeNGtixTYeG4JJMGCEV82Qg6I7IdXFQPjCQWeHZ/HhmCKC9hX8cUwoVWnIrmM
+         XE0nC1nN1lbBqaYkRhfA4IgoN/SHLxMuYqT6LfZe/AuFpscEc77j3V3fNncVauzd5Ass
+         zapw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692376992; x=1692981792;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oYtXL0NSPo2Sx9mZURNXbPMFWhwK0lv2QJZL2BTRUR4=;
+        b=GHrm9+e7cb0Ogwp9xkTD1PRdzdyCxCA7iNkoPRsB7+DDq8IkGKRffAngNb1lIXMDgo
+         EgVFnMhOnNQWGDWp5479Hiv8gtbxzFyB/ovy+DtOMW/N64GQ1kS0qf5VB9DgT/kNPpcY
+         j1tCYD+CbuLPmjEiPxu8V4H98lXhh/aLiOovibFyLFRhjPqYUVUzytbu5/qPLJ5vjH1L
+         o2UTafk2ixRwb9uIZcBwyVRnpS98Ei+jjgZqCWhm8qFAVz9IeL3f/iS/Attsl9a9S60M
+         h+ldbifMQCXXXt9f38L9eQN23rEI4qtUIpORMuz7iKP/61EsxOJwhSrGTMLbQYFRghSI
+         TXow==
+X-Gm-Message-State: AOJu0YyLeY8DnL82xU2FLQV//VSPYIIOlFxEZ0iI0N7Ng96R8VWlLD9H
+        9WF+HEzINqkEo1Yv9FwLTIc=
+X-Google-Smtp-Source: AGHT+IGAin2MuYLMw4/ElZJGC5Y7V0/Bh6UYFLMRHQ0asjIQ5A5+tP96g/fElaSRBVDsPKv9acRDMQ==
+X-Received: by 2002:a05:6512:2391:b0:4fb:9168:1fce with SMTP id c17-20020a056512239100b004fb91681fcemr2747631lfv.59.1692376992068;
+        Fri, 18 Aug 2023 09:43:12 -0700 (PDT)
+Received: from mobilestation ([93.157.254.210])
+        by smtp.gmail.com with ESMTPSA id w14-20020a19c50e000000b004fbb610c354sm414084lfe.0.2023.08.18.09.43.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Aug 2023 09:43:11 -0700 (PDT)
+Date:   Fri, 18 Aug 2023 19:43:09 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Randy Dunlap <rdunlap@infradead.org>
-Cc:     netdev@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v4 28/28] net: wan: fsl_qmc_hdlc: Add framer support
-Date:   Fri, 18 Aug 2023 18:39:22 +0200
-Message-ID: <f9cd14450de783ff18e701aeaafccb9183c66eb7.1692376361.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <cover.1692376360.git.christophe.leroy@csgroup.eu>
-References: <cover.1692376360.git.christophe.leroy@csgroup.eu>
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v5 4/9] net: stmmac: reflect multi irqs for
+ tx/rx channels and mac and safety
+Message-ID: <qowgzrratv3xpjavyjlht4fhz3kviifzcznmnftenzactvldcp@l4nzozjltmty>
+References: <20230817165749.672-1-jszhang@kernel.org>
+ <20230817165749.672-5-jszhang@kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1692376736; l=9256; i=christophe.leroy@csgroup.eu; s=20211009; h=from:subject:message-id; bh=RvHkc8ehF1HbXgq/GBw8B5vNFJTvQ6oKhwEXtv8NNIw=; b=vp0Qf80njQjfZJHhjiV5Q7qXe01mNvlbvYUWfL6pHZ8p21BXYNG54AkpdCEhp03nMLQ5ebT0i qxJOqGJ65AxCfYn0SsM9VXCIa5OxWdJVVZtP3eYs0OD5ZZXqhtHeHXv
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,SPF_FAIL,
-        SPF_HELO_NONE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230817165749.672-5-jszhang@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Herve Codina <herve.codina@bootlin.com>
+On Fri, Aug 18, 2023 at 12:57:44AM +0800, Jisheng Zhang wrote:
+> The IP supports per channel interrupt, when intel adds the per channel
+> interrupt support, the per channel irq is from MSI vector, but this
+> feature can also be supported on non-MSI platforms. Do some necessary
+> renaming to reflects this fact.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  .../net/ethernet/stmicro/stmmac/dwmac-intel.c |  4 +-
+>  .../net/ethernet/stmicro/stmmac/dwmac4_dma.c  |  2 +-
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 48 +++++++++----------
+>  include/linux/stmmac.h                        |  4 +-
+>  4 files changed, 29 insertions(+), 29 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> index 979c755964b1..9050de31ed76 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c
+> @@ -952,7 +952,7 @@ static int stmmac_config_single_msi(struct pci_dev *pdev,
+>  
+>  	res->irq = pci_irq_vector(pdev, 0);
+>  	res->wol_irq = res->irq;
+> -	plat->flags &= ~STMMAC_FLAG_MULTI_MSI_EN;
+> +	plat->flags &= ~STMMAC_FLAG_PERCH_IRQ_EN;
+>  	dev_info(&pdev->dev, "%s: Single IRQ enablement successful\n",
+>  		 __func__);
+>  
+> @@ -1004,7 +1004,7 @@ static int stmmac_config_multi_msi(struct pci_dev *pdev,
+>  	if (plat->msi_sfty_ue_vec < STMMAC_MSI_VEC_MAX)
+>  		res->sfty_ue_irq = pci_irq_vector(pdev, plat->msi_sfty_ue_vec);
+>  
+> -	plat->flags |= STMMAC_FLAG_MULTI_MSI_EN;
+> +	plat->flags |= STMMAC_FLAG_PERCH_IRQ_EN;
+>  	dev_info(&pdev->dev, "%s: multi MSI enablement successful\n", __func__);
+>  
+>  	return 0;
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> index 84d3a8551b03..9bf8adf466a2 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac4_dma.c
+> @@ -175,7 +175,7 @@ static void dwmac4_dma_init(void __iomem *ioaddr,
+>  
+>  	value = readl(ioaddr + DMA_BUS_MODE);
+>  
+> -	if (dma_cfg->multi_msi_en) {
+> +	if (dma_cfg->perch_irq_en) {
+>  		value &= ~DMA_BUS_MODE_INTM_MASK;
+>  		value |= (DMA_BUS_MODE_INTM_MODE1 << DMA_BUS_MODE_INTM_SHIFT);
+>  	}
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> index 3d90ca983389..64c55024d69d 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> +++ b/drivers/net/ethernet/stmicro/stmmac/stmmac_main.c
+> @@ -126,11 +126,11 @@ module_param(chain_mode, int, 0444);
+>  MODULE_PARM_DESC(chain_mode, "To use chain instead of ring mode");
+>  
+>  static irqreturn_t stmmac_interrupt(int irq, void *dev_id);
+> -/* For MSI interrupts handling */
+> +/* For multi channel interrupts handling */
+>  static irqreturn_t stmmac_mac_interrupt(int irq, void *dev_id);
+>  static irqreturn_t stmmac_safety_interrupt(int irq, void *dev_id);
 
-Add framer support in the fsl_qmc_hdlc driver in order to be able to
-signal carrier changes to the network stack based on the framer status
-Also use this framer to provide information related to the E1/T1 line
-interface on IF_GET_IFACE and configure the line interface according to
-IF_IFACE_{E1,T1} information.
+> -static irqreturn_t stmmac_msi_intr_tx(int irq, void *data);
+> -static irqreturn_t stmmac_msi_intr_rx(int irq, void *data);
 
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- drivers/net/wan/fsl_qmc_hdlc.c | 239 ++++++++++++++++++++++++++++++++-
- 1 file changed, 235 insertions(+), 4 deletions(-)
+What about
 
-diff --git a/drivers/net/wan/fsl_qmc_hdlc.c b/drivers/net/wan/fsl_qmc_hdlc.c
-index 4b8cb5761fd1..3efed8fedb40 100644
---- a/drivers/net/wan/fsl_qmc_hdlc.c
-+++ b/drivers/net/wan/fsl_qmc_hdlc.c
-@@ -8,6 +8,7 @@
-  */
- 
- #include <linux/dma-mapping.h>
-+#include <linux/framer/framer.h>
- #include <linux/hdlc.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -27,6 +28,9 @@ struct qmc_hdlc {
- 	struct device *dev;
- 	struct qmc_chan *qmc_chan;
- 	struct net_device *netdev;
-+	struct framer *framer;
-+	spinlock_t carrier_lock; /* Protect carrier detection */
-+	struct notifier_block nb;
- 	bool is_crc32;
- 	spinlock_t tx_lock; /* Protect tx descriptors */
- 	struct qmc_hdlc_desc tx_descs[8];
-@@ -40,6 +44,195 @@ static inline struct qmc_hdlc *netdev_to_qmc_hdlc(struct net_device *netdev)
- 	return dev_to_hdlc(netdev)->priv;
- }
- 
-+static int qmc_hdlc_framer_set_carrier(struct qmc_hdlc *qmc_hdlc)
-+{
-+	struct framer_status framer_status;
-+	unsigned long flags;
-+	int ret;
-+
-+	if (!qmc_hdlc->framer)
-+		return 0;
-+
-+	spin_lock_irqsave(&qmc_hdlc->carrier_lock, flags);
-+
-+	ret = framer_get_status(qmc_hdlc->framer, &framer_status);
-+	if (ret) {
-+		dev_err(qmc_hdlc->dev, "get framer status failed (%d)\n", ret);
-+		goto end;
-+	}
-+	if (framer_status.link_is_on)
-+		netif_carrier_on(qmc_hdlc->netdev);
-+	else
-+		netif_carrier_off(qmc_hdlc->netdev);
-+
-+end:
-+	spin_unlock_irqrestore(&qmc_hdlc->carrier_lock, flags);
-+	return ret;
-+}
-+
-+static int qmc_hdlc_framer_notifier(struct notifier_block *nb, unsigned long action,
-+				    void *data)
-+{
-+	struct qmc_hdlc *qmc_hdlc = container_of(nb, struct qmc_hdlc, nb);
-+	int ret;
-+
-+	if (action != FRAMER_EVENT_STATUS)
-+		return NOTIFY_DONE;
-+
-+	ret = qmc_hdlc_framer_set_carrier(qmc_hdlc);
-+	return ret ? NOTIFY_DONE : NOTIFY_OK;
-+}
-+
-+static int qmc_hdlc_framer_start(struct qmc_hdlc *qmc_hdlc)
-+{
-+	struct framer_status framer_status;
-+	int ret;
-+
-+	if (!qmc_hdlc->framer)
-+		return 0;
-+
-+	ret = framer_power_on(qmc_hdlc->framer);
-+	if (ret) {
-+		dev_err(qmc_hdlc->dev, "framer power-on failed (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	/* Be sure that get_status is supported */
-+	ret = framer_get_status(qmc_hdlc->framer, &framer_status);
-+	if (ret) {
-+		dev_err(qmc_hdlc->dev, "get framer status failed (%d)\n", ret);
-+		goto framer_power_off;
-+	}
-+
-+	qmc_hdlc->nb.notifier_call = qmc_hdlc_framer_notifier;
-+	ret = framer_notifier_register(qmc_hdlc->framer, &qmc_hdlc->nb);
-+	if (ret) {
-+		dev_err(qmc_hdlc->dev, "framer notifier register failed (%d)\n", ret);
-+		goto framer_power_off;
-+	}
-+
-+	return 0;
-+
-+framer_power_off:
-+	framer_power_off(qmc_hdlc->framer);
-+	return ret;
-+}
-+
-+static void qmc_hdlc_framer_stop(struct qmc_hdlc *qmc_hdlc)
-+{
-+	if (!qmc_hdlc->framer)
-+		return;
-+
-+	framer_notifier_unregister(qmc_hdlc->framer, &qmc_hdlc->nb);
-+	framer_power_off(qmc_hdlc->framer);
-+}
-+
-+static int qmc_hdlc_framer_set_iface(struct qmc_hdlc *qmc_hdlc, int if_iface,
-+				     const te1_settings *te1)
-+{
-+	struct framer_config config;
-+	int ret;
-+
-+	if (!qmc_hdlc->framer)
-+		return 0;
-+
-+	ret = framer_get_config(qmc_hdlc->framer, &config);
-+	if (ret)
-+		return ret;
-+
-+	switch (if_iface) {
-+	case IF_IFACE_E1:
-+		config.iface = FRAMER_IFACE_E1;
-+		break;
-+	case IF_IFACE_T1:
-+		config.iface = FRAMER_IFACE_T1;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (te1->clock_type) {
-+	case CLOCK_DEFAULT:
-+		/* Keep current value */
-+		break;
-+	case CLOCK_EXT:
-+		config.clock_type = FRAMER_CLOCK_EXT;
-+		break;
-+	case CLOCK_INT:
-+		config.clock_type = FRAMER_CLOCK_INT;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+	config.line_clock_rate = te1->clock_rate;
-+
-+	return framer_set_config(qmc_hdlc->framer, &config);
-+}
-+
-+static int qmc_hdlc_framer_get_iface(struct qmc_hdlc *qmc_hdlc, int *if_iface, te1_settings *te1)
-+{
-+	struct framer_config config;
-+	int ret;
-+
-+	if (!qmc_hdlc->framer) {
-+		*if_iface = IF_IFACE_E1;
-+		return 0;
-+	}
-+
-+	ret = framer_get_config(qmc_hdlc->framer, &config);
-+	if (ret)
-+		return ret;
-+
-+	switch (config.iface) {
-+	case FRAMER_IFACE_E1:
-+		*if_iface = IF_IFACE_E1;
-+		break;
-+	case FRAMER_IFACE_T1:
-+		*if_iface = IF_IFACE_T1;
-+		break;
-+	}
-+
-+	if (!te1)
-+		return 0; /* Only iface type requested */
-+
-+	switch (config.clock_type) {
-+	case FRAMER_CLOCK_EXT:
-+		te1->clock_type = CLOCK_EXT;
-+		break;
-+	case FRAMER_CLOCK_INT:
-+		te1->clock_type = CLOCK_INT;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+	te1->clock_rate = config.line_clock_rate;
-+	return 0;
-+}
-+
-+static int qmc_hdlc_framer_init(struct qmc_hdlc *qmc_hdlc)
-+{
-+	int ret;
-+
-+	if (!qmc_hdlc->framer)
-+		return 0;
-+
-+	ret = framer_init(qmc_hdlc->framer);
-+	if (ret) {
-+		dev_err(qmc_hdlc->dev, "framer init failed (%d)\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void qmc_hdlc_framer_exit(struct qmc_hdlc *qmc_hdlc)
-+{
-+	if (!qmc_hdlc->framer)
-+		return;
-+
-+	framer_exit(qmc_hdlc->framer);
-+}
-+
- static int qmc_hdlc_recv_queue(struct qmc_hdlc *qmc_hdlc, struct qmc_hdlc_desc *desc, size_t size);
- 
- #define QMC_HDLC_RX_ERROR_FLAGS (QMC_RX_FLAG_HDLC_OVF | \
-@@ -313,6 +506,12 @@ static int qmc_hdlc_set_iface(struct qmc_hdlc *qmc_hdlc, int if_iface, const te1
- 
- 	qmc_hdlc->slot_map = te1->slot_map;
- 
-+	ret = qmc_hdlc_framer_set_iface(qmc_hdlc, if_iface, te1);
-+	if (ret) {
-+		dev_err(qmc_hdlc->dev, "framer set iface failed %d\n", ret);
-+		return ret;
-+	}
-+
- 	return 0;
- }
- 
-@@ -320,11 +519,16 @@ static int qmc_hdlc_ioctl(struct net_device *netdev, struct if_settings *ifs)
- {
- 	struct qmc_hdlc *qmc_hdlc = netdev_to_qmc_hdlc(netdev);
- 	te1_settings te1;
-+	int ret;
- 
- 	switch (ifs->type) {
- 	case IF_GET_IFACE:
--		ifs->type = IF_IFACE_E1;
- 		if (ifs->size < sizeof(te1)) {
-+			/* Retrieve type only */
-+			ret = qmc_hdlc_framer_get_iface(qmc_hdlc, &ifs->type, NULL);
-+			if (ret)
-+				return ret;
-+
- 			if (!ifs->size)
- 				return 0; /* only type requested */
- 
-@@ -334,6 +538,11 @@ static int qmc_hdlc_ioctl(struct net_device *netdev, struct if_settings *ifs)
- 
- 		memset(&te1, 0, sizeof(te1));
- 
-+		/* Retrieve info from framer */
-+		ret = qmc_hdlc_framer_get_iface(qmc_hdlc, &ifs->type, &te1);
-+		if (ret)
-+			return ret;
-+
- 		/* Update slot_map */
- 		te1.slot_map = qmc_hdlc->slot_map;
- 
-@@ -367,10 +576,17 @@ static int qmc_hdlc_open(struct net_device *netdev)
- 	int ret;
- 	int i;
- 
--	ret = hdlc_open(netdev);
-+	ret = qmc_hdlc_framer_start(qmc_hdlc);
- 	if (ret)
- 		return ret;
- 
-+	ret = hdlc_open(netdev);
-+	if (ret)
-+		goto framer_stop;
-+
-+	/* Update carrier */
-+	qmc_hdlc_framer_set_carrier(qmc_hdlc);
-+
- 	chan_param.mode = QMC_HDLC;
- 	/* HDLC_MAX_MRU + 4 for the CRC
- 	 * HDLC_MAX_MRU + 4 + 8 for the CRC and some extraspace needed by the QMC
-@@ -420,6 +636,8 @@ static int qmc_hdlc_open(struct net_device *netdev)
- 	}
- hdlc_close:
- 	hdlc_close(netdev);
-+framer_stop:
-+	qmc_hdlc_framer_stop(qmc_hdlc);
- 	return ret;
- }
- 
-@@ -455,6 +673,7 @@ static int qmc_hdlc_close(struct net_device *netdev)
- 	}
- 
- 	hdlc_close(netdev);
-+	qmc_hdlc_framer_stop(qmc_hdlc);
- 	return 0;
- }
- 
-@@ -503,6 +722,7 @@ static int qmc_hdlc_probe(struct platform_device *pdev)
- 
- 	qmc_hdlc->dev = &pdev->dev;
- 	spin_lock_init(&qmc_hdlc->tx_lock);
-+	spin_lock_init(&qmc_hdlc->carrier_lock);
- 
- 	qmc_hdlc->qmc_chan = devm_qmc_chan_get_byphandle(qmc_hdlc->dev, np, "fsl,qmc-chan");
- 	if (IS_ERR(qmc_hdlc->qmc_chan)) {
-@@ -531,10 +751,19 @@ static int qmc_hdlc_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	qmc_hdlc->framer = devm_framer_optional_get(qmc_hdlc->dev, "framer");
-+	if (IS_ERR(qmc_hdlc->framer))
-+		return PTR_ERR(qmc_hdlc->framer);
-+
-+	ret = qmc_hdlc_framer_init(qmc_hdlc);
-+	if (ret)
-+		return ret;
-+
- 	qmc_hdlc->netdev = alloc_hdlcdev(qmc_hdlc);
- 	if (!qmc_hdlc->netdev) {
- 		dev_err(qmc_hdlc->dev, "failed to alloc hdlc dev\n");
--		return -ENOMEM;
-+		ret = -ENOMEM;
-+		goto framer_exit;
- 	}
- 
- 	hdlc = dev_to_hdlc(qmc_hdlc->netdev);
-@@ -550,11 +779,12 @@ static int qmc_hdlc_probe(struct platform_device *pdev)
- 	}
- 
- 	platform_set_drvdata(pdev, qmc_hdlc);
--
- 	return 0;
- 
- free_netdev:
- 	free_netdev(qmc_hdlc->netdev);
-+framer_exit:
-+	qmc_hdlc_framer_exit(qmc_hdlc);
- 	return ret;
- }
- 
-@@ -564,6 +794,7 @@ static int qmc_hdlc_remove(struct platform_device *pdev)
- 
- 	unregister_hdlc_device(qmc_hdlc->netdev);
- 	free_netdev(qmc_hdlc->netdev);
-+	qmc_hdlc_framer_exit(qmc_hdlc);
- 
- 	return 0;
- }
--- 
-2.41.0
++static irqreturn_t stmmac_tx_queue_interrupt(int irq, void *data);
++static irqreturn_t stmmac_rx_queue_interrupt(int irq, void *data);
 
+to have the names similar to stmmac_mac_interrupt() and
+stmmac_safety_interrupt().
+
+BTW are you aware that the IRQs in subject are actually
+per-DMA-channel interrupts, not per-MTL-queue interrupts?
+
+>  static void stmmac_reset_rx_queue(struct stmmac_priv *priv, u32 queue);
+>  static void stmmac_reset_tx_queue(struct stmmac_priv *priv, u32 queue);
+>  static void stmmac_reset_queues_param(struct stmmac_priv *priv);
+> @@ -3520,7 +3520,7 @@ static void stmmac_free_irq(struct net_device *dev,
+>  	}
+>  }
+>  
+
+> -static int stmmac_request_irq_multi_msi(struct net_device *dev)
+> +static int stmmac_request_irq_multi_channel(struct net_device *dev)
+
+What about stmmac_request_irq_perch() to shorten out the name and have
+a unified "perch" suffix like in the flag STMMAC_FLAG_PERCH_IRQ_EN?
+
+-Serge(y)
+
+>  {
+>  	struct stmmac_priv *priv = netdev_priv(dev);
+>  	enum request_irq_err irq_err;
+> @@ -3537,7 +3537,7 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  			  0, int_name, dev);
+>  	if (unlikely(ret < 0)) {
+>  		netdev_err(priv->dev,
+> -			   "%s: alloc mac MSI %d (error: %d)\n",
+> +			   "%s: alloc mac irq %d (error: %d)\n",
+>  			   __func__, dev->irq, ret);
+>  		irq_err = REQ_IRQ_ERR_MAC;
+>  		goto irq_error;
+> @@ -3554,7 +3554,7 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  				  0, int_name, dev);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> -				   "%s: alloc wol MSI %d (error: %d)\n",
+> +				   "%s: alloc wol irq %d (error: %d)\n",
+>  				   __func__, priv->wol_irq, ret);
+>  			irq_err = REQ_IRQ_ERR_WOL;
+>  			goto irq_error;
+> @@ -3572,7 +3572,7 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  				  0, int_name, dev);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> -				   "%s: alloc lpi MSI %d (error: %d)\n",
+> +				   "%s: alloc lpi irq %d (error: %d)\n",
+>  				   __func__, priv->lpi_irq, ret);
+>  			irq_err = REQ_IRQ_ERR_LPI;
+>  			goto irq_error;
+> @@ -3590,7 +3590,7 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  				  0, int_name, dev);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> -				   "%s: alloc sfty ce MSI %d (error: %d)\n",
+> +				   "%s: alloc sfty ce irq %d (error: %d)\n",
+>  				   __func__, priv->sfty_ce_irq, ret);
+>  			irq_err = REQ_IRQ_ERR_SFTY_CE;
+>  			goto irq_error;
+> @@ -3608,14 +3608,14 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  				  0, int_name, dev);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> -				   "%s: alloc sfty ue MSI %d (error: %d)\n",
+> +				   "%s: alloc sfty ue irq %d (error: %d)\n",
+>  				   __func__, priv->sfty_ue_irq, ret);
+>  			irq_err = REQ_IRQ_ERR_SFTY_UE;
+>  			goto irq_error;
+>  		}
+>  	}
+>  
+> -	/* Request Rx MSI irq */
+> +	/* Request Rx queue irq */
+>  	for (i = 0; i < priv->plat->rx_queues_to_use; i++) {
+>  		if (i >= MTL_MAX_RX_QUEUES)
+>  			break;
+> @@ -3625,11 +3625,11 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  		int_name = priv->int_name_rx_irq[i];
+>  		sprintf(int_name, "%s:%s-%d", dev->name, "rx", i);
+>  		ret = request_irq(priv->rx_irq[i],
+> -				  stmmac_msi_intr_rx,
+> +				  stmmac_queue_intr_rx,
+>  				  0, int_name, &priv->dma_conf.rx_queue[i]);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> -				   "%s: alloc rx-%d  MSI %d (error: %d)\n",
+> +				   "%s: alloc rx-%d irq %d (error: %d)\n",
+>  				   __func__, i, priv->rx_irq[i], ret);
+>  			irq_err = REQ_IRQ_ERR_RX;
+>  			irq_idx = i;
+> @@ -3640,7 +3640,7 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  		irq_set_affinity_hint(priv->rx_irq[i], &cpu_mask);
+>  	}
+>  
+> -	/* Request Tx MSI irq */
+> +	/* Request Tx queue irq */
+>  	for (i = 0; i < priv->plat->tx_queues_to_use; i++) {
+>  		if (i >= MTL_MAX_TX_QUEUES)
+>  			break;
+> @@ -3650,11 +3650,11 @@ static int stmmac_request_irq_multi_msi(struct net_device *dev)
+>  		int_name = priv->int_name_tx_irq[i];
+>  		sprintf(int_name, "%s:%s-%d", dev->name, "tx", i);
+>  		ret = request_irq(priv->tx_irq[i],
+> -				  stmmac_msi_intr_tx,
+> +				  stmmac_queue_intr_tx,
+>  				  0, int_name, &priv->dma_conf.tx_queue[i]);
+>  		if (unlikely(ret < 0)) {
+>  			netdev_err(priv->dev,
+> -				   "%s: alloc tx-%d  MSI %d (error: %d)\n",
+> +				   "%s: alloc tx-%d irq %d (error: %d)\n",
+>  				   __func__, i, priv->tx_irq[i], ret);
+>  			irq_err = REQ_IRQ_ERR_TX;
+>  			irq_idx = i;
+> @@ -3729,8 +3729,8 @@ static int stmmac_request_irq(struct net_device *dev)
+>  	int ret;
+>  
+>  	/* Request the IRQ lines */
+> -	if (priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN)
+> -		ret = stmmac_request_irq_multi_msi(dev);
+> +	if (priv->plat->flags & STMMAC_FLAG_PERCH_IRQ_EN)
+> +		ret = stmmac_request_irq_multi_channel(dev);
+>  	else
+>  		ret = stmmac_request_irq_single(dev);
+>  
+> @@ -5945,7 +5945,7 @@ static irqreturn_t stmmac_safety_interrupt(int irq, void *dev_id)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t stmmac_msi_intr_tx(int irq, void *data)
+> +static irqreturn_t stmmac_queue_intr_tx(int irq, void *data)
+>  {
+>  	struct stmmac_tx_queue *tx_q = (struct stmmac_tx_queue *)data;
+>  	struct stmmac_dma_conf *dma_conf;
+> @@ -5977,7 +5977,7 @@ static irqreturn_t stmmac_msi_intr_tx(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> -static irqreturn_t stmmac_msi_intr_rx(int irq, void *data)
+> +static irqreturn_t stmmac_queue_intr_rx(int irq, void *data)
+>  {
+>  	struct stmmac_rx_queue *rx_q = (struct stmmac_rx_queue *)data;
+>  	struct stmmac_dma_conf *dma_conf;
+> @@ -6014,12 +6014,12 @@ static void stmmac_poll_controller(struct net_device *dev)
+>  	if (test_bit(STMMAC_DOWN, &priv->state))
+>  		return;
+>  
+> -	if (priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN) {
+> +	if (priv->plat->flags & STMMAC_FLAG_PERCH_IRQ_EN) {
+>  		for (i = 0; i < priv->plat->rx_queues_to_use; i++)
+> -			stmmac_msi_intr_rx(0, &priv->dma_conf.rx_queue[i]);
+> +			stmmac_queue_intr_rx(0, &priv->dma_conf.rx_queue[i]);
+>  
+>  		for (i = 0; i < priv->plat->tx_queues_to_use; i++)
+> -			stmmac_msi_intr_tx(0, &priv->dma_conf.tx_queue[i]);
+> +			stmmac_queue_intr_tx(0, &priv->dma_conf.tx_queue[i]);
+>  	} else {
+>  		disable_irq(dev->irq);
+>  		stmmac_interrupt(dev->irq, dev);
+> @@ -7300,8 +7300,8 @@ int stmmac_dvr_probe(struct device *device,
+>  	priv->plat = plat_dat;
+>  	priv->ioaddr = res->addr;
+>  	priv->dev->base_addr = (unsigned long)res->addr;
+> -	priv->plat->dma_cfg->multi_msi_en =
+> -		(priv->plat->flags & STMMAC_FLAG_MULTI_MSI_EN);
+> +	priv->plat->dma_cfg->perch_irq_en =
+> +		(priv->plat->flags & STMMAC_FLAG_PERCH_IRQ_EN);
+>  
+>  	priv->dev->irq = res->irq;
+>  	priv->wol_irq = res->wol_irq;
+> diff --git a/include/linux/stmmac.h b/include/linux/stmmac.h
+> index 9c90e2e295d4..c052c222fa3e 100644
+> --- a/include/linux/stmmac.h
+> +++ b/include/linux/stmmac.h
+> @@ -98,7 +98,7 @@ struct stmmac_dma_cfg {
+>  	int mixed_burst;
+>  	bool aal;
+>  	bool eame;
+> -	bool multi_msi_en;
+> +	bool perch_irq_en;
+>  	bool dche;
+>  };
+>  
+> @@ -213,7 +213,7 @@ struct dwmac4_addrs {
+>  #define STMMAC_FLAG_TSO_EN			BIT(4)
+>  #define STMMAC_FLAG_SERDES_UP_AFTER_PHY_LINKUP	BIT(5)
+>  #define STMMAC_FLAG_VLAN_FAIL_Q_EN		BIT(6)
+> -#define STMMAC_FLAG_MULTI_MSI_EN		BIT(7)
+> +#define STMMAC_FLAG_PERCH_IRQ_EN		BIT(7)
+>  #define STMMAC_FLAG_EXT_SNAPSHOT_EN		BIT(8)
+>  #define STMMAC_FLAG_INT_SNAPSHOT_EN		BIT(9)
+>  #define STMMAC_FLAG_RX_CLK_RUNS_IN_LPI		BIT(10)
+> -- 
+> 2.40.1
+> 
+> 
