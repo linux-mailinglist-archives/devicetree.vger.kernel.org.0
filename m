@@ -2,143 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A6E57809CF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B00A47809D5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Aug 2023 12:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238126AbjHRKP7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 06:15:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57546 "EHLO
+        id S1358415AbjHRKQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 06:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1359855AbjHRKPr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:15:47 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949D54214;
-        Fri, 18 Aug 2023 03:15:28 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0385C24E2C5;
-        Fri, 18 Aug 2023 18:15:21 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 18 Aug
- 2023 18:15:20 +0800
-Received: from [192.168.125.127] (183.27.97.249) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 18 Aug
- 2023 18:15:19 +0800
-Message-ID: <51bd9a0b-d8b1-35b4-4f8a-2ef0e9564439@starfivetech.com>
-Date:   Fri, 18 Aug 2023 18:15:19 +0800
+        with ESMTP id S1358639AbjHRKQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 06:16:25 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26B030D6
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:16:23 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fe1d9a8ec6so11735695e9.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 03:16:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692353782; x=1692958582;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hXTabiaJxmNJ9oq0XkR6nAkvHWMygGA5C17EAhns0wg=;
+        b=Re1LexwemUlpCxdH5CwQry+LacDXBZ3xU8v+wzoqheIa2Cq6/9Yk9uMG87xllqHH7X
+         wmQ+4TJOo0skEVkVECkUA55wgxIX/sfKRdWuJ9J5zC2fzQLGdFx9CpwGc1/wXSwhuQLC
+         MU9sAwriA9fuaSCfYSZJKABxo/VPxIxWmxn+6Go27BgmDd8QSW5IbS0RIyOLM0pABZju
+         tj/gKtz5JpB2OkFOhwcxkREeaTyRQmZAZzaeOFINxEF+otVLfdWEh4kkEzhTkf+Fcfnd
+         GU3IVtc2KWbP3mHmfnaama0dLjKMyakYLdqni4hZYjZoCcAcBFJEb0um3Z8Hxr+7iEom
+         blTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692353782; x=1692958582;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hXTabiaJxmNJ9oq0XkR6nAkvHWMygGA5C17EAhns0wg=;
+        b=Mt7giAaxHszkefQ10uBrp6WeC/5IMTik6umkoBhoJGTm1o7+u2RF0uxJ3aqHK/koV4
+         ovguFbumOTpx8u0MHhPCkIT9UvcM9agXjpLkgeU47t6Ea3wk9yfS3nPgSFsG6PLQ+CXy
+         vbwn2fkaAB77lt8xxEexK69ac/b7Dal+UzrJQ0OKyH+MOjGAoLwZqcNNPATsUfEmNgX+
+         MuX1aGDY0Hovqd06U7OQpiiRn8ZYNQtKN/576F+ftKasUJRbj5qm/RhM1deHTOo280px
+         ISWwScefZua9TLmi/ls4xcACGUgvDGMvQXhI1OKQh50uR1xlW1t76uj1AL5Hd4c6AeLT
+         I1HQ==
+X-Gm-Message-State: AOJu0YwyZcaU1VSFyNaqrPpMJTBYO3ABLanRS2XwSOx+3nCYOf49lAcT
+        rCNqhzO/DqPKBX7eV2UgLEHqsA==
+X-Google-Smtp-Source: AGHT+IF0yzR5wFadKQBSeUgKZJ0RQXMaeexJUOe03PNuqST7rF77V1m15KKYyPooKo53sQenEX6Brg==
+X-Received: by 2002:a05:600c:5111:b0:3fe:1c57:3be with SMTP id o17-20020a05600c511100b003fe1c5703bemr4769676wms.8.1692353782169;
+        Fri, 18 Aug 2023 03:16:22 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id c15-20020a05600c0acf00b003fbc9b9699dsm2303355wmr.45.2023.08.18.03.16.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Aug 2023 03:16:21 -0700 (PDT)
+Message-ID: <cb967ebc-0e15-b0e6-badb-4f9d2ba09178@linaro.org>
+Date:   Fri, 18 Aug 2023 12:16:20 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 06/11] PCI: plda: Add event interrupt codes and IRQ
- domain ops
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] clocksource: Explicitly include correct DT includes
 Content-Language: en-US
-To:     Conor Dooley <conor@kernel.org>
-CC:     Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-References: <20230814082016.104181-1-minda.chen@starfivetech.com>
- <20230814082016.104181-7-minda.chen@starfivetech.com>
- <20230814-episode-untidy-c66107a33ea0@wendy>
- <f983f3cc-ebb5-18fb-891a-adc073742bb9@starfivetech.com>
- <20230815-five-comment-cff5fb01909f@spud>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <20230815-five-comment-cff5fb01909f@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.97.249]
-X-ClientProxiedBy: EXCAS061.cuchost.com (172.16.6.21) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Rob Herring <robh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Michal Simek <michal.simek@amd.com>,
+        Jean-Marie Verdun <verdun@hpe.com>,
+        Nick Hawkins <nick.hawkins@hpe.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org
+References: <20230714174409.4053843-1-robh@kernel.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230714174409.4053843-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2023/8/15 21:11, Conor Dooley wrote:
-> On Tue, Aug 15, 2023 at 06:12:07PM +0800, Minda Chen wrote:
->> 
->> 
->> On 2023/8/14 21:52, Conor Dooley wrote:
->> > On Mon, Aug 14, 2023 at 04:20:11PM +0800, Minda Chen wrote:
->> >> For PolarFire implements non-PLDA local interrupt events, most of
->> >> event interrupt process codes can not be re-used. PLDA implements
->> >> new codes and IRQ domain ops like PolarFire.
->> >> 
->> >> plda_handle_event adds a new IRQ num to event num mapping codes for
->> >> PLDA local event except DMA engine interrupt events. The DMA engine
->> >> interrupt events are implemented by vendors.
->> >> 
->> >> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> >> ---
->> >>  .../pci/controller/plda/pcie-microchip-host.c | 29 +++---
->> >>  drivers/pci/controller/plda/pcie-plda-host.c  | 99 +++++++++++++++++++
->> >>  drivers/pci/controller/plda/pcie-plda.h       | 19 ++++
->> >>  3 files changed, 133 insertions(+), 14 deletions(-)
->> >> 
->> >> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
->> >> index c28840315019..b42f1aac3ec3 100644
->> >> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
->> >> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
->> >> @@ -96,20 +96,21 @@
->> >>  #define EVENT_LOCAL_DMA_END_ENGINE_1		12
->> >>  #define EVENT_LOCAL_DMA_ERROR_ENGINE_0		13
->> >>  #define EVENT_LOCAL_DMA_ERROR_ENGINE_1		14
->> >> -#define EVENT_LOCAL_A_ATR_EVT_POST_ERR		15
->> >> -#define EVENT_LOCAL_A_ATR_EVT_FETCH_ERR		16
->> >> -#define EVENT_LOCAL_A_ATR_EVT_DISCARD_ERR	17
->> >> -#define EVENT_LOCAL_A_ATR_EVT_DOORBELL		18
->> >> -#define EVENT_LOCAL_P_ATR_EVT_POST_ERR		19
->> >> -#define EVENT_LOCAL_P_ATR_EVT_FETCH_ERR		20
->> >> -#define EVENT_LOCAL_P_ATR_EVT_DISCARD_ERR	21
->> >> -#define EVENT_LOCAL_P_ATR_EVT_DOORBELL		22
->> >> -#define EVENT_LOCAL_PM_MSI_INT_INTX		23
->> >> -#define EVENT_LOCAL_PM_MSI_INT_MSI		24
->> >> -#define EVENT_LOCAL_PM_MSI_INT_AER_EVT		25
->> >> -#define EVENT_LOCAL_PM_MSI_INT_EVENTS		26
->> >> -#define EVENT_LOCAL_PM_MSI_INT_SYS_ERR		27
->> >> -#define NUM_EVENTS				28
->> >> +#define NUM_MC_EVENTS				15
->> >> +#define EVENT_LOCAL_A_ATR_EVT_POST_ERR		(NUM_MC_EVENTS + EVENT_A_ATR_EVT_POST_ERR)
->> >> +#define EVENT_LOCAL_A_ATR_EVT_FETCH_ERR		(NUM_MC_EVENTS + EVENT_A_ATR_EVT_FETCH_ERR)
->> >> +#define EVENT_LOCAL_A_ATR_EVT_DISCARD_ERR	(NUM_MC_EVENTS + EVENT_A_ATR_EVT_DISCARD_ERR)
->> >> +#define EVENT_LOCAL_A_ATR_EVT_DOORBELL		(NUM_MC_EVENTS + EVENT_A_ATR_EVT_DOORBELL)
->> >> +#define EVENT_LOCAL_P_ATR_EVT_POST_ERR		(NUM_MC_EVENTS + EVENT_P_ATR_EVT_POST_ERR)
->> >> +#define EVENT_LOCAL_P_ATR_EVT_FETCH_ERR		(NUM_MC_EVENTS + EVENT_P_ATR_EVT_FETCH_ERR)
->> >> +#define EVENT_LOCAL_P_ATR_EVT_DISCARD_ERR	(NUM_MC_EVENTS + EVENT_P_ATR_EVT_DISCARD_ERR)
->> >> +#define EVENT_LOCAL_P_ATR_EVT_DOORBELL		(NUM_MC_EVENTS + EVENT_P_ATR_EVT_DOORBELL)
->> >> +#define EVENT_LOCAL_PM_MSI_INT_INTX		(NUM_MC_EVENTS + EVENT_PM_MSI_INT_INTX)
->> >> +#define EVENT_LOCAL_PM_MSI_INT_MSI		(NUM_MC_EVENTS + EVENT_PM_MSI_INT_MSI)
->> >> +#define EVENT_LOCAL_PM_MSI_INT_AER_EVT		(NUM_MC_EVENTS + EVENT_PM_MSI_INT_AER_EVT)
->> >> +#define EVENT_LOCAL_PM_MSI_INT_EVENTS		(NUM_MC_EVENTS + EVENT_PM_MSI_INT_EVENTS)
->> >> +#define EVENT_LOCAL_PM_MSI_INT_SYS_ERR		(NUM_MC_EVENTS + EVENT_PM_MSI_INT_SYS_ERR)
->> >> +#define NUM_EVENTS				(NUM_MC_EVENTS + NUM_PLDA_EVENTS)
->> > 
->> > Is this change not in the wrong patch & should be changed alongside the
->> > movement of defines? 
->> EVENT_xxx is new added one for PLDA codes and The event num start from 0. This add association to PLDA events.
->> Maybe this can be moved to patch8 or a new patch.
+On 14/07/2023 19:44, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
-> It feels like it should be in patch 3 to me.
-OK, thanks. But this need define PLDA events macros in patch3.   
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+
+Applied, thanks
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
