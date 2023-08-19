@@ -2,218 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74BCD781718
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 05:18:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F3A2781725
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 05:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244858AbjHSDSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 23:18:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39694 "EHLO
+        id S244699AbjHSDWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 23:22:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244872AbjHSDRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 23:17:42 -0400
-Received: from mail-oo1-xc30.google.com (mail-oo1-xc30.google.com [IPv6:2607:f8b0:4864:20::c30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0D34216
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 20:17:40 -0700 (PDT)
-Received: by mail-oo1-xc30.google.com with SMTP id 006d021491bc7-56cd753b31cso948339eaf.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 20:17:40 -0700 (PDT)
+        with ESMTP id S245728AbjHSDVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 23:21:40 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFB264683
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 20:21:20 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1c0fa9dd74fso914521fac.3
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 20:21:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692415060; x=1693019860;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EK4lc13hsQBieya89oWIFB0P2uDWj3MviewwKrAjxRw=;
-        b=gH2yIICE5JiUkpTUs4CSGRbbH5ZMRMUR0GayY2DiaZAwbPuo7IBZOO19ZfmjRnWQow
-         WSvXRhBjmEJwhIHLbz3MLbKMue1Y73dVgaSmND3FeGzInC45hRXk62nvTmyUXvINW+kQ
-         IFLuZmM/4525WH4XAPKBdcSojq1g5646XK9kggBY2WIbpV0d59N2WSp/D0E+/wW8FsNP
-         1S4HzvMPpFtP/9BIcu927YlH+iXdQoDB/j3X5trswIRH/NUJ/8MfhXzEu5KG1vIJLGUP
-         zm8YYj1dnbrdDwzfsSGa59JPhmz07dFWmaRDzDavUZAQ8FOTt7eAQS9ZhSNAzeFjj1uu
-         Qu5g==
+        d=gmail.com; s=20221208; t=1692415274; x=1693020074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0N8mpoFGrtc++1hccbmV6ouGcoHkBTOt7nhNexKk1uY=;
+        b=huvj8t+Wq7I18MAsbdZZFM/WebSvwjQPXDlnoF86knXhqzpqcfzrOtATjLhr1zartq
+         Oo6BVIXhSH8nxKn3JnY8/zEevc1d1PiZvCcNqpuGVX6LidwDZrDBLSdm2x9SPzDbfb3I
+         SbyVPiEuJu2c5qmRHmLlihRIsR+krgZKhPTOinesGQ0Cu86VJCL5a04VyfMQbutpMJeU
+         cuqoABzQexwGzNTcJAP/8jlvwEoHzilF34truIAcmaC2KsX5kyMxPeKIdo6YNFb407Hv
+         F2Nq25DHxmuuh3p1kKeA+qbv4ZkrGp7VZru3Ls/iWMhx7mdl81pWNKyLJcklMwtvR9+V
+         giuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692415060; x=1693019860;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EK4lc13hsQBieya89oWIFB0P2uDWj3MviewwKrAjxRw=;
-        b=W6WYwrWFhOGMqPjushLazfTNXeawoYDlSIrSWpdg4W1u7MSSsggCh2HK0noLOl/B7n
-         x2v25jQTRfVDR2/WKcSfq+b9h7q6ZtiZQanfd6ghUbPckMvhuGivTEViZxobziWdFvxW
-         zHsSRq+dLfRdPCCiSd286QgAkUL/WYcMBsAQmtJ4HnlXVj0ev2JLFvEseLPXrk+YWqvi
-         dI8/CEutwKXZkHb88ZurlW/veKTXxkE2rHe74myv6oHuQbV3KhJNoeVS7/i8GPyRLlmb
-         Dgs2nrDRkOeeEa7DEwYZjFQOndKD+TLOcMVNqmSCfZhpKBLW6T/IiCs9uSx5z/e9QAvq
-         780g==
-X-Gm-Message-State: AOJu0YxGsFmnsbGV6Dk1atpeYw6ZWRDPyj4KfZRH+TxvdfPJ2m1lG7FG
-        7XPJhl88Y00MWQ5x1NtnSuc2ww==
-X-Google-Smtp-Source: AGHT+IEQ3BwqLE3HDnHpyCiEwIbHJOPXfPkwHfhNQFFL1+Q07JcVrXASX49TluX1i2SH3iY6U9p5kw==
-X-Received: by 2002:a05:6870:1d0:b0:1bb:c946:b80e with SMTP id n16-20020a05687001d000b001bbc946b80emr1102346oad.28.1692415059832;
-        Fri, 18 Aug 2023 20:17:39 -0700 (PDT)
-Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id q2-20020a9d7c82000000b006b89dafb721sm1424375otn.78.2023.08.18.20.17.39
+        d=1e100.net; s=20221208; t=1692415274; x=1693020074;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0N8mpoFGrtc++1hccbmV6ouGcoHkBTOt7nhNexKk1uY=;
+        b=PP4VKoUXS6hseODkm9zlyXuZyGSl9YXTnebslKAlXPYkowWEoiMWjUHhk+lfKBcqsa
+         3JKR2PGRe7wQMsVv0aspaOVcGgujnsvnxtI8PthOcNhHvqWZNuFn/AK1SHLYMQJdOcAT
+         qV4Su2mTGDPnJVR/j9wAM+1x5VyWLJxyKSObouca54k9xDKgB+vaTCIVXitW+2z/yNsX
+         pgNEH32yua4kvFxTeQZ95HxPhmZCY3jGvd2fs1v6ID0nq0CxMquEnG0dCiCL3GaIl59d
+         oYSIg8Ex5TVTsjUsPhmIb9KuRyQVkz0VVZRxdhA7MeRT8n4XiG69um2+dzDH3gakBYj8
+         jSYQ==
+X-Gm-Message-State: AOJu0Yyo6Dd0LU2IKwenUUxFkGD0PZ3AaYBxJ44f/YIFPqM9t3vSM3OB
+        oELRp/imPYXReitBI7XpyGc=
+X-Google-Smtp-Source: AGHT+IGssFU1yymib3R+VDHnmeaA0HJVAii9n5zn0OhwL13HkIvfQAmzXI4kUFQN3/CMCQfVg1eUsA==
+X-Received: by 2002:a05:6871:68e:b0:1b0:2f63:4ff6 with SMTP id l14-20020a056871068e00b001b02f634ff6mr1550300oao.1.1692415273939;
+        Fri, 18 Aug 2023 20:21:13 -0700 (PDT)
+Received: from localhost.localdomain ([75.28.21.198])
+        by smtp.gmail.com with ESMTPSA id ch16-20020a056871c41000b001c02f12abd0sm1728265oac.38.2023.08.18.20.21.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Aug 2023 20:17:39 -0700 (PDT)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     JaeHun Jung <jh0801.jung@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 8/8] arm64: dts: exynos: Enable USB support on E850-96 board
-Date:   Fri, 18 Aug 2023 22:17:31 -0500
-Message-Id: <20230819031731.22618-9-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230819031731.22618-1-semen.protsenko@linaro.org>
-References: <20230819031731.22618-1-semen.protsenko@linaro.org>
+        Fri, 18 Aug 2023 20:21:13 -0700 (PDT)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     linux-sunxi@lists.linux.dev
+Cc:     devicetree@vger.kernel.org, mripard@kernel.org, me@crly.cz,
+        uwu@icenowy.me, samuel@sholland.org, jernej.skrabec@gmail.com,
+        wens@csie.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v2 0/4] Add Anbernic RG-Nano
+Date:   Fri, 18 Aug 2023 22:21:01 -0500
+Message-Id: <20230819032105.67978-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The E850-96 board has a micro-USB socket and two USB 2.0 host sockets.
-The USB role (host or peripheral) is selected automatically depending on
-micro-USB cable attachment state:
-  - micro-USB cable is attached: USB device role
-  - micro-USB cable is detached: USB host role
+From: Chris Morgan <macromorgan@hotmail.com>
 
-USB can't act simultaneously as a device and a host, because Exynos850
-SoC has only one USB controller and there are no external USB
-controllers on the E850-96 board. So the USB switch chip (specifically
-TS3USB221A) connects SoC USB lines either to micro-USB connector or to
-USB hub chip (LAN9514), w.r.t. micro-USB cable attachment state.
+Add support for the Anbernic RG-Nano handheld gaming device
 
-When USB works in the host role, Ethernet capability becomes available
-too, as LAN9514 chip (providing USB hub) also enables Ethernet PHY and
-Ethernet MAC.
+Changes since V1:
+ - Added additional pwm pin configs to sun8i-v3s.dtsi and removed
+   default config for pwm0 in lieu of defining it for each board.
+ - Noted in patch notes that additional hardware of UART debug port,
+   USB port (in gadget mode) also work, and that USB host mode does
+   not work.
+ - Identified GPIO responsible for enabling external speaker amplifier
+   and defined it, allowing onboard audio to work.
+ - Removed ac_power_supply node.
+ - Set regulator min and max values to the same value as defined in the
+   schematics.
+ - Removed definition for reg_ldo1. This regulator is hardware
+   configured so the value did not affect anything, however the driver
+   must be updated to support the correct value of 3.3v in this case.
+ - Removed usb0_id_det-gpios as I cannot confirm these are correct.
 
-Dynamic role switching is done in gpio-usb-b-connector, using current
-micro-USB VBUS line level as a trigger:
-  - VBUS=high: SoC USB lines are wired to micro-USB socket
-  - VBUS=low: SoC USB lines are wired to USB hub chip
+Chris Morgan (4):
+  ARM: dts: sun8i: V3: add alias to cpu node
+  arm: dts: sun8i: V3s: Add pinctrl for pwm
+  dt-bindings: arm: sunxi: add Anbernic RG-Nano
+  ARM: dts: sunxi: add support for Anbernic RG-Nano
 
-In order to make USB host functional when the board is booted with
-micro-USB cable disconnected, role-switch-default-mode = "host" is used.
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ arch/arm/boot/dts/allwinner/Makefile          |   1 +
+ .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 219 ++++++++++++++++++
+ arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi    |  14 +-
+ 4 files changed, 238 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
 
-One can look at E850-96 board schematics [1] to figure out how exactly
-all related USB hardware connections and lines reflect into
-corresponding device tree definitions.
-
-As PMIC regulators are not implemented yet, we rely on USB LDOs being
-already enabled in the bootloader, and a dummy regulator is provided to
-"usbdrd" vdd nodes for now.
-
-[1] https://www.96boards.org/documentation/consumer/e850-96b/hardware-docs/
-
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
- .../boot/dts/exynos/exynos850-e850-96.dts     | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-index 6ed38912507f..8d733361ef82 100644
---- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-@@ -29,6 +29,22 @@ chosen {
- 		stdout-path = &serial_0;
- 	};
- 
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		label = "micro-USB";
-+		type = "micro";
-+		vbus-supply = <&reg_usb_host_vbus>;
-+		id-gpios = <&gpa0 0 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&micro_usb_det_pins>;
-+
-+		port {
-+			usb_dr_connector: endpoint {
-+				remote-endpoint = <&usb1_drd_sw>;
-+			};
-+		};
-+	};
-+
- 	/*
- 	 * RAM: 4 GiB (eMCP):
- 	 *   - 2 GiB at 0x80000000
-@@ -111,6 +127,20 @@ bt_active_led: led-5 {
- 		};
- 	};
- 
-+	/* TODO: Remove this once PMIC is implemented  */
-+	reg_dummy: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dummy_reg";
-+	};
-+
-+	reg_usb_host_vbus: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_host_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpa3 5 GPIO_ACTIVE_LOW>;
-+	};
-+
- 	/*
- 	 * RTC clock (XrtcXTI); external, must be 32.768 kHz.
- 	 *
-@@ -172,6 +202,12 @@ key_volup_pins: key-volup-pins {
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
- 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
- 	};
-+
-+	micro_usb_det_pins: micro-usb-det-pins {
-+		samsung,pins = "gpa0-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
- };
- 
- &rtc {
-@@ -186,6 +222,28 @@ &serial_0 {
- 	pinctrl-0 = <&uart1_pins>;
- };
- 
-+&usbdrd {
-+	status = "okay";
-+	vdd10-supply = <&reg_dummy>;
-+	vdd33-supply = <&reg_dummy>;
-+};
-+
-+&usbdrd_dwc3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	role-switch-default-mode = "host";
-+
-+	port {
-+		usb1_drd_sw: endpoint {
-+			remote-endpoint = <&usb_dr_connector>;
-+		};
-+	};
-+};
-+
-+&usbdrd_phy {
-+	status = "okay";
-+};
-+
- &usi_uart {
- 	samsung,clkreq-on; /* needed for UART mode */
- 	status = "okay";
 -- 
-2.39.2
+2.34.1
 
