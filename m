@@ -2,157 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A73F9781860
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 10:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCC3B781865
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 10:32:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjHSIbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 04:31:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51170 "EHLO
+        id S229727AbjHSIcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 04:32:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjHSIbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 04:31:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D63B488A5;
-        Sat, 19 Aug 2023 01:31:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 36F6461489;
-        Sat, 19 Aug 2023 08:31:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AA58C433C8;
-        Sat, 19 Aug 2023 08:31:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692433863;
-        bh=QSBOluYybtxO4tKot9jNeLxorSiFqLCUATwDVsgqjAI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HnxIrCLXRM55inC1Mjw94VsUxujysWxXrEP+vbWMUyooq0WcAfQ2wmCjcXVmIqXRW
-         hJbQio9FD0+vxiB3Sam8on8eSShzRZH+u4Qr5Pk7CMh/FNB40pPf+XvJ/cW6DW+A1R
-         IC98ofk+4HwlQ7FC+cO05Gxv2jwz7+PviZHkAGczOM0TkqTgGOX5V17zXW1UtM2CIM
-         6jSDfglyJX3mHZStRviAzEGT2V/3NQw3K9FdgbFi39ic8erO+p49MGQVsQC2M/tAVd
-         anBl2ZftQRKN8DT35noAwkOxEHofBgS7Qfa2FrgSJafdFDek4uR2ieVkkzif8Si/sU
-         /2jUu8nuXYFgg==
-Date:   Sat, 19 Aug 2023 09:30:58 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: versaclock3: Document
- clock-output-names
-Message-ID: <20230819-starlit-vixen-ed35a46f065f@spud>
-References: <20230817090810.203900-1-biju.das.jz@bp.renesas.com>
- <20230817090810.203900-2-biju.das.jz@bp.renesas.com>
+        with ESMTP id S229674AbjHSIcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 04:32:35 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A4D257084
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:32:33 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5259cf39154so2101819a12.2
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:32:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692433952; x=1693038752;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ix8YOkiCA8Yfy3DAKq6Gdfu5OcCLN5ahy1LqBBsn4wE=;
+        b=YaQB7apPrUzQw+O6eG/Yk0FmvmuOjm7Ay1BxfYb5mlEJy6nUwAz8okLIdE8baxHqYF
+         xadgxYMSpy89etPzpg2vVMG6UNS7d2ghuYqlGihe1Ow+Vjzu6yQlYo8iAFko8VtNGxSN
+         KKbXXUTPtYdWT62ojSawsImuUjSlmsjjaW/NejUDiaUCur28P74X/LNchQH+8FGVft1z
+         AbPttNejtTIbwXVSc+DU1xsR9qsJdXGhhwmS0qHoOPZkHBUytYA27JwWWMxdJ4wJHift
+         jbmtHvTV/hYtqm87krKtKxz1M2w47gdLFrOSR5wFKXEyJx21qjI7TjD5GeSgffSVSwea
+         hjLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692433952; x=1693038752;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ix8YOkiCA8Yfy3DAKq6Gdfu5OcCLN5ahy1LqBBsn4wE=;
+        b=i83Db+0ffAbVT7+yV5NOTI0DCqCNc4Xbv/gthqWHceaxOBE9MGCJKE7TroJxbi0qWE
+         i4Zn6pjJCu3diFj/cKpXFeACZAg3TMtRDTB1tWzEi1JYxJkBcyxQIcaX8zesa7PtpKTR
+         48CyUAwv7TlpvjCmNacDmPPph/arI7bqE4r8kmgKV/Si5oCGDw/z1OKvaDBhr2sEg4lt
+         sVqg6rnKTQGaRuzo3vG0ApU4rIsqxzBczB3NT8q2bLJwGocUUmtnZRqsTowaYkD6Hqix
+         bFuzupvlZT/g6eTloK3uKaCo1zGr4GKAFdymB2iLBXbyJnpVQAZxXAGo5nolGUgpju5Z
+         ZdMw==
+X-Gm-Message-State: AOJu0Yx+nV2FoyBJ7Ly/27R7RTPaQ27VJlO7spgpngZI/s6/VkQPyt7y
+        s45vJVB2CP+hwMeNfVgrOlkWHA==
+X-Google-Smtp-Source: AGHT+IHuS5W+rAGYbQvkT8qr8muLdssch24hUmSNaCYTDbifpEloZHjDQHkxPYQT+aZgwP4zN57W1A==
+X-Received: by 2002:aa7:d952:0:b0:525:63f9:a268 with SMTP id l18-20020aa7d952000000b0052563f9a268mr996159eds.42.1692433951262;
+        Sat, 19 Aug 2023 01:32:31 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id p6-20020aa7d306000000b0052574ef0da1sm2122455edq.28.2023.08.19.01.32.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 19 Aug 2023 01:32:30 -0700 (PDT)
+Message-ID: <0f7babfd-de60-326b-37b3-32fe48927815@linaro.org>
+Date:   Sat, 19 Aug 2023 10:32:29 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="uTd1bS2sUh/E+Q2z"
-Content-Disposition: inline
-In-Reply-To: <20230817090810.203900-2-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 6/8] phy: exynos5-usbdrd: Add Exynos850 support
+Content-Language: en-US
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     JaeHun Jung <jh0801.jung@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+References: <20230819031731.22618-1-semen.protsenko@linaro.org>
+ <20230819031731.22618-7-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230819031731.22618-7-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---uTd1bS2sUh/E+Q2z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Aug 17, 2023 at 10:08:08AM +0100, Biju Das wrote:
-> Document clock-output-names property and fix the "assigned-clock-rates"
-> for each clock output in the example based on Table 3. ("Output Source")
-> in the 5P35023 datasheet(ie: {REF,SE1,SE2,SE3,DIFF1,DIFF2}).
->=20
-> While at it, replace clocks phandle in the example from x1_x2->x1 as
-> X2 is a different 32768 kHz crystal.
->=20
-> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Closes: https://lore.kernel.org/all/CAMuHMdUHD+bEco=3DWYTYWsTAyRt3dTQQt4X=
-paejss0Y2ZpLCMNg@mail.gmail.com/
-> Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock genera=
-tor bindings")
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks,
-Conor.
-
+On 19/08/2023 05:17, Sam Protsenko wrote:
+> Implement Exynos850 USB 2.0 DRD PHY controller support. Exynos850 has
+> quite a different PHY controller than Exynos5 compatible controllers,
+> but it's still possible to implement it on top of existing
+> exynos5-usbdrd driver infrastructure.
+> 
+> Only UTMI+ (USB 2.0) PHY interface is implemented, as Exynos850 doesn't
+> support USB 3.0.
+> 
+> Only two clocks are used for this controller:
+>   - phy: bus clock, used for PHY registers access
+>   - ref: PHY reference clock (OSCCLK)
+> 
+> Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
 > ---
-> v1->v2:
->  * Updated commit description to make it clear it fixes
->    "assigned-clock-rates" in the example based on 5P35023 datasheet.
-> ---
->  .../devicetree/bindings/clock/renesas,5p35023.yaml | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml=
- b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> index 839648e753d4..db8d01b291dd 100644
-> --- a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> +++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> @@ -49,6 +49,9 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint8-array
->      maxItems: 37
-> =20
-> +  clock-output-names:
-> +    maxItems: 6
-> +
->  required:
->    - compatible
->    - reg
-> @@ -68,7 +71,7 @@ examples:
->              reg =3D <0x68>;
->              #clock-cells =3D <1>;
-> =20
-> -            clocks =3D <&x1_x2>;
-> +            clocks =3D <&x1>;
-> =20
->              renesas,settings =3D [
->                  80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-> @@ -76,11 +79,14 @@ examples:
->                  80 b0 45 c4 95
->              ];
-> =20
-> +            clock-output-names =3D "ref", "se1", "se2", "se3",
-> +                                 "diff1", "diff2";
-> +
->              assigned-clocks =3D <&versa3 0>, <&versa3 1>,
->                                <&versa3 2>, <&versa3 3>,
->                                <&versa3 4>, <&versa3 5>;
-> -            assigned-clock-rates =3D <12288000>, <25000000>,
-> -                                   <12000000>, <11289600>,
-> -                                   <11289600>, <24000000>;
-> +            assigned-clock-rates =3D <24000000>, <11289600>,
-> +                                   <11289600>, <12000000>,
-> +                                   <25000000>, <12288000>;
->          };
->      };
-> --=20
-> 2.25.1
->=20
 
---uTd1bS2sUh/E+Q2z
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOB9wgAKCRB4tDGHoIJi
-0mrFAP9PzDRMb0YuFu9ZBqs7dSHjJkiLk6VDZV0JY/oR0PyDigD6Aw1D+UgSwdRJ
-nzj5i0IMk3CHIz8hDmRvBeaSBUoUpgA=
-=EnSt
------END PGP SIGNATURE-----
-
---uTd1bS2sUh/E+Q2z--
