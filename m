@@ -2,83 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72F397816E0
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 04:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B20AC781701
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 05:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244430AbjHSCwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Aug 2023 22:52:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47920 "EHLO
+        id S244877AbjHSDR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Aug 2023 23:17:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244993AbjHSCvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 22:51:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3774483;
-        Fri, 18 Aug 2023 19:51:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 805F562CDF;
-        Sat, 19 Aug 2023 02:51:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC656C433C7;
-        Sat, 19 Aug 2023 02:51:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692413502;
-        bh=pu8/O9c9zUV2oFoSmG7ZcjZiu3WqPhY5TTBh5CKL45o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T1c7N9XVEjHqk28IQ1lr8j6SYbeus1K7IRbPSickduxqUdAU8bwkXTuvDaf88RCQJ
-         R/I4gs5DcOVFZUwd+V24RZpmmA1n9bHq3o6hSfIZFYk0jEBPQ3hTqR5M31xCAu6M00
-         e1s0TZGY7KELvHh34Ti/RyqblrvwIW/TBMK6/pp68+fQLXHLqvXgj452U/Ffe7Gg7E
-         gX1+XQHNaR5G7JljaWf65Cw8vETarOb50qri3IZtX3cF/m5Oc1NoO+huX+X2n1nBRq
-         9zFtrZ/OtT8wJqofmT3z6qf75ZTz9zXxgQNO15WkSEGpQiypQdkQy4XbXBTy1piYim
-         GiH3A7oyvFvgQ==
-Date:   Fri, 18 Aug 2023 19:54:22 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Jie Luo <quic_luoj@quicinc.com>
-Cc:     agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_srichara@quicinc.com
-Subject: Re: [PATCH v4 3/4] clk: qcom: common: add _qcom_cc_really_probe
-Message-ID: <4n3vqstyhknanmzx4swwjg4ueaqq2tbrxadnyrx3bchffyf7qr@yh4bik4rfsgm>
-References: <20230815085205.9868-1-quic_luoj@quicinc.com>
- <20230815085205.9868-4-quic_luoj@quicinc.com>
- <2dcu7jjwd2bhjbzxrxbfif566nupznb5n4oadnqha4h45w2n2g@4uy2pxkj5bvj>
- <6ee2129b-04c6-4978-03d6-835e3a10e665@quicinc.com>
+        with ESMTP id S244662AbjHSDRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Aug 2023 23:17:35 -0400
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EB3D421B
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 20:17:33 -0700 (PDT)
+Received: by mail-oo1-xc31.google.com with SMTP id 006d021491bc7-570b6f82301so4910eaf.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Aug 2023 20:17:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692415052; x=1693019852;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2Q7Mi/sRAGm8lhYDAZVLrk5zgyos5NQEy7qr6AIL6DU=;
+        b=UbhUG+mLPhnobKlykd6gqCDeeDq8gYEW1q5+RAqlhFXRpBNUiy//H6n0gEWJqpVrcH
+         28aRiT4idt5ZYLJBqPU5B2RE2A4MdKUbCIxdO4K/hrpuGv1rzWLUtNJL7dpeflV4nmTN
+         r3ofwS0Wmef5p09OdV++XIPPcuWVLFnxW8LWpQUU8zuQ1+d8SOn43mO9XUJCEw2UtP9L
+         Z1clpoHaYrlluHt6sKzRuUU3MjQymbq7PUdqzd61X0Ps3CYbs4I7YMHgenuCsv6BXnbe
+         YQeYciSH3dB2FnzHwE+5apWRLTKzYLELeJ66GSe1rSbaeQOhKNHA0dkmDWhHgd0XdABW
+         z96g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692415052; x=1693019852;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2Q7Mi/sRAGm8lhYDAZVLrk5zgyos5NQEy7qr6AIL6DU=;
+        b=SIiZtNTG4GpLKqAf/gqajPYeY/64EXhAK911KCfsUKDY/Qz07B5qAdp09wngOP3bg4
+         IuPXrQNmQ3rn5VfqVfKIJA10ILLe8fB9zL/KssX3bDLw91Qij5ZiXOKCRejDUAPcrgVH
+         hFhc/Pd4W9eYSyqItEBqBObwakKolk4un5TGTgTCvUfryOilUz8YBOI/Suji3CdNT84v
+         QpLmLZGoZ90lDt/3gTx6quEwTro9pvkAEWO/AY036xa5cAxzuB04okjRIj4H5L0POp9N
+         k+0JklPbx0VCWGdb9o5jZCMTt9q/tgkwfjVHs+c0+WJQrH59DmWkvNGAGlihMTTnGhhT
+         QUZA==
+X-Gm-Message-State: AOJu0YynUcX/6fI2+38+DdX3CoFOc8lFlYC6+tFnpeJ9XfSL3zGZqBPw
+        pna0K6mIeaYuF6OkURbG6IaUlA==
+X-Google-Smtp-Source: AGHT+IFVUmkUoC3QURVVvQmtTQIMGCKsvM2bNgWNvvFiOc8n9HKAZXjCVFIJolRC3nL5ZZHZ4ysstQ==
+X-Received: by 2002:a4a:654e:0:b0:56e:4ee2:9189 with SMTP id z14-20020a4a654e000000b0056e4ee29189mr1647457oog.5.1692415052465;
+        Fri, 18 Aug 2023 20:17:32 -0700 (PDT)
+Received: from localhost ([136.49.140.41])
+        by smtp.gmail.com with ESMTPSA id v7-20020a4a8c47000000b0054fba751207sm1494141ooj.47.2023.08.18.20.17.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Aug 2023 20:17:31 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     JaeHun Jung <jh0801.jung@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH 0/8] arm64: exynos: Enable USB for E850-96 board
+Date:   Fri, 18 Aug 2023 22:17:23 -0500
+Message-Id: <20230819031731.22618-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6ee2129b-04c6-4978-03d6-835e3a10e665@quicinc.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 18, 2023 at 04:35:52PM +0800, Jie Luo wrote:
-> On 8/18/2023 11:14 AM, Bjorn Andersson wrote:
-> > On Tue, Aug 15, 2023 at 04:52:04PM +0800, Luo Jie wrote:
-[..]
-> > > +int qcom_cc_really_probe(struct platform_device *pdev,
-> > > +			 const struct qcom_cc_desc *desc, struct regmap *regmap)
-> > 
-> > Why do we want to keep this wrapper around?
-> > 
-> There are many existed clock controller drivers using this wrapper
-> qcom_cc_really_probe, so i still keep this wrapper.
-> 
-> do we need to remove this wrapper and update the existed drivers to use
-> _qcom_cc_really_probe?
+This patch series enables USB gadget, USB host and Ethernet support for
+E850-96 board. The most major change was done in USB PHY driver, as the
+register layout of PHY block in Exynos850 is very different from
+Exynos5 one.
 
-Yes please. The additional API does not add value, but can be confusing,
-so let's invest the extra time in fixing up all the drivers to keep the
-interface clean.
+Sam Protsenko (8):
+  dt-bindings: usb: samsung,exynos-dwc3: Add Exynos850 support
+  dt-bindings: phy: samsung,usb3-drd-phy: Add Exynos850 support
+  usb: dwc3: exynos: Add support for Exynos850 variant
+  phy: exynos5-usbdrd: Make it possible to pass custom phy ops
+  phy: exynos5-usbdrd: Add 26MHz ref clk support
+  phy: exynos5-usbdrd: Add Exynos850 support
+  arm64: dts: exynos: Enable USB in Exynos850
+  arm64: dts: exynos: Enable USB support on E850-96 board
 
-Regards,
-Bjorn
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |   1 +
+ .../bindings/usb/samsung,exynos-dwc3.yaml     |  16 ++
+ .../boot/dts/exynos/exynos850-e850-96.dts     |  58 ++++++
+ arch/arm64/boot/dts/exynos/exynos850.dtsi     |  30 +++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 182 +++++++++++++++++-
+ drivers/usb/dwc3/dwc3-exynos.c                |   9 +
+ 6 files changed, 294 insertions(+), 2 deletions(-)
+
+-- 
+2.39.2
+
