@@ -2,173 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EA387819B6
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 15:33:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FA3B7819CA
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 15:44:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232603AbjHSNdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 09:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36332 "EHLO
+        id S232916AbjHSNoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 09:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjHSNdR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 09:33:17 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 063E024C2B
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 06:31:10 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99c353a395cso236974666b.2
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 06:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692451868; x=1693056668;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6u71a4GN6p55OTirDsp4k592nMNAa1SITGD9uIaliLA=;
-        b=BRLCNoH9Ev+EnS8mjT0tFNZXuOUVtw36Q1L89be9WUdF2CmhlCL8aFJBGAloga7Wbt
-         quu9HTXxApINWUqU2ZCHf5MxzusOYBIYkOyf/m8mlax2/A0VNmjzpWH5lKse+UEvdUt9
-         CY9AmGo3g+xAnlQNRXbHS31Q1imuWJFKwtht/4xF19mgteWWTVxDfXdoX71LFBeBU2qB
-         o/zPzTJZchl9q9scYo08omAdPAIjME2VyAdXv/waVcipCKo6ERZ12WMzVbsFziB4ETL5
-         DlQZHoDY4y0lSVttzAqNOXliDuHwY8Z1cFCfaiZ89EhjDgU/BYdH6Piadt2UJAy3kw6L
-         i/YA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692451868; x=1693056668;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6u71a4GN6p55OTirDsp4k592nMNAa1SITGD9uIaliLA=;
-        b=D80Fflrp7zamrb/MZSiT8nAkPZWT0EB+Ba6CvjszrGOO/AS2KHDrxSBC1LXy77rM1w
-         bEDq806Zw+wS6FtDAX/6ney56O6a4ZhFQQgS3kvcQ0Qki8KNRqWIpGgyF3zJB3FSzHRS
-         hYMWfMO9KQlnbpI902oPRF+gnFZxRs+unncaxKNQF4drhnIQcEyRqA879rMApEj/ICCG
-         LIfi86LxUQVYnCPsoL/0rVHqL0C2ZzQsj0NHtPUerbCBvWpYQsi8Yy/xJd8gJgCq4r5E
-         qfCuDVECVgSPh0efcVSSEHh/Y39waPBKhTTuuqGnAWmiaq3R2AvqB027ih0KzMP3+qYC
-         Jdiw==
-X-Gm-Message-State: AOJu0YwnO5mSPNVktgo+7l0YdQRuICHtzp+ptcXgzy2MqJwEcMf3zuSr
-        zovci4sVmarpGecrYB6SmthrBg==
-X-Google-Smtp-Source: AGHT+IEVcx34dx4up2eFiu04+FWi85Kw0alMYHRym8IFNh+XSRYSBnMl29STr6JLAnGaxsCq/r1M1w==
-X-Received: by 2002:a17:907:7617:b0:994:5577:aeed with SMTP id jx23-20020a170907761700b009945577aeedmr1389041ejc.5.1692451868511;
-        Sat, 19 Aug 2023 06:31:08 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id lv27-20020a170906bc9b00b0099cb349d570sm2716405ejb.185.2023.08.19.06.31.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Aug 2023 06:31:07 -0700 (PDT)
-Message-ID: <9ed564a1-13a8-e63e-bdd0-901d4f357bab@linaro.org>
-Date:   Sat, 19 Aug 2023 15:31:06 +0200
+        with ESMTP id S229436AbjHSNoG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 09:44:06 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0439E55;
+        Sat, 19 Aug 2023 06:42:07 -0700 (PDT)
+Received: from p200300ccff2bce001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2b:ce00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qXMDF-002nxd-C4; Sat, 19 Aug 2023 15:41:57 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qXMDE-001ue8-2n;
+        Sat, 19 Aug 2023 15:41:56 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        bcousson@baylibre.com, tony@atomide.com, andreas@kemnade.info,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Subject: [PATCH 0/3] ARM: omap: omap4-embt2ws: 32K clock for WLAN
+Date:   Sat, 19 Aug 2023 15:41:44 +0200
+Message-Id: <20230819134147.456060-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 01/13] dt-bindings: phy: migrate QMP PCIe PHY bindings
- to qcom,sc8280xp-qmp-pcie-phy.yaml
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-References: <20230731105759.3997549-1-dmitry.baryshkov@linaro.org>
- <20230731105759.3997549-2-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230731105759.3997549-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2023 12:57, Dmitry Baryshkov wrote:
-> Migrate legacy bindings (described in qcom,ipq8074-qmp-pcie-phy.yaml)
-> to qcom,sc8280xp-qmp-pcie-phy.yaml. This removes a need to declare
-> the child PHY node or split resource regions.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../phy/qcom,ipq8074-qmp-pcie-phy.yaml        | 278 +++---------------
->  .../phy/qcom,msm8998-qmp-pcie-phy.yaml        |  97 ++++++
->  .../phy/qcom,sc8280xp-qmp-pcie-phy.yaml       |  34 ++-
->  3 files changed, 163 insertions(+), 246 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,msm8998-qmp-pcie-phy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
-> index 3d42ee3901a1..5073007267ad 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,ipq8074-qmp-pcie-phy.yaml
-> @@ -13,287 +13,79 @@ description:
->    QMP PHY controller supports physical layer functionality for a number of
->    controllers on Qualcomm chipsets, such as, PCIe, UFS, and USB.
->  
-> -  Note that these bindings are for SoCs up to SC8180X. For newer SoCs, see
-> -  qcom,sc8280xp-qmp-pcie-phy.yaml.
-> -
->  properties:
->    compatible:
->      enum:
->        - qcom,ipq6018-qmp-pcie-phy
->        - qcom,ipq8074-qmp-gen3-pcie-phy
->        - qcom,ipq8074-qmp-pcie-phy
-> -      - qcom,msm8998-qmp-pcie-phy
-> -      - qcom,sc8180x-qmp-pcie-phy
-> -      - qcom,sdm845-qhp-pcie-phy
-> -      - qcom,sdm845-qmp-pcie-phy
-> -      - qcom,sdx55-qmp-pcie-phy
-> -      - qcom,sm8250-qmp-gen3x1-pcie-phy
-> -      - qcom,sm8250-qmp-gen3x2-pcie-phy
-> -      - qcom,sm8250-qmp-modem-pcie-phy
-> -      - qcom,sm8450-qmp-gen3x1-pcie-phy
-> -      - qcom,sm8450-qmp-gen4x2-pcie-phy
+To have WLAN working properly, enable a 32K clock of the TWL6032.
+In earlier tests, it was still enabled from a previous boot into
+the vendor system.
 
-...
+Andreas Kemnade (3):
+  dt-bindings: clock: add TWL6032 32K clocks
+  clk: twl: add clock driver for TWL6032
+  ARM: dts: omap4-embt2ws: enable 32K clock on WLAN
 
-> +        #phy-cells = <0>;
-> +
-> +        resets = <&gcc GCC_PCIE_0_PHY_BCR>, <&gcc GCC_PCIE_PHY_BCR>;
-> +        reset-names = "phy", "common";
-> +
-> +        vdda-phy-supply = <&vreg_l1a_0p875>;
-> +        vdda-pll-supply = <&vreg_l2a_1p2>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> index ca55ed9d74ac..a2c894a33c1c 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml
-> @@ -18,11 +18,21 @@ properties:
->      enum:
->        - qcom,sa8775p-qmp-gen4x2-pcie-phy
->        - qcom,sa8775p-qmp-gen4x4-pcie-phy
-> +      - qcom,sc8180x-qmp-pcie-phy
->        - qcom,sc8280xp-qmp-gen3x1-pcie-phy
->        - qcom,sc8280xp-qmp-gen3x2-pcie-phy
->        - qcom,sc8280xp-qmp-gen3x4-pcie-phy
-> +      - qcom,sdm845-qhp-pcie-phy
-> +      - qcom,sdm845-qmp-pcie-phy
-> +      - qcom,sdx55-qmp-pcie-phy
->        - qcom,sdx65-qmp-gen4x2-pcie-phy
-> +      - qcom,sm8150-qmp-gen3x1-pcie-phy
+ .../bindings/clock/ti,twl6032-clk.yaml        |  38 ++++
+ .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  |  12 +
+ drivers/clk/Kconfig                           |   9 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-twl.c                         | 205 ++++++++++++++++++
+ 5 files changed, 265 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/ti,twl6032-clk.yaml
+ create mode 100644 drivers/clk/clk-twl.c
 
-This was not present before. If you add new compatible, split it to new
-patch.
-
-> +      - qcom,sm8250-qmp-gen3x1-pcie-phy
-> +      - qcom,sm8250-qmp-gen3x2-pcie-phy
-> +      - qcom,sm8250-qmp-modem-pcie-phy
->        - qcom,sm8350-qmp-gen3x1-pcie-phy
-> +      - qcom,sm8450-qmp-gen3x1-pcie-phy
-> +      - qcom,sm8450-qmp-gen4x2-pcie-phy
->        - qcom,sm8550-qmp-gen3x2-pcie-phy
->        - qcom,sm8550-qmp-gen4x2-pcie-phy
-
-
-The rest looks good to me.
-
-Best regards,
-Krzysztof
+-- 
+2.39.2
 
