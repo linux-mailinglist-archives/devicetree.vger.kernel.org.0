@@ -2,121 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED8878191F
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 12:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E80C78195A
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 13:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbjHSKwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 06:52:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42766 "EHLO
+        id S230475AbjHSLvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 07:51:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbjHSKw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 06:52:27 -0400
-Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8BDE1B339;
-        Sat, 19 Aug 2023 03:50:15 -0700 (PDT)
-Received: by mail-il1-x130.google.com with SMTP id e9e14a558f8ab-34baeb01942so6188505ab.1;
-        Sat, 19 Aug 2023 03:50:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692442215; x=1693047015;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sOHGrFpVbV94GxW582V7S/Br8+c79FnQLF+z0S/cUIg=;
-        b=YackG/t5OxFEpw9bAOamPufsVnsxP/OwqNEwAPvBqI3Pso/gq7E+VnCHZ1D789B2km
-         U598r70iSEb3fPqVFCG504V1gpJnaiBO8rL3Mbe6pXfXyHGAW0Zrg5v+o/EhQXBFsoPK
-         gywGyTBZBxqZhQE/cDt/bTmt2KVNRpDtavjrLoBSluAJpTkN3yl+YtWps1HWR3mv/N3S
-         YLvPX3h32Rnkw/Nw2jrqS3OVYrUI+fFhuIDzLiFYKQylSJKKTdrNX3HLCyeR/TfBtJdQ
-         LI89t/RAvr22J9QtL32vAmVPZjWS9LwWiT70oqdotqROlr81Q7koS4eoRbcuAtMzT81U
-         9j9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692442215; x=1693047015;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sOHGrFpVbV94GxW582V7S/Br8+c79FnQLF+z0S/cUIg=;
-        b=B8HPLOUYYofmHs9t9zanPQFgmOOzTzxC2GYKIMF/d2ZTUGuh6mmYj9/ewzx7N+AFyZ
-         Sl93cuiuT7a/Bu7zn2L5MgH7oqEIsVFAMV6uRiAJAlWBJ4Pm4Gr27kBDPQeTaeyULY+S
-         MpP+oty4APb0BJs/fg/MKY+UNX/76LmS4oC5lEJ/voDhglSvtHWk2O1bwRAdgH1oyX+s
-         hWASxqtnnHhO9yYSfXCo31qOWcMgb3WRoLe0gqBnECOzrg7BigykSj4ca23DZ+cIYOqo
-         mo+38zEZhkd/v1BjyABlZVV9nN5rJ3cW1Hi+70n9dwqTNLLok5T2HnCZLIaHeG+8/n4G
-         SJSA==
-X-Gm-Message-State: AOJu0Yxfso7zvIf7zA73U/TZsJfmynStobzzQn174pcHvW1WI8g5tUxo
-        Fbt9YetWTtPtfAPl+g2MMhI=
-X-Google-Smtp-Source: AGHT+IGltsqOxipCI150IIex3vtDvzFIfLDHldGuBnX0OVoo2BOEdiVNS0N+e7jqCQFJL5ID4GY4cg==
-X-Received: by 2002:a05:6e02:106f:b0:34b:ad7a:384f with SMTP id q15-20020a056e02106f00b0034bad7a384fmr2155350ilj.20.1692442215113;
-        Sat, 19 Aug 2023 03:50:15 -0700 (PDT)
-Received: from aford-B741.lan ([2601:447:d001:897f:4a28:99c7:cf07:4f94])
-        by smtp.gmail.com with ESMTPSA id h16-20020a92d090000000b0034ac4ccd097sm1116470ilh.33.2023.08.19.03.50.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Aug 2023 03:50:14 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH V3 2/2] arm64: dts: imx8mp-beacon-kit: Fix audio_pll2 clock
-Date:   Sat, 19 Aug 2023 05:50:02 -0500
-Message-Id: <20230819105002.132750-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230819105002.132750-1-aford173@gmail.com>
-References: <20230819105002.132750-1-aford173@gmail.com>
+        with ESMTP id S230473AbjHSLvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 07:51:00 -0400
+Received: from forward101a.mail.yandex.net (forward101a.mail.yandex.net [178.154.239.84])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EF964682;
+        Sat, 19 Aug 2023 04:48:40 -0700 (PDT)
+Received: from mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:5e51:0:640:23ee:0])
+        by forward101a.mail.yandex.net (Yandex) with ESMTP id E377A46C9E;
+        Sat, 19 Aug 2023 14:48:36 +0300 (MSK)
+Received: by mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id LmhQkrJDXiE0-65sFpoqX;
+        Sat, 19 Aug 2023 14:48:35 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=6tel.net; s=mail; t=1692445715;
+        bh=GZPfdaMhut5zVIxAjFfhNCTfyfY27k076tF5JfoAhdk=;
+        h=Cc:Message-ID:References:Date:In-Reply-To:Subject:To:From;
+        b=OIDA7YqAmMrrnGlWjTR031IUxvxVMMVB1FtzfG5FluZijbeCqQodr8d2n0ENvEOW2
+         hWVPtWHd1BCAjjTwTRBTw0oA8xO+w7WdRm5rx3XaKKXD+X8/wTqbMSHp89juyzwcSh
+         zWZr8TP+b4bL4SQdYk9wz6ighC6m0ncQBLZgfpSk=
+Authentication-Results: mail-nwsmtp-smtp-production-main-51.vla.yp-c.yandex.net; dkim=pass header.i=@6tel.net
+From:   Muhammed Efe Cetin <efectn@6tel.net>
+To:     megi@xff.cz
+Cc:     conor+dt@kernel.org, devicetree@vger.kernel.org, efectn@6tel.net,
+        heiko@sntech.de, jonas@kwiboo.se,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
+        sebastian.reichel@collabora.com
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: Add Orange Pi 5
+Date:   Sat, 19 Aug 2023 14:48:20 +0300
+Message-ID: <20230819114821.29878-1-efectn@6tel.net>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <fjlgsejdzef3iap5qamzwp46hiqrjundlkrpbtlh23ldvnjstu@effddwoml7k5>
+References: <fjlgsejdzef3iap5qamzwp46hiqrjundlkrpbtlh23ldvnjstu@effddwoml7k5>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,T_SPF_PERMERROR,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks
-from CCM node") removed the Audio clocks from the main clock node, because
-the intent is to force people to setup the audio PLL clocks per board
-instead of having a common set of rates since not all boards may use
-the various audio PLL clocks for audio devices.
+Hi Ondřej,
 
-This resulted in an incorrect clock rate when attempting to playback
-audio, since the AUDIO_PLL2 wasn't set any longer. Fix this by
-setting the AUDIO_PLL2 rate inside the SAI3 node since it's the SAI3
-that needs it.
+On 19.08.2023 00:24, Ondřej Jirman wrote:
+> Hi Muhammed,
+> 
+> On Fri, Aug 18, 2023 at 07:05:51PM +0300, Muhammed Efe Cetin wrote:
+>> Add initial support for OPi5 that includes support for USB2, PCIe2, Sata,
+>> Sdmmc, SPI Flash, PMIC.
+>>
+>> Signed-off-by: Muhammed Efe Cetin <efectn@6tel.net>
+>>
+>> [...]
+>>
+>> +
+>> +	adc-keys {
+>> +		compatible = "adc-keys";
+>> +		io-channels = <&saradc 1>;
+>> +		io-channel-names = "buttons";
+>> +		keyup-threshold-microvolt = <1800000>;
+>> +		poll-interval = <100>;
+>> +
+>> +		button-recovery {
+>> +			label = "Recovery";
+>> +			linux,code = <KEY_VENDOR>;
+>> +			press-threshold-microvolt = <1000>;
+> 
+> I calculated 1800. (1.8e6 * 10 / 10e3)
+> 
+>> +		};
+>> +	};
+>> +
+>>
+>> [...]
+>>
+>> +
+>> +	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3-regulator {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vcc_1v1_nldo_s3";
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		regulator-min-microvolt = <1100000>;
+>> +		regulator-max-microvolt = <1100000>;
+>> +		vin-supply = <&vcc5v0_sys>;
+>> +	};
+> 
+> This is still wrong. vcc_1v1_nldo_s3 is just alias for dcdc-reg6.
 
-Fixes: 16c984524862 ("arm64: dts: imx8mp: don't initialize audio clocks from CCM node")
-Signed-off-by: Adam Ford <aford173@gmail.com>
-Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
----
-V3:  Update commit message wording.  No functional change
+You sound right. Compared opi5 and several rk3588 boards, opi5 has different design than others. Should we also add regulator-min-microvolt and regulator-max-microvolt to dcdc-reg6 or only add vcc_1v1_nldo_s3 as alias? It seems better to add them according to schematics.
 
-V2:  No change
+> 
+>> +&i2c2 {
+>> +	status = "okay";
+>> +
+>> +	vdd_npu_s0: vdd_npu_mem_s0: regulator@42 {
+>> +		compatible = "rockchip,rk8602";
+>> +		reg = <0x42>;
+>> +		fcs,suspend-voltage-selector = <1>;
+>> +		regulator-name = "vdd_npu_s0";
+>> +		regulator-always-on;
+>> +		regulator-boot-on;
+>> +		regulator-min-microvolt = <550000>;
+>> +		regulator-max-microvolt = <950000>;
+>> +		regulator-ramp-delay = <2300>;
+>> +		vin-supply = <&vcc5v0_sys>;
+>> +
+>> +		regulator-state-mem {
+>> +			regulator-off-in-suspend;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&i2c6 {
+>> +	pinctrl-names = "default";
+>> +	pinctrl-0 = <&i2c6m3_xfer>;
+>> +	status = "okay";
+>> +
+>> +	hym8563: rtc@51 {
+>> +		compatible = "haoyu,hym8563";
+>> +		reg = <0x51>;
+>> +		#clock-cells = <0>;
+>> +		clock-output-names = "hym8563";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&hym8563_int>;
+>> +		interrupt-parent = <&gpio0>;
+>> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
+>> +		wakeup-source;
+>> +	};
+>> +};
+>> +
+>> +&mdio1 {
+>> +	rgmii_phy1: ethernet-phy@1 {
+>> +		compatible = "ethernet-phy-ieee802.3-c22";
+>> +		reg = <0x1>;
+>> +	};
+>> +};
+>> +
+>> +&pcie2x1l2 {
+>> +	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
+>> +	vpcie3v3-supply = <&vcc3v3_pcie20>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&pinctrl {
+>> +	gpio-func {
+>> +		leds_gpio: leds-gpio {
+>> +			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+>> +		};
+>> +	};
+>> +
+>> +	hym8563 {
+>> +		hym8563_int: hym8563-int {
+>> +			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+>> +		};
+>> +	};
+>> +
+>> +	usb-typec {
+>> +		usbc0_int: usbc0-int {
+>> +			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
+>> +		};
+>> +
+>> +		typec5v_pwren: typec5v-pwren {
+>> +			rockchip,pins = <3 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
+>> +		};
+>> +	};
+>> +};
+>> +
+>> +&saradc {
+>> +	vref-supply = <&avcc_1v8_s0>;
+>> +	status = "okay";
+>> +};
+>> +
+>> +&sdmmc {
+>> +	max-frequency = <150000000>;
+>> +	no-sdio;
+>> +	no-mmc;
+>> +	bus-width = <4>;
+>> +	cap-mmc-highspeed;
+> 
+> Is this useful for anything, when you have no-mmc specified?
+> 
+>> +	cap-sd-highspeed;
+>> +	disable-wp;
+>> +	sd-uhs-sdr104;
+>> +	vmmc-supply = <&vcc_3v3_sd_s0>;
+>> +	vqmmc-supply = <&vccio_sd_s0>;
+>> +	status = "okay";
+>> +};
+>> +
+> 
+> With the above regulator issue fixed:
+> 
+> Reviewed-by: Ondřej Jirman <megi@xff.cz>
+> 
+> (I reviewed just for schematic <-> DT correspondece)
+> 
+> kind regards,
+> 	o.
+> 
+>> -- 
+>> 2.41.0
+>>
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index 06e91297fb16..acd265d8b58e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -381,9 +381,10 @@ &pcie_phy {
- &sai3 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai3>;
--	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
-+	assigned-clocks = <&clk IMX8MP_CLK_SAI3>,
-+			  <&clk IMX8MP_AUDIO_PLL2> ;
- 	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
--	assigned-clock-rates = <12288000>;
-+	assigned-clock-rates = <12288000>, <361267200>;
- 	fsl,sai-mclk-direction-output;
- 	status = "okay";
- };
--- 
-2.39.2
-
+Regards,
+Efe
