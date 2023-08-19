@@ -2,99 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8C9E781A18
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 16:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE8BE781A23
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 16:34:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229483AbjHSObV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 10:31:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44600 "EHLO
+        id S233564AbjHSOe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 10:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbjHSObU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 10:31:20 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3627D1BDD7;
-        Sat, 19 Aug 2023 07:31:19 -0700 (PDT)
-Received: from p200300ccff2bce001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2b:ce00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qXMyu-002o3l-9K; Sat, 19 Aug 2023 16:31:12 +0200
-Received: from andi by aktux with local (Exim 4.96)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qXMyt-001ygu-2W;
-        Sat, 19 Aug 2023 16:31:11 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH] ARM: dts: omap4: embt2ws: add LED
-Date:   Sat, 19 Aug 2023 16:31:09 +0200
-Message-Id: <20230819143109.471615-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S233551AbjHSOe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 10:34:27 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE8A1CA97
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 07:34:25 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99c1d03e124so225423966b.2
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 07:34:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692455664; x=1693060464;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ha1KjyT6V1o5qZr6TeP96iO4FdCTMuqeCrmWHV7Hty4=;
+        b=T6nKXyb3SPnRAQgMVcJtyOkq++PRIN9F2MYLPzZ7i6aXrnuV5ZkO7/roBqiSSm2EJa
+         XuNrMA2OLKK34/zc0qiHpe/3Viah0SHiX8nfdTFNpL31EDlXhy2gbwNc1B8E3ZlVAfNJ
+         fJ2Yr5LwKJV2qgD9xySbgzzqraX2XrNPMY/POPrlD9eDJcFB0gJePCPbsimMUzVv53kP
+         90LaQY4brexucXTo1L4FXzMihfOR6UDlxZmLVYIzNFdOr8UJz+L5Q3pajkKTVnzGN23E
+         s64pGmTjEIea/C9lsG1G+gJlxZxNG4ClPTr1+toCMPT2S1Y4IRiZ7XcJaLy5nQQqhbOK
+         kGnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692455664; x=1693060464;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ha1KjyT6V1o5qZr6TeP96iO4FdCTMuqeCrmWHV7Hty4=;
+        b=dLL0VFnmGUiEiPD0L1o+Js2vx9C0R+S/dM1DoTlPdvEGJFnFHP8D1OTDafx+PB6G4O
+         Zqcq7BxP2qlnwfUORU5Bs+jmI9TXVLeSOMANpAom7koMnhabOfYR7w3tNHsWXUgCrnwa
+         cijCdTXpDRb1sNdbileSGIIAZWvFN3jBI9r/o5408pTYVKEjTUIw9AZu14qrgqpLGIWD
+         R99mo6a340Sgh+0Dq0Aio9lJvdcPhKTKD8Ugwc030Ua16ewcyk+qMI5Cpki8vrbsamUS
+         y6ofVeLUxcHVqKyeZCyVrBoLW5XFCL5XGOSYd7Y+2md47qQXdlHlT/a7BnQfMBuTQ2Sf
+         B/2A==
+X-Gm-Message-State: AOJu0YwsxmhXHCk2/Fqwd9+XyKWTZPFlKRd9uJMw2yg/yYjN2Avps4Lb
+        e14EXcppI9mXwYIC/HOabZRF8w==
+X-Google-Smtp-Source: AGHT+IEGkqcrHrpAGksQSYiS8m/z8KkdErgOQRR/5f21rHWfqDaiJDIuag576zuL8QVsVpeRdHeT7Q==
+X-Received: by 2002:a17:906:310d:b0:992:1233:9c45 with SMTP id 13-20020a170906310d00b0099212339c45mr1257628ejx.69.1692455663844;
+        Sat, 19 Aug 2023 07:34:23 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id k21-20020a1709063fd500b0099bcf1c07c6sm2834891ejj.138.2023.08.19.07.34.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 19 Aug 2023 07:34:23 -0700 (PDT)
+Message-ID: <96033a59-a2ea-c906-a033-84119c5783d7@linaro.org>
+Date:   Sat, 19 Aug 2023 16:34:21 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 11/50] dt-bindings: crypto: add sam9x7 in Atmel TDES
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Varshini.Rajendran@microchip.com, herbert@gondor.apana.org.au,
+        davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230728102442.265820-1-varshini.rajendran@microchip.com>
+ <09bd1388-02aa-32c7-319e-d7150a0f3e9c@linaro.org>
+ <1ec901d0-44c2-1d28-5976-d93abfffee67@microchip.com>
+ <37782447-43c7-50f9-b9b4-5fbca94ce8c6@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <37782447-43c7-50f9-b9b4-5fbca94ce8c6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LED since the driver is now available.
+On 10/08/2023 09:22, Tudor Ambarus wrote:
+> 
+> 
+> On 8/10/23 06:38, Varshini.Rajendran@microchip.com wrote:
+>>> On 7/28/23 11:24, Varshini Rajendran wrote:
+>>>> Add DT bindings for atmel TDES.
+>>> NACK. The atmel crypto drivers check the version at runtime and
+>>> fill a capabilities structure based on the version identified.
+>>> There's a single compatible regardless of the version of the IP
+>>> used until now, why do you want to change it?
+>>>
+>> Hi Tudor,
+> 
+> Hi,
+> 
+>>
+>> I am aware that there is no change in the crypto IP used. This patch is 
+>> to add a SoC specific compatible as expected by writing-bindings 
+>> guideline. Maybe a bit more explanation in the commit description might 
+>> do the trick.
+>>
+> 
+> So you add a compatible that will never be used just to comply with
+> the writing bindings guideline?
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  | 27 ++++++++++++++++++-
- 1 file changed, 26 insertions(+), 1 deletion(-)
+How do you know that it is never going to be used? The guideline asks
+for this on purpose, so any future quirks or incompatibilities can be
+easily addressed.
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-index e119e2cccc4e1..f47d330fb6ee4 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
-@@ -4,6 +4,7 @@
-  */
- /dts-v1/;
- 
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/input/input.h>
- #include "omap4460.dtsi"
- 
-@@ -206,7 +207,31 @@ &i2c3 {
- 
- 	clock-frequency = <100000>;
- 
--	/* TODO: BD2606MVV at 0x66 */
-+	led-controller@66 {
-+		compatible = "rohm,bd2606mvv";
-+		reg = <0x66>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@0 {
-+			reg = <0>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+
-+		led@2 {
-+			reg = <2>;
-+			color = <LED_COLOR_ID_BLUE>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+
-+		led@4 {
-+			reg = <4>;
-+			color = <LED_COLOR_ID_RED>;
-+			function = LED_FUNCTION_STATUS;
-+		};
-+	};
- };
- 
- &i2c4 {
--- 
-2.39.2
+Best regards,
+Krzysztof
 
