@@ -2,106 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4851D78182E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 10:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3461D781836
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 10:05:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344586AbjHSICI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 04:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43988 "EHLO
+        id S1344663AbjHSIEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 04:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344521AbjHSIB5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 04:01:57 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 300D33C38
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:01:55 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b962c226ceso25787751fa.3
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:01:55 -0700 (PDT)
+        with ESMTP id S1344711AbjHSIEK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 04:04:10 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFED170E
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:04:08 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99df11828c6so575892666b.1
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:04:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692432113; x=1693036913;
+        d=linaro.org; s=google; t=1692432247; x=1693037047;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w3tAtsLI5s7m9t2MiJZTTVjgQTSIULjZIhCpwhV7cIA=;
-        b=XNHfAfYmCzvVRA8YoZrkhI7yXULzKeAGwu3fpaguHZWgbvPjej1avmavJvxX0Q5wOM
-         gE+sZbSIHp4L9fgUdsSHLOeQoIYvzZXQv6CNczaRF+VYcv6UG/NrZ7zu0dgrHyTW02Qi
-         TYCglKP6b8xz8lwC3KE8NB1mi7/QGHdbthwZYKE37w6Hsz/qFdlLSEsWa8W0Vs01L/LA
-         rP9GCp+p1xOy2l+6wSUoMoYbCIZl0BJngpdDatoXtZSByobg0TDM05l8z61vt1B/I2aC
-         bVTwKGZ8a3c1i6nMJo2m73jwc8JBlcqNaXYrblneTuTIf+lEfg2XGNDAOyzSx+s76Lu5
-         IQxw==
+        bh=deRfy4MmWhNo/qJGo68CHwTkl2+R+5alRlJweBHZEfs=;
+        b=aCgvU0CiVM/aEDBPDLFu+sF3l8qpjC4PkigK2hLvR3K7RKhfJxz3HS/75ABvsvSWoN
+         3rs+wNfGBianQpt1CpPz2wuk0SMhpaO4hNJVHxGUWCddxhtAjqehLYh2eeF6Cd2gfprt
+         u99N5o2xA+OV9mkJEvHL8v9Sml9QxHE5RSYlEoG19qytqLjYIQrrBy0qzFM2unicwyLa
+         mN/wOmmb8gJoRVSAd/vndrNCjmRKhfuPY1Oj6vJIcmhGH8NULGtsPXJiRwsfqQijm+12
+         V21avF6ka3kRNfArK+MavM1X5UQ8aoJ14k4YvOe8lMxAi1ufEq9rfBchTMt6jERjp1tv
+         sIKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692432113; x=1693036913;
+        d=1e100.net; s=20221208; t=1692432247; x=1693037047;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w3tAtsLI5s7m9t2MiJZTTVjgQTSIULjZIhCpwhV7cIA=;
-        b=HDdy+jFY3cf5XPFqP5+KvB3kH87JWTBgxprmE9jpJZaK/yTmFr5ohogWPMS2sHIWa5
-         /u9ylFRsWgzeSOw6WpliD576prTlya9dQ5QP7WYZa/ZfwnuHoZpVeExAEKf5/fKxV3FO
-         YS/cxjq15wicxZIowsWAHPcVmSIUWSgMUKGfoSlBgtgco04nama83jE5tITa57THvjsL
-         Rc/TI/tNrDur4knjIsYicUr7ppLu1B+w4Jy2SyvOgR8cweSjjE9861uDmwv8XKSF3Y1d
-         wCYqNZFPrHDkbfd7tGIGLvblRl9pbJ3XfYSxooh60lpgEBQm47lHC18GpW+q9wqnBEkU
-         vPmg==
-X-Gm-Message-State: AOJu0YzcWb29SXlQxKBIs9YM7/w9oPhkpCwIfvJr2IvvjUvd3nff+uwS
-        wjbljD/sVsY0KfnVao3X9nrnbg==
-X-Google-Smtp-Source: AGHT+IEsr2eSWNVpGQ7n93iLTcHZOT5L/UgXbAMJ9cTee7SCL/mCY004HJsoEq4z92AdNcbqyPGMyw==
-X-Received: by 2002:a05:6512:128c:b0:4ff:9aaa:6e3e with SMTP id u12-20020a056512128c00b004ff9aaa6e3emr1260440lfs.41.1692432113351;
-        Sat, 19 Aug 2023 01:01:53 -0700 (PDT)
+        bh=deRfy4MmWhNo/qJGo68CHwTkl2+R+5alRlJweBHZEfs=;
+        b=W5vjNrm+U42/wRIl7hkTOuHISB+UMpHI0B858N+hJX0d3Y7I1lHsn6kyusVvEJ2EIf
+         Kt7GmOMKoz1I5uZpUowxgaTPxMEDIKL3sUc5tw+smlsNvD/m/PdCzZU8UuD3FawaTxtg
+         fFyS23TGQ2th3hBAEwFq8IOUcl7mYUXMPFGtw9wVciODfI9IucCYFIaggETBlMy8FQ9F
+         GsrizE965OFG5eMKhXSNmoKf4bm81i3Eog9KauyDJWoO/4HA2Z6kL3XOEeAe/I51ZuVg
+         5RXaFhow9QDRZVy0+9bbj/PPrLPs8mg2AzBSPyhTlMw7WtE/PfOBKJv3F1yYX2Qev+Mq
+         7kHg==
+X-Gm-Message-State: AOJu0YyJhu6GT5KQVae+Vvc8Q1ZUnzABkxm/2iShBwZxOY82CT7MosSK
+        XN4jWzP1h3KSWKENDke/3onMfQ==
+X-Google-Smtp-Source: AGHT+IHBzvmTwnBZ67sD/6WjMdA5xmu96I7L2+RI5CGp7G/r5zU7hudwu/IAczFJtEBUGVFcm5NiSw==
+X-Received: by 2002:a17:906:8a73:b0:99d:e417:d6fb with SMTP id hy19-20020a1709068a7300b0099de417d6fbmr1522299ejc.25.1692432247428;
+        Sat, 19 Aug 2023 01:04:07 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id s11-20020a056402164b00b00528922bb53bsm1654511edx.76.2023.08.19.01.01.51
+        by smtp.gmail.com with ESMTPSA id u22-20020a170906409600b009929ab17be0sm2265161ejj.162.2023.08.19.01.04.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Aug 2023 01:01:52 -0700 (PDT)
-Message-ID: <952dd160-b913-1484-c682-b5ad0f1a3743@linaro.org>
-Date:   Sat, 19 Aug 2023 10:01:51 +0200
+        Sat, 19 Aug 2023 01:04:06 -0700 (PDT)
+Message-ID: <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
+Date:   Sat, 19 Aug 2023 10:04:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH] dt-bindings: pinctrl: Drop 'phandle' properties
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Shenwei Wang <shenwei.wang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230819010946.916772-1-robh@kernel.org>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+ <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
+ <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230819010946.916772-1-robh@kernel.org>
+In-Reply-To: <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2023 03:09, Rob Herring wrote:
-> 'phandle' properties are implicitly supported on all nodes, so it
-> shouldn't be listed in schemas.
+On 18/08/2023 23:06, Shenwei Wang wrote:
 > 
-> dtschema had a bug where 'phandle' and other implicit properties weren't
-> being added under 'additionalProperties' schemas. That was fixed in
-> v2023.07 release.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+>> -----Original Message-----
+>> From: Rob Herring <robh+dt@kernel.org>
+>> Sent: Friday, August 18, 2023 3:52 PM
+>> To: Shenwei Wang <shenwei.wang@nxp.com>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Ulf Hansson <ulf.hansson@linaro.org>; Liam Girdwood
+>> <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
+>> imx@lists.linux.dev; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> dl-linux-imx <linux-imx@nxp.com>
+>> Subject: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+>>>
+>>> Documenting the regulator power domain properties and usage examples.
+>>
+>> This needs to answer why we need this.
+>>
+>> It looks like just an abstraction layer to make regulators look like a power
+>> domain.
+>>
+> 
+> Yes, it is a wrapper that allows using regulators as a power domain. This removes 
+> the need to add regulator operating code in each consumer device driver. As a power 
+> domain, the regulator will be managed automatically by the device driver framework 
+> and PM subsystem.
+> 
+> This is very useful when a device's power is controlled by a GPIO pin, which currently 
+> requires using the fixed-regulator to achieve the same purpose. However, the 
+> fixed-regulator approach may have to add code in the driver in order to use it.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why do you start discussion from zero ignoring all previous history of
+this patchset?
+
+https://lore.kernel.org/all/20220609150851.23084-1-max.oss.09@gmail.com/
 
 Best regards,
 Krzysztof
