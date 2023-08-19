@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E04FD7819E4
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 16:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90F8C7819F3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 16:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233168AbjHSOJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 10:09:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42774 "EHLO
+        id S232935AbjHSOVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 10:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbjHSOJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 10:09:47 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A0A4C1D
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 07:08:00 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bba74ddf1bso26931481fa.2
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 07:08:00 -0700 (PDT)
+        with ESMTP id S233237AbjHSOVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 10:21:06 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64F9B24E
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 07:20:25 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so2923274e87.1
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 07:20:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692454078; x=1693058878;
+        d=linaro.org; s=google; t=1692454824; x=1693059624;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rOWWo2LjMhwURY3WvPqWf8b8/SlL/lTQ9/nUQ2JsfPw=;
-        b=e7dfceNuswSHhV2Q+Q8etq2aBEtr3w98FUvAaizPaJTpFDUtoqVa9BCoW1frz6RI8/
-         xWt6BgfLhHzC64ZxzfasewKSEvAfH1q0y0awButVa4UXJJaAXuzNdWcCVodpGARhmMwA
-         N9bxmnfd4g1g5L7M3oJ1KxgQNpMSBZlG1m9ohRhYqLDJiG5WCrfn1Swzw7QbFdKPTJr/
-         lqQd9HJtrviGU4m+8/hck/l8qxawL8sXEw2T62OIHr5YEwZQzhv+wgWIIq/yZYwK84WH
-         CsKAy8xId5oupp/WFjLBSFA11OMJb86IcFn+p46LPZZP0UNu2l+dVG/noZV2K6CbpFSF
-         RfAA==
+        bh=R0onguFDScQ28yFTMt4lAsObdKSDFfD8I7t+EctKHSg=;
+        b=rd7t09SLqd64aFO6Kijj17CqNF5ymQI2PAWj2iCsjKMiAzR8N6H88qyiCiJekpIk5+
+         /8UqWGyJIEsQRdwqxO9k9goNb6Zl7CjrfnXcjn13zHUoPpS7TZ2sDmQ3RpQI6fPWoPt9
+         k9KzcnvyW+ca8xVKp6ZSGESuM53YcTCwEiaWSlbr58fJ96PyX11UhQJIYOhHTPNC7SHr
+         Myh6VH7Sx0WZUoLgpjBPvT9VhRZQhf47qBUfZyDHmPl4pFdsjMyNpfcLIelghQpvHG8I
+         hRF95eOv8L+FXOlK0qKJSTQ1yRxSpeOMY3bwAzQKq/DENBZnHiVXPn/fU8rrV2o4Fc8I
+         0ujw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692454078; x=1693058878;
+        d=1e100.net; s=20221208; t=1692454824; x=1693059624;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rOWWo2LjMhwURY3WvPqWf8b8/SlL/lTQ9/nUQ2JsfPw=;
-        b=LJcp8Bt/99E7QXNNAx0cHTX53o1zCCeiU311jsURmliQ0sgZWfc1SI5RG1wO52vIS3
-         XDzD2fiy6kP6zA2mTOMx/0wuwaMTmSIXvn/RMeJVt94CdN5xiYcY4p6IljqF7RTM+w5z
-         QDm6QyW/ZsYhQBfQgyGdBXuFnqBnuaD5ucZt+NC/4b5KYQ9hhD4we41o0nju4nlriiu2
-         smyaf/soi9/4mKdxYtn9Eoge+8L/GwRu0Pp/sxSrie8hPUa2FtIJii+UrZqKmWSbicv6
-         kvr6JodTvYcGephrNfRXAVGmk704Cgl09w9upvk1QlBisKLhwX7NvMYCmNuO4cSs7/H0
-         SpOQ==
-X-Gm-Message-State: AOJu0YyfuipWnMxadiyCN8ioPntF8i/akcx7MHxVLnMqR6pOHcUTN2qo
-        XbFraGGYPc1w2qyS1voPK25RIu1BBk77jbmh5I4=
-X-Google-Smtp-Source: AGHT+IFcVY3kUSEo4uMdTwq4eVoLkaPw9Pk8yz0tAyTzHiev4w1z2+aBXysOe8ooRigg1Fhn8d8yEQ==
-X-Received: by 2002:a2e:9b4e:0:b0:2b9:ecc5:d1de with SMTP id o14-20020a2e9b4e000000b002b9ecc5d1demr1374245ljj.37.1692454078299;
-        Sat, 19 Aug 2023 07:07:58 -0700 (PDT)
+        bh=R0onguFDScQ28yFTMt4lAsObdKSDFfD8I7t+EctKHSg=;
+        b=aync90TNYmqNCZrZets4L9n7ZBBiKTHVYbqhaBDLTA+KQMe8n8y4VCTFf4a9GFkATQ
+         WhUvNz0YMK+aOc85nGaIvFDlXCzSAg0PTL2ng/okL+th8RPiemK14KYwoZ8MlBSrIJN+
+         7t1WzlA6/2+8x0PSvDIs8+CZAGdgRAJugI08coTy9nd9QMpQ7HiRS7XkdGCwPk2jr1lb
+         +iHif9GN8k9SJ/rPkItvsVVyq/kBh+ZPdQIhI7HLXJnTwfpRPAU9i/Sj3BYIOLmuAXvJ
+         xnbL4uKCiFrBT5EwtlwbGPCk7eXJxQsASMiWqwtwgALlrJVLab0plDewr4p6EdGobFFr
+         cZCg==
+X-Gm-Message-State: AOJu0YwtaMsU6Z2aGzt7euuae7DuQNroqOvpjNTAArM2ncJf3pKm7Esj
+        w1mg/0GbHldMGjSDDYN3UgNelCW4GWVAP+JdFmM=
+X-Google-Smtp-Source: AGHT+IFqpjzQHVRcvUzSqexrAEcVN+laiPOBWxI+WHEn/Fkt4YQ4N9aeescuFTLbC/S4clcsiGzhaQ==
+X-Received: by 2002:a05:6512:159a:b0:4f8:6e52:68ae with SMTP id bp26-20020a056512159a00b004f86e5268aemr1661887lfb.31.1692454824065;
+        Sat, 19 Aug 2023 07:20:24 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id m18-20020a1709061ed200b00988dbbd1f7esm2758273ejj.213.2023.08.19.07.07.57
+        by smtp.gmail.com with ESMTPSA id u9-20020aa7d0c9000000b00523a43f9b1dsm2570080edo.22.2023.08.19.07.20.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Aug 2023 07:07:57 -0700 (PDT)
-Message-ID: <3c2bfa91-44b3-0b1d-aa41-52f1e46df796@linaro.org>
-Date:   Sat, 19 Aug 2023 16:07:56 +0200
+        Sat, 19 Aug 2023 07:20:23 -0700 (PDT)
+Message-ID: <a2e18e03-a50e-897a-b599-f3b6bfa6af88@linaro.org>
+Date:   Sat, 19 Aug 2023 16:20:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v4 2/2] regulator: dt-bindings: Add Awinic AW37503
+Subject: Re: [PATCH 4/6] dt-bindings: power: add Amlogic T7 power domains
 Content-Language: en-US
-To:     like@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        liweilei@awinic.com, liangdong@awinic.com, wangweidong.a@awinic.com
-References: <20230816081728.2812458-1-like@awinic.com>
- <20230816081728.2812458-3-like@awinic.com>
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230817071148.510575-1-xianwei.zhao@amlogic.com>
+ <20230817071148.510575-5-xianwei.zhao@amlogic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230816081728.2812458-3-like@awinic.com>
+In-Reply-To: <20230817071148.510575-5-xianwei.zhao@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,72 +80,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2023 10:17, like@awinic.com wrote:
-> From: Alec Li <like@awinic.com>
-> 
-> Add aw37503 regulator device-tree binding documentation.
-> 
-> Signed-off-by: Alec Li <like@awinic.com>
-> ---
->  .../bindings/regulator/awinic,aw37503.yaml    | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
+On 17/08/2023 09:11, Xianwei Zhao wrote:
+> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
+
+> @@ -21,6 +21,7 @@ properties:
+>        - amlogic,meson-a1-pwrc
+>        - amlogic,meson-s4-pwrc
+>        - amlogic,c3-pwrc
+> +      - amlogic,t7-pwrc
+>  
+>    "#power-domain-cells":
+>      const: 1
+> diff --git a/include/dt-bindings/power/amlogic,t7-pwrc.h b/include/dt-bindings/power/amlogic,t7-pwrc.h
 > new file mode 100644
-> index 000000000000..65a891505808
+> index 000000000000..b7a13eda563c
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/awinic,aw37503.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/awinic,aw37503.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Awinic AW37503 Voltage Regulator
-> +
-> +maintainers:
-> +  - Alec Li <like@awinic.com>
-> +
-> +description: |
+> +++ b/include/dt-bindings/power/amlogic,t7-pwrc.h
+> @@ -0,0 +1,63 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR .*) */
 
-Do not need '|' unless you need to preserve formatting.
+This does not look correct license. Use one recommended by checkpatch.
 
-> +  The AW37503 are dual voltage regulator, designed to support positive/negative
-> +  supply for driving TFT-LCD panels. It support software-configurable output
-> +  switching and monitoring. The output voltages can be programmed via an I2C
-> +  compatible interface.
-> +
-> +properties:
-> +  compatible:
-> +    const: awinic,aw37503
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^out[pn]$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +    description: |
-
-Do not need '|' unless you need to preserve formatting.
-
-> +      Properties for single regulator.
-> +
-> +    properties:
-> +      regulator-name: true
-> +      regulator-always-on: true
-> +      regulator-boot-on: true
-
-Drop all three above. They are not needed, because you use
-unevaluatedProperties:false.
-
-> +      enable-gpio:
-
-I believe the name *everywhere* is enable-gpios.
 
 
 Best regards,
