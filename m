@@ -2,124 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3461D781836
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 10:05:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 813D778184E
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 10:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344663AbjHSIEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 04:04:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38968 "EHLO
+        id S229798AbjHSI0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 04:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344711AbjHSIEK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 04:04:10 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBFED170E
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:04:08 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99df11828c6so575892666b.1
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 01:04:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692432247; x=1693037047;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=deRfy4MmWhNo/qJGo68CHwTkl2+R+5alRlJweBHZEfs=;
-        b=aCgvU0CiVM/aEDBPDLFu+sF3l8qpjC4PkigK2hLvR3K7RKhfJxz3HS/75ABvsvSWoN
-         3rs+wNfGBianQpt1CpPz2wuk0SMhpaO4hNJVHxGUWCddxhtAjqehLYh2eeF6Cd2gfprt
-         u99N5o2xA+OV9mkJEvHL8v9Sml9QxHE5RSYlEoG19qytqLjYIQrrBy0qzFM2unicwyLa
-         mN/wOmmb8gJoRVSAd/vndrNCjmRKhfuPY1Oj6vJIcmhGH8NULGtsPXJiRwsfqQijm+12
-         V21avF6ka3kRNfArK+MavM1X5UQ8aoJ14k4YvOe8lMxAi1ufEq9rfBchTMt6jERjp1tv
-         sIKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692432247; x=1693037047;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=deRfy4MmWhNo/qJGo68CHwTkl2+R+5alRlJweBHZEfs=;
-        b=W5vjNrm+U42/wRIl7hkTOuHISB+UMpHI0B858N+hJX0d3Y7I1lHsn6kyusVvEJ2EIf
-         Kt7GmOMKoz1I5uZpUowxgaTPxMEDIKL3sUc5tw+smlsNvD/m/PdCzZU8UuD3FawaTxtg
-         fFyS23TGQ2th3hBAEwFq8IOUcl7mYUXMPFGtw9wVciODfI9IucCYFIaggETBlMy8FQ9F
-         GsrizE965OFG5eMKhXSNmoKf4bm81i3Eog9KauyDJWoO/4HA2Z6kL3XOEeAe/I51ZuVg
-         5RXaFhow9QDRZVy0+9bbj/PPrLPs8mg2AzBSPyhTlMw7WtE/PfOBKJv3F1yYX2Qev+Mq
-         7kHg==
-X-Gm-Message-State: AOJu0YyJhu6GT5KQVae+Vvc8Q1ZUnzABkxm/2iShBwZxOY82CT7MosSK
-        XN4jWzP1h3KSWKENDke/3onMfQ==
-X-Google-Smtp-Source: AGHT+IHBzvmTwnBZ67sD/6WjMdA5xmu96I7L2+RI5CGp7G/r5zU7hudwu/IAczFJtEBUGVFcm5NiSw==
-X-Received: by 2002:a17:906:8a73:b0:99d:e417:d6fb with SMTP id hy19-20020a1709068a7300b0099de417d6fbmr1522299ejc.25.1692432247428;
-        Sat, 19 Aug 2023 01:04:07 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id u22-20020a170906409600b009929ab17be0sm2265161ejj.162.2023.08.19.01.04.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Aug 2023 01:04:06 -0700 (PDT)
-Message-ID: <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
-Date:   Sat, 19 Aug 2023 10:04:05 +0200
+        with ESMTP id S229556AbjHSI0H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 04:26:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33B2BA5D2;
+        Sat, 19 Aug 2023 01:26:03 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B7B4061632;
+        Sat, 19 Aug 2023 08:26:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 368A5C433C8;
+        Sat, 19 Aug 2023 08:26:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692433562;
+        bh=IqklKkPtidqb2CVW+tpMi5aCC8MPd+5t0OXkV7z/4YU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cSxWLhGjlcFR/25K7tpjKDR7n4q64KfhdItaAPLD/hH0XNTfLeTTHHZ/PLMyVOtoU
+         0fhU+gJ8GmTopN4tqd0/Lt3nTeoFOf0xDmMJkwd0aey/vfD8JmY/RB9/0h8YNpko1i
+         jvzqZ7mPmG1YRPV16nTQuL0TvtXcTs7j3yc+1+pBw1pI2lXWiF3LR2dz5BmygQEoo+
+         Q/iMp4RTMM6BE5H0xUcV6nIqD46fjJ0NvcirPAviW5/xx9x/DUu1wj7Or3d3i6LHj5
+         94joCv1NJs7eTfPzU42mHa2MMu6lrq0QD6/intcGi72cKFaq3QHgWAsZ1xsHunIqRw
+         8x52cejPbF8jA==
+Date:   Sat, 19 Aug 2023 09:25:57 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     marius.cristea@microchip.com
+Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: adding MCP3564 ADC
+Message-ID: <20230819-swimsuit-scallion-9e91ec99b92a@spud>
+References: <20230818165750.55406-1-marius.cristea@microchip.com>
+ <20230818165750.55406-2-marius.cristea@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
- <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="uKFwu7uCDxw/NwPv"
+Content-Disposition: inline
+In-Reply-To: <20230818165750.55406-2-marius.cristea@microchip.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/08/2023 23:06, Shenwei Wang wrote:
-> 
-> 
->> -----Original Message-----
->> From: Rob Herring <robh+dt@kernel.org>
->> Sent: Friday, August 18, 2023 3:52 PM
->> To: Shenwei Wang <shenwei.wang@nxp.com>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
->> <conor+dt@kernel.org>; Ulf Hansson <ulf.hansson@linaro.org>; Liam Girdwood
->> <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
->> imx@lists.linux.dev; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->> dl-linux-imx <linux-imx@nxp.com>
->> Subject: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
->>>
->>> Documenting the regulator power domain properties and usage examples.
->>
->> This needs to answer why we need this.
->>
->> It looks like just an abstraction layer to make regulators look like a power
->> domain.
->>
-> 
-> Yes, it is a wrapper that allows using regulators as a power domain. This removes 
-> the need to add regulator operating code in each consumer device driver. As a power 
-> domain, the regulator will be managed automatically by the device driver framework 
-> and PM subsystem.
-> 
-> This is very useful when a device's power is controlled by a GPIO pin, which currently 
-> requires using the fixed-regulator to achieve the same purpose. However, the 
-> fixed-regulator approach may have to add code in the driver in order to use it.
 
-Why do you start discussion from zero ignoring all previous history of
-this patchset?
+--uKFwu7uCDxw/NwPv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://lore.kernel.org/all/20220609150851.23084-1-max.oss.09@gmail.com/
+On Fri, Aug 18, 2023 at 07:57:49PM +0300, marius.cristea@microchip.com wrot=
+e:
+> From: Marius Cristea <marius.cristea@microchip.com>
+>=20
+> This is the device tree schema for iio driver for
+> Microchip family of 153.6 ksps, Low-Noise 16/24-Bit
+> Delta-Sigma ADCs with an SPI interface (Microchip's
+> MCP3461, MCP3462, MCP3464, MCP3461R, MCP3462R,
+> MCP3464R, MCP3561, MCP3562, MCP3564, MCP3561R,
+> MCP3562R and MCP3564R analog to digital converters).
+>=20
+> Signed-off-by: Marius Cristea <marius.cristea@microchip.com>
 
-Best regards,
-Krzysztof
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Thanks,
+Conor.
+
+--uKFwu7uCDxw/NwPv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOB8lQAKCRB4tDGHoIJi
+0o3TAPwM74R81vKUiQEtMzW1+og9PDflT/siRzcGXep77V1vPwEA+GkxKH0X5QZJ
+tucd4cgqowy/bgIRGcmoE5j14amnlg8=
+=QCcD
+-----END PGP SIGNATURE-----
+
+--uKFwu7uCDxw/NwPv--
