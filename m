@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819757817A4
-	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 08:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 903D77817F2
+	for <lists+devicetree@lfdr.de>; Sat, 19 Aug 2023 09:09:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245648AbjHSGWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Aug 2023 02:22:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54744 "EHLO
+        id S1344010AbjHSHJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Aug 2023 03:09:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35596 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245698AbjHSGWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 02:22:02 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63CC93AB6;
-        Fri, 18 Aug 2023 23:22:01 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37J6Ljq1008858;
-        Sat, 19 Aug 2023 06:21:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5pltigGTmCAd54+DBKzSWvMYWGt8jHWwbv3v95uSi3Y=;
- b=BzZXw8TDJNO5FyFPWKSZ6fKNTU9v/VWY5gQigmYkCtcSLUyWlfxu/fKh5R4x9PGW9rhm
- 5jxL+XUvZIt1AJ6Ct/mFyhNvtzeFL619VPEyw3TH6guv+ETrFxqSChyoMmvAnoLWVTy2
- SbNF1QAdLV0i7x9aNlZUaD9H9Uxg9Es3CT+nph1oN9HBJHKNoCd4CH6Aq0vpmu8iIWgl
- 75atVSF2oDaXdKPom/vtH6ngmNpmPBeQ5SfCOhNCVQfdTL46xFrjDFsGQa1c0KvT9uvx
- 8/hx2C8TqZC6Wv7wXcUMnluOhQcTom1boSxzqLJ11d0hsaJ/v1vb5ZDoYA4oyV/2rTCA sw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sjq1f02hw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 19 Aug 2023 06:21:45 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37J6Ljiv025217
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Sat, 19 Aug 2023 06:21:45 GMT
-Received: from [10.253.35.175] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 18 Aug
- 2023 23:21:40 -0700
-Message-ID: <38627095-a92d-ea8b-56b6-7a4440fb6635@quicinc.com>
-Date:   Sat, 19 Aug 2023 14:21:37 +0800
+        with ESMTP id S1343980AbjHSHJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Aug 2023 03:09:09 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D85A23C24
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 00:09:06 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c4923195dso205105666b.2
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 00:09:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692428945; x=1693033745;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iNZbeqSVhasfGUErtV5q61IvmoorlC+cVrGMEvE4cm0=;
+        b=DC9Aovqc4ZYNUzbqRgn3hWorZIeZxG2o/E+MmADA2nbVL0KHnCUJyPeQXTXpuqA2Xz
+         oZEWmSlNFfDCvxJZLQ+O/c47xTvamXrlEQKMQegL2MeFbNINIraW0cEG5/y92qSv1HCx
+         dgVEAlTx1hXP/GJITC9Q6m6HUvGqrLejCtHJgvB+DQ2FLqXTuR1uH5pNK6i3XMGVUWqf
+         LhHsECatVITe/9LtoFMCBXAiD2AxJ23fbjUPDzntkXEvwwVREhLS37XDW00Nl+Q/sqN2
+         UX66eemUGqM3QKjn0kkuwcfofPAbb2y60SaL7B2Hpf26Dgrc62+JzRvDWunFMIqcxnvP
+         lo4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692428945; x=1693033745;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iNZbeqSVhasfGUErtV5q61IvmoorlC+cVrGMEvE4cm0=;
+        b=TB0o3eFGAiZm+tKizDIkm537jy3k0ZD43NPUgC8TOhk44ES2m11PVFwq8Oo1Tzdn8W
+         /hFbBOSxaYv9z0iI4vEz5t1t67RF1LAaX94pxW1xyzld55DlZsuBcGDLW+YViRIH5m0q
+         e46mvYEi3I1CJfQsO8ts57XPgfy4gbNZXJC0x7CMNsoPJChgSqPlkuk0SiNhx0g3guBY
+         RbeQjPlFmhY1YCC6ep1JpBZEySMVuFvz7IYAmchoMstYfxKI77t35vJ7YOnRK8THQREi
+         Y+1ok8GMhjLvkyqZGk89PmNuefffjV0GIUyjEIjKGI4fiACAS43nuQY5hKe3MWFXcuPt
+         ZleA==
+X-Gm-Message-State: AOJu0YyWoi6ffafyQU9AHkBuJ5m3UcpgUZMMMHSvpv+BC8B5XnJM9EFI
+        Hs7x9h+tPPhiP2LRytCioXdjZg==
+X-Google-Smtp-Source: AGHT+IGqWVxgB6V8BKoeEAcFDjA1ZAfZLJm/2VnM41Up1zXYMnMwQUUXoTvaEt7h1dSKvcY9QNd5Hg==
+X-Received: by 2002:a17:907:8194:b0:98e:2097:f23e with SMTP id iy20-20020a170907819400b0098e2097f23emr761355ejc.77.1692428945413;
+        Sat, 19 Aug 2023 00:09:05 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id t23-20020a170906269700b00992b50fbbe9sm2206142ejc.90.2023.08.19.00.09.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 19 Aug 2023 00:09:04 -0700 (PDT)
+Message-ID: <f2be5c54-b98d-d4eb-2107-6364701edca9@linaro.org>
+Date:   Sat, 19 Aug 2023 09:09:03 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v4 3/4] clk: qcom: common: add _qcom_cc_really_probe
-To:     Bjorn Andersson <andersson@kernel.org>
-CC:     <agross@kernel.org>, <konrad.dybcio@linaro.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230815085205.9868-1-quic_luoj@quicinc.com>
- <20230815085205.9868-4-quic_luoj@quicinc.com>
- <2dcu7jjwd2bhjbzxrxbfif566nupznb5n4oadnqha4h45w2n2g@4uy2pxkj5bvj>
- <6ee2129b-04c6-4978-03d6-835e3a10e665@quicinc.com>
- <4n3vqstyhknanmzx4swwjg4ueaqq2tbrxadnyrx3bchffyf7qr@yh4bik4rfsgm>
+Subject: Re: [PATCH] dt-bindings: usb: Add binding for ti,tps25750
+To:     Abdel Alkuor <alkuor@gmail.com>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        abdelalkuor@geotab.com
+References: <20230817235212.441254-1-alkuor@gmail.com>
+ <eba26f0e-40dd-3661-b089-bc34c9426000@linaro.org> <ZN+PzWuiLRsSVcmU@abdel>
 Content-Language: en-US
-From:   Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <4n3vqstyhknanmzx4swwjg4ueaqq2tbrxadnyrx3bchffyf7qr@yh4bik4rfsgm>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ZN+PzWuiLRsSVcmU@abdel>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IeW0Q28AeRBq6m9ZbrrPWqdojJg5Jpnn
-X-Proofpoint-ORIG-GUID: IeW0Q28AeRBq6m9ZbrrPWqdojJg5Jpnn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-19_04,2023-08-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- adultscore=0 impostorscore=0 mlxlogscore=871 lowpriorityscore=0
- suspectscore=0 mlxscore=0 phishscore=0 spamscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308190058
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
@@ -88,29 +77,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/19/2023 10:54 AM, Bjorn Andersson wrote:
-> On Fri, Aug 18, 2023 at 04:35:52PM +0800, Jie Luo wrote:
->> On 8/18/2023 11:14 AM, Bjorn Andersson wrote:
->>> On Tue, Aug 15, 2023 at 04:52:04PM +0800, Luo Jie wrote:
-> [..]
->>>> +int qcom_cc_really_probe(struct platform_device *pdev,
->>>> +			 const struct qcom_cc_desc *desc, struct regmap *regmap)
->>>
->>> Why do we want to keep this wrapper around?
->>>
->> There are many existed clock controller drivers using this wrapper
->> qcom_cc_really_probe, so i still keep this wrapper.
+On 18/08/2023 17:35, Abdel Alkuor wrote:
+> On Fri, Aug 18, 2023 at 11:31:35AM +0200, Krzysztof Kozlowski wrote:
+>> Where is any user of it? DTS, driver or 3rd party upstream open-source
+>> project?
 >>
->> do we need to remove this wrapper and update the existed drivers to use
->> _qcom_cc_really_probe?
+> Yes, for Geotab. We are working on bringing up a new BSP and we have tps25750
+> which doesn't have a driver in Linux yet. We developed the driver but I thought
+> I needed to get the dt-bindings accepted first before sending the patch for
+> the driver.
 > 
-> Yes please. The additional API does not add value, but can be confusing,
-> so let's invest the extra time in fixing up all the drivers to keep the
-> interface clean.
+> Sorry, this is my first time contributing to Linux. Maybe this question
+> was asked before but for some reason I couldn't find it.
 > 
-> Regards,
-> Bjorn
+> What is usually the process? Should I upload the driver too?
 
-Thanks Bjorn for the suggestion, will update this patch in the next version.
+Yes, please upload in one patchset, in following order:
+1. This bindings patch
+2. Driver patch
+
+
+Best regards,
+Krzysztof
+
