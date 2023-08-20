@@ -2,161 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62F6F781FB7
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 22:28:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59E93781FC3
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 22:33:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231838AbjHTU2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 16:28:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34148 "EHLO
+        id S231844AbjHTUdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 16:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231851AbjHTU23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 16:28:29 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50771FEB
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 13:25:41 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99cce6f7de2so361026766b.3
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 13:25:41 -0700 (PDT)
+        with ESMTP id S231837AbjHTUdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 16:33:02 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC0681A7
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 13:32:21 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bba6a9b565so41475301fa.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 13:32:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692563140; x=1693167940;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692563540; x=1693168340;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=StjW9zVJDg/it/2Zx4uZor89taRslW2dT/6diASww+4=;
-        b=vci9yDnl+yyQhiHYI3CMfFxQx7T5f94503EtOwkkLJtDvyORUMezQkNjPxBXYG0+c8
-         1tqiwwDupiRkVCzmvK2ATAiqb5p129sMDGXo3OEbhj14bEv6JXvKo7buPP9PHdnbXKVa
-         xHjSlRpiludjqpyp9CpmF+LIKqMrO1XFDmEtQyMQrTxDtVZVorooYOCVOyWpPV1bbMz/
-         THa5ldcxuDMuE3J8E/qVbqKdR2sG+kodhNT4Cc/hfIcFwZhZHRI28t72ieCGLqWkqrko
-         mxkLgshVAhG4kE8ss1j+DQUS0SLDDDRHrrbltYbk6niHWE+lPpqntcTERnZ1QANv0aay
-         mntg==
+        bh=ZZxBeLwRDLKLAdBdsYAHXWMJXrTZi5pLoEbnjRzYS4E=;
+        b=EBd76ZBDi/sJ+0hGN8EQmzSDo4YJyPtakXUx8wshf1mosdbVpUCDEIMURO7yt9HLO/
+         WiO9ri1/Xe2RX++ugvn9fhzOjOhW1lMMvQkZfvW2hbT1bac4pAx2lFs0YmIxYZsE7NjR
+         tMVlIv9Yr4HIjzY/wGDheAMtmz01iIc3LmS1Ozw1yoefJqbFj4oHrUK51B1JxDb216IB
+         Ws6gUBVBEqVmBL5yqEwqaaN6ZnBlhiG1vZu7d5fveD5W5BrFFin4gVdWxac/XrcdM5TP
+         JVe9mm5/daSHRWKwiFqewbDZRZFJZcLEShX/gPijbHxJqPmbGMMy2UYKCRFdjMoMzzRz
+         IgZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692563140; x=1693167940;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692563540; x=1693168340;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=StjW9zVJDg/it/2Zx4uZor89taRslW2dT/6diASww+4=;
-        b=U4l/mitvWt0LbXxrMM8Yn8Z53aF2XVA7e95TR+ZIw1sYBg8ovXcX3JUkrbZ11AlmIX
-         9FuBLDhTa9gBxLy0HU6X1Y6eKL57ow7nS7wMCadj1ifMYxGRxxExDn6Suca4OMWx4nrz
-         Zm/XYqrRdhC1d7pFaOxR29d49TPPY/bgHUBHwANsSY9Qt0Zbv4TW8oDP2i0N0NBjIU/A
-         EG2cfB1N/2+FlC7CvKrVIgOnIn0xJmV71iptZelh7nVt2G5N4T6GGxflR51ef+m94ssP
-         83+rBzKgMdqwKrqWJ987+iKrrn5eHi4w7AXVyf6Sh8LrPtOmE+D6u46NlXuS8C13hDm6
-         zEHg==
-X-Gm-Message-State: AOJu0Yy0Nk011QO9c8/3EBxWOa5atm11FoxokGQbROEYFyMA1EdSpBUw
-        VPN1abKLhgM4j7ZOEpsuNJpLuw==
-X-Google-Smtp-Source: AGHT+IG+6nkBP8ESNEiuPFXeg/GVvn41vSGT+I9KbN6KuNmzanEMYwxjP4S2vVKuDBGNIppz79oNiQ==
-X-Received: by 2002:a17:906:23e9:b0:99b:de31:6666 with SMTP id j9-20020a17090623e900b0099bde316666mr3521212ejg.22.1692563140210;
-        Sun, 20 Aug 2023 13:25:40 -0700 (PDT)
+        bh=ZZxBeLwRDLKLAdBdsYAHXWMJXrTZi5pLoEbnjRzYS4E=;
+        b=ckkGSHKB2stB4CdK61fL1tIg27mlWvK48U5ABh6DmcjQVRNdp8SkAREkfEBMDmVvBy
+         FleKWluRai3Prg7cI+yRIvKq3/Vol7a5RiiMH5u0FtYtO2v7EyZhCsSS0e132Krgy4lC
+         qZNj5njJxsBhENm2zoTt9dqdJo/QFtziCqmJPq+W1gg0WehzQ7fgqI5I8wR9zu8/a+sN
+         Sa2J/uO+ZbTZNxKknmlpt1zAgCl9PKlgO9Zzk9thRpbjLCcXgf6v8sD2iGyPDm/q8XHg
+         xZuloss7FUXZ/z5PMyIZn9BCUvElL4dZcLLoJWqQVUBYG704HZnX33j2Z3ak4BgZzB2e
+         5uHQ==
+X-Gm-Message-State: AOJu0YzPZBx2y8RE+LZhbyBOoPi6EIktcpikPUPwhInquX4vPd6wy461
+        /eNUyuqssXZHJM+A0YeEzG/2qg==
+X-Google-Smtp-Source: AGHT+IHc+KIlPROAh1yE20iteSRYjcUQXrs0OvVtxTfoLJCAI1Cr/o8PJizOqvstNyNzlNZK438+fQ==
+X-Received: by 2002:a2e:3802:0:b0:2b6:decf:5cbd with SMTP id f2-20020a2e3802000000b002b6decf5cbdmr3339728lja.36.1692563539609;
+        Sun, 20 Aug 2023 13:32:19 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id qh10-20020a170906ecaa00b0099caf5bed64sm5211110ejb.57.2023.08.20.13.25.38
+        by smtp.gmail.com with ESMTPSA id ga10-20020a170906b84a00b00992b2c55c67sm5198948ejb.156.2023.08.20.13.32.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Aug 2023 13:25:39 -0700 (PDT)
-Message-ID: <879f8bf7-db08-0add-9bff-a56ae07ffc67@linaro.org>
-Date:   Sun, 20 Aug 2023 22:25:37 +0200
+        Sun, 20 Aug 2023 13:32:19 -0700 (PDT)
+Message-ID: <f5b16676-04b9-7864-ffa7-1c48f3c2ca9c@linaro.org>
+Date:   Sun, 20 Aug 2023 22:32:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: media: Add bindings for Imagination
- E5010 JPEG Encoder driver
-To:     Devarsh Thakkar <devarsht@ti.com>, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     laurent.pinchart@ideasonboard.com, eugen.hristev@collabora.com,
-        ezequiel@vanguardiasur.com.ar, u.kleine-koenig@pengutronix.de,
-        sakari.ailus@linux.intel.com, praneeth@ti.com, nm@ti.com,
-        vigneshr@ti.com, a-bhatia1@ti.com, j-luthra@ti.com,
-        b-brnich@ti.com, detheridge@ti.com, p-mantena@ti.com, vijayp@ti.com
-References: <20230816152210.4080779-1-devarsht@ti.com>
- <20230816152210.4080779-2-devarsht@ti.com>
- <7a9bcd78-b544-524c-e944-5fbb0c60e600@linaro.org>
- <530306bc-174e-c75d-40c5-6fa42d69af31@ti.com>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl_easrc: Add support for
+ imx8mp-easrc
 Content-Language: en-US
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230820175655.206723-1-aford173@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <530306bc-174e-c75d-40c5-6fa42d69af31@ti.com>
+In-Reply-To: <20230820175655.206723-1-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2023 18:46, Devarsh Thakkar wrote:
->>> +properties:
->>> +  compatible:
->>> +    oneOf:
->>> +      - items:
->>> +          - const: ti,e5010-jpeg-enc
->>
->> TI did not make e5010. Use SoC-based compatible.
->>
->>> +          - const: img,e5010-jpeg-enc
->>> +      - const: img,e5010-jpeg-enc
->>
->> img,e5010-jpeg-enc cannot be compatible with img,e5010-jpeg-enc. It does
->> not make sense. I guess I did not expect you are going to use what you
->> wrote in v1 directly... I thought it is just about syntax.
->>
+On 20/08/2023 19:56, Adam Ford wrote:
+> The i.MX8MP appears to have the same easrc support as the Nano, so
+> add imx8mp as an option with a fallback to imx8mn.
 > 
-> Sorry but I did not understand this fully, the possible compatibles are:
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > 
-> 1) "ti,am62a-jpeg-enc", "img,e5010-jpeg-enc"
-> or
-> 2)  "img,e5010-jpeg-enc"
-> 
-> anything else will not comply during dtbs_check as shown below :
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,easrc.yaml b/Documentation/devicetree/bindings/sound/fsl,easrc.yaml
+> index bdde68a1059c..2d53b3b10f2c 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,easrc.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,easrc.yaml
+> @@ -14,7 +14,11 @@ properties:
+>      pattern: "^easrc@.*"
+>  
+>    compatible:
+> -    const: fsl,imx8mn-easrc
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - fsl,imx8mp-easrc
+> +          - const: fsl,imx8mn-easrc
 
-Ah, you are right, ENOTENOUGHCOFFEE or some other issue on my side.
-
-> 
-> For e.g. If I use below compatible :
-> "img,e5010-jpeg-enc", "img,e5010-jpeg-enc"
-> 
-> and run dtbs_check, it throw below error  :
-> 
-> make CHECK_DTBS=y DT_SCHEMA_FILES=media/img,e5010-jpeg-enc.yaml 
-> ti/k3-am62a7-sk.dtb
->    LINT    Documentation/devicetree/bindings
->    CHKDT   Documentation/devicetree/bindings/processed-schema.json
->    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
->    DTC_CHK arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
-> /home/devarsht/ti/linux-next2/linux-next/arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: 
-> jpeg-encoder@fd20000: compatible: 'oneOf' conditional failed, one must 
-> be fixed:
->          ['img,e5010-jpeg-enc', 'img,e5010-jpeg-enc'] is too long
->          'ti,am62a-jpeg-enc' was expected
->          From schema: 
-> /home/devarsht/ti/linux-next2/linux-next/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-> 
-> 
-> Similarly, if I use below compatible :
-> 
-> "ti,am62a-jpeg-enc",
-> It throw below error :
-> 
-> make CHECK_DTBS=y DT_SCHEMA_FILES=media/img,e5010-jpeg-enc.yaml 
-> ti/k3-am62a7-sk.dtb
->    DTC_CHK arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
-> /home/devarsht/ti/linux-next2/linux-next/arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: 
-> jpeg-encoder@fd20000: compatible: 'oneOf' conditional failed, one must 
-> be fixed:
->          ['ti,am62a-jpeg-enc'] is too short
->          'img,e5010-jpeg-enc' was expected
->          From schema: 
-> /home/devarsht/ti/linux-next2/linux-next/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
-> 
-> 
-> But If I use either 1) or 2) it does not throw any error.
-> Please let me know if I missed to understand your point.
-
-Yes, you are right, sorry for that.
-
-However it still should be "ti,am62a-jpeg-enc", not ti,e5010...
-
+You need here also const for fsl,imx8mn-easrc, otherwise you do not
+allow it alone. Test it for fsl,imx8mn-easrc DTS - you will notice warnings.
 
 Best regards,
 Krzysztof
