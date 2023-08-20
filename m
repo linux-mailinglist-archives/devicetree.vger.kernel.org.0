@@ -2,125 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E07781CB4
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 08:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 439AA781CC2
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 09:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbjHTG4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 02:56:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
+        id S230137AbjHTHBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 03:01:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230136AbjHTG4E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 02:56:04 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1172C359A
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 23:29:12 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so3545001e87.1
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 23:29:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692512950; x=1693117750;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uc6r5jrTl5KRxyULV2rwJI3udN950yCQjtWBO1UHlTE=;
-        b=A188BHQPbmwpEsQTM+O3IWYN/sJ+IGMzg0pNy7H09QX3+hs1UJ03dS701+yBeYbWsz
-         vQCr34Ui9zvNsIc+BMqDA5ppu5HVfTaUCNmYJsfkMqxUkFI2CFdRhsFAVNm68Eq4fdew
-         rivzw9rDqunEQt/FH7Lr6TS/mEEbFNpI69sBt4+zqQgcB1IqE5TPVQMbOJ51e5UTDhTV
-         bdNfuylUfspFU6T8I23s9pppWFgfp9Hu8yACDrXA/QJ3xNhTggfM8KdBxavQKf/vaGn2
-         f1AUrpufiIJDoCnG8htpXOwOhjhW5cVqzDZAT5PNN6E7PKtUIai9MK4xtGUzhtfsK3Br
-         STsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692512950; x=1693117750;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uc6r5jrTl5KRxyULV2rwJI3udN950yCQjtWBO1UHlTE=;
-        b=Fdi3Wj7GR+OZppYHn5pcVU8Bjtbnb+JBXwLs2AcFTyqH+0DWCM134Y//FLRB0IVHlj
-         AMMlViHhe2j0L9HzHKCA2KQTxKbkkWc5MeW3MaZjfHDyf3gORUQDINCRsuMrblop6SHK
-         5zCBRZis4VA6/nOuIZmAlQLP2Qnd7QJHI8wZUAnLR0YKdUxEO+q2+raRvEJrcpqaONfz
-         4TQCZwTQh7h/NSHq9iEko5kh2ZGfT8EPGXDBN3lOtGBciImu2QuBoR8dnRWy2KEZ4iw3
-         1xYJcicMClI9BdE4LmzrAJBlz7QbocstUraESO3D9KV3ElL89ZCgWc5JTrNPErJdCCPk
-         XEEg==
-X-Gm-Message-State: AOJu0YyrZXYDFrYFDRS8kdWwy15qvm0vVbSC1S6qK313xQpy/j/C6SvC
-        H3J2lF3iGgUJNajXtiyKGRKu4g==
-X-Google-Smtp-Source: AGHT+IHGiLfTKXd3POBlHix4H5KyMKF6QEFcujN4xuJyCP7MzrXaQscwFy+zspuseAs8dz2GHwW3BA==
-X-Received: by 2002:a05:6512:39ca:b0:4fe:82a7:814d with SMTP id k10-20020a05651239ca00b004fe82a7814dmr2334975lfu.48.1692512949514;
-        Sat, 19 Aug 2023 23:29:09 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id sb25-20020a170906edd900b0098ec690e6d7sm4029867ejb.73.2023.08.19.23.29.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Aug 2023 23:29:09 -0700 (PDT)
-Message-ID: <a5c01c63-9914-65d6-7b08-090e08d491a0@linaro.org>
-Date:   Sun, 20 Aug 2023 08:29:08 +0200
+        with ESMTP id S230045AbjHTHAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 03:00:54 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F274AD13;
+        Sat, 19 Aug 2023 23:37:52 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37K6bbf2055129;
+        Sun, 20 Aug 2023 01:37:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692513457;
+        bh=4FxO5OiLuFuHbomK4Axh4ZRSnQjdFwdTtS5KY7rEKrY=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=HLNs1l/4BoHy2RWOGz78lZ2S3Te3q0iiDsRdnbyF0mJVBeYJLUnL8m8WKxnTu4rrY
+         8VPl81uShWkXLyvIJQbXcKBMhOljjA6kDRDffiRJVFcnPkmQELrGSiyPDnk9n69pPJ
+         XfLiX9cJtjMikyRRmiDYlZsloH5yzdA+UigELdJ4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37K6bbIT009510
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 20 Aug 2023 01:37:37 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 20
+ Aug 2023 01:37:36 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 20 Aug 2023 01:37:37 -0500
+Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37K6bXuw095373;
+        Sun, 20 Aug 2023 01:37:34 -0500
+Message-ID: <d08b4f70-7bc1-df4b-349c-34b166c433ec@ti.com>
+Date:   Sun, 20 Aug 2023 12:07:33 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH] dt-bindings: iio: adc: Add TI TWL603X GPADC
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Add support for MCAN
+ interfaces
+To:     Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20230817084936.31020-1-b-kapoor@ti.com>
 Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-References: <20230816202614.324457-1-andreas@kemnade.info>
- <426d78d6-9fa6-bfeb-b36a-fba264097a27@linaro.org>
- <20230819221903.726a1c39@aktux>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230819221903.726a1c39@aktux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20230817084936.31020-1-b-kapoor@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/08/2023 22:19, Andreas Kemnade wrote:
->>> +---
->>> +$id: http://devicetree.org/schemas/iio/adc/ti,twl6030-gpadc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: GPADC subsystem in the TWL6030 power module
->>> +
->>> +maintainers:
->>> +  - Jonathan Cameron <jic23@kernel.org>  
->>
->> This should be rather someone knowing or having or caring about this
->> particular hardware, not subsystem maintainer.
->>
-> Hmm, I have the twl6032, but not the twl6030. So probably
-> Tony (OMAP-Maintainer) or me?
+Thank you for patch
 
-Yes. If you have a device, it's even better, but "caring about" or
-having datasheet is enough.
+On 8/17/2023 2:19 PM, Bhavya Kapoor wrote:
+> There are 2 MCAN instances in the mcu domain and 4 MCAN instances in the
+> main domain. Add support for both MCAN nodes present in the mcu domain
+> and MCAN16 that is present in the main domain and isn't muxed.
 
-> 
->>> +
->>> +description:
->>> +  The GPADC subsystem in the TWL6030 consists of a 10-bit ADC
->>> +  combined with a 15-input analog multiplexer.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ti,twl6030-gpadc  
->>
->> Devices look fairly similar. Same properties. Why aren't they in one
->> binding (enum here instead)?
->>
-> I hope it can be done. See commit message. Maybe my reasoning is wrong.
+Could you add  description in commit message, why only 3 MCAN are 
+enabled in this patch
 
-The parent device binding can expect the compatible for the child and it
-will have the same effect in total as $ref to this binding. The only
-difference would be that running dtbs_check on parent binding would not
-spot all the issues in the child node. One need to run dtbs_check with
-both bindings.
+despite of 6 available.
 
-For an example:
-Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+>
+> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> ---
+>
+> Changelog v1->v2:
+>   - Fixed issue with referencing mcu_mcan0 node that was causeing errors
+>
+> Link to v1 : https://lore.kernel.org/all/20230816193533.25722-1-b-kapoor@ti.com/
+>
+>   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 87 ++++++++++++++++++++++++
+>   1 file changed, 87 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
+> index 430b8a2c5df5..9fce3ce89507 100644
+> [...]
+> +	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (H35) WKUP_GPIO0_4.MCU_MCAN1_TX */
+> +			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (K36) WKUP_GPIO0_5.MCU_MCAN1_RX */
+> +		>;
+
+You can consider to drop pre-fix in GPIO details through out the patch
+
+eg WKUP_GPIO0_5.MCU_MCAN1_RX to MCU_MCAN1_RX
 
 
-Best regards,
-Krzysztof
-
+> +	};
+> +
+> +	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x040, PIN_INPUT, 7) /* (J38) MCU_SPI0_D1.WKUP_GPIO0_69 */
+> +		>;
+> +	};
+> +
+> +	mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-default-pins {
+> +		pinctrl-single,pins = <
+> +			J784S4_WKUP_IOPAD(0x060, PIN_INPUT, 7) /* (J35) WKUP_GPIO0_2 */
+> +		>;
+> +	};
+>   };
+>   
+>   &wkup_pmx0 {
+> @@ -827,3 +885,32 @@ adc {
+>   		ti,adc-channels = <0 1 2 3 4 5 6 7>;
+>   	};
+>   };
+> +
+> +&wkup_gpio_intr {
+> +	status = "okay";
+> +};
+> +
+> +&wkup_gpio0 {
+> +	status = "okay";
+> +};
+> +
+> +&mcu_mcan0 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
+> +	phys = <&transceiver1>;
+> +};
+> +
+> +&mcu_mcan1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&mcu_mcan1_pins_default>;
+> +	phys = <&transceiver2>;
+> +};
+> +
+> +&main_mcan16 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_mcan16_pins_default>;
+> +	phys = <&transceiver3>;
+> +};
