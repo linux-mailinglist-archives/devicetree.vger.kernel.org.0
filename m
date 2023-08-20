@@ -2,164 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC1B5781E3D
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 16:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16BD1781E65
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 16:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231179AbjHTOZe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 10:25:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41154 "EHLO
+        id S231239AbjHTO7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 10:59:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231247AbjHTOZb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 10:25:31 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50FEF4208
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 07:20:54 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b9b5ee9c5aso39893121fa.1
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 07:20:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692541252; x=1693146052;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WTzmy+i5j1WPiK6tLfXa64W5xhtIy/e4EjLahPo6DXU=;
-        b=sBaUljN0X/xwDygPsg+nO/6V4c9rxPSX5D/qhqsfD/bYKAksDA3Qmz6+3DEiA8Zpas
-         kYf0SovzxwpPG7y03/jKV8a6Z1ETfGf7g1zMNL1u2cJbyh1oubKxd3HNlLhUe/DbcTi3
-         Dqrs97r7QxEg/B+8TphnEdc5lZ1mQChaq361wpJWNnoBWfor+Di4szJ6zJ78b7M0U+CH
-         rAUYYYFTUTZ+4r5wkgII/kvXn8vavhACnHfa1/9IJuV+SF1VnZV07GzeCJc0Ff6Xu+Wl
-         GjVpTQ9e7/mHE4aP2jxJ4VofbE9o19rOh1rwQq6SeMOIccvuIwdPnFxz2zdoImVYFjRk
-         QLqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692541252; x=1693146052;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WTzmy+i5j1WPiK6tLfXa64W5xhtIy/e4EjLahPo6DXU=;
-        b=e0wJxlzF3IyAwbwOAEtATshY4JmvZRG5MSTSAAxOqpO4j/iVmqcdaKvXrXrUKj6fLb
-         4z5RnLnOoQqq7DSWVmI1LFNmUc5aGmGdDlx6e1NZ2BA05ezt96XJlFtO4DxLQz8lSGEn
-         ya8W7rLROvX7IhlKtfSn+fqrFozyYXC4hY1NJo/jbb9lWlaXMp3kB1gGvwVQOwj9tTWj
-         iBP3jP09LrDcdCv1E2ryQ2Fj4bXH5ZYjke1uXqj0eYUnaxiBA64gPJs7omI/O0xJOQw1
-         DszwbmnBsoH+1cUH6FZNLx+TafObXNLKVetRYndFjGzaNB8/Rn4FySZ3+7FgW/SeL4UK
-         Md1g==
-X-Gm-Message-State: AOJu0YxvZs5z72q/JidLYuhUiAUvf5W+OCrsg7kWAVbJ/t1Af30tM2FC
-        XxQXYV0d0jKI+ZMYmf/b24VrxQ==
-X-Google-Smtp-Source: AGHT+IFERULUQVtB8IKnpBuIWGg2sDN51gu3aFEy2DKA3mxevPHuxbPl0Bp5I84SsZ1djo+7jpFmfQ==
-X-Received: by 2002:a2e:9185:0:b0:2bc:bb46:4fc7 with SMTP id f5-20020a2e9185000000b002bcbb464fc7mr652384ljg.24.1692541252729;
-        Sun, 20 Aug 2023 07:20:52 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id n9-20020a2e7209000000b002b9e501a6acsm1706222ljc.3.2023.08.20.07.20.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Aug 2023 07:20:52 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S229779AbjHTO7x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 10:59:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF62139;
+        Sun, 20 Aug 2023 07:55:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 32A3960B6A;
+        Sun, 20 Aug 2023 14:55:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F3B6C433C7;
+        Sun, 20 Aug 2023 14:55:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692543322;
+        bh=w9t1lG3nIXBHvGJOFxIpJq4TLZ70IlfQiWLNlqF02W8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ekBfJ0+wo7GE9ww/Hzr7migpmeBOCxbYh+5wGe3xcRIAW9YGmF1FMI3eIEIjQZbGF
+         912YIV2GmjsIB6QZr2nOHtX/1xUua+z44CFEzc9MgDSGOidS2N1rJXuQk78LM0/Ita
+         DXkyYlTjmYB40vAjqGiGhYu/jQ2i26gdBjSLZKl3bGJIieRn4kEfTN64y19ti2Odaf
+         H1Olju7qQUT1TwLbrQJNJfc09x8/ZpNKSIsHY6HZ8QhmdubyM7Me/Ch0PnfUfLZBql
+         CYp9aJsFg1z9vB7LIaPRb5bfJr9qdLt+0yjnIont/VADLcj/84Ug0/s1/s3YAOcSIn
+         jT+35py98HQkw==
+Date:   Sun, 20 Aug 2023 16:55:17 +0200
+From:   Simon Horman <horms@kernel.org>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 18/18] ARM: dts: qcom-sdx55: switch PCIe QMP PHY to new style of bindings
-Date:   Sun, 20 Aug 2023 17:20:35 +0300
-Message-Id: <20230820142035.89903-19-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
-References: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH net-next 3/3] net: stmmac: add glue layer for T-HEAD
+ TH1520 SoC
+Message-ID: <ZOIpVVp+JUnbhFV1@vergenet.net>
+References: <20230820120213.2054-1-jszhang@kernel.org>
+ <20230820120213.2054-4-jszhang@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230820120213.2054-4-jszhang@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change the PCIe QMP PHY to use newer style of QMP PHY bindings (single
-resource region, no per-PHY subnodes).
+On Sun, Aug 20, 2023 at 08:02:13PM +0800, Jisheng Zhang wrote:
+> Add dwmac glue driver to support the dwmac on the T-HEAD TH1520 SoC.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 31 ++++++++++----------------
- 1 file changed, 12 insertions(+), 19 deletions(-)
+...
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-index 55ce87b75253..4b0039ccd0da 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
-@@ -379,7 +379,7 @@ pcie_rc: pcie@1c00000 {
- 
- 			power-domains = <&gcc PCIE_GDSC>;
- 
--			phys = <&pcie_lane>;
-+			phys = <&pcie_phy>;
- 			phy-names = "pciephy";
- 
- 			status = "disabled";
-@@ -428,7 +428,7 @@ pcie_ep: pcie-ep@1c00000 {
- 			resets = <&gcc GCC_PCIE_BCR>;
- 			reset-names = "core";
- 			power-domains = <&gcc PCIE_GDSC>;
--			phys = <&pcie_lane>;
-+			phys = <&pcie_phy>;
- 			phy-names = "pciephy";
- 			max-link-speed = <3>;
- 			num-lanes = <2>;
-@@ -438,18 +438,25 @@ pcie_ep: pcie-ep@1c00000 {
- 
- 		pcie_phy: phy@1c07000 {
- 			compatible = "qcom,sdx55-qmp-pcie-phy";
--			reg = <0x01c07000 0x1c4>;
-+			reg = <0x01c07000 0x2000>;
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges;
- 			clocks = <&gcc GCC_PCIE_AUX_PHY_CLK_SRC>,
- 				 <&gcc GCC_PCIE_CFG_AHB_CLK>,
- 				 <&gcc GCC_PCIE_0_CLKREF_CLK>,
--				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>;
-+				 <&gcc GCC_PCIE_RCHNG_PHY_CLK>,
-+				 <&gcc GCC_PCIE_PIPE_CLK>;
- 			clock-names = "aux",
- 				      "cfg_ahb",
- 				      "ref",
--				      "refgen";
-+				      "refgen",
-+				      "pipe";
-+
-+			clock-output-names = "pcie_pipe_clk";
-+			#clock-cells = <0>;
-+
-+			#phy-cells = <0>;
- 
- 			resets = <&gcc GCC_PCIE_PHY_BCR>;
- 			reset-names = "phy";
-@@ -458,20 +465,6 @@ pcie_phy: phy@1c07000 {
- 			assigned-clock-rates = <100000000>;
- 
- 			status = "disabled";
--
--			pcie_lane: lanes@1c06000 {
--				reg = <0x01c06000 0x104>, /* tx0 */
--				      <0x01c06200 0x328>, /* rx0 */
--				      <0x01c07200 0x1e8>, /* pcs */
--				      <0x01c06800 0x104>, /* tx1 */
--				      <0x01c06a00 0x328>, /* rx1 */
--				      <0x01c07600 0x800>; /* pcs_misc */
--				clocks = <&gcc GCC_PCIE_PIPE_CLK>;
--				clock-names = "pipe0";
--
--				#phy-cells = <0>;
--				clock-output-names = "pcie_pipe_clk";
--			};
- 		};
- 
- 		ipa: ipa@1e40000 {
--- 
-2.39.2
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
 
+...
+
+> +static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int mode)
+> +{
+> +	struct thead_dwmac *dwmac = priv;
+> +	struct plat_stmmacenet_data *plat = dwmac->plat;
+> +	unsigned long rate;
+> +	u32 div;
+> +
+> +	switch (plat->interface) {
+> +	/* For MII, rxc/txc is provided by phy */
+> +	case PHY_INTERFACE_MODE_MII:
+> +		return;
+> +
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		rate = clk_get_rate(plat->stmmac_clk);
+> +		if (!rate || rate % GMAC_GMII_RGMII_RATE != 0 ||
+> +		    rate % GMAC_MII_RATE != 0) {
+> +			dev_err(dwmac->dev, "invalid gmac rate %ld\n", rate);
+> +			return;
+> +		}
+> +
+> +		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV, GMAC_PLLCLK_DIV_EN, 0);
+> +
+> +		switch (speed) {
+> +		case SPEED_1000:
+> +			div = rate / GMAC_GMII_RGMII_RATE;
+> +			break;
+> +		case SPEED_100:
+> +			div = rate / GMAC_MII_RATE;
+> +			break;
+> +		case SPEED_10:
+> +			div = rate * 10 / GMAC_MII_RATE;
+> +			break;
+> +		default:
+> +			dev_err(dwmac->dev, "invalid speed %u\n", speed);
+> +			break;
+
+Hi Jisheng Zhang,
+
+In this case, div is not initialised, but it is used a few
+lines below. Perhaps the function should return here?
+
+As flagged by clang-16 (W=1) and Smatch.
+
+> +		}
+> +		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV,
+> +				   GMAC_PLLCLK_DIV_MASK, GMAC_PLLCLK_DIV_NUM(div));
+> +
+> +		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV,
+> +				   GMAC_PLLCLK_DIV_EN, GMAC_PLLCLK_DIV_EN);
+> +		break;
+> +	default:
+> +		dev_err(dwmac->dev, "unsupported phy interface %d\n",
+> +			plat->interface);
+> +		return;
+> +	}
+> +}
+
+...
