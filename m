@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD99E781F60
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 21:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7169F781F6B
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 21:18:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231601AbjHTTHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 15:07:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54372 "EHLO
+        id S231659AbjHTTSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 15:18:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231611AbjHTTHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 15:07:41 -0400
+        with ESMTP id S231645AbjHTTSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 15:18:11 -0400
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225DE1736;
-        Sun, 20 Aug 2023 12:04:59 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802592105;
+        Sun, 20 Aug 2023 12:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
         References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
         Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=o+VMOj6uZXJS0WosedR2CR7G2cP02oXdnAAnZojmqHo=; b=5G1hU3qb/6qS4l3hI43aHsu8nh
-        WxxlkwmNCFy4oSTO8DtJJyomklVqRzjScPVXBYl/fqb8WG1hlaLiRqMqgnzkPok9yjuyZRsrHPNfh
-        WA4m7BhauYcPmE2AcgYVZf8CnKksMa+maKrVcNgDhjKVtegnBsZZoM4mYplcRJirN650=;
+        bh=WgJ8CrolknwjFwN0OyobejCpVpfKcAujTpI4FL8b0/s=; b=PsTiMnr8r12HO3sDikExAkyprm
+        ZtqNizIeluuRqhu3jAMSreEmA0CSPK65eV2AnRr4ORczF6xxNtAenmrbvmaqMT41fMnRdAB5X0JHE
+        B+ArNrC5lSsdXJUDXNn7HFt+b2y0UYlA5AswFd1TUpSIaRbe0/4vkasW6gEdsBP+WSlo=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1qXnjJ-004dQH-MF; Sun, 20 Aug 2023 21:04:53 +0200
-Date:   Sun, 20 Aug 2023 21:04:53 +0200
+        id 1qXntC-004dSm-Le; Sun, 20 Aug 2023 21:15:06 +0200
+Date:   Sun, 20 Aug 2023 21:15:06 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH v2 3/4] net: stmmac: Add glue layer for Loongson-1 SoC
-Message-ID: <c3454ad9-1874-4301-b1b1-4f76886802fb@lunn.ch>
-References: <20230816111310.1656224-1-keguang.zhang@gmail.com>
- <20230816111310.1656224-4-keguang.zhang@gmail.com>
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v4 2/9] net: stmmac: xgmac: add more feature
+ parsing from hw cap
+Message-ID: <9e55fd03-6b05-46de-874e-01d9cdbf4524@lunn.ch>
+References: <20230816152926.4093-1-jszhang@kernel.org>
+ <20230816152926.4093-3-jszhang@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230816111310.1656224-4-keguang.zhang@gmail.com>
+In-Reply-To: <20230816152926.4093-3-jszhang@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
@@ -59,42 +59,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +static int ls1b_dwmac_syscon_init(struct plat_stmmacenet_data *plat)
-> +{
-> +	struct ls1x_dwmac *dwmac = plat->bsp_priv;
-> +	struct regmap_field **regmap_fields = dwmac->regmap_fields;
-> +
-> +	if (plat->bus_id) {
-> +		regmap_field_write(regmap_fields[GMAC1_USE_UART1], 1);
-> +		regmap_field_write(regmap_fields[GMAC1_USE_UART0], 1);
-> +
-> +		switch (plat->phy_interface) {
-> +		case PHY_INTERFACE_MODE_RGMII:
-> +			regmap_field_write(regmap_fields[GMAC1_USE_TXCLK], 0);
-> +			regmap_field_write(regmap_fields[GMAC1_USE_PWM23], 0);
-> +			break;
+On Wed, Aug 16, 2023 at 11:29:19PM +0800, Jisheng Zhang wrote:
+> The XGMAC_HWFEAT_GMIISEL bit also indicates whether support 10/100Mbps
+> or not.
 
-What about the other three RGMII modes? Plain rgmii is pretty unusual,
-rgmii-id is the most used.
+The commit message fails to explain the 'Why?' question. GMII does
+normally imply 10/100/1000, so i would expect dma_cap->mbps_1000 also
+implies 10/100/1000? So why also set dma_cap->mbps_10_100?
 
-> +		case PHY_INTERFACE_MODE_MII:
-> +			regmap_field_write(regmap_fields[GMAC1_USE_TXCLK], 1);
-> +			regmap_field_write(regmap_fields[GMAC1_USE_PWM23], 1);
-> +			break;
-> +		default:
-> +			dev_err(dwmac->dev, "Unsupported PHY mode %u\n",
-> +				plat->phy_interface);
-> +			return -EOPNOTSUPP;
-> +		}
-> +
-> +		regmap_field_write(regmap_fields[GMAC1_SHUT], 0);
-> +	} else {
-> +		switch (plat->phy_interface) {
-> +		case PHY_INTERFACE_MODE_RGMII:
-> +			regmap_field_write(regmap_fields[GMAC0_USE_TXCLK], 0);
-> +			regmap_field_write(regmap_fields[GMAC0_USE_PWM01], 0);
-> +			break;
+Maybe a better change would be to modify:
 
-same here.
+        seq_printf(seq, "\t1000 Mbps: %s\n",
+                   (priv->dma_cap.mbps_1000) ? "Y" : "N");
 
-     Andrew
+to actually say 10/100/1000 Mbps? It does not appear this is used for
+anything other than debugfs?
+
+	Andrew
