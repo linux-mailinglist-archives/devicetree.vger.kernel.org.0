@@ -2,163 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ACBC781CA7
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 08:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20E07781CB4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 08:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229877AbjHTGbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 02:31:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49814 "EHLO
+        id S229789AbjHTG4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 02:56:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbjHTGbI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 02:31:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BD62120F
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 23:24:22 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-997c4107d62so292732066b.0
-        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 23:24:21 -0700 (PDT)
+        with ESMTP id S230136AbjHTG4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 02:56:04 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1172C359A
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 23:29:12 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so3545001e87.1
+        for <devicetree@vger.kernel.org>; Sat, 19 Aug 2023 23:29:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692512660; x=1693117460;
+        d=linaro.org; s=google; t=1692512950; x=1693117750;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=joLgLL1PJeNBYVJ1vdHU5vdt5oa9jpreW5jsUy4YGmw=;
-        b=Ym/WkQc3DaAmwTEY/w0L8y29ougMW9IOz9Ol6pw9gVLPQVplWvTpfeBvYTK4YyADJt
-         U7esD7gJD354LFpM8UlIbVALTXv5lvSe4r9EOel+gMG/KU/pLcnrFuNAGrenWWhVI66k
-         /8XBtitBUZXuy652oJopfBsTRFMbG98hJoe5w8RAuUlDk5uj5X5hb4hVQutGXeUnErOL
-         IuXz5J2nE6CefMjWvGH7nC7r9Cq9aVEsp0OW5VECNZJTT9csZ1PkMqGI1y78CsJwHZUQ
-         c5l3Z8RmxQgHOd0yyIwMUSNEdky0rreZfevL8rMInO8sPXjnGpjNcEsM90/cvLIZCfhA
-         mM/A==
+        bh=uc6r5jrTl5KRxyULV2rwJI3udN950yCQjtWBO1UHlTE=;
+        b=A188BHQPbmwpEsQTM+O3IWYN/sJ+IGMzg0pNy7H09QX3+hs1UJ03dS701+yBeYbWsz
+         vQCr34Ui9zvNsIc+BMqDA5ppu5HVfTaUCNmYJsfkMqxUkFI2CFdRhsFAVNm68Eq4fdew
+         rivzw9rDqunEQt/FH7Lr6TS/mEEbFNpI69sBt4+zqQgcB1IqE5TPVQMbOJ51e5UTDhTV
+         bdNfuylUfspFU6T8I23s9pppWFgfp9Hu8yACDrXA/QJ3xNhTggfM8KdBxavQKf/vaGn2
+         f1AUrpufiIJDoCnG8htpXOwOhjhW5cVqzDZAT5PNN6E7PKtUIai9MK4xtGUzhtfsK3Br
+         STsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692512660; x=1693117460;
+        d=1e100.net; s=20221208; t=1692512950; x=1693117750;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=joLgLL1PJeNBYVJ1vdHU5vdt5oa9jpreW5jsUy4YGmw=;
-        b=esDxo0XhXgnKTVEEb/Bcu/Q52E4WfLyVdTJ3jkeEJt2qMfSZyawvMll6wH25mWoi/Y
-         HDqiaLGYc0bdRt0W8TG9tMHz+B8/ptg0Tsmcbw/XMXxc/VjvmfRPzxrpFJNvfX4xJO25
-         1JCHqpHelslquXhbrqWJ9KjnqRcH54wxoLi6/+RHf+2BIH8YPyp4kBBIw4mQwAGYSNhJ
-         VUPGx2sK+eE6z3MNCg6H/u1iMIpk5AlGxP4hw6UDMmbgmj6KyXNOhGOcrfSZm2kjsXje
-         W4pgsFlPRaaGxwzG4gtI5dBgJbCrJou+iaRaDxcNLA/0iTAiaN08N+vxKywKc9Y3cHqB
-         FXbg==
-X-Gm-Message-State: AOJu0YyRLlax7XXooXKlbJtzPCYJpvnDPRyzYmmnJhTdlEOoGyEKG1DR
-        S1c+nn7SRKf+be4l6xl+sCyHtw==
-X-Google-Smtp-Source: AGHT+IEXzXHWO65GWmnQ4NiP0DImCrr2SQNIoQJOUj1oPQV6MhaCWuuQqfH18Ua9Noffj1moWLI2mQ==
-X-Received: by 2002:a17:906:3051:b0:99c:f47a:2354 with SMTP id d17-20020a170906305100b0099cf47a2354mr2686060ejd.70.1692512660451;
-        Sat, 19 Aug 2023 23:24:20 -0700 (PDT)
+        bh=uc6r5jrTl5KRxyULV2rwJI3udN950yCQjtWBO1UHlTE=;
+        b=Fdi3Wj7GR+OZppYHn5pcVU8Bjtbnb+JBXwLs2AcFTyqH+0DWCM134Y//FLRB0IVHlj
+         AMMlViHhe2j0L9HzHKCA2KQTxKbkkWc5MeW3MaZjfHDyf3gORUQDINCRsuMrblop6SHK
+         5zCBRZis4VA6/nOuIZmAlQLP2Qnd7QJHI8wZUAnLR0YKdUxEO+q2+raRvEJrcpqaONfz
+         4TQCZwTQh7h/NSHq9iEko5kh2ZGfT8EPGXDBN3lOtGBciImu2QuBoR8dnRWy2KEZ4iw3
+         1xYJcicMClI9BdE4LmzrAJBlz7QbocstUraESO3D9KV3ElL89ZCgWc5JTrNPErJdCCPk
+         XEEg==
+X-Gm-Message-State: AOJu0YyrZXYDFrYFDRS8kdWwy15qvm0vVbSC1S6qK313xQpy/j/C6SvC
+        H3J2lF3iGgUJNajXtiyKGRKu4g==
+X-Google-Smtp-Source: AGHT+IHGiLfTKXd3POBlHix4H5KyMKF6QEFcujN4xuJyCP7MzrXaQscwFy+zspuseAs8dz2GHwW3BA==
+X-Received: by 2002:a05:6512:39ca:b0:4fe:82a7:814d with SMTP id k10-20020a05651239ca00b004fe82a7814dmr2334975lfu.48.1692512949514;
+        Sat, 19 Aug 2023 23:29:09 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id q20-20020a17090622d400b0099cce6f7d50sm4034493eja.64.2023.08.19.23.24.19
+        by smtp.gmail.com with ESMTPSA id sb25-20020a170906edd900b0098ec690e6d7sm4029867ejb.73.2023.08.19.23.29.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Aug 2023 23:24:19 -0700 (PDT)
-Message-ID: <a13e829e-f238-41e8-1877-50c8cf009547@linaro.org>
-Date:   Sun, 20 Aug 2023 08:24:18 +0200
+        Sat, 19 Aug 2023 23:29:09 -0700 (PDT)
+Message-ID: <a5c01c63-9914-65d6-7b08-090e08d491a0@linaro.org>
+Date:   Sun, 20 Aug 2023 08:29:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 2/2] USB: typec: Add TI TPS25750 USB Type-C controller
+Subject: Re: [PATCH] dt-bindings: iio: adc: Add TI TWL603X GPADC
 Content-Language: en-US
-To:     Abdel Alkuor <alkuor@gmail.com>, heikki.krogerus@linux.intel.com,
-        devicetree@vger.kernel.org
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        abdelalkuor@geotab.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <cover.1692507038.git.abdelalkuor@geotab.com>
- <9ad92e760e67dfdc740f5b0a32a9c1dbb2342fed.1692507038.git.abdelalkuor@geotab.com>
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+References: <20230816202614.324457-1-andreas@kemnade.info>
+ <426d78d6-9fa6-bfeb-b36a-fba264097a27@linaro.org>
+ <20230819221903.726a1c39@aktux>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9ad92e760e67dfdc740f5b0a32a9c1dbb2342fed.1692507038.git.abdelalkuor@geotab.com>
+In-Reply-To: <20230819221903.726a1c39@aktux>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2023 07:23, Abdel Alkuor wrote:
-> From: Abdel Alkuor <abdelalkuor@geotab.com>
+On 19/08/2023 22:19, Andreas Kemnade wrote:
+>>> +---
+>>> +$id: http://devicetree.org/schemas/iio/adc/ti,twl6030-gpadc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: GPADC subsystem in the TWL6030 power module
+>>> +
+>>> +maintainers:
+>>> +  - Jonathan Cameron <jic23@kernel.org>  
+>>
+>> This should be rather someone knowing or having or caring about this
+>> particular hardware, not subsystem maintainer.
+>>
+> Hmm, I have the twl6032, but not the twl6030. So probably
+> Tony (OMAP-Maintainer) or me?
+
+Yes. If you have a device, it's even better, but "caring about" or
+having datasheet is enough.
+
 > 
-> TPS25750 is USB Type-C controller and Power Delivery controller.
-> 
-> TPS25750 needs to be configured after a cold reset. The configuration
-> can be applied either from an external EEPROM connected to the
-> controller or by a host using I2C. TI provides an online GUI that
-> can be used to generate the configuration binary.
-> Tool link: https://tinyurl.com/2s3watcm
-> P.S. It requires a TI account to be able to use the tool.
-> 
-...
+>>> +
+>>> +description:
+>>> +  The GPADC subsystem in the TWL6030 consists of a 10-bit ADC
+>>> +  combined with a 15-input analog multiplexer.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: ti,twl6030-gpadc  
+>>
+>> Devices look fairly similar. Same properties. Why aren't they in one
+>> binding (enum here instead)?
+>>
+> I hope it can be done. See commit message. Maybe my reasoning is wrong.
 
+The parent device binding can expect the compatible for the child and it
+will have the same effect in total as $ref to this binding. The only
+difference would be that running dtbs_check on parent binding would not
+spot all the issues in the child node. One need to run dtbs_check with
+both bindings.
 
-> +
-> +static void tps25750_remove(struct i2c_client *client)
-> +{
-> +	struct tps25750 *tps = i2c_get_clientdata(client);
-> +
-> +	tps25750_disconnect(tps, 0);
-> +	typec_unregister_port(tps->port);
-> +	usb_role_switch_put(tps->role_sw);
-> +
-> +	/* clear the patch by a hard reset */
-> +	tps25750_exec_normal_cmd(tps, TPS_4CC_GAID);
-> +}
-> +
-> +static int __maybe_unused tps25750_suspend(struct device *dev)
-> +{
-> +	/* TODO: should we remove the patch? */
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused tps25750_resume(struct device *dev)
-> +{
-> +	struct i2c_client *client = to_i2c_client(dev);
-> +	struct tps25750 *tps = i2c_get_clientdata(client);
-> +
-> +	/* The controller needs to be reinitialized again
-
-Format is:
-
-/*
- * The....
-
-> +	 * if it is powered off as config is not persisted
-> +	 */
-> +	return tps25750_init(tps);
-> +}
-> +
-> +static const struct dev_pm_ops tps25750_pm_ops = {
-> +	SET_SYSTEM_SLEEP_PM_OPS(tps25750_suspend, tps25750_resume)
-> +};
-> +
-> +static const struct of_device_id tps25750_of_match[] = {
-> +	{ .compatible = "ti,tps25750", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, tps25750_of_match);
-> +
-> +static const struct i2c_device_id tps25750_id[] = {
-> +	{ "tps25750" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(i2c, tps25750_id);
-> +
-> +static struct i2c_driver tps25750_i2c_driver = {
-> +	.driver = {
-> +		.name = "tps25750",
-> +		.pm = pm_ptr(&tps25750_pm_ops),
-> +		.of_match_table = of_match_ptr(tps25750_of_match),
-
-Drop of_match_ptr(). It will cause warnings.
-
-> +	},
-> +	.probe_new = tps25750_probe,
-> +	.remove = tps25750_remove,
-> +	.id_table = tps25750_id,
-> +};
-> +module_i2c_driver(tps25750_i2c_driver);
+For an example:
+Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
 
 
 Best regards,
