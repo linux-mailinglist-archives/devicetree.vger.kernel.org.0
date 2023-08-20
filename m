@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D3C9781E21
+	by mail.lfdr.de (Postfix) with ESMTP id 66997781E22
 	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 16:25:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbjHTOZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231176AbjHTOZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 20 Aug 2023 10:25:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46618 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231194AbjHTOZU (ORCPT
+        with ESMTP id S231201AbjHTOZU (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 10:25:20 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 113C82D58
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C9AA2D64
         for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 07:20:42 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bcb0b973a5so13337151fa.3
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 07:20:41 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bcb89b476bso6501921fa.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 07:20:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692541240; x=1693146040;
+        d=linaro.org; s=google; t=1692541241; x=1693146041;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=pUMR3LqJcxqZxpTo1E2SP3COlMrchmG5hYlUxy2vLhI=;
-        b=qnumYkRMy5qjqNn91jKN25UnEPXHQG3fjXMmnvRFnsHQL1bGXU6j0EK7O5R3lhiRxs
-         +TrrnufeDtMXTb4guljQcN7TwJ9iTTn+MccPtvrKDvrbq7hoOpo9tCLiRb5IlBV8bTIw
-         eYWLqrBmqH+NXhipTNcpTc/QVy490kl7BPrLHm/fXzYNCCHNr1rYfero1f+PF76Bnz/x
-         UkSVUp5KrChTwAH1vVtUQB6fq2M8DIbZbDmaDo3iVZadmU5JE2eHAzQpqYX/zxoiDeOE
-         tRVCSWX0QUv/FauB9T4l21HhHrH4z2+D7xHdIK8lM+E11CD1XJuBk34eef99ZIikquRh
-         23Bw==
+        bh=Xaz/Z2gROgUqdCrbEqE7kf2HF6hn0xEJoeMLqJ3bPE4=;
+        b=ZZsXwtszIOND0lf3DmKyw1O8R5HC8fh3ZyTcg+3uAHgZpzPr/m1WfGFDeub0yPt5Y3
+         H1ZMlxF4bsDI72TNwH+mPF+wR2f6rF1Aqicuc/9p792F7uE2I/bK1G8jDlLXmtvQ2rxP
+         Wtbc41mIDBzGh4mNPcfwCoVkKXjnJtz2p3fRQ5MMQE9vCyLFOFna2QPDVmDUf3dlkRZE
+         Ziof1Gw88Sk479MArNTWBrt6MUnnQBY7XOLg4Y8LbZfEvy5Zqnc6IbnWFbQTNrUj+Yjd
+         NI8ej4DQxLMyJaajz7SMrpicovHNNjWmfkzfr6LjQrUxhYX24iyXY3P8tgPdGfkfmzBJ
+         WM7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692541240; x=1693146040;
+        d=1e100.net; s=20221208; t=1692541241; x=1693146041;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pUMR3LqJcxqZxpTo1E2SP3COlMrchmG5hYlUxy2vLhI=;
-        b=DwU2pWbiBeN2261k1ow3jIdV3SBCGNm5GwEDthkEVhYvDSuHB5v+SLOCwOaKOnm1Wa
-         HngVrRf+rMd++DWUBkhIkVgtupcuAiFLNFmnqKcjoU432qqU6/EpPcpLUX5d581LMnCP
-         c9ylU8Yf4W7R+Nydi2ydROk0hneayGWBmVYdk59BehG/IREzhQhq9XuKDPfGvbCaHdqP
-         boAI/ogG9Czn2sMyPaf0GruN3rDphf0Hk2TNzuItjnKMnr1ITeib5V1KTnfcrkP3+OFC
-         NTj9zckAN4ztZQ9vcZtoAuSZMYCJQHcHbCO5ZirrEuvqzJ/9EbeIwbAe/bYm5pnuvhK7
-         1+tw==
-X-Gm-Message-State: AOJu0YzLtUknMUbN4IUExOX58PWmWj8Cl5/qno51bKjHfA39KN/LQtFr
-        QHlKAIStZUoKQx1Lq7lD4AgLfQ==
-X-Google-Smtp-Source: AGHT+IH9SBm8UHcwiZJ6hZkUq5f62BcCkWHDyWeTvgtXUbCl1CrVzCB/6GmGPVuFaN4xnmAlUYFBAw==
-X-Received: by 2002:a2e:7019:0:b0:2b9:acad:b4b8 with SMTP id l25-20020a2e7019000000b002b9acadb4b8mr2948261ljc.52.1692541240124;
+        bh=Xaz/Z2gROgUqdCrbEqE7kf2HF6hn0xEJoeMLqJ3bPE4=;
+        b=FISA9nGPqmwDjunVx6/LV6Uslx8KkV+RC4WTnaTQ2Cn05OrK9nE9htwUFo+JDl9BmA
+         UjDXfzw4o6y2LBbJJ6kWji/wupmKZgNrPgKoLZEHRT/qrRK8YOXkl8F61petjOyl/w1E
+         IZQMBE/ADhnbNGHvC+vNtfFkVbCzSRebPY0rl2UOi9wTS0my6KIcml8sMehVrj0mu0Q9
+         26JvIVxIW0D87A6ACmCDPjxhC89Qg/jReHyOO+vjFcl6dpoI5t5xWhvI4Or25/vJhav6
+         Xss/inP4i7Bi6dGCtPHRlrlfTRp63SsaKGSR8K5YFjxigAUzqJ5tChb/EEK9svjtkm5N
+         yp0w==
+X-Gm-Message-State: AOJu0YzpmRFGxRD+V2s2o7m3M3w8UBAjTm+nhBdjRk1JStLsu/Rjz6fF
+        run8rufBvXTWCcvprVX8/LfwUw==
+X-Google-Smtp-Source: AGHT+IH9U5D+XGWeGrx7lfxxHLGL8yPvLKJS7Cr9a8UqUWnqXSy0Aw/utFw/0B/57QB/xdSWn6gx2A==
+X-Received: by 2002:a2e:a310:0:b0:2b7:3656:c594 with SMTP id l16-20020a2ea310000000b002b73656c594mr3345023lje.3.1692541240850;
         Sun, 20 Aug 2023 07:20:40 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id n9-20020a2e7209000000b002b9e501a6acsm1706222ljc.3.2023.08.20.07.20.39
+        by smtp.gmail.com with ESMTPSA id n9-20020a2e7209000000b002b9e501a6acsm1706222ljc.3.2023.08.20.07.20.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Aug 2023 07:20:39 -0700 (PDT)
+        Sun, 20 Aug 2023 07:20:40 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,11 +60,10 @@ To:     Andy Gross <agross@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Subject: [PATCH v3 03/18] phy: qcom-qmp-pcie: drop ln_shrd from v5_20 config
-Date:   Sun, 20 Aug 2023 17:20:20 +0300
-Message-Id: <20230820142035.89903-4-dmitry.baryshkov@linaro.org>
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v3 04/18] phy: qcom-qmp-pcie: keep offset tables sorted
+Date:   Sun, 20 Aug 2023 17:20:21 +0300
+Message-Id: <20230820142035.89903-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
 References: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
@@ -79,28 +78,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is no shared lane config for v5.20 PHYs, it is only present on
-SM8550 gen4x2.
+In order to simplify adding new PHY configurations, keep register
+offset structs sorted by the version.
 
 Fixes: a05b6d5135ec ("phy: qcom-qmp-pcie: add support for sa8775p")
-Cc: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-index e15ea113b2db..373f959e439d 100644
+index 373f959e439d..cdee109c398d 100644
 --- a/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
 +++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcie.c
-@@ -2342,7 +2342,6 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_20 = {
- 	.rx		= 0x0200,
- 	.tx2		= 0x0800,
- 	.rx2		= 0x0a00,
--	.ln_shrd	= 0x0e00,
+@@ -2323,17 +2323,6 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v5 = {
+ 	.rx2		= 0x1800,
  };
  
- static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_30 = {
+-static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_20 = {
+-	.serdes		= 0x1000,
+-	.pcs		= 0x1200,
+-	.pcs_misc	= 0x1400,
+-	.tx		= 0x0000,
+-	.rx		= 0x0200,
+-	.tx2		= 0x0800,
+-	.rx2		= 0x0a00,
+-	.ln_shrd	= 0x0e00,
+-};
+-
+ static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_20 = {
+ 	.serdes		= 0x1000,
+ 	.pcs		= 0x1200,
+@@ -2354,6 +2343,17 @@ static const struct qmp_pcie_offsets qmp_pcie_offsets_v5_30 = {
+ 	.rx2		= 0x3a00,
+ };
+ 
++static const struct qmp_pcie_offsets qmp_pcie_offsets_v6_20 = {
++	.serdes		= 0x1000,
++	.pcs		= 0x1200,
++	.pcs_misc	= 0x1400,
++	.tx		= 0x0000,
++	.rx		= 0x0200,
++	.tx2		= 0x0800,
++	.rx2		= 0x0a00,
++	.ln_shrd	= 0x0e00,
++};
++
+ static const struct qmp_phy_cfg ipq8074_pciephy_cfg = {
+ 	.lanes			= 1,
+ 
 -- 
 2.39.2
 
