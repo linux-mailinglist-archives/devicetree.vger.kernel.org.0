@@ -2,40 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42776781DCC
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 14:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AD06781DFD
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 15:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230211AbjHTMhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 08:37:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34644 "EHLO
+        id S229556AbjHTNtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 09:49:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbjHTMhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 08:37:52 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE67E4487;
-        Sun, 20 Aug 2023 05:32:47 -0700 (PDT)
-Received: from p200300ccff2b60001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff2b:6000:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qXhbi-002rBh-FG; Sun, 20 Aug 2023 14:32:38 +0200
-Received: from andi by aktux with local (Exim 4.96)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qXhbh-002Dyb-1n;
-        Sun, 20 Aug 2023 14:32:37 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v2] dt-bindings: iio: adc: Add TI TWL603X GPADC
-Date:   Sun, 20 Aug 2023 14:32:29 +0200
-Message-Id: <20230820123229.530371-1-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
+        with ESMTP id S229739AbjHTNtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 09:49:06 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DC59186;
+        Sun, 20 Aug 2023 06:45:11 -0700 (PDT)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E9986866D9;
+        Sun, 20 Aug 2023 15:45:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1692539107;
+        bh=07pf17XIqcF4/faV0+eA61vv8WjjZfA8fHxdCtZpezc=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=KRrSMOKLOl8CakxM+It5170ARBhJ85MRPH3LyqjnJMNKPzJ6lvB/jAu7cs1X1LCFm
+         sl04NSqP/8RFn2iOTewdhx0EcMZSgVp4fwMIgdh+A5On3OB5T8SvEnC75b66LjAjbJ
+         8Pd7LYTf6cBLW5CX+aR+rP7Dvvx06YD7qbigZt8sXwkiV3CPcIS2tXHLPEQ5W7YPtG
+         QGIdcC4QMGuC39gGkXU6tDFJBjKGlwMXCjYHstGDvTuoWwRhg01tjWh0wuq2uat1zh
+         DsIFxbmeEochyZZiILz7OA30Riu3HCjFwIaPiERkbNr+96A52jozgH0goxgMwoPPYT
+         3enuyv82/V4gQ==
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Sun, 20 Aug 2023 10:45:07 -0300
+From:   Fabio Estevam <festevam@denx.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: trivial-devices: Remove the OV5642 entry
+In-Reply-To: <c9758ac5-489e-3fda-9ad2-020a9cc15a04@linaro.org>
+References: <20230801170015.40965-1-festevam@denx.de>
+ <20230801-clobber-attempt-7033f92b3d08@spud>
+ <8b0e048208220b2ae09eb1a3c52219b9@denx.de>
+ <20230801-dividers-chooser-bd0df9b72d91@spud>
+ <f9ab7525f048f3ce814d89f106947c34@denx.de>
+ <20230801-selective-strife-b595804cdb27@spud>
+ <deb6a4e60f37e9764d24e25b8a6d1d97@denx.de>
+ <20230801-reconcile-preamble-8713b6b09ef5@spud>
+ <c9758ac5-489e-3fda-9ad2-020a9cc15a04@linaro.org>
+Message-ID: <35266529fe09c7df7b49189614355e1f@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -43,66 +65,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document TI TWL603X GPADC devicetree bindings.
-A driver is already there, the compatibles are used, but not documented.
+On 20/08/2023 05:14, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- .../bindings/iio/adc/ti,twl6030-gpadc.yaml    | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml
+> Removal from DTS is rather discouraged, because DTS and these nodes
+> could be used in other systems. The best is to fully document the
+> device, regardless whether Linux supports it or not.
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml b/Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml
-new file mode 100644
-index 000000000000..5b075237bcfd
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/ti,twl6030-gpadc.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/adc/ti,twl6030-gpadc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GPADC subsystem in the TWL6030 power module
-+
-+maintainers:
-+  - Andreas Kemnade <andreas@kemnade.info>
-+
-+description:
-+  The GPADC subsystem in the TWL603X consists of a 10-bit ADC
-+  combined with a 15-input analog multiplexer in the TWL6030 resp. a
-+  19-input analog muliplexer in the TWL6032.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,twl6030-gpadc
-+      - ti,twl6032-gpadc
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#io-channel-cells":
-+    const: 1
-+
-+required:
-+  - compatible
-+  - interrupts
-+  - "#io-channel-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    twl {
-+        gpadc {
-+            compatible = "ti,twl6030-gpadc";
-+            interrupts = <3>;
-+            #io-channel-cells = <1>;
-+        };
-+    };
-+...
--- 
-2.39.2
+Right, this was the same recommendation I got from Conor.
 
+Here is v3 that addresses it:
+
+https://lore.kernel.org/linux-media/20230802160326.293420-1-festevam@denx.de/
