@@ -2,233 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D01E0781EE0
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 18:51:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20BC6781EF4
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 19:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230436AbjHTQvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 12:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
+        id S230358AbjHTRQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 13:16:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231367AbjHTQvD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 12:51:03 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A462E173B;
-        Sun, 20 Aug 2023 09:46:59 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37KGkfk9048852;
-        Sun, 20 Aug 2023 11:46:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1692550001;
-        bh=2kROfmY1msGl4GhSS7OfoK4UTRl+GDFpbHoIjtfiL3g=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=erISbEc2JYvvKelclTGUYdtnY/DbSfGwD7wSB91i8xPtImfHEk8n7ydezRSnpsaJa
-         e6CFxFBsynRyY0TMe953D3S07SKsaFO8ORLGnZexOANJP88YEScmjfRh9tbJ8QY1q5
-         965b9oWc+us0+uQfSRN+o/F+Uxbn1U8vYukLWXh8=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37KGkfVt012306
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 20 Aug 2023 11:46:41 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 20
- Aug 2023 11:46:40 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 20 Aug 2023 11:46:40 -0500
-Received: from [10.0.2.15] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37KGkKIn025642;
-        Sun, 20 Aug 2023 11:46:21 -0500
-Message-ID: <530306bc-174e-c75d-40c5-6fa42d69af31@ti.com>
-Date:   Sun, 20 Aug 2023 22:16:12 +0530
+        with ESMTP id S229854AbjHTRQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 13:16:07 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE694F0;
+        Sun, 20 Aug 2023 10:15:19 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6BD2F61D5B;
+        Sun, 20 Aug 2023 17:15:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AD4FC433C8;
+        Sun, 20 Aug 2023 17:15:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692551718;
+        bh=Zkfqr6SI88EBqD7f2xXuMdFWLsYnT+jNapbN+UhZwXU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qcYbvMBsLDLwA0p1ML9ed9neCvmJ7zBgkux6racwXUMZZVDiaH6DY9dKrCsPxqXmm
+         jDmoSSrcwPzwxcuWvZw8JCmaPiP4+CkWMr63Gbzs6NFLNMjuT3uykobNYXv/bk+lqc
+         PvRARadbFhoxXh7t6NUX5W+JSv3/q9DN7V9zNkrWs4p2FyyMFFyaNRPelyeRE0svQF
+         CjdUagjVJdChTfi0yau4sv+w7+4JN7aqsDX/VBmzisOeEGKLhcOnDs2bPj09ocok7N
+         m+/l7EwNYsxKIpPD/Aj+fi236KH5xRkpGKO95YhLHsvvTIxsLtU7ugi4QHPX0OrFaU
+         pKtT9hUh4Mn2Q==
+Date:   Sun, 20 Aug 2023 19:15:11 +0200
+From:   Simon Horman <horms@kernel.org>
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 21/28] net: wan: Add framer framework support
+Message-ID: <ZOJKH0xHpQc4HdUP@vergenet.net>
+References: <cover.1692376360.git.christophe.leroy@csgroup.eu>
+ <5f671caf19be0a9bb7ea7b96a6c86381e243ca4c.1692376361.git.christophe.leroy@csgroup.eu>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: media: Add bindings for Imagination
- E5010 JPEG Encoder driver
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <mchehab@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <laurent.pinchart@ideasonboard.com>, <eugen.hristev@collabora.com>,
-        <ezequiel@vanguardiasur.com.ar>, <u.kleine-koenig@pengutronix.de>,
-        <sakari.ailus@linux.intel.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
-        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
-        <vijayp@ti.com>
-References: <20230816152210.4080779-1-devarsht@ti.com>
- <20230816152210.4080779-2-devarsht@ti.com>
- <7a9bcd78-b544-524c-e944-5fbb0c60e600@linaro.org>
-From:   Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <7a9bcd78-b544-524c-e944-5fbb0c60e600@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5f671caf19be0a9bb7ea7b96a6c86381e243ca4c.1692376361.git.christophe.leroy@csgroup.eu>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-Thanks for the review.
-
-On 19/08/23 19:30, Krzysztof Kozlowski wrote:
-> On 16/08/2023 17:22, Devarsh Thakkar wrote:
->> Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
->> implemented as stateful V4L2 M2M driver.
->>
->> Co-developed-by: David Huang <d-huang@ti.com>
->> Signed-off-by: David Huang <d-huang@ti.com>
->> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->> ---
->> V2: No change
->> V3:
->> - Add vendor specific compatible
->> - Fix commit title and message
->> - Update reg names
->> - Update clocks to 1
->> - Fix dts example with proper naming
+On Fri, Aug 18, 2023 at 06:39:15PM +0200, Christophe Leroy wrote:
+> From: Herve Codina <herve.codina@bootlin.com>
 > 
-> I do not see improvements in the subject.
+> A framer is a component in charge of an E1/T1 line interface.
+> Connected usually to a TDM bus, it converts TDM frames to/from E1/T1
+> frames. It also provides information related to the E1/T1 line.
 > 
-
-Sorry, Will correct in v4.
-
->>
->>   .../bindings/media/img,e5010-jpeg-enc.yaml    | 81 +++++++++++++++++++
->>   MAINTAINERS                                   |  5 ++
->>   2 files changed, 86 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->> new file mode 100644
->> index 000000000000..d105a71ee2ea
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->> @@ -0,0 +1,81 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Imagination E5010 JPEG Encoder
->> +
->> +maintainers:
->> +  - Devarsh Thakkar <devarsht@ti.com>
->> +
->> +description: |
->> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
->> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
->> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
->> +  8Kx8K resolution.
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - const: ti,e5010-jpeg-enc
+> The framer framework provides a set of APIs for the framer drivers
+> (framer provider) to create/destroy a framer and APIs for the framer
+> users (framer consumer) to obtain a reference to the framer, and
+> use the framer.
 > 
-> TI did not make e5010. Use SoC-based compatible.
+> This basic implementation provides a framer abstraction for:
+>  - power on/off the framer
+>  - get the framer status (line state)
+>  - be notified on framer status changes
+>  - get/set the framer configuration
 > 
->> +          - const: img,e5010-jpeg-enc
->> +      - const: img,e5010-jpeg-enc
-> 
-> img,e5010-jpeg-enc cannot be compatible with img,e5010-jpeg-enc. It does
-> not make sense. I guess I did not expect you are going to use what you
-> wrote in v1 directly... I thought it is just about syntax.
-> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
 
-Sorry but I did not understand this fully, the possible compatibles are:
+Hi Christophe and Herve,
 
-1) "ti,am62a-jpeg-enc", "img,e5010-jpeg-enc"
-or
-2)  "img,e5010-jpeg-enc"
+some minor feedback from my side.
 
-anything else will not comply during dtbs_check as shown below :
+...
 
-For e.g. If I use below compatible :
-"img,e5010-jpeg-enc", "img,e5010-jpeg-enc"
+> diff --git a/drivers/net/wan/framer/framer-core.c b/drivers/net/wan/framer/framer-core.c
 
-and run dtbs_check, it throw below error  :
+...
 
-make CHECK_DTBS=y DT_SCHEMA_FILES=media/img,e5010-jpeg-enc.yaml 
-ti/k3-am62a7-sk.dtb
-   LINT    Documentation/devicetree/bindings
-   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-   DTC_CHK arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
-/home/devarsht/ti/linux-next2/linux-next/arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: 
-jpeg-encoder@fd20000: compatible: 'oneOf' conditional failed, one must 
-be fixed:
-         ['img,e5010-jpeg-enc', 'img,e5010-jpeg-enc'] is too long
-         'ti,am62a-jpeg-enc' was expected
-         From schema: 
-/home/devarsht/ti/linux-next2/linux-next/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+> +/**
+> + * framer_create() - create a new framer
+> + * @dev: device that is creating the new framer
+> + * @node: device node of the framer. default to dev->of_node.
+> + * @ops: function pointers for performing framer operations
+> + *
+> + * Called to create a framer using framer framework.
+> + */
+> +struct framer *framer_create(struct device *dev, struct device_node *node,
+> +			     const struct framer_ops *ops)
+> +{
+> +	int ret;
+> +	int id;
+> +	struct framer *framer;
 
+Please arrange local variable declarations for Networking code
+using reverse xmas tree order - longest line to shortest.
 
-Similarly, if I use below compatible :
+https://github.com/ecree-solarflare/xmastree is helpful here.
 
-"ti,am62a-jpeg-enc",
-It throw below error :
+...
 
-make CHECK_DTBS=y DT_SCHEMA_FILES=media/img,e5010-jpeg-enc.yaml 
-ti/k3-am62a7-sk.dtb
-   DTC_CHK arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
-/home/devarsht/ti/linux-next2/linux-next/arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: 
-jpeg-encoder@fd20000: compatible: 'oneOf' conditional failed, one must 
-be fixed:
-         ['ti,am62a-jpeg-enc'] is too short
-         'img,e5010-jpeg-enc' was expected
-         From schema: 
-/home/devarsht/ti/linux-next2/linux-next/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+> diff --git a/include/linux/framer/framer-provider.h b/include/linux/framer/framer-provider.h
 
+...
 
-But If I use either 1) or 2) it does not throw any error.
-Please let me know if I missed to understand your point.
+> +/**
+> + * struct framer_ops - set of function pointers for performing framer operations
+> + * @init: operation to be performed for initializing the framer
+> + * @exit: operation to be performed while exiting
+> + * @power_on: powering on the framer
+> + * @power_off: powering off the framer
+> + * @flags: OR-ed flags (FRAMER_FLAG_*) to ask for core functionality
+> + *          - @FRAMER_FLAG_POLL_STATUS:
+> + *            Ask the core to perfom a polling to get the framer status and
 
->> +
->> +  reg:
->> +    items:
->> +      - description: The E5010 core register region
->> +      - description: The E5010 mmu register region
->> +
->> +  reg-names:
->> +    items:
->> +      - const: core
->> +      - const: mmu
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  clock-names:
->> +    items:
->> +      - const: core_clk
-> 
-> Drop _clk or even drop clock-names. It brings little benefit for
-> one-entry list.
-> 
+nit: perfom -> perform
 
-Agreed, will drop clock-names altogether.
+     checkpatch.pl --codespell is your friend here
 
-Regards
-Devarsh
+> + *            notify consumers on change.
+> + *            The framer should call @framer_notify_status_change() when it
+> + *            detects a status change. This is usally done using interrutps.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+nit: usally -> usually
+     interrutps -> interrupts
+
+...
+
+> diff --git a/include/linux/framer/framer.h b/include/linux/framer/framer.h
+> new file mode 100644
+> index 000000000000..0bee7135142f
+> --- /dev/null
+> +++ b/include/linux/framer/framer.h
+> @@ -0,0 +1,199 @@
+> +/* SPDX-License-Identifier: GPL-2.0-or-later */
+> +/*
+> + * Generic framer header file
+> + *
+> + * Copyright 2023 CS GROUP France
+> + *
+> + * Author: Herve Codina <herve.codina@bootlin.com>
+> + */
+> +
+> +#ifndef __DRIVERS_FRAMER_H
+> +#define __DRIVERS_FRAMER_H
+> +
+> +#include <linux/err.h>
+> +#include <linux/mutex.h>
+> +#include <linux/notifier.h>
+> +#include <linux/of.h>
+> +#include <linux/device.h>
+> +#include <linux/workqueue.h>
+> +
+> +/**
+> + * enum framer_iface - Framer interface
+
+As this is a kernel-doc, please include documentation for
+the defined constants: FRAMER_IFACE_E1 and FRAMER_IFACE_T1.
+
+As flagged by: ./scripts/kernel-doc -none
+
+> + */
+> +enum framer_iface {
+> +	FRAMER_IFACE_E1,      /* E1 interface */
+> +	FRAMER_IFACE_T1,      /* T1 interface */
+> +};
+> +
+> +/**
+> + * enum framer_clock_mode - Framer clock mode
+
+Likewise here too.
+
+Also, nit: framer_clock_mode -> framer_clock_type
+
+> + */
+> +enum framer_clock_type {
+> +	FRAMER_CLOCK_EXT, /* External clock */
+> +	FRAMER_CLOCK_INT, /* Internal clock */
+> +};
+> +
+> +/**
+> + * struct framer_configuration - Framer configuration
+
+nit: framer_configuration -> framer_config
+
+> + * @line_iface: Framer line interface
+> + * @clock_mode: Framer clock type
+> + * @clock_rate: Framer clock rate
+> + */
+> +struct framer_config {
+> +	enum framer_iface iface;
+> +	enum framer_clock_type clock_type;
+> +	unsigned long line_clock_rate;
+> +};
+> +
+> +/**
+> + * struct framer_status - Framer status
+> + * @link_is_on: Framer link state. true, the link is on, false, the link is off.
+> + */
+> +struct framer_status {
+> +	bool link_is_on;
+> +};
+> +
+> +/**
+> + * framer_event - event available for notification
+
+nit: framer_event -> enum framer_event
+
+A~d please document FRAMER_EVENT_STATUS in the kernel doc too.
+
+> + */
+> +enum framer_event {
+> +	FRAMER_EVENT_STATUS,	/* Event notified on framer_status changes */
+> +};
+
+...
