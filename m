@@ -2,57 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 623DE781EC3
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 17:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D01E0781EE0
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 18:51:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbjHTPkK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 11:40:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
+        id S230436AbjHTQvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 12:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230224AbjHTPkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 11:40:08 -0400
-Received: from mxout4.routing.net (mxout4.routing.net [IPv6:2a03:2900:1:a::9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E2C54483;
-        Sun, 20 Aug 2023 08:40:01 -0700 (PDT)
-Received: from mxbox1.masterlogin.de (unknown [192.168.10.88])
-        by mxout4.routing.net (Postfix) with ESMTP id E43BE1006A2;
-        Sun, 20 Aug 2023 15:31:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1692545513;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=09XlR83YFSi4NRf25+3bw/2BaTp3RGKRQHRUPxLTGrw=;
-        b=aA34mCShWIjt/OJuI9kgsex39Pl5HOVtnaKoyii24yUdlkhPuvy543fX8VSs2nOerU6Iul
-        QhfpBiF9D2hAAv1PjGbh1yjgCBj/To+Qndxs9B3zcDQpE+5G8Hq6xFZVkMOmIj9F4UHqj7
-        stwlfqHakLX6UpIlErcQ2uBz/ofh6+0=
-Received: from frank-G5.. (fttx-pool-80.245.78.65.bambit.de [80.245.78.65])
-        by mxbox1.masterlogin.de (Postfix) with ESMTPSA id 51506401CF;
-        Sun, 20 Aug 2023 15:31:53 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 3/3] arm64: dts: mt7986: change thermal trips on BPI-R3
-Date:   Sun, 20 Aug 2023 17:31:35 +0200
-Message-Id: <20230820153135.42588-4-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230820153135.42588-1-linux@fw-web.de>
-References: <20230820153135.42588-1-linux@fw-web.de>
+        with ESMTP id S231367AbjHTQvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 12:51:03 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A462E173B;
+        Sun, 20 Aug 2023 09:46:59 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37KGkfk9048852;
+        Sun, 20 Aug 2023 11:46:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692550001;
+        bh=2kROfmY1msGl4GhSS7OfoK4UTRl+GDFpbHoIjtfiL3g=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=erISbEc2JYvvKelclTGUYdtnY/DbSfGwD7wSB91i8xPtImfHEk8n7ydezRSnpsaJa
+         e6CFxFBsynRyY0TMe953D3S07SKsaFO8ORLGnZexOANJP88YEScmjfRh9tbJ8QY1q5
+         965b9oWc+us0+uQfSRN+o/F+Uxbn1U8vYukLWXh8=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37KGkfVt012306
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 20 Aug 2023 11:46:41 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 20
+ Aug 2023 11:46:40 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Sun, 20 Aug 2023 11:46:40 -0500
+Received: from [10.0.2.15] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37KGkKIn025642;
+        Sun, 20 Aug 2023 11:46:21 -0500
+Message-ID: <530306bc-174e-c75d-40c5-6fa42d69af31@ti.com>
+Date:   Sun, 20 Aug 2023 22:16:12 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 58ee28ff-36e2-45c9-af2e-5d6e67be8ab5
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 1/4] dt-bindings: media: Add bindings for Imagination
+ E5010 JPEG Encoder driver
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <mchehab@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <laurent.pinchart@ideasonboard.com>, <eugen.hristev@collabora.com>,
+        <ezequiel@vanguardiasur.com.ar>, <u.kleine-koenig@pengutronix.de>,
+        <sakari.ailus@linux.intel.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <vigneshr@ti.com>, <a-bhatia1@ti.com>, <j-luthra@ti.com>,
+        <b-brnich@ti.com>, <detheridge@ti.com>, <p-mantena@ti.com>,
+        <vijayp@ti.com>
+References: <20230816152210.4080779-1-devarsht@ti.com>
+ <20230816152210.4080779-2-devarsht@ti.com>
+ <7a9bcd78-b544-524c-e944-5fbb0c60e600@linaro.org>
+From:   Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <7a9bcd78-b544-524c-e944-5fbb0c60e600@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-8.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,43 +76,159 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Hi Krzysztof,
 
-Apply new naming after mt7986 thermal trips were changed.
+Thanks for the review.
 
-Fixes: c26f779a2295 ("arm64: dts: mt7986: add pwm-fan and cooling-maps to BPI-R3 dts")
-Suggested-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- .../boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts      | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+On 19/08/23 19:30, Krzysztof Kozlowski wrote:
+> On 16/08/2023 17:22, Devarsh Thakkar wrote:
+>> Add dt-bindings for Imagination E5010 JPEG Encoder driver which is
+>> implemented as stateful V4L2 M2M driver.
+>>
+>> Co-developed-by: David Huang <d-huang@ti.com>
+>> Signed-off-by: David Huang <d-huang@ti.com>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> ---
+>> V2: No change
+>> V3:
+>> - Add vendor specific compatible
+>> - Fix commit title and message
+>> - Update reg names
+>> - Update clocks to 1
+>> - Fix dts example with proper naming
+> 
+> I do not see improvements in the subject.
+> 
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-index f9702284607a..b876e501216b 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dts
-@@ -152,16 +152,16 @@ cpu-active-high {
- 			trip = <&cpu_trip_active_high>;
- 		};
- 
--		cpu-active-low {
-+		cpu-active-med {
- 			/* active: set fan to cooling level 1 */
- 			cooling-device = <&fan 1 1>;
--			trip = <&cpu_trip_active_low>;
-+			trip = <&cpu_trip_active_med>;
- 		};
- 
--		cpu-passive {
--			/* passive: set fan to cooling level 0 */
-+		cpu-active-low {
-+			/* active: set fan to cooling level 0 */
- 			cooling-device = <&fan 0 0>;
--			trip = <&cpu_trip_passive>;
-+			trip = <&cpu_trip_active_low>;
- 		};
- 	};
- };
--- 
-2.34.1
+Sorry, Will correct in v4.
 
+>>
+>>   .../bindings/media/img,e5010-jpeg-enc.yaml    | 81 +++++++++++++++++++
+>>   MAINTAINERS                                   |  5 ++
+>>   2 files changed, 86 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> new file mode 100644
+>> index 000000000000..d105a71ee2ea
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> @@ -0,0 +1,81 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Imagination E5010 JPEG Encoder
+>> +
+>> +maintainers:
+>> +  - Devarsh Thakkar <devarsht@ti.com>
+>> +
+>> +description: |
+>> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
+>> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
+>> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
+>> +  8Kx8K resolution.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: ti,e5010-jpeg-enc
+> 
+> TI did not make e5010. Use SoC-based compatible.
+> 
+>> +          - const: img,e5010-jpeg-enc
+>> +      - const: img,e5010-jpeg-enc
+> 
+> img,e5010-jpeg-enc cannot be compatible with img,e5010-jpeg-enc. It does
+> not make sense. I guess I did not expect you are going to use what you
+> wrote in v1 directly... I thought it is just about syntax.
+> 
+
+Sorry but I did not understand this fully, the possible compatibles are:
+
+1) "ti,am62a-jpeg-enc", "img,e5010-jpeg-enc"
+or
+2)  "img,e5010-jpeg-enc"
+
+anything else will not comply during dtbs_check as shown below :
+
+For e.g. If I use below compatible :
+"img,e5010-jpeg-enc", "img,e5010-jpeg-enc"
+
+and run dtbs_check, it throw below error  :
+
+make CHECK_DTBS=y DT_SCHEMA_FILES=media/img,e5010-jpeg-enc.yaml 
+ti/k3-am62a7-sk.dtb
+   LINT    Documentation/devicetree/bindings
+   CHKDT   Documentation/devicetree/bindings/processed-schema.json
+   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+   DTC_CHK arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
+/home/devarsht/ti/linux-next2/linux-next/arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: 
+jpeg-encoder@fd20000: compatible: 'oneOf' conditional failed, one must 
+be fixed:
+         ['img,e5010-jpeg-enc', 'img,e5010-jpeg-enc'] is too long
+         'ti,am62a-jpeg-enc' was expected
+         From schema: 
+/home/devarsht/ti/linux-next2/linux-next/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+
+
+Similarly, if I use below compatible :
+
+"ti,am62a-jpeg-enc",
+It throw below error :
+
+make CHECK_DTBS=y DT_SCHEMA_FILES=media/img,e5010-jpeg-enc.yaml 
+ti/k3-am62a7-sk.dtb
+   DTC_CHK arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb
+/home/devarsht/ti/linux-next2/linux-next/arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: 
+jpeg-encoder@fd20000: compatible: 'oneOf' conditional failed, one must 
+be fixed:
+         ['ti,am62a-jpeg-enc'] is too short
+         'img,e5010-jpeg-enc' was expected
+         From schema: 
+/home/devarsht/ti/linux-next2/linux-next/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+
+
+But If I use either 1) or 2) it does not throw any error.
+Please let me know if I missed to understand your point.
+
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: The E5010 core register region
+>> +      - description: The E5010 mmu register region
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: mmu
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core_clk
+> 
+> Drop _clk or even drop clock-names. It brings little benefit for
+> one-entry list.
+> 
+
+Agreed, will drop clock-names altogether.
+
+Regards
+Devarsh
+
+> 
+> Best regards,
+> Krzysztof
+> 
