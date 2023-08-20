@@ -2,105 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82EC5781F45
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 20:32:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD99E781F60
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 21:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbjHTScD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 14:32:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33800 "EHLO
+        id S231601AbjHTTHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 15:07:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231259AbjHTScB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 14:32:01 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36981BC8;
-        Sun, 20 Aug 2023 11:28:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5B27961A8D;
-        Sun, 20 Aug 2023 18:28:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A811C433C8;
-        Sun, 20 Aug 2023 18:28:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692556106;
-        bh=GqYN9bHJd1JVgYtzvKeFocBkDRzHfTLEqEawKra5ziE=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=KfvLNy6upAHsQAyCXGA+nkttHkHbs3vrZ3ae3Vhve8xE4ZjKpQOLAIEt8W70ZDe/w
-         1X/EayBvDYRuCbP486WSreuXtUZAu6sV+bhBCpaWRhvhKlobuw42+q7+afzye6g+WW
-         lHT3YzL+H91jiiD8olXJDV2JbBeGi3rSr0lccW/mbgKG3n9ngudWkDIdEteqaYIEp0
-         jNL3h6QAdv0l+RAxa7a8kaqfNhPl9f4QM1mUexwsNg46joVBnAO090sGE5YOKrUsyC
-         gch5rctP0xUZY/Wew4BZ9MZXRQrpe+OWlFUe2WgksgM4G2/kI0/oB96DYgPmP8fBaT
-         9P5BC4qRnWFmQ==
-Received: (nullmailer pid 4142974 invoked by uid 1000);
-        Sun, 20 Aug 2023 18:28:24 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     alsa-devel@alsa-project.org, aford@beaconembedded.com,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S231611AbjHTTHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 15:07:41 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 225DE1736;
+        Sun, 20 Aug 2023 12:04:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=o+VMOj6uZXJS0WosedR2CR7G2cP02oXdnAAnZojmqHo=; b=5G1hU3qb/6qS4l3hI43aHsu8nh
+        WxxlkwmNCFy4oSTO8DtJJyomklVqRzjScPVXBYl/fqb8WG1hlaLiRqMqgnzkPok9yjuyZRsrHPNfh
+        WA4m7BhauYcPmE2AcgYVZf8CnKksMa+maKrVcNgDhjKVtegnBsZZoM4mYplcRJirN650=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qXnjJ-004dQH-MF; Sun, 20 Aug 2023 21:04:53 +0200
+Date:   Sun, 20 Aug 2023 21:04:53 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@gmail.com>
-In-Reply-To: <20230820175655.206723-1-aford173@gmail.com>
-References: <20230820175655.206723-1-aford173@gmail.com>
-Message-Id: <169255610407.4142958.2451683336970751205.robh@kernel.org>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: fsl_easrc: Add support for
- imx8mp-easrc
-Date:   Sun, 20 Aug 2023 13:28:24 -0500
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH v2 3/4] net: stmmac: Add glue layer for Loongson-1 SoC
+Message-ID: <c3454ad9-1874-4301-b1b1-4f76886802fb@lunn.ch>
+References: <20230816111310.1656224-1-keguang.zhang@gmail.com>
+ <20230816111310.1656224-4-keguang.zhang@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230816111310.1656224-4-keguang.zhang@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> +static int ls1b_dwmac_syscon_init(struct plat_stmmacenet_data *plat)
+> +{
+> +	struct ls1x_dwmac *dwmac = plat->bsp_priv;
+> +	struct regmap_field **regmap_fields = dwmac->regmap_fields;
+> +
+> +	if (plat->bus_id) {
+> +		regmap_field_write(regmap_fields[GMAC1_USE_UART1], 1);
+> +		regmap_field_write(regmap_fields[GMAC1_USE_UART0], 1);
+> +
+> +		switch (plat->phy_interface) {
+> +		case PHY_INTERFACE_MODE_RGMII:
+> +			regmap_field_write(regmap_fields[GMAC1_USE_TXCLK], 0);
+> +			regmap_field_write(regmap_fields[GMAC1_USE_PWM23], 0);
+> +			break;
 
-On Sun, 20 Aug 2023 12:56:53 -0500, Adam Ford wrote:
-> The i.MX8MP appears to have the same easrc support as the Nano, so
-> add imx8mp as an option with a fallback to imx8mn.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
+What about the other three RGMII modes? Plain rgmii is pretty unusual,
+rgmii-id is the most used.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> +		case PHY_INTERFACE_MODE_MII:
+> +			regmap_field_write(regmap_fields[GMAC1_USE_TXCLK], 1);
+> +			regmap_field_write(regmap_fields[GMAC1_USE_PWM23], 1);
+> +			break;
+> +		default:
+> +			dev_err(dwmac->dev, "Unsupported PHY mode %u\n",
+> +				plat->phy_interface);
+> +			return -EOPNOTSUPP;
+> +		}
+> +
+> +		regmap_field_write(regmap_fields[GMAC1_SHUT], 0);
+> +	} else {
+> +		switch (plat->phy_interface) {
+> +		case PHY_INTERFACE_MODE_RGMII:
+> +			regmap_field_write(regmap_fields[GMAC0_USE_TXCLK], 0);
+> +			regmap_field_write(regmap_fields[GMAC0_USE_PWM01], 0);
+> +			break;
 
-yamllint warnings/errors:
+same here.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/sound/fsl,easrc.example.dtb: easrc@300c0000: compatible: 'oneOf' conditional failed, one must be fixed:
-	['fsl,imx8mn-easrc'] is too short
-	'fsl,imx8mn-easrc' is not one of ['fsl,imx8mp-easrc']
-	from schema $id: http://devicetree.org/schemas/sound/fsl,easrc.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230820175655.206723-1-aford173@gmail.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+     Andrew
