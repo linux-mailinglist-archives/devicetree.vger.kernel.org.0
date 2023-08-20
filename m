@@ -2,65 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 439AA781CC2
-	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 09:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA02781CD2
+	for <lists+devicetree@lfdr.de>; Sun, 20 Aug 2023 09:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230137AbjHTHBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 03:01:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
+        id S229659AbjHTHuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 03:50:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230045AbjHTHAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 03:00:54 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F274AD13;
-        Sat, 19 Aug 2023 23:37:52 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37K6bbf2055129;
-        Sun, 20 Aug 2023 01:37:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1692513457;
-        bh=4FxO5OiLuFuHbomK4Axh4ZRSnQjdFwdTtS5KY7rEKrY=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=HLNs1l/4BoHy2RWOGz78lZ2S3Te3q0iiDsRdnbyF0mJVBeYJLUnL8m8WKxnTu4rrY
-         8VPl81uShWkXLyvIJQbXcKBMhOljjA6kDRDffiRJVFcnPkmQELrGSiyPDnk9n69pPJ
-         XfLiX9cJtjMikyRRmiDYlZsloH5yzdA+UigELdJ4=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37K6bbIT009510
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 20 Aug 2023 01:37:37 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 20
- Aug 2023 01:37:36 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 20 Aug 2023 01:37:37 -0500
-Received: from [10.249.141.75] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37K6bXuw095373;
-        Sun, 20 Aug 2023 01:37:34 -0500
-Message-ID: <d08b4f70-7bc1-df4b-349c-34b166c433ec@ti.com>
-Date:   Sun, 20 Aug 2023 12:07:33 +0530
+        with ESMTP id S229612AbjHTHul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 03:50:41 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66BE71995
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 00:46:38 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so2772396a12.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 00:46:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692517597; x=1693122397;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=QmfZ+SiJOWM4wr0njlNQlaopeewjxvRP8AoylcngqZ4=;
+        b=GQUlkLfCJkqeNj5HfYK2AV2l5JKW/qkrnDxjsk//74Dw2LXOuDBKO2ZMHjaJNYmn8U
+         zk+tHwH2mLQ1y8Y32YXtsH7ICtwUtoIk84BKMf9V7KYtJeCDIbKist6BOO4rZZhIMyDi
+         CzjnVY/HFdEELJ3bzf/dEevLLNZ6c7eLVopBE80/5fcf7Y36v83dnkFuuV+VHn9Xh6Vu
+         5K5wBUqZq5HQhVHY9aFqM4f0qWK6xuAUZe1hyF1xzMtPx1DAjA3FogHUr9MeHZ3mGJqO
+         3zzBpVEIqKfuacsLHIKfHpAplXIXbU86yBGdZnyU33YGjchXNalc2XVSozUaoEql4IRq
+         gGyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692517597; x=1693122397;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QmfZ+SiJOWM4wr0njlNQlaopeewjxvRP8AoylcngqZ4=;
+        b=HYfjHlubbblEAiOyLDlTHtj8mO0VB9W8m4KLnrR//1oJrfOcYqXgzFLH2Kp4CIAA+g
+         DfoDO7p9SSpOdSBXFBH1PIarmuCLc308wBSxiHHG8khBjzFK2J/m9/zjG8V+5BWvhdLS
+         0msOBkoKEm2zHhZpDvnMmerIKt0xLPChHyN7N05oxMEEDJegGabxN0T0/HNrY3MgBAD+
+         2kubr96saujsLMSA+6X9IORLAkaolijxWFcyccKzfaJYNIJgr3wBGDPU7sVAdM+9KA3Y
+         mRAhJ8vKR/B+nJzWLUXq/y4GmfPSImfkkrMYhoGnBZxy4G5XsXJgUAwuL9lfqPG2c6Gm
+         gcEQ==
+X-Gm-Message-State: AOJu0Ywn93HsrwwmVQW2Wt9DOeKQ9JiFglnpmMz0CyyCop5hUmx2J1go
+        MoQ97aAVR9GtIGLPWQAmeN8eIA==
+X-Google-Smtp-Source: AGHT+IE9UAhpM23Qtr+rSDWs9SKgkUBVji+XvoW8vc7xKd92v0kEPd6DTlD/OWETrGGN7CZwS08SOA==
+X-Received: by 2002:aa7:d3d2:0:b0:523:d715:b7b3 with SMTP id o18-20020aa7d3d2000000b00523d715b7b3mr2132962edr.41.1692517596912;
+        Sun, 20 Aug 2023 00:46:36 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id p1-20020aa7cc81000000b00525c01f91b0sm3922978edt.42.2023.08.20.00.46.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Aug 2023 00:46:36 -0700 (PDT)
+Message-ID: <4b6c8f86-d879-fa69-ca28-cb684877932e@linaro.org>
+Date:   Sun, 20 Aug 2023 09:46:34 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j784s4-evm: Add support for MCAN
- interfaces
-To:     Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20230817084936.31020-1-b-kapoor@ti.com>
+Subject: Re: [PATCH RFT] arm64: dts: qcom: sc7280: drop incorrect EUD port on
+ SoC side
 Content-Language: en-US
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230817084936.31020-1-b-kapoor@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+References: <20230725084633.67179-1-krzysztof.kozlowski@linaro.org>
+ <CAD=FV=Xt26=rBf99mzkAuwwtb2f-jnKtnHaEhXnthz0a5zke4Q@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAD=FV=Xt26=rBf99mzkAuwwtb2f-jnKtnHaEhXnthz0a5zke4Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,90 +85,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thank you for patch
+On 25/07/2023 21:35, Doug Anderson wrote:
+> Hi,
+> 
+> On Tue, Jul 25, 2023 at 1:46 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> Qualcomm Embedded USB Debugger (EUD) second port should point to Type-C
+>> USB connector.  Such connector was defined directly in root node of
+>> sc7280.dtsi which is clearly wrong.  SC7280 is a chip, so physically it
+>> does not have USB Type-C port.  The connector is usually accessible
+>> through some USB switch or controller.
+>>
+>> Correct the EUD/USB connector topology by removing the top-level fake
+>> USB connector and adding appropriate ports in boards having actual USB
+>> Type-C connector defined (Herobrine, IDP).  All other boards will have
+>> this EUD port missing.
+>>
+>> This fixes also dtbs_check warnings:
+>>
+>>   sc7280-herobrine-crd.dtb: connector: ports:port@0: 'reg' is a required property
+>>
+>> Fixes: 9ee402ccfeb1 ("arm64: dts: qcom: sc7280: Fix EUD dt node syntax")
+>> Cc: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Not tested on hardware.
+>> ---
+>>  .../arm64/boot/dts/qcom/sc7280-herobrine.dtsi | 15 +++++++++++++
+>>  .../arm64/boot/dts/qcom/sc7280-idp-ec-h1.dtsi | 15 +++++++++++++
+>>  arch/arm64/boot/dts/qcom/sc7280.dtsi          | 21 +------------------
+>>  3 files changed, 31 insertions(+), 20 deletions(-)
+> 
+> FWIW, I've always been very intrigued about the embedded USB port but
+> never managed to find any way to get it actually enabled. :( ...so I'm
+> probably not the best person to actually review this. That being said:
+> 
+> 1. I'm nearly certain that this is completely unusable on herobrine
+> boards. Specifically on herobrine there's a USB hub between the SoC
+> and all the physical ports on the device and (I think?) that prevents
+> EUD from working. It is possible that hoglin/zoglin is an exception
+> here and Qualcomm might have some backdoor way to access EUD on these
+> devices since this is hardware that they built.
+> 
+> 2. I've always been pretty baffled about the sc7280 EUD stuff since
+> the device tree shows the EUD on "usb_2". For some background: there
+> are two USB controllers on sc7280. There's "usb_1" which is USB
+> 2.0/3.0 capable and, at an SoC level, is the "Type C" port.
+> Specifically the pins on the SoC for the USB 3.0 signals are the same
+> pins on the SoC as two of the DisplayPort lanes. Then there's "usb_2"
+> which is USB 2.0 only. If you'll notice, "usb_2" is not set to status
+> "okay" on any boards except "sc7280-idp.dts".
+> 
+> I asked Qualcomm at least a few times in the past if the EUD is truly
+> on the USB 2.0 port (which means it isn't connected to anything on
+> herobrine boards) or if it's actually on the "type C" port (which
+> means there's a hub in between) and never got a ton of clarify...
+> 
+> Given how baffling everything is, I wouldn't be opposed to just
+> deleting the EUD from the device tree until there is more clarity
+> here. If you don't want to just delete it, at least I'd say that it
+> shouldn't be hooked up for herobrine.
+> 
 
-On 8/17/2023 2:19 PM, Bhavya Kapoor wrote:
-> There are 2 MCAN instances in the mcu domain and 4 MCAN instances in the
-> main domain. Add support for both MCAN nodes present in the mcu domain
-> and MCAN16 that is present in the main domain and isn't muxed.
+Thanks Doug. I forgot to Cc the original author of the code - Souradeep
+- but anyway disabling incomplete node seems reasonable.
 
-Could you add  description in commit message, why only 3 MCAN are 
-enabled in this patch
+Best regards,
+Krzysztof
 
-despite of 6 available.
-
->
-> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
-> ---
->
-> Changelog v1->v2:
->   - Fixed issue with referencing mcu_mcan0 node that was causeing errors
->
-> Link to v1 : https://lore.kernel.org/all/20230816193533.25722-1-b-kapoor@ti.com/
->
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 87 ++++++++++++++++++++++++
->   1 file changed, 87 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts b/arch/arm64/boot/dts/ti/k3-j784s4-evm.dts
-> index 430b8a2c5df5..9fce3ce89507 100644
-> [...]
-> +	mcu_mcan1_pins_default: mcu-mcan1-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x068, PIN_OUTPUT, 0) /* (H35) WKUP_GPIO0_4.MCU_MCAN1_TX */
-> +			J784S4_WKUP_IOPAD(0x06c, PIN_INPUT, 0) /* (K36) WKUP_GPIO0_5.MCU_MCAN1_RX */
-> +		>;
-
-You can consider to drop pre-fix in GPIO details through out the patch
-
-eg WKUP_GPIO0_5.MCU_MCAN1_RX to MCU_MCAN1_RX
-
-
-> +	};
-> +
-> +	mcu_mcan0_gpio_pins_default: mcu-mcan0-gpio-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x040, PIN_INPUT, 7) /* (J38) MCU_SPI0_D1.WKUP_GPIO0_69 */
-> +		>;
-> +	};
-> +
-> +	mcu_mcan1_gpio_pins_default: mcu-mcan1-gpio-default-pins {
-> +		pinctrl-single,pins = <
-> +			J784S4_WKUP_IOPAD(0x060, PIN_INPUT, 7) /* (J35) WKUP_GPIO0_2 */
-> +		>;
-> +	};
->   };
->   
->   &wkup_pmx0 {
-> @@ -827,3 +885,32 @@ adc {
->   		ti,adc-channels = <0 1 2 3 4 5 6 7>;
->   	};
->   };
-> +
-> +&wkup_gpio_intr {
-> +	status = "okay";
-> +};
-> +
-> +&wkup_gpio0 {
-> +	status = "okay";
-> +};
-> +
-> +&mcu_mcan0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan0_pins_default>;
-> +	phys = <&transceiver1>;
-> +};
-> +
-> +&mcu_mcan1 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mcu_mcan1_pins_default>;
-> +	phys = <&transceiver2>;
-> +};
-> +
-> +&main_mcan16 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_mcan16_pins_default>;
-> +	phys = <&transceiver3>;
-> +};
