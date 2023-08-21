@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07F97820E4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 02:25:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D043E7820E6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 02:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232195AbjHUAZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 20:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41292 "EHLO
+        id S232196AbjHUAZw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 20:25:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232194AbjHUAZu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 20:25:50 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62DC1B4
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:48 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bcc14ea414so3217201fa.0
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:48 -0700 (PDT)
+        with ESMTP id S232201AbjHUAZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 20:25:51 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C3DB8
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:49 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bcbfb3705dso4712251fa.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692577546; x=1693182346;
+        d=linaro.org; s=google; t=1692577547; x=1693182347;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ycYgwyr/6UwKw05jbUywqAg4PjJTQ2L3FELP5qNE/wY=;
-        b=jxTDkNTf+F8oA9mqkiIJDhZKE10wnmEox5Mq3qYzZlIubpVeXoxpj+fZBL6UsMEbjN
-         NwSs2X9p9EUGd0iDjIU0BIADKb/lCMD0h39cVqtP3VwnkKe/IsI9bG8IWVZF83Bb8JG7
-         Gtst4O25/7/K4lr3R5Ej0JgHv5yHxod+t4gpGD6MZBD09a/4oiuXxJtGt/c6l7HDJtbo
-         A6MeSWW0+SimZESbZ92sCjqAbx19kx5jrwrI73Bspudn7xsaFOAbNweBrlkytKpmF28O
-         FYuxT32xOMbNTjxEJmEiNAITLVt5sdODLfoFbil0DByXg6/67dHzwZxU4UeZh51XWL+Y
-         XPcQ==
+        bh=ZpBNHpYglDb91ucrUq7ha/N1sRsDyurprg1I9sqkvpM=;
+        b=Ve2bGEtzV1B8iq1jUe5uhNR76V7VY499ywn4IKn/QjganYP6xYHKn+zVVikLna30Wn
+         Z4RqRnLxbS5dF+M8Qdi7+zO9DIFNuOe/p4iGgF8S5GTMpGfpx6wIF0QworwZNbtwN9s8
+         LTFeeoYXjOUQb8FN1AcWfa639Xe9/DvecD7iyAudIvnmCRorfMIfXGHUC/P25ssZ3sp8
+         aYjyb1ddZ/JBmpQieUVCcxPfIePouQ6Gj3N7R1IWL/KcT9sO/x8lr7+HAvyqIx15iujL
+         04QN/mXZHxGwWzJkUn2rHAyXmkjH1qZWJsjnS9cbkWeBbrZyuNs6CuIoRQWZPObfzVCy
+         1e+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692577546; x=1693182346;
+        d=1e100.net; s=20221208; t=1692577547; x=1693182347;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ycYgwyr/6UwKw05jbUywqAg4PjJTQ2L3FELP5qNE/wY=;
-        b=J9mzwjPL52s6J1SPoxNvZ1+ZSNG0OhRXVtfRQmOQ9/9vl6VUuXYnKkd6iIP/qETiNy
-         oLfRrBFnt7KrOdbciyRKUF4VBLWkpnWo+BI9Ihw5fPFhimF8WWFhizMRZ1unX2P+MvRl
-         UQ2QzWGXPHhyleoNjsIM82QPjSf1qzt1SuKO+Jsw0PZO+qETLHVfxPxRv7++wtIpNOeQ
-         TwU0nL5mhT7se38TGEvNJlpOXSQpIIQ0w6DN/rRGqebYymupQlf8tClWsVMaNt2XbPL2
-         We+2yS79mB4WkvijQe3hoo81SgxsZDz+Di7ShfhtDZTa+l0gJZQ6lG7GaFFoNTHLmgqm
-         2jtw==
-X-Gm-Message-State: AOJu0YyjtWb956txysBUoeA9jecUQgKBBI4ZwqzzZLA19haxM1/euGk3
-        FOGGHQCbA1h9vsPJtxE7IL+pvg==
-X-Google-Smtp-Source: AGHT+IHCLDf+PR2sQrPiZAzfuoy5kWHqUr+n8E7W8GLAmcXW5K+Bc+NLFV7rz/A7ZfuS8R0Dz9U/ZQ==
-X-Received: by 2002:a2e:8519:0:b0:2b9:5fd2:763a with SMTP id j25-20020a2e8519000000b002b95fd2763amr3784765lji.35.1692577546668;
-        Sun, 20 Aug 2023 17:25:46 -0700 (PDT)
+        bh=ZpBNHpYglDb91ucrUq7ha/N1sRsDyurprg1I9sqkvpM=;
+        b=NbQQvOuDCGbuJhXhrX9gzxMQdWiV6LoPTmYBsaCAVm+XpYNQCf6PML+QEQRxth+cYq
+         1fZCQYWhxUSsp4h1t41KHaBGByAs3Ml4cXzKhA2Qugur/n2RLnT/I1BTBm+GdvWagULf
+         BG6Jkt6XmZZaitTCOz8Qx5TsZaOxIozQ08oEdvUYpRMl0yn0bmx1IIBqoAHdhQ/Scr+g
+         +urjcgAOF3jPMZIcTb6leR7Fv9puReo5E7tBcNAuHVXM1fVSDN7TZS2ziyHRwUjP7Mqf
+         LqmzFRY1uqG2UywnoXR4ZkfMH5d69afp+YcsrirySDFHCxalWJGwL9mRbpZFGk8Se1NP
+         KQ9g==
+X-Gm-Message-State: AOJu0YwYD2I9Bi2Z0FAuE0WvbTs6VkMDCztMm+FqVcip0/rafJr1c1b2
+        DqCIgZcjIEBdAoBS1/HVQPM8Q26QLy2dI5/khdM=
+X-Google-Smtp-Source: AGHT+IHvV56xREbDBS0Zw1zRDCkTfHxKXpSlpk9BmpE6LFk42DhGYDo+2UzzYrn1f8mV3jvH9o2CPg==
+X-Received: by 2002:a2e:8416:0:b0:2b6:ddab:506a with SMTP id z22-20020a2e8416000000b002b6ddab506amr3852069ljg.34.1692577547389;
+        Sun, 20 Aug 2023 17:25:47 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id h27-20020a2eb0fb000000b002b6fe751b6esm1964923ljl.124.2023.08.20.17.25.45
+        by smtp.gmail.com with ESMTPSA id h27-20020a2eb0fb000000b002b6fe751b6esm1964923ljl.124.2023.08.20.17.25.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Sun, 20 Aug 2023 17:25:46 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 12/16] arm64: dts: qcom: sm8150: switch USB QMP PHY to new style of bindings
-Date:   Mon, 21 Aug 2023 03:25:31 +0300
-Message-Id: <20230821002535.585660-13-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 13/16] arm64: dts: qcom: sm8250: switch USB QMP PHY to new style of bindings
+Date:   Mon, 21 Aug 2023 03:25:32 +0300
+Message-Id: <20230821002535.585660-14-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230821002535.585660-1-dmitry.baryshkov@linaro.org>
 References: <20230821002535.585660-1-dmitry.baryshkov@linaro.org>
@@ -84,17 +84,17 @@ resource region, no per-PHY subnodes).
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 39 ++++++++++++----------------
- 1 file changed, 16 insertions(+), 23 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8250.dtsi | 38 ++++++++++++----------------
+ 1 file changed, 16 insertions(+), 22 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index d9f0d7410661..380712aee977 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -3442,33 +3442,26 @@ usb_1_qmpphy: phy@88e8000 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+index abe39b0470da..974bdc1a9f34 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+@@ -3575,32 +3575,26 @@ usb_1_qmpphy: phy@88e8000 {
  
  		usb_2_qmpphy: phy@88eb000 {
- 			compatible = "qcom,sm8150-qmp-usb3-uni-phy";
+ 			compatible = "qcom,sm8250-qmp-usb3-uni-phy";
 -			reg = <0 0x088eb000 0 0x200>;
 -			status = "disabled";
 -			#address-cells = <2>;
@@ -104,7 +104,7 @@ index d9f0d7410661..380712aee977 100644
  
  			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
 -				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB3_SEC_CLKREF_CLK>,
+ 				 <&gcc GCC_USB3_SEC_CLKREF_EN>,
 -				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>;
 -			clock-names = "aux", "ref_clk_src", "ref", "com_aux";
 +				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
@@ -128,8 +128,7 @@ index d9f0d7410661..380712aee977 100644
 -			usb_2_ssphy: phy@88eb200 {
 -				reg = <0 0x088eb200 0 0x200>,
 -				      <0 0x088eb400 0 0x200>,
--				      <0 0x088eb800 0 0x800>,
--				      <0 0x088eb600 0 0x200>;
+-				      <0 0x088eb800 0 0x800>;
 -				#clock-cells = <0>;
 -				#phy-cells = <0>;
 -				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
@@ -140,8 +139,8 @@ index d9f0d7410661..380712aee977 100644
  		};
  
  		sdhc_2: mmc@8804000 {
-@@ -3631,7 +3624,7 @@ usb_2_dwc3: usb@a800000 {
- 				iommus = <&apps_smmu 0x160 0>;
+@@ -3905,7 +3899,7 @@ usb_2_dwc3: usb@a800000 {
+ 				iommus = <&apps_smmu 0x20 0>;
  				snps,dis_u2_susphy_quirk;
  				snps,dis_enblslpm_quirk;
 -				phys = <&usb_2_hsphy>, <&usb_2_ssphy>;
