@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7929D7820E8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 02:25:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9A697820E9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 02:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232202AbjHUAZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 20:25:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41340 "EHLO
+        id S232203AbjHUAZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 20:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41442 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232204AbjHUAZw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 20:25:52 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A7EB3
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:49 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so44814721fa.3
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:49 -0700 (PDT)
+        with ESMTP id S232204AbjHUAZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 20:25:54 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80996A6
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:50 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50043cf2e29so1689947e87.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692577548; x=1693182348;
+        d=linaro.org; s=google; t=1692577549; x=1693182349;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=xhz5s4p9df6iSnMVEljVBPUMS53rGAftjG7CgRxMulA=;
-        b=AYq5HS7zSH+YdRyj9S8XRsiVGKZiVMf3qvOfjIP6ExBA0G/e/JKOyFCWmARX/xYTp0
-         uPrtK+RmNfaNHKr3bCetkOjqjPKBeoJ3orPxcIlwVdZJnWY3opj+nZZNKmAxMnmvR5EG
-         YhSuJmdJSC33VG/HwS+PwzG9c3Z357tCgfNuA2Fa4tV5vmR9hSLq9Xofh3vXNN+w679E
-         CxldALSsELoFCjZOLKvoqHCuX/3xy+HDOWZhKFcjwTHpekAEjwamKW+aPO8ci4Qa8i+a
-         e0YFzXl1L0YXOecZN/dDX7QLeWnY5vaIavLxsQkTaoQeMH6g6eZOASTs+Sqmu7ZTL3Un
-         A4vQ==
+        bh=nmrj4hWVWgCIAJXxquRVjvFHWWo6+y5kGPhzifypRbs=;
+        b=paTuTONbgPM6/Nq7s3XtkFCGXrenm0xbPhXNoWnX2DFfY59hPE8S1R73xtJLq+5USx
+         cMpVbQdAuPdKBCiQ0Tx2ZyOW24N9OPdIEiD+eJ1WcCUhokx30KizX838ZINUJmx7dd5D
+         6ddIeYFOFLcWEn0v4aGHUSCzfoBmlbEviPoPCs0rEzfAgF8g/RM7VLTzMakspyD6bXKh
+         jgC535HpLYqOA7eMHwi5m6EWDDBK2pCP+DKisfiC0UpMUBB0L7fifdCqfG21pqeDjPR/
+         0gTVaPff0Q0r385qXDrXbv4sp0ct3xTHUQGEIn9qw6WdX3E+C/MA2Dq8rqo5V9p8q6lv
+         3YXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692577548; x=1693182348;
+        d=1e100.net; s=20221208; t=1692577549; x=1693182349;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xhz5s4p9df6iSnMVEljVBPUMS53rGAftjG7CgRxMulA=;
-        b=Qa6NAsS1KgsaTp5VFZGjGp+B08JoGhAeQaayoDwCteVGB77X/YtfP64ct4WC6beYwB
-         ZHAmLO9OK4D0xnfvoZ9p/bZAcOJPGh8uyxM67yJeoAoBCrN110l/RaPRXLB50jKEuJa1
-         tAaDypli7fDKfdIGUBAKT6vlBruQhULB9+YwelXFMDOGc/GYxsziyBbvCHn7REmDvyFX
-         sLKWq2DLZ8vR9kKVY1AXQWS1nHPPqqW8AfC441+W+Ev9cRXahAkzsCl+o4rDUvWj85GY
-         I20JHaD5fGpfRQ14sQRimxv3pV0+aM3/1fvRxe9+1wdg/yHp6KZ5A4gFg87+HMSW8FlZ
-         VnYQ==
-X-Gm-Message-State: AOJu0Yx9x2pB7sV+cggnPNK/trHQ4td3tmu3VnAUhwOlrcbAOw7p9Gu4
-        xw0dDo+f937txsCzpnVjI6rwZQ==
-X-Google-Smtp-Source: AGHT+IFex0jGw34onqGocUkifo4hGv887oiHeh4glBUa0Qn2xd7BenZKOA87pt+IHGS/xU7PwqexGA==
-X-Received: by 2002:a2e:9a88:0:b0:2bb:bfb0:7b66 with SMTP id p8-20020a2e9a88000000b002bbbfb07b66mr3831876lji.1.1692577548074;
+        bh=nmrj4hWVWgCIAJXxquRVjvFHWWo6+y5kGPhzifypRbs=;
+        b=clmH4DZA2sy0ixuNFpUftMcWItDaak/XpSt5J9CZAwMG11CNGkomziXfvUFyYzZrzT
+         u2ZHtuHheKSsh5C0yX6AqYX00XQQqjrr3KeLR8TPczfxCP2TOQcDzM7xZ2GCtdnacYN7
+         HQrCFv5K4VClOA6d/hd3uIAepWx0YY5JCHP+U1U6/BBUV7E6s1hmTGewS7sg4wmlmULO
+         esIAG8B6G5XaCWnmB2xgyfEVHQyo0WdDk/nMB0gf+Er1WnAvD5EkX7TDu9cX6vB/oaRq
+         dMs7RHi++g+iAv6j7N6piDuBcHl1qpVrWdHESuNZ5j6HzhhfT5PDSzTBW8PxA36xES0r
+         G+0w==
+X-Gm-Message-State: AOJu0YznmN1R6qYERLohrleV9ZWmu/18/sF41LLmK1wht1XgQQhNawyi
+        wppFyln4GApF0tVU1tmtPoIDTA==
+X-Google-Smtp-Source: AGHT+IFRUmGPmF5YbAglWYfw7FWy4uqzyzku3Um1siMwbXmxt29ZZJY0jhLZAXNYYswTA5rsB1RyJQ==
+X-Received: by 2002:a2e:9dc6:0:b0:2bc:b88c:64ed with SMTP id x6-20020a2e9dc6000000b002bcb88c64edmr1452538ljj.12.1692577548892;
         Sun, 20 Aug 2023 17:25:48 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id h27-20020a2eb0fb000000b002b6fe751b6esm1964923ljl.124.2023.08.20.17.25.47
+        by smtp.gmail.com with ESMTPSA id h27-20020a2eb0fb000000b002b6fe751b6esm1964923ljl.124.2023.08.20.17.25.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Aug 2023 17:25:47 -0700 (PDT)
+        Sun, 20 Aug 2023 17:25:48 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 14/16] arm64: dts: qcom: sm8350: switch USB QMP PHY to new style of bindings
-Date:   Mon, 21 Aug 2023 03:25:33 +0300
-Message-Id: <20230821002535.585660-15-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 15/16] ARM: dts: qcom-sdx55: switch USB QMP PHY to new style of bindings
+Date:   Mon, 21 Aug 2023 03:25:34 +0300
+Message-Id: <20230821002535.585660-16-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230821002535.585660-1-dmitry.baryshkov@linaro.org>
 References: <20230821002535.585660-1-dmitry.baryshkov@linaro.org>
@@ -83,69 +83,68 @@ resource region, no per-PHY subnodes).
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 39 ++++++++++++----------------
- 1 file changed, 16 insertions(+), 23 deletions(-)
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 41 +++++++++++---------------
+ 1 file changed, 18 insertions(+), 23 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index a26dff42329c..8faf9c2e7d09 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -2229,34 +2229,27 @@ usb_1_qmpphy_dp_in: endpoint {
- 			};
- 		};
+diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+index 4b0039ccd0da..89d723e4ad61 100644
+--- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+@@ -228,31 +228,26 @@ usb_hsphy: phy@ff4000 {
  
--		usb_2_qmpphy: phy-wrapper@88eb000 {
-+		usb_2_qmpphy: phy@88eb000 {
- 			compatible = "qcom,sm8350-qmp-usb3-uni-phy";
--			reg = <0 0x088eb000 0 0x200>;
-+			reg = <0 0x088eb000 0 0x2000>;
- 			status = "disabled";
--			#address-cells = <2>;
--			#size-cells = <2>;
+ 		usb_qmpphy: phy@ff6000 {
+ 			compatible = "qcom,sdx55-qmp-usb3-uni-phy";
+-			reg = <0x00ff6000 0x1c0>;
+-			status = "disabled";
+-			#address-cells = <1>;
+-			#size-cells = <1>;
 -			ranges;
++			reg = <0x00ff6000 0x1000>;
  
- 			clocks = <&gcc GCC_USB3_SEC_PHY_AUX_CLK>,
--				 <&rpmhcc RPMH_CXO_CLK>,
- 				 <&gcc GCC_USB3_SEC_CLKREF_EN>,
--				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>;
--			clock-names = "aux", "ref_clk_src", "ref", "com_aux";
+ 			clocks = <&gcc GCC_USB3_PHY_AUX_CLK>,
++				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+ 				 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
+-				 <&gcc GCC_USB3_PRIM_CLKREF_CLK>;
+-			clock-names = "aux", "cfg_ahb", "ref";
 -
--			resets = <&gcc GCC_USB3PHY_PHY_SEC_BCR>,
--				 <&gcc GCC_USB3_PHY_SEC_BCR>;
+-			resets = <&gcc GCC_USB3PHY_PHY_BCR>,
+-				 <&gcc GCC_USB3_PHY_BCR>;
 -			reset-names = "phy", "common";
-+				 <&gcc GCC_USB3_SEC_PHY_COM_AUX_CLK>,
-+				 <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
+-
+-			usb_ssphy: phy@ff6200 {
+-				reg = <0x00ff6200 0x170>,
+-				      <0x00ff6400 0x200>,
+-				      <0x00ff6800 0x800>;
+-				#phy-cells = <0>;
+-				#clock-cells = <0>;
+-				clocks = <&gcc GCC_USB3_PHY_PIPE_CLK>;
+-				clock-names = "pipe0";
+-				clock-output-names = "usb3_uni_phy_pipe_clk_src";
+-			};
++				 <&gcc GCC_USB3_PHY_PIPE_CLK>;
 +			clock-names = "aux",
 +				      "ref",
-+				      "com_aux",
++				      "cfg_ahb",
 +				      "pipe";
 +			clock-output-names = "usb3_uni_phy_pipe_clk_src";
 +			#clock-cells = <0>;
 +			#phy-cells = <0>;
- 
--			usb_2_ssphy: phy@88ebe00 {
--				reg = <0 0x088ebe00 0 0x200>,
--				      <0 0x088ec000 0 0x200>,
--				      <0 0x088eb200 0 0x1100>;
--				#phy-cells = <0>;
--				#clock-cells = <0>;
--				clocks = <&gcc GCC_USB3_SEC_PHY_PIPE_CLK>;
--				clock-names = "pipe0";
--				clock-output-names = "usb3_uni_phy_pipe_clk_src";
--			};
-+			resets = <&gcc GCC_USB3_PHY_SEC_BCR>,
-+				 <&gcc GCC_USB3PHY_PHY_SEC_BCR>;
++
++			resets = <&gcc GCC_USB3_PHY_BCR>,
++				 <&gcc GCC_USB3PHY_PHY_BCR>;
 +			reset-names = "phy",
 +				      "phy_phy";
++
++			status = "disabled";
  		};
  
- 		dc_noc: interconnect@90c0000 {
-@@ -2409,7 +2402,7 @@ usb_2_dwc3: usb@a800000 {
- 				iommus = <&apps_smmu 0x20 0x0>;
+ 		mc_virt: interconnect@1100000 {
+@@ -603,7 +598,7 @@ usb_dwc3: usb@a600000 {
+ 				iommus = <&apps_smmu 0x1a0 0x0>;
  				snps,dis_u2_susphy_quirk;
  				snps,dis_enblslpm_quirk;
--				phys = <&usb_2_hsphy>, <&usb_2_ssphy>;
-+				phys = <&usb_2_hsphy>, <&usb_2_qmpphy>;
+-				phys = <&usb_hsphy>, <&usb_ssphy>;
++				phys = <&usb_hsphy>, <&usb_qmpphy>;
  				phy-names = "usb2-phy", "usb3-phy";
  			};
  		};
