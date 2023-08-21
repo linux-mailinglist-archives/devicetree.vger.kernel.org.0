@@ -2,204 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27EDF782BEF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEA64782C00
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:36:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233621AbjHUOd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 10:33:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
+        id S236022AbjHUOgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 10:36:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236008AbjHUOd3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:33:29 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62467E4
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 07:33:26 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-c5f98fc4237so3134556276.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 07:33:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692628405; x=1693233205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JVf6fM0iJ2iIkGIz1YOTaiRR1OthdLkPvJ97HGCmhgA=;
-        b=O0mLKFdREezoY2/1oR2MOzof4eSxczj6uQdNs2otCl3toxWc5nmFXkEyCfAIVQwIPE
-         hezvo5QD6eADUgHlL3Wq9G+YHn2FLk652AW4Lnl60Or0i9E78llV2EN0bplGBYERVniD
-         Q7eeaxX9BOOtEvPDQcn67qKQtorseu+NmUEJGhUlFPstw2CZxEJ2Dqiz8xdVPSx5Rt6f
-         8zsSzcezeQrcid7n/tkOrY9K4dK3PpCdBCgsJZ7I59YeP4FyRlJjwft/dmV2OsmQ/chv
-         TWd7SheQ/+Qr03dqIFb11o/hAAuqdezONokX1wwtokLq1z8MYwSqCYrX9h07LIswzCpN
-         ei1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692628405; x=1693233205;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JVf6fM0iJ2iIkGIz1YOTaiRR1OthdLkPvJ97HGCmhgA=;
-        b=HUvkXfK5fhXlVTURD8FFtdGgSydmnzw8zryOEltueWBgWcjSOPexDdUCCZIpfF4/68
-         WZJgWhUjlccUTxiFnjsquMWMrdvRJxeBGNyop/uoDRpfSrMO0JHXwzngIiU7oOn2hWb/
-         PjMQTFuwqsQepgjN+6QGfR2rNpttrEV04JrwnSfyCud/h3OFrg+vXsUs4y6IUImBTgKf
-         gm9DjPv6Qdlsxhzy+KzYmoPV/8KFGrufyzToRaRWSzztzQkY0n+HJbaOgXs41Har3qR6
-         mrfHnkbgI0kum8wF7F6QYk4Qb496a97c4mo2PRXInf4DkeBifQ2w58ANaRlDZVST3THw
-         k/6w==
-X-Gm-Message-State: AOJu0Ywvmcnx8xMmnuX5/o/94qqtQuPzQbudylcxU82Qg9u2NA5wvzUm
-        ieY8g21Lz3/Nx6TFXSl2jbm7NodSyQ88z31hwCtixQ==
-X-Google-Smtp-Source: AGHT+IF8pqtgsDod4AcLNDd7B46cZvClFs4sWgkMxAtQQuCt9OO664LsbLksG7aBhJow6s/DU6WNo/6kzskR+zV3X2k=
-X-Received: by 2002:a25:bcc7:0:b0:d74:66aa:a277 with SMTP id
- l7-20020a25bcc7000000b00d7466aaa277mr6691513ybm.65.1692628405501; Mon, 21 Aug
- 2023 07:33:25 -0700 (PDT)
+        with ESMTP id S233056AbjHUOgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:36:55 -0400
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AA649E4;
+        Mon, 21 Aug 2023 07:36:52 -0700 (PDT)
+Received: from 8bytes.org (pd9fe95be.dip0.t-ipconnect.de [217.254.149.190])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.8bytes.org (Postfix) with ESMTPSA id 4CE0C2819E9;
+        Mon, 21 Aug 2023 16:36:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1692628611;
+        bh=+WiTQ5AG7r8y4G1Zww7KAS8SkcWV0o+RqcA6fs2lTPo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cCuzifo9x0D9qOt89G/4/PiqD/F+u4B/70l6IQpdB42jnyWjZAjz6KPgC0KIJ5pot
+         yclZplhO935QvwccMrgOtmFHXq3eiyDLUhMvZiDp7Z1uCnQEBb9DWAMAxasIaPyHYq
+         a4eQTWVPUC2Ofc8zeYGvrhV9slFe/AwBVAzPWiByhFvVRg2Dwo6GYRuq1SDa/M6D2R
+         sY0F1aYmy5lkzE3WB90VPyGeQs8XtRdRd40i7Gqc0UnXnz42dsYsAcZAzCYTfLPIIB
+         IeikCsXnKvSGRsvIQ6KRIPv23/3ONC+w0IGRIkYtlssEYICD4kne0F5md7TvoUKscG
+         Wl6tO+kp8hFKw==
+Date:   Mon, 21 Aug 2023 16:36:49 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Jason Gunthorpe <jgg@nvidia.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Andy Gross <agross@kernel.org>,
+        David Airlie <airlied@gmail.com>, alsa-devel@alsa-project.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        Frank Rowand <frowand.list@gmail.com>, iommu@lists.linux.dev,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+        linux-wireless@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sinan Kaya <okaya@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Sean Paul <sean@poorly.run>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Will Deacon <will@kernel.org>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Lu Baolu <baolu.lu@linux.intel.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Kevin Tian <kevin.tian@intel.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH] iommu: Remove the device_lock_assert() from
+ __iommu_probe_device()
+Message-ID: <ZON2gRogBhjmpNIl@8bytes.org>
+References: <0-v1-98d20e768c66+7-of_dma_lock_jgg@nvidia.com>
+ <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
+ <ZONdwclGOBaxxqtq@nvidia.com>
 MIME-Version: 1.0
-References: <20230713141738.23970-1-ulf.hansson@linaro.org>
- <20230713141738.23970-9-ulf.hansson@linaro.org> <20230719151716.qhobfnclrjf4yqkg@bogus>
- <CAPDyKFpjMWOAbV+b2DcxDWqvRDQCbSC6Ti+KGGPWJoC4Ghp7=w@mail.gmail.com>
- <20230721115535.mx46dg56pxjnzbuv@bogus> <20230721143304.GA1092306-robh@kernel.org>
- <20230721183817.34lgb42nlnsvqx4s@bogus> <CAPDyKFqsaz=hruktv+sPQz-ttOtWa9O_Jvp2iLnpxQqX2r7yBQ@mail.gmail.com>
-In-Reply-To: <CAPDyKFqsaz=hruktv+sPQz-ttOtWa9O_Jvp2iLnpxQqX2r7yBQ@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 21 Aug 2023 16:32:49 +0200
-Message-ID: <CAPDyKFr5pJR5+PrSrWEA_hZmureacxuT-T5OxitdFs2AXoRUyg@mail.gmail.com>
-Subject: Re: [PATCH v2 08/11] dt-bindings: firmware: arm,scmi: Extend bindings
- for protocol@13
-To:     Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZONdwclGOBaxxqtq@nvidia.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 26 Jul 2023 at 13:12, Ulf Hansson <ulf.hansson@linaro.org> wrote:
->
-> On Fri, 21 Jul 2023 at 20:38, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >
-> > On Fri, Jul 21, 2023 at 08:33:04AM -0600, Rob Herring wrote:
-> > > On Fri, Jul 21, 2023 at 12:55:35PM +0100, Sudeep Holla wrote:
-> > > > On Fri, Jul 21, 2023 at 01:42:43PM +0200, Ulf Hansson wrote:
-> > > > > On Wed, 19 Jul 2023 at 17:17, Sudeep Holla <sudeep.holla@arm.com>=
- wrote:
-> > > > > >
-> > > > > > On Thu, Jul 13, 2023 at 04:17:35PM +0200, Ulf Hansson wrote:
-> > > > > > > The protocol@13 node is describing the performance scaling op=
-tion for the
-> > > > > > > ARM SCMI interface, as a clock provider. This is unnecessary =
-limiting, as
-> > > > > > > performance scaling is in many cases not limited to switching=
- a clock's
-> > > > > > > frequency.
-> > > > > > >
-> > > > > > > Therefore, let's extend the binding so the interface can be m=
-odelled as a
-> > > > > > > generic performance domaintoo. The common way to describe thi=
-s, is to use
-> > > > > > > the "power-domain" DT bindings, so let's use that.
-> > > > > > >
-> > > > > >
-> > > > > > One thing I forgot to ask earlier is how we can manage differen=
-t domain IDs
-> > > > > > for perf and power domains which is the case with current SCMI =
-platforms as
-> > > > > > the spec never mandated or can ever mandate the perf and power =
-domains IDs
-> > > > > > to match. They need not be same anyways.
-> > > > >
-> > > > > Based upon what you describe above, I have modelled the perf-doma=
-in
-> > > > > and the power-domain as two separate power-domain providers.
-> > > > >
-> > > > > A consumer device being hooked up to both domains, would specify =
-the
-> > > > > domain IDs in the second power-domain-cell, along the lines of th=
-e
-> > > > > below. Then we would use power-domain-names to specify what each
-> > > > > power-domain represents.
-> > > > >
-> > > > > power-domains =3D <&scmi_pd 2>, <&scmi_dvfs 4>;
-> > > > > power-domain-names =3D "power", "perf";
-> > > > >
-> > > > > I hope this makes it clearer!?
-> > > >
-> > > > Yes it make is clear definitely, but it does change the definition =
-of the
-> > > > generic binding of the "power-domains" property now. I am interesti=
-ng in
-> > > > the feedback from the binding maintainers with respect to that. Or =
-is it
-> > > > already present ? IIUC, the ones supported already are generally bo=
-th
-> > > > power and performance providers. May be it doesn't matter much, jus=
-t
-> > > > wanted to explicit ask and confirm those details.
-> > >
-> > > I commented on v1.
-> > >
-> > > Looks like abuse of "power-domains" to me, but nothing new really.
-> > > Please define when to use a power domain vs. a perf domain and don't
-> > > leave it up to the whims of the platform. Maybe perf domains was a
-> > > mistake and they should be deprecated?
-> > >
-> >
-> > Just a thought here, instead of deprecating it I was thinking if possib=
-le
-> > to keep the power-domains and performance-domains separate and just ext=
-end
-> > the genpd to handle the latter. There by we are not mixing up and creat=
-ing
-> > confusions that need more specific definitions in the binding(which is =
-not
-> > a big deal) but platforms getting it wrong inspite of that is a big pro=
-blem.
-> > Keep it separate makes it more aligned to the hardware and doesn't dilu=
-te
-> > the definitions and probably avoids any possible mistakes due to that.
-> >
-> > Sorry Ulf I am just not yet convinced to mix them up yet =F0=9F=98=89 a=
-nd wish you
-> > don't convince me to. Let me know why the above suggestion won't work.
->
-> The main point I think we need to consider too, is that on some
-> platforms, the power-domain and the performance-domain are managed
-> together by the FW. It is not really two separate things and hence it
-> would not quite be correct to describe it as two different types of
-> providers in DT.
->
-> If we should follow your suggestion above, to use the
-> performance-domain bindings, then I think we need an additional new
-> binding to cover the above mentioned case too. This would lead us into
-> having one binding for the power-domain, another for the
-> performance-domain and a third for the power+performance-domain.
->
-> In my opinion this sounds quite like a mess. I would rather keep using
-> the power-domain bindings for all these cases. Of course, it's a bit
-> of a stretch too, but I think it should be less confusing in the end,
-> assuming we extend/clarify the description of the power-domain
-> bindings, of course.
->
-> Did that convince you? :-)
+On Mon, Aug 21, 2023 at 09:51:13AM -0300, Jason Gunthorpe wrote:
+> So now that Joerg has dropped it - what is your big idea to make the
+> locking actually work right?
 
-Sudeep, Rob,
+I am not opposed to the general idea. When putting it into the tree I
+wasn't aware how many users still need to be adapted to properly work
+with this.
 
-Can we try to conclude on the way forward?
+We can do another try once the issues have been sorted out and you have
+agreed with Robin on a workable way forward.
 
-Is it acceptable to keep using the power-domain bindings (with some
-clarifications) for performance domains or should we start moving to
-the performance-domain bindings?
+Regards,
 
-If moving to the performance-domain binding, should we start migrating
-existing users of the power-domain binding too - or what is your take
-on this?
-
-Kind regards
-Uffe
+	Joerg
