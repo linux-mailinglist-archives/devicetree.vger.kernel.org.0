@@ -2,473 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF18B782D68
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 17:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89BEB782D6F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 17:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236421AbjHUPiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 11:38:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60722 "EHLO
+        id S234295AbjHUPlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 11:41:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231156AbjHUPiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 11:38:51 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04olkn2083.outbound.protection.outlook.com [40.92.47.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01751102
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 08:38:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PdFUag2J/g7GZ1NccwrBAS337iOcRBiqj21p2p1H6aAJl/81mJ4UeyoNkNnnfh0XWxtpN4p5ejIQ9tzxNBunGXX0Id0K+YvtYLWqP0pGMOAu5kPoXXqdP7Aljy7JXePvjNX5r9lD8bfEWV/26ImBVfFtG3PIzraJzWZgIAtnDRV8XQTPQCkXaeexYmsT0WOhLlpu6qgxaqlKDWo359Rt7yPcy1B41lpb+1cMPhTCNYjNjj7J1BoMezgSuimBvtgxHv/mvK++M4jLOptFqsy2bY3vWJ3XZoouWkDr+X6v2rvjA+Ht9AZsaK/IckCqZwkNwBuQkqilBrGV8pbVhaSy5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EQg0+tuiKbLpOsO1t0aPOYNuFANnmJSTP5mQD0gYz8E=;
- b=CvminmzCDRhXaNI82Wrk9GbrdeuFxvIa+EWMp48SHTf+XO1Rv3qqbwk0nrxW0zOw7IQkZZM4yR/IeHvkJrIdbeDkWoV1A9mtpc9vW7W2PfoEVrX8OjTr+P4hXcLqu5OYt2j5DQG45dhasB0oqvZDjRQvqWqAmjWqHAqOWYxOdM1DJ7l21GkPz0xQQpNIrQCerV+O7FvCJS1XW9skVUWTSAB/giyd6B62JlodqNhM9LAr+P/Duvn7zDZuZUwRySM2c17nnwIxg4VhtNC2GJB20bkmcsc3Cp6EycY+X5HXiD5Tl68kDHpsb/QG2Hq0CsnYwXUqLZEskHrW70k1bhaGEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EQg0+tuiKbLpOsO1t0aPOYNuFANnmJSTP5mQD0gYz8E=;
- b=Ef896EBLDt9oW6MAxKhzh7Fw90y7LA5r3osykQBicqepiOC2KxFr2Grrekr1g7TIp/pH7LiqMEaAtQKjJ59pu2fEWfew5mk2qUDsGVQdLSH+nBXkgkbfY4LWhKhQ8sgiUED9G9JS6wrdS3PHlnCVYBxSf8gglNz/7+JYo7wvHemTk4w3SCngOXaF/ufzWuqo7vNwTc1cJCAaGzDTMKyOj+rVcb7a0tYta+Q4Yf4y9T7r4yAlHWMaCB9Qs/lXZoUAePryQFMqOxWNh/PqdQIej2ZcE0Ytf4XAeP6fMAkL2edfR9X5GhY/VFM9MKl7jZWH5DXti9Edx8Tq4iyNvgp4hQ==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SA2PR06MB7530.namprd06.prod.outlook.com (2603:10b6:806:140::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
- 2023 15:38:42 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::20a7:a1ca:1ef2:ec9f]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::20a7:a1ca:1ef2:ec9f%4]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
- 15:38:42 +0000
-Date:   Mon, 21 Aug 2023 10:38:38 -0500
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, mripard@kernel.org, me@crly.cz,
-        uwu@icenowy.me, samuel@sholland.org, jernej.skrabec@gmail.com,
-        wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH V2 4/4] ARM: dts: sunxi: add support for Anbernic RG-Nano
-Message-ID: <SN6PR06MB53425735CA49EF8C30FDCF4DA51EA@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230819032105.67978-1-macroalpha82@gmail.com>
- <20230819032105.67978-5-macroalpha82@gmail.com>
- <20230819230335.45ad16de@slackpad.lan>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230819230335.45ad16de@slackpad.lan>
-X-TMN:  [zkUAm4BtbheDS5qaaJRINxDJQvA3lWbZ]
-X-ClientProxiedBy: SA1P222CA0024.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:22c::26) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZOOE/iZYufQ8dHEG@wintermute.localhost.fail>
+        with ESMTP id S236429AbjHUPlq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 11:41:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16CD1F1;
+        Mon, 21 Aug 2023 08:41:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9973E63C40;
+        Mon, 21 Aug 2023 15:41:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17BFDC433C7;
+        Mon, 21 Aug 2023 15:41:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692632504;
+        bh=X9KODKAp8xzt47wbPLuOlFkePZ9tY8/nQ54JPVlE02s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GiveDgzeHi39SYbimQ/8cdCyz0W1qbipKegOy4EQ9dtagEFBSJbN+2NTObkaDoLDm
+         jC7ch8uR38or9L7cvzVn7owfTxoVuoZlZcllXcscf7cll0dQVmmi0XmibK5/ai3eoz
+         Sd5SG226NQr2UE4wpVaijHXJ6xhHQdPkhfyhpu2C2YbuuIviSKNDYbg11D2bSsH1Qh
+         /T15vbCqh1vWLPgdnBA1qSo5dX2x73egpPQ+M31esntaN5jqB7wSLQ+hKY/T73JQOs
+         7xKRcMaT5pZwBjQDvSh+rBJy5OeE10ndgCSAqcZm4yG+dc9a1V5MB+nDhjZ96LBWy0
+         3245eojtnoUXA==
+Date:   Mon, 21 Aug 2023 17:41:34 +0200
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v6 1/5] dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss
+ property
+Message-ID: <ZOOFrqkAdW5d6WIj@lpieralisi>
+References: <20230623144100.34196-1-james.quinlan@broadcom.com>
+ <20230623144100.34196-2-james.quinlan@broadcom.com>
+ <ZON43rPGJGzjTTj/@lpieralisi>
+ <CA+-6iNwRGsnRsT9R=iEzaJNCTLu_pQNG4x+noE8bqLYCRm_PHQ@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SA2PR06MB7530:EE_
-X-MS-Office365-Filtering-Correlation-Id: f514db6c-350c-4ee7-0320-08dba25cb24e
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GfEZ0oqbEiW7wG/v47tHXpRg27F3urMmc3fiUGyzvwh0fBrhEryCRNomjX+zXjkVBBcXpMqrkoCi9p3jA2m7bzPydltMour80jRGowu5CTtFfs7GPC1Dqdr4aNnZ120BSvhfNOMVJTDgJaHQStTOVtsREJn4dDtdpq880p0XyYeDFsPwofAuinJNjUOFzpOzMVqVzpagWzH6ZinOwqZO9FUqTuZ2ryr4gkkTlZs7rrAmNkiJixqiyrgE8rXJjbcoVf3jQEzbU12b5d9AILlzolIT0Ubv7vfQ829SXUVQAwWQvuTui5AB0Rxom8kAUn8mPIgH7B1jxxEo1rK1bjBkKPEoXzA7uu2L6rdKuXffnzurwEuVXDC6kIKE1WwUWzeFf+JoenuvJtVj1iDjSZjXJSwavFUI2eAF4pTyvLNYaa3OAcEZaAe+0uqZu8ZO+zelhy5qdtXfCFUbxbHeP7cf0UVRGBBmrcyuNh3aPDHymTqmmi5PIadUi4gqkFRwSBvrWI+6tybHwutlizdoTtS7Unb/uaUwwF/Bstlq/1mPJ3bHAzcR1NY+FquFQTSuTTeu
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/kNJesktmCc3wPkdOHxQCbDJ9K0slhetV/9wVJm3HVNCu9TII3bRI7uIynJc?=
- =?us-ascii?Q?BR2DFOgElnR+ffCa4qVgMlcRoKbmsXftIWsh/x9f42JBxPkwdo2Ud9/87owx?=
- =?us-ascii?Q?OtPw8kBTXqXoEhenmnSDAy4yUdBCRgJzYJ0gmpQrPY7AQ4v5wrdm8PGqPLyo?=
- =?us-ascii?Q?GqjOH6CkW0B97pDtwiPo2VSisjbAupixDPdmdza+TsVEQ2ZtwKcU+N9MXN4G?=
- =?us-ascii?Q?k+qBmRO/K2HUjb+uOZXecBdr9pvtVyYSUsqses6MiMOi2wR6tqDK2MkZmCyg?=
- =?us-ascii?Q?lHwMOAYleXtMnEArIi84J14yNHjEwNHU0pU9rtWz50pYuncf+V6TAVwDlUvU?=
- =?us-ascii?Q?DOiDdPoI0PrsoGNeAemL4/EvBZ+IMt7iewKFiAXCzliV+24+RFFvF3j+yUgz?=
- =?us-ascii?Q?YX8hJyzAhtaeBL7GNDlUb6twgfCvxfeC2IvJanCVMuanIZ0C8QkIWGMBtv+Q?=
- =?us-ascii?Q?g5ygCwQki49lnKlYd8XthLQHr+tDdo3LRPTonfIvk6BKULQwBSGWEMqeufAk?=
- =?us-ascii?Q?yvUacTH/jnc7aIx8/IJQySfgUIbzKjQnTnJkp0vbteIEpBJiYvePEAtY0eQR?=
- =?us-ascii?Q?1fx2EMfWoEXUvjkvhxFahO9xcZ6Z7p1hxZoTlxIvpuzJp1xapCKYSb0OuPsc?=
- =?us-ascii?Q?hb5LNsC7WXdGoMjdsJpCoX+v9GxOOdiOt3xayzIgO6ttgycS2x2T2+qHpa/2?=
- =?us-ascii?Q?mRkCKMtSozypSSXK1fntFZzZaCnUG8pePOPDUBABOlxV86Bo3Zekohh5KWx7?=
- =?us-ascii?Q?JC3ybBcIOMR/38RDPAhlEGpyuGPu1Pkq5UAMHQHhzuIXm3pm7uZcS7yYG1Mt?=
- =?us-ascii?Q?bG/e21WLGLDVRZCqix+YhytZzDLXE0FUM54i4zOAdB6y41w8ktaMLxvc4HiV?=
- =?us-ascii?Q?1OBgikVkyM88DJOiK/bXagOdH0AfV6M5rG7yb16axFnStxVHYRWQ3uJrrjdP?=
- =?us-ascii?Q?0sGMkmlsKlJCPRUdtuCrf/BVwP0ihXVaO7Del1/bv+reDVT48df7fox4ocdS?=
- =?us-ascii?Q?CO31jbDXQWUen/5hphYqFFy1Mduv7I29EjFqx237vw0U3ZodgWVJgZl2b97a?=
- =?us-ascii?Q?Q+JqN8atzmMpUK9r60Mbr4N7Qv+4LW1+5wp9LvrRwlzH7Re9kP+e04JI9J7B?=
- =?us-ascii?Q?6rHIvZI+44l3qQPxz4tz5AlryTEpP25eTUxOm/GrR9DIte603PIRw2SDWdyt?=
- =?us-ascii?Q?rByskgalp6O7c2JrA5Fnf67/BIskiiQ5y5/nA4BsFolITtgz72/nQUQky40?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: f514db6c-350c-4ee7-0320-08dba25cb24e
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 15:38:42.1437
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR06MB7530
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CA+-6iNwRGsnRsT9R=iEzaJNCTLu_pQNG4x+noE8bqLYCRm_PHQ@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 19, 2023 at 11:03:52PM +0100, Andre Przywara wrote:
-> On Fri, 18 Aug 2023 22:21:05 -0500
-> Chris Morgan <macroalpha82@gmail.com> wrote:
+On Mon, Aug 21, 2023 at 11:25:11AM -0400, Jim Quinlan wrote:
+> On Mon, Aug 21, 2023 at 10:47 AM Lorenzo Pieralisi
+> <lpieralisi@kernel.org> wrote:
+> >
+> > On Fri, Jun 23, 2023 at 10:40:54AM -0400, Jim Quinlan wrote:
+> > > This commit adds the boolean "brcm,enable-l1ss" property:
+> > >
+> > >   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
+> > >   requires the driver probe() to deliberately place the HW one of three
+> > >   CLKREQ# modes:
+> > >
+> > >   (a) CLKREQ# driven by the RC unconditionally
+> > >   (b) CLKREQ# driven by the EP for ASPM L0s, L1
+> > >   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+> > >
+> > >   The HW+driver can tell the difference between downstream devices that
+> > >   need (a) and (b), but does not know when to configure (c).  All devices
+> > >   should work fine when the driver chooses (a) or (b), but (c) may be
+> > >   desired to realize the extra power savings that L1SS offers.  So we
+> > >   introduce the boolean "brcm,enable-l1ss" property to inform the driver
+> > >   that (c) is desired.  Setting this property only makes sense when the
+> > >   downstream device is L1SS-capable and the OS is configured to activate
+> > >   this mode (e.g. policy==powersupersave).
+> > >
+> > >   This property is already present in the Raspian version of Linux, but the
+> > >   upstream driver implementation that follows adds more details and
+> > >   discerns between (a) and (b).
+> > >
+> > > Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > index 7e15aae7d69e..8b61c2179608 100644
+> > > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > @@ -64,6 +64,15 @@ properties:
+> > >
+> > >    aspm-no-l0s: true
+> > >
+> > > +  brcm,enable-l1ss:
+> > > +    description: Indicates that PCIe L1SS power savings
+> > > +      are desired, the downstream device is L1SS-capable, and the
+> > > +      OS has been configured to enable this mode.  For boards
+> >
+> > What does this mean ? I don't think DT properties are supposed
+> > to carry information related to how the OS is configured.
 > 
-> Hi Chris,
+> The DT setting in question is unrelated to the statement "and the OS
+> has been configured to
+> enable this mode".
 > 
-> thanks for the update!
+> This is merely saying that even if you enable "brcm,l1ss-enable"
+> that you may not get L1SS power savings w/o setting
+> "CONFIG_PCIEASPM_POWER_SUPERSAVE=y".
+> I mentioned that exact term but a reviewer nakked it because
+> apparently DT descriptions should not be OS specific.
 > 
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > The Anbernic RG-Nano is a small portable game device based on the
-> > Allwinner V3s SoC. It has GPIO buttons on the face and side for
-> > input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
-> > OTG port, an SD card slot for booting, and 64MB of RAM included in the
-> > SoC.
-> > 
-> > The SPI display is currently unsupported, as it will either require
-> > a new tinydrm driver or changes to the staging fbtft driver to support.
-> > I plan on working on a tinydrm driver to properly support it. The USB-C
-> > port currently only works as a peripheral port, however in the BSP
-> > kernel it also works in host mode allowing included USB-C headphones
-> > with a built-in DAC to work.
-> > 
-> > Working:
-> > - SDMMC
-> > - UART (for debugging)
-> > - Buttons
-> > - Charging/battery/PMIC
-> > - Speaker
-> > - USB Gadget
-> > 
-> > Not working:
-> > - Display
-> > - USB Host
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
-> >  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 219 ++++++++++++++++++
-> >  2 files changed, 220 insertions(+)
-> >  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-> > 
-> > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-> > index 589a1ce1120a..2be83a1edcbb 100644
-> > --- a/arch/arm/boot/dts/allwinner/Makefile
-> > +++ b/arch/arm/boot/dts/allwinner/Makefile
-> > @@ -237,6 +237,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
-> >  	sun8i-t113s-mangopi-mq-r-t113.dtb \
-> >  	sun8i-t3-cqa3t-bv3.dtb \
-> >  	sun8i-v3-sl631-imx179.dtb \
-> > +	sun8i-v3s-anbernic-rg-nano.dtb \
-> >  	sun8i-v3s-licheepi-zero.dtb \
-> >  	sun8i-v3s-licheepi-zero-dock.dtb \
-> >  	sun8i-v40-bananapi-m2-berry.dtb
-> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-> > new file mode 100644
-> > index 000000000000..c49b5431d04e
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
-> > @@ -0,0 +1,219 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +
-> > +/dts-v1/;
-> > +#include <dt-bindings/input/linux-event-codes.h>
-> > +#include "sun8i-v3s.dtsi"
-> > +#include "sunxi-common-regulators.dtsi"
-> > +
-> > +/ {
-> > +	model = "Anbernic RG Nano";
-> > +	compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart0;
-> > +	};
-> > +
-> > +	backlight: backlight {
-> > +		compatible = "pwm-backlight";
-> > +		pwms = <&pwm 0 40000 1>;
-> > +		brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
-> > +		default-brightness-level = <11>;
-> > +		power-supply = <&reg_vcc5v0>;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0:115200n8";
-> > +	};
-> > +
-> > +	gpio_keys: gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +
-> > +		button-a {
-> > +			gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-A";
-> > +			linux,code = <BTN_EAST>;
-> > +		};
-> > +
-> > +		button-b {
-> > +			gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-B";
-> > +			linux,code = <BTN_SOUTH>;
-> > +		};
-> > +
-> > +		button-down {
-> > +			gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-DOWN";
-> > +			linux,code = <BTN_DPAD_DOWN>;
-> > +		};
-> > +
-> > +		button-left {
-> > +			gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-LEFT";
-> > +			linux,code = <BTN_DPAD_LEFT>;
-> > +		};
-> > +
-> > +		button-right {
-> > +			gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-RIGHT";
-> > +			linux,code = <BTN_DPAD_RIGHT>;
-> > +		};
-> > +
-> > +		button-se {
-> > +			gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-SELECT";
-> > +			linux,code = <BTN_SELECT>;
-> > +		};
-> > +
-> > +		button-st {
-> > +			gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-START";
-> > +			linux,code = <BTN_START>;
-> > +		};
-> > +
-> > +		button-tl {
-> > +			gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-L";
-> > +			linux,code = <BTN_TL>;
-> > +		};
-> > +
-> > +		button-tr {
-> > +			gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-R";
-> > +			linux,code = <BTN_TR>;
-> > +		};
-> > +
-> > +		button-up {
-> > +			gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "DPAD-UP";
-> > +			linux,code = <BTN_DPAD_UP>;
-> > +		};
-> > +
-> > +		button-x {
-> > +			gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-X";
-> > +			linux,code = <BTN_NORTH>;
-> > +		};
-> > +
-> > +		button-y {
-> > +			gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> > +			label = "BTN-Y";
-> > +			linux,code = <BTN_WEST>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&codec {
-> > +	allwinner,audio-routing = "Speaker", "HP",
-> > +				  "MIC1", "Mic",
-> > +				  "Mic", "HBIAS";
-> > +	allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&cpu0 {
-> > +	clock-frequency = <1296000>;
-> 
-> I understand that the kernel complains when this is missing, but I
-> think this property is some ancient legacy, as there is no such thing
-> as a fixed CPU frequency anymore. That becomes evident with the OPPs
-> below. So please remove it.
+> I am actually open for this to be a command-line option but I wanted to honor
+> what the Raspian OS folks have already done.  RaspianOS already has
+> "brcm,enable-l1ss"
+> set in their DTS files.
 
-Okay, I'll remove it. I always try to make sure dmesg log is as error
-free as possible, and yes, that's the only reason I put this here.
+This is about the mainline kernel, I don't have any visibility into
+downstream kernels (where that property management was added without DT
+and PCI maintainers supervision).
+
+Raspian OS folks' choice is theirs but it can't and it shouldn't override
+the mainline review process even though I understand the position you
+are in.
+
+Thanks,
+Lorenzo
 
 > 
-> > +	clock-latency = <244144>;
-> > +	operating-points = <
-> > +			/* kHz    uV */
-> > +			1296000 1200000
-> > +			1008000 1200000
-> > +			864000  1200000
-> > +			720000  1100000
-> > +			480000  1000000>;
+> Regards,
+> Jim
 > 
-> Don't you need a cpu-supply property to point to the regulator in
-> charge of providing the core voltage? Otherwise I don't see how the
-> kernel would be able to adjust the voltage, to program the OPPs.
-> 
+> > Again - it depends on what DT should be used for, I am not claiming to
+> > have any authority on that, just asking.
+> >
+> > Thanks,
+> > Lorenzo
+> >
+> > > +      using a mini-card connector, this mode may not meet the
+> > > +      TCRLon maximum time of 400ns, as specified in 3.2.5.2.2
+> > > +      of the PCI Express Mini CEM 2.0 specification.
+> > > +    type: boolean
+> > > +
+> > >    brcm,scb-sizes:
+> > >      description: u64 giving the 64bit PCIe memory
+> > >        viewport size of a memory controller.  There may be up to
+> > > --
+> > > 2.17.1
+> > >
+> >
+> >
 
-I'll add cpu-supply. Based on the schematic it looks like the
-cpu_supply is the DCDC2. DCDC2 is also hooked up to some other inactive
-pins according to the schematic but I can't see those pins on the
-SoC datasheet (so maybe it's just a schematic quirk?).
 
-> > +};
-> > +
-> > +&i2c0 {
-> > +	status = "okay";
-> > +
-> > +	gpio_expander: gpio@20 {
-> > +		compatible = "nxp,pcal6416";
-> > +		reg = <0x20>;
-> > +		gpio-controller;
-> > +		#gpio-cells = <2>;
-> > +		#interrupt-cells = <2>;
-> > +		interrupt-controller;
-> > +		interrupt-parent = <&pio>;
-> > +		interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>;
-> > +		vcc-supply = <&reg_vcc3v3>;
-> > +	};
-> > +
-> > +	axp209: pmic@34 {
-> > +		reg = <0x34>;
-> > +		interrupt-parent = <&pio>;
-> > +		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
-> > +	};
-> > +
-> > +	pcf8563: rtc@51 {
-> > +		compatible = "nxp,pcf8563";
-> > +		reg = <0x51>;
-> > +	};
-> > +};
-> > +
-> > +#include "axp209.dtsi"
-> > +
-> > +&battery_power_supply {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&mmc0 {
-> > +	broken-cd;
-> > +	bus-width = <4>;
-> > +	disable-wp;
-> > +	vmmc-supply = <&reg_vcc3v3>;
-> > +	vqmmc-supply = <&reg_vcc3v3>;
-> > +	status = "okay";
-> > +};
-> > +
-> > +&pio {
-> > +	vcc-pb-supply = <&reg_vcc3v3>;
-> > +	vcc-pc-supply = <&reg_vcc3v3>;
-> > +	vcc-pf-supply = <&reg_vcc3v3>;
-> > +	vcc-pg-supply = <&reg_vcc3v3>;
-> > +};
-> > +
-> > +&pwm {
-> > +	pinctrl-0 = <&pwm0_pins>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&reg_dcdc2 {
-> 
-> Any reason your dropped the regulator-name property? This would help to
-> identify what this regulator is used for and would explain why it needs
-> to be always on.
-> In v1 this was "vdd-cpu-sys-ephy", are you sure about this name? I
-> guess it supplies the CPU, but I wonder if there are other users of
-> this rail, which would possibly throw a spanner into DVFS. So what's the
-> "ephy" doing here? And can you adjust the voltage, if this also driving
-> VDD-SYS? What does the BSP kernel do?
-> 
-
-This rail appears to supply the CPU (vdd-cpu) SYS (vdd-sys) and
-vdd-ephy. The ratings for each of these according to the datasheet are
-between -0.3v and 1.3v (CPU/SYS) or 1.4v (for the EPHY). The BSP kernel
-has this as variable between 1v and 1.25v, but it doesn't appear to
-have DVFS enabled. I can change the range back to 1/1.25v since it
-supplies the CPU so we can enable DVFS; the datasheet isn't clear
-what vdd-sys or vdd-ephy do, but in the case of EPHY we aren't using
-that feature at least (and these voltages are within range).
-
-Do you think I should keep the cpu-supply and frequency stuff in place,
-or should I drop it all instead?
-
-> > +	regulator-always-on;
-> > +	regulator-max-microvolt = <1250000>;
-> > +	regulator-min-microvolt = <1250000>;
-> > +};
-> > +
-> > +&reg_dcdc3 {
-> 
-> Same here, please provide a speaking name, or a comment explaining
-> why this must be always on. There is no need to enumerate every user,
-> just "vdd-3v3" seems to be a common name for that regulator.
-> 
-
-I'll go with vcc-io like the BSP, unless you feel strongly otherwise.
-The regulator appears to power all the different IO pins on the SoC
-and basically everything else that uses 3.3v that isn't the RTC.
-
-> > +	regulator-always-on;
-> > +	regulator-max-microvolt = <3300000>;
-> > +	regulator-min-microvolt = <3300000>;
-> > +};
-> > +
-> > +&reg_ldo2 {
-> 
-> Same here, name or comment, please.
-> 
-
-You got it.
-
-> > +	regulator-always-on;
-> > +	regulator-max-microvolt = <3000000>;
-> > +	regulator-min-microvolt = <3000000>;
-> > +};
-> > +
-> > +&spi0 {
-> 
-> Can you add a comment here mentioning the not-yet-supported display?
-> And you should specify the pins used here.
-> 
-
-The SPI pins are defined in the main v3s file. Additionally I have a
-TE pin (GPIO PB1) and a RESET pin for the panel (GPIO PB2). The RESET
-pin looks like it has an external pull-up to 3.3v. The RS pin on the
-panel is wired to MISO, otherwise CS on the panel goes to CS on the
-SoC, CLK to CLK, and MOSI to MOSI. Everything but the RESET panel
-is pulled to ground (I think, still not perfect at schematics).
-
-> Cheers,
-> Andre
-> 
-> 
-> > +	status = "okay";
-> > +};
-> > +
-> > +&uart0 {
-> > +	pinctrl-0 = <&uart0_pb_pins>;
-> > +	pinctrl-names = "default";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_otg {
-> > +	dr_mode = "otg";
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usb_power_supply {
-> > +	status = "okay";
-> > +};
-> > +
-> > +&usbphy {
-> > +	status = "okay";
-> > +};
-> 
-
-Also, I did another comparison with the BSP kernel and realized I was
-missing the OHCI/EHCI and now OTG is working (at least the extcon
-shows host when it has a device attached and not host when it's hooked
-to my computer).
-
-Thank you,
-Chris
