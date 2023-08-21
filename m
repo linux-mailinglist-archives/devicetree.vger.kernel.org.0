@@ -2,158 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76DFB78257E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 10:33:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6DDD782588
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 10:35:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234005AbjHUIdF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Aug 2023 04:33:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
+        id S234017AbjHUIfC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 04:35:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234003AbjHUIdE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 04:33:04 -0400
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDAFB5;
-        Mon, 21 Aug 2023 01:33:02 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-79a46f02d45so815862241.0;
-        Mon, 21 Aug 2023 01:33:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692606782; x=1693211582;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W8DR2b7Nt+1F2KZPVYK0O6RgtMx3Ou+9WJvksXud4JY=;
-        b=I8WlgyvShn2pKbHytu6kQM///R+wegFvbhDYqNtpNPEKxgUEqxKuhp7qADeDSp/A5G
-         3QycxAhCNDp59afFHFpcbfaBfUhZx4gcxCpf0Hxb1YheUpVbU2dOtRRg+fGdAI2wiuAY
-         FTHM2+FBns+6J6t6WTwYH4J6lzh1uRkoBoRnKrebRUDRVfrm5jCPxu7z169NTF5av5JL
-         PO0m9ORBg3C+jjnK4d4/LvzSaihcALsv0z0dxXWgk2TsTxW7aaCV+9AGoEHF0A/uqlFt
-         raLaqX/fqFe43kYCb6XOnN3W17YeX9W/XGjVUjbAYANkKD3oz61guHHvLh2BxnBEiGz9
-         QXjA==
-X-Gm-Message-State: AOJu0YxkDm/nBVz+qCDD02FENJ/y21sDub/iI+/l6WYGBtKQrtbr6GuF
-        vwE76RhhC3OEn7ze2VvMpUZUIh3pjaRysQ==
-X-Google-Smtp-Source: AGHT+IGY34agOk/LIlvB11/AHsKM+WXO4A/fX0bfCXw9jAsG52Z39n+UvKNcPuroYTvKLEl8p5+ldA==
-X-Received: by 2002:a67:fb4f:0:b0:443:70ec:d28b with SMTP id e15-20020a67fb4f000000b0044370ecd28bmr4913416vsr.19.1692606781725;
-        Mon, 21 Aug 2023 01:33:01 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id h185-20020a0dc5c2000000b0058427045833sm2156001ywd.133.2023.08.21.01.33.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 01:33:01 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-d749f57cb22so1113588276.3;
-        Mon, 21 Aug 2023 01:33:01 -0700 (PDT)
-X-Received: by 2002:a25:bc8a:0:b0:d1c:77de:cf7a with SMTP id
- e10-20020a25bc8a000000b00d1c77decf7amr6760391ybk.64.1692606780809; Mon, 21
- Aug 2023 01:33:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230817090810.203900-1-biju.das.jz@bp.renesas.com>
- <20230817090810.203900-2-biju.das.jz@bp.renesas.com> <CAMuHMdUoOu2sGeWO0tQ89iU6rT=kWtpJ0qfhYvxnhQAfPwA7dg@mail.gmail.com>
- <OS0PR01MB5922A41D6D8A3164EECE7C05861EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922A41D6D8A3164EECE7C05861EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 21 Aug 2023 10:32:49 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV_WMdwj5dXGHi48F9wQY9WVyuA-L9zbnshP4SCvvAAiA@mail.gmail.com>
-Message-ID: <CAMuHMdV_WMdwj5dXGHi48F9wQY9WVyuA-L9zbnshP4SCvvAAiA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: versaclock3: Document clock-output-names
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229516AbjHUIfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 04:35:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC79B5;
+        Mon, 21 Aug 2023 01:35:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C775862D31;
+        Mon, 21 Aug 2023 08:34:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCE5BC433C7;
+        Mon, 21 Aug 2023 08:34:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692606898;
+        bh=oEQbal5/vxqRGZ3YLafZj8Knbvn9kAOi/AFZtF9uDxU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KTDJqY5Yjj4O2DGZawjCbvMfpNiue4Yewjl6wur35PIheVqyPapwog1sJB5n89Ajm
+         jvZ0Y0a9XpQ39CzToNwGXA0cCcfRVNsNzZB80eFLy2SnIkCi0eYp2mOLyajO52bIeF
+         Gysae0y+8BV1c4+/IJtvMD1LB+TZa0gtQzc0+AXQegNjbA7xXv3eHDi7ojoOdnBCXV
+         /ICtDfJN3agBpY0kkaQcJjRgoh9r8optOCWGCUYjQ0omVc1F/WxYvUsApbnxHzSX4Y
+         rGbTeDp46sriFOPRhAC8FddeSDgr35+GEvy8jVUmyDFDtIaxE+/APWux6jEeRDxpGR
+         Ygd+84jMdrElg==
+Date:   Mon, 21 Aug 2023 10:34:51 +0200
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
         Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ#
+ mode
+Message-ID: <ZOMhq8a/wnURWsFP@lpieralisi>
+References: <20230623144100.34196-1-james.quinlan@broadcom.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230623144100.34196-1-james.quinlan@broadcom.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+On Fri, Jun 23, 2023 at 10:40:53AM -0400, Jim Quinlan wrote:
+> v6 -- No code has been changed.
+>    -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
+>    -- Changed sign-off and author email address for all commits.
+>       This was due to a change in Broadcom's upstreaming policy.
+> 
+> v5 -- Remove DT property "brcm,completion-timeout-us" from	 
+>       "DT bindings" commit.  Although this error may be reported	 
+>       as a completion timeout, its cause was traced to an	 
+>       internal bus timeout which may occur even when there is	 
+>       no PCIe access being processed.  We set a timeout of four	 
+>       seconds only if we are operating in "L1SS CLKREQ#" mode.
+>    -- Correct CEM 2.0 reference provided by HW engineer,
+>       s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
+>    -- Add newline to dev_info() string (Stefan)
+>    -- Change variable rval to unsigned (Stefan)
+>    -- s/implementaion/implementation/ (Bjorn)
+>    -- s/superpowersave/powersupersave/ (Bjorn)
+>    -- Slightly modify message on "PERST#" commit.
+>    -- Rebase to torvalds master
+> 
+> v4 -- New commit that asserts PERST# for 2711/RPi SOCs at PCIe RC
+>       driver probe() time.  This is done in Raspian Linux and its
+>       absence may be the cause of a failing test case.
+>    -- New commit that removes stale comment.
+> 
+> v3 -- Rewrote commit msgs and comments refering panics if L1SS
+>       is enabled/disabled; the code snippet that unadvertises L1SS
+>       eliminates the panic scenario. (Bjorn)
+>    -- Add reference for "400ns of CLKREQ# assertion" blurb (Bjorn)
+>    -- Put binding names in DT commit Subject (Bjorn)
+>    -- Add a verb to a commit's subject line (Bjorn)
+>    -- s/accomodat(\w+)/accommodat$1/g (Bjorn)
+>    -- Rewrote commit msgs and comments refering panics if L1SS
+>       is enabled/disabled; the code snippet that unadvertises L1SS
+>       eliminates the panic scenario. (Bjorn)
+> 
+> v2 -- Changed binding property 'brcm,completion-timeout-msec' to
+>       'brcm,completion-timeout-us'.  (StefanW for standard suffix).
+>    -- Warn when clamping timeout value, and include clamped
+>       region in message. Also add min and max in YAML. (StefanW)
+>    -- Qualify description of "brcm,completion-timeout-us" so that
+>       it refers to PCIe transactions. (StefanW)
+>    -- Remvove mention of Linux specifics in binding description. (StefanW)
+>    -- s/clkreq#/CLKREQ#/g (Bjorn)
+>    -- Refactor completion-timeout-us code to compare max and min to
+>       value given by the property (as opposed to the computed value).
+> 
+> v1 -- The current driver assumes the downstream devices can
+>       provide CLKREQ# for ASPM.  These commits accomodate devices
+>       w/ or w/o clkreq# and also handle L1SS-capable devices.
+> 
+>    -- The Raspian Linux folks have already been using a PCIe RC
+>       property "brcm,enable-l1ss".  These commits use the same
+>       property, in a backward-compatible manner, and the implementaion
+>       adds more detail and also automatically identifies devices w/o
+>       a clkreq# signal, i.e. most devices plugged into an RPi CM4
+>       IO board.
+> 
+> 
+> Jim Quinlan (5):
+>   dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss property
+>   PCI: brcmstb: Configure HW CLKREQ# mode appropriate for downstream
+>     device
 
-On Mon, Aug 21, 2023 at 10:11 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH v2 1/3] dt-bindings: clock: versaclock3: Document
-> > clock-output-names
-> > On Thu, Aug 17, 2023 at 11:08 AM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > Document clock-output-names property and fix the "assigned-clock-rates"
-> > > for each clock output in the example based on Table 3. ("Output
-> > > Source") in the 5P35023 datasheet(ie: {REF,SE1,SE2,SE3,DIFF1,DIFF2}).
-> > >
-> > > While at it, replace clocks phandle in the example from x1_x2->x1 as
-> > > X2 is a different 32768 kHz crystal.
-> > >
-> > > Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > Closes:
-> > > Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock
-> > > generator bindings")
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > > v1->v2:
-> > >  * Updated commit description to make it clear it fixes
-> > >    "assigned-clock-rates" in the example based on 5P35023 datasheet.
-> >
-> > Thanks for your patch!
-> > > ---
-> > >  .../devicetree/bindings/clock/renesas,5p35023.yaml | 14
-> > > ++++++++++----
-> > >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > > b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > > index 839648e753d4..db8d01b291dd 100644
-> > > --- a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > > +++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-> > > @@ -49,6 +49,9 @@ properties:
-> > >      $ref: /schemas/types.yaml#/definitions/uint8-array
-> > >      maxItems: 37
-> > >
-> > > +  clock-output-names:
-> > > +    maxItems: 6
-> > > +
-> >
-> > Why do you need clock-output-names?
->
-> I thought it will be useful information for a user, by looking at the example the name of clock-output-name and corresponding assigned-clocks and assigned-clock-rates.
->
-> See below, from this one can understand the relation between index and actual clock output.
->
->   clock-output-names = "ref", "se1", "se2", "se3",
->                        "diff1", "diff2";
->
->   assigned-clocks = <&versa3 0>, <&versa3 1>,
->                     <&versa3 2>, <&versa3 3>,
->                     <&versa3 4>, <&versa3 5>;
->   assigned-clock-rates = <24000000>, <11289600>,
->                          <11289600>, <12000000>,
->                          <25000000>, <12288000>;
->
-> > The clock output names should be created by the driver (taking into account
-> > the instance number, so it works with multiple instances).
->
-> OK, so shall I remove it from bindings then?
+I am not merging the first two patches since the discussion thread
+is still open and I'd like to understand better what can/should be
+done, sorry.
 
-I think so, as it is not needed.
+>   PCI: brcmstb: Set higher value for internal bus timeout
+>   PCI: brcmstb: Assert PERST# on BCM2711
+>   PCI: brcmstb: Remove stale comment
 
-What is still missing (contrary to the Closes tag) is the mapping from
-clock IDs to actual clock outputs.
+Is it OK to apply these three on their own ? Overall it would be
+great to avoid mixing patches with different end goals in a single
+series.
 
-Gr{oetje,eeting}s,
+Thanks,
+Lorenzo
 
-                        Geert
+>  .../bindings/pci/brcm,stb-pcie.yaml           |  9 ++
+>  drivers/pci/controller/pcie-brcmstb.c         | 91 ++++++++++++++++---
+>  2 files changed, 89 insertions(+), 11 deletions(-)
+> 
+> 
+> base-commit: 8a28a0b6f1a1dcbf5a834600a9acfbe2ba51e5eb
+> -- 
+> 2.17.1
+> 
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
