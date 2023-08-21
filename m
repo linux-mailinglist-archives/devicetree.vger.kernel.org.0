@@ -2,64 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 536CD78344C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 23:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6754783446
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 23:05:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230467AbjHUU6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 16:58:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48746 "EHLO
+        id S231126AbjHUVA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 17:00:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbjHUU6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 16:58:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD9FFBC;
-        Mon, 21 Aug 2023 13:58:34 -0700 (PDT)
+        with ESMTP id S229542AbjHUVA2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 17:00:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995E6D9;
+        Mon, 21 Aug 2023 14:00:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C31260BA1;
-        Mon, 21 Aug 2023 20:58:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FB17C433C7;
-        Mon, 21 Aug 2023 20:58:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1E17863B42;
+        Mon, 21 Aug 2023 21:00:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB690C433C8;
+        Mon, 21 Aug 2023 21:00:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692651513;
-        bh=E5e9oQ4r7IOuMNrE+VP4h3263NYNYefbxPjf4m73jXU=;
+        s=k20201202; t=1692651623;
+        bh=rPP1ftZZu8+eeOfNcBx/bQ/TCM65ce1htppkQnp2ueg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zs9GOt5s+WO796XKC96PZ0b6uaUyn4EzPPwXV7rsT3tdjcyuZs5KTznPdBPkg2Gwt
-         D6gQ0VWWVli+hjBfSSOOsuBa0BFu54Kf6XtqAST9k4qtU+WwizDzRg3WcN7QaWWlko
-         +d7r2e5+wkqwiiMo52zzVTtog9Rs7pCzIl8QwxbauTjBWKfqTH3p1thAccsssaE+Fd
-         zPTYhbPwYwr6w+qO7GUn41OVcpw5tjtCG8GxvKgjZOMQzejREz8JRGvNg9CXmCbU3a
-         KDDMc2TNY44isDvaeEoXmCnkiv9BR5K56lgoeboVw7t/s1GEZbGZeLNIs8dcDGb8+w
-         1B0/aIct7t8IQ==
-Received: (nullmailer pid 2281356 invoked by uid 1000);
-        Mon, 21 Aug 2023 20:58:31 -0000
-Date:   Mon, 21 Aug 2023 15:58:31 -0500
+        b=kLsTWwBIQH8uo+xiYezjrvaWDvIaWBEzzASPBZh+Csz2Khdf06gClRLZPBNGSecDL
+         ddgmxumcskg1BiTvsq4QuYrHen7LBR654tt7iooLzvdvAIqgbgRRI3DHtR5l0xAevI
+         WM6RhaPyh54QhX+kkLMGdS2NBfLCTWJElEH75s2lwdu5P+iodOVNHKhyjELT9DlJa4
+         Z/Ggnk5G5NM4mKz3eCjcm15+I+4o39hqiw9+zIhTLym9XdCorPfu8umkKXmWzLy+mD
+         94z0VerqiIw9qmLDqQmwiVY681v8uz8u8nbF9qY8MBnQjlo80/j/kMC8V18q0jX07v
+         yOiJ5LFja4O/g==
+Received: (nullmailer pid 2284013 invoked by uid 1000);
+        Mon, 21 Aug 2023 21:00:20 -0000
+Date:   Mon, 21 Aug 2023 16:00:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-Subject: Re: [PATCH] dt-bindings: display: msm/dp: restrict opp-table to
- objects
-Message-ID: <169265150949.2281277.7308307921965060658.robh@kernel.org>
-References: <20230820080543.25204-1-krzysztof.kozlowski@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linux-kernel@vger.kernel.org, frowand.list@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, isaacmanjarres@google.com,
+        conor+dt@kernel.org, rafael@kernel.org, devicetree@vger.kernel.org,
+        jeremy.kerr@canonical.com, robh+dt@kernel.org,
+        gregkh@linuxfoundation.org, linux@armlinux.org.uk, arnd@arndb.de,
+        hdegoede@redhat.com, andriy.shevchenko@linux.intel.com,
+        grant.likely@secretlab.ca, Peng Fan <peng.fan@nxp.com>,
+        ulf.hansson@linaro.org, linus.walleij@linaro.org
+Subject: Re: [PATCH V3 2/2] of/platform: increase refcount of fwnode
+Message-ID: <169265161637.2283882.6488993918028899667.robh@kernel.org>
+References: <20230821023928.3324283-1-peng.fan@oss.nxp.com>
+ <20230821023928.3324283-2-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230820080543.25204-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230821023928.3324283-2-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,14 +63,41 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 20 Aug 2023 10:05:43 +0200, Krzysztof Kozlowski wrote:
-> Simple 'opp-table:true' accepts a boolean property as opp-table, so
-> restrict it to object to properly enforce real OPP table nodes.
+On Mon, 21 Aug 2023 10:39:28 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> commit 0f8e5651095b
+> ("of/platform: Propagate firmware node by calling device_set_node()")
+> use of_fwnode_handle to replace of_node_get, which introduces a side
+> effect that the refcount is not increased. Then the out of tree
+> jailhouse hypervisor enable/disable test will trigger kernel dump in
+> of_overlay_remove, with the following sequence
+> "
+>    of_changeset_revert(&overlay_changeset);
+>    of_changeset_destroy(&overlay_changeset);
+>    of_overlay_remove(&overlay_id);
+> "
+> 
+> So increase the refcount to avoid issues.
+> 
+> This patch also release the refcount when releasing amba device to avoid
+> refcount leakage.
+> 
+> Fixes: 0f8e5651095b ("of/platform: Propagate firmware node by calling device_set_node()")
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../devicetree/bindings/display/msm/dp-controller.yaml         | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> V3:
+>  - Move amba device changes to patch 1/1
+> 
+> V2:
+>  - Per Andy's comment, use of_fwnode_handle(of_node_get(np))
+>  - release amba device of_node refcount when releasing amba device, this is
+>    done from code inspection, no test.
+> 
+>  drivers/of/platform.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 Applied, thanks!
