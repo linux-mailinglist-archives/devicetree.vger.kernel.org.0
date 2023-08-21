@@ -2,167 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C06678297B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B58D782981
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:51:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235057AbjHUMuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55062 "EHLO
+        id S235077AbjHUMvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 08:51:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235064AbjHUMuD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:50:03 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2052.outbound.protection.outlook.com [40.107.21.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6858CB1;
-        Mon, 21 Aug 2023 05:50:00 -0700 (PDT)
+        with ESMTP id S233727AbjHUMvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:51:19 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F09DB1;
+        Mon, 21 Aug 2023 05:51:17 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BeCdMNx7FHNLc5Wn/ole7owsspyTeCy3sqlyiQ4GLfhhcV+L5mV/rOm+OtkxveyzSjYDFElzIUtlac/dla2V+3R1q41GIcw1TWRRPswn26DHft/AhSYSAL+cY24fkngD8VSi3/0FijrPS0u2TR6SSFCsjcaKTIQq3qbeXWIBV0zJcsuMemEPPuwwMhuU1lmbYx1rCx1v3PKHLZIvXNrvjCC2Yl+lRvatjpE1o+WNRnhaFN4HdW1GWuisxhJJdvPsZljFX+V7cu1MTFrJVHi2PaVmWjsoZzSjNm8jT1d2SJzaf08cyHuFlIxerOXEfP8XCFXFS08vFvwvn4nek0gB2Q==
+ b=H7BQAzKPrgxwRngTKBIFi4+8d4w3WY8Fz5oE+M3hYVFWGIRBA/V3H16gZJ1I3XzV+5LQNGrbsdLFsJfuVah0XJW0b3jnZm3A3+uNWbqIwuKSfhjCpcnpUwaCh2oIe+4mQhXyAWsi3YM0I6r0NVlSC+nRluk9aTfFNUPHtXoPWwJER+HIN/DX2/nLsA+CGB0PJQ4JbsDUP7vttA6rCX2KxVmUj6Z3W2RL72S+tuFPw8JxAITWlRsNYWBGIr3OQYnv/z5ApZPMPY4ao/9vxl8WvlR/EjMq5tfVdCkpxW4hEYgj8+rRZeeLysXp9L4puAqpqyleQ9Cgwclrbq1f7pfZZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zs6s55fVitXrQYIu+Oy3xSV/pAgy+l5kuucvbv3wTx0=;
- b=WSS8MBUfBTl1WhXoXYIVIhGlYRcM3i9Ps33BST8Jovb6uxT94K8Xvsc8sY7qXoeSvi+AxtjwXGRf9kf+BO/RCwtwFVmoHQUcMFS6oaw9zq6bKwJ+GupgokEPFEkds2EVzj3barfXNCHXayu0da0i1D4SxossQhLQJmLC8DXHTyZoRLbPrds94EHbKAT7npih2BUiAPuKZQmgvjSgup/vqah1vnSmh6Ov4vQxmLcivpUaP01rXditKpa1O0xCWjXV5lrxID2bJZR26aY0qEOU6VjvbzhRDjqDpYCMikaP/b8Lt+qnnUrsQkDZ+mhZtN1hP2LEJRS8DIt9+adY2sAP+w==
+ bh=qNuaXDjHiLTHoXA1rCLSHzrfqpYj+Qp6ClJy4a+iF3s=;
+ b=fPKVj7ZdDYd5jTcEmgPeyJL8kNeHtoS1Ecu+nuL1hEZTR46woWWTZ6vZjNl/snd+x/DkJMXi9+iCdr3oISzGmo2uKpH3QtY/raAGiRMlr5Ucq/B9S3tTN7kD69/GmqLgunc4Ek6cE6/0TE3LyiD7QD/sGFh92tLdDaEOQZAmPueQT+krR7hN9PQNJw9pYFmcV4mWRJ2C8SFOV2Sdk6DIqp8mZkmoomw3R5k9eT4TGGrNRp9JcpNa+FQbsmj74HxelPGWqt72Ly9SMZ4WrrIQWLp7HJ8I1AARpzSI1QXAkr0bY+LOqHbfzcAF1RoFZDDL+l03icr81tXDAG48Azk7kA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zs6s55fVitXrQYIu+Oy3xSV/pAgy+l5kuucvbv3wTx0=;
- b=gyzTM8W5dEW43RU/v/3zKPzoTr8TWE3A5ziL5jzUANSuQlpEQQBauJU3sL719YRQc7eZUXxwxEM2dGihwfbEEGSXNLJvV8HuVVaxbWMb8B3ERQoeS595TTfdGmGokawdzvcp3U8DWvjxq7ycpqHzwAA3LU697lrxkdRNLnlPypw=
+ bh=qNuaXDjHiLTHoXA1rCLSHzrfqpYj+Qp6ClJy4a+iF3s=;
+ b=nEY/xqeRZOYs1fPi/IBTRm9Qwk13YtTo3/euHfWyYKYMFQ1xFwVXBspHrM3jKPl/3A8Iv9RutwCxq9TkW0SLjLgldeUFEH6+8Bcrf/kQnHunEkEV8LNrSs9HW8upkrxx5idkU8cat08jZQFmU5RJUsD6uB4rrxqgbTo1w2KWVim+QlPCqoT73M+SHofjLs1rOlxI77GZw9b90GSRqO97Lh5NOsC21dlKxq2/4UCDNyzs+FJwOxjkALkxMHUw/sGB7GAzUfJ+0fjon6vNUKugLroB+IJIuRot4818fKueVWYa9vYeG3igp64Bo9GdVF6hqBxReZQV9tMNm74HKcRQfQ==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by DU0PR04MB9672.eurprd04.prod.outlook.com (2603:10a6:10:31d::12) with
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by MW4PR12MB6850.namprd12.prod.outlook.com (2603:10b6:303:1ed::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Mon, 21 Aug
- 2023 12:49:57 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::d4ed:20a0:8c0a:d9cf]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::d4ed:20a0:8c0a:d9cf%7]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
- 12:49:57 +0000
-Date:   Mon, 21 Aug 2023 15:49:52 +0300
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
+ 2023 12:51:14 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::5111:16e8:5afe:1da1]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::5111:16e8:5afe:1da1%6]) with mapi id 15.20.6699.020; Mon, 21 Aug 2023
+ 12:51:14 +0000
+Date:   Mon, 21 Aug 2023 09:51:13 -0300
+From:   Jason Gunthorpe <jgg@nvidia.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Andy Gross <agross@kernel.org>, David Airlie <airlied@gmail.com>,
+        alsa-devel@alsa-project.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        Frank Rowand <frowand.list@gmail.com>, iommu@lists.linux.dev,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
         linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?utf-8?B?RmVybuKUnMOtbmRleg==?= Rojas <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
-Message-ID: <20230821124952.mraqqp7pxlo56gkh@skbuf>
-References: <20230522150010.q5zndfwcuvrb6pg2@skbuf>
- <22a28a6f-2c84-a6b1-bb57-a269af34c993@seco.com>
- <20230610222123.mzmfjx7zfw4nh2lo@skbuf>
- <c702e2b6-cb0f-4ac9-86fe-a220284d45aa@seco.com>
- <20230612163353.dwouatvqbuo6h4ea@skbuf>
- <1dd01fe2-08a8-ec2f-1184-a58b2f55ba85@seco.com>
- <20230613142754.wr5njtjo4tbloqwu@skbuf>
- <20230811150826.urp2hzl3tahesrjx@skbuf>
- <26623d0c-8a5a-614b-7df7-69214aaec524@seco.com>
- <20230811163637.bs7a46juasjgnmf4@skbuf>
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+        linux-wireless@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sinan Kaya <okaya@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Sean Paul <sean@poorly.run>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Will Deacon <will@kernel.org>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Lu Baolu <baolu.lu@linux.intel.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Kevin Tian <kevin.tian@intel.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH] iommu: Remove the device_lock_assert() from
+ __iommu_probe_device()
+Message-ID: <ZONdwclGOBaxxqtq@nvidia.com>
+References: <0-v1-98d20e768c66+7-of_dma_lock_jgg@nvidia.com>
+ <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230811163637.bs7a46juasjgnmf4@skbuf>
-X-ClientProxiedBy: VI1PR09CA0181.eurprd09.prod.outlook.com
- (2603:10a6:800:120::35) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
+In-Reply-To: <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
+X-ClientProxiedBy: BL1PR13CA0014.namprd13.prod.outlook.com
+ (2603:10b6:208:256::19) To LV2PR12MB5869.namprd12.prod.outlook.com
+ (2603:10b6:408:176::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|DU0PR04MB9672:EE_
-X-MS-Office365-Filtering-Correlation-Id: d96696c9-0319-4667-6165-08dba2451f54
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW4PR12MB6850:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22a4b79b-00ea-433c-9893-08dba2454dc7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NfGcKxWJpQQG9Jxzs+whd2/MEllUZt4Q1hWO1EO1aVGVzdCQSkcFYI8xkxrEgKEW5cvBVBymToeby2sVVQ1BTBgncz7AZD9gpl51T+KZ7i2R+KtD8LK8PgAgAkSu1qNmLMAhHmTKR6OlYN0tNhAbXAPb3Qs+yPd+X0C/szPOgS5hMoUuGaHw2//e7oyjxS1NMAHZJLCCV3iaDoTj7WUKQ/WpYEvGfxctbBpzoZWIe7uaPDSEST2rAKjAfYeIlhCpeN3bbam2WGXiSlDxCNlcz4DcnZpyHt5O35G4+e6U6oISaar3Hg+V79fF8YjI/oMIOGwvqY2wMlGUVBhUrwoHMETLz8njREN3z3d+ZNf6IMGz59ymtbZlxtoUZgPseNM8+gfIbp5d5vM05spOQjhsEjG1B7WRCdmxUIqxxyf7cBSkMe2KJ6elVAqIpR0rexbQlD90TLrXrutu2OhrsAevtPTHB/JzmlMPNcKWmmWDlJvr7JdFMLo1c1GbKgpyqwlTqPEu7qJS5MbrCQwe2zyFFJ1gWo2+p0uONayDKcv/tRL3eBogRXJXT60ELZXxSv+e
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(346002)(376002)(366004)(136003)(396003)(39860400002)(451199024)(186009)(1800799009)(1076003)(6666004)(6512007)(6486002)(9686003)(26005)(6506007)(83380400001)(33716001)(7416002)(8936002)(5660300002)(44832011)(8676002)(4326008)(2906002)(54906003)(478600001)(41300700001)(316002)(66556008)(66476007)(6916009)(66946007)(38100700002)(86362001);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: NmrlHYkggJ2nHAKVj3phCceisxZjgFBWKPZGEdbGXIrb/Dn6Jz1MTkbJ+UtrEms0c1T7E40uC6M3aKBda2ZxT7aRbwd9U7F/weLPJBD8ZQZ6JGVW80ofrYpNuUIGlIlQQ/OPWPE/gC77LxyW+Ylke5fYRpBv4wKQQGBWlw5284LxFT+I7HkfIAzrWteRCIRUYr8Ts2xTG3hbFFnWd1ijt6REYiN1J5xyrv/JUuOmNVAdINGN+t4CQNDe6+azMvzgDCmXKQM/0CSU/Yce/DdAwCwUqykOoeDUzgR1MbIJF/8NNGx0yCfXdFPc6B8lMSqOQk0LQH5bTuelBxa1ZsPVzfoFqqHYdHaQbStL6Q6oAOnSo9mRxAKZ7ZDK0HIqN1nCy6YnWl5FKAE4GrKgSpTYnEGxMQ6bc+ms3Qznv/tk37/0Rdm3KfdzQnStaXPIWcAo9ch8ZshT501iHBIGQyvSclxWYOzltSKXGrBc1qXAFj00K6nrsN0w9BH+jl8Mb4BnxXVf1vaFToVwlV8wvYwc0rfTa7N9qYr4S/U82NgJ/LZd4dySrUtuohdvQOreiAAi
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199024)(186009)(1800799009)(2906002)(7416002)(7366002)(7406005)(53546011)(38100700002)(6506007)(6486002)(83380400001)(5660300002)(26005)(86362001)(8676002)(2616005)(8936002)(4326008)(316002)(66946007)(6512007)(54906003)(6916009)(66556008)(66476007)(66899024)(478600001)(36756003)(41300700001);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zKGNHHPXOuVPgpijVwf0Jwq8gfAYeWmKPsXDUIuwNtRm2D39l0oSG64+Am3d?=
- =?us-ascii?Q?VVadqAAKmhxfG8yHoK5/8JwijafdSBSZRFobsFrrTSHEdC4xfNMBxQY0bxHJ?=
- =?us-ascii?Q?RdmVTTJwdN8gtyrh95LqFab8R7Ybx2FwAIQXBmp79r1YlBQlb7ZWNB2EGPAJ?=
- =?us-ascii?Q?enbWkPN1vVH+yxbYUnFGMnVBSCGQLkswvgOzpKKPiPJNGOCA3lQUYxfBCoJG?=
- =?us-ascii?Q?yOPUkO3h9dICCluy872p62/xeRHmQRObjJoh6L36FCamdnS0KrJoV4uIJCgV?=
- =?us-ascii?Q?X26qPKF1z0E6yNqaCRCa/uw40PN03OD8bd2+AcOm29Jj4ShSX0HqLOlxg6xx?=
- =?us-ascii?Q?5GIzoLjOWa/ZEGVB7iDL5/94NWSpFULZjwiIPhFEr5/s4uvU0N9BFDxXjfLK?=
- =?us-ascii?Q?JdrU/q8LR8/lpJGhd/0L7Mqqq4mRM1sLMN9gj+18BiU2loQ9lzwotd8BZ+MN?=
- =?us-ascii?Q?6kpxG4bFZ44k/v54++bHkWmXQqfha3jDsM4DkCGZJ6O345piXWRBf7CylNDI?=
- =?us-ascii?Q?OtRTY1N77bY49evaD7GgrgqbRzM8PKwVdOdXL5G+sC62Uin39S1tMTg5IHP7?=
- =?us-ascii?Q?tn0wF3NLj7lUHqL6OQY679OeCUEhAA/ttm7qttkk0+HM1xljRJDzne25PptB?=
- =?us-ascii?Q?N7mgmpLSuvQU38zILVUGL9cry+Qnbbzogr1iY9SErD3i3PryxuzIxNhduytb?=
- =?us-ascii?Q?mQOxRy9ocTryDDH9Fip8TdSns+g95cvHdZu9BPYtoKAHrbJfvANyKWIEmt80?=
- =?us-ascii?Q?Kia/kH8vbqHMhvtmVZkN+QheZzw2UawSbGQi4ZI0I8lyoZ3cgCSFmCPKpjUN?=
- =?us-ascii?Q?TmCVGjU+luK1lOZs3rcJUm8q0ZOjL3yd5TwT+TVlcE6etitD9PHDykmRKGBi?=
- =?us-ascii?Q?U87DhVfQBtAF+IwZG4/msqSY7u2ttwE9RDXUwAfd9ARK3R9x44jCALPeoNLR?=
- =?us-ascii?Q?bypD7HiX8bwajcgYp/GTpALzwP71qzO3ws4+GMGL6kynlJaBqkNfe3frF21Q?=
- =?us-ascii?Q?XQ6WOutZtZnSMsnhqEnSxrgreLsNKT/sQZ4IPgi/7vewVVMwadNdVzI0K5cI?=
- =?us-ascii?Q?9V50wMhSksRD0V+AKxjLRMKNKPSB+gFVe2skG4oQHJXxv2R7BBrMUUfANQnu?=
- =?us-ascii?Q?mMOFguJD3458xkfKrNPLPt1PzuBCGXR7eBPLs9hm2TacJO/rGwa57PJ9Xo7W?=
- =?us-ascii?Q?KGL3ybrrVHavI8ntmhW1XGQhdu5M7lZr+wk3TdE/B7iq573Erxq2Wtj26i+5?=
- =?us-ascii?Q?a25GvNvqPNBGmt/awXtjkRLWyzm6NcK7FIBgwXciD57qO8NQKPHnrY0da6CS?=
- =?us-ascii?Q?vZl3KQqnecXKIWuGD1W7RZLAuFn5o/+cTCOcHZ5M/dEXZ0+WthhAOZbKj7t+?=
- =?us-ascii?Q?sMBF8w+8NMjvonpZ1d13MpHoiREXbVEhb3KjqItpBtYEdCUovMUKC0g9YOU7?=
- =?us-ascii?Q?CTv6vUf3CrhAh114F5uP2v84z5wy8cpPVLM1Pn+Mf3eVyT1A8iZqmh9MmQh8?=
- =?us-ascii?Q?6eWAvf0lCM1ATjzk/DGcOxBmiaqaLDuWkVEUn4cMRvFAqAng6RDHjVaCVKyW?=
- =?us-ascii?Q?vXphqSN6eJnPazfZqU9I4RvvmlhJJ3WyBJ9MYd6/0T3j1+U3BH22HWzmo/4J?=
- =?us-ascii?Q?yw=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d96696c9-0319-4667-6165-08dba2451f54
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QyYxkkE3o5nnOsinGeWKraNyp7F/ly8111ZXt/Apzu/dIyuyU1VHdEpfZbe2?=
+ =?us-ascii?Q?3AXfinDTVEGRcbzzxmbcHClfnkarHt5zhCEQUFh6AsdK5+FNy8fzIhXMW74p?=
+ =?us-ascii?Q?0DWJINg79XKnutBQY7uRSHclHGpWzjQVxLWZwcfeXfmjotdKIpxiTUczpc+R?=
+ =?us-ascii?Q?ewky8YThyjT/1FFKrullofYydPUR6RKAb34DpnhIlQX+kR8mdDfvcpEdGbJy?=
+ =?us-ascii?Q?qKyQgXD3yFqP5icje6t0Gl0a7WV4SoHAbmoII8+/CsOUkhmYERrvEdCgSx8C?=
+ =?us-ascii?Q?k9VrMUVFQsDt4GjLrY1xgpbu8KSviWQkIVhN6gjXKAKb5QCSXHxNIU7loBo0?=
+ =?us-ascii?Q?+HYVmTZxJPF4yYZu5o5twgEy6m75ldrLHZx6tdAUiW0sCtSL0NP18+TT7CXB?=
+ =?us-ascii?Q?dpVKv+6DuQZd14u4FdNTRIzygPFi7wTgGzeQkNWYtrjwyjYCc/hA9dcxdWe2?=
+ =?us-ascii?Q?c8ALaRS/pm2KGUHVdBmAUAAgRv+u6U/kTVb6hyYw4N5E8ALFaC+Mvk3bMmGx?=
+ =?us-ascii?Q?PpTWsHV+0+kM0kblTTGjYKfBqA4/ePG1cfozdhNibwJdqtAJE6GzaApydHjA?=
+ =?us-ascii?Q?7rzkqxt2ZFSjbRKNk1ox1Gd6x01rTzbP05db/wXr8WFNo4PBi2DTzmkbkCtU?=
+ =?us-ascii?Q?zCCGg9mEifgIyVyScNsjvpGUEW0EYOeoGzB6+YsH9e96Ls8EchDtj+/HV1WS?=
+ =?us-ascii?Q?c9mbBMx/WauKwUe/hj0JN05o2KCtKe6aqWQGafg2c0X534dM2p0WHq26kyX0?=
+ =?us-ascii?Q?LGZ5ph9xGWTCExNzrl6F+/ufk8e0t0E2CfrFKJC/x0rXpEOSuE21oF9J8XG9?=
+ =?us-ascii?Q?7+2bQ5u8uPKu3R5zZSdyvhEV7oigUbDeaO1TMJ/7C8ZPae5v4MjQSmqlTtJK?=
+ =?us-ascii?Q?jgn0tj9/LVu4m/0mKRI0bU5OBl0RW6i6+JoHT+vTHpnqD1zcsxv77Vh0j9nt?=
+ =?us-ascii?Q?YQWhBf+JO2cQBV5xwIc3DIX5WnaM0AqTMO9FKixncc45zGqmQvt7vLK3+w5l?=
+ =?us-ascii?Q?JPgZzcerqLPD8+T1bj7p0i2ns9y1kXSbzoD4VH5IHohSDfXczZf4ncg04jWD?=
+ =?us-ascii?Q?nKS4GoZ1aOQr3qgU2dOmeHoifsUj/rbP+tSB+Tl0jO251srLVaHvXJBSGwN0?=
+ =?us-ascii?Q?E1q2J4P+ueacY4o3uoUCgKlTqPFB1QlUeqtFEuysULd9E0ZdY0cFzzpB1rQ0?=
+ =?us-ascii?Q?QhoAwYqkKiqtSA6qLzOH7WjMbugev7mzixBGH+ZiWGhIGzyIMfThd//gngZC?=
+ =?us-ascii?Q?w9ZUILIMTuy/o5pQn3TEMIKRwMOpZxMaOwChcwkfAJCKoCFQiPdl5C5DMP75?=
+ =?us-ascii?Q?AqZWHp9DI3QaDmm6oFsdsjhUVs9wtJ8Ys8cG1OQIwNJ6sj7pJ+i3nVc5UuCx?=
+ =?us-ascii?Q?NDtoE4a/wrQiAg2NzhgsPHlUrPbiQYhck0rUPipUcNesIafZcZoDhm5D411p?=
+ =?us-ascii?Q?Tb+ZcI8YD1aYmATgeMlTh+sTJF/HjIZoNmn2gA54QiyZTqVMj7CdZ38Vbmx1?=
+ =?us-ascii?Q?DX7k5gnQJLXKuATibwv9Yvp2TDvjFQCrTQ+aBx5AL2m11beCroNgzox32An8?=
+ =?us-ascii?Q?3DjhuSH+E3B8pFE6CxGtwnFrNWg7XRXv40FyPLtN?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22a4b79b-00ea-433c-9893-08dba2454dc7
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 12:49:56.9682
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 12:51:14.7494
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xv9vHEnH1Pe9CI2ar/lCrnDp5+UoAI/PW2hyvwAQPm6cyCPL0CjllBuYHIGH8/Pr7zmPuan4fx28kAS/hkWSQg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9672
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: aDWV5dP5qf0J2bIIwmISU7r9iWwbX7ZHaYBaOMnqZq4awKkP8i1jm5Sof6FA5faL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6850
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sean,
-
-On Fri, Aug 11, 2023 at 07:36:37PM +0300, Vladimir Oltean wrote:
-> Let me explain that approach, because your mention of "swapping out the
-> bootloaders" makes it appear as if you are not visualising what I am
-> proposing.
+On Mon, Aug 21, 2023 at 12:06:40PM +0100, Robin Murphy wrote:
+> On 2023-08-18 22:32, Jason Gunthorpe wrote:
+> > It is subtle and was never documented or enforced, but there has always
+> > been an assumption that of_dma_configure_id() is not concurrent. It makes
+> > several calls into the iommu layer that require this, including
+> > dev_iommu_get(). The majority of cases have been preventing concurrency
+> > using the device_lock().
+> > 
+> > Thus the new lock debugging added exposes an existing problem in
+> > drivers. On inspection this looks like a theoretical locking problem as
+> > generally the cases are already assuming they are the exclusive (single
+> > threaded) user of the target device.
 > 
-> The Lynx SerDes family has 2 PLLs, and more lanes (4 or 8). Each lane
-> uses one PLL or the other, to derive its protocol frequency. Through the
-> RCW, you provision the 2 PLL frequencies that may be used by the lanes
-> at runtime.
-> 
-> The Lynx 28G SerDes driver reads the PLL frequencies in
-> lynx_28g_pll_read_configuration(), and determines the interface modes
-> supportable by each PLL (this is used by phylink). But it never changes
-> those PLL frequencies, since that operation is practically impossible in
-> the general sense (PLLs are shared by multiple lanes, so changing a PLL
-> frequency disrupts all lanes that use it).
+> Sorry to be blunt, but the only problem is that you've introduced an
+> idealistic new locking scheme which failed to take into account how things
+> currently actually work, and is broken and achieving nothing but causing
+> problems.
 
-Is my high-level feedback clear and actionable to you? I am suggesting
-to keep the look and feel the same between the lynx-10g and lynx-28g
-drivers, and to not use "fsl,type" protocols listed in the device tree
-as the immutable source of information for populating mode->protos, but
-instead the current PLL frequency configuration. So this implies that I
-am requesting that the dt-bindings should not contain a listing of the
-supported protocols.
+That's pretty dramatic. I would have prefered this series have some
+more testing before Joerg took it, but this is certainly not
+"achieving nothing but causing problems". Introducing a real scheme
+for how locking is supposed to work here is going to cause some
+strain.  We've had a long period where the lack of any locking rules
+has yielded a big mess held together with hope and dreams.
+
+Of course there will be crazy stuff. If these 13 drivers are the only
+problem then we've done pretty well.
+
+And at the end we get *actual rules about how locking works* Wow!
+Certainly not nothing.
+
+What I want to hear from you is a concrete reason why device_lock() is
+the *wrong* lock here. I can't think of any reason why we can't obtain
+the device_lock in all the places that want to probe the iommu driver.
+
+Nor, can I see a reason why it would be a bad choice of lock after all
+the dma_configure logic is reworked someday.
+
+> When their sole purpose was to improve the locking and make it
+> easier to reason about, and now the latest "fix" is now to remove
+> one of the assertions which forms the fundamental basis for that
+> reasoning, then the point has clearly been lost.
+
+I do not want to remove the assertion, I think the assertion should
+stay so people running debug kernels on these drivers can get warnings
+about the existing problems in these drivers.
+
+It is removed mostly because we are at rc7, otherwise I'd play wack a
+mole adding the device_lock and a nasty comment to the drivers. We can
+tackle that in the next cycle and put the assertion back.
+
+> All we've done is churned a dodgy and incomplete locking scheme into
+
+Well, at least we agree what we have today is not great.
+
+> And on the subject of idealism, the fact is that doing IOMMU configuration
+> based on driver probe via bus->dma_configure is *fundamentally wrong* and
+> breaking a bunch of other IOMMU API assumptions, so it is not a robust
+> foundation to build anything upon in the first place. 
+
+So now that Joerg has dropped it - what is your big idea to make the
+locking actually work right?
+
+Jason
