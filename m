@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C219A7830A9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:13:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21B7A7830BE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:13:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbjHUSyZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 14:54:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33272 "EHLO
+        id S229657AbjHUTBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 15:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjHUSyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 14:54:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958A976B2;
-        Mon, 21 Aug 2023 11:53:31 -0700 (PDT)
+        with ESMTP id S229682AbjHUTBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:01:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D25AE2B7E;
+        Mon, 21 Aug 2023 12:00:53 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8400964180;
-        Mon, 21 Aug 2023 18:52:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81722C433C7;
-        Mon, 21 Aug 2023 18:52:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D19B3642B6;
+        Mon, 21 Aug 2023 19:00:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DE92C43391;
+        Mon, 21 Aug 2023 19:00:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692643957;
-        bh=9Yw86enLpID5U94hXBP0Cn3sQwsJbGoXb+O9UlFco2A=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bMGxPQ8rqPAL5n5G3OsOHhxVHf494arO950h0E03Bkpq/ThOfFIcvfpU40WvxVeKV
-         aHkA1HtScEGLObzbbd+6tL3CXSZMGXEvg+JaHyZ03iY1ja2ys0omgqQepmYFZrwvzi
-         mLS62DmzD4oDTyvstiobOa4nEjsduQIRNmSECOoneqWKmdGmZYcMYTFlK+5558d9oa
-         tUbzRusq5FsHISJIAMZeuhHGQP9V//IzCuACBej/v3vZbxEEz551rZL0t9ufxRFT+d
-         YnEEbAaRyNQJ6UO5v2gJol+93ylEwF5svR5zpLSwZf5dV1JL8et34ik50QG/Bu2MiQ
-         AlaGlNaOmwT8A==
-Date:   Mon, 21 Aug 2023 11:52:34 -0700
-From:   Jakub Kicinski <kuba@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 21/28] net: wan: Add framer framework support
-Message-ID: <20230821115234.3aa55965@kernel.org>
-In-Reply-To: <fc5f1daa-58a1-fb86-65ba-c6b236051d45@csgroup.eu>
-References: <cover.1692376360.git.christophe.leroy@csgroup.eu>
-        <5f671caf19be0a9bb7ea7b96a6c86381e243ca4c.1692376361.git.christophe.leroy@csgroup.eu>
-        <CACRpkdamyFvzqrQ1=k04CbfEJn1azOF+yP5Ls2Qa3Ux6WGq7_A@mail.gmail.com>
-        <fc5f1daa-58a1-fb86-65ba-c6b236051d45@csgroup.eu>
+        s=k20201202; t=1692644440;
+        bh=p9svIL0nCLYzaPrmC4v5kKXr9sDBVwg9SepJnF/RICw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=L1wpF2J3X+JoMk1gWyjXqkyoeuDPOwkLVuvVCFonSDCp16n5wv7m0SYhlIQfmGNCY
+         q4tkXrlLRKDsHbWfaonvw3W5PiaWHmIR/UsRnHrRxO0dM/CDu8/dvUOB1WP9l6M/bL
+         0E6SJxh2lQ1sPBiBPyonRV4VAojaqctQAifvD6MRz2I3kI4G8I8EbUQp0xxDrPCkaN
+         24Sm0BRUnX55ynXalJeN2eHFScGPhRdEq+K7xCS0YoFxh+cSnQmQ4I7+qmGqD0cYei
+         L+KU+vs6FtbFpzlBWEL7wXRKAIOQIzYzJCd6Et5XsNxlg2dkaZve9ZBW+sKu15XxIn
+         sUJA+01d0YT1A==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2bcb0b973a5so31892301fa.3;
+        Mon, 21 Aug 2023 12:00:40 -0700 (PDT)
+X-Gm-Message-State: AOJu0YznqAJG5TB7/n2ZZ+CFRrq0jBA9jXz3sDFkAIFOGAgw/k9ObFSj
+        wpKltB9+rnbyDKCoHF2M5mCUgBt0A9vimkbQ0w==
+X-Google-Smtp-Source: AGHT+IHm4AbaUWDVW3wQ14cdXZkHH3AL4TMA23vobf18MBUJXUjopKVREy/biZZb3M8ZS1htZIpW5m755SH4+l9TKGU=
+X-Received: by 2002:a2e:8416:0:b0:2b6:ddab:506a with SMTP id
+ z22-20020a2e8416000000b002b6ddab506amr5774302ljg.34.1692644438172; Mon, 21
+ Aug 2023 12:00:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org>
+ <20230801-dt-changeset-fixes-v3-6-5f0410e007dd@kernel.org> <CAMuHMdWc78KFbBiqynfTF=LrD-rOxsk8EapqzKXP4qcP2nBSXg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWc78KFbBiqynfTF=LrD-rOxsk8EapqzKXP4qcP2nBSXg@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 21 Aug 2023 14:00:25 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLMoUZwacLe-mz1uHd9y7dy-ynS85=9aHARr+jB33K2jA@mail.gmail.com>
+Message-ID: <CAL_JsqLMoUZwacLe-mz1uHd9y7dy-ynS85=9aHARr+jB33K2jA@mail.gmail.com>
+Subject: Re: [PATCH v3 6/6] of: Refactor node and property manipulation
+ function locking
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,22 +70,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Aug 2023 05:19:22 +0000 Christophe Leroy wrote:
-> As I said in the cover letter, this series only fixes critical build=20
-> failures that happened when CONFIG_MODULES is set. The purpose was to=20
-> allow robots to perform their job up to the end. Other feedback and=20
-> comments will be taken into account by Herv=C3=A9 when he is back from ho=
-lidays.
+On Mon, Aug 21, 2023 at 8:19=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Rob,
+>
+> On Fri, Aug 18, 2023 at 10:41=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
+ote:
+> > All callers of __of_{add,remove,update}_property() and
+> > __of_{attach,detach}_node() wrap the call with the devtree_lock
+> > spinlock. Let's move the spinlock into the functions. This allows movin=
+g
+> > the sysfs update functions into those functions as well.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > v3:
+> >  - Rebase due to changes in prior patch
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/of/base.c
+> > +++ b/drivers/of/base.c
+>
+> > @@ -1576,37 +1587,36 @@ int __of_add_property(struct device_node *np, s=
+truct property *prop)
+> >   */
+> >  int of_add_property(struct device_node *np, struct property *prop)
+> >  {
+> > -       unsigned long flags;
+> >         int rc;
+> >
+> >         mutex_lock(&of_mutex);
+> > -
+> > -       raw_spin_lock_irqsave(&devtree_lock, flags);
+> >         rc =3D __of_add_property(np, prop);
+> > -       raw_spin_unlock_irqrestore(&devtree_lock, flags);
+> > -
+> > -       if (!rc)
+> > -               __of_add_property_sysfs(np, prop);
+> > -
+> >         mutex_unlock(&of_mutex);
+> >
+> > -       if (!rc)
+> > -               of_property_notify(OF_RECONFIG_ADD_PROPERTY, np, prop, =
+NULL);
+>
+> The notify block should be kept.
 
-I missed this too, FTR this is unacceptable.
+Yes, good catch.
 
-Quoting documentation:
+>
+> The rest LGTM, although I have some second thoughts about more
+> functions with a double underscore now taking devtree_lock().
 
-  **Do not** post your patches just to run them through the checks.
-  You must ensure that your patches are ready by testing them locally
-  before posting to the mailing list. The patchwork build bot instance
-  gets overloaded very easily and netdev@vger really doesn't need more
-  traffic if we can help it.
- =20
-See: https://www.kernel.org/doc/html/next/process/maintainer-netdev.html#pa=
-tchwork-checks
+We still take the of_mutex. :) I looked at it some and we're already
+not consistent in usage of '__'. Not a great argument I know, but if
+we're going to make things consistent I think we should do that
+separately for the whole subsys.
+
+Rob
