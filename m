@@ -2,139 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 803CB782C6D
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B3C2782C9D
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:49:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbjHUOrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 10:47:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54918 "EHLO
+        id S236171AbjHUOtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 10:49:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236055AbjHUOrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:47:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47754E9;
-        Mon, 21 Aug 2023 07:47:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DA49063AA9;
-        Mon, 21 Aug 2023 14:47:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B8AEC433C8;
-        Mon, 21 Aug 2023 14:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692629221;
-        bh=zc0KGAFXOhLfTVM+2oz/ikmwe4dYCgqrTJs2/1nRo9o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FSWSB5nwW8WJBUUL3hCoZnO0XdV9E65WSkPKJlcqnKaL+XIe6D5zPP/Y4W3eVVFJ4
-         KWx86NPv5BU7JoiwrOroXT9nBobxD2OtWBGe5EeHpewqE8M/D0o9NkxlQeOuXDBWt5
-         xz5ET8aEEY5WgeFeDIqUhhxAVKNOuQ5Pn8GMOnJmkGFkPnHfEROtqcjGvoNNViPuT+
-         z9X5MA1tOxw5xgDia7BL2NSNCZPUSOI1driFt+xcW8iJaHaWdDdPqu8xQFVWNMY0iH
-         aTfgCNoANScN9T9cvK00P1amSma1MRm0Dp9hiVzOvvslRYmnieiwAOUMVn6A4e4fX1
-         ElmLueD2IvHPw==
-Date:   Mon, 21 Aug 2023 16:46:54 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Jim Quinlan <james.quinlan@broadcom.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 1/5] dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss
- property
-Message-ID: <ZON43rPGJGzjTTj/@lpieralisi>
-References: <20230623144100.34196-1-james.quinlan@broadcom.com>
- <20230623144100.34196-2-james.quinlan@broadcom.com>
+        with ESMTP id S236167AbjHUOtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:49:46 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD883131
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 07:49:19 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fef56e85edso28285e9.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 07:49:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1692629335; x=1693234135;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=x8jXCYIqyhmpLreD70EjAUJFKXAlWYjYkvcU4wz+60w=;
+        b=q/0E1KAa+Y4kKvVzixWwHcEGAp8HT8PJAM5riMfuy0tkC0gEaOhDFtZqRk7RN5x38D
+         I8Q1maWFebs6b1+xU1mIxC51qLDe538WGTEkFushm+6URPxKVSFIhvegVq7suXaBD08O
+         nu36j5Vxx4CW/rsBH0YcAE5Wrj1GluTsnzLaz5NMzlqHjxBLRgxkTNx9+Qy7YLAD9RK6
+         4+bAO1tUNf3DbDVSbgmU9RSmUwrpgYe6hKLGNMJl1Rb6KxKmk5gdUDpWch/+OX629Mpn
+         lO3ZdTd4gFP0lQZ4qOOFOxG3Ku86THJbiY56v74PVa4TesvXLmsUD4Tskblo5xpleyHu
+         l0mQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692629335; x=1693234135;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=x8jXCYIqyhmpLreD70EjAUJFKXAlWYjYkvcU4wz+60w=;
+        b=KppzeixEWoHW1DSIPb9ZpromDIHW1F+2qORtduQ2yfxGmX8n6S8uowMwQ4XrcOA/+0
+         JMvtpPzZ7nDCr4lgFO5fOdSyGMfBGow4OJO+0KnIziDCaVc1vuofJC2vmmpTw/lYoEN7
+         96Ev7xnJQ8Zos70mFeHL/dESq+irQYu0DyqysVOnCPiWcGimKoySBsnIaqFNuKS9xSxE
+         t0Kl9JIyXmxqCEkgyYBy9n6iBh9JqYwhDplhOIhaokSs7OU/hI/rtyyQj7lKO7TBKh8q
+         JDVsah2JmI0BgqRE/TFUbmmP9ZIVPXbxauQkIWETpl5wZxz/cgDOqxmGamBrlxiiKd7h
+         yJRw==
+X-Gm-Message-State: AOJu0Yy18Hk+gfCQr4AGsU5mhduXLrKTL3nXvAXH4W6GMVCdaB+0cWGk
+        FZJFlqiU6EgObgn5icuoQR3Gz9ZTTbPzaJSC+PFf1w==
+X-Google-Smtp-Source: AGHT+IHtbrF3M4PA8JeUE4+qsLi/1xpdQHFqQ/6nMLwg3McHuKYyJUVDyYrlwYnSmFeRuk4YxXvSPdyMlerbS6E2mDg=
+X-Received: by 2002:a05:600c:331e:b0:3fe:eb42:7ec with SMTP id
+ q30-20020a05600c331e00b003feeb4207ecmr93162wmp.1.1692629334782; Mon, 21 Aug
+ 2023 07:48:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230623144100.34196-2-james.quinlan@broadcom.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230802071947.1683318-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=Um8875aMt_kWvCvpNjb3EwSk8VjVTEgv_TJ9WDS+LniA@mail.gmail.com>
+ <lyns4qkh57xhppnqroaooqtniypfsmr2l5fujlry3stmhrjww4@3iy5mmmrazl6>
+ <CAD=FV=UFM-5XFsTRt7LPXsN9Fjff33khYGQM+XqcLF1YdsRY4Q@mail.gmail.com> <dqom52gdxgsglhkfrl43peoh2lw2npmx6libdeulmyi67nszat@vqlvijq5mld7>
+In-Reply-To: <dqom52gdxgsglhkfrl43peoh2lw2npmx6libdeulmyi67nszat@vqlvijq5mld7>
+From:   Doug Anderson <dianders@google.com>
+Date:   Mon, 21 Aug 2023 07:48:42 -0700
+Message-ID: <CAD=FV=Wd61CbcVuHwVwZiGRWb52iVR0u4Vfc8r319j+KumFKqg@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] HID: i2c-hid: elan: Add ili9882t timing
+To:     Benjamin Tissoires <bentiss@kernel.org>
+Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        benjamin.tissoires@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dmitry.torokhov@gmail.com, jikos@kernel.org, hsinyi@google.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 23, 2023 at 10:40:54AM -0400, Jim Quinlan wrote:
-> This commit adds the boolean "brcm,enable-l1ss" property:
-> 
->   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
->   requires the driver probe() to deliberately place the HW one of three
->   CLKREQ# modes:
-> 
->   (a) CLKREQ# driven by the RC unconditionally
->   (b) CLKREQ# driven by the EP for ASPM L0s, L1
->   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
-> 
->   The HW+driver can tell the difference between downstream devices that
->   need (a) and (b), but does not know when to configure (c).  All devices
->   should work fine when the driver chooses (a) or (b), but (c) may be
->   desired to realize the extra power savings that L1SS offers.  So we
->   introduce the boolean "brcm,enable-l1ss" property to inform the driver
->   that (c) is desired.  Setting this property only makes sense when the
->   downstream device is L1SS-capable and the OS is configured to activate
->   this mode (e.g. policy==powersupersave).
-> 
->   This property is already present in the Raspian version of Linux, but the
->   upstream driver implementation that follows adds more details and
->   discerns between (a) and (b).
-> 
-> Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 7e15aae7d69e..8b61c2179608 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -64,6 +64,15 @@ properties:
->  
->    aspm-no-l0s: true
->  
-> +  brcm,enable-l1ss:
-> +    description: Indicates that PCIe L1SS power savings
-> +      are desired, the downstream device is L1SS-capable, and the
-> +      OS has been configured to enable this mode.  For boards
+Hi,
 
-What does this mean ? I don't think DT properties are supposed
-to carry information related to how the OS is configured.
+On Mon, Aug 21, 2023 at 7:14=E2=80=AFAM Benjamin Tissoires <bentiss@kernel.=
+org> wrote:
+>
+> On Aug 21 2023, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Mon, Aug 21, 2023 at 2:01=E2=80=AFAM Benjamin Tissoires <bentiss@ker=
+nel.org> wrote:
+> > >
+> > > On Aug 02 2023, Doug Anderson wrote:
+> > > > Benjamin,
+> > > >
+> > > > On Wed, Aug 2, 2023 at 12:20=E2=80=AFAM Cong Yang
+> > > > <yangcong5@huaqin.corp-partner.google.com> wrote:
+> > > > >
+> > > > > The ili9882t is a TDDI IC (Touch with Display Driver). The
+> > > > > datasheet specifies there should be 60ms between touch SDA
+> > > > > sleep and panel RESX. Doug's series[1] allows panels and
+> > > > > touchscreens to power on/off together, so we can add the 65 ms
+> > > > > delay in i2c_hid_core_suspend before panel_unprepare.
+> > > > >
+> > > > > Because ili9882t touchscrgeen is a panel follower, and
+> > > > > needs to use vccio-supply instead of vcc33-supply, so set
+> > > > > it NULL to ili9882t_chip_data, then not use vcc33 regulator.
+> > > > >
+> > > > > [1]: https://lore.kernel.org/all/20230727171750.633410-1-dianders=
+@chromium.org
+> > > > >
+> > > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > > > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.co=
+m>
+> > > > > ---
+> > > > >  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 50 ++++++++++++++++++++-=
+------
+> > > > >  1 file changed, 38 insertions(+), 12 deletions(-)
+> > > >
+> > > >
+> > > > >
+> > > > > diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/=
+i2c-hid/i2c-hid-of-elan.c
+> > > > > index 029045d9661c..31abab57ad44 100644
+> > > > > --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> > > > > +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> > > > > @@ -18,9 +18,11 @@
+> > > > >  #include "i2c-hid.h"
+> > > > >
+> > > > >  struct elan_i2c_hid_chip_data {
+> > > > > -       unsigned int post_gpio_reset_delay_ms;
+> > > > > +       unsigned int post_gpio_reset_on_delay_ms;
+> > > > > +       unsigned int post_gpio_reset_off_delay_ms;
+> > > > >         unsigned int post_power_delay_ms;
+> > > > >         u16 hid_descriptor_address;
+> > > > > +       const char *main_supply_name;
+> > > > >  };
+> > > > >
+> > > > >  struct i2c_hid_of_elan {
+> > > > > @@ -38,9 +40,11 @@ static int elan_i2c_hid_power_up(struct i2chid=
+_ops *ops)
+> > > > >                 container_of(ops, struct i2c_hid_of_elan, ops);
+> > > > >         int ret;
+> > > > >
+> > > > > -       ret =3D regulator_enable(ihid_elan->vcc33);
+> > > > > -       if (ret)
+> > > > > -               return ret;
+> > > > > +       if (ihid_elan->vcc33) {
+> > > > > +               ret =3D regulator_enable(ihid_elan->vcc33);
+> > > > > +               if (ret)
+> > > > > +                       return ret;
+> > > > > +       }
+> > > > >
+> > > > >         ret =3D regulator_enable(ihid_elan->vccio);
+> > > > >         if (ret) {
+> > > > > @@ -52,8 +56,8 @@ static int elan_i2c_hid_power_up(struct i2chid_=
+ops *ops)
+> > > > >                 msleep(ihid_elan->chip_data->post_power_delay_ms)=
+;
+> > > > >
+> > > > >         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
+> > > > > -       if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
+> > > > > -               msleep(ihid_elan->chip_data->post_gpio_reset_dela=
+y_ms);
+> > > > > +       if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
+> > > > > +               msleep(ihid_elan->chip_data->post_gpio_reset_on_d=
+elay_ms);
+> > > > >
+> > > > >         return 0;
+> > > > >  }
+> > > > > @@ -64,8 +68,12 @@ static void elan_i2c_hid_power_down(struct i2c=
+hid_ops *ops)
+> > > > >                 container_of(ops, struct i2c_hid_of_elan, ops);
+> > > > >
+> > > > >         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
+> > > > > +       if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
+> > > > > +               msleep(ihid_elan->chip_data->post_gpio_reset_off_=
+delay_ms);
+> > > > > +
+> > > > >         regulator_disable(ihid_elan->vccio);
+> > > > > -       regulator_disable(ihid_elan->vcc33);
+> > > > > +       if (ihid_elan->vcc33)
+> > > > > +               regulator_disable(ihid_elan->vcc33);
+> > > > >  }
+> > > > >
+> > > > >  static int i2c_hid_of_elan_probe(struct i2c_client *client)
+> > > > > @@ -89,24 +97,42 @@ static int i2c_hid_of_elan_probe(struct i2c_c=
+lient *client)
+> > > > >         if (IS_ERR(ihid_elan->vccio))
+> > > > >                 return PTR_ERR(ihid_elan->vccio);
+> > > > >
+> > > > > -       ihid_elan->vcc33 =3D devm_regulator_get(&client->dev, "vc=
+c33");
+> > > > > -       if (IS_ERR(ihid_elan->vcc33))
+> > > > > -               return PTR_ERR(ihid_elan->vcc33);
+> > > > > -
+> > > > >         ihid_elan->chip_data =3D device_get_match_data(&client->d=
+ev);
+> > > > >
+> > > > > +       if (ihid_elan->chip_data->main_supply_name) {
+> > > > > +               ihid_elan->vcc33 =3D devm_regulator_get(&client->=
+dev,
+> > > > > +                                                     ihid_elan->=
+chip_data->main_supply_name);
+> > > > > +               if (IS_ERR(ihid_elan->vcc33))
+> > > > > +                       return PTR_ERR(ihid_elan->vcc33);
+> > > > > +       }
+> > > > > +
+> > > > >         return i2c_hid_core_probe(client, &ihid_elan->ops,
+> > > > >                                   ihid_elan->chip_data->hid_descr=
+iptor_address, 0);
+> > > > >  }
+> > > > >
+> > > > >  static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_da=
+ta =3D {
+> > > > >         .post_power_delay_ms =3D 1,
+> > > > > -       .post_gpio_reset_delay_ms =3D 300,
+> > > > > +       .post_gpio_reset_on_delay_ms =3D 300,
+> > > > > +       .hid_descriptor_address =3D 0x0001,
+> > > > > +       .main_supply_name =3D "vcc33",
+> > > > > +};
+> > > > > +
+> > > > > +static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_=
+data =3D {
+> > > > > +       .post_power_delay_ms =3D 1,
+> > > > > +       .post_gpio_reset_on_delay_ms =3D 200,
+> > > > > +       .post_gpio_reset_off_delay_ms =3D 65,
+> > > > >         .hid_descriptor_address =3D 0x0001,
+> > > > > +       /*
+> > > > > +        * this touchscreen is tightly integrated with the panel =
+and assumes
+> > > > > +        * that the relevant power rails (other than the IO rail)=
+ have already
+> > > > > +        * been turned on by the panel driver because we're a pan=
+el follower.
+> > > > > +        */
+> > > > > +       .main_supply_name =3D NULL,
+> > > > >  };
+> > > > >
+> > > > >  static const struct of_device_id elan_i2c_hid_of_match[] =3D {
+> > > > >         { .compatible =3D "elan,ekth6915", .data =3D &elan_ekth69=
+15_chip_data },
+> > > > > +       { .compatible =3D "ilitek,ili9882t", .data =3D &ilitek_il=
+i9882t_chip_data },
+> > > >
+> > > > Logically, this patch depends on the panel-follower series that's n=
+ow
+> > > > landed in drm-misc-next. With your Ack, I'm willing to land these t=
+wo
+> > > > patches into drm-misc-next too. Other options:
+> > >
+> > > If you are fine with the code, I think it could go with the drm tree
+> > > given that it depends on the panel-follower.
+> > >
+> > > Unless it's too late for you to take 6.6 material (sorry I was off in
+> > > August and just came back).
+> > >
+> > > Acked-By: Benjamin Tissoires <bentiss@kernel.org>
+> >
+> > Thanks for the Ack, but yeah, it's probably too late for drm-misc.
+> > Hopefully this can go through the normal tree after the next -rc1
+> > then. Thanks!
+>
+> We don't have those strict rules in hid.git. And given that I was in
+> PTO, I think it's fine if we take the patch now if it's compiling fine
+> on its own and doesn't break on existing hardware. What are the
+> consequences of using this patch without the panel-follower series?
 
-Again - it depends on what DT should be used for, I am not claiming to
-have any authority on that, just asking.
+I think it should be fine.
 
-Thanks,
-Lorenzo
+I actually tried running `make dt_binding_check
+DT_SCHEMA_FILES=3Dilitek,ili9882t.yaml` with just this bindings file and
+I actually _didn't_ get an error, so that's good. I guess it still
+verifies OK even without commit 2ca376ef18f6 ("dt-bindings: HID:
+i2c-hid: Add "panel" property to i2c-hid backed touchscreens"). I
+guess the "panel: true" is enough for it to at least not complain...
+;-)
 
-> +      using a mini-card connector, this mode may not meet the
-> +      TCRLon maximum time of 400ns, as specified in 3.2.5.2.2
-> +      of the PCI Express Mini CEM 2.0 specification.
-> +    type: boolean
-> +
->    brcm,scb-sizes:
->      description: u64 giving the 64bit PCIe memory
->        viewport size of a memory controller.  There may be up to
-> -- 
-> 2.17.1
-> 
+So I think there's no downside to landing this in the i2c-hid tree. As
+I mentioned before, this panel won't actually be functional without
+the panel follower code, but once the two meetup in linuxnext we'll
+end up with something that works. :-)
 
 
+> Also, does it has enough reviews from the DT folks?
+
+The bindings have Krzysztof's review and that's the important one. I
+believe Krzysztof was unhappy that Cong Yang hasn't been including
+version history in each individual patch, but he did provide a
+reviewed by on v5 [1]
+
+[1] https://lore.kernel.org/all/949a2d21-eb14-3ef8-a7be-9c12152cd15a@linaro=
+.org/
