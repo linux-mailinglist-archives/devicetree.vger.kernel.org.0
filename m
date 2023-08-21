@@ -2,152 +2,389 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD0B782A23
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 15:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AE26782A3A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 15:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235304AbjHUNM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 09:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59400 "EHLO
+        id S234637AbjHUNPB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 09:15:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235280AbjHUNM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 09:12:57 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E50101
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 06:12:50 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so90918066b.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 06:12:50 -0700 (PDT)
+        with ESMTP id S232651AbjHUNPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 09:15:01 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 205D8F4;
+        Mon, 21 Aug 2023 06:14:30 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5236b2b4cdbso4214809a12.3;
+        Mon, 21 Aug 2023 06:14:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692623569; x=1693228369;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ph4bj2JE9yzl4L+Z7YlL2YAhIXL0uO8/2XI9ntDToVQ=;
-        b=l3oOXCGGKIiNhVVOlEdUewd/pmvcytIseBPXpgOdpkQcQ8thjGggHgxO6SgeTjYdh/
-         Egbmj8KyYS9b0Ml3zehz/FNy2ccVIBDmidw77jIUO3UxVNLyCFPqkg1TU6AVowYNaxbk
-         7Re97yiggHYJLaVWGJtA/5XtTlOV+hOajq9MIpbJP9ouYdXIp2IB6OxybJSacgq70GLv
-         nWXUXx1Lc4T/JOJAR/BZbsrm3K6ZaiyczBZUZC0r0PolzeSZY2pQiIzPJetJYNzYOsKC
-         z5SZ0/NBdGoTFnqRfdv094jDhnmQvIDkn99/TqEE+MfHXSmpDflPXlDVQsbjvSyDwfoZ
-         Qh3w==
+        d=gmail.com; s=20221208; t=1692623598; x=1693228398;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oX0xWKQkXrYavLJXfvsEkt1aDI7IkJr5D/pUmxA4EgU=;
+        b=msRWNKPV74iHu+isJb6p0zwb80yPBowEDPJNAdfbwhHJ4EmktivtMHNk0Iack0Svjq
+         VWcyjzjrhlzJf++3epO6bkJ/P2qx10S/kRYQfJBpwBSwk7RIHss5jl4pjdLQWN3vCUFl
+         YyjFlalgtqD5fNQyk0YO6eIvoICnRWK7Ign50JpCFCUGx/5XrHhwr9EohTe3iwKi5OzU
+         3KA2gPe8aiikuzs8qeXwvuWkLO+Z3qis7KD1QGXW3CuS716gJSJAOjzP3DFmcl2Oy1VS
+         +T4acbUfJ2D1ifGBcteb2ZswHziUdfLqM5zN2xFx61V5P7RcseQ6dh5q6rtMdN4OXqBz
+         RYxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692623569; x=1693228369;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ph4bj2JE9yzl4L+Z7YlL2YAhIXL0uO8/2XI9ntDToVQ=;
-        b=AWOaAynP8U+TG1ENC4seWg5OB6u6EUGZ14Xkxz15y0MI2IEjPFd7Q32Mb3fpghXsK7
-         pFJXWf7REdxpEjr+oiJexZ14t+zPLzhUYPqYXy7ejRaXpe+/FgaiKNymrIyAXo1xu11E
-         wPgsmhuvHOP45VlBhiU7cQhcu8ZXjIEqTl3uqRXSjFBPYCclpz91CbcJtQYe+GqrWswA
-         K8vVIE+drtCJHaAjCRt3eivJjtC+Ful6IHk+7Ayz5nS9Fz8HknMW/EoGI+dxTXTmDXaT
-         izj6NhxSosXOoBoKmgpwWIz62y6mS8vexMYX4fZhxez5huzzlGw1YfZBjk36PTjL4yzt
-         WU/g==
-X-Gm-Message-State: AOJu0YwCq5kczucBtIv0ETaSpD+7SapgTXMeObllxA44z8d+AI4aynq6
-        qyri9iAOHnoALIjlxwBeFFJnjg==
-X-Google-Smtp-Source: AGHT+IH+3SmODhee1b7JSmRuMG8rb8itCh0JRCEBqsSoEyQCgOdF9obSTVQzCaITVsL+R6gKVO4F1Q==
-X-Received: by 2002:a17:906:21c:b0:99e:13f6:8a5a with SMTP id 28-20020a170906021c00b0099e13f68a5amr4759565ejd.20.1692623569387;
-        Mon, 21 Aug 2023 06:12:49 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id lw26-20020a170906bcda00b00993a37aebc5sm6438076ejb.50.2023.08.21.06.12.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 06:12:48 -0700 (PDT)
-Message-ID: <342de8f3-852f-9bfa-39c4-4d820f349305@linaro.org>
-Date:   Mon, 21 Aug 2023 15:12:47 +0200
+        d=1e100.net; s=20221208; t=1692623598; x=1693228398;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oX0xWKQkXrYavLJXfvsEkt1aDI7IkJr5D/pUmxA4EgU=;
+        b=PjQ+G30Tr9Eslq3Jn6V2kSgb1V503W6XmzrjhqXcK3AdGjgeoWo7+1r1XpDgNookpg
+         pHpd4+kf0aT1vci5M3dgYSntb3KE+kU0lrzQWDGMryx7Msn0OF8RXbnjuay2GVLJ9SS5
+         gk+d0yZpDCVskjE44ABltDiSAmaaqNxIwDJeyxogI76eJJjhdz64ZuiKARvKcsFa/ULa
+         SFwcsVX7/7dIY/KY872GQ/L45f50s/dR91A+m+13x47c1gpkg/zRvnSCW5CQGzrS2T/Y
+         a6F6zvdQDfnfrPDHMW4j9mDXdQdjuCo/5FJMvloEgw3eLlwXe0CDosktO2O0jFAwVsyP
+         pCUg==
+X-Gm-Message-State: AOJu0YxxZjtvpk22KaaglM1j0bg3mSlvd80mXTEUvlSHswtagKzRt1NS
+        nah/Iw5cZynkFOO6psgTNWkIFH0eTc+uWahbJ9A=
+X-Google-Smtp-Source: AGHT+IGgODVe3sxeZIdVpzBoAXIab50YLpc7teJAxlyvaIySQPuigyCmcQ+XsuzZd5DvLV7LMUSrT+Brha9biAsqTBY=
+X-Received: by 2002:a50:fa93:0:b0:523:102f:3cdd with SMTP id
+ w19-20020a50fa93000000b00523102f3cddmr5285515edr.19.1692623598394; Mon, 21
+ Aug 2023 06:13:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 11/50] dt-bindings: crypto: add sam9x7 in Atmel TDES
-Content-Language: en-US
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Varshini.Rajendran@microchip.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230728102442.265820-1-varshini.rajendran@microchip.com>
- <09bd1388-02aa-32c7-319e-d7150a0f3e9c@linaro.org>
- <1ec901d0-44c2-1d28-5976-d93abfffee67@microchip.com>
- <37782447-43c7-50f9-b9b4-5fbca94ce8c6@linaro.org>
- <96033a59-a2ea-c906-a033-84119c5783d7@linaro.org>
- <adeed0b2-e09b-78cf-ebfd-08d3949ca9ea@microchip.com>
- <57e9a9ff-26ed-62d1-91f8-cd5596f1c308@linaro.org>
- <5235260c-8fd6-2b2a-58b9-703191fff526@linaro.org>
- <697712da-bff9-4621-28ac-9c9f68a76e43@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <697712da-bff9-4621-28ac-9c9f68a76e43@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
+ <20230812151135.1028780-4-keguang.zhang@gmail.com> <thdwhlbs5salnufag24tqk4txqs3skidhq5nmzdeyxt3ni5pos@duj55rpqskl3>
+ <CAJhJPsV9g2hSu4Ga8bH573JsJsrA_3dwi8T0oQBtq0FydHKrPg@mail.gmail.com> <jjpwnfc3bjpw44fdzqmekbxqaqeus34aeuezas3fqrfbsvp4gp@yhv4ig5ypj3g>
+In-Reply-To: <jjpwnfc3bjpw44fdzqmekbxqaqeus34aeuezas3fqrfbsvp4gp@yhv4ig5ypj3g>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Mon, 21 Aug 2023 21:13:01 +0800
+Message-ID: <CAJhJPsUAssk7wHzM8ptEAB_TWchdvuZyWw92+YGZL+YuTD+sgw@mail.gmail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: net: Add Loongson-1 DWMAC glue layer
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2023 15:00, Tudor Ambarus wrote:
-> 
-> 
-> On 8/21/23 13:10, Krzysztof Kozlowski wrote:
->> On 21/08/2023 11:54, Tudor Ambarus wrote:
->>>>>>> I am aware that there is no change in the crypto IP used. This patch is
->>>>
->>>> Actually, recent history showed us that it's not only the IP itself but
->>>> its integration into final product that could have an influence on the
->>>> behavior.
->>>>
->>>>>>> to add a SoC specific compatible as expected by writing-bindings
->>>>>>> guideline. Maybe a bit more explanation in the commit description might
->>>>>>> do the trick.
->>>>>>>
->>>>>>
->>>>>> So you add a compatible that will never be used just to comply with
->>>>>> the writing bindings guideline?
->>>>>
->>>>> How do you know that it is never going to be used? The guideline asks
->>>
->>> See
->>> https://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git/tree/drivers/crypto/atmel-tdes.c?h=at91-dt#n1120
->>
->> What's there? One compatible? How does it prove that it will not be
->> used? It only proves that currently it is not used... And anyway this is
-> 
-> Correct, as of now the compatible was not used to determine the hw caps,
-> the capabilities were retrieved by checking at runtime a version
-> register. I'm against adding a compatible that will not be used, in this
-> particular case, defining "microchip,sam9x7-tdes" in the driver but
-> still solely relying on the runtime version register interrogation.
-> Unfortunately the commit message does not reveal any intention and from
-> there these emails changed. Maybe it's just a matter of personal
-> preference, so I'll stop commenting on this.
+On Fri, Aug 18, 2023 at 9:48=E2=80=AFPM Serge Semin <fancer.lancer@gmail.co=
+m> wrote:
+>
+> On Fri, Aug 18, 2023 at 06:42:42PM +0800, Keguang Zhang wrote:
+> > On Wed, Aug 16, 2023 at 8:54=E2=80=AFPM Serge Semin <fancer.lancer@gmai=
+l.com> wrote:
+> > >
+> > > Hi Keguang
+> > >
+> > > On Sat, Aug 12, 2023 at 11:11:33PM +0800, Keguang Zhang wrote:
+> > > > Add devicetree binding document for Loongson-1 DWMAC glue layer.
+> > > >
+> > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > > > ---
+> > > >  .../bindings/net/loongson,ls1x-dwmac.yaml     | 98 +++++++++++++++=
+++++
+> > > >  .../devicetree/bindings/net/snps,dwmac.yaml   |  2 +
+> > > >  2 files changed, 100 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/net/loongson,=
+ls1x-dwmac.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/net/loongson,ls1x-dw=
+mac.yaml b/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..150799460599
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/net/loongson,ls1x-dwmac.yam=
+l
+> > > > @@ -0,0 +1,98 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/net/loongson,ls1x-dwmac.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > >
+> > > > +title: Loongson-1 DWMAC glue layer
+> > >
+> > > DT-schemas describe a device. It has nothing to do with the glue
+> > > driver/layer/whatever.
+> > >
+>
+> > OK. But what about the MODULE_DESCRIPTION in dwmac-loongson1.c
+> > MODULE_DESCRIPTION("Loongson1 DWMAC glue layer");
+> > Should the two parts be aligned with each other?
+>
+> No they shouldn't. MODULE_DESCRIPTION() describes the driver module.
+> "Loongson1 (G)MAC glue layer" is a correct description of the kernel
+> driver module.
+>
+> > If not, what's your suggestion then?
+>
+> Something like "Loongson-1 Ethernet controller" or "Loongson-1 (G)MAC
+> controller". A name which would refer to the device itself
+> irrespective to the driver name, driver design, etc.
+>
+> * Note the already available DW (XG)MAC vendor-specific DT-bindings
+> * referring to the glue layer/driver in the title property are wrong
+> * in doing that.
+>
+> >
+> > > Also I suggest to add a brief device description in the
+> > > "description:" property and add there a brief info regarding the SoCs
+> > > the controllers can be found on, the DW (G)MAC IP-core version the
+> > > ethernet controllers are based on and if possible some data about the
+> > > synthesize parameters: SMA (MDIO-bus), Tx/Rx COE, DMA FIFOs size,
+> > > perfect and hash MAC-filters size, L3L4 frame filters availability,
+> > > PHY interfaces (MII, RMII, RGMII, etc), EEE support, IEEE 1588(-2008)
+> > > Timestamping support, PMT and Wake-up frame support, MAC Management
+> > > counters (MMC).
+> > >
+> > > Note DMA FIFO sizes can be also constrained in the properties
+> > > "rx-fifo-depth" and "tx-fifo-depth"; perfect and hash MAC-filter size=
+s -
+> > > in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
+> > >
+> > OK. The description could be added in next version.
+> >
+> > > > +
+> > > > +maintainers:
+> > > > +  - Keguang Zhang <keguang.zhang@gmail.com>
+> > > > +
+> > > > +select:
+> > > > +  properties:
+> > > > +    compatible:
+> > > > +      contains:
+> > > > +        enum:
+> > > > +          - loongson,ls1b-dwmac
+> > > > +          - loongson,ls1c-dwmac
+> > > > +  required:
+> > > > +    - compatible
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    items:
+> > > > +      - enum:
+>
+> > > > +          - loongson,ls1b-dwmac
+> > > > +          - loongson,ls1c-dwmac
+>
+> BTW referring to the DW IP-core in the compatible string isn't very
+> much useful especially seeing you have a generic fallback compatible.
+>
+> The next names would be more descriptive:
+> loongson,ls1b-gmac - seeing MAC supports 10/100/1000 speed modes
+> loongson,ls1c-mac - seeing MAC support 10/100 speed modes only
+>
+>
+> > > > +      - const: snps,dwmac-3.50a
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  clocks:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  clock-names:
+> > > > +    const: stmmaceth
+> > > > +
+> > > > +  interrupts:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupt-names:
+> > > > +    const: macirq
+> > > > +
+> > >
+> > > > +  syscon:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > > > +    description:
+> > > > +      Phandle to the syscon containing some extra configurations
+> > > > +      including PHY interface mode.
+> > >
+> > > I believe the property is supposed to have a vendor-specific name lik=
+e
+> > > "loongson,ls1-syscon" or similar.
+> >
+>
+> > This has been fixed in v2.
+>
+> The name "loongson,dwmac-syscon" doesn't look correct because "dwmac-"
+> prefix refer to some DWMAC system controller meanwhile the phandle
+> passed to the device is a generic Loongson1 SoC system controller. So
+> "loongson,ls1-syscon" looks more suitable.
+>
+Will do.
 
-Hm, thanks for bringing this up, indeed it looks a bit redundant to have
-additional compatible strings if HW can identify itself. In such case,
-pretty often a generic compatible in the driver and DTS could do... but:
+> > Could you please review v2?
+> > Thanks!
+>
+> I'll have a look at v3 since v2 doesn't have my comments taken into
+> account. BTW don't rush with resubmitting your series. Give it at
+> least one week or so to hang out in the reviewers mail boxes as the
+> Linux kernel patches review process suggests.
+>
+> > >
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - clocks
+> > > > +  - clock-names
+> > > > +  - interrupts
+> > > > +  - interrupt-names
+> > > > +  - phy-handle
+> > >
+> > > > +  - phy-mode
+> > >
+> > > You may want to specify the enum-constraints with the value permitted
+> > > for the particular Loongson (G)MAC controller. Seeing ls1b and ls1c
+> > > imply different sets of the PHY-modes the constraints are better to b=
+e
+> > > defined in the allOf sub-schemas. Alternatively you can split the
+> > > DT-schema file into two: one for ls1b-dwmac, another one for
+> > > ls1c-dwmac. IMO the later option seems better.
+> > >
+>
+> > The "phy-mode", as pointed by Krzysztof, is defined in
+> > ethernet-controller and already required by snps,dwmac.
+> > So I have dropped it in v2.
+>
+> My point was in specifying a particular constraints on the "phy-mode"
+> property. Krzysztof correctly suggested to drop the property from the
+> "required" list since it's already required by the snps,dwmac.yaml
+> schema. One doesn't contradict to another.
+>
+> > For allOf sub-schemas, do you mean something below?
+> > allOf:
+> >  - $ref: snps,dwmac.yaml#
+> >
+> >  - if:
+> >      properties:
+> >        compatible:
+> >          contains:
+> >            const: loongson,ls1b-dwmac
+> >    then:
+> >      properties:
+> >        phy-mode:
+> >          enum:
+> >            - mii
+> >            - rgmii
+> >
+> >  - if:
+> >      properties:
+> >        compatible:
+> >          contains:
+> >            const: loongson,ls1c-dwmac
+> >    then:
+> >      properties:
+> >        phy-mode:
+> >          enum:
+> >            - mii
+> >            - rmii
+>
+> Yes. But IMO in order to prevent having such complicated multi-level
+> schemas you can just split up your bindings into two:
+> loongson,ls1b-dwmac.yaml
+> and
+> loongson,ls1c-dwmac.yaml
+>
+> Thus you'll be able to have a device-specific generic "title" and
+> "description" in each of them (especially seeing LS1-C MAC lacks of
+> 1000Mbps mode support which you said you would add to the bindings
+> description), simpler "compatible" and "phy-mode" property
+> constraints.
+>
+OK. I will split this file into loongson,ls1b-gmac.yaml and
+loongson,ls1c-mac.yaml.
+Thanks for your review!
 
-1. Adding specific compatibles for such case would have sense to be able
-to validate differences between DTS (like clocks, resets and power domains).
 
-2. Reading HW revision might require enabling clocks which might differ
-per variant, thus driver still might need to match according to some
-compatibles. After that matching, driver can get necessary clocks,
-enable them and read the HW version/revision. There is an example for this:
-Documentation/devicetree/bindings/cache/qcom,llcc.yaml
-drivers/soc/qcom/llcc-qcom.c
-We have there version of the block but clocks and register layout
-differ, thus we must have device-specific compatibles.
 
-> 
->> just one implementation in one system. How can you possibly know all
->> other possible implementations (other bootloaders/firmwares/systems)?
->> One cannot. The guideline is there for specific reason.
->>
-> 
-> I didn't say the guideline is wrong, I just tried to understand how this
-> particular case is handled.
->>
+> -Serge(y)
+>
+> >
+> > > -Serge(y)
+> > >
+> > > > +  - syscon
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: snps,dwmac.yaml#
+> > > > +
+> > > > +unevaluatedProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
+> > > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > > +
+> > > > +    gmac0: ethernet@1fe10000 {
+> > > > +        compatible =3D "loongson,ls1b-dwmac", "snps,dwmac-3.50a";
+> > > > +        reg =3D <0x1fe10000 0x10000>;
+> > > > +
+> > > > +        clocks =3D <&clkc LS1X_CLKID_AHB>;
+> > > > +        clock-names =3D "stmmaceth";
+> > > > +
+> > > > +        interrupt-parent =3D <&intc1>;
+> > > > +        interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +        interrupt-names =3D "macirq";
+> > > > +
+> > > > +        phy-handle =3D <&phy0>;
+> > > > +        phy-mode =3D "mii";
+> > > > +
+> > > > +        snps,pbl =3D <1>;
+> > > > +        syscon =3D <&syscon>;
+> > > > +
+> > > > +        mdio {
+> > > > +            #address-cells =3D <1>;
+> > > > +            #size-cells =3D <0>;
+> > > > +            compatible =3D "snps,dwmac-mdio";
+> > > > +
+> > > > +            phy0: ethernet-phy@0 {
+> > > > +                reg =3D <0x0>;
+> > > > +            };
+> > > > +        };
+> > > > +    };
+> > > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml =
+b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > index ddf9522a5dc2..e1a956cf171e 100644
+> > > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > > @@ -66,6 +66,8 @@ properties:
+> > > >          - ingenic,x2000-mac
+> > > >          - loongson,ls2k-dwmac
+> > > >          - loongson,ls7a-dwmac
+> > > > +        - loongson,ls1b-dwmac
+> > > > +        - loongson,ls1c-dwmac
+> > > >          - qcom,qcs404-ethqos
+> > > >          - qcom,sa8775p-ethqos
+> > > >          - qcom,sc8280xp-ethqos
+> > > > --
+> > > > 2.39.2
+> > > >
+> >
+> >
+> >
+> > --
+> > Best regards,
+> >
+> > Keguang Zhang
 
+
+
+--
 Best regards,
-Krzysztof
 
+Keguang Zhang
