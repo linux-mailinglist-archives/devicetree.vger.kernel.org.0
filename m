@@ -2,135 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8D1E7828EF
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:25:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10BE07828FC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:27:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232294AbjHUMZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:25:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
+        id S234880AbjHUM1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 08:27:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230526AbjHUMZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:25:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C51DBC;
-        Mon, 21 Aug 2023 05:24:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S230526AbjHUM1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:27:53 -0400
+Received: from mail.8bytes.org (mail.8bytes.org [IPv6:2a01:238:42d9:3f00:e505:6202:4f0c:f051])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 81CB6C2;
+        Mon, 21 Aug 2023 05:27:51 -0700 (PDT)
+Received: from 8bytes.org (pd9fe95be.dip0.t-ipconnect.de [217.254.149.190])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D572663406;
-        Mon, 21 Aug 2023 12:24:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02EA3C433CA;
-        Mon, 21 Aug 2023 12:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692620698;
-        bh=VRMEzTu4HApcZfH6koLO+FGvNzNpz2Cpuse+j31Gmyc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PC3sZlf1GGm6MBIy79Xbg8kc17r00L87DsHPYLodZngr2CMlwNrhftpTeQF5+1DQc
-         kb3rvt/x8MvlktoR1kKKW2WgwTlmtcCpeWMTb89Kw9jQaL/WM2SPWHapoOaEnCLZ5a
-         c5seB4sC16/XdgX4imm1xlx7b6oOzKJPyZHgENZGo9lsYDftrY8XJqDgSU6r3c36rX
-         UbjFiTL6mQkvVgfeiGomewiNh6QVG2fdLvrUS+3T3mGtWkHduUzKWS5S4PAvYJoaYg
-         Kl6Q9rl9XEiim51JuubyfOwEvg03pAmybt7sOu1pl9eR38BzeRFfoeWfpMvOdS0Srb
-         krEGCvkEF1xyQ==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so56359441fa.2;
-        Mon, 21 Aug 2023 05:24:57 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yzuby765VMgvKcmbUhoLk/HaP9ZTl1RR1qENsGALgrNMIUP1OaA
-        tk7cJDXeXqXJjGTObcnLIhhbegZiD7T47xMMTQ==
-X-Google-Smtp-Source: AGHT+IFxA1bwBYUO7AewyfzEgVRdRAlaH+I45xGQuyUXPi6lnP6fLXI9KGcWScVC5t7iWGx7bMGpNOmboiIovP+74Tk=
-X-Received: by 2002:a05:651c:8d:b0:2b9:b6e7:bd7 with SMTP id
- 13-20020a05651c008d00b002b9b6e70bd7mr4912302ljq.29.1692620696018; Mon, 21 Aug
- 2023 05:24:56 -0700 (PDT)
+        by mail.8bytes.org (Postfix) with ESMTPSA id 14D6D28194F;
+        Mon, 21 Aug 2023 14:27:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=8bytes.org;
+        s=default; t=1692620870;
+        bh=FixGPDbY1JGUzoXJGnGCpBH8LX7vfPyc85NTwmVIvZk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=1GNfM2qXUHu69LlGLcBH8KY7o7o7XmY+SCrGkW/UUIs2KGTpDHXZZbMpPGz6QSYZs
+         UPnFUxDcsVEY3pjS1DruthDw9f83ySojUQCSB+rWg+GUD0/AhHwU/y7CvGp4ChZNfv
+         PF0U1t4Yrw0S3cKVt3Z1VBJMi6C4Yubn+JBgQ0h8akaCgHt2/SoukE6zqp52PyQtal
+         mSBFlaAtIaUSfX6biqD/5UJPh1qGAUoCalqefQ1b2bqiPcVjHwugqG0e+YrG5Eef+K
+         UDBnBPokoAbTS28F+RA/gZgu4I/tGuWG+hC4PlSSGwOqv9iwEYEE1WLsVZflD78r+Z
+         CJt+ubMPFXzmw==
+Date:   Mon, 21 Aug 2023 14:27:47 +0200
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Jason Gunthorpe <jgg@nvidia.com>, Andy Gross <agross@kernel.org>,
+        David Airlie <airlied@gmail.com>, alsa-devel@alsa-project.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        dmaengine@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
+        etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        Frank Rowand <frowand.list@gmail.com>, iommu@lists.linux.dev,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Kalle Valo <kvalo@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
+        linux-wireless@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Sinan Kaya <okaya@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Jeff Johnson <quic_jjohnson@quicinc.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Sean Paul <sean@poorly.run>,
+        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Will Deacon <will@kernel.org>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Lu Baolu <baolu.lu@linux.intel.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Kevin Tian <kevin.tian@intel.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH] iommu: Remove the device_lock_assert() from
+ __iommu_probe_device()
+Message-ID: <ZONYQyMSG17YMc_b@8bytes.org>
+References: <0-v1-98d20e768c66+7-of_dma_lock_jgg@nvidia.com>
+ <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
 MIME-Version: 1.0
-References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org>
- <20230801-dt-changeset-fixes-v3-5-5f0410e007dd@kernel.org> <ZONBMMVrzuu53hwC@smile.fi.intel.com>
-In-Reply-To: <ZONBMMVrzuu53hwC@smile.fi.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 21 Aug 2023 07:24:43 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJRQ0VFLHJYo6XHnUnyhtn3X6F2ZedsftnsviO_wOtcGw@mail.gmail.com>
-Message-ID: <CAL_JsqJRQ0VFLHJYo6XHnUnyhtn3X6F2ZedsftnsviO_wOtcGw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] of: dynamic: Move dead property list check into
- property add/update functions
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 5:49=E2=80=AFAM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, Aug 18, 2023 at 03:41:00PM -0500, Rob Herring wrote:
-> > The changeset code checks for a property in the deadprops list when
-> > adding/updating a property, but of_add_property() and
-> > of_update_property() do not. As the users of these functions are pretty
-> > simple, they have not hit this scenario or else the property lists
-> > would get corrupted.
-> >
-> > With this there are 3 cases of removing a property from either deadprop=
-s
-> > or properties lists, so add a helper to find and remove a matching
-> > property.
->
-> ...
->
-> > v3:
-> >  - Keep existing style in deadprops loop
->
-> Not sure where exactly in the code that one, but...
+On Mon, Aug 21, 2023 at 12:06:40PM +0100, Robin Murphy wrote:
+> The solution is to drop those locking patches entirely and rethink the whole
+> thing.
 
-That was your previous comment...
+Agreed, that was exactly what I thought when looking at this patch.
 
->
-> ...
->
-> >  int __of_remove_property(struct device_node *np, struct property *prop=
-)
-> >  {
-> > -     struct property **next;
-> > -
-> > -     for (next =3D &np->properties; *next; next =3D &(*next)->next) {
-> > -             if (*next =3D=3D prop)
-> > -                     break;
-> > +     if (__of_remove_property_from_list(&np->properties, prop)) {
-> > +             /* Found the property, add it to deadprops list */
-> > +             prop->next =3D np->deadprops;
-> > +             np->deadprops =3D prop;
-> > +             return 0;
-> >       }
-> > -     if (*next =3D=3D NULL)
-> > -             return -ENODEV;
-> > -
-> > -     /* found the node */
-> > -     *next =3D prop->next;
-> > -     prop->next =3D np->deadprops;
-> > -     np->deadprops =3D prop;
-> >
-> > -     return 0;
-> > +     return -ENODEV;
-> >  }
->
->
-> ...if it's this one, I don't see how it's better than
->
->         if (!__of_remove_property_from_list(&np->properties, prop))
->                 return -ENODEV;
+I dropped the original 10 patches and the 4 fixes on-top from the IOMMU
+tree. This needs more investigation and adaption of the actual API users
+before it can be reconsidered.
 
-Because this way doesn't work well when we move the spinlock in here.
-Maybe cleanup.h will help, but I'm not going to do that now. If we do,
-then I'll do it for the whole subsystem/file.
+Regards,
 
-Rob
+	Joerg
+
