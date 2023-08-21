@@ -2,225 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6152A782B46
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A59BC782B59
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235711AbjHUOOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 10:14:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51896 "EHLO
+        id S235748AbjHUOP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 10:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235707AbjHUOOD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:14:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68587EA;
-        Mon, 21 Aug 2023 07:14:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 058C7638C1;
-        Mon, 21 Aug 2023 14:14:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D104DC433C8;
-        Mon, 21 Aug 2023 14:13:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692627240;
-        bh=5gUTAfgaNjeoGwu/2apaMA0aLSQXYkeQRVkPLtuVPZA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=m/J7A79A0SDzdrAEKBdpzJr9N8DNZ/e5xLBvuOshu9HA7JrGvcFz12W/63FwVo25F
-         eZ78QznYij9DisqTzauIVgagS+eVIU8/Ih09qntNdCYvp0kuhnRVAD1okhCHVS+J9e
-         UrXzENOm1IcNz1TnB4jrQPb7fKykQtPYrOGXBmhtAHthPSr3WhnTYa+nEmxwr81ReV
-         DoJUAXcdhwal/Sut1CRL5a1vhcZwBZzD67RZNVYR4qftfE/+B8mb+6y9Ce4yf/agk8
-         ugDSs1f4xj6R2co8+/7KsKefeOADtzsALYSzEQ1Wxtkxf43diNrGDjyDiEmomlesFL
-         sSWqiJW3KMyaQ==
-Date:   Mon, 21 Aug 2023 16:13:54 +0200
-From:   Benjamin Tissoires <bentiss@kernel.org>
-To:     Doug Anderson <dianders@google.com>
-Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        benjamin.tissoires@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        dmitry.torokhov@gmail.com, jikos@kernel.org, hsinyi@google.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] HID: i2c-hid: elan: Add ili9882t timing
-Message-ID: <dqom52gdxgsglhkfrl43peoh2lw2npmx6libdeulmyi67nszat@vqlvijq5mld7>
-References: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
- <20230802071947.1683318-3-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=Um8875aMt_kWvCvpNjb3EwSk8VjVTEgv_TJ9WDS+LniA@mail.gmail.com>
- <lyns4qkh57xhppnqroaooqtniypfsmr2l5fujlry3stmhrjww4@3iy5mmmrazl6>
- <CAD=FV=UFM-5XFsTRt7LPXsN9Fjff33khYGQM+XqcLF1YdsRY4Q@mail.gmail.com>
+        with ESMTP id S235736AbjHUOP4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:15:56 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B257EA;
+        Mon, 21 Aug 2023 07:15:53 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37LCxV0n015340;
+        Mon, 21 Aug 2023 14:15:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=P2pxWYrUAq5IVWa8JMqth4Lq064tcqTCVzu8AMdl10U=;
+ b=BtssP9ME07JuhzRlh+Bi4AbNgVMCrs1VrB0Wv5Ckpikt/FwA73qJ6i7JG/UD4iax4P2F
+ 9gKtFFm2ekwKP45IvO7RoOacyZCQ7BRxphTQLvaM9Dsn/QKq7TMRNKTGv8yXxxoSs7ve
+ FRo4mkHWTlvEQHqYbjFkv7vl0ykbULXBieE3t+k4A4urQknOL3Ib3DZVW6v+XYAKh85X
+ aH9WrrGBmq5mhhJfuaW9mn3yp4v4NqDa6mZ/LIt+uvInVrVwkHFYQS+UhxbGPVrsxZEu
+ PcNy/aOHKBuXbz25x5kCjNToOp7rEfqCZUg+ieDhzwh5WqFpj5d9x9QuButpe13dPcGP RA== 
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sm6uugdf8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Aug 2023 14:15:40 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37LEFdrv018571
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 21 Aug 2023 14:15:39 GMT
+Received: from [192.168.143.77] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 21 Aug
+ 2023 07:15:39 -0700
+Message-ID: <d4ef1d99-58f9-96d0-19e8-740bf5b76791@quicinc.com>
+Date:   Mon, 21 Aug 2023 07:15:38 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=UFM-5XFsTRt7LPXsN9Fjff33khYGQM+XqcLF1YdsRY4Q@mail.gmail.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.6.1
+Subject: Re: [PATCH V1 1/2] scsi: ufs: qcom: dt-bindings: Add SC7280
+ compatible string
+Content-Language: en-US
+To:     Nitin Rawat <quic_nitirawa@quicinc.com>, <mani@kernel.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <alim.akhtar@samsung.com>,
+        <bvanassche@acm.org>, <robh+dt@kernel.org>, <avri.altman@wdc.com>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230821094937.13059-1-quic_nitirawa@quicinc.com>
+ <20230821094937.13059-2-quic_nitirawa@quicinc.com>
+From:   "Bao D. Nguyen" <quic_nguyenb@quicinc.com>
+In-Reply-To: <20230821094937.13059-2-quic_nitirawa@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JmSI3S2eqjjMRUBS4gTg9MNlTH-P8hah
+X-Proofpoint-GUID: JmSI3S2eqjjMRUBS4gTg9MNlTH-P8hah
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-21_01,2023-08-18_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ spamscore=0 clxscore=1011 malwarescore=0 adultscore=0 lowpriorityscore=0
+ suspectscore=0 mlxscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
+ definitions=main-2308210132
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Aug 21 2023, Doug Anderson wrote:
-> Hi,
+On 8/21/2023 2:49 AM, Nitin Rawat wrote:
+> Document the compatible string for the UFS found on SC7280.
 > 
-> On Mon, Aug 21, 2023 at 2:01 AM Benjamin Tissoires <bentiss@kernel.org> wrote:
-> >
-> > On Aug 02 2023, Doug Anderson wrote:
-> > > Benjamin,
-> > >
-> > > On Wed, Aug 2, 2023 at 12:20 AM Cong Yang
-> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> > > >
-> > > > The ili9882t is a TDDI IC (Touch with Display Driver). The
-> > > > datasheet specifies there should be 60ms between touch SDA
-> > > > sleep and panel RESX. Doug's series[1] allows panels and
-> > > > touchscreens to power on/off together, so we can add the 65 ms
-> > > > delay in i2c_hid_core_suspend before panel_unprepare.
-> > > >
-> > > > Because ili9882t touchscrgeen is a panel follower, and
-> > > > needs to use vccio-supply instead of vcc33-supply, so set
-> > > > it NULL to ili9882t_chip_data, then not use vcc33 regulator.
-> > > >
-> > > > [1]: https://lore.kernel.org/all/20230727171750.633410-1-dianders@chromium.org
-> > > >
-> > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> > > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > > > ---
-> > > >  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 50 ++++++++++++++++++++-------
-> > > >  1 file changed, 38 insertions(+), 12 deletions(-)
-> > >
-> > >
-> > > >
-> > > > diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> > > > index 029045d9661c..31abab57ad44 100644
-> > > > --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> > > > +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
-> > > > @@ -18,9 +18,11 @@
-> > > >  #include "i2c-hid.h"
-> > > >
-> > > >  struct elan_i2c_hid_chip_data {
-> > > > -       unsigned int post_gpio_reset_delay_ms;
-> > > > +       unsigned int post_gpio_reset_on_delay_ms;
-> > > > +       unsigned int post_gpio_reset_off_delay_ms;
-> > > >         unsigned int post_power_delay_ms;
-> > > >         u16 hid_descriptor_address;
-> > > > +       const char *main_supply_name;
-> > > >  };
-> > > >
-> > > >  struct i2c_hid_of_elan {
-> > > > @@ -38,9 +40,11 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
-> > > >                 container_of(ops, struct i2c_hid_of_elan, ops);
-> > > >         int ret;
-> > > >
-> > > > -       ret = regulator_enable(ihid_elan->vcc33);
-> > > > -       if (ret)
-> > > > -               return ret;
-> > > > +       if (ihid_elan->vcc33) {
-> > > > +               ret = regulator_enable(ihid_elan->vcc33);
-> > > > +               if (ret)
-> > > > +                       return ret;
-> > > > +       }
-> > > >
-> > > >         ret = regulator_enable(ihid_elan->vccio);
-> > > >         if (ret) {
-> > > > @@ -52,8 +56,8 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
-> > > >                 msleep(ihid_elan->chip_data->post_power_delay_ms);
-> > > >
-> > > >         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
-> > > > -       if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
-> > > > -               msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
-> > > > +       if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
-> > > > +               msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms);
-> > > >
-> > > >         return 0;
-> > > >  }
-> > > > @@ -64,8 +68,12 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
-> > > >                 container_of(ops, struct i2c_hid_of_elan, ops);
-> > > >
-> > > >         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
-> > > > +       if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
-> > > > +               msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms);
-> > > > +
-> > > >         regulator_disable(ihid_elan->vccio);
-> > > > -       regulator_disable(ihid_elan->vcc33);
-> > > > +       if (ihid_elan->vcc33)
-> > > > +               regulator_disable(ihid_elan->vcc33);
-> > > >  }
-> > > >
-> > > >  static int i2c_hid_of_elan_probe(struct i2c_client *client)
-> > > > @@ -89,24 +97,42 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
-> > > >         if (IS_ERR(ihid_elan->vccio))
-> > > >                 return PTR_ERR(ihid_elan->vccio);
-> > > >
-> > > > -       ihid_elan->vcc33 = devm_regulator_get(&client->dev, "vcc33");
-> > > > -       if (IS_ERR(ihid_elan->vcc33))
-> > > > -               return PTR_ERR(ihid_elan->vcc33);
-> > > > -
-> > > >         ihid_elan->chip_data = device_get_match_data(&client->dev);
-> > > >
-> > > > +       if (ihid_elan->chip_data->main_supply_name) {
-> > > > +               ihid_elan->vcc33 = devm_regulator_get(&client->dev,
-> > > > +                                                     ihid_elan->chip_data->main_supply_name);
-> > > > +               if (IS_ERR(ihid_elan->vcc33))
-> > > > +                       return PTR_ERR(ihid_elan->vcc33);
-> > > > +       }
-> > > > +
-> > > >         return i2c_hid_core_probe(client, &ihid_elan->ops,
-> > > >                                   ihid_elan->chip_data->hid_descriptor_address, 0);
-> > > >  }
-> > > >
-> > > >  static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data = {
-> > > >         .post_power_delay_ms = 1,
-> > > > -       .post_gpio_reset_delay_ms = 300,
-> > > > +       .post_gpio_reset_on_delay_ms = 300,
-> > > > +       .hid_descriptor_address = 0x0001,
-> > > > +       .main_supply_name = "vcc33",
-> > > > +};
-> > > > +
-> > > > +static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data = {
-> > > > +       .post_power_delay_ms = 1,
-> > > > +       .post_gpio_reset_on_delay_ms = 200,
-> > > > +       .post_gpio_reset_off_delay_ms = 65,
-> > > >         .hid_descriptor_address = 0x0001,
-> > > > +       /*
-> > > > +        * this touchscreen is tightly integrated with the panel and assumes
-> > > > +        * that the relevant power rails (other than the IO rail) have already
-> > > > +        * been turned on by the panel driver because we're a panel follower.
-> > > > +        */
-> > > > +       .main_supply_name = NULL,
-> > > >  };
-> > > >
-> > > >  static const struct of_device_id elan_i2c_hid_of_match[] = {
-> > > >         { .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
-> > > > +       { .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
-> > >
-> > > Logically, this patch depends on the panel-follower series that's now
-> > > landed in drm-misc-next. With your Ack, I'm willing to land these two
-> > > patches into drm-misc-next too. Other options:
-> >
-> > If you are fine with the code, I think it could go with the drm tree
-> > given that it depends on the panel-follower.
-> >
-> > Unless it's too late for you to take 6.6 material (sorry I was off in
-> > August and just came back).
-> >
-> > Acked-By: Benjamin Tissoires <bentiss@kernel.org>
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> ---
+>   Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> Thanks for the Ack, but yeah, it's probably too late for drm-misc.
-> Hopefully this can go through the normal tree after the next -rc1
-> then. Thanks!
-
-We don't have those strict rules in hid.git. And given that I was in
-PTO, I think it's fine if we take the patch now if it's compiling fine
-on its own and doesn't break on existing hardware. What are the
-consequences of using this patch without the panel-follower series?
-
-Also, does it has enough reviews from the DT folks?
-
-Cheers,
-Benjamin
-
+> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> index bdfa86a0cc98..861bbf6a57f6 100644
+> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> @@ -27,6 +27,7 @@ properties:
+>             - qcom,msm8996-ufshc
+>             - qcom,msm8998-ufshc
+>             - qcom,sa8775p-ufshc
+> +          - qcom,sc7280-ufshc
+>             - qcom,sc8280xp-ufshc
+>             - qcom,sdm845-ufshc
+>             - qcom,sm6350-ufshc
+> @@ -111,6 +112,7 @@ allOf:
+>               enum:
+>                 - qcom,msm8998-ufshc
+>                 - qcom,sa8775p-ufshc
+> +              - qcom,sc7280-ufshc
+>                 - qcom,sc8280xp-ufshc
+>                 - qcom,sm8250-ufshc
+>                 - qcom,sm8350-ufshc
+> --
+> 2.17.1
 > 
-> -Doug
+
+Reviewed-by: Bao D. Nguyen <quic_nguyenb@quicinc.com>
