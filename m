@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF9F78317C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 086EA783112
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:51:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjHUT1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 15:27:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48250 "EHLO
+        id S229948AbjHUTb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 15:31:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjHUT1V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:27:21 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFA45C2;
-        Mon, 21 Aug 2023 12:27:19 -0700 (PDT)
+        with ESMTP id S229955AbjHUTb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:31:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A56691;
+        Mon, 21 Aug 2023 12:31:56 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 42B5961CCB;
-        Mon, 21 Aug 2023 19:27:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D05DCC433C8;
-        Mon, 21 Aug 2023 19:27:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B67860C21;
+        Mon, 21 Aug 2023 19:31:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DEDB4C433C8;
+        Mon, 21 Aug 2023 19:31:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692646038;
-        bh=50DowOaWgtq3+xbaFIEFeIKo8jjSf+PPRMLLIeZpItQ=;
+        s=k20201202; t=1692646315;
+        bh=F6NwPwXvHCMNXVk89zgd0KudbXMPo7G10BPfgRaFtNU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=s2Zjxx8/sIHw9/PbdwrzIswW+vWoq49l/RVK21Bpn6xNv2DCyvyyuGzE5Wmq+y78e
-         lR4Z3lf8ezwcgEFqqT8XnzIrAq/Pr1cElisIXj6lKtcTXJx6tOeRkdBHBmmW0wrBek
-         LYcVex+O+WuownN/WP/Zi2SgzqIIGbpYZOsE0CJ+Pn9kgeJdGdxKOgwYa1Rl3eUWFp
-         Bx4FeEsqLR9lllzhIf3lzfkvAObs0mWxSemZ1cQ71HciTYfeAY4ERM2XV9c0fq4mJ6
-         eM29tPgYn3isOkTNg4xv8O0/B3sVDdCDNxtQn35k7CkuJlm5iiZCFWkPECy3Uw+Tag
-         EABzSLAgR5TJA==
-Received: (nullmailer pid 2156172 invoked by uid 1000);
-        Mon, 21 Aug 2023 19:27:16 -0000
-Date:   Mon, 21 Aug 2023 14:27:16 -0500
+        b=QKGIR0DuvyWjH3ADMwA+fycZ8teWe0MUP2gsoSfPMNIrpTJU3m0WF46DAS3+vajza
+         uPGhjJZ2QQ7SRU6L6ZGIQ+l0ReTMnD2uVC0v6SS8zylEk2Em6Nj6kTfgQL5rRR9yTI
+         W/YGbczechGBkG9CQhzpxggt/GMPrfXqy7jhTzUUqFIQ3GscMAlHQfBqZnrMVcj5jX
+         Dwx1mdowZDVnTFhWpeHVySon/4lQjuC/Gm9v6GMInBvAYBKvVvnvpU3iIvsyq0FT0X
+         ux/VKFR1C32Qvfci9B5sHDLMTJQ5/h6JwN6qWkyJDsx0lLRTN0sDTSmGOJPmT3jSgp
+         BeiTsy1nIUP9w==
+Received: (nullmailer pid 2162007 invoked by uid 1000);
+        Mon, 21 Aug 2023 19:31:52 -0000
+Date:   Mon, 21 Aug 2023 14:31:52 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Stanley Chang <stanley_chang@realtek.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: usb: dwc3: Add Realtek DHC RTD SoC
- DWC3 USB
-Message-ID: <20230821192716.GA2128469-robh@kernel.org>
-References: <20230815095452.4146-1-stanley_chang@realtek.com>
- <20230815095452.4146-2-stanley_chang@realtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        computersforpeace@gmail.com
+Subject: Re: [PATCH v2 1/5] dt-bindings: firmware: qcom,scm: Document SDI
+ disable
+Message-ID: <20230821193152.GA2157670-robh@kernel.org>
+References: <20230815140030.1068590-1-robimarko@gmail.com>
+ <83cc4b10-34bf-ea91-7756-f345c0071479@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230815095452.4146-2-stanley_chang@realtek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <83cc4b10-34bf-ea91-7756-f345c0071479@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,125 +61,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 15, 2023 at 05:54:38PM +0800, Stanley Chang wrote:
-> Document the DWC3 USB bindings for Realtek SoCs.
+On Wed, Aug 16, 2023 at 08:15:54AM +0200, Krzysztof Kozlowski wrote:
+> On 15/08/2023 15:59, Robert Marko wrote:
+> > IPQ5018 has SDI (Secure Debug Image) enabled by TZ by default, and that
+> > means that WDT being asserted or just trying to reboot will hang the board
+> > in the debug mode and only pulling the power and repowering will help.
+> > Some IPQ4019 boards like Google WiFI have it enabled as well.
+> > 
+> > So, lets add a boolean property to indicate that SDI should be disabled.
+> > 
+> > Signed-off-by: Robert Marko <robimarko@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > index 4233ea839bfc..bf753192498a 100644
+> > --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
+> > @@ -89,6 +89,14 @@ properties:
+> >        protocol to handle sleeping SCM calls.
+> >      maxItems: 1
+> >  
+> > +  qcom,sdi-disable:
 > 
-> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
-> ---
-> v3 to v4 change:
->     Add reg for register set for pm control.
->     Remove maximum-speed in example.
-> v2 to v3 change:
->     Add description for reg
->     Remove property for realtek,unlink-usb3-port.
->     Remove property for realtek,disable-usb3-phy.
->     Use the maximum-speed instead of the above two properties.
-> v1 to v2 change:
->     Revise the subject.
->     Rename the file.
->     Fix dtschema warnings.
->     Remove the property realtek,enable-l4icg.
->     Drop status.
-> ---
->  .../bindings/usb/realtek,rtd-dwc3.yaml        | 80 +++++++++++++++++++
->  1 file changed, 80 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml b/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
-> new file mode 100644
-> index 000000000000..345d0132d4a5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Realtek Semiconductor Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/realtek,rtd-dwc3.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek DWC3 USB SoC Controller Glue
-> +
-> +maintainers:
-> +  - Stanley Chang <stanley_chang@realtek.com>
-> +
-> +description:
-> +  The Realtek DHC SoC embeds a DWC3 USB IP Core configured for USB 2.0
-> +  and USB 3.0 in host or dual-role mode.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - realtek,rtd1295-dwc3
-> +          - realtek,rtd1315e-dwc3
-> +          - realtek,rtd1319-dwc3
-> +          - realtek,rtd1319d-dwc3
-> +          - realtek,rtd1395-dwc3
-> +          - realtek,rtd1619-dwc3
-> +          - realtek,rtd1619b-dwc3
-> +      - const: realtek,rtd-dwc3
-> +
-> +  reg:
-> +    items:
-> +      - description: Address and length of register set for wrapper of dwc3 core.
-> +      - description: Address and length of register set for pm control.
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 1
-> +
-> +  ranges: true
-> +
-> +patternProperties:
-> +  "^usb@[0-9a-f]+$":
-> +    $ref: snps,dwc3.yaml#
-> +    description: Required child node
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    usb@98013e00 {
-> +        compatible = "realtek,rtd1319d-dwc3", "realtek,rtd-dwc3";
-> +        reg = <0x98013e00 0x140>, <0x98013f60 0x4>;
+> The property should describe rather current hardware/firmware state,
+> instead of expressing your intention for OS what to do. Therefore rather:
+> qcom,sdi-enabled
+> or
+> qcom,secure-debug-image
 
-These look like registers in some other block rather than a standalone 
-wrapper block. Are these part of some syscon block? If so, I don't think 
-a wrapper node is the right approach here, but a phandle to the syscon 
-would be instead.
+Why can't you just disable SDI unconditionally when going into debug 
+mode? Is doing that when not enabled going to crash the system or 
+something?
 
-From the register definitions, much of it looks phy related, but this is 
-not part of the phys?
+Rob
 
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges;
-> +
-> +        usb@98050000 {
-> +            compatible = "snps,dwc3";
-> +            reg = <0x98050000 0x9000>;
-> +            interrupts = <0 94 4>;
-> +            phys = <&usb2phy &usb3phy>;
-> +            phy-names = "usb2-phy", "usb3-phy";
-> +            dr_mode = "otg";
-> +            usb-role-switch;
-> +            role-switch-default-mode = "host";
-> +            snps,dis_u2_susphy_quirk;
-> +            snps,parkmode-disable-ss-quirk;
-> +            snps,parkmode-disable-hs-quirk;
-> +            maximum-speed = "high-speed";
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
