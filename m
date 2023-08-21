@@ -2,187 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FAB8782C1F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:40:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12D24782C32
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236002AbjHUOkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 10:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43960 "EHLO
+        id S233764AbjHUOld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 10:41:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232388AbjHUOkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:40:18 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2047.outbound.protection.outlook.com [40.107.93.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8004BE2;
-        Mon, 21 Aug 2023 07:40:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FqR6XiXmV3BY+EpAHE8FCJlP0IzPGUnzEgI3sRlDQ48JlHkLFIIidlwWGtRQqQe86U3g7bZ39mdRoNoFx6FXx/0vL7lW8/Um9hIcB2wXycbjV1M7BM5/kKhcSKXu4U/jqXwUO8TKP3eZnKEThhhhHyftAQkAOiY9arTCkV+qMPFbnHREuNvcL7PVEAJSnZswJB8yFHCN9ccn6XsR9RgLbdrvWwHlinh70Kt2rL/EbC9m1iyTU9o5diZKIqURLGu48dWdXV5R6zV8gM5yD9QVBlHM8YJ5HV7BeHig5zRvQEHzqHpeFOBB9aa7f+QK6JfZ5IcTDZc4iy4HapBghUYKXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AzIiINzI5HMFB8guwkBjReqCogCcqivAGWLLHsp41XI=;
- b=V7+uhSO4S/tgaOdBpRlR8QaCVW6Q/vGFdLzGxswSh7Zj0peAsB9S2R955RgD20AhfEYsyOriE/KrHmwLQvjdgwXmSy6yaxqJ4KqFm3vPRyHbNzr9iR7NOZPROnl4ltZDQs35WBQaY14xLa1PuvNMKwdQgdT6YLkngb5TvZW1RlVoFwGRtOMs9VvaLOKwUnor2WBpInmzmwAmwLBK70mf6ZGxr7e3usflS7/hruaKaXxIhxTiN7wcgeGrimSaKd8ZoYdK/k1mxEBAs6gYiB8VvYzBC6kFKHOgAD4E36Rz25I+SE5LMUP+4FEfQAgVFP1ceki6YFb7M5DssjJLX6hFWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AzIiINzI5HMFB8guwkBjReqCogCcqivAGWLLHsp41XI=;
- b=FHvQ9kpc8vEvW2BvvKhfwntoMIxoNLb8zILA/7hJEdAID1mYcT6+fHovqN53MTYTldpPW4vwmTRjIWLHN7iifH2qj939AJuMoyFNk48e4X4RCo+zL3uOLDzWxI96iUpPqlthaPB22XMYHm0P5n9Hke56jt+QuVk8DVwCzBX6HwdQHwbfzgmJpKHgVj0B5DGnwQqwBSz+eV1xbkDwpNAwHZ+MgzlOmCDhSZckVGZ0ixw6KiE6btbyGWRfNdJdRsDBEdE6uxeICZXumh/IjXkFgrWZo7I13+zTXx21ukOOjV9U2IRlucAIcSbt+ZdFmsNyvgmOn6jgowM+R46vucF8Tw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by LV8PR12MB9081.namprd12.prod.outlook.com (2603:10b6:408:188::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
- 2023 14:40:14 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::5111:16e8:5afe:1da1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::5111:16e8:5afe:1da1%6]) with mapi id 15.20.6699.020; Mon, 21 Aug 2023
- 14:40:14 +0000
-Date:   Mon, 21 Aug 2023 11:40:12 -0300
-From:   Jason Gunthorpe <jgg@nvidia.com>
-To:     Joerg Roedel <joro@8bytes.org>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Andy Gross <agross@kernel.org>,
-        David Airlie <airlied@gmail.com>, alsa-devel@alsa-project.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        Frank Rowand <frowand.list@gmail.com>, iommu@lists.linux.dev,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalle Valo <kvalo@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-        linux-wireless@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sinan Kaya <okaya@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Jeff Johnson <quic_jjohnson@quicinc.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
+        with ESMTP id S232388AbjHUOld (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:41:33 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42564E8;
+        Mon, 21 Aug 2023 07:41:31 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fe61ae020bso5044815e87.2;
+        Mon, 21 Aug 2023 07:41:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692628889; x=1693233689;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=FWftEsob0f+Dkg7z53GRt9EawaPiXs/Ay8iEALZ2SSY=;
+        b=LuxiMsQ2ZM50eZ9hLkLKWGU6Rs9rW493JJMeX+027xtnYJKH/ho8eDSnXrZKz6YG+H
+         unBWWk9UAnour7q2esZxEHRWxlAd7yClbBUTt06uJJXPWDwxzN87b7hX77bvRPa+Xeg2
+         eslayYatvwo0GGNLgqDcIqwfWM3lOOWP38K/4kQ/JbcgLmS8or7mqznzoDysTgR/6d7X
+         14W/0MjeFHsf6bDGjtonQt6gJiNx/0Pca5fBgftcggCwXL4Tp3nT3JNreSY+r21InyEp
+         wwf0EzTk3LRpZ7J6X5Ybv2FY+IVZZ3LjQrdIvkGZoIG3I5dOAMUI1BFkpAlTGpE5aKKE
+         gbOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692628889; x=1693233689;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FWftEsob0f+Dkg7z53GRt9EawaPiXs/Ay8iEALZ2SSY=;
+        b=ibEtiiAmbUFNbtD7fm95wq4DnDyYHRrLtcHEimhpCtNvS+iTThafasf+eaVJpLYSMB
+         6flJCqAwsROqp6o9U0imn+vrHM0xsfBoh9//04iLHvSYudPWSV45M6/EvS01q3cx9GS9
+         gE6Q+9EJg0u8P9DfOOL+5s8A3Q87A8ZY9057bdDQ5/JXox+5uSpKVUZA4Nf0aRI9ZUv6
+         5E+1qs4j8zOtDpWkg5LvSQWW4q1xibu08MIQ5j/ZcGbm7/n4vuvHW22ukib56Zgffoat
+         sDmG/AFeclWe66Qgnb+hcIE/CtpoM6ux9ZiuttxdGJkeZeXodozJ8PLGQTq1uqNf5pYx
+         qKzg==
+X-Gm-Message-State: AOJu0Yw9VUyj9PXiDlj2oDhWHDs8clNYcxXa3qdjBu4bnn67Qx5UlVyO
+        od/HVIGicYnwLM/xnG/416M=
+X-Google-Smtp-Source: AGHT+IEBpDiIt5kpC7r24FUjjtLHS/Sy4LOdBmhZ0s7j/r9/PFHwv/auiv2ayzBlGq+fU8z8LF8AIw==
+X-Received: by 2002:a05:6512:3d2a:b0:500:7e70:ddf5 with SMTP id d42-20020a0565123d2a00b005007e70ddf5mr3719789lfv.43.1692628889173;
+        Mon, 21 Aug 2023 07:41:29 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id m3-20020ac24283000000b004f4b42e2d7dsm1792814lfh.230.2023.08.21.07.41.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Aug 2023 07:41:28 -0700 (PDT)
+Date:   Mon, 21 Aug 2023 17:41:25 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Jisheng Zhang <jszhang@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Sean Paul <sean@poorly.run>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Will Deacon <will@kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Lu Baolu <baolu.lu@linux.intel.com>,
-        Joerg Roedel <jroedel@suse.de>,
-        Kevin Tian <kevin.tian@intel.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH] iommu: Remove the device_lock_assert() from
- __iommu_probe_device()
-Message-ID: <ZON3TNmYXqdfovRm@nvidia.com>
-References: <0-v1-98d20e768c66+7-of_dma_lock_jgg@nvidia.com>
- <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
- <ZONdwclGOBaxxqtq@nvidia.com>
- <ZON2gRogBhjmpNIl@8bytes.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH net-next v4 2/9] net: stmmac: xgmac: add more feature
+ parsing from hw cap
+Message-ID: <y6hb5bm6k62q6pjaybmgiexze3swo5q7rmu2zybr2avr55byxa@373ht74dj56e>
+References: <20230816152926.4093-1-jszhang@kernel.org>
+ <20230816152926.4093-3-jszhang@kernel.org>
+ <9e55fd03-6b05-46de-874e-01d9cdbf4524@lunn.ch>
+ <ZOJuzakni1youMtX@shell.armlinux.org.uk>
+ <dmfhl4ptoytmconczdkccli5qlkct33tgfqaoigygrzak52g63@qw7pwoa5m2x3>
+ <ZONtX8EMXnmHQFnD@shell.armlinux.org.uk>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZON2gRogBhjmpNIl@8bytes.org>
-X-ClientProxiedBy: MN2PR15CA0063.namprd15.prod.outlook.com
- (2603:10b6:208:237::32) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|LV8PR12MB9081:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b2e8db9-ab10-42f4-6559-08dba2548788
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HgyALB5deKd/E/UO6KXUDvzjKRMQlrG78YiPcGWRQIR0zeK/GP01IumM+XAWhoGsqAiHJKfXjx2YLxCf85VKcu8mszZQ4H00gNIKZQv5JDnCy7P2Xe/gLdK9r4M+3br2cCvFXE8zTJiuHZ0fEeGfg7i1oAJozpSDzHeUjipuMJInQIVgcs6RkUy52jp6fFiFaPVT1emrSkEPrdYlfhnAlQ0MgrmbDMouk1P7cMRg81pxkrb1udes+/IpSNrVp88Tk/qeU1sok1oxLuD456tBpYB3v/S982HUJJs1VQ7uk9H7AwI8NQ0RFzs6YfGj/OskXXE4MtKd3RNxXmxh/1wiWt9ubxxSFOByqzzM6CB5EZxFsNPqrQCbk/fbXdiD58sRANf7D2JW402N2135nVA3RJaSlCJw+OV1oGJtsZE77rZkvORS49F35ZciUeX75EUUNAu9MvE5ZN+oNUJsCW2IYlvkJKAOyN7OzLRmTzsVaOFDHAsukIlgEtlo9jFGDreLcAeW0oSnsVCL2B+0U5yThPFq6skAmw2J7o+2huVOj1Ycku+4V2JTT+BxR+qEcE8a
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199024)(186009)(1800799009)(2906002)(4744005)(7416002)(7366002)(7406005)(38100700002)(6506007)(6486002)(83380400001)(5660300002)(26005)(86362001)(8676002)(2616005)(8936002)(4326008)(316002)(66946007)(6512007)(54906003)(6916009)(66556008)(66476007)(478600001)(36756003)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0VcySalc7lJMstEA0d6FSbcTBLowbQm6euasl/pSclCA7m6WS0/F5E1n2+Mq?=
- =?us-ascii?Q?QAVmIAZMcaEmARZsKz9Y2fhB0WMaHf0IuQd+FGvfchH0s0kZrlIqSrx+EURX?=
- =?us-ascii?Q?yDs+mGIQ0Cm3TQtTXLTu1rZ4DuJkssC23wiwFRIjLuxvddyaV6Ri74Nj7jjL?=
- =?us-ascii?Q?EVWJo/g1aP2zRsz/259c60JeRQ3S/kFvc2sKJW2zO2W63fVxGXk3E7IexJ+3?=
- =?us-ascii?Q?dFCsMXFJrBTeXSi+12KbOu9vb5YiR7Sp4ff5PnY3ynVEAU6/nCddVpSoTu0a?=
- =?us-ascii?Q?SHbujYSHFwFGNJ7f2iAhQsDnMFK+M9xUjD7C+k2apiSffpmIi2Sa3CZKl1kb?=
- =?us-ascii?Q?w7whXrvkFCxrC3UxhdY8MRRbw+rwIOOlBgArC0bBxmWvFAF/UF3qh+CaatkK?=
- =?us-ascii?Q?eglMlygQqM6Rg4FXJPioEFYZzsNpSRZXG/F/oO28Du6JphlKrDZNTeLQv3n0?=
- =?us-ascii?Q?6h6nu2LgrPPyXkxYP/FMm6NoLLhabk4vmH/ZABQLd5OOaQ4IkVIS64mcXKmO?=
- =?us-ascii?Q?PB8KOGbnYa294AtpyvaIRAJUQzSXfJt2PXVHrXKaCwRA0Lzar631GDO1TJx3?=
- =?us-ascii?Q?m+6JJXU910a2eBg2ZZu+Rikw66TkSGGcRenR36aOf0w19xe4ueAcUFM6jDPH?=
- =?us-ascii?Q?qBwr/UbNuN0fehBhdOTI0XHHzeIbS4Gwh6vE6gTnknYgbWzZZ2+LMau5gmc/?=
- =?us-ascii?Q?GZdW/Gm0id/Z4gKl+eXPyPzCDGABzQGgJWj4twLpxSI3qKJeT6kaLGXwVRPs?=
- =?us-ascii?Q?Hn3NqI1yfHxk9JBaC6qNZoJppTfYU7tkohfvzojL1Xpxs3Kxms48useG19DV?=
- =?us-ascii?Q?HQNDqMzI8p63usrTNwo01J5z5LiyRypJ+dCIQg/T/ttxVNvkKpJa/g+CjFUu?=
- =?us-ascii?Q?7vlXB0SR9lP3nOuNQyDRElPoi1ROZBGcO0TZ/CVZsjoB72EFKlaQc7JqndvF?=
- =?us-ascii?Q?fuaPbrVUUsBKfVUXZ7KHHA2Xr4Dxdt7KaAcrJXWtG4ydTcR5GymtASVVh/BY?=
- =?us-ascii?Q?NzpyLJzCKPAXq3fTOEzM+pgwJHBChArLmwzvZ2/yTlQX+/jMmCFHfSTZg0W7?=
- =?us-ascii?Q?DHAOtfzWv9vUsp2D8NP3aKEhcD+txaTNu76Fr/w/jkTqBwc4Lz7PAIAVVX+u?=
- =?us-ascii?Q?NRVpFF/0z/NYnTAB4tJq07r9EnoHy7kVsh+HJmLPxXITZ0y71ti8f17GzrsO?=
- =?us-ascii?Q?qAjMT90xSKfi7ZzJ3cGkjwVINppqjsJqAgzzPduVLvBQp9ADXr6m0vqKcFnY?=
- =?us-ascii?Q?oCd6elPqK5A8YE98gLuqHg70asPvKu/yWmrWVP3pq59r4fbwN14coD9F8h7n?=
- =?us-ascii?Q?sV+XuLhePprbsv0Cudx0HXp5TtK3hHp2hO1BZQkhdGkYjiYr35p7tdsMcVm6?=
- =?us-ascii?Q?/vmb7fQyexrcUKLCwsqlkpRIu3Gtop8pgdbVo41nLwRUSYZPlgxVWN/VIS60?=
- =?us-ascii?Q?7L3cfHHFfIvlV3rPERQnuYJRJ9GHerFkreGENWXuBasq0Mtmc3GB4A5GtRz+?=
- =?us-ascii?Q?CoX0jgNLpeq+j0Az0gQUJ7kr9ZrUyyNSIEm0sT6lS44fc41KRCWRkycKAo8+?=
- =?us-ascii?Q?tuo7itCAqshuDIpL/f43Z+ysvRvU3hSSFC6QTop+?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b2e8db9-ab10-42f4-6559-08dba2548788
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 14:40:14.1021
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SeRmv+15vdiFqIY3c/XgLKw7ymAk1g5vcsz0l6Q6HutXT7nd1PNbo9kmUtsI6u8L
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9081
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <ZONtX8EMXnmHQFnD@shell.armlinux.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 04:36:49PM +0200, Joerg Roedel wrote:
-> On Mon, Aug 21, 2023 at 09:51:13AM -0300, Jason Gunthorpe wrote:
-> > So now that Joerg has dropped it - what is your big idea to make the
-> > locking actually work right?
+On Mon, Aug 21, 2023 at 02:57:51PM +0100, Russell King (Oracle) wrote:
+> On Mon, Aug 21, 2023 at 04:25:42PM +0300, Serge Semin wrote:
+> > Hi Russel, Andrew
+> > 
+> > On Sun, Aug 20, 2023 at 08:51:41PM +0100, Russell King (Oracle) wrote:
+> > > On Sun, Aug 20, 2023 at 09:15:06PM +0200, Andrew Lunn wrote:
+> > > > On Wed, Aug 16, 2023 at 11:29:19PM +0800, Jisheng Zhang wrote:
+> > 
+> > > > > The XGMAC_HWFEAT_GMIISEL bit also indicates whether support 10/100Mbps
+> > > > > or not.
+> > 
+> > > > 
+> > > > The commit message fails to explain the 'Why?' question. GMII does
+> > > > normally imply 10/100/1000, so i would expect dma_cap->mbps_1000 also
+> > > > implies 10/100/1000? So why also set dma_cap->mbps_10_100?
+> > 
+> > Regarding DW XGMAC. I can't say for sure. Based on DW XGMAC v2.10
+> > IP-core HW manual it has MAC_HW_Feature0.GMIISEL(1) flag indicating
+> > whether there is GMII interface besides of the XGMII interface. But in
+> > my databook MAC_HW_Feature0.BIT(0) is marked as reserved and
+> > MAC_Tx_Configuration.SS field doesn't have 10/100Mbps modes despite of
+> > what is defined in dwxgmac2.h by means of the XGMAC_CONFIG_SS_10_MII
+> > and XGMAC_CONFIG_SS_1000_GMII macros.
+> > 
+> > But DW GMAC or DW Eth QoS can be synthesized with the 1000-only
+> > mode enabled. GMIISEL and MIISEL flags reflect the OP_MODE IP-core
+> > synthesize parameter state. It can have three different values:
+> > 
+> > Mode of Operation	Description: Configures the MAC to work in
+> > 			10/100/1000 Mbps mode. Select 10/100/1000
+> > 			Mbps for enabling both Fast Ethernet and Gigabit
+> > 			operations, 10/100 Mbps for Fast Ethernet-only
+> > 			operations, and 1000 Mbps for Gigabit-only operations.
+> > !!!			Value Range: 10/100/1000 Mbps, 10/100 Mbps, or 1000 Mbps
+> > 			Default Value:
+> > 				10/100/1000 Mbps with Gigabit License
+> > 				10/100 with Fast Ethernet license
+> > HDL Parameter Name: OP_MODE
+> > 
+> > > > 
+> > > > Maybe a better change would be to modify:
+> > > > 
+> > > >         seq_printf(seq, "\t1000 Mbps: %s\n",
+> > > >                    (priv->dma_cap.mbps_1000) ? "Y" : "N");
+> > > > 
+> > > > to actually say 10/100/1000 Mbps? It does not appear this is used for
+> > > > anything other than debugfs?
+> > > 
+> > 
+> > > Indeed, it also looks to me like mbps_1000 and mbps_10_100 are only
+> > > used to print things in the debugfs file, and do not have any effect
+> > > on the driver.
+> > 
+> > They should have been utilized somehow in the stmmac_mac_link_up() and
 > 
-> I am not opposed to the general idea.
+> No, definitely not in mac_link_up(). If these flags indicate what speeds
+> are available, then what would mac_link_up() do if, e.g. the core says
+> "I don't support 1G" and phylink determines that the result of
+> negotiation is 1G?
+> 
+> This is clearly not the right place. The right place is when
+> initialising the phylink MAC capabilities, which is currently done in
+> stmmac_phy_setup() without *any* regard what so ever for what speeds
+> are actually supported, with the exception of "oh, is that the maximum
+> speed".
 
-Well, I think Robin is opposed to the device_lock, and I don't know
-what his view of the alternative is.
+Ok. My suggestion was based on the current stmmac_mac_link_up()
+implementation which configures the MAC speed based on the speed
+coming from the phylink core and silently returns if the speed is
+unsupported.) 
 
-> When putting it into the tree I wasn't aware how many users still
-> need to be adapted to properly work with this.
+> 
+> > > It does bring up one last question though: if the driver makes no use
+> > > of these hw_cap bits, then is there any point in printing them in the
+> > > debugfs file?
+> > 
+> > This question can be applied to almost the half of the dma_feature
+> > structure fields.) One more patch extends it with even more mainly
+> > unused fields:
+> > https://lore.kernel.org/netdev/20230819105440.226892-1-0x1207@gmail.com/
+> 
 
-It is surprising to me too!
+> If the hw_cap field is specific, then how about some hardware specific
+> data giving something like an enum listing the capabilties, the enum
+> used to index a string table of capabilities, and an array of bit
+> numbers in hw_cap for those fields, or an array of masks? This data
+> could be const, which means that stmmac_dma_cap_show() only needs
+> the hw_cap value and the struct.
 
-> We can do another try once the issues have been sorted out and you have
-> agreed with Robin on a workable way forward.
+That would have been a great solution.
 
-I will repost just the group part of that series after rc1, as they've
-been in -next for a while now they should be still good. It is a nice
-cleanup that doesn't leak out.
+> 
+> That also means that stmmac_phy_setup() could also index the
+> array of bit numbers to test for e.g. GMII/MII support to determine
+> whether 10/100 and 1000 capabilities should be added for phylink.
+> 
+> If we look at the "half_duplex" dma capability, things are similarly
+> stupid. Pulling out of dwmac4:
+> 
+>         dma_cap->half_duplex = (hw_cap & GMAC_HW_FEAT_HDSEL) >> 2;
+> 
+> This is not tested elsewhere from what I can find - neither the
+> hwcap nor the half_duplex field except for reporting in debugfs.
+> It isn't used to restrict the phylink capabilities for HD, since
+> the only test is this:
+> 
+>         /* Half-Duplex can only work with single queue */
+>         if (priv->plat->tx_queues_to_use > 1)
+>                 priv->phylink_config.mac_capabilities &=
+>                         ~(MAC_10HD | MAC_100HD | MAC_1000HD);
+> 
+> So, the reporting of "half duplex" mode in debugfs has absolutely
+> nothing to do with whether we try to use half duplex modes in the
+> driver.
+> 
+> This is rubbish. Utter rubbish.
 
-Thanks,
-Jason
+So is a lot of stuff in the STMMAC driver. Look closely at what is
+implemented there. One bright example is the plat_stmmacenet_data
+structure content. For instance, msi_mac_vec, msi_wol_vec,
+msi_lpi_vec, msi_sfty_ce_vec, msi_sfty_ue_vec, msi_rx_base_vec,
+msi_tx_base_vec aren't even utilized in the core driver, but in the
+Intel glue driver only. Some other plat_stmmacenet_data fields are
+utilized to either override the dma_features fields or being utilized
+even though there is a auto-detectable HW-features field.
+
+All of the HW-abstraction macros accept stmmac_priv pointer as a
+parameter meanwhile the abstracting functions don't. So the respective
+functions need to have all of parameters passed as arguments
+which makes some function prototypes too bulky and would require the
+prototype modification should some additional data is required in the
+function implementation. Moreover the HW-abstraction function
+prototypes aren't unified: some accept the regs base address, some
+mac_device_info pointer, etc.
+
+mac_device_info instance is always required but it's separately malloced all
+the time the stmmac_drv_probe() is called. It should have been just
+embedded into the stmmac_priv data.
+
+and so on and so forth.
+
+-Serge(y)
+
+> 
+> -- 
+> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
