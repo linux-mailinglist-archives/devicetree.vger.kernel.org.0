@@ -2,81 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B664782695
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 11:54:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3E4F7826AF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 11:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234474AbjHUJyn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 05:54:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51290 "EHLO
+        id S230235AbjHUJ7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 05:59:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234465AbjHUJym (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 05:54:42 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44E8A1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 02:54:39 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fee5ddc334so9627555e9.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 02:54:39 -0700 (PDT)
+        with ESMTP id S232456AbjHUJ7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 05:59:24 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A19FCF
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 02:59:22 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5257e2b5d12so3737674a12.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 02:59:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692611678; x=1693216478;
+        d=linaro.org; s=google; t=1692611960; x=1693216760;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=id9/YhJL+4chNCDVCICHkGrZN4Yz2i9YibVp7IlSmuQ=;
-        b=FRwXx//mrplR6x+qZtNHHUetXvmE9LhDHEjisyDi5ub7CHXly3A4aUH0O+kbWj9osy
-         /3lChGFRWoBRiqp1wa7CITWMIyOmqCvPtEdITuDmO3s49YWod8RWCEG+o6S7nHSkQVfN
-         2vlaJ0aLQwvSKfdeN+i4b2+0DS4yTJt7tswa0N4b07w+5gkmYhuOF0JY9+qNAai30IDn
-         h8rKfmqQxDEda0N74LQfZseAnebGnAkfbDKxzSfC7iOV5Uw5s4ZIUmVUa34aZhrIjvsf
-         GZe2NdTOEb6TYJT9HauxMoWrOQVRQxXQQihI+q6e0SqP/7SxdMh+Unj/idcRN0Jd8W9Z
-         //eQ==
+        bh=NfnhEnLWB5KwPnq+5sUX4rq+xUeecsyqh2xi9cV8plo=;
+        b=aegEo+5bPsOgM7Abn79QB6cXz2xQt9xi7cdVNNPmg9B7tT06PiGKgX1InoNGDl8bxZ
+         338mHckrPEE6CLB39U6vZu8e2dHjLZ3g1hSeEIFfzUmSZe/pLjll6pM/vOiOw7SPe9pV
+         6TKLHcwpfpFbDK7WYdfP/Oxj2UvZVX5fgihzmiBjduobni/IJL4C4m54oJJC0wj/zFXW
+         IF6v01ixmdqh3LL3JnWCHdll3zJzuFo5dw2OP6JlZr7ja0tRF5q+vKed9x++YVwoYWe+
+         nF5lnXrdXUW7v51dx+9n9p0UXoxNBpNOm1ZMgs+eool586xi8FMx3BZLVcAWl+sEGi57
+         6aWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692611678; x=1693216478;
+        d=1e100.net; s=20221208; t=1692611960; x=1693216760;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=id9/YhJL+4chNCDVCICHkGrZN4Yz2i9YibVp7IlSmuQ=;
-        b=BpMt4Ce9VUIMG5uwlGO5c57F0j7OSmXI9luSBn4ErYHtkvUC0/y41evx7Y2guHj3Q2
-         tzMerevqSdP9scAf7brTXOeYUPqtVAOEyM1ihlAGhltZUQNpnAdrZMoWk6JkLMZzVk3h
-         o1Aa25IeR7tGuDMGu2WapoM6pdMF0cClYEJpK2vycuoCZBVIDg7tEBmRkUMZP9GVeZ8c
-         pffz6hHNRbTLoYondJjrUO3aqn/fVuLHiD+bsHZiahDn9eUhYZufYQiRxJ+J/k7tYFra
-         GdsBiMdaBl30pcgy7FG1ZEIRygp3nf3haThzFC6bmAeDUb2KXDapCu8u11thZEmmBhSA
-         pkdg==
-X-Gm-Message-State: AOJu0YzBdfmOcupwmSQPaM2chlyPNic/iiWLczcRbl2BZkO1TeynrQmt
-        JJK5yvL0yzMyY4ovDd2PhokA6Q==
-X-Google-Smtp-Source: AGHT+IGiA86qVNpAZQtYrpPOVNDZsZlC1TCqkKTlS7ELGVi0NlqPR3b7Zu58x4G+n+wQpjpgKHqKcg==
-X-Received: by 2002:a05:600c:3646:b0:3fe:d45a:5bfd with SMTP id y6-20020a05600c364600b003fed45a5bfdmr4456692wmq.13.1692611678050;
-        Mon, 21 Aug 2023 02:54:38 -0700 (PDT)
+        bh=NfnhEnLWB5KwPnq+5sUX4rq+xUeecsyqh2xi9cV8plo=;
+        b=CgiQPU1CP5mFHBI2ajQmIz/UW3Dn+3V+x6vRFrvn9ERLTw1Ahnj+LNB+3o6FhZQIBK
+         njHVILuPhwJslSZsTWqf2siCZMoysafJL56ZJwfXEyHYZKab/rjvTFwjfT/pL7FxmRzi
+         bEkUajKQAf8m6dlxnjYvLvd/SFCu70J+V98r7uk1c4G/2Jlj5X4iR/Q3DKB53VN3LMwS
+         HndQFsI4KmNN3xJM6NLgkacOxb3rSfXt1Y7DsN7a3qU8f4ax6DvM5dyRnfsguYhszmiw
+         mZaWdRKDeMRAxT60JATmlk4L7CMOmTD/DL8/xwzsG5lDhp6KPuYjVb1K05ADXImpY9l7
+         6+WA==
+X-Gm-Message-State: AOJu0YyvKyoGcOu/0dnHX69FAQv7b+O4o7AQkLO93ZA2Uu2HHHwVnX6F
+        S7ySZzJJJKshhzfjiqHJJMToeA==
+X-Google-Smtp-Source: AGHT+IG001d1cAQKIxx4riu0MNWkOswLnbQRQh6hkZ4rOg4g8XJRaQpDdMYLSRFQQO+P0HYNtp6SfA==
+X-Received: by 2002:aa7:d3d2:0:b0:521:a4bb:374f with SMTP id o18-20020aa7d3d2000000b00521a4bb374fmr4510485edr.5.1692611960545;
+        Mon, 21 Aug 2023 02:59:20 -0700 (PDT)
 Received: from [192.168.2.107] ([79.115.63.107])
-        by smtp.gmail.com with ESMTPSA id t23-20020a7bc3d7000000b003fe1fe56202sm12294108wmj.33.2023.08.21.02.54.36
+        by smtp.gmail.com with ESMTPSA id y2-20020aa7d502000000b00529fb5fd3b9sm3996607edq.80.2023.08.21.02.59.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 02:54:37 -0700 (PDT)
-Message-ID: <57e9a9ff-26ed-62d1-91f8-cd5596f1c308@linaro.org>
-Date:   Mon, 21 Aug 2023 10:54:35 +0100
+        Mon, 21 Aug 2023 02:59:20 -0700 (PDT)
+Message-ID: <6c76b28e-e995-2082-6dfa-378002989bcd@linaro.org>
+Date:   Mon, 21 Aug 2023 10:59:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.1
 Subject: Re: [PATCH v3 11/50] dt-bindings: crypto: add sam9x7 in Atmel TDES
 Content-Language: en-US
 To:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Varshini.Rajendran@microchip.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Varshini Rajendran <varshini.rajendran@microchip.com>,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, alexandre.belloni@bootlin.com,
+        claudiu.beznea@microchip.com, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 References: <20230728102442.265820-1-varshini.rajendran@microchip.com>
- <09bd1388-02aa-32c7-319e-d7150a0f3e9c@linaro.org>
- <1ec901d0-44c2-1d28-5976-d93abfffee67@microchip.com>
- <37782447-43c7-50f9-b9b4-5fbca94ce8c6@linaro.org>
- <96033a59-a2ea-c906-a033-84119c5783d7@linaro.org>
- <adeed0b2-e09b-78cf-ebfd-08d3949ca9ea@microchip.com>
+ <a7b84b23-a1c1-23df-79db-d965ed261223@microchip.com>
 From:   Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <adeed0b2-e09b-78cf-ebfd-08d3949ca9ea@microchip.com>
+In-Reply-To: <a7b84b23-a1c1-23df-79db-d965ed261223@microchip.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,73 +82,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 8/21/23 09:41, Nicolas Ferre wrote:
-> Hi Tudor, all,
-> 
-Hi,
+On 8/21/23 09:59, Nicolas Ferre wrote:
+> On 28/07/2023 at 12:24, Varshini Rajendran wrote:
+>> Add DT bindings for atmel TDES.
 
-> On 19/08/2023 at 16:34, Krzysztof Kozlowski wrote:
->> On 10/08/2023 09:22, Tudor Ambarus wrote:
->>>
->>> On 8/10/23 06:38, Varshini.Rajendran@microchip.com wrote:
->>>>> On 7/28/23 11:24, Varshini Rajendran wrote:
->>>>>> Add DT bindings for atmel TDES.
->>>>> NACK. The atmel crypto drivers check the version at runtime and
->>>>> fill a capabilities structure based on the version identified.
->>>>> There's a single compatible regardless of the version of the IP
->>>>> used until now, why do you want to change it?
->>>>>
->>>> Hi Tudor,
->>>
->>> Hi,
->>>
->>>> I am aware that there is no change in the crypto IP used. This patch is
-> 
-> Actually, recent history showed us that it's not only the IP itself but
-> its integration into final product that could have an influence on the
-> behavior.
-> 
->>>> to add a SoC specific compatible as expected by writing-bindings
->>>> guideline. Maybe a bit more explanation in the commit description might
->>>> do the trick.
->>>>
->>>
->>> So you add a compatible that will never be used just to comply with
->>> the writing bindings guideline?
+this commit message is way too succinct and hides the complexity that's
+needed in the driver
+
 >>
->> How do you know that it is never going to be used? The guideline asks
-
-See
-https://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git/tree/drivers/crypto/atmel-tdes.c?h=at91-dt#n1120
-
->> for this on purpose, so any future quirks or incompatibilities can be
->> easily addressed.
+>> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > 
-> In this recent case, having a an adapted compatibility string is an
-> added value.
+> Following my answer to the email thread:
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 > 
-> And yes, I changed my mind and would like to be systematic now with
-> at91/microchip DT compatibility strings. Our long history and big legacy
-> in arm-soc is sometimes difficult to handle, but we're moving little by
-> little to comply with guidelines.
+> Thanks, best regards,
+>   Nicolas
 > 
-> My conclusion is that Varshini's addition is the way to go.
+>> ---
+>>   .../devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml  | 6 +++++-
+>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git
+>> a/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
+>> b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
+>> index 3d6ed24b1b00..6a441f79efea 100644
+>> ---
+>> a/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
+>> +++
+>> b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
+>> @@ -12,7 +12,11 @@ maintainers:
+>>     properties:
+>>     compatible:
+>> -    const: atmel,at91sam9g46-tdes
+>> +    oneOf:
+>> +      - const: atmel,at91sam9g46-tdes
+>> +      - items:
+>> +          - const: microchip,sam9x7-tdes
+>> +          - const: atmel,at91sam9g46-tdes
 
-Ok, fine by me. Then it would be good if one adds compatibles for the
-previous SoCs as well and add a comment in the drivers that inform
-readers that the atmel_*_get_cap() methods are used as backup where
-"atmel,at91sam9g46-" compatibles are used. You'll then have all the
-previous SoCs have their own dedicated compatibles which will have
-"atmel,at91sam9g46-" compatible as backup, and "sam9x7" will be the
-first that will not need the "atmel,at91sam9g46-" backup compatible.
-In the drivers you'll have 2 flavors of identifying the IP caps, the
-first one that backups to atmel_*_get_cap(), and a second one where
-of_device_id data will suffice.
+why do you backup to "atmel,at91sam9g46-tdes"? Simply relying on
+"microchip,sam9x7-tdes" and its of_device_id data should be enough.
 
-If the commit message described how the driver will handle the new
-compatible, Varshini would have spared us of all these emails exchanged.
-Varshini, please update the commit message in the next iteration and
-describe how the driver will handle the new compatible.
 
-Cheers,
-ta
+>>       reg:
+>>       maxItems: 1
+> 
