@@ -2,138 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B552C7820A3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 00:51:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 547697820CC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 02:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230179AbjHTWvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Aug 2023 18:51:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50344 "EHLO
+        id S232173AbjHUAZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Aug 2023 20:25:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231391AbjHTWvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 18:51:49 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2B49D
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 15:51:45 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 759CC2C0488;
-        Mon, 21 Aug 2023 10:51:31 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1692571891;
-        bh=ltMKzVSGK60mq2KrfhI7SNciiBGTVyCpRjFZf8Nlzk0=;
-        h=From:To:Cc:Subject:Date:From;
-        b=T6EbMW1HRWwTplBjIiv+khJThYsPESosJs0U0xyr6uSd5WPtk4RZiKE4H4lVDolHi
-         8vi8FlBU7LS8uhR6Wr70HXlIBW75iCXTIVu6duG/Wtuppu2UTpIhTsskhpmQGQZCSZ
-         6iqjZFSRqiharOofTVpS3j6V+s0WpJ5ZQzMxvLeh0Xl6SKQuiom9r+mdum3jbfFKdF
-         aNQ5CCMu+GQA6dEya2rZg5louPBYwb5Xq7HirHJztlHRPtbpT8slMQpd/vnkFvBYFq
-         yPIU13ZylAFVMqMBME+34grYZ4JghyCHbF/ET8EFbAV8KahWinCg+dfjqaiuE/mFBs
-         3WWsIEZYlvCpg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B64e298f30000>; Mon, 21 Aug 2023 10:51:31 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 3DDDC13EDA8;
-        Mon, 21 Aug 2023 10:51:31 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 3E3D2280E13; Mon, 21 Aug 2023 10:51:31 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     andrew@lunn.ch, gregory.clement@bootlin.com,
-        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        kostap@marvell.com
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH] ARM64: dts: marvell: cn9310: Use appropriate label for spi1 pins
-Date:   Mon, 21 Aug 2023 10:51:25 +1200
-Message-ID: <20230820225126.561304-1-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S232172AbjHUAZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Aug 2023 20:25:41 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50FFDA3
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:38 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2bb9a063f26so44748621fa.2
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 17:25:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692577536; x=1693182336;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yEbvmaIurG+6Mij2R4BdBj5E2cSt8yX9PK0EjQaA8S4=;
+        b=ZRsSENn60CNjQo0Npc207j90WCFn8GIgKzKgxgWybWY4zmYMRwhpahGkQrHiR0v9eW
+         yscWP4SB2O2OU20PQFxs54SzDDbX8LeXsC6j0ltmO361QGv6Z22039T1j6aBNpTSSvns
+         JegkjKuHl3FF9r+RpGOx8Fu2kcu9dFq+xDAglJGxj9+KhLSCohY16Sz+hyqPOPqVSDpw
+         QboyUP/89ZNHVRurUghDSVpgXsWMOQVTIB7o2T45hV3Yyn1oT/3iGasFJuSdZL4CyN7x
+         f2VAKotjwsdyGwMGPZS8Bf7bqUKOgPHe+dS3PkS547dCfxOW3UZNOh43apLktsACbE4E
+         eliw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692577536; x=1693182336;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yEbvmaIurG+6Mij2R4BdBj5E2cSt8yX9PK0EjQaA8S4=;
+        b=VxL/x6Fy+8uHfJyk9EFjLRTGfAZWjCYrQZwK1ep1z1Akhq3sVAA5pATRTZc3pJ2uHv
+         21064hlZetbuPQsDAA3pD+o1AP/QOiu65/BZbpKlEliRMh2xYyts0uj+/lrEIi2cwMDJ
+         qesq4ZMosvhhw8UO6YQOzG7+mbtkm5oWfSKR4rDpmRxKFdnc5risMzs1OjOYB8pGZuZ+
+         qztavJDlLpGaD/asjow+wAvmbEs6ir1qjcAOw/z4WWQefW429bMmL9wUHn0u3kyI5h9l
+         atIyvYaHRk8m50llWRLOnCiuUQxnOx86+9lB0Q5KlhaLYFcT4tlCwmSbmQ4hl/W5KmDs
+         +O7A==
+X-Gm-Message-State: AOJu0YzQCX6HapZ13D+jnOQdH0vUe/WftlFLEJ9AXw/oTqq6Qoe8wYiq
+        NC2bYJbm8QSTfmpObSpHf0iR2g==
+X-Google-Smtp-Source: AGHT+IH2TLA5eAwtc+QqDfSvcLBXW+oCUCt186ZZc0tI9aFuib9qxbba8DiMww84wen7n3z6/BM0tA==
+X-Received: by 2002:a2e:c42:0:b0:2b8:3a1e:eec9 with SMTP id o2-20020a2e0c42000000b002b83a1eeec9mr3206278ljd.36.1692577536557;
+        Sun, 20 Aug 2023 17:25:36 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id h27-20020a2eb0fb000000b002b6fe751b6esm1964923ljl.124.2023.08.20.17.25.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Aug 2023 17:25:35 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 00/16] phy: qcom-qmp-usb: convert to newer style of bindings
+Date:   Mon, 21 Aug 2023 03:25:19 +0300
+Message-Id: <20230821002535.585660-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=fYfTNHYF c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=UttIx32zK-AA:10 a=K8jVNL0kp2MPpiqQWdsA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Both the CN9130-CRB and CN9130-DB use the SPI1 interface but had the
-pinctrl node labelled as "cp0_spi0_pins". Use the label "cp0_spi1_pins"
-and update the node name to "cp0-spi-pins-1" to avoid confusion with the
-pinctrl options for SPI0.
+Reviewing several patchsets for newer platforms made it clear that
+having two styles of QMP PHY bindings causes confusion. Despite binding
+documents having notes telling that old bindings should be used for
+older platforms, it is too easy to attempt adding new platform with
+older QMP PHY binding. Thus let's have just a single documented style of
+bindings.
 
-Fixes: 4c43a41e5b8c ("arm64: dts: cn913x: add device trees for topology B=
- boards")
-Fixes: 5c0ee54723f3 ("arm64: dts: add support for Marvell cn9130-crb plat=
-form")
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+Proposed merge strategy: immutable branch with binding and PHY patches,
+which can also be merged into Bjorn's dts-for-6.7
 
-Notes:
-    We noticed this while tracking down a U-Boot bug on one of our
-    platforms. This mislabeling had been copied and we ended up using the
-    label when configuring SPI0 which had the nasty side effect of
-    reconfiguring the NAND/DEV pins into SPI1 mode when SPI0 was probed.
-   =20
-    It probably went unnoticed because none of the CN9130 platforms
-    supported in upstream U-Boot use NAND.
+Changes since v1:
+ - Split large patchset into smaller parts
+ - Rebased on phy/next
+ - Reworked bindings to follow the common standard rather than blindly
+   moving the PHY contents.
 
- arch/arm64/boot/dts/marvell/cn9130-crb.dtsi | 4 ++--
- arch/arm64/boot/dts/marvell/cn9130-db.dtsi  | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+Dmitry Baryshkov (16):
+  dt-bindings: phy: migrate QMP USB PHY bindings to
+    qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+  phy: qcom-qmp-usb: simplify clock handling
+  phy: qcom-qmp-usb: rework reset handling
+  phy: qcom-qmp-usb: make QPHY_PCS_MISC_CLAMP_ENABLE access conditional
+  phy: qcom-qmp: move PCS MISC V4 registers to separate header
+  phy: qcom-qmp-usb: populate offsets configuration
+  arm64: dts: qcom: ipq6018: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: ipq8074: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: msm8996: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: msm8998: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: sdm845: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: sm8150: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: sm8250: switch USB QMP PHY to new style of bindings
+  arm64: dts: qcom: sm8350: switch USB QMP PHY to new style of bindings
+  ARM: dts: qcom-sdx55: switch USB QMP PHY to new style of bindings
+  ARM: dts: qcom-sdx65: switch USB QMP PHY to new style of bindings
 
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi b/arch/arm64/boo=
-t/dts/marvell/cn9130-crb.dtsi
-index 32cfb3e2efc3..47d45ff3d6f5 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9130-crb.dtsi
-@@ -120,7 +120,7 @@ cp0_sdhci_pins: cp0-sdhi-pins-0 {
- 				       "mpp59", "mpp60", "mpp61";
- 			marvell,function =3D "sdio";
- 		};
--		cp0_spi0_pins: cp0-spi-pins-0 {
-+		cp0_spi1_pins: cp0-spi-pins-1 {
- 			marvell,pins =3D "mpp13", "mpp14", "mpp15", "mpp16";
- 			marvell,function =3D "spi1";
- 		};
-@@ -170,7 +170,7 @@ &cp0_sdhci0 {
-=20
- &cp0_spi1 {
- 	pinctrl-names =3D "default";
--	pinctrl-0 =3D <&cp0_spi0_pins>;
-+	pinctrl-0 =3D <&cp0_spi1_pins>;
- 	reg =3D <0x700680 0x50>,		/* control */
- 	      <0x2000000 0x1000000>;	/* CS0 */
- 	status =3D "okay";
-diff --git a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi b/arch/arm64/boot=
-/dts/marvell/cn9130-db.dtsi
-index c7de1ea0d470..6eb6a175de38 100644
---- a/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
-+++ b/arch/arm64/boot/dts/marvell/cn9130-db.dtsi
-@@ -307,7 +307,7 @@ &cp0_sdhci0 {
- &cp0_spi1 {
- 	status =3D "disabled";
- 	pinctrl-names =3D "default";
--	pinctrl-0 =3D <&cp0_spi0_pins>;
-+	pinctrl-0 =3D <&cp0_spi1_pins>;
- 	reg =3D <0x700680 0x50>;
-=20
- 	flash@0 {
-@@ -371,7 +371,7 @@ cp0_sdhci_pins: cp0-sdhi-pins-0 {
- 				       "mpp59", "mpp60", "mpp61";
- 			marvell,function =3D "sdio";
- 		};
--		cp0_spi0_pins: cp0-spi-pins-0 {
-+		cp0_spi1_pins: cp0-spi-pins-1 {
- 			marvell,pins =3D "mpp13", "mpp14", "mpp15", "mpp16";
- 			marvell,function =3D "spi1";
- 		};
---=20
-2.41.0
+ .../phy/qcom,msm8996-qmp-usb3-phy.yaml        | 287 ------------------
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |  53 +++-
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi        |  41 ++-
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi        |  35 +--
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  35 +--
+ arch/arm64/boot/dts/qcom/ipq8074.dtsi         |  76 ++---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  40 ++-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  39 +--
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  39 ++-
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  39 +--
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          |  38 +--
+ arch/arm64/boot/dts/qcom/sm8350.dtsi          |  39 +--
+ .../phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h   |  17 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 225 +++++++-------
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   8 -
+ 15 files changed, 352 insertions(+), 659 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/phy/qcom,msm8996-qmp-usb3-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h
+
+-- 
+2.39.2
 
