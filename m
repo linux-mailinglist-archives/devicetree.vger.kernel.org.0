@@ -2,67 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB883782F84
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 19:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91ADA782F8A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 19:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236654AbjHURf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 13:35:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35824 "EHLO
+        id S232405AbjHURg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 13:36:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236567AbjHURfY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 13:35:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D414113;
-        Mon, 21 Aug 2023 10:35:20 -0700 (PDT)
+        with ESMTP id S231558AbjHURg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 13:36:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B506F7;
+        Mon, 21 Aug 2023 10:36:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CAAEE640DC;
-        Mon, 21 Aug 2023 17:35:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B868FC433C8;
-        Mon, 21 Aug 2023 17:35:17 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9489B640DE;
+        Mon, 21 Aug 2023 17:36:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 852E7C433C8;
+        Mon, 21 Aug 2023 17:36:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692639319;
-        bh=TIm9VtXxlIIF+26+p4kzCvEt3832dTcm44iy+s5+d+I=;
+        s=k20201202; t=1692639384;
+        bh=rjcLVL+A8b2IRnn2q4Ppt+1bnxQCOxpZRgxU0x51JxE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=L3QL+Fzw7Jg1X5dQhCl4G1tA+OQyxWpBiUrFeC/zy9/f9Kt9GcynUtsZ72l8WvKuG
-         aD2QTedNY6zAdXXixkl1NNMc8MVXYqzn0n/TxZAbsSdJxTeDZBxRQ9Y0d0OQmV/okT
-         zdbI3x0fA0M5NY1ZB5vSPDak0q5gUTD78nwvej1oxH0EtZAVV4hilPmq7V7B5wMWwt
-         xG5whYA+9JOjWdhlX/tFgZbTsFEASR1b2//qPcRWIYi2JeYdC0ucj1DyFTqV0cDCU3
-         0Z0Z7aeY//abt3sW7FwZY2IvHi+phN9wBpFN/WaLs0ES3QNPXtBzX6UxpgqbOtpGeM
-         AidCRQ2V2Wipw==
-Received: (nullmailer pid 2006749 invoked by uid 1000);
-        Mon, 21 Aug 2023 17:35:16 -0000
-Date:   Mon, 21 Aug 2023 12:35:16 -0500
+        b=CxH5xtiVJKLWV+GUpmyFZw6cLjRzIDkUr4IoWxS/cGYiqDq+kGuTUMbZCh99TAx6J
+         auzu7/j3Dm9LNL4zRvSfrotNMKqwsD2Bi6LPtX4y4iex1sbp3q0grIdz8km1RAnGcD
+         oh7xDjI71UwY3I7uwNWOPtHlmtc3Y5c5HIv9QxxoQtWvM9ZSpT02F2FQzJGirxhdum
+         85thMF0PNaHSKLA+WPecVPqhy+4Jv/nJzRCTmfzGH0Lv6GfEHC4g8NdcOGMCuYDR5F
+         NPImZzL4LNIq4tyKWZLavfag78cjQI9WsKEwaKdO5m+mM9KxEe3USI2awAfM7fxuIF
+         /AcicA5NmHoDg==
+Received: (nullmailer pid 2008250 invoked by uid 1000);
+        Mon, 21 Aug 2023 17:36:20 -0000
+Date:   Mon, 21 Aug 2023 12:36:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     John Watts <contact@jookia.org>
-Cc:     alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, erkin.bozoglu@xeront.com,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev@vger.kernel.org,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        "David S. Miller" <davem@davemloft.net>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-kernel@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        mithat.guner@xeront.com, Vladimir Oltean <olteanv@gmail.com>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andrew Lunn <andrew@lunn.ch>, Paolo Abeni <pabeni@redhat.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 7/7] dt-bindings: sound: sun4i-i2s: Add channel-slots
- property
-Message-ID: <20230821173516.GA2006019-robh@kernel.org>
-References: <20230811201406.4096210-1-contact@jookia.org>
- <20230811201406.4096210-8-contact@jookia.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: microchip,lan937x: add
+ missing ethernet on example
+Message-ID: <169263937931.2008171.472959954352039259.robh@kernel.org>
+References: <20230812091708.34665-1-arinc.unal@arinc9.com>
+ <20230812091708.34665-2-arinc.unal@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230811201406.4096210-8-contact@jookia.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230812091708.34665-2-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,17 +80,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 12, 2023 at 06:14:06AM +1000, John Watts wrote:
-> The sun4i I2S controller supports mapping arbitrary TDM slots to
-> each channel. Allow this to be expressed in the device tree.
-> 
-> This is currently only implemented in the R329 I2S variant.
-> 
-> Allow this to be configured using a new channel-dins property.
-> 
-> Signed-off-by: John Watts <contact@jookia.org>
-> ---
->  .../bindings/sound/allwinner,sun4i-a10-i2s.yaml           | 8 ++++++++
->  1 file changed, 8 insertions(+)
 
-Same comments on this one.
+On Sat, 12 Aug 2023 12:17:05 +0300, Arınç ÜNAL wrote:
+> The port@5 node on the example is missing the ethernet property. Add it.
+> Remove the MAC bindings on the example as they cannot be validated.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+>  .../bindings/net/dsa/microchip,lan937x.yaml           | 11 +----------
+>  1 file changed, 1 insertion(+), 10 deletions(-)
+> 
+
+Acked-by: Rob Herring <robh@kernel.org>
+
