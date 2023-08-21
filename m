@@ -2,122 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4600782A63
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 15:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57525782A6C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 15:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235372AbjHUNW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 09:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58986 "EHLO
+        id S235260AbjHUNYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 09:24:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235371AbjHUNWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 09:22:55 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2043.outbound.protection.outlook.com [40.107.20.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C75CB4;
-        Mon, 21 Aug 2023 06:22:54 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AXQXYBJogHtpKHOiczJVMDdLpVcKGCEpuMtD5FiDj5VlGF1o+AtVQpH/lC0RralN7UcOm8GmFK5wo+ENSumCm08y6JEsaLZHrUuSkdHPpx2dGv+RdhuZWnlKYvhzjTzIfWnwxhp38bFncNpSkeTbOXWfzocgwjEMU1CZOV1BgmjRdpBqpq7TdsDA8ansu3/0hL7wgU1/ABtCHcIN5sQefmhamQUqzy1Q+guzPuvMTRpS1rnvlTIrhiqFSAX/OVyaQse22GSg38GBqzrVPBR90fS/l6ZJLBZOg8SZS16VWQlk3NLkhVahHSL+IxjTSO0fJ1VtxUZXcphmucE7UkvWCw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J7VZmrtIa7quUdwT3nqOGU6/vLzhqylM+o+xejs/fgM=;
- b=VEV0HhBiTLCQrSDj8paQb5Rc/lGYGjc1NoKZl76+41K6OsT6wyB81tCG7uBzMveZNLyfav4656Ync4r3Ryw6YUgnqU2oEoYxZUM1q6zcRzn28TyseP3jVkjq+pthvGSSfaX6aB8mKMBO2tD095t5jraGa209BAalByw9oTVFauuLpz8edoXAo26By35znZBl7Bz92fhrEC9Y+fqIzuzbnYq2jkQaEw5orxRCCDlM4Idfg+QiEByKxVgkEE1FoUaER7iQfHbUatrEDMXS+DO05+D0hhdeHX0lrGeNSvogkqyIOenO4hbb9Pk4F7rvJm/OZUNY0xqJ+2ghDaygP72I4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J7VZmrtIa7quUdwT3nqOGU6/vLzhqylM+o+xejs/fgM=;
- b=U8UiSqyqDZJ9O+nTxU1df2jHLpXuP8bQnvPdJbrPO+ZXK3QkjE9yf3CTHnOnpnqxJlPgfRQYTt7ol3PWDAxd4jTYeT+eM8Ys7Mwyn8F2684bRbzydbs6eETrdY4cb51HtU1WtcO4H2hPSeedzpXZaQAzCQhNRsWrUPhQRLx1WSo=
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by DUZPR04MB9824.eurprd04.prod.outlook.com (2603:10a6:10:4dc::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Mon, 21 Aug
- 2023 13:22:50 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6699.020; Mon, 21 Aug 2023
- 13:22:50 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Thread-Topic: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Thread-Index: AQHZ1DKVlmuct1FdqkW6dkezlQtrJw==
-Date:   Mon, 21 Aug 2023 13:22:50 +0000
-Message-ID: <PAXPR04MB91850D8807CE374BD7C30CC5891EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
- <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
-In-Reply-To: <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|DUZPR04MB9824:EE_
-x-ms-office365-filtering-correlation-id: f952da94-e547-49ed-c111-08dba249b7ed
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 52vlQqFzyHu312bbADJfVr4z7NRsXKysxqEXNhuiNQ94T0mAdyvjd1KmZsALd+rpS6uR93c+yG8AoUUe3EfJ32APjMy9cuFCWXAndSwIJSEF9i5D+vgzM4O/3kAKuj8UqWgYzt0hTdPOP6McHb1M79HlXioDwxPC+zN4trvVxu/aRUwQDLzDUvVfNmw2tYV1/145B2KSxG/58tGX1bgxcUm6lgq6QJGYQak8AbOa+MxDQa8yQrKlyZ/z+IwIysudcy6+R1cmQ8gODvsHCihxKHY4GLP0bgpp04LLQvT8J6INHEvwyrDYwh3ijdaitmvlT4gwDgiF6qCEJAhoxedVlpP9Gw6uUfL27qxI27ewU04Vjkuc4W8SvzBwlE5Urve5bfdzTSaWnejucHtO3ZdgW92MJnvzdxBJmayC54RKKi0sJxpZbJd8Ud0NmK6sl1AuRAoNAPNorI62X/Yz46yJ2xn/ZovMi0GxiLF3et3MmrusZ26gk3h/GAHoXWKUTovcv7QvXgrA5iCKjX+Br2Xrngd9JDhgnlyZsxGAjVQ/anka5nCOt846u1ud++h9voC8zxPXsUJg6ZPhQW9SaDG/A1c45q3twwF5zw+v9v2rAQA=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199024)(186009)(1800799009)(2906002)(7416002)(45080400002)(53546011)(55236004)(38100700002)(38070700005)(6506007)(83380400001)(5660300002)(44832011)(52536014)(33656002)(26005)(7696005)(86362001)(8676002)(8936002)(4326008)(316002)(9686003)(66946007)(64756008)(54906003)(66446008)(66556008)(76116006)(66476007)(110136005)(966005)(478600001)(122000001)(55016003)(71200400001)(41300700001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sZdJQfJSIuyPj2n2R+qK+WR2wdEJP2RJ2DkpRhi3XSVC1eZgOc4qJJp2fooJ?=
- =?us-ascii?Q?UqAqA3D6QMXcwNlAG72PjYe1AxkdVbLEjmPQyHOPaQtJ9gOSwwo7s4C8vfoq?=
- =?us-ascii?Q?FXV9qRw8qRQwAVNnQzs4ZjGAcM7ntFyChjLZnVU71D9OZJC3IYIZ3XiFdzna?=
- =?us-ascii?Q?bYCUsZ/2xyTwbO9Rt9xoLFCLBzfNmR9UErKklHCQe6CupMqhIWt9ZkXjhtAe?=
- =?us-ascii?Q?EdtdQomdmySEFEKM1ylyWrL1IUIAdvV0H71+DK27urTmT/kfyfQvC7udHTFk?=
- =?us-ascii?Q?e9Z58PT53aOzfh1MnZh6VFb4IDexnfbb5f/fBlRKhoTRvVCemyFhMc1Q1xsn?=
- =?us-ascii?Q?F1Qg+UwHLshysVl8Z2N40xNAvSfpYFjPHj3cegrDMbk5yj5/P7+ItMnrF1ny?=
- =?us-ascii?Q?ybFbsub//afIp23/5k6mkm/jnH+Kpv3ThlwbGBRjtMm8JWDDrT6SDTi5jZw9?=
- =?us-ascii?Q?asr8NSgXV59uxh+llD1difPhM4S4TikvFSVWuH386InsuQh3P85sTlHE2qf6?=
- =?us-ascii?Q?QmnnuBNuhOSpVEuij7KkjP87E/syaEEF0rrs0jG9rC8G+7oISVSGYH8Gi2VY?=
- =?us-ascii?Q?1zV+0J5cLT8JMkI7AdRi6pPB+Sfs6lABzs9IC0PGDbAJVrljvKjKWwWsA3k6?=
- =?us-ascii?Q?BihFzXpvLZoiP5+VpiUHHUDyDh+DeGq4o0hyLbrtSWv50ZMFE/1VL4leWjyq?=
- =?us-ascii?Q?7WxjZbxD93tsyQtr/u5ptI8xyFsMAx0pchvLv5wvRxpEyQJ9rtFoH02hbRaU?=
- =?us-ascii?Q?3yQov2RytAtwzB3LgSTdBa5BaUcby7w+CqL3SoU9H3fgCbVSut912pRLxGcD?=
- =?us-ascii?Q?2zpWA2eoX1nH3VosoIx+HcEoVskJQjtED6jh55ph8Jioe6d7cHrMPHAE5DZ0?=
- =?us-ascii?Q?P9QuVkeyWBCpvw8UNd83Ftvz3YeunBBHwnOAQNZO93rsZwTfCD8Uu+E4QJqC?=
- =?us-ascii?Q?anus2A1aHBWzNv6rPiPOiXgSYFj86XFeE7s4nvB2kPIImCyeVYoe+hp5Rpzu?=
- =?us-ascii?Q?lWYG0Whdgod98esL1h7GzuSzyG/VneYFu77AcqLavpITL7iyopnMCJLX3amC?=
- =?us-ascii?Q?6nzCj28zgQR8QH9xzrO3zvLQEe0eoVKchjcCj2lUz6Z6U7hv18Yb73F3hTki?=
- =?us-ascii?Q?D/V5GU6aI+johTWt1ibQ9LFqEvWJkQ2mqvNhA3cDKJy2cD/DtRjc3T4vdx0l?=
- =?us-ascii?Q?TWlAf6TgIcsSJQQ8VTVK7awyqJx5XlCcpbJJb6nJq7jO73BwuDBwrk6X5Mmc?=
- =?us-ascii?Q?7eQeULddz2JTD3rYj5cjEQSZ/POdqsQIAWu0c3wAMPUaDcc1rzxVIOteUQb3?=
- =?us-ascii?Q?XiYEPYzc5ljhNiJ/xYr/FijCn6AanCzrXEQygBqq3J2zYTtSqWrqdSr427y+?=
- =?us-ascii?Q?aqCw9zHl3vS0PM7JU62QMZkx10NtRGu5gbqoacYRhOEHNe5ygmDH5K9ho3qz?=
- =?us-ascii?Q?Tnm8MFN8tpss9kPJm6iOdRonwPOcNbx8fh6wHHxgN8LtXn2yDV/7w0n4gN/H?=
- =?us-ascii?Q?YqdKBmcDnsncDxBteCDEvjRvKM6+77Ny8Lw/WpLFIs/Fw8PTrvg4UUV2b8wL?=
- =?us-ascii?Q?5bRHhFb2gHxvscIBNH6GD8EhjhMLbf9MlXS5LLWv?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S235322AbjHUNYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 09:24:41 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A2DBFF;
+        Mon, 21 Aug 2023 06:24:36 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5007f3d3235so1642182e87.2;
+        Mon, 21 Aug 2023 06:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692624275; x=1693229075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4PeU0zIhC1zHzmlibwOf6LwjfjSbq0+Ddnw5LlHnrbk=;
+        b=Hu4zXh19nsH3bua+rWbELaICXda5XLGDT5fftAgUqgLeVTlUxX1aKFFHweiH+40Z2D
+         3Lko+pWVtDOoyYDC+E18mO9Q/5PiSHexoN+ajVnEUeGv/+6t8vSxFay2XxwaffyTZqiO
+         eCWpCkg/jVSBWLYDiFMcY3NkPCZU2lx4VBnbc3/EheNeqyST5YG+BzRPRQ4KQDGeNyQE
+         Zaok3Qsp06zzWKx3QT23oRboiRGvAurCdiiUSCMrYvqIY1qVa2lFO9oW9bCrjp5py4qp
+         QkDJIEMdYmjSze29UDmWleTBS7AicqQ8mesmp6vzRm2GJ3KmRjQHHbn3RR5q94e8FpLu
+         Xkag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692624275; x=1693229075;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4PeU0zIhC1zHzmlibwOf6LwjfjSbq0+Ddnw5LlHnrbk=;
+        b=H3l9VatA2UtPbuW7cG+nu8iNprevh2rFed4zAzv+vKTNUBoY/vkQox1UqKg81OLwkO
+         MYadqcU8ytlgJ1rPkWAGjZXlXbWFcQoKO7UlX/pgEKtl0RlY7EOFxjfpI/GYJXqO6td4
+         H0a8hk7hqsvpxoY6NFIgMeWKzhHeYrzJUCfx+GKK0LE/U541PEs0y/LdvfLQMd6Q8loZ
+         cHQw+F8koiNYC8yT350aVDxoi4JkMlQMVPIKzQgVvJlvi0MMNaiizRieB+0GO6ObBscl
+         Ztnx/uVaJTnX0M0lcg5aBR87ZvG2L+LfpN/zAIpYkSt0jX5VjbXVIepW3zG8aEt9MCW/
+         LW/Q==
+X-Gm-Message-State: AOJu0Yxemy+l+GygiYmB17I+fCdduVs7zinNZTyb5G5vvegmAR5mFNHc
+        tbHttRJv4uQ9lSusHYN2one2wdQp9UZfvSot4aA=
+X-Google-Smtp-Source: AGHT+IGhWvPnseh9WPv86RALh2qt48h/ZupwMFNaQjMBBMv0FRtWbNmmL+UwctHFmaXZkrFUJS7tMcr9UVpZbE7Uamk=
+X-Received: by 2002:a05:6512:108a:b0:4fd:d016:c2e8 with SMTP id
+ j10-20020a056512108a00b004fdd016c2e8mr5155864lfg.43.1692624274409; Mon, 21
+ Aug 2023 06:24:34 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f952da94-e547-49ed-c111-08dba249b7ed
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2023 13:22:50.4890
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: scGoqU+uwSUc0LCwgTRe3ig+sUDx3YPdBwlFS7u8Ey2vj5kIiVt9dCmoItPdXDPqiIaZEcOcpR1nz/akZjD4oQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9824
+References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
+ <20230812151135.1028780-5-keguang.zhang@gmail.com> <spt2blizwad4tdp4cjf7bzffd3mr6456nlz4c4vgjrblx34gqj@bkwhyeqph4do>
+ <CAJhJPsXHuMBAHqsg5rSVf5Ow_Rsgy2Zp-PNrLXWTeVSY3N08Aw@mail.gmail.com> <l6dr3cvnldmljhafmu5wdal7yr4mkr4mmplt3nivjhejohmlro@blfa2ntsq6uv>
+In-Reply-To: <l6dr3cvnldmljhafmu5wdal7yr4mkr4mmplt3nivjhejohmlro@blfa2ntsq6uv>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Mon, 21 Aug 2023 21:24:17 +0800
+Message-ID: <CAJhJPsV4+WozxVb1=xQ6SGm5SVuKyk94Ns0nRz+kwB6Xh4C_WQ@mail.gmail.com>
+Subject: Re: [PATCH 4/5] net: stmmac: Add glue layer for Loongson-1 SoC
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -125,71 +82,587 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Aug 19, 2023 at 12:19=E2=80=AFAM Serge Semin <fancer.lancer@gmail.c=
+om> wrote:
+>
+> On Fri, Aug 18, 2023 at 08:37:27PM +0800, Keguang Zhang wrote:
+> > On Wed, Aug 16, 2023 at 9:30=E2=80=AFPM Serge Semin <fancer.lancer@gmai=
+l.com> wrote:
+> > >
+> > > On Sat, Aug 12, 2023 at 11:11:34PM +0800, Keguang Zhang wrote:
+> > > > This glue driver is created based on the arch-code
+> > > > implemented earlier with the platform-specific settings.
+> > > >
+> > > > Use syscon for SYSCON register access.
+> > > >
+> > > > Partialy based on the previous work by Serge Semin.
+> > > >
+> > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > > > ---
+> > > >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+> > > >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+> > > >  .../ethernet/stmicro/stmmac/dwmac-loongson1.c | 257 ++++++++++++++=
+++++
+> > > >  3 files changed, 269 insertions(+)
+> > > >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-loong=
+son1.c
+> > > >
+> > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/=
+net/ethernet/stmicro/stmmac/Kconfig
+> > > > index 06c6871f8788..a2b9e289aa36 100644
+> > > > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > > > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> > > > @@ -239,6 +239,17 @@ config DWMAC_INTEL_PLAT
+> > > >         the stmmac device driver. This driver is used for the Intel=
+ Keem Bay
+> > > >         SoC.
+> > > >
+> > > > +config DWMAC_LOONGSON1
+> > > > +     tristate "Loongson1 GMAC support"
+> > > > +     default MACH_LOONGSON32
+> > > > +     depends on OF && (MACH_LOONGSON32 || COMPILE_TEST)
+> > > > +     help
+> > > > +       Support for ethernet controller on Loongson1 SoC.
+> > > > +
+> > > > +       This selects Loongson1 SoC glue layer support for the stmma=
+c
+> > > > +       device driver. This driver is used for Loongson1-based boar=
+ds
+> > > > +       like Loongson LS1B/LS1C.
+> > > > +
+> > > >  config DWMAC_TEGRA
+> > > >       tristate "NVIDIA Tegra MGBE support"
+> > > >       depends on ARCH_TEGRA || COMPILE_TEST
+> > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers=
+/net/ethernet/stmicro/stmmac/Makefile
+> > > > index 5b57aee19267..80e598bd4255 100644
+> > > > --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+> > > > +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> > > > @@ -29,6 +29,7 @@ obj-$(CONFIG_DWMAC_SUNXI)   +=3D dwmac-sunxi.o
+> > > >  obj-$(CONFIG_DWMAC_SUN8I)    +=3D dwmac-sun8i.o
+> > > >  obj-$(CONFIG_DWMAC_DWC_QOS_ETH)      +=3D dwmac-dwc-qos-eth.o
+> > > >  obj-$(CONFIG_DWMAC_INTEL_PLAT)       +=3D dwmac-intel-plat.o
+> > > > +obj-$(CONFIG_DWMAC_LOONGSON1)        +=3D dwmac-loongson1.o
+> > > >  obj-$(CONFIG_DWMAC_GENERIC)  +=3D dwmac-generic.o
+> > > >  obj-$(CONFIG_DWMAC_IMX8)     +=3D dwmac-imx.o
+> > > >  obj-$(CONFIG_DWMAC_TEGRA)    +=3D dwmac-tegra.o
+> > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c =
+b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+> > > > new file mode 100644
+> > > > index 000000000000..368d6cd2cb78
+> > > > --- /dev/null
+> > > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+> > > > @@ -0,0 +1,257 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > > > +/*
+> > > > + * Loongson-1 DWMAC glue layer
+> > > > + *
+> > > > + * Copyright (C) 2011-2023 Keguang Zhang <keguang.zhang@gmail.com>
+> > > > + */
+> > > > +
+> > > > +#include <linux/mfd/syscon.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/phy.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/regmap.h>
+> > > > +
+> > > > +#include "stmmac.h"
+> > > > +#include "stmmac_platform.h"
+> > > > +
+> > > > +/* Loongson-1 SYSCON Registers */
+> > > > +#define LS1X_SYSCON0         (0x0)
+> > > > +#define LS1X_SYSCON1         (0x4)
+> > > > +
+> > > > +struct ls1x_dwmac_syscon {
+> > > > +     const struct reg_field *reg_fields;
+> > > > +     unsigned int nr_reg_fields;
+> > > > +     int (*syscon_init)(struct plat_stmmacenet_data *plat);
+> > > > +};
+> > > > +
+> > > > +struct ls1x_dwmac {
+> > > > +     struct device *dev;
+> > > > +     struct plat_stmmacenet_data *plat_dat;
+> > > > +     const struct ls1x_dwmac_syscon *syscon;
+> > > > +     struct regmap *regmap;
+> > > > +     struct regmap_field *regmap_fields[];
+> > > > +};
+> > > > +
+> > > > +enum ls1b_dwmac_syscon_regfield {
+> > > > +     GMAC1_USE_UART1,
+> > > > +     GMAC1_USE_UART0,
+> > > > +     GMAC1_SHUT,
+> > > > +     GMAC0_SHUT,
+> > > > +     GMAC1_USE_TXCLK,
+> > > > +     GMAC0_USE_TXCLK,
+> > > > +     GMAC1_USE_PWM23,
+> > > > +     GMAC0_USE_PWM01,
+> > > > +};
+> > > > +
+> > > > +enum ls1c_dwmac_syscon_regfield {
+> > > > +     GMAC_SHUT,
+> > > > +     PHY_INTF_SELI,
+> > > > +};
+> > > > +
+> > > > +const struct reg_field ls1b_dwmac_syscon_regfields[] =3D {
+> > > > +     [GMAC1_USE_UART1]       =3D REG_FIELD(LS1X_SYSCON0, 4, 4),
+> > > > +     [GMAC1_USE_UART0]       =3D REG_FIELD(LS1X_SYSCON0, 3, 3),
+> > > > +     [GMAC1_SHUT]            =3D REG_FIELD(LS1X_SYSCON1, 13, 13),
+> > > > +     [GMAC0_SHUT]            =3D REG_FIELD(LS1X_SYSCON1, 12, 12),
+> > > > +     [GMAC1_USE_TXCLK]       =3D REG_FIELD(LS1X_SYSCON1, 3, 3),
+> > > > +     [GMAC0_USE_TXCLK]       =3D REG_FIELD(LS1X_SYSCON1, 2, 2),
+> > > > +     [GMAC1_USE_PWM23]       =3D REG_FIELD(LS1X_SYSCON1, 1, 1),
+> > > > +     [GMAC0_USE_PWM01]       =3D REG_FIELD(LS1X_SYSCON1, 0, 0)
+> > > > +};
+> > > > +
+> > > > +const struct reg_field ls1c_dwmac_syscon_regfields[] =3D {
+> > > > +     [GMAC_SHUT]             =3D REG_FIELD(LS1X_SYSCON0, 6, 6),
+> > > > +     [PHY_INTF_SELI]         =3D REG_FIELD(LS1X_SYSCON1, 28, 30)
+> > > > +};
+> > >
+> > > Emm, using regmap fields looks so over-complicated in this case seein=
+g
+> > > you only need to set/clear several bits in the syscon. What about
+> > > defining macros with the particular flag as it's already done in the
+> > > "asm/mach-loongson32/regs-mux.h" file and using regmap_update_bits()?
+> > >
+>
+> > To use regmap_update_bits(), I have to store and pass reg_offset and
+> > mask, which is similar to the definition of regmap fields.
+>
+> Em, not really. And what offset are you talking about? Anyway you
+> don't need one. Moreover you'll be able to reduce the number of IOs:
+>
+> +#define GMAC1_USE_UART1                 BIT(4)
+> +#define GMAC1_USE_UART0                 BIT(3)
+> ...
+> +#define GMAC1_SHUT                      BIT(13)
+> ...
+> +#define GMAC1_USE_TXCLK                 BIT(3)
+> +#define GMAC1_USE_PWM23                 BIT(1)
+>
+> +static int ls1b_dwmac_syscon_init(struct plat_stmmacenet_data *plat)
+> +{
+> +       struct ls1x_dwmac *dwmac =3D plat->bsp_priv;
+> +       struct regmap *syscon =3D dwmac->regmap;
+> +
+> +       if (plat->bus_id) {
+> +               regmap_update_bits(syscon, LS1X_SYSCON0,
+> +                                  GMAC1_USE_UART1 | GMAC1_USE_UART0,
+> +                                  GMAC1_USE_UART1 | GMAC1_USE_UART0);
+> +
+> +               switch (plat->phy_interface) {
+> +               case PHY_INTERFACE_MODE_RGMII:
+> +                       regmap_update_bits(syscon, LS1X_SYSCON1,
+> +                                          GMAC1_USE_TXCLK | GMAC1_USE_TX=
+CLK, 0);
+> +                       break;
+> +               case PHY_INTERFACE_MODE_MII:
+> +                       regmap_update_bits(syscon, LS1X_SYSCON1,
+> +                                          GMAC1_USE_TXCLK | GMAC1_USE_TX=
+CLK
+> +                                          GMAC1_USE_TXCLK | GMAC1_USE_TX=
+CLK);
+> +                       break;
+> +               default:
+> +                       dev_err(dwmac->dev, "Unsupported PHY mode %u\n",
+> +                               plat->phy_interface);
+> +                       return -EOPNOTSUPP;
+> +               }
+> +
+> +               regmap_field_write(syscon, LS1X_SYSCON1, GMAC1_SHUT, 0);
+> +       } //...
+> +
+> +       return 0;
+> +}
+>
+> This doesn't look in anyway less readable then your implementation
+> but in fact simpler.
+>
+> > In addition, the regmap fields are very clear and leave the trouble to
+> > the internal implementation.
+>
+> In this case it brings much more troubles and no clarity. You need to cre=
+ate
+> an additional mainly redundant abstraction, waste memory for it,
+> define additional const arrays. Using it won't improve the code
+> readability seeing you need to set/clear a few flags only. So all of
+> the troubles for nothing. See the code above. It's simple and clear.
+> Just several regmap_update_bits()..
+>
+OK. I will use regmap instead of regmap fields.
 
+> BTW why have you chosen to define syscon instead of creating a pinctrl
+> driver? What if Loongson1 is embedded into a platform with, for
+> instance, UART0 and UART1 utilized instead of the GMAC1?
+>
+As you can see, the two registers contains miscellaneous settings.
+Besides =E2=80=98USE=E2=80=99 bits, there are =E2=80=98RESET=E2=80=98 bits,=
+ 'EN' bits, 'SHUT' bits, ...
+So they are not pinctrl registers.
+Actually, there is a dedicated pin controller which controls the
+multiplexing of pads.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Sent: Saturday, August 19, 2023 3:04 AM
-> To: Shenwei Wang <shenwei.wang@nxp.com>; Rob Herring
-> <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; Ulf Hansson <ulf.hansson@linaro.org>; Liam Girdwoo=
-d
-> <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
-> imx@lists.linux.dev; devicetree@vger.kernel.org; linux-kernel@vger.kernel=
-.org;
-> dl-linux-imx <linux-imx@nxp.com>
-> Subject: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml =
-file
->
-> Caution: This is an external email. Please take care when clicking links =
-or
-> opening attachments. When in doubt, report the message using the 'Report =
-this
-> email' button
->
->
-> >>
-> >> This needs to answer why we need this.
-> >>
-> >> It looks like just an abstraction layer to make regulators look like
-> >> a power domain.
-> >>
 > >
-> > Yes, it is a wrapper that allows using regulators as a power domain.
-> > This removes the need to add regulator operating code in each consumer
-> > device driver. As a power domain, the regulator will be managed
-> > automatically by the device driver framework and PM subsystem.
+> > > > +
+> > >
+> > > > +static int ls1b_dwmac_syscon_init(struct plat_stmmacenet_data *pla=
+t)
+> > > > +{
+> > >
+> > > As I already told you this part is better to be called from the
+> > > plat_stmmacenet_data.fix_mac_speed() because PHY interface mode can
+> > > differ from one interface open cycle to another as per the phylink
+> > > design.
+> > >
+> > I have considered .fix_mac_speed(), which will be called every time
+> > the link is up, and passes the current speed.
+> > However, the PHY interface mode is determined by the hardware design -
+> > the schematic.
+> > In other words, once the schematic is done, the PHY interface mode is f=
+ixed.
+> > Therefore, PHY interface mode should be configured one time at the
+> > initialization.
+> > And the plat_stmmacenet_data.init() is the proper place to do this.
+>
+> Ok. If no actual clock change is needed then indeed init() will be the
+> proper place.
+>
 > >
-> > This is very useful when a device's power is controlled by a GPIO pin,
-> > which currently requires using the fixed-regulator to achieve the same
-> > purpose. However, the fixed-regulator approach may have to add code in =
-the
-> driver in order to use it.
+> > > > +     struct ls1x_dwmac *dwmac =3D plat->bsp_priv;
+> > > > +     struct regmap_field **regmap_fields =3D dwmac->regmap_fields;
+> > > > +
+> > >
+> > > > +     if (plat->bus_id) {
+> > >
+> > > Using bus_id doesn't look correct to determine the CSRs responsible
+> > > for the interface mode selection because it's calculated based on the
+> > > DT ethernet-alias which doesn't guarantee to have a particular device
+> > > assigned with the alias. Alias node can be absent after all. What
+> > > could be better in this case is for instance to use the regs physical
+> > > address. Any better idea?
+> > >
 >
-> Why do you start discussion from zero ignoring all previous history of th=
-is
-> patchset?
+> > The purpose of alias is to bind the a particular device with a
+> > particular alias even some aliases are absent.
+> > Because of_alias_get_id() gets the alias id.
+> > For example, LS1B has two GMAC controllers, gmac0 and gmac1.
+> > I have tried the Ethernet with only one alias as follows.
+> >        aliases {
+> >                ethernet1 =3D &gmac1;
+> >        };
+> > In this case, plat->bus_id is still 1.
+> > And both gmac0 and gmac1 work.
 >
-
-Thank you for providing the link. After reviewing the entire thread, I stil=
-l don't understand how
-to proceed. What is the conclusion regarding this commonly used use case bu=
-t overlooked feature
-in the upstream kernel?
-
-Thanks,
-Shenwei
-
-> https://lore.kern/
-> el.org%2Fall%2F20220609150851.23084-1-
-> max.oss.09%40gmail.com%2F&data=3D05%7C01%7Cshenwei.wang%40nxp.com%
-> 7C2cf40d23202c430302c908dba08add2e%7C686ea1d3bc2b4c6fa92cd99c5c301
-> 635%7C0%7C0%7C638280290493921016%7CUnknown%7CTWFpbGZsb3d8eyJ
-> WIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C
-> 3000%7C%7C%7C&sdata=3D0O%2FIytE6YbJL26je7hoxEu0ayZYs07PBjfZkBDVaC1M
-> %3D&reserved=3D0
+> If no alias specified? If both aliases a non zero? If the IDs are
+> confused? If any of these is true you are in trouble. Your code
+> shouldn't rely on the aliases in this case. You need to come up with a
+> way to certainly distinguish one MAC from another. A physical base
+> address is one possible option.
 >
-> Best regards,
-> Krzysztof
+I see.
+But It seems unusual to determine device IDs by physical base address.
+What about adding a new property? such as loongson,dwmac-id
 
+> Note the /alias node is an informational node. It doesn't describe
+> devices. Just recent Krzysztof comment in a similar situation:
+> https://lore.kernel.org/netdev/20230814112539.70453-1-sriranjani.p@samsun=
+g.com/T/#m3972e40bd2fa323a3bdb2fbf07bde47ba6752439
+>
+> Aliases are normally used by OS to for instance fix the device
+> enumeration (see SPI, I2C, I3C, MTD, MMC, RTC, TTY/Serial, Watchdog,
+> MDIO-GPIO, etc) - pre-define the device ID from the kernel or OS point
+> of view. In your case the IDs can't be changed. GMAC0 must be assigned
+> with ID0 and GMAC1 must be assigned with non-zero. Doing otherwise
+> will be break the interfaces functionality which isn't acceptable.
+>
+> >
+> > > > +             regmap_field_write(regmap_fields[GMAC1_USE_UART1], 1)=
+;
+> > > > +             regmap_field_write(regmap_fields[GMAC1_USE_UART0], 1)=
+;
+> > > > +
+> > > > +             switch (plat->phy_interface) {
+> > > > +             case PHY_INTERFACE_MODE_RGMII:
+> > > > +                     regmap_field_write(regmap_fields[GMAC1_USE_TX=
+CLK], 0);
+> > > > +                     regmap_field_write(regmap_fields[GMAC1_USE_PW=
+M23], 0);
+> > > > +                     break;
+> > > > +             case PHY_INTERFACE_MODE_MII:
+> > > > +                     regmap_field_write(regmap_fields[GMAC1_USE_TX=
+CLK], 1);
+> > > > +                     regmap_field_write(regmap_fields[GMAC1_USE_PW=
+M23], 1);
+> > > > +                     break;
+> > > > +             default:
+> > > > +                     dev_err(dwmac->dev, "Unsupported PHY mode %u\=
+n",
+> > > > +                             plat->phy_interface);
+> > > > +                     return -EOPNOTSUPP;
+> > > > +             }
+> > > > +
+> > > > +             regmap_field_write(regmap_fields[GMAC1_SHUT], 0);
+> > > > +     } else {
+> > > > +             switch (plat->phy_interface) {
+> > > > +             case PHY_INTERFACE_MODE_RGMII:
+> > > > +                     regmap_field_write(regmap_fields[GMAC0_USE_TX=
+CLK], 0);
+> > > > +                     regmap_field_write(regmap_fields[GMAC0_USE_PW=
+M01], 0);
+> > > > +                     break;
+> > > > +             case PHY_INTERFACE_MODE_MII:
+> > > > +                     regmap_field_write(regmap_fields[GMAC0_USE_TX=
+CLK], 1);
+> > > > +                     regmap_field_write(regmap_fields[GMAC0_USE_PW=
+M01], 1);
+> > > > +                     break;
+> > > > +             default:
+> > > > +                     dev_err(dwmac->dev, "Unsupported PHY mode %u\=
+n",
+> > > > +                             plat->phy_interface);
+> > > > +                     return -EOPNOTSUPP;
+> > > > +             }
+> > > > +
+> > > > +             regmap_field_write(regmap_fields[GMAC0_SHUT], 0);
+> > > > +     }
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static int ls1c_dwmac_syscon_init(struct plat_stmmacenet_data *pla=
+t)
+> > > > +{
+> > > > +     struct ls1x_dwmac *dwmac =3D plat->bsp_priv;
+> > > > +     struct regmap_field **regmap_fields =3D dwmac->regmap_fields;
+> > > > +
+> > > > +     if (plat->phy_interface =3D=3D PHY_INTERFACE_MODE_RMII) {
+> > > > +             regmap_field_write(regmap_fields[PHY_INTF_SELI], 0x4)=
+;
+> > > > +     } else {
+> > > > +             dev_err(dwmac->dev, "Unsupported PHY-mode %u\n",
+> > > > +                     plat->phy_interface);
+> > > > +             return -EOPNOTSUPP;
+> > > > +     }
+> > > > +
+> > > > +     regmap_field_write(regmap_fields[GMAC_SHUT], 0);
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static const struct ls1x_dwmac_syscon ls1b_dwmac_syscon =3D {
+> > > > +     .reg_fields =3D ls1b_dwmac_syscon_regfields,
+> > > > +     .nr_reg_fields =3D ARRAY_SIZE(ls1b_dwmac_syscon_regfields),
+> > > > +     .syscon_init =3D ls1b_dwmac_syscon_init,
+> > > > +};
+> > > > +
+> > > > +static const struct ls1x_dwmac_syscon ls1c_dwmac_syscon =3D {
+> > > > +     .reg_fields =3D ls1c_dwmac_syscon_regfields,
+> > > > +     .nr_reg_fields =3D ARRAY_SIZE(ls1c_dwmac_syscon_regfields),
+> > > > +     .syscon_init =3D ls1c_dwmac_syscon_init,
+> > > > +};
+> > > > +
+> > > > +static int ls1x_dwmac_init(struct platform_device *pdev, void *pri=
+v)
+> > > > +{
+> > > > +     struct ls1x_dwmac *dwmac =3D priv;
+> > > > +     int ret;
+> > > > +
+> > >
+> > > > +     ret =3D devm_regmap_field_bulk_alloc(dwmac->dev, dwmac->regma=
+p,
+> > > > +                                        dwmac->regmap_fields,
+> > > > +                                        dwmac->syscon->reg_fields,
+> > > > +                                        dwmac->syscon->nr_reg_fiel=
+ds);
+> > >
+> > > Please see my first comment about this.
+> > >
+> > > > +     if (ret)
+> > > > +             return ret;
+> > > > +
+> > > > +     if (dwmac->syscon->syscon_init) {
+> > > > +             ret =3D dwmac->syscon->syscon_init(dwmac->plat_dat);
+> > > > +             if (ret)
+> > > > +                     return ret;
+> > > > +     }
+> > > > +
+> > > > +     return 0;
+> > > > +}
+> > > > +
+> > > > +static const struct of_device_id ls1x_dwmac_syscon_match[] =3D {
+> > > > +     { .compatible =3D "loongson,ls1b-syscon", .data =3D &ls1b_dwm=
+ac_syscon },
+> > > > +     { .compatible =3D "loongson,ls1c-syscon", .data =3D &ls1c_dwm=
+ac_syscon },
+> > > > +     { }
+> > > > +};
+> > > > +
+> > > > +static int ls1x_dwmac_probe(struct platform_device *pdev)
+> > > > +{
+> > > > +     struct plat_stmmacenet_data *plat_dat;
+> > > > +     struct stmmac_resources stmmac_res;
+> > > > +     struct device_node *syscon_np;
+> > > > +     const struct of_device_id *match;
+> > > > +     struct regmap *regmap;
+> > > > +     struct ls1x_dwmac *dwmac;
+> > > > +     const struct ls1x_dwmac_syscon *syscon;
+> > > > +     size_t size;
+> > > > +     int ret;
+> > > > +
+> > > > +     ret =3D stmmac_get_platform_resources(pdev, &stmmac_res);
+> > > > +     if (ret)
+> > > > +             return ret;
+> > > > +
+> > >
+> > > > +     /* Probe syscon */
+> > > > +     syscon_np =3D of_parse_phandle(pdev->dev.of_node, "syscon", 0=
+);
+> > >
+> > > it's vendor-specific property so it is supposed to have a
+> > > vendor-specific prefix and possibly ls1-specific name.
+> > >
+> > This has been fixed in v2.
+> > Could you please review v2?
+> > Thanks!
+> >
+> > > > +     if (!syscon_np)
+> > > > +             return -ENODEV;
+> > > > +
+> > > > +     match =3D of_match_node(ls1x_dwmac_syscon_match, syscon_np);
+> > > > +     if (!match) {
+> > > > +             of_node_put(syscon_np);
+> > > > +             return -EINVAL;
+> > > > +     }
+> > > > +     syscon =3D (const struct ls1x_dwmac_syscon *)match->data;
+
+Please note that of_match_node() is used for syscon matching.
+
+> > > > +
+> > > > +     regmap =3D syscon_node_to_regmap(syscon_np);
+> > > > +     of_node_put(syscon_np);
+> > > > +     if (IS_ERR(regmap)) {
+> > > > +             ret =3D PTR_ERR(regmap);
+> > > > +             dev_err(&pdev->dev, "Unable to map syscon: %d\n", ret=
+);
+> > > > +             return ret;
+> > > > +     }
+> > >
+> > > or you can use syscon_regmap_lookup_by_phandle(). Using
+> > > of_match_node() doesn't seem necessary since it's unlikely to have
+> > > moee than one system controller available on the LS1b or LS1c chips.
+> > >
+>
+> > I planned to use syscon_regmap_lookup_by_phandle().
+> > Thus the compatible
+> > "loongson,ls1b-dwmac-syscon"/"loongson,ls1c-dwmac-syscon" would become
+> > useless.
+> > I'm not sure about this.
+>
+> The compatible strings should be left despite of the
+> syscon_regmap_lookup_by_phandle() usage. But again "dwmac" suffix is
+> redundant. Based on the CSRs definition in regs-mux.h, selecting
+> (G)MAC pins mode is only a small part of the Loongson1 SoC system
+> controllers functionality.
+> "loongson,ls1b-syscon"/"loongson,ls1c-syscon" looks more appropriate.
+>
+That's what I did in PATCH 2/5.
+I've just explained this to Krzysztof.
+And will change back to "loongson,ls1b-syscon"/"loongson,ls1c-syscon"
+in next version.
+
+In addition, syscon_regmap_lookup_by_phandle() returns regmap pointer direc=
+tly.
+Then, there wil be no way to do syscon matching without its device_node.
+How will I know whether the syscon is loongson,ls1b-syscon or
+loongson,ls1c-syscon?
+
+Thanks for your review!
+
+
+
+
+
+> -Serge(y)
+>
+> >
+> > > > +
+> > > > +     size =3D syscon->nr_reg_fields * sizeof(struct regmap_field *=
+);
+> > > > +     dwmac =3D devm_kzalloc(&pdev->dev, sizeof(*dwmac) + size, GFP=
+_KERNEL);
+> > > > +     if (!dwmac)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     plat_dat =3D stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> > > > +     if (IS_ERR(plat_dat)) {
+> > > > +             dev_err(&pdev->dev, "dt configuration failed\n");
+> > > > +             return PTR_ERR(plat_dat);
+> > > > +     }
+> > > > +
+> > > > +     plat_dat->bsp_priv =3D dwmac;
+> > > > +     plat_dat->init =3D ls1x_dwmac_init;
+> > > > +     dwmac->dev =3D &pdev->dev;
+> > > > +     dwmac->plat_dat =3D plat_dat;
+> > > > +     dwmac->syscon =3D syscon;
+> > > > +     dwmac->regmap =3D regmap;
+> > > > +
+> > > > +     ret =3D stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
+> > > > +     if (ret)
+> > > > +             goto err_remove_config_dt;
+> > > > +
+> > > > +     return 0;
+> > > > +
+> > > > +err_remove_config_dt:
+> > >
+> > > > +     if (pdev->dev.of_node)
+> > >
+> > > Is this conditional statement necessary here?
+> > >
+> > You're right.
+> > Will remove this condition in next version.
+> > Thanks!
+> >
+> > > -Serge
+> > >
+> > > > +             stmmac_remove_config_dt(pdev, plat_dat);
+> > > > +
+> > > > +     return ret;
+> > > > +}
+> > > > +
+> > > > +static const struct of_device_id ls1x_dwmac_match[] =3D {
+> > > > +     { .compatible =3D "loongson,ls1b-dwmac" },
+> > > > +     { .compatible =3D "loongson,ls1c-dwmac" },
+> > > > +     { }
+> > > > +};
+> > > > +MODULE_DEVICE_TABLE(of, ls1x_dwmac_match);
+> > > > +
+> > > > +static struct platform_driver ls1x_dwmac_driver =3D {
+> > > > +     .probe =3D ls1x_dwmac_probe,
+> > > > +     .remove_new =3D stmmac_pltfr_remove,
+> > > > +     .driver =3D {
+> > > > +             .name =3D "loongson1-dwmac",
+> > > > +             .of_match_table =3D ls1x_dwmac_match,
+> > > > +     },
+> > > > +};
+> > > > +module_platform_driver(ls1x_dwmac_driver);
+> > > > +
+> > > > +MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
+> > > > +MODULE_DESCRIPTION("Loongson1 DWMAC glue layer");
+> > > > +MODULE_LICENSE("GPL");
+> > > > --
+> > > > 2.39.2
+> > > >
+> >
+> >
+> >
+> > --
+> > Best regards,
+> >
+> > Keguang Zhang
+
+
+
+--
+Best regards,
+
+Keguang Zhang
