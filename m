@@ -2,163 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F0FD7823B5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 08:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 866AA782461
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 09:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233414AbjHUG3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 02:29:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37678 "EHLO
+        id S230049AbjHUHWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 03:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233412AbjHUG3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 02:29:15 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E566FA7
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 23:29:13 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99c93638322so612194166b.1
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 23:29:13 -0700 (PDT)
+        with ESMTP id S232303AbjHUHWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 03:22:38 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954F5C4
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 00:22:10 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-d62bdd1a97dso3011470276.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 00:22:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692599352; x=1693204152;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+jqHn5WqQaJCtg0AUJN1FB+zw67/mJle7arazhBOmko=;
-        b=uBhtrmUWcQZYqn4uY2bSvQU2eud7UeI4VaPCawfTs8lFgDgS4S6oPVwHPGi/J9JSi9
-         Cg8t2/x3c9XBn7O2ZyzPmAa24lRvVSS56PbNRD8WZZy6uXNC7vSRqI/mEFUQYiFtw82n
-         QaAe6CwzMeadrUWLErPi90FmPSizT7npPdN807HHxfQ0ETTTy/8g2I0+rE9upci26NjO
-         4q9QkuIwRxz6Wf4VpZ+NqpPEaIE/xpwICIzuQ+c7zIu8BvbwwJUpJzvP2hsEvDYbkObr
-         Vqnwj0FO0s8LL4qTBPyGsn0llyb/7JC1OBKfQGzlOZVvhLQ41PJlUlyAHlhXi5L8SuyF
-         ExTA==
+        d=linaro.org; s=google; t=1692602526; x=1693207326;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZgI1MYhv8309+bCWxdxoJqdqvZCrtsQ/VE9m30u9HF4=;
+        b=u5QT6x/FxMVr+1aoFCgsJDj0QEzfuHcrI2+VtQeO3v/dDMfnEXre6eKjslbAPuUGTR
+         aDUsBu03dfbFVS8OhYUJcmZRNRxDOJQK6WxjkipX7+Fd0mFDQ5MV5BjVeGuHVtrGJNbJ
+         ABD+WhvSqFyI0oNdtM/dDZBfYoqbEG8UatfAl8s4MibiV1a0vVRj7TTPWy3g6zF6Zlnv
+         Hnx7JSh5IjFD1Zj9/8hUuYRLDQAMHhlxn4UXcU4/t3qc+6D+q93GHHvFJ7feucAIuzzw
+         Ytn4kIvomeBgbEXGMAFSY06730ouBsxWljY/tT5fZycl1G5UNmE9iI7QTtvC2zGFK9Jf
+         7sSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692599352; x=1693204152;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+jqHn5WqQaJCtg0AUJN1FB+zw67/mJle7arazhBOmko=;
-        b=U4CKAmbxZ0pIM1+yg5DR09Sql+kEz5l/Lkd5JXr4wV3Mj8fgH/nJS9KXhJVphAC3M/
-         CkOlQYfQyUgo5eFoA9iT6Jlp+CR01Ou4/yJdlishi0rRBkCmN6xi1ibsteBLNrKmPjhg
-         d6HJ70KlOGlDPzsnCTQ0LRiPOjZA1I9rwRZzgb7O8v91UA6yvP8XJPir1DpqA9PBTR8Q
-         x2A7VgS91JYcHMqKLlOkyUDsn3+GdUx70visKOFYOHjexpAGyWlQR9ZQ7cDmQ2B/HO2z
-         n81rwjU7mXtoX8gLkfq+HSGbE2CJqpGCLG0O6U1rieJmXJnbgifagtdRgRvgbPyeWFNd
-         NuHw==
-X-Gm-Message-State: AOJu0Yw5N+Osw6ffMhUkrUc7S4KNtQFV789aMDO9qPvxJyNniP9B/7O/
-        pVY6R+ew7mpH432LqObawi+keg==
-X-Google-Smtp-Source: AGHT+IHd6+ypVwsYhxnMdbL1UGq6ySkQpWZQ9iHuM8cgfdj0lw84KWdQOHSNV2yTMAzl8mMt2IyJ8A==
-X-Received: by 2002:a17:907:9483:b0:99d:f274:316e with SMTP id dm3-20020a170907948300b0099df274316emr5384047ejc.2.1692599352343;
-        Sun, 20 Aug 2023 23:29:12 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id kj20-20020a170907765400b0099cc402d3ddsm5836644ejc.202.2023.08.20.23.29.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Aug 2023 23:29:11 -0700 (PDT)
-Message-ID: <946ef7a0-a60b-b6ab-69f8-b169343f36f9@linaro.org>
-Date:   Mon, 21 Aug 2023 08:29:10 +0200
+        d=1e100.net; s=20221208; t=1692602526; x=1693207326;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZgI1MYhv8309+bCWxdxoJqdqvZCrtsQ/VE9m30u9HF4=;
+        b=aeA6jg2aDvnOg5KxUTlWwF7G+ph4cTyvZ7URnqdOG14E+lf9MJwgrXTxY2MBZ/ERtk
+         G2RYDnSL9ZeK5D+MCpHOfCWsmcnimXcwvhbBgnjAKAE5Z2Yu8RdTLLfnLYp140dNGmLh
+         IBzTSZfQdKbH0pwN7L21IWdeT9kyfLydUPFVDCxF++WNFOcx8fGITzj7JkypEDL67Zda
+         B0EYHWJeMJbezC4D91KcFcEbi0M+BUs4bEM6sQx51VPyNjC5okBws0vgPI43gdeQges5
+         +EtP4Chwp+Mp3+Dk5qrDcqnBjK1eazfFtelU53Fi2RstaZUUMoWJ9vjutRo5dRUKNreI
+         5SCg==
+X-Gm-Message-State: AOJu0Yyur7XW7m3B43Fg1QQMER9K5IfKGR/lmAHq4veLeq66KSRlBJCW
+        levDVP/Ube1+8QfQVqlFHCUvFY3/+Bu/sLZiyx8hHA==
+X-Google-Smtp-Source: AGHT+IF/JTlr0dFi7ImP5aRW58ulW03tzkcnFFuhr9AUEC0SHkebzyrNv7zePScJNAsfPiEBnyQ9/wv9Y8G7TlIDK6A=
+X-Received: by 2002:a25:abeb:0:b0:d5b:1dd9:8e3f with SMTP id
+ v98-20020a25abeb000000b00d5b1dd98e3fmr6148796ybi.41.1692602526568; Mon, 21
+ Aug 2023 00:22:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: add T-HEAD dwmac support
-Content-Language: en-US
-To:     Jisheng Zhang <jszhang@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
+References: <cover.1692376360.git.christophe.leroy@csgroup.eu>
+ <5f671caf19be0a9bb7ea7b96a6c86381e243ca4c.1692376361.git.christophe.leroy@csgroup.eu>
+ <CACRpkdamyFvzqrQ1=k04CbfEJn1azOF+yP5Ls2Qa3Ux6WGq7_A@mail.gmail.com> <fc5f1daa-58a1-fb86-65ba-c6b236051d45@csgroup.eu>
+In-Reply-To: <fc5f1daa-58a1-fb86-65ba-c6b236051d45@csgroup.eu>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 21 Aug 2023 09:21:54 +0200
+Message-ID: <CACRpkdaiW1QgQAjaC3hTsTjwvuWw9OUwXGsH2t3X8k+ueuBN4A@mail.gmail.com>
+Subject: Re: [PATCH v4 21/28] net: wan: Add framer framework support
+To:     Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230820120213.2054-1-jszhang@kernel.org>
- <20230820120213.2054-3-jszhang@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230820120213.2054-3-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2023 14:02, Jisheng Zhang wrote:
-> Add documentation to describe T-HEAD dwmac.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
+On Mon, Aug 21, 2023 at 7:19=E2=80=AFAM Christophe Leroy
+<christophe.leroy@csgroup.eu> wrote:
+> Le 20/08/2023 =C3=A0 23:06, Linus Walleij a =C3=A9crit :
+> > On Fri, Aug 18, 2023 at 6:41=E2=80=AFPM Christophe Leroy
+> > <christophe.leroy@csgroup.eu> wrote:
+> >
+> >> From: Herve Codina <herve.codina@bootlin.com>
+> >>
+> >> A framer is a component in charge of an E1/T1 line interface.
+> >> Connected usually to a TDM bus, it converts TDM frames to/from E1/T1
+> >> frames. It also provides information related to the E1/T1 line.
+> >>
+> >> The framer framework provides a set of APIs for the framer drivers
+> >> (framer provider) to create/destroy a framer and APIs for the framer
+> >> users (framer consumer) to obtain a reference to the framer, and
+> >> use the framer.
+> >>
+> >> This basic implementation provides a framer abstraction for:
+> >>   - power on/off the framer
+> >>   - get the framer status (line state)
+> >>   - be notified on framer status changes
+> >>   - get/set the framer configuration
+> >>
+> >> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> >> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> >> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> >
+> > I had these review comments, you must have missed them?
+> > https://lore.kernel.org/netdev/CACRpkdZQ9_f6+9CseV1L_wGphHujFPAYXMjJfjU=
+rzSZRakOBzg@mail.gmail.com/
+> >
+>
+> As I said in the cover letter, this series only fixes critical build
+> failures that happened when CONFIG_MODULES is set. The purpose was to
+> allow robots to perform their job up to the end. Other feedback and
+> comments will be taken into account by Herv=C3=A9 when he is back from ho=
+lidays.
 
-Thank you for your patch. There is something to discuss/improve.
+Ah I see. I completely missed this.
 
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: T-HEAD DWMAC glue layer
-
-Describe/name rather the actual device, not some layer.
-
-> +
-> +maintainers:
-> +  - Jisheng Zhang <jszhang@kernel.org>
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - thead,th1520-dwmac
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - thead,th1520-dwmac
-> +      - const: snps,dwmac-3.70a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: GMAC main clock
-> +      - description: AXI clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: stmmaceth
-> +      - const: axi
-
-Isn't basically axi clock a pclk? You should rather use the names from
-snps,dwmac
-
-> +
-> +  thead,gmacapb:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      The phandle to the syscon node that control ethernet
-> +      interface and timing delay.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - phy-mode
-> +  - thead,gmacapb
-
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
