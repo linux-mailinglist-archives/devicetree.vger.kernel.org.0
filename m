@@ -2,157 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B58D782981
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:51:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7844F782994
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:53:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235077AbjHUMvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37724 "EHLO
+        id S235098AbjHUMx4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Aug 2023 08:53:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233727AbjHUMvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:51:19 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2071.outbound.protection.outlook.com [40.107.220.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F09DB1;
-        Mon, 21 Aug 2023 05:51:17 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H7BQAzKPrgxwRngTKBIFi4+8d4w3WY8Fz5oE+M3hYVFWGIRBA/V3H16gZJ1I3XzV+5LQNGrbsdLFsJfuVah0XJW0b3jnZm3A3+uNWbqIwuKSfhjCpcnpUwaCh2oIe+4mQhXyAWsi3YM0I6r0NVlSC+nRluk9aTfFNUPHtXoPWwJER+HIN/DX2/nLsA+CGB0PJQ4JbsDUP7vttA6rCX2KxVmUj6Z3W2RL72S+tuFPw8JxAITWlRsNYWBGIr3OQYnv/z5ApZPMPY4ao/9vxl8WvlR/EjMq5tfVdCkpxW4hEYgj8+rRZeeLysXp9L4puAqpqyleQ9Cgwclrbq1f7pfZZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qNuaXDjHiLTHoXA1rCLSHzrfqpYj+Qp6ClJy4a+iF3s=;
- b=fPKVj7ZdDYd5jTcEmgPeyJL8kNeHtoS1Ecu+nuL1hEZTR46woWWTZ6vZjNl/snd+x/DkJMXi9+iCdr3oISzGmo2uKpH3QtY/raAGiRMlr5Ucq/B9S3tTN7kD69/GmqLgunc4Ek6cE6/0TE3LyiD7QD/sGFh92tLdDaEOQZAmPueQT+krR7hN9PQNJw9pYFmcV4mWRJ2C8SFOV2Sdk6DIqp8mZkmoomw3R5k9eT4TGGrNRp9JcpNa+FQbsmj74HxelPGWqt72Ly9SMZ4WrrIQWLp7HJ8I1AARpzSI1QXAkr0bY+LOqHbfzcAF1RoFZDDL+l03icr81tXDAG48Azk7kA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qNuaXDjHiLTHoXA1rCLSHzrfqpYj+Qp6ClJy4a+iF3s=;
- b=nEY/xqeRZOYs1fPi/IBTRm9Qwk13YtTo3/euHfWyYKYMFQ1xFwVXBspHrM3jKPl/3A8Iv9RutwCxq9TkW0SLjLgldeUFEH6+8Bcrf/kQnHunEkEV8LNrSs9HW8upkrxx5idkU8cat08jZQFmU5RJUsD6uB4rrxqgbTo1w2KWVim+QlPCqoT73M+SHofjLs1rOlxI77GZw9b90GSRqO97Lh5NOsC21dlKxq2/4UCDNyzs+FJwOxjkALkxMHUw/sGB7GAzUfJ+0fjon6vNUKugLroB+IJIuRot4818fKueVWYa9vYeG3igp64Bo9GdVF6hqBxReZQV9tMNm74HKcRQfQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by MW4PR12MB6850.namprd12.prod.outlook.com (2603:10b6:303:1ed::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
- 2023 12:51:14 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::5111:16e8:5afe:1da1]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::5111:16e8:5afe:1da1%6]) with mapi id 15.20.6699.020; Mon, 21 Aug 2023
- 12:51:14 +0000
-Date:   Mon, 21 Aug 2023 09:51:13 -0300
-From:   Jason Gunthorpe <jgg@nvidia.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Andy Gross <agross@kernel.org>, David Airlie <airlied@gmail.com>,
-        alsa-devel@alsa-project.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        ath10k@lists.infradead.org, ath11k@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        dri-devel@lists.freedesktop.org, Emma Anholt <emma@anholt.net>,
-        etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        Frank Rowand <frowand.list@gmail.com>, iommu@lists.linux.dev,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kalle Valo <kvalo@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-tegra@vger.kernel.org,
-        linux-wireless@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Sinan Kaya <okaya@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Jeff Johnson <quic_jjohnson@quicinc.com>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Rob Clark <robdclark@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Sean Paul <sean@poorly.run>,
-        Stanimir Varbanov <stanimir.k.varbanov@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Takashi Iwai <tiwai@suse.com>, Vinod Koul <vkoul@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Will Deacon <will@kernel.org>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Lu Baolu <baolu.lu@linux.intel.com>,
-        Joerg Roedel <jroedel@suse.de>,
-        Kevin Tian <kevin.tian@intel.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH] iommu: Remove the device_lock_assert() from
- __iommu_probe_device()
-Message-ID: <ZONdwclGOBaxxqtq@nvidia.com>
-References: <0-v1-98d20e768c66+7-of_dma_lock_jgg@nvidia.com>
- <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <78114fd6-9b83-92ba-418f-6cc7bda9df9b@arm.com>
-X-ClientProxiedBy: BL1PR13CA0014.namprd13.prod.outlook.com
- (2603:10b6:208:256::19) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+        with ESMTP id S234004AbjHUMx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:53:56 -0400
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D42DD1;
+        Mon, 21 Aug 2023 05:53:52 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-58fba83feb0so20451947b3.3;
+        Mon, 21 Aug 2023 05:53:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692622431; x=1693227231;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3KBAyS2nelrV8Hc2Bh+9OdYb0ynFHCN4++LO/LB55WE=;
+        b=aoQEY1bRpp8nvIOGGZJzmgC3VcEsjht2A0NeNuj69k8iPt0wEKlS+z+akybclMKkJh
+         3zWh+SB1PI2EJZnwkaQkpZWvvyK1vEqielNQUW3HIaq1bTa+K8SxsRUURSIjOCeQKShx
+         xi1xlg7rOrAPXpHhbEMSJb/xGJTOzzoGewsFLanBXujUdLxG+Z5BWBV60jkDpc7uRqjy
+         xzBOtlso7IEFQ7eQNu5aN0252ywgfasPQ5ZbX4ha/gpQFuA8ayPMz4kfjPqKit1kZD5d
+         9cAoRpZQE6BFonio7xtOF+UA0A97dTJgWJBsIDSiFlzfAYbr2gOkPJvBO+k2DTCc9azP
+         KoDQ==
+X-Gm-Message-State: AOJu0Yx/jKzMdA5UEyXSGpk4KHzMOQh9QBuCX7LAmx9f2sKXEsdpyhip
+        5qaD+jFLim1yTkQtOZoPglqg1+Gix7y9Sw==
+X-Google-Smtp-Source: AGHT+IFuHIxhGscqxoXClrtki7YWU7ILZuWq6nJe6qgU5ZJFG0fHy4Xx5ypYm/WreYx/wCKm88M+2A==
+X-Received: by 2002:a0d:db56:0:b0:58c:93b0:17ba with SMTP id d83-20020a0ddb56000000b0058c93b017bamr5893384ywe.31.1692622431443;
+        Mon, 21 Aug 2023 05:53:51 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id x186-20020a0deec3000000b00586108dd8f5sm2211699ywe.18.2023.08.21.05.53.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Aug 2023 05:53:51 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-58fba83feb0so20451807b3.3;
+        Mon, 21 Aug 2023 05:53:51 -0700 (PDT)
+X-Received: by 2002:a25:238b:0:b0:d19:d73d:7956 with SMTP id
+ j133-20020a25238b000000b00d19d73d7956mr5994381ybj.32.1692622430872; Mon, 21
+ Aug 2023 05:53:50 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|MW4PR12MB6850:EE_
-X-MS-Office365-Filtering-Correlation-Id: 22a4b79b-00ea-433c-9893-08dba2454dc7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NmrlHYkggJ2nHAKVj3phCceisxZjgFBWKPZGEdbGXIrb/Dn6Jz1MTkbJ+UtrEms0c1T7E40uC6M3aKBda2ZxT7aRbwd9U7F/weLPJBD8ZQZ6JGVW80ofrYpNuUIGlIlQQ/OPWPE/gC77LxyW+Ylke5fYRpBv4wKQQGBWlw5284LxFT+I7HkfIAzrWteRCIRUYr8Ts2xTG3hbFFnWd1ijt6REYiN1J5xyrv/JUuOmNVAdINGN+t4CQNDe6+azMvzgDCmXKQM/0CSU/Yce/DdAwCwUqykOoeDUzgR1MbIJF/8NNGx0yCfXdFPc6B8lMSqOQk0LQH5bTuelBxa1ZsPVzfoFqqHYdHaQbStL6Q6oAOnSo9mRxAKZ7ZDK0HIqN1nCy6YnWl5FKAE4GrKgSpTYnEGxMQ6bc+ms3Qznv/tk37/0Rdm3KfdzQnStaXPIWcAo9ch8ZshT501iHBIGQyvSclxWYOzltSKXGrBc1qXAFj00K6nrsN0w9BH+jl8Mb4BnxXVf1vaFToVwlV8wvYwc0rfTa7N9qYr4S/U82NgJ/LZd4dySrUtuohdvQOreiAAi
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199024)(186009)(1800799009)(2906002)(7416002)(7366002)(7406005)(53546011)(38100700002)(6506007)(6486002)(83380400001)(5660300002)(26005)(86362001)(8676002)(2616005)(8936002)(4326008)(316002)(66946007)(6512007)(54906003)(6916009)(66556008)(66476007)(66899024)(478600001)(36756003)(41300700001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QyYxkkE3o5nnOsinGeWKraNyp7F/ly8111ZXt/Apzu/dIyuyU1VHdEpfZbe2?=
- =?us-ascii?Q?3AXfinDTVEGRcbzzxmbcHClfnkarHt5zhCEQUFh6AsdK5+FNy8fzIhXMW74p?=
- =?us-ascii?Q?0DWJINg79XKnutBQY7uRSHclHGpWzjQVxLWZwcfeXfmjotdKIpxiTUczpc+R?=
- =?us-ascii?Q?ewky8YThyjT/1FFKrullofYydPUR6RKAb34DpnhIlQX+kR8mdDfvcpEdGbJy?=
- =?us-ascii?Q?qKyQgXD3yFqP5icje6t0Gl0a7WV4SoHAbmoII8+/CsOUkhmYERrvEdCgSx8C?=
- =?us-ascii?Q?k9VrMUVFQsDt4GjLrY1xgpbu8KSviWQkIVhN6gjXKAKb5QCSXHxNIU7loBo0?=
- =?us-ascii?Q?+HYVmTZxJPF4yYZu5o5twgEy6m75ldrLHZx6tdAUiW0sCtSL0NP18+TT7CXB?=
- =?us-ascii?Q?dpVKv+6DuQZd14u4FdNTRIzygPFi7wTgGzeQkNWYtrjwyjYCc/hA9dcxdWe2?=
- =?us-ascii?Q?c8ALaRS/pm2KGUHVdBmAUAAgRv+u6U/kTVb6hyYw4N5E8ALFaC+Mvk3bMmGx?=
- =?us-ascii?Q?PpTWsHV+0+kM0kblTTGjYKfBqA4/ePG1cfozdhNibwJdqtAJE6GzaApydHjA?=
- =?us-ascii?Q?7rzkqxt2ZFSjbRKNk1ox1Gd6x01rTzbP05db/wXr8WFNo4PBi2DTzmkbkCtU?=
- =?us-ascii?Q?zCCGg9mEifgIyVyScNsjvpGUEW0EYOeoGzB6+YsH9e96Ls8EchDtj+/HV1WS?=
- =?us-ascii?Q?c9mbBMx/WauKwUe/hj0JN05o2KCtKe6aqWQGafg2c0X534dM2p0WHq26kyX0?=
- =?us-ascii?Q?LGZ5ph9xGWTCExNzrl6F+/ufk8e0t0E2CfrFKJC/x0rXpEOSuE21oF9J8XG9?=
- =?us-ascii?Q?7+2bQ5u8uPKu3R5zZSdyvhEV7oigUbDeaO1TMJ/7C8ZPae5v4MjQSmqlTtJK?=
- =?us-ascii?Q?jgn0tj9/LVu4m/0mKRI0bU5OBl0RW6i6+JoHT+vTHpnqD1zcsxv77Vh0j9nt?=
- =?us-ascii?Q?YQWhBf+JO2cQBV5xwIc3DIX5WnaM0AqTMO9FKixncc45zGqmQvt7vLK3+w5l?=
- =?us-ascii?Q?JPgZzcerqLPD8+T1bj7p0i2ns9y1kXSbzoD4VH5IHohSDfXczZf4ncg04jWD?=
- =?us-ascii?Q?nKS4GoZ1aOQr3qgU2dOmeHoifsUj/rbP+tSB+Tl0jO251srLVaHvXJBSGwN0?=
- =?us-ascii?Q?E1q2J4P+ueacY4o3uoUCgKlTqPFB1QlUeqtFEuysULd9E0ZdY0cFzzpB1rQ0?=
- =?us-ascii?Q?QhoAwYqkKiqtSA6qLzOH7WjMbugev7mzixBGH+ZiWGhIGzyIMfThd//gngZC?=
- =?us-ascii?Q?w9ZUILIMTuy/o5pQn3TEMIKRwMOpZxMaOwChcwkfAJCKoCFQiPdl5C5DMP75?=
- =?us-ascii?Q?AqZWHp9DI3QaDmm6oFsdsjhUVs9wtJ8Ys8cG1OQIwNJ6sj7pJ+i3nVc5UuCx?=
- =?us-ascii?Q?NDtoE4a/wrQiAg2NzhgsPHlUrPbiQYhck0rUPipUcNesIafZcZoDhm5D411p?=
- =?us-ascii?Q?Tb+ZcI8YD1aYmATgeMlTh+sTJF/HjIZoNmn2gA54QiyZTqVMj7CdZ38Vbmx1?=
- =?us-ascii?Q?DX7k5gnQJLXKuATibwv9Yvp2TDvjFQCrTQ+aBx5AL2m11beCroNgzox32An8?=
- =?us-ascii?Q?3DjhuSH+E3B8pFE6CxGtwnFrNWg7XRXv40FyPLtN?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 22a4b79b-00ea-433c-9893-08dba2454dc7
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 12:51:14.7494
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aDWV5dP5qf0J2bIIwmISU7r9iWwbX7ZHaYBaOMnqZq4awKkP8i1jm5Sof6FA5faL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6850
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org> <20230801-dt-changeset-fixes-v3-4-5f0410e007dd@kernel.org>
+In-Reply-To: <20230801-dt-changeset-fixes-v3-4-5f0410e007dd@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Aug 2023 14:53:39 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUvOTRBdYR=z1yp1_2j8dcazPaY-2E-MPaKeZut14hrLA@mail.gmail.com>
+Message-ID: <CAMuHMdUvOTRBdYR=z1yp1_2j8dcazPaY-2E-MPaKeZut14hrLA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/6] of: dynamic: Fix race in getting old property when
+ updating property
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
         autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -160,67 +71,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 12:06:40PM +0100, Robin Murphy wrote:
-> On 2023-08-18 22:32, Jason Gunthorpe wrote:
-> > It is subtle and was never documented or enforced, but there has always
-> > been an assumption that of_dma_configure_id() is not concurrent. It makes
-> > several calls into the iommu layer that require this, including
-> > dev_iommu_get(). The majority of cases have been preventing concurrency
-> > using the device_lock().
-> > 
-> > Thus the new lock debugging added exposes an existing problem in
-> > drivers. On inspection this looks like a theoretical locking problem as
-> > generally the cases are already assuming they are the exclusive (single
-> > threaded) user of the target device.
-> 
-> Sorry to be blunt, but the only problem is that you've introduced an
-> idealistic new locking scheme which failed to take into account how things
-> currently actually work, and is broken and achieving nothing but causing
-> problems.
+Hi Rob,
 
-That's pretty dramatic. I would have prefered this series have some
-more testing before Joerg took it, but this is certainly not
-"achieving nothing but causing problems". Introducing a real scheme
-for how locking is supposed to work here is going to cause some
-strain.  We've had a long period where the lack of any locking rules
-has yielded a big mess held together with hope and dreams.
+Thanks for your patch!
 
-Of course there will be crazy stuff. If these 13 drivers are the only
-problem then we've done pretty well.
+On Fri, Aug 18, 2023 at 10:41 PM Rob Herring <robh@kernel.org> wrote:
+> __of_update_property() returns the existing property if there is one, but
+> that value is never added to the changeset. Updates work because the
+> existing property is also retrieved in of_changeset_action(), but that is
 
-And at the end we get *actual rules about how locking works* Wow!
-Certainly not nothing.
+Perhaps s/is also retrieved/was also retrieved before/, as
+of_overlay_apply() calls build_changeset() before
+__of_changeset_apply_entries()?
 
-What I want to hear from you is a concrete reason why device_lock() is
-the *wrong* lock here. I can't think of any reason why we can't obtain
-the device_lock in all the places that want to probe the iommu driver.
+> racy as of_changeset_action() doesn't hold any locks. The property could
+> be changed before the changeset is applied.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Nor, can I see a reason why it would be a bad choice of lock after all
-the dma_configure logic is reworked someday.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> When their sole purpose was to improve the locking and make it
-> easier to reason about, and now the latest "fix" is now to remove
-> one of the assertions which forms the fundamental basis for that
-> reasoning, then the point has clearly been lost.
+Gr{oetje,eeting}s,
 
-I do not want to remove the assertion, I think the assertion should
-stay so people running debug kernels on these drivers can get warnings
-about the existing problems in these drivers.
+                        Geert
 
-It is removed mostly because we are at rc7, otherwise I'd play wack a
-mole adding the device_lock and a nasty comment to the drivers. We can
-tackle that in the next cycle and put the assertion back.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> All we've done is churned a dodgy and incomplete locking scheme into
-
-Well, at least we agree what we have today is not great.
-
-> And on the subject of idealism, the fact is that doing IOMMU configuration
-> based on driver probe via bus->dma_configure is *fundamentally wrong* and
-> breaking a bunch of other IOMMU API assumptions, so it is not a robust
-> foundation to build anything upon in the first place. 
-
-So now that Joerg has dropped it - what is your big idea to make the
-locking actually work right?
-
-Jason
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
