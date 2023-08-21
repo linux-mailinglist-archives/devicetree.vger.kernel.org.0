@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4396E7828A3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0D67828B6
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:14:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232402AbjHUMKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50156 "EHLO
+        id S234562AbjHUMOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 08:14:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230207AbjHUMKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:10:49 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0FDBBE
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:10:42 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99df11828c6so910633366b.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:10:42 -0700 (PDT)
+        with ESMTP id S234565AbjHUMOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:14:46 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB442E3
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:14:43 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5255da974c4so3989241a12.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:14:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692619841; x=1693224641;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1692620082; x=1693224882;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zgyeh0+BcUge5Xs63pWfi9O1N4Lce2BqQDTQMQGycQw=;
-        b=B0GwywUNYS15b3HQ2ymhth8kUdVhCPXuyCmtNZUxA7cramZcMK/2vk7d8xemy3q6C9
-         LkKCsGSh/nanX9sIAq9A6aDDRmcYQ+ZiZZ72jY3XRqem20g+fohKDAR53SkZmTdpTETI
-         yt4EZDUDBUDRA5p2Q4meK1kRn1+yL7Phcd9v8isWLQbIBZue1HySGtOeytToomljLH3O
-         rnNgybGAFii3GR/L00LxeML+1FEP6RL2eudxY1Qnbx3FdpK86XgQiqFb6fnrlC2H/DTa
-         xw46kUplNsaudcK8M8qE09E0OTTFq5MxqVnywRzGWlu7lub4QB9vlxx4Yy42hVM74dlg
-         gMgA==
+        bh=dJ4A4PjuTlt+XMBWNzJPDmDOYWrTcGhNygKMgDnc2Q8=;
+        b=iz47zDBpw3Ibp9kl1kFtzFepKYW/YZlCZwdM5dghFSdUm/fFZS+Uq7svCIQA2PUGT7
+         OD7Wlu5kBJskZM//szi2rDV7LYwaKEc4+vlA6pOg9orqWAOxqpJCHzsr1fYbh97ryA9i
+         BoDR0Ekcsujpmojlv7w/5/kob8qL3PlThsz97PyDGN6dfGbpBQQYhUwle2UNBz16JP9e
+         3ckTQ47Z5VqVV/y2ODFgVSbFpX8CPLFOueagp9/Urr6uWng6o87r/zZqJHK+iXcwH4H8
+         qtkprEhub9+1Q+gQwHjfX4pTSP8kmGGPR288EdV2DWoDI2ppe8t6NMukGFbrrB1s5hYE
+         be9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692619841; x=1693224641;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1692620082; x=1693224882;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zgyeh0+BcUge5Xs63pWfi9O1N4Lce2BqQDTQMQGycQw=;
-        b=QVUeQdWm0YxDhAyyLLJY/7wOYkoqYWaA9mO+SuMpo0R6xfrqvsS1ER73iqzUf2OPxd
-         JE4LUdmk5mNsoyQbmGVWsUhIizs9tOw7ictRsbn7w5isSSOCORqq5bHKayjXoM/v3l7a
-         Iw33VoO9AL8GHRYE9Po1xhE05ZC5wA+gvQJwu2KO783mENTJp5E7hp6Ufe1+INoM1Yih
-         /XOQGs54OKPEq2glUk5PWqFMlgqmbR9V3CNJVLslrJCIjyCGwOqcq8tNHBrvSdSs8oas
-         FUD9cs1LuTygCXux1Z8gZSyW930+o+nyhZA45XEU5S88y4/1nl4rLpRgQ0lRWTTKHI+F
-         vg1Q==
-X-Gm-Message-State: AOJu0YxLe6ttz9MSGvUYzfkM/UjW84E4Zwmr+tNn38cQSP0KClnSXlNe
-        IE9VtCDesYeyAFNahK/KjqxU4w==
-X-Google-Smtp-Source: AGHT+IFiIFBmq8AqPH6QBF89FGM9mWhy/gEiTsM/x/nlMwGx0Frl4eRYT5aqAu1p1vTLC9KY6xwPXA==
-X-Received: by 2002:a17:907:3f93:b0:99c:572:c0e4 with SMTP id hr19-20020a1709073f9300b0099c0572c0e4mr6492758ejc.7.1692619841399;
-        Mon, 21 Aug 2023 05:10:41 -0700 (PDT)
+        bh=dJ4A4PjuTlt+XMBWNzJPDmDOYWrTcGhNygKMgDnc2Q8=;
+        b=XHbFdaKVwIRTZPjSZ+n5aiarfIeh6kueyC/UIJUhGsywOzipC3yT0yeC1Gvq8OiySk
+         w4iUEqnhhW3FQbzjgfhfc30BkwPtpO4gY9Pr7AigNmNRtSly8LmvrgxmR5Np8OH96R3p
+         tuoMldmkhG3ZSsRtBF6lC1qKWXJqbUadvcQ3anxTq/D9/UPVF8422uHr69b84ZzxBL2A
+         z8hWvlOk/+Yafj1ELqMf1UY7S3Qb8MP3F4ifqxCmF3Ck8R77j+Qe2dE9qSnIrnmBI0Hz
+         ITM2hTjRCTnifS4UevPjjApRRQSMXg+0D+9X5I3m+T6s75CuflgKaP5Q9KLaMs2EHB5O
+         u2Pg==
+X-Gm-Message-State: AOJu0YzUTXCHBo2nL0WwzVgHKqDVve7qA4M1kw5Bhj+B6xISFysQGWgm
+        FpsMSfDk7lXlCjfXy6YMZFwSGA==
+X-Google-Smtp-Source: AGHT+IHT1a6k5nRWS7uPl1+UfJiLHZIjEonHC2gVte7HgVai3ix/2YZ3UlymJWu5FXdusZH2IMz46A==
+X-Received: by 2002:aa7:d502:0:b0:521:7ab6:b95d with SMTP id y2-20020aa7d502000000b005217ab6b95dmr5303186edq.29.1692620082158;
+        Mon, 21 Aug 2023 05:14:42 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id x6-20020a170906134600b00992d70f8078sm6487484ejb.106.2023.08.21.05.10.40
+        by smtp.gmail.com with ESMTPSA id z12-20020aa7cf8c000000b005256d4d58a6sm5920187edx.18.2023.08.21.05.14.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 05:10:40 -0700 (PDT)
-Message-ID: <5235260c-8fd6-2b2a-58b9-703191fff526@linaro.org>
-Date:   Mon, 21 Aug 2023 14:10:39 +0200
+        Mon, 21 Aug 2023 05:14:41 -0700 (PDT)
+Message-ID: <c2f616a0-c24e-5061-7e1d-5be68ed3d706@linaro.org>
+Date:   Mon, 21 Aug 2023 14:14:40 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 11/50] dt-bindings: crypto: add sam9x7 in Atmel TDES
+Subject: Re: [PATCH V1 1/2] scsi: ufs: qcom: dt-bindings: Add SC7280
+ compatible string
 Content-Language: en-US
-To:     Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Varshini.Rajendran@microchip.com, herbert@gondor.apana.org.au,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230728102442.265820-1-varshini.rajendran@microchip.com>
- <09bd1388-02aa-32c7-319e-d7150a0f3e9c@linaro.org>
- <1ec901d0-44c2-1d28-5976-d93abfffee67@microchip.com>
- <37782447-43c7-50f9-b9b4-5fbca94ce8c6@linaro.org>
- <96033a59-a2ea-c906-a033-84119c5783d7@linaro.org>
- <adeed0b2-e09b-78cf-ebfd-08d3949ca9ea@microchip.com>
- <57e9a9ff-26ed-62d1-91f8-cd5596f1c308@linaro.org>
+To:     Nitin Rawat <quic_nitirawa@quicinc.com>, mani@kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        alim.akhtar@samsung.com, bvanassche@acm.org, robh+dt@kernel.org,
+        avri.altman@wdc.com, cros-qcom-dts-watchers@chromium.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230821094937.13059-1-quic_nitirawa@quicinc.com>
+ <20230821094937.13059-2-quic_nitirawa@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <57e9a9ff-26ed-62d1-91f8-cd5596f1c308@linaro.org>
+In-Reply-To: <20230821094937.13059-2-quic_nitirawa@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,69 +80,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2023 11:54, Tudor Ambarus wrote:
->>>>> I am aware that there is no change in the crypto IP used. This patch is
->>
->> Actually, recent history showed us that it's not only the IP itself but
->> its integration into final product that could have an influence on the
->> behavior.
->>
->>>>> to add a SoC specific compatible as expected by writing-bindings
->>>>> guideline. Maybe a bit more explanation in the commit description might
->>>>> do the trick.
->>>>>
->>>>
->>>> So you add a compatible that will never be used just to comply with
->>>> the writing bindings guideline?
->>>
->>> How do you know that it is never going to be used? The guideline asks
+On 21/08/2023 11:49, Nitin Rawat wrote:
+> Document the compatible string for the UFS found on SC7280.
 > 
-> See
-> https://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git/tree/drivers/crypto/atmel-tdes.c?h=at91-dt#n1120
-
-What's there? One compatible? How does it prove that it will not be
-used? It only proves that currently it is not used... And anyway this is
-just one implementation in one system. How can you possibly know all
-other possible implementations (other bootloaders/firmwares/systems)?
-One cannot. The guideline is there for specific reason.
-
-
-
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
->>> for this on purpose, so any future quirks or incompatibilities can be
->>> easily addressed.
->>
->> In this recent case, having a an adapted compatibility string is an
->> added value.
->>
->> And yes, I changed my mind and would like to be systematic now with
->> at91/microchip DT compatibility strings. Our long history and big legacy
->> in arm-soc is sometimes difficult to handle, but we're moving little by
->> little to comply with guidelines.
->>
->> My conclusion is that Varshini's addition is the way to go.
-> 
-> Ok, fine by me. Then it would be good if one adds compatibles for the
-> previous SoCs as well and add a comment in the drivers that inform
-> readers that the atmel_*_get_cap() methods are used as backup where
-> "atmel,at91sam9g46-" compatibles are used. You'll then have all the
-> previous SoCs have their own dedicated compatibles which will have
-> "atmel,at91sam9g46-" compatible as backup, and "sam9x7" will be the
-> first that will not need the "atmel,at91sam9g46-" backup compatible.
-> In the drivers you'll have 2 flavors of identifying the IP caps, the
-> first one that backups to atmel_*_get_cap(), and a second one where
-> of_device_id data will suffice.
-> 
-> If the commit message described how the driver will handle the new
-> compatible, Varshini would have spared us of all these emails exchanged.
 
-The driver does not have to handle the new compatible, because it is
-independent question. Although if you meant to explicitly say that
-device is compatible in commit msg, although it is obvious from the
-patch, then sure.
 
-> Varshini, please update the commit message in the next iteration and
-> describe how the driver will handle the new compatible.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
