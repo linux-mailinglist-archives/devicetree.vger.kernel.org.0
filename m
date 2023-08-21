@@ -2,347 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FC8978254C
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 10:21:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76DFB78257E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 10:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjHUIVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 04:21:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40868 "EHLO
+        id S234005AbjHUIdF convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Aug 2023 04:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbjHUIVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 04:21:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47550A8;
-        Mon, 21 Aug 2023 01:21:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D2704623DC;
-        Mon, 21 Aug 2023 08:21:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F537C433C8;
-        Mon, 21 Aug 2023 08:21:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692606074;
-        bh=ogiV7CNASDzHggMbdasHqgMSJZOeZwkx+VtVJ7PBZww=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YbWM7K3VvVUsOIGYBwj17R3JVf0NitSUZznGNnxwttAV3ReJut/loOS/kDrMw6ZKr
-         fb06pegQAMwY6PAeUDtlTozzM29r0ttZ3q+9efLX2btT25a+EkFqp+g7FKaYLr8xBH
-         AROQ5crsgfK7lDnitN6P6BETQ6wSqQEOckSrY1hWRDgQ0IviyyW2hu/DxYWAJu3Wbq
-         5K/SAcMtvE2ibyqddYs5zLAPvZrKrYx8r/9slR9x5iYwVXGFq1X+RzFdMLr/meMM7k
-         J4h4EwA/F15+FVO3igyO8tSg3ZBtIF47fozSiEXxjI8oqfAUG6/rfI9YfcC4W9Fskc
-         RUZew6oTFdslw==
-Date:   Mon, 21 Aug 2023 10:21:05 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Frank Li <Frank.li@nxp.com>, manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, bhelgaas@google.com,
-        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
-        imx@lists.linux.dev, kw@linux.com, leoyang.li@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, mani@kernel.org, minghuan.lian@nxp.com,
-        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v11 3/3] PCI: layerscape: Add power management support
- for ls1028a
-Message-ID: <ZOMecaueyN3cutUH@lpieralisi>
-References: <20230809153540.834653-1-Frank.Li@nxp.com>
- <20230809153540.834653-4-Frank.Li@nxp.com>
- <ZNzrgr3a13vm6Yqi@lpieralisi>
- <ZN6iarqhryMHmwLh@lizhi-Precision-Tower-5810>
+        with ESMTP id S234003AbjHUIdE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 04:33:04 -0400
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFDAFB5;
+        Mon, 21 Aug 2023 01:33:02 -0700 (PDT)
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-79a46f02d45so815862241.0;
+        Mon, 21 Aug 2023 01:33:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692606782; x=1693211582;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=W8DR2b7Nt+1F2KZPVYK0O6RgtMx3Ou+9WJvksXud4JY=;
+        b=I8WlgyvShn2pKbHytu6kQM///R+wegFvbhDYqNtpNPEKxgUEqxKuhp7qADeDSp/A5G
+         3QycxAhCNDp59afFHFpcbfaBfUhZx4gcxCpf0Hxb1YheUpVbU2dOtRRg+fGdAI2wiuAY
+         FTHM2+FBns+6J6t6WTwYH4J6lzh1uRkoBoRnKrebRUDRVfrm5jCPxu7z169NTF5av5JL
+         PO0m9ORBg3C+jjnK4d4/LvzSaihcALsv0z0dxXWgk2TsTxW7aaCV+9AGoEHF0A/uqlFt
+         raLaqX/fqFe43kYCb6XOnN3W17YeX9W/XGjVUjbAYANkKD3oz61guHHvLh2BxnBEiGz9
+         QXjA==
+X-Gm-Message-State: AOJu0YxkDm/nBVz+qCDD02FENJ/y21sDub/iI+/l6WYGBtKQrtbr6GuF
+        vwE76RhhC3OEn7ze2VvMpUZUIh3pjaRysQ==
+X-Google-Smtp-Source: AGHT+IGY34agOk/LIlvB11/AHsKM+WXO4A/fX0bfCXw9jAsG52Z39n+UvKNcPuroYTvKLEl8p5+ldA==
+X-Received: by 2002:a67:fb4f:0:b0:443:70ec:d28b with SMTP id e15-20020a67fb4f000000b0044370ecd28bmr4913416vsr.19.1692606781725;
+        Mon, 21 Aug 2023 01:33:01 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id h185-20020a0dc5c2000000b0058427045833sm2156001ywd.133.2023.08.21.01.33.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Aug 2023 01:33:01 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-d749f57cb22so1113588276.3;
+        Mon, 21 Aug 2023 01:33:01 -0700 (PDT)
+X-Received: by 2002:a25:bc8a:0:b0:d1c:77de:cf7a with SMTP id
+ e10-20020a25bc8a000000b00d1c77decf7amr6760391ybk.64.1692606780809; Mon, 21
+ Aug 2023 01:33:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZN6iarqhryMHmwLh@lizhi-Precision-Tower-5810>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230817090810.203900-1-biju.das.jz@bp.renesas.com>
+ <20230817090810.203900-2-biju.das.jz@bp.renesas.com> <CAMuHMdUoOu2sGeWO0tQ89iU6rT=kWtpJ0qfhYvxnhQAfPwA7dg@mail.gmail.com>
+ <OS0PR01MB5922A41D6D8A3164EECE7C05861EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB5922A41D6D8A3164EECE7C05861EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Aug 2023 10:32:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV_WMdwj5dXGHi48F9wQY9WVyuA-L9zbnshP4SCvvAAiA@mail.gmail.com>
+Message-ID: <CAMuHMdV_WMdwj5dXGHi48F9wQY9WVyuA-L9zbnshP4SCvvAAiA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: versaclock3: Document clock-output-names
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 17, 2023 at 06:42:50PM -0400, Frank Li wrote:
-> On Wed, Aug 16, 2023 at 05:30:10PM +0200, Lorenzo Pieralisi wrote:
-> > On Wed, Aug 09, 2023 at 11:35:40AM -0400, Frank Li wrote:
-> > > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > > 
-> > > Add PME_Turn_off/PME_TO_Ack handshake sequence for ls1028a platform. Call
-> > > common dwc dw_pcie_suspend(resume)_noirq() function when system enter/exit
-> > > suspend state.
-> > > 
-> > > Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-> > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Hi Biju,
+
+On Mon, Aug 21, 2023 at 10:11 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH v2 1/3] dt-bindings: clock: versaclock3: Document
+> > clock-output-names
+> > On Thu, Aug 17, 2023 at 11:08 AM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > Document clock-output-names property and fix the "assigned-clock-rates"
+> > > for each clock output in the example based on Table 3. ("Output
+> > > Source") in the 5P35023 datasheet(ie: {REF,SE1,SE2,SE3,DIFF1,DIFF2}).
+> > >
+> > > While at it, replace clocks phandle in the example from x1_x2->x1 as
+> > > X2 is a different 32768 kHz crystal.
+> > >
+> > > Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Closes:
+> > > Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock
+> > > generator bindings")
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 > > > ---
-> > >  drivers/pci/controller/dwc/pci-layerscape.c | 130 ++++++++++++++++++--
-> > >  1 file changed, 121 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
-> > > index ed5fb492fe084..b49f654335fd7 100644
-> > > --- a/drivers/pci/controller/dwc/pci-layerscape.c
-> > > +++ b/drivers/pci/controller/dwc/pci-layerscape.c
-> > > @@ -8,9 +8,11 @@
-> > >   * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
-> > >   */
-> > >  
-> > > +#include <linux/delay.h>
-> > >  #include <linux/kernel.h>
-> > >  #include <linux/interrupt.h>
-> > >  #include <linux/init.h>
-> > > +#include <linux/iopoll.h>
-> > >  #include <linux/of_pci.h>
-> > >  #include <linux/of_platform.h>
-> > >  #include <linux/of_address.h>
-> > > @@ -20,6 +22,7 @@
-> > >  #include <linux/mfd/syscon.h>
-> > >  #include <linux/regmap.h>
-> > >  
-> > > +#include "../../pci.h"
-> > >  #include "pcie-designware.h"
-> > >  
-> > >  /* PEX Internal Configuration Registers */
-> > > @@ -27,12 +30,26 @@
-> > >  #define PCIE_ABSERR		0x8d0 /* Bridge Slave Error Response Register */
-> > >  #define PCIE_ABSERR_SETTING	0x9401 /* Forward error of non-posted request */
-> > >  
-> > > +/* PF Message Command Register */
-> > > +#define LS_PCIE_PF_MCR		0x2c
-> > > +#define PF_MCR_PTOMR		BIT(0)
-> > > +#define PF_MCR_EXL2S		BIT(1)
+> > > v1->v2:
+> > >  * Updated commit description to make it clear it fixes
+> > >    "assigned-clock-rates" in the example based on 5P35023 datasheet.
+> >
+> > Thanks for your patch!
+> > > ---
+> > >  .../devicetree/bindings/clock/renesas,5p35023.yaml | 14
+> > > ++++++++++----
+> > >  1 file changed, 10 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
+> > > b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
+> > > index 839648e753d4..db8d01b291dd 100644
+> > > --- a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
+> > > @@ -49,6 +49,9 @@ properties:
+> > >      $ref: /schemas/types.yaml#/definitions/uint8-array
+> > >      maxItems: 37
+> > >
+> > > +  clock-output-names:
+> > > +    maxItems: 6
 > > > +
-> > >  #define PCIE_IATU_NUM		6
-> > >  
-> > > +struct ls_pcie_drvdata {
-> > > +	const u32 pf_off;
-> > > +	bool pm_support;
-> > > +};
-> > > +
-> > >  struct ls_pcie {
-> > >  	struct dw_pcie *pci;
-> > > +	const struct ls_pcie_drvdata *drvdata;
-> > > +	void __iomem *pf_base;
-> > > +	bool big_endian;
-> > >  };
-> > >  
-> > > +#define ls_pcie_pf_readl_addr(addr)	ls_pcie_pf_readl(pcie, addr)
-> > >  #define to_ls_pcie(x)	dev_get_drvdata((x)->dev)
-> > >  
-> > >  static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
-> > > @@ -73,6 +90,60 @@ static void ls_pcie_fix_error_response(struct ls_pcie *pcie)
-> > >  	iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
-> > >  }
-> > >  
-> > > +static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
-> > > +{
-> > > +	if (pcie->big_endian)
-> > > +		return ioread32be(pcie->pf_base + off);
-> > > +
-> > > +	return ioread32(pcie->pf_base + off);
-> > > +}
-> > > +
-> > > +static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
-> > > +{
-> > > +	if (pcie->big_endian)
-> > > +		iowrite32be(val, pcie->pf_base + off);
-> > > +	else
-> > > +		iowrite32(val, pcie->pf_base + off);
-> > > +}
-> > > +
-> > > +static void ls_pcie_send_turnoff_msg(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct ls_pcie *pcie = to_ls_pcie(pci);
-> > > +	u32 val;
-> > > +	int ret;
-> > > +
-> > > +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-> > > +	val |= PF_MCR_PTOMR;
-> > > +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
-> > > +
-> > > +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-> > > +				 val, !(val & PF_MCR_PTOMR),
-> > > +				 PCIE_PME_TO_L2_TIMEOUT_US/10,
-> > > +				 PCIE_PME_TO_L2_TIMEOUT_US);
-> > > +	if (ret)
-> > > +		dev_err(pcie->pci->dev, "PME_Turn_off timeout\n");
-> > > +}
-> > > +
-> > > +static void ls_pcie_exit_from_l2(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct ls_pcie *pcie = to_ls_pcie(pci);
-> > > +	u32 val;
-> > > +	int ret;
-> > > +
-> > > +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-> > > +	val |= PF_MCR_EXL2S;
-> > > +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
-> > 
-> > What is this write transaction generating in HW ?
-> 
-> I don't think send anything to to pci bus because it was called before
-> host init.
-> 
-> The spec of ls1028 is not clear enough.
-> 
-> `EXL2S: exit l2 state command. when set to 1, an L2 exit command is
-> generated. The bit is self clearing. Once the bit is set. SW needs to wait
-> for the bit to selfclear before sending a new command'
-> 
-> > 
-> > Why is it needed ? Shouldn't L2 exit happen automatically
-> > in HW ?
-> 
-> I tried remove this, PCI can't resume. I think this is specific for ls1028
-> chip to clear internal logic.
+> >
+> > Why do you need clock-output-names?
+>
+> I thought it will be useful information for a user, by looking at the example the name of clock-output-name and corresponding assigned-clocks and assigned-clock-rates.
+>
+> See below, from this one can understand the relation between index and actual clock output.
+>
+>   clock-output-names = "ref", "se1", "se2", "se3",
+>                        "diff1", "diff2";
+>
+>   assigned-clocks = <&versa3 0>, <&versa3 1>,
+>                     <&versa3 2>, <&versa3 3>,
+>                     <&versa3 4>, <&versa3 5>;
+>   assigned-clock-rates = <24000000>, <11289600>,
+>                          <11289600>, <12000000>,
+>                          <25000000>, <12288000>;
+>
+> > The clock output names should be created by the driver (taking into account
+> > the instance number, so it works with multiple instances).
+>
+> OK, so shall I remove it from bindings then?
 
-Well, if you don't even know what this does how can you write a sane
-device driver ?
+I think so, as it is not needed.
 
-Can you ask designers a more detailed description please ?
+What is still missing (contrary to the Closes tag) is the mapping from
+clock IDs to actual clock outputs.
 
-> > > +
-> > > +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-> > > +				 val, !(val & PF_MCR_EXL2S),
-> > > +				 PCIE_PME_TO_L2_TIMEOUT_US/10,
-> > > +			PCIE_PME_TO_L2_TIMEOUT_US);
-> > 
-> > And why is the timeout value the same used for the PME_turn_off message ?
-> 
-> I think No spec define it, just reused it. use PCIE_PME_TO_L2_TIMEOUT_US
-> may cause confuse. What's do you prefered? Just use number,such as 10ms.
+Gr{oetje,eeting}s,
 
-This delay value is misleading, it is not good to reuse a value for
-a delay that is most certainly controller specific.
+                        Geert
 
-From this discussion I would say that having pme_turn_off() and
-exit_from_l2() hooks is generalizing something we don't know yet
-it is needed for all DWC based controllers.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-It is probably worth keeping the layerscape specific changes in
-the layerscape driver and from there call the "generic" DWC
-suspend/resume functions:
-
-dw_pcie_suspend_noirq()
-dw_pcie_resume_noirq()
-
-rather than adding hooks that we barely know what they are needed for.
-
-Mani, what do you think ?
-
-Thanks,
-Lorenzo
-
-> 
-> > 
-> > Thanks,
-> > Lorenzo
-> > 
-> > > +	if (ret)
-> > > +		dev_err(pcie->pci->dev, "L2 exit timeout\n");
-> > > +}
-> > > +
-> > >  static int ls_pcie_host_init(struct dw_pcie_rp *pp)
-> > >  {
-> > >  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > @@ -91,18 +162,28 @@ static int ls_pcie_host_init(struct dw_pcie_rp *pp)
-> > >  
-> > >  static const struct dw_pcie_host_ops ls_pcie_host_ops = {
-> > >  	.host_init = ls_pcie_host_init,
-> > > +	.pme_turn_off = ls_pcie_send_turnoff_msg,
-> > > +	.exit_from_l2 = ls_pcie_exit_from_l2,
-> > > +};
-> > > +
-> > > +static const struct ls_pcie_drvdata ls1021a_drvdata = {
-> > > +};
-> > > +
-> > > +static const struct ls_pcie_drvdata layerscape_drvdata = {
-> > > +	.pf_off = 0xc0000,
-> > > +	.pm_support = true,
-> > >  };
-> > >  
-> > >  static const struct of_device_id ls_pcie_of_match[] = {
-> > > -	{ .compatible = "fsl,ls1012a-pcie", },
-> > > -	{ .compatible = "fsl,ls1021a-pcie", },
-> > > -	{ .compatible = "fsl,ls1028a-pcie", },
-> > > -	{ .compatible = "fsl,ls1043a-pcie", },
-> > > -	{ .compatible = "fsl,ls1046a-pcie", },
-> > > -	{ .compatible = "fsl,ls2080a-pcie", },
-> > > -	{ .compatible = "fsl,ls2085a-pcie", },
-> > > -	{ .compatible = "fsl,ls2088a-pcie", },
-> > > -	{ .compatible = "fsl,ls1088a-pcie", },
-> > > +	{ .compatible = "fsl,ls1012a-pcie", .data = &layerscape_drvdata },
-> > > +	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021a_drvdata },
-> > > +	{ .compatible = "fsl,ls1028a-pcie", .data = &layerscape_drvdata },
-> > > +	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1021a_drvdata },
-> > > +	{ .compatible = "fsl,ls1046a-pcie", .data = &layerscape_drvdata },
-> > > +	{ .compatible = "fsl,ls2080a-pcie", .data = &layerscape_drvdata },
-> > > +	{ .compatible = "fsl,ls2085a-pcie", .data = &layerscape_drvdata },
-> > > +	{ .compatible = "fsl,ls2088a-pcie", .data = &layerscape_drvdata },
-> > > +	{ .compatible = "fsl,ls1088a-pcie", .data = &layerscape_drvdata },
-> > >  	{ },
-> > >  };
-> > >  
-> > > @@ -121,6 +202,8 @@ static int ls_pcie_probe(struct platform_device *pdev)
-> > >  	if (!pci)
-> > >  		return -ENOMEM;
-> > >  
-> > > +	pcie->drvdata = of_device_get_match_data(dev);
-> > > +
-> > >  	pci->dev = dev;
-> > >  	pci->pp.ops = &ls_pcie_host_ops;
-> > >  
-> > > @@ -131,6 +214,10 @@ static int ls_pcie_probe(struct platform_device *pdev)
-> > >  	if (IS_ERR(pci->dbi_base))
-> > >  		return PTR_ERR(pci->dbi_base);
-> > >  
-> > > +	pcie->big_endian = of_property_read_bool(dev->of_node, "big-endian");
-> > > +
-> > > +	pcie->pf_base = pci->dbi_base + pcie->drvdata->pf_off;
-> > > +
-> > >  	if (!ls_pcie_is_bridge(pcie))
-> > >  		return -ENODEV;
-> > >  
-> > > @@ -139,12 +226,37 @@ static int ls_pcie_probe(struct platform_device *pdev)
-> > >  	return dw_pcie_host_init(&pci->pp);
-> > >  }
-> > >  
-> > > +static int ls_pcie_suspend_noirq(struct device *dev)
-> > > +{
-> > > +	struct ls_pcie *pcie = dev_get_drvdata(dev);
-> > > +
-> > > +	if (!pcie->drvdata->pm_support)
-> > > +		return 0;
-> > > +
-> > > +	return dw_pcie_suspend_noirq(pcie->pci);
-> > > +}
-> > > +
-> > > +static int ls_pcie_resume_noirq(struct device *dev)
-> > > +{
-> > > +	struct ls_pcie *pcie = dev_get_drvdata(dev);
-> > > +
-> > > +	if (!pcie->drvdata->pm_support)
-> > > +		return 0;
-> > > +
-> > > +	return dw_pcie_resume_noirq(pcie->pci);
-> > > +}
-> > > +
-> > > +static const struct dev_pm_ops ls_pcie_pm_ops = {
-> > > +	NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq, ls_pcie_resume_noirq)
-> > > +};
-> > > +
-> > >  static struct platform_driver ls_pcie_driver = {
-> > >  	.probe = ls_pcie_probe,
-> > >  	.driver = {
-> > >  		.name = "layerscape-pcie",
-> > >  		.of_match_table = ls_pcie_of_match,
-> > >  		.suppress_bind_attrs = true,
-> > > +		.pm = &ls_pcie_pm_ops,
-> > >  	},
-> > >  };
-> > >  builtin_platform_driver(ls_pcie_driver);
-> > > -- 
-> > > 2.34.1
-> > > 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
