@@ -2,119 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10657782FC4
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 19:58:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9CF782FE0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 20:02:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236516AbjHUR6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 13:58:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55242 "EHLO
+        id S236658AbjHUSCz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 14:02:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235594AbjHUR6V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 13:58:21 -0400
-Received: from mail-il1-x135.google.com (mail-il1-x135.google.com [IPv6:2607:f8b0:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B252210D
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 10:58:19 -0700 (PDT)
-Received: by mail-il1-x135.google.com with SMTP id e9e14a558f8ab-34ba9d6f033so12170415ab.2
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 10:58:19 -0700 (PDT)
+        with ESMTP id S233032AbjHUSCy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 14:02:54 -0400
+Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE2F10D
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 11:02:50 -0700 (PDT)
+Received: by mail-io1-xd2b.google.com with SMTP id ca18e2360f4ac-79231457b7fso47794139f.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 11:02:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692640699; x=1693245499;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VO7CqkZaWBLiIGdh7lLoGYUME5rEgXf0vHV0ET/DQ4I=;
-        b=J/nJI76KbZl0ewpd6a4QQocNI0MU8TuWe+tGp3TWHfSOKSEshF2YysO76h2QcsD5Sa
-         1AAmZCC0SU+278oKJ4TUpB92w3o4rcFkH+OCm2jqJPyFX3mawJlo5FlfkEurUJpGisYw
-         fnhsvHsXFvIB6HNtTsFLDitPJgI2RcGGLmo/GGOWAEY7bOOx3l8Tllgc4YDwe17hH/j/
-         io69ZHNlUblXDv7L2T2Yho15jVX70fQhnMRShKubXqCLSWEDPCYb8HQYH/RsBQ2+0DMS
-         lIMJ41nLTECxSBGGTnXGrvSAZashNBgeN4u/LQDngOQdC7TB0gapo0v/ZJacVIKDrMvL
-         1VYQ==
+        d=chromium.org; s=google; t=1692640969; x=1693245769;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a2pjLxbest+0WZUqtLo2mpBJexTPwyLe+Gjd2ukfO+w=;
+        b=TyGltsAXoWfq7y+M2YtWVgwqO1FcVOIWL4MTGvvI7NJ0jz/G/ZoP2+Jm23xuCzx8ca
+         kOc2SbKaOToTnL6mo+Hj5xWzzKzCc+u7bs5u09Q5J8eoYceECr6FBJpyFuzH7VXjehgi
+         9A2FYynMx6obbNk2v6hLQktwq0Y5xgUBTOV4k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692640699; x=1693245499;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VO7CqkZaWBLiIGdh7lLoGYUME5rEgXf0vHV0ET/DQ4I=;
-        b=hm4hIlSXB1EJjo+Le6TOJhWuI1tsdA3/NK1qicGHXl0+jxLEru4pQ0rJTDedrKtKU1
-         0YBPELVkuCRPI3IHNnf7c2xpd26nmuOzc/NuY1NqLdFIca/An9/ClG6Txfd5Xk7zzSHB
-         3z7r6YnFbQ9Cu+8gc7Pcgx4C4sydKN7zbnAl9okeWB+Q/SO5DPjdl1J64abaUESaHerr
-         jb5wqpv9g8lV95FF0Dkrak0HPQnQMTwWiVunpL51hRj9FD91wE7AWKOprWNXwASuUhU8
-         O1AfFg5HMoymHOx19XwD6oy61rJa//HfjpOQ//yUKJipwHmMWyq/vom9bJSl8tw5z8q2
-         btWg==
-X-Gm-Message-State: AOJu0YzLloXddcW1byZegNFkiclFRN+q2idQtEgopUhF9bNTkk098OId
-        +8GWlOGNsMZx59ePt8GN/qr0aQ==
-X-Google-Smtp-Source: AGHT+IGkHyZEbiS6/affVkgXWOrYtnRRrvDxQUudZYT2rii37KNbUnKBbkjrtnncM2NUD7PhgR7rGA==
-X-Received: by 2002:a92:c5d3:0:b0:349:2cd0:4368 with SMTP id s19-20020a92c5d3000000b003492cd04368mr7726845ilt.18.1692640699077;
-        Mon, 21 Aug 2023 10:58:19 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:2289:93a7:5faa:cd11])
-        by smtp.gmail.com with ESMTPSA id v10-20020a63ac0a000000b0055b61cd99a1sm6557997pge.81.2023.08.21.10.58.17
+        d=1e100.net; s=20221208; t=1692640969; x=1693245769;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a2pjLxbest+0WZUqtLo2mpBJexTPwyLe+Gjd2ukfO+w=;
+        b=COpCbMEnCaf5YTlb14lAK87DbJd/b3HH1a49+D560E/RfOSmLsWUPG5r09dJrprhhp
+         mSp8KtmcsKwr2D4MLEBWQ0ETTb8vPzkO5fl3rm9sqbQ0wSbyaftkvIVH00/HwG6xDzTd
+         NLkf2Yg3DzzuWFe++LAkgY6rtg1djMNwxqWVkZfc5UeG3M2vvmYIBgolMfsiflA+yaEI
+         pJop9nM2Igo/9PIUNElEc8/+SvJKrEmyRmwEz+JzIbjYHxaqWOiu2ZlPFlBReZux9NGm
+         SuM1uOBm9/99keNEIPA2puE8TorMZsbUb7rfm05XRBIgCAQsNDcF0NVnQvAwCeTWMV+0
+         XrQw==
+X-Gm-Message-State: AOJu0Yx9eTiTMUYGheKnK9yQSTKqJh9xe+8+6ryPePEGfC0KNYrRw9Vq
+        DSVrRoHsCILVEuwrQ6A4yfNMxIUMzP6voYHesaI=
+X-Google-Smtp-Source: AGHT+IFfd4gx3DaCbgFL3dChUreiPZL/eKJzxHsBjdj44KSS/0fqF69Jg0p+EB/vCqKXAM0Wb6vSLw==
+X-Received: by 2002:a6b:610a:0:b0:783:6eef:1496 with SMTP id v10-20020a6b610a000000b007836eef1496mr10989656iob.19.1692640969742;
+        Mon, 21 Aug 2023 11:02:49 -0700 (PDT)
+Received: from kea.bld.corp.google.com ([2620:15c:183:200:9102:8976:7620:5093])
+        by smtp.gmail.com with ESMTPSA id g5-20020a5ec745000000b007791e286fdbsm2583924iop.21.2023.08.21.11.02.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Aug 2023 10:58:18 -0700 (PDT)
-Date:   Mon, 21 Aug 2023 11:58:15 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Levinsky, Ben" <ben.levinsky@amd.com>,
-        "Shah, Tanmay" <tanmay.shah@amd.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH v3] dt-bindings: remoteproc: add Tightly Coupled Memory
- (TCM) bindings
-Message-ID: <ZOOltyWikpxc/hII@p14s>
-References: <1689964908-22371-1-git-send-email-radhey.shyam.pandey@amd.com>
- <20230724161632.GA3686365-robh@kernel.org>
- <MN0PR12MB5953E72D7950581A8FB5AD82B711A@MN0PR12MB5953.namprd12.prod.outlook.com>
+        Mon, 21 Aug 2023 11:02:49 -0700 (PDT)
+From:   Simon Glass <sjg@chromium.org>
+To:     devicetree@vger.kernel.org
+Cc:     Tom Rini <trini@konsulko.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Rob Herring <robh@kernel.org>,
+        Alper Nebi Yasak <alpernebiyasak@gmail.com>,
+        Neha Malcom Francis <n-francis@ti.com>,
+        Stefan Herbrechtsmeier <stefan.herbrechtsmeier@weidmueller.com>,
+        Philippe Reynes <philippe.reynes@softathome.com>,
+        Peng Fan <peng.fan@nxp.com>, Simon Glass <sjg@chromium.org>
+Subject: [PATCH v3 1/3] Add validation instructions
+Date:   Mon, 21 Aug 2023 12:01:15 -0600
+Message-ID: <20230821180220.2724080-1-sjg@chromium.org>
+X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN0PR12MB5953E72D7950581A8FB5AD82B711A@MN0PR12MB5953.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 12, 2023 at 12:57:39PM +0000, Pandey, Radhey Shyam wrote:
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Monday, July 24, 2023 9:47 PM
-> > To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
-> > Cc: andersson@kernel.org; mathieu.poirier@linaro.org;
-> > krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; Simek, Michal
-> > <michal.simek@amd.com>; Levinsky, Ben <ben.levinsky@amd.com>; Shah,
-> > Tanmay <tanmay.shah@amd.com>; linux-remoteproc@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>
-> > Subject: Re: [PATCH v3] dt-bindings: remoteproc: add Tightly Coupled
-> > Memory (TCM) bindings
-> > 
-> > On Sat, Jul 22, 2023 at 12:11:48AM +0530, Radhey Shyam Pandey wrote:
-> > > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> > > UltraScale+ platform. It will help in defining TCM in device-tree
-> > > and make it's access platform agnostic and data-driven.
-> > 
-> > From the subject, it sounds like this is a binding for all of remoteproc for
-> > TCMs.
-> > 
-> > Otherwise,
-> > 
-> > Acked-by: Rob Herring <robh@kernel.org>
-> 
-> Thanks for the review. Just checking if this patch will be taken through
-> devicetree or remoteproc tree?
+Add simple instructions for people wanting to validate their schema.
 
+Signed-off-by: Simon Glass <sjg@chromium.org>
+---
 
-Please send the driver changes and I'll pickup everything at once.
+(no changes since v1)
 
-Thanks,
-Mathieu
+ README.md | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/README.md b/README.md
+index 9d2f6e8..d8767fa 100644
+--- a/README.md
++++ b/README.md
+@@ -118,6 +118,25 @@ Example:
+ dt-check-compatible -s processed-schema.json vendor,a-compatible
+ ```
+ 
++## Testing your changes
++
++Once you add or change schema, you should test it locally. This assumes that
++your system is set up so that 'python' runs Python 3.
++
++First make sure you don't have any existing dt-schema in your system as this
++may interfere:
++
++```
++sudo apt-get remove dt-schema
++pip remove dt-schema
++```
++
++Then, to validate, use:
++
++```
++PYTHONPATH=. test/test-dt-validate.py
++```
++
+ ## Installing
+ The project and its dependencies can be installed with pip:
+ 
+-- 
+2.42.0.rc1.204.g551eb34607-goog
+
