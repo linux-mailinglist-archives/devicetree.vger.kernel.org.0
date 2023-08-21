@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3638782362
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 08:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB0978236E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 08:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbjHUGFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 02:05:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58322 "EHLO
+        id S233313AbjHUGHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 02:07:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233283AbjHUGFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 02:05:03 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65DA7A7
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 23:04:43 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe27849e6aso4335095e87.1
-        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 23:04:43 -0700 (PDT)
+        with ESMTP id S233308AbjHUGHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 02:07:49 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C286CA7
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 23:07:46 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso46586181fa.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Aug 2023 23:07:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692597881; x=1693202681;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692598065; x=1693202865;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UkyyzSV+XS4Fcvz6kDNT0pcf9/RGN8LZvkJfm7a+wvo=;
-        b=jGcsoF+bI8svbLVXo9pkJH9xKgPGwGp/Gv90l/nTmAaByauxiNOk94PBDzjxChjj27
-         ufseDZEMG8TShfU2m4bTDzkZQ5DfHU4CKVsHYz02vZ9ZiVJcfxa5VsWPqPncHIZyv3MD
-         HIm8i0yuNFoiqf2E19cXBrHfoGyIfEV22JV2//jvhZ/9tLXiwgAqGvtb7tXs3CJK2sZO
-         DlpJyK7OzJiGeVRUNyIdKR0rtt39ZPSJYdXmaksMYmVH9m6CqPeXNsc9lXbU1/qQUw54
-         cRtehR73twgQOIl/Qy+npNfzOND1SjAmANjX/ENPMglxoQdjFTa3H7ERGsfKzCyrWrIw
-         5XPg==
+        bh=abC59mP6JAJMeQMLsAfe2u+ZdmRJRLE9AtCEXGBBljg=;
+        b=tlubH/Cjia7U7baDNzn/xFBRuZiX0j0OWI8OyOgzdmezw3ZIpFouzSFpC80kDVmRCX
+         2Kmhh9iWMa90EU0LO4bAqQOA5dkKy121HTQxOj6nj4WreA3YhYSapS9xQUX1iC4Ls5FW
+         kswd4DhEEd7x/jUgQB8cfSxRPiz7cG/ooKi55phUys+bFyNNBrGoVyRZW0SVPebHLYQ7
+         LvP+sD/Y7X6Qoyk5uOrjHEI9KEDKpmCBKzC7mXCuvLC02xnOP7BDKWX0sARRjpFJpj0b
+         Q060GleYwbeZW8jTC1/InS50SshmVTYXTtd3M2Dv5YXQbPQkdkmVbXvkSWTy3yul6HsR
+         wHlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692597881; x=1693202681;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692598065; x=1693202865;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UkyyzSV+XS4Fcvz6kDNT0pcf9/RGN8LZvkJfm7a+wvo=;
-        b=bL4di2IiboxhN6+y7pTYfOQj+9PoUDQqQnRclv3q/w2NHYSVwkFTW5SFyGSQQ5fwTZ
-         tpUuRJfs8CHIGhbVheOiDdE9N+cZk9iMGrpn8wYoGcNIW+FE5DEA/tSCt78jS80S+W0w
-         D4DCu41rQB07hUg23twDv/TgOwebqJVQAAyCFBviujQfNAQyYFEje4SbzcfJ9EswMcKo
-         yyVfYOHCPu8IdnnkKq81nm9ScasL1OEJ4b5ErliMMSBW+aPBU6mwW2LK3M6BuCG01RUU
-         GyfdB1rXYUo0AYnRvgMOqVuodCYXHO3IM1KuRJUFwn1JvJcuPsGyowN0gka3dcDpiiX8
-         emrw==
-X-Gm-Message-State: AOJu0YzI5aY7sx4WU7yhBh1XnSAYmo1YoM1kkgCILBhLoW1MFmNHf5Fn
-        mzZJ3trwS6ffEUQ2cxtFS1oAkQ==
-X-Google-Smtp-Source: AGHT+IFhVrONCO6tzW7x/x5XJmQTLFMIzKiLwAyOYV+7uFIpr7qadM8ItQXbwqFBMQyFwBMKOU/uGw==
-X-Received: by 2002:a05:6512:e93:b0:4fb:7c40:9f95 with SMTP id bi19-20020a0565120e9300b004fb7c409f95mr4642255lfb.47.1692597881571;
-        Sun, 20 Aug 2023 23:04:41 -0700 (PDT)
+        bh=abC59mP6JAJMeQMLsAfe2u+ZdmRJRLE9AtCEXGBBljg=;
+        b=iof4TtzBqMrhmb4ID3/0Q0LBjBzqP5+8uC6RI30kx1n4oaqlSNgXUVcagT1Lh+pvvO
+         sMUVc8iT5p8gqAryPvDgi98Pp4FgBpIILn+WgGSHO+mZXN2JnZEUOhCXXg8vghcXnmqP
+         6ti+ac2rDHxaufoRhFq/j+bSEXUrrjdSTeFP8Yl/AS7mBwpJLFPENHuk/1jT+SEUhgeN
+         CRwX8wV/RW8iFiFtAZI8SbFEBcaRWB7kN7nRe7CUV2gD5vk3AzYNdCB7/b4Vu+fG+XlO
+         tRRcmC1yC0w4v375+PoakYuKm87t0zsGClyzr61Q1oaDhQyPx/i7Jk3T/rx1Rqub+CZH
+         bzeA==
+X-Gm-Message-State: AOJu0YyWqIFGvXp+5+cjdb0qbbWma7KZLt3Guca2XSzRxZvnWzymVEtL
+        7LLfW3uXSlSsoBfmuNUwzJ4aRA==
+X-Google-Smtp-Source: AGHT+IH6wBrCMNqusfsbYd6KwloxQeMounCo4oof+2Y9bKUVLZ4QpwHUSVeeCcxpZFabgVsKqsP2Fw==
+X-Received: by 2002:a05:6512:2396:b0:4fd:fafd:1ed4 with SMTP id c22-20020a056512239600b004fdfafd1ed4mr4850733lfv.2.1692598064921;
+        Sun, 20 Aug 2023 23:07:44 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id y13-20020a170906470d00b00993928e4d1bsm5955876ejq.24.2023.08.20.23.04.40
+        by smtp.gmail.com with ESMTPSA id lg5-20020a170906f88500b009937dbabbd5sm5861855ejb.220.2023.08.20.23.07.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Aug 2023 23:04:41 -0700 (PDT)
-Message-ID: <cb37ea4a-91db-adf4-5272-36a9851d3a2f@linaro.org>
-Date:   Mon, 21 Aug 2023 08:04:39 +0200
+        Sun, 20 Aug 2023 23:07:44 -0700 (PDT)
+Message-ID: <1f492c4e-2125-73eb-8523-389e24727516@linaro.org>
+Date:   Mon, 21 Aug 2023 08:07:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v5 2/2] regulator: dt-bindings: Add Awinic AW37503
-To:     like@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        liweilei@awinic.com, liangdong@awinic.com, wangweidong.a@awinic.com
-References: <20230821035355.1269976-1-like@awinic.com>
- <20230821035355.1269976-3-like@awinic.com>
+Subject: Re: [PATCH 1/3] dt-bindings: crypto: qcom,prng: Add SM8450
 Content-Language: en-US
+To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
+        konrad.dybcio@linaro.org
+Cc:     agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
+        davem@davemloft.net, devicetree@vger.kernel.org,
+        herbert@gondor.apana.org.au, krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org, marijn.suijten@somainline.org,
+        robh+dt@kernel.org, vkoul@kernel.org
+References: <20230811-topic-8450_prng-v1-1-01becceeb1ee@linaro.org>
+ <20230818161720.3644424-1-quic_omprsing@quicinc.com>
+ <2c208796-5ad6-c362-dabc-1228b978ca1d@linaro.org>
+ <1cadb40e-b655-4b9b-9189-dfdb22a2c234@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230821035355.1269976-3-like@awinic.com>
+In-Reply-To: <1cadb40e-b655-4b9b-9189-dfdb22a2c234@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-6.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,14 +82,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2023 05:53, like@awinic.com wrote:
-> From: Alec Li <like@awinic.com>
-> 
-> Add aw37503 regulator device-tree binding documentation.
-> 
-> Signed-off-by: Alec Li <like@awinic.com>
+On 21/08/2023 02:52, Om Prakash Singh wrote:
+> I meant first one. using "qcom,rng-ee".
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Then please provide some reasons.
+
+> 
+> I am looking for generic compatible string for all SoCs for which core 
+> clock can be optional, same as we have "qcom,prng-ee".
+
+There is a generic compatible already... but anyway, is the clock really
+optional? Or just configured by firmware?
+
+> 
+> If we are using SoC name in compatible string, for each SoC support we 
+> need to update qcom,prng.yaml file.
+
+So you were talking about second case from my email? Still not sure what
+you want to propose, but just in case - please always follow DT bindings
+guidelines:
+
+https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
 
 Best regards,
 Krzysztof
