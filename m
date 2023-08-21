@@ -2,75 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5641A782717
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 12:31:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E45178271F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 12:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234706AbjHUKbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 06:31:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48928 "EHLO
+        id S234735AbjHUKdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 06:33:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234711AbjHUKbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 06:31:06 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25901DC
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 03:31:04 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-58fc4d319d2so18045497b3.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 03:31:04 -0700 (PDT)
+        with ESMTP id S234730AbjHUKdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 06:33:06 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40612EE
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 03:33:01 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d712d86eb96so2887274276.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 03:33:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692613863; x=1693218663;
+        d=linaro.org; s=google; t=1692613980; x=1693218780;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9fEE32aL5Rb4gj0b/8MH38oOPs9iq+wkUzldyyh0kHg=;
-        b=oAQKaXXAOfvZMkVX1sZGkpxGXS4x4DaEZAWSEzowre8QtNUoAchfv2KRvdP6crS+Pr
-         WDSsX/G78kKRR3Q6icaIVKmRfHqZ49jDPsCnjVZFu9pxT+pV4LgaJpFlNAl+rh9U5ym6
-         cGUgkOdXHKQido7b+x34hw+9bPoFveQFqCq14YAO/Nu3hrmbdK4rIubb9YaeOeAtjirJ
-         WX4Duc+OployEFuX6GTT8BcocEs1ASHhlVSH1/ULvCKFxtexBucwa7bk4PQgWTY+3Mes
-         smZCCQIw8FHs19sIyVbD2gUyzfnPDQPcs7l/34HSESQNVNyf+rLwuk90LcPB4IHaGbtA
-         7nIw==
+        bh=q7QH95jHBqWIxVR7mqs55h58lm3p4pOggAhZ2D3QcTk=;
+        b=TdgCCHiO/SMRYUmmZAwWaOlEn9JMUmZ7oWiflCO5R9riNIDEVrciC9kcnIqWLXtGTT
+         fvvAUFCIw1idIS2wQuTK0f6XJk1S2XMAAZ3q3T9nqReYX4Xw7pHnF7xB6y3MryIw0jfc
+         yUz0VXp0WPJcO+R8cQ9P0edkja2h/ZVjOTLcjOKyQwXfNuw8W5fmyuntWNggM9Gc1ch6
+         R5zKgl9YHj9Jt83TTXYR8fBI2zSKjkD4iANk6erymz4GXAwGZaA4eAYAHCPEQmrDgawb
+         XZ1Erafvly5jVIlGIne7jRDHo95CnI/D6l3LKqjpBm8rDpv/rUnhi3MDx3O/PurVh8w/
+         hX1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692613863; x=1693218663;
+        d=1e100.net; s=20221208; t=1692613980; x=1693218780;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9fEE32aL5Rb4gj0b/8MH38oOPs9iq+wkUzldyyh0kHg=;
-        b=BI9U87Ir+yaPCDRMJyoKpHBzlUtfUEb2FMbQ1tdtMlIEKFRLURmQefLKQn0CRiw98c
-         OvAlVp//EP6BD3L1LTn7z/8q2bObMoALxZ1plSC7afh7oh/wjUksGveou2cQSfZqak25
-         NoZiTAA72jBPOyFvfWcqVz23znAHrBB0tC+agDqoBTUnpYJSxGbO8n2XlbZZfr0XNeaR
-         Kdtjswxqa8FcfVl+90t7Dzbv6hMhTlywNoFzDOh09UfaLGyx1PH3tinqpIE8efiu9pLL
-         MPIUbge7X9TH9SZ42dmOrE4zWROA4yzYBZMkkSsVTlRxVe8akzcnw78fS0bx/eklR/0Q
-         dtGg==
-X-Gm-Message-State: AOJu0Ywy4K61DJZ4733qWmHfnFMGxymaVKOmwnLzr77U5PlUBmPSAF4J
-        WcqUfaHUtJSGoze0K6MG8EcTnu5sG/B3UYuZOq+fxg==
-X-Google-Smtp-Source: AGHT+IF6Mfo/+8vVARSN95eC1x7RexyXH+sNO3+jYibcHUydhVyzIiiYt4PyLHBfRnqEn7V+mLG3SANopIr+t8lBV5U=
-X-Received: by 2002:a25:6b45:0:b0:c60:1036:2082 with SMTP id
- o5-20020a256b45000000b00c6010362082mr6274051ybm.22.1692613863152; Mon, 21 Aug
- 2023 03:31:03 -0700 (PDT)
+        bh=q7QH95jHBqWIxVR7mqs55h58lm3p4pOggAhZ2D3QcTk=;
+        b=aefoXkkQFdGCJP+bySxXVm+OeMvGiVoZXPm6LUxAerwYdPFAIUOQwx2KtYpmf8kER4
+         bn03EOdbUX7dNj4MArGEwtoH3l0qt2RrG61IpAByHlS7GTTctE14jea50DZ2F2ueVOrs
+         vsuLq0cf0RjK2QfkIvre0jN2PaCRqlNRdzEWF1NRWkI7tAveWTpl0a9ThsFq3qelZon1
+         IfLkQ6pCrQOTpz8GsBXQBu9kdOyG0E9I0wE6XAPok8U6pxll0VmjSvR5yvDOJQPpwvnK
+         7PrrlzdYJ5+Qf3Ei+GU9puGJmZutkk7RJiri71dEr66uhlPGAuJUtac2iZAdwkxwJZLn
+         kyIA==
+X-Gm-Message-State: AOJu0YwVCsPTVm8Y0UabW5BDf6r/j1xR3DV8ln8swq/px9GOSFuYCI/v
+        FNe47nytpFB5bA6viqAwcjFeFxsXqN5SbjEvem0qbw==
+X-Google-Smtp-Source: AGHT+IGRl2mhuGTfCN/KF/Nitxl2U0XsRMCfNpgl5mhsl8YWXSW88C/b2vvv2xSAEAdreymTqTbpPxbQXvUgIewfCpI=
+X-Received: by 2002:a25:bc8:0:b0:cec:81af:cf92 with SMTP id
+ 191-20020a250bc8000000b00cec81afcf92mr5694932ybl.36.1692613980506; Mon, 21
+ Aug 2023 03:33:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230819010946.916772-1-robh@kernel.org>
-In-Reply-To: <20230819010946.916772-1-robh@kernel.org>
+References: <20230819010907.916061-1-robh@kernel.org>
+In-Reply-To: <20230819010907.916061-1-robh@kernel.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 21 Aug 2023 12:30:51 +0200
-Message-ID: <CACRpkdb6J65TjD357z4fZgjO5UR55L8v9tX2Wo4-rhFk6q0T3Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: Drop 'phandle' properties
+Date:   Mon, 21 Aug 2023 12:32:49 +0200
+Message-ID: <CACRpkdZQVry-p90AZSfrJHJuscN3CuJU-ySKU2+zCHbVt-Z1Kg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: aspeed: Allow only defined pin mux
+ node properties
 To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+Cc:     Andrew Jeffery <andrew@aj.id.au>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-        Masami Hiramatsu <mhiramat@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        Joel Stanley <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org,
+        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,16 +77,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Sat, Aug 19, 2023 at 3:09=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
 :
 
-> 'phandle' properties are implicitly supported on all nodes, so it
-> shouldn't be listed in schemas.
+> The Aspeed pinctrl bindings are missing an additionalProperties/
+> unevaluatedProperties schemas on the child pin mux nodes which means any
+> undefined properties are allowed. In addition, using
+> 'additionalProperties' for child nodes with any name works better than a
+> pattern matching everything with an if/then schema to select nodes only.
 >
-> dtschema had a bug where 'phandle' and other implicit properties weren't
-> being added under 'additionalProperties' schemas. That was fixed in
-> v2023.07 release.
+> With 'additionalProperties' added, 'pins' and 'bias-disable'
+> properties need to be added as they were not defined. A $ref to
+> pinmux-node.yaml which defines the common property types was also
+> missing.
 >
 > Signed-off-by: Rob Herring <robh@kernel.org>
 
-Patch applied, thanks for fixing this!
+Patch applied!
+
+> Really 'pins' should have some constraints, but I don't know what the
+> possible values are. Happy to add if someone can tell me what.
+
+Aspeed folks: put this on your TODO!
 
 Yours,
 Linus Walleij
