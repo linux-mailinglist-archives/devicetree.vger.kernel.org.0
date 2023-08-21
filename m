@@ -2,72 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6959F7828CC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8D1E7828EF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233345AbjHUMRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:17:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58270 "EHLO
+        id S232294AbjHUMZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 08:25:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbjHUMRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:17:33 -0400
+        with ESMTP id S230526AbjHUMZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:25:00 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE074BE;
-        Mon, 21 Aug 2023 05:17:31 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C51DBC;
+        Mon, 21 Aug 2023 05:24:59 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 55C016339B;
-        Mon, 21 Aug 2023 12:17:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7BC9C433C8;
-        Mon, 21 Aug 2023 12:17:24 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D572663406;
+        Mon, 21 Aug 2023 12:24:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02EA3C433CA;
+        Mon, 21 Aug 2023 12:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692620250;
-        bh=veiDrmwqJU+LoUoffNhEFba5PtaFW4YWJImLcQ1gViU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VZ/bcmF0SGuuPh/Fr//uzxTs9s0uTNFMC38LvMOvmDtRaZKtCevzLk4gZG5ijLic+
-         S77tyzVzxZIeaq5QQie+0NJ7cip+g8goSjREnFxw2+YWjUk9SIOwzP/8bPkVYIjWIa
-         UJKXoS9zx7vrLi9SzLBicrnM8KGcEufV5aZPkfFFNCKfWYultt4gY+xpGfnPNorlHU
-         sRR8dOWJb0DA8thc0XmU/4ErPDDBpvU11NFruKx4FH9YSE/AfRrkWFpxVyUpNn7Yxo
-         p3fH52kDPvrBoaJ3q3V9Qq4PE1+KTpgj20k1XL5leYW3dtC0BAiJZH3urMeW8CT2rn
-         Y2Hd9JlhNl+9g==
-Date:   Mon, 21 Aug 2023 13:17:21 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Herve Codina <herve.codina@bootlin.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 23/28] mfd: core: Ensure disabled devices are skiped
- without aborting
-Message-ID: <20230821121721.GH1380343@google.com>
-References: <cover.1692376360.git.christophe.leroy@csgroup.eu>
- <528425d6472176bb1d02d79596b51f8c28a551cc.1692376361.git.christophe.leroy@csgroup.eu>
+        s=k20201202; t=1692620698;
+        bh=VRMEzTu4HApcZfH6koLO+FGvNzNpz2Cpuse+j31Gmyc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=PC3sZlf1GGm6MBIy79Xbg8kc17r00L87DsHPYLodZngr2CMlwNrhftpTeQF5+1DQc
+         kb3rvt/x8MvlktoR1kKKW2WgwTlmtcCpeWMTb89Kw9jQaL/WM2SPWHapoOaEnCLZ5a
+         c5seB4sC16/XdgX4imm1xlx7b6oOzKJPyZHgENZGo9lsYDftrY8XJqDgSU6r3c36rX
+         UbjFiTL6mQkvVgfeiGomewiNh6QVG2fdLvrUS+3T3mGtWkHduUzKWS5S4PAvYJoaYg
+         Kl6Q9rl9XEiim51JuubyfOwEvg03pAmybt7sOu1pl9eR38BzeRFfoeWfpMvOdS0Srb
+         krEGCvkEF1xyQ==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so56359441fa.2;
+        Mon, 21 Aug 2023 05:24:57 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yzuby765VMgvKcmbUhoLk/HaP9ZTl1RR1qENsGALgrNMIUP1OaA
+        tk7cJDXeXqXJjGTObcnLIhhbegZiD7T47xMMTQ==
+X-Google-Smtp-Source: AGHT+IFxA1bwBYUO7AewyfzEgVRdRAlaH+I45xGQuyUXPi6lnP6fLXI9KGcWScVC5t7iWGx7bMGpNOmboiIovP+74Tk=
+X-Received: by 2002:a05:651c:8d:b0:2b9:b6e7:bd7 with SMTP id
+ 13-20020a05651c008d00b002b9b6e70bd7mr4912302ljq.29.1692620696018; Mon, 21 Aug
+ 2023 05:24:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <528425d6472176bb1d02d79596b51f8c28a551cc.1692376361.git.christophe.leroy@csgroup.eu>
+References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org>
+ <20230801-dt-changeset-fixes-v3-5-5f0410e007dd@kernel.org> <ZONBMMVrzuu53hwC@smile.fi.intel.com>
+In-Reply-To: <ZONBMMVrzuu53hwC@smile.fi.intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 21 Aug 2023 07:24:43 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJRQ0VFLHJYo6XHnUnyhtn3X6F2ZedsftnsviO_wOtcGw@mail.gmail.com>
+Message-ID: <CAL_JsqJRQ0VFLHJYo6XHnUnyhtn3X6F2ZedsftnsviO_wOtcGw@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] of: dynamic: Move dead property list check into
+ property add/update functions
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -78,28 +70,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Aug 2023, Christophe Leroy wrote:
+On Mon, Aug 21, 2023 at 5:49=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Fri, Aug 18, 2023 at 03:41:00PM -0500, Rob Herring wrote:
+> > The changeset code checks for a property in the deadprops list when
+> > adding/updating a property, but of_add_property() and
+> > of_update_property() do not. As the users of these functions are pretty
+> > simple, they have not hit this scenario or else the property lists
+> > would get corrupted.
+> >
+> > With this there are 3 cases of removing a property from either deadprop=
+s
+> > or properties lists, so add a helper to find and remove a matching
+> > property.
+>
+> ...
+>
+> > v3:
+> >  - Keep existing style in deadprops loop
+>
+> Not sure where exactly in the code that one, but...
 
-> From: Herve Codina <herve.codina@bootlin.com>
-> 
-> The loop searching for a matching device based on its compatible
-> string is aborted when a matching disabled device is found.
-> This abort prevents to add devices as soon as one disabled device
-> is found.
-> 
-> Continue searching for an other device instead of aborting on the
-> first disabled one fixes the issue.
-> 
-> Fixes: 22380b65dc70 ("mfd: mfd-core: Ensure disabled devices are ignored without error")
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> ---
->  drivers/mfd/mfd-core.c | 17 ++++++++++++-----
->  1 file changed, 12 insertions(+), 5 deletions(-)
+That was your previous comment...
 
-This is too big of a change to be added this late in the cycle.
+>
+> ...
+>
+> >  int __of_remove_property(struct device_node *np, struct property *prop=
+)
+> >  {
+> > -     struct property **next;
+> > -
+> > -     for (next =3D &np->properties; *next; next =3D &(*next)->next) {
+> > -             if (*next =3D=3D prop)
+> > -                     break;
+> > +     if (__of_remove_property_from_list(&np->properties, prop)) {
+> > +             /* Found the property, add it to deadprops list */
+> > +             prop->next =3D np->deadprops;
+> > +             np->deadprops =3D prop;
+> > +             return 0;
+> >       }
+> > -     if (*next =3D=3D NULL)
+> > -             return -ENODEV;
+> > -
+> > -     /* found the node */
+> > -     *next =3D prop->next;
+> > -     prop->next =3D np->deadprops;
+> > -     np->deadprops =3D prop;
+> >
+> > -     return 0;
+> > +     return -ENODEV;
+> >  }
+>
+>
+> ...if it's this one, I don't see how it's better than
+>
+>         if (!__of_remove_property_from_list(&np->properties, prop))
+>                 return -ENODEV;
 
-Pushing review until after v6.5 is out.
--- 
-Lee Jones [李琼斯]
+Because this way doesn't work well when we move the spinlock in here.
+Maybe cleanup.h will help, but I'm not going to do that now. If we do,
+then I'll do it for the whole subsystem/file.
+
+Rob
