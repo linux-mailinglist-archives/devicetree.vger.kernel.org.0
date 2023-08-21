@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0A36782972
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9BE9782973
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:49:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235030AbjHUMtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
+        id S235046AbjHUMtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 08:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232461AbjHUMti (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:49:38 -0400
+        with ESMTP id S232461AbjHUMtk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:49:40 -0400
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 98A11D1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:49:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 50141E6
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:49:38 -0700 (PDT)
 Received: from loongson.cn (unknown [112.20.109.102])
-        by gateway (Coremail) with SMTP id _____8Ax1fBeXeNkSJcaAA--.54267S3;
-        Mon, 21 Aug 2023 20:49:34 +0800 (CST)
+        by gateway (Coremail) with SMTP id _____8BxyepfXeNkUJcaAA--.44956S3;
+        Mon, 21 Aug 2023 20:49:35 +0800 (CST)
 Received: from localhost.localdomain (unknown [112.20.109.102])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx3yNWXeNkqYJfAA--.61781S4;
-        Mon, 21 Aug 2023 20:49:33 +0800 (CST)
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Bx3yNWXeNkqYJfAA--.61781S5;
+        Mon, 21 Aug 2023 20:49:34 +0800 (CST)
 From:   Binbin Zhou <zhoubinbin@loongson.cn>
 To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
         Huacai Chen <chenhuacai@loongson.cn>,
@@ -30,21 +30,20 @@ Cc:     Huacai Chen <chenhuacai@kernel.org>,
         loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
         loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
         Hongliang Wang <wanghongliang@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 2/7] dt-bindings: loongarch: Add Loongson SoC boards compatibles
-Date:   Mon, 21 Aug 2023 20:49:18 +0800
-Message-Id: <0c27857ee0ac7e287b24b37e1b6ab9d5cc524ae1.1692618548.git.zhoubinbin@loongson.cn>
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v3 3/7] LoongArch: Allow device trees to be built into the kernel
+Date:   Mon, 21 Aug 2023 20:49:19 +0800
+Message-Id: <fe58680f071875881ab5b79fabf3fa79b87fedaf.1692618548.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <cover.1692618548.git.zhoubinbin@loongson.cn>
 References: <cover.1692618548.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Bx3yNWXeNkqYJfAA--.61781S4
+X-CM-TRANSID: AQAAf8Bx3yNWXeNkqYJfAA--.61781S5
 X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7CF4fZFy7Cw1kZr4UAw1kWFX_yoW8XFWkpa
-        9xCay7GF1IgFy7u393Xa48Aw4rZrykC3W2qF47XryDG398Xa1Fqw4ak34DZF43Cry7ta47
-        XFy8Wa1UKFy8CwcCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+X-Coremail-Antispam: 1Uk129KBj93XoWxuF1kCFy7JF43Ar1fAryfZrc_yoWrGryfp3
+        srAw4kJr4kGr97tr92qrZ5WrZ8Jrs7Cw12q3W2yFy0kr17Xr10vw4Iqr9rZF1UGws5J3y0
+        gryrKa4agF4UJabCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
         sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
         0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
         IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
@@ -68,55 +67,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Loongson SoC boards binding with DT schema format using json-schema.
+Some systems do not provide a useful device tree to the kernel at boot
+time. Let's keep a device tree table in the kernel, keyed by the dts
+filename, containing the relevant DTBs.
 
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
 ---
- .../devicetree/bindings/loongarch/boards.yaml | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/loongarch/boards.yaml
+ arch/loongarch/Kconfig           | 16 ++++++++++++++++
+ arch/loongarch/Makefile          | 10 ++++++++--
+ arch/loongarch/boot/dts/Makefile |  3 +--
+ arch/loongarch/kernel/setup.c    |  9 +++++++--
+ 4 files changed, 32 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/loongarch/boards.yaml b/Documentation/devicetree/bindings/loongarch/boards.yaml
-new file mode 100644
-index 000000000000..5092314b7a52
---- /dev/null
-+++ b/Documentation/devicetree/bindings/loongarch/boards.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/loongarch/boards.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+index 46b4c217da14..61febadd4fce 100644
+--- a/arch/loongarch/Kconfig
++++ b/arch/loongarch/Kconfig
+@@ -326,6 +326,22 @@ config 64KB_3LEVEL
+ 
+ endchoice
+ 
++config BUILTIN_DTB
++	bool "Enable builtin dtb in kernel"
++	depends on OF
++	help
++	  Some systems do not provide a useful device tree to the kernel at boot
++	  time. Let's keep a device tree table in the kernel, keyed by the dts
++	  filename, containing the relevant DTBs.
 +
-+title: Loongson SoC-based boards
++config BUILTIN_DTB_NAME
++	string "Source file for LoongArch builtin dtb"
++	depends on BUILTIN_DTB
++	help
++	  Base name (without suffix, relative to arch/loongarch/boot/dts/)
++	  for the DTS file that will be used to produce the DTB linked into the
++	  kernel.
 +
-+maintainers:
-+  - Binbin Zhou <zhoubinbin@loongson.cn>
+ config CMDLINE
+ 	string "Built-in kernel command line"
+ 	help
+diff --git a/arch/loongarch/Makefile b/arch/loongarch/Makefile
+index fb0fada43197..abaa3df9fd6f 100644
+--- a/arch/loongarch/Makefile
++++ b/arch/loongarch/Makefile
+@@ -5,7 +5,8 @@
+ 
+ boot	:= arch/loongarch/boot
+ 
+-KBUILD_DEFCONFIG := loongson3_defconfig
++KBUILD_DEFCONFIG		:= loongson3_defconfig
++KBUILD_DTBS			:= dtbs
+ 
+ image-name-y			:= vmlinux
+ image-name-$(CONFIG_EFI_ZBOOT)	:= vmlinuz
+@@ -140,11 +141,14 @@ PHONY += vdso_install
+ vdso_install:
+ 	$(Q)$(MAKE) $(build)=arch/loongarch/vdso $@
+ 
+-all:	$(notdir $(KBUILD_IMAGE))
++all:	$(notdir $(KBUILD_IMAGE)) $(KBUILD_DTBS)
+ 
+ vmlinux.elf vmlinux.efi vmlinuz.efi: vmlinux
+ 	$(Q)$(MAKE) $(build)=$(boot) $(bootvars-y) $(boot)/$@
+ 
++# device-trees
++core-y += arch/loongarch/boot/dts/
 +
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: Loongson-2K0500 processor based boards
-+        items:
-+          - const: loongson,ls2k0500-ref
-+          - const: loongson,ls2k0500
+ install:
+ 	$(Q)install -D -m 755 $(KBUILD_IMAGE) $(INSTALL_PATH)/$(image-name-y)-$(KERNELRELEASE)
+ 	$(Q)install -D -m 644 .config $(INSTALL_PATH)/config-$(KERNELRELEASE)
+@@ -152,5 +156,7 @@ install:
+ 
+ define archhelp
+ 	echo '  install              - install kernel into $(INSTALL_PATH)'
++	echo '  dtbs                 - Device-tree blobs for enabled boards'
++	echo '  dtbs_install         - Install dtbs to $(INSTALL_DTBS_PATH)'
+ 	echo
+ endef
+diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
+index 5f1f55e911ad..1e24cdb5180a 100644
+--- a/arch/loongarch/boot/dts/Makefile
++++ b/arch/loongarch/boot/dts/Makefile
+@@ -1,4 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-dtstree	:= $(srctree)/$(src)
+ 
+-dtb-y := $(patsubst $(dtstree)/%.dts,%.dtb, $(wildcard $(dtstree)/*.dts))
++obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
+diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/setup.c
+index 7783f0a3d742..e5008890beda 100644
+--- a/arch/loongarch/kernel/setup.c
++++ b/arch/loongarch/kernel/setup.c
+@@ -296,8 +296,13 @@ static void __init fdt_setup(void)
+ 	if (acpi_os_get_root_pointer())
+ 		return;
+ 
+-	/* Look for a device tree configuration table entry */
+-	fdt_pointer = efi_fdt_pointer();
++	/* We prefer to try to use built-in dtb, checking its legality first. */
++	if (!fdt_check_header(__dtb_start))
++		fdt_pointer = __dtb_start;
++	else
++		/* Fallback to efi dtb, when built-in dtb is not available. */
++		fdt_pointer = efi_fdt_pointer();
 +
-+      - description: Loongson-2K1000 processor based boards
-+        items:
-+          - const: loongson,ls2k1000-ref
-+          - const: loongson,ls2k1000
-+
-+      - description: Loongson-2K2000 processor based boards
-+        items:
-+          - const: loongson,ls2k2000-ref
-+          - const: loongson,ls2k2000
-+
-+additionalProperties: true
-+
-+...
+ 	if (!fdt_pointer || fdt_check_header(fdt_pointer))
+ 		return;
+ 
 -- 
 2.39.3
 
