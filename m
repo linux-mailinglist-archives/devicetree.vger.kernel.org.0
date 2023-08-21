@@ -2,55 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE241783118
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A851783168
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:51:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230044AbjHUTlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 15:41:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52838 "EHLO
+        id S229518AbjHUTlm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 15:41:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230041AbjHUTlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:41:09 -0400
+        with ESMTP id S229535AbjHUTlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:41:42 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1258EC2;
-        Mon, 21 Aug 2023 12:41:05 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B666F3;
+        Mon, 21 Aug 2023 12:41:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9B65464396;
-        Mon, 21 Aug 2023 19:41:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F3E0C433C7;
-        Mon, 21 Aug 2023 19:41:02 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 961216439B;
+        Mon, 21 Aug 2023 19:41:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AA82C433C8;
+        Mon, 21 Aug 2023 19:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692646864;
-        bh=FUQx9TyKqHG33MB6C6Nk6beM/jCqOVRrZrugXYnTOLc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=cJGJz2S+W9aNYDNl/lV1jkalwVIz+alVULA4flzq1FlEJeKXLBGNNdrAzV0Kz2oy6
-         exAAI6oJLVbP67PFSnsBW0FLu03K6IZDbjydkfl5QI1OILLbG1cR1i10GpyCuVmGT4
-         tcP/JDAM9hw1QYllyRPW/oL1iyXLo9ipROTMqFveK84ETGKqpsZSL5MbL6sBQeeDVM
-         aqNZDHPCrxqMZYXLqu0e87jkkRkjkEDmbY/UawLIr//pOGmFnDHObyDh1KzyU0RyK5
-         ty0ymNBVH+ObtUcVsORHOHjsUm+xZj+00Kuq3Lbb8KNWC3dUZbx7Q4YT8gjIksDU4w
-         4nygFjEKH1n4g==
-Received: (nullmailer pid 2173935 invoked by uid 1000);
-        Mon, 21 Aug 2023 19:41:01 -0000
-Date:   Mon, 21 Aug 2023 14:41:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Seven Lee <wtli@nuvoton.com>
-Cc:     YHCHuang@nuvoton.com, CTLIN0@nuvoton.com, broonie@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        conor+dt@kernel.org, supercraig0719@gmail.com, scott6986@gmail.com,
-        alsa-devel@alsa-project.org, KCHSU0@nuvoton.com, WTLI@nuvoton.com,
-        SJLIN0@nuvoton.com, dardar923@gmail.com, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: nau8821: Add single-ended input
- feature
-Message-ID: <169264686097.2173895.14562323557073774140.robh@kernel.org>
-References: <20230816080006.1624342-1-wtli@nuvoton.com>
+        s=k20201202; t=1692646897;
+        bh=9wdfuxQ3GjCqB0cx5+Y0EXTJolIErryu/svxKgUbDrE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Se/gCTxGEQnsoDyEikjUU4b53smMavyCIUlV5Qc97zRX2oij3HIPLZLvt3syy28nS
+         dx8u0Zg+amcwuLgFDKOobbkWGPWAe4ewU27YERvr/md9uzNqGLXO5kOu4a1trpjN9f
+         tnNYDKcmSfwb6Ou4IOHT93EleZFn9MUSXa0kXm5Lljj2KuC+KCJbac2b74xvBFEQz7
+         qzl3ih7xCdPOtYDEp899ZxNgelHXOdKl0gTr0AONBgtUmGtPmWEwK/ooOxazSuvvqO
+         Ozk4/0tNQ+b55jb8byB2iwdnVGwYamQRuCfIYXQWul3JxYdkwZGpZpO+beDRMsGZfl
+         u7sz2hXCOr/gA==
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Jonathan Corbet <corbet@lwn.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        Bjorn Helgaas <bhelgaas@google.com>
+Subject: [PATCH] dt-bindings: Fix typos
+Date:   Mon, 21 Aug 2023 14:41:32 -0500
+Message-Id: <20230821194132.366474-1-helgaas@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230816080006.1624342-1-wtli@nuvoton.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -60,15 +55,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Bjorn Helgaas <bhelgaas@google.com>
 
-On Wed, 16 Aug 2023 16:00:05 +0800, Seven Lee wrote:
-> Add input with single-ended control.
-> 
-> Signed-off-by: Seven Lee <wtli@nuvoton.com>
-> ---
->  .../devicetree/bindings/sound/nuvoton,nau8821.yaml         | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+Fix typos in Documentation/devicetree/bindings.  The changes are in
+descriptions or comments where they shouldn't affect functionality.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+---
+This is a follow-up to the patch at [1] for things that conflicted with
+other changes in linux-next, plus a couple that I missed before.
+
+Based on next-20230821: 47d9bb711707 ("Add linux-next specific files for
+20230821")
+
+[1] https://lore.kernel.org/r/20230814212822.193684-3-helgaas@kernel.org
+
+ .../devicetree/bindings/leds/leds-group-multicolor.yaml       | 2 +-
+ Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml   | 4 ++--
+ Documentation/devicetree/bindings/phy/apm-xgene-phy.txt       | 2 +-
+ .../devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml     | 2 +-
+ .../devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml | 2 +-
+ 5 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+index 8ed059a5a724..33f49632ad82 100644
+--- a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+@@ -19,7 +19,7 @@ properties:
+ 
+   leds:
+     description:
+-      An aray of monochromatic leds
++      An array of monochromatic LEDs
+     $ref: /schemas/types.yaml#/definitions/phandle-array
+ 
+ required:
+diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+index 26688e2302ea..e8108cde0f59 100644
+--- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
++++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
+@@ -59,7 +59,7 @@ properties:
+       be configured with hardware pull-up resistors to match the SOC voltage
+       (usually 1.8V).
+       The software can read the registers to obtain the LDO voltage and configure
+-      the legal drive strength(curren).
++      the legal drive strength(current).
+       =====================================================
+       | voltage |        current Available (uA)           |
+       |   1.8v  | 1200 2100 2700 2910 3110 3600 3970 4350 |
+@@ -76,7 +76,7 @@ properties:
+       be configured with hardware pull-up resistors to match the SOC voltage
+       (usually 1.8V).
+       The software can read the registers to obtain the LDO voltage and configure
+-      the legal drive strength(curren).
++      the legal drive strength(current).
+       =====================================================
+       | voltage |        current Available (uA)           |
+       |   1.8v  | 1200 2100 2700 2910 3110 3600 3970 4350 |
+diff --git a/Documentation/devicetree/bindings/phy/apm-xgene-phy.txt b/Documentation/devicetree/bindings/phy/apm-xgene-phy.txt
+index e1bb12711fbf..602cf952b92b 100644
+--- a/Documentation/devicetree/bindings/phy/apm-xgene-phy.txt
++++ b/Documentation/devicetree/bindings/phy/apm-xgene-phy.txt
+@@ -36,7 +36,7 @@ Optional properties:
+ 			  3-tuple setting for each (up to 3) supported link
+ 			  speed on the host. Range is 0 to 273000 in unit of
+ 			  uV. Default is 0.
+-- apm,tx-pre-cursor2	: 2st pre-cursor emphasis taps control. Two set of
++- apm,tx-pre-cursor2	: 2nd pre-cursor emphasis taps control. Two set of
+ 			  3-tuple setting for each (up to 3) supported link
+ 			  speed on the host. Range is 0 to 127400 in unit uV.
+ 			  Default is 0x0.
+diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+index 04d55fecf47c..dcf73b3fc591 100644
+--- a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
++++ b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+@@ -78,7 +78,7 @@ properties:
+       we use nvidia,adjust-baud-rates.
+ 
+       As an example, consider there is deviation observed in TX for baud rates as listed below. 0
+-      to 9600 has 1% deviation 9600 to 115200 2% deviation. This slight deviation is expcted and
++      to 9600 has 1% deviation 9600 to 115200 2% deviation. This slight deviation is expected and
+       Tegra UART is expected to handle it. Due to the issue stated above, baud rate on Tegra UART
+       should be set equal to or above deviation observed for avoiding frame errors. Property
+       should be set like this:
+diff --git a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+index 04a2ba1aa946..0b048c4305ba 100644
+--- a/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
++++ b/Documentation/devicetree/bindings/thermal/nvidia,tegra124-soctherm.yaml
+@@ -155,7 +155,7 @@ properties:
+       SOCTHERM hardware will assert the thermal trigger signal to the Power
+       Management IC, which can be configured to reset or shutdown the device.
+       It is an array of pairs where each pair represents a tsensor ID followed
+-      by a temperature in milli Celcius. In the absence of this property the
++      by a temperature in milli Celsius. In the absence of this property the
+       critical trip point will be used for thermtrip temperature.
+ 
+       Note:
+-- 
+2.34.1
 
