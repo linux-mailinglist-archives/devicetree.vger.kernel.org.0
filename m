@@ -2,107 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC109782BA3
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:23:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27EDF782BEF
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 16:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235896AbjHUOX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 10:23:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33412 "EHLO
+        id S233621AbjHUOd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 10:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235894AbjHUOX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:23:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D301E7;
-        Mon, 21 Aug 2023 07:23:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2490E639A4;
-        Mon, 21 Aug 2023 14:23:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86E60C433C9;
-        Mon, 21 Aug 2023 14:23:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692627804;
-        bh=OaWNqSvQEiD1xmCg4SPCQRjx+fMWtx5iLMEQKBnd8cw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rwhlq4tC4EvRUmr/wbT0Ue51oVpNlMsu83qtdLFrxL3InwKNRZ9fv9Q1CT7yhYQUq
-         2n1NzCWETXNLMkaMpID1GNQcgdbYEnMOfU3D94e3DYOBJhwhpBJYSVRAaHVNTKsEh8
-         pMea45h+BUy5LQJGwAL+M/2vdzp2jW77Ebp55DzJmZ4OdgErQ0WbH6A60lOrqWZp3g
-         Nuo7DXXHAQD7aty3rQ+/oLuDvvBMPUadlGTtJQoA1gZHjy13VFq5oXUm+WPMrWyZ91
-         7y2jsova6Uz0AJlK9FAzH/WsUGhzHFwqcZqKJyDobBESaB2g3eiSj6cJYVK7XRuQqn
-         8ygIBIfSdlkdw==
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2bcb89b476bso22164741fa.1;
-        Mon, 21 Aug 2023 07:23:24 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwomV6JvOJwE1Sj++0x8wrqifA6Hn0z6K1MyI0lX4qq7QJA7a31
-        CWN9RQnxQarNrUzPk0DtoFWHXzkx226Yvtqocw==
-X-Google-Smtp-Source: AGHT+IGqWIjI4t81zqE/7ga2ouKLVTQbXY0MKa0xbyIPjA5d60S4eHI9X7anlOsfqpBvu7tnpqhcRmdxmQ2XPK6mec0=
-X-Received: by 2002:a2e:9d96:0:b0:2b6:c2e4:a57a with SMTP id
- c22-20020a2e9d96000000b002b6c2e4a57amr5393041ljj.38.1692627802545; Mon, 21
- Aug 2023 07:23:22 -0700 (PDT)
+        with ESMTP id S236008AbjHUOd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 10:33:29 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62467E4
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 07:33:26 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-c5f98fc4237so3134556276.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 07:33:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692628405; x=1693233205;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JVf6fM0iJ2iIkGIz1YOTaiRR1OthdLkPvJ97HGCmhgA=;
+        b=O0mLKFdREezoY2/1oR2MOzof4eSxczj6uQdNs2otCl3toxWc5nmFXkEyCfAIVQwIPE
+         hezvo5QD6eADUgHlL3Wq9G+YHn2FLk652AW4Lnl60Or0i9E78llV2EN0bplGBYERVniD
+         Q7eeaxX9BOOtEvPDQcn67qKQtorseu+NmUEJGhUlFPstw2CZxEJ2Dqiz8xdVPSx5Rt6f
+         8zsSzcezeQrcid7n/tkOrY9K4dK3PpCdBCgsJZ7I59YeP4FyRlJjwft/dmV2OsmQ/chv
+         TWd7SheQ/+Qr03dqIFb11o/hAAuqdezONokX1wwtokLq1z8MYwSqCYrX9h07LIswzCpN
+         ei1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692628405; x=1693233205;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JVf6fM0iJ2iIkGIz1YOTaiRR1OthdLkPvJ97HGCmhgA=;
+        b=HUvkXfK5fhXlVTURD8FFtdGgSydmnzw8zryOEltueWBgWcjSOPexDdUCCZIpfF4/68
+         WZJgWhUjlccUTxiFnjsquMWMrdvRJxeBGNyop/uoDRpfSrMO0JHXwzngIiU7oOn2hWb/
+         PjMQTFuwqsQepgjN+6QGfR2rNpttrEV04JrwnSfyCud/h3OFrg+vXsUs4y6IUImBTgKf
+         gm9DjPv6Qdlsxhzy+KzYmoPV/8KFGrufyzToRaRWSzztzQkY0n+HJbaOgXs41Har3qR6
+         mrfHnkbgI0kum8wF7F6QYk4Qb496a97c4mo2PRXInf4DkeBifQ2w58ANaRlDZVST3THw
+         k/6w==
+X-Gm-Message-State: AOJu0Ywvmcnx8xMmnuX5/o/94qqtQuPzQbudylcxU82Qg9u2NA5wvzUm
+        ieY8g21Lz3/Nx6TFXSl2jbm7NodSyQ88z31hwCtixQ==
+X-Google-Smtp-Source: AGHT+IF8pqtgsDod4AcLNDd7B46cZvClFs4sWgkMxAtQQuCt9OO664LsbLksG7aBhJow6s/DU6WNo/6kzskR+zV3X2k=
+X-Received: by 2002:a25:bcc7:0:b0:d74:66aa:a277 with SMTP id
+ l7-20020a25bcc7000000b00d7466aaa277mr6691513ybm.65.1692628405501; Mon, 21 Aug
+ 2023 07:33:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org>
- <20230801-dt-changeset-fixes-v3-5-5f0410e007dd@kernel.org> <CAMuHMdXi+fAH=sqMb941BGNidg=GtLiByPtMpoHX4Bf-5Cjv4A@mail.gmail.com>
-In-Reply-To: <CAMuHMdXi+fAH=sqMb941BGNidg=GtLiByPtMpoHX4Bf-5Cjv4A@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 21 Aug 2023 09:23:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLU4Oy3aiw6mnPUnxSPiXyydpR+zyESDvqS26cSVo=ngA@mail.gmail.com>
-Message-ID: <CAL_JsqLU4Oy3aiw6mnPUnxSPiXyydpR+zyESDvqS26cSVo=ngA@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] of: dynamic: Move dead property list check into
- property add/update functions
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230713141738.23970-1-ulf.hansson@linaro.org>
+ <20230713141738.23970-9-ulf.hansson@linaro.org> <20230719151716.qhobfnclrjf4yqkg@bogus>
+ <CAPDyKFpjMWOAbV+b2DcxDWqvRDQCbSC6Ti+KGGPWJoC4Ghp7=w@mail.gmail.com>
+ <20230721115535.mx46dg56pxjnzbuv@bogus> <20230721143304.GA1092306-robh@kernel.org>
+ <20230721183817.34lgb42nlnsvqx4s@bogus> <CAPDyKFqsaz=hruktv+sPQz-ttOtWa9O_Jvp2iLnpxQqX2r7yBQ@mail.gmail.com>
+In-Reply-To: <CAPDyKFqsaz=hruktv+sPQz-ttOtWa9O_Jvp2iLnpxQqX2r7yBQ@mail.gmail.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 21 Aug 2023 16:32:49 +0200
+Message-ID: <CAPDyKFr5pJR5+PrSrWEA_hZmureacxuT-T5OxitdFs2AXoRUyg@mail.gmail.com>
+Subject: Re: [PATCH v2 08/11] dt-bindings: firmware: arm,scmi: Extend bindings
+ for protocol@13
+To:     Rob Herring <robh@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nikunj Kela <nkela@quicinc.com>,
+        Prasad Sodagudi <psodagud@quicinc.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 8:05=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
-k.org> wrote:
+On Wed, 26 Jul 2023 at 13:12, Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
-> Hi Rob,
->
-> Thanks for your patch!
->
->
-> On Fri, Aug 18, 2023 at 10:41=E2=80=AFPM Rob Herring <robh@kernel.org> wr=
-ote:
-> > The changeset code checks for a property in the deadprops list when
-> > adding/updating a property, but of_add_property() and
-> > of_update_property() do not. As the users of these functions are pretty
-> > simple, they have not hit this scenario or else the property lists
-> > would get corrupted.
+> On Fri, 21 Jul 2023 at 20:38, Sudeep Holla <sudeep.holla@arm.com> wrote:
 > >
-> > With this there are 3 cases of removing a property from either deadprop=
-s
-> > or properties lists, so add a helper to find and remove a matching
-> > property.
+> > On Fri, Jul 21, 2023 at 08:33:04AM -0600, Rob Herring wrote:
+> > > On Fri, Jul 21, 2023 at 12:55:35PM +0100, Sudeep Holla wrote:
+> > > > On Fri, Jul 21, 2023 at 01:42:43PM +0200, Ulf Hansson wrote:
+> > > > > On Wed, 19 Jul 2023 at 17:17, Sudeep Holla <sudeep.holla@arm.com>=
+ wrote:
+> > > > > >
+> > > > > > On Thu, Jul 13, 2023 at 04:17:35PM +0200, Ulf Hansson wrote:
+> > > > > > > The protocol@13 node is describing the performance scaling op=
+tion for the
+> > > > > > > ARM SCMI interface, as a clock provider. This is unnecessary =
+limiting, as
+> > > > > > > performance scaling is in many cases not limited to switching=
+ a clock's
+> > > > > > > frequency.
+> > > > > > >
+> > > > > > > Therefore, let's extend the binding so the interface can be m=
+odelled as a
+> > > > > > > generic performance domaintoo. The common way to describe thi=
+s, is to use
+> > > > > > > the "power-domain" DT bindings, so let's use that.
+> > > > > > >
+> > > > > >
+> > > > > > One thing I forgot to ask earlier is how we can manage differen=
+t domain IDs
+> > > > > > for perf and power domains which is the case with current SCMI =
+platforms as
+> > > > > > the spec never mandated or can ever mandate the perf and power =
+domains IDs
+> > > > > > to match. They need not be same anyways.
+> > > > >
+> > > > > Based upon what you describe above, I have modelled the perf-doma=
+in
+> > > > > and the power-domain as two separate power-domain providers.
+> > > > >
+> > > > > A consumer device being hooked up to both domains, would specify =
+the
+> > > > > domain IDs in the second power-domain-cell, along the lines of th=
+e
+> > > > > below. Then we would use power-domain-names to specify what each
+> > > > > power-domain represents.
+> > > > >
+> > > > > power-domains =3D <&scmi_pd 2>, <&scmi_dvfs 4>;
+> > > > > power-domain-names =3D "power", "perf";
+> > > > >
+> > > > > I hope this makes it clearer!?
+> > > >
+> > > > Yes it make is clear definitely, but it does change the definition =
+of the
+> > > > generic binding of the "power-domains" property now. I am interesti=
+ng in
+> > > > the feedback from the binding maintainers with respect to that. Or =
+is it
+> > > > already present ? IIUC, the ones supported already are generally bo=
+th
+> > > > power and performance providers. May be it doesn't matter much, jus=
+t
+> > > > wanted to explicit ask and confirm those details.
+> > >
+> > > I commented on v1.
+> > >
+> > > Looks like abuse of "power-domains" to me, but nothing new really.
+> > > Please define when to use a power domain vs. a perf domain and don't
+> > > leave it up to the whims of the platform. Maybe perf domains was a
+> > > mistake and they should be deprecated?
+> > >
 > >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > Just a thought here, instead of deprecating it I was thinking if possib=
+le
+> > to keep the power-domains and performance-domains separate and just ext=
+end
+> > the genpd to handle the latter. There by we are not mixing up and creat=
+ing
+> > confusions that need more specific definitions in the binding(which is =
+not
+> > a big deal) but platforms getting it wrong inspite of that is a big pro=
+blem.
+> > Keep it separate makes it more aligned to the hardware and doesn't dilu=
+te
+> > the definitions and probably avoids any possible mistakes due to that.
+> >
+> > Sorry Ulf I am just not yet convinced to mix them up yet =F0=9F=98=89 a=
+nd wish you
+> > don't convince me to. Let me know why the above suggestion won't work.
 >
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Thanks!
-
+> The main point I think we need to consider too, is that on some
+> platforms, the power-domain and the performance-domain are managed
+> together by the FW. It is not really two separate things and hence it
+> would not quite be correct to describe it as two different types of
+> providers in DT.
 >
-> Perhaps this needs a Fixes tag?
+> If we should follow your suggestion above, to use the
+> performance-domain bindings, then I think we need an additional new
+> binding to cover the above mentioned case too. This would lead us into
+> having one binding for the power-domain, another for the
+> performance-domain and a third for the power+performance-domain.
+>
+> In my opinion this sounds quite like a mess. I would rather keep using
+> the power-domain bindings for all these cases. Of course, it's a bit
+> of a stretch too, but I think it should be less confusing in the end,
+> assuming we extend/clarify the description of the power-domain
+> bindings, of course.
+>
+> Did that convince you? :-)
 
-I didn't simply because in the decades that these functions existed,
-no one cared. It would require a specific sequence of calls which we
-could pretty much determine doesn't happen just looking at the callers
-in the kernel.
+Sudeep, Rob,
 
-Rob
+Can we try to conclude on the way forward?
+
+Is it acceptable to keep using the power-domain bindings (with some
+clarifications) for performance domains or should we start moving to
+the performance-domain bindings?
+
+If moving to the performance-domain binding, should we start migrating
+existing users of the power-domain binding too - or what is your take
+on this?
+
+Kind regards
+Uffe
