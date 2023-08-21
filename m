@@ -2,137 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B537835F5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 00:48:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1271C78362F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 01:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231607AbjHUWsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 18:48:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49356 "EHLO
+        id S231635AbjHUXSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 19:18:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbjHUWso (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 18:48:44 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2055.outbound.protection.outlook.com [40.107.21.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51C02129;
-        Mon, 21 Aug 2023 15:48:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=P4h054R6PuJZ80TxV0Ex+1HtYkgkZY9AFhUo42se0KQhRhGdJViMkL8amn5F6NfYx9noyh2vOsHBpbN1Gpc48YPmR3c/NTwTkDQksAHPWePV5J4ERP27LzXaVj8BGbjIjSvM/HMvHI8ljIUoi57S9bpXWCV6/tmJcAgOIFFbZ1s01bqo6nuIkkRNDcGayDUvQSU7YKD0shci9JRP0QTPxBd6uKx4PRfXKPRUEzO5h4AVzU+wQaafl5fInm3Wy577YCYTicw/mDW8uSVyXt1FWQExlZROVdMxfXdmAOE5r1gzR6Rhbw1owfpPV+ady79LlWjhoUGfC+Z3YWcDZxHUMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MOjONp43FhgrCFr3VoviClnt9T++FiCJ/+En2c2fKKQ=;
- b=A6NrGdVwHcLmmvnvmjih0znjmZ3yi+EnMQ9h0u/q+6Q6N5XXj/+7+6Bhpinusl7TavMz8HOxTTp3Yi5AKB4vhx3EXnwyogOvReuvjjmWzLFTGRbHgbKhdM5hGuXzCnhh1uUUcpIMkRvQc+er9Kxy0kdWTWch2XZ1XYXEZjHfRL27HPFhGtBLS85T+UKQ/s7QlIdomQo4JsPzpMg+j8QK1Iobd+WeunNJMvWp47+CXR6rusyprCr1HCK60hwhiGh2cA6Cbw/yQraessoqwDkms0AOjGsjnpk/PQWR+HqGPx61KtS2zsw5F6uiB2GkxKQ3t/ugjTNz9t8FVGpCFjR/qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MOjONp43FhgrCFr3VoviClnt9T++FiCJ/+En2c2fKKQ=;
- b=cDR3HYxTz0Ld3In4fltr0ndu+qBAs7KootFG+VhgGc8l8zaYCuh2BIxbwMNQPgYs6YQhk+vCTslRA6uewMfQaXnl/yG54yqJzE8U2VF4JnXrLQkudyeYIkEl614dLgaJ/Nw9M0Jh4CrNyojsEckRb1QJrhZYQWGVzgUVWMyti/w=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com (2603:10a6:208:16d::21)
- by AS1PR04MB9357.eurprd04.prod.outlook.com (2603:10a6:20b:4dd::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
- 2023 22:48:39 +0000
-Received: from AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::d4ed:20a0:8c0a:d9cf]) by AM0PR04MB6452.eurprd04.prod.outlook.com
- ([fe80::d4ed:20a0:8c0a:d9cf%7]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
- 22:48:39 +0000
-Date:   Tue, 22 Aug 2023 01:48:34 +0300
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Sean Anderson <sean.anderson@seco.com>
-Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-phy@lists.infradead.org,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Camelia Alexandra Groza <camelia.groza@nxp.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linuxppc-dev@lists.ozlabs.org,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?utf-8?B?RmVybuKUnMOtbmRleg==?= Rojas <noltari@gmail.com>,
-        Jonas Gorski <jonas.gorski@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Li Yang <leoyang.li@nxp.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v14 00/15] phy: Add support for Lynx 10G SerDes
-Message-ID: <20230821224834.ppk4hmjyajupy7va@skbuf>
-References: <20230613142754.wr5njtjo4tbloqwu@skbuf>
- <20230811150826.urp2hzl3tahesrjx@skbuf>
- <26623d0c-8a5a-614b-7df7-69214aaec524@seco.com>
- <20230811163637.bs7a46juasjgnmf4@skbuf>
- <20230821124952.mraqqp7pxlo56gkh@skbuf>
- <a2e3fcad-9857-f1b3-8ada-efb2013a4bf5@seco.com>
- <20230821181349.hls6pukp5d6rc5av@LXL00007.wbi.nxp.com>
- <73d59dd2-88f0-3c1a-0de2-de2e050cba5a@seco.com>
- <20230821195823.ns55h3livxgol7fp@skbuf>
- <a66c9abf-5351-62b6-5573-cae38e6768e2@seco.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a66c9abf-5351-62b6-5573-cae38e6768e2@seco.com>
-X-ClientProxiedBy: FR2P281CA0166.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:99::13) To AM0PR04MB6452.eurprd04.prod.outlook.com
- (2603:10a6:208:16d::21)
+        with ESMTP id S231476AbjHUXSl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 19:18:41 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1CF44132
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 16:18:38 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C6A522F4;
+        Mon, 21 Aug 2023 16:19:18 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 109AC3F64C;
+        Mon, 21 Aug 2023 16:18:35 -0700 (PDT)
+Date:   Tue, 22 Aug 2023 00:17:39 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chris Morgan <macromorgan@hotmail.com>, uwu@icenowy.me
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, mripard@kernel.org, me@crly.cz,
+        samuel@sholland.org, jernej.skrabec@gmail.com, wens@csie.org,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH V2 4/4] ARM: dts: sunxi: add support for Anbernic
+ RG-Nano
+Message-ID: <20230822001739.4ce579a7@slackpad.lan>
+In-Reply-To: <SN6PR06MB5342BEB778837A389F943C2FA51EA@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20230819032105.67978-1-macroalpha82@gmail.com>
+        <20230819032105.67978-5-macroalpha82@gmail.com>
+        <20230819230335.45ad16de@slackpad.lan>
+        <SN6PR06MB53425735CA49EF8C30FDCF4DA51EA@SN6PR06MB5342.namprd06.prod.outlook.com>
+        <20230821180607.26cf73ca@donnerap.manchester.arm.com>
+        <SN6PR06MB5342BEB778837A389F943C2FA51EA@SN6PR06MB5342.namprd06.prod.outlook.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM0PR04MB6452:EE_|AS1PR04MB9357:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d1bafe0-f523-4a6e-b300-08dba298c2a1
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UeS7rZkZeGqmV3P3XeAoGT0pC49nCWBgOzmTDuOMwHpR0jiKrmT9liGmUn9kYTUe1+Rs/srgPXOpiERYcNXdcivRjjSIlN/LurkJS7n0iTllCFI+UDXNbRS4mMQb9PK1J9Cz7336LIi30EO2TjSvBHf1SEKLVUa0y0EZgoeICe26xRO05k5/AZpxuVWLBEI+T0EGpLMjHHopP7Oi3TKvEhLpEooN2rVcrQOhfKT9XfWRT4abrhVEsRyOR0mYCkPTw49a4XjLUZNzQoP14Pt3QhVn9/c9I75q+FUE4iuS4NdkufugFUg8xI59NAoMb+DkkJpRjqNuiOCKjecP/i/mwRdctODoaU7hs8K428hG1Tib0Vayy8qJRwc4DqYUBu/oyB3FWd8CV4MveXU4yeEIF0B4/l8TwxZxF1fZv4oEg/94aTdOQ6rBEulu93ioEzpRlywrN72E13gekjbyxes9kHG/lAW98iHV1ukt++6It6Z1j0w6b5uv2ZdcgYftJVSqEnE2YPbT+3IyofGoBpSNckS/vO1bt7MLSsB//nJLTyk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6452.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(396003)(376002)(136003)(346002)(39860400002)(366004)(186009)(1800799009)(451199024)(54906003)(6916009)(66476007)(66556008)(9686003)(316002)(6512007)(66946007)(66899024)(8676002)(8936002)(4326008)(1076003)(33716001)(41300700001)(966005)(478600001)(6666004)(38100700002)(53546011)(6506007)(6486002)(83380400001)(2906002)(7416002)(86362001)(44832011)(5660300002)(26005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wqS+VRN0lRKpPoE+BxhPLFY57wWIeUpkSA96UMSAhDthBy5Oae6Lqbg2qMLw?=
- =?us-ascii?Q?vDKDR49/cAw92cXQyuTbLSkslrL/ZfE2LFHycvbdaNXDeMoiPhiAjvu1YLDd?=
- =?us-ascii?Q?sc4xQzPgtFS6kF9/ZszuMoiYZcHJ5EkKgIig7/V50WeH2NrUK2JyqmaWZbMJ?=
- =?us-ascii?Q?JjiKu6Q62wR+jh0jedow00bPlFztlxj5118x6x8f9zqrFf30h+mhhnLVgjWT?=
- =?us-ascii?Q?JDZdQtSQL+mH97FTRoix0icxOJze+9/odcsu6srT1Kfw+Zkxlt1P6JC8UJPe?=
- =?us-ascii?Q?JyhqJW6XtQq/kXaqyQT+TQ067U7rdcrTOogl2xJGrhpbhzHPUtJklcpqJpHU?=
- =?us-ascii?Q?gTwol2UY7VKt2Y6hLh3+hVIkDaJ4ewmo7hHg1NA3U3iznmbgoUJG31HIb0Xx?=
- =?us-ascii?Q?YM+CPdwRQ4kmwVT6ODDHq7vNLEnip2gqKW0JtPKJZBN4NJNyGK9BsDW+XUAT?=
- =?us-ascii?Q?lxspgle91OLkJ8SSkKk6gE9bhLfR9EM/joUFCd5oD+0YQbdgCebhVBIWKe01?=
- =?us-ascii?Q?0jdUobgxwmZbPwvUSfeLwxpBkD7CRXo+1AulqJeTNKZuEPqiiHIt4b8JFwdU?=
- =?us-ascii?Q?6A7KVXdn+G+yLLrXB7gvFTec+Rtns4KO2YH4VjjTCLRY+hT20enxUDSDx4Ou?=
- =?us-ascii?Q?qkKBlimIDJQH2GzQIUvG1rrQsZdn5HuGsHyNuCkMk1GfohPo0vRLwQD8+dYA?=
- =?us-ascii?Q?7+gd/wjFG+vkv/1eWUHLVdXxL9F+X79RDD9mgJcojHXngVvhiC1LRHh7mlqb?=
- =?us-ascii?Q?55lrNAB+fDX5xWB47vbypbpakcRUpW4xTZf2moDcbIXCmrHjUTch4FvuVn1n?=
- =?us-ascii?Q?w2ciT31pFhFJH/x+5oOImNxPHB48eD30EOZKOxbztEhH5ticU3S2i4wZkOnQ?=
- =?us-ascii?Q?eaE0qo7FRJEJ4dp7tVZ/00Gw+VcxAFIIiVu4w7GnBRoNsWYbB7Buk1xCt7ke?=
- =?us-ascii?Q?tdQMLKncgKlh3dH9oDtadh8gVXscbultZWYL7pMGS/iR9Jwn2L+LJlIfHU6p?=
- =?us-ascii?Q?CuwplvNP0cD6USDRFPN20dtJewuaPraU43D/rezZhYTwZd5D20P/M/whUzXg?=
- =?us-ascii?Q?EBZj+0cl2HV2a0RAuyqeKf6yjjMmkzIvZPOBAa5bw/pFbhEL7885yXHMFiMC?=
- =?us-ascii?Q?ENmaAEWvgc+Pbr/r4nNvcHWkHsu9G7/k72oRTichp+iDrPJmL3hqoNuvlnH/?=
- =?us-ascii?Q?z57kQRWhAhd55kLoeUin0nCp6ZsVSUdYoXp1+iXfPz3R0h+OGywCII4JPnql?=
- =?us-ascii?Q?Cc/7CcISzTE0YJZJ4FHYBRlHr3NP4EqYr83CCKYKRQSqy7DRuX+dsLTkasbG?=
- =?us-ascii?Q?sAr88pGvCM7fmhhYKyrc/NuAU43Uq2LbPiNb04RxG7Iddj9hoXMWKVY0Oy0C?=
- =?us-ascii?Q?5QizKw3gBuodwgjfNvhINmB4JURg7aaZGhvtH7S/XaBA2fKtSwt/2EpN1zVC?=
- =?us-ascii?Q?gScphzmNPA5HqrFClvA4Xp58x1+ejW+cOubd+DkVh85prfwHky06GOV8OC6t?=
- =?us-ascii?Q?EVd5Ma3kMXfrxEhsOfpConkpzdT7czL7OFxcxGUxrNiTwJ6dXJff6I17m4ty?=
- =?us-ascii?Q?xrKZ+k4JUeZdG41K+FvUj52vSF6uCDiiTwRzVau7CeE9rAOUTJnXueaiwSex?=
- =?us-ascii?Q?2g=3D=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d1bafe0-f523-4a6e-b300-08dba298c2a1
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6452.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 22:48:39.0063
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tjqWj1TeWUylLP03gTz7TmsnO+/s9+FLT1mYwGyScspy7D223t7RwfG8kEOh0Ka2t5sMnTquFs5LoXIUTX9Epw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9357
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -140,143 +52,493 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 05:06:46PM -0400, Sean Anderson wrote:
-> On 8/21/23 15:58, Vladimir Oltean wrote:
-> > On Mon, Aug 21, 2023 at 02:46:53PM -0400, Sean Anderson wrote:
-> >> After further review, it seems the reason 28g can get away without this
-> >> is because there's a one-to-one mapping between protocol controllers and
-> >> lanes. Unfortunately, that regularity is not present for 10g.
-> >> 
-> >> --Sean
+On Mon, 21 Aug 2023 12:43:13 -0500
+Chris Morgan <macromorgan@hotmail.com> wrote:
+
+Hi,
+
+> On Mon, Aug 21, 2023 at 06:06:07PM +0100, Andre Przywara wrote:
+> > On Mon, 21 Aug 2023 10:38:38 -0500
+> > Chris Morgan <macromorgan@hotmail.com> wrote:
 > > 
-> > There are some things I saw in your phy-fsl-lynx-10g.c driver and device
-> > tree bindings that I don't understand (the concept of lane groups)
+> > Hi Chris,
+> >   
+> > > On Sat, Aug 19, 2023 at 11:03:52PM +0100, Andre Przywara wrote:  
+> > > > On Fri, 18 Aug 2023 22:21:05 -0500
+> > > > Chris Morgan <macroalpha82@gmail.com> wrote:
+> > > > 
+> > > > Hi Chris,
+> > > > 
+> > > > thanks for the update!
+> > > >     
+> > > > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > > > 
+> > > > > The Anbernic RG-Nano is a small portable game device based on the
+> > > > > Allwinner V3s SoC. It has GPIO buttons on the face and side for
+> > > > > input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
+> > > > > OTG port, an SD card slot for booting, and 64MB of RAM included in the
+> > > > > SoC.
+> > > > > 
+> > > > > The SPI display is currently unsupported, as it will either require
+> > > > > a new tinydrm driver or changes to the staging fbtft driver to support.
+> > > > > I plan on working on a tinydrm driver to properly support it. The USB-C
+> > > > > port currently only works as a peripheral port, however in the BSP
+> > > > > kernel it also works in host mode allowing included USB-C headphones
+> > > > > with a built-in DAC to work.
+> > > > > 
+> > > > > Working:
+> > > > > - SDMMC
+> > > > > - UART (for debugging)
+> > > > > - Buttons
+> > > > > - Charging/battery/PMIC
+> > > > > - Speaker
+> > > > > - USB Gadget
+> > > > > 
+> > > > > Not working:
+> > > > > - Display
+> > > > > - USB Host
+> > > > > 
+> > > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > > > ---
+> > > > >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
+> > > > >  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 219 ++++++++++++++++++
+> > > > >  2 files changed, 220 insertions(+)
+> > > > >  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > > > > 
+> > > > > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+> > > > > index 589a1ce1120a..2be83a1edcbb 100644
+> > > > > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > > > > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > > > > @@ -237,6 +237,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+> > > > >  	sun8i-t113s-mangopi-mq-r-t113.dtb \
+> > > > >  	sun8i-t3-cqa3t-bv3.dtb \
+> > > > >  	sun8i-v3-sl631-imx179.dtb \
+> > > > > +	sun8i-v3s-anbernic-rg-nano.dtb \
+> > > > >  	sun8i-v3s-licheepi-zero.dtb \
+> > > > >  	sun8i-v3s-licheepi-zero-dock.dtb \
+> > > > >  	sun8i-v40-bananapi-m2-berry.dtb
+> > > > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > > > > new file mode 100644
+> > > > > index 000000000000..c49b5431d04e
+> > > > > --- /dev/null
+> > > > > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > > > > @@ -0,0 +1,219 @@
+> > > > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > > > > +
+> > > > > +/dts-v1/;
+> > > > > +#include <dt-bindings/input/linux-event-codes.h>
+> > > > > +#include "sun8i-v3s.dtsi"
+> > > > > +#include "sunxi-common-regulators.dtsi"
+> > > > > +
+> > > > > +/ {
+> > > > > +	model = "Anbernic RG Nano";
+> > > > > +	compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
+> > > > > +
+> > > > > +	aliases {
+> > > > > +		serial0 = &uart0;
+> > > > > +	};
+> > > > > +
+> > > > > +	backlight: backlight {
+> > > > > +		compatible = "pwm-backlight";
+> > > > > +		pwms = <&pwm 0 40000 1>;
+> > > > > +		brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
+> > > > > +		default-brightness-level = <11>;
+> > > > > +		power-supply = <&reg_vcc5v0>;
+> > > > > +	};
+> > > > > +
+> > > > > +	chosen {
+> > > > > +		stdout-path = "serial0:115200n8";
+> > > > > +	};
+> > > > > +
+> > > > > +	gpio_keys: gpio-keys {
+> > > > > +		compatible = "gpio-keys";
+> > > > > +
+> > > > > +		button-a {
+> > > > > +			gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-A";
+> > > > > +			linux,code = <BTN_EAST>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-b {
+> > > > > +			gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-B";
+> > > > > +			linux,code = <BTN_SOUTH>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-down {
+> > > > > +			gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "DPAD-DOWN";
+> > > > > +			linux,code = <BTN_DPAD_DOWN>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-left {
+> > > > > +			gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "DPAD-LEFT";
+> > > > > +			linux,code = <BTN_DPAD_LEFT>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-right {
+> > > > > +			gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "DPAD-RIGHT";
+> > > > > +			linux,code = <BTN_DPAD_RIGHT>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-se {
+> > > > > +			gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-SELECT";
+> > > > > +			linux,code = <BTN_SELECT>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-st {
+> > > > > +			gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-START";
+> > > > > +			linux,code = <BTN_START>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-tl {
+> > > > > +			gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-L";
+> > > > > +			linux,code = <BTN_TL>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-tr {
+> > > > > +			gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-R";
+> > > > > +			linux,code = <BTN_TR>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-up {
+> > > > > +			gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "DPAD-UP";
+> > > > > +			linux,code = <BTN_DPAD_UP>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-x {
+> > > > > +			gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-X";
+> > > > > +			linux,code = <BTN_NORTH>;
+> > > > > +		};
+> > > > > +
+> > > > > +		button-y {
+> > > > > +			gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > > > > +			label = "BTN-Y";
+> > > > > +			linux,code = <BTN_WEST>;
+> > > > > +		};
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +&codec {
+> > > > > +	allwinner,audio-routing = "Speaker", "HP",
+> > > > > +				  "MIC1", "Mic",
+> > > > > +				  "Mic", "HBIAS";
+> > > > > +	allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&cpu0 {
+> > > > > +	clock-frequency = <1296000>;    
+> > > > 
+> > > > I understand that the kernel complains when this is missing, but I
+> > > > think this property is some ancient legacy, as there is no such thing
+> > > > as a fixed CPU frequency anymore. That becomes evident with the OPPs
+> > > > below. So please remove it.    
+> > > 
+> > > Okay, I'll remove it. I always try to make sure dmesg log is as error
+> > > free as possible, and yes, that's the only reason I put this here.  
+> > 
+> > Yeah, I hear you. I actually pushed
+> > https://github.com/devicetree-org/devicetree-specification/commit/c2cdd4a0db1d79f
+> > into the DT spec, so we have some leg to stand on when trying to remove
+> > the kernel message. Just need to find the time to make this patch ...  
 > 
-> Each lane group corresponds to a phy device (struct phy). For protocols
-> like PCIe or XAUI which can use multiple lanes, this lets the driver
-> coordinate configuring all lanes at once in the correct order.
-
-For PCIe I admit that I don't know. I don't even know if there's any
-valid (current or future) use case for having the PCIe controller have a
-phandle to the SerDes. Everything else below in my reply assumes Ethernet.
-
-> > and
-> > I'm not sure if they're related with what you're saying here, so if you
-> > could elaborate a bit more (ideally with an example) on the one-to-one
-> > mapping and the specific problems it causes, it would be great.
+> Good to know. I'll drop this then. Thank you.
 > 
-> For e.g. the LS2088A, SerDes1 lanes H-A use SG1-8 and XFI1-8. SerDes2
-> lanes A-H use SG9-16 and XFI9-16. Each lane has its own controller, and
-> the mapping is 1-to-1. In the PCCRs, each controller uses the same
-> value, and is mapped in a regular way. So you can go directly from the
-> lane number to the right value to mask in the PCCR, with a very simple
-> translation scheme.
+> >   
+> > > >     
+> > > > > +	clock-latency = <244144>;
+> > > > > +	operating-points = <
+> > > > > +			/* kHz    uV */
+> > > > > +			1296000 1200000
+> > > > > +			1008000 1200000
+> > > > > +			864000  1200000
+> > > > > +			720000  1100000
+> > > > > +			480000  1000000>;    
+> > > > 
+> > > > Don't you need a cpu-supply property to point to the regulator in
+> > > > charge of providing the core voltage? Otherwise I don't see how the
+> > > > kernel would be able to adjust the voltage, to program the OPPs.
+> > > >     
+> > > 
+> > > I'll add cpu-supply. Based on the schematic it looks like the
+> > > cpu_supply is the DCDC2. DCDC2 is also hooked up to some other inactive
+> > > pins according to the schematic but I can't see those pins on the
+> > > SoC datasheet (so maybe it's just a schematic quirk?).  
+> > 
+> > Mmmh, what are the names of those pins?
+> > 
+> > In general I wonder if you should enable DVFS if the vendor firmware
+> > doesn't do that. Especially for a retro gaming device, I wonder if some
+> > code relies on the CPU running at the same frequency all the time, so that
+> > timing loops stay stable, and other real-time properties are still met.
+> > 
+> > On the other hand, without DVFS the chip will run at at constant 1.08GHz
+> > (as set up by mainline U-Boot), which might leave some performance on the
+> > table. And it might affect the runtime, since this is battery powered. What
+> > frequency does the BSP firmware run with?  
 > 
-> For e.g. the LS1046A, SerDes1 lane D uses XFI.9 (aka XFIA) and lane C
-> uses XFI.10 (aka XFIB). This is the opposite of how SerDes1 lanes A-D
-> use SGMII.9, .10, .5, and .6 (aka SGMIIA-D).
+> According to the schematic the names are vdd-sys[n] where n is between
+> 0 and 5, as well as ephy-vdd. I see in the datasheet there are 6
+> different vdd-sys pins, so I assume this is those.
 > 
-> For e.g. the T4240, SerDes1 lanes A-H use sg1.5, .6, .10, .9, .1, .2,
-> .3, .4 (aka SGMII E, F, H, G, A, B, C, D).
+> BSP U-Boot looks to be basically mainline forked from 2020.10, and
+> doesn't set any values for the CPU clock (suggesting whatever default
+> U-Boot uses today for the v3s is what it's running at).
 > 
-> For e.g. the B4860, SerDes lanes A uses sgmii1 or sgmii5 and B uses
-> sgmii2 or sgmii6. The MAC selected is determined based on the value
-> programmed into PCCR2.
+> I'll just drop all this for today and we can iterate on it later if it
+> is needed.
 
-It's so exceedingly unlikely that B4860 will gain support for anything
-new, that it's not even worth talking about it, or even considering it
-in the design of a new driver. Just forget about it.
+Fair enough! Out of interest, what is the voltage for DCDC2, when you
+boot into Linux? U-Boot's default for the AXP209 DCDC2 is 1.4V, which
+is too high. The Pinecube sets it to 1.25V, which sounds more
+reasonable.
+So given your OPPs mentioned above, can you make the range 1.0-1.2V in
+the DT, and use CONFIG_AXP_DCDC2_VOLT=1200 in U-Boot's defconfig?
+You could still put the cpu-supply property in the DT, but comment it
+out, with a comment about this being untested and potentially
+problematic due to the shared supply.
+I think this should be the best between describing the hardware and
+sticking to the (better tested) BSP behaviour.
 
-Let's concentrate on the Layerscapes, and on the T series to the extent
-that we're not going out of our way to support them with a fairly simple
-design.
+Alternatively you could add the OPPs above, but use 1.2V everywhere,
+this would give you the opportunity to adjust the frequency, without
+disturbing VDD_SYS. And add the real voltages in a comment.
 
-In the Lynx 10G block guide that I have, PCCR2 is a register that does
-something completely different from Ethernet. I'm not sure if B4860 has
-a Lynx 10G block and not something else.
-
-> While I appreciate that your hardware engineers did a better job for
-> 28g, many 10g serdes arbitrarily map lanes to protocol controllers.
-> I think the mapping is too irregular to tame, and it is better to say
-> "if you want this configuration, program this value".
-
-Ok, but that's a lateral argument (or I'm not understanding the connection).
-
-Some maintainers (Mark Brown for sure, from my personal experience) prefer
-that expert-level knowledge of hardware should be hardcoded into the kernel
-driver based on known stuff such as the SoC-specific compatible string.
-I certainly share the same view.
-
-With your case, I think that argument is even more pertinent, because
-IIUC, the lane group protocols won't be put in the SoC .dtsi (so as to
-be written only once), but in the board device trees (since the
-available protocols invariably depend upon the board provisioning).
-So, non-expert board device tree writers will have to know what's with
-the PCCR stuff. Pretty brain-intensive.
-
-> > I may be off with my understanding of the regularity you are talking about,
-> > but the LX2160 (and Lynx 28G block) also has multi-lane protocols like 40G,
-> > 100G, assuming that's what you are talking about. I haven't started yet
-> > working on those for the mtip_backplane driver, but I'm not currently
-> > seeing a problem with the architecture where a phy_device represents a
-> > single lane that's part of a multi-lane port, and not an entire group.
+> >   
+> > > > > +};
+> > > > > +
+> > > > > +&i2c0 {
+> > > > > +	status = "okay";
+> > > > > +
+> > > > > +	gpio_expander: gpio@20 {
+> > > > > +		compatible = "nxp,pcal6416";
+> > > > > +		reg = <0x20>;
+> > > > > +		gpio-controller;
+> > > > > +		#gpio-cells = <2>;
+> > > > > +		#interrupt-cells = <2>;
+> > > > > +		interrupt-controller;
+> > > > > +		interrupt-parent = <&pio>;
+> > > > > +		interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>;
+> > > > > +		vcc-supply = <&reg_vcc3v3>;
+> > > > > +	};
+> > > > > +
+> > > > > +	axp209: pmic@34 {
+> > > > > +		reg = <0x34>;
+> > > > > +		interrupt-parent = <&pio>;
+> > > > > +		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
+> > > > > +	};
+> > > > > +
+> > > > > +	pcf8563: rtc@51 {
+> > > > > +		compatible = "nxp,pcf8563";
+> > > > > +		reg = <0x51>;
+> > > > > +	};
+> > > > > +};
+> > > > > +
+> > > > > +#include "axp209.dtsi"
+> > > > > +
+> > > > > +&battery_power_supply {
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&mmc0 {
+> > > > > +	broken-cd;
+> > > > > +	bus-width = <4>;
+> > > > > +	disable-wp;
+> > > > > +	vmmc-supply = <&reg_vcc3v3>;
+> > > > > +	vqmmc-supply = <&reg_vcc3v3>;
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&pio {
+> > > > > +	vcc-pb-supply = <&reg_vcc3v3>;
+> > > > > +	vcc-pc-supply = <&reg_vcc3v3>;
+> > > > > +	vcc-pf-supply = <&reg_vcc3v3>;
+> > > > > +	vcc-pg-supply = <&reg_vcc3v3>;
+> > > > > +};
+> > > > > +
+> > > > > +&pwm {
+> > > > > +	pinctrl-0 = <&pwm0_pins>;
+> > > > > +	pinctrl-names = "default";
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&reg_dcdc2 {    
+> > > > 
+> > > > Any reason your dropped the regulator-name property? This would help to
+> > > > identify what this regulator is used for and would explain why it needs
+> > > > to be always on.
+> > > > In v1 this was "vdd-cpu-sys-ephy", are you sure about this name? I
+> > > > guess it supplies the CPU, but I wonder if there are other users of
+> > > > this rail, which would possibly throw a spanner into DVFS. So what's the
+> > > > "ephy" doing here? And can you adjust the voltage, if this also driving
+> > > > VDD-SYS? What does the BSP kernel do?
+> > > >     
+> > > 
+> > > This rail appears to supply the CPU (vdd-cpu) SYS (vdd-sys) and
+> > > vdd-ephy. The ratings for each of these according to the datasheet are
+> > > between -0.3v and 1.3v (CPU/SYS) or 1.4v (for the EPHY). The BSP kernel
+> > > has this as variable between 1v and 1.25v, but it doesn't appear to
+> > > have DVFS enabled. I can change the range back to 1/1.25v since it
+> > > supplies the CPU so we can enable DVFS; the datasheet isn't clear
+> > > what vdd-sys or vdd-ephy do, but in the case of EPHY we aren't using
+> > > that feature at least (and these voltages are within range).  
+> > 
+> > Right, if the board doesn't use the EPHY, then the voltage changing
+> > shouldn't matter, as long as it's within range.
+> > As for VDD-SYS: I am not so sure about this, I only seem to see GPU
+> > and SYS coupled together (in the mainline DTs), but not CPU and SYS.
+> > And VDD_SYS having the same range is one thing, but its voltage changing
+> > at runtime is another topic: I don't really know if the chips can cope
+> > with that, or if the system become unstable.
+> >   
+> > > Do you think I should keep the cpu-supply and frequency stuff in place,
+> > > or should I drop it all instead?  
+> > 
+> > If the BSP doesn't use that, I'd rather drop the DVFS nodes, or maybe
+> > deactivate them, so users can bring them back at their own discretion?
+> >   
 > 
-> Resetting one lane in a group will reset the rest, which could confuse
-> the driver. Additionally, treating the lanes as one phy lets us set the
-> reset direction and first lane bits correctly.
-
-Yeah, in theory that is probably correct, but in practice can't we hide
-our head in the sand and say that the "phys" phandles have to have the
-lanes in the same order as LNmGCR0[1STLANE] expects them (which is also
-the "natural" order as the SoC RM describes it)? With a "for" loop
-implementation in the MAC, that would work just fine 100% of the time.
-Doing more intricate massaging of the "phys" in the consumer, and you're
-just asking for trouble. My 2 cents.
-
-Sure, it's the same kind of ask of a board device tree writer as "hey,
-please give me a good PCCR value", but I honestly think that the head
-scratching will be much less severe.
-
-> > In my imagination, there are 2 cases:
-> > - all 4 lanes are managed by the single dpaa2-mac consumer (which has 4
-> >   phandles, and iterates over them with a "for" loop)
-> > - each of the 4 lanes is managed by the respective backplane AN/LT core,
-> >   and thus, there's one phandle to each lane
+> I'll just drop it for the moment and keep it simple.
 > 
-> By doing the grouping in the driver, we also simplify the consumer
-> implementation. The MAC can always use a single phy, without worrying
-> about the actual number of lanes. This matches the hardware, since the
-> MAC is going to talk XGMII (or whatever) to the protocol controller
-> anyway.
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-max-microvolt = <1250000>;
+> > > > > +	regulator-min-microvolt = <1250000>;
+> > > > > +};
+> > > > > +
+> > > > > +&reg_dcdc3 {    
+> > > > 
+> > > > Same here, please provide a speaking name, or a comment explaining
+> > > > why this must be always on. There is no need to enumerate every user,
+> > > > just "vdd-3v3" seems to be a common name for that regulator.
+> > > >     
+> > > 
+> > > I'll go with vcc-io like the BSP, unless you feel strongly otherwise.
+> > > The regulator appears to power all the different IO pins on the SoC
+> > > and basically everything else that uses 3.3v that isn't the RTC.
+> > >   
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-max-microvolt = <3300000>;
+> > > > > +	regulator-min-microvolt = <3300000>;
+> > > > > +};
+> > > > > +
+> > > > > +&reg_ldo2 {    
+> > > > 
+> > > > Same here, name or comment, please.
+> > > >     
+> > > 
+> > > You got it.
+> > >   
+> > > > > +	regulator-always-on;
+> > > > > +	regulator-max-microvolt = <3000000>;
+> > > > > +	regulator-min-microvolt = <3000000>;
+> > > > > +};
+> > > > > +
+> > > > > +&spi0 {    
+> > > > 
+> > > > Can you add a comment here mentioning the not-yet-supported display?
+> > > > And you should specify the pins used here.
+> > > >     
+> > > 
+> > > The SPI pins are defined in the main v3s file.  
+> > 
+> > Ah, right, sorry, I missed that.
+> >   
+> > > Additionally I have a
+> > > TE pin (GPIO PB1) and a RESET pin for the panel (GPIO PB2). The RESET
+> > > pin looks like it has an external pull-up to 3.3v. The RS pin on the
+> > > panel is wired to MISO, otherwise CS on the panel goes to CS on the
+> > > SoC, CLK to CLK, and MOSI to MOSI. Everything but the RESET panel
+> > > is pulled to ground (I think, still not perfect at schematics).  
+> > 
+> > Those other pins would be described in the (upcoming) panel DT node. The
+> > SPI pins should indeed be already activated, courtesy of pinctrl-0 in the
+> > .dtsi.  
+> 
+> >   
+> > > > Cheers,
+> > > > Andre
+> > > > 
+> > > >     
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&uart0 {
+> > > > > +	pinctrl-0 = <&uart0_pb_pins>;
+> > > > > +	pinctrl-names = "default";
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usb_otg {
+> > > > > +	dr_mode = "otg";  
+> > 
+> > Just seeing this: if you have "otg" here, wouldn't you need to specify the
+> > ID pin (usb0_id_det-gpios) in the usbphy DT node? Because otherwise the
+> > kernel won't know when to switch between host and peripheral mode.
+> >   
+> 
+> I've added it for v3 and gotten OTG working fully now.
+> 
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usb_power_supply {
+> > > > > +	status = "okay";
+> > > > > +};
+> > > > > +
+> > > > > +&usbphy {
+> > > > > +	status = "okay";
+> > > > > +};    
+> > > >     
+> > > 
+> > > Also, I did another comparison with the BSP kernel and realized I was
+> > > missing the OHCI/EHCI and now OTG is working (at least the extcon
+> > > shows host when it has a device attached and not host when it's hooked
+> > > to my computer).  
+> > 
+> > Wait, that's odd. What OHCI/EHCI? DT nodes? I don't find any in the V3s
+> > .dtsi, and normally you don't need them for OTG anyway.
+> > There is some oddity with the PHY switching code, but I think what
+> > should work is the OTG operation, with an ID pin.  
+> 
+> Check lines 254 and 263 of the decompiled BSP device tree. Basically if
+> I add an ohci and ehci node host mode works, but without it then it
+> doesn't.
 
-XGMII is the link between the MAC and the PCS, but the "phys" phandle to
-the SerDes gives insight to the MAC driver way beyond the PCS layer.
-That kinda invalidates the idea that "you don't need to worry about the
-actual number of lanes". When you're a MAC driver with an XLAUI link and
-you need insight into the PMA/PMD layer, you'd better not be surprised
-about the fact that there are 4 lanes, at the very least?
+Ah, right, I mixed something up for a moment, looking again this should
+be the story:
+The V3s USB PHY is a dual-route PHY (as set in the Linux driver for
+that compatible string), so the driver will try to switch to the HCI
+controller pair for host mode, and will not try the MUSB's host mode.
+Curiously we don't have the OHCI/EHCI nodes in our sun8i-v3s.dtsi, I
+wonder why? Was that just not needed so far, because the USB port was
+always peripheral only?
 
-> I think it will be a lot easier to add multi-lane support with this
-> method because it gives the driver more information about what's going
-> on. The driver can control the whole configuration/reset process and the
-> timing.
+Icenowy, can you shed some light on this?
+It looks like the V3s is like the first USB port of the H3, so we
+should have both an HCI pair, plus the OTG node?
 
-Also, I'm thinking that if you support multi-lane (which dpaa2-mac currently
-doesn't, even in LSDK), you can't avoid multiple "phys" phandles in dpaa2-mac,
-and a "for" loop, eventually, anyway. That's because if your lanes have protocol
-retimers on them, those are going to be modeled as generic PHYs too. And those
-will not be bundled in these "groups", because they might be one chip per lane.
+Cheers,
+Andre
 
-The retimer thing isn't theoretical, but, due to reasons independent of NXP,
-we lack the ability to provide an upstream user of the "lane retimer as
-generic PHY" functionality in dpaa2-mac. So it stays downstream for now.
-https://github.com/nxp-qoriq/linux/commit/627c5f626a13657f46f68b90882f329310e0e22f
+> 
+> https://gist.github.com/macromorgan/e1f9e8e2275ae7e53c45fa864148ffed#file-sun8i-v3s-anbernic-dts-L254
 
-So, if you're thinking of easing the work of the consumer side, I'm not
-sure that the gains will be that high.
 
-Otherwise, I will repeat the idea that lynx-10g and lynx-28g should be
-treated in unison, because some drivers (dpaa2-mac, mtip_backplane) will
-have to interface with both, and I don't really believe that major deviations
-in software architecture between the 2 SerDes drivers are justifiable in
-any way (multi-protocol handled differently, for example).
+> 
+> > 
+> > Cheers,
+> > Andre  
+> 
+> Thank you,
+> Chris
+> 
+
