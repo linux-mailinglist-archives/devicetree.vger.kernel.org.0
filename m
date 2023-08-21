@@ -2,103 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7844F782994
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240337829AD
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235098AbjHUMx4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Aug 2023 08:53:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
+        id S235139AbjHUM6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 08:58:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234004AbjHUMx4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:53:56 -0400
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D42DD1;
-        Mon, 21 Aug 2023 05:53:52 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-58fba83feb0so20451947b3.3;
-        Mon, 21 Aug 2023 05:53:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692622431; x=1693227231;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3KBAyS2nelrV8Hc2Bh+9OdYb0ynFHCN4++LO/LB55WE=;
-        b=aoQEY1bRpp8nvIOGGZJzmgC3VcEsjht2A0NeNuj69k8iPt0wEKlS+z+akybclMKkJh
-         3zWh+SB1PI2EJZnwkaQkpZWvvyK1vEqielNQUW3HIaq1bTa+K8SxsRUURSIjOCeQKShx
-         xi1xlg7rOrAPXpHhbEMSJb/xGJTOzzoGewsFLanBXujUdLxG+Z5BWBV60jkDpc7uRqjy
-         xzBOtlso7IEFQ7eQNu5aN0252ywgfasPQ5ZbX4ha/gpQFuA8ayPMz4kfjPqKit1kZD5d
-         9cAoRpZQE6BFonio7xtOF+UA0A97dTJgWJBsIDSiFlzfAYbr2gOkPJvBO+k2DTCc9azP
-         KoDQ==
-X-Gm-Message-State: AOJu0Yx/jKzMdA5UEyXSGpk4KHzMOQh9QBuCX7LAmx9f2sKXEsdpyhip
-        5qaD+jFLim1yTkQtOZoPglqg1+Gix7y9Sw==
-X-Google-Smtp-Source: AGHT+IFuHIxhGscqxoXClrtki7YWU7ILZuWq6nJe6qgU5ZJFG0fHy4Xx5ypYm/WreYx/wCKm88M+2A==
-X-Received: by 2002:a0d:db56:0:b0:58c:93b0:17ba with SMTP id d83-20020a0ddb56000000b0058c93b017bamr5893384ywe.31.1692622431443;
-        Mon, 21 Aug 2023 05:53:51 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id x186-20020a0deec3000000b00586108dd8f5sm2211699ywe.18.2023.08.21.05.53.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 05:53:51 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-58fba83feb0so20451807b3.3;
-        Mon, 21 Aug 2023 05:53:51 -0700 (PDT)
-X-Received: by 2002:a25:238b:0:b0:d19:d73d:7956 with SMTP id
- j133-20020a25238b000000b00d19d73d7956mr5994381ybj.32.1692622430872; Mon, 21
- Aug 2023 05:53:50 -0700 (PDT)
+        with ESMTP id S230486AbjHUM6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:58:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD9DFB1;
+        Mon, 21 Aug 2023 05:58:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CBD76356E;
+        Mon, 21 Aug 2023 12:58:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52CF6C433C8;
+        Mon, 21 Aug 2023 12:58:33 +0000 (UTC)
+Message-ID: <c0c40891-416d-5acd-7a9c-d980c6a24997@xs4all.nl>
+Date:   Mon, 21 Aug 2023 14:58:31 +0200
 MIME-Version: 1.0
-References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org> <20230801-dt-changeset-fixes-v3-4-5f0410e007dd@kernel.org>
-In-Reply-To: <20230801-dt-changeset-fixes-v3-4-5f0410e007dd@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 21 Aug 2023 14:53:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUvOTRBdYR=z1yp1_2j8dcazPaY-2E-MPaKeZut14hrLA@mail.gmail.com>
-Message-ID: <CAMuHMdUvOTRBdYR=z1yp1_2j8dcazPaY-2E-MPaKeZut14hrLA@mail.gmail.com>
-Subject: Re: [PATCH v3 4/6] of: dynamic: Fix race in getting old property when
- updating property
-To:     Rob Herring <robh@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        "Enrico Weigelt, metux IT consult" <info@metux.net>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v7 0/5] Add Toshiba Visconti Video Input Interface driver
+Content-Language: en-US, nl
+To:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230714015059.18775-1-yuji2.ishikawa@toshiba.co.jp>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+In-Reply-To: <20230714015059.18775-1-yuji2.ishikawa@toshiba.co.jp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Yuji,
 
-Thanks for your patch!
+On 14/07/2023 03:50, Yuji Ishikawa wrote:
+> This series is the Video Input Interface driver
+> for Toshiba's ARM SoC, Visconti[0].
+> This provides DT binding documentation,
+> device driver, documentation and MAINTAINER files.
+> 
+> A visconti VIIF driver instance exposes
+> 1 media control device file and 3 video device files
+> for a VIIF hardware.
+> Detailed HW/SW are described in documentation directory.
+> The VIIF hardware has CSI2 receiver,
+> image signal processor and DMAC inside.
+> The subdevice for image signal processor provides
+> vendor specific V4L2 controls.
+> 
+> The device driver depends on two other drivers under development;
+> clock framework driver and IOMMU driver.
+> Corresponding features will be added later.
 
-On Fri, Aug 18, 2023 at 10:41 PM Rob Herring <robh@kernel.org> wrote:
-> __of_update_property() returns the existing property if there is one, but
-> that value is never added to the changeset. Updates work because the
-> existing property is also retrieved in of_changeset_action(), but that is
+Trying to compile this series on top of our latest staging tree fails
+due to v4l2-async changes that have been merged. So for v8 please
+rebase to the staging tree.
 
-Perhaps s/is also retrieved/was also retrieved before/, as
-of_overlay_apply() calls build_changeset() before
-__of_changeset_apply_entries()?
+I also got a few kerneldoc warnings:
 
-> racy as of_changeset_action() doesn't hold any locks. The property could
-> be changed before the changeset is applied.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+drivers/media/platform/toshiba/visconti/viif.h:217: warning: Function parameter or member 'ops_lock' not described in 'isp_subdev'
+drivers/media/platform/toshiba/visconti/viif.h:233: warning: Function parameter or member 'ops_lock' not described in 'csi2rx_subdev'
+drivers/media/platform/toshiba/visconti/viif.h:254: warning: Function parameter or member 'post_enable_flag' not described in 'viif_l2_roi_path_info'
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Regards,
 
-Gr{oetje,eeting}s,
+	Hans
 
-                        Geert
+> 
+> Best regards,
+> Yuji
+> 
+> Changelog v2:
+> - Resend v1 because a patch exceeds size limit.
+> 
+> Changelog v3:
+> - Add documentation to describe SW and HW
+> - Adapted to media control framework
+> - Introduced ISP subdevice, capture device
+> - Remove private IOCTLs and add vendor specific V4L2 controls
+> - Change function name avoiding camelcase and uppercase letters
+> 
+> Changelog v4:
+> - Split patches because a patch exceeds size limit
+> - fix dt-bindings document
+> - stop specifying ID numbers for driver instance explicitly at device tree
+> - use pm_runtime to trigger initialization of HW
+>   along with open/close of device files.
+> - add a entry for a header file at MAINTAINERS file
+> 
+> Changelog v5:
+> - Fix coding style problem in viif.c (patch 2/6)
+> 
+> Changelog v6:
+> - add register definition of BUS-IF and MPU in dt-bindings
+> - add CSI2RX subdevice (separeted from ISP subdevice)
+> - change directory layout (moved to media/platform/toshiba/visconti)
+> - change source file layout (removed hwd_xxxx.c)
+> - pointer to userland memory is removed from uAPI parameters
+> - change register access (from struct style to macro style)
+> - remove unused macros
+> 
+> Changelog v7:
+> - remove redundant "bindings" from header and description text
+> - fix multiline text of "description"
+> - change "compatible" to "visconti5-viif"
+> - explicitly define allowed properties for port::endpoint
+> - remove unused variables
+> - update kerneldoc comments
+> - update references to headers
+> 
+> Yuji Ishikawa (5):
+>   dt-bindings: media: platform: visconti: Add Toshiba Visconti Video
+>     Input Interface
+>   media: platform: visconti: Add Toshiba Visconti Video Input Interface
+>     driver
+>   media: add V4L2 vendor specific control handlers
+>   documentation: media: add documentation for Toshiba Visconti Video
+>     Input Interface driver
+>   MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
+> 
+>  .../bindings/media/toshiba,visconti-viif.yaml |  108 +
+>  .../driver-api/media/drivers/index.rst        |    1 +
+>  .../media/drivers/visconti-viif.rst           |  462 +++
+>  MAINTAINERS                                   |    4 +
+>  drivers/media/platform/Kconfig                |    1 +
+>  drivers/media/platform/Makefile               |    1 +
+>  drivers/media/platform/toshiba/Kconfig        |    6 +
+>  drivers/media/platform/toshiba/Makefile       |    2 +
+>  .../media/platform/toshiba/visconti/Kconfig   |   18 +
+>  .../media/platform/toshiba/visconti/Makefile  |    8 +
+>  .../media/platform/toshiba/visconti/viif.c    |  681 ++++
+>  .../media/platform/toshiba/visconti/viif.h    |  375 ++
+>  .../platform/toshiba/visconti/viif_capture.c  | 1485 +++++++
+>  .../platform/toshiba/visconti/viif_capture.h  |   22 +
+>  .../platform/toshiba/visconti/viif_common.c   |  199 +
+>  .../platform/toshiba/visconti/viif_common.h   |   38 +
+>  .../platform/toshiba/visconti/viif_controls.c | 3407 +++++++++++++++++
+>  .../platform/toshiba/visconti/viif_controls.h |   18 +
+>  .../platform/toshiba/visconti/viif_csi2rx.c   |  684 ++++
+>  .../platform/toshiba/visconti/viif_csi2rx.h   |   24 +
+>  .../toshiba/visconti/viif_csi2rx_regs.h       |  102 +
+>  .../platform/toshiba/visconti/viif_isp.c      | 1258 ++++++
+>  .../platform/toshiba/visconti/viif_isp.h      |   24 +
+>  .../platform/toshiba/visconti/viif_regs.h     |  716 ++++
+>  include/uapi/linux/v4l2-controls.h            |    6 +
+>  include/uapi/linux/visconti_viif.h            | 1800 +++++++++
+>  26 files changed, 11450 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+>  create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
+>  create mode 100644 drivers/media/platform/toshiba/Kconfig
+>  create mode 100644 drivers/media/platform/toshiba/Makefile
+>  create mode 100644 drivers/media/platform/toshiba/visconti/Kconfig
+>  create mode 100644 drivers/media/platform/toshiba/visconti/Makefile
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx_regs.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.c
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.h
+>  create mode 100644 drivers/media/platform/toshiba/visconti/viif_regs.h
+>  create mode 100644 include/uapi/linux/visconti_viif.h
+> 
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
