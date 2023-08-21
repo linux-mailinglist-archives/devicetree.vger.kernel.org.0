@@ -2,116 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3203778288B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47CCC78289C
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234206AbjHUMGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 08:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
+        id S234377AbjHUMJ5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Aug 2023 08:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234111AbjHUMGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:06:47 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BADDCC
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:06:45 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so3919538a12.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 05:06:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692619603; x=1693224403;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2S+WETvfAyrCVF8DP9tvmJJ5EWf71P/PjeMnXn7n6Lo=;
-        b=AKZiy1IcmrTnS8t3Aj69f9szwT2W6buD4JdkJG4PhzNFd6RC8DEOEnJzG38wHiY0Ct
-         lmbiwczvEAh2uxmGvZAgXbiZ017Oi4wm9iR7//3Zuuf7YMYcMNn1aUN82CmnWaEzEQIg
-         ZhBKp2uSyMsg1I9vn/xFo1RVwdnSQA6OtyXdtESjctJucwdoOQ9sn2Nb/5uw9G7DlkqG
-         qloCTWdZbnsV72yu1caka78IiEqhakoJYJKc60vARtuWBqeL7KqzEXi13BSS9L90bhTF
-         angIuJ2m55GyWnP4ZlERe4CPo6mqJtDkwRVBdSh7h7nCsvmDBiJsGgxCo54DH/y+MXo6
-         ou3w==
+        with ESMTP id S234293AbjHUMJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:09:57 -0400
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9881EA;
+        Mon, 21 Aug 2023 05:09:53 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-58fb73e26a6so21780737b3.1;
+        Mon, 21 Aug 2023 05:09:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692619603; x=1693224403;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2S+WETvfAyrCVF8DP9tvmJJ5EWf71P/PjeMnXn7n6Lo=;
-        b=l2gm04J7g2T9bzD0FdDBBk7W7He/4b6/wYG4ykqlpmBYLUUL1wTSSJudf12rKeIcKE
-         d47FFlU4LWUbZ85dgVzYDjv6tGtsVGoAbt8Vat1rjoDeQqg44/PzO6EdkUfvBrMbCvBn
-         1XbXhHuWIn7hEmOv65G18C23ectXUio77cueSJPqwIy4MTtpfGjXOcNkphC6WkqgCZK7
-         p1HUexTLWEGsfcFqaE7DGsOlni83S8bE6mMbxwueerMoRsim5ylopm9Eu7+B+ltp67/x
-         2EeK72yG9tLHpLiCZYlsw19JTRrQnUuV+rKxUMKjPwZ64dVOIVBXCSY03jUy1GcRVT6J
-         OkpA==
-X-Gm-Message-State: AOJu0YyE4/RWnkca3qKS7Yk2Wc/6dBtDzY3UJbdnDrxXC1Ci4R6cDyGu
-        Tf/kQHzeoXouZoimh9HxJb/vww==
-X-Google-Smtp-Source: AGHT+IGA3fcwCUwoHfQmYSY/wtDyAlgOxfO0or6c6j0Qcinb4t2/XgeaIcZi4syQvHqfZpMf9jNYmQ==
-X-Received: by 2002:a50:fa93:0:b0:525:d95b:cd46 with SMTP id w19-20020a50fa93000000b00525d95bcd46mr4674958edr.2.1692619603593;
-        Mon, 21 Aug 2023 05:06:43 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id g4-20020a056402180400b00525727db542sm5974464edy.54.2023.08.21.05.06.42
+        d=1e100.net; s=20221208; t=1692619793; x=1693224593;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/FZHPyft/+sY1fQX8QQlFOV640RABw9ahBxyarwzqDM=;
+        b=MyjlL9lYw/BsufA12XsDed1QSm24w8MJYdLxQiP6RZn5Y55SUmQTbJeZ8oVBT7GFdB
+         n6DF5uA3WdjP3Hfyue6O7EpE49jeERsmj+jXN9o5p6N2m35a/HBWTGw2hHUtwiKe+2pG
+         pcC1YTdSCVM+6ANnyi2ap7X4viX0Zg7vnJximTzVy7XN1DAIpwVzzhIPVlE2Plv7mVjb
+         TRUMnHyl/87XgEV6+IsnE0VVtN83xrTr9qgykgJoukBSQYrbF70TRTDNSq9+PQ8lrJZr
+         DGYCYeGIYxclns7+w496CS+b4LN7j0jxUZxhAOeezOmqVO7UbbSDO8bdIiQKpT+TXV5a
+         Xg+g==
+X-Gm-Message-State: AOJu0YyFGeaT+OTLX21SNjo732j2bsO6vfU2GszY1/epXmVyqK0nEEkA
+        khRaEwqcCUD75uem1idpeVkkgWomOgBWag==
+X-Google-Smtp-Source: AGHT+IFFtxtePuwgkPDT8NcVZN61W+p4zcerz+PW/cjSOmpmVZS9cXLxY8FBiS7dT1OnVQxrl7iHyw==
+X-Received: by 2002:a25:aa26:0:b0:d43:9eae:52b8 with SMTP id s35-20020a25aa26000000b00d439eae52b8mr6867095ybi.10.1692619792821;
+        Mon, 21 Aug 2023 05:09:52 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id v17-20020a259111000000b00d74b8fa3497sm506816ybl.20.2023.08.21.05.09.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 05:06:43 -0700 (PDT)
-Message-ID: <ebad4f91-3d4e-c50f-0bde-f11f16061214@linaro.org>
-Date:   Mon, 21 Aug 2023 14:06:41 +0200
+        Mon, 21 Aug 2023 05:09:52 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-d7485d37283so1619177276.1;
+        Mon, 21 Aug 2023 05:09:51 -0700 (PDT)
+X-Received: by 2002:a25:c5c1:0:b0:d47:30a5:2f01 with SMTP id
+ v184-20020a25c5c1000000b00d4730a52f01mr7643322ybe.13.1692619791525; Mon, 21
+ Aug 2023 05:09:51 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: mfd: syscon: Add compatibles for
- Loongson-1 syscon
-Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-References: <20230816111310.1656224-1-keguang.zhang@gmail.com>
- <20230816111310.1656224-2-keguang.zhang@gmail.com>
- <a9a7b65c-ef0b-9f66-b197-548733728d44@linaro.org>
- <CAJhJPsXEf0Yuxasq24X=x_JtUJZrNC1aowfeuu9QM2kz+A=asQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJhJPsXEf0Yuxasq24X=x_JtUJZrNC1aowfeuu9QM2kz+A=asQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230801-dt-changeset-fixes-v3-0-5f0410e007dd@kernel.org> <20230801-dt-changeset-fixes-v3-3-5f0410e007dd@kernel.org>
+In-Reply-To: <20230801-dt-changeset-fixes-v3-3-5f0410e007dd@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Aug 2023 14:09:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXo07jXLL6pn=J+Y-wPGT_wccST4wCbE01bRH3r2xf_qQ@mail.gmail.com>
+Message-ID: <CAMuHMdXo07jXLL6pn=J+Y-wPGT_wccST4wCbE01bRH3r2xf_qQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] of: dynamic: Refactor changeset action printing to
+ common helpers
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        "Enrico Weigelt, metux IT consult" <info@metux.net>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2023 13:00, Keguang Zhang wrote:
-> On Sat, Aug 19, 2023 at 10:23 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 16/08/2023 13:13, Keguang Zhang wrote:
->>> Add Loongson LS1B and LS1C compatibles for system controller.
->>
->> I asked not to use the same compatible for different blocks. Compatible
->> is dwmac, but are you still going to use for other blocks? Please write
->> proper description of the hardware.
->>
-> Sorry. I didn't make myself clear.
-> The SoC only has one syscon with two registers.
-> And Each register contains settings for multiple devices.
-> Besides DWMAC, this syscon will be used for other devices.
-> Should I keep using loongson,ls1b-syscon/loongson,ls1c-syscon?
+Hi Rob,
 
-Ah, ok, then the naming of the compatible should reflect the name of
-this syscon block. If it does not have any name and it is the only
-syscon, then name like "loongson,ls1b-syscon" is good. If the block has
-some name - use it in compatible.
+Thanks for the update!
 
-Best regards,
-Krzysztof
+On Fri, Aug 18, 2023 at 10:41 PM Rob Herring <robh@kernel.org> wrote:
+> Several places print the changeset action with node and property
+> details. Refactor these into a common printing helper. The complicating
+> factor is some prints are debug and some are errors. Solve this with a
+> bit of preprocessor magic.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+> v3:
+>  - Drop printing changeset entry pointers
 
+I think it would be good to mention this in the actual patch
+description, too.
+
+> --- a/drivers/of/dynamic.c
+> +++ b/drivers/of/dynamic.c
+
+> @@ -598,7 +568,7 @@ static int __of_changeset_entry_apply(struct of_changeset_entry *ce)
+>         unsigned long flags;
+>         int ret = 0;
+>
+> -       __of_changeset_entry_dump(ce);
+> +       of_changeset_action_debug("applying: ", ce->action, ce->np, ce->prop);
+
+s/applying/apply/ ?
+
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
