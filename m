@@ -2,61 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4194782E64
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 18:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69696782E6B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 18:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236510AbjHUQ0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 12:26:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33664 "EHLO
+        id S232829AbjHUQ2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 12:28:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232526AbjHUQ0a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 12:26:30 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 217C7E3;
-        Mon, 21 Aug 2023 09:26:28 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 93D2B2F4;
-        Mon, 21 Aug 2023 09:27:08 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C54CA3F64C;
-        Mon, 21 Aug 2023 09:26:24 -0700 (PDT)
-Date:   Mon, 21 Aug 2023 17:26:22 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Martin Botka <martin.botka@somainline.org>
-Cc:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        Alan Ma <tech@biqu3d.com>,
-        Luke Harrison <bttuniversity@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin@biqu3d.com>
-Subject: Re: [PATCH v2 2/3] thermal: sun8i: Add support for H616 THS
- controller
-Message-ID: <20230821172622.688821b1@donnerap.manchester.arm.com>
-In-Reply-To: <20230821-ths-h616-v2-2-cda60d556798@somainline.org>
-References: <20230821-ths-h616-v2-0-cda60d556798@somainline.org>
-        <20230821-ths-h616-v2-2-cda60d556798@somainline.org>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S236605AbjHUQ2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 12:28:24 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3904BE8;
+        Mon, 21 Aug 2023 09:28:22 -0700 (PDT)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37LGSDiX027693;
+        Mon, 21 Aug 2023 11:28:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1692635293;
+        bh=/UNxKltqQ/ret3XaUPX6Ti7vDc7NcT/jG5e5kOE4u+U=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=nGAJ8xzmXt9UOagiWrqO5QX/MnnKx2bJ/eo0WrJQBtzgagaCrs0mSZ4Dhif0H31Do
+         i/1hu1aP7JH4c9wEYAnHLCz2NAsJk5Er0hO6lRVN/nM2ePSGgLxtCkpsjxXhsXWI8v
+         Ai6RKV2QnKjWQ4mflPTvDh2kqaY1U9BYjCyaTV1k=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37LGSDMA074192
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 21 Aug 2023 11:28:13 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 21
+ Aug 2023 11:28:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 21 Aug 2023 11:28:13 -0500
+Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37LGSCx6029193;
+        Mon, 21 Aug 2023 11:28:12 -0500
+Message-ID: <0137b4f7-799f-14ce-3cd6-0af24cab2d8a@ti.com>
+Date:   Mon, 21 Aug 2023 11:28:12 -0500
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62-main: PM fixes in the fss
+ node
+Content-Language: en-US
+To:     Dhruva Gole <d-gole@ti.com>, Mark Brown <broonie@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, Vibhore Vardhan <vibhore@ti.com>
+References: <20230818103750.516309-1-d-gole@ti.com>
+ <20230818103750.516309-2-d-gole@ti.com>
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230818103750.516309-2-d-gole@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,134 +71,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Aug 2023 16:03:47 +0200
-Martin Botka <martin.botka@somainline.org> wrote:
+On 8/18/23 5:37 AM, Dhruva Gole wrote:
+> * Make use of Simple Power-Managed Bus as the fss bus controller is under
+> the control of a functional clock, and also is part of a PM domain.
+> * Specify the appropriate k3 pd to the fss node as per tisci docs [0].
+> 
+> [0] https://software-dl.ti.com/tisci/esd/latest/5_soc_doc/am62x/devices.html
+> 
 
-Hi Martin,
+This doc makes it look like the number should be 73, but you have 74, what is FSAS?
 
-thanks for the changes, that looks good to me now.
-Just some tiny nitpick below, but only if you need to re-spin the series
-for whatever reason.
+Andrew
 
-> Add support for the thermal sensor found in H616 SoC
-> which slightly resembles the H6 thermal sensor
-> controller with few changes like 4 sensors.
-
-Regardless:
-
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
+> Fixes: c37c58fdeb8a ("arm64: dts: ti: k3-am62: Add more peripheral nodes")
+> Co-developed-by: Vibhore Vardhan <vibhore@ti.com>
+> Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
+> Signed-off-by: Dhruva Gole <d-gole@ti.com>
 > ---
->  drivers/thermal/sun8i_thermal.c | 74 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 74 insertions(+)
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_thermal.c
-> index 195f3c5d0b38..cf96ab6a445b 100644
-> --- a/drivers/thermal/sun8i_thermal.c
-> +++ b/drivers/thermal/sun8i_thermal.c
-> @@ -278,6 +278,66 @@ static int sun50i_h6_ths_calibrate(struct ths_device *tmdev,
->  	return 0;
->  }
->  
-> +static int sun50i_h616_ths_calibrate(struct ths_device *tmdev,
-> +				     u16 *caldata, int callen)
-> +{
-> +	struct device *dev = tmdev->dev;
-> +	int i, ft_temp;
-> +
-> +	if (!caldata[0])
-> +		return -EINVAL;
-> +
-> +	/*
-> +	 * h616 efuse THS calibration data layout:
-> +	 *
-> +	 * 0      11  16     27   32     43   48    57
-> +	 * +----------+-----------+-----------+-----------+
-> +	 * |  temp |  |sensor0|   |sensor1|   |sensor2|   |
-> +	 * +----------+-----------+-----------+-----------+
-> +	 *                      ^           ^           ^
-> +	 *                      |           |           |
-> +	 *                      |           |           sensor3[11:8]
-> +	 *                      |           sensor3[7:4]
-> +	 *                      sensor3[3:0]
-> +	 *
-> +	 * The calibration data on the H616 is the ambient temperature and
-> +	 * sensor values that are filled during the factory test stage.
-> +	 *
-> +	 * The unit of stored FT temperature is 0.1 degree celsius.
-> +	 */
-> +	ft_temp = caldata[0] & FT_TEMP_MASK;
-> +
-> +	for (i = 0; i < tmdev->chip->sensor_num; i++) {
-> +		int delta, cdata, offset, reg;
-> +
-> +		if (i == 3)
-> +			reg = (caldata[1] >> 12)
-> +			      | ((caldata[2] >> 12) << 4)
-> +			      | ((caldata[3] >> 12) << 8);
-> +		else
-> +			reg = (int)caldata[i + 1] & TEMP_CALIB_MASK;
-> +
-> +		int sensor_temp = tmdev->chip->calc_temp(tmdev, i, reg);
-
-If you shorten that variable name by a bit, you can fit the division on
-the same line below. And that it looks all neat and satisfying again ;-)
-
-Cheers,
-Andre
-
-> +
-> +		delta = (sensor_temp - ft_temp * 100) * 10;
-> +		delta /= tmdev->chip->scale;
-> +		cdata = CALIBRATE_DEFAULT - delta;
-> +		if (cdata & ~TEMP_CALIB_MASK) {
-> +			dev_warn(dev, "sensor%d is not calibrated.\n", i);
-> +
-> +			continue;
-> +		}
-> +
-> +		offset = (i % 2) * 16;
-> +		regmap_update_bits(tmdev->regmap,
-> +				   SUN50I_H6_THS_TEMP_CALIB + (i / 2 * 4),
-> +				   TEMP_CALIB_MASK << offset,
-> +				   cdata << offset);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int sun8i_ths_calibrate(struct ths_device *tmdev)
->  {
->  	struct nvmem_cell *calcell;
-> @@ -608,6 +668,19 @@ static const struct ths_thermal_chip sun50i_h6_ths = {
->  	.calc_temp = sun8i_ths_calc_temp,
->  };
->  
-> +static const struct ths_thermal_chip sun50i_h616_ths = {
-> +	.sensor_num = 4,
-> +	.has_bus_clk_reset = true,
-> +	.ft_deviation = 8000,
-> +	.offset = 263655,
-> +	.scale = 810,
-> +	.temp_data_base = SUN50I_H6_THS_TEMP_DATA,
-> +	.calibrate = sun50i_h616_ths_calibrate,
-> +	.init = sun50i_h6_thermal_init,
-> +	.irq_ack = sun50i_h6_irq_ack,
-> +	.calc_temp = sun8i_ths_calc_temp,
-> +};
-> +
->  static const struct of_device_id of_ths_match[] = {
->  	{ .compatible = "allwinner,sun8i-a83t-ths", .data = &sun8i_a83t_ths },
->  	{ .compatible = "allwinner,sun8i-h3-ths", .data = &sun8i_h3_ths },
-> @@ -616,6 +689,7 @@ static const struct of_device_id of_ths_match[] = {
->  	{ .compatible = "allwinner,sun50i-a100-ths", .data = &sun50i_a100_ths },
->  	{ .compatible = "allwinner,sun50i-h5-ths", .data = &sun50i_h5_ths },
->  	{ .compatible = "allwinner,sun50i-h6-ths", .data = &sun50i_h6_ths },
-> +	{ .compatible = "allwinner,sun50i-h616-ths", .data = &sun50i_h616_ths },
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, of_ths_match);
-> 
-
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 284b90c94da8..b23c9e3d91cd 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -640,10 +640,11 @@ usb1: usb@31100000 {
+>   	};
+>   
+>   	fss: bus@fc00000 {
+> -		compatible = "simple-bus";
+> +		compatible = "simple-pm-bus";
+>   		reg = <0x00 0x0fc00000 0x00 0x70000>;
+>   		#address-cells = <2>;
+>   		#size-cells = <2>;
+> +		power-domains = <&k3_pds 74 TI_SCI_PD_EXCLUSIVE>;
+>   		ranges;
+>   
+>   		ospi0: spi@fc40000 {
