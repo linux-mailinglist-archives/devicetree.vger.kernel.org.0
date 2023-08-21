@@ -2,70 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CD62783144
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD49E783150
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 21:51:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229912AbjHUTpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 15:45:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58840 "EHLO
+        id S229595AbjHUTsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 15:48:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229540AbjHUTo7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:44:59 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0AD4E8;
-        Mon, 21 Aug 2023 12:44:56 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d7260fae148so3851914276.1;
-        Mon, 21 Aug 2023 12:44:56 -0700 (PDT)
+        with ESMTP id S229576AbjHUTsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 15:48:35 -0400
+Received: from mail-io1-xd2d.google.com (mail-io1-xd2d.google.com [IPv6:2607:f8b0:4864:20::d2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FBAEE
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 12:48:33 -0700 (PDT)
+Received: by mail-io1-xd2d.google.com with SMTP id ca18e2360f4ac-7921b70c1a5so77929239f.3
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 12:48:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692647096; x=1693251896;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iSgWHOn62q0TOR9IRF9c5uslZMHmhZyo6wOkQsCA9Sg=;
-        b=gkrmRvn7Qxr182RHRNjzqg2R3tW17BESVQaczV309LmfU2Iv7X1P9d/LXS8FQC74Yj
-         BkFNcAYgyIPFRr4v3opPCiKTppuo2Kj61j/jLZPRx35Zsry1SaVg7XhyW4dBi+yKqpPo
-         WN6U+dZoYsbqkbsAv+MzDrN44TQyIuRLaTUQk4lum6rF8+qIiY6ECc86lzNBi1scsxaQ
-         pl50HBTb5ISbrF3NroEfaKPBO7nV8/wY+7TWNrwQBkVwAWI39DD+2Op1W26cHo4CgeQG
-         gMiY04Rr8q1/2xkI8pLInoeW6X/6F+5sx3jywXm+PlAe9DPXM92IoCzI6NhH4xmOQ5fE
-         CsmA==
+        d=chromium.org; s=google; t=1692647312; x=1693252112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3N7X/HZKiODl+6+MNX6JndqNW1xPMfJ5KlQEIhhEp20=;
+        b=donK6i774XrVXYP+eFrBY/Un4gIoAVwXckSA4zoLb4QBZYzF5hY1hU1F0BosScRQZ7
+         l8eJtPP5cxDUF78dsofEIp4j0EcKrNglBt9oSms17GThKXCDrYdb5byaw/WwyU/nlFex
+         UW6rQKBjf9lgmZW8uJ/Z05szJXngqVckaTEWQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692647096; x=1693251896;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iSgWHOn62q0TOR9IRF9c5uslZMHmhZyo6wOkQsCA9Sg=;
-        b=k/4I28c7/eacxgXP9tmFBrccDs/RUTmTX/EGgKXBSwTH6p82pASSiEo1i9wkVTgtAZ
-         6CzDk6FE1JeH7VbmhTrT2jiQkbF/jkotTqlYvEYWAJ/uQuGeYztzVUGtWGlsvUVTpMhj
-         3wjcb64GBSjo41cfxPGVoO7PkrWBJfacIxEwp5jw2YR9ZR9E3NH9st4JILkOAInYWwYI
-         E4QYQD0+V9R7Vo77ODN5tlfx+bDAT5gVRNbPmr7PtOCbuKXzVQJHYg1P+rzS5ucQJAFf
-         RenEJv24NjForeuUUtAHWyZ2KHcbw0otsM00KbrYKwzqp8CmXSkUNnPtU6yHgYmpDd3I
-         lx9A==
-X-Gm-Message-State: AOJu0YwXJVKOh1o9I6EDCra0EuMg29+lkxJ7LU5w6Enn1wP8cRulK3Bg
-        zEb8tvkXDBDfV9GjcVseVhn6HWn92nl+5Ls7zFM=
-X-Google-Smtp-Source: AGHT+IG9tkFV/VbiqSrJumtkeCuNYBUnjHFppQT+AMDKxxYVD7j4Jgt0GJ+c62YY2hauiBJ3kz3P6TlYkbJ+xQ5Mqfo=
-X-Received: by 2002:a5b:dc3:0:b0:d44:a90b:ba56 with SMTP id
- t3-20020a5b0dc3000000b00d44a90bba56mr6662804ybr.29.1692647094608; Mon, 21 Aug
- 2023 12:44:54 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692647312; x=1693252112;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3N7X/HZKiODl+6+MNX6JndqNW1xPMfJ5KlQEIhhEp20=;
+        b=VsLUtBVlBx5K4QxB1wOuwWdzrjLQajkryuEWjlyp0TSmEsVMEzllJgsTfO0uO0lcQr
+         oRuejMnolukS+FqfLzVuzqEp38BXz32LM/59nSDCrP2TCFFCxJAqEIluJh+Ly6/0/8Z0
+         yIGTuNLsvYWdJ59EXudCYQ6XM/tzzKWPxq9eHsXyjFZ5daCFAOsHjpUZA2V9aPZXilNs
+         4mrMUEU13xA/Y88viFBJOCTdWKOdsJb9nJBZcvNH/QBy7g3XPhvVO1Yjp4iNr3rfTvOE
+         Ip5BtjIXZgZPnCoABjCL2UUMwdquZNB6RSxFmjL/Oclk6P0OseVxZs2wx9QMHSRHxjEN
+         s9KQ==
+X-Gm-Message-State: AOJu0YxoBZjvQT0yWz9/EQHdEGY3UIkhSoDkcPz1wbd4cYp+O9ZgVgT4
+        HFOrhs3IljnXxjcKk+/Tmv0ibFuNfjztHe7eFGg=
+X-Google-Smtp-Source: AGHT+IFcu3IPYhGGuLvsyVJO8RzW3hUh7Hrcr3zrfVG6DkyEQPecWurr30tfPYr4FOJh+8GUA9xkMA==
+X-Received: by 2002:a05:6602:690:b0:785:5917:a35f with SMTP id dp16-20020a056602069000b007855917a35fmr10766390iob.8.1692647312413;
+        Mon, 21 Aug 2023 12:48:32 -0700 (PDT)
+Received: from kea.bld.corp.google.com ([2620:15c:183:200:9102:8976:7620:5093])
+        by smtp.gmail.com with ESMTPSA id o21-20020a02c6b5000000b0042b0ce92dddsm2552076jan.161.2023.08.21.12.48.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Aug 2023 12:48:32 -0700 (PDT)
+From:   Simon Glass <sjg@chromium.org>
+To:     devicetree@vger.kernel.org
+Cc:     Lean Sheng Tan <sheng.tan@9elements.com>,
+        Tom Rini <trini@konsulko.com>,
+        lkml <linux-kernel@vger.kernel.org>, linux-acpi@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Gua Guo <gua.guo@intel.com>, Simon Glass <sjg@chromium.org>
+Subject: [PATCH v2] schemas: Add a schema for memory map
+Date:   Mon, 21 Aug 2023 13:48:19 -0600
+Message-ID: <20230821194821.2961213-1-sjg@chromium.org>
+X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 MIME-Version: 1.0
-References: <20230815140030.1068590-1-robimarko@gmail.com> <83cc4b10-34bf-ea91-7756-f345c0071479@linaro.org>
- <20230821193152.GA2157670-robh@kernel.org> <CAOX2RU6be+eeTPT7HbC8_-C7d7oVhspsXWOmwtgg6s=QMe6QEg@mail.gmail.com>
-In-Reply-To: <CAOX2RU6be+eeTPT7HbC8_-C7d7oVhspsXWOmwtgg6s=QMe6QEg@mail.gmail.com>
-From:   Brian Norris <computersforpeace@gmail.com>
-Date:   Mon, 21 Aug 2023 12:44:41 -0700
-Message-ID: <CAN8TOE96PjH67+vmi7mksSvqeMdLNBd8MH3m=1Ft_h+TXbk4BA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: firmware: qcom,scm: Document SDI disable
-To:     Robert Marko <robimarko@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,36 +70,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 12:35=E2=80=AFPM Robert Marko <robimarko@gmail.com>=
- wrote:
-> On Mon, 21 Aug 2023 at 21:31, Rob Herring <robh@kernel.org> wrote:
-> > Why can't you just disable SDI unconditionally when going into debug
-> > mode? Is doing that when not enabled going to crash the system or
-> > something?
+The Devicespec specification skips over handling of a logical view of
+the memory map, pointing users to the UEFI specification.
 
-I asked the same, to resounding silence:
+It is common to split firmware into 'Platform Init', which does the
+initial hardware setup and a "Payload" which selects the OS to be booted.
+Thus an handover interface is required between these two pieces.
 
-https://lore.kernel.org/all/20200721080054.2803881-1-computersforpeace@gmai=
-l.com/
-https://lore.kernel.org/all/ZNlhSdh0qDMieTAS@localhost/
+Where UEFI boot-time services are not available, but UEFI firmware is
+present on either side of this interface, information about memory usage
+and attributes must be presented to the "Payload" in some form.
 
-> Because if not disabled you will enter the Secure Debug mode even on a
-> regular reboot and then you have to pull the power in order to boot again=
-.
-> Even according to QCA docs they intended for the Linux to disable SDI as
-> TZ/QSEE will always enable it as part of booting.
+This aims to provide an initial schema for this mapping.
 
-NB: I've never read such docs. Presumably they're internal/private to
-Qualcomm and/or its direct partners? I'd love to see them.
+Note that this is separate from the existing /memory and /reserved-memory
+nodes, since it is mostly concerned with what the memory is used for. It
+may cover only a small fraction of available memory, although it could be
+used to signal which area of memory has ECC.
 
-But, I think you (robinmarko) are not really answering the same
-question that Rob (robh) is asking. Rob is asking why you ever *don't*
-want to disable SDI. You're answering why we ever need to disable it
-at all. I don't think the latter question is controversial.
+For now, no attempt is made to create an exhaustive binding, so there are
+some example types lists. This can be completed once this has passed
+initial review.
 
-FWIW, your description of those docs sounds like we should
-unconditionally *disable* SDI (like my first RFC above), which would
-answer Rob's question, and would agree with my RFC above :) And as a
-bonus, no Device Tree change would be required.
+Signed-off-by: Simon Glass <sjg@chromium.org>
+---
 
-Brian
+Changes in v2:
+- Reword commit message
+
+ dtschema/schemas/memory-map.yaml | 51 ++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
+ create mode 100644 dtschema/schemas/memory-map.yaml
+
+diff --git a/dtschema/schemas/memory-map.yaml b/dtschema/schemas/memory-map.yaml
+new file mode 100644
+index 0000000..97e531e
+--- /dev/null
++++ b/dtschema/schemas/memory-map.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: BSD-2-Clause
++# Copyright 2023 Google LLC
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/memory-map.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: /memory-map nodes
++description: |
++  Common properties always required in /memory-map nodes. These nodes are
++  intended to resolve the nonchalant clause 3.4.1 ("/memory node and UEFI")
++  in the Devicetree Specification.
++
++maintainers:
++  - Simon Glass <sjg@chromium.org>
++
++properties:
++  $nodename:
++    const: '/'
++  usage:
++    $ref: /schemas/types.yaml#/definitions/string
++    description: |
++      Describes the usage of the memory region, e.g.:
++
++        "acpi-reclaim", "acpi-nvs", "bootcode", "bootdata", "bootdata",
++        "runtime-code", "runtime-data"
++  attr:
++    $ref: /schemas/types.yaml#/definitions/string-array
++    description: |
++      Attributes possessed by this memory region:
++
++        "single-bit-ecc" - supports single-bit ECC
++        "multi-bit-ecc" - supports multiple-bit ECC
++        "no-ecc" - non-ECC memory
++
++patternProperties:
++  "^([a-z][a-z0-9\\-]+@[0-9a-f]+)?$":
++    type: object
++    additionalProperties: false
++
++    properties:
++      reg:
++        minItems: 1
++        maxItems: 1024
++
++    required:
++      - reg
++
++additionalProperties: true
++
++...
+-- 
+2.42.0.rc1.204.g551eb34607-goog
+
