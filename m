@@ -2,114 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4205782853
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 13:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA95F782871
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 14:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232444AbjHULzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 07:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57578 "EHLO
+        id S234124AbjHUMBM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Aug 2023 08:01:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233572AbjHULzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 07:55:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1D30123;
-        Mon, 21 Aug 2023 04:55:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 65A17631B1;
-        Mon, 21 Aug 2023 11:55:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7CC4C433C7;
-        Mon, 21 Aug 2023 11:55:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692618933;
-        bh=igfPK8Ut0G6WW9AgjVkO2dIZKnXUDkIdWv6y8DUVBtU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jPUZgDWXRA0kI9T8IdWEZjlzn50ZLdy+d8JKJlI5iwbppWAJEfcSEfkvA4sjdbOc1
-         HqC+/w5124SiKljJLUCZZVGTOdF1bWE1IptWcZH91elOVyCDwzx09CtaJZ62jniuv0
-         3Bkt4p/KbbQnu33KkUaGbp62ybqIdaK5iQuu3kj1LuIRXLyvbLaTZRzCnUXBMzJeB9
-         vzpxGaYEY2LD8ruQwXXCsCAII+Lbo9VlaShZJ+RQmA2LcE7o+FmfdFaKc3LNxjYU8s
-         xaSI2qhN+QvhMgmfocvyzfHf0jcutAj1JODTh52MGBt6Lzm/Z4XwI4CF7MgOqJx0w+
-         BplsdCbRpr8DA==
-Message-ID: <ac153c9b-f698-47f4-9d52-b3ea5c9ba213@kernel.org>
-Date:   Mon, 21 Aug 2023 13:55:27 +0200
+        with ESMTP id S232800AbjHUMBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 08:01:12 -0400
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D416DE9;
+        Mon, 21 Aug 2023 05:01:08 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-59231a1ca9eso4289017b3.1;
+        Mon, 21 Aug 2023 05:01:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692619268; x=1693224068;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oUUJ2/PRflFLbJIM097SQqKNn2Udb4Em6AFpSfljQKM=;
+        b=Xs1I1Bv4hIsYOvhC1G3PNzQydshwLaND1SvecruEHscDwxgEH3bTDAf13f3NLSTC4S
+         pUkWpocnIPhbrCA4YMR+/5+etP1AeVy43lelOaC3jR+IaDc+Zu53xK3orS90At5oCJwF
+         NTC5Ss3SGpj6llggflZUC4KvpDOSs5Oc0gDkMj1SdXN69Vt5B3mXIvqdWUOFSHiVJ4cB
+         NRC1dvyf3BOfIvPKTHMt1GUEbEQf7pAiPTLO0Y9klkkU4UW4PKW+CIStM4GrfeIlntEk
+         RiqlNLEXLXZ19Zy9R4DbKDCppXRDitfhUrvXJfMS6gabZiTSVUySUrp1s6NQHk/sD/Vu
+         t6hA==
+X-Gm-Message-State: AOJu0YwL6lfeafBcUE9wVF6lQiCY/BYEt+BdKn+zb14pNSLt4sIoU0x6
+        dweCUOUHaNs7l0CE2bpRu8TE4T+dnt8y8A==
+X-Google-Smtp-Source: AGHT+IGmDSzPhFYwMdcIrHFIzxQtJC76YO8IEpS2URkdLJE9bBDTmIfVHkmsg+iK0EDMfwrhU5i7QQ==
+X-Received: by 2002:a05:690c:3409:b0:58a:4b31:cbaf with SMTP id fn9-20020a05690c340900b0058a4b31cbafmr5495027ywb.35.1692619267911;
+        Mon, 21 Aug 2023 05:01:07 -0700 (PDT)
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
+        by smtp.gmail.com with ESMTPSA id b67-20020a0dd946000000b005773b750d95sm2172330ywe.28.2023.08.21.05.01.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Aug 2023 05:01:07 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-d7484cfdc11so1581536276.1;
+        Mon, 21 Aug 2023 05:01:07 -0700 (PDT)
+X-Received: by 2002:a25:ca54:0:b0:d13:e334:241b with SMTP id
+ a81-20020a25ca54000000b00d13e334241bmr6529985ybg.21.1692619267052; Mon, 21
+ Aug 2023 05:01:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Enable tsens and thermal for
- sa8775p SoC
-Content-Language: en-US
-To:     Priyansh Jain <quic_priyjain@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230819010928.916438-1-robh@kernel.org> <CACRpkda94qc1Mc_yz+c2rYFdyhXsX-XRFTntv1fiw=HrpDqAOg@mail.gmail.com>
+In-Reply-To: <CACRpkda94qc1Mc_yz+c2rYFdyhXsX-XRFTntv1fiw=HrpDqAOg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 21 Aug 2023 14:00:56 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVUJ0U0ftjr+s=2p8gYwwEtxaKe7vGpm7CxCiGPq92y4g@mail.gmail.com>
+Message-ID: <CAMuHMdVUJ0U0ftjr+s=2p8gYwwEtxaKe7vGpm7CxCiGPq92y4g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rza2: Use
+ 'additionalProperties' for child nodes
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_manafm@quicinc.com
-References: <20230821112928.19284-1-quic_priyjain@quicinc.com>
- <20230821112928.19284-3-quic_priyjain@quicinc.com>
-From:   Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <20230821112928.19284-3-quic_priyjain@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.08.2023 13:29, Priyansh Jain wrote:
-> Add tsens and thermal devicetree node for sa8775p SoC.
-> 
-> Signed-off-by: Priyansh Jain <quic_priyjain@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 1096 +++++++++++++++++++++++++
->  1 file changed, 1096 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> index b130136acffe..b9c622b3bf7e 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -2306,6 +2306,1102 @@
->  
->  			#freq-domain-cells = <1>;
->  		};
-> +
-> +		tsens0: thermal-sensor@c222000 {
-> +			compatible = "qcom,sa8775p-tsens", "qcom,tsens-v2";
-> +			reg = <0x0C263000 0x1ff>,  /* TM */
-> +				<0x0C222000 0x1ff>; /* SROT */
-1. Test your patches. This will obviously not work due to the
-   #address/size-cells values of /soc@0.
+Hi Linus,
 
-2. Use lowercase hex.
+On Mon, Aug 21, 2023 at 12:34 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Sat, Aug 19, 2023 at 3:09 AM Rob Herring <robh@kernel.org> wrote:
+> > A schema under 'additionalProperties' works better for matching any
+> > property/node other than the ones explicitly listed. Convert the schema
+> > to use that rather than the wildcard and if/then schema.
+> >
+> > Drop 'phandle' properties which never need to be explicitly listed while
+> > we're here.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
 
-3. Align subsequent entries for a property with the previous line
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-4. Are you sure SROT is 0x1ff-long?
+> Looks good to me, but Geert usually handles Renesas stuff so not
+> applying unless I get asked explicitly to do so.
 
-5. The usefulness of these comments is questionable, many DTs have
-   them because of copypasta but I think it's time to stop that.
+Unless some new bugs show up (hold wood etc.), I do not plan to
+send more pin control PRs for v6.5 or v6.6, so please take it.
+Thanks!
 
-6. No pdc wake-capable interrupts?
+Gr{oetje,eeting}s,
 
-> +			#qcom,sensors = <12>;
-> +			interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-> +				<GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "uplow","critical";
-Missing space after the comma
+                        Geert
 
-Please move interrupt properties right after 'reg'.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Konrad
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
