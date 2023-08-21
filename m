@@ -2,104 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F37867825ED
-	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 10:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4726D7825F4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Aug 2023 11:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234243AbjHUI7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 04:59:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60870 "EHLO
+        id S234251AbjHUJBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 05:01:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233626AbjHUI7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 04:59:49 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A656ACC;
-        Mon, 21 Aug 2023 01:59:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1692608385; x=1724144385;
-  h=message-id:date:mime-version:subject:to:references:from:
-   in-reply-to:content-transfer-encoding;
-  bh=ALOTiRmCfj3769cfKooI7Rfu3TpT5H8i1UavK7RLZeg=;
-  b=gJymp0is0IsZVMkhYBvQmXCHoTe4leMPKFQ4vYg5Q0JfCWKlA/ZXLtYn
-   C1jhWAXdVmVA+oCyMc7Cp0ynKpcZyQ2JEHQrV7NJcQ+xZOdz+UpnKuls/
-   a4c01wTZJxaD98WT/YwwSHZNAEle+8hvA4WmBdsMnihXi3HASdz5Xy2y7
-   pdYJ8aO1iVFhLO6JQ9C4BjTHYipzDj9Hu6Lvm5u9JX8oeoPsa6p2wzDUB
-   uPEXXq5O1gEABPklml5B8U+3jcTD0syTWyzhUtqE+aKYzI8orfBW6433U
-   nF63KZpILxmhzmCp6W3rSaH3QFpcTxU7iFPXdSft9GU7iTEHcNgpzZF8U
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,189,1684825200"; 
-   d="scan'208";a="404612"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Aug 2023 01:59:44 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 21 Aug 2023 01:59:12 -0700
-Received: from [10.159.245.205] (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 21 Aug 2023 01:59:09 -0700
-Message-ID: <a7b84b23-a1c1-23df-79db-d965ed261223@microchip.com>
-Date:   Mon, 21 Aug 2023 10:59:05 +0200
+        with ESMTP id S232615AbjHUJBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 05:01:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E98DC1;
+        Mon, 21 Aug 2023 02:01:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07BC661197;
+        Mon, 21 Aug 2023 09:01:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6A96C433C8;
+        Mon, 21 Aug 2023 09:01:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692608494;
+        bh=bpgMRFrtUvUUXxIRX8UHoRJTPj6PZfbFDNTb259U9fg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=L9aT17ZhTZ4u963nqxRiyPFs17esZyEzjnVQoPKyaBwDxHm+BtAxAoszFELC08uct
+         KQAxtC21QSla3nTAqOBoXCq8e99DpHegUAfTuSqyHhOUM56cjermFvrEfAp2Zkv1fG
+         bEy6F7a4r9V7ceiKkx8NWRZxrMw7kiLVrJSngh3t7Vv8RQuvK+2ssuI6Ut+6seY87a
+         VPWZkdtDlENOXZtF8zn3kpmuIyMS0Y0MaNKxDbqZ8eCpGgm9f7IGhPCFleLMGRP8/D
+         qyEoEcOH64tJkmNW9FLpgPYAMz0OunghvcjDAAWDShdOHvuFYCM7JH/hHqXOVUfA9A
+         F8QDE0ilv3UsA==
+Date:   Mon, 21 Aug 2023 11:01:28 +0200
+From:   Benjamin Tissoires <bentiss@kernel.org>
+To:     Doug Anderson <dianders@google.com>
+Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        benjamin.tissoires@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        dmitry.torokhov@gmail.com, jikos@kernel.org, hsinyi@google.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] HID: i2c-hid: elan: Add ili9882t timing
+Message-ID: <lyns4qkh57xhppnqroaooqtniypfsmr2l5fujlry3stmhrjww4@3iy5mmmrazl6>
+References: <20230802071947.1683318-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230802071947.1683318-3-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=Um8875aMt_kWvCvpNjb3EwSk8VjVTEgv_TJ9WDS+LniA@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 11/50] dt-bindings: crypto: add sam9x7 in Atmel TDES
-Content-Language: en-US, fr-FR
-To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <alexandre.belloni@bootlin.com>,
-        <claudiu.beznea@microchip.com>, <tudor.ambarus@linaro.org>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20230728102442.265820-1-varshini.rajendran@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20230728102442.265820-1-varshini.rajendran@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAD=FV=Um8875aMt_kWvCvpNjb3EwSk8VjVTEgv_TJ9WDS+LniA@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/07/2023 at 12:24, Varshini Rajendran wrote:
-> Add DT bindings for atmel TDES.
+On Aug 02 2023, Doug Anderson wrote:
+> Benjamin,
 > 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-
-Following my answer to the email thread:
-Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-
-Thanks, best regards,
-   Nicolas
-
-> ---
->   .../devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml  | 6 +++++-
->   1 file changed, 5 insertions(+), 1 deletion(-)
+> On Wed, Aug 2, 2023 at 12:20 AM Cong Yang
+> <yangcong5@huaqin.corp-partner.google.com> wrote:
+> >
+> > The ili9882t is a TDDI IC (Touch with Display Driver). The
+> > datasheet specifies there should be 60ms between touch SDA
+> > sleep and panel RESX. Doug's series[1] allows panels and
+> > touchscreens to power on/off together, so we can add the 65 ms
+> > delay in i2c_hid_core_suspend before panel_unprepare.
+> >
+> > Because ili9882t touchscrgeen is a panel follower, and
+> > needs to use vccio-supply instead of vcc33-supply, so set
+> > it NULL to ili9882t_chip_data, then not use vcc33 regulator.
+> >
+> > [1]: https://lore.kernel.org/all/20230727171750.633410-1-dianders@chromium.org
+> >
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> > ---
+> >  drivers/hid/i2c-hid/i2c-hid-of-elan.c | 50 ++++++++++++++++++++-------
+> >  1 file changed, 38 insertions(+), 12 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
-> index 3d6ed24b1b00..6a441f79efea 100644
-> --- a/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/atmel,at91sam9g46-tdes.yaml
-> @@ -12,7 +12,11 @@ maintainers:
->   
->   properties:
->     compatible:
-> -    const: atmel,at91sam9g46-tdes
-> +    oneOf:
-> +      - const: atmel,at91sam9g46-tdes
-> +      - items:
-> +          - const: microchip,sam9x7-tdes
-> +          - const: atmel,at91sam9g46-tdes
->   
->     reg:
->       maxItems: 1
+> 
+> >
+> > diff --git a/drivers/hid/i2c-hid/i2c-hid-of-elan.c b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> > index 029045d9661c..31abab57ad44 100644
+> > --- a/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> > +++ b/drivers/hid/i2c-hid/i2c-hid-of-elan.c
+> > @@ -18,9 +18,11 @@
+> >  #include "i2c-hid.h"
+> >
+> >  struct elan_i2c_hid_chip_data {
+> > -       unsigned int post_gpio_reset_delay_ms;
+> > +       unsigned int post_gpio_reset_on_delay_ms;
+> > +       unsigned int post_gpio_reset_off_delay_ms;
+> >         unsigned int post_power_delay_ms;
+> >         u16 hid_descriptor_address;
+> > +       const char *main_supply_name;
+> >  };
+> >
+> >  struct i2c_hid_of_elan {
+> > @@ -38,9 +40,11 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
+> >                 container_of(ops, struct i2c_hid_of_elan, ops);
+> >         int ret;
+> >
+> > -       ret = regulator_enable(ihid_elan->vcc33);
+> > -       if (ret)
+> > -               return ret;
+> > +       if (ihid_elan->vcc33) {
+> > +               ret = regulator_enable(ihid_elan->vcc33);
+> > +               if (ret)
+> > +                       return ret;
+> > +       }
+> >
+> >         ret = regulator_enable(ihid_elan->vccio);
+> >         if (ret) {
+> > @@ -52,8 +56,8 @@ static int elan_i2c_hid_power_up(struct i2chid_ops *ops)
+> >                 msleep(ihid_elan->chip_data->post_power_delay_ms);
+> >
+> >         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 0);
+> > -       if (ihid_elan->chip_data->post_gpio_reset_delay_ms)
+> > -               msleep(ihid_elan->chip_data->post_gpio_reset_delay_ms);
+> > +       if (ihid_elan->chip_data->post_gpio_reset_on_delay_ms)
+> > +               msleep(ihid_elan->chip_data->post_gpio_reset_on_delay_ms);
+> >
+> >         return 0;
+> >  }
+> > @@ -64,8 +68,12 @@ static void elan_i2c_hid_power_down(struct i2chid_ops *ops)
+> >                 container_of(ops, struct i2c_hid_of_elan, ops);
+> >
+> >         gpiod_set_value_cansleep(ihid_elan->reset_gpio, 1);
+> > +       if (ihid_elan->chip_data->post_gpio_reset_off_delay_ms)
+> > +               msleep(ihid_elan->chip_data->post_gpio_reset_off_delay_ms);
+> > +
+> >         regulator_disable(ihid_elan->vccio);
+> > -       regulator_disable(ihid_elan->vcc33);
+> > +       if (ihid_elan->vcc33)
+> > +               regulator_disable(ihid_elan->vcc33);
+> >  }
+> >
+> >  static int i2c_hid_of_elan_probe(struct i2c_client *client)
+> > @@ -89,24 +97,42 @@ static int i2c_hid_of_elan_probe(struct i2c_client *client)
+> >         if (IS_ERR(ihid_elan->vccio))
+> >                 return PTR_ERR(ihid_elan->vccio);
+> >
+> > -       ihid_elan->vcc33 = devm_regulator_get(&client->dev, "vcc33");
+> > -       if (IS_ERR(ihid_elan->vcc33))
+> > -               return PTR_ERR(ihid_elan->vcc33);
+> > -
+> >         ihid_elan->chip_data = device_get_match_data(&client->dev);
+> >
+> > +       if (ihid_elan->chip_data->main_supply_name) {
+> > +               ihid_elan->vcc33 = devm_regulator_get(&client->dev,
+> > +                                                     ihid_elan->chip_data->main_supply_name);
+> > +               if (IS_ERR(ihid_elan->vcc33))
+> > +                       return PTR_ERR(ihid_elan->vcc33);
+> > +       }
+> > +
+> >         return i2c_hid_core_probe(client, &ihid_elan->ops,
+> >                                   ihid_elan->chip_data->hid_descriptor_address, 0);
+> >  }
+> >
+> >  static const struct elan_i2c_hid_chip_data elan_ekth6915_chip_data = {
+> >         .post_power_delay_ms = 1,
+> > -       .post_gpio_reset_delay_ms = 300,
+> > +       .post_gpio_reset_on_delay_ms = 300,
+> > +       .hid_descriptor_address = 0x0001,
+> > +       .main_supply_name = "vcc33",
+> > +};
+> > +
+> > +static const struct elan_i2c_hid_chip_data ilitek_ili9882t_chip_data = {
+> > +       .post_power_delay_ms = 1,
+> > +       .post_gpio_reset_on_delay_ms = 200,
+> > +       .post_gpio_reset_off_delay_ms = 65,
+> >         .hid_descriptor_address = 0x0001,
+> > +       /*
+> > +        * this touchscreen is tightly integrated with the panel and assumes
+> > +        * that the relevant power rails (other than the IO rail) have already
+> > +        * been turned on by the panel driver because we're a panel follower.
+> > +        */
+> > +       .main_supply_name = NULL,
+> >  };
+> >
+> >  static const struct of_device_id elan_i2c_hid_of_match[] = {
+> >         { .compatible = "elan,ekth6915", .data = &elan_ekth6915_chip_data },
+> > +       { .compatible = "ilitek,ili9882t", .data = &ilitek_ili9882t_chip_data },
+> 
+> Logically, this patch depends on the panel-follower series that's now
+> landed in drm-misc-next. With your Ack, I'm willing to land these two
+> patches into drm-misc-next too. Other options:
 
+If you are fine with the code, I think it could go with the drm tree
+given that it depends on the panel-follower.
+
+Unless it's too late for you to take 6.6 material (sorry I was off in
+August and just came back).
+
+Acked-By: Benjamin Tissoires <bentiss@kernel.org>
+
+Cheers,
+Benjamin
+
+> 
+> a) We could land the two patches in the i2c-hid tree since they don't
+> appear to conflict. The touchscreen won't actually function until the
+> patches meetup in linux-next but I don't think they'll give any
+> compile errors (I haven't double-checked that, but I can). ...though
+> it's possible that the dt bindings might generate errors? Again, I can
+> investigate if we want to go this way.
+> 
+> b) We can snooze this for a few months and you can pick it to i2c-hid
+> when my series reaches mainline.
+> 
+> Let me know how you'd like to proceed.
+> 
+> -Doug
