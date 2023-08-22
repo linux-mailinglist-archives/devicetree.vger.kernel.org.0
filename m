@@ -2,184 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C89967846AC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5137846E2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:19:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237538AbjHVQOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 12:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43780 "EHLO
+        id S237602AbjHVQTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 12:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236015AbjHVQOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:14:33 -0400
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2086.outbound.protection.outlook.com [40.107.105.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B0B6187;
-        Tue, 22 Aug 2023 09:14:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KM5RzhESSBtYsRlz9H9/150bukdwpbOb4cjtvIJ+HztSzQV4Z0hfrTk9KYMYKOpLZNXdJ3d5XlI6cFb1vTg6wKAZfAvAyN146mVZeUILrQ/BOXuKX7RIpHNtqaNduKiM0ziEHzmpMSy4j1Osex7kMNKNx1dkNDECxio0Wyr4yuUsTs3BK56fuSrXAlWfsKlPwkvL6ssFJefm9NjPDhuL+PFRKIVXmn0NJ9SvGRfWWxrItTKZIMVwGohmBRMbpeWs5mne0FtfwcDKXeiuXB7WksB7b+WeozI8tH486ripJdFYs61QnMN6AfEgMAdeSA/dcyGASfW+g48Q5j0dwK4DQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S/d6cZUVfOg1yUNDZkJyVTJ8oZxwlkPOiRfMA9K7LoA=;
- b=INTNMnuXmTJXLXwiTAem1hZRNCGejh4qbXJO1tmjit8HCPrTLNJP7mPrqKhdKNeHiMZc/Tw1rjx1qBIEEqOFV1fapkX6rwymjG6vxxdIC75FLat9NBCaG0+WrYJhNg4f6+GSjB4aRKYckh4svLg4MAHzBYMMTaXMuRi8IiVxkXEebNLneRXnBl7gThhJAAtYrc54xDjaDkmNlk576iqRe8AOyNrr0tzKAng5YtGqb9q/qa7kAJLxmmVkvGUKZKycWEcz9SaPKfqVVKZcLJYDpuhr6QShKhCluz++yEqAn7CE6+WyQsqYb/NjhY8S0DjA0326MUylAenf6tZ30hyRlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=S/d6cZUVfOg1yUNDZkJyVTJ8oZxwlkPOiRfMA9K7LoA=;
- b=OsE+1XdlqRgxoD5HaDS1jxsdw0O0PC9uN8At1EumS2lzkWcE9BBJTn/Cirn5UYV3t3NdmVaQUsJNCBNX6JyeRKhxv4kOiuLEyj2PHxdlZVC1YiM7mwbNAtbquU9RUYgCHjUYOLBEwlWdNddXVqucOka32j89sRFE9fw/gPBapGc=
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by DB8PR04MB6891.eurprd04.prod.outlook.com (2603:10a6:10:112::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
- 2023 16:14:28 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6699.020; Tue, 22 Aug 2023
- 16:14:26 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Thread-Topic: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Thread-Index: AQHZ1RO40eWaaiBRyke8khzjoQfBiw==
-Date:   Tue, 22 Aug 2023 16:14:26 +0000
-Message-ID: <PAXPR04MB91854737165338C33DBC57A7891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
- <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
- <PAXPR04MB91850D8807CE374BD7C30CC5891EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAL_JsqJ3dr7gxq+D5DYG8oQ=igzjARz=beQoYL7rrydV4SwDTw@mail.gmail.com>
- <PAXPR04MB918567C378D420DB4830B869891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <51bc0ccf-425b-5f16-b8f2-94d7cc979fae@linaro.org>
- <PAXPR04MB9185F7B520E8BE94B97C4908891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <e146782f-a93c-e694-1b08-7c2dba597bcf@linaro.org>
-In-Reply-To: <e146782f-a93c-e694-1b08-7c2dba597bcf@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|DB8PR04MB6891:EE_
-x-ms-office365-filtering-correlation-id: df644c80-71da-431b-18cd-08dba32adb73
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JY8UsFoaXH2bUn6KxjESz5wcN9ZboTwM23H8xUlDQ2h9TO9NolY23UR7VoX3pEhbN21XGQX7TTnb23NBWbgkToPspy1uQABrKSODi+U6VOaqsY2M4TfhOp2jZAPKoyMDSwYMd4F53UguhMy7+K1X9h6nvNxZqZO3jCf+VCrhAjHqkdPJYY8cVPGgPERitTj/S/zMAHyTXfd41LisJD3++1AbzpIo0F5PZAFSbGBXVTIoR7EhhU1nCTdqfKh7OD7WbZmYQ8g+LfhUN8VydzQMqzmxtr/+JHl3ThOpCbb8w+VK0L5fLkEPXUQg+qG467tN6BIwh3jxcO5WSfGMihA2X1WLIdpEu1/9NjurskaTH4Sun8wkl+73SBcjWFORVifU1VvNEh7Vr+vcCOhrhOhU2mmwsz4id5bBY2B/Ko94N9hAcXFyj6OUKJZ+98ucSTjTz+kXGBbXCU+Pc8RMIj9GsOB1VncUV9+OTd5nVYAs4Rc9NyJbAMznOov2TwYWuQzaMgJl2m1lpGYXBnzlzOryWf8pk02Vc0zNxiSCnYr1hJqKOBPtPnSRHLnZTZGpeZsdiqzIOF7t0OCoGP8QdTFVmrQU2up5wBKqYcma5E2P5qNd5tPV00kSK4PuHdYSlxLj
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(39860400002)(376002)(346002)(366004)(1800799009)(186009)(451199024)(54906003)(76116006)(66476007)(66446008)(66556008)(64756008)(316002)(66946007)(9686003)(110136005)(8676002)(8936002)(4326008)(41300700001)(478600001)(122000001)(55016003)(71200400001)(38100700002)(38070700005)(53546011)(6506007)(55236004)(83380400001)(2906002)(7416002)(7696005)(86362001)(44832011)(5660300002)(26005)(33656002)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cmNtMU82MFZHYTRrMjJ3Y3VabXNsMFpZNWd0TU5PQ0pZeER4UnY0eERtS1lj?=
- =?utf-8?B?Ri9tUTE4U29IY1dGcVMrTmtsZ0h1dk5mMnp3TXU3d09nUjdWY3lvSVN3eUs4?=
- =?utf-8?B?ck11YzZuMitjVTZmWGUrK0V1eFh3RGUzNXdBeDlTUmp2M3Z6Qm1GOENOdVAx?=
- =?utf-8?B?aXA5eXBpY3I5Z3FtYjV1QjRZSVAzWTFBRjhITDA0a3MrRE91YStZMFFIZDFO?=
- =?utf-8?B?SjMzbnBTakZocWRwdjhIVExvQXhrZ2hvdDFVRDc5NDViMGRXa3NnRXdBbjda?=
- =?utf-8?B?S000NFh4a2tCYUthTVA5bFUzSCtTbGFVbGUwZXhzRElSUnpzQTAyTDU0NmMw?=
- =?utf-8?B?M0gxS2FJRi9mNTdKSzIrTHFKczBjRFdDb2YyVkU4eC9mOWM1YXFzSzVEeXpF?=
- =?utf-8?B?YWhhQkdoV1ZEOU5vOW13STZUUFR1cTFUdU5PLzJKeFBjc3lwOHJ4MFFWY01P?=
- =?utf-8?B?Nk9FYlFiSzJiNGVaVUk0SDVmdTBpS2FFUkFVRkdPOERoL2NQd21ORVRURHZX?=
- =?utf-8?B?bjZtaGJCdXJwMmZ6OUNWdUtTbldOSndaYmsvanRWRW1Xeml6QTU3TzAwTWhh?=
- =?utf-8?B?WDZxcXlmVXNIRkRBMFVpQXNndW50SDFOdEE0K0crUjJMc0l3MXNkNXNvNHJu?=
- =?utf-8?B?dkFURUxhTHhNeGZmanFldk5HaFo3ak95ejBDQUpIQXNzMGg1VUNkTDhVVjh5?=
- =?utf-8?B?Y3E2dGVhN0twNTI0bDFlOUdsK2Y0S1JXdDNnVE5Ia013U3NWL1hZbkFrYUd2?=
- =?utf-8?B?eVpibEpUZkZjSmY0bEhza1FibEo1MU1xWUdaSlB2ay9haHozOHgrVUExTGFt?=
- =?utf-8?B?SGxNV2FkSUgwVjJyeGJ3N0F1eFBTb29FbmhRRDRBN3FtK2lHYUlXZ1ZCa3do?=
- =?utf-8?B?alJMNmtiK1NxQ2YyNDIzWkZSUUdraGpBZjU1eE56a1YzRzdLVFpjSWM4aE5p?=
- =?utf-8?B?VzRTcE53c0phQVF4SDlyd1VmZWpXS3pQZVB3ekdCUmxpMlJtd3hWcXNCb3RI?=
- =?utf-8?B?Nk5zWlgyUXR3T3dKUGUyUUVGeWRhK0dKWElrcnRXSEMyMkQ0SEN4UDdMRVc0?=
- =?utf-8?B?cG16M0RrZUVIZUxDUFF3ZGU5Q3NHRDVnUW9JemtwRC9kZkc3YUlUR3lPcjZx?=
- =?utf-8?B?eTcyQzF2UjVBK2VDV1dVSlh1cTR2Wm5wYUtHSVZ0akx2LzRKZEN5SlkrZjU0?=
- =?utf-8?B?R282MU5aWkNzOEdINHYrYTBZSFA1bjBOQjJYcXJvK0xzdWNvK2pMRUdSaE94?=
- =?utf-8?B?eDU5VTJMNGsraEtpdjBLQ1VBWDZqSVFzcGx2bWxUdm4rdXhSMnNjZWFCVzBI?=
- =?utf-8?B?MHJLSnIxUDcyRVdZVHZkWDg4ZUJDck92YkNKd2pLUU1Fak9HS09uYzFwR2Ux?=
- =?utf-8?B?czlNT2dQRDFreC82MXhwcmNGQjU3bUlCbUI5SVgxSGprWTFOSytneDJqeW52?=
- =?utf-8?B?ZUZGcTNYNDM5L2I3OU8xdFAzWU5sZVNXeS9nMVRwTUV0Y0pqVWRFcEZDUkx4?=
- =?utf-8?B?VHhHQlVzNnFxSk4rTEJWZHJmM3lmN2xGaHNCMkdTdEJTMlptTjdEOHkwS3lR?=
- =?utf-8?B?K0FEYWZDVzZTaEtnVUJSVXg2cHdwZnRGbkpxU2VyTE5lWDF6dzNhNkVSMGF2?=
- =?utf-8?B?RHQzYis3dWw3cTlHd1lncmxSV2h5eEFTUnVnL1FORHFudC9vSmxUT0pXWGFz?=
- =?utf-8?B?SGhPVEE2ZFJ0cnZOVE1uVnpCL3lMTTNqVkF2b2FHNGkxWVY0UjNOVEJtQk81?=
- =?utf-8?B?VVcxM1J1a2o3c0hSc1NQQ0gzRUlib3dzOTNPYnloZVJONmFVQnlwQ0NjZDVv?=
- =?utf-8?B?MDc1TXFqK2VjVXNhckNqYVdNM3JXelNhZFI5Smt6Y3dWc3dzK0VJaHpEV2Rl?=
- =?utf-8?B?T01mTVRTaEdFbzZ2bUdoVm1qRmNKSW1KT3BQZVRzSEQ1UjRMdTJXT0F1aTRs?=
- =?utf-8?B?Z0FFNUcxeGg3cGw0aHBVeHlXSWRDZ1pxY0N2dnRGSXJ0dXg5L1AySGJjYnRJ?=
- =?utf-8?B?VDQ2Sk9kUGZJdGM5YlU4RkphZ3QySjZIMWhQeVJabnZJdmVneklKVnJXa3BY?=
- =?utf-8?B?ZWlBNEpxZlBqK0taaVk1aTVITTlydEdraXZJUWNhZzY5Z1FjRU83SHV4WGtR?=
- =?utf-8?Q?BXhToQjoIWBfQeSLUY5ZmZJST?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S234829AbjHVQTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:19:45 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9275137
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:19:43 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-307d20548adso3992929f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692721182; x=1693325982;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e2sK25pHmy+ze1Ybz8hn3pPQzDyrBRYa60rRH4NH4K4=;
+        b=EIr1I4lkGWcsjJhSARAeppBKOlivRpYDEKnMMlMqc8br9LSs+W/8+ObH7xmN6/O8mB
+         CEk9ec26vYMXxU1M0Zr1+kTvvkeZmB6JOxDu7UkvfMzIdWBopKpEGT8dmNjIKXwLj3ul
+         0CnlGGh4HMrIMeFYK7IsgNeL+Wdx4zSePl15f3jdiSJQ7JTY/0aA15J4+gWF4xtgmpof
+         Ufih+szZNwlgZIt/0sFRCPp/BnLx6oFpwqp5Yd5okz5ofoloAxIqdpzD2gXDf85q4xrY
+         9gklxTxamFUMMpAmkJ5sL6ZAoETDIV1DpNJ++428Fmxc0gJ2bMTM6KW+xHOZmzlXDqVF
+         Iotg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692721182; x=1693325982;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=e2sK25pHmy+ze1Ybz8hn3pPQzDyrBRYa60rRH4NH4K4=;
+        b=HVp7iqVEwBpD+dR2qaFGn6mHfsRxkHpncGLVRHJHB/FkVjF1I0OSek1WipsqdLXLMs
+         +FL8KHTywvEDjtXVO86G6+O5uoTL7/gONv1bIDkhxqSDfIP/bmFBXSx0ar9eNB+5VEqj
+         ng6YDPlfrnPhc3hWuRK8CbYCAFZi4i6ynUopJ3FTPuyWGipZbCj5Z1vAnPznD8wiQJ7I
+         HhPmBMnR3fl8G+2SG8vasvkjN8c37Y5MVi7upLGjSiB66rOVMTXk8zVQi+Hb9elzNQT9
+         ylNczwYMZ56P+lEsBMjf2BdnkAsyMSqzz9fiDERheRvQSSf5A/eyxkSJDvWkTcvQNOTW
+         uwvQ==
+X-Gm-Message-State: AOJu0YzytxgQDhhX71i9EHh3dTlXv62zduS7X4PlY4Ji0Gxrbppyr2//
+        nJhO7VIAk7jmKpnVF3XwbD/w8g==
+X-Google-Smtp-Source: AGHT+IFV2T7QA2Y8bKBQIemr3twqEOx//JFK9SnUvRdlu3ELv5Fb8pjW8G6OT+xALpwoMCsJaKtPYQ==
+X-Received: by 2002:adf:e548:0:b0:317:5c82:10c5 with SMTP id z8-20020adfe548000000b003175c8210c5mr7196004wrm.17.1692721182281;
+        Tue, 22 Aug 2023 09:19:42 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:cad:2140:de4a:6da8:c7fc:12c? ([2a01:e0a:cad:2140:de4a:6da8:c7fc:12c])
+        by smtp.gmail.com with ESMTPSA id y17-20020a5d4ad1000000b0031984b370f2sm16289955wrs.47.2023.08.22.09.19.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 09:19:41 -0700 (PDT)
+Message-ID: <36efbd0b-7f33-4c11-8e8e-f07bea4b3455@linaro.org>
+Date:   Tue, 22 Aug 2023 18:19:40 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: df644c80-71da-431b-18cd-08dba32adb73
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2023 16:14:26.8239
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: nW3OqpiUid8YaQDPOGrJkHfsMcLtspPEIQmEK8m+fqfQ8TjCniy8LKav+xuwvCCQK6ZPljX5nX1orfP/edQUog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6891
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v5 0/4] input: touchscreen: add initial support for Goodix
+ Berlin touchscreen IC
+Content-Language: en-US, fr
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Jeff LaBundy <jeff@labundy.com>
+Cc:     linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+References: <20230801-topic-goodix-berlin-upstream-initial-v5-0-079252935593@linaro.org>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20230801-topic-goodix-berlin-upstream-initial-v5-0-079252935593@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBUdWVzZGF5LCBB
-dWd1c3QgMjIsIDIwMjMgMTA6NTggQU0NCj4gVG86IFNoZW53ZWkgV2FuZyA8c2hlbndlaS53YW5n
-QG54cC5jb20+OyBSb2IgSGVycmluZw0KPiA8cm9iaCtkdEBrZXJuZWwub3JnPg0KPiBDYzogS3J6
-eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPjsgQ29u
-b3IgRG9vbGV5DQo+IDxjb25vcitkdEBrZXJuZWwub3JnPjsgVWxmIEhhbnNzb24gPHVsZi5oYW5z
-c29uQGxpbmFyby5vcmc+OyBMaWFtIEdpcmR3b29kDQo+IDxsZ2lyZHdvb2RAZ21haWwuY29tPjsg
-TWFyayBCcm93biA8YnJvb25pZUBrZXJuZWwub3JnPjsNCj4gaW14QGxpc3RzLmxpbnV4LmRldjsg
-ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7
-DQo+IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbRVhU
-XSBSZTogW1BBVENIIDEvMl0gZHQtYmluZGluZ3M6IHBvd2VyOiBBZGQgcmVndWxhdG9yLXBkIHlh
-bWwNCj4gZmlsZQ0KPiANCj4gPg0KPiA+IFRoYXQgaXMgYXJndWFibGUgdG9vLiBUaGUgZHJpdmVy
-IG1heSBhc3N1bWUgaXRzIHBvd2VyIGlzIG9uIHdoZW4NCj4gPiBwcm9iZWQsIHdoaWNoIGFsaWdu
-cyB3aXRoIGhvdyB0aGUgUEQgYmVoYXZlcy4NCj4gDQo+IFNvIGV2ZXJ5dGhpbmcgaW4gZHJpdmVy
-Li4uIG5vIGRpc2N1c3Npb24gYWJvdXQgYmluZGluZ3MuDQo+IA0KDQpUaGF0J3MgdHJ1ZSBvbmx5
-IHdoZW4geW91IGhhdmUgYSBQRCBkcml2ZXIgZm9yIGl0LiANCg0KPiA+DQo+ID4+PiBJdCBhbHNv
-IGxhY2tzIHBvd2VyIG1hbmFnZW1lbnQgc3VwcG9ydC4NCj4gPj4NCj4gPj4gV2hpY2ggaXMgbm90
-IHJlbGF0ZWQgdG8gYmluZGluZ3MgYnV0IGltcGxlbWVudGF0aW9uIGluIGdpdmVuIGRyaXZlci4N
-Cj4gPj4NCj4gPg0KPiA+IEZvciB0aG9zZSBzaW1wbGUgZHJpdmVycywgdGhlIGRlZmF1bHQgcG93
-ZXIgbWFuYWdlbWVudCBsb2dpYyBjYW4NCj4gPiBoYW5kbGUgcG93ZXIgY29ycmVjdGx5IHdpdGhv
-dXQgcmVxdWlyaW5nIGFueSBzcGVjaWFsaXplZA0KPiA+IGltcGxlbWVudGF0aW9uIGluIHRoZSBk
-cml2ZXIgY29kZS4NCj4gDQo+IFlvdSBjYW4gY3JlYXRlIGFueSBkcml2ZXJzIHlvdSB3aXNoIG9y
-IGNoYW5nZSBleGlzdGluZyBvbmVzLiBJIGRvbid0IHNlZSBhDQo+IHByb2JsZW0gaGVyZS4NCj4g
-DQoNClRoYXQncyB3aGF0IHRoaXMgcGF0Y2ggc2V0IGRvZXMuDQoNCj4gPg0KPiA+Pj4NCj4gPg0K
-PiA+IEFzIGEgbmV3IGRyaXZlciwgaXQgaGFzIHRvIGludm9sdmUgc29tZSBuZXcgYmluZGluZ3Mg
-ZXNwZWNpYWxseSB0aGUNCj4gPiBjb21wYXRpYmxlIHN0cmluZy4NCj4gDQo+IEkgYW0gbm90IHRh
-bGtpbmcgYWJvdXQgdGhpcy4gSSBkbyBub3Qgc3BlYWsgYWJvdXQgY3JlYXRpbmcgbmV3IGJpbmRp
-bmdzLCBidXQNCj4gY2hhbmdpbmcgdGhlbS4NCg0KSSdtIGEgYml0IGNvbmZ1c2VkIGJ5IHlvdXIg
-c3RhdGVtZW50LiBUaGUgcGF0Y2ggb25seSBjcmVhdGVzIHNvbWUgbmVjZXNzYXJ5IA0KbmV3IGJp
-bmRpbmdzIGZvciB0aGUgbmV3IGRyaXZlci4gSXQgZG9lc24ndCBjaGFuZ2UgYW55IGV4aXN0aW5n
-IGJpbmRpbmdzLg0KDQo+ID4NCj4gPj4+DQo+ID4gVGhhbmsgeW91IGZvciB0aGUgY2xhcmlmaWNh
-dGlvbi4gVGhlIGlzc3VlIGlzIHRoYXQgdGhpcyBkcml2ZXIgaXMNCj4gPiBwdXJlbHkgYSBzb2Z0
-d2FyZSBsYXllciB0aGF0IHdyYXBzIHRoZSByZWd1bGF0b3JzIGFzIGEgcG93ZXIgZG9tYWluLg0K
-PiA+IFRoZSBiaW5kaW5ncyBtYWtlIHRoZSBpbXBsZW1lbnRhdGlvbiBjbGVhbiBhbmQgZWFzeSB0
-byB1bmRlcnN0YW5kLiAgSQ0KPiA+IGRvbid0IHRoaW5rIHdlIHNob3VsZCBhZGQgZXh0cmEgY29t
-cGxleCBsb2dpYyBpbnNpZGUgdGhlIGRyaXZlciBzb2xlbHkgdG8gYXZvaWQNCj4gaW50cm9kdWNp
-bmcgbmV3IGJpbmRpbmdzLg0KPiANCj4gU2luY2UgYmluZGluZ3MgYXJlIG5vdCBmb3Igc29mdHdh
-cmUgbGF5ZXJzLCBJIGRvbid0IHRoaW5rIHdlIHNob3VsZCBiZSB0YWxraW5nDQo+IGFib3V0IHRo
-ZW0ganVzdCB0byBhdm9pZCBpbnRyb2R1Y2luZyBkcml2ZXIgY2hhbmdlcy4NCj4gDQoNCldoaWxl
-IGl0IGlzIGEgc29mdHdhcmUgbGF5ZXIsIGl0IGlzIGEgZHJpdmVyIHRoYXQgcmVxdWlyZXMgYmlu
-ZGluZ3MuIEkgZG9uJ3QgdGhpbmsgDQp5b3Ugd291bGQgcmVjb21tZW5kIGhhcmRjb2RpbmcgdGhv
-c2UgcHJvcGVydGllcyBpbnNpZGUgdGhlIGRyaXZlciBpdHNlbGYuDQoNClRoYW5rcywNClNoZW53
-ZWkNCg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
+Hi,
+
+On 01/08/2023 14:15, Neil Armstrong wrote:
+> These touchscreen ICs support SPI, I2C and I3C interface, up to
+> 10 finger touch, stylus and gestures events.
+> 
+> This initial driver is derived from the Goodix goodix_ts_berlin
+> available at [1] and [2] and only supports the GT9916 IC
+> present on the Qualcomm SM8550 MTP & QRD touch panel.
+> 
+> The current implementation only supports BerlinD, aka GT9916.
+> 
+> Support for advanced features like:
+> - Firmware & config update
+> - Stylus events
+> - Gestures events
+> - Previous revisions support (BerlinA or BerlinB)
+> is not included in current version.
+> 
+> The current support will work with currently flashed firmware
+> and config, and bail out if firmware or config aren't flashed yet.
+
+
+Gentle ping, is there any changes to be made in order to get this driver in ?
+
+Thanks,
+Neil
+
+> 
+> [1] https://github.com/goodix/goodix_ts_berlin
+> [2] https://git.codelinaro.org/clo/la/platform/vendor/opensource/touch-drivers
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Changes in v5:
+> - rebased on next-20230801
+> - Link to v4: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v4-0-0947c489be17@linaro.org
+> 
+> Changes in v4:
+> - Core updates:
+>   - drop kconfig depends, deps will be handled by _SPI and _I2C
+>   - change power_on() error labels
+>   - print errors on all dev_err() prints
+>   - remove useless default variable initialization
+>   - switch irq touch checksum error to dev_err()
+>   - add Jeff's review tag
+> - I2C changes
+>   - change REGMAP_I2C Kconfig from depends to select
+>   - add Jeff's review tag
+> - SPI changes
+>   - add select REGMAP to Kconfig
+>   - added GOODIX_BERLIN_ prefix to defines
+>   - switched from ret to error
+>   - add Jeff's review tag
+> - Link to v3: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v3-0-f0577cead709@linaro.org
+> 
+> Changes in v3:
+> - Another guge cleanups after Jeff's review:
+>   - appended goodix_berlin_ before all defines
+>   - removed some unused defines
+>   - removed retries on most of read functions, can be added back later
+>   - added __le to ic_info structures
+>   - reworked and simplified irq handling, dropped enum and ts_event structs
+>   - added struct for touch data
+>   - simplified and cleaned goodix_berlin_check_checksum & goodix_berlin_is_dummy_data
+>   - moved touch_data_addr to the end of the main code_data
+>   - reworked probe to get_irq last and right before setip input device
+>   - cleaned probe by removing the "cd->dev"
+>   - added short paragraph to justify new driver for berlin devices
+>   - defined all offsets & masks
+> - Added bindings review tag
+> - Link to v2: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v2-0-26bc8fe1e90e@linaro.org
+> 
+> Changes in v2:
+> - Huge cleanups after Jeff's review:
+>   - switch to error instead of ret
+>   - drop dummy vendor/product ids
+>   - drop unused defined/enums
+>   - drop unused ic_info and only keep needes values
+>   - cleanup namings and use goodix_berlin_ everywhere
+>   - fix regulator setup
+>   - fix default variables value when assigned afterwars
+>   - removed indirections
+>   - dropped debugfs
+>   - cleaned input_dev setup
+>   - dropped _remove()
+>   - sync'ed i2c and spi drivers
+> - fixed yaml bindings
+> - Link to v1: https://lore.kernel.org/r/20230606-topic-goodix-berlin-upstream-initial-v1-0-4a0741b8aefd@linaro.org
+> 
+> ---
+> Neil Armstrong (4):
+>        dt-bindings: input: document Goodix Berlin Touchscreen IC
+>        input: touchscreen: add core support for Goodix Berlin Touchscreen IC
+>        input: touchscreen: add I2C support for Goodix Berlin Touchscreen IC
+>        input: touchscreen: add SPI support for Goodix Berlin Touchscreen IC
+> 
+>   .../bindings/input/touchscreen/goodix,gt9916.yaml  |  95 ++++
+>   drivers/input/touchscreen/Kconfig                  |  31 ++
+>   drivers/input/touchscreen/Makefile                 |   3 +
+>   drivers/input/touchscreen/goodix_berlin.h          | 159 ++++++
+>   drivers/input/touchscreen/goodix_berlin_core.c     | 581 +++++++++++++++++++++
+>   drivers/input/touchscreen/goodix_berlin_i2c.c      |  69 +++
+>   drivers/input/touchscreen/goodix_berlin_spi.c      | 173 ++++++
+>   7 files changed, 1111 insertions(+)
+> ---
+> base-commit: a734662572708cf062e974f659ae50c24fc1ad17
+> change-id: 20230606-topic-goodix-berlin-upstream-initial-ba97e8ec8f4c
+> 
+> Best regards,
+
