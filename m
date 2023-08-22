@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA228784056
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:08:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E4EF784057
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:08:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235543AbjHVMIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S235110AbjHVMIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 22 Aug 2023 08:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36254 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235110AbjHVMIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:14 -0400
+        with ESMTP id S235174AbjHVMIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:15 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5FC185
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 05:08:12 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25B0D91
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 05:08:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1692706092; x=1724242092;
+  t=1692706093; x=1724242093;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=s7WeywFXWdE+FhnI+O3G/g0/p2PvbzCwYKweQiQxrFE=;
-  b=qHLaNl4HJnwv22+O/KimTMr+EgInOp0G/laV7DAb9b3SRs9ELVF6twEu
-   aa0iCnlUxffKWyLO54Sp0Md76CagRFrcZkstJXl+IlxK2/9Rktq+wZxzU
-   ebN4ah66EPDtEvPD7u2Q1K+7OMoks2xOrRo6+MymezdSqrPgsRHn9IbK7
-   gxjKb4a699Wa0J4EvpxGB1R6TFG8uEOoOw/dgo77ZpF3sEgvln3sz2ux8
-   WmmwYrt8zZzPmdJJVgwA4v55575GObKSsBdSE2rixQ0oYu81N+PHLWG4G
-   1LAWpTy0dBON9b4NIrhIfqeQRjAqjw9c1hO0e/ghE0Xf7jlTvJIc8istD
-   w==;
+  bh=pw62WBSNONgfwtUpzWssQYmAYfMnndHeEiaVsXsvjjA=;
+  b=LnxID4jTNVkjcgf6l/Y3xqqPhc5Sq7Mc9bJ1BWZw/cdP3J3I4c+bpxN0
+   H2mTHafswASaIfCg049EA4qcoXceJuGZincRBmfm6zKABbIJVLMLoISox
+   tHTQfSJpmeiGtJSWe5amPSPT8WfMVucyxNL9LfhuN9loeJEvPOL4efAuF
+   SL6H2t5tos3vdvuV3uuDUf5ih4L7n6+ZTVep7JpapSSZQ8Kaup5aMtJjI
+   ZmbwpP5mIcGYAPLiYFzDtVMvafmk2765NMFB0nqCnpYBjY+S3L/45IygM
+   HA9D2+TquCJW07jLFj4gyWtfjW154Os5hOdf5lwGslJfqhB0cYGR2xFo1
+   A==;
 X-IronPort-AV: E=Sophos;i="6.01,193,1684792800"; 
-   d="scan'208";a="32562948"
+   d="scan'208";a="32562949"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 22 Aug 2023 14:08:09 +0200
 Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 53363280086;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 929BC280084;
         Tue, 22 Aug 2023 14:08:09 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -51,9 +51,9 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux@ew.tq-group.com,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 2/5] arm64: dts: imx8mm-tqma8mqml-mba8mx: Add LVDS overlay
-Date:   Tue, 22 Aug 2023 14:08:01 +0200
-Message-Id: <20230822120804.717592-3-alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 3/5] arm64: dts: imx8mn-tqma8mqnl-mba8mx: Add LVDS overlay
+Date:   Tue, 22 Aug 2023 14:08:02 +0200
+Message-Id: <20230822120804.717592-4-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
 References: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
@@ -74,31 +74,31 @@ actual panel compatible. Also add the DSIM supply voltages.
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
  arch/arm64/boot/dts/freescale/Makefile        |  4 ++
- ...8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso | 45 +++++++++++++++++++
- .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  |  5 +++
+ ...8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso | 45 +++++++++++++++++++
+ .../boot/dts/freescale/imx8mn-tqma8mqnl.dtsi  |  5 +++
  3 files changed, 54 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso
 
 diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index a3e037e5bd8ae..ad86cc60da7ca 100644
+index ad86cc60da7ca..72a21aa32855e 100644
 --- a/arch/arm64/boot/dts/freescale/Makefile
 +++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -82,6 +82,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-yavia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-yavia.dtb
+@@ -95,6 +95,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-venice-gw7902.dtb
 +
-+imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtbo
-+dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtb
++imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33-dtbs += imx8mn-tqma8mqnl-mba8mx.dtb imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtb
 +
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-beacon-kit.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-data-modul-edm-sbc.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-model-a.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso
 new file mode 100644
-index 0000000000000..e44249c6d8a09
+index 0000000000000..29235e390a5d7
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso
 @@ -0,0 +1,45 @@
 +// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
 +/*
@@ -113,7 +113,7 @@ index 0000000000000..e44249c6d8a09
 +#include <dt-bindings/gpio/gpio.h>
 +
 +&{/} {
-+	compatible = "tq,imx8mm-tqma8mqml-mba8mx", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
++	compatible = "tq,imx8mn-tqma8mqnl-mba8mx", "tq,imx8mn-tqma8mqnl", "fsl,imx8mn";
 +};
 +
 +&backlight_lvds {
@@ -138,18 +138,18 @@ index 0000000000000..e44249c6d8a09
 +};
 +
 +&mipi_dsi {
-+       status = "okay";
++	status = "okay";
 +};
 +
 +&panel {
 +	compatible = "tianma,tm070jvhg33";
 +	status = "okay";
 +};
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-index b4466a26d838a..8c0c6e7159247 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
-@@ -230,6 +230,11 @@ eeprom0: eeprom@57 {
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+index 391ca5516e4c5..fb24b9aa1b938 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl.dtsi
+@@ -219,6 +219,11 @@ eeprom0: eeprom@57 {
  	};
  };
  
@@ -158,9 +158,9 @@ index b4466a26d838a..8c0c6e7159247 100644
 +	vddio-supply = <&ldo3_reg>;
 +};
 +
- &pcie_phy {
- 	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
- 	fsl,clkreq-unsupported;
+ &usdhc3 {
+ 	pinctrl-names = "default", "state_100mhz", "state_200mhz";
+ 	pinctrl-0 = <&pinctrl_usdhc3>;
 -- 
 2.34.1
 
