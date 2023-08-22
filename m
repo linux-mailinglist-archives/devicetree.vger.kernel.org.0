@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CBF0783BFD
+	by mail.lfdr.de (Postfix) with ESMTP id DE570783BFF
 	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:45:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233926AbjHVIpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 04:45:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50338 "EHLO
+        id S230323AbjHVIpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 04:45:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233915AbjHVIpd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:45:33 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 119ED1B5
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:45:31 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-68a5457b930so1122124b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:45:31 -0700 (PDT)
+        with ESMTP id S233943AbjHVIpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:45:35 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 848FE1A5
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:45:33 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id d2e1a72fcca58-68a3ced3ec6so1849015b3a.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:45:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692693930; x=1693298730;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=l4e8PiVON5BPxeakGTSUHXhgF5XGViH7EDdI7UeL+GU=;
-        b=a7utS6SkklK51hKqpdsgD/pL/5tiCWABxQrWN+tmBd/pYSitBnMC6dkpENe7hllgc3
-         Tdv+f/Gw2xkhqAZHwjg6so6jBzT1+3azaTNLcDn7D3kxMTN1nfj+pS1mz2SqtUo0vo0V
-         jG80BWmyWsbONaKs8igg1RoyMw6Iy/+VdixR0=
+        d=chromium.org; s=google; t=1692693933; x=1693298733;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=scA3slj2GnANfQZ9WmrZNWN3UDRBxFFiMbyHn692ZM4=;
+        b=Y6BM3dWQ2i1ulThxW8v48ZRSijPKfGGDZU7YePxZx4AQcVIlA/ORIdCKMV08hkCpCY
+         qPNYEzQkzeGYFKSMV8pGTxo2/wvqI8UxJHVruSp1Y+nVqJz8GWV514e3wRNI1sTiDPYK
+         nUL7pKK3A3Qh1AOStKX69Lnb2vawQmrTGjUGY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692693930; x=1693298730;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l4e8PiVON5BPxeakGTSUHXhgF5XGViH7EDdI7UeL+GU=;
-        b=Li+e2MgeVu3h+vTiP3Z4vX3NNFISFA+VYLvW3TRqv3qikIvzKeNy7S6pnWuZh8otPK
-         oKmKXm6fkhypSMF7opmHKCE36CFgr3ZutwvtRU4/W1ayIZCi2EKvOmH9ROllMnqQLtCz
-         M7DJr7QZvxo481GS8kNsUaPbS2eo6BZo6E4S4kVnRykf+fcdAGWBqKApDa4LwwPvxecI
-         HNjuejJ+Hkz8/ArPFxGGmmi5ex5X34RSo9N504/MTLRhjO0BIYJ5En4c0Bisa2urRWTo
-         KYIH8AACC7mObYnyS0qeSTS05ZmPpw1+d323j3Vq45NZ+cTM/YLRPuB3rfNfAcXZF1M1
-         WgRQ==
-X-Gm-Message-State: AOJu0YyjDPnDmmnNkc4CBRorFXXgpvaH13udOzpw9Xy8XAAirN2x4Ept
-        aSv4FpfABOJv9q342xjHgVzf3w==
-X-Google-Smtp-Source: AGHT+IHrUJp3u16TQLqsQBn/YzOe1/lMaTSHKy4q2aDEAGU4yyXKLxhonCzC+Uan8vuJoILuBL3rXw==
-X-Received: by 2002:a05:6a20:650:b0:13e:8ce5:bedd with SMTP id 16-20020a056a20065000b0013e8ce5beddmr7786724pzm.1.1692693930539;
-        Tue, 22 Aug 2023 01:45:30 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692693933; x=1693298733;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=scA3slj2GnANfQZ9WmrZNWN3UDRBxFFiMbyHn692ZM4=;
+        b=S7DBExQ1UHDws1MYj62Jx88KshXRjsZd7qpj6AVZkUqanC3D2LOO9Vvhw+tZF0jcd3
+         hTzxrb9HV06nO0mAlceCEIyvtR0Vr6xnoCg8GBO3a42UvA3KtOBsVts9buBg1WDFjU5E
+         N8CpT+dDHSDsGohx/j5eahy0buL7TO23pPZU7eYbPHWFy3BZExAF2OSCgQWBBh+TwQu5
+         wT8V2NNXVK8o+SgIitGPJ7HohhIaUaRbqvvwS4ghHFAGBcb1bYtRulK5fBYB4xvxYW9X
+         OMC91iZZlS+t6dz8Jamjx8X7mPg1GcUcfhgBNnsOwMZNoBOvfU8Xw39avoahqeQ9H5GJ
+         CTMA==
+X-Gm-Message-State: AOJu0YzxQyew+rGyGPt+RSLcwIgafKeaR8UZk3VS3/eWu7aGL/ckmYMI
+        WuYLvDcGxeEUtJE9gfo7Rw+qgQ==
+X-Google-Smtp-Source: AGHT+IHW6ePGH6SgC29qM4b5i2IL+bnaOrlXSniE0MdltskRkrxsbx0tRAxYxqvSf6DSgpjVj78adQ==
+X-Received: by 2002:a05:6a00:1492:b0:68a:4312:e0d6 with SMTP id v18-20020a056a00149200b0068a4312e0d6mr7109893pfu.10.1692693932995;
+        Tue, 22 Aug 2023 01:45:32 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:e619:3fa0:1a90:6bb0])
-        by smtp.gmail.com with ESMTPSA id s26-20020aa78d5a000000b00666b012baedsm7304790pfe.158.2023.08.22.01.45.28
+        by smtp.gmail.com with ESMTPSA id s26-20020aa78d5a000000b00666b012baedsm7304790pfe.158.2023.08.22.01.45.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Aug 2023 01:45:30 -0700 (PDT)
+        Tue, 22 Aug 2023 01:45:32 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -58,121 +59,66 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 00/11] regulator: mt6366: Split out of MT6358 and cleanup
-Date:   Tue, 22 Aug 2023 16:45:08 +0800
-Message-ID: <20230822084520.564937-1-wenst@chromium.org>
+Subject: [PATCH v2 01/11] dt-bindings: mfd: mt6397: Split out compatible for MediaTek MT6366 PMIC
+Date:   Tue, 22 Aug 2023 16:45:09 +0800
+Message-ID: <20230822084520.564937-2-wenst@chromium.org>
 X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
+In-Reply-To: <20230822084520.564937-1-wenst@chromium.org>
+References: <20230822084520.564937-1-wenst@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi everyone,
+The MT6366 PMIC is mostly, but not fully, compatible with MT6358. It has
+a different set of regulators. Specifically, it lacks the camera related
+VCAM* LDOs and VLDO28, but has additional VM18, VMDDR, and VSRAM_CORE LDOs.
 
-This is v2 of my MT6366 PMIC split-out-of-MT6358 cleanup series. The two
-PMICs are mostly identical, except for the regulator bits. The MT6366 is
-missing the VCAM* (camera related) LDOs, but in their place has a few
-other ones. This thus requires a separate compatible to handle the
-differences.
+The PMICs contain a chip ID register that can be used to detect which
+exact model is preset, so it is possible to share a common base
+compatible string.
 
-Changes since v1:
-- Switched to using MT6358 compatible as fallback compatible
-  Differences are detected through chip ID register
-- MT6366 regulator binding merged with MT6358 one instead of having two
-  separate ones
-- Added patches
-  - regulator: dt-bindings: mt6358: Convert to DT schema     
-  - regulator: dt-bindings: mt6358: Add regulator supplies   
-  - regulator: mt6358: Add supply names for MT6358 regulators
-  - arm64: dts: mediatek: mt8183-kukui: Add PMIC regulator supplies
-  These bring MT6358 regulators to the same completeness level as MT6366
-- Dropped patch "mfd: mt6397: Split MediaTek MT6366 PMIC out of MT6358"
-- Dropped patch "soc: mediatek: pwrap: add support for MT6366 PMIC"
+Add a separate compatible for the MT6366 PMIC, with a fallback to the
+MT6358 PMIC.
 
-This depends on my previous "regulator: mt6358: Remove bogus regulators
-and improvements" series [1]. The series is still in flight, but I think
-posting this earlier would help get reviews underway.
+Fixes: 49be16305587 ("dt-bindings: mfd: Add compatible for the MediaTek MT6366 PMIC")
+Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+---
+Dropped Conor's Reviewed-by tag as this patch is now completely different.
 
-Patch 1 add a compatible string for the MT6366 PMIC, with a fallback to
-the MT6358 one.
+ Documentation/devicetree/bindings/mfd/mt6397.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Patch 2 adds new register definitions for the MT6366-specific
-regulators.
-
-These two should go through the MFD tree and put on an immutable
-branch for the regulator tree to consume patch 2.
-
-Patch 3 converts the existing MT6358 regulator DT binding to DT schema.
-
-Patch 4 adds regulator supply properties to the MT6358 regulator
-binding.
-
-Patch 5 adds MT6366 regulators to the MT6358 regulator binding. This was
-previously done by Zhiyong Tao [2] from MediaTek as a separate binding
-file. I cleaned up the patch based on previous review comments, simplified
-the regulator names, and added regulator supplies. Bogus regulators were
-also dropped, like what was done for the MT6358 [1]. In v2 this was
-merged with the MT6358 binding, now converted to DT schema.
-
-Patch 6 adds support for the regulator supplies to the MT6358 regulator
-driver.
-
-Patch 7 simplifies the MT6366 regulator names to match the new names
-specified in the binding.
-
-Patch 8 makes the MT6366 VCN18 LDO regulator configurable. This is one
-of the differences between the MT6358 and MT6366.
-
-Patch 9 adds regulators that were missing from the originally proposed
-binding and driver.
-
-Patch 10 adds regulator supply names to the MT6366 regulators
-
-Patch 11 adds regulator supplies to MT8183 Kukui boards.
-
-As mentioned, patches 1 and 2 should go through the mfd tree on an
-immutable branch. patches 3 through 10 should go through the regulator
-tree, on top of the aforementioned immutable branch. Patch 11 should go
-through the MediaTek tree.
-
-[1] https://lore.kernel.org/linux-arm-kernel/20230721082903.2038975-1-wenst@chromium.org/
-[2] https://lore.kernel.org/linux-arm-kernel/20220823123745.14061-1-zhiyong.tao@mediatek.com/
-
-Chen-Yu Tsai (10):
-  dt-bindings: mfd: mt6397: Split out compatible for MediaTek MT6366
-    PMIC
-  mfd: mt6358: Add registers for MT6366 specific regulators
-  regulator: dt-bindings: mt6358: Convert to DT schema
-  regulator: dt-bindings: mt6358: Add regulator supplies
-  regulator: mt6358: Add supply names for MT6358 regulators
-  regulator: mt6358: fix and drop type prefix in MT6366 regulator node
-    names
-  regulator: mt6358: Make MT6366 vcn18 LDO configurable
-  regulator: mt6358: Add missing regulators for MT6366
-  regulator: mt6358: Add supply names for MT6366 regulators
-  arm64: dts: mediatek: mt8183-kukui: Add PMIC regulator supplies
-
-Zhiyong Tao (1):
-  regulator: dt-bindings: mediatek: Add MT6366 PMIC
-
- .../devicetree/bindings/mfd/mt6397.txt        |   4 +-
- .../regulator/mediatek,mt6358-regulator.yaml  | 249 +++++++++++++
- .../bindings/regulator/mt6358-regulator.txt   | 350 ------------------
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |  28 ++
- drivers/regulator/mt6358-regulator.c          | 237 +++++++-----
- include/linux/mfd/mt6358/registers.h          |  17 +
- include/linux/regulator/mt6358-regulator.h    |   3 +
- 7 files changed, 436 insertions(+), 452 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
- delete mode 100644 Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-
+diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
+index 294693a8906c..10540aa7afa1 100644
+--- a/Documentation/devicetree/bindings/mfd/mt6397.txt
++++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
+@@ -22,8 +22,9 @@ compatible:
+ 	"mediatek,mt6323" for PMIC MT6323
+ 	"mediatek,mt6331" for PMIC MT6331 and MT6332
+ 	"mediatek,mt6357" for PMIC MT6357
+-	"mediatek,mt6358" for PMIC MT6358 and MT6366
++	"mediatek,mt6358" for PMIC MT6358
+ 	"mediatek,mt6359" for PMIC MT6359
++	"mediatek,mt6366", "mediatek,mt6358" for PMIC MT6366
+ 	"mediatek,mt6397" for PMIC MT6397
+ 
+ Optional subnodes:
+@@ -40,6 +41,7 @@ Optional subnodes:
+ 		- compatible: "mediatek,mt6323-regulator"
+ 	see ../regulator/mt6323-regulator.txt
+ 		- compatible: "mediatek,mt6358-regulator"
++		- compatible: "mediatek,mt6366-regulator", "mediatek-mt6358-regulator"
+ 	see ../regulator/mt6358-regulator.txt
+ 		- compatible: "mediatek,mt6397-regulator"
+ 	see ../regulator/mt6397-regulator.txt
 -- 
 2.42.0.rc1.204.g551eb34607-goog
 
