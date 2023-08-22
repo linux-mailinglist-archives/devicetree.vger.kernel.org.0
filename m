@@ -2,60 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46567783CE4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 11:28:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52351783CE8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 11:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232158AbjHVJ21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 05:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35856 "EHLO
+        id S234317AbjHVJ3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 05:29:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234314AbjHVJ2W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 05:28:22 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BF95CD1
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:28:20 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bbad32bc79so72180441fa.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:28:20 -0700 (PDT)
+        with ESMTP id S231703AbjHVJ3V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 05:29:21 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD55D1B2
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:29:19 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b974031aeaso66206911fa.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:29:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692696498; x=1693301298;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jYCWuDEeHYOPtK0AWhMM3Rkt4Ap4j/1KSwrOJimYE0c=;
-        b=TgyBqpv+oi8jw1TRC8VqEQTvviqa31xM4CjbVK2AG0PYnHwMDCZ0v+XJzDBtbx9bR+
-         7bCXX4yB0bVIj6oEYt8YcFMKcXD07rMH9hSe3RpoHkmaihtt2mXd5lugViTwfVdItRvF
-         NUskZlO5bCFrWJWmHuaDbHiRrNRKL+grXplbV3wam/e7uBYS66Hg0bsXjFfUGxT331xw
-         rmwrKHqO1Rq+NQlRcYZrRtnsUl2qpu80p4rw1ew4J9ZADPLm9eytN38kn4C/6DHUambm
-         8i0smNIV1mfn5qURhiXF4FQRSi+ndVv/rdHWADYaFGhsr9uLxt0f1Vh64MRz57aTa+l/
-         9XiQ==
+        d=linaro.org; s=google; t=1692696558; x=1693301358;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=y/MOjZPTnXD1at8wNt03pNnlxmOXPgzCmQltf2pH2zU=;
+        b=TEpRpP3HE9Wpba0/eOUao5avTdPsgmQgvfpgaL9kdm6LSi8bYPio0n9oF0zra5vb5M
+         tejyJuG4yK7Lb9ryTSzME4cwdNjeYmByccQ8IJNyd2u/cJRFSjmfi/T07tmYdRqgk7s4
+         ixLsmxmdmloo3nT76465ri1ZBhtxe4fg4ZUDrq8EeFcl/jvq3wr4AHyWyKga4nnC9t+G
+         rmJdTQNnotDTCvmp0na/VtYpZFXBvS0NAzyy8uCc1Wc8yYMsVuU6F8Oa6G4cnpn36/Uf
+         QUEbkk1NPUlX26pHDKJ1uWYElcUQxhizeGdr/0zdNhwBOO0rw5Kq9PgKiYq0pvQfWyHE
+         tKog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692696498; x=1693301298;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jYCWuDEeHYOPtK0AWhMM3Rkt4Ap4j/1KSwrOJimYE0c=;
-        b=Ec5wjB29CpCcrzdxpoUvFkquOCWIahQaXr8DtIM21ItY38naKMD7+hq8gx1KlWZSwk
-         kOAZPv47Qf+v6rTl4AMUK7FVro83VVl9prGnvh9J0nQRDpVo8zTsam9h7nd9AVfUa6zD
-         zANEtz9y+4R8HnbIus1Odp17QGgRaw6AJoFBIJqk/bsLVoJz+z+dwRylsMM/3HMicvn5
-         3o/z8vfqS6crNwH8/t+c+bljd6aU+XLy16DqA48RHO/jmZEmNSycBTgknvEh9yYOqC/u
-         dQrA/141WvVq/qSx3SCSz6wlY9UKa8Zbx0AlhhbjOfZjNK0bUVzLy5lsKkpEZ1/haaO4
-         16/A==
-X-Gm-Message-State: AOJu0YxHBbx/OG57+bKj3g+4IA5i0y/rbtU7eM5CMXGx1wRB0WJqXl0h
-        bRU4n6bM6Vd/rjhW5TVxDOWsAQ==
-X-Google-Smtp-Source: AGHT+IHR+jJX2by5mywacWQBry3iE+GcPa7XIz8URqXavA8ii73gAuzZ6NBlhgbJw5Sgc2bUB3vAUw==
-X-Received: by 2002:a2e:6814:0:b0:2ba:18e5:1070 with SMTP id c20-20020a2e6814000000b002ba18e51070mr6998865lja.24.1692696498193;
-        Tue, 22 Aug 2023 02:28:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692696558; x=1693301358;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y/MOjZPTnXD1at8wNt03pNnlxmOXPgzCmQltf2pH2zU=;
+        b=d3CIdZso1l9e9CsTecfDypLupMW/iAwBor+OcviSo5/39HBAsBn3MV/Dw8vTq35C/B
+         QRBy5VwYesc4BgcqZTnj/vt4hZB0b+oysyEKUhKnGApySFUiYwByAxj2tdGKRcrNRDbV
+         3df3GSXOanyn2gQ3vq/CrnyVvxTRK6q3wYNl806OkHQjCdCw6yaD6bxs4MZSami2pMFT
+         90djK2jobP1FMN4IxFi0urN2KQmLaFLpUwxk5qnzTR54jOnC0V3zeWy5enH2sjnMr8Zx
+         a8ZNVd/lH2WDKBrrQiZoHY/adKyzyf1buOxbWeYZaXkMTRRo7+49/pRuPeyekvyWCQ7+
+         cGHg==
+X-Gm-Message-State: AOJu0YwOccO98wRg2AOlHRbilnr3lD0d80vDdwG1G52Qxeka9bSCTcxJ
+        brzgJrckEdHRdete90OHiyZyJg==
+X-Google-Smtp-Source: AGHT+IGDI+Zbek8FWMsr6m8t71sARbqZfbBiZpsfWBcQPR+OuynEXKuQL+zN7uwL193Hmd4DBQs09g==
+X-Received: by 2002:a2e:9d08:0:b0:2b9:b4eb:c39c with SMTP id t8-20020a2e9d08000000b002b9b4ebc39cmr6586613lji.8.1692696558064;
+        Tue, 22 Aug 2023 02:29:18 -0700 (PDT)
 Received: from [192.168.1.101] (abyk189.neoplus.adsl.tpnet.pl. [83.9.30.189])
-        by smtp.gmail.com with ESMTPSA id p17-20020a2e9ad1000000b002ba053e1f9bsm2687133ljj.35.2023.08.22.02.28.17
+        by smtp.gmail.com with ESMTPSA id p17-20020a2e9ad1000000b002ba053e1f9bsm2687133ljj.35.2023.08.22.02.29.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 02:28:17 -0700 (PDT)
-Message-ID: <6f324696-1648-461a-a3ac-20f0b76e41f0@linaro.org>
-Date:   Tue, 22 Aug 2023 11:28:16 +0200
+        Tue, 22 Aug 2023 02:29:17 -0700 (PDT)
+Message-ID: <a322acf6-b1e9-4203-9cb4-fc2adea88f64@linaro.org>
+Date:   Tue, 22 Aug 2023 11:29:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] dt-bindings: regulator: qcom,rpmh-regulator: allow i and
  j as RPMh resource name suffix
 Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -68,7 +70,7 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
 References: <20230822-topic-sm8x50-upstream-rpmh-regulator-suffix-v1-1-23fda17f81f7@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+ <6f324696-1648-461a-a3ac-20f0b76e41f0@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
  BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
@@ -104,7 +106,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230822-topic-sm8x50-upstream-rpmh-regulator-suffix-v1-1-23fda17f81f7@linaro.org>
+In-Reply-To: <6f324696-1648-461a-a3ac-20f0b76e41f0@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -117,12 +119,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.08.2023 11:27, Neil Armstrong wrote:
-> Add "i" and "j" to the allowed subffix list as they can be used as RPMh
-> resource name suffixes on new platforms.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-Also 'n' and 'm' for 8550
+On 22.08.2023 11:28, Konrad Dybcio wrote:
+> On 22.08.2023 11:27, Neil Armstrong wrote:
+>> Add "i" and "j" to the allowed subffix list as they can be used as RPMh
+>> resource name suffixes on new platforms.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> Also 'n' and 'm' for 8550
+Correction, the PMICs are indexed 'n' and 'm' but looks
+like there are no RPMh-managed regulators on there
 
 Konrad
