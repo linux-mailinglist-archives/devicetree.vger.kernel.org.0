@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B25E378456A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C945784572
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:27:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234934AbjHVPZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 11:25:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54260 "EHLO
+        id S237060AbjHVP1Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 11:27:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234131AbjHVPZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:25:36 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318F2CD1
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:25:34 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe21e7f3d1so7204744e87.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:25:34 -0700 (PDT)
+        with ESMTP id S237061AbjHVP1Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:27:24 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E2B3CD8
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:27:21 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bdcade7fbso584526366b.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:27:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692717932; x=1693322732;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692718040; x=1693322840;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5CLA2KNaAWPxWmHn3gOeMHV9Mij34aiTzhvlGQZaYA=;
-        b=gULeZIZxM1UDkuR2e7pdWHGfHRhZ7hVBNnziyChiJpXZtA8T3Lqt+zNhR6YmWG8Lwd
-         QWBDk2Z+lS01O37XqNHRJSstML1IdWhRdagmgLmOh8F1UVKj2u6KdJIhaVgrLGJ62cu9
-         9l+hB8Q0CMROKXQboZwHmJvR4FbuIk4gKvAiSF9Ui4hRAQq1m9jLUcBe9fr+z+i775In
-         +CKEeno8a3QEIhXyeR+jl+I9E/QS0akU0BwMO4UTivyi19E07TmPdEoreD0/IzdVaf2t
-         atoCkHSiJtBC3X2vkbFGITe+xTv5Ohp06mrMnm6al1e0DQF5lRpG18xOjGuZOihQOZl/
-         RxRQ==
+        bh=/Op230pvRSYsZ/RCsUIoSigOSgDlSJoxapZ0NpWgEc8=;
+        b=a5Pyc7meaT7bUZNBNSEAbCrPrImd2qakaCdtSTvL7R32y3VCU7/RqfFlZ84xGQT1rC
+         bDT1L8JY/bOQbsKLVDO4DMdIjrAeI6lkk+ocbpBHVkAp0Bo8IdpoXoJo9yaxtxcPtwkJ
+         vGhLgXc906wJQwaJhOa529CPHwHoif0oIRtt9NphvFLYTOFPAuG39F5Wy5jI49R2RSFt
+         5ZTUD+rd5YyKxNjg9BM9zCu7979wP7pIRSxRORMpIdlmxuO74pAEOexJadYadXhGGU0N
+         JV1ljeEKlyPfTUbRINM9tNazPrNe/5G1wUTKTCBcGdlDLejc647+IFhfMOqdmNYn3jqF
+         Iv+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692717932; x=1693322732;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692718040; x=1693322840;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y5CLA2KNaAWPxWmHn3gOeMHV9Mij34aiTzhvlGQZaYA=;
-        b=MqWoA8+O7F9aPZMyF6N0o9B73ytELogjd2NmhnafSaVjSFxZQze1fdQgLf0g0dHT9f
-         iDbt6/tcRxKLWYWmyijg9+6moqpfwb7GPmHmpIhrar9dRiqzNoDqUK+1eBbj+lK3nevv
-         kMnEKZHGAb46Fios43Tb69V/RIE3AfQc0HDQhHhXFXcbpsFiujBwVzsWOjGl0oBTKdLa
-         13HgwypilfJWR+eoBJoXy6YlLy8g4moyeKZXomfENFae1+gH/8IWVfP8k0A4MZOVRcAZ
-         rOAbqjqhexn6NcgL9J84/EGr3fghaRIQTYDdMMHi1X1uAV4M+kSWBKnelrHODP3NaOg4
-         ZFjg==
-X-Gm-Message-State: AOJu0YzPeX0p0znIChqapJG1lVtVq6YEgVBbUteqRB07MYe7xcAmEI6w
-        mhBSKCEmmoDhfflTtSSkokXMWg==
-X-Google-Smtp-Source: AGHT+IEZBABvrUJyOnUqIjt8DQpu4/Ght7kXWGlnDfbg74DLs7ajvH75DORb8rvzSwmWJ5nrCs9TaA==
-X-Received: by 2002:a05:6512:39d1:b0:4f8:6625:f2ca with SMTP id k17-20020a05651239d100b004f86625f2camr7199083lfu.61.1692717932388;
-        Tue, 22 Aug 2023 08:25:32 -0700 (PDT)
+        bh=/Op230pvRSYsZ/RCsUIoSigOSgDlSJoxapZ0NpWgEc8=;
+        b=Sta7F5MuBxm03AFo08NjqrY1AzKDfld8eUm3zUQ1lmg2rs1Rv+2EZ2TQNkNGdmPNlA
+         GGLxk73Q7NaO7LMyb3NXauBhnw3IfnyMatROrtvsFmezD65aatw3sVsXBdO47RGLs1ZB
+         FMwx+oUzwxaMxEdlJn16fxdG53tm+RnxVH4nEN7orcUR3fUe5DuXOfDIv3rHvdJJJxqx
+         4rPc/FwWFdbHURhsaohBh6cc6L2MqBLbxahuwbJHLd6GtHyL/Nyn64Dq+qjOMlQGQTSU
+         yIjkb9FeeOLy69mxb21nxXiWTzVJFNPIwJkLJ7TlThzkSgdaTgvbyJG4qTu9BfVMGCc2
+         yjgA==
+X-Gm-Message-State: AOJu0YygxOBqNPt8HIAxbdJAZ0YwZoS7pBxfHJxDCWV3wEfBHWZ2w8rs
+        A6gXtHRx/sCpjkWa4H4c5m5HeQ==
+X-Google-Smtp-Source: AGHT+IGtQ1rszKdn8JWgP52nGNDE/tvQ2ym2GO6OlSPG08iLWGxnzIuVMaG61l35EbHhRpao7aNxKQ==
+X-Received: by 2002:a17:907:75e3:b0:99c:ae35:ac0 with SMTP id jz3-20020a17090775e300b0099cae350ac0mr7579848ejc.61.1692718039499;
+        Tue, 22 Aug 2023 08:27:19 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id l2-20020aa7cac2000000b0052239012c65sm7794477edt.82.2023.08.22.08.25.31
+        by smtp.gmail.com with ESMTPSA id gq6-20020a170906e24600b0099c53c44083sm8325011ejb.79.2023.08.22.08.27.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 08:25:31 -0700 (PDT)
-Message-ID: <51bc0ccf-425b-5f16-b8f2-94d7cc979fae@linaro.org>
-Date:   Tue, 22 Aug 2023 17:25:30 +0200
+        Tue, 22 Aug 2023 08:27:19 -0700 (PDT)
+Message-ID: <0fb06b21-028a-b0c2-85a3-ed7e90d2167d@linaro.org>
+Date:   Tue, 22 Aug 2023 17:27:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
- <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
- <PAXPR04MB91850D8807CE374BD7C30CC5891EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAL_JsqJ3dr7gxq+D5DYG8oQ=igzjARz=beQoYL7rrydV4SwDTw@mail.gmail.com>
- <PAXPR04MB918567C378D420DB4830B869891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH v3 2/2] media: dt-bindings: media: remove nokia,n900-ir as
+ pwm-ir-tx is compatible
 Content-Language: en-US
+To:     Sean Young <sean@mess.org>, linux-media@vger.kernel.org
+Cc:     Sicelo <absicsz@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali.rohar@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Timo Kokkonen <timo.t.kokkonen@iki.fi>,
+        Tony Lindgren <tony@atomide.com>
+References: <20230822145644.213589-1-sean@mess.org>
+ <20230822145644.213589-3-sean@mess.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB918567C378D420DB4830B869891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <20230822145644.213589-3-sean@mess.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
@@ -88,62 +82,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 17:18, Shenwei Wang wrote:
+On 22/08/2023 16:56, Sean Young wrote:
+> The generic pwm-ir-tx driver works for the Nokia n900, so nokia,n900-ir
+> can be removed.
 > 
+> Cc: Sicelo <absicsz@gmail.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+
+BTW, There is no single need to store automated output of
+get_maintainers.pl in the git log. It can be easily re-created at any
+given time, thus its presence in the git history is redundant and
+obfuscates the log.
+
+If you need it for your own patch management purposes, keep it under the
+--- separator.
+
+> Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+> Cc: Pali Rohár <pali.rohar@gmail.com>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Timo Kokkonen <timo.t.kokkonen@iki.fi>
+> Cc: Tony Lindgren <tony@atomide.com>
+> Signed-off-by: Sean Young <sean@mess.org>
+> ---
+>  .../bindings/leds/irled/pwm-ir-tx.yaml        |  4 +++-
+>  .../devicetree/bindings/media/nokia,n900-ir   | 20 -------------------
+>  2 files changed, 3 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/nokia,n900-ir
 > 
->> -----Original Message-----
->> From: Rob Herring <robh+dt@kernel.org>
->> Sent: Monday, August 21, 2023 1:50 PM
->> To: Shenwei Wang <shenwei.wang@nxp.com>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
->> Ulf Hansson <ulf.hansson@linaro.org>; Liam Girdwood
->> <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
->>> Thank you for providing the link. After reviewing the entire thread, I
->>> still don't understand how to proceed. What is the conclusion
->>> regarding this commonly used use case but overlooked feature in the
->> upstream kernel?
->>
->> Overlooked implies we missed and ignored it, but the same concept has been
->> submitted twice and rejected twice. What use case cannot be supported?
->>
-> 
-> No offend. :) Sorry for my poor word. To provide more context, a common use case 
-> example is using a GPIO pin as a power switch. The current implementation operates 
-> as a fixed regulator, which makes it difficult to control the on/off timing without modifying
-> its driver. 
+> diff --git a/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml b/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
+> index f2a6fa140f38..dc19b6475ba8 100644
+> --- a/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
+> @@ -15,7 +15,9 @@ description:
+>  
+>  properties:
+>    compatible:
+> -    const: pwm-ir-tx
+> +    - const: pwm-ir-tx
+> +    - const: nokia,n900-ir
+> +      deprecated: true
 
-So it is a problem of a driver?
-
-> It also lacks power management support. 
-
-Which is not related to bindings but implementation in given driver.
-
-> 
->> The detail that power-domains get handled automatically is an implementation
->> detail in the kernel (currently). That could easily change and you'd be in the same
->> position as with regulator supplies.
-> 
-> The proposed regulator-pd driver follows the standard PD driver framework, so it for sure
-> relies on certain kernel implementation details. If those underlying implementation details 
-> change in the future, this driver as well as other PD drivers built on the same framework 
-> would need to be updated accordingly. 
-
-We talk about bindings which you would not be allowed to change. Thus
-your case would stop working...
-
-> 
->> We could just as easily decide to make the driver core turn on all supplies in a
->> node. That would give you the same "feature". Why would you design your DT
->> around implementation decisions of the OS?
->>
-> 
-> This DT properties are proposed solely for this specific driver, not to hack the OS. This 
-> is no different than other PD drivers like gpc/scu-pd/imx93-pd.
-
-I am not sure if you got Rob's point, I have feelings that not. Argument
-that some OS implements something some way, is not an argument for a new
-binding, barely hardware related.
+Please test your binding before sending. You miss oneOf.
 
 Best regards,
 Krzysztof
