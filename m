@@ -2,181 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CCD1784668
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:58:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86C5B78467F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:04:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235231AbjHVP6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 11:58:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49474 "EHLO
+        id S235078AbjHVQET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 12:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232529AbjHVP6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:58:02 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560BC10F
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:58:00 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5007616b756so4377585e87.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:58:00 -0700 (PDT)
+        with ESMTP id S237484AbjHVQET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:04:19 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25EDECDD
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:04:12 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5008d16cc36so1459715e87.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:04:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692719878; x=1693324678;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692720250; x=1693325050;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ziQuC645DrIZLGT5VV7OX3wRBfSiQDkNJDxc2Uc2oXw=;
-        b=Y7NgyweM5DH3Gm2s9TufjiIGig+WFCgkXWcJGvd7/by/T1HVwHC5f6cO0OMGFXmCwR
-         FjOCvQ8d5Fu3q0bk4OE1rm9i2OOGwiMnwEb49iuzc+ejIPAL37iR8Jz8c80HU/zQGwwX
-         YGmMGibXiwWYnmWC/Mend1Hyi+vyj70md1bGNIlpPnofaip2Wm7TugJ82uBzzkE3wMSZ
-         9Ce9FU7fpyH8bz2BHLnBZTQb+M+FJmYCoaBenL8y13tH5dWOBQcQRnlV2wu1mXhFe4pv
-         SOyMDono7ZPmCzGEsEGCSan2XzBKgioNpXHH7aDBT7ZowTUhJWjxIOdbDOhNdhMl7d24
-         8hEQ==
+        bh=UWA94XnCPwc1Vc7JP385yq44AVNqbMwIkEe1X41KkFg=;
+        b=jDnBCB9jctd4R65jLQdKSjHgyuUUZ+scXR02YET0yz7EGdaLhAjLhdmhJojXkkYdlF
+         hgzFlpDk23ot359Rdpe2cGH+vbCRfm3SUOMzWnQaQvKdDVAT1e3uZyyYRlFWX2WnjhBc
+         dksGZsHkRzXDjV2mnJ8AT5XUHVG36vo0sUzB4WH9Cr3RB4WyNbAKLYegvRJvDx8EhJ2I
+         WiFt37NndNF/dbdaAs5E1pWM3ci46KMuLviI17Yt1HQYV7tfe26ZUDnLLbZwixsiKVNZ
+         z1p0LkDqQI+LmAV5Rl2GnIn8WH5eBM+mya2EQuSjbnsnEJ2bFQqb94ltk0VqR62Ke2xR
+         mBVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692719878; x=1693324678;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692720250; x=1693325050;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ziQuC645DrIZLGT5VV7OX3wRBfSiQDkNJDxc2Uc2oXw=;
-        b=glZN0GSjHpScuUphopvDC2L5AQZJqkc7UBTQ1B+xX5NNiG59obvImvIGQ5ZBt6e+hK
-         EYf+anv/S/rW2gpHBYbuLB+i5PxnXvgae1KDKeLOJYJqznUST25XZ2oPTXLO78gpDOre
-         Utik6vCvaRM9SriFyD+04ISX9RIa4fHyWA1og+kpxN2SoxPR5J1ahlh3J+j5XM/Dat3y
-         zrED7Tb8VDUYF7ECj9f1k6X41LhcA2pZuMSd/J7vL/3nqq618vU50Sb90OZqegGQeSb6
-         7g5lDgLeSqZVaraJs3oHH//FDIiqe57QbkP5LNt1jhzDADj/5VnyRb357oD+oN0bVKtY
-         ROdg==
-X-Gm-Message-State: AOJu0YzsebDFpv7zGkBr9KTQLxidvpAs4iRQb13saGO8HXvNYRNhcAyQ
-        c/44H1SID6UQhbzEzf6leY0jkQ==
-X-Google-Smtp-Source: AGHT+IGTiH0yWLnVA01NmPlWC40z88n4Ts80NmctR6S8tLxvtl5DLS8LM8jvfx6OVVJQwZJAghSsSQ==
-X-Received: by 2002:a05:6512:2354:b0:4ff:a8c6:d1aa with SMTP id p20-20020a056512235400b004ffa8c6d1aamr8302630lfu.48.1692719878499;
-        Tue, 22 Aug 2023 08:57:58 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id q6-20020aa7d446000000b0052718577668sm7698214edr.11.2023.08.22.08.57.57
+        bh=UWA94XnCPwc1Vc7JP385yq44AVNqbMwIkEe1X41KkFg=;
+        b=gUI35CuBpbTg0ki9+8rtTTBiojzG2uNkJbjNN5JC9zJZfOxUMgwCyySgyl28wWFCRz
+         vz7RTpfmv0mz/T4hGMAGc5YIAz4fU+BmcS5y81KsuXaecVxrypfuqpeBuomL+vLW6s2u
+         7A0Egu3Ttg0uSdawsYtm921Vy1e5sfOMlGcXefVFqhg8E3qdw1YBNxa8XihazKEv7aye
+         9wqA3ZOZuGc16Zt8hzqN8uAGGq968thJvrnd7Zneq6Vwy3nFUnd7FbLzV5dYXvljBUNW
+         Pl0IEVumlpeC//xYZOfdhgT91LMTb3ThVyVkiNwzhPmCZHFKHejtJ9SYAgD4VLhPCPsx
+         mAhw==
+X-Gm-Message-State: AOJu0Yxma2XPIBUFuInGXoOm1x08GwF5KW3Dc98WU2+9jBnn5KkujnBo
+        bZXwlNMV1zQhPS57ypwW9TYdWg==
+X-Google-Smtp-Source: AGHT+IFo3NOWmKcgkRqWofYrZBcZg+3Se1na5DdTg4+edqKFCv52fuhaOO1AZKATq9wxwjPr+R4ZtA==
+X-Received: by 2002:a05:6512:3e19:b0:4fb:8435:3efc with SMTP id i25-20020a0565123e1900b004fb84353efcmr9111611lfv.16.1692720250316;
+        Tue, 22 Aug 2023 09:04:10 -0700 (PDT)
+Received: from [192.168.1.101] (abyk189.neoplus.adsl.tpnet.pl. [83.9.30.189])
+        by smtp.gmail.com with ESMTPSA id q27-20020ac2515b000000b005008c11ca6dsm402580lfd.184.2023.08.22.09.04.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 08:57:58 -0700 (PDT)
-Message-ID: <e146782f-a93c-e694-1b08-7c2dba597bcf@linaro.org>
-Date:   Tue, 22 Aug 2023 17:57:56 +0200
+        Tue, 22 Aug 2023 09:04:09 -0700 (PDT)
+Message-ID: <26bae022-c114-4871-8715-73d7e8aeaa52@linaro.org>
+Date:   Tue, 22 Aug 2023 18:04:08 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml
- file
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: qcom,prng: document SM8550
 Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
- <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
- <PAXPR04MB91850D8807CE374BD7C30CC5891EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAL_JsqJ3dr7gxq+D5DYG8oQ=igzjARz=beQoYL7rrydV4SwDTw@mail.gmail.com>
- <PAXPR04MB918567C378D420DB4830B869891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <51bc0ccf-425b-5f16-b8f2-94d7cc979fae@linaro.org>
- <PAXPR04MB9185F7B520E8BE94B97C4908891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB9185F7B520E8BE94B97C4908891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230822-topic-sm8550-rng-v1-0-8e10055165d1@linaro.org>
+ <20230822-topic-sm8550-rng-v1-1-8e10055165d1@linaro.org>
+ <8479869b-9984-41e3-9812-c7f5727cfd2c@linaro.org>
+ <b73106c5-74e4-479d-8733-b99454768c15@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <b73106c5-74e4-479d-8733-b99454768c15@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 17:50, Shenwei Wang wrote:
+On 22.08.2023 16:54, Om Prakash Singh wrote:
+> PRNG Block on most of newer target from Qualcomm have some configuration where clock is configured by security firmware.
 > 
+> Adding separate compatible string for each platform is overhead.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Tuesday, August 22, 2023 10:26 AM
->> To: Shenwei Wang <shenwei.wang@nxp.com>; Rob Herring
->> <robh+dt@kernel.org>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
->> <conor+dt@kernel.org>; Ulf Hansson <ulf.hansson@linaro.org>; Liam Girdwood
->> <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
->> imx@lists.linux.dev; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->> dl-linux-imx <linux-imx@nxp.com>
->> Subject: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
->>>
->>> No offend. :) Sorry for my poor word. To provide more context, a
->>> common use case example is using a GPIO pin as a power switch. The
->>> current implementation operates as a fixed regulator, which makes it
->>> difficult to control the on/off timing without modifying its driver.
->>
->> So it is a problem of a driver?
->>
+> We need to introduce common compatible string that can be used for all platforms with same configuration.
 > 
-> That is arguable too. The driver may assume its power is on when probed, which 
-> aligns with how the PD behaves.
+> I would suggest to use "qcom,rng-ee" for newer platform, dropping "p" also signifies it is not a Pseudo Random Number Generator.
+Please reply inline and don't top-post.
 
-So everything in driver... no discussion about bindings.
 
-> 
->>> It also lacks power management support.
->>
->> Which is not related to bindings but implementation in given driver.
->>
-> 
-> For those simple drivers, the default power management logic can handle 
-> power correctly without requiring any specialized implementation in the 
-> driver code.
+Is this what you're trying to say?
 
-You can create any drivers you wish or change existing ones. I don't see
-a problem here.
+1. sort out the clock requirements for designs where Linux manages it
+   vs where the FW does so
 
-> 
->>>
->>>> The detail that power-domains get handled automatically is an
->>>> implementation detail in the kernel (currently). That could easily
->>>> change and you'd be in the same position as with regulator supplies.
->>>
->>> The proposed regulator-pd driver follows the standard PD driver
->>> framework, so it for sure relies on certain kernel implementation
->>> details. If those underlying implementation details change in the
->>> future, this driver as well as other PD drivers built on the same framework
->> would need to be updated accordingly.
->>
->> We talk about bindings which you would not be allowed to change. Thus your
->> case would stop working...
->>
-> 
-> As a new driver, it has to involve some new bindings especially the compatible 
-> string.
+2. introduce a new compatible for SoCs implementing a TRNG
 
-I am not talking about this. I do not speak about creating new bindings,
-but changing them.
-> 
->>>
->>>> We could just as easily decide to make the driver core turn on all
->>>> supplies in a node. That would give you the same "feature". Why would
->>>> you design your DT around implementation decisions of the OS?
->>>>
->>>
->>> This DT properties are proposed solely for this specific driver, not
->>> to hack the OS. This is no different than other PD drivers like gpc/scu-
->> pd/imx93-pd.
->>
->> I am not sure if you got Rob's point, I have feelings that not. Argument that
->> some OS implements something some way, is not an argument for a new
->> binding, barely hardware related.
->>
-> 
-> Thank you for the clarification. The issue is that this driver is purely a software layer 
-> that wraps the regulators as a power domain. The bindings make the implementation 
-> clean and easy to understand.  I don't think we should add extra complex logic inside 
-> the driver solely to avoid introducing new bindings.
+3. for SoCs in 2., register the TRNG as a hwrng device
 
-Since bindings are not for software layers, I don't think we should be
-talking about them just to avoid introducing driver changes.
 
-Best regards,
-Krzysztof
+?
 
+Konrad
