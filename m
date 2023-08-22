@@ -2,151 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C925784396
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 16:12:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26666784397
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 16:12:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232268AbjHVOMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 10:12:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43766 "EHLO
+        id S234115AbjHVOM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 10:12:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235220AbjHVOMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 10:12:35 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9638CF8;
-        Tue, 22 Aug 2023 07:12:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=8pPiwscj/TJoZoXC5yZYpBYbUpkqoKV7y3ecZaEAFTo=; b=zo83phOskLZKRWDL0QANpRQ3DI
-        N7MlB6Tzp80l7F8Rt7l9UMDcHCBOuy/xia6ED+QIXhqitOR6YLZuSQ/NizMWhBcqMs5GVFGjm4sKK
-        j4smWST3zPvTy42XX++VS6daBxyF7h4F221yJciGGYDMrEK63/C5s3NElnrr9ll35ccI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qYS5l-004mmA-TH; Tue, 22 Aug 2023 16:10:45 +0200
-Date:   Tue, 22 Aug 2023 16:10:45 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Madalin Bucur <madalin.bucur@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Camelia Groza <camelia.groza@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Sean Anderson <sean.anderson@seco.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>
-Subject: Re: [RFC PATCH net-next 8/8] dt-bindings: net: fsl,backplane-anlt:
- new binding document
-Message-ID: <36bb7d51-2fca-4d06-b78d-e411f67ecf56@lunn.ch>
-References: <20230817150644.3605105-1-vladimir.oltean@nxp.com>
- <20230817150644.3605105-9-vladimir.oltean@nxp.com>
- <20230821195840.GA2181626-robh@kernel.org>
- <20230821201146.hudnk5v2zugz726p@skbuf>
- <e3afb3d5-6efe-46de-81ca-7f0163c4b04d@lunn.ch>
- <20230821203433.ysulh2bixfypbhsk@skbuf>
- <842f7ff0-d376-4f55-b72d-2db7ea827792@lunn.ch>
- <20230821215500.oap7ze73pu237pof@skbuf>
+        with ESMTP id S235502AbjHVOMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 10:12:36 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D75CE4D
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 07:12:11 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fed6c2a5cfso39059935e9.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 07:12:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692713489; x=1693318289;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lc+fgSXyIPeeEw3QfvVPK4rtiwKADV5dE1O0MM97k8Y=;
+        b=iyUPc8T8/255kUzHJzwZAoq4JIb613fpVwjnWHmwpJjB1yIF8lSFm9gHCEFKPf12H6
+         qRnD5EtW+YQ88TG6zrdfyjUcg4mYtkDc1sMxINWtepbZ1+mTqrHshgMa+PaX3a4P7UGG
+         /kDEk/GWZhJP9piWelAWFV2Bb9vFL5esnKcptt39TNL2ClxfSU0vvrjOcLAt8MoOw0HN
+         BFnSYyYFwoQh2eYXMOb+6ELJwNwJIuoaWur3+P377uQAond4xAFWXf6XmOLBVi9jVnv/
+         kPRbyJA/W1JJcWISAQTLQLFhqaAGzOc2K6eufoLyY6ZYo27DxJSzXLfQ0/+aTTYs2Kli
+         nqvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692713489; x=1693318289;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lc+fgSXyIPeeEw3QfvVPK4rtiwKADV5dE1O0MM97k8Y=;
+        b=LVZ34pJ2J5qKPpoc8xB+pC4QgN8de8MFa3xN7pBWW0n8sNZj4wjiC1afEDNBOa5ThA
+         tnUyQR0QQYNDfx/GMJQ0tbW+EJRQP2Ly9trOc9nI3DVbZBKEKzlAbU+C2hNHTFLIYqqi
+         fLnG4U7YrX+aHvmdZLyM9v+Px8F5wOfulmW1KpLhNWKJCIuLwkmCHPwCFvPBAecjKRXz
+         QHShInLfXliVq5LTsCT2bp1WvMtbfJBrpQq0oUqgZXpLyzuOQVv9cHpQRysX3H0HRRxh
+         Z5l69S3c/v22MKa0JgwlyQJGdwVjI4aBqE8YEOPky1ALAd48M3JEp/WNFUdeO7hzYELk
+         uv4g==
+X-Gm-Message-State: AOJu0Yyt+CDfKT4eM3DyO/IZ5bUi2ehMDm0Oc6HbLmlR92iGJfKD6gZ9
+        DGdIvCVX8LnwYy2CSKra+Pw6yQ==
+X-Google-Smtp-Source: AGHT+IEHGzoHf5HrGgdvoAFg952J6hFCMy8H6KeWzFa3DwG0dgqSmnVULrHjdJ1eNlwY3f56ZtaL/g==
+X-Received: by 2002:a05:600c:2291:b0:3f9:b8df:26ae with SMTP id 17-20020a05600c229100b003f9b8df26aemr7137371wmf.34.1692713488924;
+        Tue, 22 Aug 2023 07:11:28 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id m9-20020a05600c280900b003fe539b83f2sm19587753wmb.42.2023.08.22.07.11.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Aug 2023 07:11:28 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 0/2] arm64: qcom: sm8550: enable RNG
+Date:   Tue, 22 Aug 2023 16:11:23 +0200
+Message-Id: <20230822-topic-sm8550-rng-v1-0-8e10055165d1@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230821215500.oap7ze73pu237pof@skbuf>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAvC5GQC/x3MQQqAIBBA0avErBuwsUi6SrQIm2oWqWhEIN49a
+ fkW/2dIHIUTTE2GyI8k8a6iaxuw5+oORtmqgRRpZYjw9kEspssMg8LoDrRGdz2NRjMpqFmIvMv
+ 7L+ellA8U9dK1YgAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1400;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=gfBhaOfAkOY05OwjbWfxjq+q9zNLOxwJ+zdOp2usfWk=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk5MIOAKBHacgxG2VqvSSbGYBTl8Dl8+Pjn+8bf3NJ
+ UpkYWP2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZOTCDgAKCRB33NvayMhJ0e44EA
+ DHzG4oKlbo86ME0cSjZytyAA0euTb44L/5VSTnR2knD/7bO/1HlAVkOXX4B3tnLoELuK3Nn3ZsoZYn
+ QFEFkK0zUiy8YlkmRNtaYBPZYlqtWFixLpD2szSRiXbgZLG9AdicO+gQWgyOwDQsfyCoG2vyCtCOrb
+ nSZTBMXXyMGbjXf6/0bjr8lXsCusT8GUqTzSZtDlYIdE7TEdgs5DGPu1o+fjKr0ZArd/bM9UQBicWN
+ 58iFHchc6te2x2PqfEDbKGss9EdsoU3DKvjOaa4kfhlehd54R5DCqmoSaRA8byKGWN3wTkIgqmwc7H
+ KT/cbyRigSc1WVEMh6HKbF/KihFlogjNdpyYBY5dIqx4+fJg91fH8mUWQ/KUbdQ7f1RUQFv2QmGFlu
+ DmA3yfpC3maGyGSgaA+SX6F/fQpyTYC2lzeqGwPca96k0OIx1ss8QCsL09qUJ64n72nKrLXe3G03iY
+ pObi/OMsF8NKjYQhI6/sdGS3R6cvpEsqQpLZkMgVU8x3M7JnXHryLfVvfowVNOr8DLI9ZpAA3Y+818
+ 2ZWH24n6gDQg1jws7n9yIKeP1sEFhYJsHchtwyRGDOmpjw7v3ueiPgnZJ5XWHY1oKCzSkJnJT1qEl/
+ WpGLbhOM9DGM90MPks0Zk1bnxfwGYhpFzd+Gp0SR6/tYMapkShJuglIEBclw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > O.K, not ideal. For C22, you could just put the ID values in the
-> > compatible, which is enough to get a driver loaded which supports that
-> > ID. But somebody recently commented that that does not work for C45. I
-> > assume NXP has an OUI, and could allocate an ID to this device in
-> > retrospect. So maybe it makes sense to make C45 work with an ID in the
-> > compatible? And get the driver loaded that way?
-> > 
-> > 	Andrew
-> 
-> There are 2 clarification questions that I can think of right now.
-> Maybe more later.
-> 
-> First: Compatible strings per C45 MMD? Drivers per C45 MMD? Is there
-> supposed to be an interest in that? I might end up needing it (see the
-> problem description in the cover letter, with PCS and AN/LT block merged
-> into the same MDIO address, but responding to separate MMDs)
-> 
-> Second: Suppose I add something like "ethernet-phy-ieee802.3-c45-idXXXX.XXXX".
-> Do I replace just this with that:
-> 
-> compatible = "fsl,lx2160a-backplane-anlt", "ethernet-phy-ieee802.3-c45";
-> 
-> or also this?
-> 
-> compatible = "fsl,lx2160a-secondary-anlt";
-> 
-> 
-> I suppose it would be just the first one, but going that route would IMO
-> just increase the dissonance between the description of primary and
-> secondary AN/LT blocks. They're the same IP blocks, don't they also have
-> the same fake PHY ID?
+Enable RNG on SM8550.
 
-For C22 PHYs, the ID registers are only used to ask user space to load
-a driver which supports that ID, and then used to match a device to a
-driver. We often say that if the ID registers don't actually contain
-an ID, or the wrong ID, use ethernet-phy-id[a-f0-9]{4}\\.[a-f0-9]{4}$
-to let the subsystem know the correct ID.
+Output of rngtest :
 
-The device you are trying to support has the same problem, invalid
-IDs, but its C45.
+rngtest 6.15
+Copyright (c) 2004 by Henrique de Moraes Holschuh
+This is free software; see the source for copying conditions.  There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-C45 IDs however work slightly differently. An C45 package can have
-multiple devices in it, up to 32. Each device has its own ID
-registers. So there can be up to 32 different IDs for one package. The
-core will try to determine which of the 32 devices are actually in the
-package, and if they are, what the ID is. It then asks user space to
-load a driver for all the IDs it finds. And when matching devices to
-drivers, it sees if any of the ID of the package matches the IDs the
-driver says it supports. If a match is found, that one driver is
-expected to drive all the devices in that one package.
+rngtest: starting FIPS tests...
+rngtest: bits received from input: 188260032
+rngtest: FIPS 140-2 successes: 9405
+rngtest: FIPS 140-2 failures: 8
+rngtest: FIPS 140-2(2001-10-10) Monobit: 1
+rngtest: FIPS 140-2(2001-10-10) Poker: 1
+rngtest: FIPS 140-2(2001-10-10) Runs: 2
+rngtest: FIPS 140-2(2001-10-10) Long run: 4
+rngtest: FIPS 140-2(2001-10-10) Continuous run: 0
+rngtest: input channel speed: (min=7.518; avg=50.591; max=19073.486)Mibits/s
+rngtest: FIPS tests speed: (min=21.146; avg=27.867; max=160.281)Mibits/s
+rngtest: Program run time: 10003649 microseconds
+...
 
-I don't see a need for ethernet-phy-ieee802.3-c45-idXXXX.XXXX,
-ethernet-phy-ieee802.3-idXXXX.XXXX should be sufficient, since all you
-are doing it matching the ID against the driver. That matching does
-not differ between C22 and C45. 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (2):
+      dt-bindings: crypto: qcom,prng: document SM8550
+      arm64: dts: qcom: sm8550: Add PRNG
 
-Saying "ethernet-phy-ieee802.3-c45" might be useful, because at the
-moment we have a mixup between C45 register space and C45 bus
-transactions. The drive is free to access C22 and/or C45 registers,
-since it should know what the device actually has. But some of the
-core might get the wrong idea without "ethernet-phy-ieee802.3-c45".
+ Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 8 ++++++--
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                    | 5 +++++
+ 2 files changed, 11 insertions(+), 2 deletions(-)
+---
+base-commit: 28c736b0e92e11bfe2b9997688213dc43cb22182
+change-id: 20230822-topic-sm8550-rng-c83142783e20
 
-O.K, that the background now:
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
-> First: Compatible strings per C45 MMD? Drivers per C45 MMD
-
-So far, nobody has needed that. All current drivers are package
-drivers, they drive all the devices in the package. At least for a
-PHY, there is close integration between devices in a package. Russell
-has commented that the Marvell 10G PHY does appear to contain a number
-of licensed devices, but so far, we have not noticed the same licensed
-device used by multiple vendors. So there has not been any need to
-reuse code.
-
-However, it sounds like the package you are trying to support does
-contain multiple independent devices. So from an architecture
-perspective, having multiple drivers would make sense, even if there
-is no reuse. But are the devices PHY? Everything i've said so far
-applies to PHYs. It does not apply to a PCS, etc.
-
-	Andrew
