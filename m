@@ -2,69 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD26D784554
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B25E378456A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:25:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237013AbjHVPV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 11:21:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48816 "EHLO
+        id S234934AbjHVPZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 11:25:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233283AbjHVPV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:21:56 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2813DCC6;
-        Tue, 22 Aug 2023 08:21:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=aBMzTbbcj3sZ+U9NM/TH4LSpDQpyP3QM6n+GGY62x2w=; b=Sdyo1Qr5O3IR7Y/knFXS+bzfMZ
-        KHOD1huzeFmDC45Qy5OlQxoCJ5SHe61aBmL8XsfYVbZ8jr+58bNcBp05KRIb6AT/upGm9tZpj83sq
-        T75hq69Gwk4DFenkhn7ZfU20O12nC4GPc5t4TqkQ1udBqQqZtN/rb29d3K4qPDOOzwI8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qYTCa-004nEp-F0; Tue, 22 Aug 2023 17:21:52 +0200
-Date:   Tue, 22 Aug 2023 17:21:52 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH v2 3/4] net: stmmac: Add glue layer for Loongson-1 SoC
-Message-ID: <d3461e26-2cd1-43c7-a1d0-22363258f23c@lunn.ch>
-References: <20230816111310.1656224-1-keguang.zhang@gmail.com>
- <20230816111310.1656224-4-keguang.zhang@gmail.com>
- <c3454ad9-1874-4301-b1b1-4f76886802fb@lunn.ch>
- <CAJhJPsWVRJg7zNeXPDovkBM4pm7hD+RP21DRxt0726VXtzvCHw@mail.gmail.com>
- <CAJhJPsUpmR0R8AhGMvFbBHXvcYcUsDmjw5_yb=NnFSdzjSf5dw@mail.gmail.com>
+        with ESMTP id S234131AbjHVPZg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:25:36 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 318F2CD1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:25:34 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe21e7f3d1so7204744e87.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:25:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692717932; x=1693322732;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Y5CLA2KNaAWPxWmHn3gOeMHV9Mij34aiTzhvlGQZaYA=;
+        b=gULeZIZxM1UDkuR2e7pdWHGfHRhZ7hVBNnziyChiJpXZtA8T3Lqt+zNhR6YmWG8Lwd
+         QWBDk2Z+lS01O37XqNHRJSstML1IdWhRdagmgLmOh8F1UVKj2u6KdJIhaVgrLGJ62cu9
+         9l+hB8Q0CMROKXQboZwHmJvR4FbuIk4gKvAiSF9Ui4hRAQq1m9jLUcBe9fr+z+i775In
+         +CKEeno8a3QEIhXyeR+jl+I9E/QS0akU0BwMO4UTivyi19E07TmPdEoreD0/IzdVaf2t
+         atoCkHSiJtBC3X2vkbFGITe+xTv5Ohp06mrMnm6al1e0DQF5lRpG18xOjGuZOihQOZl/
+         RxRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692717932; x=1693322732;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y5CLA2KNaAWPxWmHn3gOeMHV9Mij34aiTzhvlGQZaYA=;
+        b=MqWoA8+O7F9aPZMyF6N0o9B73ytELogjd2NmhnafSaVjSFxZQze1fdQgLf0g0dHT9f
+         iDbt6/tcRxKLWYWmyijg9+6moqpfwb7GPmHmpIhrar9dRiqzNoDqUK+1eBbj+lK3nevv
+         kMnEKZHGAb46Fios43Tb69V/RIE3AfQc0HDQhHhXFXcbpsFiujBwVzsWOjGl0oBTKdLa
+         13HgwypilfJWR+eoBJoXy6YlLy8g4moyeKZXomfENFae1+gH/8IWVfP8k0A4MZOVRcAZ
+         rOAbqjqhexn6NcgL9J84/EGr3fghaRIQTYDdMMHi1X1uAV4M+kSWBKnelrHODP3NaOg4
+         ZFjg==
+X-Gm-Message-State: AOJu0YzPeX0p0znIChqapJG1lVtVq6YEgVBbUteqRB07MYe7xcAmEI6w
+        mhBSKCEmmoDhfflTtSSkokXMWg==
+X-Google-Smtp-Source: AGHT+IEZBABvrUJyOnUqIjt8DQpu4/Ght7kXWGlnDfbg74DLs7ajvH75DORb8rvzSwmWJ5nrCs9TaA==
+X-Received: by 2002:a05:6512:39d1:b0:4f8:6625:f2ca with SMTP id k17-20020a05651239d100b004f86625f2camr7199083lfu.61.1692717932388;
+        Tue, 22 Aug 2023 08:25:32 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id l2-20020aa7cac2000000b0052239012c65sm7794477edt.82.2023.08.22.08.25.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 08:25:31 -0700 (PDT)
+Message-ID: <51bc0ccf-425b-5f16-b8f2-94d7cc979fae@linaro.org>
+Date:   Tue, 22 Aug 2023 17:25:30 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJhJPsUpmR0R8AhGMvFbBHXvcYcUsDmjw5_yb=NnFSdzjSf5dw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+To:     Shenwei Wang <shenwei.wang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+ <CAL_Jsq+XA_P-aRK9_WuGPmJ0_xJgsSr9smZy4BRbKZbmVsMQBQ@mail.gmail.com>
+ <PAXPR04MB918539A19B8F817F623BBD1F891BA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <9927403d-6dd9-3e5e-8f9d-f38e6640f95f@linaro.org>
+ <PAXPR04MB91850D8807CE374BD7C30CC5891EA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAL_JsqJ3dr7gxq+D5DYG8oQ=igzjARz=beQoYL7rrydV4SwDTw@mail.gmail.com>
+ <PAXPR04MB918567C378D420DB4830B869891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <PAXPR04MB918567C378D420DB4830B869891FA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Sorry! The RGMII mode does work for LS1B.
+On 22/08/2023 17:18, Shenwei Wang wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Rob Herring <robh+dt@kernel.org>
+>> Sent: Monday, August 21, 2023 1:50 PM
+>> To: Shenwei Wang <shenwei.wang@nxp.com>
+>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Ulf Hansson <ulf.hansson@linaro.org>; Liam Girdwood
+>> <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
+>>> Thank you for providing the link. After reviewing the entire thread, I
+>>> still don't understand how to proceed. What is the conclusion
+>>> regarding this commonly used use case but overlooked feature in the
+>> upstream kernel?
+>>
+>> Overlooked implies we missed and ignored it, but the same concept has been
+>> submitted twice and rejected twice. What use case cannot be supported?
+>>
+> 
+> No offend. :) Sorry for my poor word. To provide more context, a common use case 
+> example is using a GPIO pin as a power switch. The current implementation operates 
+> as a fixed regulator, which makes it difficult to control the on/off timing without modifying
+> its driver. 
 
-and the question then is: How does it work?
+So it is a problem of a driver?
 
-    Andrew
+> It also lacks power management support. 
+
+Which is not related to bindings but implementation in given driver.
+
+> 
+>> The detail that power-domains get handled automatically is an implementation
+>> detail in the kernel (currently). That could easily change and you'd be in the same
+>> position as with regulator supplies.
+> 
+> The proposed regulator-pd driver follows the standard PD driver framework, so it for sure
+> relies on certain kernel implementation details. If those underlying implementation details 
+> change in the future, this driver as well as other PD drivers built on the same framework 
+> would need to be updated accordingly. 
+
+We talk about bindings which you would not be allowed to change. Thus
+your case would stop working...
+
+> 
+>> We could just as easily decide to make the driver core turn on all supplies in a
+>> node. That would give you the same "feature". Why would you design your DT
+>> around implementation decisions of the OS?
+>>
+> 
+> This DT properties are proposed solely for this specific driver, not to hack the OS. This 
+> is no different than other PD drivers like gpc/scu-pd/imx93-pd.
+
+I am not sure if you got Rob's point, I have feelings that not. Argument
+that some OS implements something some way, is not an argument for a new
+binding, barely hardware related.
+
+Best regards,
+Krzysztof
+
