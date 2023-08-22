@@ -2,60 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F899784163
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4D4E7841D1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 15:17:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235871AbjHVM7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 08:59:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
+        id S236041AbjHVNR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 09:17:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235909AbjHVM7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:59:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEABACC7;
-        Tue, 22 Aug 2023 05:59:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 598A761170;
-        Tue, 22 Aug 2023 12:59:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1152AC433C9;
-        Tue, 22 Aug 2023 12:59:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692709157;
-        bh=NQnhsHYpEv0+wR6qYs89EorxUXngM3591u/SXhXnpPA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NU+NjR2QBirg2yiQcLKcEeJPPlKzQlnyqnFpax4rg/sjpJ7Kyomn8+flnySjkToDa
-         VH/7OSAe0ewPkiTra6TUNbgl4SfrsmOuJGq0JQba2tlzvDFsGY/P/RPq/1yyjxIX46
-         QzjXRJeH3rru6VzMBTBGGy1JV6DkIxGQCktQlV0k1Dh7U4heVQpRczjxQVtG7J/+dH
-         94tTcZj7ezySR4iPHucakIyaYZd+/LyEgD6gtb4HdCSBa7fp7BgJZVoBgFYv51V2RV
-         t5FmQH/77qbmJCZOciFQvgdhynQxUDDrg0oFZYTcFSDOfL9tbSwFUXaSLlCSRs9W9V
-         elxA5zMpzgFIA==
-Date:   Tue, 22 Aug 2023 14:59:14 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Liu Ying <victor.liu@nxp.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-        guido.gunther@puri.sm, marcel.ziswiler@toradex.com,
-        laurentiu.palcu@oss.nxp.com, robh@kernel.org
-Subject: Re: [PATCH v14 RESEND 5/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
-Message-ID: <22parqvy44hkd2ypkglfwk6bafi5ov4qfhpvd6qnt36us7odec@iebwnwtwvnnf>
-References: <20230822085949.816844-1-victor.liu@nxp.com>
- <20230822085949.816844-6-victor.liu@nxp.com>
+        with ESMTP id S232281AbjHVNR4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 09:17:56 -0400
+Received: from mail-pg1-x52c.google.com (mail-pg1-x52c.google.com [IPv6:2607:f8b0:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCC94CE8;
+        Tue, 22 Aug 2023 06:17:54 -0700 (PDT)
+Received: by mail-pg1-x52c.google.com with SMTP id 41be03b00d2f7-5650ef42f6dso2509721a12.0;
+        Tue, 22 Aug 2023 06:17:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692710274; x=1693315074;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=weQf34xofDODWPjvp/B1jxJ4g6zTpqejkurB//D5bLc=;
+        b=kq6RPquOUM4Z8KQ5DQtNBAOW/eTF0uKxZtayRMAl6I44WaLygReBkCskiqOsyPLUTf
+         cPHIx7u8TXq/zNh628YnQY7oPaan2jLdy7PzE8E4SqRbU9igFBwntPttHOpGFOCy11s/
+         qzJFICI89vouWBKMQ/ecmxEneGerHnnSRoeKp4T1b+P+hxyqZoMHV9ltIBPIN29MZ2y3
+         6AIs4z6nsJQKxTvqQD5keqPZEv0u0kWEsmY0r0cZLzSMoEhVPHTWKg1M4GLEQu48UihI
+         Mt2ATbuhnRQVg4ARzq9w1AFNcNMRenCrxjHueiz13wn28iDn8ggC1bhljJ0ciDfdfzF+
+         Qcvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692710274; x=1693315074;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=weQf34xofDODWPjvp/B1jxJ4g6zTpqejkurB//D5bLc=;
+        b=G/CNZBuV/2LU5yJqYIhoDxknMQcOVTNJxPA4swVW67I/0pLC6NdlPq5JcpDNFqLzOV
+         WkiMqSaY9zJfwsBD79t7JGnCm7ZG4+I5sznPrF617M/F2tDbc6eV8iFLI/4TK4nEPJEs
+         WlDAGo4VQnN8NNwmA5Ak1PYaxbKezkTj55Nf2cD1P0hvLR5SvX1QjUFYEYjhYvYI+/U4
+         jvmifWdX0nnJYA+tZ4X6QikbQ/doT46i3dSACfq8v1SYmSNbjmjrowcKJ0zOeRVAOOMW
+         oF/OleOSxkqI7B/H7T2H48xrO0nYfLpAFAf9dB3GA0exnlT6n3fQO35w2DYkxgk9zCN3
+         oS2w==
+X-Gm-Message-State: AOJu0Yw3GfmyedgNpjQsTcEsjTGNjBz7RZOAUWyewSS+0uNsaQNY1Nzo
+        zSCyX8s2TorF9lXaXNqoVAU=
+X-Google-Smtp-Source: AGHT+IGpIJbXPROb0KGQTrSk0eu1HHSozitZU5XK1x8xxqqRSMjA4NvDrxApqmRSyQbbmpI22yYz+g==
+X-Received: by 2002:a17:90a:17a4:b0:268:e5db:6e19 with SMTP id q33-20020a17090a17a400b00268e5db6e19mr6759732pja.20.1692710274124;
+        Tue, 22 Aug 2023 06:17:54 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z9-20020a17090ab10900b00262fc3d911esm9536304pjq.28.2023.08.22.06.17.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Aug 2023 06:17:53 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 22 Aug 2023 06:17:51 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Message-ID: <05ec3dc2-3ed5-4b04-8062-c10777e0a181@roeck-us.net>
+References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
+ <20230808-stand-cheddar-b76b0b7509a0@spud>
+ <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
+ <20230808-esquire-epidemic-f9bd74ffde25@spud>
+ <CABqG17jm938MaEeqS03WeryVWSRBS7Bqq2Vwq9SL4QOGqXU43A@mail.gmail.com>
+ <b3eebd2b-c73b-fdc7-2b2b-07e97db26d92@linaro.org>
+ <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
+ <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
+ <CABqG17gL7XL0nKZ0QEYkF672AvfJQXapExw3p1iGm88U9idq=w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="wky7filj2ecrfgcp"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230822085949.816844-6-victor.liu@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <CABqG17gL7XL0nKZ0QEYkF672AvfJQXapExw3p1iGm88U9idq=w@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,330 +89,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 22, 2023 at 02:32:31PM +0530, Naresh Solanki wrote:
+> Hi
+> 
+> On Fri, 18 Aug 2023 at 14:53, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 16/08/2023 10:51, Naresh Solanki wrote:
+> > > Hi Krzysztof,
+> > >
+> > > On Tue, 15 Aug 2023 at 01:02, Krzysztof Kozlowski
+> > > <krzysztof.kozlowski@linaro.org> wrote:
+> > >>
+> > >> On 11/08/2023 18:00, Naresh Solanki wrote:
+> > >>> Hi,
+> > >>>
+> > >>> On Tue, 8 Aug 2023 at 19:58, Conor Dooley <conor@kernel.org> wrote:
+> > >>>>
+> > >>>> On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
+> > >>>>> On 8/8/23 04:46, Conor Dooley wrote:
+> > >>>>>> On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
+> > >>>>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> > >>>>>>>
+> > >>>>>>> The TDA38640 chip has different output control mechanisms depending on
+> > >>>>>>> its mode of operation. When the chip is in SVID mode, only
+> > >>>>>>> hardware-based output control is supported via ENABLE pin. However, when
+> > >>>>>>> it operates in PMBus mode, software control works perfectly.
+> > >>>>>>>
+> > >>>>>>> To enable software control as a workaround in SVID mode, add the DT
+> > >>>>>>> property 'infineon,en-svid-control'. This property will enable the
+> > >>>>>>> workaround, which utilizes ENABLE pin polarity flipping for output when
+> > >>>>>>> the chip is in SVID mode.
+> > >>>>>>
+> > >>>>>> Why do you need a custom property for this? How come it is not possible
+> > >>>>>> to determine what bus you are on?
+> > >>>>>>
+> > >>>>>
+> > >>>>> That is not the point. Yes, it can be detected if the control method is
+> > >>>>> PMBus or SVID. However, in SVID mode, SVID is supposed to control the
+> > >>>>> output, not PMBUs. This is bypassed by controlling the polarity of the
+> > >>>>> (physical) output enable signal. We do _not_ want this enabled automatically
+> > >>>>> in SVID mode. Its side effects on random boards using this chip are unknown.
+> > >>>>> Thus, this needs a property which specifically enables this functionality
+> > >>>>> for users who _really_ need to use it and (hopefully) know what they are
+> > >>>>> doing.
+> > >>>>
+> > >>>> Hmm, reading this it makes a lot more sense why this is a property - I
+> > >>>> guess I just struggled to understand the commit message here,
+> > >>>> particularly what the benefit of using the workaround is. I'm still
+> > >>>> having difficulty parsing the commit & property text though - its
+> > >>>> unclear to me when you would need to use it - so I will stay out
+> > >>>> of the way & let Rob or Krzysztof handle things.
+> > >>>
+> > >>> To provide context, my system employs a unique power sequence
+> > >>> strategy utilizing a BMC (Baseboard Management Controller),
+> > >>> rendering the reliance on the ENABLE pin unnecessary.
+> > >>> In this configuration, the ENABLE pin is grounded in the hardware.
+> > >>> While most regulators facilitate PMBus Operation for output control,
+> > >>> the TDA38640 chip, when in SVID mode, is constrained by the
+> > >>> ENABLE pin to align with Intel specifications.
+> > >>> My communication with Infineon confirmed that the recommended
+> > >>> approach is to invert the Enable Pin for my use case.
+> > >>>
+> > >>> Since this is not typically the use case for most setup & hence DT property
+> > >>> is must for enabling the special case.
+> > >>>
+> > >>> For further insight into my setup's power sequence strategy, you can
+> > >>> refer to the following link: https://github.com/9elements/pwrseqd
+> > >>>
+> > >>
+> > >> This justifies to me the property, but still you described desired
+> > >> driver behavior, not the hardware characteristic. Don't describe what
+> > >> you want to control, but describe the entire system.
+> > > I guess by entire system you mean how the regulators(including
+> > > TDA38640) connected & operated in our setup ?
+> >
+> > I mean, property name and description should say what is the
+> > characteristic of the hardware/firmware/entire system.
+> Based on your feedback, will update to below:
+> infineon,fixed-level-en-pin:
+>     description: |
+>       Indicate the ENABLE pin is set at fixed level or left
+>       unconnected(has internal pull-up).
+>     type: boolean
 
---wky7filj2ecrfgcp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Messy, because while it reflects physical connectivity, it doesn't reflect
+its use in the system at all. The pin may be at fixed level or left
+unconnected, but the system vendor doesn't want to give users the
+means to control output power (which would be the normal situation).
 
-Hi,
+But then, if that is the only way to get a property accepted, so be it.
 
-Aside from the discussion on the binding and the general architecture, I
-have some comments there.
-
-On Tue, Aug 22, 2023 at 04:59:48PM +0800, Liu Ying wrote:
-> +int dpu_cf_init(struct dpu_soc *dpu, unsigned int index,
-> +		unsigned int id, enum dpu_unit_type type,
-> +		unsigned long pec_base, unsigned long base)
-> +{
-> +	struct dpu_constframe *cf;
-> +
-> +	cf =3D devm_kzalloc(dpu->dev, sizeof(*cf), GFP_KERNEL);
-> +	if (!cf)
-> +		return -ENOMEM;
-> +
-> +	dpu->cf_priv[index] =3D cf;
-
-You can't store structures related to KMS in a device managed structure.
-The DRM KMS device will stick around (and be accessible from userspace)
-after the device has been removed until the last application closed its
-file descriptor to the device.
-
-This can be checked by enabling KASAN and manually unbinding the driver
-through sysfs.
-
-> +	cf->pec_base =3D devm_ioremap(dpu->dev, pec_base, SZ_16);
-> +	if (!cf->pec_base)
-> +		return -ENOMEM;
-> +
-> +	cf->base =3D devm_ioremap(dpu->dev, base, SZ_32);
-> +	if (!cf->base)
-> +		return -ENOMEM;
-
-For the same reason, you need to protect any access to a device managed
-resource (so clocks, registers, regulators, etc.) by a call to
-drm_dev_enter/drm_dev_exit and you need to call drm_dev_unplug instead
-of drm_dev_unregister.
-
-> +static int dpu_crtc_pm_runtime_get_sync(struct dpu_crtc *dpu_crtc)
-> +{
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_get_sync(dpu_crtc->dev->parent);
-> +	if (ret < 0) {
-> +		pm_runtime_put_noidle(dpu_crtc->dev->parent);
-> +		dpu_crtc_err(&dpu_crtc->base,
-> +			     "failed to get parent device RPM sync: %d\n", ret);
-> +	}
-> +
-> +	return ret;
-> +}
-
-That's pm_runtime_resume_and_get.
-
-> +static int dpu_crtc_pm_runtime_put(struct dpu_crtc *dpu_crtc)
-> +{
-> +	int ret;
-> +
-> +	ret =3D pm_runtime_put(dpu_crtc->dev->parent);
-> +	if (ret < 0)
-> +		dpu_crtc_err(&dpu_crtc->base,
-> +			     "failed to put parent device RPM: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static void dpu_crtc_mode_set_nofb(struct drm_crtc *crtc)
-> +{
-> +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
-> +	struct drm_display_mode *adj =3D &crtc->state->adjusted_mode;
-> +	enum dpu_link_id cf_link;
-> +
-> +	dpu_crtc_dbg(crtc, "mode " DRM_MODE_FMT "\n", DRM_MODE_ARG(adj));
-> +
-> +	/* request power-on when we start to set mode for CRTC */
-> +	dpu_crtc_pm_runtime_get_sync(dpu_crtc);
-
-=46rom the drm_crtc_helper_funcs documentation:
-
-"""
-	 * Note that the display pipe is completely off when this function is
-	 * called. Atomic drivers which need hardware to be running before they
-	 * program the new display mode (e.g. because they implement runtime PM)
-	 * should not use this hook. This is because the helper library calls
-	 * this hook only once per mode change and not every time the display
-	 * pipeline is suspended using either DPMS or the new "ACTIVE" property.
-	 * Which means register values set in this callback might get reset when
-	 * the CRTC is suspended, but not restored.  Such drivers should instead
-	 * move all their CRTC setup into the @atomic_enable callback.
-"""
-
-> +static void dpu_crtc_atomic_enable(struct drm_crtc *crtc,
-> +				   struct drm_atomic_state *state)
-> +{
-> +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
-> +	unsigned long flags;
-> +
-> +	drm_crtc_vblank_on(crtc);
-> +
-> +	enable_irq(dpu_crtc->dec_shdld_irq);
-> +	enable_irq(dpu_crtc->ed_cont_shdld_irq);
-> +	enable_irq(dpu_crtc->ed_safe_shdld_irq);
-> +
-> +	dpu_fg_enable_clock(dpu_crtc->fg);
-> +	dpu_ed_pec_sync_trigger(dpu_crtc->ed_cont);
-> +	dpu_ed_pec_sync_trigger(dpu_crtc->ed_safe);
-> +	if (crtc->state->gamma_lut)
-> +		dpu_crtc_set_gammacor(dpu_crtc);
-> +	else
-> +		dpu_crtc_disable_gammacor(dpu_crtc);
-> +	dpu_fg_shdtokgen(dpu_crtc->fg);
-> +
-> +	/* don't relinquish CPU until TCON is set to operation mode */
-> +	local_irq_save(flags);
-> +	preempt_disable();
-> +	dpu_fg_enable(dpu_crtc->fg);
-
-That's super fishy. You shouldn't need that, at all. What is going on
-there?
-
-> +
-> +	/*
-> +	 * TKT320590:
-
-Those are NXP internal references as far as as I can tell. They
-shouldn't be here.
-
-> +	 * Turn TCON into operation mode as soon as the first dumb
-> +	 * frame is generated by DPU(we don't relinquish CPU to ensure
-> +	 * this).  This makes DPR/PRG be able to evade the frame.
-> +	 */
-> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_FRAME_CNT_MOVING(dpu_crtc->fg);
-> +	dpu_tcon_set_operation_mode(dpu_crtc->tcon);
-> +	local_irq_restore(flags);
-> +	preempt_enable();
-> +
-> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(ed_safe_shdld_done);
-> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(ed_cont_shdld_done);
-> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_shdld_done);
-> +
-> +	disable_irq(dpu_crtc->ed_safe_shdld_irq);
-> +	disable_irq(dpu_crtc->ed_cont_shdld_irq);
-> +	disable_irq(dpu_crtc->dec_shdld_irq);
-> +
-> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_SECONDARY_SYNCUP(dpu_crtc->fg);
-
-The dance around the interrupts doesn't look great either. This need a
-proper description of the problem this was trying to solve. Also, what
-happens if any of those interrupts fail to trigger before you timeout?
-
-> +	DPU_CRTC_CHECK_FRAMEGEN_FIFO(dpu_crtc->fg);
-> +
-> +	dpu_crtc_queue_state_event(crtc);
-> +}
-> +
-> +static void dpu_crtc_atomic_disable(struct drm_crtc *crtc,
-> +				    struct drm_atomic_state *state)
-> +{
-> +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
-> +	struct drm_plane *plane;
-> +	struct drm_plane_state *old_plane_state;
-> +	struct dpu_plane_state *old_dpstate;
-> +	struct dpu_fetchunit *fu;
-> +	struct dpu_dprc *dprc;
-> +	const struct dpu_fetchunit_ops *fu_ops;
-> +	unsigned long flags;
-> +	int i;
-> +
-> +	enable_irq(dpu_crtc->dec_seq_complete_irq);
-> +
-> +	/* don't relinquish CPU until DPRC repeat_en is disabled */
-> +	local_irq_save(flags);
-> +	preempt_disable();
-> +	/*
-> +	 * Sync to FrameGen frame counter moving so that
-> +	 * FrameGen can be disabled in the next frame.
-> +	 */
-> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_FRAME_CNT_MOVING(dpu_crtc->fg);
-> +	dpu_fg_disable(dpu_crtc->fg);
-> +	/*
-> +	 * There is one frame leftover after FrameGen disablement.
-> +	 * Sync to FrameGen frame counter moving so that
-> +	 * DPRC repeat_en can be disabled in the next frame.
-> +	 */
-> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_FRAME_CNT_MOVING(dpu_crtc->fg);
-> +
-> +	for_each_old_plane_in_state(state, plane, old_plane_state, i) {
-> +		old_dpstate =3D to_dpu_plane_state(old_plane_state);
-> +
-> +		if (!old_plane_state->fb)
-> +			continue;
-> +
-> +		if (old_plane_state->crtc !=3D crtc)
-> +			continue;
-> +
-> +		fu =3D old_dpstate->source;
-> +
-> +		fu_ops =3D dpu_fu_get_ops(fu);
-> +
-> +		dprc =3D fu_ops->get_dprc(fu);
-> +		dpu_dprc_disable_repeat_en(dprc);
-> +	}
-> +
-> +	local_irq_restore(flags);
-> +	preempt_enable();
-> +
-> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_seq_complete_done);
-> +
-> +	disable_irq(dpu_crtc->dec_seq_complete_irq);
-> +
-> +	dpu_fg_disable_clock(dpu_crtc->fg);
-> +
-> +	drm_crtc_vblank_off(crtc);
-> +
-> +	spin_lock_irq(&crtc->dev->event_lock);
-> +	if (crtc->state->event && !crtc->state->active) {
-> +		drm_crtc_send_vblank_event(crtc, crtc->state->event);
-> +		crtc->state->event =3D NULL;
-> +	}
-> +	spin_unlock_irq(&crtc->dev->event_lock);
-> +
-> +	/* request power-off when CRTC is disabled */
-> +	dpu_crtc_pm_runtime_put(dpu_crtc);
-> +}
-
-Same story than in atomic_enable here.
-
-
-> +static int legacyfb_depth =3D 32;
-> +module_param(legacyfb_depth, uint, 0444);
-
-No custom module parameter
-
-> +static void dpu_atomic_put_plane_state(struct drm_atomic_state *state,
-> +				       struct drm_plane *plane)
-> +{
-> +	int index =3D drm_plane_index(plane);
-> +
-> +	plane->funcs->atomic_destroy_state(plane, state->planes[index].state);
-> +	state->planes[index].ptr =3D NULL;
-> +	state->planes[index].state =3D NULL;
-> +	state->planes[index].old_state =3D NULL;
-> +	state->planes[index].new_state =3D NULL;
-> +
-> +	drm_modeset_unlock(&plane->mutex);
-> +
-> +	dpu_plane_dbg(plane, "put state\n");
-> +}
-> +
-> +static void dpu_atomic_put_crtc_state(struct drm_atomic_state *state,
-> +				      struct drm_crtc *crtc)
-> +{
-> +	int index =3D drm_crtc_index(crtc);
-> +
-> +	crtc->funcs->atomic_destroy_state(crtc, state->crtcs[index].state);
-> +	state->crtcs[index].ptr =3D NULL;
-> +	state->crtcs[index].state =3D NULL;
-> +	state->crtcs[index].old_state =3D NULL;
-> +	state->crtcs[index].new_state =3D NULL;
-> +
-> +	drm_modeset_unlock(&crtc->mutex);
-> +
-> +	dpu_crtc_dbg(crtc, "put state\n");
-> +}
-> +
-> +static void
-> +dpu_atomic_put_possible_states_per_crtc(struct drm_crtc_state *crtc_stat=
-e)
-> +{
-> +	struct drm_atomic_state *state =3D crtc_state->state;
-> +	struct drm_crtc *crtc =3D crtc_state->crtc;
-> +	struct drm_plane *plane;
-> +	struct drm_plane_state *old_plane_state, *new_plane_state;
-> +	struct dpu_plane_state *old_dpstate, *new_dpstate;
-> +
-> +	drm_atomic_crtc_state_for_each_plane(plane, crtc_state) {
-> +		old_plane_state =3D drm_atomic_get_old_plane_state(state, plane);
-> +		new_plane_state =3D drm_atomic_get_new_plane_state(state, plane);
-> +
-> +		old_dpstate =3D to_dpu_plane_state(old_plane_state);
-> +		new_dpstate =3D to_dpu_plane_state(new_plane_state);
-> +
-> +		/* Should be enough to check the below HW plane resources. */
-> +		if (old_dpstate->stage.ptr !=3D new_dpstate->stage.ptr ||
-> +		    old_dpstate->source !=3D new_dpstate->source ||
-> +		    old_dpstate->blend !=3D new_dpstate->blend)
-> +			return;
-> +	}
-> +
-> +	drm_atomic_crtc_state_for_each_plane(plane, crtc_state)
-> +		dpu_atomic_put_plane_state(state, plane);
-> +
-> +	dpu_atomic_put_crtc_state(state, crtc);
-> +}
-
-That's super suspicious too. Are you really going around and dropping
-and destroying plane and crtc states in a global state?
-
-At the very least, you need to describe what this addresses and why you
-think it's a good solution.
-
-I kind of skimmed over the last part of the driver, but we should really
-address these first comments. There's a larger discussion on the fact
-that this driver does much more that it should and needs to (especially in
-atomic_check, but not only), and this applies to the rest of patch.
-
-Maxime
-
---wky7filj2ecrfgcp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOSxIgAKCRDj7w1vZxhR
-xRPKAQDfGQujKvGGeiil+w1sRh6m1U2aSqMZHU9v1P2C53IbdgD/ZAf/ThWDMcCL
-TM81+DKBwG9rd0p0F0AqOcmmT4N7aw0=
-=oLV3
------END PGP SIGNATURE-----
-
---wky7filj2ecrfgcp--
+Guenter
