@@ -2,392 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4EBC783B65
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 188A1783B78
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:13:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232753AbjHVIGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 04:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
+        id S232014AbjHVINc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 04:13:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233062AbjHVIGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:06:10 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38801196;
-        Tue, 22 Aug 2023 01:06:07 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B1E46614CF;
-        Tue, 22 Aug 2023 08:06:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75EEEC433C7;
-        Tue, 22 Aug 2023 08:06:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692691566;
-        bh=7nFJmQsg0QQl+DVMPOeNrxjR2t6HRodjAeDtQY+RzMY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E4zym6stsQOD/oBgW4YMDgyiJ2/IgugzWRbQLeY9Yjqb7LXagafkUqJlkdk7VH7D4
-         SXN2d0pu10kYKPRz8a6uXxritxXM10MNKPvY4GqZWYb1QdK7xgoPIb3BNRK5g0sqYH
-         BiZiE0//YTj51qYz1vG8s5OTBL0spF71OQwD+qIvSUMzD71W+0LtGrCEcB8EEy55g6
-         TTOak4+0A74e9aQoNHSGtj1llNdVTalJSL9SV/v1IR7DN72hw89T+7u3NC82Ykyqxw
-         Dbl0t0va3Ln5udNpoPebLiuc/sNnLZfECY0uawJ0NVvwcr8QeJITvfrmWYe9FLALU2
-         CGxxCZ8YkGUgw==
-Date:   Tue, 22 Aug 2023 10:06:02 +0200
-From:   "mripard@kernel.org" <mripard@kernel.org>
-To:     Ying Liu <victor.liu@nxp.com>
-Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "maarten.lankhorst@linux.intel.com" 
-        <maarten.lankhorst@linux.intel.com>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        Guido =?utf-8?Q?G=C3=BCnther?= <guido.gunther@puri.sm>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "Laurentiu Palcu (OSS)" <laurentiu.palcu@oss.nxp.com>,
-        "robh@kernel.org" <robh@kernel.org>
-Subject: Re: [PATCH v14 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
-Message-ID: <x3odw5zxaz5r52zmwf6owdgalthkhbjogsvblzuj3vjaugu3kr@6jr4lsaxkkn3>
-References: <20230106055056.2883302-1-victor.liu@nxp.com>
- <AM7PR04MB7046E7F22B817FC6FE8DA95A981FA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+        with ESMTP id S230340AbjHVINb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:13:31 -0400
+Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAE110E;
+        Tue, 22 Aug 2023 01:13:29 -0700 (PDT)
+Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-58c92a2c52dso47263977b3.2;
+        Tue, 22 Aug 2023 01:13:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692692008; x=1693296808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/zW5Y8LaXGLER42IAGYB8LpUg+Xyn6q09HM2fWj9LCA=;
+        b=Z3OGZL2wiDSe5NHPlCU7cuNR6emkVGyy4jZ/SsgrQS10FbOcU1IKuXhIX0Xjsrl0gF
+         2IhZmFUEeZcY0cHN2oFHrMOcTB4/yW40ZhgYFg8/TU+VenLp8lf4u0gd8b2q6jzAomFr
+         BQdvXg9/A5GQ0WUnxDecfUYqNx9KIW1Ds4Mn0TrDYdVjJmLICuJP8FMME2r52m/5B1Pi
+         gCy+mCSZeWoZu7MS284XxHiGUq+MfMekWBN8bkNp4j2I4JlAr61+Y76sAgeZqrKWK11e
+         an3g+NAfkjrn3UUaldR9SOK2aAImZS9N5Xs5BUc9QEQ+9uiD61yCwf9lFws8EZ9SYXR9
+         O57g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692692008; x=1693296808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/zW5Y8LaXGLER42IAGYB8LpUg+Xyn6q09HM2fWj9LCA=;
+        b=gi0RBzA3K/Hx7weNmTBaWeyniVUv0X7nEdOvQx3A9Tksjc3fZOavKwgRmUMtFySzCL
+         SQJJRmKvgyoRA/z7LVTha1K1+rtNcESgo1zZZrczXgdTgASbe8ezxN1WSwuXxhLBKH4H
+         qYziMJtjqtwIXyyGMZrLbpRsbN7lbLyzGs/mKu64HNvdkeTPpG6bivviBLisC00ZtpQC
+         TY+mV0ccE/cBP/4zlC4lVIupjnSFAhosyCkXA9u+us28J8Kqoa43BBtb/weXjGtxi9kN
+         OKLdbaE4jr+j/zp1Q2xD+2ENKdDr++Jcqj9byjCgv1qyrnmjImttCG6j+tcOCvS8C8hK
+         WbRQ==
+X-Gm-Message-State: AOJu0Ywgz3R3uV9FGsqAaX7c57kM9xvicXEHbmjKbt1eDc34ogZIN67e
+        FR/ry2XsAMCvDaCDhGAxJEtbrndzbLWvCF2pyGA=
+X-Google-Smtp-Source: AGHT+IGzhoRe7kaDsYY+1xcJ1qTu6hq+dr2IGUoDyo75z2HkAVDWWdVVMQak0NsKFcKt4WjA43VlsIPaUJXWrm+zQ3c=
+X-Received: by 2002:a0d:ca4c:0:b0:577:21ff:4d47 with SMTP id
+ m73-20020a0dca4c000000b0057721ff4d47mr10517122ywd.7.1692692008134; Tue, 22
+ Aug 2023 01:13:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="b7dz62g3jq6f5w2p"
-Content-Disposition: inline
-In-Reply-To: <AM7PR04MB7046E7F22B817FC6FE8DA95A981FA@AM7PR04MB7046.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230821061315.3416836-1-zhoubinbin@loongson.cn> <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
+In-Reply-To: <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Tue, 22 Aug 2023 16:13:16 +0800
+Message-ID: <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
+ Fix warnings about liointc-2.0
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof:
 
---b7dz62g3jq6f5w2p
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for your detailed reply.
 
-Hi,
+On Tue, Aug 22, 2023 at 1:44=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 21/08/2023 08:13, Binbin Zhou wrote:
+> > Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
+> > Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
+> > routes for 64-bit interrupt sources.
+> >
+> > For liointc-2.0, we need to define two liointc nodes in dts, one for
+> > "0-31" interrupt sources and the other for "32-63" interrupt sources.
+> > This applies to mips Loongson-2K1000.
+> >
+> > Unfortunately, there are some warnings about "loongson,liointc-2.0":
+> > 1. "interrupt-names" should be "required", the driver gets the parent
+> > interrupts through it.
+>
+> No, why? Parent? This does not make sense.
 
-On Tue, Aug 22, 2023 at 05:36:14AM +0000, Ying Liu wrote:
-> Hi,
->=20
-> > On Friday, January 6, 2023 1:50 PM Ying Liu wrote:
-> >=20
-> > Hi,
-> >=20
-> >=20
-> > This is the v14 series to introduce i.MX8qm/qxp Display Processing Unit=
-(DPU)
-> > DRM support.
-> >=20
-> > DPU is comprised of a blit engine for 2D graphics, a display controller
-> > and a command sequencer.  Outside of DPU, optional prefetch engines can
-> > fetch data from memory prior to some DPU fetchunits of blit engine and
-> > display controller.  The pre-fetchers support linear formats and Vivante
-> > GPU tile formats.
-> >=20
-> > Reference manual can be found at:
-> > https://www.nxp.com/webapp/Download?colCode=3DIMX8DQXPRM
-> >=20
-> >=20
-> > This patch set adds kernel modesetting support for the display controll=
-er part.
-> > It supports two CRTCs per display controller, several planes, prefetch
-> > engines and some properties of CRTC and plane.  Currently, the register=
-s of
-> > the controller is accessed without command sequencer involved, instead =
-just
-> > by
-> > using CPU.  DRM connectors would be created from the DPU KMS driver.
-> >=20
-> >=20
-> > Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
-> > Patch 4 is a minor improvement of a macro to suppress warning as the KMS
-> > driver
-> > uses it.
-> > Patch 5 introduces the DPU DRM support.
-> > Patch 6 updates MAINTAINERS.
-> >=20
-> > Welcome comments, thanks.
-> >=20
-> > v13->v14:
-> > * Rebase the patch series to the latest drm-misc-next branch(v6.1-rc6 b=
-ased).
-> > * Include drm_fbdev_generic.h in dpu_drv.c due to the rebase.
-> > * Fix dpu drm driver suspend/resume by properly get drm device through
-> >   dev_get_drvdata().
-> > * Use pm_ptr() macro for dpu core driver PM operations.
-> > * Use pm_sleep_ptr() macro for dpu drm driver PM operations.
-> > * Use DEFINE_SIMPLE_DEV_PM_OPS() macro to define dpu drm driver PM
-> > operations,
-> >   instead of SIMPLE_DEV_PM_OPS().
-> > * Update year of Copyright.
-> > * Add SoC series name 'i.MX8'/'IMX8'/'imx8' to dpu driver module decrip=
-tion,
-> >   Kconfig name, dpu driver names and dpu driver object name.
-> >=20
-> > v12->v13:
-> > * Drop 'drm->irq_enabled =3D true;' from patch 5/6 to fix a potential b=
-uild
-> >   break reported by 'kernel test robot <lkp@intel.com>'.  drm->irq_enab=
-led
-> >   should not be used by imx-dpu drm as it is only used by legacy drivers
-> >   with userspace modesetting.
-> >=20
-> > v11->v12:
-> > * Rebase the series upon v6.1-rc1.
-> > * Minor update on Kconfigs, struct names and macro names for patch 5/6
-> >   due to the rebase.
-> >=20
-> > v10->v11:
-> > * Rebase the series upon v6.0-rc1.
-> > * Include drm_blend.h and drm_framebuffer.h in dpu-kms.c and dpu-
-> > plane.c
-> >   to fix build errors due to the rebase.
-> > * Fix a checkpatch warning for dpu-crtc.c.
-> > * Properly use dev_err_probe() to return it's return value directly whe=
-re
-> >   possible.
-> >=20
-> > v9->v10:
-> > * Rebase the series upon v5.18-rc1.
-> > * Make 'checkpatch.pl --strict' happier for patch 5/6.
-> > * Add Rob's R-b tag on patch 3/6.
-> > * Add Laurentiu's R-b tag on patch 5/6.
-> > * Add Laurentiu's A-b tag on patch 6/6.
-> >=20
-> > v8->v9:
-> > * Use drm_atomic_get_new_plane_state() in dpu_plane_atomic_update()
-> > for
-> >   patch 5/6. (Laurentiu)
-> > * Drop getting DPU DT alias ID for patch 5/6, as it is unused.
-> > * Reference 'interrupts-extended' schema instead of 'interrupts' for pa=
-tch
-> > 3/6
-> >   to require an additional DPR interrupt(r_rtram_stall) because the ref=
-erence
-> >   manual does mention it, though the driver doesn't get/use it for now.
-> >   Reference 'interrupt-names' schema to define the two DPR interrupt na=
-mes
+This was noted in the v1 patch discussion. The liointc driver now gets
+the parent interrupt via of_irq_get_byname(), so I think the
+"interrupt-names" should be "required".
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
+vers/irqchip/irq-loongson-liointc.c?h=3Dv6.5-rc6#n345
+
+static const char *const parent_names[] =3D {"int0", "int1", "int2", "int3"=
+};
+
+        for (i =3D 0; i < LIOINTC_NUM_PARENT; i++) {
+                parent_irq[i] =3D of_irq_get_byname(node, parent_names[i]);
+                if (parent_irq[i] > 0)
+                        have_parent =3D TRUE;
+        }
+        if (!have_parent)
+                return -ENODEV;
+
+>
+> >
+> > 2. Since not all CPUs are multicore, e.g. Loongson-2K0500 is a
+> > single-core CPU, there is no core1-related registers. So "reg" and
+> > "reg-names" should be set to "minItems 2".
+> >
+> > 3. Routing interrupts from "int0" is a common solution in practice, but
+> > theoretically there is no such requirement, as long as conflicts are
+> > avoided. So "interrupt-names" should be defined by "pattern".
+>
+> Why? What the pattern has to do with anything in routing or not routing
+> something?
+
+First of all, interrupt routing is configurable and each intx handles
+up to 32 interrupt sources. int0-int3 you can choose a single one or a
+combination of multiple ones, as long as the intx chosen matches the
+parent interrupt and is not duplicated:
+Parent interrupt --> intx
+2-->int0
+3-->int1
+4-->int2
+5-->int3
+
+As:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
+h/mips/boot/dts/loongson/loongson64g-package.dtsi?h=3Dv6.5-rc6#n24
+
+In addition, if there are 64 interrupt sources, such as the mips
+Loongson-2K1000, and we need two dts nodes to describe the interrupt
+routing, then there is bound to be a node without "int0".
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
+h/mips/boot/dts/loongson/loongson64-2k1000.dtsi?h=3Dv6.5-rc6#n60
+
+According to the current dt-binding rule, if the node does not have
+"int0", there will be a dts_check warning, which is not in line with
+our original intention.
+
+>
+> >
+> > This fixes dtbs_check warning:
+> >
+> > DTC_CHK arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb
+> > arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-cont=
+roller@1fe11440: interrupt-names:0: 'int0' was expected
+> >       From schema: Documentation/devicetree/bindings/interrupt-controll=
+er/loongson,liointc.yaml
+> > arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-cont=
+roller@1fe11440: Unevaluated properties are not allowed ('interrupt-names' =
+was unexpected)
+> >       From schema: Documentation/devicetree/bindings/interrupt-controll=
+er/loongson,liointc.yaml
+> >
+> > Fixes: f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add Loongson-2=
+K1000 LIOINTC")
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> > V2:
+> > 1. Update commit message;
+> > 2. "interruprt-names" should be "required", the driver gets the parent
+> > interrupts through it;
+> > 3. Add more descriptions to explain the rationale for multiple nodes;
+> > 4. Rewrite if-else statements.
+> >
+> > Link to V1:
+> > https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongso=
+n.cn/
+> >
+> >  .../loongson,liointc.yaml                     | 74 +++++++++----------
+> >  1 file changed, 37 insertions(+), 37 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
+ngson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
+/loongson,liointc.yaml
+> > index 00b570c82903..f695d3a75ddf 100644
+> > --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
+iointc.yaml
+> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
+iointc.yaml
+> > @@ -11,11 +11,11 @@ maintainers:
+> >
+> >  description: |
+> >    This interrupt controller is found in the Loongson-3 family of chips=
+ and
+> > -  Loongson-2K1000 chip, as the primary package interrupt controller wh=
+ich
+> > +  Loongson-2K series chips, as the primary package interrupt controlle=
+r which
+> >    can route local I/O interrupt to interrupt lines of cores.
 > > -
-> >   'dpr_wrap' and 'r_rtram_stall'.  Accordingly, patch 5/6 gets the 'dpr=
-_wrap'
-> >   interrupt by name.
-> > * Drop Rob's R-b tag on patch 3/6, as review is needed.
-> >=20
-> > v7->v8:
-> > * Rebase this series up onto the latest drm-misc-next branch, due to DRM
-> > plane
-> >   helper functions API change(atomic_check and atomic_update) from DRM
-> > atomic
-> >   core.  So, dpu_plane_atomic_check() and dpu_plane_atomic_update() are
-> > updated
-> >   accordingly in patch 5/6.  Also, rename plane->state variables and re=
-levant
-> >   DPU plane state variables in those two functions to reflect they are =
-new
-> >   states, like the patch 'drm: Rename plane->state variables in atomic =
-update
-> >   and disable' recently landed in drm-misc-next.
-> > * Replace drm_gem_fb_prepare_fb() with
-> > drm_gem_plane_helper_prepare_fb() in
-> >   patch 5/6, due to DRM core API change.
-> > * Improve DPR burst length for GPU standard tile and 32bpp GPU super ti=
-le in
-> >   patch 5/6 to align with the latest version of internal HW documention.
-> >=20
-> > v6->v7:
-> > * Fix return value of dpu_get_irqs() if platform_get_irq() fails. (Laur=
-entiu)
-> > * Use the function array dpu_irq_handler[] to store individual DPU irq
-> > handlers.
-> >   (Laurentiu)
-> > * Call get/put() hooks directly to get/put DPU fetchunits for DPU plane=
- groups.
-> >   (Laurentiu)
-> > * Shorten the names of individual DPU irq handlers by using DPU unit ab=
-brev
-> >   names to make writing dpu_irq_handler[] easier.
-> > * Add Rob's R-b tag back on DPU dt-binding patch as change in v6 was
-> > reviewed.
-> >=20
-> > v5->v6:
-> > * Use graph schema in the DPU dt-binding.
-> > * Do not use macros where possible in the DPU DRM driver. (Laurentiu)
-> > * Break dpu_plane_atomic_check() into some smaller functions. (Laurenti=
-u)
-> > * Address some minor comments from Laurentiu on the DPU DRM driver.
-> > * Add dpu_crtc_err() helper marco in the DPU DRM driver to tell dmesg
-> >   which CRTC generates error.
-> > * Drop calling dev_set_drvdata() from dpu_drm_bind/unbind() in the DPU
-> > DRM
-> >   driver as it is done in dpu_drm_probe().
-> > * Some trivial tweaks.
-> >=20
-> > v4->v5:
-> > * Rebase up onto the latest drm-misc-next branch and remove the hook to
-> >   drm_atomic_helper_legacy_gamma_set() from patch 5/6, because it was
-> > dropped
-> >   by the newly landed commit 'drm: automatic legacy gamma support'.
-> > * Remove a redundant blank line from dpu_plane_atomic_update() in patch
-> > 5/6.
-> >=20
-> > v3->v4:
-> > * Improve compatible properties in DPU and prefetch engines' dt bindings
-> >   by using enum instead of oneOf+const.
-> > * Add Rob's R-b tags on dt binding patches(patch 1/6, 2/6 and 3/6).
-> > * Add Daniel's A-b tag on patch 4/6.
-> >=20
-> > v2->v3:
-> > * Fix DPU DRM driver build warnings which are
-> >   Reported-by: kernel test robot <lkp@intel.com>.
-> > * Drop DPU DRM driver build dependency on IMX_SCU, as dummy SCU
-> > functions have
-> >   been added in header files by the patch 'firmware: imx: add dummy
-> > functions'
-> >   which has landed in linux-next/master branch.
-> > * Add a missing blank line in include/drm/drm_atomic.h.
-> >=20
-> > v1->v2:
-> > * Test this patch set also with i.MX8qm LVDS displays.
-> > * Drop the device tree patches because we'll use new dt binding way to
-> >   support i.MX8qm/qxp clocks.  This depends on a not-yet-landed patch s=
-et
-> >   to do basic conversions for the platforms.
-> > * Fix dt binding yamllint warnings.
-> > * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm in
-> > DPU's
-> >   dt binding documentation.
-> > * Use new dt binding way to add clocks in the dt binding examples.
-> > * Address several comments from Laurentiu on the DPU DRM patch.
-> >=20
-> >=20
-> > Liu Ying (6):
-> >   dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
-> >   dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
-> >   dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
-> >   drm/atomic: Avoid unused-but-set-variable warning on
-> >     for_each_old_plane_in_state
-> >   drm/imx: Introduce i.MX8qm/qxp DPU DRM
-> >   MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
-> >=20
-> >  .../display/imx/fsl,imx8qxp-dprc.yaml         |  100 ++
-> >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml |  387 ++++++
-> >  .../bindings/display/imx/fsl,imx8qxp-prg.yaml |   60 +
-> >  MAINTAINERS                                   |    9 +
-> >  drivers/gpu/drm/imx/Kconfig                   |    1 +
-> >  drivers/gpu/drm/imx/Makefile                  |    1 +
-> >  drivers/gpu/drm/imx/dpu/Kconfig               |    9 +
-> >  drivers/gpu/drm/imx/dpu/Makefile              |   10 +
-> >  drivers/gpu/drm/imx/dpu/dpu-constframe.c      |  171 +++
-> >  drivers/gpu/drm/imx/dpu/dpu-core.c            | 1044 +++++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-crtc.c            |  969 +++++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-crtc.h            |   72 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-disengcfg.c       |  117 ++
-> >  drivers/gpu/drm/imx/dpu/dpu-dprc.c            |  715 +++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-dprc.h            |   40 +
-> >  drivers/gpu/drm/imx/dpu/dpu-drv.c             |  294 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-drv.h             |   28 +
-> >  drivers/gpu/drm/imx/dpu/dpu-extdst.c          |  299 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c     |  292 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetcheco.c        |  224 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c      |  152 +++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.c       |  610 ++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.h       |  195 +++
-> >  drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c       |  248 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-framegen.c        |  395 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-gammacor.c        |  223 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-hscaler.c         |  275 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu-kms.c             |  542 +++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-kms.h             |   23 +
-> >  drivers/gpu/drm/imx/dpu/dpu-layerblend.c      |  348 ++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-plane.c           |  804 +++++++++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-plane.h           |   59 +
-> >  drivers/gpu/drm/imx/dpu/dpu-prg.c             |  433 +++++++
-> >  drivers/gpu/drm/imx/dpu/dpu-prg.h             |   45 +
-> >  drivers/gpu/drm/imx/dpu/dpu-prv.h             |  231 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-tcon.c            |  250 ++++
-> >  drivers/gpu/drm/imx/dpu/dpu-vscaler.c         |  308 +++++
-> >  drivers/gpu/drm/imx/dpu/dpu.h                 |  385 ++++++
-> >  include/drm/drm_atomic.h                      |    5 +-
-> >  39 files changed, 10372 insertions(+), 1 deletion(-)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
-> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
-> >=20
-> > --
-> > 2.37.1
->=20
-> This patch series has been submitted for a quite long period of time.
->=20
-> Anything I can do to have it landed ?
+> > -allOf:
+> > -  - $ref: /schemas/interrupt-controller.yaml#
+> > +  In particular, the Loongson-2K1000/2K0500 has 64 interrupt sources t=
+hat we
+> > +  need to describe with two dts nodes. One for interrupt sources "0-31=
+" and
+> > +  the other for interrupt sources "32-63".
+> >
+> >  properties:
+> >    compatible:
+> > @@ -24,15 +24,9 @@ properties:
+> >        - loongson,liointc-1.0a
+> >        - loongson,liointc-2.0
+> >
+> > -  reg:
+> > -    minItems: 1
+> > -    minItems: 3
+> > +  reg: true
+>
+> No. Constraints must be here.
 
-I'm not sure why it fell through the cracks, but given that it's more
-than 6 monthes old, please rebase and resend it.
+May I ask a question:
+Since different compatibles require different minItems/minItems for
+the attribute, this writeup of defining the attribute to be true first
+and then defining the specific value in an if-else statement is not
+recommended?
+>
+> >
+> > -  reg-names:
+> > -    items:
+> > -      - const: main
+> > -      - const: isr0
+> > -      - const: isr1
+> > +  reg-names: true
+>
+> No, keep at least min/maxItems here.
+>
+> >
+> >    interrupt-controller: true
+> >
+> > @@ -45,11 +39,9 @@ properties:
+> >    interrupt-names:
+> >      description: List of names for the parent interrupts.
+> >      items:
+> > -      - const: int0
+> > -      - const: int1
+> > -      - const: int2
+> > -      - const: int3
+> > +      pattern: int[0-3]
+> >      minItems: 1
+> > +    maxItems: 4
+>
+> I don't see reason behind it.
+>
+> >
+> >    '#interrupt-cells':
+> >      const: 2
+> > @@ -69,32 +61,41 @@ required:
+> >    - compatible
+> >    - reg
+> >    - interrupts
+> > +  - interrupt-names
+>
+> Why? You are doing multiple things at once, without proper explanation.
 
-Maxime
+Maybe this patch does too many things...
+There are actually 3 things here, as stated in the commit message, and
+since they are all about liointc-2.0 dts-check warnings, I put them in
+a patch.
+>
+> >    - interrupt-controller
+> >    - '#interrupt-cells'
+> >    - loongson,parent_int_map
+> >
+> > -
+> >  unevaluatedProperties: false
+> >
+> > -if:
+> > -  properties:
+> > -    compatible:
+> > -      contains:
+> > -        enum:
+> > -          - loongson,liointc-2.0
+> > -
+> > -then:
+> > -  properties:
+> > -    reg:
+> > -      minItems: 3
+> > -
+> > -  required:
+> > -    - reg-names
+> > -
+> > -else:
+> > -  properties:
+> > -    reg:
+> > -      maxItems: 1
+> > +allOf:
+> > +  - $ref: /schemas/interrupt-controller.yaml#
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - loongson,liointc-2.0
+> > +    then:
+> > +      properties:
+> > +        reg:
+> > +          minItems: 2
+> > +          items:
+> > +            - description: Interrupt routing registers.
+> > +            - description: Low/high 32-bit interrupt status routed to =
+core0.
+> > +            - description: Low/high 32-bit interrupt status routed to =
+core1.
+> > +        reg-names:
+> > +          minItems: 2
+> > +          items:
+> > +            - const: main
+> > +            - const: isr0
+> > +            - const: isr1
+>
+> Srsly, why this is moved here from the top? It does not make sense.
 
---b7dz62g3jq6f5w2p
-Content-Type: application/pgp-signature; name="signature.asc"
+In liointc-2.0, we need to deal with two dts nodes, and the setting
+and routing registers are not contiguous, so the driver needs
+"reg-names" to get the corresponding register mapping. So I put all
+this in the liointc-2.0 section.
 
------BEGIN PGP SIGNATURE-----
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
+vers/irqchip/irq-loongson-liointc.c?h=3Dv6.5-rc6#n225
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZORsagAKCRDj7w1vZxhR
-xVLOAP0S4rsQCxdj1ZEL2g/aGj7r1ilhBbBzQNtVF0hihATPxgEAqgK6F5DoRQDb
-7snvA50RUsoRg0vNAk16bzAhEIXP0gY=
-=mLl3
------END PGP SIGNATURE-----
+        if (revision > 1) {
+                for (i =3D 0; i < LIOINTC_NUM_CORES; i++) {
+                        int index =3D of_property_match_string(node,
+                                        "reg-names", core_reg_names[i]);
 
---b7dz62g3jq6f5w2p--
+                        if (index < 0)
+                                continue;
+
+                        priv->core_isr[i] =3D of_iomap(node, index);
+                }
+
+                if (!priv->core_isr[0])
+                        goto out_iounmap;
+        }
+
+
+I referenced other dt-binding writeups and thought this would be clearer.
+
+Is this if-else style not recommended? Should I keep the v1 patch writeup?
+https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongson.cn=
+/
+
+Thanks.
+Binbin
+>
+> > +      required:
+> > +        - reg-names
+> > +    else:
+> > +      properties:
+> > +        reg:
+> > +          maxItems: 1
+>
+> so reg-names can be "pink-pony"?
+>
+> Best regards,
+> Krzysztof
+>
