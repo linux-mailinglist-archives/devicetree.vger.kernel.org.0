@@ -2,98 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CE89783F38
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:34:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71D85784024
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232524AbjHVLe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 07:34:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42340 "EHLO
+        id S234138AbjHVLyS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 07:54:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232250AbjHVLe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:34:58 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0A5ACE5
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:34:40 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50091b91a83so113152e87.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692704013; x=1693308813;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JCBvk371BaC/CqcWFFFnQudenCUg5vZ6gW5WDAr8SpY=;
-        b=Pif/SQoFvNrFuD9YVYJPu4qwZsX+ZEzoBm6kudRVUw78X3TyXWxu4Zivgd1mNbylJM
-         H3oFUtm78Kr8HtSPxCCEuX1V0NO3CDdvBt9BtgAu+3RuZ1d94GGmjOt8GmHdZi5mnzWe
-         0XIfRIWsMISksrD7tT73TIxf1SsRhpiB5B74XMmygQ8GR/UvMhH83cIIWRwZKP/Dl1zR
-         0JGRG4ElF90aRpOiI7VhyTHZ7dpFeSrLw9Ds6vaxT3xoMQgDtVqEiXo27A7SLUNFWGSc
-         gTtetmwdoC9LBhqaB12PlR/As1+WHEZWaZiokqRgE+SQMaIYm58eA45CeHsaLyZAkpu0
-         BEKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692704013; x=1693308813;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JCBvk371BaC/CqcWFFFnQudenCUg5vZ6gW5WDAr8SpY=;
-        b=kFQytvjTIi5eNloheiKC8Z/0wt6c7KgBbPf/7cv7yuFA9XpJ2kSOAyNTj7Xs73oxIx
-         J3vC5H8P7Fw8CA7torgbPQhN9Q8vc9/FTRMFH1Tmm2LFVdMi//VydBzoNarDQmh+0gJa
-         Pf0vtecaMmewDznwUTULTjBMfppaiGeN2RtpIS4GMvCNZ3vdI70n6+tfpD/40MeGaFYw
-         1wdHXlNveCV3G78EAz/VwPL8uBh6LE6cB1BUtKG1gljVAg+/lyGZVdzubFE/Vxr7HDN3
-         2AmikRQU2xaLOzM7304aqkDYoUgDSE8AKctWfaa8XyMQqRpjfKkQNs9u3KL9pGPhTEFM
-         fX2A==
-X-Gm-Message-State: AOJu0Yxf0ADCJz2JSQCwsURazz5VAUCI6WUAIxG9AV8SjM7Nuyvoc3r6
-        051gnOnjRAZqb9nrpwwByDcOYA==
-X-Google-Smtp-Source: AGHT+IHWkX8XSEGFwdN8ZkJ9MnJoo409O/jNsb4AfA9thIhwfIruwQp3gob+M0sfv/CUuajOeBc7JA==
-X-Received: by 2002:ac2:55a7:0:b0:500:8fcd:c3b5 with SMTP id y7-20020ac255a7000000b005008fcdc3b5mr714192lfg.12.1692704013395;
-        Tue, 22 Aug 2023 04:33:33 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id t11-20020ac24c0b000000b004ffa28ef3a4sm1202792lfq.100.2023.08.22.04.33.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 04:33:32 -0700 (PDT)
-Message-ID: <510d00e2-65f5-40c5-bd6a-5b5e34fa9e8c@linaro.org>
-Date:   Tue, 22 Aug 2023 14:33:32 +0300
+        with ESMTP id S235103AbjHVLyS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:54:18 -0400
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC52CE9;
+        Tue, 22 Aug 2023 04:53:59 -0700 (PDT)
+Received: from local
+        by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+         (Exim 4.96)
+        (envelope-from <daniel@makrotopia.org>)
+        id 1qYPg5-0006wL-27;
+        Tue, 22 Aug 2023 11:36:06 +0000
+Date:   Tue, 22 Aug 2023 12:35:47 +0100
+From:   Daniel Golle <daniel@makrotopia.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Felix Fietkau <nbd@nbd.name>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Shayne Chen <shayne.chen@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Kalle Valo <kvalo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v3 1/2] dt-bindings: mt76: support setting
+ per-band MAC address
+Message-ID: <ZOSdk6LyTlCayG4i@makrotopia.org>
+References: <d3130584b64309da28a04826100643ff6239f9ca.1690841657.git.daniel@makrotopia.org>
+ <20230811190944.GA3730441-robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/4] arm64: defconfig: Enable M31 USB phy driver
-Content-Language: en-GB
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, arnd@arndb.de, geert+renesas@glider.be,
-        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org
-References: <cover.1692699472.git.quic_varada@quicinc.com>
- <84162d7d21d6bf45c4cf670000dae3f03b05ad93.1692699472.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <84162d7d21d6bf45c4cf670000dae3f03b05ad93.1692699472.git.quic_varada@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230811190944.GA3730441-robh@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 13:29, Varadarajan Narayanan wrote:
-> Enable M31 USB phy driver present in IPQ5332.
+On Fri, Aug 11, 2023 at 01:09:44PM -0600, Rob Herring wrote:
+> On Mon, Jul 31, 2023 at 11:23:16PM +0100, Daniel Golle wrote:
+> > Introduce support for setting individual per-band MAC addresses using
+> > NVMEM cells by adding a 'bands' object with enumerated child nodes
+> > representing the 2.4 GHz, 5 GHz and 6 GHz bands.
+> > 
+> > In case it is defined, call of_get_mac_address for the per-band child
+> > node, otherwise try with of_get_mac_address on the main device node and
+> > fall back to a random address like it used to be.
+> > 
+> > While at it, add MAC address related properties also for the main node.
+> > 
+> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > ---
+> > Changes since v2:
+> >  * drop items list with only a single item
+> > 
+> > Changes since v1:
+> >  * add dt-bindings
+> > 
+> >  .../bindings/net/wireless/mediatek,mt76.yaml  | 58 ++++++++++++++++++-
+> >  1 file changed, 57 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> > index 252207adbc54c..7eafed53da1de 100644
+> > --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> > +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> > @@ -37,6 +37,12 @@ properties:
+> >      description:
+> >        MT7986 should contain 3 regions consys, dcm, and sku, in this order.
+> >  
+> > +  '#address-cells':
+> > +    const: 1
+> > +
+> > +  '#size-cells':
+> > +    const: 0
+> > +
+> >    interrupts:
+> >      maxItems: 1
+> >  
+> > @@ -72,13 +78,23 @@ properties:
+> >  
+> >    ieee80211-freq-limit: true
+> >  
+> > +  address: true
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v2:
-> 	Add full stop to commit log.
-> ---
->   arch/arm64/configs/defconfig | 1 +
->   1 file changed, 1 insertion(+)
+> What's this? Not a documented property.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Maybe it should be documented then...?
+See
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/net/core/of_net.c#n140
 
--- 
-With best wishes
-Dmitry
+```
+int of_get_mac_address(struct device_node *np, u8 *addr)
+{
+	int ret;
 
+	if (!np)
+		return -ENODEV;
+
+	ret = of_get_mac_addr(np, "mac-address", addr);
+	if (!ret)
+		return 0;
+
+	ret = of_get_mac_addr(np, "local-mac-address", addr);
+	if (!ret)
+		return 0;
+
+	ret = of_get_mac_addr(np, "address", addr);
+	if (!ret)
+		return 0;
+
+	return of_get_mac_address_nvmem(np, addr);
+}
+EXPORT_SYMBOL(of_get_mac_address);
+```
+
+> 
+> 
+> > +
+> > +  local-mac-address: true
+> > +
+> > +  mac-address: true
+> 
+> You really need a ref to the schema defining these. But first we need to 
+> split them out from ethernet-controller.yaml. Which I think there were 
+> patches for, but it stalled out.
+> 
+
+I understand, so have a schema to include whenever of_net.c is used to
+assign a MAC address, and then use that for ethernet-controller.yaml and
+in places such as here.
+
+If you point me to the existing patches I can pick them up and address
+whatever needs to be addressed to get them merged.
+
+> Anyways, it's fine for now if you're not up for that.
+
+So just remove the (supposedly deprecated) "address: true" for now and
+then create an of_net MAC-address related schema and move things there
+after that?
+
+> 
+> > +
+> >    nvmem-cells:
+> > +    minItems: 1
+> >      items:
+> >        - description: NVMEM cell with EEPROM
+> > +      - description: NVMEM cell with the MAC address
+> >  
+> >    nvmem-cell-names:
+> > +    minItems: 1
+> >      items:
+> >        - const: eeprom
+> > +      - const: mac-address
+> >  
+> >    mediatek,eeprom-data:
+> >      $ref: /schemas/types.yaml#/definitions/uint32-array
+> > @@ -213,6 +229,29 @@ properties:
+> >                      description:
+> >                        Half-dBm power delta for different numbers of antennas
+> >  
+> > +patternProperties:
+> > +  '^band@[0-2]+$':
+> > +    type: object
+> > +    additionalProperties: false
+> > +    properties:
+> > +      reg:
+> > +        maxItems: 1
+> > +
+> > +      address: true
+> > +      local-mac-address: true
+> > +      mac-address: true
+> > +
+> > +      nvmem-cells:
+> > +        description: NVMEM cell with the MAC address
+> > +
+> > +      nvmem-cell-names:
+> > +        const: mac-address
+> > +
+> > +    required:
+> > +      - reg
+> > +
+> > +    unevaluatedProperties: false
+> > +
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -225,10 +264,13 @@ examples:
+> >        #address-cells = <3>;
+> >        #size-cells = <2>;
+> >        wifi@0,0 {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> >          compatible = "mediatek,mt76";
+> >          reg = <0x0000 0 0 0 0>;
+> >          ieee80211-freq-limit = <5000000 6000000>;
+> > -        mediatek,mtd-eeprom = <&factory 0x8000>;
+> > +        nvmem-cells = <&factory_eeprom>;
+> > +        nvmem-cell-names = "eeprom";
+> >          big-endian;
+> >  
+> >          led {
+> > @@ -257,6 +299,20 @@ examples:
+> >               };
+> >            };
+> >          };
+> > +
+> > +        band@0 {
+> > +          /* 2.4 GHz */
+> > +          reg = <0>;
+> > +          nvmem-cells = <&macaddr 0x4>;
+> > +          nvmem-cell-names = "mac-address";
+> > +        };
+> > +
+> > +        band@1 {
+> > +          /* 5 GHz */
+> > +          reg = <1>;
+> > +          nvmem-cells = <&macaddr 0xa>;
+> > +          nvmem-cell-names = "mac-address";
+> > +        };
+> >        };
+> >      };
+> >  
+> > -- 
+> > 2.41.0
