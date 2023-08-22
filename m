@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F05A7783B83
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98AD5783B9E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:18:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233695AbjHVIOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 04:14:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46362 "EHLO
+        id S233772AbjHVISY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 04:18:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233708AbjHVIOp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:14:45 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF26193
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:14:43 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99df431d4bfso538154366b.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:14:43 -0700 (PDT)
+        with ESMTP id S233764AbjHVISO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:18:14 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D2CE1B6
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:18:12 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51cff235226so8672616a12.0
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:18:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692692082; x=1693296882;
+        d=linaro.org; s=google; t=1692692290; x=1693297090;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=UcevB7am2pXeP5lqY50CZLpg9C14+QBxX9cH++gplMk=;
-        b=ulHC1p5RFSlmcCJ/iqa2uNeOtQCu/getFfhJm7Zc/LHNNdL4h+XXi8GFR5Ed3OCtGZ
-         1kNb8rNkW0DOHkrk0Rz8KTOiVyg2B0fdzw5OjbtKrQOO4J7iQAiiGzdngEijHAkB7z90
-         YR7FKFsT+wn1cM8K7DGdTMZ4iKt7eX1bIunvf6XQeNaYT2FqI762hBjpGamvzfWtRcPC
-         yK6JMZM2OIxjdREEkPqVN7JGCKjuXL7puf3OOUz6M61Xb+DlKhHQcTd5jFJ5WB8U5AM8
-         JPim9SByzY/xbnd5RhYxMY/g5vg/JTaHE34CczXh0s1L3V9ggG3kpwvl6GrNjPwsd9wT
-         RQnA==
+        bh=Z1MQ9JDRqAXFUR5POQlWiEXtOzxxDfLtExomDvSRs4g=;
+        b=ZShpc+OjL6atbhiSlZgFZjO6BHhlIcXf4egHk65Yw/TLtOdRYbtnA51muuFMA6Iml/
+         YLGljqfCkpbwQOa1n7wlxHYcc5hkMBmoxjcnmpdgxmw5nvPmlHx2wV361yulvh/Bo1Ky
+         uLPGJ3kaadU8HdR7i8ZLiQH9TevJeSnMdAyaTmhORYZT4aY7EFfwOyAti3ovBsY3z3xf
+         pVlFY9+eVYSSIbZ4nzhPAxaUTARbWRVVtrDeBZ9J2J4Cl+mMIwVIsDn39AgONR35Vbug
+         rwbQwjm9AgkPWe/aCf6J5ejQo1/e1nMQBXXOiBpnDwTIKoSI86iKDyGgdKcyKwSpLWY/
+         vAoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692692082; x=1693296882;
+        d=1e100.net; s=20221208; t=1692692290; x=1693297090;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UcevB7am2pXeP5lqY50CZLpg9C14+QBxX9cH++gplMk=;
-        b=MHJqcfDOJCYmuLPWC2CXtdBSrwaNu/EE5I5irERqbyynoEXqEJYy3RtOdOM720/lWL
-         yZawzgnPPv3F/pnnMLSl+LOOiUl3lBRuO0zQsWUnfSrIz7f76xJQc1hpvYfjJ1GWawEO
-         6F2i8TT20E73GdBEMMI7lHtzZXTQawAniBePC8WCjrvW5MswwcyKQuOeQS04m4+JP31E
-         QyA0C8dv3m6NROhKYBocsHs99uXihVqbh3SdGx4tHLPthzM3QY8AI0P8YewrVSusb8n7
-         2vOtkLxmkS50mES36QrPFOmfdGeocj+qbiHC4MaqewAYeLXqc71v9XIWewXhGsjRYGX+
-         KUjA==
-X-Gm-Message-State: AOJu0YxuHR6ga/0seed26eOzj5PXmDLacILhxnYemuN46g+dzRC5sXhH
-        OefI7vtSDm0Y0zt/nvtSNkGSPA==
-X-Google-Smtp-Source: AGHT+IGtKfT4WD2eA78KlisViKcPwv4slLcoTtQRurM0VXYw54htN9Rs67jp21lp8SezCPKmCqgnyA==
-X-Received: by 2002:a17:906:3017:b0:9a1:649b:46f9 with SMTP id 23-20020a170906301700b009a1649b46f9mr6558539ejz.74.1692692081945;
-        Tue, 22 Aug 2023 01:14:41 -0700 (PDT)
+        bh=Z1MQ9JDRqAXFUR5POQlWiEXtOzxxDfLtExomDvSRs4g=;
+        b=Ckj8IKjdhe05X05Z9+HnswFcWMUt3oP2adzTEEykTmd0IWcQPhz/+bYfiPSYoDkCKm
+         MBiJZYovKlD+HONUzgdZgriOXhafAXOuXoSHz35OkAGhlHiN/BA8DB/9r/izrgMG9t7a
+         nL43xAq7yKBHBzCcYDCcSS1CQcotcdscD7YmtON4oUGI8Zfs/BHNNBKC9nlZh6Tfs4pp
+         PuDaESImzxWREkYTbFJbsPGYd4teIR72BWJH+ehZ1DZ2NtSlfdz1wzQas8m+dNJMLMTE
+         uYL6nLAYDx2bfbnHMfOKbb/Tt8AMVdPALgGtxm7p2geNA7A2Kz15jSrimN5M1/kyOxHQ
+         uEnw==
+X-Gm-Message-State: AOJu0Yxi0CreYiDHQY1VHCzOj/PWJPysAV1XwkstjTb0fD75P9AQTwZF
+        b7IZbEB26j2xsGSeEVl8m6V6rmRajA7yZoEJXnM=
+X-Google-Smtp-Source: AGHT+IF/wxJ/4XOkLbbb7O+KZzjeajYoXprZMACUlegqY6DyztH0lDuyaAXJXaZc7jKn7ONnfTW48w==
+X-Received: by 2002:a05:6402:1d4c:b0:51f:ef58:da87 with SMTP id dz12-20020a0564021d4c00b0051fef58da87mr12008495edb.2.1692692290509;
+        Tue, 22 Aug 2023 01:18:10 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id m7-20020a17090679c700b009875a6d28b0sm7748312ejo.51.2023.08.22.01.14.40
+        by smtp.gmail.com with ESMTPSA id r20-20020aa7d154000000b0052a1a623267sm731594edo.62.2023.08.22.01.18.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 01:14:41 -0700 (PDT)
-Message-ID: <063c70e6-8ee4-eac9-e0ce-7fc460d58c1f@linaro.org>
-Date:   Tue, 22 Aug 2023 10:14:39 +0200
+        Tue, 22 Aug 2023 01:18:10 -0700 (PDT)
+Message-ID: <452f8d9c-e4ee-ad30-3637-7a44702b8d80@linaro.org>
+Date:   Tue, 22 Aug 2023 10:18:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Convert sprd spi bindings to yaml
+Subject: Re: [PATCH 2/2] mfd: sprd-sc27xx-spi: Add PMICs support for UMS9621
+ SoC
 Content-Language: en-US
 To:     Jiansheng Wu <jiansheng.wu@unisoc.com>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -67,9 +68,9 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         yongzhi.chen@unisoc.com, xiaoqing.wu@unisoc.com,
         jinfeng.lin1@unisoc.com, jianshengwu16@gmail.com
 References: <20230822075113.25506-1-jiansheng.wu@unisoc.com>
- <20230822075113.25506-2-jiansheng.wu@unisoc.com>
+ <20230822075113.25506-3-jiansheng.wu@unisoc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230822075113.25506-2-jiansheng.wu@unisoc.com>
+In-Reply-To: <20230822075113.25506-3-jiansheng.wu@unisoc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,189 +84,148 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22/08/2023 09:51, Jiansheng Wu wrote:
-> Convert sprd,sc27xx-pmic.txt to yaml, and add UMP962x series PMICs.
+> There are three PMICs (UMP9620/21/22) on Unisoc's UMS9621 chip.
+> UMP9620 is a master PMIC, the others are slave ones. Slave PMICs
+> don't have irq functions, which is different from master device,
+> such as SC27xx series and UMP9620, etc.
 > 
 > Signed-off-by: Jiansheng Wu <jiansheng.wu@unisoc.com>
-
-Subject is bogus. This is not SPI.
-
 > ---
->  .../bindings/mfd/sprd,sc27xx-pmic.txt         | 40 ---------
->  .../bindings/mfd/sprd,sc27xx-pmic.yaml        | 84 +++++++++++++++++++
->  2 files changed, 84 insertions(+), 40 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml
+>  drivers/mfd/sprd-sc27xx-spi.c | 104 +++++++++++++++++++++++++---------
+>  1 file changed, 77 insertions(+), 27 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
-> deleted file mode 100644
-> index 21b9a897fca5..000000000000
-> --- a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
-> +++ /dev/null
-> @@ -1,40 +0,0 @@
-> -Spreadtrum SC27xx Power Management Integrated Circuit (PMIC)
-> -
-> -The Spreadtrum SC27xx series PMICs contain SC2720, SC2721, SC2723, SC2730
-> -and SC2731. The Spreadtrum PMIC belonging to SC27xx series integrates all
-> -mobile handset power management, audio codec, battery management and user
-> -interface support function in a single chip. It has 6 major functional
-> -blocks:
-> -- DCDCs to support CPU, memory.
-> -- LDOs to support both internal and external requirement.
-> -- Battery management system, such as charger, fuel gauge.
-> -- Audio codec.
-> -- User interface function, such as indicator, flash LED and so on.
-> -- IC level interface, such as power on/off control, RTC and typec and so on.
-> -
-> -Required properties:
-> -- compatible: Should be one of the following:
-> -	"sprd,sc2720"
-> -	"sprd,sc2721"
-> -	"sprd,sc2723"
-> -	"sprd,sc2730"
-> -	"sprd,sc2731"
-> -- reg: The address of the device chip select, should be 0.
-> -- spi-max-frequency: Typically set to 26000000.
-> -- interrupts: The interrupt line the device is connected to.
-> -- interrupt-controller: Marks the device node as an interrupt controller.
-> -- #interrupt-cells: The number of cells to describe an PMIC IRQ, must be 2.
-> -- #address-cells: Child device offset number of cells, must be 1.
-> -- #size-cells: Child device size number of cells, must be 0.
-> -
-> -Example:
-> -pmic@0 {
-> -	compatible = "sprd,sc2731";
-> -	reg = <0>;
-> -	spi-max-frequency = <26000000>;
-> -	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> -	interrupt-controller;
-> -	#interrupt-cells = <2>;
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml
-> new file mode 100644
-> index 000000000000..590970a17143
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/sprd,sc27xx-pmic.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/drivers/mfd/sprd-sc27xx-spi.c b/drivers/mfd/sprd-sc27xx-spi.c
+> index d21f32cc784d..aa91301568a9 100644
+> --- a/drivers/mfd/sprd-sc27xx-spi.c
+> +++ b/drivers/mfd/sprd-sc27xx-spi.c
+> @@ -24,6 +24,10 @@
+>  #define SPRD_SC2731_IRQ_BASE		0x140
+>  #define SPRD_SC2731_IRQ_NUMS		16
+>  #define SPRD_SC2731_CHG_DET		0xedc
+> +#define SPRD_UMP9620_IRQ_BASE           0x80
+> +#define SPRD_UMP9620_IRQ_NUMS           11
+> +#define SPRD_UMP9621_SLAVE_ID           0x8000
+> +#define SPRD_UMP9622_SLAVE_ID           0xc000
+>  
+>  /* PMIC charger detection definition */
+>  #define SPRD_PMIC_CHG_DET_DELAY_US	200000
+> @@ -45,6 +49,7 @@ struct sprd_pmic {
+>  };
+>  
+>  struct sprd_pmic_data {
+> +	u32 slave_id;
+
+See coding style about such wording. You know, it is not 2010 anymore...
+
+>  	u32 irq_base;
+>  	u32 num_irqs;
+>  	u32 charger_det;
+> @@ -67,6 +72,19 @@ static const struct sprd_pmic_data sc2731_data = {
+>  	.charger_det = SPRD_SC2731_CHG_DET,
+>  };
+>  
+> +static const struct sprd_pmic_data ump9620_data = {
+> +	.irq_base = SPRD_UMP9620_IRQ_BASE,
+> +	.num_irqs = SPRD_UMP9620_IRQ_NUMS,
+> +};
 > +
-> +title: |
-> +  Spreadtrum SC27xx and UMP96xx Power Management Integrated Circuit (PMIC)
+> +static const struct sprd_pmic_data ump9621_data = {
+> +	.slave_id = SPRD_UMP9621_SLAVE_ID,
+> +};
 > +
-> +maintainers:
-> +  - Orson Zhai <orsonzhai@gmail.com>
-> +  - Baolin Wang <baolin.wang7@gmail.com>
-> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +static const struct sprd_pmic_data ump9622_data = {
+> +	.slave_id = SPRD_UMP9622_SLAVE_ID,
+> +};
 > +
-> +description: |
-> +  The Spreadtrum SC27xx series PMICs contain SC2720, SC2721, SC2723, SC2730, SC2731
-> +  and UMP96xx series PMICs contain ump9620, ump962 and ump9622. The Spreadtrum PMIC
-> +  belonging to SC27xx series and ump962x series integrates all mobile handset power
-> +  management, audio codec, battery management and user interface support function in
-> +  a single chip. It has 6 major functional.
+>  enum usb_charger_type sprd_pmic_detect_charger_type(struct device *dev)
+>  {
+>  	struct spi_device *spi = to_spi_device(dev);
+> @@ -108,8 +126,27 @@ static int sprd_pmic_spi_write(void *context, const void *data, size_t count)
+>  {
+>  	struct device *dev = context;
+>  	struct spi_device *spi = to_spi_device(dev);
+> +	const struct sprd_pmic_data *pdata;
+> +	int ret;
+> +	u32 *pmdata;
 > +
-> +blocks:
-
-Please don't use confusing YAML syntax.
-
-> +  - DCDCs to support CPU, memory.
-> +  - LDOs to support both internal and external requirement.
-> +  - Battery management system, such as charger, fuel gauge.
-> +  - Audio codec.
-> +  - User interface function, such as indicator, flash LED and so on.
-> +  - IC level interface, such as power on/off control, RTC and typec and so on.
+> +	if (!pdata->slave_id) {
+> +		ret = spi_write(spi, data, count);
+> +	} else {
+> +		pdata = ((struct sprd_pmic *)spi_get_drvdata(spi))->pdata;
 > +
-> +allOf:
-> +  - $ref: /schemas/spi/sprd,spi-adi.yaml#
+> +		pmdata = kzalloc(count, GFP_KERNEL);
+> +		if (!pmdata)
+> +			return -ENOMEM;
+> +		memcpy(pmdata, data, count);
+> +		*pmdata += pdata->slave_id;
+> +		ret = spi_write(spi, (const void *)pmdata, count);
+> +		kfree(pmdata);
+> +	}
+> +	if (ret)
+> +		pr_err("pmic mfd write failed!\n");
+>  
+> -	return spi_write(spi, data, count);
+> +	return ret;
+>  }
+>  
+>  static int sprd_pmic_spi_read(void *context,
+> @@ -118,6 +155,7 @@ static int sprd_pmic_spi_read(void *context,
+>  {
+>  	struct device *dev = context;
+>  	struct spi_device *spi = to_spi_device(dev);
+> +	const struct sprd_pmic_data *pdata;
+>  	u32 rx_buf[2] = { 0 };
+>  	int ret;
+>  
+> @@ -125,11 +163,16 @@ static int sprd_pmic_spi_read(void *context,
+>  	if (reg_size != sizeof(u32) || val_size != sizeof(u32))
+>  		return -EINVAL;
+>  
+> +	pdata = ((struct sprd_pmic *)spi_get_drvdata(spi))->pdata;
+>  	/* Copy address to read from into first element of SPI buffer. */
+>  	memcpy(rx_buf, reg, sizeof(u32));
+> +	if (!pdata->slave_id)
+> +		rx_buf[0] += pdata->slave_id;
+>  	ret = spi_read(spi, rx_buf, 1);
+> -	if (ret < 0)
+> +	if (ret < 0) {
+> +		pr_err("pmic mfd read failed!\n");
 
-This is confusing. How is this device a SPI controller? You have
-entirely different compatibles, so no, it's wrong. Missing ref to
-spi-peripheral properties. See other bindings.
+Eh... drivers do not use pr_ but dev_. Which you can easily see within
+this driver, so before posting changes please look at the driver and its
+style, then learn from it and use similar coding convention.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sprd,sc2720
-> +      - sprd,sc2721
-> +      - sprd,sc2723
-> +      - sprd,sc2730
-> +      - sprd,sc2731
-> +      - sprd,ump9620
-> +      - sprd,ump9621
-> +      - sprd,ump9622
+>  		return ret;
+> +	}
+>  
+>  	memcpy(val, rx_buf, val_size);
+>  	return 0;
 
-This does not match your previous bindings and nothing is explained in
-commit msg.
+...
 
-> +
-> +  reg:
-> +    maxItems: 7
-> +    description: The address of the device chip select
 
-7 items? No way.
+>  
+>  	ret = devm_of_platform_populate(&spi->dev);
+> @@ -240,6 +284,9 @@ static DEFINE_SIMPLE_DEV_PM_OPS(sprd_pmic_pm_ops,
+>  static const struct of_device_id sprd_pmic_match[] = {
+>  	{ .compatible = "sprd,sc2730", .data = &sc2730_data },
+>  	{ .compatible = "sprd,sc2731", .data = &sc2731_data },
+> +	{ .compatible = "sprd,ump9620", .data = &ump9620_data },
+> +	{ .compatible = "sprd,ump9621", .data = &ump9621_data },
+> +	{ .compatible = "sprd,ump9622", .data = &ump9622_data },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, sprd_pmic_match);
+> @@ -247,6 +294,9 @@ MODULE_DEVICE_TABLE(of, sprd_pmic_match);
+>  static const struct spi_device_id sprd_pmic_spi_ids[] = {
+>  	{ .name = "sc2730", .driver_data = (unsigned long)&sc2730_data },
+>  	{ .name = "sc2731", .driver_data = (unsigned long)&sc2731_data },
+> +	{ .name = "ump9620", .driver_data = (unsigned long)&ump9620_data },
+> +	{ .name = "ump9621", .driver_data = (unsigned long)&ump9621_data },
+> +	{ .name = "ump9622", .driver_data = (unsigned long)&ump9622_data },
 
-> +
-> +  spi-max-frequency:
-> +    default: 26000000
-> +
-> +  interrupts: true
-
-You need constraints.
-
-> +
-> +  interrupt-controller:
-> +    description: Marks the device node as an interrupt controller.
-
-Drop description. ": true" instead
-
-> +
-> +  interrupt-cells:
-> +    const: 2
-> +    description: The number of cells to describe an PMIC IRQ, must be 2.
-
-You did not test it.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - spi-max-frequency
-> +  - '#address-cells' # Child device offset number of cells, must be 1.
-
-??
-
-> +  - '#size-cells' # Child device size number of cells, must be 0.
-
-?? No way. You do not have any children. Drop bogus properties and
-explain it in commit msg.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +Example:
-> +  - |
-> +    adi_bus {
-
-No underscores in node names, generic node names, whatever this supposed
-to be. I guess spi...
-
-> +        pmic@0 {
-> +            compatible = "sprd,sc2731";
-> +            reg = <0>;
-> +            spi-max-frequency = <26000000>;
-> +            interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-controller;
-> +            #interrupt-cells = <2>;
-
-Test your bindings...
-
-> +...
+So here you sneaked new compatibles... Sorry, adding new compatibles is
+not the same as converting old ones. Entirely separate patch.
 
 Best regards,
 Krzysztof
