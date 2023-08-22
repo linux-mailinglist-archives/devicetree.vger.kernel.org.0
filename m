@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E4DF784AD2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 21:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24BAF784AEE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 22:01:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230269AbjHVTun (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 15:50:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57210 "EHLO
+        id S229940AbjHVUBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 16:01:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229514AbjHVTum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 15:50:42 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9165CD2;
-        Tue, 22 Aug 2023 12:50:40 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ffa94a7a47so6150913e87.1;
-        Tue, 22 Aug 2023 12:50:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692733839; x=1693338639;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dl38s84Bb5+pPgPAv7UYy5hi9GPWy9+ON3cnlBWBRY8=;
-        b=GJb5M6tkIT3y3Rh0gvNMfQ18PBNcC5kdWP8lX2NMHjJM+mCu6cx2KASnXmmeQHYODz
-         1+/d3ez5fMZ/AxP6WakI7w7Xx96qx5nN9M8NxyueY+fSjVuveyywfNRGOTI1EpbWG4Ey
-         wkB0ehGcNnvmGgevmo/Ee7IAn1pDa2M7i5hfDIDR5PMJ+IdgekatMtdzjUMirbyCZ9dg
-         ZwDLYNDdUBwxbIgbCVA22xegmVMZp8CuNSfeyWlt8e1Yp4W/9dSuHwm12Br1lgL1rJHN
-         xxJqPFac5/AGfWzqy8pUIBTrYQ2rMSrQUPgFcirrfTsp/TonutPvPzM3Ak3AX4rKLKiC
-         5DOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692733839; x=1693338639;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dl38s84Bb5+pPgPAv7UYy5hi9GPWy9+ON3cnlBWBRY8=;
-        b=NylhzEdfNTztGwUTQNvNabcrGhrDH1O1vMx0yrWDOJJl81VFMWJD+U2vMDbO5evcr6
-         3e3EyY2zpZeQBwV8JCx3ixQjojPrbVqmcf/Xl52Sh/399D7Gr0qeXGSCsG2+64B1gxRb
-         qRqTE0bO/Z7Faj07rUfh4vLb/LvZfGlAHWA/MkLLc3WIqF7MsftMfcjqrgBn6gPAVY/C
-         L2pyeQWOVwZFzC2lqk3htLv3agJhM1nEFyi7lknT2h/deriA5XUkjrtyBnBNgzmhKT+p
-         1YRfuLm4glb1PrsWXRsgUwml6uQuSi06X1WrnNesC1Lfu3AgfOC+i7Fm/c4SAULY+W1H
-         modg==
-X-Gm-Message-State: AOJu0Yx/Nc2kIYfYoYSXoAqrHIYOHJzUntdEpkagpG7102iYDInW1eeZ
-        +FmTG9kK3Pq92OtI+ojC5kQ=
-X-Google-Smtp-Source: AGHT+IEm7n/RSOliNoSuO0HMcxnC1hKXsUUNiBkgK5A6SL14apFr9yMsyRRuiVEAev7WeLc4Ctd2sA==
-X-Received: by 2002:a05:6512:6c3:b0:4f8:7614:48a5 with SMTP id u3-20020a05651206c300b004f8761448a5mr9060486lff.66.1692733838910;
-        Tue, 22 Aug 2023 12:50:38 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id r22-20020ac24d16000000b004fb745fd22fsm2317984lfi.32.2023.08.22.12.50.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Aug 2023 12:50:37 -0700 (PDT)
-Date:   Tue, 22 Aug 2023 21:53:09 +0200
-From:   Marcus Folkesson <marcus.folkesson@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Kent Gustavsson <kent@minoris.se>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 6/6] iio: adc: mcp3911: add support for the whole
- MCP39xx family
-Message-ID: <ZOUSJf1_7YGx59_w@gmail.com>
-References: <20230820102610.755188-1-marcus.folkesson@gmail.com>
- <20230820102610.755188-7-marcus.folkesson@gmail.com>
- <ZOMteFUsKhDy1yks@smile.fi.intel.com>
+        with ESMTP id S229816AbjHVUBM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 16:01:12 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2FB1AD;
+        Tue, 22 Aug 2023 13:01:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=LXHug3TLN9P2+6rbiOjOGu7mrHI3vo5m1kq9IAwgsjM=; b=mipLXy/CGBIquuykD+YLEvlNHU
+        ab3aPgI7yTiDB6Q34WJY9XJ2g3Vn85W15Br9SUduydtZ8eGaEzMoXZlfepBd9RtS20YHCYU3M6LDF
+        w56212iOrtzLuHiIfEwYz3xRuI5+yHYHT2SSpkaQaX4msuJ4m+55nCFgtUehWdLoGyfM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qYXYa-004oiQ-AT; Tue, 22 Aug 2023 22:00:52 +0200
+Date:   Tue, 22 Aug 2023 22:00:52 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
+        "simon.horman@corigine.com" <simon.horman@corigine.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "edumazet@google.com" <edumazet@google.com>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "pabeni@redhat.com" <pabeni@redhat.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 4/5] net: hpe: Add GXP UMAC Driver
+Message-ID: <befbee5a-7b11-4948-a837-6311dd4d7276@lunn.ch>
+References: <20230816215220.114118-1-nick.hawkins@hpe.com>
+ <20230816215220.114118-5-nick.hawkins@hpe.com>
+ <01e96219-4f0c-4259-9398-bc2e6bc1794f@lunn.ch>
+ <88B3833C-19FB-4E4C-A398-E7EF3143ED02@hpe.com>
+ <1b8058e1-6e7f-4a4a-a191-09a9b8010e0a@lunn.ch>
+ <CF9BD927-B788-4554-B246-D5CC6D06258F@hpe.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="aa6NWibIAoF7yy2z"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZOMteFUsKhDy1yks@smile.fi.intel.com>
+In-Reply-To: <CF9BD927-B788-4554-B246-D5CC6D06258F@hpe.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Aug 22, 2023 at 07:00:49PM +0000, Hawkins, Nick wrote:
+> 
+> > <include/net/page_pool/helpers.h>
+> 
+> Hi Andrew,
+> 
+> I can't seem to find this file in linux master. Where is it?
 
---aa6NWibIAoF7yy2z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+~/linux$ ls include/net/page_pool/helpers.h
+include/net/page_pool/helpers.h
 
-On Mon, Aug 21, 2023 at 12:25:12PM +0300, Andy Shevchenko wrote:
-> On Sun, Aug 20, 2023 at 12:26:10PM +0200, Marcus Folkesson wrote:
-> > Microchip does have many similar chips, add support for those.
-> >=20
-> > The new supported chips are:
-> >   - microchip,mcp3910
-> >   - microchip,mcp3912
-> >   - microchip,mcp3913
-> >   - microchip,mcp3914
-> >   - microchip,mcp3918
-> >   - microchip,mcp3919
->=20
-> A few really minor things, after addressing them
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
->=20
-> Thank you for this journey!
+When you say master, do you mean net-next/main? This is a network
+driver, so you should be based on top of that tree.
 
-And thank you for your time and for being patient!
+https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#netdev-faq
 
-Best regards,
-Marcus Folkesson
+> > Take a look at driver/net/ethernet/freescale/fec_main.c That
+> > driver/device is of similar complexity to yours. It had a recent
+> > change from its own buffer management to page pool. It
+> > started with
+> 
+> I have looked over this driver and have a couple questions
+> about the pages in general.
+> 
+> How do I determine what the correct pool size should be for the
+> RX and TX?
 
---aa6NWibIAoF7yy2z
-Content-Type: application/pgp-signature; name="signature.asc"
+There has been some recent discussion about that. Search the netdev
+list over the last couple of week. 
 
------BEGIN PGP SIGNATURE-----
+> I must admit I am not familiar with XDP.
+> Is it required for the page pool library?
 
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmTlEiAACgkQiIBOb1ld
-UjJ15BAA3jdDIQjUAaDq2bR9xijNPqjvzxVXi5S+XA79IFrVjQa08ITV1vZg7D6h
-s8f81LX+6DZdYcCX/9FbIpmBnualQ+aWaPBWjvSBUymqGCyiceUAU9zPwmzbxJ0E
-fmmCGxrpCcIeN7rb/9WigQrruQgsTJ2kP7M4YWkPWFqoQqxE3iul+ImX7aDJe/Ni
-WChdidgrvh8kHiE2NlhgdQmO+IzXOnJ+0WHrF+894y8WW/All966e19l4waxGDv7
-8OqtlYMiT6nH/6B4BdA8SCZWieY9bkEG2oroJneQDylnIqquEhBmakgDR4qRxCsO
-MGTA42OK3icA/msdgsrS1Lca4hf/4QqiQzU/JirZgf8/51KHfH6l9dU4FFUA5V8K
-CIh0QofxRg970Q8q0PQ72/OLFJq90N/0juO7pfVxidJBzyHDCWGt68uU4+g9OSML
-SEFlemokD2xBptSJPkOF/4IFnhExLj/TIAj8QUejopcU8f8APSrB2u7XUHHtTBKA
-GuRHL8y86zTHp5x6i/x25CMc7oB1L/HuCPa1RJUUSxcx2RbhfoWXSJohbXkpNRiC
-YJhoEYtXZsf+G6N98smKDS4P7f4V3XB/u+LuupNOF+lAt0LfN42rvEUqjBy27wRr
-yYsnqXUuhcQnBtLblnMdtCr570UwCb5hNqJqY9KfughVFo7HEto=
-=piAa
------END PGP SIGNATURE-----
+Nope, not required at all. The FEC driver was first converted to page
+pool, and then XDP support added. The conversion to page pool made the
+driver faster, it could handle more packets per second. That is why i
+suggested using it, plus it means less driver code, which means less
+bugs.
 
---aa6NWibIAoF7yy2z--
+	Andrew
