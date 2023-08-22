@@ -2,100 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBD09784059
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:08:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F04AE78405A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:08:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229936AbjHVMIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 08:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36284 "EHLO
+        id S235199AbjHVMIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 08:08:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235174AbjHVMIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:16 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C21185
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 05:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1692706094; x=1724242094;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=uP7Xt0hx5de1nCCZbGHSY5NW80hmqYxUikCrlUbFH0I=;
-  b=dHxsca9A9CmRK7QwXrl1yhlzuF2vTt0hQh371NwUbBza+gAbLT4Vyd4l
-   RYr65rE/n2mrI6TKZMP7PrhMD5lTx7FyIq7Y6DPGIoPBsFfAdAyo1qm28
-   9Gk4WauQRl8BQmHUTgPtXwGkg5W+oREJtH9GcYUbYFYk3q0i1mOqf0HU8
-   xsyir+B7BuIOwg0Qob7uW0Zsu0+AVKQ2E6viH0rxPJYxlQQ6smFnB5hjS
-   bGkYXSh6GzcaWieyF69++LVUbixRH01jWJgwXCJAjj0ECk2fea2jefK1J
-   vrLxmhX7A10w5Qxwc6p31jeiJJscl9Etw5vnsvUYDUS7rPpq2ZTbLMmPm
+        with ESMTP id S234679AbjHVMIr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:47 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6D391;
+        Tue, 22 Aug 2023 05:08:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692706125; x=1724242125;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=lflceObfNn/sO0Z4OMjLLSvLXV1qjgkqm1ONN/AVPKQ=;
+  b=M6WsalMxFzSL3Y+rOAU4Gf3K8hFWk0BlLUULRQ6M2sAnLNAVdU/Bjo1v
+   SWnWw9jy28eS9wgPfCm6gusZ4CZP8uVxlBl0akotneaeePP7iRQ1Q/6yR
+   bfW/1JWcDD8276lii17MqWk0ewUTBeKEu/VjFogjjpT7wHboUE64Sk8Ki
+   x8oHm98BOQ0KlgSKX5z7B/o4ksSj3xZMXylFVEfACfAbsrH6D0I1YriyT
+   5LiGUgqLLLJxQ8o8aru4Q2TPiSeHautppOWkVt6K/awtgJiqk9fMSc1ce
+   lkFcj3U29z1m9LnYrQJuDYPi4mxgnmZux6nXHrsovuGDjN0FvdAG2cd3A
    g==;
-X-IronPort-AV: E=Sophos;i="6.01,193,1684792800"; 
-   d="scan'208";a="32562953"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 22 Aug 2023 14:08:10 +0200
-Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 0DFBA280084;
-        Tue, 22 Aug 2023 14:08:10 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="373840114"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; 
+   d="scan'208";a="373840114"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2023 05:08:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="1067041050"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; 
+   d="scan'208";a="1067041050"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP; 22 Aug 2023 05:08:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qYQBa-009TIi-2N;
+        Tue, 22 Aug 2023 15:08:38 +0300
+Date:   Tue, 22 Aug 2023 15:08:38 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux@ew.tq-group.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 5/5] arm64: defconfig: Enable Samsung DSIM driver
-Date:   Tue, 22 Aug 2023 14:08:04 +0200
-Message-Id: <20230822120804.717592-6-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
-References: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH 2/4] usb: typec: tcpci_rt1711h: Convert enum->pointer for
+ data in the match tables
+Message-ID: <ZOSlRhLiYoZmcDfT@smile.fi.intel.com>
+References: <20230820184402.102486-1-biju.das.jz@bp.renesas.com>
+ <20230820184402.102486-3-biju.das.jz@bp.renesas.com>
+ <ZONgzqlS8bGP0umn@smile.fi.intel.com>
+ <CAMuHMdVY6VNFhMMzub9RrXd1zo=_7brQVtoBtogNuVfhbkg_tA@mail.gmail.com>
+ <ZOOBw/3fqdinIwCh@smile.fi.intel.com>
+ <CAMuHMdW8mqtceDxuZ4Ccq0Wrg8ySfFzVC3OBB0AqvfSR-54KYA@mail.gmail.com>
+ <ZOOaFioDSpasda82@smile.fi.intel.com>
+ <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
+ <ZOSfrHUDpaax1FS4@smile.fi.intel.com>
+ <CAMuHMdVwy72utSLBFro7emgG5Hx6xzD8MHwXczAyJJvBpVDgYg@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAMuHMdVwy72utSLBFro7emgG5Hx6xzD8MHwXczAyJJvBpVDgYg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver, together with GPIO delay, is required for TQMa8MxML based
-boards to use LVDS output.
+On Tue, Aug 22, 2023 at 02:00:05PM +0200, Geert Uytterhoeven wrote:
+> On Tue, Aug 22, 2023 at 1:44 PM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Tue, Aug 22, 2023 at 09:21:19AM +0200, Geert Uytterhoeven wrote:
+> > > On Mon, Aug 21, 2023 at 7:09 PM Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Mon, Aug 21, 2023 at 05:40:05PM +0200, Geert Uytterhoeven wrote:
+> > > > > On Mon, Aug 21, 2023 at 5:25 PM Andy Shevchenko
+> > > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > > On Mon, Aug 21, 2023 at 03:27:43PM +0200, Geert Uytterhoeven wrote:
+> > > > > > > On Mon, Aug 21, 2023 at 3:04 PM Andy Shevchenko
+> > > > > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > > > > On Sun, Aug 20, 2023 at 07:44:00PM +0100, Biju Das wrote:
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/configs/defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+...
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5315789f48682..17f3e865293ad 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -612,6 +612,7 @@ CONFIG_PINCTRL_SC8280XP_LPASS_LPI=m
- CONFIG_PINCTRL_SM8550=y
- CONFIG_PINCTRL_SM8550_LPASS_LPI=m
- CONFIG_PINCTRL_LPASS_LPI=m
-+CONFIG_GPIO_AGGREGATOR=m
- CONFIG_GPIO_ALTERA=m
- CONFIG_GPIO_DAVINCI=y
- CONFIG_GPIO_DWAPB=y
-@@ -845,6 +846,7 @@ CONFIG_DRM_LONTIUM_LT9611UXC=m
- CONFIG_DRM_ITE_IT66121=m
- CONFIG_DRM_NWL_MIPI_DSI=m
- CONFIG_DRM_PARADE_PS8640=m
-+CONFIG_DRM_SAMSUNG_DSIM=m
- CONFIG_DRM_SII902X=m
- CONFIG_DRM_SIMPLE_BRIDGE=m
- CONFIG_DRM_THINE_THC63LVD1024=m
+> > > > > > > > For all your work likes this as I noted in the reply to Guenter that
+> > > > > > > > the couple of the selling points here are:
+> > > > > > > > 1) avoidance of the pointer abuse in OF table
+> > > > > > > >    (we need that to be a valid pointer);
+> > > > > > >
+> > > > > > > There is no pointer abuse: both const void * (in e.g. of_device_id)
+> > > > > > > and kernel_ulong_t (in e.g. i2c_device_id) can be used by drivers
+> > > > > > > to store a magic cookie, being either a pointer, or an integer value.
+> > > > > > > The same is true for the various unsigned long and void * "driver_data"
+> > > > > > > fields in subsystem-specific driver structures.
+> > > > > >
+> > > > > > (void *)5 is the abuse of the pointer.
+> > > > > > We carry something which is not a valid pointer from kernel perspective.
+> > > > >
+> > > > > But the data field is not required to be a valid pointer.
+> > > > > What kind and type of information it represents is specific to the driver.
+> > > >
+> > > > Where to find necessary information which is not always an integer constant.
+> > > > For example, for the driver data that has callbacks it can't be invalid pointer.
+> > >
+> > > If the driver uses it to store callbacks, of course it needs to be a
+> > > valid pointer. But that is internal to the driver.  It is not that
+> > > we're passing random integer values to a function that expects a
+> > > pointer that can actually be dereferenced.
+> > >
+> > > > Since OF ID table structure is universal, it uses pointers. Maybe you need to
+> > > > update it to use plain integer instead?
+> > >
+> > > It is fairly common in the kernel to use void * to indicate a
+> > > driver-specific cookie, being either a real pointer or an integral
+> > > value, that is passed verbatim.  See also e.g. the "dev" parameter
+> > > of request_irq().
+> >
+> > Yes, that parameter is void * due to calling kfree(free_irq(...)).
+> > So, that's argument for my concerns.
+> 
+> Sorry, I don't understand this comment.
+> (kfree(free_irq(...)) is only called in pci_free_irq()?)
+
+Passing void * for a "driver cookie" makes sense due to possibility of the
+passing it to other functions that want to have void * as your example shows.
+And that supports my idea of having void * over the unsigned long.
+
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
