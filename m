@@ -2,116 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA591783DBA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 12:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF6BF783DCA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 12:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234718AbjHVKOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 06:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34716 "EHLO
+        id S233252AbjHVKWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 06:22:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234715AbjHVKOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 06:14:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0470918B;
-        Tue, 22 Aug 2023 03:14:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 88EBA6515D;
-        Tue, 22 Aug 2023 10:14:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E93EC433C8;
-        Tue, 22 Aug 2023 10:14:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692699269;
-        bh=supsPTf0NLogHIxDbbWa+tx2nxJBFB1PmfR8p4yK42k=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Sv84kXzb7XIuMu88RbN0vbzLOqLH7/Q164Uu1y5GDLCBayJpQIbRgzLek1DNRUBSt
-         05NTfAob2GD8781ixZMFqKqjV6xXaAbK4JGdxT9Mk/Ay8qAVJ7euIAx8SJ0Iw5SQlp
-         QkFW2pDKUSg5byFHce5o+kzgHS7jq92LbvM21dOWmFCQYBlIcCgoP7AzcWFY581fAx
-         vvI5rFGNExhPwIdyVffFW7NnTGsoxYtxb8Ih0AHI4e2VEh2vLIr7yapIAWcynVLxwJ
-         7L98H1C8vEk3zXslBAnMbfzoks2RfONHukam0hLWRtFmnXynKgfDqGPSGYByyN7FZF
-         ZVOiwGdz+p1SQ==
-Received: (nullmailer pid 3922891 invoked by uid 1000);
-        Tue, 22 Aug 2023 10:14:26 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S233612AbjHVKWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 06:22:44 -0400
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EF311B2
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 03:22:41 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:c9ff:e2bc:6893:f4e3])
+        by michel.telenet-ops.be with bizsmtp
+        id caNd2A00M2hAXNh06aNd1a; Tue, 22 Aug 2023 12:22:37 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1qYOWq-001Oc2-WC;
+        Tue, 22 Aug 2023 12:22:37 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1qYOWz-00H0ho-Hi;
+        Tue, 22 Aug 2023 12:22:37 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] of: unittest: Run overlay apply/revert sequence three times
+Date:   Tue, 22 Aug 2023 12:22:34 +0200
+Message-Id: <a9fb4eb560c58d11a7f167bc78a137b46e76cf15.1692699743.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Sean Young <sean@mess.org>
-Cc:     =?utf-8?q?Pali_Roh=C3=A1r?= <pali.rohar@gmail.com>,
-        devicetree@vger.kernel.org,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        Tony Lindgren <tony@atomide.com>, Sicelo <absicsz@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Timo Kokkonen <timo.t.kokkonen@iki.fi>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pavel Machek <pavel@ucw.cz>, linux-media@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-In-Reply-To: <20230822091245.209539-3-sean@mess.org>
-References: <20230822091245.209539-1-sean@mess.org>
- <20230822091245.209539-3-sean@mess.org>
-Message-Id: <169269926692.3922840.4619930244422690395.robh@kernel.org>
-Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: remove nokia,n900-ir
- as pwm-ir-tx is compatible
-Date:   Tue, 22 Aug 2023 05:14:26 -0500
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Run the test for the overlay apply/revert sequence three times, to
+test if there are unbalanced of_node_put() calls causing reference
+counts to become negative.
 
-On Tue, 22 Aug 2023 10:12:45 +0100, Sean Young wrote:
-> The generic pwm-ir-tx driver works for the Nokia n900, so nokia,n900-ir
-> can be removed.
-> 
-> Cc: Sicelo <absicsz@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-> Cc: Pali Rohár <pali.rohar@gmail.com>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Timo Kokkonen <timo.t.kokkonen@iki.fi>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Signed-off-by: Sean Young <sean@mess.org>
-> ---
->  .../bindings/leds/irled/pwm-ir-tx.yaml        |  4 +++-
->  .../devicetree/bindings/media/nokia,n900-ir   | 20 -------------------
->  2 files changed, 3 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/nokia,n900-ir
-> 
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+This is a reproducer for the issue fixed by commit 7882541ca06d51a6
+("of/platform: increase refcount of fwnode") in dt/linus.
+---
+ drivers/of/unittest.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml:19:6: [warning] wrong indentation: expected 6 but found 5 (indentation)
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.example.dtb: irled: compatible: ['pwm-ir-tx'] is too short
-	from schema $id: http://devicetree.org/schemas/leds/irled/pwm-ir-tx.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230822091245.209539-3-sean@mess.org
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
+index 9af5337c76f62162..67e32977341a6f0c 100644
+--- a/drivers/of/unittest.c
++++ b/drivers/of/unittest.c
+@@ -3035,6 +3035,7 @@ static void __init of_unittest_overlay_notify(void)
+ static void __init of_unittest_overlay(void)
+ {
+ 	struct device_node *bus_np = NULL;
++	unsigned int i;
+ 
+ 	if (platform_driver_register(&unittest_driver)) {
+ 		unittest(0, "could not register unittest driver\n");
+@@ -3072,7 +3073,8 @@ static void __init of_unittest_overlay(void)
+ 	of_unittest_overlay_2();
+ 	of_unittest_overlay_3();
+ 	of_unittest_overlay_4();
+-	of_unittest_overlay_5();
++	for (i = 0; i < 3; i++)
++		of_unittest_overlay_5();
+ 	of_unittest_overlay_6();
+ 	of_unittest_overlay_8();
+ 
+-- 
+2.34.1
 
