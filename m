@@ -2,113 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D46CF7840AA
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D77F784054
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235579AbjHVMYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 08:24:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45446 "EHLO
+        id S234883AbjHVMIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 08:08:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232256AbjHVMYI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:24:08 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1C421B2;
-        Tue, 22 Aug 2023 05:24:06 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37M9Uu5P019649;
-        Tue, 22 Aug 2023 11:46:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=q3CEcAMK1BPwNANS5ZGNItwwcCsuN+Y63PbtS+iHC9s=;
- b=dIwOctzEiMo3HPyNiyMLpdl/lcRvQ5FfuRhCUWKsdkv61ytOL08u/bHNg3md9GIt7lYx
- 79bAD9e1sSA+FgekgkaOlMMKmb2ZxA4cFxJ/2Bs52VXJ6oDaQqFNKgTutQ7rj3viUOo8
- NqiX5xRN6hPRP0zPLLuK2bp8Ao97SigPCm2a6FSbfjw73cIs2KxcfS/yrtM5hYAyKzU5
- LKlqLCIBGadkSLNX91eGkspwyUpfUaluSk061kVKzq5gDwRWtuRaOIIVqpHFuZzWG/Ue
- U1OoUt7JaGXSo9FGl0c3fy4NvSeZ7YQbq97xcDUlQO/XzbiR8BgJ2NR/niZkcJIS7+5i rg== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3smf3q9fvk-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Aug 2023 11:46:50 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37MBkmZY013267
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Aug 2023 11:46:48 GMT
-Received: from [10.216.34.168] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 22 Aug
- 2023 04:46:44 -0700
-Message-ID: <1136bf59-3ecb-db33-6dd6-eeca7fb8accc@quicinc.com>
-Date:   Tue, 22 Aug 2023 17:16:40 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 3/4] clk: qcom: Add ECPRICC driver support for QDU1000 and
- QRU1000
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235110AbjHVMIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:13 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7521D1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 05:08:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1692706091; x=1724242091;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=GU9fGpr6idgSck6MKKJjymW2M+3XP+cyiip2VU9+Z78=;
+  b=KXKX84DKNdKjpYIr0EOP+6SDgJRiFA8eclYWINjOViJXrdiHM1WWaLkB
+   1ElONYTq91JVvKWRFh0kWqN8SjD9cFAIVoCEXCmVOScbr2RWkjIxSLxlz
+   gYDND+wOemdDPeQxxmwgiklrivN/4fx7nV6QGRCTO/VjDmgkI6MZW8lVK
+   cGh1wj4umAtDhlrOXNk/1mDnQrblQZETUYFrTfMkNJRFB/T4kbfaWRTEQ
+   LQhgDWD7IWpMbeUNxfAnZkagxbakKzbTZ5D9In8IjTNWDAzYEtIfM3f67
+   T5h1bysRjFjn8GIKDO2cTagLmH3TPFx3gf24lUdfO7KGD24ZIMJ163pCg
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,193,1684792800"; 
+   d="scan'208";a="32562946"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 22 Aug 2023 14:08:09 +0200
+Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id CC631280075;
+        Tue, 22 Aug 2023 14:08:08 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC:     Taniya Das <quic_tdas@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20230808051407.647395-1-quic_imrashai@quicinc.com>
- <20230808051407.647395-4-quic_imrashai@quicinc.com>
- <7d9ac1c6-be2d-4fd6-ba56-3976ec847274@linaro.org>
-From:   Imran Shaik <quic_imrashai@quicinc.com>
-In-Reply-To: <7d9ac1c6-be2d-4fd6-ba56-3976ec847274@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eECfzVK_BxfDF8UlXUBdgLpgs1xsL3Un
-X-Proofpoint-ORIG-GUID: eECfzVK_BxfDF8UlXUBdgLpgs1xsL3Un
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-22_10,2023-08-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- lowpriorityscore=0 priorityscore=1501 adultscore=0 mlxlogscore=525
- bulkscore=0 suspectscore=0 spamscore=0 mlxscore=0 phishscore=0
- impostorscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2306200000 definitions=main-2308220089
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux@ew.tq-group.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/5] TQMa8Mx/TQMa8MxML/TQMa8MxNL LVDS support
+Date:   Tue, 22 Aug 2023 14:07:59 +0200
+Message-Id: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+this series adds LVDS support using a standard, but exchangable, display on the
+starter kit mainboard MBa8Mx. It is split into 5 patches where the 1st adds the
+necessary DT nodes for LVDS while the following 3 patches add the overlay for
+the actual support for tianma tm070jvhg33 display on each platform.
+The last one enable the necessary driver options in defconfig.
+Thanks for the feedback on v1.
 
-On 8/10/2023 1:31 AM, Konrad Dybcio wrote:
-> On 8.08.2023 07:14, Imran Shaik wrote:
->> Add ECPRI Clock Controller (ECPRICC) support for QDU1000 and QRU1000 SoCs.
->>
->> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
->> ---
-> Please ensure inline hex is lowercase
-> 
+Changes in v2:
+* Moved common settings to mba8mx.dtsi
+* Added DT overlays for TQMa8Mx and TQMa8MxNL platforms
+* Renamed DT overlay files using the panel name
+* Unified commit message
+* Removed tailing 0 in DT node name
+* Replaced undersorces in DT node names with dashes
 
-Sure, will update all the hex values in lowercase and push another series.
+Thanks and best regards,
+Alexander
 
-> No GDSCs in this clock controller?
-> 
-> Konrad
+Alexander Stein (5):
+  arm64: dts: mba8mx: Add DSI-LVDS bridge nodes
+  arm64: dts: imx8mm-tqma8mqml-mba8mx: Add LVDS overlay
+  arm64: dts: imx8mn-tqma8mqnl-mba8mx: Add LVDS overlay
+  arm64: dts: imx8mq-tqma8mq-mba8mx: Add LVDS overlay
+  arm64: defconfig: Enable Samsung DSIM driver
 
-There are no GDSCs in this clock controller.
+ arch/arm64/boot/dts/freescale/Makefile        | 12 +++
+ ...8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso | 45 +++++++++
+ .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  |  5 +
+ ...8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso | 45 +++++++++
+ .../boot/dts/freescale/imx8mn-tqma8mqnl.dtsi  |  5 +
+ ...mx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso | 49 ++++++++++
+ arch/arm64/boot/dts/freescale/mba8mx.dtsi     | 93 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  2 +
+ 8 files changed, 256 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-tqma8mqnl-mba8mx-lvds-tm070jvhg33.dtso
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-tqma8mq-mba8mx-lvds-tm070jvhg33.dtso
 
-Thanks,
-Imran
+-- 
+2.34.1
+
