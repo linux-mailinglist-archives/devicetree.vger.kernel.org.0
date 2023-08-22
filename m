@@ -2,139 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 612527840CF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3A9784110
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:43:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235214AbjHVMag convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Aug 2023 08:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45842 "EHLO
+        id S233446AbjHVMnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 08:43:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235216AbjHVMaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:30:35 -0400
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EC40CC6;
-        Tue, 22 Aug 2023 05:30:32 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-591ba8bd094so28226167b3.3;
-        Tue, 22 Aug 2023 05:30:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692707431; x=1693312231;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AEdxVNTi234IeBu9/mHN8tlhC03wKCbKIUsue9+Lnac=;
-        b=ibiEjVl3q8Sus6COOoABXoT5Xb+E2o5i/m8mb+yD51DbXhf3VzrJbEA+B6ZBdJOWhb
-         1huPvhsqdulKrl2IBp+obISA+hl0qhiSFFn5roFz+JeLAU2xxroNCsSxx45GYNveUBvA
-         hTpH8uhwfoI2Bre5MzNWsLKEA5KG6PvCQX/k+WvPK6Ms5pXLxXMTE5gDCW4b5al7lB6S
-         ZBXJM2sKCyZBbM2LeZnU5yH5w9mTU7rpFs3nGNkiWchPs28zNmYGQihgOQZsQUz7+5HK
-         eFQpiMEfiHk/dduGbxkdttYj7R05YS8UOkEc6NC8r4zRqk7xtPgpqo2Kfx5mIhfwTTfD
-         Bkrw==
-X-Gm-Message-State: AOJu0YxVZRutOUUcX1aykPa/HBlXySnI7u+vppnrBs8Z8maPscu2lOrU
-        Ad5rz7Doy/agnaT6F19gyZeCdM2wKeC7pQ==
-X-Google-Smtp-Source: AGHT+IGR1mTIG39kiVb88hgmT+rATK+lNwQdkqjIs2Y/klit0w1NFXKOX5CHShvHXXkplckJOS6hbA==
-X-Received: by 2002:a81:8886:0:b0:58e:2827:4d93 with SMTP id y128-20020a818886000000b0058e28274d93mr11496109ywf.38.1692707431041;
-        Tue, 22 Aug 2023 05:30:31 -0700 (PDT)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id m139-20020a0dca91000000b0058c55d40765sm301305ywd.106.2023.08.22.05.30.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 05:30:28 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5922b96c5fcso17915057b3.0;
-        Tue, 22 Aug 2023 05:30:28 -0700 (PDT)
-X-Received: by 2002:a25:bcc7:0:b0:d52:f4d7:5587 with SMTP id
- l7-20020a25bcc7000000b00d52f4d75587mr9783496ybm.31.1692707427833; Tue, 22 Aug
- 2023 05:30:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230721221552.1973203-2-contact@jookia.org> <20230721221552.1973203-6-contact@jookia.org>
-In-Reply-To: <20230721221552.1973203-6-contact@jookia.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 22 Aug 2023 14:30:16 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV2m54UAH0X2dG7stEg=grFihrdsz4+o7=_DpBMhjTbkw@mail.gmail.com>
-Message-ID: <CAMuHMdV2m54UAH0X2dG7stEg=grFihrdsz4+o7=_DpBMhjTbkw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] can: sun4i_can: Add support for the Allwinner D1
-To:     John Watts <contact@jookia.org>
-Cc:     linux-sunxi@lists.linux.dev,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S235763AbjHVMnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:43:32 -0400
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2085.outbound.protection.outlook.com [40.107.95.85])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5076D1BE;
+        Tue, 22 Aug 2023 05:43:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XR/wJlSRcbZKT3h/yjn6kqZNI0NuDTqdaD1bn40wuvvBnfzlE+Ks3cUQUkMe8QqoxmOmmsfFOjSAvfO75yHGGPtguCT95vWDNVn3e5blVeKV0YKklOqDBfhJBTrR3HyIXw0sa5wlzFKI9XlB00gZjgjqgK8jvddMTOzkZ/MGc2G4z/fSt7GMouplOX2OhL/fUbCHugwvTAjPw2DfOn0RKfIXmBs244ouzEyrwuEP/gJfhGGQAkSmHBtAfaDIZJotiWo63rUnCLNS/xD31qyKjdZ05gnD46zUZiDhhGZceTP4KzL8p2lmGkb8HLXryrW3X7zoZ+4iBBE/RLhTx4wJ+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y2Odd+VUWQIGOuHcEumkAuLEvZzK2xOhY/7vEFTn/pk=;
+ b=XjP4LQmgacOGboLXHghwSGlDFvmIrvyp9/zZpEOW2GApVNczlQtbM/bdeVmCOeTZ2oohGgIstDEagGErSRb9RsSvv3E/IG94kpMLpE71OhmhoyTDoXz6041pDMyHCjZpQTn1WCQNc9y81ejaeUXVcvY949cLeavviSTP7pSqnGDe4wN4imhxcy81o69NZiAPfH8LP89M8RnVU9n/XN5AOWEQzODHJH6lBH5FjV2xX2/lSBcULRwKsaOZqY5ulqIFi1lKTcxN5yiv8RxKDT4r2MnQxACYnMRfi40//UMdRUuNNle1/WOHR5fWnNNf0J6oDLuatkTi9wJ1Ob1jW5zI5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y2Odd+VUWQIGOuHcEumkAuLEvZzK2xOhY/7vEFTn/pk=;
+ b=gFo2ojdgxlRjkVvNxFhnxfClTUnAKdxOeB0usxln1HZ3TM+4WIsH0woncKVff/wgABXMS9rmnev4STwca5Nwfd371Zt7Qdx4p2w0OYVmtBrFvNwJ4fkR4glA1Ew9WFXEEsoi0VYmNuRv/dwUH8HLA8DVq8mi789r0gKoMx36u4s=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by BN0PR08MB6837.namprd08.prod.outlook.com
+ (2603:10b6:408:12f::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.25; Tue, 22 Aug
+ 2023 12:43:26 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::69d8:51a3:96da:38a4]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::69d8:51a3:96da:38a4%5]) with mapi id 15.20.6678.031; Tue, 22 Aug 2023
+ 12:43:25 +0000
+Date:   Tue, 22 Aug 2023 07:43:06 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     James Ogletree <James.Ogletree@cirrus.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Fred Treven <Fred.Treven@cirrus.com>,
+        Ben Bright <Ben.Bright@cirrus.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Arnd Bergmann <arnd@arndb.de>,
+        Jacky Bai <ping.bai@nxp.com>, Jean Delvare <jdelvare@suse.de>,
+        Eddie James <eajames@linux.ibm.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        "patches@opensource.cirrus.com" <patches@opensource.cirrus.com>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] Input: cs40l50 - Initial support for Cirrus Logic
+ CS40L50
+Message-ID: <ZOStWl7LG72XgYcc@nixie71>
+References: <20230809191032.820271-1-james.ogletree@cirrus.com>
+ <20230809191032.820271-3-james.ogletree@cirrus.com>
+ <ZNWz7F7qLeNKDlG/@nixie71>
+ <7C3D1F80-556D-463E-85AD-AFA48CADAF5E@cirrus.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7C3D1F80-556D-463E-85AD-AFA48CADAF5E@cirrus.com>
+X-ClientProxiedBy: SN6PR05CA0023.namprd05.prod.outlook.com
+ (2603:10b6:805:de::36) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|BN0PR08MB6837:EE_
+X-MS-Office365-Filtering-Correlation-Id: 60489dc1-0972-4b8a-7573-08dba30d609e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: x+vTY99k1Vgu1nXIklQnjIEmyBCwOMuNsTRlvaNnNcT8XPPNb2+XGklmG8VXGss0hmLpn7/TA80/HtP4Jy7gzu63UZALGTXMHn6uf5V/RfmwQM+7IhkWbshvKXD4YgLG9bDuQuXhrYc5HhqxaIT4h7ddVNgWDiWQoFN1SPDygcn7aqEvFEHUakKIqmPfh+LtOkmlxWmFQL0bRLRc1oZQ+vZp2JAkV0AefhGQBoaxuzjnQvhet3JmHYphD9IhWBhtYlb8hyrMS9eUZYTzOij7tkNuGQLP0Ums3HfPfY5EMABZUu0+/qJkuW4lC6s64xD1HgISd3AUaxW0cpF1yV+Fhip5va1qVrBU924c65hFb17Ai9DyEZtQeL7q2XKTNkpNPoqtpjR8PvKQZlIA2FfLYrjoYf2q43QV7lUrmxljMahQMaY0F3+uWMehuM2UW2Qu2nYgFiHkNGojxTS0rWHEed+cTfLgQY9blrfP/mE0/sQzz1nGNvGdo4o0jq+yg/B5JtUTEikAzEQpApH5LDDuPH0Nf+dC9BH35rO6hACbBp0w2NB4l/j6vnoB1aqi7JEO
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(366004)(136003)(396003)(39830400003)(346002)(186009)(1800799009)(451199024)(478600001)(6486002)(6666004)(6506007)(26005)(9686003)(6512007)(53546011)(2906002)(7416002)(33716001)(41300700001)(8936002)(6916009)(66556008)(4326008)(66476007)(8676002)(66946007)(316002)(5660300002)(54906003)(86362001)(38100700002)(83380400001)(66899024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SGdWTm5NSlVRUWkxNmM0UmtNWWFKV1MxMmJsK1I5YkI4eFExVkhiZFk3d1BH?=
+ =?utf-8?B?NU5NSkZUZ0VHVDBzU0c5Zm5zWS9XSlFoaFkwMEZLNGdnbmhwWjhJcDBqRU5O?=
+ =?utf-8?B?Q1VrSitlSWZPTi9WaytSOHNYREtNeDE4L0pzNlFCYTFzRnp2bHV2SHJlZmhV?=
+ =?utf-8?B?VWNBYTVvaVRnbGF6UnBzVjdDdlJJMGFCTjNMMFlacVh4WXd4Qkk5NmFtU29H?=
+ =?utf-8?B?VnV3UGFuS1NhWlFiY3BpOVpuY0RwbGFBc1I4Q3lRaWZrVVY0b3ZWaWoraVA5?=
+ =?utf-8?B?ZEZDcDJPL0ZaTWVNc1dYenR6QzdZVS9MdHVJUGlkVXEyTUR2SFFtQVQ3Rmxz?=
+ =?utf-8?B?OUFuMGI1aExFS1Z3aHFtQXNpUEJHWE13Tiswck1JT0Rnc2JLYzJtb0ZJN1Nq?=
+ =?utf-8?B?OHRmTW5rdXY1MUQzSnZzQ0NwYVd0dHM5bXQ0ejRqU2d1alRKeGVkcFhnS0Rh?=
+ =?utf-8?B?OWM3WEJIQ3BUVEIvTXphaUh0b1ZRQS9lZGhVNWl1S3hzUFFwMGQ3WVg4ZmJs?=
+ =?utf-8?B?M1lLNVJ5RTUxUURRQzNzTGxzaFRoUXIvazg3ZDk0RCs3YXdrckZGNUk4akVx?=
+ =?utf-8?B?R2Q5ZkwrN21laUZ1SndoWGwwdEt3S3djUEcyTGs5ME1UVDc1YkZtSllndEUv?=
+ =?utf-8?B?cHZGQUpoL0NxNi84c3BYSEhLdWRDUVM5STl4NVpzaU9MN0tmK0RkRzhQc2FX?=
+ =?utf-8?B?V1cxdkJudHpxY28xcGhQUmxXY21KcnZUcFNRRTU2cDZPUWs5WUtqRnpxK1da?=
+ =?utf-8?B?WXNaVVoyWjFnSjNqYUFiRmp2cW4vaVJRQ0R1dU40eGhYSzhVK2h2YlFoSk00?=
+ =?utf-8?B?U093Ung5bXFTYnd3WGpvc05vWTJuaXJZRWZVZzloV2pwaEtnQlJOckN0SzVh?=
+ =?utf-8?B?Wi9QekgzM3ZFK3BidE9pUDJ1ekNoZDlmRFBiaVdndnMyYlU2R0FvUTEwYkp1?=
+ =?utf-8?B?YkI2Mm5nNHdNNmF6aWRnUXppSm5vbllCUzl2eTRvN0d6SnVFaGE1a0M1d2dJ?=
+ =?utf-8?B?d2V3K3hTbEx5YU1JZTRFdVdyZ3dMK3lyVzFNOUZ5ZnRCZzEvSFF3cDR4R1ZW?=
+ =?utf-8?B?aTFKeEVuNEVBaEgzdFpFa2RodXhXL0x5bjZFVFlGMlVROW0wa0NicFNWSmxn?=
+ =?utf-8?B?ZUdaQVZpSTdxcnpqcitnSlUraHB0cHhOQWprNm9CalFBaDdRVmY1dkZSaUdJ?=
+ =?utf-8?B?VHd4dmkxdGJBUmFwZVMyaWtiTFFPdjVKVEpVWmY5bDMwckNaamJJSWVDSW1M?=
+ =?utf-8?B?VFZGcmRuMmk4ckw4eUdlQTRBWnlKcFZ0RGFsUTNpUjJ1Z01TTWtJVGtSM3Zp?=
+ =?utf-8?B?bkRscDgzdm1nSEVZeEdHR2ozNzB4MTdBanY2RXB5eVVjUTNvSWowblYvcXBH?=
+ =?utf-8?B?TGZzbEEranRLTkp1VTRGajZ0OVUrZWVZcVJZcTZQZWxzc2MrcWgwalB1M0oz?=
+ =?utf-8?B?cTBQYkpkenRWR3hOT3pWcFh2anVpank4Y1lPSEg2Wkc2SWgxK01Mc1kvR1RB?=
+ =?utf-8?B?UzdkYWNneTBSZjNJTzBBamphd1pDRjQ3cEpvZzVtUGtNdUh2RHd2UklzSlFi?=
+ =?utf-8?B?NnRzSHFqNDNpbXJLODEzZ1FTT2wzdWFYbkNENFJtWGl4VkV6dWNFVGRzVnRJ?=
+ =?utf-8?B?ZzVpeWs4c3U0RjdwZzdWd1hMVElWeHhxTWt2M0o2MWk4aHFIbW1VZzU5LzZI?=
+ =?utf-8?B?OE5VUlV5bUc4UmdaeXFGcVZwUityaWI1T2JtUXZUeGdyQjY1MG8wcTBab3N4?=
+ =?utf-8?B?TVoydTFkU1RuSDg5dTdoY2l2NS9VdkxMRjNSZkk2WW5RTXFNaUxBbXlaNHIw?=
+ =?utf-8?B?cm9wQlpoRDlLOGkxRlNrZldHbGhLbzBXbEpVeWpLOFR3N2ExcG4vWFZ4Um5k?=
+ =?utf-8?B?R1oycFdMYmt2dTYxTGpTN3piQU1IVHlTZitFUTJVVXpZcnZSSEFFQmRISzMx?=
+ =?utf-8?B?Mzl3YytCUDBWNTFkNlN2WGpSS0FLWCs0L2FCaUFwd0dGVkx0RFZBY2dVNXRq?=
+ =?utf-8?B?Y2oyOHJHbUFDakJROWVtRjhyWlBXT0lnUWFDMGNZVXNGTDZiNTNDekoxNWhh?=
+ =?utf-8?B?V1N6YWZoODhrVEJwV05TMXZFRTZjU2hSeDAzN3lvem93eWhNdUJkTURpNFdT?=
+ =?utf-8?Q?VK1aIsQiD8Ap+tVv+VdrVqWTR?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60489dc1-0972-4b8a-7573-08dba30d609e
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 12:43:25.7299
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UBdZ6Za0y+AoXFoLHfxBy8a1abqfdYD8Ve9vizD4YWYvTODVtlHiyjxssR+RjTrxA40umfmo1AEplYejLi4rmQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN0PR08MB6837
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi John,
+Hi James,
 
-On Sat, Jul 22, 2023 at 12:18 AM John Watts <contact@jookia.org> wrote:
-> The controllers present in the D1 are extremely similar to the R40
-> and require the same reset quirks, but An extra quirk is needed to support
-> receiving packets.
->
-> Signed-off-by: John Watts <contact@jookia.org>
+On Wed, Aug 16, 2023 at 09:02:26PM +0000, James Ogletree wrote:
+> 
+> 
+> > On Aug 10, 2023, at 11:07 PM, Jeff LaBundy <jeff@labundy.com> wrote:
+> > 
+> > On Wed, Aug 09, 2023 at 07:10:28PM +0000, James Ogletree wrote:
+> >> Introduce support for Cirrus Logic Device CS40L50: a
+> >> haptics driver with waveform memory DSP and closed-loop
+> >> algorithms.
+> > 
+> > From my extremely naive point of view, some of the code that follows
+> > bares resemblance to the recently reviewed L26. My assumption is that
+> > these devices are different enough in nature to warrant completely
+> > different drivers; is that accurate?
+> > 
+> > One reason for asking is because the L26 driver included a cornucopia
+> > of power-management overhead, yet we see none of that here. Assuming
+> > both L50 and L26 are built around the same Halo DSP, why is there such
+> > a fundamental difference between the two in terms of power management?
+> > 
+> > To that end, how does this driver handle hibernation? Is hibernation
+> > not supported, or do we simply defer to the DSP? In the case of the
+> > latter, why is L50 given this freedom but not L26?
+> 
+> One key difference is that L50’s Halo Core DSP is self-booting; the firmware
+> is burned in and no firmware download is required. On L26, firmware
+> downloading is compulsory. This differentiates dealing with the DSP in the
+> two drivers, because the L50 driver does not need to do a look up every
+> time it reads or writes to a firmware control. The registers are all static.
 
-Thanks for your patch, which is now commit 8abb95250ae6af2d ("can:
-sun4i_can: Add support for the Allwinner D1") in linux-can-next/master.
+Interesting stuff; thanks for sharing that background information.
 
-> --- a/drivers/net/can/Kconfig
-> +++ b/drivers/net/can/Kconfig
-> @@ -185,10 +185,10 @@ config CAN_SLCAN
->
->  config CAN_SUN4I
->         tristate "Allwinner A10 CAN controller"
-> -       depends on MACH_SUN4I || MACH_SUN7I || COMPILE_TEST
-> +       depends on MACH_SUN4I || MACH_SUN7I || RISCV || COMPILE_TEST
+> 
+> Minor reasons are that they have different power supply configurations that
+> require different register settings, they have errata differences, and a different set
+> of exposed features (L50 being much more simplistic). I think taken cumulatively
+> these differences warrant separate drivers. Though, I will take Charles’
+> recommendation to factor out the similarities into a shared library that both L50
+> and L26 can use.
+> 
+> Let me know whether you disagree on the above points or have followup
+> questions.
 
-This makes this question pop up when configuring a kernel for any RISC-V
-platform, not just for Allwinner RISC-V platforms.
+Makes sense to me.
 
-In comparison, drivers/clk/sunxi-ng/Kconfig does have some
+> 
+> With respect to power management, I did not think that that there was any merit
+> in itself in maintaining equality with L26’s approach, and I was inclined to accept
+> your reasoning for using retry logic over the runtime PM facilities (not that the
+> latter way is incorrect).
+> 
+> Regarding the need for I2S streaming support, signs point to maybe. I will
+> migrate this driver to MFD for V4.
 
-    depends on MACH_SUN<foo>I || RISCV || COMPILE_TEST
+MFD seems like the right (i.e. scalable) solution if A2H is on the roadmap.
+In early L25 days, very early adopters simply asked for a sysfs control
+exposed from the core (then LED !!) driver to enable/disable I2S streaming
+mode, but this got hairy in case customers needed to control BCLK/Fs ratio,
+bit depth, etc. during runtime.
 
-but these are gated by ARCH_SUNXI at the top of the file.
+From my naive point of view, maybe the solution looks something like this:
 
-I'm not sure what's the best way to fix this:
-  - Replace RISCV by ARCH_SUNXI?
-    This would expose it on more ARM sun<foo>i platforms, making the
-    MACH_SUN4I || MACH_SUN7I superfluous?
-  - Replace RISCV by RISCV && ARCH_SUNXI?
+* drivers/mfd/cs40l50-i2c.c: I2C client
+* drivers/mfd/cs40l50-spi.c: SPI client
+* drivers/mfd/cs40l50-core.c: common tasks such as FW loading, OTP management, etc;
+  perhaps L26 can leverage it as well
+* drivers/input/misc/cs40l50-vibra.c: FF-specific support (name as you like, I just
+  picked what seems to be most common)
+* sound/soc/codecs/cs40l50-codec.c: codec-specific support
 
-Thanks for your comments!
+In case I have misunderstood, please let me know.
 
->         help
->           Say Y here if you want to use CAN controller found on Allwinner
-> -         A10/A20 SoCs.
-> +         A10/A20/D1 SoCs.
->
->           To compile this driver as a module, choose M here: the module will
->           be called sun4i_can.
+> 
+> > 
+> >> + return cs40l50_dsp_write(cs40l50, CS40L50_BST_LPMODE_SEL, CS40L50_DCM_LOW_POWER);
+> >> +}
+> >> +
+> >> +static int cs40l50_patch_firmware(struct cs40l50_private *cs40l50)
+> >> +{
+> >> + const struct firmware *bin = NULL, *wmfw = NULL;
+> >> + int error = 0;
+> >> +
+> >> + if (request_firmware(&bin, "cs40l50.bin", cs40l50->dev))
+> >> + dev_info(cs40l50->dev, "Could not request wavetable file: %d\n", error);
+> >> +
+> >> + if (request_firmware(&wmfw, "cs40l50.wmfw", cs40l50->dev))
+> >> + dev_info(cs40l50->dev, "Could not request firmware patch file: %d\n", error);
+> >> +
+> >> + if (wmfw) {
+> > 
+> > It is a much more common design pattern to bail if request_firmware() returns
+> > an error, than to proceed and check against the FW pointer remaining NULL.
+> > 
+> > Is this done because cs_dsp_power_up() must be called, with or without a wmfw
+> > or coefficient file being available?
+> 
+> I don’t think that cs_dsp_power_up() must be called in the case of non-existent .wmfw
+> and .bin files, so I will take your suggestion and optimize this function. I will also switch
+> to asynchronous firmware requesting for V4.
 
-Gr{oetje,eeting}s,
+Since L50 can work out of the box without FW, another option is to follow the
+approach used by some codec drivers and wait to load FW until the first request
+to stream I2S, and/or trigger an FF effect in this case. By that point, rootfs
+has been available for some time and request_firmware() will succeed.
 
-                        Geert
+This is advantageous because even though request_firmware_nowait() can solve
+the deadlock problem for FW loaded at probe, it could still return -ENOENT right
+away on some platforms. The disadvantage is that the first effect would be very
+delayed due to the overhead of transferring several kB of FW over I2C for the
+first time. That's OK for audio applications, but not haptics where delay normally
+must be within single-digit ms.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Ultimately, I think the right approach is to look for FW from probe as you have
+done, but use request_firmware_nowait(). However, I recommend structuring the
+driver such that rip-up would be minimal in case you had to retry FW loading from
+the first FF trigger, to support a customer whose rootfs is not available at probe.
+In such a case, the customer could work around the first-time latency problem by
+triggering a dummy effect early in their boot (e.g. init.rc).
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> I will also incorporate the rest of your review comments not mentioned here in V4.
+> Thank you for the thorough review.
+
+Thank you for the productive discussion!
+
+> 
+> Regards,
+> James Ogletree
+
+Kind regards,
+Jeff LaBundy
