@@ -2,116 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 326F0783EB1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA9B1783F39
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234481AbjHVL2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 07:28:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53328 "EHLO
+        id S233629AbjHVLfs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 07:35:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234178AbjHVL2P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:28:15 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA198CD1;
-        Tue, 22 Aug 2023 04:28:12 -0700 (PDT)
+        with ESMTP id S233443AbjHVLfs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:35:48 -0400
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E196510CB
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:35:26 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2bbac8ec902so68261711fa.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:35:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1692703693; x=1724239693;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Zy+oNUnTax/2/pEu8NMMXhkiT6EE1L1FvMZzPOAdESU=;
-  b=BSlOARM642jhazFoceCL9TjAzy6VAmYpTvDYumrJ2Q4yYvIi4yVoA9vH
-   70OYgMuKaXEzJsSxoZ+Gnm79S9XT5yfG1oi8hUyb/PSuEErPJSy0Bx0xs
-   JYTJ8vYsA3B6FOfRQUFnq7hfsLm6xVnxix7yp6ztZPlcy5PlklhYbSxue
-   2K9yvuSTDtA1MGJEc2oHn492LnCHukCsRuEd1iLfwrYCRLJi5FxnOClTF
-   x2v5jKOzbhF6/hRm2k45wpuopm63vodR8pmVUSE4NPzvB7fOcCrxvQHxS
-   Y9ErmVV7j/0gShupMIYNiL7i9w2j0S4zsQI0ZMKnR37bQoH/PdasdocHD
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,192,1684792800"; 
-   d="scan'208";a="32561792"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 22 Aug 2023 13:28:10 +0200
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6D857280075;
-        Tue, 22 Aug 2023 13:28:10 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Eric Dumazet <edumazet@google.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, linux-pm@vger.kernel.org,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        Paolo Abeni <pabeni@redhat.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        dri-devel@lists.freedesktop.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Subject: Re: [PATCH 4/6] dt-bindings: net: microchip: Allow nvmem-cell usage
-Date:   Tue, 22 Aug 2023 13:28:10 +0200
-Message-ID: <4855037.31r3eYUQgx@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <169263807888.1978386.16316859459152478945.robh@kernel.org>
-References: <20230810144451.1459985-1-alexander.stein@ew.tq-group.com> <20230810144451.1459985-5-alexander.stein@ew.tq-group.com> <169263807888.1978386.16316859459152478945.robh@kernel.org>
+        d=linaro.org; s=google; t=1692703987; x=1693308787;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=O/NIHQP9t9FWAMyIX2X2xC1QDnFwKfnIeXzDlJpOVxc=;
+        b=NkfDgIs0xM+FLJdLDfw4KK/GRICph4BIkNJxSMC638LN57Ix7iZrkMcZbKxBgokQac
+         3VfXxtcswQ1UVTodF0qBpcOJtPJT72L6mHBPk6yJ/0uue6dc0apupy/rd82MX3gk0VDi
+         Y90xxQokmujsaZ8ER152bvA+S70wu0tpi5wvLx3gjHD1XIcxdeQ79FSRcEIXRKDi289a
+         flh/Sn99Zpwchwx2b17YvR29vYTEGlzwzODYWAYPF4qmoqdBi4GU0Tn8STS/gwMDf03t
+         OQojfEO6uTf22wPNlNBD5zKIjzkyJ7CCEmf3NWdXLidLQ/jR4cUfZPSEmgQYI7JYesi7
+         2UCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692703987; x=1693308787;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O/NIHQP9t9FWAMyIX2X2xC1QDnFwKfnIeXzDlJpOVxc=;
+        b=gWiKlwVfdrrpIhtkh4DBB4top2Tpq46+9ueyoXhqkmXRpXUxnaxUF6Yu2x9nbzn7A7
+         vHWCxn6uV4ohOnpcuEmdfVF+UOHG3vpyKkpc/OIlx+gF4PetFgIDpycUSwbTZUfDYhyt
+         9/4d9660Jg38YEU+mYI8Cd4N9OW11fdQ8N8OvBuvhKc3JuRBYsjHLM5Bew5UsM3F57z5
+         LdAi5Yd8zERXK//wA8c99PtGjjLUyvUrNJQQa4yMZKZb5BBbAGJvOc80wOV4aefHKEa1
+         MGIlrqGm1p9h67OrrEV+idup8E10plvCDYaNgbI4Yc+LZEzktRCrV1WPgV5YLkhoXA29
+         7BCw==
+X-Gm-Message-State: AOJu0Yx7eSFPwJhlhez/uS0lr+1ekhrMGZJx1U0U6bKMrOcEOrEvAa3t
+        uyP00ucJHBsSZaVqtmjNQUZXqA==
+X-Google-Smtp-Source: AGHT+IF4BkC3dItCe8+LWY7rH+IOmTjUHBRnT8M+Yenfj6xxQDBw3yl0SAR1SoFVSjpnVIKOk0hH4g==
+X-Received: by 2002:a05:6512:1584:b0:4fb:94c6:fd63 with SMTP id bp4-20020a056512158400b004fb94c6fd63mr8155443lfb.17.1692703987423;
+        Tue, 22 Aug 2023 04:33:07 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id t11-20020ac24c0b000000b004ffa28ef3a4sm1202792lfq.100.2023.08.22.04.33.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 04:33:06 -0700 (PDT)
+Message-ID: <a9aee232-7bf2-4f4d-b42a-1f7ec1434393@linaro.org>
+Date:   Tue, 22 Aug 2023 14:33:06 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 1/4] phy: qcom: m31: Fix indentation issues
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
+        vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de,
+        geert+renesas@glider.be, nfraprado@collabora.com, rafal@milecki.pl,
+        peng.fan@nxp.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org
+References: <cover.1692699472.git.quic_varada@quicinc.com>
+ <6d1638daf9b0616816fdecb529df86a394db7942.1692699472.git.quic_varada@quicinc.com>
+ <CAA8EJpryKOzGd42NjG470D9jGr1Huv5D-F-NqaTo-0EJeFUr+A@mail.gmail.com>
+Content-Language: en-GB
+In-Reply-To: <CAA8EJpryKOzGd42NjG470D9jGr1Huv5D-F-NqaTo-0EJeFUr+A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 21. August 2023, 19:14:39 CEST schrieb Rob Herring:
-> On Thu, 10 Aug 2023 16:44:49 +0200, Alexander Stein wrote:
-> > MAC address can be provided by a nvmem-cell, thus allow referencing a
-> > source for the address. Fixes the warning:
-> > arch/arm/boot/dts/nxp/imx/imx6q-mba6a.dtb: ethernet@1: 'nvmem-cell-name=
-s',
-> >=20
-> >  'nvmem-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
-> >  From schema: Documentation/devicetree/bindings/net/microchip,lan95xx.y=
-aml
-> >=20
-> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > ---
-> >=20
-> >  Documentation/devicetree/bindings/net/microchip,lan95xx.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
->=20
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On 22/08/2023 13:55, Dmitry Baryshkov wrote:
+> On Tue, 22 Aug 2023 at 13:31, Varadarajan Narayanan
+> <quic_varada@quicinc.com> wrote:
+>>
+>> * Fix indentation
+>> * Drop simple success messages
+>>
+>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> ---
+>> v9:
+>>          Fix line break alignment
+>>          Remove register success print
+>>          v8 version of the driver has been picked up for merge.
+>>          (https://lore.kernel.org/linux-arm-msm/169226613917.81413.1200008047604336868.b4-ty@kernel.org/)
+>> v8:
+>>          Change commit subject and message per review comments
+>>          Don't include of_platform.h
+>>          Change struct init coding style
+>>          GENMASK -> BIT for one define
+>> v6:
+>>          Kconfig:Add COMPILE_TEST and remove USB_GADGET from 'depends'
+>>                  Change 'selects' USB_PHY -> GENERIC_PHY
+>>          Driver: Use correct headers
+>>                  const int -> unsigned int for 'nregs' in private data
+>>                  Use generic names for clk, phy in m31 phy structure
+>>                  Init register details directly instead of using macro
+>>                  Use dev_err_probe in the error paths of driver probe
+>> v5:
+>>          Kconfig and Makefile:- place snippet according to sorted order
+>>          Use generic phy instead of usb-phy
+>>          Use ARRAY_SIZE for reg init instead of blank last entry
+>>          Fix copyright year
+>>
+>> v4:
+>>          Remove unused enum
+>>          Error handling for devm_clk_get
+>> v1:
+>>          Combine driver, makefile and kconfig into 1 patch
+>>          Remove 'qscratch' region and its usage. The controller driver takes care
+>>          of those settings
+>>          Use compatible/data to handle ipq5332 init
+>>          Drop the default case
+>>          Get resources by index instead of name as there is only one resource
+>>          Add clock
+>>          Fix review comments in the driver
+>> ---
+>>   drivers/phy/qualcomm/phy-qcom-m31.c | 8 +++-----
+>>   1 file changed, 3 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-m31.c b/drivers/phy/qualcomm/phy-qcom-m31.c
+>> index ed08072..ea79c18 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-m31.c
+>> +++ b/drivers/phy/qualcomm/phy-qcom-m31.c
+>> @@ -242,7 +242,7 @@ static int m31usb_phy_probe(struct platform_device *pdev)
+>>          qphy->clk = devm_clk_get(dev, NULL);
+>>          if (IS_ERR(qphy->clk))
+>>                  return dev_err_probe(dev, PTR_ERR(qphy->clk),
+>> -                                               "failed to get clk\n");
+>> +                                    "failed to get clk\n");
+> 
+> But why are you trying to fix this? aligning next line to the opening
+> bracket is perfectly fine (and is one of the endorsed styles).
 
-Thanks. But while reading your comment on patch 3, I'm wondering if=20
-additionalProperties should be changed to unevaluatedProperties here as wel=
-l.
-This way local-mac-address and mac-address canbe removed as well, they are=
-=20
-defined in ethernet-controller.yaml already.
+Ugh, excuse me. My mailer displayed alignment in a wrong way.
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+This LGTM except the last chunk (removal of the info message).
 
+> 
+>>
+>>          data = of_device_get_match_data(dev);
+>>          qphy->regs              = data->regs;
+>> @@ -252,18 +252,16 @@ static int m31usb_phy_probe(struct platform_device *pdev)
+>>          qphy->phy = devm_phy_create(dev, NULL, &m31usb_phy_gen_ops);
+>>          if (IS_ERR(qphy->phy))
+>>                  return dev_err_probe(dev, PTR_ERR(qphy->phy),
+>> -                                               "failed to create phy\n");
+>> +                                    "failed to create phy\n");
+>>
+>>          qphy->vreg = devm_regulator_get(dev, "vdda-phy");
+>>          if (IS_ERR(qphy->vreg))
+>>                  return dev_err_probe(dev, PTR_ERR(qphy->phy),
+>> -                                               "failed to get vreg\n");
+>> +                                    "failed to get vreg\n");
+>>
+>>          phy_set_drvdata(qphy->phy, qphy);
+>>
+>>          phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+>> -       if (!IS_ERR(phy_provider))
+>> -               dev_info(dev, "Registered M31 USB phy\n");
+> 
+> This is irrelevant to the indentation.
+> 
+>>
+>>          return PTR_ERR_OR_ZERO(phy_provider);
+>>   }
+>> --
+>> 2.7.4
+>>
+> 
+> 
+
+-- 
+With best wishes
+Dmitry
 
