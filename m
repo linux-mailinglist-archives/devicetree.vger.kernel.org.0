@@ -2,166 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0091C783C6C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 11:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46C84783C7F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 11:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234176AbjHVJCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 05:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33486 "EHLO
+        id S234203AbjHVJHX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 05:07:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234168AbjHVJCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 05:02:46 -0400
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB026CC6
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:02:42 -0700 (PDT)
-Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1bc0d39b52cso26945205ad.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:02:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1692694962; x=1693299762;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=jYslESWmMQ4K7vL4A0BMOOm6rNRmZOTpHTitLw9DHqU=;
-        b=IZpmDu44ZxrJ28gkaSTau6rtcq4Mn0RS1cPgOg/yZQpFy1RSpxwNPef21oo3JoQHAy
-         mktU0yR3mPGt69oSav3EI+zYvaUCJyUxEhIpYZv7LQHGzOkgARKIJ+Hpeeli4uONq5hl
-         YFJ8r/mj+TUMAhEvLErkjEm9/qyu2UVplM7aCP6AD+AFhxT0iUjCxxTjd5CE3DHqoYsb
-         wD395ozmg2i80QGYoh4P2kuABNKnixmHgct1mEDkzfC3WTVQkQhNLeKA7j5AbbsleA64
-         bn1xODYGm/1yLrNSlhUj/tyurEis8l24M5LG5h9EZPpxFywQBvk80TmlHfZPiQtsEB/S
-         sEzw==
+        with ESMTP id S234201AbjHVJHU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 05:07:20 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4B4113
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:06:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1692695193;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=zITVam9mib7MXNblWRDDnWwcdZNI0hXQ9sYLmaBnbrA=;
+        b=JyWTJ9Dz0p0ux2OZQZKRzphEH6HByHiZ3Ub+yiCufigxFwfw0je6DrRmXvd8DXaRA2bljb
+        Ku5DCTIyyMM/p1PPC7M5LyLjfy6Q6hWej2talwtGh4gRdvcPMJhRGpOocTEVHmkjwyPWFr
+        zcbSROCJGD9RpEeROX0lWBtYL9aPyHg=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-650-aU5UPF1yMaCgoS9U4A3MBQ-1; Tue, 22 Aug 2023 05:06:32 -0400
+X-MC-Unique: aU5UPF1yMaCgoS9U4A3MBQ-1
+Received: by mail-ed1-f70.google.com with SMTP id 4fb4d7f45d1cf-523464082ffso576376a12.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:06:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692694962; x=1693299762;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jYslESWmMQ4K7vL4A0BMOOm6rNRmZOTpHTitLw9DHqU=;
-        b=L7PrwDxD/bYZpygGptNPiTWZv0dGGHoYHl0T419lGyQ1EmdBNqKPCNEQwP2yuP3rvM
-         ZD7Mk0Mj1qL3VChf/Gi303I19/NlnOMRqJXjKinhxgsQ5+Ed3OnZLJgddLuMn55/9hrL
-         8RG/f+N1vQZF9rgzLAOcAZnjEaqO0YmrDCZk9mtjubFLH5gF3ZhoQpQpir31LZUkwimb
-         /7R1MJyab394mvsCm/NtKhPE9Cv1ZKpo4kdzwK4BJsLHJ51oPqEjfejm8lN4eybq4zMS
-         tQ13wqK9eWHZg0rajiVTJVmkYfxsejk4J143x62p974EU7+2P38KYaZs0y4GbvaSbYI6
-         s/OA==
-X-Gm-Message-State: AOJu0YxeRg385nKlkTWZ1H9rrGhhr2jdsYJpEdEsAZnVI3D9uVqqNlce
-        e+NSHKUmi2Zm1qi+Dhy3izs/5pju+wYvcNOlIBeJIQ==
-X-Google-Smtp-Source: AGHT+IFt499tIWzynN4fBJ9ZZ/oKER6cpMYoxuVszPhAfMParzVVg13mb6qLOSJaPIjSOdErxj19rn4mfJHazwpejyI=
-X-Received: by 2002:a17:90b:1081:b0:267:717f:2f91 with SMTP id
- gj1-20020a17090b108100b00267717f2f91mr5890871pjb.40.1692694962355; Tue, 22
- Aug 2023 02:02:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
- <20230808-stand-cheddar-b76b0b7509a0@spud> <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
- <20230808-esquire-epidemic-f9bd74ffde25@spud> <CABqG17jm938MaEeqS03WeryVWSRBS7Bqq2Vwq9SL4QOGqXU43A@mail.gmail.com>
- <b3eebd2b-c73b-fdc7-2b2b-07e97db26d92@linaro.org> <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
- <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
-In-Reply-To: <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Tue, 22 Aug 2023 14:32:31 +0530
-Message-ID: <CABqG17gL7XL0nKZ0QEYkF672AvfJQXapExw3p1iGm88U9idq=w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1692695191; x=1693299991;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zITVam9mib7MXNblWRDDnWwcdZNI0hXQ9sYLmaBnbrA=;
+        b=YXH/ZuwGp+/Ighe9sc6OZ/vSPqgZE1j8mhow9FdiI+aiA4t8EbbrWuqETYiu3pjiAv
+         4FIEgTnJMF4JNmzLZTleMnXG1y8v0mFpal2Jk54tvE0Lbm7a62R3b/VcgjUjQQaPr7a0
+         Ms5C6kNns/yaFER73YzGQgmgINzrTbMSStU/WkFCfzInY7ZhRUvqEHHirLgAcwjL0gf5
+         pktx4RbdiO1Pp2ACTvb8kc5kVioXPLfra3pv4aKPCp2UxZn1q9PQgAUfR8p1K7rsg9sX
+         RzrXi7+s8QoZtI+FjEcmNhhBTLjS6YAQn7OYHPRBzeSJxONTM/u+eFqCLeOLhEtmATPg
+         bV+g==
+X-Gm-Message-State: AOJu0Yw0w9LJQsnqR2/g7bnNz2LaWKGzy+M0l4mSQTzpYfqe1D5c8rHz
+        WhVvaeTwuDr3Qe86EBuFo/+kgKAcSi8RynevIgcXhhwHZ70n9wQzKhX31xsiUXsKgcVKWYwFZed
+        JUtlYFCw9oeEvmiyHRuAcfQ==
+X-Received: by 2002:a05:6402:1d4c:b0:51e:5dd8:fc59 with SMTP id dz12-20020a0564021d4c00b0051e5dd8fc59mr7217537edb.1.1692695191296;
+        Tue, 22 Aug 2023 02:06:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHfZmPyXgiJ/NkAWWGBQMgHJy5FIu7B+DH5lu1nGvadCAiFsyleJ/rv4GEtyfZ7KoxM594bRw==
+X-Received: by 2002:a05:6402:1d4c:b0:51e:5dd8:fc59 with SMTP id dz12-20020a0564021d4c00b0051e5dd8fc59mr7217526edb.1.1692695191035;
+        Tue, 22 Aug 2023 02:06:31 -0700 (PDT)
+Received: from gerbillo.redhat.com (146-241-241-4.dyn.eolo.it. [146.241.241.4])
+        by smtp.gmail.com with ESMTPSA id f4-20020a05640214c400b00528922bb53bsm675146edx.76.2023.08.22.02.06.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Aug 2023 02:06:30 -0700 (PDT)
+Message-ID: <4e79fe7d5363e69ed116f440db162dcb41b54ecc.camel@redhat.com>
+Subject: Re: [PATCH v5 2/5] dt-bindings: net: Add IEP property in ICSSG DT
+ binding
+From:   Paolo Abeni <pabeni@redhat.com>
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     nm@ti.com, srk@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Tue, 22 Aug 2023 11:06:28 +0200
+In-Reply-To: <20230817114527.1585631-3-danishanwar@ti.com>
+References: <20230817114527.1585631-1-danishanwar@ti.com>
+         <20230817114527.1585631-3-danishanwar@ti.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On Thu, 2023-08-17 at 17:15 +0530, MD Danish Anwar wrote:
+> Add IEP node in ICSSG driver DT binding document.
+>=20
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b=
+/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> index 8ec30b3eb760..a736d1424ea4 100644
+> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> @@ -52,6 +52,12 @@ properties:
+>      description:
+>        phandle to MII_RT module's syscon regmap
+> =20
+> +  ti,iep:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    maxItems: 2
+> +    description:
+> +      phandle to IEP (Industrial Ethernet Peripheral) for ICSSG driver
 
-On Fri, 18 Aug 2023 at 14:53, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 16/08/2023 10:51, Naresh Solanki wrote:
-> > Hi Krzysztof,
-> >
-> > On Tue, 15 Aug 2023 at 01:02, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 11/08/2023 18:00, Naresh Solanki wrote:
-> >>> Hi,
-> >>>
-> >>> On Tue, 8 Aug 2023 at 19:58, Conor Dooley <conor@kernel.org> wrote:
-> >>>>
-> >>>> On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
-> >>>>> On 8/8/23 04:46, Conor Dooley wrote:
-> >>>>>> On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
-> >>>>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >>>>>>>
-> >>>>>>> The TDA38640 chip has different output control mechanisms depending on
-> >>>>>>> its mode of operation. When the chip is in SVID mode, only
-> >>>>>>> hardware-based output control is supported via ENABLE pin. However, when
-> >>>>>>> it operates in PMBus mode, software control works perfectly.
-> >>>>>>>
-> >>>>>>> To enable software control as a workaround in SVID mode, add the DT
-> >>>>>>> property 'infineon,en-svid-control'. This property will enable the
-> >>>>>>> workaround, which utilizes ENABLE pin polarity flipping for output when
-> >>>>>>> the chip is in SVID mode.
-> >>>>>>
-> >>>>>> Why do you need a custom property for this? How come it is not possible
-> >>>>>> to determine what bus you are on?
-> >>>>>>
-> >>>>>
-> >>>>> That is not the point. Yes, it can be detected if the control method is
-> >>>>> PMBus or SVID. However, in SVID mode, SVID is supposed to control the
-> >>>>> output, not PMBUs. This is bypassed by controlling the polarity of the
-> >>>>> (physical) output enable signal. We do _not_ want this enabled automatically
-> >>>>> in SVID mode. Its side effects on random boards using this chip are unknown.
-> >>>>> Thus, this needs a property which specifically enables this functionality
-> >>>>> for users who _really_ need to use it and (hopefully) know what they are
-> >>>>> doing.
-> >>>>
-> >>>> Hmm, reading this it makes a lot more sense why this is a property - I
-> >>>> guess I just struggled to understand the commit message here,
-> >>>> particularly what the benefit of using the workaround is. I'm still
-> >>>> having difficulty parsing the commit & property text though - its
-> >>>> unclear to me when you would need to use it - so I will stay out
-> >>>> of the way & let Rob or Krzysztof handle things.
-> >>>
-> >>> To provide context, my system employs a unique power sequence
-> >>> strategy utilizing a BMC (Baseboard Management Controller),
-> >>> rendering the reliance on the ENABLE pin unnecessary.
-> >>> In this configuration, the ENABLE pin is grounded in the hardware.
-> >>> While most regulators facilitate PMBus Operation for output control,
-> >>> the TDA38640 chip, when in SVID mode, is constrained by the
-> >>> ENABLE pin to align with Intel specifications.
-> >>> My communication with Infineon confirmed that the recommended
-> >>> approach is to invert the Enable Pin for my use case.
-> >>>
-> >>> Since this is not typically the use case for most setup & hence DT property
-> >>> is must for enabling the special case.
-> >>>
-> >>> For further insight into my setup's power sequence strategy, you can
-> >>> refer to the following link: https://github.com/9elements/pwrseqd
-> >>>
-> >>
-> >> This justifies to me the property, but still you described desired
-> >> driver behavior, not the hardware characteristic. Don't describe what
-> >> you want to control, but describe the entire system.
-> > I guess by entire system you mean how the regulators(including
-> > TDA38640) connected & operated in our setup ?
->
-> I mean, property name and description should say what is the
-> characteristic of the hardware/firmware/entire system.
-Based on your feedback, will update to below:
-infineon,fixed-level-en-pin:
-    description: |
-      Indicate the ENABLE pin is set at fixed level or left
-      unconnected(has internal pull-up).
-    type: boolean
->
->
-> Best regards,
-> Krzysztof
->
+It looks like the feedback given by Rob on v2:
+
+https://lore.kernel.org/all/20230821160120.GA1734560-robh@kernel.org/
+
+still applies here, I guess you need to address it.
+
+Cheers,
+
+Paolo
+
+--
+pw-bot: cr
+
