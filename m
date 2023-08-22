@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AFB57839F9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 08:31:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89595783A4F
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 09:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233000AbjHVGbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 02:31:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46072 "EHLO
+        id S233070AbjHVHHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 03:07:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233009AbjHVGbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 02:31:06 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF04B19F
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 23:31:04 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99df431d4bfso526428566b.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 23:31:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692685863; x=1693290663;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qF3XsrvkCmdC2tWJHy9NJb8hDFmSm0IyZ1p8Hm+JGjE=;
-        b=BBFt8dXOP/k5IJhehsjI4KdqyFfTFNjWRtD8aepd+LTyOfbatkgonVPluLG0+inLp2
-         RLXs0y8YLguwmExPhwyx+Sx8uWrp5Tn6kayCObTh61StHQPAYFV5hSYtDZ1gUwc2ceBm
-         cJ1d9JFU6GxuDVEx/W0PFLjpD9cAnI8S+x1OfsP2UifM3iV2kVLCUKwz9hTmWo7+u0Sq
-         tC5KNe52h0RsRKXFu8TGl7Lq2Pp/o2xtPf+OJ0W378coWj+J8w4ME06VseisMqgQbXbg
-         3wHQ1Z/PjrwvfVbju7jhd/EokPXfLtbtiHOdLLo9BP5lxW4Im+94mFypaObr3m/em+mZ
-         Vpgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692685863; x=1693290663;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qF3XsrvkCmdC2tWJHy9NJb8hDFmSm0IyZ1p8Hm+JGjE=;
-        b=Tmyflpc66YbGPAuJDekSiYYJUdhajVhV3a7v++hqe7zFMRw+dvkt1oQtOZ/S/PBaw1
-         WV3vOErQCwNnOXVOtp3BQX0xSMoJ42gdFjdb48TU9Eu5D3xU2E26BI9xMQBRTOFTMY16
-         3AND46jixFAVPDVXikUKVlS5qKGRlgkvzXmBM98i+sW763rww9sgU6+1kwizDA/MVRAd
-         e4mAH016qeqadvGk2mkCY0ZDP1SGvRFGP9chzmMcSkjd1ZYJYS4aUZ9yHymvzFMhZKZw
-         Ad5Sjy9RNK8tv9Nb5zJEG1dZOwAB97Ii2KSeXicB2fmKAQJmGVszBeLCCdrSXiNuJGhq
-         A9MA==
-X-Gm-Message-State: AOJu0YyweOE0s+Jn93bt1xDVEeWirFeBGVIukg1EbpKKueB1SRNIhAW3
-        tsavtRznwYYsQcWwIe9aFTSCwA==
-X-Google-Smtp-Source: AGHT+IGMEHTyeoPeIgNE/HIIUoDPkzLTgoK6YfDxPVTz+PmAaoHcG16QaEXJEgcRviWpASYwsdoRZQ==
-X-Received: by 2002:a17:906:14:b0:96f:1f79:c0a6 with SMTP id 20-20020a170906001400b0096f1f79c0a6mr6367813eja.70.1692685863290;
-        Mon, 21 Aug 2023 23:31:03 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id c8-20020a170906528800b009887f4e0291sm7667934ejm.27.2023.08.21.23.31.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 23:31:02 -0700 (PDT)
-Message-ID: <74291298-6ca4-99d7-bf7c-741b8220c066@linaro.org>
-Date:   Tue, 22 Aug 2023 08:31:02 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 04/32] ARM: dts: qcom: apq8064: correct XOADC register
- address
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229514AbjHVHHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 03:07:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C389130;
+        Tue, 22 Aug 2023 00:07:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A8B6E64244;
+        Tue, 22 Aug 2023 07:07:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1D55C433C8;
+        Tue, 22 Aug 2023 07:07:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692688065;
+        bh=d7xbpsQutE/31GLl4hB/Q4ABnnr1PfLlY7OsceIn+zM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NdhbNII6nUMZKsIFq4qeXlqiEpIjGqdASMrzWamLsOrQryVdbEm/QJwtB3stP9mQJ
+         9oZ/5yE8XLY2e7tERRhVXaF6XibplLcBURaCEyMMw/3kDOUshPMn/zkKtYop/fk5Pg
+         4O+jL77Y1RKE4EQMMYEb8bw7gW08+rsLjeNW8MKbCdKBJEVL2VOy7BF2Z1A8rccAE5
+         H6FgYXH4s8KDs6kF9qeXoUzQFjS9tnVQE4XtKxmMBEBE264Dafp86nSy3AApTdmPOy
+         eNKAtYvwWSFxo43maiTIMRgY+1yD9G93Ed3B81geIBtKXdnYREEStW3vgft96okARm
+         AqjD//LPfo2Aw==
+Date:   Tue, 22 Aug 2023 08:07:37 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
- <20230822001349.899298-5-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230822001349.899298-5-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jakob Hauser <jahau@rocketmail.com>
+Cc:     Beomho Seo <beomho.seo@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Raymond Hackley <raymondhackley@protonmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Henrik Grimler <henrik@grimler.se>,
+        Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: (subset) [PATCH v6 06/10 RESEND] power: supply: rt5033_charger:
+ Add cable detection and USB OTG supply
+Message-ID: <20230822070737.GP1380343@google.com>
+References: <cover.1684182964.git.jahau@rocketmail.com>
+ <223b440ab6831f2e7302d2c49b2cfd7779d5effd.1684182964.git.jahau@rocketmail.com>
+ <169226510772.947223.494995318945916008.b4-ty@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <169226510772.947223.494995318945916008.b4-ty@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 02:13, Dmitry Baryshkov wrote:
-> The XOADC is present at the address 0x197 rather than just 197. It
-> doesn't change a lot (since the driver hardcodes all register
-> addresses), but the DT should present correct address anyway.
+On Thu, 17 Aug 2023, Lee Jones wrote:
+
+> On Mon, 15 May 2023 22:57:15 +0200, Jakob Hauser wrote:
+> > Implement cable detection by extcon and handle the driver according to the
+> > connector type.
+> > 
+> > There are basically three types of action: "set_charging", "set_otg" and
+> > "set_disconnect".
+> > 
+> > A forth helper function to "unset_otg" was added because this is used in both
+> > "set_charging" and "set_disconnect". In the first case it covers the rather
+> > rare event that someone changes from OTG to charging without disconnect. In
+> > the second case, when disconnecting, the values are set back to the ones from
+> > initialization to return into a defined state.
+> > 
+> > [...]
 > 
-> Fixes: c4b70883ee33 ("ARM: dts: add XOADC and IIO HWMON to APQ8064")
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 2 +-
+> Applied, thanks!
+> 
+> [06/10] power: supply: rt5033_charger: Add cable detection and USB OTG supply
+>         commit: c1af6bcc8583b0a1083338cd26c2090d0bcb0810
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Multiple fixes now follow this patch, so I am unapplying it.
 
-Best regards,
-Krzysztof
+Sebastian, would you mind collecting it up please?
 
+-- 
+Lee Jones [李琼斯]
