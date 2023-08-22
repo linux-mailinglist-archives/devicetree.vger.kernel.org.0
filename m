@@ -2,105 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BAF784AEE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 22:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28078784B53
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 22:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229940AbjHVUBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 16:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43178 "EHLO
+        id S229916AbjHVUY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 16:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229816AbjHVUBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 16:01:12 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2FB1AD;
-        Tue, 22 Aug 2023 13:01:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=LXHug3TLN9P2+6rbiOjOGu7mrHI3vo5m1kq9IAwgsjM=; b=mipLXy/CGBIquuykD+YLEvlNHU
-        ab3aPgI7yTiDB6Q34WJY9XJ2g3Vn85W15Br9SUduydtZ8eGaEzMoXZlfepBd9RtS20YHCYU3M6LDF
-        w56212iOrtzLuHiIfEwYz3xRuI5+yHYHT2SSpkaQaX4msuJ4m+55nCFgtUehWdLoGyfM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qYXYa-004oiQ-AT; Tue, 22 Aug 2023 22:00:52 +0200
-Date:   Tue, 22 Aug 2023 22:00:52 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "simon.horman@corigine.com" <simon.horman@corigine.com>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 4/5] net: hpe: Add GXP UMAC Driver
-Message-ID: <befbee5a-7b11-4948-a837-6311dd4d7276@lunn.ch>
-References: <20230816215220.114118-1-nick.hawkins@hpe.com>
- <20230816215220.114118-5-nick.hawkins@hpe.com>
- <01e96219-4f0c-4259-9398-bc2e6bc1794f@lunn.ch>
- <88B3833C-19FB-4E4C-A398-E7EF3143ED02@hpe.com>
- <1b8058e1-6e7f-4a4a-a191-09a9b8010e0a@lunn.ch>
- <CF9BD927-B788-4554-B246-D5CC6D06258F@hpe.com>
+        with ESMTP id S229516AbjHVUY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 16:24:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2DF7CEA;
+        Tue, 22 Aug 2023 13:24:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 48CF4652CF;
+        Tue, 22 Aug 2023 20:24:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDE1DC433C7;
+        Tue, 22 Aug 2023 20:24:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692735864;
+        bh=IaufNM1F3JpnjmORgWEADp4Fszgw8gPenfutQK5mq44=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jKdOP27JseAJ3pvCPREc/Pb2KEsWO6whWnEh7E0C9qzql+4zXvrQsHs29BoBurD6M
+         /VEIKm3eNTiJ38XqGftZuIDIb6ufFFxrKDrugQWi0hvyBtbVgi/bzuMWl2IDeIJinS
+         n6HSz/mZ6qy2yvhUt37bYS1LL77QQyqBAPjnR/9fRqIjJSChwjamADen3/WDjDgs1K
+         2RvIcgely14qyn4Lm9D8PN0uZ1CmjsYM/LxRdLxct3vms7R2jqV1dZiKsKu3pskEy9
+         Iod/vUv+Vw13ej4vobIJCuQ70iNzOAwmzq9GTvXV1R2xG/NQoi4atMG0NebXv7BtOP
+         ke7JVRJl+XAkA==
+Received: (nullmailer pid 725743 invoked by uid 1000);
+        Tue, 22 Aug 2023 20:24:22 -0000
+Date:   Tue, 22 Aug 2023 15:24:22 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH v3 03/32] dt-bindings: bus: convert qcom,ssbi schema to
+ YAML format
+Message-ID: <169273586120.725658.11487910435459187716.robh@kernel.org>
+References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
+ <20230822001349.899298-4-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CF9BD927-B788-4554-B246-D5CC6D06258F@hpe.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230822001349.899298-4-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 22, 2023 at 07:00:49PM +0000, Hawkins, Nick wrote:
+
+On Tue, 22 Aug 2023 03:13:20 +0300, Dmitry Baryshkov wrote:
+> Convert arm/msm/ssbi.txt yo YAML, moving it to the directory with bus
+> bindings.
 > 
-> > <include/net/page_pool/helpers.h>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/arm/msm/ssbi.txt      | 18 ------
+>  .../devicetree/bindings/bus/qcom,ssbi.yaml    | 63 +++++++++++++++++++
+>  2 files changed, 63 insertions(+), 18 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/msm/ssbi.txt
+>  create mode 100644 Documentation/devicetree/bindings/bus/qcom,ssbi.yaml
 > 
-> Hi Andrew,
-> 
-> I can't seem to find this file in linux master. Where is it?
 
-~/linux$ ls include/net/page_pool/helpers.h
-include/net/page_pool/helpers.h
+Applied, thanks!
 
-When you say master, do you mean net-next/main? This is a network
-driver, so you should be based on top of that tree.
-
-https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html#netdev-faq
-
-> > Take a look at driver/net/ethernet/freescale/fec_main.c That
-> > driver/device is of similar complexity to yours. It had a recent
-> > change from its own buffer management to page pool. It
-> > started with
-> 
-> I have looked over this driver and have a couple questions
-> about the pages in general.
-> 
-> How do I determine what the correct pool size should be for the
-> RX and TX?
-
-There has been some recent discussion about that. Search the netdev
-list over the last couple of week. 
-
-> I must admit I am not familiar with XDP.
-> Is it required for the page pool library?
-
-Nope, not required at all. The FEC driver was first converted to page
-pool, and then XDP support added. The conversion to page pool made the
-driver faster, it could handle more packets per second. That is why i
-suggested using it, plus it means less driver code, which means less
-bugs.
-
-	Andrew
