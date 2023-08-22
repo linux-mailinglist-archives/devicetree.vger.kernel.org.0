@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BBDC7836EF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 02:15:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AF647836C5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 02:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231855AbjHVAPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 20:15:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41776 "EHLO
+        id S231880AbjHVAOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 20:14:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231631AbjHVAOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 20:14:24 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A216CC6
+        with ESMTP id S231866AbjHVAO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 20:14:26 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45FBCCA
         for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 17:14:09 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe61ae020bso5859220e87.2
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-5007c8308c3so2767714e87.0
         for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 17:14:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692663247; x=1693268047;
+        d=linaro.org; s=google; t=1692663248; x=1693268048;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+n4FHogtkUWW0lhbbvCjrAu0cEo2A7+C+ewNBfn30Hw=;
-        b=etVMUpKZEkmyYDGi+eS4ho+3v8B0DCp5dirkbIWCGXqQtSImz8ScI/lbosCqeCuXzj
-         8HtE+L78lKJ3uoEJml/41A/Fo88/itYs0XSQCmxZpHjs+CBceUcUQANhft0dmgTcZTDx
-         bbgzNz/qdph565kLcF04zAY/Gf/t+4txu1bNJSrXQU9m9Y6f6KcAP6ZxprXt9UuuxfEE
-         121FgicHRWuq2EwkqXvTHRKnKq2HAzleydR7kmkJX2NUTQ5tbbt+WplCkApjfcKbLgH3
-         8PmU15lkRacmdh8Ee+98mn3v/d5WzhCqTerZBYduc41N6vbL55K2oWn9uW9FCRyPmFhY
-         gtug==
+        bh=k892yPv/128pmT+0c+CLRewxWCJSJdHIcCP1VlRPxE4=;
+        b=zSBBD2CcULdMHnkRK+6cPNlLLbcoVe8s1L+TCFuDUHTXd4JNnhPUZmYrZFz43pkP4O
+         RvlELkuKM/N7u4L8AU+XyqHcLSHQS2FAMtmtUyqjW/3+5MvoBVROcLhmKJIObGiqj9An
+         LejSE0VR0IV8zIiGFpZoQPTzsL3ZPgTBOhZbd7ELo3sVwNs40UAk5ysXIwWBISPFHm+Y
+         MV30zLBuKu6kZn4wHVIAz3QsoMI/XvKE4cXqeHHZzFF3fDD8KCCAM25WPoudFF2XGFAd
+         TDnllUNJ9suP3u4BzOJvbM9Wh4ICyejFgiT2wvJ+KEpyGaWdlTih/tYC3yhDPzyr3u/y
+         D/Ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692663247; x=1693268047;
+        d=1e100.net; s=20221208; t=1692663248; x=1693268048;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+n4FHogtkUWW0lhbbvCjrAu0cEo2A7+C+ewNBfn30Hw=;
-        b=a882DXNwnT7qfI61lbF5q9NGNlRVlkgpm44zd9p/vGWgxCTT04MuFD1jvB1mi5PmIC
-         QqgD7w+FK34Fw2crapdJdOfH+0z1FjBU8zBnvNDGRhTE0hM/qxbAb7cpnij2q72Cn6En
-         ga0UC7nyrm4Eblf3bNH5l4bQojtXf0DIVEvT3PzXupv4QeEx0QEFH50Ecw967lX3/eDU
-         mpiMpcUb9WDdrs+Fw/XAvvq+Soi+M2lBCgqoOL686JgjJfcHU8u8Q0PcFCu9qKfhMrEp
-         HQJdk4ZMSs8dtw2s1Dirh9liZ54bUEI/yn66feGADNJSOrBfaJpF+PhOSGK8QxFwei+4
-         hNhQ==
-X-Gm-Message-State: AOJu0YzOXwt4WY/0jLVmInRugHd57MRqI9NCFwZp8/V1ySCusGyvWHAG
-        NmqzovfyA9ba2WXRRwUxcsh0hQ==
-X-Google-Smtp-Source: AGHT+IG8KodIFQEaKNv8A1dawB2DVXnum+OmxFCPZMJgsdWebfCvaXviXDFAXozO2UgVGfsL3ctxSQ==
-X-Received: by 2002:a05:6512:3e9:b0:4ff:7046:984a with SMTP id n9-20020a05651203e900b004ff7046984amr5307801lfq.7.1692663247385;
-        Mon, 21 Aug 2023 17:14:07 -0700 (PDT)
+        bh=k892yPv/128pmT+0c+CLRewxWCJSJdHIcCP1VlRPxE4=;
+        b=RHEdbIhnAsqjy2GROdQ4jeFv6IB7sUQ4yZ4Y9d1jYlEx3LIahUolki+xdsx6eE6lGR
+         /Bllnu2yOQs6A91K+6VqbXg90uyLlTahq5VKKez+azskQ1TZQXNwrofcilJYbsSkY9Cr
+         i2z2WY5AGhQ58wBwXTTMrUqLlwqm1iH4BNKBEgwq4ymz4pK6ahWrlm44sgORCZGUrRrx
+         T3mu3h/h2Cu4DSADvDsFIJOLBI+tqp/SCdTR9BFpmsFl73OQIEJ2adfgkuAuDyWDtvWu
+         cERKD1B4Hys8ksM+bLUhp8qb2JCxJVlXw8Al96p04AjA9Hi0RiEKR095bbPOLD86Isi/
+         nxLA==
+X-Gm-Message-State: AOJu0YwkzR4FPp9ZvuA/L25gqninspRN4FLDshgnszdTN59JkqT/7rty
+        X7RXD4/BBOfJ73UsRKCl+dHRoJTWs6bz1P6fZIA=
+X-Google-Smtp-Source: AGHT+IG/tYBjyRNFgPitFQY76/MoQKE5OgrgdCWz91oOWK+q5wsTUk0qzSQm02oN+Cns3hpSWOxQjA==
+X-Received: by 2002:a05:6512:2389:b0:4fb:8aeb:d9be with SMTP id c9-20020a056512238900b004fb8aebd9bemr6966417lfv.30.1692663248084;
+        Mon, 21 Aug 2023 17:14:08 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id er23-20020a05651248d700b004fe36e673b8sm912024lfb.178.2023.08.21.17.14.06
+        by smtp.gmail.com with ESMTPSA id er23-20020a05651248d700b004fe36e673b8sm912024lfb.178.2023.08.21.17.14.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Aug 2023 17:14:06 -0700 (PDT)
+        Mon, 21 Aug 2023 17:14:07 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -57,9 +57,9 @@ To:     Andy Gross <agross@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-input@vger.kernel.org
-Subject: [PATCH v3 20/32] ARM: dts: qcom: pm8018: move reg property
-Date:   Tue, 22 Aug 2023 03:13:37 +0300
-Message-Id: <20230822001349.899298-21-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 21/32] ARM: dts: qcom: pm8921: move reg property
+Date:   Tue, 22 Aug 2023 03:13:38 +0300
+Message-Id: <20230822001349.899298-22-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
 References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
@@ -80,30 +80,19 @@ Move reg property to come after compatible.
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/pm8018.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/qcom/pm8921.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/qcom/pm8018.dtsi b/arch/arm/boot/dts/qcom/pm8018.dtsi
-index c602544900b2..85ab36b6d006 100644
---- a/arch/arm/boot/dts/qcom/pm8018.dtsi
-+++ b/arch/arm/boot/dts/qcom/pm8018.dtsi
-@@ -27,9 +27,9 @@ pwrkey@1c {
- 
- 		pm8018_mpps: mpps@50 {
- 			compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
-+			reg = <0x50>;
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
--			reg = <0x50>;
- 			gpio-controller;
- 			#gpio-cells = <2>;
- 			gpio-ranges = <&pm8018_mpps 0 0 6>;
-@@ -37,9 +37,9 @@ pm8018_mpps: mpps@50 {
+diff --git a/arch/arm/boot/dts/qcom/pm8921.dtsi b/arch/arm/boot/dts/qcom/pm8921.dtsi
+index 4697ca33666f..fa00b57e28b9 100644
+--- a/arch/arm/boot/dts/qcom/pm8921.dtsi
++++ b/arch/arm/boot/dts/qcom/pm8921.dtsi
+@@ -31,9 +31,9 @@ pm8921_mpps: mpps@50 {
  
  		rtc@11d {
- 			compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
+ 			compatible = "qcom,pm8921-rtc";
 +			reg = <0x11d>;
- 			interrupt-parent = <&pm8018>;
+ 			interrupt-parent = <&pm8921>;
  			interrupts = <39 IRQ_TYPE_EDGE_RISING>;
 -			reg = <0x11d>;
  			allow-set-time;
