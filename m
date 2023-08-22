@@ -2,123 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7FB57838CE
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 06:27:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C477838E1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 06:45:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232434AbjHVE1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 00:27:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54480 "EHLO
+        id S232427AbjHVEpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 00:45:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230037AbjHVE1e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 00:27:34 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9C21189;
-        Mon, 21 Aug 2023 21:27:32 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37M1tVfi021558;
-        Tue, 22 Aug 2023 04:27:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QniPCjLtVSIkZtdAeBysdSVbGht8lRNNImNVXI04g+k=;
- b=HscGlS3HMzFbB21yhT/HjPziKGfnODraY1PaKY0YSXu+X/TCVo9xlOr4urEPXHUXg5xu
- fgJK3le6GaqGicYC66xqAYiVILVY2eknqJz61vTVKcZhhoqwavRnluOS+pAGzox2/jTs
- 4JlHWthE46/NLZTkMKOsgLujIxIL/0I09Jg5iro0Lc5UXgSF2Ut08gQUIvzDbGvgKGNT
- yp18hKlX4t64yHGrYwQbZ/Iw09ldY/Hw1aVqatZ8Z/Vsq1GAfnUZ8N9nGImIyaGUhAqQ
- zaHOOXLoGpkleOnIvxzltydaGIBP1sgbNGa8i+BNXuKwceEYuI1HVDEXaXLXOdO3rGDN qQ== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sm6uuhy3u-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Aug 2023 04:27:18 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37M4RI9f032596
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Aug 2023 04:27:18 GMT
-Received: from [10.218.47.181] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 21 Aug
- 2023 21:27:13 -0700
-Message-ID: <d93902ee-c305-42cb-9d0d-1f0971ab3a70@quicinc.com>
-Date:   Tue, 22 Aug 2023 09:57:10 +0530
+        with ESMTP id S232291AbjHVEpD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 00:45:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72CE18B;
+        Mon, 21 Aug 2023 21:45:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4F1D463434;
+        Tue, 22 Aug 2023 04:45:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A105CC433CA;
+        Tue, 22 Aug 2023 04:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692679500;
+        bh=yokCOAF46NkeXnzKzrkQWrUvo6uovD+L/nrinsM5GDg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=J3AGPuuzsU5xfxgGD0xeMXAlwtNdVrpFfG7ZMGJa8L9qwftiMLSNKnzFQSVkw8lmj
+         /si9woX67hd97yLzt0m9i9ZjiIUWsyANaxTERK4xKK3Q8KNqpqoY4ZYCNyccYZBREL
+         McVnpTVx3qwzNAxGAI9qZwkKHkwEXhBcnNRgduB/g7cRN2h3agD0J5Rik1q4fq+eSj
+         AodcwiCKwhYbxE5NWRkPBsIf6ComhmA+3p+7AS1VHFlT2VXTDNjR4yVDY6paolyy7C
+         CmA3z/o4QV6Q34S+oTnlqt9i/xHF+DIg5CLgdqGRIIGNnA+80SoXtnUZPrH39jdwnQ
+         wEa3GJRM1OgCw==
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-9a18a4136a9so278819166b.2;
+        Mon, 21 Aug 2023 21:45:00 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yy7ILn39UAFijGXVKGqUaROB8fSXxhtjCdleKfLPSWJsFjdsAOe
+        uuGywWFVrY3m4SiKRq/TGkQ1/1VLKyq9qMFlg24=
+X-Google-Smtp-Source: AGHT+IHxrXK8Uj/TaMDUDhOIN7KBjt+OV9ngc6YJG/wIHinia3KIX6pSFc0u9/62N945j9OjUXam6FhWhcCmwBijRu0=
+X-Received: by 2002:a17:906:2215:b0:99b:d599:5085 with SMTP id
+ s21-20020a170906221500b0099bd5995085mr6461631ejs.64.1692679498790; Mon, 21
+ Aug 2023 21:44:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: crypto: qcom,prng: Add SM8450
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <konrad.dybcio@linaro.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-        <herbert@gondor.apana.org.au>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <marijn.suijten@somainline.org>,
-        <robh+dt@kernel.org>, <vkoul@kernel.org>
-References: <20230811-topic-8450_prng-v1-1-01becceeb1ee@linaro.org>
- <20230818161720.3644424-1-quic_omprsing@quicinc.com>
- <2c208796-5ad6-c362-dabc-1228b978ca1d@linaro.org>
- <1cadb40e-b655-4b9b-9189-dfdb22a2c234@quicinc.com>
- <1f492c4e-2125-73eb-8523-389e24727516@linaro.org>
-Content-Language: en-US
-From:   Om Prakash Singh <quic_omprsing@quicinc.com>
-In-Reply-To: <1f492c4e-2125-73eb-8523-389e24727516@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Lv2vqt4tLV3CPMy9_UBfTlR6HBNb0ETT
-X-Proofpoint-GUID: Lv2vqt4tLV3CPMy9_UBfTlR6HBNb0ETT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-22_02,2023-08-18_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- spamscore=0 clxscore=1015 malwarescore=0 adultscore=0 lowpriorityscore=0
- suspectscore=0 mlxscore=0 priorityscore=1501 phishscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2306200000
- definitions=main-2308220034
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
+In-Reply-To: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
+From:   Huacai Chen <chenhuacai@kernel.org>
+Date:   Tue, 22 Aug 2023 12:44:46 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H5JpHwgcq7mPBOcAwy638VAQvNc2rkRNyWnBZ4sVdq8XQ@mail.gmail.com>
+Message-ID: <CAAhV-H5JpHwgcq7mPBOcAwy638VAQvNc2rkRNyWnBZ4sVdq8XQ@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
+ Fix warnings about liointc-2.0
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
 
-
-On 8/21/2023 11:37 AM, Krzysztof Kozlowski wrote:
-> On 21/08/2023 02:52, Om Prakash Singh wrote:
->> I meant first one. using "qcom,rng-ee".
-> 
-> Then please provide some reasons.
-> 
-New IP block available on SM8450 and newer platform is true random 
-number generator with it's entropy source. Also it is NIST SP800 90B 
-compliant.
-By introducing "qcom,rng-ee" I am also planning to add hwrng support in 
-driver.
-
->>
->> I am looking for generic compatible string for all SoCs for which core
->> clock can be optional, same as we have "qcom,prng-ee".
-> 
-> There is a generic compatible already... but anyway, is the clock really
-> optional? Or just configured by firmware?
+On Mon, Aug 21, 2023 at 2:13=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
 >
-Clock is configured using security firmware.
-
->>
->> If we are using SoC name in compatible string, for each SoC support we
->> need to update qcom,prng.yaml file.
-> 
-> So you were talking about second case from my email? Still not sure what
-> you want to propose, but just in case - please always follow DT bindings
-> guidelines:
-> 
-> https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetree/bindings/writing-bindings.rst#L42
-> 
-> Best regards,
-> Krzysztof
-> 
+> Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
+> Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
+> routes for 64-bit interrupt sources.
+>
+> For liointc-2.0, we need to define two liointc nodes in dts, one for
+> "0-31" interrupt sources and the other for "32-63" interrupt sources.
+> This applies to mips Loongson-2K1000.
+>
+> Unfortunately, there are some warnings about "loongson,liointc-2.0":
+> 1. "interrupt-names" should be "required", the driver gets the parent
+> interrupts through it.
+>
+> 2. Since not all CPUs are multicore, e.g. Loongson-2K0500 is a
+> single-core CPU, there is no core1-related registers. So "reg" and
+> "reg-names" should be set to "minItems 2".
+>
+> 3. Routing interrupts from "int0" is a common solution in practice, but
+> theoretically there is no such requirement, as long as conflicts are
+> avoided. So "interrupt-names" should be defined by "pattern".
+>
+> This fixes dtbs_check warning:
+>
+> DTC_CHK arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb
+> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-contro=
+ller@1fe11440: interrupt-names:0: 'int0' was expected
+>       From schema: Documentation/devicetree/bindings/interrupt-controller=
+/loongson,liointc.yaml
+> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-contro=
+ller@1fe11440: Unevaluated properties are not allowed ('interrupt-names' wa=
+s unexpected)
+>       From schema: Documentation/devicetree/bindings/interrupt-controller=
+/loongson,liointc.yaml
+>
+> Fixes: f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add Loongson-2K1=
+000 LIOINTC")
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+> V2:
+> 1. Update commit message;
+> 2. "interruprt-names" should be "required", the driver gets the parent
+> interrupts through it;
+> 3. Add more descriptions to explain the rationale for multiple nodes;
+> 4. Rewrite if-else statements.
+>
+> Link to V1:
+> https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongson.=
+cn/
+>
+>  .../loongson,liointc.yaml                     | 74 +++++++++----------
+>  1 file changed, 37 insertions(+), 37 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loong=
+son,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/l=
+oongson,liointc.yaml
+> index 00b570c82903..f695d3a75ddf 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,lio=
+intc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,lio=
+intc.yaml
+> @@ -11,11 +11,11 @@ maintainers:
+>
+>  description: |
+>    This interrupt controller is found in the Loongson-3 family of chips a=
+nd
+> -  Loongson-2K1000 chip, as the primary package interrupt controller whic=
+h
+> +  Loongson-2K series chips, as the primary package interrupt controller =
+which
+>    can route local I/O interrupt to interrupt lines of cores.
+> -
+> -allOf:
+> -  - $ref: /schemas/interrupt-controller.yaml#
+> +  In particular, the Loongson-2K1000/2K0500 has 64 interrupt sources tha=
+t we
+> +  need to describe with two dts nodes. One for interrupt sources "0-31" =
+and
+> +  the other for interrupt sources "32-63".
+>
+>  properties:
+>    compatible:
+> @@ -24,15 +24,9 @@ properties:
+>        - loongson,liointc-1.0a
+>        - loongson,liointc-2.0
+>
+> -  reg:
+> -    minItems: 1
+> -    maxItems: 3
+> +  reg: true
+>
+> -  reg-names:
+> -    items:
+> -      - const: main
+> -      - const: isr0
+> -      - const: isr1
+> +  reg-names: true
+>
+>    interrupt-controller: true
+>
+> @@ -45,11 +39,9 @@ properties:
+>    interrupt-names:
+>      description: List of names for the parent interrupts.
+>      items:
+> -      - const: int0
+> -      - const: int1
+> -      - const: int2
+> -      - const: int3
+> +      pattern: int[0-3]
+>      minItems: 1
+> +    maxItems: 4
+>
+>    '#interrupt-cells':
+>      const: 2
+> @@ -69,32 +61,41 @@ required:
+>    - compatible
+>    - reg
+>    - interrupts
+> +  - interrupt-names
+>    - interrupt-controller
+>    - '#interrupt-cells'
+>    - loongson,parent_int_map
+>
+> -
+>  unevaluatedProperties: false
+>
+> -if:
+> -  properties:
+> -    compatible:
+> -      contains:
+> -        enum:
+> -          - loongson,liointc-2.0
+> -
+> -then:
+> -  properties:
+> -    reg:
+> -      minItems: 3
+> -
+> -  required:
+> -    - reg-names
+> -
+> -else:
+> -  properties:
+> -    reg:
+> -      maxItems: 1
+> +allOf:
+> +  - $ref: /schemas/interrupt-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - loongson,liointc-2.0
+> +    then:
+> +      properties:
+> +        reg:
+> +          minItems: 2
+> +          items:
+> +            - description: Interrupt routing registers.
+> +            - description: Low/high 32-bit interrupt status routed to co=
+re0.
+> +            - description: Low/high 32-bit interrupt status routed to co=
+re1.
+> +        reg-names:
+> +          minItems: 2
+> +          items:
+> +            - const: main
+> +            - const: isr0
+> +            - const: isr1
+> +      required:
+> +        - reg-names
+> +    else:
+> +      properties:
+> +        reg:
+> +          maxItems: 1
+>
+>  examples:
+>    - |
+> @@ -113,7 +114,6 @@ examples:
+>                                  <0x0f000000>, /* int1 */
+>                                  <0x00000000>, /* int2 */
+>                                  <0x00000000>; /* int3 */
+> -
+>      };
+>
+>  ...
+> --
+> 2.39.3
+>
