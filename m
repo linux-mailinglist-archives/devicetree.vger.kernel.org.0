@@ -2,287 +2,220 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B347845BF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 323627845B9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:39:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237184AbjHVPjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 11:39:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46260 "EHLO
+        id S237204AbjHVPjG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 11:39:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237213AbjHVPjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:39:07 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91985CC1;
-        Tue, 22 Aug 2023 08:39:02 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37MFU41Y019910;
-        Tue, 22 Aug 2023 15:38:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=IEgKJINjJyGJvSUsCgbv8WztEQ6o/Brf2UySwoWfgoE=;
- b=MAx//zqVXqkjw7NUesXC05BdC1wPWsG3Lal3Y31Yx9Z8Qnv2ccDJoXCR1OZtARhyaz4R
- hrc1U6WrbD3OR+LA+lH3nehoBR+SrlZslyErlX+2uATjZREVK/ALj1TnKhvvCph9sSnw
- 8jW1CAMUdHRrvrqBZ+MrjPrGvBjvwLfZFV37x+h+/iSOzKN6G1ZlECCEXxPOIQLCSbq6
- 4Qnikv0/TgHAuGUHTqZoR373W5k9+3Kt0b0TCZCc34+09/C/+3WGvkxVbT7Zbr+k0nur
- zyhrtF78yMSTxMskWSbZfsvKJs8yChjKKQSOgx/MGll0+Y0lri/5pdabUlTdE03k6hyK rw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sm6f9uf1a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Aug 2023 15:38:52 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37MFcpkw023351
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Aug 2023 15:38:51 GMT
-Received: from [10.218.45.181] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 22 Aug
- 2023 08:38:47 -0700
-Message-ID: <b970ccf1-e4e2-0d79-aeb2-a1b612cc1b10@quicinc.com>
-Date:   Tue, 22 Aug 2023 21:08:44 +0530
+        with ESMTP id S237162AbjHVPjF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:39:05 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D29871B2
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:39:00 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bcc0adab4so597342466b.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:39:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692718739; x=1693323539;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7uDZNE/L2WypJzzrI7vqxRXdhClZjfBh3CCjZ36A17c=;
+        b=KR5CKO3txtjG3t2iB9uTdoOqPbb50mrTmkVmG9sRhDQfi8JoN4zJzwdNQK6W/RgEHm
+         j6FCSbBNhOavnBr+r9kJO5qLyWgxGoDVWxT11kCXf5Aw9PG272XQmsMVAER6NEd6aide
+         T/n/zjZOmQ8B+uXfmVxMbw+e3WGFAycPe/AEne4GScjp+4+G+SIOv1osF4wNI729TOM6
+         3Q9u690LuLgVGpSyd/AvrTyHInE+j5BcYsPJNxi/PbGu5dv9FnAptWxBPYxLZwyVGcKB
+         rQv6RV5xsOzXJPw2XL2Q/XpYe32zdgFLylpUTsxVYvIPMYrOPhxm5SfcvpSV78D4+8ce
+         7hvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692718739; x=1693323539;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7uDZNE/L2WypJzzrI7vqxRXdhClZjfBh3CCjZ36A17c=;
+        b=lssnJbhGZ7WtjG4ProAwKhn2JtmLeyWzKGHEtW2FMwV7vLLRQ19fLSyP0qdGCQEYq6
+         9PyO9wGJxW2Rg1OTRw1IMwlRG8TCu/t0DPI93Ff9W+XYsuLQyQPKZ0WsiFEVFLl4dU3k
+         EjDzy50l4U5Ur9KyB9pGqnhZYU5gcsOJmJFQs5gcH1Okvc2JzbC6VNPza5no9opucEU+
+         mCkMqdcdKslPcyjXkeJDJD0vsIG2Yd8/xNx5Y1uCuo/IfsT4/W7Mima/XYrXk71H/30A
+         KZaONQpP4p8skbrOUN+BzdHAJ6NAVfGN+5xT8krN+TS4bYFh325yHFH1KzUzzZm72YTU
+         5bOQ==
+X-Gm-Message-State: AOJu0Ywty6ixHOACZP/IhZ7oadXaldsKYpqL3CGcgzY+cb96xFc5Lx30
+        q09M/73+uZLZ7JE+0dShbsuG6Q==
+X-Google-Smtp-Source: AGHT+IHgJywDjqvWr4qipa5JD526Rk7A2oYdS4BbDCxC+VwxCzxAmx6wZN+j+yHCJEBntWf40M7SEQ==
+X-Received: by 2002:a17:907:77d8:b0:99b:c517:88a1 with SMTP id kz24-20020a17090777d800b0099bc51788a1mr7367250ejc.67.1692718739384;
+        Tue, 22 Aug 2023 08:38:59 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id y21-20020a1709063a9500b0099364d9f0e6sm8371210ejd.117.2023.08.22.08.38.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 08:38:58 -0700 (PDT)
+Message-ID: <1e0632d6-73e9-4633-a709-bf9140f2fd32@linaro.org>
+Date:   Tue, 22 Aug 2023 17:38:58 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V2 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support
- for SC7280
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC
+ Type-C
 Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <kishon@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, Manish Pandey <quic_mapa@quicinc.com>
-References: <20230819115223.9479-1-quic_nitirawa@quicinc.com>
- <20230819115223.9479-3-quic_nitirawa@quicinc.com> <ZOTBYz34rVfYWouh@matsya>
-From:   Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <ZOTBYz34rVfYWouh@matsya>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Stanley Chang <stanley_chang@realtek.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230822102846.4683-1-stanley_chang@realtek.com>
+ <20230822102846.4683-2-stanley_chang@realtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230822102846.4683-2-stanley_chang@realtek.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: eT8mr8NxXusYL48X2VhbXlad0l3vpZ2K
-X-Proofpoint-ORIG-GUID: eT8mr8NxXusYL48X2VhbXlad0l3vpZ2K
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-22_13,2023-08-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- malwarescore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
- priorityscore=1501 mlxlogscore=960 adultscore=0 bulkscore=0 suspectscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2306200000 definitions=main-2308220120
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/22/2023 7:38 PM, Vinod Koul wrote:
-> On 19-08-23, 17:22, Nitin Rawat wrote:
->> Add SC7280 specific register layout and table configs.
->>
->> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
->> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
->> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 142 ++++++++++++++++++++++++
->>   1 file changed, 142 insertions(+)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
->> index 3927eba8e468..b22198d09508 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
->> @@ -177,6 +177,111 @@ static const struct qmp_phy_init_tbl msm8996_ufsphy_rx[] = {
->>   	QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL2, 0x0E),
->>   };
->>
->> +static const struct qmp_phy_init_tbl sc7280_ufsphy_tx[] = {
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_1_DIVIDER_BAND0_1, 0x06),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_2_DIVIDER_BAND0_1, 0x03),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_3_DIVIDER_BAND0_1, 0x01),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_4_DIVIDER_BAND0_1, 0x00),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_LANE_MODE_1, 0x35),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TRAN_DRVR_EMP_EN, 0x0c),
->> +};
->> +
->> +static const struct qmp_phy_init_tbl sc7280_ufsphy_rx[] = {
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_LVL, 0x24),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x0f),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_BAND, 0x18),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0xf1),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CTRL2, 0x80),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x0e),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x04),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_TERM_BW, 0x1b),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x06),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x04),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x1d),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_MEASURE_TIME, 0x10),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0xc0),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x6d),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0x6d),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xed),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x3b),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x3c),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0xe0),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0xc8),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0xc8),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x3b),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0xb1),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_LOW, 0xe0),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH, 0xc8),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH2, 0xc8),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH3, 0x3b),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH4, 0xb1),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
->> +};
->> +
->> +static const struct qmp_phy_init_tbl sc7280_ufsphy_pcs[] = {
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2, 0x6D),
+On 22/08/2023 12:28, Stanley Chang wrote:
+> Document the device-tree bindings for Realtek SoCs Type-C.
+> Realtek DHC (digital home center) RTD SoCs support a Type-C module.
 > 
-> Lower case please (here and few other places)
-> 
-Sure , I'll update this in my next patchset.
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+> ---
+>  .../bindings/extcon/extcon-rtk-type-c.yaml    | 77 +++++++++++++++++++
+>  1 file changed, 77 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
 
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0A),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL, 0x1F),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xFF),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_PLL_CNTL, 0x03),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB, 0x16),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB, 0xD8),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_PWM_GEAR_BAND, 0xAA),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_HS_GEAR_BAND, 0x06),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x03),
->> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x03),
->> +};
->> +
->> +static const struct qmp_phy_init_tbl sc7280_ufsphy_hs_g4_rx[] = {
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_LVL, 0x24),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x0f),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_BAND, 0x18),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0xf1),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CTRL2, 0x81),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x0e),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x04),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_TERM_BW, 0x6f),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL1, 0x04),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x00),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x09),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x07),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x17),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_MEASURE_TIME, 0x20),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0x80),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x01),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x3f),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0xff),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xff),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x7f),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x2c),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0x6d),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0x6d),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0xed),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x3b),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0x3c),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_LOW, 0xe0),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH, 0xc8),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH2, 0xc8),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH3, 0x3b),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH4, 0xb1),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
->> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_GM_CAL, 0x0f),
->> +};
->> +
->>   static const struct qmp_phy_init_tbl sm6115_ufsphy_serdes[] = {
->>   	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x0e),
->>   	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x14),
->> @@ -888,6 +993,40 @@ static const struct qmp_phy_cfg sa8775p_ufsphy_cfg = {
->>   	.regs			= ufsphy_v5_regs_layout,
->>   };
->>
->> +static const struct qmp_phy_cfg sc7280_ufsphy_cfg = {
-> 
-> sorted alphabetically please
-
-Sorry vinod. I didnt completely understood the comment.
-I see sc7280_ufsphy_cfg is after sa8775p_ufsphy_cfg and before
-sc8280xp_ufsphy_cfg , so it seems to be sorted.
-Am i missing anything here?
-
-Regards,
-Nitin
-
-
+Filename like compatible.
 
 > 
->> +	.lanes                  = 2,
->> +
->> +	.offsets                = &qmp_ufs_offsets,
->> +
->> +	.tbls = {
->> +		.serdes         = sm8150_ufsphy_serdes,
->> +		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
->> +		.tx             = sc7280_ufsphy_tx,
->> +		.tx_num         = ARRAY_SIZE(sc7280_ufsphy_tx),
->> +		.rx             = sc7280_ufsphy_rx,
->> +		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_rx),
->> +		.pcs            = sc7280_ufsphy_pcs,
->> +		.pcs_num        = ARRAY_SIZE(sc7280_ufsphy_pcs),
->> +	},
->> +	.tbls_hs_b = {
->> +		.serdes         = sm8150_ufsphy_hs_b_serdes,
->> +		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_hs_b_serdes),
->> +	},
->> +	.tbls_hs_g4 = {
->> +		.tx             = sm8250_ufsphy_hs_g4_tx,
->> +		.tx_num         = ARRAY_SIZE(sm8250_ufsphy_hs_g4_tx),
->> +		.rx             = sc7280_ufsphy_hs_g4_rx,
->> +		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_hs_g4_rx),
->> +		.pcs            = sm8150_ufsphy_hs_g4_pcs,
->> +		.pcs_num        = ARRAY_SIZE(sm8150_ufsphy_hs_g4_pcs),
->> +	},
->> +	.clk_list               = sm8450_ufs_phy_clk_l,
->> +	.num_clks               = ARRAY_SIZE(sm8450_ufs_phy_clk_l),
->> +	.vreg_list              = qmp_phy_vreg_l,
->> +	.num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
->> +	.regs                   = ufsphy_v4_regs_layout,
->> +};
->> +
->>   static const struct qmp_phy_cfg sc8280xp_ufsphy_cfg = {
->>   	.lanes			= 2,
->>
->> @@ -1648,6 +1787,9 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
->>   	}, {
->>   		.compatible = "qcom,sa8775p-qmp-ufs-phy",
->>   		.data = &sa8775p_ufsphy_cfg,
->> +	}, {
->> +		.compatible = "qcom,sc7280-qmp-ufs-phy",
->> +		.data = &sc7280_ufsphy_cfg,
->>   	}, {
->>   		.compatible = "qcom,sc8180x-qmp-ufs-phy",
->>   		.data = &sm8150_ufsphy_cfg,
->> --
->> 2.17.1
-> 
+> diff --git a/Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml b/Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
+> new file mode 100644
+> index 000000000000..d14b9ee544b9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2023 Realtek Semiconductor Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/extcon/extcon-rtk-type-c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek DHC RTD SoCs USB Type-C detection
+
+Type-c usually go to usb directory.
+
+> +
+> +maintainers:
+> +  - Stanley Chang <stanley_chang@realtek.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  Realtek digital home center (DHC) RTD series SoCs include a type c module.
+> +  This module is able to detect the state of type c connector.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - realtek,rtd1295-type-c
+> +      - realtek,rtd1312c-type-c
+> +      - realtek,rtd1315e-type-c
+> +      - realtek,rtd1319-type-c
+> +      - realtek,rtd1319d-type-c
+> +      - realtek,rtd1395-type-c
+> +      - realtek,rtd1619-type-c
+> +      - realtek,rtd1619b-type-c
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: Address and length of register set for type-c module.
+
+Drop description, it's obvious.
+
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  nvmem-cells:
+> +    maxItems: 1
+> +    description:
+> +      The phandle to nvmem cell that contains the trimming data.
+> +      If unspecified, default value is used.
+> +
+> +  pinctrl-names:
+> +    const: default
+> +    description: A pinctrl state names "default" must be defined.
+
+Drop, property not needed.
+
+> +
+> +  pinctrl-0:
+> +    description:
+> +      Should contain default pinctrl.
+
+Drop, property not needed.
+
+
+> +
+> +  nvmem-cell-names:
+> +    const: usb-cal
+
+items:
+  - const: usb-cal
+
+
+and move description to nvmem-cells.
+
+> +    description:
+> +      The type c parameter trimming data specified via efuse.
+
+Keep same properties next to each other. nvmem-cells should be followed
+by nvmem-cell-names.
+
+> +
+> +  realtek,rd-ctrl-gpio:
+> +    description: The gpio node to control external Rd on board.
+
+The names are always "gpios".
+
+> +    maxItems: 1
+> +
+
+You miss here connector. Probably also VBUS supply and other supplies.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    type-c@7220 {
+> +        compatible = "realtek,rtd1619b-type-c";
+> +        reg = <0x7220 0x20>;
+> +        interrupts = <0 60 4>;
+
+Use proper defines for common constants.
+
+> +
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&usb_cc1_pins>, <&usb_cc2_pins>;
+> +        nvmem-cells = <&otp_usb_cal>;
+> +        nvmem-cell-names = "usb-cal";
+
+Type-c without connector? This is incomplete.
+
+> +    };
+
+Best regards,
+Krzysztof
+
