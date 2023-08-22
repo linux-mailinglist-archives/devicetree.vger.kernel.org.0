@@ -2,71 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2307845A0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:32:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F16857845AB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 17:35:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235924AbjHVPcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 11:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42742 "EHLO
+        id S234915AbjHVPfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 11:35:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237159AbjHVPcf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:32:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8647CDA;
-        Tue, 22 Aug 2023 08:32:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8306A65AA5;
-        Tue, 22 Aug 2023 15:32:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70029C433C9;
-        Tue, 22 Aug 2023 15:32:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692718351;
-        bh=SWVLPp//r8bRe/uxka3xZHJjU1aXJ+0Azy0QQ7iFZA4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=G7bZc6Gh94fBJNL6m/7UC9ifNYvXpcOP4fpp0sAHmgAMBZPRgIJQvcYCRJJa8jgmi
-         /cylvRSgL728Ok8/UEcGJElE59xhYwISGZFiNtZa+ArYc3iO7AocptZukLxXNvmW7k
-         BU6m76uMoDhuNfjC5qOKzzLd+uorqbckTw4yuf6PVZWR1k2GXrA5KVFih79zWFOE+z
-         acvBzxDmmeQBBVVSb6usz7OsYuHTcCV79x6cYf3iJD2HAGdmRFb4CzvS6nYW6aPdzJ
-         F+ONg0pgffBpR9Mp59c8Pai29qYE7U5CbIklbE6tOpI7WNtzEfwjIZXcx2BdLdrJY1
-         2T1pcNVlKTciA==
-Received: (nullmailer pid 221574 invoked by uid 1000);
-        Tue, 22 Aug 2023 15:32:30 -0000
-Date:   Tue, 22 Aug 2023 10:32:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Frank Rowand <frowand.list@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] of: unittest: Run overlay apply/revert sequence three
- times
-Message-ID: <20230822153230.GA219888-robh@kernel.org>
-References: <a9fb4eb560c58d11a7f167bc78a137b46e76cf15.1692699743.git.geert+renesas@glider.be>
+        with ESMTP id S236157AbjHVPfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 11:35:20 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D232CD5
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:35:18 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99df431d4bfso597472666b.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 08:35:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692718517; x=1693323317;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mBBAz2Sbh3/AyWRq5Eivx4ALvagiWhpYuPWoNQwDqMo=;
+        b=xiRvIqhaM/mc1I4/wofmBZV1t2EPqbDli0W20iry9VlRsbxH+mbu7AdQhOPlF3hJJz
+         iBUx8jFDanTEjZ5vJt3Rbr3tl7Ow3tKXEWXU8mbln9qKmBw+MYk8ghrRRYSRG/tTYJfM
+         XHVUtASrKmZjcHXFd10Rr57wGnHwaMR6JBK9nTqKNiJo3KELHv5CmLL6T6p3XGMNZ4LO
+         RP2qwBvMiM34C0i6WzYe9kBUPxMNfP1lnxy59NwWcO1mSuPMcXWCARERMPsEVin62mg5
+         tv+BrPeWegPwfmMnA20y97s5bjgCV9WWPt2n/42FmUpyifIMKRK6MHmXlVnHB6Hl+nrb
+         fW2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692718517; x=1693323317;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mBBAz2Sbh3/AyWRq5Eivx4ALvagiWhpYuPWoNQwDqMo=;
+        b=j5AyGgvPYz2DG8ITtm+KCI8Dp9JzFEWKsP6pStlV1sZCxd4DBfvbmgeAkkDO1VVGqH
+         J6brO9wgYXdOJLML6N2mJaoEUzvs1VR0JmEcGsI2LTKSMBT/iKCOOYV0+RT7gZU74+Vx
+         u2NL8bfW0LFBTvdhu909iunDeyQD7ajHdBmdj8V6WXuY6tJCKK/BJytisNLigv0Fud9q
+         K5eiIqaThicWRDZWX+ifBe9XjkkD+6W2HmrHQAEqSYZUZu6BOnVgAdaBX9+fmQ7KG5od
+         nzYLs1Lr7YZlAiv15d47S1uC5kiAYGmLDkITqpURGGu7YghrR6MTibDKgEDNKEvdsOSG
+         /ISA==
+X-Gm-Message-State: AOJu0Yx8f2T0vX2L/r7rmgtm42yvRZIb7bir8Z3fZVQ/+DQT+UsvJ3wG
+        xJBFzbZWP6rLqlxXrNt1qiTqSeE0kHErqK/b7UY=
+X-Google-Smtp-Source: AGHT+IFpoEhtk+EkY8eWIWmBJpHq11sTfT8uhgXHGhJOooXX6JISfp6PUCg2khvbrqE/iB95kppWoQ==
+X-Received: by 2002:a17:906:5385:b0:99c:55c0:ad15 with SMTP id g5-20020a170906538500b0099c55c0ad15mr7999829ejo.38.1692718517015;
+        Tue, 22 Aug 2023 08:35:17 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id t16-20020a1709064f1000b0099297c99314sm7445462eju.113.2023.08.22.08.35.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 08:35:16 -0700 (PDT)
+Message-ID: <e33cd680-eeca-ac4b-ee4a-4c0a1d6cd00c@linaro.org>
+Date:   Tue, 22 Aug 2023 17:35:15 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a9fb4eb560c58d11a7f167bc78a137b46e76cf15.1692699743.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
+Content-Language: en-US
+To:     Stanley Chang <stanley_chang@realtek.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230822102846.4683-1-stanley_chang@realtek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230822102846.4683-1-stanley_chang@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 22, 2023 at 12:22:34PM +0200, Geert Uytterhoeven wrote:
-> Run the test for the overlay apply/revert sequence three times, to
-> test if there are unbalanced of_node_put() calls causing reference
-> counts to become negative.
+On 22/08/2023 12:28, Stanley Chang wrote:
+> This patch adds the extcon driver for Realtek DHC (digital home center)
+> RTD SoCs type-c module. This can be used to detect whether the port is
+> configured as a downstream or upstream facing port. And notify the status
+> of extcon to listeners.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
 > ---
-> This is a reproducer for the issue fixed by commit 7882541ca06d51a6
-> ("of/platform: increase refcount of fwnode") in dt/linus.
+>  drivers/extcon/Kconfig             |    9 +
+>  drivers/extcon/Makefile            |    1 +
+>  drivers/extcon/extcon-rtk-type-c.c | 1799 ++++++++++++++++++++++++++++
+>  3 files changed, 1809 insertions(+)
+>  create mode 100644 drivers/extcon/extcon-rtk-type-c.c
+> 
 
-Is this necessary? There were WARN backtraces without that fix.
 
-Rob
+> +static struct platform_driver extcon_rtk_type_c_driver = {
+> +	.probe		= extcon_rtk_type_c_probe,
+> +	.remove_new	= extcon_rtk_type_c_remove,
+> +	.driver		= {
+> +		.name	= "extcon-rtk-type_c",
+> +		.of_match_table = extcon_rtk_type_c_match,
+> +		.pm = DEV_PM_OPS,
+> +	},
+> +};
+> +
+> +module_platform_driver(extcon_rtk_type_c_driver);
+> +
+> +MODULE_DESCRIPTION("Realtek Extcon Type C driver");
+> +MODULE_ALIAS("platform:extcon-rtk-type-c");
+
+Drop alias. You have something really missing here if you need it.
+
+> +MODULE_AUTHOR("Stanley Chang <stanley_chang@realtek.com>");
+> +MODULE_LICENSE("GPL");
+
+Best regards,
+Krzysztof
+
