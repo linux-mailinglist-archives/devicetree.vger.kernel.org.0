@@ -2,98 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1D327847A3
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B907847B1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237817AbjHVQcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 12:32:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43014 "EHLO
+        id S229782AbjHVQd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 12:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236477AbjHVQcJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:32:09 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B314184
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:32:08 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-525656acf4bso6010417a12.0
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:32:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692721926; x=1693326726;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3uQSylp0y7KOudR5yNt2H8UCOVpvtj04yDey4znHRLA=;
-        b=e5CZu2+RpDcrjPEl8gmUFILhTTitUimNfzkLuXEk57VQEAR2kqg4fzp0GPXAj6oabp
-         y/RseqyXDzppUaEiTL85pFDe1WvN3QJYyOeMFpclFRQ/AkswADsSbfon5WGJ33/DT18o
-         KtT5l2KhvnfzIeAdB76PQW/Ov67hq+hLXRfBGw6HvcvdHYAYUVzlXBFPQtE3tso33cjb
-         tsTACVCo49NMTag1NXI9lSVdEud/QGTchIkcgqlHbMsvvLlIAgDl/iLVO/BPrY8zjLfR
-         GwEBlkmoJEdJ9K7LE4qGL/ApbUeXqvu65DKCENt2U+QuaxoILHikD32g8j3t1mGm4Btz
-         eCCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692721926; x=1693326726;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3uQSylp0y7KOudR5yNt2H8UCOVpvtj04yDey4znHRLA=;
-        b=ScuGJwTOwxN8/Oh0GRY0FyAJMsGfVNmul1peOZELaVGUr6UtkKD1ycGdGhd0BaUTyA
-         +29jYztd67qUz0B5/llmuetMMtfrh7LEalKFe3w4iyih6qtfvpPEwXFOcxCg1SD3/WrX
-         fon06ydBkIIPyq1ezXBGMcD4tMHWqA5xMneptb3L5lcdjy+QC1MFU5oO8wcED6l48/43
-         tiNDMLFB1gN44weuv+j5uJcQZhd1LRyaluU8z+bkEu1E6gWTUqK6Z62KUui2PNFHHhCT
-         8edB1ezo3e0n+B5pvyjBcM7I5nwf01sHHFxunCKRgF91enz/kn1GgS/FuEyOdfqkVecx
-         DDdg==
-X-Gm-Message-State: AOJu0YzT2bm3jBpCaMYoTdn5Tk+9tHqu/SYlpK+6RPtN0Xfv01AySnPs
-        NXyRCSF8xXdG7Lw+x+13oGvwlg==
-X-Google-Smtp-Source: AGHT+IHY8roXOKlErN1u6cAk1xEiMD1JJ8eVAuVfBioslGRRaPmLvzi0W/JaIoSiX7eCI6hpEj0Ksg==
-X-Received: by 2002:a17:906:cc16:b0:9a1:870e:cc9d with SMTP id ml22-20020a170906cc1600b009a1870ecc9dmr6733431ejb.18.1692721926631;
-        Tue, 22 Aug 2023 09:32:06 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id x5-20020a170906148500b0098e42bef736sm8505501ejc.176.2023.08.22.09.32.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 09:32:06 -0700 (PDT)
-Message-ID: <d2a6060a-c8a0-51c7-f621-1bed2c3074b4@linaro.org>
-Date:   Tue, 22 Aug 2023 18:32:04 +0200
+        with ESMTP id S237845AbjHVQd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:33:28 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7C8CE8;
+        Tue, 22 Aug 2023 09:33:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BDDA6280A;
+        Tue, 22 Aug 2023 16:33:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3DCDC433CC;
+        Tue, 22 Aug 2023 16:33:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692721999;
+        bh=6EN1+bzvU0PRrSawEYxSCt6PH7yPOcKdrg+qLuW4UjU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=jxXm28tSe0hXslh+iHjFBt1+cypSMsYLjsU3XjJzgtZ83V0q32LR3iPOY4mg0rgaf
+         +JZ2ndWf+OBKxMXPllGvVxfRAwZG81eP6hdKTiBCiwS9+NnPDdVTtEEYbKwY4u5gc3
+         wucFT0LJu7J12GQ+x6ERrSojPDU6+5X23pfNg3eFGpSc4ahWHj/pBWNBavsjKxLuKU
+         5Cvy4fJHy56AwOa3WeR1zSctnETThfTLMD5yShD/rbU4FNFkyNwZme2rWHHS8IW1Jj
+         smBqGGAoaYuAyg+Zpj4hWQIQbpP27kiYHduyoshqiihqVI9ZiZz6915+JJdmgbvvZt
+         6+4qncIyhWmew==
+From:   Mark Brown <broonie@kernel.org>
+To:     lee@kernel.org, Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linus.walleij@linaro.org, vkoul@kernel.org,
+        lgirdwood@gmail.com, yung-chuan.liao@linux.intel.com,
+        sanyog.r.kale@intel.com, pierre-louis.bossart@linux.intel.com,
+        alsa-devel@alsa-project.org, patches@opensource.cirrus.com,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
+Subject: Re: (subset) [PATCH v7 0/6] Add cs42l43 PC focused SoundWire CODEC
+Message-Id: <169272199563.71502.1218576841128922238.b4-ty@kernel.org>
+Date:   Tue, 22 Aug 2023 17:33:15 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V10 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
- clock controller
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-2-yu.tu@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230822082750.27633-2-yu.tu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.13-dev-034f2
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 10:27, Yu Tu wrote:
-> Add the S4 PLL clock controller dt-bindings in the S4 SoC family.
+On Fri, 04 Aug 2023 11:45:56 +0100, Charles Keepax wrote:
+> This patch chain adds support for the Cirrus Logic cs42l43 PC focused
+> SoundWire CODEC. The chain is currently based of Lee's for-mfd-next
+> branch.
 > 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+> This series is mostly just a resend keeping pace with the kernel under
+> it, except for a minor fixup in the ASoC stuff.
+> 
+> [...]
 
-Lovely. I sent youa  friendly reminder at v8 which turns our you
-ignored. You keep ignoring, I will start ignoring as well from now on.
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[6/6] ASoC: cs42l43: Add support for the cs42l43
+      commit: fc918cbe874eee0950b6425c1b30bcd4860dc076
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
