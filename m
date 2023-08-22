@@ -2,784 +2,392 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F157783B4D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 09:59:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4EBC783B65
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233639AbjHVH7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 03:59:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45046 "EHLO
+        id S232753AbjHVIGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 04:06:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233615AbjHVH7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 03:59:03 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C12819E;
-        Tue, 22 Aug 2023 00:58:55 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52557cc5e7bso5141231a12.0;
-        Tue, 22 Aug 2023 00:58:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692691134; x=1693295934;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P0J+myK+q5HORCZnVJNSWR7/kPOoSIllz1EdDIahuxw=;
-        b=sr2QjP/HdctHzxq7OILJ1tjGJL2x8qoVTK/YwBII3z8f0ZYs9DPvVB3jOc0qWmnUZo
-         lCZYc01pDo2NaegJotVkp6ti3R5h6lG2GXujW2G1PO/ESuNM1b0pSOE9akRVsl3b9Vpb
-         ATIdCMczu9xOsFtnTA1p28LE6WNvIvxSSkeWi1JC4x1kpwm4CIoQ0Yp6T5vkrrWiYptC
-         PkllIP+aiLIRQEcLZESRSU8j7P11brdK0UuB+Yi9y20WSxhmLVd9Ux3TYUzvf6fdgckB
-         T7m1SjAm7WsWY/DZsZWzDaUlJYNvHQl540R+JoBxxXAw7STRGgpb6Q9zVc0K6QCzJ0iM
-         1DUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692691134; x=1693295934;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P0J+myK+q5HORCZnVJNSWR7/kPOoSIllz1EdDIahuxw=;
-        b=TN4OCS/ZZU4mbL4kMkNdkPCq1Tu/V5wVfkt/8HFCGj/CD0WJCoSlLuuvX4YAgjsksO
-         1Q6Fd6VcKIJ7FHqtWdya1pHa4GzuEqb4iDuJYAF+wUzqIt1sAtmUXsHHTERjmofpJOrq
-         wqKD1cra2TS5Fv/DU2ABnrQUKqW1oHSQld6l+hPubKDRUOXrcW6Nq7XJvei2sdhFfPuo
-         MIA3+MiyESzyoRvCpR2AcoO9hl7XN5n2p9Xq4Yde0/dej8lDWftLybdAg0sZA5SjvmkF
-         ZOcz8B4sK4HPtNGQxmiftW16uslXSTXuJMGEngDgMaNygEcs9heN+UGFjYwLrmXzrSTf
-         Ov2Q==
-X-Gm-Message-State: AOJu0YzotYfJfI2feLGeMjuw4Di+dl3O1DiELeHmz1OtZico+Pl3L9Nu
-        EGDHKhJFKSA/rXa85OXeTRp5uREBhxjUNsyXF08=
-X-Google-Smtp-Source: AGHT+IGfK/YLipZJAZWa+tga5AG6rHV+wI0Jx18Zka+zUxlLrVban+FmYR7r1gN+7IIvrzw1A+MgGqbzTiQOVwG/b5g=
-X-Received: by 2002:aa7:d69a:0:b0:522:57d9:6553 with SMTP id
- d26-20020aa7d69a000000b0052257d96553mr7820691edr.1.1692691133740; Tue, 22 Aug
- 2023 00:58:53 -0700 (PDT)
+        with ESMTP id S233062AbjHVIGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:06:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38801196;
+        Tue, 22 Aug 2023 01:06:07 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B1E46614CF;
+        Tue, 22 Aug 2023 08:06:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75EEEC433C7;
+        Tue, 22 Aug 2023 08:06:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692691566;
+        bh=7nFJmQsg0QQl+DVMPOeNrxjR2t6HRodjAeDtQY+RzMY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=E4zym6stsQOD/oBgW4YMDgyiJ2/IgugzWRbQLeY9Yjqb7LXagafkUqJlkdk7VH7D4
+         SXN2d0pu10kYKPRz8a6uXxritxXM10MNKPvY4GqZWYb1QdK7xgoPIb3BNRK5g0sqYH
+         BiZiE0//YTj51qYz1vG8s5OTBL0spF71OQwD+qIvSUMzD71W+0LtGrCEcB8EEy55g6
+         TTOak4+0A74e9aQoNHSGtj1llNdVTalJSL9SV/v1IR7DN72hw89T+7u3NC82Ykyqxw
+         Dbl0t0va3Ln5udNpoPebLiuc/sNnLZfECY0uawJ0NVvwcr8QeJITvfrmWYe9FLALU2
+         CGxxCZ8YkGUgw==
+Date:   Tue, 22 Aug 2023 10:06:02 +0200
+From:   "mripard@kernel.org" <mripard@kernel.org>
+To:     Ying Liu <victor.liu@nxp.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "maarten.lankhorst@linux.intel.com" 
+        <maarten.lankhorst@linux.intel.com>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        Guido =?utf-8?Q?G=C3=BCnther?= <guido.gunther@puri.sm>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "Laurentiu Palcu (OSS)" <laurentiu.palcu@oss.nxp.com>,
+        "robh@kernel.org" <robh@kernel.org>
+Subject: Re: [PATCH v14 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+Message-ID: <x3odw5zxaz5r52zmwf6owdgalthkhbjogsvblzuj3vjaugu3kr@6jr4lsaxkkn3>
+References: <20230106055056.2883302-1-victor.liu@nxp.com>
+ <AM7PR04MB7046E7F22B817FC6FE8DA95A981FA@AM7PR04MB7046.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20230812151135.1028780-1-keguang.zhang@gmail.com>
- <20230812151135.1028780-5-keguang.zhang@gmail.com> <spt2blizwad4tdp4cjf7bzffd3mr6456nlz4c4vgjrblx34gqj@bkwhyeqph4do>
- <CAJhJPsXHuMBAHqsg5rSVf5Ow_Rsgy2Zp-PNrLXWTeVSY3N08Aw@mail.gmail.com>
- <l6dr3cvnldmljhafmu5wdal7yr4mkr4mmplt3nivjhejohmlro@blfa2ntsq6uv>
- <CAJhJPsV4+WozxVb1=xQ6SGm5SVuKyk94Ns0nRz+kwB6Xh4C_WQ@mail.gmail.com> <yvv5dmnibepmdkgxazne2g7zha66hiw6bv7zvqnkk7mkbsifsk@jgz2k2uzsia2>
-In-Reply-To: <yvv5dmnibepmdkgxazne2g7zha66hiw6bv7zvqnkk7mkbsifsk@jgz2k2uzsia2>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Tue, 22 Aug 2023 15:58:32 +0800
-Message-ID: <CAJhJPsU_WiUAuxsrnWi+mFiwjo0Xf3N1Wwv5f2JFwTKY8KwT5g@mail.gmail.com>
-Subject: Re: [PATCH 4/5] net: stmmac: Add glue layer for Loongson-1 SoC
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="b7dz62g3jq6f5w2p"
+Content-Disposition: inline
+In-Reply-To: <AM7PR04MB7046E7F22B817FC6FE8DA95A981FA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 10:16=E2=80=AFPM Serge Semin <fancer.lancer@gmail.c=
-om> wrote:
->
-> On Mon, Aug 21, 2023 at 09:24:17PM +0800, Keguang Zhang wrote:
-> > On Sat, Aug 19, 2023 at 12:19=E2=80=AFAM Serge Semin <fancer.lancer@gma=
-il.com> wrote:
-> > >
-> > > On Fri, Aug 18, 2023 at 08:37:27PM +0800, Keguang Zhang wrote:
-> > > > On Wed, Aug 16, 2023 at 9:30=E2=80=AFPM Serge Semin <fancer.lancer@=
-gmail.com> wrote:
-> > > > >
-> > > > > On Sat, Aug 12, 2023 at 11:11:34PM +0800, Keguang Zhang wrote:
-> > > > > > This glue driver is created based on the arch-code
-> > > > > > implemented earlier with the platform-specific settings.
-> > > > > >
-> > > > > > Use syscon for SYSCON register access.
-> > > > > >
-> > > > > > Partialy based on the previous work by Serge Semin.
-> > > > > >
-> > > > > > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > > > > > ---
-> > > > > >  drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
-> > > > > >  drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
-> > > > > >  .../ethernet/stmicro/stmmac/dwmac-loongson1.c | 257 ++++++++++=
-++++++++
-> > > > > >  3 files changed, 269 insertions(+)
-> > > > > >  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-l=
-oongson1.c
-> > > > > >
-> > > > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/driv=
-ers/net/ethernet/stmicro/stmmac/Kconfig
-> > > > > > index 06c6871f8788..a2b9e289aa36 100644
-> > > > > > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > > > > > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > > > > > @@ -239,6 +239,17 @@ config DWMAC_INTEL_PLAT
-> > > > > >         the stmmac device driver. This driver is used for the I=
-ntel Keem Bay
-> > > > > >         SoC.
-> > > > > >
-> > > > > > +config DWMAC_LOONGSON1
-> > > > > > +     tristate "Loongson1 GMAC support"
-> > > > > > +     default MACH_LOONGSON32
-> > > > > > +     depends on OF && (MACH_LOONGSON32 || COMPILE_TEST)
-> > > > > > +     help
-> > > > > > +       Support for ethernet controller on Loongson1 SoC.
-> > > > > > +
-> > > > > > +       This selects Loongson1 SoC glue layer support for the s=
-tmmac
-> > > > > > +       device driver. This driver is used for Loongson1-based =
-boards
-> > > > > > +       like Loongson LS1B/LS1C.
-> > > > > > +
-> > > > > >  config DWMAC_TEGRA
-> > > > > >       tristate "NVIDIA Tegra MGBE support"
-> > > > > >       depends on ARCH_TEGRA || COMPILE_TEST
-> > > > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/dri=
-vers/net/ethernet/stmicro/stmmac/Makefile
-> > > > > > index 5b57aee19267..80e598bd4255 100644
-> > > > > > --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > > > > > +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > > > > > @@ -29,6 +29,7 @@ obj-$(CONFIG_DWMAC_SUNXI)   +=3D dwmac-sunxi.=
-o
-> > > > > >  obj-$(CONFIG_DWMAC_SUN8I)    +=3D dwmac-sun8i.o
-> > > > > >  obj-$(CONFIG_DWMAC_DWC_QOS_ETH)      +=3D dwmac-dwc-qos-eth.o
-> > > > > >  obj-$(CONFIG_DWMAC_INTEL_PLAT)       +=3D dwmac-intel-plat.o
-> > > > > > +obj-$(CONFIG_DWMAC_LOONGSON1)        +=3D dwmac-loongson1.o
-> > > > > >  obj-$(CONFIG_DWMAC_GENERIC)  +=3D dwmac-generic.o
-> > > > > >  obj-$(CONFIG_DWMAC_IMX8)     +=3D dwmac-imx.o
-> > > > > >  obj-$(CONFIG_DWMAC_TEGRA)    +=3D dwmac-tegra.o
-> > > > > > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson=
-1.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..368d6cd2cb78
-> > > > > > --- /dev/null
-> > > > > > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-> > > > > > @@ -0,0 +1,257 @@
-> > > > > > +// SPDX-License-Identifier: GPL-2.0-or-later
-> > > > > > +/*
-> > > > > > + * Loongson-1 DWMAC glue layer
-> > > > > > + *
-> > > > > > + * Copyright (C) 2011-2023 Keguang Zhang <keguang.zhang@gmail.=
-com>
-> > > > > > + */
-> > > > > > +
-> > > > > > +#include <linux/mfd/syscon.h>
-> > > > > > +#include <linux/module.h>
-> > > > > > +#include <linux/phy.h>
-> > > > > > +#include <linux/platform_device.h>
-> > > > > > +#include <linux/regmap.h>
-> > > > > > +
-> > > > > > +#include "stmmac.h"
-> > > > > > +#include "stmmac_platform.h"
-> > > > > > +
-> > > > > > +/* Loongson-1 SYSCON Registers */
-> > > > > > +#define LS1X_SYSCON0         (0x0)
-> > > > > > +#define LS1X_SYSCON1         (0x4)
-> > > > > > +
-> > > > > > +struct ls1x_dwmac_syscon {
-> > > > > > +     const struct reg_field *reg_fields;
-> > > > > > +     unsigned int nr_reg_fields;
-> > > > > > +     int (*syscon_init)(struct plat_stmmacenet_data *plat);
-> > > > > > +};
-> > > > > > +
-> > > > > > +struct ls1x_dwmac {
-> > > > > > +     struct device *dev;
-> > > > > > +     struct plat_stmmacenet_data *plat_dat;
-> > > > > > +     const struct ls1x_dwmac_syscon *syscon;
-> > > > > > +     struct regmap *regmap;
-> > > > > > +     struct regmap_field *regmap_fields[];
-> > > > > > +};
-> > > > > > +
-> > > > > > +enum ls1b_dwmac_syscon_regfield {
-> > > > > > +     GMAC1_USE_UART1,
-> > > > > > +     GMAC1_USE_UART0,
-> > > > > > +     GMAC1_SHUT,
-> > > > > > +     GMAC0_SHUT,
-> > > > > > +     GMAC1_USE_TXCLK,
-> > > > > > +     GMAC0_USE_TXCLK,
-> > > > > > +     GMAC1_USE_PWM23,
-> > > > > > +     GMAC0_USE_PWM01,
-> > > > > > +};
-> > > > > > +
-> > > > > > +enum ls1c_dwmac_syscon_regfield {
-> > > > > > +     GMAC_SHUT,
-> > > > > > +     PHY_INTF_SELI,
-> > > > > > +};
-> > > > > > +
-> > > > > > +const struct reg_field ls1b_dwmac_syscon_regfields[] =3D {
-> > > > > > +     [GMAC1_USE_UART1]       =3D REG_FIELD(LS1X_SYSCON0, 4, 4)=
-,
-> > > > > > +     [GMAC1_USE_UART0]       =3D REG_FIELD(LS1X_SYSCON0, 3, 3)=
-,
-> > > > > > +     [GMAC1_SHUT]            =3D REG_FIELD(LS1X_SYSCON1, 13, 1=
-3),
-> > > > > > +     [GMAC0_SHUT]            =3D REG_FIELD(LS1X_SYSCON1, 12, 1=
-2),
-> > > > > > +     [GMAC1_USE_TXCLK]       =3D REG_FIELD(LS1X_SYSCON1, 3, 3)=
-,
-> > > > > > +     [GMAC0_USE_TXCLK]       =3D REG_FIELD(LS1X_SYSCON1, 2, 2)=
-,
-> > > > > > +     [GMAC1_USE_PWM23]       =3D REG_FIELD(LS1X_SYSCON1, 1, 1)=
-,
-> > > > > > +     [GMAC0_USE_PWM01]       =3D REG_FIELD(LS1X_SYSCON1, 0, 0)
-> > > > > > +};
-> > > > > > +
-> > > > > > +const struct reg_field ls1c_dwmac_syscon_regfields[] =3D {
-> > > > > > +     [GMAC_SHUT]             =3D REG_FIELD(LS1X_SYSCON0, 6, 6)=
-,
-> > > > > > +     [PHY_INTF_SELI]         =3D REG_FIELD(LS1X_SYSCON1, 28, 3=
-0)
-> > > > > > +};
-> > > > >
-> > > > > Emm, using regmap fields looks so over-complicated in this case s=
-eeing
-> > > > > you only need to set/clear several bits in the syscon. What about
-> > > > > defining macros with the particular flag as it's already done in =
-the
-> > > > > "asm/mach-loongson32/regs-mux.h" file and using regmap_update_bit=
-s()?
-> > > > >
-> > >
-> > > > To use regmap_update_bits(), I have to store and pass reg_offset an=
-d
-> > > > mask, which is similar to the definition of regmap fields.
-> > >
-> > > Em, not really. And what offset are you talking about? Anyway you
-> > > don't need one. Moreover you'll be able to reduce the number of IOs:
-> > >
-> > > +#define GMAC1_USE_UART1                 BIT(4)
-> > > +#define GMAC1_USE_UART0                 BIT(3)
-> > > ...
-> > > +#define GMAC1_SHUT                      BIT(13)
-> > > ...
-> > > +#define GMAC1_USE_TXCLK                 BIT(3)
-> > > +#define GMAC1_USE_PWM23                 BIT(1)
-> > >
-> > > +static int ls1b_dwmac_syscon_init(struct plat_stmmacenet_data *plat)
-> > > +{
-> > > +       struct ls1x_dwmac *dwmac =3D plat->bsp_priv;
-> > > +       struct regmap *syscon =3D dwmac->regmap;
-> > > +
-> > > +       if (plat->bus_id) {
-> > > +               regmap_update_bits(syscon, LS1X_SYSCON0,
-> > > +                                  GMAC1_USE_UART1 | GMAC1_USE_UART0,
-> > > +                                  GMAC1_USE_UART1 | GMAC1_USE_UART0)=
-;
-> > > +
-> > > +               switch (plat->phy_interface) {
-> > > +               case PHY_INTERFACE_MODE_RGMII:
-> > > +                       regmap_update_bits(syscon, LS1X_SYSCON1,
-> > > +                                          GMAC1_USE_TXCLK | GMAC1_US=
-E_TXCLK, 0);
-> > > +                       break;
-> > > +               case PHY_INTERFACE_MODE_MII:
-> > > +                       regmap_update_bits(syscon, LS1X_SYSCON1,
-> > > +                                          GMAC1_USE_TXCLK | GMAC1_US=
-E_TXCLK
-> > > +                                          GMAC1_USE_TXCLK | GMAC1_US=
-E_TXCLK);
-> > > +                       break;
-> > > +               default:
-> > > +                       dev_err(dwmac->dev, "Unsupported PHY mode %u\=
-n",
-> > > +                               plat->phy_interface);
-> > > +                       return -EOPNOTSUPP;
-> > > +               }
-> > > +
-> > > +               regmap_field_write(syscon, LS1X_SYSCON1, GMAC1_SHUT, =
-0);
-> > > +       } //...
-> > > +
-> > > +       return 0;
-> > > +}
-> > >
-> > > This doesn't look in anyway less readable then your implementation
-> > > but in fact simpler.
-> > >
-> > > > In addition, the regmap fields are very clear and leave the trouble=
- to
-> > > > the internal implementation.
-> > >
-> > > In this case it brings much more troubles and no clarity. You need to=
- create
-> > > an additional mainly redundant abstraction, waste memory for it,
-> > > define additional const arrays. Using it won't improve the code
-> > > readability seeing you need to set/clear a few flags only. So all of
-> > > the troubles for nothing. See the code above. It's simple and clear.
-> > > Just several regmap_update_bits()..
-> > >
-> > OK. I will use regmap instead of regmap fields.
-> >
-> > > BTW why have you chosen to define syscon instead of creating a pinctr=
-l
-> > > driver? What if Loongson1 is embedded into a platform with, for
-> > > instance, UART0 and UART1 utilized instead of the GMAC1?
-> > >
->
-> > As you can see, the two registers contains miscellaneous settings.
-> > Besides =E2=80=98USE=E2=80=99 bits, there are =E2=80=98RESET=E2=80=98 b=
-its, 'EN' bits, 'SHUT' bits, ...
-> > So they are not pinctrl registers.
->
-> You could have defined a device node which would export "reset",
-> "power" and "pinctrl" functionality, like it's normally done for the
-> RCU devices (Reset and Clock unit devices).
->
-> > Actually, there is a dedicated pin controller which controls the
-> > multiplexing of pads.
->
-> Do you mean that there is another controller in the Loongson1 SoC
-> which controls the pads multiplexing?
->
-Yes. There is another contoller that really controls the pads multiplexing.
 
-> If so what is the purpose of the GMAC1_USE_UART1, GMAC1_USE_UART0 and
-> GMAC1_USE_TXCLK, GMAC1_USE_PWM23 flags in MUX controller then? Is it
-> just another pinctl space with additional reset/power controls or what?
->
-From my perspective, these =E2=80=98USE=E2=80=99 bits should be regarded as
-device/module multiplexing rather than pads multiplexing.
-Although the two registers were called MUX_CTRL in LS1B datasheet,
-they had beed renamed to MISC_CTRL in LS1C datasheet.
-So it is supposed to be considered syscon.
-> >
-> > > >
-> > > > > > +
-> > > > >
-> > > > > > +static int ls1b_dwmac_syscon_init(struct plat_stmmacenet_data =
-*plat)
-> > > > > > +{
-> > > > >
-> > > > > As I already told you this part is better to be called from the
-> > > > > plat_stmmacenet_data.fix_mac_speed() because PHY interface mode c=
-an
-> > > > > differ from one interface open cycle to another as per the phylin=
-k
-> > > > > design.
-> > > > >
-> > > > I have considered .fix_mac_speed(), which will be called every time
-> > > > the link is up, and passes the current speed.
-> > > > However, the PHY interface mode is determined by the hardware desig=
-n -
-> > > > the schematic.
-> > > > In other words, once the schematic is done, the PHY interface mode =
-is fixed.
-> > > > Therefore, PHY interface mode should be configured one time at the
-> > > > initialization.
-> > > > And the plat_stmmacenet_data.init() is the proper place to do this.
-> > >
-> > > Ok. If no actual clock change is needed then indeed init() will be th=
-e
-> > > proper place.
-> > >
-> > > >
-> > > > > > +     struct ls1x_dwmac *dwmac =3D plat->bsp_priv;
-> > > > > > +     struct regmap_field **regmap_fields =3D dwmac->regmap_fie=
-lds;
-> > > > > > +
-> > > > >
-> > > > > > +     if (plat->bus_id) {
-> > > > >
-> > > > > Using bus_id doesn't look correct to determine the CSRs responsib=
-le
-> > > > > for the interface mode selection because it's calculated based on=
- the
-> > > > > DT ethernet-alias which doesn't guarantee to have a particular de=
-vice
-> > > > > assigned with the alias. Alias node can be absent after all. What
-> > > > > could be better in this case is for instance to use the regs phys=
-ical
-> > > > > address. Any better idea?
-> > > > >
-> > >
-> > > > The purpose of alias is to bind the a particular device with a
-> > > > particular alias even some aliases are absent.
-> > > > Because of_alias_get_id() gets the alias id.
-> > > > For example, LS1B has two GMAC controllers, gmac0 and gmac1.
-> > > > I have tried the Ethernet with only one alias as follows.
-> > > >        aliases {
-> > > >                ethernet1 =3D &gmac1;
-> > > >        };
-> > > > In this case, plat->bus_id is still 1.
-> > > > And both gmac0 and gmac1 work.
-> > >
-> > > If no alias specified? If both aliases a non zero? If the IDs are
-> > > confused? If any of these is true you are in trouble. Your code
-> > > shouldn't rely on the aliases in this case. You need to come up with =
-a
-> > > way to certainly distinguish one MAC from another. A physical base
-> > > address is one possible option.
-> > >
->
-> > I see.
-> > But It seems unusual to determine device IDs by physical base address.
-> > What about adding a new property? such as loongson,dwmac-id
->
-> IMO It's better to have a DT-property-independent way for it. If I
-> were you I would have utilized the reg-space
-> physical-base-address-based approach since you need to have it
-> specified anyway and it determines the particular MAC for sure.
-> Thus your driver won't be dependent in the device tree in that aspect.
->
-The physical base address may vary from SoC to SoC.
-It means that the driver has to remember MAC base addresses for different S=
-oCs.
+--b7dz62g3jq6f5w2p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Some DW *MAC drivers pass additional number to the syscon phandle node
-> in the syscon-property to identify the MAC on the board, like
-> dwmac-socfpga.c or dwmac-sti.c. If you get to implement a similar way
-> then you'll need to have the DT-bindings properly describing that. But
-> IMO my approach seems less clumsy and simpler.
->
-I prefer the DT-bindings property way. At least many off-the-shelf
-examples can be found.
+Hi,
 
-> >
-> > > Note the /alias node is an informational node. It doesn't describe
-> > > devices. Just recent Krzysztof comment in a similar situation:
-> > > https://lore.kernel.org/netdev/20230814112539.70453-1-sriranjani.p@sa=
-msung.com/T/#m3972e40bd2fa323a3bdb2fbf07bde47ba6752439
-> > >
-> > > Aliases are normally used by OS to for instance fix the device
-> > > enumeration (see SPI, I2C, I3C, MTD, MMC, RTC, TTY/Serial, Watchdog,
-> > > MDIO-GPIO, etc) - pre-define the device ID from the kernel or OS poin=
-t
-> > > of view. In your case the IDs can't be changed. GMAC0 must be assigne=
-d
-> > > with ID0 and GMAC1 must be assigned with non-zero. Doing otherwise
-> > > will be break the interfaces functionality which isn't acceptable.
-> > >
-> > > >
-> > > > > > +             regmap_field_write(regmap_fields[GMAC1_USE_UART1]=
-, 1);
-> > > > > > +             regmap_field_write(regmap_fields[GMAC1_USE_UART0]=
-, 1);
-> > > > > > +
-> > > > > > +             switch (plat->phy_interface) {
-> > > > > > +             case PHY_INTERFACE_MODE_RGMII:
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC1_US=
-E_TXCLK], 0);
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC1_US=
-E_PWM23], 0);
-> > > > > > +                     break;
-> > > > > > +             case PHY_INTERFACE_MODE_MII:
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC1_US=
-E_TXCLK], 1);
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC1_US=
-E_PWM23], 1);
-> > > > > > +                     break;
-> > > > > > +             default:
-> > > > > > +                     dev_err(dwmac->dev, "Unsupported PHY mode=
- %u\n",
-> > > > > > +                             plat->phy_interface);
-> > > > > > +                     return -EOPNOTSUPP;
-> > > > > > +             }
-> > > > > > +
-> > > > > > +             regmap_field_write(regmap_fields[GMAC1_SHUT], 0);
-> > > > > > +     } else {
-> > > > > > +             switch (plat->phy_interface) {
-> > > > > > +             case PHY_INTERFACE_MODE_RGMII:
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC0_US=
-E_TXCLK], 0);
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC0_US=
-E_PWM01], 0);
-> > > > > > +                     break;
-> > > > > > +             case PHY_INTERFACE_MODE_MII:
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC0_US=
-E_TXCLK], 1);
-> > > > > > +                     regmap_field_write(regmap_fields[GMAC0_US=
-E_PWM01], 1);
-> > > > > > +                     break;
-> > > > > > +             default:
-> > > > > > +                     dev_err(dwmac->dev, "Unsupported PHY mode=
- %u\n",
-> > > > > > +                             plat->phy_interface);
-> > > > > > +                     return -EOPNOTSUPP;
-> > > > > > +             }
-> > > > > > +
-> > > > > > +             regmap_field_write(regmap_fields[GMAC0_SHUT], 0);
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int ls1c_dwmac_syscon_init(struct plat_stmmacenet_data =
-*plat)
-> > > > > > +{
-> > > > > > +     struct ls1x_dwmac *dwmac =3D plat->bsp_priv;
-> > > > > > +     struct regmap_field **regmap_fields =3D dwmac->regmap_fie=
-lds;
-> > > > > > +
-> > > > > > +     if (plat->phy_interface =3D=3D PHY_INTERFACE_MODE_RMII) {
-> > > > > > +             regmap_field_write(regmap_fields[PHY_INTF_SELI], =
-0x4);
-> > > > > > +     } else {
-> > > > > > +             dev_err(dwmac->dev, "Unsupported PHY-mode %u\n",
-> > > > > > +                     plat->phy_interface);
-> > > > > > +             return -EOPNOTSUPP;
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     regmap_field_write(regmap_fields[GMAC_SHUT], 0);
-> > > > > > +
-> > > > > > +     return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct ls1x_dwmac_syscon ls1b_dwmac_syscon =3D {
-> > > > > > +     .reg_fields =3D ls1b_dwmac_syscon_regfields,
-> > > > > > +     .nr_reg_fields =3D ARRAY_SIZE(ls1b_dwmac_syscon_regfields=
-),
-> > > > > > +     .syscon_init =3D ls1b_dwmac_syscon_init,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static const struct ls1x_dwmac_syscon ls1c_dwmac_syscon =3D {
-> > > > > > +     .reg_fields =3D ls1c_dwmac_syscon_regfields,
-> > > > > > +     .nr_reg_fields =3D ARRAY_SIZE(ls1c_dwmac_syscon_regfields=
-),
-> > > > > > +     .syscon_init =3D ls1c_dwmac_syscon_init,
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int ls1x_dwmac_init(struct platform_device *pdev, void =
-*priv)
-> > > > > > +{
-> > > > > > +     struct ls1x_dwmac *dwmac =3D priv;
-> > > > > > +     int ret;
-> > > > > > +
-> > > > >
-> > > > > > +     ret =3D devm_regmap_field_bulk_alloc(dwmac->dev, dwmac->r=
-egmap,
-> > > > > > +                                        dwmac->regmap_fields,
-> > > > > > +                                        dwmac->syscon->reg_fie=
-lds,
-> > > > > > +                                        dwmac->syscon->nr_reg_=
-fields);
-> > > > >
-> > > > > Please see my first comment about this.
-> > > > >
-> > > > > > +     if (ret)
-> > > > > > +             return ret;
-> > > > > > +
-> > > > > > +     if (dwmac->syscon->syscon_init) {
-> > > > > > +             ret =3D dwmac->syscon->syscon_init(dwmac->plat_da=
-t);
-> > > > > > +             if (ret)
-> > > > > > +                     return ret;
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     return 0;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct of_device_id ls1x_dwmac_syscon_match[] =3D=
- {
-> > > > > > +     { .compatible =3D "loongson,ls1b-syscon", .data =3D &ls1b=
-_dwmac_syscon },
-> > > > > > +     { .compatible =3D "loongson,ls1c-syscon", .data =3D &ls1c=
-_dwmac_syscon },
-> > > > > > +     { }
-> > > > > > +};
-> > > > > > +
-> > > > > > +static int ls1x_dwmac_probe(struct platform_device *pdev)
-> > > > > > +{
-> > > > > > +     struct plat_stmmacenet_data *plat_dat;
-> > > > > > +     struct stmmac_resources stmmac_res;
-> > > > > > +     struct device_node *syscon_np;
-> > > > > > +     const struct of_device_id *match;
-> > > > > > +     struct regmap *regmap;
-> > > > > > +     struct ls1x_dwmac *dwmac;
-> > > > > > +     const struct ls1x_dwmac_syscon *syscon;
-> > > > > > +     size_t size;
-> > > > > > +     int ret;
-> > > > > > +
-> > > > > > +     ret =3D stmmac_get_platform_resources(pdev, &stmmac_res);
-> > > > > > +     if (ret)
-> > > > > > +             return ret;
-> > > > > > +
-> > > > >
-> > > > > > +     /* Probe syscon */
-> > > > > > +     syscon_np =3D of_parse_phandle(pdev->dev.of_node, "syscon=
-", 0);
-> > > > >
-> > > > > it's vendor-specific property so it is supposed to have a
-> > > > > vendor-specific prefix and possibly ls1-specific name.
-> > > > >
-> > > > This has been fixed in v2.
-> > > > Could you please review v2?
-> > > > Thanks!
-> > > >
-> > > > > > +     if (!syscon_np)
-> > > > > > +             return -ENODEV;
-> > > > > > +
-> > > > > > +     match =3D of_match_node(ls1x_dwmac_syscon_match, syscon_n=
-p);
-> > > > > > +     if (!match) {
-> > > > > > +             of_node_put(syscon_np);
-> > > > > > +             return -EINVAL;
-> > > > > > +     }
-> > > > > > +     syscon =3D (const struct ls1x_dwmac_syscon *)match->data;
-> >
->
-> > Please note that of_match_node() is used for syscon matching.
->
-> I noticed it in the first place. Please see my next comment.
->
-> >
-> > > > > > +
-> > > > > > +     regmap =3D syscon_node_to_regmap(syscon_np);
-> > > > > > +     of_node_put(syscon_np);
-> > > > > > +     if (IS_ERR(regmap)) {
-> > > > > > +             ret =3D PTR_ERR(regmap);
-> > > > > > +             dev_err(&pdev->dev, "Unable to map syscon: %d\n",=
- ret);
-> > > > > > +             return ret;
-> > > > > > +     }
-> > > > >
-> > > > > or you can use syscon_regmap_lookup_by_phandle(). Using
-> > > > > of_match_node() doesn't seem necessary since it's unlikely to hav=
-e
-> > > > > moee than one system controller available on the LS1b or LS1c chi=
-ps.
-> > > > >
-> > >
-> > > > I planned to use syscon_regmap_lookup_by_phandle().
-> > > > Thus the compatible
-> > > > "loongson,ls1b-dwmac-syscon"/"loongson,ls1c-dwmac-syscon" would bec=
-ome
-> > > > useless.
-> > > > I'm not sure about this.
-> > >
-> > > The compatible strings should be left despite of the
-> > > syscon_regmap_lookup_by_phandle() usage. But again "dwmac" suffix is
-> > > redundant. Based on the CSRs definition in regs-mux.h, selecting
-> > > (G)MAC pins mode is only a small part of the Loongson1 SoC system
-> > > controllers functionality.
-> > > "loongson,ls1b-syscon"/"loongson,ls1c-syscon" looks more appropriate.
-> > >
-> > That's what I did in PATCH 2/5.
-> > I've just explained this to Krzysztof.
-> > And will change back to "loongson,ls1b-syscon"/"loongson,ls1c-syscon"
-> > in next version.
-> >
->
-> > In addition, syscon_regmap_lookup_by_phandle() returns regmap pointer d=
-irectly.
-> > Then, there wil be no way to do syscon matching without its device_node=
-.
-> > How will I know whether the syscon is loongson,ls1b-syscon or
-> > loongson,ls1c-syscon?
->
-> Do you have both of these syscons available in the same SoC? I don't
-> think so. Thus you don't need such validation since the LS1C SoC dts
-> file will have the "loongson,ls1c-syscon" syscon node defined only and
-> the LS1B SoC dts file - "loongson,ls1b-syscon" only.
->
-I believe you have noticed the difference of syscon_init() between
-LS1B and LS1C.
-The syscon matching is for finding the right syscon_init().
-
-Thanks for your review!
-
-> -Serge(y)
->
-> >
-> > Thanks for your review!
-> >
-> >
-> >
-> >
-> >
-> > > -Serge(y)
-> > >
-> > > >
-> > > > > > +
-> > > > > > +     size =3D syscon->nr_reg_fields * sizeof(struct regmap_fie=
-ld *);
-> > > > > > +     dwmac =3D devm_kzalloc(&pdev->dev, sizeof(*dwmac) + size,=
- GFP_KERNEL);
-> > > > > > +     if (!dwmac)
-> > > > > > +             return -ENOMEM;
-> > > > > > +
-> > > > > > +     plat_dat =3D stmmac_probe_config_dt(pdev, stmmac_res.mac)=
-;
-> > > > > > +     if (IS_ERR(plat_dat)) {
-> > > > > > +             dev_err(&pdev->dev, "dt configuration failed\n");
-> > > > > > +             return PTR_ERR(plat_dat);
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     plat_dat->bsp_priv =3D dwmac;
-> > > > > > +     plat_dat->init =3D ls1x_dwmac_init;
-> > > > > > +     dwmac->dev =3D &pdev->dev;
-> > > > > > +     dwmac->plat_dat =3D plat_dat;
-> > > > > > +     dwmac->syscon =3D syscon;
-> > > > > > +     dwmac->regmap =3D regmap;
-> > > > > > +
-> > > > > > +     ret =3D stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
-> > > > > > +     if (ret)
-> > > > > > +             goto err_remove_config_dt;
-> > > > > > +
-> > > > > > +     return 0;
-> > > > > > +
-> > > > > > +err_remove_config_dt:
-> > > > >
-> > > > > > +     if (pdev->dev.of_node)
-> > > > >
-> > > > > Is this conditional statement necessary here?
-> > > > >
-> > > > You're right.
-> > > > Will remove this condition in next version.
-> > > > Thanks!
-> > > >
-> > > > > -Serge
-> > > > >
-> > > > > > +             stmmac_remove_config_dt(pdev, plat_dat);
-> > > > > > +
-> > > > > > +     return ret;
-> > > > > > +}
-> > > > > > +
-> > > > > > +static const struct of_device_id ls1x_dwmac_match[] =3D {
-> > > > > > +     { .compatible =3D "loongson,ls1b-dwmac" },
-> > > > > > +     { .compatible =3D "loongson,ls1c-dwmac" },
-> > > > > > +     { }
-> > > > > > +};
-> > > > > > +MODULE_DEVICE_TABLE(of, ls1x_dwmac_match);
-> > > > > > +
-> > > > > > +static struct platform_driver ls1x_dwmac_driver =3D {
-> > > > > > +     .probe =3D ls1x_dwmac_probe,
-> > > > > > +     .remove_new =3D stmmac_pltfr_remove,
-> > > > > > +     .driver =3D {
-> > > > > > +             .name =3D "loongson1-dwmac",
-> > > > > > +             .of_match_table =3D ls1x_dwmac_match,
-> > > > > > +     },
-> > > > > > +};
-> > > > > > +module_platform_driver(ls1x_dwmac_driver);
-> > > > > > +
-> > > > > > +MODULE_AUTHOR("Keguang Zhang <keguang.zhang@gmail.com>");
-> > > > > > +MODULE_DESCRIPTION("Loongson1 DWMAC glue layer");
-> > > > > > +MODULE_LICENSE("GPL");
-> > > > > > --
-> > > > > > 2.39.2
-> > > > > >
-> > > >
-> > > >
-> > > >
-> > > > --
-> > > > Best regards,
-> > > >
-> > > > Keguang Zhang
-> >
-> >
-> >
+On Tue, Aug 22, 2023 at 05:36:14AM +0000, Ying Liu wrote:
+> Hi,
+>=20
+> > On Friday, January 6, 2023 1:50 PM Ying Liu wrote:
+> >=20
+> > Hi,
+> >=20
+> >=20
+> > This is the v14 series to introduce i.MX8qm/qxp Display Processing Unit=
+(DPU)
+> > DRM support.
+> >=20
+> > DPU is comprised of a blit engine for 2D graphics, a display controller
+> > and a command sequencer.  Outside of DPU, optional prefetch engines can
+> > fetch data from memory prior to some DPU fetchunits of blit engine and
+> > display controller.  The pre-fetchers support linear formats and Vivante
+> > GPU tile formats.
+> >=20
+> > Reference manual can be found at:
+> > https://www.nxp.com/webapp/Download?colCode=3DIMX8DQXPRM
+> >=20
+> >=20
+> > This patch set adds kernel modesetting support for the display controll=
+er part.
+> > It supports two CRTCs per display controller, several planes, prefetch
+> > engines and some properties of CRTC and plane.  Currently, the register=
+s of
+> > the controller is accessed without command sequencer involved, instead =
+just
+> > by
+> > using CPU.  DRM connectors would be created from the DPU KMS driver.
+> >=20
+> >=20
+> > Patch 1 ~ 3 add dt-bindings for DPU and prefetch engines.
+> > Patch 4 is a minor improvement of a macro to suppress warning as the KMS
+> > driver
+> > uses it.
+> > Patch 5 introduces the DPU DRM support.
+> > Patch 6 updates MAINTAINERS.
+> >=20
+> > Welcome comments, thanks.
+> >=20
+> > v13->v14:
+> > * Rebase the patch series to the latest drm-misc-next branch(v6.1-rc6 b=
+ased).
+> > * Include drm_fbdev_generic.h in dpu_drv.c due to the rebase.
+> > * Fix dpu drm driver suspend/resume by properly get drm device through
+> >   dev_get_drvdata().
+> > * Use pm_ptr() macro for dpu core driver PM operations.
+> > * Use pm_sleep_ptr() macro for dpu drm driver PM operations.
+> > * Use DEFINE_SIMPLE_DEV_PM_OPS() macro to define dpu drm driver PM
+> > operations,
+> >   instead of SIMPLE_DEV_PM_OPS().
+> > * Update year of Copyright.
+> > * Add SoC series name 'i.MX8'/'IMX8'/'imx8' to dpu driver module decrip=
+tion,
+> >   Kconfig name, dpu driver names and dpu driver object name.
+> >=20
+> > v12->v13:
+> > * Drop 'drm->irq_enabled =3D true;' from patch 5/6 to fix a potential b=
+uild
+> >   break reported by 'kernel test robot <lkp@intel.com>'.  drm->irq_enab=
+led
+> >   should not be used by imx-dpu drm as it is only used by legacy drivers
+> >   with userspace modesetting.
+> >=20
+> > v11->v12:
+> > * Rebase the series upon v6.1-rc1.
+> > * Minor update on Kconfigs, struct names and macro names for patch 5/6
+> >   due to the rebase.
+> >=20
+> > v10->v11:
+> > * Rebase the series upon v6.0-rc1.
+> > * Include drm_blend.h and drm_framebuffer.h in dpu-kms.c and dpu-
+> > plane.c
+> >   to fix build errors due to the rebase.
+> > * Fix a checkpatch warning for dpu-crtc.c.
+> > * Properly use dev_err_probe() to return it's return value directly whe=
+re
+> >   possible.
+> >=20
+> > v9->v10:
+> > * Rebase the series upon v5.18-rc1.
+> > * Make 'checkpatch.pl --strict' happier for patch 5/6.
+> > * Add Rob's R-b tag on patch 3/6.
+> > * Add Laurentiu's R-b tag on patch 5/6.
+> > * Add Laurentiu's A-b tag on patch 6/6.
+> >=20
+> > v8->v9:
+> > * Use drm_atomic_get_new_plane_state() in dpu_plane_atomic_update()
+> > for
+> >   patch 5/6. (Laurentiu)
+> > * Drop getting DPU DT alias ID for patch 5/6, as it is unused.
+> > * Reference 'interrupts-extended' schema instead of 'interrupts' for pa=
+tch
+> > 3/6
+> >   to require an additional DPR interrupt(r_rtram_stall) because the ref=
+erence
+> >   manual does mention it, though the driver doesn't get/use it for now.
+> >   Reference 'interrupt-names' schema to define the two DPR interrupt na=
+mes
+> > -
+> >   'dpr_wrap' and 'r_rtram_stall'.  Accordingly, patch 5/6 gets the 'dpr=
+_wrap'
+> >   interrupt by name.
+> > * Drop Rob's R-b tag on patch 3/6, as review is needed.
+> >=20
+> > v7->v8:
+> > * Rebase this series up onto the latest drm-misc-next branch, due to DRM
+> > plane
+> >   helper functions API change(atomic_check and atomic_update) from DRM
+> > atomic
+> >   core.  So, dpu_plane_atomic_check() and dpu_plane_atomic_update() are
+> > updated
+> >   accordingly in patch 5/6.  Also, rename plane->state variables and re=
+levant
+> >   DPU plane state variables in those two functions to reflect they are =
+new
+> >   states, like the patch 'drm: Rename plane->state variables in atomic =
+update
+> >   and disable' recently landed in drm-misc-next.
+> > * Replace drm_gem_fb_prepare_fb() with
+> > drm_gem_plane_helper_prepare_fb() in
+> >   patch 5/6, due to DRM core API change.
+> > * Improve DPR burst length for GPU standard tile and 32bpp GPU super ti=
+le in
+> >   patch 5/6 to align with the latest version of internal HW documention.
+> >=20
+> > v6->v7:
+> > * Fix return value of dpu_get_irqs() if platform_get_irq() fails. (Laur=
+entiu)
+> > * Use the function array dpu_irq_handler[] to store individual DPU irq
+> > handlers.
+> >   (Laurentiu)
+> > * Call get/put() hooks directly to get/put DPU fetchunits for DPU plane=
+ groups.
+> >   (Laurentiu)
+> > * Shorten the names of individual DPU irq handlers by using DPU unit ab=
+brev
+> >   names to make writing dpu_irq_handler[] easier.
+> > * Add Rob's R-b tag back on DPU dt-binding patch as change in v6 was
+> > reviewed.
+> >=20
+> > v5->v6:
+> > * Use graph schema in the DPU dt-binding.
+> > * Do not use macros where possible in the DPU DRM driver. (Laurentiu)
+> > * Break dpu_plane_atomic_check() into some smaller functions. (Laurenti=
+u)
+> > * Address some minor comments from Laurentiu on the DPU DRM driver.
+> > * Add dpu_crtc_err() helper marco in the DPU DRM driver to tell dmesg
+> >   which CRTC generates error.
+> > * Drop calling dev_set_drvdata() from dpu_drm_bind/unbind() in the DPU
+> > DRM
+> >   driver as it is done in dpu_drm_probe().
+> > * Some trivial tweaks.
+> >=20
+> > v4->v5:
+> > * Rebase up onto the latest drm-misc-next branch and remove the hook to
+> >   drm_atomic_helper_legacy_gamma_set() from patch 5/6, because it was
+> > dropped
+> >   by the newly landed commit 'drm: automatic legacy gamma support'.
+> > * Remove a redundant blank line from dpu_plane_atomic_update() in patch
+> > 5/6.
+> >=20
+> > v3->v4:
+> > * Improve compatible properties in DPU and prefetch engines' dt bindings
+> >   by using enum instead of oneOf+const.
+> > * Add Rob's R-b tags on dt binding patches(patch 1/6, 2/6 and 3/6).
+> > * Add Daniel's A-b tag on patch 4/6.
+> >=20
+> > v2->v3:
+> > * Fix DPU DRM driver build warnings which are
+> >   Reported-by: kernel test robot <lkp@intel.com>.
+> > * Drop DPU DRM driver build dependency on IMX_SCU, as dummy SCU
+> > functions have
+> >   been added in header files by the patch 'firmware: imx: add dummy
+> > functions'
+> >   which has landed in linux-next/master branch.
+> > * Add a missing blank line in include/drm/drm_atomic.h.
+> >=20
+> > v1->v2:
+> > * Test this patch set also with i.MX8qm LVDS displays.
+> > * Drop the device tree patches because we'll use new dt binding way to
+> >   support i.MX8qm/qxp clocks.  This depends on a not-yet-landed patch s=
+et
+> >   to do basic conversions for the platforms.
+> > * Fix dt binding yamllint warnings.
+> > * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm in
+> > DPU's
+> >   dt binding documentation.
+> > * Use new dt binding way to add clocks in the dt binding examples.
+> > * Address several comments from Laurentiu on the DPU DRM patch.
+> >=20
+> >=20
+> > Liu Ying (6):
+> >   dt-bindings: display: imx: Add i.MX8qxp/qm DPU binding
+> >   dt-bindings: display: imx: Add i.MX8qxp/qm PRG binding
+> >   dt-bindings: display: imx: Add i.MX8qxp/qm DPR channel binding
+> >   drm/atomic: Avoid unused-but-set-variable warning on
+> >     for_each_old_plane_in_state
+> >   drm/imx: Introduce i.MX8qm/qxp DPU DRM
+> >   MAINTAINERS: add maintainer for i.MX8qxp DPU DRM driver
+> >=20
+> >  .../display/imx/fsl,imx8qxp-dprc.yaml         |  100 ++
+> >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml |  387 ++++++
+> >  .../bindings/display/imx/fsl,imx8qxp-prg.yaml |   60 +
+> >  MAINTAINERS                                   |    9 +
+> >  drivers/gpu/drm/imx/Kconfig                   |    1 +
+> >  drivers/gpu/drm/imx/Makefile                  |    1 +
+> >  drivers/gpu/drm/imx/dpu/Kconfig               |    9 +
+> >  drivers/gpu/drm/imx/dpu/Makefile              |   10 +
+> >  drivers/gpu/drm/imx/dpu/dpu-constframe.c      |  171 +++
+> >  drivers/gpu/drm/imx/dpu/dpu-core.c            | 1044 +++++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-crtc.c            |  969 +++++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-crtc.h            |   72 ++
+> >  drivers/gpu/drm/imx/dpu/dpu-disengcfg.c       |  117 ++
+> >  drivers/gpu/drm/imx/dpu/dpu-dprc.c            |  715 +++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-dprc.h            |   40 +
+> >  drivers/gpu/drm/imx/dpu/dpu-drv.c             |  294 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu-drv.h             |   28 +
+> >  drivers/gpu/drm/imx/dpu/dpu-extdst.c          |  299 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c     |  292 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetcheco.c        |  224 ++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c      |  152 +++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.c       |  610 ++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchunit.h       |  195 +++
+> >  drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c       |  248 ++++
+> >  drivers/gpu/drm/imx/dpu/dpu-framegen.c        |  395 +++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-gammacor.c        |  223 ++++
+> >  drivers/gpu/drm/imx/dpu/dpu-hscaler.c         |  275 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu-kms.c             |  542 +++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-kms.h             |   23 +
+> >  drivers/gpu/drm/imx/dpu/dpu-layerblend.c      |  348 ++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-plane.c           |  804 +++++++++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-plane.h           |   59 +
+> >  drivers/gpu/drm/imx/dpu/dpu-prg.c             |  433 +++++++
+> >  drivers/gpu/drm/imx/dpu/dpu-prg.h             |   45 +
+> >  drivers/gpu/drm/imx/dpu/dpu-prv.h             |  231 ++++
+> >  drivers/gpu/drm/imx/dpu/dpu-tcon.c            |  250 ++++
+> >  drivers/gpu/drm/imx/dpu/dpu-vscaler.c         |  308 +++++
+> >  drivers/gpu/drm/imx/dpu/dpu.h                 |  385 ++++++
+> >  include/drm/drm_atomic.h                      |    5 +-
+> >  39 files changed, 10372 insertions(+), 1 deletion(-)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dprc.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-prg.yaml
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/Kconfig
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/Makefile
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-constframe.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-core.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-crtc.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-disengcfg.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-dprc.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-drv.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-extdst.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchdecode.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetcheco.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchlayer.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchunit.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-fetchwarp.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-framegen.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-gammacor.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-hscaler.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-kms.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-layerblend.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-plane.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prg.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-prv.h
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-tcon.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu-vscaler.c
+> >  create mode 100644 drivers/gpu/drm/imx/dpu/dpu.h
+> >=20
 > > --
-> > Best regards,
-> >
-> > Keguang Zhang
+> > 2.37.1
+>=20
+> This patch series has been submitted for a quite long period of time.
+>=20
+> Anything I can do to have it landed ?
 
+I'm not sure why it fell through the cracks, but given that it's more
+than 6 monthes old, please rebase and resend it.
 
+Maxime
 
---=20
-Best regards,
+--b7dz62g3jq6f5w2p
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Keguang Zhang
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZORsagAKCRDj7w1vZxhR
+xVLOAP0S4rsQCxdj1ZEL2g/aGj7r1ilhBbBzQNtVF0hihATPxgEAqgK6F5DoRQDb
+7snvA50RUsoRg0vNAk16bzAhEIXP0gY=
+=mLl3
+-----END PGP SIGNATURE-----
+
+--b7dz62g3jq6f5w2p--
