@@ -2,101 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 352E978489B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 19:43:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C7F37848B6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 19:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjHVRnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 13:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55754 "EHLO
+        id S229575AbjHVRwa convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Aug 2023 13:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjHVRnc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 13:43:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5302A173C;
-        Tue, 22 Aug 2023 10:43:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DA8B465971;
-        Tue, 22 Aug 2023 17:43:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C281FC433C8;
-        Tue, 22 Aug 2023 17:43:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692726210;
-        bh=B/I+W82urXGkGytJ3YPnKlcsllquQv/pg6z2/vC+pXk=;
-        h=Date:From:To:Cc:Subject:From;
-        b=M9jGZUPoJq853sHfYH6yypp1LNWddPGwJxGgc9SkNlRvdR55eFEegboDIqCM3cTOO
-         6cVU4WM+2UJ8Sd3URxm34qR+/fcZ0nRd9+1U4Z92lClMosOMejGYz7YgR5ZA/yeTp0
-         LmoisYO/m5P1nllfq5Kz3WqWmClF09XpXH9hMVbv/phxOIrVsT84BVKMpKzu9UBf0b
-         uKvuugEEg01dMlJAxHdgNK7ZFJ518rNIEXgMv67eOE/qkekuY681y92aXKwQAbxREQ
-         OrhEV6nhzisMC3PZ2/rFna6Ddl2kdM3R0wfGCUY87Gnd5a+mFg9jBT71O67tB9m6XM
-         wT2tGoCTi6eQg==
-Received: (nullmailer pid 424743 invoked by uid 1000);
-        Tue, 22 Aug 2023 17:43:28 -0000
-Date:   Tue, 22 Aug 2023 12:43:28 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.5, take 2
-Message-ID: <20230822174328.GA385825-robh@kernel.org>
+        with ESMTP id S229541AbjHVRwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 13:52:30 -0400
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF968196;
+        Tue, 22 Aug 2023 10:52:27 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-58d41109351so79474997b3.1;
+        Tue, 22 Aug 2023 10:52:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692726747; x=1693331547;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lgOhepqTpbPTYkAPFCS3+lIdslbNiQ9mWYDOLTBrpXQ=;
+        b=A+O6RgLrsT7DGFW57+z899eF+qoyJuFn2leRbwDId6k1lsyIcCVPbIIJ36Kv10FyBd
+         PytF3vEKEjUo29dvKxjtn4EarqxEFaV3bWTCiC9vX/1sjBKyBCqHfHap+CJXi73Tov/l
+         ksIuNADLR0zt78L2GdNvrDc5CuO5ktPhjQjtEUd2DDtkDVTEtuNIsoeQMLweKBF1R+4o
+         N9Liyne8s6Vj0pSTeSwdO87cMogZ8cijE5T2ol3edEA80zOWVOFKzNsU1TyY5jHNYE/4
+         ZdsTa+Jebh/GkQ32oBjhzuWHe5bCi7G2F0QHCNuQPjiFh0n8zX1IjEwa+LEzmUKkGh59
+         KA8w==
+X-Gm-Message-State: AOJu0Yz/o31dJ68+pQzZx4ZzcGJRs071IudvF5O8gmn7swI39ZMgKoOk
+        UV7S0PjbfB5I7mwolPM7BSZmsE+kFsFhaA==
+X-Google-Smtp-Source: AGHT+IG4UNAWyn40zZWufw0NY6PZQ7lvMpBjCziOy3Sm9n/JhqveJeOsWbks4MwjCE6LmK8aCEx5qw==
+X-Received: by 2002:a81:4e17:0:b0:58c:fc64:c834 with SMTP id c23-20020a814e17000000b0058cfc64c834mr8276411ywb.11.1692726746844;
+        Tue, 22 Aug 2023 10:52:26 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id h1-20020a81b401000000b00589e68edac6sm2899822ywi.39.2023.08.22.10.52.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 10:52:26 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d748d8cf074so4038207276.0;
+        Tue, 22 Aug 2023 10:52:26 -0700 (PDT)
+X-Received: by 2002:a25:ae53:0:b0:d1d:19f6:f544 with SMTP id
+ g19-20020a25ae53000000b00d1d19f6f544mr8116627ybe.22.1692726746419; Tue, 22
+ Aug 2023 10:52:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <a9fb4eb560c58d11a7f167bc78a137b46e76cf15.1692699743.git.geert+renesas@glider.be>
+ <20230822153230.GA219888-robh@kernel.org>
+In-Reply-To: <20230822153230.GA219888-robh@kernel.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 22 Aug 2023 19:52:14 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWLuATOi_5eUtqDPLn3W80H-c+_2CpSV2fV46Kv9i0MqA@mail.gmail.com>
+Message-ID: <CAMuHMdWLuATOi_5eUtqDPLn3W80H-c+_2CpSV2fV46Kv9i0MqA@mail.gmail.com>
+Subject: Re: [PATCH] of: unittest: Run overlay apply/revert sequence three times
+To:     Rob Herring <robh@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hi Rob,
 
-Please pull a few more DT fixes for 6.5.
+On Tue, Aug 22, 2023 at 5:32 PM Rob Herring <robh@kernel.org> wrote:
+> On Tue, Aug 22, 2023 at 12:22:34PM +0200, Geert Uytterhoeven wrote:
+> > Run the test for the overlay apply/revert sequence three times, to
+> > test if there are unbalanced of_node_put() calls causing reference
+> > counts to become negative.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> > This is a reproducer for the issue fixed by commit 7882541ca06d51a6
+> > ("of/platform: increase refcount of fwnode") in dt/linus.
+>
+> Is this necessary? There were WARN backtraces without that fix.
 
-Rob
+Did you see them?
+Peng saw them with the out-of-tree jailhouse hypervisor enable/disable
+test, and I saw them with the out-of-tree overlay configfs patches.
+I am not aware of any in-tree kernel code triggering them.  If we
+would have had this in the unittests, I would have noticed this
+regression earlier...
 
+Gr{oetje,eeting}s,
 
-The following changes since commit ffc59c6414f9ffd52591786efe3e62e145563deb:
+                        Geert
 
-  dt-bindings: serial: Remove obsolete nxp,lpc1850-uart.txt (2023-07-21 13:39:12 -0600)
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.5-2
-
-for you to fetch changes up to 7882541ca06d51a6c12d687827176c16d5e05f65:
-
-  of/platform: increase refcount of fwnode (2023-08-21 16:12:28 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.5, part 2:
-
-- Fix DT node refcount when creating platform devices
-
-- Fix deadlock in changeset code due to printing with devtree_lock held
-
-- Fix unittest EXPECT strings for parse_phandle_with_args_map() test
-
-- Fix IMA kexec memblock freeing
-
-----------------------------------------------------------------
-Peng Fan (1):
-      of/platform: increase refcount of fwnode
-
-Rik van Riel (1):
-      mm,ima,kexec,of: use memblock_free_late from ima_free_kexec_buffer
-
-Rob Herring (2):
-      of: unittest: Fix EXPECT for parse_phandle_with_args_map() test
-      of: dynamic: Refactor action prints to not use "%pOF" inside devtree_lock
-
- drivers/of/dynamic.c  | 31 +++++++++----------------------
- drivers/of/kexec.c    |  3 ++-
- drivers/of/platform.c |  4 ++--
- drivers/of/unittest.c |  4 ++--
- 4 files changed, 15 insertions(+), 27 deletions(-)
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
