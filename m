@@ -2,114 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7D11783FB2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:38:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F66A783FEC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235440AbjHVLi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 07:38:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59532 "EHLO
+        id S235241AbjHVLsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 07:48:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235299AbjHVLiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:38:24 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1793DCF0
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:38:03 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-52a06f5f556so2771535a12.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:38:03 -0700 (PDT)
+        with ESMTP id S233219AbjHVLsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:48:03 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9292CF9
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:47:37 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50087d47d4dso1709955e87.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:47:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692704230; x=1693309030;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692704813; x=1693309613;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nkch/068kMWwIYFxyZsmasX0WQkyorqEkgNaZvsD+8E=;
-        b=ApjmbeYipooMlkkWyNLhdVKHKs84tRv42nSxKF0jwx2ySGRFYPNsApHUa0n7F4sSJt
-         90SETjc+3+7OS5FWYzK9u3vSxd0tV22pbLpcMnw8ZpRke1aGToec4aMebqWvHxzDBIzw
-         9BCGRrrKdWDnk1FG70yIBuLsCPJoSMkZhuCvAU1Egpk7/dvfpqSvARkBJcbSHaKT9V2D
-         lXbnN/i/WG3hfNieZj0mJ3rZQyeXsrr2Uz+4TmwU4plQAXV3xMtTrSpwM9NI3+nMPz38
-         gTwYkyzkDfxyw7Rk2GhLy2bIeils/AZV6iE1cCymsFQEQAQitc7zPtbdgmzovIQlVR6w
-         9gkQ==
+        bh=swtdZ6iWxZkwX4JLChr/7mfm4cT7UFQIrvk9nhlFwu8=;
+        b=kHmaukBEfG+FSw+u9s2eQ0XPvd+lwxI0+D9sGnRjbDxcsgKUnMtMc60q2jz6VFTjia
+         rEsfAA+IswrCtWglROaMXgUnArgyiPsARVRXN2kJ/KhHlKIEeP22SNnsr6ZCMRbEZUc3
+         bU/6iuyzuwA1pv1AvzLpSa26MPBGNRPQJG+x94OXQWLk41zlot4s9y+vqEChbmMGhver
+         +R7w2b8M9YHLQ5lL1tItdefarN68S+9QwohPeTwf+oldWer0JxXnaB14Non/bQ9QnJlE
+         GUDbElMcfCduSGmtrbByRNr7C/KtshLX+kK/z9oM/XihfAgBARYNa9WSIkkPGyX1kxAx
+         /7VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692704230; x=1693309030;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692704813; x=1693309613;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nkch/068kMWwIYFxyZsmasX0WQkyorqEkgNaZvsD+8E=;
-        b=IMhxvcxsTq5heMIZFw39dwBopY3tTNx8qgZn/rUbiD4KCO/u2gyLbHqOeqPf6KOxNf
-         Y/bYrh1lSb4YAvFTwiuxe+PLjtx67WuaaEfcL/zlRtZZWMToEgO6oduORzMVoiME+2Ld
-         U1T1cZ7D1apk1CcpOicitjJwN80NQ/pHLGt/teE9qLVuR9ncYYWRkISUWgtT7V2CJt85
-         6InFp5KhAWFT8iFWoqabfeCM5RV2gie6GSDWiWUA1Pn4hSxsKWRZJrGdIptscks65YkZ
-         ikEKlqNZadYBPTBiqtOWpABNIE97X4KFFGt0/uCmSfF0u025+8OdyaZVCpyXjpLhgK44
-         1VZg==
-X-Gm-Message-State: AOJu0Yy5S75wcWbYN8Pe7GbJjZ3tWxo76usE4VJUOq9YYTzvulNByW7f
-        xuQcuS0ZCozvef5FklVfJCPF5Q==
-X-Google-Smtp-Source: AGHT+IGc59j7SDUT+6xNuKmpTXLUHTWIVhQ5cy4lo3b126Qqi7HqOXUViq0g/A14hO7vQUveoB0WNw==
-X-Received: by 2002:a50:ed18:0:b0:523:2e30:aaea with SMTP id j24-20020a50ed18000000b005232e30aaeamr6825469eds.33.1692704230112;
-        Tue, 22 Aug 2023 04:37:10 -0700 (PDT)
+        bh=swtdZ6iWxZkwX4JLChr/7mfm4cT7UFQIrvk9nhlFwu8=;
+        b=l/86dZdDaye82Pb3mrXa/WlrFgaX2vMzOeQX6jCkgxnu1GSUskNtY8tmxplK+y8Gyw
+         mSMbDPouaas978oQ8V99nWctTOeeSci1b0aCvGxbdHL4zBVTwYfwBlBFismethprskfX
+         /epxKVojJCUpxX1bnJ6TBgyu9Ok+n1F27jvJQTyJVtPKVLd8pF2IILNJC4Io/y15aRjo
+         q9rhnjhKKTaQJs9xAf2kH74m9fQk0TKacOmnjFnpFVrvsMuM3aG3R9qyuG83Qtinn3jF
+         U70qS1YpzWYQJjByoHjL8OXd2vIIOg/HvNt9b8FwxVaeXlmvK2AtHow0p+OwAnjatu9w
+         QyRA==
+X-Gm-Message-State: AOJu0YwB2SYuAN5Jfd/YFIuTVMMxSA6MPi5e5w8OaNNWB+64qF6lfkoY
+        pwsZnTxu9ZglsOMmgYEbMJiykFo/+YWYRowg7uw=
+X-Google-Smtp-Source: AGHT+IHUjfXRdbb5xkWxvSmHYtiXNjA44zx5N05SQQus1ESIq5Ng+XMglFSU3mnkglNjVtBmwz7itg==
+X-Received: by 2002:a17:907:78d0:b0:98e:1c4b:10bb with SMTP id kv16-20020a17090778d000b0098e1c4b10bbmr7236522ejc.35.1692704342896;
+        Tue, 22 Aug 2023 04:39:02 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id c14-20020aa7d60e000000b0052333e5237esm7412662edr.88.2023.08.22.04.37.09
+        by smtp.gmail.com with ESMTPSA id y6-20020a170906070600b0099cadcf13cesm8051872ejb.66.2023.08.22.04.39.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 04:37:09 -0700 (PDT)
-Message-ID: <96285b1a-a083-15d6-dbba-dff67d48aa3a@linaro.org>
-Date:   Tue, 22 Aug 2023 13:37:08 +0200
+        Tue, 22 Aug 2023 04:39:02 -0700 (PDT)
+Message-ID: <c534e39f-f8dc-b9eb-ef27-3ace29192cfc@linaro.org>
+Date:   Tue, 22 Aug 2023 13:39:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/2] media: dt-bindings: media: remove nokia,n900-ir as
- pwm-ir-tx is compatible
-To:     Sean Young <sean@mess.org>
-Cc:     linux-media@vger.kernel.org, Sicelo <absicsz@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali.rohar@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Timo Kokkonen <timo.t.kokkonen@iki.fi>,
-        Tony Lindgren <tony@atomide.com>
-References: <20230822091245.209539-1-sean@mess.org>
- <20230822091245.209539-3-sean@mess.org>
- <590a7e74-5af1-1aa3-366b-4fef039e5f66@linaro.org>
- <ZOSGT6COxF4C4WWV@gofer.mess.org>
+Subject: Re: [PATCH v9 3/4] arm64: dts: qcom: ipq5332: Enable USB
 Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, vkoul@kernel.org,
+        kishon@kernel.org, arnd@arndb.de, geert+renesas@glider.be,
+        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org
+References: <cover.1692699472.git.quic_varada@quicinc.com>
+ <27d6303008be83131048ddf2ecef91cec9519ee2.1692699472.git.quic_varada@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZOSGT6COxF4C4WWV@gofer.mess.org>
+In-Reply-To: <27d6303008be83131048ddf2ecef91cec9519ee2.1692699472.git.quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 11:56, Sean Young wrote:
->> Performing review on untested code might be a waste
->> of time, thus I will skip this patch entirely till you follow the
->> process allowing the patch to be tested.
->>
->> Please kindly resend and include all necessary To/Cc entries.
+On 22/08/2023 12:29, Varadarajan Narayanan wrote:
+> Enable USB2 in host mode.
 > 
-> Please kindly tell me how follow your thiefdom's rules. What tree do
-> you want me to run scripts/get_maintainers.pl on? What is the DT list
-> that I missed out?
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v9:
+> 	regulator_fixed_5p0: s0500 -> regulator_fixed_5p0: regulator_s0500
+> 	"make ARCH=arm64 -j 16 CHECK_DTBS=y DT_SCHEMA_FILES=qcom,ipq5332-usb-hsphy.yaml dtbs_check" passed
+> v6:
+> 	Add vdd-supply and corresponding regulator
+> v1:
+> 	Enable usb-phy node
+> ---
+>  arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+> index f96b0c8..53696f4 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+> @@ -12,6 +12,15 @@
+>  / {
+>  	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.6";
+>  	compatible = "qcom,ipq5332-ap-mi01.6", "qcom,ipq5332";
+> +
+> +	regulator_fixed_5p0: regulator_s0500 {
 
-That was my mistake, and I responded correcting myself 20 minutes before
-you sent this question.
-
-> 
->> 2. Test your bindings before sending. Especially if you decide to
->> opt-out from automatic testing :/
-> 
-> I ran:
-> 
-> 	make dt_binding_check
-> 
-> And it ran successfully. Anything else?
-
-This should be enough, but I doubt that it was successful.
+No underscores in node names. If you look at any source code, you will
+notice lack of them.
 
 Best regards,
 Krzysztof
