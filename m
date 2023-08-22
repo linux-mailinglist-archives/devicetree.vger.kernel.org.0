@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A47783C11
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FA72783C13
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234025AbjHVIq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 04:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
+        id S234001AbjHVIqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 04:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233985AbjHVIqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:46:17 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5080ACD5
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:45:56 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-1c4dda61eb0so2577001fac.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:45:56 -0700 (PDT)
+        with ESMTP id S234034AbjHVIqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:46:25 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A5ED10C3
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:46:00 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-56963f2e48eso1448187a12.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:46:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1692693955; x=1693298755;
+        d=chromium.org; s=google; t=1692693958; x=1693298758;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jrDATXbws5HyoVxKw6+vLUMTkruOotP8pQDuc9L5CV0=;
-        b=AahAynSSwqqklGnOieWpiwev1YewTeQEJasNlRAeINMMGIi+RFZDQCbyhFnv9lT0ET
-         vUd90ri/zi+hG7M9h1S3yi0xPmmNn3euftjPkk3Cubr2hOQrop6x7hRlVtbkdYFiRNp2
-         mgvLWMagRl5N7MS1Ll5Yhi46G+SoEydtAUw+Q=
+        bh=hlF1u7hcM0QcOf0dBRcVX4obCkl3j7F2WIt5v6FZgoU=;
+        b=mhxuhaGqh88+7Ene1JAl6kiwkMKSUNbySevMtCh45aHQzwcstAH3Zxc0tfaKCOyV1g
+         ZwwqbRmdYMX9iHwcax5SYaE3jG5u3ApPmK4LhMkh2aWnTo/Z5esP4OgtPTiTgS/X4fM8
+         loOv7lDpdU/vDqg55o1JV3nZuZZRDW4GO7AWQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692693955; x=1693298755;
+        d=1e100.net; s=20221208; t=1692693958; x=1693298758;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jrDATXbws5HyoVxKw6+vLUMTkruOotP8pQDuc9L5CV0=;
-        b=NmezixVuZQtV8h15nq62vD5N96jRFfjiAdxH9CXMu6AmJr0hi4d6f0eJBMlWv6vjSH
-         rTIZA6BNev4DMvJPStMtH8Mrs1VTahroTbKE8Fv2I63ZexKy5pJ6WyA22wBTxi6FU6Gg
-         v7iGAJCRsSfCIIGA4l6s92BpI0fBEk5IJcpxsqF3aiffcFvK62ryGq9r3xt0HPl0mArW
-         itnaSSKUdhVRUMxmfJ+U62aeTwGYinqsTUSlEmlxJ7LL5ihrQ7Ugfpio5aulzTAdjIhh
-         DzewZ/etU0gJvsMFqLAel9UVD+s0UT2AcR1maOInoTiS8dpNwCtUOkv2YYUiZ+CcVWgh
-         Jqpg==
-X-Gm-Message-State: AOJu0YxqTi3w4LPJO2Bp98rPWJHPqGbvAe6sBh46MY7UeMHIHu0KzCk+
-        TLUEUdwuhWu979MXa1wEDtpiMw==
-X-Google-Smtp-Source: AGHT+IEcbRmA1Ic/MwYkdWxmF4FnqY/IGmYo7qFR1gg+Ch7vEHEZH5CjQDg6P02c2DJOdM3gzIYiLA==
-X-Received: by 2002:a05:6871:8a4:b0:1bb:5480:4bc with SMTP id r36-20020a05687108a400b001bb548004bcmr11263042oaq.37.1692693955422;
-        Tue, 22 Aug 2023 01:45:55 -0700 (PDT)
+        bh=hlF1u7hcM0QcOf0dBRcVX4obCkl3j7F2WIt5v6FZgoU=;
+        b=hWuB7nQt11uFl8WbN+n9QgJkGy8xPS6ch765QaYF2zu3SLN8Gm8BjS81sH3GUW8RJf
+         LjlfvLEJUhDuSlNq67eZNMxFKgroR0npGMirFxAwQY66UydjwVsFzlJ8Rvc6MTogL8S0
+         SGHC8ZqLC9N7y0vtF4muTr6PpTf7TRup/vD1fcIbosuH5pUpBjd1mg5m0x9Jx4c6Sec+
+         KPxMA/5umqg/hKVnSM1zkHyH8Ws/vowI4YKgIB0Q8uXbri4aoXDhsooh+Q7C+LjpDb4h
+         8VwyVd1g8P7dqYdg4AxXKkhBgeC2gv2+bvDCPsIVV3zlNbso4U0+G2pEMKcLGetJLRPe
+         W2sQ==
+X-Gm-Message-State: AOJu0YxLiD8mhH1P4OMFDowvMYj1AAoO+b97eHhMYR1smP6+XP1USkA4
+        7KA0+9qydTEUNXcKS3hSV9QlGA==
+X-Google-Smtp-Source: AGHT+IHjB5kNMo/7EJRgipMgtPWyKH6stKI6IA+7/JLvg5/DHP/HLoq+swtjIZEl1DUHRTjCliTjJQ==
+X-Received: by 2002:a05:6a20:7347:b0:140:6979:2952 with SMTP id v7-20020a056a20734700b0014069792952mr7772550pzc.47.1692693957871;
+        Tue, 22 Aug 2023 01:45:57 -0700 (PDT)
 Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:e619:3fa0:1a90:6bb0])
-        by smtp.gmail.com with ESMTPSA id s26-20020aa78d5a000000b00666b012baedsm7304790pfe.158.2023.08.22.01.45.53
+        by smtp.gmail.com with ESMTPSA id s26-20020aa78d5a000000b00666b012baedsm7304790pfe.158.2023.08.22.01.45.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Aug 2023 01:45:55 -0700 (PDT)
+        Tue, 22 Aug 2023 01:45:57 -0700 (PDT)
 From:   Chen-Yu Tsai <wenst@chromium.org>
 To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -59,9 +59,9 @@ Cc:     Chen-Yu Tsai <wenst@chromium.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 10/11] regulator: mt6358: Add supply names for MT6366 regulators
-Date:   Tue, 22 Aug 2023 16:45:18 +0800
-Message-ID: <20230822084520.564937-11-wenst@chromium.org>
+Subject: [PATCH v2 11/11] arm64: dts: mediatek: mt8183-kukui: Add PMIC regulator supplies
+Date:   Tue, 22 Aug 2023 16:45:19 +0800
+Message-ID: <20230822084520.564937-12-wenst@chromium.org>
 X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
 In-Reply-To: <20230822084520.564937-1-wenst@chromium.org>
 References: <20230822084520.564937-1-wenst@chromium.org>
@@ -77,165 +77,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT bindings for MT6366 regulator defines the supply names for the
-PMIC.
-
-Add support for them by adding .supply_name field settings for each
-regulator. The buck regulators each have their own supply whose name
-can be derived from the regulator name. The LDOs have shared supplies.
+The PMIC regulator node is missing regulator supplies. Now that the
+binding supports them, add all the power rail supplies. Most of them
+are fed from a system-wide semi-regulated power rail. A couple LDOs
+are fed from the PMIC's own buck regulator outputs.
 
 Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
-Changes since v1:
-- Replaced underscores in supply names with hyphens
-- Reflowed a couple macros for readability
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
- drivers/regulator/mt6358-regulator.c | 77 +++++++++++++---------------
- 1 file changed, 37 insertions(+), 40 deletions(-)
-
-diff --git a/drivers/regulator/mt6358-regulator.c b/drivers/regulator/mt6358-regulator.c
-index 658c4dbf478f..e6533fd62a82 100644
---- a/drivers/regulator/mt6358-regulator.c
-+++ b/drivers/regulator/mt6358-regulator.c
-@@ -141,6 +141,7 @@ struct mt6358_regulator_info {
- [MT6366_ID_##vreg] = {	\
- 	.desc = {	\
- 		.name = #vreg,	\
-+		.supply_name = "vsys-" match,		\
- 		.of_match = of_match_ptr(match),	\
- 		.ops = &mt6358_volt_range_ops,	\
- 		.type = REGULATOR_VOLTAGE,	\
-@@ -163,10 +164,11 @@ struct mt6358_regulator_info {
- 	.modeset_mask = BIT(_modeset_shift),	\
- }
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+index 6ce16a265e05..d48c66cc8c18 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
+@@ -103,6 +103,14 @@ pp3300_alw: regulator6 {
+ 		regulator-max-microvolt = <3300000>;
+ 	};
  
--#define MT6366_LDO(match, vreg, volt_ranges, enreg, enbit, vosel, vosel_mask) \
-+#define MT6366_LDO(match, vreg, volt_ranges, supply, enreg, enbit, vosel, vosel_mask) \
- [MT6366_ID_##vreg] = {	\
- 	.desc = {	\
- 		.name = #vreg,	\
-+		.supply_name = supply,		\
- 		.of_match = of_match_ptr(match),	\
- 		.ops = &mt6358_volt_table_ops,	\
- 		.type = REGULATOR_VOLTAGE,	\
-@@ -187,12 +189,12 @@ struct mt6358_regulator_info {
- 	.qi = BIT(15),	\
- }
- 
--#define MT6366_LDO1(match, vreg, min, max, step,	\
--	_da_vsel_reg, _da_vsel_mask,	\
--	vosel, vosel_mask)	\
-+#define MT6366_LDO1(match, vreg, supply, min, max, step,	\
-+		    _da_vsel_reg, _da_vsel_mask, vosel, vosel_mask)	\
- [MT6366_ID_##vreg] = {	\
- 	.desc = {	\
- 		.name = #vreg,	\
-+		.supply_name = supply,		\
- 		.of_match = of_match_ptr(match),	\
- 		.ops = &mt6358_volt_range_ops,	\
- 		.type = REGULATOR_VOLTAGE,	\
-@@ -212,11 +214,11 @@ struct mt6358_regulator_info {
- 	.qi = BIT(0),	\
- }
- 
--#define MT6366_REG_FIXED(match, vreg,	\
--	enreg, enbit, volt)	\
-+#define MT6366_REG_FIXED(match, vreg, supply, enreg, enbit, volt)	\
- [MT6366_ID_##vreg] = {	\
- 	.desc = {	\
- 		.name = #vreg,	\
-+		.supply_name = supply,		\
- 		.of_match = of_match_ptr(match),	\
- 		.ops = &mt6358_volt_fixed_ops,	\
- 		.type = REGULATOR_VOLTAGE,	\
-@@ -585,57 +587,52 @@ static const struct mt6358_regulator_info mt6366_regulators[] = {
- 		    0x7f, MT6358_BUCK_VMODEM_DBG0, 0x7f, MT6358_VMODEM_ANA_CON0, 8),
- 	MT6366_BUCK("vs1", VS1, 1000000, 2587500, 12500,
- 		    0x7f, MT6358_BUCK_VS1_DBG0, 0x7f, MT6358_VS1_ANA_CON0, 8),
--	MT6366_REG_FIXED("vrf12", VRF12,
--			 MT6358_LDO_VRF12_CON0, 0, 1200000),
--	MT6366_REG_FIXED("vio18", VIO18,
--			 MT6358_LDO_VIO18_CON0, 0, 1800000),
--	MT6366_REG_FIXED("vfe28", VFE28, MT6358_LDO_VFE28_CON0, 0, 2800000),
--	MT6366_REG_FIXED("vcn28", VCN28, MT6358_LDO_VCN28_CON0, 0, 2800000),
--	MT6366_REG_FIXED("vxo22", VXO22, MT6358_LDO_VXO22_CON0, 0, 2200000),
--	MT6366_REG_FIXED("vaux18", VAUX18,
--			 MT6358_LDO_VAUX18_CON0, 0, 1800000),
--	MT6366_REG_FIXED("vbif28", VBIF28,
--			 MT6358_LDO_VBIF28_CON0, 0, 2800000),
--	MT6366_REG_FIXED("vio28", VIO28, MT6358_LDO_VIO28_CON0, 0, 2800000),
--	MT6366_REG_FIXED("va12", VA12, MT6358_LDO_VA12_CON0, 0, 1200000),
--	MT6366_REG_FIXED("vrf18", VRF18, MT6358_LDO_VRF18_CON0, 0, 1800000),
--	MT6366_REG_FIXED("vaud28", VAUD28,
--			 MT6358_LDO_VAUD28_CON0, 0, 2800000),
--	MT6366_LDO("vdram2", VDRAM2, vdram2,
-+	MT6366_REG_FIXED("vrf12", VRF12, "vs2-ldo2", MT6358_LDO_VRF12_CON0, 0, 1200000),
-+	MT6366_REG_FIXED("vio18", VIO18, "vs1-ldo1", MT6358_LDO_VIO18_CON0, 0, 1800000),
-+	MT6366_REG_FIXED("vfe28", VFE28, "vsys-ldo1", MT6358_LDO_VFE28_CON0, 0, 2800000),
-+	MT6366_REG_FIXED("vcn28", VCN28, "vsys-ldo1", MT6358_LDO_VCN28_CON0, 0, 2800000),
-+	MT6366_REG_FIXED("vxo22", VXO22, "vsys-ldo1", MT6358_LDO_VXO22_CON0, 0, 2200000),
-+	MT6366_REG_FIXED("vaux18", VAUX18, "vsys-ldo1", MT6358_LDO_VAUX18_CON0, 0, 1800000),
-+	MT6366_REG_FIXED("vbif28", VBIF28, "vsys-ldo1", MT6358_LDO_VBIF28_CON0, 0, 2800000),
-+	MT6366_REG_FIXED("vio28", VIO28, "vsys-ldo2", MT6358_LDO_VIO28_CON0, 0, 2800000),
-+	MT6366_REG_FIXED("va12", VA12, "vs2-ldo2", MT6358_LDO_VA12_CON0, 0, 1200000),
-+	MT6366_REG_FIXED("vrf18", VRF18, "vs1-ldo1", MT6358_LDO_VRF18_CON0, 0, 1800000),
-+	MT6366_REG_FIXED("vaud28", VAUD28, "vsys-ldo1", MT6358_LDO_VAUD28_CON0, 0, 2800000),
-+	MT6366_LDO("vdram2", VDRAM2, vdram2, "vs2-ldo1",
- 		   MT6358_LDO_VDRAM2_CON0, 0, MT6358_LDO_VDRAM2_ELR0, 0x10),
--	MT6366_LDO("vsim1", VSIM1, vsim,
-+	MT6366_LDO("vsim1", VSIM1, vsim, "vsys-ldo1",
- 		   MT6358_LDO_VSIM1_CON0, 0, MT6358_VSIM1_ANA_CON0, 0xf00),
--	MT6366_LDO("vibr", VIBR, vibr,
-+	MT6366_LDO("vibr", VIBR, vibr, "vsys-ldo3",
- 		   MT6358_LDO_VIBR_CON0, 0, MT6358_VIBR_ANA_CON0, 0xf00),
--	MT6366_LDO("vusb", VUSB, vusb,
-+	MT6366_LDO("vusb", VUSB, vusb, "vsys-ldo1",
- 		   MT6358_LDO_VUSB_CON0_0, 0, MT6358_VUSB_ANA_CON0, 0x700),
--	MT6366_LDO("vefuse", VEFUSE, vefuse,
-+	MT6366_LDO("vefuse", VEFUSE, vefuse, "vs1-ldo1",
- 		   MT6358_LDO_VEFUSE_CON0, 0, MT6358_VEFUSE_ANA_CON0, 0xf00),
--	MT6366_LDO("vmch", VMCH, vmch_vemc,
-+	MT6366_LDO("vmch", VMCH, vmch_vemc, "vsys-ldo2",
- 		   MT6358_LDO_VMCH_CON0, 0, MT6358_VMCH_ANA_CON0, 0x700),
--	MT6366_LDO("vemc", VEMC, vmch_vemc,
-+	MT6366_LDO("vemc", VEMC, vmch_vemc, "vsys-ldo3",
- 		   MT6358_LDO_VEMC_CON0, 0, MT6358_VEMC_ANA_CON0, 0x700),
--	MT6366_LDO("vcn33", VCN33, vcn33,
-+	MT6366_LDO("vcn33", VCN33, vcn33, "vsys-ldo3",
- 		   MT6358_LDO_VCN33_CON0_0, 0, MT6358_VCN33_ANA_CON0, 0x300),
--	MT6366_LDO("vmc", VMC, vmc,
-+	MT6366_LDO("vmc", VMC, vmc, "vsys-ldo2",
- 		   MT6358_LDO_VMC_CON0, 0, MT6358_VMC_ANA_CON0, 0xf00),
--	MT6366_LDO("vsim2", VSIM2, vsim,
-+	MT6366_LDO("vsim2", VSIM2, vsim, "vsys-ldo2",
- 		   MT6358_LDO_VSIM2_CON0, 0, MT6358_VSIM2_ANA_CON0, 0xf00),
--	MT6366_LDO("vcn18", VCN18, mt6366_vcn18_vm18,
-+	MT6366_LDO("vcn18", VCN18, mt6366_vcn18_vm18, "vs1-ldo1",
- 		   MT6358_LDO_VCN18_CON0, 0, MT6358_VCN18_ANA_CON0, 0xf00),
--	MT6366_LDO("vm18", VM18, mt6366_vcn18_vm18,
-+	MT6366_LDO("vm18", VM18, mt6366_vcn18_vm18, "vs1-ldo1",
- 		   MT6358_LDO_VM18_CON0, 0, MT6358_VM18_ANA_CON0, 0xf00),
--	MT6366_LDO("vmddr", VMDDR, mt6366_vmddr,
-+	MT6366_LDO("vmddr", VMDDR, mt6366_vmddr, "vs2-ldo1",
- 		   MT6358_LDO_VMDDR_CON0, 0, MT6358_VMDDR_ANA_CON0, 0xf00),
--	MT6366_LDO1("vsram-proc11", VSRAM_PROC11, 500000, 1293750, 6250,
-+	MT6366_LDO1("vsram-proc11", VSRAM_PROC11, "vs2-ldo3", 500000, 1293750, 6250,
- 		    MT6358_LDO_VSRAM_PROC11_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON0, 0x7f),
--	MT6366_LDO1("vsram-others", VSRAM_OTHERS, 500000, 1293750, 6250,
-+	MT6366_LDO1("vsram-others", VSRAM_OTHERS, "vs2-ldo3", 500000, 1293750, 6250,
- 		    MT6358_LDO_VSRAM_OTHERS_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON2, 0x7f),
--	MT6366_LDO1("vsram-gpu", VSRAM_GPU, 500000, 1293750, 6250,
-+	MT6366_LDO1("vsram-gpu", VSRAM_GPU, "vs2-ldo3", 500000, 1293750, 6250,
- 		    MT6358_LDO_VSRAM_GPU_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON3, 0x7f),
--	MT6366_LDO1("vsram-proc12", VSRAM_PROC12, 500000, 1293750, 6250,
-+	MT6366_LDO1("vsram-proc12", VSRAM_PROC12, "vs2-ldo3", 500000, 1293750, 6250,
- 		    MT6358_LDO_VSRAM_PROC12_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON1, 0x7f),
--	MT6366_LDO1("vsram-core", VSRAM_CORE, 500000, 1293750, 6250,
-+	MT6366_LDO1("vsram-core", VSRAM_CORE, "vs2-ldo3", 500000, 1293750, 6250,
- 		    MT6358_LDO_VSRAM_CORE_DBG0, 0x7f00, MT6358_LDO_VSRAM_CON5, 0x7f),
++	/* system wide semi-regulated power rail from charger */
++	reg_vsys: regulator-vsys {
++		compatible = "regulator-fixed";
++		regulator-name = "vsys";
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
+ 	reserved_memory: reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -404,6 +412,26 @@ &mt6358codec {
+ 	Avdd-supply = <&mt6358_vaud28_reg>;
  };
  
++&mt6358regulator {
++	vsys-ldo1-supply = <&reg_vsys>;
++	vsys-ldo2-supply = <&reg_vsys>;
++	vsys-ldo3-supply = <&reg_vsys>;
++	vsys-vcore-supply = <&reg_vsys>;
++	vsys-vdram1-supply = <&reg_vsys>;
++	vsys-vgpu-supply = <&reg_vsys>;
++	vsys-vmodem-supply = <&reg_vsys>;
++	vsys-vpa-supply = <&reg_vsys>;
++	vsys-vproc11-supply = <&reg_vsys>;
++	vsys-vproc12-supply = <&reg_vsys>;
++	vsys-vs1-supply = <&reg_vsys>;
++	vsys-vs2-supply = <&reg_vsys>;
++	vs1-ldo1-supply = <&mt6358_vs1_reg>;
++	vs2-ldo1-supply = <&mt6358_vdram1_reg>;
++	vs2-ldo2-supply = <&mt6358_vs2_reg>;
++	vs2-ldo3-supply = <&mt6358_vs2_reg>;
++	vs2-ldo4-supply = <&mt6358_vs2_reg>;
++};
++
+ &mt6358_vgpu_reg {
+ 	regulator-min-microvolt = <625000>;
+ 	regulator-max-microvolt = <900000>;
 -- 
 2.42.0.rc1.204.g551eb34607-goog
 
