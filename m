@@ -2,60 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA06F783C68
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 11:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0091C783C6C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 11:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234155AbjHVJCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 05:02:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36678 "EHLO
+        id S234176AbjHVJCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 05:02:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234151AbjHVJCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 05:02:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C06F113;
-        Tue, 22 Aug 2023 02:02:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C8344612CB;
-        Tue, 22 Aug 2023 09:02:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 281D1C433C7;
-        Tue, 22 Aug 2023 09:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692694940;
-        bh=54luh6aWDj+Dj6PCgagvuO1k+5MIOroKY5M7KCBKnsw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=I5NWbbQmafaI/unLPzRx2CDciEoxctCBCvzlAgz2f0THOSfkd6gFdWSKEx3ZHmox6
-         5g3aIfJgb3li19UAfb41tbDKfwnxVn6OD3bvIkx085TRPEm11sXWYz0q76RKDkeuWs
-         86CsYc8qV+tXfj7ANzydP9E+9I0kYqVrVqgwIm+45ZCW6Cnt5H39EZvuwxgLWm1nCx
-         ZOJMiLxNlYz/FdtelyeoXu5MrT3FQSTCDJ3/avpHrmhjoId5hs7Qm6vMTcAa0nC5tB
-         mF3+KyKwPhMuyutmf2nDVDS2u+TcQDfdyRA8n7g7BW89aAeeeEMNcWmWUZ4z75xu68
-         Tb828Ha8kERMQ==
-Date:   Tue, 22 Aug 2023 11:02:11 +0200
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     Frank Li <Frank.Li@nxp.com>
-Cc:     bhelgaas@google.com, devicetree@vger.kernel.org,
-        gustavo.pimentel@synopsys.com, helgaas@kernel.org,
-        imx@lists.linux.dev, kw@linux.com, leoyang.li@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, mani@kernel.org,
-        manivannan.sadhasivam@linaro.org, minghuan.lian@nxp.com,
-        mingkai.hu@nxp.com, robh+dt@kernel.org, roy.zang@nxp.com,
-        shawnguo@kernel.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v12 3/3] PCI: layerscape: Add power management support
- for ls1028a
-Message-ID: <ZOR5k7B3qRFEjPXR@lpieralisi>
-References: <20230821184815.2167131-1-Frank.Li@nxp.com>
- <20230821184815.2167131-4-Frank.Li@nxp.com>
+        with ESMTP id S234168AbjHVJCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 05:02:46 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB026CC6
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:02:42 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id d9443c01a7336-1bc0d39b52cso26945205ad.2
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 02:02:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1692694962; x=1693299762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=jYslESWmMQ4K7vL4A0BMOOm6rNRmZOTpHTitLw9DHqU=;
+        b=IZpmDu44ZxrJ28gkaSTau6rtcq4Mn0RS1cPgOg/yZQpFy1RSpxwNPef21oo3JoQHAy
+         mktU0yR3mPGt69oSav3EI+zYvaUCJyUxEhIpYZv7LQHGzOkgARKIJ+Hpeeli4uONq5hl
+         YFJ8r/mj+TUMAhEvLErkjEm9/qyu2UVplM7aCP6AD+AFhxT0iUjCxxTjd5CE3DHqoYsb
+         wD395ozmg2i80QGYoh4P2kuABNKnixmHgct1mEDkzfC3WTVQkQhNLeKA7j5AbbsleA64
+         bn1xODYGm/1yLrNSlhUj/tyurEis8l24M5LG5h9EZPpxFywQBvk80TmlHfZPiQtsEB/S
+         sEzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692694962; x=1693299762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jYslESWmMQ4K7vL4A0BMOOm6rNRmZOTpHTitLw9DHqU=;
+        b=L7PrwDxD/bYZpygGptNPiTWZv0dGGHoYHl0T419lGyQ1EmdBNqKPCNEQwP2yuP3rvM
+         ZD7Mk0Mj1qL3VChf/Gi303I19/NlnOMRqJXjKinhxgsQ5+Ed3OnZLJgddLuMn55/9hrL
+         8RG/f+N1vQZF9rgzLAOcAZnjEaqO0YmrDCZk9mtjubFLH5gF3ZhoQpQpir31LZUkwimb
+         /7R1MJyab394mvsCm/NtKhPE9Cv1ZKpo4kdzwK4BJsLHJ51oPqEjfejm8lN4eybq4zMS
+         tQ13wqK9eWHZg0rajiVTJVmkYfxsejk4J143x62p974EU7+2P38KYaZs0y4GbvaSbYI6
+         s/OA==
+X-Gm-Message-State: AOJu0YxeRg385nKlkTWZ1H9rrGhhr2jdsYJpEdEsAZnVI3D9uVqqNlce
+        e+NSHKUmi2Zm1qi+Dhy3izs/5pju+wYvcNOlIBeJIQ==
+X-Google-Smtp-Source: AGHT+IFt499tIWzynN4fBJ9ZZ/oKER6cpMYoxuVszPhAfMParzVVg13mb6qLOSJaPIjSOdErxj19rn4mfJHazwpejyI=
+X-Received: by 2002:a17:90b:1081:b0:267:717f:2f91 with SMTP id
+ gj1-20020a17090b108100b00267717f2f91mr5890871pjb.40.1692694962355; Tue, 22
+ Aug 2023 02:02:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230821184815.2167131-4-Frank.Li@nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230802193155.2170935-1-Naresh.Solanki@9elements.com>
+ <20230808-stand-cheddar-b76b0b7509a0@spud> <eced746a-1181-bd8f-6828-4a4eeb79727c@roeck-us.net>
+ <20230808-esquire-epidemic-f9bd74ffde25@spud> <CABqG17jm938MaEeqS03WeryVWSRBS7Bqq2Vwq9SL4QOGqXU43A@mail.gmail.com>
+ <b3eebd2b-c73b-fdc7-2b2b-07e97db26d92@linaro.org> <CABqG17hgU44H9KbALy_336Sb+YOiEOzbnAihiox1OEuVnNiayQ@mail.gmail.com>
+ <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
+In-Reply-To: <5cde8986-1b12-a85e-b2fe-e1aa1087b429@linaro.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+Date:   Tue, 22 Aug 2023 14:32:31 +0530
+Message-ID: <CABqG17gL7XL0nKZ0QEYkF672AvfJQXapExw3p1iGm88U9idq=w@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,245 +78,90 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 02:48:15PM -0400, Frank Li wrote:
-> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> 
-> Add PME_Turn_off/PME_TO_Ack handshake sequence for ls1028a platform. Call
-> common dwc dw_pcie_suspend(resume)_noirq() function when system enter/exit
-> suspend state.
-> 
-> Acked-by: Manivannan Sadhasivam <mani@kernel.org>
-> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/pci/controller/dwc/pci-layerscape.c | 135 ++++++++++++++++++--
->  1 file changed, 126 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
-> index ed5fb492fe08..97b8d3329df7 100644
-> --- a/drivers/pci/controller/dwc/pci-layerscape.c
-> +++ b/drivers/pci/controller/dwc/pci-layerscape.c
-> @@ -8,9 +8,11 @@
->   * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
->   */
->  
-> +#include <linux/delay.h>
->  #include <linux/kernel.h>
->  #include <linux/interrupt.h>
->  #include <linux/init.h>
-> +#include <linux/iopoll.h>
->  #include <linux/of_pci.h>
->  #include <linux/of_platform.h>
->  #include <linux/of_address.h>
-> @@ -20,6 +22,7 @@
->  #include <linux/mfd/syscon.h>
->  #include <linux/regmap.h>
->  
-> +#include "../../pci.h"
->  #include "pcie-designware.h"
->  
->  /* PEX Internal Configuration Registers */
-> @@ -27,12 +30,26 @@
->  #define PCIE_ABSERR		0x8d0 /* Bridge Slave Error Response Register */
->  #define PCIE_ABSERR_SETTING	0x9401 /* Forward error of non-posted request */
->  
-> +/* PF Message Command Register */
-> +#define LS_PCIE_PF_MCR		0x2c
-> +#define PF_MCR_PTOMR		BIT(0)
-> +#define PF_MCR_EXL2S		BIT(1)
-> +
->  #define PCIE_IATU_NUM		6
->  
-> +struct ls_pcie_drvdata {
-> +	const u32 pf_off;
-> +	bool pm_support;
-> +};
-> +
->  struct ls_pcie {
->  	struct dw_pcie *pci;
-> +	const struct ls_pcie_drvdata *drvdata;
-> +	void __iomem *pf_base;
-> +	bool big_endian;
->  };
->  
-> +#define ls_pcie_pf_readl_addr(addr)	ls_pcie_pf_readl(pcie, addr)
->  #define to_ls_pcie(x)	dev_get_drvdata((x)->dev)
->  
->  static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
-> @@ -73,6 +90,64 @@ static void ls_pcie_fix_error_response(struct ls_pcie *pcie)
->  	iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
->  }
->  
-> +static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
-> +{
-> +	if (pcie->big_endian)
-> +		return ioread32be(pcie->pf_base + off);
-> +
-> +	return ioread32(pcie->pf_base + off);
-> +}
-> +
-> +static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
-> +{
-> +	if (pcie->big_endian)
-> +		iowrite32be(val, pcie->pf_base + off);
-> +	else
-> +		iowrite32(val, pcie->pf_base + off);
-> +}
-> +
-> +static void ls_pcie_send_turnoff_msg(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct ls_pcie *pcie = to_ls_pcie(pci);
-> +	u32 val;
-> +	int ret;
-> +
-> +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-> +	val |= PF_MCR_PTOMR;
-> +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
-> +
-> +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-> +				 val, !(val & PF_MCR_PTOMR),
-> +				 PCIE_PME_TO_L2_TIMEOUT_US/10,
-> +				 PCIE_PME_TO_L2_TIMEOUT_US);
-> +	if (ret)
-> +		dev_err(pcie->pci->dev, "PME_Turn_off timeout\n");
-> +}
-> +
-> +static void ls_pcie_exit_from_l2(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct ls_pcie *pcie = to_ls_pcie(pci);
-> +	u32 val;
-> +	int ret;
-> +
-> +	/*
-> +	 * Set PF_MCR_EXL2S bit in LS_PCIE_PF_MCR register for the link
-> +	 * to exit L2 state.
-> +	 */
-> +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
-> +	val |= PF_MCR_EXL2S;
-> +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
-> +
-> +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
-> +				 val, !(val & PF_MCR_EXL2S),
-> +				 1000,
-> +				 10000);
+Hi
 
-I can add a comment myself - please explain how this delay was chosen,
-any piece of information could be useful for a future developer, let
-me know and I will add it.
-
-> +	if (ret)
-> +		dev_err(pcie->pci->dev, "L2 exit timeout\n");
-> +}
-> +
->  static int ls_pcie_host_init(struct dw_pcie_rp *pp)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> @@ -91,18 +166,27 @@ static int ls_pcie_host_init(struct dw_pcie_rp *pp)
->  
->  static const struct dw_pcie_host_ops ls_pcie_host_ops = {
->  	.host_init = ls_pcie_host_init,
-> +	.pme_turn_off = ls_pcie_send_turnoff_msg,
-> +};
-> +
-> +static const struct ls_pcie_drvdata ls1021a_drvdata = {
-
-I suggest adding .pm_support = false explicitly here, I can
-do it myself.
-
-Thanks,
-Lorenzo
-
-> +};
-> +
-> +static const struct ls_pcie_drvdata layerscape_drvdata = {
-> +	.pf_off = 0xc0000,
-> +	.pm_support = true,
->  };
->  
->  static const struct of_device_id ls_pcie_of_match[] = {
-> -	{ .compatible = "fsl,ls1012a-pcie", },
-> -	{ .compatible = "fsl,ls1021a-pcie", },
-> -	{ .compatible = "fsl,ls1028a-pcie", },
-> -	{ .compatible = "fsl,ls1043a-pcie", },
-> -	{ .compatible = "fsl,ls1046a-pcie", },
-> -	{ .compatible = "fsl,ls2080a-pcie", },
-> -	{ .compatible = "fsl,ls2085a-pcie", },
-> -	{ .compatible = "fsl,ls2088a-pcie", },
-> -	{ .compatible = "fsl,ls1088a-pcie", },
-> +	{ .compatible = "fsl,ls1012a-pcie", .data = &layerscape_drvdata },
-> +	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021a_drvdata },
-> +	{ .compatible = "fsl,ls1028a-pcie", .data = &layerscape_drvdata },
-> +	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1021a_drvdata },
-> +	{ .compatible = "fsl,ls1046a-pcie", .data = &layerscape_drvdata },
-> +	{ .compatible = "fsl,ls2080a-pcie", .data = &layerscape_drvdata },
-> +	{ .compatible = "fsl,ls2085a-pcie", .data = &layerscape_drvdata },
-> +	{ .compatible = "fsl,ls2088a-pcie", .data = &layerscape_drvdata },
-> +	{ .compatible = "fsl,ls1088a-pcie", .data = &layerscape_drvdata },
->  	{ },
->  };
->  
-> @@ -121,6 +205,8 @@ static int ls_pcie_probe(struct platform_device *pdev)
->  	if (!pci)
->  		return -ENOMEM;
->  
-> +	pcie->drvdata = of_device_get_match_data(dev);
-> +
->  	pci->dev = dev;
->  	pci->pp.ops = &ls_pcie_host_ops;
->  
-> @@ -131,6 +217,10 @@ static int ls_pcie_probe(struct platform_device *pdev)
->  	if (IS_ERR(pci->dbi_base))
->  		return PTR_ERR(pci->dbi_base);
->  
-> +	pcie->big_endian = of_property_read_bool(dev->of_node, "big-endian");
-> +
-> +	pcie->pf_base = pci->dbi_base + pcie->drvdata->pf_off;
-> +
->  	if (!ls_pcie_is_bridge(pcie))
->  		return -ENODEV;
->  
-> @@ -139,12 +229,39 @@ static int ls_pcie_probe(struct platform_device *pdev)
->  	return dw_pcie_host_init(&pci->pp);
->  }
->  
-> +static int ls_pcie_suspend_noirq(struct device *dev)
-> +{
-> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
-> +
-> +	if (!pcie->drvdata->pm_support)
-> +		return 0;
-> +
-> +	return dw_pcie_suspend_noirq(pcie->pci);
-> +}
-> +
-> +static int ls_pcie_resume_noirq(struct device *dev)
-> +{
-> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
-> +
-> +	if (!pcie->drvdata->pm_support)
-> +		return 0;
-> +
-> +	ls_pcie_exit_from_l2(&pcie->pci->pp);
-> +
-> +	return dw_pcie_resume_noirq(pcie->pci);
-> +}
-> +
-> +static const struct dev_pm_ops ls_pcie_pm_ops = {
-> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq, ls_pcie_resume_noirq)
-> +};
-> +
->  static struct platform_driver ls_pcie_driver = {
->  	.probe = ls_pcie_probe,
->  	.driver = {
->  		.name = "layerscape-pcie",
->  		.of_match_table = ls_pcie_of_match,
->  		.suppress_bind_attrs = true,
-> +		.pm = &ls_pcie_pm_ops,
->  	},
->  };
->  builtin_platform_driver(ls_pcie_driver);
-> -- 
-> 2.34.1
-> 
+On Fri, 18 Aug 2023 at 14:53, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/08/2023 10:51, Naresh Solanki wrote:
+> > Hi Krzysztof,
+> >
+> > On Tue, 15 Aug 2023 at 01:02, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 11/08/2023 18:00, Naresh Solanki wrote:
+> >>> Hi,
+> >>>
+> >>> On Tue, 8 Aug 2023 at 19:58, Conor Dooley <conor@kernel.org> wrote:
+> >>>>
+> >>>> On Tue, Aug 08, 2023 at 07:10:08AM -0700, Guenter Roeck wrote:
+> >>>>> On 8/8/23 04:46, Conor Dooley wrote:
+> >>>>>> On Wed, Aug 02, 2023 at 09:31:51PM +0200, Naresh Solanki wrote:
+> >>>>>>> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> >>>>>>>
+> >>>>>>> The TDA38640 chip has different output control mechanisms depending on
+> >>>>>>> its mode of operation. When the chip is in SVID mode, only
+> >>>>>>> hardware-based output control is supported via ENABLE pin. However, when
+> >>>>>>> it operates in PMBus mode, software control works perfectly.
+> >>>>>>>
+> >>>>>>> To enable software control as a workaround in SVID mode, add the DT
+> >>>>>>> property 'infineon,en-svid-control'. This property will enable the
+> >>>>>>> workaround, which utilizes ENABLE pin polarity flipping for output when
+> >>>>>>> the chip is in SVID mode.
+> >>>>>>
+> >>>>>> Why do you need a custom property for this? How come it is not possible
+> >>>>>> to determine what bus you are on?
+> >>>>>>
+> >>>>>
+> >>>>> That is not the point. Yes, it can be detected if the control method is
+> >>>>> PMBus or SVID. However, in SVID mode, SVID is supposed to control the
+> >>>>> output, not PMBUs. This is bypassed by controlling the polarity of the
+> >>>>> (physical) output enable signal. We do _not_ want this enabled automatically
+> >>>>> in SVID mode. Its side effects on random boards using this chip are unknown.
+> >>>>> Thus, this needs a property which specifically enables this functionality
+> >>>>> for users who _really_ need to use it and (hopefully) know what they are
+> >>>>> doing.
+> >>>>
+> >>>> Hmm, reading this it makes a lot more sense why this is a property - I
+> >>>> guess I just struggled to understand the commit message here,
+> >>>> particularly what the benefit of using the workaround is. I'm still
+> >>>> having difficulty parsing the commit & property text though - its
+> >>>> unclear to me when you would need to use it - so I will stay out
+> >>>> of the way & let Rob or Krzysztof handle things.
+> >>>
+> >>> To provide context, my system employs a unique power sequence
+> >>> strategy utilizing a BMC (Baseboard Management Controller),
+> >>> rendering the reliance on the ENABLE pin unnecessary.
+> >>> In this configuration, the ENABLE pin is grounded in the hardware.
+> >>> While most regulators facilitate PMBus Operation for output control,
+> >>> the TDA38640 chip, when in SVID mode, is constrained by the
+> >>> ENABLE pin to align with Intel specifications.
+> >>> My communication with Infineon confirmed that the recommended
+> >>> approach is to invert the Enable Pin for my use case.
+> >>>
+> >>> Since this is not typically the use case for most setup & hence DT property
+> >>> is must for enabling the special case.
+> >>>
+> >>> For further insight into my setup's power sequence strategy, you can
+> >>> refer to the following link: https://github.com/9elements/pwrseqd
+> >>>
+> >>
+> >> This justifies to me the property, but still you described desired
+> >> driver behavior, not the hardware characteristic. Don't describe what
+> >> you want to control, but describe the entire system.
+> > I guess by entire system you mean how the regulators(including
+> > TDA38640) connected & operated in our setup ?
+>
+> I mean, property name and description should say what is the
+> characteristic of the hardware/firmware/entire system.
+Based on your feedback, will update to below:
+infineon,fixed-level-en-pin:
+    description: |
+      Indicate the ENABLE pin is set at fixed level or left
+      unconnected(has internal pull-up).
+    type: boolean
+>
+>
+> Best regards,
+> Krzysztof
+>
