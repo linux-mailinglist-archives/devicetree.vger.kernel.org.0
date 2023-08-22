@@ -2,212 +2,391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FB8D784136
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:51:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F899784163
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235839AbjHVMvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 08:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59374 "EHLO
+        id S235871AbjHVM7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 08:59:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231901AbjHVMvN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:51:13 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2139.outbound.protection.outlook.com [40.107.114.139])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF81CC1;
-        Tue, 22 Aug 2023 05:51:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WCJ7tpPiHKDRbJZABCbniEyNtI8PPmm7njfFQTgLQmV+RWgZ7MiDrD2vJ0NisITTYpnskOXkgPdeSsonNfskaQvylGQOFELTGq+Td4T31bK79sE7er/0I85Be0YS+yxVYOZEuX2OVTfFfCzCdlfkGTSc1YaMnKeSifWJDol/mFUX3an3bIdO//xyP1GMxQIr4KGtcBy4AudAO/JBeOcc0BvJyqKezVlnIEC4tOyIvzXTfRvXYw+3bfeJ77gcAEz8Q0rL+BfhZaDTeZbsGbSPrRTHE1DLdTXczNsQVEjCLMr8AtzOkQMrb2AR/Vi00M2v3z2/lhWf4o7QIG1shPCaXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A69C5hUHmqsVsivblBV5YFMeLFY9K5/8uckVdCU1xdU=;
- b=kccmuz+W1WT9fWEa7Q0ZJA5oNc6lQ0lwRlhuhFeFaSQr8oXAM/lXf/JrRgac1TplKyS7pBPWOmwgwf4Tmn8bHniEP/zz9z6w9BIEJb7XBBBtxso2nfI+IsUwckZBH8Vlm2U3KkxZERtQMlPVL7cZSk6nVVZSeRpKKccjlOKZ1i87tZlHYhjt1KXkRdTAMrYqIDKJX4Yy9es6CeVsWnAIqa+dDH3dqv5zG/fdxdno8H0kg7OVBrKi5CuChGIvM0I3RhibqbE/eQ9bWpDuYfuM4IOgSQAeZO8o0HCwCRPMMUcwswE+UlHjpxbQw6apERD1v2c5lDXLdHWQJ55GKP/lwQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A69C5hUHmqsVsivblBV5YFMeLFY9K5/8uckVdCU1xdU=;
- b=pVJa9CDqLUtPxThsEu3l5sT76KVl93UcL728vAKMUpb5c+xnx8L547Cx+J93VFUFQfc5d76t5Gk2r/fYVkG4oi9NIykXk3UAYwfACPXK1tQStnS25UkLjnyDhYX8vRkuayVQ1D+ET5gqLYIXYP56INaWNYRagz+tN2xfRDDEIzY=
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com (2603:1096:604:bb::5)
- by OS3PR01MB9461.jpnprd01.prod.outlook.com (2603:1096:604:1cc::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
- 2023 12:51:07 +0000
-Received: from OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::2168:623e:e186:4cf0]) by OS0PR01MB5922.jpnprd01.prod.outlook.com
- ([fe80::2168:623e:e186:4cf0%7]) with mapi id 15.20.6699.025; Tue, 22 Aug 2023
- 12:51:04 +0000
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: RE: [PATCH 2/4] usb: typec: tcpci_rt1711h: Convert enum->pointer for
- data in the match tables
-Thread-Topic: [PATCH 2/4] usb: typec: tcpci_rt1711h: Convert enum->pointer for
- data in the match tables
-Thread-Index: AQHZ05ZTk3glzaSVW0+92976qL4cHa/0uMsAgAAGj4CAACC6gIAABEKAgAAYvgCAAO48gIAASZkAgAAESoCAAAJkAIAACjFA
-Date:   Tue, 22 Aug 2023 12:51:04 +0000
-Message-ID: <OS0PR01MB5922715864D3A25CFBFD0922861FA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-References: <20230820184402.102486-1-biju.das.jz@bp.renesas.com>
- <20230820184402.102486-3-biju.das.jz@bp.renesas.com>
- <ZONgzqlS8bGP0umn@smile.fi.intel.com>
- <CAMuHMdVY6VNFhMMzub9RrXd1zo=_7brQVtoBtogNuVfhbkg_tA@mail.gmail.com>
- <ZOOBw/3fqdinIwCh@smile.fi.intel.com>
- <CAMuHMdW8mqtceDxuZ4Ccq0Wrg8ySfFzVC3OBB0AqvfSR-54KYA@mail.gmail.com>
- <ZOOaFioDSpasda82@smile.fi.intel.com>
- <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
- <ZOSfrHUDpaax1FS4@smile.fi.intel.com>
- <CAMuHMdVwy72utSLBFro7emgG5Hx6xzD8MHwXczAyJJvBpVDgYg@mail.gmail.com>
- <ZOSlRhLiYoZmcDfT@smile.fi.intel.com>
-In-Reply-To: <ZOSlRhLiYoZmcDfT@smile.fi.intel.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS0PR01MB5922:EE_|OS3PR01MB9461:EE_
-x-ms-office365-filtering-correlation-id: ed39ff21-0542-4365-8d95-08dba30e7247
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dluelS8InSPmHfHwXtMIdeQfkF4zLpcfkyvNjm2FJ9LpHhpoFI0/+sqYDj/i77e1C4t/C3Vwmou7y2ZNPiUi78Z2PgS/VBdis8uaLY1qyA8+bs5yY26Et5MpqonTAanohfYlChQ6ROaMAGZZOyfLr2lC+svYyDeRHKmnI+WEGMyQRQjCXSPvut7g24HVKpOaluJP+HY+NCBiAUiCbwPkezo7z8BfcFVxJbmTt+Cr9R9tyi/kEZ4yuATuZe4VReXddh8/oG6IZZW+bNhCRxFm+V8AMXP+uWVOERZX0iYoHItU9sUIxgrVNb8oAvoTD+pgx5ROxbwKNY864cCbQfTodsvp++PapSwM6p2vi40xI1/wmcSTOWYLQEye/vSAiPQil9XBRGoOFspnL5It0FPS28T1WY2iWkQj51NO0WTLTBJazd1chRDljnFDVPQLW+Fxlrl2JvA3PhiLTvCWtyiaDE8dxMU/tK8LTzkHiDbGujUsRygiyfkvk5yuq7LEBgXM580FkNeGw7SudYzD1EbdP8iN9ydonBFzv7d6Ripg/gZ2AgWclvvcaQ9nAQlp7LiajaPdygs+k9j/iidxCFNQOtK291g0RDkCPvlBaPRCkNrEnOeYRvPDLMdpoYvp0Haw
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS0PR01MB5922.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(396003)(366004)(39860400002)(346002)(1800799009)(186009)(451199024)(54906003)(76116006)(66446008)(66476007)(66556008)(64756008)(316002)(9686003)(66946007)(110136005)(8676002)(8936002)(4326008)(41300700001)(122000001)(478600001)(55016003)(71200400001)(38100700002)(38070700005)(53546011)(6506007)(83380400001)(2906002)(7416002)(86362001)(7696005)(5660300002)(26005)(33656002)(52536014);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TmIyaU9ld0dLMTBwV28wMzFoOXdZMm1UNEVqNFloQ2hJNlJmbGVabUk2czF4?=
- =?utf-8?B?alYvdHRDWjZ5STBqVkQzUWJmckZyY2R2T0VUNzJ6M3c1ekRaTSt4YStNVUVM?=
- =?utf-8?B?REh0RHVmZlI1SnFHTUxkN1l1ejYxQTRjME5iTnVrcFc4bXNERytZcCszbmlk?=
- =?utf-8?B?ek15NnFHQVFXVzZ1NStwcW1XZlQrN2lsWWhva0t4aXFTWmhrclF5MDJNcWg5?=
- =?utf-8?B?cWx6bGVOYnZCRFcxeElyTmJhRWVqZTNESnVKUUV0UGgrUnZtb1AvQng3SGJm?=
- =?utf-8?B?a0RzcmNHZkFMUU14QnNPS2xKbkQ3TzdISGhIUlZpOTJOekpjelVSOU0xVlM5?=
- =?utf-8?B?L0NFRmlDRTRJamdVOTRNV3E4cklRczgyazJvdmhDRUF3anh6SDgvc1lVV21L?=
- =?utf-8?B?RUY4SEFNRWJBOHYva2NUTGpoNStENzlYMVF6MUIwUEdsS0pyVjlpM3owUXVB?=
- =?utf-8?B?RVdlRkJTSFUzOGZRZFB5cW5hMUZUVk51TnFtSVZwbXNhMmV4S3hBRHBONVQ3?=
- =?utf-8?B?dURCRlRzWWxzT2pEZTF0aEdMUVUwUmIvNFhGWFJTRXZ3Unp5WXdadlBSaFN5?=
- =?utf-8?B?NUVRZkRFa3NwVnpRUlcvWVpuV1V6TVdVTTBCNDFySEY1SUlBS0xWR0dsbHJx?=
- =?utf-8?B?ZVBubVNMOHR5N3JNMTFyOFk2VS93cnVSVUM1NTlkWkR4NzZtTURVbllHMmsv?=
- =?utf-8?B?Q29BSWFCQVZhcldJckpRSmJRa0M4dmRaUnIxZ0NLRnl0Y3FsekdFQmxqN3ps?=
- =?utf-8?B?bktvd0RPeExmOWpIb3d4bWVTZE1zYUxzdmZxWWh6ODNxaHNPcGZob29odEoy?=
- =?utf-8?B?aTErTTN3ZU5YYWd2K0pyN3FIRWVIdGl0YnN4OGlZQWFGTjlBSGdZN0FtNFZN?=
- =?utf-8?B?Sm1aaE5uVzErVUFab1hpRVo0RkFuejJjZDVHUWpiL0kvVTI4S0I1dVVxVU0r?=
- =?utf-8?B?L0J4U296alhMVXNBRU9qOEZCa2lSVmVDbHVCOWY3d2dFUmJtZGozNW1Ka0Ns?=
- =?utf-8?B?Sm5Bb2NSVFM4bW9JSGN3VnNuRGQ4Qit4MVFGQ0dNQ0drU0UraDNUWE9BQURk?=
- =?utf-8?B?RjQ5Q2J6ckYrSThBY2NVQ2pLLytpaXI1RXN3VXJIYmRKQkxnTnBQWXNzZmFq?=
- =?utf-8?B?eUhYeWlSeXVYL2tnOGpPMnBGWUE0NkJDYjkyZHZjanduMy9uUng2VmMyWUNq?=
- =?utf-8?B?d0JUWTRJcjhKbm5aV3pHREgySXNta3NiVVlvYkJRQlhiR2ZQNWM3Z0NzQXR2?=
- =?utf-8?B?NEwwb2MzZmpkaDNhcEUzdUYzZkFhN21qRFVMcDNZTnVYUERmZ3k1WkFaV2Vm?=
- =?utf-8?B?bmprVGhROTArSEdvaHVOa2UzVFloMVhGNitrc1JhL2hZU2tncmdCTW1pNEEr?=
- =?utf-8?B?TEZJOGVKbzFMMzRZbU5hN29yNGdUZWs1VTBla3J4TWpQc3dvUWhFNUlvSnFq?=
- =?utf-8?B?cWUyYnZkUjh5V3JLcVF1ckJhNVl4REFJcm1hNExxd0dHV0VOMXB0eEhiNjhs?=
- =?utf-8?B?d1djN0VxNjNSc2JCSUpTYUxBeEt3WU9hTlJ3SS9GNUo5clp1RG5xRGtFNktT?=
- =?utf-8?B?RVh1VnR0VTBMbGx1dDJRNEN5V2x3SDFtdU03SEs5dlU3VGJpQ2RnTVJ5aksx?=
- =?utf-8?B?TG5XTGpGYmdnd2cvZlFjakdNTUFXdXZWOGd0QTRadjdXRUdTVTNxbUN6aUIw?=
- =?utf-8?B?aVhqQzRmNDlONnBtZVAvUmtwc2JPbG11U3RnaHFTcEZjaHZzZks5TzJSaHdL?=
- =?utf-8?B?bWFETklBY0srUEFpbUtMVHEvZ2lEMFAyR0Nqd1BzNldFeFI0bThaYXBucjBD?=
- =?utf-8?B?QWhINzR0bjhQRndWVEZqWUlGRUxuQ2tCZjFlREVIMTEyNi9xRUppaHZkaFNO?=
- =?utf-8?B?cjBLWlhnRkg5OWFoWmlWeFZ3Y0Y5WnZ2dW5NbWZLSVNBZnZQakVKRHRxeFdw?=
- =?utf-8?B?OW5jN0ZUY1BqQktiZ2orL0hMRUMvZUtrZ09oTWtFbnl1NGcvNGNUeWRhSXR0?=
- =?utf-8?B?S0NOZ2pmTENBZlpFUysvNEJxcG1oT01wTm5icVBIOVU5MWtiQ09tZHVTcDhh?=
- =?utf-8?B?NkNXS0xGSUNjYk91NUZzZ2JvR29jWWxGWkp1enR2ZnAweFRqeVRUeEt4cy9s?=
- =?utf-8?B?bWJLVDNyd3ZaTlZXV2ZKMXpLL29ERFc4RW1NNWwwR3dVREk5dlpqbGhlTXFH?=
- =?utf-8?B?N3c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S235909AbjHVM7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:59:20 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEABACC7;
+        Tue, 22 Aug 2023 05:59:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 598A761170;
+        Tue, 22 Aug 2023 12:59:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1152AC433C9;
+        Tue, 22 Aug 2023 12:59:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692709157;
+        bh=NQnhsHYpEv0+wR6qYs89EorxUXngM3591u/SXhXnpPA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NU+NjR2QBirg2yiQcLKcEeJPPlKzQlnyqnFpax4rg/sjpJ7Kyomn8+flnySjkToDa
+         VH/7OSAe0ewPkiTra6TUNbgl4SfrsmOuJGq0JQba2tlzvDFsGY/P/RPq/1yyjxIX46
+         QzjXRJeH3rru6VzMBTBGGy1JV6DkIxGQCktQlV0k1Dh7U4heVQpRczjxQVtG7J/+dH
+         94tTcZj7ezySR4iPHucakIyaYZd+/LyEgD6gtb4HdCSBa7fp7BgJZVoBgFYv51V2RV
+         t5FmQH/77qbmJCZOciFQvgdhynQxUDDrg0oFZYTcFSDOfL9tbSwFUXaSLlCSRs9W9V
+         elxA5zMpzgFIA==
+Date:   Tue, 22 Aug 2023 14:59:14 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+        guido.gunther@puri.sm, marcel.ziswiler@toradex.com,
+        laurentiu.palcu@oss.nxp.com, robh@kernel.org
+Subject: Re: [PATCH v14 RESEND 5/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+Message-ID: <22parqvy44hkd2ypkglfwk6bafi5ov4qfhpvd6qnt36us7odec@iebwnwtwvnnf>
+References: <20230822085949.816844-1-victor.liu@nxp.com>
+ <20230822085949.816844-6-victor.liu@nxp.com>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS0PR01MB5922.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed39ff21-0542-4365-8d95-08dba30e7247
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2023 12:51:04.5003
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: V/d2MlgxfBZrgMbPrSSoXsyTm9mmB3/5bm/Z8Osi9FklaVDBY6kPsMnKRmy+oOTsD5/u4iuB3g3KAe2cAEPmGuWS6TDM4x4mcRkCeFQRLA4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB9461
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="wky7filj2ecrfgcp"
+Content-Disposition: inline
+In-Reply-To: <20230822085949.816844-6-victor.liu@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBTdWJqZWN0OiBSZTogW1BBVENIIDIvNF0gdXNiOiB0eXBlYzogdGNwY2lfcnQxNzExaDogQ29u
-dmVydCBlbnVtLT5wb2ludGVyDQo+IGZvciBkYXRhIGluIHRoZSBtYXRjaCB0YWJsZXMNCj4gDQo+
-IE9uIFR1ZSwgQXVnIDIyLCAyMDIzIGF0IDAyOjAwOjA1UE0gKzAyMDAsIEdlZXJ0IFV5dHRlcmhv
-ZXZlbiB3cm90ZToNCj4gPiBPbiBUdWUsIEF1ZyAyMiwgMjAyMyBhdCAxOjQ04oCvUE0gQW5keSBT
-aGV2Y2hlbmtvDQo+ID4gPGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6
-DQo+ID4gPiBPbiBUdWUsIEF1ZyAyMiwgMjAyMyBhdCAwOToyMToxOUFNICswMjAwLCBHZWVydCBV
-eXR0ZXJob2V2ZW4gd3JvdGU6DQo+ID4gPiA+IE9uIE1vbiwgQXVnIDIxLCAyMDIzIGF0IDc6MDni
-gK9QTSBBbmR5IFNoZXZjaGVua28NCj4gPiA+ID4gPGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4Lmlu
-dGVsLmNvbT4gd3JvdGU6DQo+ID4gPiA+ID4gT24gTW9uLCBBdWcgMjEsIDIwMjMgYXQgMDU6NDA6
-MDVQTSArMDIwMCwgR2VlcnQgVXl0dGVyaG9ldmVuIHdyb3RlOg0KPiA+ID4gPiA+ID4gT24gTW9u
-LCBBdWcgMjEsIDIwMjMgYXQgNToyNeKAr1BNIEFuZHkgU2hldmNoZW5rbw0KPiA+ID4gPiA+ID4g
-PGFuZHJpeS5zaGV2Y2hlbmtvQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6DQo+ID4gPiA+ID4gPiA+
-IE9uIE1vbiwgQXVnIDIxLCAyMDIzIGF0IDAzOjI3OjQzUE0gKzAyMDAsIEdlZXJ0IFV5dHRlcmhv
-ZXZlbg0KPiB3cm90ZToNCj4gPiA+ID4gPiA+ID4gPiBPbiBNb24sIEF1ZyAyMSwgMjAyMyBhdCAz
-OjA04oCvUE0gQW5keSBTaGV2Y2hlbmtvDQo+ID4gPiA+ID4gPiA+ID4gPGFuZHJpeS5zaGV2Y2hl
-bmtvQGxpbnV4LmludGVsLmNvbT4gd3JvdGU6DQo+ID4gPiA+ID4gPiA+ID4gPiBPbiBTdW4sIEF1
-ZyAyMCwgMjAyMyBhdCAwNzo0NDowMFBNICswMTAwLCBCaWp1IERhcyB3cm90ZToNCj4gDQo+IC4u
-Lg0KPiANCj4gPiA+ID4gPiA+ID4gPiA+IEZvciBhbGwgeW91ciB3b3JrIGxpa2VzIHRoaXMgYXMg
-SSBub3RlZCBpbiB0aGUgcmVwbHkgdG8NCj4gPiA+ID4gPiA+ID4gPiA+IEd1ZW50ZXIgdGhhdCB0
-aGUgY291cGxlIG9mIHRoZSBzZWxsaW5nIHBvaW50cyBoZXJlIGFyZToNCj4gPiA+ID4gPiA+ID4g
-PiA+IDEpIGF2b2lkYW5jZSBvZiB0aGUgcG9pbnRlciBhYnVzZSBpbiBPRiB0YWJsZQ0KPiA+ID4g
-PiA+ID4gPiA+ID4gICAgKHdlIG5lZWQgdGhhdCB0byBiZSBhIHZhbGlkIHBvaW50ZXIpOw0KPiA+
-ID4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiA+ID4gVGhlcmUgaXMgbm8gcG9pbnRlciBhYnVzZTog
-Ym90aCBjb25zdCB2b2lkICogKGluIGUuZy4NCj4gPiA+ID4gPiA+ID4gPiBvZl9kZXZpY2VfaWQp
-IGFuZCBrZXJuZWxfdWxvbmdfdCAoaW4gZS5nLiBpMmNfZGV2aWNlX2lkKQ0KPiA+ID4gPiA+ID4g
-PiA+IGNhbiBiZSB1c2VkIGJ5IGRyaXZlcnMgdG8gc3RvcmUgYSBtYWdpYyBjb29raWUsIGJlaW5n
-IGVpdGhlcg0KPiBhIHBvaW50ZXIsIG9yIGFuIGludGVnZXIgdmFsdWUuDQo+ID4gPiA+ID4gPiA+
-ID4gVGhlIHNhbWUgaXMgdHJ1ZSBmb3IgdGhlIHZhcmlvdXMgdW5zaWduZWQgbG9uZyBhbmQgdm9p
-ZCAqDQo+ICJkcml2ZXJfZGF0YSINCj4gPiA+ID4gPiA+ID4gPiBmaWVsZHMgaW4gc3Vic3lzdGVt
-LXNwZWNpZmljIGRyaXZlciBzdHJ1Y3R1cmVzLg0KPiA+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4g
-PiAodm9pZCAqKTUgaXMgdGhlIGFidXNlIG9mIHRoZSBwb2ludGVyLg0KPiA+ID4gPiA+ID4gPiBX
-ZSBjYXJyeSBzb21ldGhpbmcgd2hpY2ggaXMgbm90IGEgdmFsaWQgcG9pbnRlciBmcm9tIGtlcm5l
-bA0KPiBwZXJzcGVjdGl2ZS4NCj4gPiA+ID4gPiA+DQo+ID4gPiA+ID4gPiBCdXQgdGhlIGRhdGEg
-ZmllbGQgaXMgbm90IHJlcXVpcmVkIHRvIGJlIGEgdmFsaWQgcG9pbnRlci4NCj4gPiA+ID4gPiA+
-IFdoYXQga2luZCBhbmQgdHlwZSBvZiBpbmZvcm1hdGlvbiBpdCByZXByZXNlbnRzIGlzIHNwZWNp
-ZmljIHRvDQo+IHRoZSBkcml2ZXIuDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBXaGVyZSB0byBmaW5k
-IG5lY2Vzc2FyeSBpbmZvcm1hdGlvbiB3aGljaCBpcyBub3QgYWx3YXlzIGFuIGludGVnZXINCj4g
-Y29uc3RhbnQuDQo+ID4gPiA+ID4gRm9yIGV4YW1wbGUsIGZvciB0aGUgZHJpdmVyIGRhdGEgdGhh
-dCBoYXMgY2FsbGJhY2tzIGl0IGNhbid0IGJlDQo+IGludmFsaWQgcG9pbnRlci4NCj4gPiA+ID4N
-Cj4gPiA+ID4gSWYgdGhlIGRyaXZlciB1c2VzIGl0IHRvIHN0b3JlIGNhbGxiYWNrcywgb2YgY291
-cnNlIGl0IG5lZWRzIHRvIGJlDQo+ID4gPiA+IGEgdmFsaWQgcG9pbnRlci4gQnV0IHRoYXQgaXMg
-aW50ZXJuYWwgdG8gdGhlIGRyaXZlci4gIEl0IGlzIG5vdA0KPiA+ID4gPiB0aGF0IHdlJ3JlIHBh
-c3NpbmcgcmFuZG9tIGludGVnZXIgdmFsdWVzIHRvIGEgZnVuY3Rpb24gdGhhdA0KPiA+ID4gPiBl
-eHBlY3RzIGEgcG9pbnRlciB0aGF0IGNhbiBhY3R1YWxseSBiZSBkZXJlZmVyZW5jZWQuDQo+ID4g
-PiA+DQo+ID4gPiA+ID4gU2luY2UgT0YgSUQgdGFibGUgc3RydWN0dXJlIGlzIHVuaXZlcnNhbCwg
-aXQgdXNlcyBwb2ludGVycy4NCj4gPiA+ID4gPiBNYXliZSB5b3UgbmVlZCB0byB1cGRhdGUgaXQg
-dG8gdXNlIHBsYWluIGludGVnZXIgaW5zdGVhZD8NCj4gPiA+ID4NCj4gPiA+ID4gSXQgaXMgZmFp
-cmx5IGNvbW1vbiBpbiB0aGUga2VybmVsIHRvIHVzZSB2b2lkICogdG8gaW5kaWNhdGUgYQ0KPiA+
-ID4gPiBkcml2ZXItc3BlY2lmaWMgY29va2llLCBiZWluZyBlaXRoZXIgYSByZWFsIHBvaW50ZXIg
-b3IgYW4gaW50ZWdyYWwNCj4gPiA+ID4gdmFsdWUsIHRoYXQgaXMgcGFzc2VkIHZlcmJhdGltLiAg
-U2VlIGFsc28gZS5nLiB0aGUgImRldiIgcGFyYW1ldGVyDQo+ID4gPiA+IG9mIHJlcXVlc3RfaXJx
-KCkuDQo+ID4gPg0KPiA+ID4gWWVzLCB0aGF0IHBhcmFtZXRlciBpcyB2b2lkICogZHVlIHRvIGNh
-bGxpbmcga2ZyZWUoZnJlZV9pcnEoLi4uKSkuDQo+ID4gPiBTbywgdGhhdCdzIGFyZ3VtZW50IGZv
-ciBteSBjb25jZXJucy4NCj4gPg0KPiA+IFNvcnJ5LCBJIGRvbid0IHVuZGVyc3RhbmQgdGhpcyBj
-b21tZW50Lg0KPiA+IChrZnJlZShmcmVlX2lycSguLi4pKSBpcyBvbmx5IGNhbGxlZCBpbiBwY2lf
-ZnJlZV9pcnEoKT8pDQo+IA0KPiBQYXNzaW5nIHZvaWQgKiBmb3IgYSAiZHJpdmVyIGNvb2tpZSIg
-bWFrZXMgc2Vuc2UgZHVlIHRvIHBvc3NpYmlsaXR5IG9mIHRoZQ0KPiBwYXNzaW5nIGl0IHRvIG90
-aGVyIGZ1bmN0aW9ucyB0aGF0IHdhbnQgdG8gaGF2ZSB2b2lkICogYXMgeW91ciBleGFtcGxlDQo+
-IHNob3dzLg0KPiBBbmQgdGhhdCBzdXBwb3J0cyBteSBpZGVhIG9mIGhhdmluZyB2b2lkICogb3Zl
-ciB0aGUgdW5zaWduZWQgbG9uZy4NCg0KVS1ib290IGFsc28gdXNlcyB1bnNpZ25lZCBsb25nIGZv
-ciAuZGF0YSBpbiBzdHJ1Y3QgdWRldmljZV9pZC4gVGhlcmUgbWF5IGJlIGEgcmVhc29uIGZvciBp
-dCBpbnN0ZWFkIG9mIHZvaWQqID8/DQoNCkNoZWVycywNCkJpanUNCg==
+
+--wky7filj2ecrfgcp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+Aside from the discussion on the binding and the general architecture, I
+have some comments there.
+
+On Tue, Aug 22, 2023 at 04:59:48PM +0800, Liu Ying wrote:
+> +int dpu_cf_init(struct dpu_soc *dpu, unsigned int index,
+> +		unsigned int id, enum dpu_unit_type type,
+> +		unsigned long pec_base, unsigned long base)
+> +{
+> +	struct dpu_constframe *cf;
+> +
+> +	cf =3D devm_kzalloc(dpu->dev, sizeof(*cf), GFP_KERNEL);
+> +	if (!cf)
+> +		return -ENOMEM;
+> +
+> +	dpu->cf_priv[index] =3D cf;
+
+You can't store structures related to KMS in a device managed structure.
+The DRM KMS device will stick around (and be accessible from userspace)
+after the device has been removed until the last application closed its
+file descriptor to the device.
+
+This can be checked by enabling KASAN and manually unbinding the driver
+through sysfs.
+
+> +	cf->pec_base =3D devm_ioremap(dpu->dev, pec_base, SZ_16);
+> +	if (!cf->pec_base)
+> +		return -ENOMEM;
+> +
+> +	cf->base =3D devm_ioremap(dpu->dev, base, SZ_32);
+> +	if (!cf->base)
+> +		return -ENOMEM;
+
+For the same reason, you need to protect any access to a device managed
+resource (so clocks, registers, regulators, etc.) by a call to
+drm_dev_enter/drm_dev_exit and you need to call drm_dev_unplug instead
+of drm_dev_unregister.
+
+> +static int dpu_crtc_pm_runtime_get_sync(struct dpu_crtc *dpu_crtc)
+> +{
+> +	int ret;
+> +
+> +	ret =3D pm_runtime_get_sync(dpu_crtc->dev->parent);
+> +	if (ret < 0) {
+> +		pm_runtime_put_noidle(dpu_crtc->dev->parent);
+> +		dpu_crtc_err(&dpu_crtc->base,
+> +			     "failed to get parent device RPM sync: %d\n", ret);
+> +	}
+> +
+> +	return ret;
+> +}
+
+That's pm_runtime_resume_and_get.
+
+> +static int dpu_crtc_pm_runtime_put(struct dpu_crtc *dpu_crtc)
+> +{
+> +	int ret;
+> +
+> +	ret =3D pm_runtime_put(dpu_crtc->dev->parent);
+> +	if (ret < 0)
+> +		dpu_crtc_err(&dpu_crtc->base,
+> +			     "failed to put parent device RPM: %d\n", ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static void dpu_crtc_mode_set_nofb(struct drm_crtc *crtc)
+> +{
+> +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
+> +	struct drm_display_mode *adj =3D &crtc->state->adjusted_mode;
+> +	enum dpu_link_id cf_link;
+> +
+> +	dpu_crtc_dbg(crtc, "mode " DRM_MODE_FMT "\n", DRM_MODE_ARG(adj));
+> +
+> +	/* request power-on when we start to set mode for CRTC */
+> +	dpu_crtc_pm_runtime_get_sync(dpu_crtc);
+
+=46rom the drm_crtc_helper_funcs documentation:
+
+"""
+	 * Note that the display pipe is completely off when this function is
+	 * called. Atomic drivers which need hardware to be running before they
+	 * program the new display mode (e.g. because they implement runtime PM)
+	 * should not use this hook. This is because the helper library calls
+	 * this hook only once per mode change and not every time the display
+	 * pipeline is suspended using either DPMS or the new "ACTIVE" property.
+	 * Which means register values set in this callback might get reset when
+	 * the CRTC is suspended, but not restored.  Such drivers should instead
+	 * move all their CRTC setup into the @atomic_enable callback.
+"""
+
+> +static void dpu_crtc_atomic_enable(struct drm_crtc *crtc,
+> +				   struct drm_atomic_state *state)
+> +{
+> +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
+> +	unsigned long flags;
+> +
+> +	drm_crtc_vblank_on(crtc);
+> +
+> +	enable_irq(dpu_crtc->dec_shdld_irq);
+> +	enable_irq(dpu_crtc->ed_cont_shdld_irq);
+> +	enable_irq(dpu_crtc->ed_safe_shdld_irq);
+> +
+> +	dpu_fg_enable_clock(dpu_crtc->fg);
+> +	dpu_ed_pec_sync_trigger(dpu_crtc->ed_cont);
+> +	dpu_ed_pec_sync_trigger(dpu_crtc->ed_safe);
+> +	if (crtc->state->gamma_lut)
+> +		dpu_crtc_set_gammacor(dpu_crtc);
+> +	else
+> +		dpu_crtc_disable_gammacor(dpu_crtc);
+> +	dpu_fg_shdtokgen(dpu_crtc->fg);
+> +
+> +	/* don't relinquish CPU until TCON is set to operation mode */
+> +	local_irq_save(flags);
+> +	preempt_disable();
+> +	dpu_fg_enable(dpu_crtc->fg);
+
+That's super fishy. You shouldn't need that, at all. What is going on
+there?
+
+> +
+> +	/*
+> +	 * TKT320590:
+
+Those are NXP internal references as far as as I can tell. They
+shouldn't be here.
+
+> +	 * Turn TCON into operation mode as soon as the first dumb
+> +	 * frame is generated by DPU(we don't relinquish CPU to ensure
+> +	 * this).  This makes DPR/PRG be able to evade the frame.
+> +	 */
+> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_FRAME_CNT_MOVING(dpu_crtc->fg);
+> +	dpu_tcon_set_operation_mode(dpu_crtc->tcon);
+> +	local_irq_restore(flags);
+> +	preempt_enable();
+> +
+> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(ed_safe_shdld_done);
+> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(ed_cont_shdld_done);
+> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_shdld_done);
+> +
+> +	disable_irq(dpu_crtc->ed_safe_shdld_irq);
+> +	disable_irq(dpu_crtc->ed_cont_shdld_irq);
+> +	disable_irq(dpu_crtc->dec_shdld_irq);
+> +
+> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_SECONDARY_SYNCUP(dpu_crtc->fg);
+
+The dance around the interrupts doesn't look great either. This need a
+proper description of the problem this was trying to solve. Also, what
+happens if any of those interrupts fail to trigger before you timeout?
+
+> +	DPU_CRTC_CHECK_FRAMEGEN_FIFO(dpu_crtc->fg);
+> +
+> +	dpu_crtc_queue_state_event(crtc);
+> +}
+> +
+> +static void dpu_crtc_atomic_disable(struct drm_crtc *crtc,
+> +				    struct drm_atomic_state *state)
+> +{
+> +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
+> +	struct drm_plane *plane;
+> +	struct drm_plane_state *old_plane_state;
+> +	struct dpu_plane_state *old_dpstate;
+> +	struct dpu_fetchunit *fu;
+> +	struct dpu_dprc *dprc;
+> +	const struct dpu_fetchunit_ops *fu_ops;
+> +	unsigned long flags;
+> +	int i;
+> +
+> +	enable_irq(dpu_crtc->dec_seq_complete_irq);
+> +
+> +	/* don't relinquish CPU until DPRC repeat_en is disabled */
+> +	local_irq_save(flags);
+> +	preempt_disable();
+> +	/*
+> +	 * Sync to FrameGen frame counter moving so that
+> +	 * FrameGen can be disabled in the next frame.
+> +	 */
+> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_FRAME_CNT_MOVING(dpu_crtc->fg);
+> +	dpu_fg_disable(dpu_crtc->fg);
+> +	/*
+> +	 * There is one frame leftover after FrameGen disablement.
+> +	 * Sync to FrameGen frame counter moving so that
+> +	 * DPRC repeat_en can be disabled in the next frame.
+> +	 */
+> +	DPU_CRTC_WAIT_FOR_FRAMEGEN_FRAME_CNT_MOVING(dpu_crtc->fg);
+> +
+> +	for_each_old_plane_in_state(state, plane, old_plane_state, i) {
+> +		old_dpstate =3D to_dpu_plane_state(old_plane_state);
+> +
+> +		if (!old_plane_state->fb)
+> +			continue;
+> +
+> +		if (old_plane_state->crtc !=3D crtc)
+> +			continue;
+> +
+> +		fu =3D old_dpstate->source;
+> +
+> +		fu_ops =3D dpu_fu_get_ops(fu);
+> +
+> +		dprc =3D fu_ops->get_dprc(fu);
+> +		dpu_dprc_disable_repeat_en(dprc);
+> +	}
+> +
+> +	local_irq_restore(flags);
+> +	preempt_enable();
+> +
+> +	DPU_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_seq_complete_done);
+> +
+> +	disable_irq(dpu_crtc->dec_seq_complete_irq);
+> +
+> +	dpu_fg_disable_clock(dpu_crtc->fg);
+> +
+> +	drm_crtc_vblank_off(crtc);
+> +
+> +	spin_lock_irq(&crtc->dev->event_lock);
+> +	if (crtc->state->event && !crtc->state->active) {
+> +		drm_crtc_send_vblank_event(crtc, crtc->state->event);
+> +		crtc->state->event =3D NULL;
+> +	}
+> +	spin_unlock_irq(&crtc->dev->event_lock);
+> +
+> +	/* request power-off when CRTC is disabled */
+> +	dpu_crtc_pm_runtime_put(dpu_crtc);
+> +}
+
+Same story than in atomic_enable here.
+
+
+> +static int legacyfb_depth =3D 32;
+> +module_param(legacyfb_depth, uint, 0444);
+
+No custom module parameter
+
+> +static void dpu_atomic_put_plane_state(struct drm_atomic_state *state,
+> +				       struct drm_plane *plane)
+> +{
+> +	int index =3D drm_plane_index(plane);
+> +
+> +	plane->funcs->atomic_destroy_state(plane, state->planes[index].state);
+> +	state->planes[index].ptr =3D NULL;
+> +	state->planes[index].state =3D NULL;
+> +	state->planes[index].old_state =3D NULL;
+> +	state->planes[index].new_state =3D NULL;
+> +
+> +	drm_modeset_unlock(&plane->mutex);
+> +
+> +	dpu_plane_dbg(plane, "put state\n");
+> +}
+> +
+> +static void dpu_atomic_put_crtc_state(struct drm_atomic_state *state,
+> +				      struct drm_crtc *crtc)
+> +{
+> +	int index =3D drm_crtc_index(crtc);
+> +
+> +	crtc->funcs->atomic_destroy_state(crtc, state->crtcs[index].state);
+> +	state->crtcs[index].ptr =3D NULL;
+> +	state->crtcs[index].state =3D NULL;
+> +	state->crtcs[index].old_state =3D NULL;
+> +	state->crtcs[index].new_state =3D NULL;
+> +
+> +	drm_modeset_unlock(&crtc->mutex);
+> +
+> +	dpu_crtc_dbg(crtc, "put state\n");
+> +}
+> +
+> +static void
+> +dpu_atomic_put_possible_states_per_crtc(struct drm_crtc_state *crtc_stat=
+e)
+> +{
+> +	struct drm_atomic_state *state =3D crtc_state->state;
+> +	struct drm_crtc *crtc =3D crtc_state->crtc;
+> +	struct drm_plane *plane;
+> +	struct drm_plane_state *old_plane_state, *new_plane_state;
+> +	struct dpu_plane_state *old_dpstate, *new_dpstate;
+> +
+> +	drm_atomic_crtc_state_for_each_plane(plane, crtc_state) {
+> +		old_plane_state =3D drm_atomic_get_old_plane_state(state, plane);
+> +		new_plane_state =3D drm_atomic_get_new_plane_state(state, plane);
+> +
+> +		old_dpstate =3D to_dpu_plane_state(old_plane_state);
+> +		new_dpstate =3D to_dpu_plane_state(new_plane_state);
+> +
+> +		/* Should be enough to check the below HW plane resources. */
+> +		if (old_dpstate->stage.ptr !=3D new_dpstate->stage.ptr ||
+> +		    old_dpstate->source !=3D new_dpstate->source ||
+> +		    old_dpstate->blend !=3D new_dpstate->blend)
+> +			return;
+> +	}
+> +
+> +	drm_atomic_crtc_state_for_each_plane(plane, crtc_state)
+> +		dpu_atomic_put_plane_state(state, plane);
+> +
+> +	dpu_atomic_put_crtc_state(state, crtc);
+> +}
+
+That's super suspicious too. Are you really going around and dropping
+and destroying plane and crtc states in a global state?
+
+At the very least, you need to describe what this addresses and why you
+think it's a good solution.
+
+I kind of skimmed over the last part of the driver, but we should really
+address these first comments. There's a larger discussion on the fact
+that this driver does much more that it should and needs to (especially in
+atomic_check, but not only), and this applies to the rest of patch.
+
+Maxime
+
+--wky7filj2ecrfgcp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOSxIgAKCRDj7w1vZxhR
+xRPKAQDfGQujKvGGeiil+w1sRh6m1U2aSqMZHU9v1P2C53IbdgD/ZAf/ThWDMcCL
+TM81+DKBwG9rd0p0F0AqOcmmT4N7aw0=
+=oLV3
+-----END PGP SIGNATURE-----
+
+--wky7filj2ecrfgcp--
