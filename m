@@ -2,266 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C477838E1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 06:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3962E78391D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 07:12:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232427AbjHVEpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 00:45:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37938 "EHLO
+        id S230163AbjHVFMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 01:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232291AbjHVEpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 00:45:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72CE18B;
-        Mon, 21 Aug 2023 21:45:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4F1D463434;
-        Tue, 22 Aug 2023 04:45:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A105CC433CA;
-        Tue, 22 Aug 2023 04:45:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692679500;
-        bh=yokCOAF46NkeXnzKzrkQWrUvo6uovD+L/nrinsM5GDg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=J3AGPuuzsU5xfxgGD0xeMXAlwtNdVrpFfG7ZMGJa8L9qwftiMLSNKnzFQSVkw8lmj
-         /si9woX67hd97yLzt0m9i9ZjiIUWsyANaxTERK4xKK3Q8KNqpqoY4ZYCNyccYZBREL
-         McVnpTVx3qwzNAxGAI9qZwkKHkwEXhBcnNRgduB/g7cRN2h3agD0J5Rik1q4fq+eSj
-         AodcwiCKwhYbxE5NWRkPBsIf6ComhmA+3p+7AS1VHFlT2VXTDNjR4yVDY6paolyy7C
-         CmA3z/o4QV6Q34S+oTnlqt9i/xHF+DIg5CLgdqGRIIGNnA+80SoXtnUZPrH39jdwnQ
-         wEa3GJRM1OgCw==
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-9a18a4136a9so278819166b.2;
-        Mon, 21 Aug 2023 21:45:00 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yy7ILn39UAFijGXVKGqUaROB8fSXxhtjCdleKfLPSWJsFjdsAOe
-        uuGywWFVrY3m4SiKRq/TGkQ1/1VLKyq9qMFlg24=
-X-Google-Smtp-Source: AGHT+IHxrXK8Uj/TaMDUDhOIN7KBjt+OV9ngc6YJG/wIHinia3KIX6pSFc0u9/62N945j9OjUXam6FhWhcCmwBijRu0=
-X-Received: by 2002:a17:906:2215:b0:99b:d599:5085 with SMTP id
- s21-20020a170906221500b0099bd5995085mr6461631ejs.64.1692679498790; Mon, 21
- Aug 2023 21:44:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
-In-Reply-To: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Tue, 22 Aug 2023 12:44:46 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5JpHwgcq7mPBOcAwy638VAQvNc2rkRNyWnBZ4sVdq8XQ@mail.gmail.com>
-Message-ID: <CAAhV-H5JpHwgcq7mPBOcAwy638VAQvNc2rkRNyWnBZ4sVdq8XQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S232650AbjHVFMV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 01:12:21 -0400
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389BBDB
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:12:17 -0700 (PDT)
+Received: by mail-yb1-xb49.google.com with SMTP id 3f1490d57ef6-d6b66b41232so5085910276.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20221208; t=1692681136; x=1693285936;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=y49tMxZ0YY48F/gzN+18jldmFoxIYYQIj22aWek7pLI=;
+        b=1E/HKtR80/j8Afv68qazxtHwIdlC3o7xyddICTzM9am/XQD3utYOsEZpa1EjyYxs7X
+         6QunZdQhbX095QFgceSxbBSO7Kwiok6SN0zRgsJqDe/EkeP2PZJO1NrdUQkCpVpFmVxq
+         I4QwWXy2PbMBKwyashnNcsvqJj6VZevXpnT9CM698beC6M2c3ybsA4sr5Vb+fvF+Zhzf
+         ncM7TZKj7jqzX9g8moiTrZ9Rr4jp5u4mahGfZULheLQfDX4ymuuAiOftRkNNHYxRMRfy
+         uXv6GtUWdXRMLTofeCHX8GmS1+mwQCONcLUah2TTPRm/E8B68E/aCZSvCclywrBfOkSy
+         Mpig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692681136; x=1693285936;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=y49tMxZ0YY48F/gzN+18jldmFoxIYYQIj22aWek7pLI=;
+        b=WwtBh2jH3PL+aigt3j0R/ta56Fjfg4aYUGjcyIA81/e4lBHXYpw0A40L0IXHyaMel8
+         P7JK7M9iWGyuSbmJFzlIh0FB25BkUNnpLombf5fmIvmAoW0ii4BokqxJuXobMEwvuPMd
+         KHEmbtJbQUwTW1eOjebBRzpWCX8UPUIt1LB05rbewal2/ybg7hWPKDqKMi7OMHi0kLgi
+         Giin1/tQHxgsw38r3j1qKXVzw89StOWNqj35D4+N0emK/c8louGBVLXTtSOBBibRyHMy
+         +WuvG8nO9Max9t/mr9u8At2VuVymPTL/+/atrrYgJXCeyTUIWqvnl+3hy9IPt0WjGgyI
+         OxxQ==
+X-Gm-Message-State: AOJu0YwEAMMUsPxfwEnSG3fZrIvBNjgC8n76DQ/1eRsWYJq/SVFDS9aD
+        ehYPrf6GVngp0C/W7HhBlngxySKFl2pUETX394A=
+X-Google-Smtp-Source: AGHT+IEQs81Q4KusiC28vK3V6P5+x3LAR0lCRrupgbRgEYSKykvPJ/zIapXaq37u0upbNb5/Fn7lcB19OJKAD4QiRPM=
+X-Received: from anikett.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:2551])
+ (user=aniketmaurya job=sendgmr) by 2002:a05:6902:1894:b0:d12:d6e4:a08d with
+ SMTP id cj20-20020a056902189400b00d12d6e4a08dmr85489ybb.7.1692681136473; Mon,
+ 21 Aug 2023 22:12:16 -0700 (PDT)
+Date:   Tue, 22 Aug 2023 05:12:09 +0000
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
+Message-ID: <20230822051209.2837818-1-aniketmaurya@google.com>
+Subject: [PATCH] dt-bindings: i3c: Fix description for assigned-address
+From:   Aniket <aniketmaurya@google.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
-        linux-kernel@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, joychakr@google.com,
+        manugautam@google.com, Aniket <aniketmaurya@google.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+assigned-address is a valid property for I3C device with or without
+static address. Fix the description and an example for the same.
 
-On Mon, Aug 21, 2023 at 2:13=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
-> Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
-> routes for 64-bit interrupt sources.
->
-> For liointc-2.0, we need to define two liointc nodes in dts, one for
-> "0-31" interrupt sources and the other for "32-63" interrupt sources.
-> This applies to mips Loongson-2K1000.
->
-> Unfortunately, there are some warnings about "loongson,liointc-2.0":
-> 1. "interrupt-names" should be "required", the driver gets the parent
-> interrupts through it.
->
-> 2. Since not all CPUs are multicore, e.g. Loongson-2K0500 is a
-> single-core CPU, there is no core1-related registers. So "reg" and
-> "reg-names" should be set to "minItems 2".
->
-> 3. Routing interrupts from "int0" is a common solution in practice, but
-> theoretically there is no such requirement, as long as conflicts are
-> avoided. So "interrupt-names" should be defined by "pattern".
->
-> This fixes dtbs_check warning:
->
-> DTC_CHK arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb
-> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-contro=
-ller@1fe11440: interrupt-names:0: 'int0' was expected
->       From schema: Documentation/devicetree/bindings/interrupt-controller=
-/loongson,liointc.yaml
-> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-contro=
-ller@1fe11440: Unevaluated properties are not allowed ('interrupt-names' wa=
-s unexpected)
->       From schema: Documentation/devicetree/bindings/interrupt-controller=
-/loongson,liointc.yaml
->
-> Fixes: f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add Loongson-2K1=
-000 LIOINTC")
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
-> V2:
-> 1. Update commit message;
-> 2. "interruprt-names" should be "required", the driver gets the parent
-> interrupts through it;
-> 3. Add more descriptions to explain the rationale for multiple nodes;
-> 4. Rewrite if-else statements.
->
-> Link to V1:
-> https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongson.=
-cn/
->
->  .../loongson,liointc.yaml                     | 74 +++++++++----------
->  1 file changed, 37 insertions(+), 37 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loong=
-son,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/l=
-oongson,liointc.yaml
-> index 00b570c82903..f695d3a75ddf 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,lio=
-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,lio=
-intc.yaml
-> @@ -11,11 +11,11 @@ maintainers:
->
->  description: |
->    This interrupt controller is found in the Loongson-3 family of chips a=
-nd
-> -  Loongson-2K1000 chip, as the primary package interrupt controller whic=
-h
-> +  Loongson-2K series chips, as the primary package interrupt controller =
-which
->    can route local I/O interrupt to interrupt lines of cores.
-> -
-> -allOf:
-> -  - $ref: /schemas/interrupt-controller.yaml#
-> +  In particular, the Loongson-2K1000/2K0500 has 64 interrupt sources tha=
-t we
-> +  need to describe with two dts nodes. One for interrupt sources "0-31" =
-and
-> +  the other for interrupt sources "32-63".
->
->  properties:
->    compatible:
-> @@ -24,15 +24,9 @@ properties:
->        - loongson,liointc-1.0a
->        - loongson,liointc-2.0
->
-> -  reg:
-> -    minItems: 1
-> -    maxItems: 3
-> +  reg: true
->
-> -  reg-names:
-> -    items:
-> -      - const: main
-> -      - const: isr0
-> -      - const: isr1
-> +  reg-names: true
->
->    interrupt-controller: true
->
-> @@ -45,11 +39,9 @@ properties:
->    interrupt-names:
->      description: List of names for the parent interrupts.
->      items:
-> -      - const: int0
-> -      - const: int1
-> -      - const: int2
-> -      - const: int3
-> +      pattern: int[0-3]
->      minItems: 1
-> +    maxItems: 4
->
->    '#interrupt-cells':
->      const: 2
-> @@ -69,32 +61,41 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> +  - interrupt-names
->    - interrupt-controller
->    - '#interrupt-cells'
->    - loongson,parent_int_map
->
-> -
->  unevaluatedProperties: false
->
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        enum:
-> -          - loongson,liointc-2.0
-> -
-> -then:
-> -  properties:
-> -    reg:
-> -      minItems: 3
-> -
-> -  required:
-> -    - reg-names
-> -
-> -else:
-> -  properties:
-> -    reg:
-> -      maxItems: 1
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - loongson,liointc-2.0
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +          items:
-> +            - description: Interrupt routing registers.
-> +            - description: Low/high 32-bit interrupt status routed to co=
-re0.
-> +            - description: Low/high 32-bit interrupt status routed to co=
-re1.
-> +        reg-names:
-> +          minItems: 2
-> +          items:
-> +            - const: main
-> +            - const: isr0
-> +            - const: isr1
-> +      required:
-> +        - reg-names
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
->
->  examples:
->    - |
-> @@ -113,7 +114,6 @@ examples:
->                                  <0x0f000000>, /* int1 */
->                                  <0x00000000>, /* int2 */
->                                  <0x00000000>; /* int3 */
-> -
->      };
->
->  ...
-> --
-> 2.39.3
->
+Signed-off-by: Aniket <aniketmaurya@google.com>
+---
+ Documentation/devicetree/bindings/i3c/i3c.yaml | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
+index fdb4212149e7..ab69f4115de4 100644
+--- a/Documentation/devicetree/bindings/i3c/i3c.yaml
++++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
+@@ -135,9 +135,10 @@ patternProperties:
+         minimum: 0x1
+         maximum: 0xff
+         description: |
+-          Dynamic address to be assigned to this device. This property is only
+-          valid if the I3C device has a static address (first cell of the reg
+-          property != 0).
++          Dynamic address to be assigned to this device. In case static address is
++          present (first cell of the reg property != 0), this address is assigned
++          through SETDASA. If static address is not present, this address is assigned
++          through SETNEWDA after assigning a temporary address via ENTDAA.
+ 
+     required:
+       - reg
+@@ -163,12 +164,18 @@ examples:
+             pagesize = <0x8>;
+         };
+ 
+-        /* I3C device with a static I2C address. */
++        /* I3C device with a static I2C address and assigned address. */
+         thermal_sensor: sensor@68,39200144004 {
+             reg = <0x68 0x392 0x144004>;
+             assigned-address = <0xa>;
+         };
+ 
++        /* I3C device with only assigned address. */
++        pressure_sensor: sensor@0,39200124004 {
++            reg = <0x0 0x392 0x124000>;
++            assigned-address = <0xc>;
++        };
++
+         /*
+          * I3C device without a static I2C address but requiring
+          * resources described in the DT.
+-- 
+2.42.0.rc1.204.g551eb34607-goog
+
