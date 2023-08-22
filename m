@@ -2,119 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3962E78391D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 07:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88CF7783929
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 07:17:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230163AbjHVFMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 01:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54286 "EHLO
+        id S232198AbjHVFRQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 01:17:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232650AbjHVFMV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 01:12:21 -0400
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 389BBDB
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:12:17 -0700 (PDT)
-Received: by mail-yb1-xb49.google.com with SMTP id 3f1490d57ef6-d6b66b41232so5085910276.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:12:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1692681136; x=1693285936;
-        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=y49tMxZ0YY48F/gzN+18jldmFoxIYYQIj22aWek7pLI=;
-        b=1E/HKtR80/j8Afv68qazxtHwIdlC3o7xyddICTzM9am/XQD3utYOsEZpa1EjyYxs7X
-         6QunZdQhbX095QFgceSxbBSO7Kwiok6SN0zRgsJqDe/EkeP2PZJO1NrdUQkCpVpFmVxq
-         I4QwWXy2PbMBKwyashnNcsvqJj6VZevXpnT9CM698beC6M2c3ybsA4sr5Vb+fvF+Zhzf
-         ncM7TZKj7jqzX9g8moiTrZ9Rr4jp5u4mahGfZULheLQfDX4ymuuAiOftRkNNHYxRMRfy
-         uXv6GtUWdXRMLTofeCHX8GmS1+mwQCONcLUah2TTPRm/E8B68E/aCZSvCclywrBfOkSy
-         Mpig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692681136; x=1693285936;
-        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y49tMxZ0YY48F/gzN+18jldmFoxIYYQIj22aWek7pLI=;
-        b=WwtBh2jH3PL+aigt3j0R/ta56Fjfg4aYUGjcyIA81/e4lBHXYpw0A40L0IXHyaMel8
-         P7JK7M9iWGyuSbmJFzlIh0FB25BkUNnpLombf5fmIvmAoW0ii4BokqxJuXobMEwvuPMd
-         KHEmbtJbQUwTW1eOjebBRzpWCX8UPUIt1LB05rbewal2/ybg7hWPKDqKMi7OMHi0kLgi
-         Giin1/tQHxgsw38r3j1qKXVzw89StOWNqj35D4+N0emK/c8louGBVLXTtSOBBibRyHMy
-         +WuvG8nO9Max9t/mr9u8At2VuVymPTL/+/atrrYgJXCeyTUIWqvnl+3hy9IPt0WjGgyI
-         OxxQ==
-X-Gm-Message-State: AOJu0YwEAMMUsPxfwEnSG3fZrIvBNjgC8n76DQ/1eRsWYJq/SVFDS9aD
-        ehYPrf6GVngp0C/W7HhBlngxySKFl2pUETX394A=
-X-Google-Smtp-Source: AGHT+IEQs81Q4KusiC28vK3V6P5+x3LAR0lCRrupgbRgEYSKykvPJ/zIapXaq37u0upbNb5/Fn7lcB19OJKAD4QiRPM=
-X-Received: from anikett.c.googlers.com ([fda3:e722:ac3:cc00:4f:4b78:c0a8:2551])
- (user=aniketmaurya job=sendgmr) by 2002:a05:6902:1894:b0:d12:d6e4:a08d with
- SMTP id cj20-20020a056902189400b00d12d6e4a08dmr85489ybb.7.1692681136473; Mon,
- 21 Aug 2023 22:12:16 -0700 (PDT)
-Date:   Tue, 22 Aug 2023 05:12:09 +0000
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.42.0.rc1.204.g551eb34607-goog
-Message-ID: <20230822051209.2837818-1-aniketmaurya@google.com>
-Subject: [PATCH] dt-bindings: i3c: Fix description for assigned-address
-From:   Aniket <aniketmaurya@google.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        with ESMTP id S229733AbjHVFRQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 01:17:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C032DB;
+        Mon, 21 Aug 2023 22:17:14 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 95E5263D54;
+        Tue, 22 Aug 2023 05:17:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F77C433C8;
+        Tue, 22 Aug 2023 05:17:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692681433;
+        bh=+jvnwslWsq/Tc/qVWqkrTTghTcTJYEhN/fQRBxc9GTQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AN+Vs4aNh2+pH71kCFvT6Oqu1A/ChXO0NESEee2XcJoaI4+KWK7+WgxPNw9t0dGhF
+         L41nfPGTcD0WXqTVwZYUdPwwubsHADcGTdaVH2RwG93o3Lb0idZT22o7bUwAvSAySg
+         t/cx1rxaCpp7hKIpNffGsPV67oYNN2giAeDQPh33paKcgf6i6syxlLqVFxZqj50xfg
+         kq8sGb5yDGlL9JQllWvXbcTTbkdUdeHhNXy6FYG1+NK/paypeqBY8xeTdlK9x6J5G5
+         8lWBIpE+Le2YBZ3J4/iyVpx3HNQhMHZ0ZxjF11a4r4bfBwg2lVTE7GdwgxXFV82nkT
+         c5hK4wDFhiXGA==
+Date:   Mon, 21 Aug 2023 22:17:10 -0700
+From:   Eric Biggers <ebiggers@kernel.org>
+To:     Kamlesh Gurudasani <kamlesh@ti.com>
+Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, joychakr@google.com,
-        manugautam@google.com, Aniket <aniketmaurya@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_DKIM_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [EXTERNAL] Re: [PATCH v2 0/6] Add support for Texas Instruments
+ MCRC64 engine
+Message-ID: <20230822051710.GC1661@sol.localdomain>
+References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
+ <20230812030116.GF971@sol.localdomain>
+ <87h6owen39.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87h6owen39.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-assigned-address is a valid property for I3C device with or without
-static address. Fix the description and an example for the same.
+On Fri, Aug 18, 2023 at 02:36:34PM +0530, Kamlesh Gurudasani wrote:
+> Hi Eric,
+> 
+> We are more interested in offload than performance, with splice system
+> call and DMA mode in driver(will be implemented after this series gets
+> merged), good amount of cpu cycles will be saved.
 
-Signed-off-by: Aniket <aniketmaurya@google.com>
----
- Documentation/devicetree/bindings/i3c/i3c.yaml | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+So it's for power usage, then?  Or freeing up CPU for other tasks?
 
-diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-index fdb4212149e7..ab69f4115de4 100644
---- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-+++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-@@ -135,9 +135,10 @@ patternProperties:
-         minimum: 0x1
-         maximum: 0xff
-         description: |
--          Dynamic address to be assigned to this device. This property is only
--          valid if the I3C device has a static address (first cell of the reg
--          property != 0).
-+          Dynamic address to be assigned to this device. In case static address is
-+          present (first cell of the reg property != 0), this address is assigned
-+          through SETDASA. If static address is not present, this address is assigned
-+          through SETNEWDA after assigning a temporary address via ENTDAA.
- 
-     required:
-       - reg
-@@ -163,12 +164,18 @@ examples:
-             pagesize = <0x8>;
-         };
- 
--        /* I3C device with a static I2C address. */
-+        /* I3C device with a static I2C address and assigned address. */
-         thermal_sensor: sensor@68,39200144004 {
-             reg = <0x68 0x392 0x144004>;
-             assigned-address = <0xa>;
-         };
- 
-+        /* I3C device with only assigned address. */
-+        pressure_sensor: sensor@0,39200124004 {
-+            reg = <0x0 0x392 0x124000>;
-+            assigned-address = <0xc>;
-+        };
-+
-         /*
-          * I3C device without a static I2C address but requiring
-          * resources described in the DT.
--- 
-2.42.0.rc1.204.g551eb34607-goog
+> There is one more mode(auto mode) in mcrc64 which helps to verify crc64
+> values against pre calculated crc64, saving the efforts of comparing in
+> userspace.
 
+Is there any path forward to actually support this?
+
+> 
+> Current generic implementation of crc64-iso(part of this series)
+> gives 173 Mb/s of speed as opposed to mcrc64 which gives speed of 812
+> Mb/s when tested with tcrypt.
+
+This doesn't answer my question, which to reiterate was:
+
+    How does performance compare to a properly optimized software CRC
+    implementation on your platform, i.e. an implementation using carryless
+    multiplication instructions (e.g. ARMv8 CE) if available on your platform,
+    otherwise an implementation using the slice-by-8 or slice-by-16 method?
+
+The implementation you tested was slice-by-1.  Compared to that, it's common for
+slice-by-8 to speed up CRCs by about 4 times and for folding with carryless
+multiplication to speed up CRCs by 10-30 times, sometimes limited only by memory
+bandwidth.  I don't know what specific results you would get on your specific
+CPU and for this specific CRC, and you could certainly see something different
+if you e.g. have some low-end embedded CPU.  But those are the typical results
+I've seen for other CRCs on different CPUs.  So, a software implementation may
+be more attractive than you realize.  It could very well be the case that a
+PMULL based CRC implementation actually ends up with less CPU load than your
+"hardware offload", when taking into syscall, algif_hash, and driver overhead...
+
+- Eric
