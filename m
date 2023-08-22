@@ -2,149 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB8D784035
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:00:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F427840A1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:22:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233245AbjHVMAW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Aug 2023 08:00:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59510 "EHLO
+        id S235527AbjHVMWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 08:22:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231618AbjHVMAW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:00:22 -0400
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F2C2CD9;
-        Tue, 22 Aug 2023 05:00:19 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-591ba8bd094so27918937b3.3;
-        Tue, 22 Aug 2023 05:00:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692705618; x=1693310418;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dxTeXgkR4B+bz9j7ts+Dd6lD/bh9gITVE8oZVXqGxhQ=;
-        b=G+QIopnsID0Oqb2CL06p2o6u+dsW3m5y8xssZDsmpnEIHeTGu+OwWqoDQN7l8oKGuY
-         lDA2JbCyU5X6p81qPxoECu9/rFXYnDQf4KMk95VNmNfq9j9Kx3+Kkb5oyqAvAslymYCL
-         2vDFIU9w4rxw9yWdI66Baxutt7pVulLGFuUjn9Cp3COal3/WM3DHYTfxuITw2tnv1gJt
-         B7cr3L6WLRjcXo1PsLFy/0ElgPAjuJEMSBzoTeJiSHbzV6TLZLFPJUVStudML0Xsi7Yi
-         amcWrVntCNV0kyzeMfnUk2I7CFIw58A/1eyB7brxDzRUlhMXzVfoq5fMIE0WLn65Ifsk
-         MANw==
-X-Gm-Message-State: AOJu0YwYjT3matznXrwtwTLVBfo09oduyFQYlrcRBeDS78d+VEsF5WF8
-        6YZgdIKv1M2YQCoSfDNB+Zw4Q5aI82GmLQ==
-X-Google-Smtp-Source: AGHT+IFCNkIJMPVJLK87XIXzvxE3oHgc+DQqQVa3fwXhQgq5aSaNfTOMetSwGBAuvO83pi0CL1o+2A==
-X-Received: by 2002:a81:bf4b:0:b0:58f:c78e:5918 with SMTP id s11-20020a81bf4b000000b0058fc78e5918mr7520682ywk.52.1692705618404;
-        Tue, 22 Aug 2023 05:00:18 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id x7-20020a814a07000000b00565271801b6sm2753428ywa.59.2023.08.22.05.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 05:00:17 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-d73ee75a796so4275306276.0;
-        Tue, 22 Aug 2023 05:00:17 -0700 (PDT)
-X-Received: by 2002:a25:7613:0:b0:d11:45d3:b25d with SMTP id
- r19-20020a257613000000b00d1145d3b25dmr10608665ybc.46.1692705617462; Tue, 22
- Aug 2023 05:00:17 -0700 (PDT)
+        with ESMTP id S233182AbjHVMWp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:22:45 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 567561AD;
+        Tue, 22 Aug 2023 05:22:43 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37MAmrRR021242;
+        Tue, 22 Aug 2023 11:46:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=lCdAPI2hcrWwv6X1FcNOPHd3uT54TPscRSxMqBnc0s8=;
+ b=nn4c1bh1bGsrEIEVG13jVDu7eqJ+rXr0j/avfYgv0zqwr4rkbA67Fzie/kMxNdlTSjQr
+ mVkQYYpEi14vaZrEmYq/60/+J93cSB4irP6WhLbyZi6jkeqLngmVbGd6kIK0vLpXW0v1
+ rGLT/3xvQZmTOQeYk3xaHE2lu2fePN0+5hS4QgFLLSTHAaQejp4zEXLV33dIurPc3qPG
+ Fe+Wju5dhfLWURsUANRIzYaUPTAJzFCqhdxuoIZhKYLV17r+DxwzVmEjcVp/9Fgobj4s
+ SKbUF0GDXXmxCY4LOANrTF1S45RhViOXF/MpTFeGyj/XagAKFl8Cy+V2hdq+KAPJsrwj tQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3smgeq16tk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Aug 2023 11:46:43 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37MBkXam006245
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Aug 2023 11:46:33 GMT
+Received: from [10.216.34.168] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 22 Aug
+ 2023 04:46:27 -0700
+Message-ID: <bb1b6310-0142-800a-8edb-fb9163d8da75@quicinc.com>
+Date:   Tue, 22 Aug 2023 17:16:18 +0530
 MIME-Version: 1.0
-References: <20230820184402.102486-1-biju.das.jz@bp.renesas.com>
- <20230820184402.102486-3-biju.das.jz@bp.renesas.com> <ZONgzqlS8bGP0umn@smile.fi.intel.com>
- <CAMuHMdVY6VNFhMMzub9RrXd1zo=_7brQVtoBtogNuVfhbkg_tA@mail.gmail.com>
- <ZOOBw/3fqdinIwCh@smile.fi.intel.com> <CAMuHMdW8mqtceDxuZ4Ccq0Wrg8ySfFzVC3OBB0AqvfSR-54KYA@mail.gmail.com>
- <ZOOaFioDSpasda82@smile.fi.intel.com> <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
- <ZOSfrHUDpaax1FS4@smile.fi.intel.com>
-In-Reply-To: <ZOSfrHUDpaax1FS4@smile.fi.intel.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 22 Aug 2023 14:00:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVwy72utSLBFro7emgG5Hx6xzD8MHwXczAyJJvBpVDgYg@mail.gmail.com>
-Message-ID: <CAMuHMdVwy72utSLBFro7emgG5Hx6xzD8MHwXczAyJJvBpVDgYg@mail.gmail.com>
-Subject: Re: [PATCH 2/4] usb: typec: tcpci_rt1711h: Convert enum->pointer for
- data in the match tables
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: Add ECPRICC clocks for
+ QDU1000 and QRU1000
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>
+CC:     Taniya Das <quic_tdas@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20230808051407.647395-1-quic_imrashai@quicinc.com>
+ <20230808051407.647395-2-quic_imrashai@quicinc.com>
+ <f4f6baa5-37af-f971-6c05-1070ee66501e@linaro.org>
+Content-Language: en-US
+From:   Imran Shaik <quic_imrashai@quicinc.com>
+In-Reply-To: <f4f6baa5-37af-f971-6c05-1070ee66501e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XRvnFqoX-bqaMeO3OD1wydwDpceiFF4q
+X-Proofpoint-ORIG-GUID: XRvnFqoX-bqaMeO3OD1wydwDpceiFF4q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-22_10,2023-08-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011
+ lowpriorityscore=0 malwarescore=0 phishscore=0 spamscore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308220089
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
 
-On Tue, Aug 22, 2023 at 1:44 PM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
-> On Tue, Aug 22, 2023 at 09:21:19AM +0200, Geert Uytterhoeven wrote:
-> > On Mon, Aug 21, 2023 at 7:09 PM Andy Shevchenko
-> > <andriy.shevchenko@linux.intel.com> wrote:
-> > > On Mon, Aug 21, 2023 at 05:40:05PM +0200, Geert Uytterhoeven wrote:
-> > > > On Mon, Aug 21, 2023 at 5:25 PM Andy Shevchenko
-> > > > <andriy.shevchenko@linux.intel.com> wrote:
-> > > > > On Mon, Aug 21, 2023 at 03:27:43PM +0200, Geert Uytterhoeven wrote:
-> > > > > > On Mon, Aug 21, 2023 at 3:04 PM Andy Shevchenko
-> > > > > > <andriy.shevchenko@linux.intel.com> wrote:
-> > > > > > > On Sun, Aug 20, 2023 at 07:44:00PM +0100, Biju Das wrote:
->
-> ...
->
-> > > > > > > For all your work likes this as I noted in the reply to Guenter that
-> > > > > > > the couple of the selling points here are:
-> > > > > > > 1) avoidance of the pointer abuse in OF table
-> > > > > > >    (we need that to be a valid pointer);
-> > > > > >
-> > > > > > There is no pointer abuse: both const void * (in e.g. of_device_id)
-> > > > > > and kernel_ulong_t (in e.g. i2c_device_id) can be used by drivers
-> > > > > > to store a magic cookie, being either a pointer, or an integer value.
-> > > > > > The same is true for the various unsigned long and void * "driver_data"
-> > > > > > fields in subsystem-specific driver structures.
-> > > > >
-> > > > > (void *)5 is the abuse of the pointer.
-> > > > > We carry something which is not a valid pointer from kernel perspective.
-> > > >
-> > > > But the data field is not required to be a valid pointer.
-> > > > What kind and type of information it represents is specific to the driver.
-> > >
-> > > Where to find necessary information which is not always an integer constant.
-> > > For example, for the driver data that has callbacks it can't be invalid pointer.
-> >
-> > If the driver uses it to store callbacks, of course it needs to be a
-> > valid pointer. But that is internal to the driver.  It is not that
-> > we're passing random integer values to a function that expects a
-> > pointer that can actually be dereferenced.
-> >
-> > > Since OF ID table structure is universal, it uses pointers. Maybe you need to
-> > > update it to use plain integer instead?
-> >
-> > It is fairly common in the kernel to use void * to indicate a
-> > driver-specific cookie, being either a real pointer or an integral
-> > value, that is passed verbatim.  See also e.g. the "dev" parameter
-> > of request_irq().
->
-> Yes, that parameter is void * due to calling kfree(free_irq(...)).
-> So, that's argument for my concerns.
 
-Sorry, I don't understand this comment.
-(kfree(free_irq(...)) is only called in pci_free_irq()?)
+On 8/16/2023 11:19 AM, Krzysztof Kozlowski wrote:
+> On 08/08/2023 07:14, Imran Shaik wrote:
+>> Add device tree bindings for qcom ecpri clock controller on QDU1000 and
+>> QRU1000 SoCs.
+>>
+>> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+>> ---
+>>   .../bindings/clock/qcom,qdu1000-ecpricc.yaml  |  68 +++++++
+>>   .../dt-bindings/clock/qcom,qdu1000-ecpricc.h  | 192 ++++++++++++++++++
+>>   2 files changed, 260 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+>>   create mode 100644 include/dt-bindings/clock/qcom,qdu1000-ecpricc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml b/Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+>> new file mode 100644
+>> index 000000000000..db54052bf360
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,qdu1000-ecpricc.yaml
+>> @@ -0,0 +1,68 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,qdu1000-ecpricc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm ECPRI Clock & Reset Controller for QDU1000 and QRU1000
+>> +
+>> +maintainers:
+>> +  - Taniya Das <quic_tdas@quicinc.com>
+>> +  - Imran Shaik <quic_imrashai@quicinc.com>
+>> +
+>> +description: |
+>> +  Qualcomm ecpri clock control module which supports the clocks, resets
+>> +  on QDU1000 and QRU1000
+>> +
+>> +  See also:: include/dt-bindings/clock/qcom,qdu1000-ecpricc.h
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,qdu1000-ecpricc
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Board XO source
+>> +      - description: GPLL0 source from GCC
+>> +      - description: GPLL1 source from GCC
+>> +      - description: GPLL2 source from GCC
+>> +      - description: GPLL3 source from GCC
+>> +      - description: GPLL4 source from GCC
+>> +      - description: GPLL5 source from GCC
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  '#reset-cells':
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+> 
+> Keep the same order as in required: below.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Gr{oetje,eeting}s,
+Sure, will update this in next series.
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Imran
