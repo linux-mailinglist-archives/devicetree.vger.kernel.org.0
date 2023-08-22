@@ -2,163 +2,414 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C32783FD9
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:46:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9B9D783FEB
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235187AbjHVLqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 07:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43612 "EHLO
+        id S235194AbjHVLsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 07:48:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234461AbjHVLqG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:46:06 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1EFE7F;
-        Tue, 22 Aug 2023 04:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692704740; x=1724240740;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=yWJeFjh0gbuONuUENqg06iKxJfhh+cE8CuDrcCOmYDk=;
-  b=GtSGpWMv0q7QXVjlhtikWpntEz20sK+RQdtDP3EmJzWNkPRtOXdVPWai
-   suMjGEbwsC1tfcJOqoI5yZzMmaWVWqHsuAFIFWyEUTI7EfHfQAk798j7K
-   Gj2XVQVNk8nz1KjwS1ID1NwkXQwa1N0ILuy7+1/LUpZVbePQzLd4yAnra
-   AKX9DH4VC7wCJN50gDcq+aoLy/AQy/vl8tEDGkzsGRqU9w9e9LbGc1iPZ
-   mPQT535/njqTWKrMxih8iqHQesZXKw/oqQfVbZzuKzxp6oVOUH+Xy9uSg
-   E1S4Iv66smM4D6F1pZsT4Oy77r6Khge5VOBiNbletbSeLUpmdC7zBA9Fo
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="404858534"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; 
-   d="scan'208";a="404858534"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2023 04:44:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="736182765"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; 
-   d="scan'208";a="736182765"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP; 22 Aug 2023 04:44:46 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qYPoS-008eMe-1r;
-        Tue, 22 Aug 2023 14:44:44 +0300
-Date:   Tue, 22 Aug 2023 14:44:44 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH 2/4] usb: typec: tcpci_rt1711h: Convert enum->pointer for
- data in the match tables
-Message-ID: <ZOSfrHUDpaax1FS4@smile.fi.intel.com>
-References: <20230820184402.102486-1-biju.das.jz@bp.renesas.com>
- <20230820184402.102486-3-biju.das.jz@bp.renesas.com>
- <ZONgzqlS8bGP0umn@smile.fi.intel.com>
- <CAMuHMdVY6VNFhMMzub9RrXd1zo=_7brQVtoBtogNuVfhbkg_tA@mail.gmail.com>
- <ZOOBw/3fqdinIwCh@smile.fi.intel.com>
- <CAMuHMdW8mqtceDxuZ4Ccq0Wrg8ySfFzVC3OBB0AqvfSR-54KYA@mail.gmail.com>
- <ZOOaFioDSpasda82@smile.fi.intel.com>
- <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
+        with ESMTP id S231320AbjHVLsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:48:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D8BE65;
+        Tue, 22 Aug 2023 04:47:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C3A1B65496;
+        Tue, 22 Aug 2023 11:46:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90D1BC433C7;
+        Tue, 22 Aug 2023 11:46:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692704797;
+        bh=RM5w9bgNMrj8vwALOgdiYm9h818Ptnx4UPvI179AyvU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KgTPZ0AlInZWCri4V2PACa2nqOBQT1a1DRdKqTEwc710AmHIDUy6Ty7arh2WtYTuZ
+         19Bh8keLRjl7GhEcH+hIkVGn2N38FS3OXNfVqqtJM/qq8N//gSnfN3dzM8YQK/XTwB
+         Eiaf0WkzNInp7P948Gih/9tO73zL3fBcHfr+mZ02AZX6wJlZCdOMfxch9/tlpwk6X0
+         olax1feJLeUg8J8QPhZcBaUMneSScHHDn+trxC1FzZSMenfqa/E2oiUu8ho1Vu1BTj
+         1NKg1saUfPq1LjS/LRU7/Ka8lf8VHa+LuDzsDhekpKVXh8b6vk0FFjoTAAIgZJdjAV
+         zYgQzB4ys3Thg==
+Date:   Tue, 22 Aug 2023 13:46:34 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Liu Ying <victor.liu@nxp.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+        guido.gunther@puri.sm, marcel.ziswiler@toradex.com,
+        laurentiu.palcu@oss.nxp.com, robh@kernel.org
+Subject: Re: [PATCH v14 RESEND 1/6] dt-bindings: display: imx: Add
+ i.MX8qxp/qm DPU binding
+Message-ID: <scbtbu4cdjlsmbr6ugkpqslvfywidvbuqyekxuttfe4rmbp2st@lev2zfqe4h62>
+References: <20230822085949.816844-1-victor.liu@nxp.com>
+ <20230822085949.816844-2-victor.liu@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ccyhqw6wrihzcazw"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230822085949.816844-2-victor.liu@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 22, 2023 at 09:21:19AM +0200, Geert Uytterhoeven wrote:
-> On Mon, Aug 21, 2023 at 7:09 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> > On Mon, Aug 21, 2023 at 05:40:05PM +0200, Geert Uytterhoeven wrote:
-> > > On Mon, Aug 21, 2023 at 5:25 PM Andy Shevchenko
-> > > <andriy.shevchenko@linux.intel.com> wrote:
-> > > > On Mon, Aug 21, 2023 at 03:27:43PM +0200, Geert Uytterhoeven wrote:
-> > > > > On Mon, Aug 21, 2023 at 3:04 PM Andy Shevchenko
-> > > > > <andriy.shevchenko@linux.intel.com> wrote:
-> > > > > > On Sun, Aug 20, 2023 at 07:44:00PM +0100, Biju Das wrote:
 
-...
+--ccyhqw6wrihzcazw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > > > > For all your work likes this as I noted in the reply to Guenter that
-> > > > > > the couple of the selling points here are:
-> > > > > > 1) avoidance of the pointer abuse in OF table
-> > > > > >    (we need that to be a valid pointer);
-> > > > >
-> > > > > There is no pointer abuse: both const void * (in e.g. of_device_id)
-> > > > > and kernel_ulong_t (in e.g. i2c_device_id) can be used by drivers
-> > > > > to store a magic cookie, being either a pointer, or an integer value.
-> > > > > The same is true for the various unsigned long and void * "driver_data"
-> > > > > fields in subsystem-specific driver structures.
-> > > >
-> > > > (void *)5 is the abuse of the pointer.
-> > > > We carry something which is not a valid pointer from kernel perspective.
-> > >
-> > > But the data field is not required to be a valid pointer.
-> > > What kind and type of information it represents is specific to the driver.
-> >
-> > Where to find necessary information which is not always an integer constant.
-> > For example, for the driver data that has callbacks it can't be invalid pointer.
-> 
-> If the driver uses it to store callbacks, of course it needs to be a
-> valid pointer. But that is internal to the driver.  It is not that
-> we're passing random integer values to a function that expects a
-> pointer that can actually be dereferenced.
-> 
-> > Since OF ID table structure is universal, it uses pointers. Maybe you need to
-> > update it to use plain integer instead?
-> 
-> It is fairly common in the kernel to use void * to indicate a
-> driver-specific cookie, being either a real pointer or an integral
-> value, that is passed verbatim.  See also e.g. the "dev" parameter
-> of request_irq().
+Hi,
 
-Yes, that parameter is void * due to calling kfree(free_irq(...)).
-So, that's argument for my concerns.
+On Tue, Aug 22, 2023 at 04:59:44PM +0800, Liu Ying wrote:
+> This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v7->v14:
+> * No change.
+>=20
+> v6->v7:
+> * Add Rob's R-b tag back.
+>=20
+> v5->v6:
+> * Use graph schema. So, drop Rob's R-b tag as review is needed.
+>=20
+> v4->v5:
+> * No change.
+>=20
+> v3->v4:
+> * Improve compatible property by using enum instead of oneOf+const. (Rob)
+> * Add Rob's R-b tag.
+>=20
+> v2->v3:
+> * No change.
+>=20
+> v1->v2:
+> * Fix yamllint warnings.
+> * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm, as the
+>   display controller subsystem spec does say that they exist.
+> * Use new dt binding way to add clocks in the example.
+> * Trivial tweaks for the example.
+>=20
+>  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml | 387 ++++++++++++++++++
+>  1 file changed, 387 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx=
+8qxp-dpu.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dp=
+u.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+> new file mode 100644
+> index 000000000000..6b05c586cd9d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+> @@ -0,0 +1,387 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dpu.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX8qm/qxp Display Processing Unit
+> +
+> +maintainers:
+> +  - Liu Ying <victor.liu@nxp.com>
+> +
+> +description: |
+> +  The Freescale i.MX8qm/qxp Display Processing Unit(DPU) is comprised of=
+ two
+> +  main components that include a blit engine for 2D graphics acceleratio=
+ns
+> +  and a display controller for display output processing, as well as a c=
+ommand
+> +  sequencer.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx8qxp-dpu
+> +      - fsl,imx8qm-dpu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: |
+> +          store9 shadow load interrupt(blit engine)
+> +      - description: |
+> +          store9 frame complete interrupt(blit engine)
+> +      - description: |
+> +          store9 sequence complete interrupt(blit engine)
+> +      - description: |
+> +          extdst0 shadow load interrupt
+> +          (display controller, content stream 0)
+> +      - description: |
+> +          extdst0 frame complete interrupt
+> +          (display controller, content stream 0)
+> +      - description: |
+> +          extdst0 sequence complete interrupt
+> +          (display controller, content stream 0)
+> +      - description: |
+> +          extdst4 shadow load interrupt
+> +          (display controller, safety stream 0)
+> +      - description: |
+> +          extdst4 frame complete interrupt
+> +          (display controller, safety stream 0)
+> +      - description: |
+> +          extdst4 sequence complete interrupt
+> +          (display controller, safety stream 0)
+> +      - description: |
+> +          extdst1 shadow load interrupt
+> +          (display controller, content stream 1)
+> +      - description: |
+> +          extdst1 frame complete interrupt
+> +          (display controller, content stream 1)
+> +      - description: |
+> +          extdst1 sequence complete interrupt
+> +          (display controller, content stream 1)
+> +      - description: |
+> +          extdst5 shadow load interrupt
+> +          (display controller, safety stream 1)
+> +      - description: |
+> +          extdst5 frame complete interrupt
+> +          (display controller, safety stream 1)
+> +      - description: |
+> +          extdst5 sequence complete interrupt
+> +          (display controller, safety stream 1)
+> +      - description: |
+> +          disengcfg0 shadow load interrupt
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          disengcfg0 frame complete interrupt
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          disengcfg0 sequence complete interrupt
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          framegen0 programmable interrupt0
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          framegen0 programmable interrupt1
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          framegen0 programmable interrupt2
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          framegen0 programmable interrupt3
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          signature0 shadow load interrupt
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          signature0 measurement valid interrupt
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          signature0 error condition interrupt
+> +          (display controller, display stream 0)
+> +      - description: |
+> +          disengcfg1 shadow load interrupt
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          disengcfg1 frame complete interrupt
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          disengcfg1 sequence complete interrupt
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          framegen1 programmable interrupt0
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          framegen1 programmable interrupt1
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          framegen1 programmable interrupt2
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          framegen1 programmable interrupt3
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          signature1 shadow load interrupt
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          signature1 measurement valid interrupt
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          signature1 error condition interrupt
+> +          (display controller, display stream 1)
+> +      - description: |
+> +          command sequencer error condition interrupt(command sequencer)
+> +      - description: |
+> +          common control software interrupt0(common control)
+> +      - description: |
+> +          common control software interrupt1(common control)
+> +      - description: |
+> +          common control software interrupt2(common control)
+> +      - description: |
+> +          common control software interrupt3(common control)
+> +      - description: |
+> +          framegen0 synchronization status activated interrupt
+> +          (display controller, safety stream 0)
+> +      - description: |
+> +          framegen0 synchronization status deactivated interrupt
+> +          (display controller, safety stream 0)
+> +      - description: |
+> +          framegen0 synchronization status activated interrupt
+> +          (display controller, content stream 0)
+> +      - description: |
+> +          framegen0 synchronization status deactivated interrupt
+> +          (display controller, content stream 0)
+> +      - description: |
+> +          framegen1 synchronization status activated interrupt
+> +          (display controller, safety stream 1)
+> +      - description: |
+> +          framegen1 synchronization status deactivated interrupt
+> +          (display controller, safety stream 1)
+> +      - description: |
+> +          framegen1 synchronization status activated interrupt
+> +          (display controller, content stream 1)
+> +      - description: |
+> +          framegen1 synchronization status deactivated interrupt
+> +          (display controller, content stream 1)
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: store9_shdload
+> +      - const: store9_framecomplete
+> +      - const: store9_seqcomplete
+> +      - const: extdst0_shdload
+> +      - const: extdst0_framecomplete
+> +      - const: extdst0_seqcomplete
+> +      - const: extdst4_shdload
+> +      - const: extdst4_framecomplete
+> +      - const: extdst4_seqcomplete
+> +      - const: extdst1_shdload
+> +      - const: extdst1_framecomplete
+> +      - const: extdst1_seqcomplete
+> +      - const: extdst5_shdload
+> +      - const: extdst5_framecomplete
+> +      - const: extdst5_seqcomplete
+> +      - const: disengcfg_shdload0
+> +      - const: disengcfg_framecomplete0
+> +      - const: disengcfg_seqcomplete0
+> +      - const: framegen0_int0
+> +      - const: framegen0_int1
+> +      - const: framegen0_int2
+> +      - const: framegen0_int3
+> +      - const: sig0_shdload
+> +      - const: sig0_valid
+> +      - const: sig0_error
+> +      - const: disengcfg_shdload1
+> +      - const: disengcfg_framecomplete1
+> +      - const: disengcfg_seqcomplete1
+> +      - const: framegen1_int0
+> +      - const: framegen1_int1
+> +      - const: framegen1_int2
+> +      - const: framegen1_int3
+> +      - const: sig1_shdload
+> +      - const: sig1_valid
+> +      - const: sig1_error
+> +      - const: cmdseq_error
+> +      - const: comctrl_sw0
+> +      - const: comctrl_sw1
+> +      - const: comctrl_sw2
+> +      - const: comctrl_sw3
+> +      - const: framegen0_primsync_on
+> +      - const: framegen0_primsync_off
+> +      - const: framegen0_secsync_on
+> +      - const: framegen0_secsync_off
+> +      - const: framegen1_primsync_on
+> +      - const: framegen1_primsync_off
+> +      - const: framegen1_secsync_on
+> +      - const: framegen1_secsync_off
+> +
+> +  clocks:
+> +    maxItems: 8
+> +
+> +  clock-names:
+> +    items:
+> +      - const: axi
+> +      - const: cfg
+> +      - const: pll0
+> +      - const: pll1
+> +      - const: bypass0
+> +      - const: bypass1
+> +      - const: disp0
+> +      - const: disp1
+> +
+> +  power-domains:
+> +    items:
+> +      - description: DC power-domain
+> +      - description: PLL0 power-domain
+> +      - description: PLL1 power-domain
+> +
+> +  power-domain-names:
+> +    items:
+> +      - const: dc
+> +      - const: pll0
+> +      - const: pll1
+> +
+> +  fsl,dpr-channels:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description: |
+> +      List of phandle which points to DPR channels associated with
+> +      this DPU instance.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: The DPU output port node from display stream0.
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: The DPU output port node from display stream1.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
 
-> > I think there is no more sense to continue this. We have to admit we have
-> > a good disagreement on this and I do not see any way I can agree with your
-> > arguments. Note, I'm fine if you "fix" OF ID structure to use kernel_ulong_t.
-> 
-> of_device_id is also used in userspace (e.g. modutils), but I believe
-> that uses a copy of the structure definition, not the definition from
-> the kernel headers.
+Generally speaking, and looking at the main KMS drivers patch, it really
+looks like it's multiple device glued as one, with the driver un-gluing
+them and creating devices and their resources based on what actual
+devices you have in there.
 
-Nope, it uses the very same mod_devicetable.h in both.
+It's especially obvious for the CRTCs, and to some extent the embedded
+interrupt controller you have in your driver.
 
-> Still, changing the type would be a lot of work,
-> for IMHO no real gain.
+This is *very* far from the usual way of describing things in the device
+tree, and you would usually have a driver that doesn't take care of
+creating the devices, because they are properly described in the device
+tree.
 
-So, stale mate here, then?
+If you have a good reason to deviate from that design, then it should be
+explicitly discussed and explained.
 
-> > The only objection there is that it may not carry on the const qualifier,
-> > which I personally find being a huge downside of the whole driver_data.
-> > I believe you haven't objected that.
-> 
-> Having const is nice, indeed.
+Maxime
 
-At least something we have agreed on :-)
+--ccyhqw6wrihzcazw
+Content-Type: application/pgp-signature; name="signature.asc"
 
--- 
-With Best Regards,
-Andy Shevchenko
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOSgGgAKCRDj7w1vZxhR
+xbMHAP9a8D0BifQwpJnJsTRysWV3rkSCppZAFPn5vluNt7c+lwEAwPYgoiXibJHv
+4wGo+BmJ3KH3RvGjw8ntStfzBmFCmA8=
+=iWvx
+-----END PGP SIGNATURE-----
 
+--ccyhqw6wrihzcazw--
