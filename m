@@ -2,74 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B1B78398D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 07:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB497839B5
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 08:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231205AbjHVFyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 01:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56492 "EHLO
+        id S232740AbjHVGEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 02:04:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232427AbjHVFyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 01:54:36 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9A9B185
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:54:34 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-52889bc61b6so5160640a12.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:54:34 -0700 (PDT)
+        with ESMTP id S232553AbjHVGEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 02:04:45 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45A8E187
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 23:04:41 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so549988666b.2
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 23:04:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692683673; x=1693288473;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1692684280; x=1693289080;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7TQX4y/uBks8nVow/iPGHdMMait3YhGPxYbRER/vAHI=;
-        b=D2WKJgnPmiNc5DtPRLx3K/1bi+ALPO6Ox0BPf7MgWLCXGX+ugGmtbq6PTYiqkbsdXo
-         pevGNinraFDgfmH0udKrxvA+87fIwn/o39IbxKDK2xuVdh69NujFmNtjV6Cq5YPe3Age
-         Q6RtEx5OuvQRG7nuGwlY5HTkmtGbQbjM/IGdSlo/Mzlhiut4s3E5rxa726v6FRTlg5Oz
-         hMkZ9FYIHP5yrD5OnYjsa1JLh6mAlcKh0DO0CakQeSXO6lVYNfvEd47N2rdrfhWQi8pl
-         f6YhzJ6X+Re0bu/TQsYPyg6w1Wy5Az6uDAcKb+dcSpKEcX1OVcWO3AFd3nXE6gKAmToL
-         lAuw==
+        bh=C3aWA1jtQ3ekjqLkSXHoeqbDYDQZG5PYeCTI0ujmipE=;
+        b=y4C2X+SsvjepV4ge15y35NSFMDWBeSiNTt0+AHmsPCzXgF04nCuWhoBdcJGUOAuSHb
+         +1GQ3uVuRXIjN7BhDK+HXCbbnG4Husp/jlTg9DFI3pJSW0tiKacU79idb8InnmbUv8XV
+         dYdFgdkn27EHnllI+Tm8B0YprU8Zy9/2lnUMoTV9HvspLQ97yDuNwtj6zM5B5eIUBEs3
+         GZ7aTdBiT2F1vW2Tw7SjZ+DMMFygPuzm84GacIsuJSEAQv6uMUtY3Awt79Zo2bC4z9fG
+         BQ67xeAKHd/0reQp2r/4L6KSt4DuY9CDhXFIRBkPerubVixgwbb/kzXxlqWUf/V7fDNh
+         YC6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692683673; x=1693288473;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1692684280; x=1693289080;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7TQX4y/uBks8nVow/iPGHdMMait3YhGPxYbRER/vAHI=;
-        b=LltJmKBuulBcxF21f3gfjmS3h8KhC7Eb0QrUG5nbnroMiROQ2Tpi9BPUOEwcX0PfPm
-         tENJGtlKZWcNwLaHMd+Oa5xg/n7fQqBuwZ1TE9aU1vtI/Mc2k5uEoPc41WYtF+xU9fcP
-         tEi3yzC9TyoMk5Fsw9zA0A6vGISu9w7+fn5G+liwlaiUh/nHbcqzF+7+lOsDGLzVkfcK
-         a2Et83vzUf2QZ/8gr2xfGfvNlOdVYjmJGJpvTHpAQ0/BOoQHIOudF8s2xAvJnRtjDxUd
-         d8n8iCQSh3jA/E/ggpUpA15+m1qgH5mFYn8EYLrXjlI6MhsGOiG2gKKeo0/giL9mmw/M
-         HQFA==
-X-Gm-Message-State: AOJu0YzrDVIvuvqxdDrMyb0hMSPMVQt7vb5Vow1yTk12geXS4AjgydCa
-        qETJhhuPpYlpAZfo7QlD42jszg==
-X-Google-Smtp-Source: AGHT+IEhDWurn+BYTTaGcgwpERqWG0ysoExljMCFTqgXhHbhp9OQXV6bd64JEdpjuDYl/Vu3vIfg7g==
-X-Received: by 2002:a17:907:a076:b0:99b:d2a9:9a01 with SMTP id ia22-20020a170907a07600b0099bd2a99a01mr6856980ejc.0.1692683673252;
-        Mon, 21 Aug 2023 22:54:33 -0700 (PDT)
+        bh=C3aWA1jtQ3ekjqLkSXHoeqbDYDQZG5PYeCTI0ujmipE=;
+        b=lA+FUFA6wdGGI0nCmW3Efs2KdD+orV7iOtp4ZRvGfIk0MVdxq3EhHeM9rQ9ncBvhPE
+         RO7F0Pus86KLDqafLbqJ8lPBVecx0CHmGNFdJRcnr+xFBVByR+1xpk8mFJ5vMH/VKCzb
+         as0ZrQ0retLYr3l2+y1V5kkYChARXCuZMOBXko73eBwlcRbpm+10Gv9YCRbNzq2oiHiT
+         niraBiaq10jmIdKfNfPe0xF7hySO5toCshQh/OJiNoY3lDrvUayXFrpB47fGdCz6TAKM
+         SCE3Dz3yRKE7mCBBijVL1PN0V5JWFWezLnQ0vfS4YxteJCfrean7Y0h4+tpDFgfmSq7V
+         NTQw==
+X-Gm-Message-State: AOJu0YwJ7BpTln8db2AvtuCIpclOjhey1T8reegIFvWbuFU3Z3tctk4h
+        oepmEcoTw9Tk8CyCVNOdf3Wsag==
+X-Google-Smtp-Source: AGHT+IGwTAFZN57WbIIvRgAX4lgW31qSiyruvaXkXryqzj8k10mR/AG4zrjU24SlgJ3PO2XtYltQpw==
+X-Received: by 2002:a17:906:3287:b0:992:a836:a194 with SMTP id 7-20020a170906328700b00992a836a194mr6405065ejw.59.1692684279572;
+        Mon, 21 Aug 2023 23:04:39 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id a6-20020a170906368600b0099bc038eb2bsm7588168ejc.58.2023.08.21.22.54.32
+        by smtp.gmail.com with ESMTPSA id lo8-20020a170906fa0800b009929ab17bdfsm7558296ejb.168.2023.08.21.23.04.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 22:54:32 -0700 (PDT)
-Message-ID: <07c6a89b-f545-a49a-db21-ec361811e4be@linaro.org>
-Date:   Tue, 22 Aug 2023 07:54:31 +0200
+        Mon, 21 Aug 2023 23:04:39 -0700 (PDT)
+Message-ID: <e2a0c77d-cb48-9348-672a-6adaae38df3c@linaro.org>
+Date:   Tue, 22 Aug 2023 08:04:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/4] dt-bindings: touchscreen: neonode,zforce: Use
- standard properties
+Subject: Re: [PATCH v2 2/3] dt-bindings: arm: Adds CoreSight CSR hardware
+ definitions
 Content-Language: en-US
-To:     Andreas Kemnade <andreas@kemnade.info>, dmitry.torokhov@gmail.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        rydberg@bitmath.org, u.kleine-koenig@pengutronix.de,
-        Jonathan.Cameron@huawei.com, linus.walleij@linaro.org,
-        heiko@sntech.de, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230821171151.555091-1-andreas@kemnade.info>
- <20230821171151.555091-3-andreas@kemnade.info>
+To:     Mao Jinlong <quic_jinlmao@quicinc.com>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Tao Zhang <quic_taozha@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>
+References: <20230813151253.38128-1-quic_jinlmao@quicinc.com>
+ <20230813151253.38128-3-quic_jinlmao@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230821171151.555091-3-andreas@kemnade.info>
+In-Reply-To: <20230813151253.38128-3-quic_jinlmao@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,17 +92,208 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2023 19:11, Andreas Kemnade wrote:
-> Enable touchscreen orientation to be specified by using standard
-> properties.
+On 13/08/2023 17:12, Mao Jinlong wrote:
+> Adds new coresight-csr.yaml file describing the bindings required
+> to define csr in the device trees.
 > 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
 > ---
+>  .../bindings/arm/qcom,coresight-csr.yaml      | 130 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  include/dt-bindings/arm/coresight-csr-dt.h    |  12 ++
+>  3 files changed, 143 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+>  create mode 100644 include/dt-bindings/arm/coresight-csr-dt.h
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+> new file mode 100644
+> index 000000000000..de4baa335fdb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-csr.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/qcom,coresight-csr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: CoreSight Slave Register - CSR
+> +
+> +description: |
+> +  CoreSight Slave Register block hosts miscellaneous configuration registers.
+> +  Those configuration registers can be used to control, various coresight
+> +  configurations.
+> +
+> +maintainers:
+> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
+> +  - Hao Zhang <quic_hazha@quicinc.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^csr(@[0-9a-f]+)$"
 
-Rob reviewed yesterday v1 (although adding 3rd party tags might not work
-with some tools):
+Blank line. Or even drop the nodename, we do not enforce names in the
+individual bindings and I do not get why "csr" should be a recommended
+name. It's not really generic, but specific.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> +  compatible:
+> +    items:
+> +      - const: qcom,coresight-csr
+> +
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+
+Why is this flexible? One device has only one register layout... or you
+want to say that compatible is not specific but generic?
+
+Anyway, items needs to be described.
+
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: apb_pclk
+> +
+> +  # size cells and address cells required if assoc_device node present.
+> +  "#size-cells":
+> +    const: 0
+> +
+> +  "#address-cells":
+> +    const: 1
+> +
+> +patternProperties:
+> +  '^assoc_device@([0-9]+)$':
+
+No underscores.
+
+Aren't you now creating duplicated nodes for devices? ETRs for example
+have their device nodes, right? So here you would be creating second
+one? If that's the case, then it looks wrong.
+
+> +    type: object
+> +    description:
+> +      A assocated device child node which describes the required configs
+> +      between this CSR and another hardware device. This device may be ETR or
+> +      TPDM device.
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +      arm,cs-dev-assoc:
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +        description:
+> +          defines a phandle reference to an associated CoreSight trace device.
+> +          When the associated trace device is enabled, then the respective CSR
+> +          will be enabled. If the associated device has not been registered
+> +          then the node name will be stored as the assocated name for later
+> +          resolution.
+> +
+> +      qcom,cs-dev-type:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          Device type of the Assocated device. Types are in coresight-csr-dt.h.
+> +
+> +      qcom,csr-bytecntr-offset:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description:
+> +          The ETR irqctrl register offset. If the assocated device is ETR
+> +          device and there are more than one ETR devices, this property need
+> +          to be added.
+> +
+> +      interrupts:
+> +        minItems: 1
+> +
+> +      interrupt-names:
+> +        minItems: 1
+> +
+> +    required:
+> +      - reg
+> +      - qcom,cs-dev-type
+> +      - qcom,cs-dev-assoc
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # minimum CSR definition.
+> +  - |
+> +    csr@10001000 {
+> +      compatible = "qcom,coresight-csr";
+> +      reg = <0 0x10001000 0 0x1000>;
+> +
+> +      clocks = <&aoss_qmp>;
+> +      clock-names = "apb_pclk";
+> +    };
+> +  # Assocated with ETR device
+> +  - |
+> +    #include <dt-bindings/arm/coresight-csr-dt.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    csr@10001000 {
+> +      compatible = "qcom,coresight-csr";
+> +      reg = <0 0x10001000 0 0x1000>;
+> +
+> +      clocks = <&aoss_qmp>;
+> +      clock-names = "apb_pclk";
+> +
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      assoc_device@0 {
+> +        reg = <0>;
+> +        qcom,cs-dev-type = <CSR_ASSOC_DEV_ETR>;
+> +        qcom,cs-dev-assoc = <&tmc_etr>;
+> +        qcom,csr-bytecntr-offset = <0x6c>;
+> +        interrupts = <GIC_SPI 270 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "byte-cntr-irq";
+> +      };
+> +    };
+> +...
+> +
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index d516295978a4..3ed81a8fd1d0 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2042,7 +2042,7 @@ F:	Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
+>  F:	Documentation/devicetree/bindings/arm/qcom,coresight-*.yaml
+>  F:	Documentation/trace/coresight/*
+>  F:	drivers/hwtracing/coresight/*
+> -F:	include/dt-bindings/arm/coresight-cti-dt.h
+> +F:	include/dt-bindings/arm/coresight-*.h
+>  F:	include/linux/coresight*
+>  F:	samples/coresight/*
+>  F:	tools/perf/arch/arm/util/auxtrace.c
+> diff --git a/include/dt-bindings/arm/coresight-csr-dt.h b/include/dt-bindings/arm/coresight-csr-dt.h
+> new file mode 100644
+> index 000000000000..804b9bbeb2bd
+> --- /dev/null
+> +++ b/include/dt-bindings/arm/coresight-csr-dt.h
+
+Use the same naming pattern as for bindings, so qcom,coresight-csr if it
+is qcom, or arm,coresight-csr if it is ARM. DT is for sure redundant.
+
+> @@ -0,0 +1,12 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +/*
+> + * This header provides constants for the defined device
+> + * types on CoreSight CSR.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_ARM_CORESIGHT_CSR_DT_H
+> +#define _DT_BINDINGS_ARM_CORESIGHT_CSR_DT_H
+> +
+> +#define CSR_ASSOC_DEV_ETR	1
+> +
+> +#endif /*_DT_BINDINGS_ARM_CORESIGHT_CSR_DT_H */
 
 Best regards,
 Krzysztof
