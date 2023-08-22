@@ -2,379 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 188A1783B78
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:13:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F05A7783B83
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 10:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232014AbjHVINc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 04:13:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40618 "EHLO
+        id S233695AbjHVIOw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 04:14:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230340AbjHVINb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:13:31 -0400
-Received: from mail-yw1-x1132.google.com (mail-yw1-x1132.google.com [IPv6:2607:f8b0:4864:20::1132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAE110E;
-        Tue, 22 Aug 2023 01:13:29 -0700 (PDT)
-Received: by mail-yw1-x1132.google.com with SMTP id 00721157ae682-58c92a2c52dso47263977b3.2;
-        Tue, 22 Aug 2023 01:13:29 -0700 (PDT)
+        with ESMTP id S233708AbjHVIOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 04:14:45 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EF26193
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:14:43 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99df431d4bfso538154366b.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 01:14:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692692008; x=1693296808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/zW5Y8LaXGLER42IAGYB8LpUg+Xyn6q09HM2fWj9LCA=;
-        b=Z3OGZL2wiDSe5NHPlCU7cuNR6emkVGyy4jZ/SsgrQS10FbOcU1IKuXhIX0Xjsrl0gF
-         2IhZmFUEeZcY0cHN2oFHrMOcTB4/yW40ZhgYFg8/TU+VenLp8lf4u0gd8b2q6jzAomFr
-         BQdvXg9/A5GQ0WUnxDecfUYqNx9KIW1Ds4Mn0TrDYdVjJmLICuJP8FMME2r52m/5B1Pi
-         gCy+mCSZeWoZu7MS284XxHiGUq+MfMekWBN8bkNp4j2I4JlAr61+Y76sAgeZqrKWK11e
-         an3g+NAfkjrn3UUaldR9SOK2aAImZS9N5Xs5BUc9QEQ+9uiD61yCwf9lFws8EZ9SYXR9
-         O57g==
+        d=linaro.org; s=google; t=1692692082; x=1693296882;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=UcevB7am2pXeP5lqY50CZLpg9C14+QBxX9cH++gplMk=;
+        b=ulHC1p5RFSlmcCJ/iqa2uNeOtQCu/getFfhJm7Zc/LHNNdL4h+XXi8GFR5Ed3OCtGZ
+         1kNb8rNkW0DOHkrk0Rz8KTOiVyg2B0fdzw5OjbtKrQOO4J7iQAiiGzdngEijHAkB7z90
+         YR7FKFsT+wn1cM8K7DGdTMZ4iKt7eX1bIunvf6XQeNaYT2FqI762hBjpGamvzfWtRcPC
+         yK6JMZM2OIxjdREEkPqVN7JGCKjuXL7puf3OOUz6M61Xb+DlKhHQcTd5jFJ5WB8U5AM8
+         JPim9SByzY/xbnd5RhYxMY/g5vg/JTaHE34CczXh0s1L3V9ggG3kpwvl6GrNjPwsd9wT
+         RQnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692692008; x=1693296808;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/zW5Y8LaXGLER42IAGYB8LpUg+Xyn6q09HM2fWj9LCA=;
-        b=gi0RBzA3K/Hx7weNmTBaWeyniVUv0X7nEdOvQx3A9Tksjc3fZOavKwgRmUMtFySzCL
-         SQJJRmKvgyoRA/z7LVTha1K1+rtNcESgo1zZZrczXgdTgASbe8ezxN1WSwuXxhLBKH4H
-         qYziMJtjqtwIXyyGMZrLbpRsbN7lbLyzGs/mKu64HNvdkeTPpG6bivviBLisC00ZtpQC
-         TY+mV0ccE/cBP/4zlC4lVIupjnSFAhosyCkXA9u+us28J8Kqoa43BBtb/weXjGtxi9kN
-         OKLdbaE4jr+j/zp1Q2xD+2ENKdDr++Jcqj9byjCgv1qyrnmjImttCG6j+tcOCvS8C8hK
-         WbRQ==
-X-Gm-Message-State: AOJu0Ywgz3R3uV9FGsqAaX7c57kM9xvicXEHbmjKbt1eDc34ogZIN67e
-        FR/ry2XsAMCvDaCDhGAxJEtbrndzbLWvCF2pyGA=
-X-Google-Smtp-Source: AGHT+IGzhoRe7kaDsYY+1xcJ1qTu6hq+dr2IGUoDyo75z2HkAVDWWdVVMQak0NsKFcKt4WjA43VlsIPaUJXWrm+zQ3c=
-X-Received: by 2002:a0d:ca4c:0:b0:577:21ff:4d47 with SMTP id
- m73-20020a0dca4c000000b0057721ff4d47mr10517122ywd.7.1692692008134; Tue, 22
- Aug 2023 01:13:28 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692692082; x=1693296882;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UcevB7am2pXeP5lqY50CZLpg9C14+QBxX9cH++gplMk=;
+        b=MHJqcfDOJCYmuLPWC2CXtdBSrwaNu/EE5I5irERqbyynoEXqEJYy3RtOdOM720/lWL
+         yZawzgnPPv3F/pnnMLSl+LOOiUl3lBRuO0zQsWUnfSrIz7f76xJQc1hpvYfjJ1GWawEO
+         6F2i8TT20E73GdBEMMI7lHtzZXTQawAniBePC8WCjrvW5MswwcyKQuOeQS04m4+JP31E
+         QyA0C8dv3m6NROhKYBocsHs99uXihVqbh3SdGx4tHLPthzM3QY8AI0P8YewrVSusb8n7
+         2vOtkLxmkS50mES36QrPFOmfdGeocj+qbiHC4MaqewAYeLXqc71v9XIWewXhGsjRYGX+
+         KUjA==
+X-Gm-Message-State: AOJu0YxuHR6ga/0seed26eOzj5PXmDLacILhxnYemuN46g+dzRC5sXhH
+        OefI7vtSDm0Y0zt/nvtSNkGSPA==
+X-Google-Smtp-Source: AGHT+IGtKfT4WD2eA78KlisViKcPwv4slLcoTtQRurM0VXYw54htN9Rs67jp21lp8SezCPKmCqgnyA==
+X-Received: by 2002:a17:906:3017:b0:9a1:649b:46f9 with SMTP id 23-20020a170906301700b009a1649b46f9mr6558539ejz.74.1692692081945;
+        Tue, 22 Aug 2023 01:14:41 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id m7-20020a17090679c700b009875a6d28b0sm7748312ejo.51.2023.08.22.01.14.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 01:14:41 -0700 (PDT)
+Message-ID: <063c70e6-8ee4-eac9-e0ce-7fc460d58c1f@linaro.org>
+Date:   Tue, 22 Aug 2023 10:14:39 +0200
 MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn> <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
-In-Reply-To: <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Tue, 22 Aug 2023 16:13:16 +0800
-Message-ID: <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/2] dt-bindings: spi: Convert sprd spi bindings to yaml
+Content-Language: en-US
+To:     Jiansheng Wu <jiansheng.wu@unisoc.com>, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        yongzhi.chen@unisoc.com, xiaoqing.wu@unisoc.com,
+        jinfeng.lin1@unisoc.com, jianshengwu16@gmail.com
+References: <20230822075113.25506-1-jiansheng.wu@unisoc.com>
+ <20230822075113.25506-2-jiansheng.wu@unisoc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230822075113.25506-2-jiansheng.wu@unisoc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+On 22/08/2023 09:51, Jiansheng Wu wrote:
+> Convert sprd,sc27xx-pmic.txt to yaml, and add UMP962x series PMICs.
+> 
+> Signed-off-by: Jiansheng Wu <jiansheng.wu@unisoc.com>
 
-Thanks for your detailed reply.
+Subject is bogus. This is not SPI.
 
-On Tue, Aug 22, 2023 at 1:44=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 21/08/2023 08:13, Binbin Zhou wrote:
-> > Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
-> > Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
-> > routes for 64-bit interrupt sources.
-> >
-> > For liointc-2.0, we need to define two liointc nodes in dts, one for
-> > "0-31" interrupt sources and the other for "32-63" interrupt sources.
-> > This applies to mips Loongson-2K1000.
-> >
-> > Unfortunately, there are some warnings about "loongson,liointc-2.0":
-> > 1. "interrupt-names" should be "required", the driver gets the parent
-> > interrupts through it.
->
-> No, why? Parent? This does not make sense.
+> ---
+>  .../bindings/mfd/sprd,sc27xx-pmic.txt         | 40 ---------
+>  .../bindings/mfd/sprd,sc27xx-pmic.yaml        | 84 +++++++++++++++++++
+>  2 files changed, 84 insertions(+), 40 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
+> deleted file mode 100644
+> index 21b9a897fca5..000000000000
+> --- a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.txt
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -Spreadtrum SC27xx Power Management Integrated Circuit (PMIC)
+> -
+> -The Spreadtrum SC27xx series PMICs contain SC2720, SC2721, SC2723, SC2730
+> -and SC2731. The Spreadtrum PMIC belonging to SC27xx series integrates all
+> -mobile handset power management, audio codec, battery management and user
+> -interface support function in a single chip. It has 6 major functional
+> -blocks:
+> -- DCDCs to support CPU, memory.
+> -- LDOs to support both internal and external requirement.
+> -- Battery management system, such as charger, fuel gauge.
+> -- Audio codec.
+> -- User interface function, such as indicator, flash LED and so on.
+> -- IC level interface, such as power on/off control, RTC and typec and so on.
+> -
+> -Required properties:
+> -- compatible: Should be one of the following:
+> -	"sprd,sc2720"
+> -	"sprd,sc2721"
+> -	"sprd,sc2723"
+> -	"sprd,sc2730"
+> -	"sprd,sc2731"
+> -- reg: The address of the device chip select, should be 0.
+> -- spi-max-frequency: Typically set to 26000000.
+> -- interrupts: The interrupt line the device is connected to.
+> -- interrupt-controller: Marks the device node as an interrupt controller.
+> -- #interrupt-cells: The number of cells to describe an PMIC IRQ, must be 2.
+> -- #address-cells: Child device offset number of cells, must be 1.
+> -- #size-cells: Child device size number of cells, must be 0.
+> -
+> -Example:
+> -pmic@0 {
+> -	compatible = "sprd,sc2731";
+> -	reg = <0>;
+> -	spi-max-frequency = <26000000>;
+> -	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> -	interrupt-controller;
+> -	#interrupt-cells = <2>;
+> -	#address-cells = <1>;
+> -	#size-cells = <0>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml
+> new file mode 100644
+> index 000000000000..590970a17143
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/sprd,sc27xx-pmic.yaml
+> @@ -0,0 +1,84 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/sprd,sc27xx-pmic.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: |
+> +  Spreadtrum SC27xx and UMP96xx Power Management Integrated Circuit (PMIC)
+> +
+> +maintainers:
+> +  - Orson Zhai <orsonzhai@gmail.com>
+> +  - Baolin Wang <baolin.wang7@gmail.com>
+> +  - Chunyan Zhang <zhang.lyra@gmail.com>
+> +
+> +description: |
+> +  The Spreadtrum SC27xx series PMICs contain SC2720, SC2721, SC2723, SC2730, SC2731
+> +  and UMP96xx series PMICs contain ump9620, ump962 and ump9622. The Spreadtrum PMIC
+> +  belonging to SC27xx series and ump962x series integrates all mobile handset power
+> +  management, audio codec, battery management and user interface support function in
+> +  a single chip. It has 6 major functional.
+> +
+> +blocks:
 
-This was noted in the v1 patch discussion. The liointc driver now gets
-the parent interrupt via of_irq_get_byname(), so I think the
-"interrupt-names" should be "required".
+Please don't use confusing YAML syntax.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/irqchip/irq-loongson-liointc.c?h=3Dv6.5-rc6#n345
+> +  - DCDCs to support CPU, memory.
+> +  - LDOs to support both internal and external requirement.
+> +  - Battery management system, such as charger, fuel gauge.
+> +  - Audio codec.
+> +  - User interface function, such as indicator, flash LED and so on.
+> +  - IC level interface, such as power on/off control, RTC and typec and so on.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/sprd,spi-adi.yaml#
 
-static const char *const parent_names[] =3D {"int0", "int1", "int2", "int3"=
-};
+This is confusing. How is this device a SPI controller? You have
+entirely different compatibles, so no, it's wrong. Missing ref to
+spi-peripheral properties. See other bindings.
 
-        for (i =3D 0; i < LIOINTC_NUM_PARENT; i++) {
-                parent_irq[i] =3D of_irq_get_byname(node, parent_names[i]);
-                if (parent_irq[i] > 0)
-                        have_parent =3D TRUE;
-        }
-        if (!have_parent)
-                return -ENODEV;
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sprd,sc2720
+> +      - sprd,sc2721
+> +      - sprd,sc2723
+> +      - sprd,sc2730
+> +      - sprd,sc2731
+> +      - sprd,ump9620
+> +      - sprd,ump9621
+> +      - sprd,ump9622
 
->
-> >
-> > 2. Since not all CPUs are multicore, e.g. Loongson-2K0500 is a
-> > single-core CPU, there is no core1-related registers. So "reg" and
-> > "reg-names" should be set to "minItems 2".
-> >
-> > 3. Routing interrupts from "int0" is a common solution in practice, but
-> > theoretically there is no such requirement, as long as conflicts are
-> > avoided. So "interrupt-names" should be defined by "pattern".
->
-> Why? What the pattern has to do with anything in routing or not routing
-> something?
+This does not match your previous bindings and nothing is explained in
+commit msg.
 
-First of all, interrupt routing is configurable and each intx handles
-up to 32 interrupt sources. int0-int3 you can choose a single one or a
-combination of multiple ones, as long as the intx chosen matches the
-parent interrupt and is not duplicated:
-Parent interrupt --> intx
-2-->int0
-3-->int1
-4-->int2
-5-->int3
+> +
+> +  reg:
+> +    maxItems: 7
+> +    description: The address of the device chip select
 
-As:
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
-h/mips/boot/dts/loongson/loongson64g-package.dtsi?h=3Dv6.5-rc6#n24
+7 items? No way.
 
-In addition, if there are 64 interrupt sources, such as the mips
-Loongson-2K1000, and we need two dts nodes to describe the interrupt
-routing, then there is bound to be a node without "int0".
+> +
+> +  spi-max-frequency:
+> +    default: 26000000
+> +
+> +  interrupts: true
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arc=
-h/mips/boot/dts/loongson/loongson64-2k1000.dtsi?h=3Dv6.5-rc6#n60
+You need constraints.
 
-According to the current dt-binding rule, if the node does not have
-"int0", there will be a dts_check warning, which is not in line with
-our original intention.
+> +
+> +  interrupt-controller:
+> +    description: Marks the device node as an interrupt controller.
 
->
-> >
-> > This fixes dtbs_check warning:
-> >
-> > DTC_CHK arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb
-> > arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-cont=
-roller@1fe11440: interrupt-names:0: 'int0' was expected
-> >       From schema: Documentation/devicetree/bindings/interrupt-controll=
-er/loongson,liointc.yaml
-> > arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-cont=
-roller@1fe11440: Unevaluated properties are not allowed ('interrupt-names' =
-was unexpected)
-> >       From schema: Documentation/devicetree/bindings/interrupt-controll=
-er/loongson,liointc.yaml
-> >
-> > Fixes: f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add Loongson-2=
-K1000 LIOINTC")
-> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > ---
-> > V2:
-> > 1. Update commit message;
-> > 2. "interruprt-names" should be "required", the driver gets the parent
-> > interrupts through it;
-> > 3. Add more descriptions to explain the rationale for multiple nodes;
-> > 4. Rewrite if-else statements.
-> >
-> > Link to V1:
-> > https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongso=
-n.cn/
-> >
-> >  .../loongson,liointc.yaml                     | 74 +++++++++----------
-> >  1 file changed, 37 insertions(+), 37 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/loo=
-ngson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller=
-/loongson,liointc.yaml
-> > index 00b570c82903..f695d3a75ddf 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
-iointc.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,l=
-iointc.yaml
-> > @@ -11,11 +11,11 @@ maintainers:
-> >
-> >  description: |
-> >    This interrupt controller is found in the Loongson-3 family of chips=
- and
-> > -  Loongson-2K1000 chip, as the primary package interrupt controller wh=
-ich
-> > +  Loongson-2K series chips, as the primary package interrupt controlle=
-r which
-> >    can route local I/O interrupt to interrupt lines of cores.
-> > -
-> > -allOf:
-> > -  - $ref: /schemas/interrupt-controller.yaml#
-> > +  In particular, the Loongson-2K1000/2K0500 has 64 interrupt sources t=
-hat we
-> > +  need to describe with two dts nodes. One for interrupt sources "0-31=
-" and
-> > +  the other for interrupt sources "32-63".
-> >
-> >  properties:
-> >    compatible:
-> > @@ -24,15 +24,9 @@ properties:
-> >        - loongson,liointc-1.0a
-> >        - loongson,liointc-2.0
-> >
-> > -  reg:
-> > -    minItems: 1
-> > -    minItems: 3
-> > +  reg: true
->
-> No. Constraints must be here.
+Drop description. ": true" instead
 
-May I ask a question:
-Since different compatibles require different minItems/minItems for
-the attribute, this writeup of defining the attribute to be true first
-and then defining the specific value in an if-else statement is not
-recommended?
->
-> >
-> > -  reg-names:
-> > -    items:
-> > -      - const: main
-> > -      - const: isr0
-> > -      - const: isr1
-> > +  reg-names: true
->
-> No, keep at least min/maxItems here.
->
-> >
-> >    interrupt-controller: true
-> >
-> > @@ -45,11 +39,9 @@ properties:
-> >    interrupt-names:
-> >      description: List of names for the parent interrupts.
-> >      items:
-> > -      - const: int0
-> > -      - const: int1
-> > -      - const: int2
-> > -      - const: int3
-> > +      pattern: int[0-3]
-> >      minItems: 1
-> > +    maxItems: 4
->
-> I don't see reason behind it.
->
-> >
-> >    '#interrupt-cells':
-> >      const: 2
-> > @@ -69,32 +61,41 @@ required:
-> >    - compatible
-> >    - reg
-> >    - interrupts
-> > +  - interrupt-names
->
-> Why? You are doing multiple things at once, without proper explanation.
+> +
+> +  interrupt-cells:
+> +    const: 2
+> +    description: The number of cells to describe an PMIC IRQ, must be 2.
 
-Maybe this patch does too many things...
-There are actually 3 things here, as stated in the commit message, and
-since they are all about liointc-2.0 dts-check warnings, I put them in
-a patch.
->
-> >    - interrupt-controller
-> >    - '#interrupt-cells'
-> >    - loongson,parent_int_map
-> >
-> > -
-> >  unevaluatedProperties: false
-> >
-> > -if:
-> > -  properties:
-> > -    compatible:
-> > -      contains:
-> > -        enum:
-> > -          - loongson,liointc-2.0
-> > -
-> > -then:
-> > -  properties:
-> > -    reg:
-> > -      minItems: 3
-> > -
-> > -  required:
-> > -    - reg-names
-> > -
-> > -else:
-> > -  properties:
-> > -    reg:
-> > -      maxItems: 1
-> > +allOf:
-> > +  - $ref: /schemas/interrupt-controller.yaml#
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - loongson,liointc-2.0
-> > +    then:
-> > +      properties:
-> > +        reg:
-> > +          minItems: 2
-> > +          items:
-> > +            - description: Interrupt routing registers.
-> > +            - description: Low/high 32-bit interrupt status routed to =
-core0.
-> > +            - description: Low/high 32-bit interrupt status routed to =
-core1.
-> > +        reg-names:
-> > +          minItems: 2
-> > +          items:
-> > +            - const: main
-> > +            - const: isr0
-> > +            - const: isr1
->
-> Srsly, why this is moved here from the top? It does not make sense.
+You did not test it.
 
-In liointc-2.0, we need to deal with two dts nodes, and the setting
-and routing registers are not contiguous, so the driver needs
-"reg-names" to get the corresponding register mapping. So I put all
-this in the liointc-2.0 section.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-max-frequency
+> +  - '#address-cells' # Child device offset number of cells, must be 1.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/dri=
-vers/irqchip/irq-loongson-liointc.c?h=3Dv6.5-rc6#n225
+??
 
-        if (revision > 1) {
-                for (i =3D 0; i < LIOINTC_NUM_CORES; i++) {
-                        int index =3D of_property_match_string(node,
-                                        "reg-names", core_reg_names[i]);
+> +  - '#size-cells' # Child device size number of cells, must be 0.
 
-                        if (index < 0)
-                                continue;
+?? No way. You do not have any children. Drop bogus properties and
+explain it in commit msg.
 
-                        priv->core_isr[i] =3D of_iomap(node, index);
-                }
+> +
+> +unevaluatedProperties: false
+> +
+> +Example:
+> +  - |
+> +    adi_bus {
 
-                if (!priv->core_isr[0])
-                        goto out_iounmap;
-        }
+No underscores in node names, generic node names, whatever this supposed
+to be. I guess spi...
 
+> +        pmic@0 {
+> +            compatible = "sprd,sc2731";
+> +            reg = <0>;
+> +            spi-max-frequency = <26000000>;
+> +            interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
 
-I referenced other dt-binding writeups and thought this would be clearer.
+Test your bindings...
 
-Is this if-else style not recommended? Should I keep the v1 patch writeup?
-https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongson.cn=
-/
+> +...
 
-Thanks.
-Binbin
->
-> > +      required:
-> > +        - reg-names
-> > +    else:
-> > +      properties:
-> > +        reg:
-> > +          maxItems: 1
->
-> so reg-names can be "pink-pony"?
->
-> Best regards,
-> Krzysztof
->
+Best regards,
+Krzysztof
+
