@@ -2,78 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81431783971
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 07:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F89578398A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 07:53:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232873AbjHVFoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 01:44:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45408 "EHLO
+        id S232648AbjHVFxc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 01:53:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232868AbjHVFoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 01:44:38 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E836D186
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:44:35 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99cce6f7de2so549791566b.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:44:35 -0700 (PDT)
+        with ESMTP id S232506AbjHVFxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 01:53:32 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CEC4185
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:53:30 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bb8a12e819so63555051fa.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 22:53:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692683074; x=1693287874;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692683608; x=1693288408;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Pz65IM6yK+nsY8GMYtZPvYOmwUF6F4yt+xPaiBO+hQ=;
-        b=j0ze+Q9Xmul9BQ10lkn/30oKMU0MyDZKtP7kQkGfEnhhujbMxX7Ip2T/3BVh19T2IU
-         pCzUdFVH3moQIcnmtDZdQeXuNpJmo5Kv+3i+BHQboEBpqFdd2/JYifyyhZHCpBSdXk9S
-         6nZnfj0hOiXu74eY9Ly0NZyI3gOK4bnrWsik1o27xn7A9wUmRbW+wY4DigX2ZdZiVHwy
-         h5QrSneVtgDKfqyZYSwUlyAKD5mVaMTHoproyvuT+UUjLWtElgjfZs+1qIe99hNqCnQf
-         fLhPUGBIrZ1QY2KGIjkZd+Sq6sUJwTa/J7iiEgVwbQBl+Mb+LpeMziVfNTDXF4Op9lf4
-         +JDQ==
+        bh=YclWG5r8FOwzKxdmQ7yoGnwhJn4JvlTIe9J5LgNQq7U=;
+        b=WSS+g6A6q+xua6xPjBLSyt5939/WFW5rR6kW4ACicPv26Jj3S5ME7qad2B+/QdO4tl
+         XWA3vrX/hNzoC+jdWjBBqvv2PcvKIZYGzCRgB0iGWm7Q5Xd6NxAXmO5SjYnQSXG3sMtm
+         EHQCWYmcnvUc6Das+KODUiDYCxg/LcYb3mO6lQFJgKCuwKrY+bTs8YgQ72R3rbMX+uij
+         JXTd9eL/cvgAkTweKjawQECBsFvymVn8oactmFssC2O+frFYBAAfvQxiWDpQlCcHNOy9
+         skoBzIk36tJwJJ+tE3yaa8WHJWzPnGCq7TfMGXwN7VVk1fJpiLhKYiC0qp7gcQs8M7QO
+         y6EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692683074; x=1693287874;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692683608; x=1693288408;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Pz65IM6yK+nsY8GMYtZPvYOmwUF6F4yt+xPaiBO+hQ=;
-        b=XL6EMpe8JCSiZw9w2dGfae0JlUYXUyqspmwr5AQcAq0EvzAA6XwT1xAS4GfBRPLLTo
-         uCsg4zpi/9rRmKlvjIFv4y1kboJmZzYnTBbV/gpT3BHgZKpwRERx5oTVAbg2PYgOnblm
-         2Ka72ovxgKsWSOFMoNf5X6xsDceO5V4WIMl71TMThWQTVHtuEA6LbRcG/aMcrdBxHX+j
-         tDHYOjCa3aLx+DO69jqyPnDM/uefNJbEJwz4f9iLtVHoSX6c6S9bccIyDCmtKR7SCsJo
-         BxVgM3+CAmjreH0+kS2EBXHY9s/U0JNBHKOcGSGd16jae1UWip0aNK4GPf118NK76q04
-         myXg==
-X-Gm-Message-State: AOJu0Yxel9LWAkDcggYpHd5UqhE+8SgLAr6wX+j17aBeS+iwqHOZ1oiE
-        U9N5HA4rnQM1dXTTygPmSx+nSA==
-X-Google-Smtp-Source: AGHT+IFsW2EHW1wtQRSB+/XNA/5uXxvwe55YXZkjJn3VtfUvXo1Lrm3RDMPjqSfYk1A6u+bSg2Uevw==
-X-Received: by 2002:a17:906:3089:b0:9a1:c216:c89c with SMTP id 9-20020a170906308900b009a1c216c89cmr26722ejv.66.1692683074320;
-        Mon, 21 Aug 2023 22:44:34 -0700 (PDT)
+        bh=YclWG5r8FOwzKxdmQ7yoGnwhJn4JvlTIe9J5LgNQq7U=;
+        b=M7/bPI58HDTYkKcaFP8zoZeFVGN+FWdAPFCJZmkFxBjjZn8+FlrDRL9DVPzI4SLFj+
+         iqpgdj3vuvMu0xiteoUi5G3pYk3m7Yg7HfCeGgDx2lARIzC/nes18DI3Dj8xQ+SA8hWu
+         sW9W0bGJhCYbjV06AzP/GzynE0OwCypR1LXSaXX4bNgmcorjzVKJvSEZnV9dtR5rvbf3
+         YNSFsBPekuL2ivTayeToDV0Gv3UQqJ3NvYv/LOp/IDb0MNSVGubt5/yqgNvIdH7DsCBF
+         oX5nfHZY21HUdMPFw6zPeJt/Cobs2M9OVXybzi4hXTGTxxCHI1go0WTfK+0MqY2g83PP
+         MUmw==
+X-Gm-Message-State: AOJu0YwSfXfgwla9eNBhAn0DjskkVKYEOX30MUvjhyEUY78CPJxxY8yM
+        Os0INgO6yi4FVnz8WcAskp2xCg==
+X-Google-Smtp-Source: AGHT+IGwzUrCGIQEn6gDwZlnstlzuErkxJ9bkfS7lUv6kaL8GC3cD1kuDouQOUNIiEhJ+s8ddkA1ug==
+X-Received: by 2002:a2e:8283:0:b0:2bb:94e4:49f with SMTP id y3-20020a2e8283000000b002bb94e4049fmr5399822ljg.32.1692683608683;
+        Mon, 21 Aug 2023 22:53:28 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id bv17-20020a170906b1d100b00992e265495csm7557220ejb.212.2023.08.21.22.44.33
+        by smtp.gmail.com with ESMTPSA id n23-20020a170906841700b0099ce23c57e6sm7545498ejx.224.2023.08.21.22.53.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Aug 2023 22:44:33 -0700 (PDT)
-Message-ID: <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
-Date:   Tue, 22 Aug 2023 07:44:32 +0200
+        Mon, 21 Aug 2023 22:53:28 -0700 (PDT)
+Message-ID: <da281686-a187-4363-ad97-015ae93ca5ac@linaro.org>
+Date:   Tue, 22 Aug 2023 07:53:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
-        linux-kernel@vger.kernel.org
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
+Subject: Re: [PATCH v2 1/4] dt-bindings: touchscreen: convert neonode,zforce
+ to json-schema
 Content-Language: en-US
+To:     Andreas Kemnade <andreas@kemnade.info>, dmitry.torokhov@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        rydberg@bitmath.org, u.kleine-koenig@pengutronix.de,
+        Jonathan.Cameron@huawei.com, linus.walleij@linaro.org,
+        heiko@sntech.de, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230821171151.555091-1-andreas@kemnade.info>
+ <20230821171151.555091-2-andreas@kemnade.info>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
+In-Reply-To: <20230821171151.555091-2-andreas@kemnade.info>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,186 +82,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/08/2023 08:13, Binbin Zhou wrote:
-> Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
-> Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
-> routes for 64-bit interrupt sources.
+On 21/08/2023 19:11, Andreas Kemnade wrote:
+> Convert Neonode infrared touchscreen controller binding to DT schema.
 > 
-> For liointc-2.0, we need to define two liointc nodes in dts, one for
-> "0-31" interrupt sources and the other for "32-63" interrupt sources.
-> This applies to mips Loongson-2K1000.
-> 
-> Unfortunately, there are some warnings about "loongson,liointc-2.0":
-> 1. "interrupt-names" should be "required", the driver gets the parent
-> interrupts through it.
-
-No, why? Parent? This does not make sense.
-
-> 
-> 2. Since not all CPUs are multicore, e.g. Loongson-2K0500 is a
-> single-core CPU, there is no core1-related registers. So "reg" and
-> "reg-names" should be set to "minItems 2".
-> 
-> 3. Routing interrupts from "int0" is a common solution in practice, but
-> theoretically there is no such requirement, as long as conflicts are
-> avoided. So "interrupt-names" should be defined by "pattern".
-
-Why? What the pattern has to do with anything in routing or not routing
-something?
-
-> 
-> This fixes dtbs_check warning:
-> 
-> DTC_CHK arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb
-> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-controller@1fe11440: interrupt-names:0: 'int0' was expected
->       From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-controller@1fe11440: Unevaluated properties are not allowed ('interrupt-names' was unexpected)
->       From schema: Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> 
-> Fixes: f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add Loongson-2K1000 LIOINTC")
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > ---
-> V2:
-> 1. Update commit message;
-> 2. "interruprt-names" should be "required", the driver gets the parent
-> interrupts through it;
-> 3. Add more descriptions to explain the rationale for multiple nodes;
-> 4. Rewrite if-else statements.
-> 
-> Link to V1:
-> https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongson.cn/
-> 
->  .../loongson,liointc.yaml                     | 74 +++++++++----------
->  1 file changed, 37 insertions(+), 37 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> index 00b570c82903..f695d3a75ddf 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson,liointc.yaml
-> @@ -11,11 +11,11 @@ maintainers:
->  
->  description: |
->    This interrupt controller is found in the Loongson-3 family of chips and
-> -  Loongson-2K1000 chip, as the primary package interrupt controller which
-> +  Loongson-2K series chips, as the primary package interrupt controller which
->    can route local I/O interrupt to interrupt lines of cores.
-> -
-> -allOf:
-> -  - $ref: /schemas/interrupt-controller.yaml#
-> +  In particular, the Loongson-2K1000/2K0500 has 64 interrupt sources that we
-> +  need to describe with two dts nodes. One for interrupt sources "0-31" and
-> +  the other for interrupt sources "32-63".
->  
->  properties:
->    compatible:
-> @@ -24,15 +24,9 @@ properties:
->        - loongson,liointc-1.0a
->        - loongson,liointc-2.0
->  
-> -  reg:
-> -    minItems: 1
-> -    maxItems: 3
-> +  reg: true
 
-No. Constraints must be here.
-
->  
-> -  reg-names:
-> -    items:
-> -      - const: main
-> -      - const: isr0
-> -      - const: isr1
-> +  reg-names: true
-
-No, keep at least min/maxItems here.
-
->  
->    interrupt-controller: true
->  
-> @@ -45,11 +39,9 @@ properties:
->    interrupt-names:
->      description: List of names for the parent interrupts.
->      items:
-> -      - const: int0
-> -      - const: int1
-> -      - const: int2
-> -      - const: int3
-> +      pattern: int[0-3]
->      minItems: 1
-> +    maxItems: 4
-
-I don't see reason behind it.
-
->  
->    '#interrupt-cells':
->      const: 2
-> @@ -69,32 +61,41 @@ required:
->    - compatible
->    - reg
->    - interrupts
-> +  - interrupt-names
-
-Why? You are doing multiple things at once, without proper explanation.
-
->    - interrupt-controller
->    - '#interrupt-cells'
->    - loongson,parent_int_map
->  
-> -
->  unevaluatedProperties: false
->  
-> -if:
-> -  properties:
-> -    compatible:
-> -      contains:
-> -        enum:
-> -          - loongson,liointc-2.0
-> -
-> -then:
-> -  properties:
-> -    reg:
-> -      minItems: 3
-> -
-> -  required:
-> -    - reg-names
-> -
-> -else:
-> -  properties:
-> -    reg:
-> -      maxItems: 1
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - loongson,liointc-2.0
-> +    then:
-> +      properties:
-> +        reg:
-> +          minItems: 2
-> +          items:
-> +            - description: Interrupt routing registers.
-> +            - description: Low/high 32-bit interrupt status routed to core0.
-> +            - description: Low/high 32-bit interrupt status routed to core1.
-> +        reg-names:
-> +          minItems: 2
-> +          items:
-> +            - const: main
-> +            - const: isr0
-> +            - const: isr1
-
-Srsly, why this is moved here from the top? It does not make sense.
-
-> +      required:
-> +        - reg-names
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-
-so reg-names can be "pink-pony"?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
