@@ -2,160 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7C64783ACB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 09:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1E39783AC9
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 09:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232003AbjHVHWG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 03:22:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40442 "EHLO
+        id S233351AbjHVHVt convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Aug 2023 03:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231978AbjHVHWF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 03:22:05 -0400
-X-Greylist: delayed 92 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 22 Aug 2023 00:22:03 PDT
-Received: from de-smtp-delivery-113.mimecast.com (de-smtp-delivery-113.mimecast.com [194.104.111.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CE2C125
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 00:22:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com; s=toradex-com;
-        t=1692688921;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=DiASmAmkF0Wq+19yh3Bys9ZnwGl8PkAPie/BWGT78MQ=;
-        b=jX0ciFENZCaUUlAXw0Jjm0qLFhfT4jS2kmj8jDZXM+tph3Rd1D70s+doN+OmuMOne5QOiR
-        6dU7kEobU1pEom/oVPHKsfiCN+2wROo0xuvsps6rufNDJvxRO8A5MNxyeG+XRTdZ2GDd66
-        ApEiEzumz7UHGstc9VjPYCUAd0/TVfI=
-Received: from CHE01-GV0-obe.outbound.protection.outlook.com
- (mail-gv0che01lp2040.outbound.protection.outlook.com [104.47.22.40]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- de-mta-16-Q4dYho3OPzm7u4TyLvNnYw-1; Tue, 22 Aug 2023 09:19:38 +0200
-X-MC-Unique: Q4dYho3OPzm7u4TyLvNnYw-1
-Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:3b::9) by
- ZR0P278MB0042.CHEP278.PROD.OUTLOOK.COM (2603:10a6:910:1a::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6699.24; Tue, 22 Aug 2023 07:19:36 +0000
-Received: from ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
- ([fe80::d5a7:e7ce:ac78:4984]) by ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
- ([fe80::d5a7:e7ce:ac78:4984%6]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
- 07:19:36 +0000
-From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
-To:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "victor.liu@nxp.com" <victor.liu@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        "guido.gunther@puri.sm" <guido.gunther@puri.sm>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "laurentiu.palcu@oss.nxp.com" <laurentiu.palcu@oss.nxp.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "maarten.lankhorst@linux.intel.com" 
-        <maarten.lankhorst@linux.intel.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "festevam@gmail.com" <festevam@gmail.com>
-Subject: Re: [PATCH v14 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
-Thread-Topic: [PATCH v14 0/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
-Thread-Index: AQHZIZK8Ht9B++0fbUq/ehBVvVc+t6/3MfsAgAAc4YA=
-Date:   Tue, 22 Aug 2023 07:19:36 +0000
-Message-ID: <bc421f5fc24135d543ae516bc07af0e70dd920a3.camel@toradex.com>
-References: <20230106055056.2883302-1-victor.liu@nxp.com>
-         <AM7PR04MB7046E7F22B817FC6FE8DA95A981FA@AM7PR04MB7046.eurprd04.prod.outlook.com>
-In-Reply-To: <AM7PR04MB7046E7F22B817FC6FE8DA95A981FA@AM7PR04MB7046.eurprd04.prod.outlook.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZR0P278MB0683:EE_|ZR0P278MB0042:EE_
-x-ms-office365-filtering-correlation-id: 5d3845c2-ee45-439f-5ab1-08dba2e023dd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0
-x-microsoft-antispam-message-info: aLVkEfGcBnmAIRfOzdkA4EITdJ+a293UKnaOK7FlMu6uKZ3+DKG9suTF02Pj7VdRro7fKmMSO/UagqZbMZmY/ftg/39pVweeI5XqvqVRFzLjtLTHtgEx30iKt0sAj+WaG+A++neGuJ11KI7M1bxO1vn4ic2snfq/7HiNahFNHF2v0X3llrg4DTulm4h48gE4d3sLBv61sjEbI8KZJi/r9hVVvDPiI196PDATbgbUsTMqHrjmL1EYf013cK7AiKMvXe3W9vhX4pK082xRIdpnNcj+HPv7yGtVF1qTSsV92tZOOo/CAT0VuTiwmep/33xBVVHu6ugicXEFS+hUINqcVI9FiW4GDIXwlsxTHAxZjeXqqQZz/iB/251o1qcJu/DDXDru4JwUy7i93gmLlZVz1MuLCU1ikr2pHHnDP9428Krjx7SHH2daNDC/qesgB7dWEnxuabBP4OFuTmq4PHNdT1wHBHUW/PElwasj3Y6Vuj9azbhaUXJDjUHFy+UNUh/i4CIH6sekowu5MXawS2qBAGFFFsuRsLW/UbGrKDv2ZeN93jx8jw50Gyq4F62kuuNROXp6eGRQQgaEJHQ/djWWyCLNIEpeVxizjMOfqL36O02E/GNrsFAXsuZgHGSmaoqj
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(39840400004)(346002)(396003)(376002)(136003)(366004)(186009)(1800799009)(451199024)(4326008)(8676002)(8936002)(26005)(6512007)(2616005)(86362001)(38100700002)(122000001)(38070700005)(66446008)(64756008)(41300700001)(316002)(6506007)(6486002)(478600001)(53546011)(71200400001)(76116006)(36756003)(66946007)(66556008)(66476007)(110136005)(54906003)(44832011)(2906002)(4744005)(5660300002)(7416002);DIR:OUT;SFP:1102
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UVRkTE5TZTJINmMvdUQxQmNyNGZzbnY2VFlZb29VOTQ0VFFkbzJsUUhxRWd0?=
- =?utf-8?B?a2hGQVFXTUhVUkM5d0pQSGZZRVh5bTdITE1hbmU2bzdiSStlUURBMTN0ZjRq?=
- =?utf-8?B?QS9MQ256cTJHd0krWmJKTDg2Y1Y1dmQvM05OSEd6SzhURlIycFAvQWRUWmdu?=
- =?utf-8?B?TFN6Y3lxM1hDVGgwNmlXcTFyVTdXNmJRQVArdVlTZjBINUFuSHZtaUtkZ0JS?=
- =?utf-8?B?WmRuN2JFa0pPWVVWeTAzSFJsSVFEY1gyN0cyMldzV1lsUlRZSEplZ3cvR05L?=
- =?utf-8?B?VXQ4Y3d2OUV4SzgrYjgwSXpOSlEwMXVnb3V0SEQ3cUptd2IvdTVzYW1RQml3?=
- =?utf-8?B?cml0a01rTkJ4ckxnaTZudUEwVGdUWUVXVjR5bkVORDRPd1ZDOXhKZmJPT3Zw?=
- =?utf-8?B?U2QvVlBVTTRjNWNxWlFFbDltTVA3a2ptK08yOGMya083RGRkQ1dYUlNLampk?=
- =?utf-8?B?UG00QURGM1QrTE9UZ2w1S3hacmNVUHVQL1E2eDViVUJocHBCVUNJR1V5MGF2?=
- =?utf-8?B?WEFsUy84NytoRVRTYXNjbHlmRVdGZDBZRmJ1ZzhMNThwaUdpMGpJZDYvdU55?=
- =?utf-8?B?MVVyOVdiSXNHUjZraHlHSVZwYTlBMTBYbnR1WUsvVHlZVUZOQ2hIT1RXR3dX?=
- =?utf-8?B?R0gyUFpobU5iTnJ4MndaNlJqMXJnMXdiVVJpMzVqT1BpOFRiTkRwaGFwQ2Fu?=
- =?utf-8?B?andxczBYR3BKNFZwYjlXVzQyd3c2RDdRbmF0ZnRsV0V6NHRHVCs0YXdBWjZx?=
- =?utf-8?B?Q1kwUk50V2JQUU1mU1EveXcrNUY5S0RscDhJS2FmMlAzaWZGMHVPQkNLK3cy?=
- =?utf-8?B?dVBxaFM3MExXTW10SmNxQTBhdjFleU9uL01RUVlORFFoSVFNWkR3ZTArN3p0?=
- =?utf-8?B?TDlvTHZzRmVPQTh3VFlXbUZpSlh0c3o5QWl6VHh4N2hwWHZUd2p5eUZtZUpC?=
- =?utf-8?B?cTl3Ui9PY01pLzNCYVBBWDcrU21ZSXhnSGJHdXlrVmhIN1h1V2QvWkJLbGQ2?=
- =?utf-8?B?aVF2dnlFc0ZBM2YzSHdLbVFzR0pZM3lvZTlYRGxOWWZiZEdaN3ZHaUcrZmFB?=
- =?utf-8?B?bE9NNUF2aHMvODVnbUpDcWVBL25YT3JXSmVxb0lmZW1DNEpTQWtybzRoOCtW?=
- =?utf-8?B?cUN2cEtUcmVIMG1FOGM1VlEySkFRUUQ4bk1Cbmt2d0tZT1lXR0FoS1VyWjNW?=
- =?utf-8?B?ZjhPUWpLZ1RPbUVkdHFaVCtCdGYwQ3VtdzZIWmhxZ2VhRDlkdUxoTEJjS0ta?=
- =?utf-8?B?Zzd6K1dURWtvTVFqZHVUMGlJK0ZrcHpDdDdGcXpwQVJKdTRPNTNWYXNTdzhO?=
- =?utf-8?B?M2gzekt5dWkrQ1BoencvNmdwWmIzMW5Ea1ZqajZveHF3QXpiWG50eXJMbUZL?=
- =?utf-8?B?RytjN1RoNWxZenI4eU5XMUJNV1l4cWpGNkMycyszSXdZWGV4anZwcFBxSjhN?=
- =?utf-8?B?SXR4YkVoMmNkWHY4d2RhNmtMKzJGbXQ5eWRpZ3BJajJ4YmcrTSsvVXF5bURk?=
- =?utf-8?B?Z1Q2di9ETjlrMGZ2cEw0WVBiYkxpbmpYTEYrYUR0VUo2RllWaW1NMFNIR2Nj?=
- =?utf-8?B?ZkVldmF0VnVlQ3RGZlJrMThZZzFybTlZRmh5cFhaRk5XQzBTbGZhTUZhNVBM?=
- =?utf-8?B?bVVuZGwrSHRCZ1NlVmYxdVBUVnR0TGwzODcwREFoMVBKR3d6S2JPaHp1M3lP?=
- =?utf-8?B?cGlkdmVheFNibmxiMWlpK05kZHoxdHd5YnZ5N1pTTDRhM204SWdqNkRhOGFC?=
- =?utf-8?B?RVQ2bDlCR2phVWYrM2dYUmJ2aUR2eWloZ2tEc3JpUlVyRWNyZU8xL0tOVzVI?=
- =?utf-8?B?VGNSVU53N3FKUTBCUnJkeVhualZpdnUzenRiKzZvUTVzbEFxV0QrQmFaTkZV?=
- =?utf-8?B?Q1hMSHBRK0VjVDZsZ2pvcEFUYTNmVFBHanJkN1cySFo5dy8yZlhUUnZ0KzNH?=
- =?utf-8?B?bmhIbGEzR0l3aGNqL2FFK0ZnSnFKSzNFMy96cGpCbmVid1ErNzF6V2ZuZDJn?=
- =?utf-8?B?Z0cwRXhOaEJUZWxhU2dGcXV3ZXRIb3NoMnEybnJCemNBc3ZsQitZTnIwS1Rk?=
- =?utf-8?B?T1l6VUE3RTkyRFdSNmtIM3JSVW5qci9SdkNNUHRDMTFKZkFBZU1RYWZJUW1F?=
- =?utf-8?B?SVRWZFdHRDRlYzlaUW1PNXp2NW4wdUxIVlVTUHRGZXJyWEdvSXUxaTVPMWlR?=
- =?utf-8?B?anc9PQ==?=
+        with ESMTP id S233306AbjHVHVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 03:21:44 -0400
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A08ECCD;
+        Tue, 22 Aug 2023 00:21:33 -0700 (PDT)
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-48d0e739e32so746506e0c.3;
+        Tue, 22 Aug 2023 00:21:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692688892; x=1693293692;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=tEqj/7VMYcFHe/k0i7FuQIhSZcp2uVDnPoA7oQf1bW4=;
+        b=L8d6Ep+PIdFwTDIdiKx5OJwgSObKATwC0NbD7IbnJfhmDMFtOZInIhMIEhQZr+ACrb
+         RqPlTfla2JB0vIUhcRQNeaoQCWJxA4alpOSzSLG3R7UeF6NnIpgoUA7JGgihIIIS0Pnn
+         ea0m5t4CekPSUgKPnIIAFwpPLMuTlBs5xtI/JW56XS5pjpcKwIOflk0ZToVUmY4ZnNxj
+         Qo1ANOexVRXJc+c9V9Nt/cZfrHjelBp6H38unEJ3QuSFeTRZnGFGYySDcqiVLrz0U1n2
+         nqzViE67Drh+WnVFulWYuSJZ4QtEtNqq7CDrhSfOyGjcPKKUapbJdpwJj1UGpA9ZAAi1
+         v1Yg==
+X-Gm-Message-State: AOJu0YyJU0arX4eyMnRpKAt9U3+tX8KeNo/CxxGcHmgipa+9Y+WdvEs1
+        1mL0yNs77zkGyZkesYkgNP8kdwq0+CQk8Q==
+X-Google-Smtp-Source: AGHT+IGhHYL1QXzaQc6nJh4ze05UBS5daFHUNbuUEYU1M8Bid91oCLBeQsuI9OpMhfP6qpvmXJp//A==
+X-Received: by 2002:a1f:dd44:0:b0:48d:2bcf:f959 with SMTP id u65-20020a1fdd44000000b0048d2bcff959mr4937878vkg.3.1692688892140;
+        Tue, 22 Aug 2023 00:21:32 -0700 (PDT)
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com. [209.85.221.179])
+        by smtp.gmail.com with ESMTPSA id w25-20020ac5cc79000000b0048d3a82a9dcsm502758vkm.28.2023.08.22.00.21.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 22 Aug 2023 00:21:31 -0700 (PDT)
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-48cfdfa7893so958093e0c.0;
+        Tue, 22 Aug 2023 00:21:31 -0700 (PDT)
+X-Received: by 2002:a1f:c5c4:0:b0:48d:9a8:e2f6 with SMTP id
+ v187-20020a1fc5c4000000b0048d09a8e2f6mr5726315vkf.14.1692688891082; Tue, 22
+ Aug 2023 00:21:31 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZR0P278MB0683.CHEP278.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d3845c2-ee45-439f-5ab1-08dba2e023dd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2023 07:19:36.0735
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BR1PIQfAS9JSK+1QOEj8wcidJ2yPtIzodyvmcWl+OZ/H9WFxJxLPh87Fk9ttm6nfXVLQTFV+z1zVpT0N63tUEGkKqDraAZV1B9O+RbPlTR4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZR0P278MB0042
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: toradex.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-ID: <CE703F34BE876643975CDDAEAB5C9532@CHEP278.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230820184402.102486-1-biju.das.jz@bp.renesas.com>
+ <20230820184402.102486-3-biju.das.jz@bp.renesas.com> <ZONgzqlS8bGP0umn@smile.fi.intel.com>
+ <CAMuHMdVY6VNFhMMzub9RrXd1zo=_7brQVtoBtogNuVfhbkg_tA@mail.gmail.com>
+ <ZOOBw/3fqdinIwCh@smile.fi.intel.com> <CAMuHMdW8mqtceDxuZ4Ccq0Wrg8ySfFzVC3OBB0AqvfSR-54KYA@mail.gmail.com>
+ <ZOOaFioDSpasda82@smile.fi.intel.com>
+In-Reply-To: <ZOOaFioDSpasda82@smile.fi.intel.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 22 Aug 2023 09:21:19 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
+Message-ID: <CAMuHMdU_4Mg==Jh14K0ecVXfLCDt-RbNia5gCwLPjPj3tBQbsA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] usb: typec: tcpci_rt1711h: Convert enum->pointer for
+ data in the match tables
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTGl1IFlpbmcNCg0KT24gVHVlLCAyMDIzLTA4LTIyIGF0IDA1OjM2ICswMDAwLCBZaW5nIExp
-dSB3cm90ZToNCj4gSGksDQo+IA0KPiA+IE9uIEZyaWRheSwgSmFudWFyeSA2LCAyMDIzIDE6NTAg
-UE0gWWluZyBMaXUgd3JvdGU6DQo+ID4gDQo+ID4gSGksDQo+ID4gDQo+ID4gDQo+ID4gVGhpcyBp
-cyB0aGUgdjE0IHNlcmllcyB0byBpbnRyb2R1Y2UgaS5NWDhxbS9xeHAgRGlzcGxheSBQcm9jZXNz
-aW5nIFVuaXQoRFBVKQ0KPiA+IERSTSBzdXBwb3J0Lg0KDQpbc25pcF0NCg0KPiBUaGlzIHBhdGNo
-IHNlcmllcyBoYXMgYmVlbiBzdWJtaXR0ZWQgZm9yIGEgcXVpdGUgbG9uZyBwZXJpb2Qgb2YgdGlt
-ZS4NCj4gDQo+IEFueXRoaW5nIEkgY2FuIGRvIHRvIGhhdmUgaXQgbGFuZGVkID8NCg0KV2VsbCwg
-bWF5IGl0IGJlIHRlc3RlZD8gQXJlIGFsbCB0aGUgbWlzc2luZyBwaWVjZXMgdGhlcmUgbm93Pw0K
-DQpUaGFua3MhDQoNCj4gUmVnYXJkcywNCj4gTGl1IFlpbmcNCg0KQ2hlZXJzDQoNCk1hcmNlbA0K
+Hi Andy,
 
+CC DT
+
+On Mon, Aug 21, 2023 at 7:09 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+> On Mon, Aug 21, 2023 at 05:40:05PM +0200, Geert Uytterhoeven wrote:
+> > On Mon, Aug 21, 2023 at 5:25 PM Andy Shevchenko
+> > <andriy.shevchenko@linux.intel.com> wrote:
+> > > On Mon, Aug 21, 2023 at 03:27:43PM +0200, Geert Uytterhoeven wrote:
+> > > > On Mon, Aug 21, 2023 at 3:04 PM Andy Shevchenko
+> > > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > > On Sun, Aug 20, 2023 at 07:44:00PM +0100, Biju Das wrote:
+>
+> ...
+>
+> > > > > For all your work likes this as I noted in the reply to Guenter that
+> > > > > the couple of the selling points here are:
+> > > > > 1) avoidance of the pointer abuse in OF table
+> > > > >    (we need that to be a valid pointer);
+> > > >
+> > > > There is no pointer abuse: both const void * (in e.g. of_device_id)
+> > > > and kernel_ulong_t (in e.g. i2c_device_id) can be used by drivers
+> > > > to store a magic cookie, being either a pointer, or an integer value.
+> > > > The same is true for the various unsigned long and void * "driver_data"
+> > > > fields in subsystem-specific driver structures.
+> > >
+> > > (void *)5 is the abuse of the pointer.
+> > > We carry something which is not a valid pointer from kernel perspective.
+> >
+> > But the data field is not required to be a valid pointer.
+> > What kind and type of information it represents is specific to the driver.
+>
+> Where to find necessary information which is not always an integer constant.
+> For example, for the driver data that has callbacks it can't be invalid pointer.
+
+If the driver uses it to store callbacks, of course it needs to be a
+valid pointer. But that is internal to the driver.  It is not that
+we're passing random integer values to a function that expects a
+pointer that can actually be dereferenced.
+
+> Since OF ID table structure is universal, it uses pointers. Maybe you need to
+> update it to use plain integer instead?
+
+It is fairly common in the kernel to use void * to indicate a
+driver-specific cookie, being either a real pointer or an integral
+value, that is passed verbatim.  See also e.g. the "dev" parameter
+of request_irq().
+
+> I think there is no more sense to continue this. We have to admit we have
+> a good disagreement on this and I do not see any way I can agree with your
+> arguments. Note, I'm fine if you "fix" OF ID structure to use kernel_ulong_t.
+
+of_device_id is also used in userspace (e.g. modutils), but I believe
+that uses a copy of the structure definition, not the definition from
+the kernel headers. Still, changing the type would be a lot of work,
+for IMHO no real gain.
+
+> The only objection there is that it may not carry on the const qualifier,
+> which I personally find being a huge downside of the whole driver_data.
+> I believe you haven't objected that.
+
+Having const is nice, indeed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
