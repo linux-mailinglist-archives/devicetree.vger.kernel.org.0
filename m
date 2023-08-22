@@ -2,95 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 466E278427E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 15:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A09D784413
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 16:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233804AbjHVNys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 09:54:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49618 "EHLO
+        id S235213AbjHVO1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 10:27:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231953AbjHVNys (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 09:54:48 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B620F1A1;
-        Tue, 22 Aug 2023 06:54:46 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 47ACC6572A;
-        Tue, 22 Aug 2023 13:54:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDAA7C433C7;
-        Tue, 22 Aug 2023 13:54:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692712485;
-        bh=OZdk+L9lV/tUVafdBKQSUhvJ0WoEpL/rmRTFTm+vvng=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=apzzx2iRS7drX7IIQCP8qIt0eKye5QX1aSRRzQcePIv9xVzvqs0WcQVMUjCvHxcND
-         Bkf+pVYdoPedujn1TuOq9bPh4wXU1isdkuJ7pzUGkETPkuVYczq7H/AziHyepJqdjc
-         hSCk5pyNAjtlYOjXb/7x4JGzKGOzO/SpBXpj7E2ECKMwsti0cznxhzFu8AzBRbrzfa
-         A7Eb2/76/0PKEyHMv7zwjTCzE3V0pCKAt4/vorhCud8vK9Zj2fZeCzXtKpJwmuvQmp
-         bCRD1lmD3bHv788Ed/MG9prmcrKKcJciJWrASB8vXisoxyOnQ6lpgcwuN8vxghkzGp
-         WpnyrEm6irNPw==
-Date:   Tue, 22 Aug 2023 19:24:41 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
-        neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, oliver.brown@nxp.com,
-        alexander.stein@ew.tq-group.com, sam@ravnborg.org
-Subject: Re: [PATCH v8 2/7] phy: Add HDMI configuration options
-Message-ID: <ZOS+IQgFZYxN503B@matsya>
-References: <20230808083243.3113192-1-Sandor.yu@nxp.com>
- <20230808083243.3113192-3-Sandor.yu@nxp.com>
- <c485b64e-3c83-4616-b8d8-76c2c7d56b0e@linaro.org>
+        with ESMTP id S232532AbjHVO1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 10:27:04 -0400
+X-Greylist: delayed 570 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 22 Aug 2023 07:26:54 PDT
+Received: from mail-41103.protonmail.ch (mail-41103.protonmail.ch [185.70.41.103])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD0ECEF
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 07:26:54 -0700 (PDT)
+Date:   Tue, 22 Aug 2023 14:07:12 +0000
+Authentication-Results: mail-41103.protonmail.ch;
+        dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="NkKE019C"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1692713242; x=1692972442;
+        bh=JEDTfL56eXEIhpOtCWICTMLAmzOWWYiVCdprm1DzGsU=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=NkKE019CJSwybWgcTWCsiIbtG2U/0fsiND61i/rYNC7EUAJ2morhKQYvqKwrAUaOX
+         QVIA/i+ghWY1oUR3E+DjN+Uz0qFvQRdU6PclG4ubNmnmJUaHUQgVv694jJvZRp+UjT
+         js2QvYNXCxfH8ug4DfnRBWYI2MUJm430RugCWWTBmN8rSLYge+yHK/J9Bl6sQYHS3O
+         YOtfheNzXox7Ttzp5dXE7//W1xEGV3w8+GNHT9HyOo0z8vE1EcRVMv7HqDsK+zoIzM
+         t/g+Vd3SiUfY/B50KH0UhFSljNNiO+IQpg4TRM5EucNiex18kSSQqXmUhk5CXb30HV
+         38x83dOfurWEA==
+To:     linux-kernel@vger.kernel.org
+From:   Raymond Hackley <raymondhackley@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH] arm64: dts: qcom: msm8916/39-samsung-a2015: Add flash LED
+Message-ID: <20230822140407.3316-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c485b64e-3c83-4616-b8d8-76c2c7d56b0e@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-08-23, 13:05, Dmitry Baryshkov wrote:
-> On 08/08/2023 11:32, Sandor Yu wrote:
-> > Allow HDMI PHYs to be configured through the generic
-> > functions through a custom structure added to the generic union.
-> > 
-> > The parameters added here are based on HDMI PHY
-> > implementation practices.  The current set of parameters
-> > should cover the potential users.
-> > 
-> > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> > ---
-> >   include/linux/phy/phy-hdmi.h | 24 ++++++++++++++++++++++++
-> >   include/linux/phy/phy.h      |  7 ++++++-
-> >   2 files changed, 30 insertions(+), 1 deletion(-)
-> >   create mode 100644 include/linux/phy/phy-hdmi.h
-> 
-> I think this looks good now, thank you!
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+The phones listed below have Richteck RT5033 LED, which has GPIO pin
+configurations similar to SGM3140 Flash LED driver.
+Add it to the device trees.
 
-Should this go thru drm or phy...?
+- Samsung Galaxy A3/A5/A7 2015
+- Samsung Galaxy E5/E7
+- Samsung Galaxy Grand Max
 
-> 
-> -- 
-> With best wishes
-> Dmitry
+Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+---
+ .../qcom/msm8916-samsung-a2015-common.dtsi    | 23 +++++++++++++++++++
+ .../boot/dts/qcom/msm8939-samsung-a7.dts      | 23 +++++++++++++++++++
+ 2 files changed, 46 insertions(+)
 
--- 
-~Vinod
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi b/a=
+rch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+index 019bf73178fa..48990716cafd 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-a2015-common.dtsi
+@@ -4,6 +4,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+=20
+ / {
+@@ -36,6 +37,21 @@ clk_pwm: pwm {
+ =09=09status =3D "disabled";
+ =09};
+=20
++=09flash-led-controller {
++=09=09compatible =3D "richtek,rt5033-led";
++=09=09enable-gpios =3D <&tlmm 34 GPIO_ACTIVE_HIGH>;
++=09=09flash-gpios =3D <&tlmm 36 GPIO_ACTIVE_HIGH>;
++
++=09=09pinctrl-0 =3D <&camera_flash_default>;
++=09=09pinctrl-names =3D "default";
++
++=09=09flash_led: led {
++=09=09=09function =3D LED_FUNCTION_FLASH;
++=09=09=09color =3D <LED_COLOR_ID_WHITE>;
++=09=09=09flash-max-timeout-us =3D <544000>;
++=09=09};
++=09};
++
+ =09gpio-keys {
+ =09=09compatible =3D "gpio-keys";
+=20
+@@ -293,6 +309,13 @@ accel_int_default: accel-int-default-state {
+ =09=09bias-disable;
+ =09};
+=20
++=09camera_flash_default: camera-flash-default-state {
++=09=09pins =3D "gpio34", "gpio36";
++=09=09function =3D "gpio";
++=09=09drive-strength =3D <2>;
++=09=09bias-disable;
++=09};
++
+ =09fg_alert_default: fg-alert-default-state {
+ =09=09pins =3D "gpio121";
+ =09=09function =3D "gpio";
+diff --git a/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts b/arch/arm64/b=
+oot/dts/qcom/msm8939-samsung-a7.dts
+index ba652909d162..8d00a2328ca8 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts
++++ b/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts
+@@ -7,6 +7,7 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+ #include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/leds/common.h>
+=20
+ / {
+ =09model =3D "Samsung Galaxy A7 (2015)";
+@@ -31,6 +32,21 @@ tz-apps@85500000 {
+ =09=09};
+ =09};
+=20
++=09flash-led-controller {
++=09=09compatible =3D "richtek,rt5033-led";
++=09=09enable-gpios =3D <&tlmm 34 GPIO_ACTIVE_HIGH>;
++=09=09flash-gpios =3D <&tlmm 36 GPIO_ACTIVE_HIGH>;
++
++=09=09pinctrl-0 =3D <&camera_flash_default>;
++=09=09pinctrl-names =3D "default";
++
++=09=09flash_led: led {
++=09=09=09function =3D LED_FUNCTION_FLASH;
++=09=09=09color =3D <LED_COLOR_ID_WHITE>;
++=09=09=09flash-max-timeout-us =3D <544000>;
++=09=09};
++=09};
++
+ =09gpio-hall-sensor {
+ =09=09compatible =3D "gpio-keys";
+=20
+@@ -360,6 +376,13 @@ accel_int_default: accel-int-default-state {
+ =09=09bias-disable;
+ =09};
+=20
++=09camera_flash_default: camera-flash-default-state {
++=09=09pins =3D "gpio34", "gpio36";
++=09=09function =3D "gpio";
++=09=09drive-strength =3D <2>;
++=09=09bias-disable;
++=09};
++
+ =09fg_alert_default: fg-alert-default-state {
+ =09=09pins =3D "gpio121";
+ =09=09function =3D "gpio";
+--=20
+2.39.2
+
+
