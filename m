@@ -2,99 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7487847B5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4C057847BA
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 18:33:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237852AbjHVQdd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 12:33:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58218 "EHLO
+        id S237875AbjHVQdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 12:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237856AbjHVQdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:33:31 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3452CFC
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:33:22 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so7129853e87.3
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 09:33:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692722001; x=1693326801;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2xSrhz5Us97Qf9+7A783D7YhpLpwN4x1lqakquu3VGg=;
-        b=tiEBp3JL4YsbBo0QBtgI3BmQCPsYGmzCdpu19U5Nd41sv+ssgGLIFtY5a1xz0xtsP/
-         BKPV24/E5/rZr1hm9Q31b6qODcKiXkchKBWAx4wxEzP+sIwra+poInZczv74sJUEnrvW
-         suDXeUnVmclfMTBeErpwG3IQKd89egEpnhRv8CuJBKLaiW+YaczEgROWpPB8YPuczdGt
-         Cd1gB5TRwa48+WR33V341n6aJiGfIUhWkWOCEHwSlblbZkDmMzV4ork+r5tBySfvhwbY
-         kKuuBtulfExcTuvOKdTUoQgBewgcUPZUDiJ9ofZhY0gNyPk+XIYeRlet7T3VAfOD3z35
-         X/eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692722001; x=1693326801;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2xSrhz5Us97Qf9+7A783D7YhpLpwN4x1lqakquu3VGg=;
-        b=K9SopGdzLeM2o873wC6Z+jZCjJ48OH7aPFhbFFzFaxwSj9lkNMeH01NvJ/UQgcJg5d
-         UPWuuOIaXHAgxtr16a1VHT5/e1QnS9wtqbtKC9f+ueIMBmNlK/czBCIaBl5Ev2LH4DKn
-         8RP4l96hXRHxGKKzOmdwDQ9JOIAufamdtTr+Jgy5JGk0nz7Sv2sMJs74Rm9xGiWDz1BS
-         GWUqdHLQb09HUivyjQ0XSuv7lRMiVFAV2vwqEkfALS8JHWg6MdY3lJeAr8BPHxZZ+kS0
-         84jkDEVz/W1jui8qRXhLDCu/oAc8mKYQTmvDruag8+hM3zjqfcQsRoQ8/1Nur13GcITs
-         epZQ==
-X-Gm-Message-State: AOJu0YxlYqND1Y/szWt73Nz8MkWViWHtZ8r8AHXC43GEqyW0r9nIUKPo
-        wxRdfyALvvXST6tSSE94tK8pSg==
-X-Google-Smtp-Source: AGHT+IFS5+pN89cVqDrLU2XMxBLLm1IgGNr/2RbOgFBpign6kDrEGDdwUp0uhR5vmCE6wdyEgQI7Kw==
-X-Received: by 2002:a05:6512:1584:b0:4f8:711b:18b0 with SMTP id bp4-20020a056512158400b004f8711b18b0mr8883753lfb.3.1692722000583;
-        Tue, 22 Aug 2023 09:33:20 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id w17-20020aa7d291000000b0050488d1d376sm7750157edq.0.2023.08.22.09.33.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 09:33:20 -0700 (PDT)
-Message-ID: <1c812715-731e-18fe-e431-311f18af1bb5@linaro.org>
-Date:   Tue, 22 Aug 2023 18:33:18 +0200
+        with ESMTP id S237879AbjHVQdz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 12:33:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AD491BE;
+        Tue, 22 Aug 2023 09:33:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F191D65CCF;
+        Tue, 22 Aug 2023 16:33:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67B73C433C7;
+        Tue, 22 Aug 2023 16:33:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692722023;
+        bh=UX+Nwzp7y9yri/oe+EMe5TKeoQhdMDrPriA7Sa39xhU=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=CO7I/vG7R7dpRvE3rtRh50sc0mXDd4XcCYgUo4nVdqZMXtebaP3N4chd8rfv9cdYK
+         16utyVAy0X/wdbI3ZWfzmf8XInK6n/YfL+e4mFPwRZfuNsAUtoCvZ2ivJa6i63dlEu
+         BYfUsnZFite5w7ytnJodvTzYVCJUr3KSMCvF4tC+EhycmE9rSr2pbJ9FAC9UK+e++n
+         lZaBy5Z3PjRG37vp9e0VOjTZ979hiKgZDM3K0rqsPyyhngo2UaxRHZB1eal/hrS8YY
+         Da0DwkLhRdxKvMakbygDboWD8onH761rnqYmgHuSrhi8fxGFDYVi3xgUwIAOxI0Jq9
+         c5t0kQ1Cx12ww==
+From:   Mark Brown <broonie@kernel.org>
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        like@awinic.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        liweilei@awinic.com, liangdong@awinic.com, wangweidong.a@awinic.com
+In-Reply-To: <20230821035355.1269976-1-like@awinic.com>
+References: <20230821035355.1269976-1-like@awinic.com>
+Subject: Re: [PATCH v5 0/2] regulator: aw37503: add regulator driver for
+ Awinic AW37503
+Message-Id: <169272202114.71818.13706933583974169859.b4-ty@kernel.org>
+Date:   Tue, 22 Aug 2023 17:33:41 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V10 2/4] dt-bindings: clock: document Amlogic S4 SoC
- peripherals clock controller
-Content-Language: en-US
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-3-yu.tu@amlogic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230822082750.27633-3-yu.tu@amlogic.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: b4 0.13-dev-034f2
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 10:27, Yu Tu wrote:
-> Add the S4 peripherals clock controller dt-bindings in the S4 SoC
-> family.
+On Mon, 21 Aug 2023 03:53:53 +0000, like@awinic.com wrote:
+> Add regulator driver for the device Awinic AW37503 which is
+> single inductor - dual output power supply device. AW37503
+> device is designed to support general positive/negative
+> driven applications like TFT display panels.
 > 
-> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
-> ---
+> v4->v5: Delete the unnecessary '|' in the awinic,aw37503.yaml.
+> v3->v4: Correct yamllint warnings/errors.
+> v2->v3: Switch to use the dev_err_probe().
+>         Keep the Kconfig and Makefile sorted.
+>         Correct yamllint warnings/errors.
+> v1->v2: Remove unneeded fields and correct yamllint warnings/errors.
+> 
+> [...]
 
-As well ignored email from v8 and v7 and earlier versions.
+Applied to
 
-Best regards,
-Krzysztof
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+
+Thanks!
+
+[1/2] regulator: aw37503: add regulator driver for Awinic AW37503
+      commit: 2796a01cdf2c639e605088c53a1ac36923ade93c
+[2/2] regulator: dt-bindings: Add Awinic AW37503
+      commit: 86a1b61a0c7316febecd03d47eaf893eb5a57659
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
