@@ -2,138 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1420F783DE6
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 12:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A022783DF1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 12:31:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233193AbjHVK3c convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Aug 2023 06:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
+        id S234386AbjHVKbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 06:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231781AbjHVK3b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 06:29:31 -0400
-Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0125FE4B;
-        Tue, 22 Aug 2023 03:28:57 -0700 (PDT)
-Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-1c0fcbf7ae4so3137565fac.0;
-        Tue, 22 Aug 2023 03:28:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692700137; x=1693304937;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EsbuYvLkHCqEgs9rtro3s+O6SiQIK8Nmj+hy3dIrz14=;
-        b=jfmMbmfpfmZkCbzT/C6mrdix2ZSErIjFVFE9xcZczj2JFY5zaFAomV5dckUwWTk0IN
-         4k4qr8K68MErUFkgjnR//Syf/Bftk0fOfg+jMGz/gLca7qdPDEg5RrM76vG0vs2Mkpgn
-         3/DeSbWzJL1JZe5ulNMrXUZyl36+H88qPkeZw8u/WN7narSEposbmH1u+jRDXwCm4jII
-         w1ly1sKFk+7Vk+ATeMnSt5NtHkXxltyqskxJBzL0nki/JfhXIU/oiDDYDh3J5+Q4f6UF
-         l+67oN2rdO5B8OIpCq5O4reAidAAuRWPSDLIhUXzwhYkSA0bxuVYVx5vyH+xEkBjyF+b
-         ldmA==
-X-Gm-Message-State: AOJu0YwzZUlP/JH8sttG0svKrFyHg7VpVxR7lBSf6cmVqfaZDmdKVe8o
-        f774/Vo0N+5X/2DW24//XLBsi+DPH9PQzg==
-X-Google-Smtp-Source: AGHT+IE7Y2sxaXwTsePaxMeT5fcVy66s+VPGs1BYfGFxKybmtPE0wR/Gd9inOnaTnp3jLZWi55n4yw==
-X-Received: by 2002:a05:6870:a48e:b0:1bb:4ec1:50ae with SMTP id j14-20020a056870a48e00b001bb4ec150aemr11009094oal.24.1692700137228;
-        Tue, 22 Aug 2023 03:28:57 -0700 (PDT)
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com. [209.85.161.52])
-        by smtp.gmail.com with ESMTPSA id ec40-20020a0568708c2800b001cc6b64d5f3sm3253946oab.44.2023.08.22.03.28.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 03:28:57 -0700 (PDT)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-56ffe7eee6fso1884609eaf.1;
-        Tue, 22 Aug 2023 03:28:57 -0700 (PDT)
-X-Received: by 2002:a05:6358:52d4:b0:139:cdc2:e618 with SMTP id
- z20-20020a05635852d400b00139cdc2e618mr9632089rwz.8.1692700136852; Tue, 22 Aug
- 2023 03:28:56 -0700 (PDT)
+        with ESMTP id S234327AbjHVKbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 06:31:09 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A4FDE62;
+        Tue, 22 Aug 2023 03:30:30 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37M4rWjt030192;
+        Tue, 22 Aug 2023 10:29:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=kvYCf82jllt8N53t4jDI8+KY9HjIzpuC3xsuryVUhTw=;
+ b=R+jLTWzT1h5ThemwWIwhI6Pxr2iFvF6CnuhhgharPJUDSSkcqtriRZMyx7QwU6VzQA1y
+ t0R+JqI9Q3cCJQo2jsXiziz2n4KRJ1Mo90cS65UM53+WsOUE3m4pf4y3Ax01R2owKlFy
+ Uhm6eGiVBpnVQbgy1uBT0zduLyPQU7punO6hz6UqHhwOlkR0tBo5f8l8GgHWqLufaGPA
+ PZH9Pr3dC1L2Zo2OzUa9d+V7SWbvzSMnD9uEOsLyTqTTuqs5pMeC/KyywxScuu3ECuJW
+ 1hRzCnp0mow7bfZ7tDsY7qbMe3TiTry9RGu4sXYz+3Wuzzb7bqkYlLOftDwC0bpyuJy+ UQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sm6f9tq9m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Aug 2023 10:29:53 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37MATpW2027700
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Aug 2023 10:29:51 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Tue, 22 Aug 2023 03:29:45 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <arnd@arndb.de>, <geert+renesas@glider.be>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v9 0/4] Enable IPQ5332 USB2
+Date:   Tue, 22 Aug 2023 15:59:11 +0530
+Message-ID: <cover.1692699472.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20230821023928.3324283-1-peng.fan@oss.nxp.com>
- <20230821023928.3324283-2-peng.fan@oss.nxp.com> <169265161637.2283882.6488993918028899667.robh@kernel.org>
-In-Reply-To: <169265161637.2283882.6488993918028899667.robh@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 22 Aug 2023 12:28:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWyVeaKTX3ZyWU56xM4CPCyQF=i-AhDKwyN6C2cJTB=iA@mail.gmail.com>
-Message-ID: <CAMuHMdWyVeaKTX3ZyWU56xM4CPCyQF=i-AhDKwyN6C2cJTB=iA@mail.gmail.com>
-Subject: Re: [PATCH V3 2/2] of/platform: increase refcount of fwnode
-To:     Rob Herring <robh@kernel.org>
-Cc:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        linux-kernel@vger.kernel.org, frowand.list@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, isaacmanjarres@google.com,
-        conor+dt@kernel.org, rafael@kernel.org, devicetree@vger.kernel.org,
-        jeremy.kerr@canonical.com, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, linux@armlinux.org.uk, arnd@arndb.de,
-        hdegoede@redhat.com, andriy.shevchenko@linux.intel.com,
-        grant.likely@secretlab.ca, Peng Fan <peng.fan@nxp.com>,
-        ulf.hansson@linaro.org, linus.walleij@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UIdfSrUgYG6RtcvZeOvKcghm8WYQmlnD
+X-Proofpoint-ORIG-GUID: UIdfSrUgYG6RtcvZeOvKcghm8WYQmlnD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-22_10,2023-08-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ malwarescore=0 lowpriorityscore=0 phishscore=0 mlxscore=0
+ priorityscore=1501 mlxlogscore=404 adultscore=0 bulkscore=0 suspectscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2306200000 definitions=main-2308220080
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+This patch series adds the relevant phy and controller
+DT configurations for enabling USB2 on IPQ5332
 
-On Tue, Aug 22, 2023 at 1:33 AM Rob Herring <robh@kernel.org> wrote:
-> On Mon, 21 Aug 2023 10:39:28 +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > commit 0f8e5651095b
-> > ("of/platform: Propagate firmware node by calling device_set_node()")
-> > use of_fwnode_handle to replace of_node_get, which introduces a side
-> > effect that the refcount is not increased. Then the out of tree
-> > jailhouse hypervisor enable/disable test will trigger kernel dump in
-> > of_overlay_remove, with the following sequence
-> > "
-> >    of_changeset_revert(&overlay_changeset);
-> >    of_changeset_destroy(&overlay_changeset);
-> >    of_overlay_remove(&overlay_id);
-> > "
-> >
-> > So increase the refcount to avoid issues.
-> >
-> > This patch also release the refcount when releasing amba device to avoid
-> > refcount leakage.
-> >
-> > Fixes: 0f8e5651095b ("of/platform: Propagate firmware node by calling device_set_node()")
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >
-> > V3:
-> >  - Move amba device changes to patch 1/1
-> >
-> > V2:
-> >  - Per Andy's comment, use of_fwnode_handle(of_node_get(np))
-> >  - release amba device of_node refcount when releasing amba device, this is
-> >    done from code inspection, no test.
-> >
-> >  drivers/of/platform.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
->
-> Applied, thanks!
+v9:
+	Driver: Since the driver code has been picked up for merge,
+		(https://lore.kernel.org/linux-arm-msm/169226613917.81413.1200008047604336868.b4-ty@kernel.org/)
+		adding the coding style fixes alone in this patch.
 
-Good to see this got applied!
+		Fix line break alignment
+		Remove register success print
+	DTS:	usb2@8a00000 -> usb@8a00000
+		regulator_fixed_5p0: s0500 -> regulator_fixed_5p0: regulator
+v8:
+	Driver:-
+		Change commit subject and message per review comments
+		Don't include of_platform.h
+		Change struct initialization coding style
+		GENMASK -> BIT for one of the defines
+v7:
+	Binding:-
+		Move 'compatible' to be the first entry
+		In the example have 'usb-phy' instead of 'usb2-phy'
+		Add 'Reviewed-by: Krzysztof Kozlowski'
+v6:
+	Binding and dts:-
+		Dropped the qcom,dwc3.yaml patch as it has been picked up for linux-next
+		Add const to compatible, vdd-supply
+		Move nodes per register address
+	Driver:-
+		Add vdd-supply
+		Cleanup error paths in probe with dev_err_probe
+v5:
+	Binding and dts:-
+		Fix email id
+		Removed 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+		as had to change bindings file to be able to use generic phy instead of
+		usb-phy
 
-I had missed this fix, and spent quite some time investigating why multiple
-overlay add/removal sequences caused a crash.  Only after I had
-written a reproducer unittest[1], I managed to bisect the issue,
-and found Peng's fix. Thanks!
+	Driver:-
+		Remove unused definition
+		Use generic phy instead of usb-phy
+v4:
+	Binding and dts:-
+		Change node name (bindings & dts)
+	Driver:-
+		Remove unused enum
+		static const for '.data'
+		Error handling for devm_clk_get
+v3:
+	Fix bindings file based on review comments
 
-Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+v1:
+	Cleanup DTS
+	Combine driver, kconfig and makefile patches
+	Remove unused functions from M31 driver
+	Drop the clock driver changes
 
-[1] "[PATCH] of: unittest: Run overlay apply/revert sequence three times"
-    https://lore.kernel.org/all/a9fb4eb560c58d11a7f167bc78a137b46e76cf15.1692699743.git.geert+renesas@glider.be/
+Varadarajan Narayanan (4):
+  phy: qcom: m31: Fix indentation issues
+  arm64: dts: qcom: ipq5332: Add USB related nodes
+  arm64: dts: qcom: ipq5332: Enable USB
+  arm64: defconfig: Enable M31 USB phy driver
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 23 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 55 +++++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig                |  1 +
+ drivers/phy/qualcomm/phy-qcom-m31.c         |  8 ++---
+ 4 files changed, 82 insertions(+), 5 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.7.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
