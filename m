@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30F99783FF0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:48:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 116E4784002
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 13:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235250AbjHVLsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 07:48:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60038 "EHLO
+        id S235380AbjHVLtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 07:49:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235311AbjHVLs1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:48:27 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B26EDE40
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:48:02 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-991c786369cso582999466b.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:48:02 -0700 (PDT)
+        with ESMTP id S235387AbjHVLtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 07:49:11 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7888ECC6
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:48:52 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso578959766b.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 04:48:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692704837; x=1693309637;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1692704923; x=1693309723;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=55bIwn2d7j3dnR0hLojkzpFkh9GKaVLHWENI/qttC+Y=;
-        b=BaZ1u4I0kXduhaoSIIgRXCfnZP1vXeZq9wbxNFNAC2d0I05kZX2pEC1g59msCdZyZy
-         h3+pQkTCydm8ugvPeM+VmZ1VJxp2Rm8XAI5hlBlc0mBeEdgqePZoEfEAb/tpIWHihoEM
-         LDIszR8GMnxgFI8O9A9Cd3MaMi/ilwIMhazYclGZ5pjvPG1MoJ/royNiItorFt6yJ2qq
-         z0FvWmAJH14Yzx5sROk/MIaLviwTTGvtLrpbHLT4yc3mO7HBW6uHatlme4s8IQz5xOIv
-         3G+UT5+qR+T6EVehsGHi/ChOEEthkyH4GL5+SUWs5azWv9NshGFXL4Ba+m8tdkqbTLeg
-         EebA==
+        bh=oH11Oc+qbxmWTzYqIGrVP17FnC0Zqpu68k1rvfbbDX0=;
+        b=P4Qf1myvTmUWlrB6GossTUcUgcbmdwvSKgQz+8PFMPd+AXQDqxt18/VpcxkKXkMHe+
+         1OSrBCNuUKxSzIh9WXDWeaD5tXNmcbaRk0ID4AiMJYwNOPC9ztzNQ4TeAvhD0lbpCERe
+         V5eIzmMuhp8SrDC9kScNsToK16LLNFtc0ss/2yXH/PKiE60jPrrm8OcOoKPCjESuU8g2
+         dMj9DQenXX6r9NkRsSXTFjvkqiDaksGcslAFoE2msJ3atai1dinKn+aDSHnDaOoA3Vmb
+         mCGLo8dozgQMZfgRUyNy9j4vJIalBdlmPWUoxYQrxwxBbLO4cMW254X2d8Z6+lSbkV3b
+         56Xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692704837; x=1693309637;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1692704923; x=1693309723;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=55bIwn2d7j3dnR0hLojkzpFkh9GKaVLHWENI/qttC+Y=;
-        b=fXpPWOOwrNAnMmn23qNHRnswJdfk1rDcje+E7zLIcQzznPf7cf7uJC5XNS8YTL8daD
-         VC9oH8g4L5RzVssX1EBmu7srNBPsyGlYCukhL8Nuz5EzwqR041sSfuXlbh+X8MepiR3B
-         x/Xk6lkFUTSLbvlBazcVSwRfXKqA2LT1WW5oevVdYo3aSdJ76JyPmeLRAyiyZqqx/Lzu
-         OeWX9Om6zEt6ZlaVhDRWcEQtgk1OPTIDkoJqgoTbXaGun2aSjCIrVTGiVuY99jo5EZ/d
-         ucSzvtVGFF8AeiP0g7Yn96Km5v3ScjYyFL8mKF4TdrEWPiZxGgTV7r0XsRjf+MHpm5Ix
-         Mq8Q==
-X-Gm-Message-State: AOJu0YycxgNYbvQ3EVfw6EtGVh4CfbDfVs2YDcJqHhtDKRnB6ppAxCJ2
-        6QVK0qbvHKWddG4VIGApIbltSg==
-X-Google-Smtp-Source: AGHT+IHF5Zi2ypBZqCfcQok6ofhRkICDoU4oIEgfBDJunkp2sXwdHtuMYbfri0HDGcQg6FYtYGJaqQ==
-X-Received: by 2002:a17:906:109e:b0:99b:4956:e4df with SMTP id u30-20020a170906109e00b0099b4956e4dfmr7858232eju.11.1692704837137;
-        Tue, 22 Aug 2023 04:47:17 -0700 (PDT)
+        bh=oH11Oc+qbxmWTzYqIGrVP17FnC0Zqpu68k1rvfbbDX0=;
+        b=YFwJATmSrSGkNEb56lMRlFa2SV54BIEYI+CPmQmoyielkAcxZYvNgGxo80tSJfRUw3
+         gbbsctUv5IXfncGFJWJ3i0qnmv1D3j/o/nKC+Fnp+2kCdnuO9Uvr/B5xo92ITFf6D28q
+         UCxIMQa+hMC2yBl1oTOSQFZHMKc4J/zvR6bXbAXji3+iI1ZHx6hUSGwBGvlvmyBatXoY
+         EA5t2OqDJS2ztUKAicX18fbJAxjO3+1pIM35sp+hrGVYo0q+eYVXNxFNLdMZV1jBx5Lg
+         pZFPMjtwu+6VlspcWLElhj1MsJNUULl/foRJe0l9slpujLd+7GI4UN3BhP2V6jF+m+Gt
+         jENw==
+X-Gm-Message-State: AOJu0Yw5iPygQyz0haFNBPCNbyPK1T841ci0WyvUf9q31wx7M9YzkFSK
+        ymbKzj9yVrfrzjEg89HK/c+Kig==
+X-Google-Smtp-Source: AGHT+IE7A1CYr6kVDOW4fVuqD06IgAC6NbsrvQnOKHnd0u7YxGHAAHU+Uj53ZLTs4MMK2cnh00OO7w==
+X-Received: by 2002:a17:907:2c6a:b0:991:d05c:f065 with SMTP id ib10-20020a1709072c6a00b00991d05cf065mr7417198ejc.52.1692704923543;
+        Tue, 22 Aug 2023 04:48:43 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id ja24-20020a170907989800b00992b8d56f3asm8097682ejc.105.2023.08.22.04.47.15
+        by smtp.gmail.com with ESMTPSA id f20-20020a170906561400b0099bd1a78ef5sm8026861ejq.74.2023.08.22.04.48.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 04:47:16 -0700 (PDT)
-Message-ID: <bd24990a-9cc4-533a-0443-9e91e3b61a71@linaro.org>
-Date:   Tue, 22 Aug 2023 13:47:15 +0200
+        Tue, 22 Aug 2023 04:48:43 -0700 (PDT)
+Message-ID: <8ff579bc-423c-3edf-dc78-28370b2a0f19@linaro.org>
+Date:   Tue, 22 Aug 2023 13:48:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v9 1/4] phy: qcom: m31: Fix indentation issues
+Subject: Re: [PATCH v2 1/2] dt-bindings: rtc: Add Epson RX8111
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, arnd@arndb.de, geert+renesas@glider.be,
-        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org
-References: <cover.1692699472.git.quic_varada@quicinc.com>
- <6d1638daf9b0616816fdecb529df86a394db7942.1692699472.git.quic_varada@quicinc.com>
+To:     Waqar Hameed <waqar.hameed@axis.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     kernel@axis.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1692699931.git.waqar.hameed@axis.com>
+ <903c1e05804535f212fa128425326b7554c0794a.1692699931.git.waqar.hameed@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6d1638daf9b0616816fdecb529df86a394db7942.1692699472.git.quic_varada@quicinc.com>
+In-Reply-To: <903c1e05804535f212fa128425326b7554c0794a.1692699931.git.waqar.hameed@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,16 +80,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 12:29, Varadarajan Narayanan wrote:
-> * Fix indentation
-> * Drop simple success messages
+On 22/08/2023 12:25, Waqar Hameed wrote:
+> Epson RX8111 is an RTC with timestamp functionality. Add devicetree
+> bindings requiring the compatible string and I2C slave address (reg)
+> through `trivial-rtc.yaml`.
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
 > ---
-> v9:
-> 	Fix line break alignment
 
-I wished we run checkpatch before sending patches, not after :/
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
