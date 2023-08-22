@@ -2,40 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 349CC784055
+	by mail.lfdr.de (Postfix) with ESMTP id DA228784056
 	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 14:08:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233834AbjHVMIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 08:08:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36246 "EHLO
+        id S235543AbjHVMIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 08:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235174AbjHVMIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:13 -0400
+        with ESMTP id S235110AbjHVMIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 08:08:14 -0400
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1E6F91
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 05:08:11 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F5FC185
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 05:08:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
   t=1692706092; x=1724242092;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=c5aKk6Nl7l7Dda7yL6IGpp8auUBf5Bry2rjnW3LLVb4=;
-  b=J+zNkUKIdAXlXE0zKR40id2tu5r6SykvsBs7feuKr7yV0N4cJBsxEJDX
-   oAcAnfSJJdlHtm14Xz14Jq7nU+GKuITQ3mpHaOv7pjE1UgufOrowrtxAs
-   ivzt8O8+CCByQVcalm6iKbHMBnXfyJ2DUv5JeWP8mk1LUVh2NQG43jrl0
-   VNPfF88F2JImSIMniJS6umzHDK1fJwLmp2zYiIAPXUllyWP3+WFrLhrE4
-   13nZrmm6kvsIGfqSlgHNsQ9W0Wxd68RB4SqFDclR5/QeQ00broH3o+OL5
-   Lcc7A9CYhUxSG4zFjBzF9wUZVCS6ErbLUWnDCX79A/3ypOhd/fDDA/EDJ
-   Q==;
+  bh=s7WeywFXWdE+FhnI+O3G/g0/p2PvbzCwYKweQiQxrFE=;
+  b=qHLaNl4HJnwv22+O/KimTMr+EgInOp0G/laV7DAb9b3SRs9ELVF6twEu
+   aa0iCnlUxffKWyLO54Sp0Md76CagRFrcZkstJXl+IlxK2/9Rktq+wZxzU
+   ebN4ah66EPDtEvPD7u2Q1K+7OMoks2xOrRo6+MymezdSqrPgsRHn9IbK7
+   gxjKb4a699Wa0J4EvpxGB1R6TFG8uEOoOw/dgo77ZpF3sEgvln3sz2ux8
+   WmmwYrt8zZzPmdJJVgwA4v55575GObKSsBdSE2rixQ0oYu81N+PHLWG4G
+   1LAWpTy0dBON9b4NIrhIfqeQRjAqjw9c1hO0e/ghE0Xf7jlTvJIc8istD
+   w==;
 X-IronPort-AV: E=Sophos;i="6.01,193,1684792800"; 
-   d="scan'208";a="32562947"
+   d="scan'208";a="32562948"
 Received: from vtuxmail01.tq-net.de ([10.115.0.20])
   by mx1.tq-group.com with ESMTP; 22 Aug 2023 14:08:09 +0200
 Received: from steina-w.tq-net.de (steina-w.tq-net.de [10.123.53.21])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 17D2C280084;
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 53363280086;
         Tue, 22 Aug 2023 14:08:09 +0200 (CEST)
 From:   Alexander Stein <alexander.stein@ew.tq-group.com>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -51,9 +51,9 @@ Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux@ew.tq-group.com,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 1/5] arm64: dts: mba8mx: Add DSI-LVDS bridge nodes
-Date:   Tue, 22 Aug 2023 14:08:00 +0200
-Message-Id: <20230822120804.717592-2-alexander.stein@ew.tq-group.com>
+Subject: [PATCH v2 2/5] arm64: dts: imx8mm-tqma8mqml-mba8mx: Add LVDS overlay
+Date:   Tue, 22 Aug 2023 14:08:01 +0200
+Message-Id: <20230822120804.717592-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
 References: <20230822120804.717592-1-alexander.stein@ew.tq-group.com>
@@ -68,146 +68,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds the DSI-LVDS bridge including the regulator, backlight and
-an unspecified panel. It is expected to set the compatible when the
-display chain is enabled.
+This overlay enables the DSI-LVDS display chain and configures the
+actual panel compatible. Also add the DSIM supply voltages.
 
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm64/boot/dts/freescale/mba8mx.dtsi | 93 +++++++++++++++++++++++
- 1 file changed, 93 insertions(+)
+ arch/arm64/boot/dts/freescale/Makefile        |  4 ++
+ ...8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso | 45 +++++++++++++++++++
+ .../boot/dts/freescale/imx8mm-tqma8mqml.dtsi  |  5 +++
+ 3 files changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index 8a9fe5cdcc98a..e2bc53b8d39a8 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -8,6 +8,16 @@
- /* TQ-Systems GmbH MBa8Mx baseboard */
- 
- / {
-+	backlight_lvds: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm3 0 5000000 0>;
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <7>;
-+		power-supply = <&reg_12v>;
-+		enable-gpios = <&expander2 2 GPIO_ACTIVE_HIGH>;
-+		status = "disabled";
-+	};
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index a3e037e5bd8ae..ad86cc60da7ca 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -82,6 +82,10 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-nonwifi-yavia.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dahlia.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-dev.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-verdin-wifi-yavia.dtb
 +
- 	beeper {
- 		compatible = "pwm-beeper";
- 		pwms = <&pwm4 0 250000 0>;
-@@ -65,12 +75,45 @@ led2: led2 {
- 		};
- 	};
- 
-+	gpio_delays: gpio-delays {
-+		compatible = "gpio-delay";
-+		#gpio-cells = <3>;
-+		gpio-controller;
-+		gpios = <&expander0 6 GPIO_ACTIVE_HIGH>;
-+		gpio-line-names = "LVDS_BRIDGE_EN_1V8";
-+	};
++imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33-dtbs += imx8mm-tqma8mqml-mba8mx.dtb imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtbo
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtb
 +
-+	panel: panel-lvds {
-+		/*
-+		 * Display is not fixed, so compatible has to be added from
-+		 * DT overlay
-+		 */
-+		backlight = <&backlight_lvds>;
-+		power-supply = <&reg_vcc_3v3>;
-+		status = "disabled";
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-beacon-kit.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mn-bsh-smm-s2pro.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
+new file mode 100644
+index 0000000000000..e44249c6d8a09
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml-mba8mx-lvds-tm070jvhg33.dtso
+@@ -0,0 +1,45 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++/*
++ * Copyright (c) 2022-2023 TQ-Systems GmbH <linux@ew.tq-group.com>,
++ * D-82229 Seefeld, Germany.
++ * Author: Alexander Stein
++ */
 +
-+		port {
-+			panel_in_lvds: endpoint {
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&lvds_bridge_out>;
-+			};
-+		};
-+	};
++/dts-v1/;
++/plugin/;
 +
- 	pcie0_refclk: pcie0-refclk {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
- 		clock-frequency = <100000000>;
- 	};
- 
-+	reg_12v: regulator-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "MBA8MX_12V";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+		regulator-always-on;
-+	};
++#include <dt-bindings/gpio/gpio.h>
 +
- 	reg_hub_vbus: regulator-hub-vbus {
- 		compatible = "regulator-fixed";
- 		regulator-name = "MBA8MX_HUB_VBUS";
-@@ -157,6 +200,10 @@ expander0: gpio@23 {
- 		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
- 		interrupt-controller;
- 		#interrupt-cells = <2>;
-+		gpio-line-names = "", "", "", "",
-+				  "", "", "LVDS_BRIDGE_EN", "",
-+				  "", "", "", "",
-+				  "", "", "", "";
- 
- 		sd-mux-oe-hog {
- 			gpio-hog;
-@@ -227,6 +274,52 @@ &i2c3 {
- 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	status = "okay";
++&{/} {
++	compatible = "tq,imx8mm-tqma8mqml-mba8mx", "tq,imx8mm-tqma8mqml", "fsl,imx8mm";
++};
 +
-+	dsi_lvds_bridge: bridge@2d {
-+		compatible = "ti,sn65dsi84";
-+		reg = <0x2d>;
-+		enable-gpios = <&gpio_delays 0 130000 0>;
-+		vcc-supply = <&reg_sn65dsi83_1v8>;
-+		status = "disabled";
++&backlight_lvds {
++	status = "okay";
++};
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++&dsi_lvds_bridge {
++	status = "okay";
++};
 +
-+			port@0 {
-+				reg = <0>;
-+
-+				lvds_bridge_in: endpoint {
-+					data-lanes = <1 2 3 4>;
-+					remote-endpoint = <&mipi_dsi_out>;
-+				};
-+			};
-+
-+			port@2 {
-+				reg = <2>;
-+
-+				lvds_bridge_out: endpoint {
-+					remote-endpoint = <&panel_in_lvds>;
-+				};
-+			};
-+		};
++&expander0 {
++	dsi-mux-oe-hog {
++		gpio-hog;
++		gpios = <10 GPIO_ACTIVE_LOW>;
++		output-high;
++		line-name = "DSI_MUX_OE#";
 +	};
 +};
 +
++&lcdif {
++	status = "okay";
++};
++
 +&mipi_dsi {
-+	samsung,burst-clock-frequency = <891000000>;
-+	samsung,esc-clock-frequency = <20000000>;
++       status = "okay";
++};
 +
-+	ports {
-+		port@1 {
-+			reg = <1>;
-+
-+			mipi_dsi_out: endpoint {
-+				data-lanes = <1 2 3 4>;
-+				remote-endpoint = <&lvds_bridge_in>;
-+			};
-+		};
-+	};
++&panel {
++	compatible = "tianma,tm070jvhg33";
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+index b4466a26d838a..8c0c6e7159247 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-tqma8mqml.dtsi
+@@ -230,6 +230,11 @@ eeprom0: eeprom@57 {
+ 	};
  };
  
- &pwm3 {
++&mipi_dsi {
++	vddcore-supply = <&ldo4_reg>;
++	vddio-supply = <&ldo3_reg>;
++};
++
+ &pcie_phy {
+ 	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_INPUT>;
+ 	fsl,clkreq-unsupported;
 -- 
 2.34.1
 
