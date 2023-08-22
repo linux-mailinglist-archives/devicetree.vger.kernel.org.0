@@ -2,124 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 374CD7836D4
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 02:14:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D64478371C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 02:50:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231891AbjHVAOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Aug 2023 20:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55612 "EHLO
+        id S231948AbjHVAum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Aug 2023 20:50:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231932AbjHVAOg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 20:14:36 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49B4ECFF
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 17:14:18 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ffa01fc987so4941551e87.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 17:14:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692663256; x=1693268056;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WUxHBQiQCwRpfgTCnCWgGQRhrUIliii3ZqoQ/JpTRu8=;
-        b=hDVBYUhtgiAPhkap4BfOrWhrE+KJ7eDNmGrFWdI5hi9rOr3hCwD2r0OqDMRkLXBPCq
-         5BUSWC7SZVBGUDIYWUdSZM/zX/DnT/a6SNL8LxgqVkZKOSPTY0sefRnIcBKVKSK79dxF
-         qQW2LlFiTlz51S81bKGWMr/hyZ7r+Ug09rWSHRBN3VXAcrMYgH0iyq/wzOQoksEmp/S1
-         PwSPEq0bY6tFMMW7B8JccPtdY14cMOTviu/1wwEHllhx2nVdZ//jHAvYmV3i+xUuVh6U
-         jysMWQ3cPEGaBrMfDFHcCog3fSpfEbNwAbmfiKPvlj6hSymmSU2eW9hfh7A8qH2RqUvW
-         kFDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692663256; x=1693268056;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WUxHBQiQCwRpfgTCnCWgGQRhrUIliii3ZqoQ/JpTRu8=;
-        b=GKQVKsrLkGSAhjnte31NHPOZDoUXV6NOeLUMyAWNsH7Lq+JXCDW2/ExGPPVvQ1xa9n
-         +AqoxX1yeNzHQwuaWaY8UZbPNNb0F6Rnev7eXyiF+a+HC5pZYXI4f/mrnsH5iWfcbsgK
-         buCzarMm4QDZftupe6jaDikOjp6CdyVxMuhxMPb0xLlJal+IBPAPgBsXTNyaiDWrBDWF
-         IgeGi2WjEU0PJLuUAeweT09OOjPJXIrG/J18g4GbPxbiiVjyQKgzPlRn14GFyUL7cbV9
-         BJzHYUprb4LY6BU4qNKfnWH2XSB2g6Xk62cUriSjjn9UK5OKJOM0T/qq9gTQGoXh/xuf
-         uT0Q==
-X-Gm-Message-State: AOJu0Yy/Eqw3UCLNtPZSRXn0G4gOLAcJ1gRhz+qnL5GLR4z+1B0UBwAn
-        uByG7kinTvzZim8/eFcEKo7HXw==
-X-Google-Smtp-Source: AGHT+IFg1Q/VqL8+WaTUU6FpXA0UCqq9n8pV9Lc87UwKP8g67EDhO3PfLfHd029kHwRZOzdqAY8WnQ==
-X-Received: by 2002:a05:6512:202c:b0:4fe:8be:6065 with SMTP id s12-20020a056512202c00b004fe08be6065mr2083638lfs.5.1692663256580;
-        Mon, 21 Aug 2023 17:14:16 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id er23-20020a05651248d700b004fe36e673b8sm912024lfb.178.2023.08.21.17.14.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Aug 2023 17:14:16 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231929AbjHVAul (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Aug 2023 20:50:41 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8AEAA8
+        for <devicetree@vger.kernel.org>; Mon, 21 Aug 2023 17:50:38 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 03BC486C24;
+        Tue, 22 Aug 2023 02:50:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1692665426;
+        bh=Z29fGfqaTV11eHQ+i5qjiCxl8fw5AkGgautzGlpy+/8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uLR9SRkr+Y8RYpAsog/0C7IpmtXZ+Vtr9WvPE1Os1RRF+AOQ1ueAp98+HV+DS+tOp
+         ho5s1AKIwGS+mYFK57KqYAKNFgjRdKwympZeoolEFjMrNz0VjaNUFRa1N5rZ1lwDIS
+         3zOGSZItVm0dGK1EwkWwy50rzNFgWOkC7qHGTGneL0ou3QKau8QFoR0MKvg138BzZF
+         j7uEc1GqnlOSYlkOWY0nHJHzCWikbJ1YwH8bvK5UBuC/tRTqbOfFOp0OMJOVUlmFMN
+         x61TjQVK5sAUdDfFHcXEkzDwinerb6smh+Q0/9zY30dl2jmDNTyCWGXIWjQ2uccB4r
+         inTKKt2mQnx5g==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-input@vger.kernel.org
-Subject: [PATCH v3 32/32] ARM: dts: qcom: apq8060-dragonboard: rename mpp ADC channels to adc-channel
-Date:   Tue, 22 Aug 2023 03:13:49 +0300
-Message-Id: <20230822001349.899298-33-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
-References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp: Switch PCIe to HSIO PLL on i.MX8MP DHCOM PDK2 and generate clock from SoC
+Date:   Tue, 22 Aug 2023 02:50:07 +0200
+Message-Id: <20230822005007.128571-1-marex@denx.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use generic `adc-channel@N' node names for board-specific ADC channels
-(routed to MPP pins) to follow the schema.
+The PDK2 carrier board had to be manually patched to obtain working PCIe
+with the i.MX8MP DHCOM SoM so far, because the PCIe clock generator has
+not been connected to the PCIe block REF_PAD_CLK inputs.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Switch to use of HSIO PLL as the clock source for the PCIe block instead,
+and use the REF_PAD_CLK as outputs to generate PCIe clock from the SoC.
+This way, it is not necessary to patch the PDK2 in any way to obtain a
+working PCIe.
+
+Note that PDK3 has PCIe clock generator always connected to REF_PAD_CLK
+and is not affected.
+
+Signed-off-by: Marek Vasut <marex@denx.de>
 ---
- .../arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts | 14 +++++++++-----
- 1 file changed, 9 insertions(+), 5 deletions(-)
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Marek Vasut <marex@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
-index 8a511f69d800..26066c76e088 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
-@@ -994,23 +994,27 @@ &pm8058_xoadc {
- 	xoadc-ref-supply = <&pm8058_l18>;
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+index e9fb5f7f39b50..3b1c940860e02 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk2.dts
+@@ -186,9 +186,9 @@ &flexcan1 {
  
- 	/* Board-specific channels */
--	mpp5@5 {
-+	adc-channel@5 {
- 		/* Connected to AOUT of ALS sensor */
- 		reg = <0x00 0x05>;
- 	};
--	mpp6@6 {
-+
-+	adc-channel@6 {
- 		/* Connected to test point TP43 */
- 		reg = <0x00 0x06>;
- 	};
--	mpp7@7 {
-+
-+	adc-channel@7 {
- 		/* Connected to battery thermistor */
- 		reg = <0x00 0x07>;
- 	};
--	mpp8@8 {
-+
-+	adc-channel@8 {
- 		/* Connected to battery ID detector */
- 		reg = <0x00 0x08>;
- 	};
--	mpp9@9 {
-+
-+	adc-channel@9 {
- 		/* Connected to XO thermistor */
- 		reg = <0x00 0x09>;
- 	};
+ &pcie_phy {
+ 	clock-names = "ref";
+-	clocks = <&clk IMX8MP_SYS_PLL2_100M>;
++	clocks = <&hsio_blk_ctrl>;
+ 	fsl,clkreq-unsupported;
+-	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_UNUSED>;
++	fsl,refclk-pad-mode = <IMX8_PCIE_REFCLK_PAD_OUTPUT>;
+ 	status = "okay";
+ };
+ 
 -- 
-2.39.2
+2.40.1
 
