@@ -2,138 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7837849B2
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 20:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADE6F7849B6
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 20:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229876AbjHVSw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 14:52:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
+        id S229916AbjHVSxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 14:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229914AbjHVSw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 14:52:57 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ECF9E45;
-        Tue, 22 Aug 2023 11:52:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692730369; x=1724266369;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uE59dn1vKcS1Dc94KjLiR97iCxxqnH7rE2TfHoHeLus=;
-  b=JwnMT3UP3rZ5/1a6FQmDHQtvrrJSe4//YU7Hmjd0P4wlyz5Oa7DuH3sK
-   3r71C6ouRag7CFrfg9ufQHrNQKD1bkBd4KuYO5KXDaTHJ32ig6YGVaviT
-   wXbxjW5PEehvEZy9yxrFHvxvZPB+yiCejGWByiVoB3I+WE13/ywVJ45iG
-   uRFav0lNAhK9gS5zVXHcmGKpmo00EDzCtj9m/5vZcrRagHX6nvZq24JVG
-   bt7TIxgjDi/7jXhhVnTY2ojkqcG9DfpUW/Ij2Qy3aa8NHPb80LMaMnT3N
-   aLq/9rKBJkkneHKQjNRL5xjuPDb547avUsKxg2dtXbOVjg2FE0kV36y7Q
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="358953619"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; 
-   d="scan'208";a="358953619"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Aug 2023 11:52:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="739442184"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; 
-   d="scan'208";a="739442184"
-Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
-  by fmsmga007.fm.intel.com with ESMTP; 22 Aug 2023 11:52:44 -0700
-Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qYWUa-0000SE-1w;
-        Tue, 22 Aug 2023 18:52:41 +0000
-Date:   Wed, 23 Aug 2023 02:51:37 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jiansheng Wu <jiansheng.wu@unisoc.com>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, yongzhi.chen@unisoc.com,
-        xiaoqing.wu@unisoc.com, jinfeng.lin1@unisoc.com,
-        jianshengwu16@gmail.com
-Subject: Re: [PATCH 2/2] mfd: sprd-sc27xx-spi: Add PMICs support for UMS9621
- SoC
-Message-ID: <202308230247.XxIH8PLy-lkp@intel.com>
-References: <20230822075113.25506-3-jiansheng.wu@unisoc.com>
+        with ESMTP id S229919AbjHVSxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 14:53:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B9C2CF9;
+        Tue, 22 Aug 2023 11:52:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 16E7B65CF7;
+        Tue, 22 Aug 2023 18:52:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E560C433C9;
+        Tue, 22 Aug 2023 18:52:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692730375;
+        bh=y2UELRC+XrfrXIM+d1BDwygTgdYn21N6QRXFuKS7+aI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mNV0oY6dloiYoJX/7q5qbg/uqnNeprKkg4mGaVd7UTCBTwxf7z9L5nAapNlV90Rss
+         sDE/cMuDC326VPLmunXf68EHPmsUaRD/BRkYr8gtZjanH0jNeA95x+zB6Yi26tg1SM
+         O3UuuvrrEPciTyvjX7Yb+aXvKepEcc04c7ozzej+TG3DdfvPZhAg4nL8Vyzn3RJPYh
+         ZXgJjQqQpE/pe3adSfqZQ/nf/3KpSwOZU6DG4kmjmmdjlzsYpQrggC0O89LkUYJgmk
+         xM5ACCkUkqAfU7e3OcZMLyiAW5MJfFl8iqT9REnaBgUU5QSnqM64VHVVCLv6XngA77
+         gWenBzj5gZuzQ==
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so80846301fa.2;
+        Tue, 22 Aug 2023 11:52:55 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yzy2Eh38Dz8aRCUWiIqLg6IuNLCdCdWYYNOSB7IGUM+9kf6J215
+        QAo4ku9/JFAxoLSHLIiGDsM0e8nCCsKINfqWyw==
+X-Google-Smtp-Source: AGHT+IEEMIR41THd0LMOBZubTsjgagaLMHV572WPlVXzbt4x3ZGS4hiPTCQhKUt6KcVET9reHOKhSgkJ+dgKFh2X5wU=
+X-Received: by 2002:a2e:b049:0:b0:2bc:c38a:bd7c with SMTP id
+ d9-20020a2eb049000000b002bcc38abd7cmr4455281ljl.33.1692730373473; Tue, 22 Aug
+ 2023 11:52:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230822075113.25506-3-jiansheng.wu@unisoc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+References: <20230821194821.2961213-1-sjg@chromium.org>
+In-Reply-To: <20230821194821.2961213-1-sjg@chromium.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 22 Aug 2023 13:52:40 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+jYexj8CR86cktxeiXyo7X+8i35+Ao0GBMhinVPNUoEw@mail.gmail.com>
+Message-ID: <CAL_Jsq+jYexj8CR86cktxeiXyo7X+8i35+Ao0GBMhinVPNUoEw@mail.gmail.com>
+Subject: Re: [PATCH v2] schemas: Add a schema for memory map
+To:     Simon Glass <sjg@chromium.org>
+Cc:     devicetree@vger.kernel.org,
+        Lean Sheng Tan <sheng.tan@9elements.com>,
+        Tom Rini <trini@konsulko.com>,
+        lkml <linux-kernel@vger.kernel.org>, linux-acpi@vger.kernel.org,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Gua Guo <gua.guo@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jiansheng,
+On Mon, Aug 21, 2023 at 2:48=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
+e:
+>
+> The Devicespec specification skips over handling of a logical view of
+> the memory map, pointing users to the UEFI specification.
 
-kernel test robot noticed the following build warnings:
+It's more that the DT spec defines what is not used with UEFI. If UEFI
+covers more than the DT Spec defined, then we should look at that.
 
-[auto build test WARNING on lee-mfd/for-mfd-next]
-[also build test WARNING on robh/for-next lee-leds/for-leds-next lee-mfd/for-mfd-fixes linus/master v6.5-rc7 next-20230822]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I would look some into (IBM) PowerPC for any prior art in this area.
+Unfortunately, not publicly documented other than any users.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jiansheng-Wu/dt-bindings-spi-Convert-sprd-spi-bindings-to-yaml/20230822-155400
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
-patch link:    https://lore.kernel.org/r/20230822075113.25506-3-jiansheng.wu%40unisoc.com
-patch subject: [PATCH 2/2] mfd: sprd-sc27xx-spi: Add PMICs support for UMS9621 SoC
-config: i386-buildonly-randconfig-004-20230822 (https://download.01.org/0day-ci/archive/20230823/202308230247.XxIH8PLy-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230823/202308230247.XxIH8PLy-lkp@intel.com/reproduce)
+> It is common to split firmware into 'Platform Init', which does the
+> initial hardware setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+>
+> Where UEFI boot-time services are not available, but UEFI firmware is
+> present on either side of this interface, information about memory usage
+> and attributes must be presented to the "Payload" in some form.
+>
+> This aims to provide an initial schema for this mapping.
+>
+> Note that this is separate from the existing /memory and /reserved-memory
+> nodes, since it is mostly concerned with what the memory is used for. It
+> may cover only a small fraction of available memory, although it could be
+> used to signal which area of memory has ECC.
+>
+> For now, no attempt is made to create an exhaustive binding, so there are
+> some example types lists. This can be completed once this has passed
+> initial review.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308230247.XxIH8PLy-lkp@intel.com/
+I don't have much interest in picking this up unless there's some
+wider agreement. From the previously referenced discussion[1], it
+didn't seem like there was. But none of those folk are Cc'ed here.
 
-All warnings (new ones prefixed by >>):
+> ---
+>
+> Changes in v2:
+> - Reword commit message
+>
+>  dtschema/schemas/memory-map.yaml | 51 ++++++++++++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 dtschema/schemas/memory-map.yaml
+>
+> diff --git a/dtschema/schemas/memory-map.yaml b/dtschema/schemas/memory-m=
+ap.yaml
+> new file mode 100644
+> index 0000000..97e531e
+> --- /dev/null
+> +++ b/dtschema/schemas/memory-map.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
+> +# Copyright 2023 Google LLC
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-map.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: /memory-map nodes
+> +description: |
+> +  Common properties always required in /memory-map nodes. These nodes ar=
+e
+> +  intended to resolve the nonchalant clause 3.4.1 ("/memory node and UEF=
+I")
+> +  in the Devicetree Specification.
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
 
-   drivers/mfd/sprd-sc27xx-spi.c: In function 'sprd_pmic_spi_write':
->> drivers/mfd/sprd-sc27xx-spi.c:133:12: warning: 'pdata' is used uninitialized in this function [-Wuninitialized]
-     133 |  if (!pdata->slave_id) {
-         |       ~~~~~^~~~~~~~~~
+This goes in the root node?
 
+> +  usage:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description: |
+> +      Describes the usage of the memory region, e.g.:
+> +
+> +        "acpi-reclaim", "acpi-nvs", "bootcode", "bootdata", "bootdata",
+> +        "runtime-code", "runtime-data"
 
-vim +/pdata +133 drivers/mfd/sprd-sc27xx-spi.c
+Can't these be covered by reserved-memory? The client is free to
+reclaim any regions if it knows what they are.
 
-   124	
-   125	static int sprd_pmic_spi_write(void *context, const void *data, size_t count)
-   126	{
-   127		struct device *dev = context;
-   128		struct spi_device *spi = to_spi_device(dev);
-   129		const struct sprd_pmic_data *pdata;
-   130		int ret;
-   131		u32 *pmdata;
-   132	
- > 133		if (!pdata->slave_id) {
-   134			ret = spi_write(spi, data, count);
-   135		} else {
-   136			pdata = ((struct sprd_pmic *)spi_get_drvdata(spi))->pdata;
-   137	
-   138			pmdata = kzalloc(count, GFP_KERNEL);
-   139			if (!pmdata)
-   140				return -ENOMEM;
-   141			memcpy(pmdata, data, count);
-   142			*pmdata += pdata->slave_id;
-   143			ret = spi_write(spi, (const void *)pmdata, count);
-   144			kfree(pmdata);
-   145		}
-   146		if (ret)
-   147			pr_err("pmic mfd write failed!\n");
-   148	
-   149		return ret;
-   150	}
-   151	
+> +  attr:
+> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description: |
+> +      Attributes possessed by this memory region:
+> +
+> +        "single-bit-ecc" - supports single-bit ECC
+> +        "multi-bit-ecc" - supports multiple-bit ECC
+> +        "no-ecc" - non-ECC memory
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Isn't this pretty much a property of a memory region as a whole. IOW,
+couldn't it just go into /memory node(s)?
+
+> +
+> +patternProperties:
+> +  "^([a-z][a-z0-9\\-]+@[0-9a-f]+)?$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minItems: 1
+> +        maxItems: 1024
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: true
+> +
+> +...
+> --
+> 2.42.0.rc1.204.g551eb34607-goog
+
+[1] https://patches.linaro.org/project/linux-acpi/patch/20230426034001.16-1=
+-cuiyunhui@bytedance.com/
