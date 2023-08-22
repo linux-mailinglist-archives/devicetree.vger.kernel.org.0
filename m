@@ -2,54 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E936784427
-	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 16:29:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72DA278442C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Aug 2023 16:29:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236692AbjHVO3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 10:29:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40844 "EHLO
+        id S234326AbjHVO30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 10:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234326AbjHVO3P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 10:29:15 -0400
+        with ESMTP id S235162AbjHVO30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 10:29:26 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75508F3;
-        Tue, 22 Aug 2023 07:29:14 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1402D1BE;
+        Tue, 22 Aug 2023 07:29:24 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1353965925;
-        Tue, 22 Aug 2023 14:29:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82E76C433C8;
-        Tue, 22 Aug 2023 14:29:09 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A49AF65930;
+        Tue, 22 Aug 2023 14:29:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F0AFC433C7;
+        Tue, 22 Aug 2023 14:29:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692714553;
-        bh=u9i/0PUen8f4rveR8y6uxO85lsX6aoVBjb6AiC+3E2s=;
+        s=k20201202; t=1692714563;
+        bh=h5zyHpspl7dpKFk5tUBL2QsxCFhjvr9+cr25M5nKD9I=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=uejb3yBbdq2oejaRhdnGIf6fYrLDQ2MwbWT+/0a0VhwL/LQUcprMuyMPwqmFK38Fp
-         Q3wITevqwf9VzF/EjJlbcjKw4DBhqo7fSWJ8/dA8DFwsUTpLn889SpTw2+52E5W2ep
-         ecSWcE6p7g0yCXp0Rxh+T0UrWefZdi2phNzAPpZDBtk1HQtrBgXsoXpvYqsM2cbPUH
-         Sn9snYp/YViH4885oe4vNCcQF/N9RVQMvp+edRdfZwP1RDoCam7uihK1+cXJIXMqc4
-         8k15ZhT/S+V8ihL3FMOfEjay0QZlbNo4n1KfhgYgcvaA9DguFmh2j8Izr09V2rYKWu
-         4YIa5ZfiGI3jA==
+        b=QxDU/uzDRlUYUbPhQBOBBNOe4RoQYo8maLbY92IV4a6WbbFzfjJM3cYl8Hat8g73g
+         UmLCKlH0Kj/LyGcVQxXij4V3tz7tyT0FE+4/NiyJMLdMSKDCNee03y6trxBULGjTR+
+         J1waOCWynNSHUvA8yfdXUyw1NhYHFZE9Gvf9rcMd7AB+ZG4lkHOhuvhIFKlSkTHH/L
+         288bzbEype+o7jC7njo66bN46BOSpFsunj+ruMCsMkFCqp26n6bZkaefKfpb6+0Tjm
+         SKXazm5R8YWyoXBqFSteLX2rh90hRe+hBPiORU39cnqt/Jo5njkzBWaXbT4F2ejRUN
+         XqimrAsFVA1/w==
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     JaeHun Jung <jh0801.jung@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-In-Reply-To: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
-References: <20230820142035.89903-1-dmitry.baryshkov@linaro.org>
-Subject: Re: (subset) [PATCH v3 00/18] phy: qcom-qmp-pcie: convert to newer
- style of bindings
-Message-Id: <169271454911.280543.9764973402688206000.b4-ty@kernel.org>
-Date:   Tue, 22 Aug 2023 19:59:09 +0530
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+In-Reply-To: <20230819031731.22618-1-semen.protsenko@linaro.org>
+References: <20230819031731.22618-1-semen.protsenko@linaro.org>
+Subject: Re: (subset) [PATCH 0/8] arm64: exynos: Enable USB for E850-96
+ board
+Message-Id: <169271455700.280543.8632429647448619127.b4-ty@kernel.org>
+Date:   Tue, 22 Aug 2023 19:59:17 +0530
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -65,32 +71,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 20 Aug 2023 17:20:17 +0300, Dmitry Baryshkov wrote:
-> Reviewing several patchsets for newer platforms made it clear that
-> having two styles of QMP PHY bindings causes confusion. Despite binding
-> documents having notes telling that old bindings should be used for
-> older platforms, it is too easy to attempt adding new platform with
-> older QMP PHY binding. Thus let's have just a single documented style of
-> bindings.
+On Fri, 18 Aug 2023 22:17:23 -0500, Sam Protsenko wrote:
+> This patch series enables USB gadget, USB host and Ethernet support for
+> E850-96 board. The most major change was done in USB PHY driver, as the
+> register layout of PHY block in Exynos850 is very different from
+> Exynos5 one.
+> 
+> Sam Protsenko (8):
+>   dt-bindings: usb: samsung,exynos-dwc3: Add Exynos850 support
+>   dt-bindings: phy: samsung,usb3-drd-phy: Add Exynos850 support
+>   usb: dwc3: exynos: Add support for Exynos850 variant
+>   phy: exynos5-usbdrd: Make it possible to pass custom phy ops
+>   phy: exynos5-usbdrd: Add 26MHz ref clk support
+>   phy: exynos5-usbdrd: Add Exynos850 support
+>   arm64: dts: exynos: Enable USB in Exynos850
+>   arm64: dts: exynos: Enable USB support on E850-96 board
 > 
 > [...]
 
 Applied, thanks!
 
-[01/18] dt-bindings: phy: migrate QMP PCIe PHY bindings to qcom,sc8280xp-qmp-pcie-phy.yaml
-        commit: 505fb2541678944ae90e110088811eebba883efd
-[02/18] dt-bindings: phy: qcom,qmp-pcie: describe SM8150 PCIe PHYs
-        commit: 377107bcc64a446e017939cf6b59bb97873cf967
-[03/18] phy: qcom-qmp-pcie: drop ln_shrd from v5_20 config
-        commit: cfe0d203813420e643db08264679982a31fea95c
-[04/18] phy: qcom-qmp-pcie: keep offset tables sorted
-        commit: 86f703762a9b6c1a8e3ce9fd62fd5353379be3a0
-[05/18] phy: qcom-qmp-pcie: simplify clock handling
-        commit: 067832dc0387f12d264f449f9eba63cb587c21c6
-[06/18] phy: qcom-qmp-pcie: populate offsets configuration
-        commit: bf46fa1dafacebedb9de56626fdfa71e6198cfd7
-[07/18] phy: qcom-qmp-pcie: support SM8150 PCIe QMP PHYs
-        commit: 4807ff70e228b5e9c6ea6c7c5651a3fd74a5cfda
+[2/8] dt-bindings: phy: samsung,usb3-drd-phy: Add Exynos850 support
+      commit: 0b76bdce32300a626dc796f656c085a786c5dab1
+[4/8] phy: exynos5-usbdrd: Make it possible to pass custom phy ops
+      commit: 6b34ec66e7e7351b9a0a1eba8f57eb46ddeabf1e
+[5/8] phy: exynos5-usbdrd: Add 26MHz ref clk support
+      commit: 255ec3879dd4d585799fd8d8a94a335eaf84d2ec
+[6/8] phy: exynos5-usbdrd: Add Exynos850 support
+      commit: 691525074db97d9b684dd1457fd8dc9842a36615
 
 Best regards,
 -- 
