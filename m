@@ -2,88 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 145D3785B1C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 16:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3385785B54
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 17:01:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236682AbjHWOwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 10:52:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42088 "EHLO
+        id S236744AbjHWPBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 11:01:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235178AbjHWOwO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 10:52:14 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D2CE6A;
-        Wed, 23 Aug 2023 07:52:09 -0700 (PDT)
-Received: from p5dcc3441.dip0.t-ipconnect.de ([93.204.52.65] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qYpDF-002xEG-Kp; Wed, 23 Aug 2023 16:52:01 +0200
-Date:   Wed, 23 Aug 2023 16:51:59 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     bcousson@baylibre.com, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, tony@atomide.com
-Subject: Re: [PATCH 2/3] clk: twl: add clock driver for TWL6032
-Message-ID: <20230823165159.108875d0@aktux>
-In-Reply-To: <a65a7d976be4212ef71fe32c4ed2dacb.sboyd@kernel.org>
-References: <20230819134147.456060-1-andreas@kemnade.info>
-        <20230819134147.456060-3-andreas@kemnade.info>
-        <a65a7d976be4212ef71fe32c4ed2dacb.sboyd@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S234232AbjHWPBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 11:01:45 -0400
+Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA747E6F
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 08:01:43 -0700 (PDT)
+Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1bf078d5f33so45371795ad.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 08:01:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692802903; x=1693407703;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=z2+k6cAGFMR5RaZsHktDXUu9ODrgw3V1mMBLPGXhMTA=;
+        b=FTjquEpjeOb53++i943DoGCqI9h41vEtwOGKq/SoeMOD2W1KSEOG1PE6Lw2KRpoLwR
+         Z12Pz//meiNvJLj6WRg1Gp7mfwt3ctiQF2lR0VV7FXA1+ziVnYg9DfRy85x8mAm6VgFS
+         MGdPDQkk8pn97fOtySTZJ+hB7553kJ5Rqs+XEsFBWyltE/xsHz3B9e0n0g12j/8DP8q9
+         O3TkH+gP+APkj4PQ6HQRlJG5abaU9Kt3JTRVVwQYGy+eoeVnjrzBPTp4QjviWaJsGq8J
+         L9ypoVX6zMrKtFIqNtGx6Xt2ZIC2YPcX8v1kCqe5qH1FSYg2QTrWAWaRCs1NzYfXwez9
+         v82w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692802903; x=1693407703;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z2+k6cAGFMR5RaZsHktDXUu9ODrgw3V1mMBLPGXhMTA=;
+        b=gZME0YBPrddCmNlLrIN5vuCUaXlaO92ugjsr2syMiUThLS1eSWIenqD/mXa6e270m/
+         h2dBPkyiy5uoNrvxSe7B74lBtSrnLt/wSN3fkaNZtoBD8I9ymNmRd3SBY0+L3t7g5Ln+
+         jOXrpNK80d0WPgyfCYFccFKmr34CdrzfCF4FOHUha+AWhyx5H4FDxqDFOp4sh6Ko/Hpz
+         o40pPcXlzuuVlGdUWOEhoNMT4XlNZ5xzamjkT5ks7a+qhIxMrfnSprVnxQEaJ49K7a8B
+         LqxcWeNHNaamZxn9zCrI2tlblHP0MXVThBy2dPQiqshpeQ1Zkyg6bYTZ+2nHKFZKpVtS
+         I7qg==
+X-Gm-Message-State: AOJu0YzHU+g2IL3wh/JFt9NFeSb8WCEC56H/HTJPil/j8I0C/ksXHp6O
+        Xu7GeaKaOhdgg/2YW9rz9/fG4A==
+X-Google-Smtp-Source: AGHT+IHxRsDTQ4GGwu3ku2CXGa3QkXLzI/onNiihjEQHr1t5QREaiIJx3tVEmUDH3nSv60FodszUoA==
+X-Received: by 2002:a17:902:da88:b0:1bc:203f:3b3c with SMTP id j8-20020a170902da8800b001bc203f3b3cmr14899660plx.24.1692802903098;
+        Wed, 23 Aug 2023 08:01:43 -0700 (PDT)
+Received: from localhost ([122.172.87.195])
+        by smtp.gmail.com with ESMTPSA id n15-20020a170902e54f00b001b89536974bsm11090898plf.202.2023.08.23.08.01.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 08:01:42 -0700 (PDT)
+Date:   Wed, 23 Aug 2023 20:31:39 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 0/2] qcom-cpufreq-hw: add support for 4 freq domains
+Message-ID: <20230823150139.ljk3kblwuhfsorff@vireshk-i7>
+References: <20230821-topic-sm8x50-upstream-cpufreq-4-domains-v1-0-2d4d9fc828d8@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,T_SPF_HELO_TEMPERROR,T_SPF_TEMPERROR
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230821-topic-sm8x50-upstream-cpufreq-4-domains-v1-0-2d4d9fc828d8@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Aug 2023 15:34:59 -0700
-Stephen Boyd <sboyd@kernel.org> wrote:
-
-> Quoting Andreas Kemnade (2023-08-19 06:41:46)
-> > diff --git a/drivers/clk/clk-twl.c b/drivers/clk/clk-twl.c
-> > new file mode 100644
-> > index 0000000000000..deb5742393bac
-> > --- /dev/null
-> > +++ b/drivers/clk/clk-twl.c
-[...]
-> > +
-> > +static struct platform_driver twl_clks_driver = {
-> > +       .driver = {
-> > +               .name = "twl-clk",
-> > +               .of_match_table = twl_clks_of_match,
-> > +       },
-> > +       .probe = twl_clks_probe,
-> > +       .remove_new = twl_clks_remove,
-> > +};
-> > +
-> > +module_platform_driver(twl_clks_driver);
-> > +
-> > +MODULE_DESCRIPTION("Clock driver for TWL Series Devices");
-> > +MODULE_ALIAS("platform:twl-clk");  
+On 21-08-23, 09:39, Neil Armstrong wrote:
+> New platforms can have up to to 4 frequency domains,
+> Document and add support for this.
 > 
-> This alias is unnecessary?
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+> Neil Armstrong (2):
+>       dt-bindings: cpufreq: qcom-hw: add a 4th frequency domain
+>       cpufreq: qcom-cpufreq-hw: add support for 4 freq domains
 > 
-The question is whether this driver should have a separate dt
-node (and if a separate node, then one per clock as the clk-palmas
-driver) or not. See Rob's review of the binding document.
-So we have basically #clock-cells = <1>; in the twl parent
-and a call to mfd_add_device() there in the former case and I guess
-that alias is needed then.
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml | 5 ++++-
+>  drivers/cpufreq/qcom-cpufreq-hw.c                              | 2 +-
+>  2 files changed, 5 insertions(+), 2 deletions(-)
+> ---
+> base-commit: 47d9bb711707d15b19fad18c8e2b4b027a264a3a
+> change-id: 20230821-topic-sm8x50-upstream-cpufreq-4-domains-2ca50ff2cce2
 
-But if the overall structure stays as in this version,
-then I doubt that we need that alias.
+Applied. Thanks.
 
-Regards,
-Andreas
-
-
+-- 
+viresh
