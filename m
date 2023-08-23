@@ -2,128 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0009785E4A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 19:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EDDD785E64
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 19:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236266AbjHWRK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 13:10:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56644 "EHLO
+        id S237781AbjHWRRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 13:17:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237665AbjHWRK0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 13:10:26 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4ED2E79;
-        Wed, 23 Aug 2023 10:10:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692810621; x=1724346621;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=xrRC0v01qmst+o9CFPIeg2m8CpONvn/tnWf4Ftn+KSE=;
-  b=K61eDsNPl5P0pMhnDdUk/6lZkgHwxK6W06d6iz0Y9UhYfUUJq4UPp+RV
-   lLFKYndBnyTlrTae7DutOHEoG09dBK44dnvizUndqhJCfk00UrE+9fqwi
-   IRl339RGMc0b3s1tmThPQmZ936OEm2w6UMQtpHT7x1dpV0gVfXUmqWWA4
-   Kn99l95gFuw/zS1wpC355tUwjSbNTsixFRodP4s9SxHg+T01CpwNX0TOM
-   u9Ye7KZ177Sp/0IT8QM8+RclH2jlp1HSahipwB9aYyEjnk2T6BxcmBrXs
-   XUTvygGYogMXqD3XghGADV360lOrTsWe9W8C+FFBRs9pJ2oNeV+367791
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="376945463"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
-   d="scan'208";a="376945463"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2023 10:10:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="806782503"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
-   d="scan'208";a="806782503"
-Received: from pglc00067.png.intel.com ([10.221.207.87])
-  by fmsmga004.fm.intel.com with ESMTP; 23 Aug 2023 10:10:15 -0700
-From:   Rohan G Thomas <rohan.g.thomas@intel.com>
-To:     fancer.lancer@gmail.com
-Cc:     alexandre.torgue@foss.st.com, conor+dt@kernel.org,
-        conor.dooley@microchip.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, edumazet@google.com,
-        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
-        kuba@kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        mcoquelin.stm32@gmail.com, netdev@vger.kernel.org,
-        pabeni@redhat.com, peppe.cavallaro@st.com, robh+dt@kernel.org,
-        rohan.g.thomas@intel.com
-Subject: Re: [PATCH net-next v5 1/2] dt-bindings: net: snps,dwmac: Tx queues with coe
-Date:   Thu, 24 Aug 2023 01:10:04 +0800
-Message-Id: <20230823171004.6825-1-rohan.g.thomas@intel.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <l7yajzhpuotn62pjkxk43qtcn3u4zltpyqcvo224737bjg3eab@bzu6pirxbvh2>
-References: <l7yajzhpuotn62pjkxk43qtcn3u4zltpyqcvo224737bjg3eab@bzu6pirxbvh2>
+        with ESMTP id S235877AbjHWRRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 13:17:35 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DDFC1B0
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 10:17:33 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99c0cb7285fso744924366b.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 10:17:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1692811050; x=1693415850;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MS+TPc34qbEYEOTCakdAp1dhbKIZynKL3y59Y3CigWo=;
+        b=WueiVPoMozMdknbeqgWLH3xZEo28P5yxES/Aa+dDp0TXnz4IGZOWdvLXalQ88prxKU
+         nehXO+OC4lDaefVkhLN5B6EMiikX4J9wTiJnxGTPF+i0oGnghn/Ypu65emvtvV1Sab0g
+         Z+HwzqUiVRE25vIiyjE2QzoKtw8m2r0XVOMCY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692811050; x=1693415850;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MS+TPc34qbEYEOTCakdAp1dhbKIZynKL3y59Y3CigWo=;
+        b=kgEIuR1CWquawzH71MSUoRciYUo+QJe0ynXyJWRzP9N7pLe8N08x0LQaQQ0SPhDWkG
+         PRuid6Fyr9qsERaGTaiwfciSAxCUoxc+hw/qB36Zxpj6rlx9wqEcyXuEpoik6/ClKvvG
+         40oqtCaxogQdFwrSx1pNtS+pUNp4D1j4FkoQ9euYT33Obb2uWRWTu+zyhohRwGk5pv4u
+         TZz8sSC7DuEga8jBZ56W+7pFeZM5A2evwwUJQPZZv7ebuHEDA/yJJxTRcPtypUOA30ps
+         8eNOoN8lgCtEQ1DeyRWYENz8qUaKWU9jDPSTNu4coY1X7nmrBc/7Xps1DowPvdwUfrcP
+         TKAw==
+X-Gm-Message-State: AOJu0YzrnAzJqbURu1OvGITJ+VI2YCLwqTw2xlrIli+38oTV/7dZErQg
+        RfD+pQQOlFMq9nSZgXnBtNl46mChp+/FlRutAVCykwiN
+X-Google-Smtp-Source: AGHT+IE/ZeUjFIPyfqTcLT6R84cBqrh7Q5Ct2bkpqArBWPkmsLUpmtEguQGjVpoRCduGuJ4MpygqUA==
+X-Received: by 2002:a17:907:775a:b0:994:536c:ab45 with SMTP id kx26-20020a170907775a00b00994536cab45mr10049573ejc.50.1692811050026;
+        Wed, 23 Aug 2023 10:17:30 -0700 (PDT)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com. [209.85.208.47])
+        by smtp.gmail.com with ESMTPSA id d16-20020a17090648d000b0098d2d219649sm10058009ejt.174.2023.08.23.10.17.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 10:17:29 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-529fa243739so975a12.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 10:17:29 -0700 (PDT)
+X-Received: by 2002:a50:9f4e:0:b0:523:b133:57fe with SMTP id
+ b72-20020a509f4e000000b00523b13357femr275913edf.1.1692811048986; Wed, 23 Aug
+ 2023 10:17:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230822094414.123162-1-sheng-liang.pan@quanta.corp-partner.google.com>
+ <20230822174101.v4.1.I26e017b00a341e7a5a2e94a83596923713408817@changeid> <20230823-raving-either-fb7bdb98b846@spud>
+In-Reply-To: <20230823-raving-either-fb7bdb98b846@spud>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 23 Aug 2023 10:17:17 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U2kHPu2coSniUXfDJH8gYMV6115NKkyS7Rt4mEx4fzew@mail.gmail.com>
+Message-ID: <CAD=FV=U2kHPu2coSniUXfDJH8gYMV6115NKkyS7Rt4mEx4fzew@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: qcom: add sc7180-lazor board bindings
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->On Tue, Aug 22, 2023 at 05:15:25PM -0700, Jakub Kicinski wrote:
->> On Sat, 19 Aug 2023 10:31:31 +0800 Rohan G Thomas wrote:
->> > +      snps,tx-queues-with-coe:
->> > +        $ref: /schemas/types.yaml#/definitions/uint32
->> > +        description: number of TX queues that support TX checksum offloading
->> 
->
->> Is it going to be obvious that if not present all queues support
->> checksum offload? I think we should document the default.
->
->This question is debatable:
->1. By default the DW xGMAC and DW QoS Eth IP-cores are
->synthesized with only the very first Tx queue having Tx COE enabled.
->2. If TSO is disabled then the Tx COE can be individually enabled
->for each queue available on DW QoS Eth controller and for the very
->first N queues on DW xGMAC controller.
->3. If TSO is enabled then the Tx COE will be automatically and always
->enabled for as many first queues as there are TSO-capable
->DMA-channels.
->4. At the current state the STMMAC driver assumes that all Tx Queues
->support Tx COE.
->
->The entry 4 can't be changed since we'll risk to catch regressions on
->the platforms with no property specified. On the other hand it partly
->contradicts to the rest of the entries. I don't know what would be a
->correct way to specify the default value in this case. Most likely
->just keep the entry 4 and be done with it.
->
->BTW I just noticed that but the suggested "snps,tx-queues-with-coe"
->property semantic will only cover a DW XGMAC-part of the case 2. DW
->QoS Eth can be synthesized with Tx COE individually enabled for a
->particular queue if TSO is unavailable.
+Hi,
 
-Hi Serge,
-
-Didn't know about a different IP configuration supported by DW QoS Eth IP. If
-this is the case, I think we can have a flag 'coe-unsupported' for any TX
-queue subnode as below.
-
-+          snps,coe-unsupported:
-+            $ref: /schemas/types.yaml#/definitions/flag
-+            description:
-+              TX checksum offload is unsupported by the TX queue. If TX checksum
-+              offload is requested for a packet to be transmitted through this
-+              TX queue then have a software fallback in the driver for checksum
-+              calculation.
-
-If this is okay, I can rework the patch based on this. Covers both DW QoS Eth IP
-and DW XGMAC IP cases.
-
+On Wed, Aug 23, 2023 at 8:11=E2=80=AFAM Conor Dooley <conor@kernel.org> wro=
+te:
 >
->-Serge(y)
+> On Tue, Aug 22, 2023 at 05:44:13PM +0800, Sheng-Liang Pan wrote:
+> > Introduce more sc7180-lazor sku and board version configuration,
+> > add no-eSIM SKU 10 for Lazor, no-eSIM SKU 15 and 18 for Limozeen,
+> > add new board version 10 for audio codec ALC5682i-VS.
+> >
+> > Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.goo=
+gle.com>
+> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
 >
->> -- 
->> pw-bot: cr
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-BR,
-Rohan
+Conor: any chance you could reply to v6 (instead of v4) and add your Ack?
+
+https://lore.kernel.org/all/20230823151005.v6.1.I26e017b00a341e7a5a2e94a835=
+96923713408817@changeid/
+
+I _think_ the v6 patch series is in good shape so I don't expect
+Sheng-Liang to have to send a v7. I'm worried that your Ack will be
+lost if it's not sent in response to the v6 patch.
+
+Thanks!
+
+-Doug
