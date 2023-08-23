@@ -2,63 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 637B77854B6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3AF47854C5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:00:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235156AbjHWJ4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 05:56:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57242 "EHLO
+        id S231687AbjHWKA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:00:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236276AbjHWJ4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:56:10 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B6B2130E4
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:55:17 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.109.102])
-        by gateway (Coremail) with SMTP id _____8CxruuC1+VktC4bAA--.52904S3;
-        Wed, 23 Aug 2023 17:55:14 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.102])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLCN81+VkOz1hAA--.21192S5;
-        Wed, 23 Aug 2023 17:55:13 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
+        with ESMTP id S233109AbjHWKAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:00:18 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A403493;
+        Wed, 23 Aug 2023 03:00:14 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe8c16c1b4so8279108e87.2;
+        Wed, 23 Aug 2023 03:00:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692784813; x=1693389613;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=F7VHCNyxaZNPU4FyyEuB/AUclDUQkc0xiHJpU5W0gcM=;
+        b=DdRC64F7TsIqvpbURAmjmkXHNfUOXPKAzFNkwftE/JYO2mn6+EIJz4h5vUusHNSInk
+         ihpZMYIoHmNcIqvOfo/aA45XdLGOqKyLDFidZEUGAFYVndU+OgexWr0XhjDbiJyaoe3e
+         d2rTeB64fxD21JyVBvxGgckJv7UYM3mool0AbfUxhdmTYaAxf0CEsbt703bUf3/9ylLS
+         vM1O5Io6v5Phkat83ZapzexKAzZ6tOwiIkS+8f/Vm+Exxs3TY5OkLYAv3oFKbiHQkqTZ
+         wL6jkqX6n/2lqsov5XOl0atK2yo2Z5k3wdeSFrAIr5k7P8hw8rEcQiJkg0tm8+CWus5Y
+         Fu6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692784813; x=1693389613;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=F7VHCNyxaZNPU4FyyEuB/AUclDUQkc0xiHJpU5W0gcM=;
+        b=P7OTrvPS8IMruq4SBAF2YWv84x4/HN2/svp6yiEJtsxQn4bf0V8mcSf910vfxWyALd
+         3MGuvxTz+eyDo5QlTiOV3qvOPDUTrQcgnRzL3Nkz9QvhPo49Ie1ITkS5RxOM+f22BNz9
+         H/ew7jM3bdO96tUt4HI4VkDzMMYy/Yv2HbydN5DQYeHt618VUyG2hvSR46w80G83doXd
+         9Vg1+aoHdRVUXTz2Z2pkCNe1+4vg1eaoaweWKw0dSCt8HM/xLGdzWqVFJ4AUDrn4Gfyn
+         rCSPFiQER4JieUp4aecUws3ukROUe6OBCGZYhbC8S9s9s976pHGQnyIUC0tYEXqC6YiX
+         XPnA==
+X-Gm-Message-State: AOJu0Yy4vbtFbUE4WoxNh/SAYkBDWymODEbKoSZCx1kwYl7UVkfWh0tt
+        Merx6WMFImlhEzqLIaJSR28=
+X-Google-Smtp-Source: AGHT+IFWKdHrFCphsDQXjanEbkwZOxjJGhc6zJjHuGkpv8q/4gqZ5pti/2VT7HTAMlTRGfXSuLIDJA==
+X-Received: by 2002:a19:7617:0:b0:4fd:f77d:5051 with SMTP id c23-20020a197617000000b004fdf77d5051mr7774975lff.26.1692784812522;
+        Wed, 23 Aug 2023 03:00:12 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id c26-20020ac244ba000000b004f61187363asm2603076lfm.66.2023.08.23.03.00.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 03:00:12 -0700 (PDT)
+Date:   Wed, 23 Aug 2023 13:00:09 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+Cc:     Rohan G Thomas <rohan.g.thomas@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v4 7/7] LoongArch: Parsing CPU-related information from DTS
-Date:   Wed, 23 Aug 2023 17:55:06 +0800
-Message-Id: <d6d3695e7bb942c93db03f95a78a519a6a670a96.1692783907.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <cover.1692783907.git.zhoubinbin@loongson.cn>
-References: <cover.1692783907.git.zhoubinbin@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH net-next v5 1/2] dt-bindings: net: snps,dwmac: Tx queues
+ with coe
+Message-ID: <l7yajzhpuotn62pjkxk43qtcn3u4zltpyqcvo224737bjg3eab@bzu6pirxbvh2>
+References: <20230819023132.23082-1-rohan.g.thomas@intel.com>
+ <20230819023132.23082-2-rohan.g.thomas@intel.com>
+ <20230822171525.692bd2df@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxLCN81+VkOz1hAA--.21192S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7AryrtFyrurW8XrykGFykZwc_yoW8ZF48pF
-        Z7CFWrKrZ5CFn3G3Wftryjyryavrs5Ga17XFW29FWUCFnxKrnYqr4v9rnrtF18ZFWrWa4r
-        XFWrGFWqgF4UArXCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
-        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-        0xBIdaVrnRJUUUBvb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-        0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-        wI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-        xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-        Wrv_ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
-        Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
-        z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
-        8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
-        2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6x
-        AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIE
-        c7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07jxxhdUUUUU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230822171525.692bd2df@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,77 +86,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Generally, we can get cpu-related information, such as model name, from
-/proc/cpuinfo. for DT-based systems, we need to parse the relevant
-information from DTS.
+On Tue, Aug 22, 2023 at 05:15:25PM -0700, Jakub Kicinski wrote:
+> On Sat, 19 Aug 2023 10:31:31 +0800 Rohan G Thomas wrote:
+> > +      snps,tx-queues-with-coe:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> > +        description: number of TX queues that support TX checksum offloading
+> 
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-Signed-off-by: Hongliang Wang <wanghongliang@loongson.cn>
----
- arch/loongarch/kernel/env.c | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+> Is it going to be obvious that if not present all queues support
+> checksum offload? I think we should document the default.
 
-diff --git a/arch/loongarch/kernel/env.c b/arch/loongarch/kernel/env.c
-index 6b3bfb0092e6..0191fe20b535 100644
---- a/arch/loongarch/kernel/env.c
-+++ b/arch/loongarch/kernel/env.c
-@@ -5,13 +5,16 @@
-  * Copyright (C) 2020-2022 Loongson Technology Corporation Limited
-  */
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/efi.h>
- #include <linux/export.h>
- #include <linux/memblock.h>
-+#include <linux/of_clk.h>
- #include <asm/early_ioremap.h>
- #include <asm/bootinfo.h>
- #include <asm/loongson.h>
- #include <asm/setup.h>
-+#include <asm/time.h>
- 
- u64 efi_system_table;
- struct loongson_system_configuration loongson_sysconf;
-@@ -34,9 +37,39 @@ void __init init_environ(void)
- 	efi_system_table = fw_arg2;
- }
- 
-+static int __init fdt_cpu_clk_init(void)
-+{
-+	struct clk *clk;
-+	struct device_node *np;
-+
-+	np = of_get_cpu_node(0, NULL);
-+	if (!np)
-+		return -ENODEV;
-+
-+	clk = of_clk_get(np, 0);
-+	if (IS_ERR(clk))
-+		return -ENODEV;
-+
-+	cpu_clock_freq = clk_get_rate(clk);
-+	clk_put(clk);
-+
-+	return 0;
-+}
-+late_initcall(fdt_cpu_clk_init);
-+
- static int __init init_cpu_fullname(void)
- {
- 	int cpu;
-+	char *prop;
-+	struct device_node *root;
-+
-+	/* Parsing cpuname from DTS model property */
-+	root = of_find_node_by_path("/");
-+	if (root) {
-+		of_property_read_string(root, "model", (const char **)&prop);
-+		if (prop)
-+			loongson_sysconf.cpuname = strsep(&prop, " ");
-+	}
- 
- 	if (loongson_sysconf.cpuname && !strncmp(loongson_sysconf.cpuname, "Loongson", 8)) {
- 		for (cpu = 0; cpu < NR_CPUS; cpu++)
--- 
-2.39.3
+This question is debatable:
+1. By default the DW xGMAC and DW QoS Eth IP-cores are
+synthesized with only the very first Tx queue having Tx COE enabled.
+2. If TSO is disabled then the Tx COE can be individually enabled
+for each queue available on DW QoS Eth controller and for the very
+first N queues on DW xGMAC controller.
+3. If TSO is enabled then the Tx COE will be automatically and always
+enabled for as many first queues as there are TSO-capable
+DMA-channels.
+4. At the current state the STMMAC driver assumes that all Tx Queues
+support Tx COE.
 
+The entry 4 can't be changed since we'll risk to catch regressions on
+the platforms with no property specified. On the other hand it partly
+contradicts to the rest of the entries. I don't know what would be a
+correct way to specify the default value in this case. Most likely
+just keep the entry 4 and be done with it.
+
+BTW I just noticed that but the suggested "snps,tx-queues-with-coe"
+property semantic will only cover a DW XGMAC-part of the case 2. DW
+QoS Eth can be synthesized with Tx COE individually enabled for a
+particular queue if TSO is unavailable.
+
+-Serge(y)
+
+> -- 
+> pw-bot: cr
