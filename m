@@ -2,137 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D52BC785394
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20420785399
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:15:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232427AbjHWJOq convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 23 Aug 2023 05:14:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
+        id S235165AbjHWJOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:14:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235396AbjHWJJi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:09:38 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9BD1FFC;
-        Wed, 23 Aug 2023 02:02:13 -0700 (PDT)
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-76da4437500so194601885a.1;
-        Wed, 23 Aug 2023 02:02:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692781282; x=1693386082;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DtV842noA4k0ZIyALimzf7oD/qGOzDsyzAeC5Bbahhw=;
-        b=Qc19fPJuEe1p3u0oQWV4AkCNYwpP9v3Ic0P7yx6HlKwP6OW8NHgP9k8G8yrQAKJFpG
-         Ix/SSNULDfPePAepcByNJt8spAxHYhnymvLmrgsHLrsKzgsAmaBB6kkVrpKLbuEJmV2H
-         PyOb6abatTlGWYwAxwHrNiGA6RFSMlY2QqOvfxerIZzP5tNny083YMUSD4C6RKGO/OoM
-         keuUu+ZNM/0Fm+yYztg+aWz8SyIeU/nz8B3RvSpfW7Ph2410jNVtC9d/AzjUtvDoS+8Z
-         IRsYUxan5XWWne5Qr5FCOeL8jwzkfbBs0xJEkUqWw9QPFDTqtGJx+sfnDcHa4c7h1KR8
-         Otxw==
-X-Gm-Message-State: AOJu0Yw8ek7rMaQZU7qlRTNaGXfexcM5mp6Ds1QUWKs3fAx3CPNcS7zi
-        ZczwfjbQ417KOQT+94x3ziocLsn97Q6sDg==
-X-Google-Smtp-Source: AGHT+IFKpxmoHYGhsmnguwReHG+/b22cfFCY4nYz+uUUUtSM2GT11veFqVBEGcCX6rtDSKCu+zL9DA==
-X-Received: by 2002:a05:620a:4706:b0:76c:a3ae:1f64 with SMTP id bs6-20020a05620a470600b0076ca3ae1f64mr13828174qkb.49.1692781281995;
-        Wed, 23 Aug 2023 02:01:21 -0700 (PDT)
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
-        by smtp.gmail.com with ESMTPSA id t125-20020a0dd183000000b005837fe8dbe8sm3227563ywd.8.2023.08.23.02.01.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 02:01:20 -0700 (PDT)
-Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d63c0a6568fso5381640276.0;
-        Wed, 23 Aug 2023 02:01:20 -0700 (PDT)
-X-Received: by 2002:a25:cad7:0:b0:d12:46b1:4459 with SMTP id
- a206-20020a25cad7000000b00d1246b14459mr12184522ybg.6.1692781280284; Wed, 23
- Aug 2023 02:01:20 -0700 (PDT)
+        with ESMTP id S231451AbjHWJLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:11:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FE2449CE;
+        Wed, 23 Aug 2023 02:03:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EC73C65A0F;
+        Wed, 23 Aug 2023 09:03:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 0B961C433C9;
+        Wed, 23 Aug 2023 09:03:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692781412;
+        bh=8fCdzcn2VcvnUQp2D6Fuk/QxfB3MwobNYAHefW+j36I=;
+        h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+        b=DiwUuH5Xi6vpIS+dIGw3WmrIlUG7alGvSDvTvRo90RlmiGT2DFC7bxQmy/FSR4JqW
+         VwLmnAR/+HB6NNq1A6gh92kLJ0b/fw2NFZ7mo1eNT2wBjOfecftAirU9z09kucnC3Y
+         eYdHeiBy701XWVtyt6busWkyAeqBiMmJdubCmu4A5UBvA5wf+cm1eP59XpSWgG5DvV
+         ApYFINdRqa9sqoghA+d7gmHYMD0tjj0Zch8bAl+9D9g3GPh8Va3GpL6cVwRRTqBDmt
+         /+WvOOpPxqLX2ZxLDs5ToBEgie2zxct1A+kTF5FhWxqiNjhJVpQKftwM6iuE5gkeDL
+         8gn1e6OyfsFHA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.lore.kernel.org (Postfix) with ESMTP id DBE8EEE49B5;
+        Wed, 23 Aug 2023 09:03:31 +0000 (UTC)
+From:   Nikita Shubin via B4 Relay 
+        <devnull+nikita.shubin.maquefel.me@kernel.org>
+Date:   Wed, 23 Aug 2023 12:03:14 +0300
+Subject: [PATCH 1/2] dt-bindings: rtc: Add ST M48T86
 MIME-Version: 1.0
-References: <20230823085146.113562-1-krzysztof.kozlowski@linaro.org> <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Aug 2023 11:01:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU7Gk5jTkD_hc_BAK0caQjzTBWrXedV+5rYrMRiZF1EAw@mail.gmail.com>
-Message-ID: <CAMuHMdU7Gk5jTkD_hc_BAK0caQjzTBWrXedV+5rYrMRiZF1EAw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: use capital "OR" for multiple licenses in SPDX
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230823-m48t86_device_tree-v1-1-240023b435ac@maquefel.me>
+References: <20230823-m48t86_device_tree-v1-0-240023b435ac@maquefel.me>
+In-Reply-To: <20230823-m48t86_device_tree-v1-0-240023b435ac@maquefel.me>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nikita Shubin <nikita.shubin@maquefel.me>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692781413; l=1263;
+ i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
+ bh=y7M/fGH6tMQwq76PE+jI5ZilaSmr5fjvvIAr9uMS3jI=; =?utf-8?q?b=3D6ZM/ryKuE1kI?=
+ =?utf-8?q?jbSn+grM9CJPE9556P+3Zkt0S3hhK6elKCVNruOuML8tlO/RAOBu70/OWOyP1gtw?=
+ CRnSBYApBXosWIWOmiy3JHWSO2GWXUipnEjB5qKk1+Y7zKYwlaGO
+X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
+ pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
+X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
+X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
+Reply-To: <nikita.shubin@maquefel.me>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 23, 2023 at 10:52 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> Documentation/process/license-rules.rst and checkpatch expect the SPDX
-> identifier syntax for multiple licenses to use capital "OR".  Correct it
-> to keep consistent format and avoid copy-paste issues.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Nikita Shubin <nikita.shubin@maquefel.me>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Add YAML bindings for ST M48T86 / Dallas DS12887 RTC.
 
->  arch/arm64/boot/dts/renesas/r8a77980a.dtsi                     | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779f0-spider.dts                | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779f0.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m0.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1-ulcb-kf.dts               | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1-ulcb.dts                  | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m2.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3-ulcb-kf.dts               | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts                  | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m4.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m5.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m6.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m7.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m8.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779mb.dtsi                      | 2 +-
+Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+---
+ .../devicetree/bindings/rtc/st,m48t86.yaml         | 38 ++++++++++++++++++++++
+ 1 file changed, 38 insertions(+)
 
-Mea culpa
-
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
+diff --git a/Documentation/devicetree/bindings/rtc/st,m48t86.yaml b/Documentation/devicetree/bindings/rtc/st,m48t86.yaml
+new file mode 100644
+index 000000000000..e3e12fa23380
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/st,m48t86.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/st,m48t86.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST M48T86 / Dallas DS12887 RTC with SRAM
++
++maintainers:
++  - Alexandre Belloni <alexandre.belloni@bootlin.com>
++
++allOf:
++  - $ref: rtc.yaml
++
++properties:
++  compatible:
++    enum:
++      - st,m48t86
++
++  reg:
++    items:
++      - description: index register
++      - description: data register
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    rtc@10800000 {
++      compatible = "st,m48t86";
++      reg = <0x10800000 0x1>, <0x11700000 0x1>;
++    };
++
++...
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.39.2
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
