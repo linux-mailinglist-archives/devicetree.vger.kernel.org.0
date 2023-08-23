@@ -2,74 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EC8F78568C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 13:14:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FA48785697
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 13:15:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232047AbjHWLOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 07:14:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
+        id S234374AbjHWLPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 07:15:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234363AbjHWLOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 07:14:08 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08354E54;
-        Wed, 23 Aug 2023 04:14:06 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so8739482e87.1;
-        Wed, 23 Aug 2023 04:14:05 -0700 (PDT)
+        with ESMTP id S234378AbjHWLPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 07:15:41 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7E71E50
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 04:15:34 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b9a2033978so84938481fa.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 04:15:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692789244; x=1693394044;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8LFiYT+pIjp+Hsb3mX0ePhlRFgF0GYMvthbRS9/QaYc=;
-        b=k5rNDQfd1CgQrGDl2UgR2a+v7kZTRPgc3icHUApqMK8NAZ3zUsojnh1HG6YzHQUlNs
-         V4rFz+DITZyCBCNmRe1ytB4Ohfekl2ZpME3zn2o3loBh9BMycx07PrCuD/EoyaZ27ED5
-         s10fzT3fAUeJZyB3GCYMIN3SFP29RBr8Pa2pcsYF6a0hlDh8UWSxb0XgygcMhAuBPhfJ
-         OcFCCcpZdlEPKU09meWYrb88w7YBJcqJB50eWE4AxDcC/gOeUKzFO3XXH21tFEM329HK
-         nc8PD7cyqFokAcyJW0o7xDnH+eO3r3RjFD8vt7oj76fGfnSXtFbfo9nFDjhPwZQRYaaQ
-         4fRA==
+        d=linaro.org; s=google; t=1692789333; x=1693394133;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZIWNuXwrah0vcwp9FxjAO4eUOL/OFiR6pFNP4rHU2KI=;
+        b=sleSWxodh86b/ReU6wy0MjmWI9qXzTon3daX+xyZIJmBBgY8BTGdHv2mfJMdSf3fSU
+         vPRMJfu/yy1DXmFKm9GTHV8NzsoSqYd+QlS14qd/WiFX3XsHk9Sa+esfU/QwNoEbFEl/
+         FQG4+k70aQpGYd2A7DB1mW8C2WG9PhB8jSdkDksn4AKLaVxgLuf+lvwa4UcBAAZYXRE5
+         GFacKna8uY/qbmTtGL+djfBPnY1ojcJreXdfyH6lkX5ZsfWEPO+hEftlgjlWuxg5G/TC
+         d2zvCUgrl/Yt0s6O5Lt3uCwRXpAdbKr7zF8ZvxdlIYwwNZVEgQznKRqtU7/j0D/jJxSi
+         5hqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692789244; x=1693394044;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8LFiYT+pIjp+Hsb3mX0ePhlRFgF0GYMvthbRS9/QaYc=;
-        b=MeK4uo+4VjsdGzUxfnDeHR4po9ogMTz2J52hocljX4zvA7yj/UZzptscAeiSl2IjhW
-         ZByO2+rg8cD94Leo/tSgJCwPeKFa67okM6z4E+9eQrVZN/4nJ4SaWwGLTM5uxtpmKzLv
-         R+TmEn1Tyb06ZD3KaHCIdC/nBp+WbHFLPtI3K1+u+n0LideQV1a8wf57vc1QrIxyu4Wd
-         69R3X2EJ/nxV2ExuDPshzSvHzF0dPYd+in3AOautYmpy0QPNtqqCXhXDia7kDf03IdjI
-         gnC5GObAC5IzTwuOWKybpUM2v2FTkmk75XfC5vZ5HT3Y8H3rGs+XYKj53KqRUhwWfWf1
-         RxFQ==
-X-Gm-Message-State: AOJu0YyiFFm4bTC4kwe5CKiQfRPDzBIE76BCgaK4IPMxAlf7hDBW2hwT
-        Xb3on4t8CGvfQ9uJlT7zM8c=
-X-Google-Smtp-Source: AGHT+IGEhuX3AJgr7kRRmlBb7GnCKIL6iyJhI2LWkVfTFbXR99qexfNvmCi7FMFQfKH9KGaz7QzKzw==
-X-Received: by 2002:ac2:4c52:0:b0:4fe:7e1f:766a with SMTP id o18-20020ac24c52000000b004fe7e1f766amr11911255lfk.24.1692789243814;
-        Wed, 23 Aug 2023 04:14:03 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id b15-20020ac247ef000000b004ffa0e5d805sm2592714lfp.174.2023.08.23.04.14.02
+        d=1e100.net; s=20221208; t=1692789333; x=1693394133;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZIWNuXwrah0vcwp9FxjAO4eUOL/OFiR6pFNP4rHU2KI=;
+        b=boxrlK8TW05k2f1PeMp5RQo7YpiOUXJvH05JeRQ5kw6JBGTjQC34HofwqI4y8j63vt
+         JjE5TvLH35PNHEsf2E20JlZ5+GciBKKqtLkrFhEOhQvm4ymZKw34Qnfvb0VMI5s/46sF
+         vZbBy1agPYqswfLXfeyuu5zbQuhoN/K6WRFZc1Rud4NMrh5OQJj3qm8m0eEQ8rt9NiOK
+         E1e+/+SVUc5jK7ATlyzxiZB9MBY47CpkVOtYlz/4Sci0LKrfpjpdR7k7Kegy8uCbxHPr
+         US1/fEPbHOFXzBbgbIn7UNprfHNOJ+Bv78Qvruhcxtc6kSOVKOacnnM2nQG5jmbE76xi
+         DkKA==
+X-Gm-Message-State: AOJu0YxCgOwDWqTzRkuY6Ieb+u2Fs7yvBAciaNtTUwn/PXVLyOdxiaB2
+        6RNT0JlvDg6OyNGEWMSPJeb06bNbaYFJyQVe6ioGjw==
+X-Google-Smtp-Source: AGHT+IFnizC3nIy1Mf55Mys8hZrehr4el9mffeLcVjutikYgFAx2De2coxMSTUFARJWt1szfXJ3tDg==
+X-Received: by 2002:a2e:9894:0:b0:2bc:d8cb:5a13 with SMTP id b20-20020a2e9894000000b002bcd8cb5a13mr2188323ljj.42.1692789332818;
+        Wed, 23 Aug 2023 04:15:32 -0700 (PDT)
+Received: from [192.168.1.101] (abyj76.neoplus.adsl.tpnet.pl. [83.9.29.76])
+        by smtp.gmail.com with ESMTPSA id r16-20020a2e80d0000000b002b6ffa50896sm3148981ljg.128.2023.08.23.04.15.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 04:14:03 -0700 (PDT)
-Date:   Wed, 23 Aug 2023 14:14:00 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v19 12/19] PCI: dwc: endpoint: Introduce .pre_init() and
- .deinit()
-Message-ID: <asg4u7vfyk5scq4wzzpfogdhrnzrlz77gxrn76ak4jfwixj4ej@qztokrh6lyys>
-References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
- <20230823091153.2578417-13-yoshihiro.shimoda.uh@renesas.com>
+        Wed, 23 Aug 2023 04:15:32 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v5 0/2] Resolve MPM register space situation
+Date:   Wed, 23 Aug 2023 13:15:30 +0200
+Message-Id: <20230328-topic-msgram_mpm-v5-0-6e06278896b5@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230823091153.2578417-13-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFLq5WQC/4XNwYrDIBQF0F8prsfBPE21XfU/SilP80yERIO2Y
+ YaSf6/tbihMlvfCPffBCuVAhR13D5ZpCSWkWEP7tWNuwNgTD13NDARIIcHwW5qD41PpM07XaZ6
+ 42xtjSVoHB8XqzGIhbjNGN9RhvI9jLedMPvy8f86XmodQbin/vm+X5tX+87A0XPDGamOw9S1Ke
+ RpDxJy+U+7ZS1tgS4AqEChUhlrtRfchyC1BVgGcBg/aKi32H4LaElQVLJI00DnhD/BHWNf1Cey
+ qbeOMAQAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692789331; l=2434;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=qH9sx+/ai5EovCviiqBDDheKAiLyZYj17Dvw7FbBpGw=;
+ b=uesa5yLp23EsX+AUQIrOlqfBij2mc7w67AvZxB4MpvduNYEHoQh3u6xxE6bwRAqkygj5ZMIT5
+ Nqv4Ey8unZICA9UVcV3Cd9tNRf1hA1iRwZj2QKxD9KuiQt6/s3mxq8Z
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,91 +91,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 23, 2023 at 06:11:46PM +0900, Yoshihiro Shimoda wrote:
-> Renesas R-Car Gen4 PCIe controllers require vendor-specific
-> initialization before .init(). To use dw->dbi and dw->num-lanes
-> in the initialization code, introduce .pre_init() into struct
-> dw_pcie_ep_ops. Also introduce .deinit() to disable the controller
-> by using vendor-specific de-initialization.
-> 
+v4 -> v5:
+- Pick up tags
+- Rebase on Rob's of_ header untanglement
 
-> Note that the ep_init in the struct dw_pcie_ep_ops should be renamed
-> to init later.
+Link to v4: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v4-0-bae382dc0f92@linaro.org
 
-Note this message look very little related to the patch itself. If you
-want to signify your agreement with Mani then just put that note below
-the "---" line.
+v3 -> v4:
+- Fix up indentation in the bindings patch
+- Add an example glink-edge subnode to remoteproc-rpm (its bindings
+  require that..)
 
-Anyway. The callbacks execution order looks correct now. Thanks.
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+Link to v3: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v3-0-2c72f27b4706@linaro.org
 
--Serge(y)
+v2 -> v3:
+- Fix the example
+- Pick up tags
+- remove the outdated example from the cover letter, check bindings
+  should you want to see one
 
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 12 +++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h    |  2 ++
->  2 files changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 9a51a723b892..ea8063742fac 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -695,6 +695,9 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
->  			      epc->mem->window.page_size);
->  
->  	pci_epc_mem_exit(epc);
-> +
-> +	if (ep->ops->deinit)
-> +		ep->ops->deinit(ep);
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_ep_exit);
->  
-> @@ -798,6 +801,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  	ep->phys_base = res->start;
->  	ep->addr_size = resource_size(res);
->  
-> +	if (ep->ops->pre_init)
-> +		ep->ops->pre_init(ep);
-> +
->  	dw_pcie_version_detect(pci);
->  
->  	dw_pcie_iatu_detect(pci);
-> @@ -852,7 +858,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  			       ep->page_size);
->  	if (ret < 0) {
->  		dev_err(dev, "Failed to initialize address space\n");
-> -		return ret;
-> +		goto err_ep_deinit;
->  	}
->  
->  	ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
-> @@ -898,6 +904,10 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  err_exit_epc_mem:
->  	pci_epc_mem_exit(epc);
->  
-> +err_ep_deinit:
-> +	if (ep->ops->deinit)
-> +		ep->ops->deinit(ep);
-> +
->  	return ret;
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_ep_init);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 89999c483c37..77a9c3e70120 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -332,7 +332,9 @@ struct dw_pcie_rp {
->  };
->  
->  struct dw_pcie_ep_ops {
-> +	void	(*pre_init)(struct dw_pcie_ep *ep);
->  	void	(*ep_init)(struct dw_pcie_ep *ep);
-> +	void	(*deinit)(struct dw_pcie_ep *ep);
->  	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
->  			     unsigned int type, u16 interrupt_num);
->  	const struct pci_epc_features* (*get_features)(struct dw_pcie_ep *ep);
-> -- 
-> 2.25.1
-> 
+The bindings for the wrapper node used in the yaml example are merged
+in qcom/for-next
+
+Link to v2: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v2-0-e24a48e57f0d@linaro.org
+
+v1 -> v2:
+- deprecate 'reg', make qcom,rpm-msg-ram required [1/2]
+- Use devm_ioremap() [2/2]
+
+Link to v1: https://lore.kernel.org/r/20230328-topic-msgram_mpm-v1-0-1b788a5f5a33@linaro.org
+
+Depends on resolution of https://github.com/devicetree-org/dt-schema/issues/104
+
+The MPM (and some other things, irrelevant to this patchset) resides
+(as far as the ARM cores are concerned, anyway) in a MMIO-mapped region
+that's a portion of the RPM (low-power management core)'s RAM, known
+as the RPM Message RAM. Representing this relation in the Device Tree
+creates some challenges, as one would either have to treat a memory
+region as a bus, map nodes in a way such that their reg-s would be
+overlapping, or supply the nodes with a slice of that region.
+
+This series implements the third option, by adding a qcom,rpm-msg-ram
+property, which has been used for some drivers poking into this region
+before. Bindings ABI compatibility is preserved through keeping the
+"normal" (a.k.a read the reg property and map that region) way of
+passing the register space.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: interrupt-controller: mpm: Pass MSG RAM slice through phandle
+      irqchip: irq-qcom-mpm: Support passing a slice of SRAM as reg space
+
+ .../bindings/interrupt-controller/qcom,mpm.yaml    | 52 +++++++++++++++-------
+ drivers/irqchip/irq-qcom-mpm.c                     | 21 +++++++--
+ 2 files changed, 53 insertions(+), 20 deletions(-)
+---
+base-commit: e3f80d3eae76c3557b3c9b5938ad01c0e6cf25ec
+change-id: 20230328-topic-msgram_mpm-c688be3bc294
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
