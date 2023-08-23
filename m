@@ -2,84 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2276785484
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2859785421
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:31:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231690AbjHWJrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 05:47:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42154 "EHLO
+        id S235100AbjHWJb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:31:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236106AbjHWJlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:41:31 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2EC995BBD;
-        Wed, 23 Aug 2023 02:12:34 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,195,1684767600"; 
-   d="scan'208";a="177395354"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Aug 2023 18:12:05 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 03ABC4002942;
-        Wed, 23 Aug 2023 18:12:05 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: [PATCH v19 19/19] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
-Date:   Wed, 23 Aug 2023 18:11:53 +0900
-Message-Id: <20230823091153.2578417-20-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235116AbjHWJbQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:31:16 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6224461B4;
+        Wed, 23 Aug 2023 02:18:16 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37N7Mmwf019703;
+        Wed, 23 Aug 2023 09:18:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=regJct096Fmi2bn8PvXQq0GlUsAVo2IwLQJ1kIczaD4=;
+ b=a/horabiDg00k2PDk2Bh6h38I0LMhJh/wQvfla3YOxh423sPlxp0G9KRLQkM+uJygjig
+ F9uhpzHsiBzIxucsfgHycuokOotXqUuZVgIF7qzP3A2hKQhYHvIKEkXKYUuMxNbZ1DHE
+ cxGHEiIwMWOVx3q1muhC3e19Dyubt5flrLVJHVXKxTENWzlKhtyxoj0z/6hKWc9DXl7n
+ IdHfaiGS4edCfp7t9h7VpIFCfMrwsQZVKyQ8p2mEG/leG6abPq8hTk/7f9fKhyJXa3Nn
+ UwJe1Pw5hizGOJn3LCusxJvCyxE9y/Y3aOworDyaWvCZ70qEMLWUc1dGC/VLffljD/kl Bg== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sn25vhn08-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 23 Aug 2023 09:18:04 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 37N9I0pO018288;
+        Wed, 23 Aug 2023 09:18:00 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3sjptkpxt4-1;
+        Wed, 23 Aug 2023 09:18:00 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 37N9I0fJ018283;
+        Wed, 23 Aug 2023 09:18:00 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 37N9Hxdw018282;
+        Wed, 23 Aug 2023 09:18:00 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
+        id 355535000AA; Wed, 23 Aug 2023 14:47:59 +0530 (+0530)
+From:   Nitin Rawat <quic_nitirawa@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Nitin Rawat <quic_nitirawa@quicinc.com>
+Subject: [PATCH V3 0/2] Add Phy Configuration support for SC7280
+Date:   Wed, 23 Aug 2023 14:47:55 +0530
+Message-Id: <20230823091757.31311-1-quic_nitirawa@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: hdGhXtUqK1Bbj9kPlU9cH3ASHLT4a0s4
+X-Proofpoint-GUID: hdGhXtUqK1Bbj9kPlU9cH3ASHLT4a0s4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-23_06,2023-08-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=920
+ phishscore=0 adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0
+ bulkscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308230084
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Renesas R8A779F0 in pci_device_id table so that pci-epf-test
-can be used for testing PCIe EP on R-Car S4-8.
+This patch adds Phy configuration support for Qualcomm SC7280 SOC.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
----
- drivers/misc/pci_endpoint_test.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes from V2:
+- Addressed Vinod comment to replace upper case character with lower case
 
-diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-index ed4d0ef5e5c3..150083dab71a 100644
---- a/drivers/misc/pci_endpoint_test.c
-+++ b/drivers/misc/pci_endpoint_test.c
-@@ -81,6 +81,7 @@
- #define PCI_DEVICE_ID_RENESAS_R8A774B1		0x002b
- #define PCI_DEVICE_ID_RENESAS_R8A774C0		0x002d
- #define PCI_DEVICE_ID_RENESAS_R8A774E1		0x0025
-+#define PCI_DEVICE_ID_RENESAS_R8A779F0		0x0031
- 
- static DEFINE_IDA(pci_endpoint_test_ida);
- 
-@@ -990,6 +991,9 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774B1),},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774C0),},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A774E1),},
-+	{ PCI_DEVICE(PCI_VENDOR_ID_RENESAS, PCI_DEVICE_ID_RENESAS_R8A779F0),
-+	  .driver_data = (kernel_ulong_t)&default_data,
-+	},
- 	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_J721E),
- 	  .driver_data = (kernel_ulong_t)&j721e_data,
- 	},
--- 
-2.25.1
+Changes from V1:
+- Addressed dmitry's comment to align sc7280 register arrays in sorted order
+- Addressed konrad & vinod's comment to align phy compatible in sorted order
+
+Nitin Rawat (2):
+  dt-bindings: phy: Add QMP UFS PHY comptible for SC7280
+  phy: qcom-qmp-ufs: Add Phy Configuration support for SC7280
+
+ .../phy/qcom,sc8280xp-qmp-ufs-phy.yaml        |   2 +
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c       | 142 ++++++++++++++++++
+ 2 files changed, 144 insertions(+)
+
+--
+2.17.1
 
