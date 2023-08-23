@@ -2,181 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 920AF785376
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D52BC785394
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234986AbjHWJFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 05:05:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
+        id S232427AbjHWJOq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 23 Aug 2023 05:14:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235321AbjHWJER (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:04:17 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D549710D1;
-        Wed, 23 Aug 2023 01:59:03 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2E50D1042;
-        Wed, 23 Aug 2023 01:59:43 -0700 (PDT)
-Received: from FVFF77S0Q05N (unknown [10.57.3.204])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A51B53F740;
-        Wed, 23 Aug 2023 01:59:00 -0700 (PDT)
-Date:   Wed, 23 Aug 2023 09:58:54 +0100
-From:   Mark Rutland <mark.rutland@arm.com>
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>
-Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
-Message-ID: <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
-References: <20230822203446.4111742-1-sjg@chromium.org>
+        with ESMTP id S235396AbjHWJJi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:09:38 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B9BD1FFC;
+        Wed, 23 Aug 2023 02:02:13 -0700 (PDT)
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-76da4437500so194601885a.1;
+        Wed, 23 Aug 2023 02:02:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692781282; x=1693386082;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DtV842noA4k0ZIyALimzf7oD/qGOzDsyzAeC5Bbahhw=;
+        b=Qc19fPJuEe1p3u0oQWV4AkCNYwpP9v3Ic0P7yx6HlKwP6OW8NHgP9k8G8yrQAKJFpG
+         Ix/SSNULDfPePAepcByNJt8spAxHYhnymvLmrgsHLrsKzgsAmaBB6kkVrpKLbuEJmV2H
+         PyOb6abatTlGWYwAxwHrNiGA6RFSMlY2QqOvfxerIZzP5tNny083YMUSD4C6RKGO/OoM
+         keuUu+ZNM/0Fm+yYztg+aWz8SyIeU/nz8B3RvSpfW7Ph2410jNVtC9d/AzjUtvDoS+8Z
+         IRsYUxan5XWWne5Qr5FCOeL8jwzkfbBs0xJEkUqWw9QPFDTqtGJx+sfnDcHa4c7h1KR8
+         Otxw==
+X-Gm-Message-State: AOJu0Yw8ek7rMaQZU7qlRTNaGXfexcM5mp6Ds1QUWKs3fAx3CPNcS7zi
+        ZczwfjbQ417KOQT+94x3ziocLsn97Q6sDg==
+X-Google-Smtp-Source: AGHT+IFKpxmoHYGhsmnguwReHG+/b22cfFCY4nYz+uUUUtSM2GT11veFqVBEGcCX6rtDSKCu+zL9DA==
+X-Received: by 2002:a05:620a:4706:b0:76c:a3ae:1f64 with SMTP id bs6-20020a05620a470600b0076ca3ae1f64mr13828174qkb.49.1692781281995;
+        Wed, 23 Aug 2023 02:01:21 -0700 (PDT)
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com. [209.85.219.179])
+        by smtp.gmail.com with ESMTPSA id t125-20020a0dd183000000b005837fe8dbe8sm3227563ywd.8.2023.08.23.02.01.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 02:01:20 -0700 (PDT)
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-d63c0a6568fso5381640276.0;
+        Wed, 23 Aug 2023 02:01:20 -0700 (PDT)
+X-Received: by 2002:a25:cad7:0:b0:d12:46b1:4459 with SMTP id
+ a206-20020a25cad7000000b00d1246b14459mr12184522ybg.6.1692781280284; Wed, 23
+ Aug 2023 02:01:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230822203446.4111742-1-sjg@chromium.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230823085146.113562-1-krzysztof.kozlowski@linaro.org> <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 23 Aug 2023 11:01:08 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdU7Gk5jTkD_hc_BAK0caQjzTBWrXedV+5rYrMRiZF1EAw@mail.gmail.com>
+Message-ID: <CAMuHMdU7Gk5jTkD_hc_BAK0caQjzTBWrXedV+5rYrMRiZF1EAw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: use capital "OR" for multiple licenses in SPDX
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 22, 2023 at 02:34:42PM -0600, Simon Glass wrote:
-> The Devicetree specification skips over handling of a logical view of
-> the memory map, pointing users to the UEFI specification.
-> 
-> It is common to split firmware into 'Platform Init', which does the
-> initial hardware setup and a "Payload" which selects the OS to be booted.
-> Thus an handover interface is required between these two pieces.
-> 
-> Where UEFI boot-time services are not available, but UEFI firmware is
-> present on either side of this interface, information about memory usage
-> and attributes must be presented to the "Payload" in some form.
+On Wed, Aug 23, 2023 at 10:52 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> Documentation/process/license-rules.rst and checkpatch expect the SPDX
+> identifier syntax for multiple licenses to use capital "OR".  Correct it
+> to keep consistent format and avoid copy-paste issues.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Today Linux does that by passing:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-  /chosen/linux,uefi-mmap-start
-  /chosen/linux,uefi-mmap-size
-  /chosen/linux,uefi-mmap-desc-size
-  /chosen/linux,uefi-mmap-desc-ver
+>  arch/arm64/boot/dts/renesas/r8a77980a.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779f0-spider.dts                | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779f0.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m0.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1-ulcb-kf.dts               | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1-ulcb.dts                  | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m2.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3-ulcb-kf.dts               | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts                  | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m4.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m5.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m6.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m7.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m8.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779mb.dtsi                      | 2 +-
 
-... or /chosen/xen,* variants of those.
+Mea culpa
 
-Can't we document / genericise that?
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Pointing to that rather than re-encoding it in DT means that it stays in-sync
-with the EFI spec and we won't back ourselves into a corner where we cannot
-encode something due to a structural difference. I don't think it's a good idea
-to try to re-encode it, or we're just setting ourselves up for futher pain.
+Gr{oetje,eeting}s,
 
-Thanks,
-Mark.
+                        Geert
 
-> 
-> This aims to provide an initial schema for this mapping.
-> 
-> Note that this is separate from the existing /memory and /reserved-memory
-> nodes, since it is mostly concerned with what the memory is used for. It
-> may cover only a small fraction of available memory.
-> 
-> For now, no attempt is made to create an exhaustive binding, so there are
-> some example types listed. This can be completed once this has passed
-> initial review.
-> 
-> This binding does not include a binding for the memory 'attribute'
-> property, defined by EFI_BOOT_SERVICES.GetMemoryMap(). It may be useful
-> to have that as well, but perhaps not as a bit mask.
-> 
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
-> 
-> Changes in v3:
-> - Reword commit message again
-> - cc a lot more people, from the FFI patch
-> - Split out the attributes into the /memory nodes
-> 
-> Changes in v2:
-> - Reword commit message
-> 
->  dtschema/schemas/memory-map.yaml | 61 ++++++++++++++++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 dtschema/schemas/memory-map.yaml
-> 
-> diff --git a/dtschema/schemas/memory-map.yaml b/dtschema/schemas/memory-map.yaml
-> new file mode 100644
-> index 0000000..4b06583
-> --- /dev/null
-> +++ b/dtschema/schemas/memory-map.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: BSD-2-Clause
-> +# Copyright 2023 Google LLC
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/memory-map.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: /memory-map nodes
-> +description: |
-> +  Common properties always required in /memory-map nodes. These nodes are
-> +  intended to resolve the nonchalant clause 3.4.1 ("/memory node and UEFI")
-> +  in the Devicetree Specification.
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +
-> +properties:
-> +  $nodename:
-> +    const: 'memory-map'
-> +
-> +patternProperties:
-> +  "^([a-z][a-z0-9\\-]+@[0-9a-f]+)?$":
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        minItems: 1
-> +        maxItems: 1024
-> +
-> +      usage:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description: |
-> +          Describes the usage of the memory region, e.g.:
-> +
-> +            "acpi-reclaim", "acpi-nvs", "bootcode", "bootdata", "bootdata",
-> +            "runtime-code", "runtime-data".
-> +
-> +            See enum EFI_MEMORY_TYPE in "Unified Extensible Firmware Interface
-> +            (UEFI) Specification" for all the types. For now there are not
-> +            listed here.
-> +
-> +    required:
-> +      - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    memory-map {
-> +        acpi@f0000 {
-> +            reg = <0xf0000 0x4000>;
-> +            usage = "acpi-reclaim";
-> +        };
-> +
-> +        runtime@12300000 {
-> +            reg = <0x12300000 0x28000>;
-> +            usage = "runtime-code";
-> +        };
-> +    };
-> +...
-> -- 
-> 2.42.0.rc1.204.g551eb34607-goog
-> 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
