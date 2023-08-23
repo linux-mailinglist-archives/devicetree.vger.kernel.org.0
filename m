@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E89978624B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 23:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1C7786253
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 23:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235707AbjHWV0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 17:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35766 "EHLO
+        id S237556AbjHWV0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 17:26:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237679AbjHWV0J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 17:26:09 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC86F10DC
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 14:26:07 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3a7d4030621so3708197b6e.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 14:26:07 -0700 (PDT)
+        with ESMTP id S237741AbjHWV0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 17:26:11 -0400
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B344DCEE
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 14:26:09 -0700 (PDT)
+Received: by mail-oi1-x235.google.com with SMTP id 5614622812f47-3a7f4f7a8easo2827352b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 14:26:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692825967; x=1693430767;
+        d=gmail.com; s=20221208; t=1692825968; x=1693430768;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GmejmVLGdABaT+qnw1yy9ms9gFGtTk5UP1kBkDFPK+I=;
-        b=d2f3RqB22NAUi62xj1IhlXBbeVscTUk4mFuE01G97DeFR61OachgwbNcyb2QrD88Fw
-         KCbwUgGqAW6MddXUicxXx+a2Q13Bx4AsszGJXTwhUlDgiVUyLlzUDElB9wrcX5HI/9Fg
-         PE353Jmf6lXiCGwQgPaSG9tWoFMpWNFDPvFf3OA1k/9SCZcU5S9ImaeAdBMx9DKv2/Sa
-         Tt+e2tYh8UJxv5TUNY/xzHnpTtAO5DSLuqQxzAVbOaRFq2HZo2TkeL+Ce9i/NRMKHESt
-         N5NzpxmMCEE96ycn8pOBAF04rPk+VH9zazFBLQio+PrO5EqqSfMAktj5ziQKYcxZiPam
-         SmnA==
+        bh=usvnbi6NQO/6rm4Jp2iIrzuLqTcjxnR9/PyvgS0s/ms=;
+        b=qacVWkMreZL8E6e6lkEEVXKw8qL/BwlatcsreDtZXrC1ug6OBJdgm50u8VBXroIwob
+         fJVg6NRUpyUi4UNbDU0211sR3ivY7T6FrHN9aTK9Ymf6VHqW4KCBRszV1shD2ilzT8vY
+         ryPF+hvmrAJjcdsfH8zQ6xSbKIprdr8jXCLffV/hxlX8zvg5m7WunNX/t0P/lIT24arI
+         EYsqUdRv+NyTn0u+cDnK+JfqoGe+u6wKASB9aq9cbXUjBqUBAldcJ6qp/AxEu3GTJHNC
+         RFRhr8kSpnNFtZmIQ83mmIivVMB9f5yVz9uqTN6OdS9EG6LYf4lwSa6T6pl0/B0Y35SG
+         jwEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692825967; x=1693430767;
+        d=1e100.net; s=20221208; t=1692825968; x=1693430768;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GmejmVLGdABaT+qnw1yy9ms9gFGtTk5UP1kBkDFPK+I=;
-        b=eC28Z5MeA0jiXh5Q5dP8Ji7UwoxVS6WvCwOQEZWaZq0mazPm2uqT2y7EP7u+8PGSCJ
-         osyOG+G3EDkypzu5vhrpDWSFclrfpPO1ygbsMPK8VXp29FymURFttdUOWLwFLk0H0eLO
-         xSFSMg8yOjgD6EiW/2zDgGoGeyW2BuzJDg3vIsj2/a3ENtQKH8mlhU+39l2oWu8tCgOF
-         JBFjNSILwFbv4h9BGPJFsbkZB0S/tcvBWhI3zGIaslnUxmWNepRq/mnBCz9FEr1DcZRT
-         g4GBTOda1pQ+ggDtCQtGUZgM6V5Jv5mfE/Ac3rilTmqF0X0FYmZ8v4YBe5eFq6D3NFRp
-         D2FQ==
-X-Gm-Message-State: AOJu0Yza55j9td4fRbcYx5mgHqiW2U5IXkTiG5YGYbjquOOj1eeoW48C
-        gQDvp7r5IKm37DCy1EjTzv4=
-X-Google-Smtp-Source: AGHT+IEDpfbnjWsSiMmcGkeV4ESrNAZs+pG+ch4KHURsizroCnN21aJQ24EOA3a8WAAymcRKmpsdOg==
-X-Received: by 2002:aca:1b0f:0:b0:3a6:fb15:399b with SMTP id b15-20020aca1b0f000000b003a6fb15399bmr11308841oib.36.1692825967020;
+        bh=usvnbi6NQO/6rm4Jp2iIrzuLqTcjxnR9/PyvgS0s/ms=;
+        b=d06kxAEH7sqrTYOjZFIJ+RTpRhta8ces+xGfhYyNL5wza8QVYRsLB1MHsKXflDbfK6
+         WJZF6MEpfdAHLleYALJEsigi6Evc/7mXj3kjI7bS6xaMQ7Bh6BQYNVlYbUK+S/H/0jGh
+         kEZG1XT9i8spCrAC255M0OVx5NpKT99jF2CpXYuNsFArdbqdyIgxkSNsFlQlNUqtFkvG
+         eqmqw/TLW9+qNOyHnN2ZQlPlqw9ONT7Z0tDrZ8wU4HL8HkcVHCtanQ2Bx1JLIiW4lSCi
+         zsvRnLazLJhfjeUIic6w60uS5xC9BYs6V5yVMSMrFgKzAYSYbhk3sTN56pshlmwPvgSC
+         u1VQ==
+X-Gm-Message-State: AOJu0YzjNY68g2sE0rrhNgFbXB0p3vfKFu+7N2XHqHttvIJakLa2SycS
+        0anCKyegfjxbPDV4Tsy+qcg=
+X-Google-Smtp-Source: AGHT+IEECMzvg/2z14ZAi2FGgcStrBTk7Z+7iSRMmygNO3Xtvq8Rd30nv9BMX+yi/uaTBzuBmOA0rw==
+X-Received: by 2002:a05:6808:285:b0:3a8:698b:663 with SMTP id z5-20020a056808028500b003a8698b0663mr6577680oic.14.1692825967811;
         Wed, 23 Aug 2023 14:26:07 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id d26-20020a05680808fa00b003a1d29f0549sm771127oic.15.2023.08.23.14.26.06
+        by smtp.gmail.com with ESMTPSA id d26-20020a05680808fa00b003a1d29f0549sm771127oic.15.2023.08.23.14.26.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 14:26:06 -0700 (PDT)
+        Wed, 23 Aug 2023 14:26:07 -0700 (PDT)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     linux-sunxi@lists.linux.dev
 Cc:     devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
@@ -57,11 +57,10 @@ Cc:     devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
         neil.armstrong@linaro.org, noralf@tronnes.org, samuel@sholland.org,
         jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH V3 7/8] dt-bindings: arm: sunxi: add Anbernic RG-Nano
-Date:   Wed, 23 Aug 2023 16:25:53 -0500
-Message-Id: <20230823212554.378403-8-macroalpha82@gmail.com>
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH V3 8/8] ARM: dts: sunxi: add support for Anbernic RG-Nano
+Date:   Wed, 23 Aug 2023 16:25:54 -0500
+Message-Id: <20230823212554.378403-9-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230823212554.378403-1-macroalpha82@gmail.com>
 References: <20230823212554.378403-1-macroalpha82@gmail.com>
@@ -79,32 +78,321 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-The Anbernic RG-Nano is a portable handheld console from Anbernic which
-uses the Allwinner V3s SoC.
+The Anbernic RG-Nano is a small portable game device based on the
+Allwinner V3s SoC. It has GPIO buttons on the face and side for
+input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
+OTG port, an SD card slot for booting, and 64MB of RAM included in the
+SoC.
+
+Working/Tested:
+- SDMMC
+- UART (for debugging)
+- Buttons
+- Charging/battery/PMIC
+- Speaker
+- USB Host and Gadget
+- Display (at 60hz)
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
 ---
- Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm/boot/dts/allwinner/Makefile          |   1 +
+ .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 275 ++++++++++++++++++
+ 2 files changed, 276 insertions(+)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml b/Documentation/devicetree/bindings/arm/sunxi.yaml
-index ee8fdd2da869..806f25b561d9 100644
---- a/Documentation/devicetree/bindings/arm/sunxi.yaml
-+++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
-@@ -56,6 +56,11 @@ properties:
-           - const: amarula,a64-relic
-           - const: allwinner,sun50i-a64
- 
-+      - description: Anbernic RG-Nano
-+        items:
-+          - const: anbernic,rg-nano
-+          - const: allwinner,sun8i-v3s
+diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+index 589a1ce1120a..2be83a1edcbb 100644
+--- a/arch/arm/boot/dts/allwinner/Makefile
++++ b/arch/arm/boot/dts/allwinner/Makefile
+@@ -237,6 +237,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+ 	sun8i-t113s-mangopi-mq-r-t113.dtb \
+ 	sun8i-t3-cqa3t-bv3.dtb \
+ 	sun8i-v3-sl631-imx179.dtb \
++	sun8i-v3s-anbernic-rg-nano.dtb \
+ 	sun8i-v3s-licheepi-zero.dtb \
+ 	sun8i-v3s-licheepi-zero-dock.dtb \
+ 	sun8i-v40-bananapi-m2-berry.dtb
+diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+new file mode 100644
+index 000000000000..c2866a884f0e
+--- /dev/null
++++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+@@ -0,0 +1,275 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +
-       - description: Auxtek T003 A10s HDMI TV Stick
-         items:
-           - const: allwinner,auxtek-t003
++/dts-v1/;
++#include <dt-bindings/input/linux-event-codes.h>
++#include "sun8i-v3s.dtsi"
++#include "sunxi-common-regulators.dtsi"
++
++/ {
++	model = "Anbernic RG Nano";
++	compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
++
++	aliases {
++		serial0 = &uart0;
++	};
++
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
++		default-brightness-level = <11>;
++		power-supply = <&reg_vcc5v0>;
++		pwms = <&pwm 0 40000 1>;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	gpio_keys: gpio-keys {
++		compatible = "gpio-keys";
++
++		button-a {
++			gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-A";
++			linux,code = <BTN_EAST>;
++		};
++
++		button-b {
++			gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-B";
++			linux,code = <BTN_SOUTH>;
++		};
++
++		button-down {
++			gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "DPAD-DOWN";
++			linux,code = <BTN_DPAD_DOWN>;
++		};
++
++		button-left {
++			gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "DPAD-LEFT";
++			linux,code = <BTN_DPAD_LEFT>;
++		};
++
++		button-right {
++			gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "DPAD-RIGHT";
++			linux,code = <BTN_DPAD_RIGHT>;
++		};
++
++		button-se {
++			gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-SELECT";
++			linux,code = <BTN_SELECT>;
++		};
++
++		button-st {
++			gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-START";
++			linux,code = <BTN_START>;
++		};
++
++		button-tl {
++			gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-L";
++			linux,code = <BTN_TL>;
++		};
++
++		button-tr {
++			gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-R";
++			linux,code = <BTN_TR>;
++		};
++
++		button-up {
++			gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "DPAD-UP";
++			linux,code = <BTN_DPAD_UP>;
++		};
++
++		button-x {
++			gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-X";
++			linux,code = <BTN_NORTH>;
++		};
++
++		button-y {
++			gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++			label = "BTN-Y";
++			linux,code = <BTN_WEST>;
++		};
++	};
++};
++
++&codec {
++	allwinner,audio-routing = "Speaker", "HP",
++				  "MIC1", "Mic",
++				  "Mic", "HBIAS";
++	allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
++	status = "okay";
++};
++
++&ehci {
++	status = "okay";
++};
++
++&i2c0 {
++	status = "okay";
++
++	gpio_expander: gpio@20 {
++		compatible = "nxp,pcal6416";
++		reg = <0x20>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		#interrupt-cells = <2>;
++		interrupt-controller;
++		interrupt-parent = <&pio>;
++		interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>;
++		vcc-supply = <&reg_vcc3v3>;
++	};
++
++	axp209: pmic@34 {
++		reg = <0x34>;
++		interrupt-parent = <&pio>;
++		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
++	};
++
++	pcf8563: rtc@51 {
++		compatible = "nxp,pcf8563";
++		reg = <0x51>;
++	};
++};
++
++#include "axp209.dtsi"
++
++/* Out of alphabetical order for dependencies sake. */
++&battery_power_supply {
++	status = "okay";
++};
++
++&mmc0 {
++	broken-cd;
++	bus-width = <4>;
++	disable-wp;
++	vmmc-supply = <&reg_vcc3v3>;
++	vqmmc-supply = <&reg_vcc3v3>;
++	status = "okay";
++};
++
++&ohci {
++	status = "okay";
++};
++
++&pio {
++	vcc-pb-supply = <&reg_vcc3v3>;
++	vcc-pc-supply = <&reg_vcc3v3>;
++	vcc-pf-supply = <&reg_vcc3v3>;
++	vcc-pg-supply = <&reg_vcc3v3>;
++
++	spi0_3wire_pins: spi0-3wire-pins {
++		pins = "PC1", "PC2", "PC3";
++		function = "spi0";
++	};
++};
++
++&pwm {
++	pinctrl-0 = <&pwm0_pin>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++/* DCDC2 wired into vdd-cpu, vdd-sys, and vdd-ephy. */
++&reg_dcdc2 {
++	regulator-always-on;
++	regulator-max-microvolt = <1250000>;
++	regulator-min-microvolt = <1250000>;
++	regulator-name = "vdd-cpu";
++};
++
++/* DCDC3 wired into every 3.3v input that isn't the RTC. */
++&reg_dcdc3 {
++	regulator-always-on;
++	regulator-max-microvolt = <3300000>;
++	regulator-min-microvolt = <3300000>;
++	regulator-name = "vcc-io";
++};
++
++/*
++ * LDO1 wired into RTC, voltage is hard-wired at 3.3v and cannot be
++ * software modified. Note that setting voltage here to 3.3v for accuracy
++ * sake causes an issue with the driver that causes it to fail to probe
++ * because of a voltage constraint in the driver.
++ */
++&reg_ldo1 {
++	regulator-always-on;
++	regulator-name = "vcc-rtc";
++};
++
++/* LDO2 wired into VCC-PLL and audio codec. */
++&reg_ldo2 {
++	regulator-always-on;
++	regulator-max-microvolt = <3000000>;
++	regulator-min-microvolt = <3000000>;
++	regulator-name = "vcc-pll";
++};
++
++/* LDO3, LDO4, and LDO5 unused. */
++&reg_ldo3 {
++	status = "disabled";
++};
++
++&reg_ldo4 {
++	status = "disabled";
++};
++
++&spi0 {
++	pinctrl-0 = <&spi0_3wire_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	display@0 {
++		compatible = "saef,sftc154b", "panel-mipi-dbi-spi";
++		reg = <0>;
++		backlight = <&backlight>;
++		dc-gpios = <&pio 2 0 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&pio 1 2 GPIO_ACTIVE_HIGH>;
++		spi-max-frequency = <100000000>;
++
++		height-mm = <39>;
++		width-mm = <39>;
++
++		/* Set hb-porch to compensate for non-visible area */
++		panel-timing {
++			hactive = <240>;
++			vactive = <240>;
++			hback-porch = <80>;
++			vback-porch = <0>;
++			clock-frequency = <0>;
++			hfront-porch = <0>;
++			hsync-len = <0>;
++			vfront-porch = <0>;
++			vsync-len = <0>;
++		};
++	};
++};
++
++&uart0 {
++	pinctrl-0 = <&uart0_pb_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&usb_otg {
++	dr_mode = "otg";
++	status = "okay";
++};
++
++&usb_power_supply {
++	status = "okay";
++};
++
++&usbphy {
++	usb0_id_det-gpios = <&pio 6 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
++	status = "okay";
++};
 -- 
 2.34.1
 
