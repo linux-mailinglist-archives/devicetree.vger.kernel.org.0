@@ -2,70 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B09A8785319
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 10:53:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 925CE785379
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234941AbjHWIxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 04:53:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54558 "EHLO
+        id S233840AbjHWJGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:06:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235002AbjHWIrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:47:47 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F5010E4
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:46:15 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9b904bb04so84438401fa.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:46:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692780373; x=1693385173;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wNochH5AzkkbM02iKAt64Ac4DR2vD4vaGcqyxMvLZVY=;
-        b=FhCexy8y7ro104msZGjkcgIBCQaHn2CRqvB2kep4Km9TOq/UMGFXLndYDYmnI5Mp6s
-         K4Nmnf7rhCKtTxqYeoN/ftfysDdubtlQXvoSym2EFt4ICaqVkQu5fW7cj1kDBkP0Hyqh
-         In0BKnVqt2+tYrO+9hJ2KpvIkIvWIBhiyvll4Y5G3itusRUgfgcK/sFjvWT9Z3iUbMlR
-         ep5rPN8RJuanqW62Pwqa+3iUiMl6XxdN1m8f8vQsWVIlqNbaVqK5n7C4wfoZJjZm9a6Z
-         LbK/qqgfLDnPuQZ03j3WqGpE/dnyfGc7DFIeo6e/h9fFCaho4h6hSZFbaOUMEY+5flnG
-         L3LA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692780373; x=1693385173;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wNochH5AzkkbM02iKAt64Ac4DR2vD4vaGcqyxMvLZVY=;
-        b=S32fezIeLFo8oNiXBbmSzaR1REfo6oKanSTga42LbaIrFlTFRA4QURMpl6PRNxVz9Z
-         quUPr0k2VzQz4vt6nkZDtxxCsyOi5TvhfnmnuiY9TmcHRaN8db5q9z+YGAOLvenJx3Zb
-         wf53ZlmSbHi7vfYuMz1s4OdvW24Yry0FRFUsmQ2ORStAi280HdA4eCk7Nd1NJIJqgWLg
-         MNE1NgvLg/qfC4xBnuKauUYXTCA9lo6M2Wd8VQ7yycrvAIPuK3L2FHrRmERSrzfCzp5m
-         tZhF/C9Z3vLt8RhdhXS/KOupKJbX8KOFIvjb0DBGNgLU4sFedew8uk6lkW/bkCky6nWz
-         2T3A==
-X-Gm-Message-State: AOJu0YyuE157eWwSy8itfmD8JuVuTFSASqJUNFg6lkVDjvzASIThJZ9z
-        cH4UKn+i2HLHoqk8MJnkp7MSLw==
-X-Google-Smtp-Source: AGHT+IHkGj/NYJq/FRYjSbgE8fN+I3rSglzTGyg8tmrvX8t4CCjOU29Ss7Prv9aY3uR4AaZALKPw5g==
-X-Received: by 2002:a2e:7e10:0:b0:2b9:eaa7:c23f with SMTP id z16-20020a2e7e10000000b002b9eaa7c23fmr8238886ljc.49.1692780372918;
-        Wed, 23 Aug 2023 01:46:12 -0700 (PDT)
-Received: from krzk-bin.. ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id l7-20020a17090615c700b00999bb1e01dfsm9462805ejd.52.2023.08.23.01.46.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 01:46:12 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] dt-bindings: use capital "OR" for multiple licenses in SPDX
-Date:   Wed, 23 Aug 2023 10:45:40 +0200
-Message-Id: <20230823084540.112602-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S234946AbjHWJCY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:02:24 -0400
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2048.outbound.protection.outlook.com [40.107.7.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03C4410D9;
+        Wed, 23 Aug 2023 01:47:56 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Yopj7l8pBZivO4szsrk3M84DVFc9xOm1nK2h11qEA3oYmPEwXtviUvB7HMDP+rz5A1x/zOXQ9vO7c8lcXof2rm6JnxEmos39iHWMIPHF9W3Juk9A5Js3bQBXNUpFGVTjSgcrh29NU5nSolvfy+I2gbwyaE0FjtOiytzBMRMoMV48LprNgsfPWR1MlDDs0zTr1x+jPqh/whM54U+0LJYAiUWOOHvuKyzj704LbIyn06HRCZBNhi01262Vs/rFRWgV0HwvMkUEAM4qL6szU8T2U/ADLbyPaDitwK5IDxANTuMQMmeB333A1FP9IjLsiSzvgE4O8zYlIoRS9qypUj3/2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=02KwBIbEfdFQeBLYboi26ZieAZ+DLwIxjnBv/ygOuNs=;
+ b=BjHFgOu0LRwJQWMIncFVd+SNWkwuP69XrNnc1TgwUkjScIcNismrm9EcNPjZuK2e2ZLWvmPN6/sIPq207BUA7xdLjdHKOgMRMlzKWu2iPB8avEmSvrWNyeEXWvA5RchN4OgWY/aext03vH/luIJ1piLEBCQ0rRfLaFjxzIXMy8PM0Eo20AY2DCg4Bdq9441LcYVmE3oYmwniSpCjZ54mO+a2ytQ23/46gc5jFyA2HCBovg6NLLlEOV5IitLvZapwf2nRZXGsxvpxpP2I+KOGROdVrcSlhlz8j5PKQYsPB6g66TCJ0Cga/cFTGWjs5YEGrpnvALSdtl6srkvwOpAdag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=02KwBIbEfdFQeBLYboi26ZieAZ+DLwIxjnBv/ygOuNs=;
+ b=J5eahRsZoKRRd7HzcLrPp+XfThk4nOCPciSUbDhGDZ8mgfcQK1JyH5UPIT51YXqKUIeQk/iruQcLMU1+k0buF6UGuSMOQt6hsyzBCInl88y0Wop7P8j3rX2VSybwIVUGlbhDuZ9w8WUwuOL6AwVEQm6PNwdRc+fBjZQiJDwcPfg=
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by PA4PR04MB9638.eurprd04.prod.outlook.com (2603:10a6:102:273::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Wed, 23 Aug
+ 2023 08:47:52 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::9018:e395:332c:e24b]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::9018:e395:332c:e24b%4]) with mapi id 15.20.6699.022; Wed, 23 Aug 2023
+ 08:47:51 +0000
+From:   Ying Liu <victor.liu@nxp.com>
+To:     Maxime Ripard <mripard@kernel.org>
+CC:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "maarten.lankhorst@linux.intel.com" 
+        <maarten.lankhorst@linux.intel.com>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        =?iso-8859-1?Q?Guido_G=FCnther?= <guido.gunther@puri.sm>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "Laurentiu Palcu (OSS)" <laurentiu.palcu@oss.nxp.com>,
+        "robh@kernel.org" <robh@kernel.org>
+Subject: RE: [PATCH v14 RESEND 1/6] dt-bindings: display: imx: Add i.MX8qxp/qm
+ DPU binding
+Thread-Topic: [PATCH v14 RESEND 1/6] dt-bindings: display: imx: Add
+ i.MX8qxp/qm DPU binding
+Thread-Index: AQHZ1NZxpKDHNQbjgEiILz/ou3qvwa/2MuwAgADviPCAAFvOAIAABz3w
+Date:   Wed, 23 Aug 2023 08:47:51 +0000
+Message-ID: <AM7PR04MB7046E8DD816FC99193B07E07981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+References: <20230822085949.816844-1-victor.liu@nxp.com>
+ <20230822085949.816844-2-victor.liu@nxp.com>
+ <scbtbu4cdjlsmbr6ugkpqslvfywidvbuqyekxuttfe4rmbp2st@lev2zfqe4h62>
+ <AM7PR04MB70469E94D5FCFC46F51A72F3981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <64bpiz5nt3xgboxya26gcdh6d7nyyflm2m56orgjwwwibh52n7@yk4ogdcierho>
+In-Reply-To: <64bpiz5nt3xgboxya26gcdh6d7nyyflm2m56orgjwwwibh52n7@yk4ogdcierho>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM7PR04MB7046:EE_|PA4PR04MB9638:EE_
+x-ms-office365-filtering-correlation-id: a65c4daf-0afe-4f32-160d-08dba3b5a2cd
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: /Ms3CtOiHF0b5HMMOXatwmE7ocSMcNQR9FoL2DiMWb7AKUuwpYNYG9cSIn7/xcLO5f4O1KpfU6Vda09gHvDFLkwLGFT4viTwAIlcemIG6F9zulgb4Ed7RDlJ/m4tajmn38EyrIA/Qms8+wiVORYXai7Xx2dOOO+WmdshtrqiWixl0aK5szeXde/qYz1z50lUGGK0TP8Odjkb84YgNlEcruO0sKTqbVRLDO4IQNyOZSFdHJ6wcBz3Z3ezGkGu8l/DNdovAhv0TAlC01shW1He5NakkdczsefOTgNLdgnEboj5WNleQ5nJJGF5xb/VQE+h4cgxThYnrNIHZIYCfhhHiL3R40xgYTgbg8olRyUEvsklCXHxyEd5sbx1W4eZCUT3mbVcGHcKrdanswiP71L0ajODRl20KEpcAaFMgGTVQ6u678HtbPfvXR9lccUuqRITB1sPhFY80U55IWhZ809H9Cs81N3YcINaDzBkNQuhI+KBq0XzVcWKvXAYVxwx/I2bNRtegf+nK+96BUQfMT2+vOcywhknGz41EaDIZUbY0EhTzyVn80GZuyC48QRX+OokvCu0MMJ3EFZ3/4HdcgR/4UBkL8xQZiZ63YneOvUyC+xGtazJnpQ0cY5gQoOCS7KuVGiwDYtjXxXqvOu6RMcFzA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(39860400002)(376002)(396003)(346002)(1800799009)(186009)(451199024)(83380400001)(30864003)(2906002)(38070700005)(38100700002)(122000001)(33656002)(86362001)(55016003)(41300700001)(9686003)(66446008)(66946007)(66556008)(66476007)(54906003)(64756008)(76116006)(7696005)(6506007)(6916009)(316002)(53546011)(52536014)(4326008)(8936002)(8676002)(966005)(478600001)(71200400001)(26005)(7416002)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?DZ25dnzwody9jQe3dyBfxo3MFjzbKnxE8Ihcj4mEhwToye7lzo2skcn6Fs?=
+ =?iso-8859-1?Q?zl4uSHrOIIW7xh2uDA4eYaHS2eCYN2iJQbP0piYFZlDDBYTtoif0QwsCHm?=
+ =?iso-8859-1?Q?xc1PB+Sz8avjEazkLipNnGtYn4TJEYVPBFj+hUb4l+K0SKJscl5bA6esi8?=
+ =?iso-8859-1?Q?McQQrW4OnSkAa8jmd4j5l5XAMkDz5nI69IOtkaH8/+Nf5SvX0jz4uta0Xz?=
+ =?iso-8859-1?Q?c/4V8VRAHRqs8LGD5yj50H1p5XIXInNCR3O6obV/tSDnwB8K+0jm8YMFvV?=
+ =?iso-8859-1?Q?Pc8gU8AfcM1fNG/IkVyeaudPDMpdMt8cQoTwalELIhfqXAoWbSAQG3GAsX?=
+ =?iso-8859-1?Q?NooJtlFP587TTzbJjlusSpfrusOjEQPkPxt7Qjj1/QwMHYy6m2hfCz9B7R?=
+ =?iso-8859-1?Q?WLLNNWSPj3k1Ok1wYEZivWCIqyzsRdmy3rSdwJ8KsZC1jMq588rqqH9npy?=
+ =?iso-8859-1?Q?Zh9Nc9N4eVNABypK+Vgckx/+eF0MFJlmsy+SB+znwlfKg23M5m/V8PD//y?=
+ =?iso-8859-1?Q?x2gU+IGY85KfLN1ivBebRKlFDsTaq9V5sttnwtVCZDoR8Hkd4P5PG3eQ4X?=
+ =?iso-8859-1?Q?5hxECBfOBy3V+4vN7wmFkAx5i7FBSOMXbeB/PN2kZpPy1JhX17T/h9/xxx?=
+ =?iso-8859-1?Q?/+pfjwRCZ64RdtHqISlZwEphkGXLAQzAYQxQEvMrbVJz++fu1hlaejAOmu?=
+ =?iso-8859-1?Q?BoGgr//EBn6IaCGIOZ+U8aCKfJeX4qDt5ukLQDoEfjlNlcV2oofbXxgCow?=
+ =?iso-8859-1?Q?I6Z+vUyq+KzteIhPIqL+3Y2cctvzempAwDZx9Bk+UXfhPYWAIuAAP39d8j?=
+ =?iso-8859-1?Q?nvkKm7/VAOPkUyV7NdZLh2l6HuaFxpVsFCQ27b0mj9EghElCXh/yxlqs6R?=
+ =?iso-8859-1?Q?taf8y+05kpAZFVrEll6FMXCtVBSfnmb6+c5Jpm2RaL0lBxSDyc07BiQBQ/?=
+ =?iso-8859-1?Q?tSdo54/TmwzJNNyjbhtc8xkaLDTDmvS39X7EhqH3sirfKZktsy1JRd6dMt?=
+ =?iso-8859-1?Q?ryDtla+XUV2awPzzJy3kGFL6/Nvm+TS7d8qLD3Owg3p5wZrEGvO+KuCrYy?=
+ =?iso-8859-1?Q?UA6dGiVbdK32OadKF30h+0arujKPaHro0JCj5znJgEiwjqlcle763tTzNF?=
+ =?iso-8859-1?Q?M2ReCxx0j6n+7nayNDGqUubYh/rmq9F3RTG8IhO2glKRqtFH4Y2+uy8IRV?=
+ =?iso-8859-1?Q?xzuSGMRcPSl1DepIg+lQBxlNEBGRx1BmjjUXmtqgFAsNMTER0c/cUqIOwi?=
+ =?iso-8859-1?Q?jLOQ/RH4zR96pJtbNo7GnQ+tVHz2eVmtJMUo/d4JXqvy4Qq1adsLRh525J?=
+ =?iso-8859-1?Q?vOri7DjCbeqdJ6/EIYELleUi5+YQ/MBbusBYg6tTqb/vRMeOjoD/oQXfz5?=
+ =?iso-8859-1?Q?+Ifl/M+5cAkZgvPbDGZxXlLUq6pzkrkAOltD8yAogT4+yWs1eBJAiQyHpX?=
+ =?iso-8859-1?Q?yuFCz0aCy7mI9BQC2lmDqiRaR40SxDiv58GHyOtpBNFR0gOW3PGr3+CCFy?=
+ =?iso-8859-1?Q?+Xb+9a9P88Zi/XL+mPn3GGK0Uq78I+EVSRxCIwwD+Gfly220P3xxDk63TL?=
+ =?iso-8859-1?Q?TiEL2M8DeFXM7/FfDgL8JCGWNekjg5x6S+Jq5tetzjFoOijvPpCfdIQtuq?=
+ =?iso-8859-1?Q?3uqDJnrm3cXx8=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a65c4daf-0afe-4f32-160d-08dba3b5a2cd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Aug 2023 08:47:51.8290
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PF7M6Vc3YJsUtHGJiIejGKbUTBi8AsqdQShdVAksuwKyUe2VlMZlk/o8iKhxXvGQWWfWaQ2YRIs3NqJ+j8J+/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9638
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,1454 +144,427 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Documentation/process/license-rules.rst and checkpatch expect the SPDX
-identifier syntax for multiple licenses to use capital "OR".  Correct it
-to keep consistent format and avoid copy-paste issues.
 
-Correct also the format // -> .* in few Allwinner binding headers as
-pointed out by checkpatch:
+On Wednesday, August 23, 2023 3:32 PM Maxime Ripard <mripard@kernel.org> wr=
+ote:
+>=20
+> On Wed, Aug 23, 2023 at 02:45:53AM +0000, Ying Liu wrote:
+> > On  Tuesday, August 22, 2023 7:47 PM Maxime Ripard
+> <mripard@kernel.org> wrote:
+> > >
+> > > Hi,
+> >
+> > Hi Maxime,
+> >
+> > Thanks for your review.
+> >
+> > >
+> > > On Tue, Aug 22, 2023 at 04:59:44PM +0800, Liu Ying wrote:
+> > > > This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
+> > > >
+> > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > > ---
+> > > > v7->v14:
+> > > > * No change.
+> > > >
+> > > > v6->v7:
+> > > > * Add Rob's R-b tag back.
+> > > >
+> > > > v5->v6:
+> > > > * Use graph schema. So, drop Rob's R-b tag as review is needed.
+> > > >
+> > > > v4->v5:
+> > > > * No change.
+> > > >
+> > > > v3->v4:
+> > > > * Improve compatible property by using enum instead of oneOf+const.
+> > > (Rob)
+> > > > * Add Rob's R-b tag.
+> > > >
+> > > > v2->v3:
+> > > > * No change.
+> > > >
+> > > > v1->v2:
+> > > > * Fix yamllint warnings.
+> > > > * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm,
+> as
+> > > the
+> > > >   display controller subsystem spec does say that they exist.
+> > > > * Use new dt binding way to add clocks in the example.
+> > > > * Trivial tweaks for the example.
+> > > >
+> > > >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml | 387
+> ++++++++++++++++++
+> > > >  1 file changed, 387 insertions(+)
+> > > >  create mode 100644
+> > > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
+> > > >
+> > > > diff --git
+> a/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-
+> > > dpu.yaml
+> b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-
+> > > dpu.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..6b05c586cd9d
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-
+> > > dpu.yaml
+> > > > @@ -0,0 +1,387 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-
+> dpu.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Freescale i.MX8qm/qxp Display Processing Unit
+> > > > +
+> > > > +maintainers:
+> > > > +  - Liu Ying <victor.liu@nxp.com>
+> > > > +
+> > > > +description: |
+> > > > +  The Freescale i.MX8qm/qxp Display Processing Unit(DPU) is
+> comprised of
+> > > two
+> > > > +  main components that include a blit engine for 2D graphics
+> accelerations
+> > > > +  and a display controller for display output processing, as well =
+as a
+> > > command
+> > > > +  sequencer.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    enum:
+> > > > +      - fsl,imx8qxp-dpu
+> > > > +      - fsl,imx8qm-dpu
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupts:
+> > > > +    items:
+> > > > +      - description: |
+> > > > +          store9 shadow load interrupt(blit engine)
+> > > > +      - description: |
+> > > > +          store9 frame complete interrupt(blit engine)
+> > > > +      - description: |
+> > > > +          store9 sequence complete interrupt(blit engine)
+> > > > +      - description: |
+> > > > +          extdst0 shadow load interrupt
+> > > > +          (display controller, content stream 0)
+> > > > +      - description: |
+> > > > +          extdst0 frame complete interrupt
+> > > > +          (display controller, content stream 0)
+> > > > +      - description: |
+> > > > +          extdst0 sequence complete interrupt
+> > > > +          (display controller, content stream 0)
+> > > > +      - description: |
+> > > > +          extdst4 shadow load interrupt
+> > > > +          (display controller, safety stream 0)
+> > > > +      - description: |
+> > > > +          extdst4 frame complete interrupt
+> > > > +          (display controller, safety stream 0)
+> > > > +      - description: |
+> > > > +          extdst4 sequence complete interrupt
+> > > > +          (display controller, safety stream 0)
+> > > > +      - description: |
+> > > > +          extdst1 shadow load interrupt
+> > > > +          (display controller, content stream 1)
+> > > > +      - description: |
+> > > > +          extdst1 frame complete interrupt
+> > > > +          (display controller, content stream 1)
+> > > > +      - description: |
+> > > > +          extdst1 sequence complete interrupt
+> > > > +          (display controller, content stream 1)
+> > > > +      - description: |
+> > > > +          extdst5 shadow load interrupt
+> > > > +          (display controller, safety stream 1)
+> > > > +      - description: |
+> > > > +          extdst5 frame complete interrupt
+> > > > +          (display controller, safety stream 1)
+> > > > +      - description: |
+> > > > +          extdst5 sequence complete interrupt
+> > > > +          (display controller, safety stream 1)
+> > > > +      - description: |
+> > > > +          disengcfg0 shadow load interrupt
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          disengcfg0 frame complete interrupt
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          disengcfg0 sequence complete interrupt
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 programmable interrupt0
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 programmable interrupt1
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 programmable interrupt2
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 programmable interrupt3
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          signature0 shadow load interrupt
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          signature0 measurement valid interrupt
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          signature0 error condition interrupt
+> > > > +          (display controller, display stream 0)
+> > > > +      - description: |
+> > > > +          disengcfg1 shadow load interrupt
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          disengcfg1 frame complete interrupt
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          disengcfg1 sequence complete interrupt
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 programmable interrupt0
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 programmable interrupt1
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 programmable interrupt2
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 programmable interrupt3
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          signature1 shadow load interrupt
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          signature1 measurement valid interrupt
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          signature1 error condition interrupt
+> > > > +          (display controller, display stream 1)
+> > > > +      - description: |
+> > > > +          command sequencer error condition interrupt(command
+> sequencer)
+> > > > +      - description: |
+> > > > +          common control software interrupt0(common control)
+> > > > +      - description: |
+> > > > +          common control software interrupt1(common control)
+> > > > +      - description: |
+> > > > +          common control software interrupt2(common control)
+> > > > +      - description: |
+> > > > +          common control software interrupt3(common control)
+> > > > +      - description: |
+> > > > +          framegen0 synchronization status activated interrupt
+> > > > +          (display controller, safety stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 synchronization status deactivated interrupt
+> > > > +          (display controller, safety stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 synchronization status activated interrupt
+> > > > +          (display controller, content stream 0)
+> > > > +      - description: |
+> > > > +          framegen0 synchronization status deactivated interrupt
+> > > > +          (display controller, content stream 0)
+> > > > +      - description: |
+> > > > +          framegen1 synchronization status activated interrupt
+> > > > +          (display controller, safety stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 synchronization status deactivated interrupt
+> > > > +          (display controller, safety stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 synchronization status activated interrupt
+> > > > +          (display controller, content stream 1)
+> > > > +      - description: |
+> > > > +          framegen1 synchronization status deactivated interrupt
+> > > > +          (display controller, content stream 1)
+> > > > +
+> > > > +  interrupt-names:
+> > > > +    items:
+> > > > +      - const: store9_shdload
+> > > > +      - const: store9_framecomplete
+> > > > +      - const: store9_seqcomplete
+> > > > +      - const: extdst0_shdload
+> > > > +      - const: extdst0_framecomplete
+> > > > +      - const: extdst0_seqcomplete
+> > > > +      - const: extdst4_shdload
+> > > > +      - const: extdst4_framecomplete
+> > > > +      - const: extdst4_seqcomplete
+> > > > +      - const: extdst1_shdload
+> > > > +      - const: extdst1_framecomplete
+> > > > +      - const: extdst1_seqcomplete
+> > > > +      - const: extdst5_shdload
+> > > > +      - const: extdst5_framecomplete
+> > > > +      - const: extdst5_seqcomplete
+> > > > +      - const: disengcfg_shdload0
+> > > > +      - const: disengcfg_framecomplete0
+> > > > +      - const: disengcfg_seqcomplete0
+> > > > +      - const: framegen0_int0
+> > > > +      - const: framegen0_int1
+> > > > +      - const: framegen0_int2
+> > > > +      - const: framegen0_int3
+> > > > +      - const: sig0_shdload
+> > > > +      - const: sig0_valid
+> > > > +      - const: sig0_error
+> > > > +      - const: disengcfg_shdload1
+> > > > +      - const: disengcfg_framecomplete1
+> > > > +      - const: disengcfg_seqcomplete1
+> > > > +      - const: framegen1_int0
+> > > > +      - const: framegen1_int1
+> > > > +      - const: framegen1_int2
+> > > > +      - const: framegen1_int3
+> > > > +      - const: sig1_shdload
+> > > > +      - const: sig1_valid
+> > > > +      - const: sig1_error
+> > > > +      - const: cmdseq_error
+> > > > +      - const: comctrl_sw0
+> > > > +      - const: comctrl_sw1
+> > > > +      - const: comctrl_sw2
+> > > > +      - const: comctrl_sw3
+> > > > +      - const: framegen0_primsync_on
+> > > > +      - const: framegen0_primsync_off
+> > > > +      - const: framegen0_secsync_on
+> > > > +      - const: framegen0_secsync_off
+> > > > +      - const: framegen1_primsync_on
+> > > > +      - const: framegen1_primsync_off
+> > > > +      - const: framegen1_secsync_on
+> > > > +      - const: framegen1_secsync_off
+> > > > +
+> > > > +  clocks:
+> > > > +    maxItems: 8
+> > > > +
+> > > > +  clock-names:
+> > > > +    items:
+> > > > +      - const: axi
+> > > > +      - const: cfg
+> > > > +      - const: pll0
+> > > > +      - const: pll1
+> > > > +      - const: bypass0
+> > > > +      - const: bypass1
+> > > > +      - const: disp0
+> > > > +      - const: disp1
+> > > > +
+> > > > +  power-domains:
+> > > > +    items:
+> > > > +      - description: DC power-domain
+> > > > +      - description: PLL0 power-domain
+> > > > +      - description: PLL1 power-domain
+> > > > +
+> > > > +  power-domain-names:
+> > > > +    items:
+> > > > +      - const: dc
+> > > > +      - const: pll0
+> > > > +      - const: pll1
+> > > > +
+> > > > +  fsl,dpr-channels:
+> > > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > > +    description: |
+> > > > +      List of phandle which points to DPR channels associated with
+> > > > +      this DPU instance.
+> > > > +
+> > > > +  ports:
+> > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > +
+> > > > +    properties:
+> > > > +      port@0:
+> > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > +        description: The DPU output port node from display stream0=
+.
+> > > > +
+> > > > +      port@1:
+> > > > +        $ref: /schemas/graph.yaml#/properties/port
+> > > > +        description: The DPU output port node from display stream1=
+.
+> > > > +
+> > > > +    required:
+> > > > +      - port@0
+> > > > +      - port@1
+> > >
+> > > Generally speaking, and looking at the main KMS drivers patch, it rea=
+lly
+> > > looks like it's multiple device glued as one, with the driver un-glui=
+ng
+> > > them and creating devices and their resources based on what actual
+> > > devices you have in there.
+> > >
+> > > It's especially obvious for the CRTCs, and to some extent the embedde=
+d
+> > > interrupt controller you have in your driver.
+> > >
+> > > This is *very* far from the usual way of describing things in the dev=
+ice
+> > > tree, and you would usually have a driver that doesn't take care of
+> > > creating the devices, because they are properly described in the devi=
+ce
+> > > tree.
+> >
+> > The DPU core driver(dpu-core.c) creates platform devices only for CRTCs=
+,
+> > no other device is created.  The CRTC devices, as components, are bound
+> > together with the DPU DRM master device.  i.MX8qm SoC embeds two
+> > DPU IPs, while i.MX8qxp SoC embeds one.  Each DPU supports two CRTCs.
+> > So, e.g., for i.MX8qm, there could be at most four CRTCs under the imx8=
+-
+> dpu
+> > umbrella.
+>=20
+> Yeah, and that's fine. It should all be separate devices in the device
+> tree though.
 
-  WARNING: Improper SPDX comment style for 'include/dt-bindings/reset/sun50i-h6-ccu.h', please use '/*' instead
+There are 50+ individual DPU internal units and 20+ unit types.  Do you rea=
+lly
+mean that each unit should be a separate device in device tree and each uni=
+t
+type should have it's own compatible string ?=20
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Almost all units have input/output ports to connect with each other.
+Some units have multiple input/output options.
+Should we use OF graph ports to tell the connections ?
 
----
+>=20
+> > > If you have a good reason to deviate from that design, then it should=
+ be
+> > > explicitly discussed and explained.
+> >
+> > The DPU is one single IP which cannot be split into separate devices.
+>=20
+> Sure it can, your driver does so already by splitting it into several
+> devices and accessing registers based on their stream_id.
 
-Rebased on next-20230822, so might not apply cleanly.  What does not
-apply, can be skipped and I will fix it after next RC.
----
- Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml    | 2 +-
- .../devicetree/bindings/arm/arm,coresight-dummy-sink.yaml       | 2 +-
- .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml     | 2 +-
- .../devicetree/bindings/arm/arm,embedded-trace-extension.yaml   | 2 +-
- .../devicetree/bindings/arm/arm,trace-buffer-extension.yaml     | 2 +-
- Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml | 2 +-
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml        | 2 +-
- .../devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml      | 2 +-
- Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml      | 2 +-
- Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml  | 2 +-
- Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml  | 2 +-
- Documentation/devicetree/bindings/clock/ti,cdce925.yaml         | 2 +-
- Documentation/devicetree/bindings/clock/ti,sci-clk.yaml         | 2 +-
- Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml          | 2 +-
- .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml | 2 +-
- Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml  | 2 +-
- .../devicetree/bindings/display/msm/dsi-phy-common.yaml         | 2 +-
- Documentation/devicetree/bindings/display/msm/mdss-common.yaml  | 2 +-
- Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml    | 2 +-
- Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml    | 2 +-
- .../devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml      | 2 +-
- .../devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml      | 2 +-
- .../devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml      | 2 +-
- .../devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml     | 2 +-
- .../devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml        | 2 +-
- .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml       | 2 +-
- .../devicetree/bindings/display/panel/himax,hx8394.yaml         | 2 +-
- .../devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml | 2 +-
- .../devicetree/bindings/display/panel/orisetech,otm8009a.yaml   | 2 +-
- .../devicetree/bindings/display/panel/panel-dsi-cm.yaml         | 2 +-
- .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 +-
- .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 +-
- .../devicetree/bindings/display/panel/raydium,rm68200.yaml      | 2 +-
- .../devicetree/bindings/display/panel/rocktech,jh057n00900.yaml | 2 +-
- .../devicetree/bindings/display/panel/visionox,r66451.yaml      | 2 +-
- .../devicetree/bindings/display/panel/visionox,rm69299.yaml     | 2 +-
- .../devicetree/bindings/display/panel/visionox,vtdr6130.yaml    | 2 +-
- .../devicetree/bindings/display/rockchip/rockchip-vop2.yaml     | 2 +-
- .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml         | 2 +-
- .../devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml          | 2 +-
- Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml         | 2 +-
- Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml       | 2 +-
- Documentation/devicetree/bindings/hwmon/lm75.yaml               | 2 +-
- Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml  | 2 +-
- Documentation/devicetree/bindings/hwmon/national,lm90.yaml      | 2 +-
- Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml      | 2 +-
- Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml    | 2 +-
- Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml          | 2 +-
- Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml          | 2 +-
- Documentation/devicetree/bindings/input/elan,ekth3000.yaml      | 2 +-
- .../devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml | 2 +-
- Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml      | 2 +-
- Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml  | 2 +-
- .../devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml        | 2 +-
- .../devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml    | 2 +-
- .../devicetree/bindings/power/reset/gpio-poweroff.yaml          | 2 +-
- Documentation/devicetree/bindings/power/reset/gpio-restart.yaml | 2 +-
- .../devicetree/bindings/power/reset/restart-handler.yaml        | 2 +-
- Documentation/devicetree/bindings/power/supply/bq256xx.yaml     | 2 +-
- .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml         | 2 +-
- .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml         | 2 +-
- .../devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml      | 2 +-
- .../devicetree/bindings/remoteproc/ti,pru-consumer.yaml         | 2 +-
- Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml  | 2 +-
- .../devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml       | 2 +-
- Documentation/devicetree/bindings/reset/ti,sci-reset.yaml       | 2 +-
- Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml   | 2 +-
- Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml     | 2 +-
- Documentation/devicetree/bindings/usb/cypress,hx3.yaml          | 2 +-
- Documentation/devicetree/bindings/usb/genesys,gl850g.yaml       | 2 +-
- Documentation/devicetree/bindings/usb/realtek,rts5411.yaml      | 2 +-
- Documentation/devicetree/bindings/usb/ti,usb8041.yaml           | 2 +-
- Documentation/devicetree/bindings/usb/vialab,vl817.yaml         | 2 +-
- include/dt-bindings/ata/ahci.h                                  | 2 +-
- include/dt-bindings/clock/hi3559av100-clock.h                   | 2 +-
- include/dt-bindings/clock/r8a779f0-cpg-mssr.h                   | 2 +-
- include/dt-bindings/clock/rockchip,rk3588-cru.h                 | 2 +-
- include/dt-bindings/clock/stm32mp1-clks.h                       | 2 +-
- include/dt-bindings/clock/sun20i-d1-ccu.h                       | 2 +-
- include/dt-bindings/clock/sun20i-d1-r-ccu.h                     | 2 +-
- include/dt-bindings/clock/sun50i-a100-ccu.h                     | 2 +-
- include/dt-bindings/clock/sun50i-h6-ccu.h                       | 2 +-
- include/dt-bindings/clock/sun50i-h616-ccu.h                     | 2 +-
- include/dt-bindings/clock/sun6i-rtc.h                           | 2 +-
- include/dt-bindings/display/sdtv-standards.h                    | 2 +-
- include/dt-bindings/gpio/meson-g12a-gpio.h                      | 2 +-
- include/dt-bindings/power/amlogic,c3-pwrc.h                     | 2 +-
- include/dt-bindings/power/meson-a1-power.h                      | 2 +-
- include/dt-bindings/power/meson-axg-power.h                     | 2 +-
- include/dt-bindings/power/meson-g12a-power.h                    | 2 +-
- include/dt-bindings/power/meson-gxbb-power.h                    | 2 +-
- include/dt-bindings/power/meson-s4-power.h                      | 2 +-
- include/dt-bindings/power/meson-sm1-power.h                     | 2 +-
- include/dt-bindings/power/meson8-power.h                        | 2 +-
- include/dt-bindings/power/r8a779f0-sysc.h                       | 2 +-
- include/dt-bindings/power/rk3588-power.h                        | 2 +-
- include/dt-bindings/power/summit,smb347-charger.h               | 2 +-
- include/dt-bindings/reset/rockchip,rk3588-cru.h                 | 2 +-
- include/dt-bindings/reset/stm32mp1-resets.h                     | 2 +-
- include/dt-bindings/reset/sun20i-d1-ccu.h                       | 2 +-
- include/dt-bindings/reset/sun20i-d1-r-ccu.h                     | 2 +-
- include/dt-bindings/reset/sun50i-a100-ccu.h                     | 2 +-
- include/dt-bindings/reset/sun50i-a100-r-ccu.h                   | 2 +-
- include/dt-bindings/reset/sun50i-h6-ccu.h                       | 2 +-
- include/dt-bindings/reset/sun50i-h6-r-ccu.h                     | 2 +-
- include/dt-bindings/reset/sun50i-h616-ccu.h                     | 2 +-
- 130 files changed, 130 insertions(+), 130 deletions(-)
+I would call them DPU internal units instead of devices.
 
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-index d6c84b6e7fe6..6216cfb0a188 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- # Copyright 2019 Linaro Ltd.
- %YAML 1.2
- ---
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-index cb78cfa56702..c960c8e0a9a5 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/arm/arm,coresight-dummy-sink.yaml#
-diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-index 5fedaed49a1f..6745b4cc8f1c 100644
---- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/arm/arm,coresight-dummy-source.yaml#
-diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
-index 108460627d9a..a88f96b0ca16 100644
---- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- # Copyright 2021, Arm Ltd
- %YAML 1.2
- ---
-diff --git a/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml b/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
-index b1322658063a..bc0c6d8b7fdb 100644
---- a/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- # Copyright 2021, Arm Ltd
- %YAML 1.2
- ---
-diff --git a/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml b/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
-index 491eef1e1b10..3b060c36b90c 100644
---- a/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
-+++ b/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/arm/arm,versatile-sysreg.yaml#
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index e17b3d66d6e5..68f717670f78 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
-diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
-index ff378d5cbd32..4a323e8c785d 100644
---- a/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
-+++ b/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/arm/keystone/ti,k3-sci-common.yaml#
-diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-index 86b59de7707e..c24ad0968f3e 100644
---- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-+++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/arm/keystone/ti,sci.yaml#
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-index 2ec9b5b24d73..ea3c5db6b52d 100644
---- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- # Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
- %YAML 1.2
- ---
-diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-index 5c08342664ea..3bad47b7b02b 100644
---- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- # Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
- %YAML 1.2
- ---
-diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-index a4ec8dd5ddf1..95c1c6f8b755 100644
---- a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-+++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
-diff --git a/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml b/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
-index 63d976341696..0a9d6a4c4b66 100644
---- a/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
-+++ b/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/clock/ti,sci-clk.yaml#
-diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-index f0ef7685550a..ff10a0838ad6 100644
---- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-+++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/crypto/ti,sa2ul.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index b8d1f2b7d541..c6dbab65d5f7 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-controller-main.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-index e6b00d7387ce..69d13867b7cf 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-phy-10nm.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-index 2361da5f6736..52bbe132e6da 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-phy-14nm.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
-index 9c1f9140c731..7e6687cb002b 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-phy-20nm.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-index 62fb3e484eb2..288d8babb76a 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-phy-28nm.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-index 8e9031bbde73..dd6619555a12 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-phy-7nm.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
-index 0f6f08890e7e..6b57ce41c95f 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/dsi-phy-common.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-index a8086ca09d9f..f69196e4cc76 100644
---- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/mdss-common.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-index 2fe032d0e8f8..91c774f106ce 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,mdp5.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-index 5854a3a1224b..0999ea07f47b 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
-index 8d3cd46260fb..d5a64c8a921f 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,msm8998-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
-index 3c2b6ed98a56..e320ab1de6de 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,msm8998-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
-index 414f4e7ebdf1..be6cd8adb3b6 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,qcm2290-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
-index 2995b84b2cd4..4184b84d4c21 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,qcm2290-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-index ea75f0f95d5c..8137618237ce 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sc7180-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
-index 42ef06edddc4..3b9c103e504a 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sc7180-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
-index 26dc073bd19a..b0fbe86219d1 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sc7280-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
-index 078e1d1a7d2f..43500dad66e7 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sc7280-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
-index f2c8e16cf067..d19e3bec4600 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sc8280xp-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
-index c239544bc37f..db680fb12b6a 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sc8280xp-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
-index 0f7765d832e7..b917064bdf33 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sdm845-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
-index 6ecb00920d7f..d6d7ac1b2ef8 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sdm845-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-index bf62c2f5325a..510eb6c19364 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm6115-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-index b9f83088f370..17221b62a642 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm6115-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml
-index 63962a8f2faf..db255b1f4c20 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm6350-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
-index 595a9d56949c..30d36fffaedb 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm6375-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
-index 2b3f3fe9bdf7..13146b3f053c 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8150-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
-index 5182e958e069..54cdaa827cd3 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8150-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
-index acd2ed391b2f..ffa5047e901f 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8250-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
-index 5cfb9b917e90..e887f031b8be 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8250-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
-index 1a4e03531a1b..96ef2d9c3512 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8350-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
-index 8c89fb7fc8a3..60d4aae1131b 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8350-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
-index da3fd66c564f..2a5d3daed0e1 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
-index cfad5049a966..bb22940b9385 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
-index 99908fbe74f0..16a541fca66f 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8550-dpu.yaml#
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
-index 5390a8e79ad3..48aea8005c86 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/msm/qcom,sm8550-mdss.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-index 1b2a1baa26f9..ffb35288ffbb 100644
---- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/himax,hx8394.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-index a4b8569ab81c..74ff772973d6 100644
---- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/mantix,mlaf057we51-x.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-index ad7d3575190e..1e4f140f48b8 100644
---- a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/orisetech,otm8009a.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
-index 4a36aa64c716..f8dc9929e833 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/panel-dsi-cm.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-index 2f0238b770eb..2786c0b9b65d 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-index 90c04cff8281..73674baea75d 100644
---- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/panel-simple-dsi.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
-index e8ce2315631a..46fe1014ebc4 100644
---- a/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/raydium,rm68200.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-index 150e81090af2..5ea74426b1d5 100644
---- a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/rocktech,jh057n00900.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-index 6ba323683921..187840bb76c7 100644
---- a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/visionox,r66451.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-index 444ac2a4772d..fa745a6f4456 100644
---- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/visionox,rm69299.yaml#
-diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-index 84562a5b710a..d5a8295106c1 100644
---- a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/panel/visionox,vtdr6130.yaml#
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-index fba45091d909..b60b90472d42 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
-diff --git a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
-index 38478dad8b25..584cce3211c0 100644
---- a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
-+++ b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-a31-hwspinlock.yaml#
-diff --git a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
-index 0a955c7b9706..5ba60d532fcd 100644
---- a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
-+++ b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwlock/ti,omap-hwspinlock.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-index 0e49b3901161..bf3332153ad8 100644
---- a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/jedec,jc42.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml b/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml
-index b1a4c235376e..e62aff670478 100644
---- a/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/lltc,ltc4151.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Documentation/devicetree/bindings/hwmon/lm75.yaml
-index 8226e3b5d028..0b69897f0c63 100644
---- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/lm75.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml b/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml
-index 028d6e570131..f5e104c1b0d0 100644
---- a/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/microchip,mcp3021.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-index 7b9d48d6d6da..6e59c8fdef30 100644
---- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/national,lm90.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-index 306f67315835..48d654e52114 100644
---- a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/nxp,mc34vr500.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
-index 80df7182ea28..14ac783c9a5f 100644
---- a/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/sensirion,sht15.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
-index c5a889e3e27b..7e5b62a0215d 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/ti,tmp102.yaml#
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
-index dcbc6fbc3b48..8b5307c875ff 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/hwmon/ti,tmp108.yaml#
-diff --git a/Documentation/devicetree/bindings/input/elan,ekth3000.yaml b/Documentation/devicetree/bindings/input/elan,ekth3000.yaml
-index 2a9bb6ace021..24dc2d69613f 100644
---- a/Documentation/devicetree/bindings/input/elan,ekth3000.yaml
-+++ b/Documentation/devicetree/bindings/input/elan,ekth3000.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/input/elan,ekth3000.yaml#
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-index 65523d9459d8..3cd5a1822e14 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/interrupt-controller/ti,pruss-intc.yaml#
-diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-index be1539d234f9..3528b81daa25 100644
---- a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-+++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
-diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-index 4943c75e8a60..1a2001e58880 100644
---- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-+++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/mailbox/ti,omap-mailbox.yaml#
-diff --git a/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
-index b35c4d256e40..99eac888ae03 100644
---- a/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/phy/mediatek,mt7621-pci-phy.yaml#
-diff --git a/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml b/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml
-index d16bd6e47f90..e9237c58ce45 100644
---- a/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml
-+++ b/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/phy/nvidia,tegra210-xusb-padctl.yaml#
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-index 45d66c775115..b54ec003a1e0 100644
---- a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/power/reset/gpio-poweroff.yaml#
-diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-index d3d18e0f5db3..53535de0d41c 100644
---- a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/power/reset/gpio-restart.yaml#
-diff --git a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-index f2ffdd29d52a..965a834a3dbe 100644
---- a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-+++ b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/power/reset/restart-handler.yaml#
-diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-index 4fe9c3705265..a76afe3ca299 100644
---- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- # Copyright (C) 2020 Texas Instruments Incorporated
- %YAML 1.2
- ---
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-index f16e90380df1..9768db8663eb 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-index 54eecc567e0b..a492f74a8608 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/remoteproc/ti,k3-r5f-rproc.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml
-index 1fdc2741c36e..94eb2033e79c 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/remoteproc/ti,omap-remoteproc.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-index 35f0bb38f7b2..2811334515d1 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-index cd55d80137f7..baccd98754a9 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/remoteproc/ti,pru-rproc.yaml#
-diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-index 9f677367dd9f..78aac69f1060 100644
---- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/remoteproc/xlnx,zynqmp-r5fss.yaml#
-diff --git a/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml b/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
-index dcf9206e12be..e10eb98eddad 100644
---- a/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/reset/ti,sci-reset.yaml#
-diff --git a/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml b/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
-index f436f2cf1df7..6063784f0352 100644
---- a/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
-+++ b/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/reset/ti,tps380x-reset.yaml#
-diff --git a/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml b/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
-index 5df7688a1e1c..a750035d6234 100644
---- a/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
-+++ b/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/soc/ti/sci-pm-domain.yaml#
-diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-index 47add0d85fb8..28096619a882 100644
---- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-+++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/usb/cypress,hx3.yaml#
-diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-index 383625c2ef00..d0927f6768a4 100644
---- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-+++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
-diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-index 9309f003cd07..f0784d2e86da 100644
---- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-+++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/usb/realtek,rts5411.yaml#
-diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-index 88ea6c952c66..c2e29bd61e11 100644
---- a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-+++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
-diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-index 23a13e1d5c7a..76db9071b352 100644
---- a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-+++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
-@@ -1,4 +1,4 @@
--# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/usb/vialab,vl817.yaml#
-diff --git a/include/dt-bindings/ata/ahci.h b/include/dt-bindings/ata/ahci.h
-index 77997b35612c..b3f3b7cf9af8 100644
---- a/include/dt-bindings/ata/ahci.h
-+++ b/include/dt-bindings/ata/ahci.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause */
-+/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
- /*
-  * This header provides constants for most AHCI bindings.
-  */
-diff --git a/include/dt-bindings/clock/hi3559av100-clock.h b/include/dt-bindings/clock/hi3559av100-clock.h
-index 5fe7689010a0..a4f0e997546c 100644
---- a/include/dt-bindings/clock/hi3559av100-clock.h
-+++ b/include/dt-bindings/clock/hi3559av100-clock.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0-or-later or BSD-2-Clause */
-+/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
- /*
-  * Copyright (c) 2019-2020, Huawei Tech. Co., Ltd.
-  *
-diff --git a/include/dt-bindings/clock/r8a779f0-cpg-mssr.h b/include/dt-bindings/clock/r8a779f0-cpg-mssr.h
-index f2ae1c6a82dd..c34be5624954 100644
---- a/include/dt-bindings/clock/r8a779f0-cpg-mssr.h
-+++ b/include/dt-bindings/clock/r8a779f0-cpg-mssr.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
- /*
-  * Copyright (C) 2021 Renesas Electronics Corp.
-  */
-diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
-index b5616bca7b44..5790b1391201 100644
---- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
-+++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
- /*
-  * Copyright (c) 2021 Rockchip Electronics Co. Ltd.
-  * Copyright (c) 2022 Collabora Ltd.
-diff --git a/include/dt-bindings/clock/stm32mp1-clks.h b/include/dt-bindings/clock/stm32mp1-clks.h
-index 25e8cfd43459..0a5324bcdbda 100644
---- a/include/dt-bindings/clock/stm32mp1-clks.h
-+++ b/include/dt-bindings/clock/stm32mp1-clks.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 or BSD-3-Clause */
-+/* SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause */
- /*
-  * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
-  * Author: Gabriel Fernandez <gabriel.fernandez@st.com> for STMicroelectronics.
-diff --git a/include/dt-bindings/clock/sun20i-d1-ccu.h b/include/dt-bindings/clock/sun20i-d1-ccu.h
-index e143b9929763..fdbfb404f92a 100644
---- a/include/dt-bindings/clock/sun20i-d1-ccu.h
-+++ b/include/dt-bindings/clock/sun20i-d1-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2020 huangzhenwei@allwinnertech.com
-  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
-diff --git a/include/dt-bindings/clock/sun20i-d1-r-ccu.h b/include/dt-bindings/clock/sun20i-d1-r-ccu.h
-index 4c2697fd32b0..f95c170711e5 100644
---- a/include/dt-bindings/clock/sun20i-d1-r-ccu.h
-+++ b/include/dt-bindings/clock/sun20i-d1-r-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
-  */
-diff --git a/include/dt-bindings/clock/sun50i-a100-ccu.h b/include/dt-bindings/clock/sun50i-a100-ccu.h
-index 28dc36e1a232..06a2031d466b 100644
---- a/include/dt-bindings/clock/sun50i-a100-ccu.h
-+++ b/include/dt-bindings/clock/sun50i-a100-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
-  */
-diff --git a/include/dt-bindings/clock/sun50i-h6-ccu.h b/include/dt-bindings/clock/sun50i-h6-ccu.h
-index a1545cd60e75..ef9123d81937 100644
---- a/include/dt-bindings/clock/sun50i-h6-ccu.h
-+++ b/include/dt-bindings/clock/sun50i-h6-ccu.h
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-  */
-diff --git a/include/dt-bindings/clock/sun50i-h616-ccu.h b/include/dt-bindings/clock/sun50i-h616-ccu.h
-index 1191aca53ac6..6f8f01e67628 100644
---- a/include/dt-bindings/clock/sun50i-h616-ccu.h
-+++ b/include/dt-bindings/clock/sun50i-h616-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2020 Arm Ltd.
-  */
-diff --git a/include/dt-bindings/clock/sun6i-rtc.h b/include/dt-bindings/clock/sun6i-rtc.h
-index c845493e4d37..3bd3aa3d57ce 100644
---- a/include/dt-bindings/clock/sun6i-rtc.h
-+++ b/include/dt-bindings/clock/sun6i-rtc.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- 
- #ifndef _DT_BINDINGS_CLK_SUN6I_RTC_H_
- #define _DT_BINDINGS_CLK_SUN6I_RTC_H_
-diff --git a/include/dt-bindings/display/sdtv-standards.h b/include/dt-bindings/display/sdtv-standards.h
-index fbc1a3db2ea7..8249a2b47b79 100644
---- a/include/dt-bindings/display/sdtv-standards.h
-+++ b/include/dt-bindings/display/sdtv-standards.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0-only or X11 */
-+/* SPDX-License-Identifier: GPL-2.0-only OR X11 */
- /*
-  * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-  */
-diff --git a/include/dt-bindings/gpio/meson-g12a-gpio.h b/include/dt-bindings/gpio/meson-g12a-gpio.h
-index f7bd69350d18..fa7bb0bbf010 100644
---- a/include/dt-bindings/gpio/meson-g12a-gpio.h
-+++ b/include/dt-bindings/gpio/meson-g12a-gpio.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
-  * Author: Xingyu Chen <xingyu.chen@amlogic.com>
-diff --git a/include/dt-bindings/power/amlogic,c3-pwrc.h b/include/dt-bindings/power/amlogic,c3-pwrc.h
-index 1d98a25b08a4..61759df4b2e7 100644
---- a/include/dt-bindings/power/amlogic,c3-pwrc.h
-+++ b/include/dt-bindings/power/amlogic,c3-pwrc.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2023 Amlogic, Inc.
-  * Author: hongyu chen1 <hongyu.chen1@amlogic.com>
-diff --git a/include/dt-bindings/power/meson-a1-power.h b/include/dt-bindings/power/meson-a1-power.h
-index 6cf50bfb8ccf..724c370d6853 100644
---- a/include/dt-bindings/power/meson-a1-power.h
-+++ b/include/dt-bindings/power/meson-a1-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2019 Amlogic, Inc.
-  * Author: Jianxin Pan <jianxin.pan@amlogic.com>
-diff --git a/include/dt-bindings/power/meson-axg-power.h b/include/dt-bindings/power/meson-axg-power.h
-index e5243884b249..ace0e468ce21 100644
---- a/include/dt-bindings/power/meson-axg-power.h
-+++ b/include/dt-bindings/power/meson-axg-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2020 BayLibre, SAS
-  * Author: Neil Armstrong <narmstrong@baylibre.com>
-diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
-index 93b03bdd60b7..44ec0c50e340 100644
---- a/include/dt-bindings/power/meson-g12a-power.h
-+++ b/include/dt-bindings/power/meson-g12a-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2019 BayLibre, SAS
-  * Author: Neil Armstrong <narmstrong@baylibre.com>
-diff --git a/include/dt-bindings/power/meson-gxbb-power.h b/include/dt-bindings/power/meson-gxbb-power.h
-index 1262dac696c0..8d0b32b6c02c 100644
---- a/include/dt-bindings/power/meson-gxbb-power.h
-+++ b/include/dt-bindings/power/meson-gxbb-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2019 BayLibre, SAS
-  * Author: Neil Armstrong <narmstrong@baylibre.com>
-diff --git a/include/dt-bindings/power/meson-s4-power.h b/include/dt-bindings/power/meson-s4-power.h
-index 462dd2cb938b..f210a524a592 100644
---- a/include/dt-bindings/power/meson-s4-power.h
-+++ b/include/dt-bindings/power/meson-s4-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2021 Amlogic, Inc.
-  * Author: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-diff --git a/include/dt-bindings/power/meson-sm1-power.h b/include/dt-bindings/power/meson-sm1-power.h
-index a020ab00c134..d78e710dbfff 100644
---- a/include/dt-bindings/power/meson-sm1-power.h
-+++ b/include/dt-bindings/power/meson-sm1-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2019 BayLibre, SAS
-  * Author: Neil Armstrong <narmstrong@baylibre.com>
-diff --git a/include/dt-bindings/power/meson8-power.h b/include/dt-bindings/power/meson8-power.h
-index dd8b2ddb82a7..7a55ba2cd22e 100644
---- a/include/dt-bindings/power/meson8-power.h
-+++ b/include/dt-bindings/power/meson8-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2019 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-  */
-diff --git a/include/dt-bindings/power/r8a779f0-sysc.h b/include/dt-bindings/power/r8a779f0-sysc.h
-index 0ec8ad727ed9..cde1536e9ed0 100644
---- a/include/dt-bindings/power/r8a779f0-sysc.h
-+++ b/include/dt-bindings/power/r8a779f0-sysc.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
- /*
-  * Copyright (C) 2021 Renesas Electronics Corp.
-  */
-diff --git a/include/dt-bindings/power/rk3588-power.h b/include/dt-bindings/power/rk3588-power.h
-index 1b92fec013cb..6b91a50cc6d6 100644
---- a/include/dt-bindings/power/rk3588-power.h
-+++ b/include/dt-bindings/power/rk3588-power.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
- #ifndef __DT_BINDINGS_POWER_RK3588_POWER_H__
- #define __DT_BINDINGS_POWER_RK3588_POWER_H__
- 
-diff --git a/include/dt-bindings/power/summit,smb347-charger.h b/include/dt-bindings/power/summit,smb347-charger.h
-index 3205699b5e41..14f2f9cf2020 100644
---- a/include/dt-bindings/power/summit,smb347-charger.h
-+++ b/include/dt-bindings/power/summit,smb347-charger.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0-or-later or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0-or-later OR MIT) */
- /*
-  * Author: David Heidelberg <david@ixit.cz>
-  */
-diff --git a/include/dt-bindings/reset/rockchip,rk3588-cru.h b/include/dt-bindings/reset/rockchip,rk3588-cru.h
-index 738e56aead93..d4264db2a07f 100644
---- a/include/dt-bindings/reset/rockchip,rk3588-cru.h
-+++ b/include/dt-bindings/reset/rockchip,rk3588-cru.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
- /*
-  * Copyright (c) 2021 Rockchip Electronics Co. Ltd.
-  * Copyright (c) 2022 Collabora Ltd.
-diff --git a/include/dt-bindings/reset/stm32mp1-resets.h b/include/dt-bindings/reset/stm32mp1-resets.h
-index 4ffa7c3612e6..9071f139649f 100644
---- a/include/dt-bindings/reset/stm32mp1-resets.h
-+++ b/include/dt-bindings/reset/stm32mp1-resets.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 or BSD-3-Clause */
-+/* SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause */
- /*
-  * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
-  * Author: Gabriel Fernandez <gabriel.fernandez@st.com> for STMicroelectronics.
-diff --git a/include/dt-bindings/reset/sun20i-d1-ccu.h b/include/dt-bindings/reset/sun20i-d1-ccu.h
-index f8001cf50bf1..79e52aca5912 100644
---- a/include/dt-bindings/reset/sun20i-d1-ccu.h
-+++ b/include/dt-bindings/reset/sun20i-d1-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2020 huangzhenwei@allwinnertech.com
-  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
-diff --git a/include/dt-bindings/reset/sun20i-d1-r-ccu.h b/include/dt-bindings/reset/sun20i-d1-r-ccu.h
-index d93d6423d283..e20babc990af 100644
---- a/include/dt-bindings/reset/sun20i-d1-r-ccu.h
-+++ b/include/dt-bindings/reset/sun20i-d1-r-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
-  */
-diff --git a/include/dt-bindings/reset/sun50i-a100-ccu.h b/include/dt-bindings/reset/sun50i-a100-ccu.h
-index 55c0ada99885..d13764bc1860 100644
---- a/include/dt-bindings/reset/sun50i-a100-ccu.h
-+++ b/include/dt-bindings/reset/sun50i-a100-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
-  */
-diff --git a/include/dt-bindings/reset/sun50i-a100-r-ccu.h b/include/dt-bindings/reset/sun50i-a100-r-ccu.h
-index 737bf6f66626..1e7c4431f03c 100644
---- a/include/dt-bindings/reset/sun50i-a100-r-ccu.h
-+++ b/include/dt-bindings/reset/sun50i-a100-r-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
-  */
-diff --git a/include/dt-bindings/reset/sun50i-h6-ccu.h b/include/dt-bindings/reset/sun50i-h6-ccu.h
-index 81106f455097..d038ddfa4818 100644
---- a/include/dt-bindings/reset/sun50i-h6-ccu.h
-+++ b/include/dt-bindings/reset/sun50i-h6-ccu.h
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
-  */
-diff --git a/include/dt-bindings/reset/sun50i-h6-r-ccu.h b/include/dt-bindings/reset/sun50i-h6-r-ccu.h
-index 7950e799c76d..d541ade884fc 100644
---- a/include/dt-bindings/reset/sun50i-h6-r-ccu.h
-+++ b/include/dt-bindings/reset/sun50i-h6-r-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2016 Icenowy Zheng <icenowy@aosc.xyz>
-  */
-diff --git a/include/dt-bindings/reset/sun50i-h616-ccu.h b/include/dt-bindings/reset/sun50i-h616-ccu.h
-index cb6285a8d128..1bd8bb0a11be 100644
---- a/include/dt-bindings/reset/sun50i-h616-ccu.h
-+++ b/include/dt-bindings/reset/sun50i-h616-ccu.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
- /*
-  * Copyright (C) 2020 Arm Ltd.
-  */
--- 
-2.34.1
+>=20
+> > The "IPIdentifer" register in DPU register map kind of provides version
+> > information for the IP.
+>=20
+> That's fine too, just read the version register in the main KMS driver,
+> every other component will then have access to it.
 
+I meant that "IPIdentifer" register hints that DPU is one single IP/hardwar=
+e.
+And, we don't have to describe all DPU internal details in dt-binding.
+
+>=20
+> > This dt-binding just follows generic dt-binding rule to describe the DP=
+U IP
+> > hardware, not the software implementation.  DPU internal units do not
+> > constitute separate devices.
+>=20
+> I mean, your driver does split them into separate devices so surely it
+> constitutes separate devices.
+
+My driver treats them as DPU internal units, especially not Linux devices.
+
+Let's avoid Linuxisms when implementing this dt-binding and just be simple
+to describe necessary stuff exposing to DPU's embodying system/SoC, like
+reg, interrupts, clocks and power-domains.
+
+Regards,
+Liu Ying
+
+>=20
+> Maxime
