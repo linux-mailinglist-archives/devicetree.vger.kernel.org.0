@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 586097854F4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C447854E5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231460AbjHWKKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54004 "EHLO
+        id S230055AbjHWKID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234434AbjHWI1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:27:25 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B6C2726
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:24:35 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-d712d86eb96so4858520276.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:24:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692779074; x=1693383874;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GniWlVWGgJe/usin4/V+GE0UMfoAT1xMp6M7UZ1H1gg=;
-        b=EgQAb8hmKslJNMYukltCiGV4bSaCAIN5pfuUQvHWwS774QTzoM8aanZpDAK0hMFS5O
-         Qkuv72IvSnfSgyHS2RhMlRiK8kfK0i5lCuLy9+L2qceO1bABnB06+LpaLRvnoiBTaO/J
-         E09KLk5hfTyzVOsUtXDkUzErGlV783OkQN1L8FnCzWe05ZAdqCanXOKn0Sy48MF1jEID
-         BGmuKg3zvb8a76p9+/wkKA2NVT2nhWqzYhAbz2LEfJF1Sj/QlWN06Mhf7MLysztBUw/u
-         6TjU1AB8p0qmNal0Del8N8r7jdlmA/osRcCVJun0m5rO6OD1jaYQFUB/0brcErZ+XnXq
-         XqxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692779074; x=1693383874;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GniWlVWGgJe/usin4/V+GE0UMfoAT1xMp6M7UZ1H1gg=;
-        b=dV5CR3GTEKRdz/zpYq67YL4J5tyX2KBDkK5ix772rBWLnVh3XBJFUnYG7yEc89utoq
-         7/nZSeNffygYAxJ6nb66Ahg9rZgBFIXsoKcJj528AdQuZNFkxSm+oUSczwYPL4ZW+dvS
-         fqwY1wjDFn7a6uNsoNSNzyfP+eUE8MlWnwrwFqIFyrH4L1mNx0NoHbF+yXy/UM9DRLPy
-         yqCPsUVcpIEm85hvvq7seY1afEGxlD+1djYv9CqAXPX0N3sZlRTDBr/sYPYsb/Mgtj1r
-         Uan9x4/F+ze7kbKIDpjsuCjP5E4o6Xo8gS8CMqEREvwNs9/HiRu5n7iVDTA4zaV8cm9V
-         L8CA==
-X-Gm-Message-State: AOJu0YzpQQDsLmctnmLr+67Bv644Dc4fJu32xPi0FxBqFsbrA7XI6TdR
-        75em7ymwQvJ1kO7r6kpAGlS4NNizS3iki4uD+At20w==
-X-Google-Smtp-Source: AGHT+IG0ucSlZ5SgGYhp1sPhDWN7q5O1kvR9k/V936eSIUllnP/1qA7Om4HgIbaSVmqUdIsYYVJybDqQB7BY+bKaO28=
-X-Received: by 2002:a25:d847:0:b0:d6b:6b53:d1ab with SMTP id
- p68-20020a25d847000000b00d6b6b53d1abmr11472536ybg.38.1692779074564; Wed, 23
- Aug 2023 01:24:34 -0700 (PDT)
+        with ESMTP id S232594AbjHWKHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:07:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FCB146BF;
+        Wed, 23 Aug 2023 02:03:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CCF2965957;
+        Wed, 23 Aug 2023 09:03:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id ED780C433C7;
+        Wed, 23 Aug 2023 09:03:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692781412;
+        bh=cBA8LS1Y1PWRmdPmwFWha1Slu8mL5WLDumH/lb3Wq00=;
+        h=From:Subject:Date:To:Cc:Reply-To:From;
+        b=p7ERIvaGwsPAgIB7Ug9zMNgrNdzS2de6l6WnOo4Uc8hogma7QNcpFDbKvxfQeg9Hg
+         Xriz5lqt+MO8nbtsIDOkoXzTuGTO1mecOZCFQ+cZXfW6vwIoCVp4mEv7g0dXqAgNz0
+         yNZFR9JXpWYo2TE6y6NLsLV5X0gkAKhQm8FqfGObbu4H6bFtMZ9QMdh0fN5DEltv/s
+         olHRGlFG+NMEC1MGOCcmz04ftmcrFUBdUtvG/ZUc4prq/1VBbN6LYM6k+k3kYhMCUK
+         KqfDt1sSg4byhG/Zh2VJLmsVXGVlIXoSvU6xmULNZYQWUtCWHgmJ5YQbISG7xbtU3W
+         wcctWwvm7+L7w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.lore.kernel.org (Postfix) with ESMTP id C5A0CEE49B2;
+        Wed, 23 Aug 2023 09:03:31 +0000 (UTC)
+From:   Nikita Shubin via B4 Relay 
+        <devnull+nikita.shubin.maquefel.me@kernel.org>
+Subject: [PATCH 0/2] device tree support for ST M48T86
+Date:   Wed, 23 Aug 2023 12:03:13 +0300
+Message-Id: <20230823-m48t86_device_tree-v1-0-240023b435ac@maquefel.me>
 MIME-Version: 1.0
-References: <20230819010928.916438-1-robh@kernel.org>
-In-Reply-To: <20230819010928.916438-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 23 Aug 2023 10:24:23 +0200
-Message-ID: <CACRpkdYA-Yda-bQe_bcZkDFEuz6DvNqYWvWx9X3awiHxNOsLew@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rza2: Use
- 'additionalProperties' for child nodes
-To:     Rob Herring <robh@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFHL5WQC/x2N0QqDMBAEf0XuuQEbRWN/pRQ547beg2m5C6Ug/
+ nujj8PssBsZVGB0qzZSfMXknQpcLxXFhdMLTubC5Gvf1ME3bm1DDt04l23EmBVw3Hsw+6Hth0A
+ lnNjgJuUUlyNd2TL0EB/FU37n2/2x73+1k/ArfQAAAA==
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        linux-renesas-soc@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nikita Shubin <nikita.shubin@maquefel.me>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692781413; l=702;
+ i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
+ bh=cBA8LS1Y1PWRmdPmwFWha1Slu8mL5WLDumH/lb3Wq00=; =?utf-8?q?b=3DLXAbPcv1J0we?=
+ =?utf-8?q?kD7/fEVbVWnPffGhP0mOmiNjuWFhlj2AFOPjtkZNN/bX43+mISssLNFXFj0z4Ou7?=
+ goLNQ4sQCyGjIKQFMnYzGxq5JuHMbCqGiM5FgElvV56j7TNIPedg
+X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
+ pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
+X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
+X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
+Reply-To: <nikita.shubin@maquefel.me>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,19 +77,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 19, 2023 at 3:09=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
+Add device tree support for ST M48T86.
 
-> A schema under 'additionalProperties' works better for matching any
-> property/node other than the ones explicitly listed. Convert the schema
-> to use that rather than the wildcard and if/then schema.
->
-> Drop 'phandle' properties which never need to be explicitly listed while
-> we're here.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+The reason it can't go to trivial-rtc.yaml, is that it has 2 registers
+instead of a single one. The registers are 1 byte wide.
 
-Patch applied to the pinctrl tree.
+Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+---
+Nikita Shubin (2):
+      dt-bindings: rtc: Add ST M48T86
+      rtc: m48t86: add DT support for m48t86
 
-Yours,
-Linus Walleij
+ .../devicetree/bindings/rtc/st,m48t86.yaml         | 38 ++++++++++++++++++++++
+ drivers/rtc/rtc-m48t86.c                           |  8 +++++
+ 2 files changed, 46 insertions(+)
+---
+base-commit: 89bf6209cad66214d3774dac86b6bbf2aec6a30d
+change-id: 20230823-m48t86_device_tree-a72eaa294798
+
+Best regards,
+-- 
+Nikita Shubin <nikita.shubin@maquefel.me>
+
