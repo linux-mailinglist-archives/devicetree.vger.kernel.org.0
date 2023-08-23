@@ -2,115 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 818067858FD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 15:18:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D45A785911
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 15:20:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235896AbjHWNSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 09:18:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
+        id S232426AbjHWNU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 09:20:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235814AbjHWNSe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 09:18:34 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4D410EA;
-        Wed, 23 Aug 2023 06:17:58 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bcd7a207f7so18110571fa.3;
-        Wed, 23 Aug 2023 06:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692796638; x=1693401438;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gCkeO3JMTWnAck68Ec8pL9VBr1IQgmzcgGRPd/I418Q=;
-        b=HHtL5kjzz9CC75rSGGBlEATePuGnbCNdaaRHirXhA8oryVb0k/uQZAXAVgigFYDGvD
-         4rLRJDPfVM5oJOfqgaaZWd9SRVV7ZJ9v20yzMkiAKpcu1upmMIuM/1jv7OeYQEPCwwnc
-         KxIv5GTjHAZdcZLqfn9kZBy9etsiWdHmAsx6tovC1VP8g5qlrRIxjSlwbbChMPVX4LIJ
-         3iU3WoT1HSc7J7UW3RIdnS2C6rzRf653gYmWtsWVkO6XwafAq8wauIZaos2ZT5M/TpGM
-         Kv2CzDxiBNuU8OrV/fzvLtAvY4kIDFP07SFewBZeWjpnpk+376iOYfW1NmXj1udyfqZu
-         4QGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692796638; x=1693401438;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gCkeO3JMTWnAck68Ec8pL9VBr1IQgmzcgGRPd/I418Q=;
-        b=PCinEUkFO8OTfJsPaVSZ/B2dQ6iF9MhJHSrH/gQah7QSMQyitqpCyh9NdH4RADjNX5
-         D3XC6qMP527VQM56g8QNVI0wnGPjuu4bNjARiIJEBcqyRcrd4dVhJ5vWTt1YwpcwA5sM
-         rJMCdoJ+1hjKJIrne7cMiLvrcvzeWVq4kkR8UqBXj3zaoEZj+bRlMsx4sjv59oqzqR++
-         x223oiauwDUgl9TDQ7WDMVQfMizAG/i+meuCRpg14AsjnlNZWZUm5Cpki9XWTkWUbN05
-         y8vE6bXaO6BlKEBGrXvAaR1hG5QWF5PTYWz6tGbd6RrGcFIH/B5NgX+iHi+uoiUZTTNh
-         +SGQ==
-X-Gm-Message-State: AOJu0Yyo59mkoMpFMYD3AHYnasftCrJdu9gIeIPvGkj8oRAmkuwnVlwL
-        gz760clS1GCLYlwjZxaoOkQ=
-X-Google-Smtp-Source: AGHT+IHsC8O1Dq5TVhEX9ZRsOegPJCDRHJD3up522LXRl9bLZX1msmlAVl5aMPUj2r2JwDGJl5PCmA==
-X-Received: by 2002:a2e:7d04:0:b0:2b8:3ac9:e201 with SMTP id y4-20020a2e7d04000000b002b83ac9e201mr9171906ljc.40.1692796638300;
-        Wed, 23 Aug 2023 06:17:18 -0700 (PDT)
-Received: from opti3050-1.lan (ip092042140082.rev.nessus.at. [92.42.140.82])
-        by smtp.gmail.com with ESMTPSA id e1-20020a05600c218100b003fc080acf68sm22463192wme.34.2023.08.23.06.17.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 06:17:18 -0700 (PDT)
-From:   Jakob Unterwurzacher <jakobunt@gmail.com>
-X-Google-Original-From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     jakob.unterwurzacher@theobroma-systems.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: set codec system-clock-fixed on px30-ringneck-haikou
-Date:   Wed, 23 Aug 2023 15:16:51 +0200
-Message-Id: <20230823131651.586934-2-jakob.unterwurzacher@theobroma-systems.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230823131651.586934-1-jakob.unterwurzacher@theobroma-systems.com>
-References: <20230823131651.586934-1-jakob.unterwurzacher@theobroma-systems.com>
+        with ESMTP id S232597AbjHWNU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 09:20:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E44E78;
+        Wed, 23 Aug 2023 06:20:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 784FB66287;
+        Wed, 23 Aug 2023 13:19:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FAB1C433CA;
+        Wed, 23 Aug 2023 13:19:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692796744;
+        bh=OvhIgHZmORNVFi07F01ZpcKqdw0vzuMy5UHAeo7OqEk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GsNnBmyhVMn7ydJeXv+04oBIi8+t+UBbIV1WfVTVptD1nJGHfYr5Zb1JCWSoLTZun
+         pdJCuhTO8fLiV7ryRY2DJJCE8XNocPVCyfiWJSo4MTLUgBVsGk4kKr8UTdfmDROFtq
+         Ad4yZioJ3vs4ML6CxK4dtneFlUC6a/qURrhtnNf4NeuG609O00yvuG37MKh75rL58k
+         KbAIwsppMgv+fdnDzyHkAGgbDdGjeCwyz8wvevFjPdpYQV6KDSR8JmaBL2hy5xQ2Jx
+         xZ9vTxcCmoCQDiijUHghe1pK+GvF2ByAsGsrFxqh+g4H/LVF9L9oHtV3pSV4XIzWTK
+         f3tvm6XhHO1fQ==
+Received: (nullmailer pid 2200303 invoked by uid 1000);
+        Wed, 23 Aug 2023 13:19:01 -0000
+Date:   Wed, 23 Aug 2023 08:19:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        alsa-devel@alsa-project.org, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, Jaroslav Kysela <perex@perex.cz>,
+        Walker Chen <walker.chen@starfivetech.com>,
+        Takashi Iwai <tiwai@suse.com>, Mark Brown <broonie@kernel.org>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Maxim Kochetkov <fido_max@inbox.ru>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v2 4/5] riscv: dts: starfive: pinfunc: Fix the pins name
+ of I2STX1
+Message-ID: <169279674097.2200246.2480753930062149907.robh@kernel.org>
+References: <20230821144151.207339-1-xingyu.wu@starfivetech.com>
+ <20230821144151.207339-5-xingyu.wu@starfivetech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230821144151.207339-5-xingyu.wu@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Having sgtl5000_clk defines as "fixed-clock" is not enough to prevent
-the dai subsystem from overwriting the frequency via sgtl5000_set_dai_sysclk.
 
-Setting system-clock-fixed does the job, and now a 1kHz sine wave
-comes out as actually 1kHz, no matter the sample rate of the source.
+On Mon, 21 Aug 2023 22:41:50 +0800, Xingyu Wu wrote:
+> These pins are actually I2STX1 clock input, not I2STX0,
+> so their names should be changed.
+> 
+> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-pinfunc.h | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Testcase: These should sound the same:
-
- speaker-test -r 48000 -t sine -f 1000
- speaker-test -r 24000 -t sine -f 1000
-
-Also remove the clock link here as having it in sgtl5000 and
-sgtl5000_codec causes duplicate clock unprepares with associated
-backtrace.
-
-Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
----
- arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-index dafeef0c2dab..2cad02096271 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-@@ -72,8 +72,10 @@ i2s0-sound {
- 		simple-audio-card,bitclock-master = <&sgtl5000_codec>;
- 
- 		sgtl5000_codec: simple-audio-card,codec {
--			clocks = <&sgtl5000_clk>;
- 			sound-dai = <&sgtl5000>;
-+			// Prevent the dai subsystem from overwriting the clock
-+			// frequency. We are using a fixed-frequency oscillator.
-+			system-clock-fixed;
- 		};
- 
- 		simple-audio-card,cpu {
--- 
-2.39.2
+Acked-by: Rob Herring <robh@kernel.org>
 
