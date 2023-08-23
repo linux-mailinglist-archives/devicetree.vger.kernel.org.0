@@ -2,438 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7884C785ADB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 16:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D48D4785B09
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 16:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236562AbjHWOgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 10:36:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38570 "EHLO
+        id S236633AbjHWOs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 10:48:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236545AbjHWOgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 10:36:49 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0D610C1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 07:36:38 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4ffae5bdc9aso6643983e87.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 07:36:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692801396; x=1693406196;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/WLSfK19yGazCSe/ro0dcEq/1cOt60o3gtnCvbViYtI=;
-        b=p22tE7rzJbxrckhgdcHzLIiSR2HrNbQlFehRDZNFXUhFBMDzO0R/U/DcbIHP5DuHgC
-         uf6qaZJDQPA1BiEhK27W50lgE/FTeaFxIYxBYxfVs/HbPN4VghgOYXgh4/FuHk9YL29u
-         4+8HSq+0zPZIZFmyi9tLwkPiOn6yf2mRnDZUg+e7sijf6MmXKE9jAX6c/hvypt3Bxp1X
-         3+o7jfMyuNEcsrodxxx5VjydD931GW/oP6qsDjUrJZyYoimdFvf7dT20Am4CxqhMT+4D
-         PHLdv604MEvnOb4NMZpUz/tHjMzxOPuR0573OexP7tmGIMn6qz78wZRfH4KNQKfh8TMG
-         JJWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692801396; x=1693406196;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/WLSfK19yGazCSe/ro0dcEq/1cOt60o3gtnCvbViYtI=;
-        b=jPoUO8hLaq/+Rli7aCkKzIQDdyojEJuDHFCQnMOtZsGJ3gtdvPHJ0IiBmGMeE4Gdr3
-         H+OThNDDWRq7qLkOyV9uWtWo9fgNqyUPVq13kuPI8UN8oMo81YJ6nF4S3KMN31Gonc+G
-         YMqxuK2oa4IZQaPy4oTUoqzVFM+aVfHCguNrLTT32p6UDyje4kqZFtNSqhouLs2cpz35
-         ukaKU6H8w+x0FpinTZZlthAqnIZv1w6twKBRifwNpSPXiErwJKBDDSPXeKie6sF5n4Lz
-         WnthsFf0hErFDkqbuv0DtUg1j2kZLIPfov2ZAtD2tR4v/DRcySmzO4EseboOJKqej/rL
-         JhCQ==
-X-Gm-Message-State: AOJu0YyWk5P9KC0HFMUYGwf1wpaNvGNJARSKYCyVYn2VpNXXAQ2QYAoy
-        ZcWWOUOc52hlvzyyOE7gzHA/TA==
-X-Google-Smtp-Source: AGHT+IHCgnesWE5gl0naKICAJk2CYWcG15+Maj1rInBUsG82XNC8pGXQZILHD5fB1GH2Z81u0Fb2DA==
-X-Received: by 2002:ac2:551d:0:b0:500:9a45:638 with SMTP id j29-20020ac2551d000000b005009a450638mr731052lfk.2.1692801396348;
-        Wed, 23 Aug 2023 07:36:36 -0700 (PDT)
-Received: from [192.168.1.101] (abyj76.neoplus.adsl.tpnet.pl. [83.9.29.76])
-        by smtp.gmail.com with ESMTPSA id z6-20020ac24186000000b004fe36bae2d6sm2668882lfh.81.2023.08.23.07.36.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 07:36:36 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 23 Aug 2023 16:36:15 +0200
-Subject: [PATCH RESEND v2 3/3] power: supply: Introduce MM8013 fuel gauge
- driver
+        with ESMTP id S234019AbjHWOs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 10:48:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADC36E69;
+        Wed, 23 Aug 2023 07:48:56 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F7C5635B5;
+        Wed, 23 Aug 2023 14:48:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FB62C43397;
+        Wed, 23 Aug 2023 14:48:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692802135;
+        bh=/mIR/BoeNsGIQ35vEJiMSnGRE9NkIijQbN8TMPht8lA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JBv45U/ckigIhCoTgbnPxY3Ny4JXMfYMJCeyqcKL7v+4wHcK/eJQ9W+ASwoffbDAh
+         spSkMl0KWiaQ6cPaocfiphUqOrcmQ7vSO2Ej39BAIP0+vH/R22Go282M7Ey8r3tWHv
+         e3aa6Fjmlb1Ki1fJ2MCLJePdWG2gdv5kwfQPoKhbRJbyygnUwfb/eXr6BTyDTnvQ+Y
+         PwuKQBDRYU+JMnhe7ZoI89O4xb7Q6sFGHsm68tsuvX4Ddx1bp1aRq5ZRqE0plciE+i
+         Cggq1nw3xI4wQpGBYT3vXwj92L878Dfahl8lIf2gzZ5Pr9YC8whpYgA87LqaXoYdeL
+         SKgVCvl3TrrHQ==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2b9bb097c1bso87672951fa.0;
+        Wed, 23 Aug 2023 07:48:55 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yyvc/SE3nMCj82UfZIxXqFcYiA2y16rRgrDk7AnZ6EBUtowYXwS
+        3drAU9fN8QmmeGwi9ECGZ52Brv7CIfPYmj5BrQ==
+X-Google-Smtp-Source: AGHT+IHMstTvKJFQFHSGfZa/sGOrQBVC6gBZtEcBjOgKF3HFClPHqsTsD0J+JzNdiJCbkccX59siSGCFrcffdxYYF1A=
+X-Received: by 2002:a2e:978c:0:b0:2bc:bb3e:1abe with SMTP id
+ y12-20020a2e978c000000b002bcbb3e1abemr7588725lji.41.1692802133206; Wed, 23
+ Aug 2023 07:48:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230621-topic-mm8013-v2-3-9f1b41f4bc06@linaro.org>
-References: <20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org>
-In-Reply-To: <20230621-topic-mm8013-v2-0-9f1b41f4bc06@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+References: <20230623144100.34196-1-james.quinlan@broadcom.com>
+ <20230623144100.34196-2-james.quinlan@broadcom.com> <ZON43rPGJGzjTTj/@lpieralisi>
+ <CA+-6iNwRGsnRsT9R=iEzaJNCTLu_pQNG4x+noE8bqLYCRm_PHQ@mail.gmail.com>
+ <ZOOFrqkAdW5d6WIj@lpieralisi> <CA+-6iNzZCFs_gQGqa8KAcBM6etFc=vAFoqFmde=xru2-O+F3_w@mail.gmail.com>
+ <ZOW1qDmTdy+8KODt@lpieralisi>
+In-Reply-To: <ZOW1qDmTdy+8KODt@lpieralisi>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 23 Aug 2023 09:48:40 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJSfKa=9nqzpdv0TVcik73_xTJ-LtBycDfFZiGkz2mDNQ@mail.gmail.com>
+Message-ID: <CAL_JsqJSfKa=9nqzpdv0TVcik73_xTJ-LtBycDfFZiGkz2mDNQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/5] dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss property
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Jim Quinlan <james.quinlan@broadcom.com>,
+        linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1692801391; l=10078;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=eshR2h/oIe5G8JJ1PUcWTKUPAzP3s/bvABQOjvQ3Xmw=;
- b=F6KjSoCA3CwkobXpd7Tmhjynh60xXgBmjkhhItBslWKspmCYXFKr74yphpC3yUclTSWS4gPwf
- jzshNbt0NZ9DqXsbg/n9mZGiXgDPPktyPVAmMpbz4bMWMmo/XvygIOO
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        "moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver for the Mitsumi MM8013 fuel gauge. The driver is a vastly
-cleaned up and improved version of the one that shipped in some obscure
-Lenovo downstream kernel [1], with some register definitions borrowed from
-ChromeOS EC platform code [2].
+On Wed, Aug 23, 2023 at 2:30=E2=80=AFAM Lorenzo Pieralisi <lpieralisi@kerne=
+l.org> wrote:
+>
+> On Mon, Aug 21, 2023 at 12:01:50PM -0400, Jim Quinlan wrote:
+> > On Mon, Aug 21, 2023 at 11:41=E2=80=AFAM Lorenzo Pieralisi
+> > <lpieralisi@kernel.org> wrote:
+> > >
+> > > On Mon, Aug 21, 2023 at 11:25:11AM -0400, Jim Quinlan wrote:
+> > > > On Mon, Aug 21, 2023 at 10:47=E2=80=AFAM Lorenzo Pieralisi
+> > > > <lpieralisi@kernel.org> wrote:
+> > > > >
+> > > > > On Fri, Jun 23, 2023 at 10:40:54AM -0400, Jim Quinlan wrote:
+> > > > > > This commit adds the boolean "brcm,enable-l1ss" property:
+> > > > > >
+> > > > > >   The Broadcom STB/CM PCIe HW -- a core that is also used by RP=
+i SOCs --
+> > > > > >   requires the driver probe() to deliberately place the HW one =
+of three
+> > > > > >   CLKREQ# modes:
+> > > > > >
+> > > > > >   (a) CLKREQ# driven by the RC unconditionally
+> > > > > >   (b) CLKREQ# driven by the EP for ASPM L0s, L1
+> > > > > >   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+> > > > > >
+> > > > > >   The HW+driver can tell the difference between downstream devi=
+ces that
+> > > > > >   need (a) and (b), but does not know when to configure (c).  A=
+ll devices
+> > > > > >   should work fine when the driver chooses (a) or (b), but (c) =
+may be
+> > > > > >   desired to realize the extra power savings that L1SS offers. =
+ So we
+> > > > > >   introduce the boolean "brcm,enable-l1ss" property to inform t=
+he driver
+> > > > > >   that (c) is desired.  Setting this property only makes sense =
+when the
+> > > > > >   downstream device is L1SS-capable and the OS is configured to=
+ activate
+> > > > > >   this mode (e.g. policy=3D=3Dpowersupersave).
+> > > > > >
+> > > > > >   This property is already present in the Raspian version of Li=
+nux, but the
+> > > > > >   upstream driver implementation that follows adds more details=
+ and
+> > > > > >   discerns between (a) and (b).
+> > > > > >
+> > > > > > Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
+> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > > ---
+> > > > > >  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +=
+++++++++
+> > > > > >  1 file changed, 9 insertions(+)
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pci=
+e.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > > > > index 7e15aae7d69e..8b61c2179608 100644
+> > > > > > --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
+> > > > > > @@ -64,6 +64,15 @@ properties:
+> > > > > >
+> > > > > >    aspm-no-l0s: true
+> > > > > >
+> > > > > > +  brcm,enable-l1ss:
+> > > > > > +    description: Indicates that PCIe L1SS power savings
+> > > > > > +      are desired, the downstream device is L1SS-capable, and =
+the
+> > > > > > +      OS has been configured to enable this mode.  For boards
+> > > > >
+> > > > > What does this mean ? I don't think DT properties are supposed
+> > > > > to carry information related to how the OS is configured.
+> > > >
+> > > > The DT setting in question is unrelated to the statement "and the O=
+S
+> > > > has been configured to
+> > > > enable this mode".
+> > > >
+> > > > This is merely saying that even if you enable "brcm,l1ss-enable"
+> > > > that you may not get L1SS power savings w/o setting
+> > > > "CONFIG_PCIEASPM_POWER_SUPERSAVE=3Dy".
+> > > > I mentioned that exact term but a reviewer nakked it because
+> > > > apparently DT descriptions should not be OS specific.
 
-[1] https://github.com/adazem009/kernel_lenovo_bengal/commit/b6b346427a871715709bd22aae449b9383f3b66b
-[2] https://chromium.googlesource.com/chromiumos/platform/ec/+/master/driver/battery/mm8013.h
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- MAINTAINERS                   |   5 +
- drivers/power/supply/Kconfig  |   9 ++
- drivers/power/supply/Makefile |   1 +
- drivers/power/supply/mm8013.c | 283 ++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 298 insertions(+)
+Yeah, probably the OS part should be dropped.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ce188b58eaa..ba5f075a2ca8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14296,6 +14296,11 @@ W:	https://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
- F:	drivers/media/radio/radio-miropcm20*
- 
-+MITSUMI MM8013 FG DRIVER
-+M:	Konrad Dybcio <konradybcio@kernel.org>
-+F:	Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
-+F:	drivers/power/supply/mm8013.c
-+
- MMP SUPPORT
- R:	Lubomir Rintel <lkundrak@v3.sk>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 663a1c423806..c19e8287d80f 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -951,4 +951,13 @@ config CHARGER_QCOM_SMB2
- 	  adds support for the SMB2 switch mode battery charger found
- 	  in PMI8998 and related PMICs.
- 
-+config FUEL_GAUGE_MM8013
-+	tristate "Mitsumi MM8013 fuel gauge driver"
-+	depends on I2C
-+	help
-+	  Say Y here to enable the Mitsumi MM8013 fuel gauge driver.
-+	  It enables the monitoring of many battery parameters, including
-+	  the state of charge, temperature, cycle count, actual and design
-+	  capacity, etc.
-+
- endif # POWER_SUPPLY
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index a8a9fa6de1e9..ba2c41f060be 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -111,3 +111,4 @@ obj-$(CONFIG_BATTERY_SURFACE)	+= surface_battery.o
- obj-$(CONFIG_CHARGER_SURFACE)	+= surface_charger.o
- obj-$(CONFIG_BATTERY_UG3105)	+= ug3105_battery.o
- obj-$(CONFIG_CHARGER_QCOM_SMB2)	+= qcom_pmi8998_charger.o
-+obj-$(CONFIG_FUEL_GAUGE_MM8013)	+= mm8013.o
-diff --git a/drivers/power/supply/mm8013.c b/drivers/power/supply/mm8013.c
-new file mode 100644
-index 000000000000..ce20c6078116
---- /dev/null
-+++ b/drivers/power/supply/mm8013.c
-@@ -0,0 +1,283 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2016-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2023, Linaro Limited
-+ */
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/power_supply.h>
-+
-+#define REG_BATID			0x00 /* This one is very unclear */
-+ #define BATID_101			0x0101 /* 107kOhm */
-+ #define BATID_102			0x0102 /* 10kOhm */
-+#define REG_TEMPERATURE			0x06
-+#define REG_VOLTAGE			0x08
-+#define REG_FLAGS			0x0a
-+ #define MM8013_FLAG_OTC		BIT(15)
-+ #define MM8013_FLAG_OTD		BIT(14)
-+ #define MM8013_FLAG_BATHI		BIT(13)
-+ #define MM8013_FLAG_FC			BIT(9)
-+ #define MM8013_FLAG_CHG		BIT(8)
-+ #define MM8013_FLAG_DSG		BIT(0)
-+#define REG_FULL_CHARGE_CAPACITY	0x0e
-+#define REG_AVERAGE_CURRENT		0x14
-+#define REG_AVERAGE_TIME_TO_EMPTY	0x16
-+#define REG_AVERAGE_TIME_TO_FULL	0x18
-+#define REG_CYCLE_COUNT			0x2a
-+#define REG_STATE_OF_CHARGE		0x2c
-+#define REG_DESIGN_CAPACITY		0x3c
-+/* TODO: 0x62-0x68 seem to contain 'MM8013C' in a length-prefixed, non-terminated string */
-+
-+#define DECIKELVIN_TO_DECIDEGC(t)	(t - 2731)
-+
-+struct mm8013_chip {
-+	struct i2c_client *client;
-+};
-+
-+static int mm8013_write_reg(struct i2c_client *client, u8 reg, u16 value)
-+{
-+	int ret;
-+
-+	ret = i2c_smbus_write_word_data(client, reg, value);
-+	if (ret < 0)
-+		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
-+
-+	usleep_range(4000, 5000);
-+	return ret;
-+}
-+
-+static int mm8013_read_reg(struct i2c_client *client, u8 reg)
-+{
-+	int ret;
-+
-+	ret = i2c_smbus_read_word_data(client, reg);
-+	if (ret < 0)
-+		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
-+
-+	usleep_range(4000, 5000);
-+	return ret;
-+}
-+
-+static int mm8013_checkdevice(struct mm8013_chip *chip)
-+{
-+	int battery_id, ret;
-+
-+	ret = mm8013_write_reg(chip->client, REG_BATID, 0x0008);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = mm8013_read_reg(chip->client, REG_BATID);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (ret == BATID_102)
-+		battery_id = 2;
-+	else if (ret == BATID_101)
-+		battery_id = 1;
-+	else
-+		return -EINVAL;
-+
-+	dev_dbg(&chip->client->dev, "battery_id: %d\n", battery_id);
-+
-+	return 0;
-+}
-+
-+static enum power_supply_property mm8013_battery_props[] = {
-+	POWER_SUPPLY_PROP_CAPACITY,
-+	POWER_SUPPLY_PROP_CHARGE_FULL,
-+	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CYCLE_COUNT,
-+	POWER_SUPPLY_PROP_HEALTH,
-+	POWER_SUPPLY_PROP_PRESENT,
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_TEMP,
-+	POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG,
-+	POWER_SUPPLY_PROP_TIME_TO_FULL_AVG,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+};
-+
-+static int mm8013_get_property(struct power_supply *psy,
-+			       enum power_supply_property psp,
-+			       union power_supply_propval *val)
-+{
-+	struct mm8013_chip *chip = psy->drv_data;
-+	struct i2c_client *client = chip->client;
-+	int ret = 0;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CAPACITY:
-+		ret = mm8013_read_reg(client, REG_STATE_OF_CHARGE);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_FULL:
-+		ret = mm8013_read_reg(client, REG_FULL_CHARGE_CAPACITY);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-+		ret = mm8013_read_reg(client, REG_DESIGN_CAPACITY);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_CURRENT_NOW:
-+		ret = mm8013_read_reg(client, REG_AVERAGE_CURRENT);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret > S16_MAX)
-+			val->intval -= (1 << 16);
-+		else
-+			val->intval = ret;
-+
-+		val->intval *= -1000;
-+		break;
-+	case POWER_SUPPLY_PROP_CYCLE_COUNT:
-+		ret = mm8013_read_reg(client, REG_CYCLE_COUNT);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_HEALTH:
-+		ret = mm8013_read_reg(client, REG_FLAGS);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret & MM8013_FLAG_BATHI)
-+			val->intval = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
-+		else if (ret & (MM8013_FLAG_OTD | MM8013_FLAG_OTC))
-+			val->intval = POWER_SUPPLY_HEALTH_OVERHEAT;
-+		else
-+			val->intval = POWER_SUPPLY_HEALTH_GOOD;
-+		break;
-+	case POWER_SUPPLY_PROP_PRESENT:
-+		val->intval = mm8013_read_reg(client, REG_TEMPERATURE) > 0;
-+		break;
-+	case POWER_SUPPLY_PROP_STATUS:
-+		ret = mm8013_read_reg(client, REG_FLAGS);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret & MM8013_FLAG_DSG)
-+			val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
-+		else if (ret & MM8013_FLAG_CHG)
-+			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-+		else if (ret & MM8013_FLAG_FC)
-+			val->intval = POWER_SUPPLY_STATUS_FULL;
-+		else
-+			val->intval = POWER_SUPPLY_STATUS_UNKNOWN;
-+		break;
-+	case POWER_SUPPLY_PROP_TEMP:
-+		ret = mm8013_read_reg(client, REG_TEMPERATURE);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = DECIKELVIN_TO_DECIDEGC(ret);
-+		break;
-+	case POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG:
-+		ret = mm8013_read_reg(client, REG_AVERAGE_TIME_TO_EMPTY);
-+		if (ret < 0)
-+			return ret;
-+
-+		/* The estimation is not yet ready */
-+		if (ret == U16_MAX)
-+			return -ENODATA;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_TIME_TO_FULL_AVG:
-+		ret = mm8013_read_reg(client, REG_AVERAGE_TIME_TO_FULL);
-+		if (ret < 0)
-+			return ret;
-+
-+		/* The estimation is not yet ready */
-+		if (ret == U16_MAX)
-+			return -ENODATA;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		ret = mm8013_read_reg(client, REG_VOLTAGE);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct power_supply_desc mm8013_desc = {
-+	.name			= "mm8013",
-+	.type			= POWER_SUPPLY_TYPE_BATTERY,
-+	.properties		= mm8013_battery_props,
-+	.num_properties		= ARRAY_SIZE(mm8013_battery_props),
-+	.get_property		= mm8013_get_property,
-+};
-+
-+static int mm8013_probe(struct i2c_client *client)
-+{
-+	struct power_supply_config psy_cfg = {};
-+	struct device *dev = &client->dev;
-+	struct power_supply *psy;
-+	struct mm8013_chip *chip;
-+	int ret = 0;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-+		return dev_err_probe(dev, -EIO,
-+				     "I2C_FUNC_SMBUS_WORD_DATA not supported\n");
-+
-+	chip = devm_kzalloc(dev, sizeof(struct mm8013_chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->client = client;
-+
-+	ret = mm8013_checkdevice(chip);
-+	if (ret)
-+		return dev_err_probe(dev, -ENODEV, "MM8013 not found\n");
-+
-+	psy_cfg.drv_data = chip;
-+	psy_cfg.of_node = dev->of_node;
-+
-+	psy = devm_power_supply_register(dev, &mm8013_desc, &psy_cfg);
-+	if (IS_ERR(psy))
-+		return PTR_ERR(psy);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id mm8013_id_table[] = {
-+	{ "mm8013", 0 },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, mm8013_id_table);
-+
-+static const struct of_device_id mm8013_match_table[] = {
-+	{ .compatible = "mitsumi,mm8013" },
-+	{ },
-+};
-+
-+static struct i2c_driver mm8013_i2c_driver = {
-+	.probe = mm8013_probe,
-+	.id_table = mm8013_id_table,
-+	.driver = {
-+		.name = "mm8013",
-+		.of_match_table = mm8013_match_table,
-+	},
-+};
-+module_i2c_driver(mm8013_i2c_driver);
-+
-+MODULE_DESCRIPTION("MM8013 fuel gauge driver");
-+MODULE_LICENSE("GPL");
+> > > >
+> > > > I am actually open for this to be a command-line option but I wante=
+d to honor
+> > > > what the Raspian OS folks have already done.  RaspianOS already has
+> > > > "brcm,enable-l1ss"
+> > > > set in their DTS files.
+> > >
+> > > This is about the mainline kernel, I don't have any visibility into
+> > > downstream kernels (where that property management was added without =
+DT
+> > > and PCI maintainers supervision).
+> > >
+> > > Raspian OS folks' choice is theirs but it can't and it shouldn't over=
+ride
+> > > the mainline review process even though I understand the position you
+> > > are in.
 
--- 
-2.42.0
+Sure, but we shouldn't change things just to be different from
+downstream. If we're only discussing the color of the shed, then no
+point changing it.
 
+> >
+> > Understood, but using the command line has its warts as well; I now rec=
+all the
+> > discussion Bjorn and I  had regarding this option.  I'm pretty sure
+> > that upstreaam will not allow the following
+> > possible command line kernel params:
+> >
+> >     brcm,enable-l1ss
+> >     pci=3Dbrcm,entable-l1ss
+> >
+> > Bjorn suggested using the  documented but (IMO) obscure  and  rarely
+> > used  format
+> >
+> >     pci=3D[<domain>:]<bus>:<dev>.<func>[/<dev>.<func>]*pci:<vendor>:<de=
+vice>[:<subvendor>:<subdevice>]
+> >
+> > but this is just going in the wrong direction; here's why.  Using the
+> > above iformat s completely dependent on the
+> > PCI "linux-domaiin"  property,  a non-HW related DT property I  might
+> > add.  Since "linux-domain" is already
+> > a valid and well-used  DT property, and the value of  the above
+> > command line format is dependent
+> > on the value of the "linux-domain", why not be consistent and let
+> > "brcm,enable-l1ss" be a Broadcom specific property?
+>
+> I am just asking to add a module_param to the host controller driver.
+
+FWIW, gregkh pretty much always nacks new module parameters.
+
+>
+> Anyway - time is running out for v6.6, I need Rob's feedback, if I don't
+> hear from him today I will merge the last three patches and postpone the
+> discussion.
+
+You've already got my reviewed-by. If you aren't happy with this, then
+fine. I don't know enough about L1SS to comment further. Is it
+normally always supported or discoverable? If so, then I'd think we'd
+want it default enabled with a disable override flag. Maybe it should
+be generic?
+
+Rob
