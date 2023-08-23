@@ -2,119 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0C9D785005
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 07:43:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4227A78500A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 07:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232678AbjHWFnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 01:43:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56362 "EHLO
+        id S232720AbjHWFpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 01:45:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232708AbjHWFnU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 01:43:20 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C297DE5A
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 22:43:17 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso692484266b.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 22:43:17 -0700 (PDT)
+        with ESMTP id S232719AbjHWFpH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 01:45:07 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D07CEC
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 22:45:04 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so332317766b.3
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 22:45:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692769396; x=1693374196;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692769503; x=1693374303;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mqyD8w2Ea4iyrL9XdQdNAhbH5OmX3Ob2k4iSn8KyfIA=;
-        b=bMY8d/W/LEgLPQBzWnaNhxz0dfV1gzfk2RhBG1NMcTxCaFr/nK1HoQNcPEmbR39cvU
-         5TKGqc584NBHL5D9SczyQAkcpFjD3b7g5/J/i6RILhtAlkrBxcwtGlW1nuO3WC418UxH
-         6sUlTPD0Ob57apybkYVJRHDAdof9oiLjjY9LaCjcH1Lpop7UrlJEnNO27yiDFuGGEeTh
-         Nq2HANaFrUL2pfy4VAVVeZt9RCM5fIRZXs1Y3zqa4OA24/6CTlVv5SCpk5DpJPNWqiJm
-         a+UQbjKSsepmyUsLwYKfBucwLW1sCHyWl2+JgMshLco6ziaYEBIS/jbpldGN2RQ1rISC
-         Hzpg==
+        bh=SK7wXCHgjso+kauNiz/tvz/1bAcMDEpFaiHMZHqEM+k=;
+        b=XXWoTLK8oWopT7hrMyLrF1Tc951LffRiahbWO9LGEAmGWNGaPdlaqQd7NZWY4TZFml
+         xrzm/Wxfs5PzNComACBofjpGlPiuKNg1o/8Cu31/T9dD1ZsUh4heCRTehXmqqeWUaKQN
+         S9WUEotmUQEEtGIRprSgX/7AHd4UPbH5PKOs+BwDb7nQyd8ekkmCTSkaGynkhkqSaWhk
+         pnuNvpmGEsyBpEJ1XwvkpJgcl7RTSoDMmtzGEbdtCgFrybRi8T6CYao9w9AeEeojRoyq
+         7j0VaES49WcDDj0DZtT45dFvS/FP2ZUdBD/QaIiSnJa5v+CaWxNRw0Bn6hyCkMR8DMBS
+         OOpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692769396; x=1693374196;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692769503; x=1693374303;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mqyD8w2Ea4iyrL9XdQdNAhbH5OmX3Ob2k4iSn8KyfIA=;
-        b=fDwdpSXaysa/Cqk8pJ85VeTYq6FNe68ni/31EDTikBCT+jGVOVI6uY2tc/TST/HHM0
-         amiDI8fRIdp0m6KUY8sJv/pp/t1ToYDJUi//GAV4LHuYzi+6pMQyPeb4EEGpJNYfqEnD
-         +REhTUQMUZZmDJAedV3EnEKlVbMmKuTBZw05u/UYBSrqi16WFBNA+9hBxv42HNBU9dAP
-         NLgpF8iNVMnrqrf6itYzAmTfS0umPUepJZI10I1RmhZRdvdm+CZLDX4SElWLnDQMdRGk
-         ofFr4thrtvkTPMGFtsmD8phni1Ipuc24BRaNLsOE6KumAwvzYvFmubLI8ElEcjpTTd1r
-         iLlw==
-X-Gm-Message-State: AOJu0YwtwMai3JEalJTxJR7t6f2hKMdI2MaRlzbh0EpC4nBlKYECCc8g
-        d5nzANsFxrT4/oQ+NfDsHUbp+Q==
-X-Google-Smtp-Source: AGHT+IF3UMH3/lRVUBShLpk35pMdpeTpLzVykKBv/KpgWa477LjlFDFlSqmgvDXTRwzRNkr1zgLvOw==
-X-Received: by 2002:a17:906:7485:b0:9a1:c44d:7056 with SMTP id e5-20020a170906748500b009a1c44d7056mr2483700ejl.26.1692769396259;
-        Tue, 22 Aug 2023 22:43:16 -0700 (PDT)
+        bh=SK7wXCHgjso+kauNiz/tvz/1bAcMDEpFaiHMZHqEM+k=;
+        b=US4To2K2T/ezvNWsvTnYU+CcjY53lOHIEvCFJpiTgYBS1Zrv1LX/+BoBL+VsBBmQK5
+         wl8N1U7m1KJdCtTTZ9LPBNkZf+/iAhQtS0gVs2iH8+rO9GCYfZvvmvElZzdz1P5x7vGA
+         cTEA2VbF06jn51O5IT76ARrx2PQnU+YbmnfrYB3Ssqrj226olzPNL4krVO6lQ0w9VobK
+         vtQ1RpsF6hO/O+KyD7MuDhq3CPbVH0VAC3OW8Wh69JjLD7Zvk083EqOqo+MPl9/vh3CD
+         ESPafPub/SlZTvCeZT4a7tFohpVuuVybQTppMkHO2gJLdAtyXt/oh1/cvvhbh4nmjCm0
+         dMDw==
+X-Gm-Message-State: AOJu0YwreHU0F+HIRDUwKd5212ipO+s1MQlQX06gvzGH9tJtVdsFaR/P
+        PnN8JD3yoAgs5BTAQn8PqhL7oQ==
+X-Google-Smtp-Source: AGHT+IFMGuuVVuMGRrZ3AMvI32OaQC1nJmlAED9vkRKGPYle6Ytx2Hp3LIbMxpUCl2Sqis8RiHVmBg==
+X-Received: by 2002:a17:906:2931:b0:99c:10e8:52d6 with SMTP id v17-20020a170906293100b0099c10e852d6mr8391665ejd.39.1692769503073;
+        Tue, 22 Aug 2023 22:45:03 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id x6-20020a170906134600b00992d70f8078sm9372064ejb.106.2023.08.22.22.43.14
+        by smtp.gmail.com with ESMTPSA id la14-20020a170906ad8e00b00982a92a849asm9340043ejb.91.2023.08.22.22.45.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 22:43:15 -0700 (PDT)
-Message-ID: <c2faccd6-1d77-9b81-d8d9-830e95e804af@linaro.org>
-Date:   Wed, 23 Aug 2023 07:43:14 +0200
+        Tue, 22 Aug 2023 22:45:02 -0700 (PDT)
+Message-ID: <c0289603-f498-2b6b-c45a-82ba400f2f58@linaro.org>
+Date:   Wed, 23 Aug 2023 07:45:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH V10 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
- clock controller
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+Subject: Re: [PATCH v2 05/11] regulator: dt-bindings: mediatek: Add MT6366
+ PMIC
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-2-yu.tu@amlogic.com>
- <d2a6060a-c8a0-51c7-f621-1bed2c3074b4@linaro.org>
- <e9932f90-a011-ee9b-ef09-f2e2475bdd0d@amlogic.com>
-Content-Language: en-US
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Mark Brown <broonie@kernel.org>,
+        Zhiyong Tao <zhiyong.tao@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230822084520.564937-1-wenst@chromium.org>
+ <20230822084520.564937-6-wenst@chromium.org>
+ <337f20d5-4dfe-90ef-16b9-c10b14060b97@linaro.org>
+ <60221aab-d8da-9f0b-057b-e8a28840849f@linaro.org>
+ <CAGXv+5EiiDT_TWdyhrdq7HrBuMxpzZeKWNuhiVqJpmzcHEhaMA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e9932f90-a011-ee9b-ef09-f2e2475bdd0d@amlogic.com>
+In-Reply-To: <CAGXv+5EiiDT_TWdyhrdq7HrBuMxpzZeKWNuhiVqJpmzcHEhaMA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 04:24, Yu Tu wrote:
-> 
-> 
-> On 2023/8/23 0:32, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>> On 22/08/2023 10:27, Yu Tu wrote:
->>> Add the S4 PLL clock controller dt-bindings in the S4 SoC family.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+On 23/08/2023 06:20, Chen-Yu Tsai wrote:
+> On Wed, Aug 23, 2023 at 3:40 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Lovely. I sent youa  friendly reminder at v8 which turns our you
->> ignored. You keep ignoring, I will start ignoring as well from now on.
+>> On 22/08/2023 21:39, Krzysztof Kozlowski wrote:
+>>> On 22/08/2023 10:45, Chen-Yu Tsai wrote:
+>>>> From: Zhiyong Tao <zhiyong.tao@mediatek.com>
+>>>>
+>>>> The MediaTek MT6366 PMIC is similar to the MT6358 PMIC. It is designed
+>>>> to be paired with the MediaTek MT8186 SoC. It has 9 buck regulators and
+>>>> 29 LDO regulators, not counting ones that feed internally and basically
+>>>> have no controls. The regulators are named after their intended usage
+>>>> for the SoC and system design, thus not named generically as ldoX or
+>>>> dcdcX, but as vcn33 or vgpu.
+>>>>
+>>>> Add a binding document describing all the regulators and their supplies.
+>>>>
+>>>> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
+>>>> [wens@chromium.org: major rework and added commit message]
+>>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>>> ---
+>>>> Changes since v1:
+>>>> - Replaced underscores in supply names to hyphens
+>>>> - Merged with MT6358 regulator binding
+>>>> - Added MT6358 fallback compatible to MT6366 regulator
+>>>>
+>>>> Changes since Zhiyong's last version (v4) [1]:
+>>>> - simplified regulator names
+>>>> - added descriptions to regulators
+>>>> - removed bogus regulators (*_sshub)
+>>>> - merged vcn33-wifi and vcn33-bt as vcn33
+>>>> - added missing regulators (vm18, vmddr, vsram-core)
+>>>> - cut down examples to a handful of cases and made them complete
+>>>> - expanded commit message a lot
+>>>>
+>>>> [1] https://lore.kernel.org/linux-arm-kernel/20220823123745.14061-1-zhiyong.tao@mediatek.com/
+>>>>  .../regulator/mediatek,mt6358-regulator.yaml  | 227 +++++++++++++-----
+>>>>  1 file changed, 168 insertions(+), 59 deletions(-)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+>>>> index 82328fe17680..b350181f33ff 100644
+>>>> --- a/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+>>>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6358-regulator.yaml
+>>>> @@ -16,14 +16,18 @@ description: |
+>>>>
+>>>>  properties:
+>>>>    compatible:
+>>>> -    const: mediatek,mt6358-regulator
+>>>> +    oneOf:
+>>>> +      - const: mediatek,mt6358-regulator
+>>>> +      - items:
+>>>> +          - const: mediatek,mt6366-regulator
+>>>> +          - const: mediatek,mt6358-regulator
+>>>>
+>>>>    vsys-ldo1-supply:
+>>>>      description: Supply for LDOs vfe28, vxo22, vcn28, vaux18, vaud28, vsim1, vusb, vbif28
+>>>>    vsys-ldo2-supply:
+>>>> -    description: Supply for LDOs vldo28, vio28, vmc, vmch, vsim2
+>>>> +    description: Supply for LDOs vldo28 (MT6358 only), vio28, vmc, vmch, vsim2
+>>>>    vsys-ldo3-supply:
+>>>> -    description: Supply for LDOs vcn33, vcama1, vcama2, vemc, vibr
+>>>> +    description: Supply for LDOs vcn33, vcama[12] (MT6358 only), vemc, vibr
+>>>>    vsys-vcore-supply:
+>>>>      description: Supply for buck regulator vcore
+>>>>    vsys-vdram1-supply:
+>>>> @@ -43,75 +47,138 @@ properties:
+>>>>    vsys-vs2-supply:
+>>>>      description: Supply for buck regulator vs2
+>>>>    vs1-ldo1-supply:
+>>>> -    description: Supply for LDOs vrf18, vefuse, vcn18, vcamio, vio18
+>>>> +    description: Supply for LDOs vrf18, vefuse, vcn18, vcamio (MT6358 only), vio18
+>>>>    vs2-ldo1-supply:
+>>>> -    description: Supply for LDOs vdram2
+>>>> +    description: Supply for LDOs vdram2, vmddr (MT6366 only)
+>>>>    vs2-ldo2-supply:
+>>>>      description: Supply for LDOs vrf12, va12
+>>>>    vs2-ldo3-supply:
+>>>> -    description: Supply for LDOs vsram-gpu, vsram-others, vsram-proc11, vsram-proc12
+>>>> -  vs2-ldo4-supply:
+>>>> -    description: Supply for LDO vcamd
+>>>> -
+>>>> -patternProperties:
+>>>> -  "^buck_v(core|dram1|gpu|modem|pa|proc1[12]|s[12])$":
+>>>> -    description: Buck regulators
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_v(a|rf)12":
+>>>> -    description: LDOs with fixed 1.2V output and 0~100/10mV tuning
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_v((aux|cn|io|rf)18|camio)":
+>>>> -    description: LDOs with fixed 1.8V output and 0~100/10mV tuning
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_vxo22":
+>>>> -    description: LDOs with fixed 2.2V output and 0~100/10mV tuning
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_v(aud|bif|cn|fe|io)28":
+>>>> -    description: LDOs with fixed 2.8V output and 0~100/10mV tuning
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_vusb":
+>>>> -    description: LDOs with fixed 3.0V output and 0~100/10mV tuning
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_vsram_(gpu|others|proc1[12])$":
+>>>> -    description: LDOs with variable output
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>> -
+>>>> -  "^ldo_v(cama[12]|camd|cn33|dram2|efuse|emc|ibr|ldo28|mc|mch|sim[12])$":
+>>>> -    description: LDOs with variable output and 0~100/10mV tuning
+>>>> -    type: object
+>>>> -    $ref: regulator.yaml#
+>>>> -    unevaluatedProperties: false
+>>>
+>>> I don't understand. You just added it and it is already wrong? Please,
+>>> do not add code which is clearly incorrect.
+>>
+>> Sent too early - anyway properties cannot be defined in allOf:. That's
+>> not the place for them and there is no single reason for it. From which
+>> regulator binding you got this example?
 > 
-> Hi Krzysztof，
-> 
-> Sorry. I did not forget the friendly reminder in v8, I consulted you for 
-> this at the time, so I re-sent V9 after adding the tag. Because it was 
-> just "meson" that was removed. But V10 is based on Neil's patch, which I 
-> think is a bit of a change. So I didn't dare add it. Instead of 
-> forgetting your reminder.
-> 
-> So what should I do, I'll follow your advice exactly.
+> None. It was simply a way I figured out when I was reading up on JSON
+> schema syntax. I wanted to split the definitions cleanly, since they
+> are very different. And with "unevaluatedProperties: false" in the base
+> schema it did seem to work, successfully evaluating existing device trees
+> and producing errors when extra properties were added, or if types didn't
+> match up.
 
-I don't think there was much difference between the version, which
-received the review, and the current patch. Otherwise your changelog
-should say that you drop Rb tag. Rebasing of something somewhere is not
-the reason, so please describe what are the differences in the patch?
+If they are very different, this should not have been one binding. There
+is little benefit of that.
+
+> 
+> Now that you mention it, I suppose the preferred way to write it is to
+> have all the properties in the base schema, then negate the ones that
+> don't belong in the allOf: section? It just seems really repetitive given
+> the child node names for the chip variants are completely different. OOTH
+> I guess it would produce better error messages.
+
+
+For regular cases yes, but not if devices differ so much.
 
 Best regards,
 Krzysztof
