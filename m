@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F26D784F61
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 05:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73FA5784F6E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 05:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbjHWDhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 23:37:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35672 "EHLO
+        id S232466AbjHWDqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 23:46:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231816AbjHWDhu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 23:37:50 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3E777CF2;
-        Tue, 22 Aug 2023 20:37:47 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.201])
-        by gateway (Coremail) with SMTP id _____8Cx5_EJf+VkghYbAA--.55289S3;
-        Wed, 23 Aug 2023 11:37:45 +0800 (CST)
-Received: from [10.20.42.201] (unknown [10.20.42.201])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLCMJf+VkcfJgAA--.20593S3;
-        Wed, 23 Aug 2023 11:37:45 +0800 (CST)
-Subject: Re: [PATCH v3 1/2] gpio: dt-bindings: add parsing of loongson gpio
- offset
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <brgl@bgdev.pl>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230518AbjHWDqm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 23:46:42 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E9AF133;
+        Tue, 22 Aug 2023 20:46:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=N/VXJ1kKhYLfRCA+1Lj4YZiKmTWpyloeWrhoq+4MlaQ=; b=yUWfjTrtMjlDrJYFgzuCanW2Fa
+        QH/TLa2UDxATA7CpU7uc28PW4H7pYK+G9bK6bRg04R1OABwhXIA12fsneNZfkGuPiZkOp3DBhFnmx
+        /Ttgic5OC/4tMAD+snluc5K2XcYy111KxoBnhEZmftijvYig8/VWKy+1/sF3HFHsPK8g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qYep8-004qGu-Rp; Wed, 23 Aug 2023 05:46:26 +0200
+Date:   Wed, 23 Aug 2023 05:46:26 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@longson.cn
-References: <20230807074043.31288-1-zhuyinbo@loongson.cn>
- <20230807074043.31288-2-zhuyinbo@loongson.cn>
- <20230808-amount-urban-9a6eb09852ca@spud>
- <536a9062-65b2-5518-5c50-1a61e23870ee@loongson.cn>
- <20230809-circus-photo-6911d2e18f96@spud>
- <d4e16768-bed0-beda-42c3-f0a01b7e96cc@loongson.cn>
- <CAMRc=Mc00yy6DxdEos_w7HAkAwH7j0HBvkbQbaQiA_wTXiwFUg@mail.gmail.com>
- <80325b72-e7b3-08cc-f726-513de75de94c@loongson.cn>
- <CACRpkdam7zxSSj3Lirha8tWdeM_WhZpD4xO7MbTK4hVumU0a8w@mail.gmail.com>
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-Message-ID: <26da9608-98f9-a679-2888-ce82093db2b1@loongson.cn>
-Date:   Wed, 23 Aug 2023 11:37:45 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH v2 3/4] net: stmmac: Add glue layer for Loongson-1 SoC
+Message-ID: <ebcd20c4-b0ba-41aa-b8fa-ad26481c3707@lunn.ch>
+References: <20230816111310.1656224-1-keguang.zhang@gmail.com>
+ <20230816111310.1656224-4-keguang.zhang@gmail.com>
+ <c3454ad9-1874-4301-b1b1-4f76886802fb@lunn.ch>
+ <CAJhJPsWVRJg7zNeXPDovkBM4pm7hD+RP21DRxt0726VXtzvCHw@mail.gmail.com>
+ <150ae6c1-8a2f-4fd7-b012-a53a909919d4@lunn.ch>
+ <CAJhJPsUatqsa_D_RZ8ej33cGPRixhi7A2=2VBOSJVK6xNAA0jA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdam7zxSSj3Lirha8tWdeM_WhZpD4xO7MbTK4hVumU0a8w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxLCMJf+VkcfJgAA--.20593S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJhJPsUatqsa_D_RZ8ej33cGPRixhi7A2=2VBOSJVK6xNAA0jA@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> I understand the delay issue of RGMII.
+> Just tried phy-mode = "rgmii-id", it still works.
 
+That indicates something is broken. Both "rgmii-id" and "rgmii" should
+not work, just one of them. What PHY driver are you using?
 
-在 2023/8/15 下午4:59, Linus Walleij 写道:
-> On Mon, Aug 14, 2023 at 5:39 AM Yinbo Zhu <zhuyinbo@loongson.cn> wrote:
-> 
->>> Why do you want to put it into device-tree so badly? This is not the
->>> first driver that would have of_match_data for different variants
->>> where you can have a structure that would keep offsets for different
->>> models. It's not like you will have hundreds of "compatible" chips
->>> anyway, most likely just a few?
->>
->> Using this ways that put offset property into device-tree that can be
->> compatible with future GPIO chips without the need to modify drivers,
->> such as more 2K chips in the future, but use of_match_data and data
->> field of_device_id, which every time a new SoC is released, the GPIO
->> driver needs to be modified once, which is not friendly to us.
-> 
-> The purpose of device tree is to describe the hardware and
-> to configure it for a target system.
-> 
-> The purpose of device tree is not to make driver writing easy
-> or convenient. It often does, but that is not the purpose.
-> 
-> These offsets are not relevant to the people that need to
-> author and maintain device trees to support and tailor their
-> system. They are only relevant to driver authors and SoC
-> manufacturers.
-> 
-> What about just writing these offsets into the driver and use
-> the compatible match to look them up.
-> 
-
-
-okay, I got it, I had following your advice and send v4 to upstream,
-please you help review it.
-
-Thanks,
-Yinbo
+    Andrew
 
