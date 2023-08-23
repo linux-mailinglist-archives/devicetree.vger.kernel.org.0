@@ -2,158 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F2ED786075
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 21:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0620786085
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 21:20:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238167AbjHWTPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 15:15:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57696 "EHLO
+        id S238200AbjHWTT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 15:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238282AbjHWTOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 15:14:41 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6D210DC;
-        Wed, 23 Aug 2023 12:14:38 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99df11828c6so31546866b.1;
-        Wed, 23 Aug 2023 12:14:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692818077; x=1693422877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3GfGoPJfPXeL122AI/Y6i59RXbA4MoNTzdh5/a56Xn0=;
-        b=QJvDLNUBheJo6Z3mPsuYD5nZRJyW2l/OZodVbzD4U6Js7o5S2sE9dGB1wsabKctn2S
-         9tU+TeFm/qQCuHFmp9+YSNZFscM73NNk/0EBbZRVYyqTAlZqp4llP5sc9BvKrnVLTE4J
-         ZiQmZdxoRYvkbANv806hjyyKLb20aZqCYbTPdPq7pKNf5wAclWk+vJwjgLjsyvyo6dWZ
-         T2klMKPTCV0/DPK1JuLl8yOQEBFqT+8qtxTQxaPkokhC38PM/QV2mIhDHi+rlUHr5Keu
-         pU+J2vBCFvlIhfOsnGyHdzCN6h3rlGbVFTKCR7qnIQBk8bLMt/LcglVDySFm/y50gqXY
-         GjIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692818077; x=1693422877;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3GfGoPJfPXeL122AI/Y6i59RXbA4MoNTzdh5/a56Xn0=;
-        b=PkmcXyB9Hk7aF+LbOagZ6kP82Ovcay6mqmHhSkSa8Dl+IYeQUelz57IZnc0zXUeQrQ
-         +5Eu2ex6LLK9LMXvNlQ2S5NUBQXxI1mD6knmN3Xp+RiQf4ousCEBDr9YY/Ou1nlBfYwJ
-         ghDL06Iv+WWVBirsFYHWd/RyRvlM8pg2B3U6zBGlzUJEoxREL/JOHDdLYEfyKDEZr/+L
-         CKwAOCQZ7LwT82G3RMH0X6jJD7qmPz5sGrMJFGDHkUAsgn1plRO90AnN/eu3nchwyqsH
-         BGhPm+v5sn4+r9FrBdp577EPV0FmnHAt7yCLuiAyGejJ8f934IMuvuTRiM6zXgUX0u4h
-         QJ6w==
-X-Gm-Message-State: AOJu0YyXvX+aDhMJ/Ry8E3Pbrv4sBCb4KoBcOfaG5HlLrEncaKOufmU/
-        Wke5fMtCgdx1r4fQVN+nFqEv8pn+bTi+Qg==
-X-Google-Smtp-Source: AGHT+IEyB/ZIs6kkflGm4CaDR9JI8pIkw1oTLixQ0Y4DZJKD0Tq/QtdPvoLjd898II3fszhvDVCRmw==
-X-Received: by 2002:a17:906:3051:b0:99c:5056:4e31 with SMTP id d17-20020a170906305100b0099c50564e31mr17063070ejd.15.1692818076698;
-        Wed, 23 Aug 2023 12:14:36 -0700 (PDT)
-Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
-        by smtp.gmail.com with ESMTPSA id ci16-20020a170906c35000b0098e34446464sm10091272ejb.25.2023.08.23.12.14.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 12:14:36 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237998AbjHWTTb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 15:19:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C530F10CB;
+        Wed, 23 Aug 2023 12:19:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4216965FE9;
+        Wed, 23 Aug 2023 19:19:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBAFDC433CD;
+        Wed, 23 Aug 2023 19:19:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692818368;
+        bh=z7owpDA4k2E0Ij+VJAllz0k9twsgKGzrUNXPPIMEbGc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RLK+HCznqKathi9Leh0P+xR1D8A/NYgTQJMo99gN/QSAnrhe1rGOwhqFu+HNYKKB7
+         2oFKgjPA5KRsI8k9bM3r6fM63p4dgpOrMWVS3cNPMbRnDgP7p0VZhaKEqnNmvRLGq4
+         8tzIsC7ROMJzD3+DcpGvGFUmtSoNTsHdCJWIMaD7uPpo6m3YGadz35mz6L3ILULNBF
+         jpPX0PzakI7//HGxxl5lrQiUw4t/3xORFy++z4b8j5vZSoS3N/2gXdguykfxsD5ghQ
+         fIRFPmPWhInlFvcrM+4EmP7zA6kapAXO9bpURBOpE/ujA7h3qLXTKOkhxqZ5cx81xj
+         6cIxmFtSwXhuA==
+Date:   Wed, 23 Aug 2023 21:19:25 +0200
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        Leo Yan <leo.yan@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Corey Minyard <minyard@acm.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
         Magnus Damm <magnus.damm@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH 2/2] arm64: dts: use capital "OR" for multiple licenses in SPDX
-Date:   Wed, 23 Aug 2023 21:14:34 +0200
-Message-ID: <4824782.GXAFRqVoOG@jernej-laptop>
-In-Reply-To: <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
-References: <20230823085146.113562-1-krzysztof.kozlowski@linaro.org>
- <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
+        M ark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-i3c@lists.infradead.org,
+        linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        alsa-devel@alsa-project.org, linux-scsi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Drop remaining unneeded quotes
+Message-ID: <ZOZbvbQCfE/7za7A@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>, Leo Yan <leo.yan@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Corey Minyard <minyard@acm.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        M ark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-i3c@lists.infradead.org, linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        alsa-devel@alsa-project.org, linux-scsi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+References: <20230823183749.2609013-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="W9LDWghRC/uN9wQg"
+Content-Disposition: inline
+In-Reply-To: <20230823183749.2609013-1-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sreda, 23. avgust 2023 ob 10:51:46 CEST je Krzysztof Kozlowski napisal(a):
-> Documentation/process/license-rules.rst and checkpatch expect the SPDX
-> identifier syntax for multiple licenses to use capital "OR".  Correct it
-> to keep consistent format and avoid copy-paste issues.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Rebased on next-20230822, so might not apply cleanly.  What does not
-> apply, can be skipped and I will fix it after next RC.
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts  | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi                 | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts   | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi   | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts   | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts         | 2 +-
->  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts   | 2 +-
 
-For Allwinner:
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+--W9LDWghRC/uN9wQg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Jernej
+On Wed, Aug 23, 2023 at 01:28:47PM -0500, Rob Herring wrote:
+> Cleanup bindings dropping the last remaining unneeded quotes. With this,
+> the check for this can be enabled in yamllint.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
->  arch/arm64/boot/dts/arm/corstone1000-fvp.dts                   | 2 +-
->  arch/arm64/boot/dts/arm/corstone1000-mps3.dts                  | 2 +-
->  arch/arm64/boot/dts/arm/corstone1000.dtsi                      | 2 +-
->  arch/arm64/boot/dts/broadcom/stingray/bcm958802a802x.dts       | 2 +-
->  arch/arm64/boot/dts/broadcom/stingray/stingray-board-base.dtsi | 2 +-
->  arch/arm64/boot/dts/broadcom/stingray/stingray-pcie.dtsi       | 2 +-
->  arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi        | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts           | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi          | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi                | 2 +-
->  arch/arm64/boot/dts/renesas/r8a77980a.dtsi                     | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779f0-spider.dts                | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779f0.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m0.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1-ulcb-kf.dts               | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1-ulcb.dts                  | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m1.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m2.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3-ulcb-kf.dts               | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts                  | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m3.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m4.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts           | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m5.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m6.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m7.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779m8.dtsi                      | 2 +-
->  arch/arm64/boot/dts/renesas/r8a779mb.dtsi                      | 2 +-
+Acked-by: Wolfram Sang <wsa@kernel.org> # for AT24/I2C
 
 
+--W9LDWghRC/uN9wQg
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmTmW70ACgkQFA3kzBSg
+KbYDpQ//TxfkWdWliCVOwgunoynDj8QbT0LI4crB95MmkexsMTX8+s4LTc8eQGfV
+pyqAEdN6UWa+iETe1rDdvwMKvSik7m3o9JvCy3BwxcTkHeVsnH3aqQvORh1ehka6
+HKXT+KozcWWe7ZVqyqCApjqb9VIE6six7kI2381p9eSiSTzpjZR988QLcEcV3fIK
+hdH21sLgCm+pt7vwnhNLyL4DqSKc4a3xBjcCDY2fW0XYAEhdsi8mVu58gnct1yTF
+mRcbv717gndwG4XgL9wnA0DCZVPc27acPi/daHtp+jPsvsqMQSnQz9TDbkTRJX95
+z47oWS6p2ol6iJqbbr80wZ2ozdE0avfydrdhwHEWx6ndnAQ3DZgqVeSwmwEE+mxQ
+FZvFYVM06i7rX8DScen91PFvcLpkGmvmBED6KKvsrovou0cPlcTEIdycxKlNtxEk
+bbahDY5Kl7MLuUxfLMZV03upU/y/S8AgWwd26kE0zUBolCi09v9e822TqLgfd2TO
+VmPqs3dvxwmykO9s8HkGdTSrgkdgGv9NMXnm6Psg5MlTtkDk12CspSFQ4fdD4VgY
+GPCKVGvGzdhrJ0vUe7GODt2C/uHGCO1W7/efVtFbcdOvLcmQIr9uqD/JpfBXGh70
+tjpBBAx/9dVKkiFTHjhZ2CzBQS22G6GWuDFnJaWIygpWTE7XaE0=
+=RXY7
+-----END PGP SIGNATURE-----
+
+--W9LDWghRC/uN9wQg--
