@@ -2,99 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 000BF785657
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EC8F78568C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 13:14:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbjHWK6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
+        id S232047AbjHWLOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 07:14:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232105AbjHWK6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:58:54 -0400
-Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84BC4FB;
-        Wed, 23 Aug 2023 03:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
-        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=QpqzTXlkvfTZwb/qvLffSgOkdmA3MgzLw1gYn4Tft4k=; b=s/9kx6+CR/fuCvSdzEXiuQjEfZ
-        EdboCKEcmE68sjpbz32RSMAnopH5pDf5FWnykSJznpjzbcLne2CEzF/ettMHvNxEZRwVE84hajdMi
-        NK88pFfypItbIjF3cChnkLE6vL2H8WQit9euN7sWPjMxwQjzOiSPZy+En65nCYIFEk6TejmTV9yxc
-        3BSESc8hQZqVZH1d4SKqulITtnWdmHws66OttGpvKlGtRUzwVgj0iPKwY9vYa3HaysPc7b6n/z0i8
-        NGnex4U5VnAjp6bSr3FR0EK+NP/LM8+C51OLtz2klZ/imZyb1e7HMGAHvV3sPD3iiYaiy3BRUCxJY
-        ikXoj3uA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:42594)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.96)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1qYlZJ-0002eW-1e;
-        Wed, 23 Aug 2023 11:58:33 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1qYlZI-0006lA-Js; Wed, 23 Aug 2023 11:58:32 +0100
-Date:   Wed, 23 Aug 2023 11:58:32 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Jakub Kicinski <kuba@kernel.org>,
-        Rohan G Thomas <rohan.g.thomas@intel.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Synopsys XGMII MAC and USXGMII interfaces
-Message-ID: <ZOXmWLB4TKGKvkiE@shell.armlinux.org.uk>
+        with ESMTP id S234363AbjHWLOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 07:14:08 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08354E54;
+        Wed, 23 Aug 2023 04:14:06 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so8739482e87.1;
+        Wed, 23 Aug 2023 04:14:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692789244; x=1693394044;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8LFiYT+pIjp+Hsb3mX0ePhlRFgF0GYMvthbRS9/QaYc=;
+        b=k5rNDQfd1CgQrGDl2UgR2a+v7kZTRPgc3icHUApqMK8NAZ3zUsojnh1HG6YzHQUlNs
+         V4rFz+DITZyCBCNmRe1ytB4Ohfekl2ZpME3zn2o3loBh9BMycx07PrCuD/EoyaZ27ED5
+         s10fzT3fAUeJZyB3GCYMIN3SFP29RBr8Pa2pcsYF6a0hlDh8UWSxb0XgygcMhAuBPhfJ
+         OcFCCcpZdlEPKU09meWYrb88w7YBJcqJB50eWE4AxDcC/gOeUKzFO3XXH21tFEM329HK
+         nc8PD7cyqFokAcyJW0o7xDnH+eO3r3RjFD8vt7oj76fGfnSXtFbfo9nFDjhPwZQRYaaQ
+         4fRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692789244; x=1693394044;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8LFiYT+pIjp+Hsb3mX0ePhlRFgF0GYMvthbRS9/QaYc=;
+        b=MeK4uo+4VjsdGzUxfnDeHR4po9ogMTz2J52hocljX4zvA7yj/UZzptscAeiSl2IjhW
+         ZByO2+rg8cD94Leo/tSgJCwPeKFa67okM6z4E+9eQrVZN/4nJ4SaWwGLTM5uxtpmKzLv
+         R+TmEn1Tyb06ZD3KaHCIdC/nBp+WbHFLPtI3K1+u+n0LideQV1a8wf57vc1QrIxyu4Wd
+         69R3X2EJ/nxV2ExuDPshzSvHzF0dPYd+in3AOautYmpy0QPNtqqCXhXDia7kDf03IdjI
+         gnC5GObAC5IzTwuOWKybpUM2v2FTkmk75XfC5vZ5HT3Y8H3rGs+XYKj53KqRUhwWfWf1
+         RxFQ==
+X-Gm-Message-State: AOJu0YyiFFm4bTC4kwe5CKiQfRPDzBIE76BCgaK4IPMxAlf7hDBW2hwT
+        Xb3on4t8CGvfQ9uJlT7zM8c=
+X-Google-Smtp-Source: AGHT+IGEhuX3AJgr7kRRmlBb7GnCKIL6iyJhI2LWkVfTFbXR99qexfNvmCi7FMFQfKH9KGaz7QzKzw==
+X-Received: by 2002:ac2:4c52:0:b0:4fe:7e1f:766a with SMTP id o18-20020ac24c52000000b004fe7e1f766amr11911255lfk.24.1692789243814;
+        Wed, 23 Aug 2023 04:14:03 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id b15-20020ac247ef000000b004ffa0e5d805sm2592714lfp.174.2023.08.23.04.14.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 04:14:03 -0700 (PDT)
+Date:   Wed, 23 Aug 2023 14:14:00 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v19 12/19] PCI: dwc: endpoint: Introduce .pre_init() and
+ .deinit()
+Message-ID: <asg4u7vfyk5scq4wzzpfogdhrnzrlz77gxrn76ak4jfwixj4ej@qztokrh6lyys>
+References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230823091153.2578417-13-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230823091153.2578417-13-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Part 2 of the discussion...
+On Wed, Aug 23, 2023 at 06:11:46PM +0900, Yoshihiro Shimoda wrote:
+> Renesas R-Car Gen4 PCIe controllers require vendor-specific
+> initialization before .init(). To use dw->dbi and dw->num-lanes
+> in the initialization code, introduce .pre_init() into struct
+> dw_pcie_ep_ops. Also introduce .deinit() to disable the controller
+> by using vendor-specific de-initialization.
+> 
 
-A similar issue applies to PHY_INTERFACE_MODE_USXGMII, but is reversed.
-USXGMII supports 10M, 100M, 1G, 2.5G, 5G and 10G. Phylink allows all of
-these because that's what the appropriate standard says. dwxgmac2
-initialises config register settings for speeds from 10M up to 10G.
-However, the PHY_INTERFACE_MODE_USXGMII switch() block in
-stmmac_mac_link_up() only handles 2.5G, 5G and 10G. Shouldn't it handle
-the other speed cases - it looks like the MAC does support them.
+> Note that the ep_init in the struct dw_pcie_ep_ops should be renamed
+> to init later.
 
-The initialisation done by dwxgmac2_setup() does setup control register
-masks for everything from 10M to 10G, so on the face of it, it looks
-like a mistake in stmmac_mac_link_up().
+Note this message look very little related to the patch itself. If you
+want to signify your agreement with Mani then just put that note below
+the "---" line.
 
-If it's something outside of the MAC that doesn't support these speeds
-when operating as USXGMII, then that needs to be handled.
+Anyway. The callbacks execution order looks correct now. Thanks.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-The other weird thing is that when using PHY_INTERFACE_MODE_USXGMII
-with XPCS, XPCS supports 1G, 2.5G and 10G ethtool link modes, but not
-5G. So combining the implementation in stmmac_mac_link_up(), that
-means only 2.5G and 10G can actually be functional. Is that a fair
-assessment of the USXGMII situation with stmmac?
+-Serge(y)
 
-Thanks.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-ep.c | 12 +++++++++++-
+>  drivers/pci/controller/dwc/pcie-designware.h    |  2 ++
+>  2 files changed, 13 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 9a51a723b892..ea8063742fac 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -695,6 +695,9 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+>  			      epc->mem->window.page_size);
+>  
+>  	pci_epc_mem_exit(epc);
+> +
+> +	if (ep->ops->deinit)
+> +		ep->ops->deinit(ep);
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_ep_exit);
+>  
+> @@ -798,6 +801,9 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  	ep->phys_base = res->start;
+>  	ep->addr_size = resource_size(res);
+>  
+> +	if (ep->ops->pre_init)
+> +		ep->ops->pre_init(ep);
+> +
+>  	dw_pcie_version_detect(pci);
+>  
+>  	dw_pcie_iatu_detect(pci);
+> @@ -852,7 +858,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  			       ep->page_size);
+>  	if (ret < 0) {
+>  		dev_err(dev, "Failed to initialize address space\n");
+> -		return ret;
+> +		goto err_ep_deinit;
+>  	}
+>  
+>  	ep->msi_mem = pci_epc_mem_alloc_addr(epc, &ep->msi_mem_phys,
+> @@ -898,6 +904,10 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  err_exit_epc_mem:
+>  	pci_epc_mem_exit(epc);
+>  
+> +err_ep_deinit:
+> +	if (ep->ops->deinit)
+> +		ep->ops->deinit(ep);
+> +
+>  	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_ep_init);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index 89999c483c37..77a9c3e70120 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -332,7 +332,9 @@ struct dw_pcie_rp {
+>  };
+>  
+>  struct dw_pcie_ep_ops {
+> +	void	(*pre_init)(struct dw_pcie_ep *ep);
+>  	void	(*ep_init)(struct dw_pcie_ep *ep);
+> +	void	(*deinit)(struct dw_pcie_ep *ep);
+>  	int	(*raise_irq)(struct dw_pcie_ep *ep, u8 func_no,
+>  			     unsigned int type, u16 interrupt_num);
+>  	const struct pci_epc_features* (*get_features)(struct dw_pcie_ep *ep);
+> -- 
+> 2.25.1
+> 
