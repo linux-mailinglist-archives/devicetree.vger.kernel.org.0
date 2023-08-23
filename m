@@ -2,122 +2,322 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3441C7851F2
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C714785209
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233576AbjHWHs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 03:48:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37956 "EHLO
+        id S231597AbjHWHxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 03:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233489AbjHWHsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:48:25 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F92E52
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 00:48:22 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31c615eb6feso1192652f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 00:48:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692776901; x=1693381701;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yMLqQ07/1S4FGZac+b+3f8r1p2hwvkhxqYFR9XhasgQ=;
-        b=xPQOyHts+i9uO+7Lq2SW75l7BNzXbnEHzbY/GIalOHkJV0T9C1s+5e2PYA/yb58BRc
-         j3JJEx2+1mhKBwvTO2lioBRdZYiQRurrgvJyx2sdWR3Zd4a1ryZfz1PkrK79eJCrSMc8
-         HCTJM2m7WTAMp3zHz2u1Guc7CHjED0IIOQB8B+CJW2DPAWhLPMhaOebScjTyT4ipNn4e
-         Y9lU477EdYf0BA/2IscFXXaGlvGtStv0SwE1h7CwP7aMbc2RuN5ImU5o6X3iRxsQO+IC
-         yRGmw1iqFdhUYbu2X3QIKq168/Hmwi0u5YsS7X6VgaM2TGa0pyZnkdKsoLwzno1yWsu9
-         fVIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692776901; x=1693381701;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yMLqQ07/1S4FGZac+b+3f8r1p2hwvkhxqYFR9XhasgQ=;
-        b=HuZIsmsy6p8zU6SQMEgtLxiE8CROS9V6UwA0RpklR9tPbpu2J7EgS6+83N5tlckGJn
-         pXdqOle3A2HcOM6afRr7HG4aWD6F2m95OJik1OOyTFPE8zjsFNo5bYu7R//CeUjwqAAg
-         KvkzuTqQKI+ylyNfAtaGI1uvv7SBCtAEzz0aU8eYlfnTUrsP3RYsipZJ1Y7wXSTIr6XW
-         c8B5zMo4ZED6NPI5D9VnPVoZgRACUvj9bH9fNKnJXacutGpaS/8cRIFISKKiDfhJ8Vhc
-         3tK1w8nNbkU4N28Ynbo8UUBM3B9pCFPmQcmeF7kqOnnC8QWb14tGSlIls6dxGPs8sepl
-         g6yQ==
-X-Gm-Message-State: AOJu0Yx3oj9hXMgvv+Mk1AAxeT7tDXWxx/BjUcpMHTGiW4yBgTR8VcGZ
-        Up4nShrIWcK+e62MYZwuKIZvqw==
-X-Google-Smtp-Source: AGHT+IEJCgqNoN/t/JtugjJDUHt4ZTgJERVOv2dLtodMoCTxdTohodR2lggnhDmB/2raLk4Fvg/g7w==
-X-Received: by 2002:a5d:46cd:0:b0:317:5c36:913b with SMTP id g13-20020a5d46cd000000b003175c36913bmr9140847wrs.48.1692776901194;
-        Wed, 23 Aug 2023 00:48:21 -0700 (PDT)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id g16-20020adff3d0000000b00318147fd2d3sm17986636wrp.41.2023.08.23.00.48.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 00:48:20 -0700 (PDT)
-Message-ID: <b544e079-c9de-23d3-80f7-cff89293eeb5@linaro.org>
-Date:   Wed, 23 Aug 2023 09:48:19 +0200
+        with ESMTP id S229886AbjHWHxb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:53:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20111BE;
+        Wed, 23 Aug 2023 00:53:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D393636BC;
+        Wed, 23 Aug 2023 07:53:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 355C8C433C7;
+        Wed, 23 Aug 2023 07:53:15 +0000 (UTC)
+Date:   Wed, 23 Aug 2023 13:23:05 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>, bhelgaas@google.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        helgaas@kernel.org, imx@lists.linux.dev, kw@linux.com,
+        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
+        mani@kernel.org, minghuan.lian@nxp.com, mingkai.hu@nxp.com,
+        robh+dt@kernel.org, roy.zang@nxp.com, shawnguo@kernel.org,
+        zhiqiang.hou@nxp.com
+Subject: Re: [PATCH v12 3/3] PCI: layerscape: Add power management support
+ for ls1028a
+Message-ID: <20230823075305.GG3737@thinkpad>
+References: <20230821184815.2167131-1-Frank.Li@nxp.com>
+ <20230821184815.2167131-4-Frank.Li@nxp.com>
+ <ZOR5k7B3qRFEjPXR@lpieralisi>
+ <ZOTGcLa4audY/cTV@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v4 2/5] thermal/drivers/mediatek/lvts_thermal: Add suspend
- and resume
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
-        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
-        Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        wenst@chromium.org, james.lo@mediatek.com,
-        rex-bc.chen@mediatek.com, nfraprado@collabora.com,
-        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
-References: <20230530195132.2286163-1-bero@baylibre.com>
- <20230530195132.2286163-3-bero@baylibre.com>
- <371790cd-5a7c-8fa6-cc38-3a3680525092@collabora.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <371790cd-5a7c-8fa6-cc38-3a3680525092@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <ZOTGcLa4audY/cTV@lizhi-Precision-Tower-5810>
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/05/2023 10:05, AngeloGioacchino Del Regno wrote:
-
-[ ... ]
-
->>   static const struct lvts_ctrl_data mt8195_lvts_mcu_data_ctrl[] = {
->>       {
->>           .cal_offset = { 0x04, 0x07 },
->> @@ -1268,6 +1300,8 @@ MODULE_DEVICE_TABLE(of, lvts_of_match);
->>   static struct platform_driver lvts_driver = {
->>       .probe = lvts_probe,
->>       .remove = lvts_remove,
->> +    .suspend = lvts_suspend,
+On Tue, Aug 22, 2023 at 10:30:08AM -0400, Frank Li wrote:
+> On Tue, Aug 22, 2023 at 11:02:11AM +0200, Lorenzo Pieralisi wrote:
+> > On Mon, Aug 21, 2023 at 02:48:15PM -0400, Frank Li wrote:
+> > > From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > > 
+> > > Add PME_Turn_off/PME_TO_Ack handshake sequence for ls1028a platform. Call
+> > > common dwc dw_pcie_suspend(resume)_noirq() function when system enter/exit
+> > > suspend state.
+> > > 
+> > > Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+> > > Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  drivers/pci/controller/dwc/pci-layerscape.c | 135 ++++++++++++++++++--
+> > >  1 file changed, 126 insertions(+), 9 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
+> > > index ed5fb492fe08..97b8d3329df7 100644
+> > > --- a/drivers/pci/controller/dwc/pci-layerscape.c
+> > > +++ b/drivers/pci/controller/dwc/pci-layerscape.c
+> > > @@ -8,9 +8,11 @@
+> > >   * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
+> > >   */
+> > >  
+> > > +#include <linux/delay.h>
+> > >  #include <linux/kernel.h>
+> > >  #include <linux/interrupt.h>
+> > >  #include <linux/init.h>
+> > > +#include <linux/iopoll.h>
+> > >  #include <linux/of_pci.h>
+> > >  #include <linux/of_platform.h>
+> > >  #include <linux/of_address.h>
+> > > @@ -20,6 +22,7 @@
+> > >  #include <linux/mfd/syscon.h>
+> > >  #include <linux/regmap.h>
+> > >  
+> > > +#include "../../pci.h"
+> > >  #include "pcie-designware.h"
+> > >  
+> > >  /* PEX Internal Configuration Registers */
+> > > @@ -27,12 +30,26 @@
+> > >  #define PCIE_ABSERR		0x8d0 /* Bridge Slave Error Response Register */
+> > >  #define PCIE_ABSERR_SETTING	0x9401 /* Forward error of non-posted request */
+> > >  
+> > > +/* PF Message Command Register */
+> > > +#define LS_PCIE_PF_MCR		0x2c
+> > > +#define PF_MCR_PTOMR		BIT(0)
+> > > +#define PF_MCR_EXL2S		BIT(1)
+> > > +
+> > >  #define PCIE_IATU_NUM		6
+> > >  
+> > > +struct ls_pcie_drvdata {
+> > > +	const u32 pf_off;
+> > > +	bool pm_support;
+> > > +};
+> > > +
+> > >  struct ls_pcie {
+> > >  	struct dw_pcie *pci;
+> > > +	const struct ls_pcie_drvdata *drvdata;
+> > > +	void __iomem *pf_base;
+> > > +	bool big_endian;
+> > >  };
+> > >  
+> > > +#define ls_pcie_pf_readl_addr(addr)	ls_pcie_pf_readl(pcie, addr)
+> > >  #define to_ls_pcie(x)	dev_get_drvdata((x)->dev)
+> > >  
+> > >  static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
+> > > @@ -73,6 +90,64 @@ static void ls_pcie_fix_error_response(struct ls_pcie *pcie)
+> > >  	iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
+> > >  }
+> > >  
+> > > +static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
+> > > +{
+> > > +	if (pcie->big_endian)
+> > > +		return ioread32be(pcie->pf_base + off);
+> > > +
+> > > +	return ioread32(pcie->pf_base + off);
+> > > +}
+> > > +
+> > > +static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
+> > > +{
+> > > +	if (pcie->big_endian)
+> > > +		iowrite32be(val, pcie->pf_base + off);
+> > > +	else
+> > > +		iowrite32(val, pcie->pf_base + off);
+> > > +}
+> > > +
+> > > +static void ls_pcie_send_turnoff_msg(struct dw_pcie_rp *pp)
+> > > +{
+> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > > +	struct ls_pcie *pcie = to_ls_pcie(pci);
+> > > +	u32 val;
+> > > +	int ret;
+> > > +
+> > > +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
+> > > +	val |= PF_MCR_PTOMR;
+> > > +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> > > +
+> > > +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
+> > > +				 val, !(val & PF_MCR_PTOMR),
+> > > +				 PCIE_PME_TO_L2_TIMEOUT_US/10,
+> > > +				 PCIE_PME_TO_L2_TIMEOUT_US);
+> > > +	if (ret)
+> > > +		dev_err(pcie->pci->dev, "PME_Turn_off timeout\n");
+> > > +}
+> > > +
+> > > +static void ls_pcie_exit_from_l2(struct dw_pcie_rp *pp)
+> > > +{
+> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > > +	struct ls_pcie *pcie = to_ls_pcie(pci);
+> > > +	u32 val;
+> > > +	int ret;
+> > > +
+> > > +	/*
+> > > +	 * Set PF_MCR_EXL2S bit in LS_PCIE_PF_MCR register for the link
+> > > +	 * to exit L2 state.
+> > > +	 */
+> > > +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
+> > > +	val |= PF_MCR_EXL2S;
+> > > +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> > > +
+> > > +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
+> > > +				 val, !(val & PF_MCR_EXL2S),
+> > > +				 1000,
+> > > +				 10000);
+> > 
+> > I can add a comment myself - please explain how this delay was chosen,
+> > any piece of information could be useful for a future developer, let
+> > me know and I will add it.
 > 
-> Should we do that in noirq handlers?
-> We're risking to miss a thermal interrupt.
+> (This value is coming from exited downstream code. It is really hard to
+> find original owner and designer to find the reason).
+> 
+> How about just add below comments?
+> 
+> "No specific specification defines this timeout value. The timemout of 10ms
+> was chosen by the engineer as a sufficient amount of time to allow the
+> hardware to complete its actions."
+> 
 
-I'm not sure missing a thermal interrupt is a problem in this context 
-but we may go in the irq routine with an undefined state sensor setup 
-(eg. the internal clock stopped in the suspend and then read the sensor 
-in the isr).
+How about, "L1 exit timeout of 10ms is not defined in the spec, but rather
+chosen based on the practical observations."
 
-IMO, using suspend_noirq and resume_noirq may be required here.
+- Mani
 
-Alexandre are you taking over the next iteration?
-
+> > 
+> > > +	if (ret)
+> > > +		dev_err(pcie->pci->dev, "L2 exit timeout\n");
+> > > +}
+> > > +
+> > >  static int ls_pcie_host_init(struct dw_pcie_rp *pp)
+> > >  {
+> > >  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > > @@ -91,18 +166,27 @@ static int ls_pcie_host_init(struct dw_pcie_rp *pp)
+> > >  
+> > >  static const struct dw_pcie_host_ops ls_pcie_host_ops = {
+> > >  	.host_init = ls_pcie_host_init,
+> > > +	.pme_turn_off = ls_pcie_send_turnoff_msg,
+> > > +};
+> > > +
+> > > +static const struct ls_pcie_drvdata ls1021a_drvdata = {
+> > 
+> > I suggest adding .pm_support = false explicitly here, I can
+> > do it myself.
+> > 
+> > Thanks,
+> > Lorenzo
+> 
+> Thanks!
+> 
+> > 
+> > > +};
+> > > +
+> > > +static const struct ls_pcie_drvdata layerscape_drvdata = {
+> > > +	.pf_off = 0xc0000,
+> > > +	.pm_support = true,
+> > >  };
+> > >  
+> > >  static const struct of_device_id ls_pcie_of_match[] = {
+> > > -	{ .compatible = "fsl,ls1012a-pcie", },
+> > > -	{ .compatible = "fsl,ls1021a-pcie", },
+> > > -	{ .compatible = "fsl,ls1028a-pcie", },
+> > > -	{ .compatible = "fsl,ls1043a-pcie", },
+> > > -	{ .compatible = "fsl,ls1046a-pcie", },
+> > > -	{ .compatible = "fsl,ls2080a-pcie", },
+> > > -	{ .compatible = "fsl,ls2085a-pcie", },
+> > > -	{ .compatible = "fsl,ls2088a-pcie", },
+> > > -	{ .compatible = "fsl,ls1088a-pcie", },
+> > > +	{ .compatible = "fsl,ls1012a-pcie", .data = &layerscape_drvdata },
+> > > +	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021a_drvdata },
+> > > +	{ .compatible = "fsl,ls1028a-pcie", .data = &layerscape_drvdata },
+> > > +	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1021a_drvdata },
+> > > +	{ .compatible = "fsl,ls1046a-pcie", .data = &layerscape_drvdata },
+> > > +	{ .compatible = "fsl,ls2080a-pcie", .data = &layerscape_drvdata },
+> > > +	{ .compatible = "fsl,ls2085a-pcie", .data = &layerscape_drvdata },
+> > > +	{ .compatible = "fsl,ls2088a-pcie", .data = &layerscape_drvdata },
+> > > +	{ .compatible = "fsl,ls1088a-pcie", .data = &layerscape_drvdata },
+> > >  	{ },
+> > >  };
+> > >  
+> > > @@ -121,6 +205,8 @@ static int ls_pcie_probe(struct platform_device *pdev)
+> > >  	if (!pci)
+> > >  		return -ENOMEM;
+> > >  
+> > > +	pcie->drvdata = of_device_get_match_data(dev);
+> > > +
+> > >  	pci->dev = dev;
+> > >  	pci->pp.ops = &ls_pcie_host_ops;
+> > >  
+> > > @@ -131,6 +217,10 @@ static int ls_pcie_probe(struct platform_device *pdev)
+> > >  	if (IS_ERR(pci->dbi_base))
+> > >  		return PTR_ERR(pci->dbi_base);
+> > >  
+> > > +	pcie->big_endian = of_property_read_bool(dev->of_node, "big-endian");
+> > > +
+> > > +	pcie->pf_base = pci->dbi_base + pcie->drvdata->pf_off;
+> > > +
+> > >  	if (!ls_pcie_is_bridge(pcie))
+> > >  		return -ENODEV;
+> > >  
+> > > @@ -139,12 +229,39 @@ static int ls_pcie_probe(struct platform_device *pdev)
+> > >  	return dw_pcie_host_init(&pci->pp);
+> > >  }
+> > >  
+> > > +static int ls_pcie_suspend_noirq(struct device *dev)
+> > > +{
+> > > +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> > > +
+> > > +	if (!pcie->drvdata->pm_support)
+> > > +		return 0;
+> > > +
+> > > +	return dw_pcie_suspend_noirq(pcie->pci);
+> > > +}
+> > > +
+> > > +static int ls_pcie_resume_noirq(struct device *dev)
+> > > +{
+> > > +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> > > +
+> > > +	if (!pcie->drvdata->pm_support)
+> > > +		return 0;
+> > > +
+> > > +	ls_pcie_exit_from_l2(&pcie->pci->pp);
+> > > +
+> > > +	return dw_pcie_resume_noirq(pcie->pci);
+> > > +}
+> > > +
+> > > +static const struct dev_pm_ops ls_pcie_pm_ops = {
+> > > +	NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq, ls_pcie_resume_noirq)
+> > > +};
+> > > +
+> > >  static struct platform_driver ls_pcie_driver = {
+> > >  	.probe = ls_pcie_probe,
+> > >  	.driver = {
+> > >  		.name = "layerscape-pcie",
+> > >  		.of_match_table = ls_pcie_of_match,
+> > >  		.suppress_bind_attrs = true,
+> > > +		.pm = &ls_pcie_pm_ops,
+> > >  	},
+> > >  };
+> > >  builtin_platform_driver(ls_pcie_driver);
+> > > -- 
+> > > 2.34.1
+> > > 
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+மணிவண்ணன் சதாசிவம்
