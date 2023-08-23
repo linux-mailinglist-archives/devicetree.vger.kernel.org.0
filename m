@@ -2,72 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7720B78551E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:14:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E2E785530
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:17:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232095AbjHWKOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51898 "EHLO
+        id S231626AbjHWKR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:17:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232892AbjHWKOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:14:34 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E223C137
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:14:26 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99c0290f0a8so688727766b.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:14:26 -0700 (PDT)
+        with ESMTP id S232870AbjHWKR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:17:26 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73831735
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:16:55 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a1132b685so3542197a12.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:16:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692785665; x=1693390465;
+        d=linaro.org; s=google; t=1692785793; x=1693390593;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mo5/7rcHcq3EQgUwAoIukeLa+fenPjchd8RqeRcwzh0=;
-        b=ihbNcP54FHcDcsNQrJFy0GzOhp3tX+EONzYnWeK6M6avTg1a2bKWR/FIon1jVynIFF
-         b/8wrIu7GYhe9zB5u9KsIRwrSfLxXB6H3jZ+j0GlDrRhkYg60dC3Tqsf86HgGHn3o575
-         lvOfUWlDqJssE01ir92sNmJlzB+sqgpw87Pe+8FlfeYJ3aRiQwXgTNU2R6NRZuOFTxQu
-         OkUdcDurENzHPaqYct0JDv5GDG6HHGTaHMfPdOc+HLtRMTDg2/Gu0eUxydxWgl1wp27b
-         6CQa8+Cw+wiKh5UCeyEMS6Xr5a1WwfCayQGIr1AxUzrJB18El8LCff29uONOyMSC39n2
-         j9VQ==
+        bh=PkhmhhTWHkeRQp2PPUUxTCXWp1T0OTe7aVdp4fg5upo=;
+        b=LO6EWlz79jJJ9v/UQCg4OZKmPJO9+j6QHM1tngs1xZjP73VY2yTNyozqbCEjmHkgOJ
+         /I25kU9siRPAlFrz9dpUhrfTb7C4hK1nJcapsvmczx4ZFMRu+Id4skeNROqiKQ5j7fC1
+         ZyyN0rEkpFnovXZ/Y9YFpI+20NzFPUlKW8oib55lhQS8AfgOyDR1cSStWeGIk4mOE/f8
+         e8jk+ITZo8/vSFO72g6rBQt9NS7/HQQrfF/hlcYS6bEX+Ay7j17UK9K0sHHCYLh/aFQD
+         moxfheS5gy+jsjw+9CZRAFxsIYJOD76OVSKpIkrcpc8QGv+VCkZ89LVZ+6AtV/ge1cjC
+         e99w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692785665; x=1693390465;
+        d=1e100.net; s=20221208; t=1692785793; x=1693390593;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mo5/7rcHcq3EQgUwAoIukeLa+fenPjchd8RqeRcwzh0=;
-        b=Dx47pDSFVJ32mYFM/lEYSUVAjMGMbUb82qcfYU1Ut5FPEpKsNU0kmuU6iw8ycw9fKU
-         cYYlGuNF1pdoOHC1Gu57m0ShoV2+53MRk/M6uhcA/7AcuwHqUqw88t38mrd6ulyo6LNf
-         TR/UUfjV/Xxwwm2hrKMFJPh8jtSIHCVgUjxNteIwo5JFC1e1lUqCQO/e0Uq7/Z/KtViF
-         kDORn23ZsPVs41B/x9LECTitDClMnPFXS2T9q7LE2rx4axR50stQwX+MbD9FKoWEYfEt
-         9dB+wgM3Mj4VXGSoGE7ixnUW64X3XvSEGNrY+pwC3LERqhkm2dhis+TzlZGwLc9kJ/Em
-         Dcvg==
-X-Gm-Message-State: AOJu0YywBvbBvGzzv2ETo7znYCDCf2gwxlFi4GRbWOKLzLTMrab5RpFg
-        bt0NEryprJv12LOPz2YdzRWeZjlt5kiwww8BwrQ=
-X-Google-Smtp-Source: AGHT+IFF2WpbdYLFr/XFlhvXm6Isl4hPxZl/sv6oNX9VHvKVNXhsnhVKAZJbBOlUpIWjtMKFpzn9lA==
-X-Received: by 2002:a17:906:74c8:b0:9a1:d29c:6aa9 with SMTP id z8-20020a17090674c800b009a1d29c6aa9mr1332297ejl.11.1692785665370;
-        Wed, 23 Aug 2023 03:14:25 -0700 (PDT)
+        bh=PkhmhhTWHkeRQp2PPUUxTCXWp1T0OTe7aVdp4fg5upo=;
+        b=kqwn6+OAQD9O/bQL/qGUCuK1YYQcFHAxG0S6oujPHiidvEwKljTZGM6QVeIyF5sZ+m
+         ouF7SzY4r4Hj32g+MbYacIQyka78GxeHqSDAWXUwYl+KUPc9JlbQJcIZRPp6MJq5xvXg
+         btKZLh/zF3C761tBgJDgZp3+sAWAWBuP62YkasXFzGOhtWlrLwqNyWBhkxQH87R6mtnr
+         3m6+m/4HTxLM9kggRrNFVMPG3rT3MWgNsdXO0N37yrt3kJEjJf2i4bZ3rfa7/Nwq6+Cu
+         8HeKPQDpstee9K8kbvMYHISYwunWC2RvUZBB+9TQfTbfNHmM8gpElAyiRr8b51kiOuro
+         ghuA==
+X-Gm-Message-State: AOJu0Yw6FgB3Icmh+7jqrDTioee1RXKbvpEfkZxqQjOKDxTrYkHh7Yz4
+        HqvmsXfQLrPOl+avSuVq66C3Zw==
+X-Google-Smtp-Source: AGHT+IG4cl/3Fz/QSS2cl3WXZt2VKfaSb/kNTKY6FTxfUyaMgKaOK/vEjbIWyu1Ae6CwwBgVchcQyg==
+X-Received: by 2002:a05:6402:1614:b0:522:1e2f:fa36 with SMTP id f20-20020a056402161400b005221e2ffa36mr8763754edv.28.1692785793520;
+        Wed, 23 Aug 2023 03:16:33 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id sa4-20020a170906eda400b00992665694f7sm9585022ejb.107.2023.08.23.03.14.24
+        by smtp.gmail.com with ESMTPSA id i15-20020a50fc0f000000b0051e1660a34esm9063699edr.51.2023.08.23.03.16.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 03:14:24 -0700 (PDT)
-Message-ID: <19f09a5e-c420-f209-ebef-cfa36ffa8467@linaro.org>
-Date:   Wed, 23 Aug 2023 12:14:23 +0200
+        Wed, 23 Aug 2023 03:16:32 -0700 (PDT)
+Message-ID: <61b9e036-7864-65c6-d43b-463fff896ddc@linaro.org>
+Date:   Wed, 23 Aug 2023 12:16:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/2] rtc: m48t86: add DT support for m48t86
+Subject: Re: [PATCH v3 29/42] dt-bindings: rtc: Add ST M48T86
 Content-Language: en-US
-To:     nikita.shubin@maquefel.me, Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To:     nikita.shubin@maquefel.me,
+        Hartley Sweeten <hsweeten@visionengravers.com>,
+        Lennert Buytenhek <kernel@wantstofly.org>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Lukasz Majewski <lukma@denx.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>
-References: <20230823-m48t86_device_tree-v1-0-240023b435ac@maquefel.me>
- <20230823-m48t86_device_tree-v1-2-240023b435ac@maquefel.me>
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Damien Le Moal <dlemoal@kernel.org>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Andy Shevchenko <andy@kernel.org>,
+        Michael Peters <mpeters@embeddedTS.com>,
+        Kris Bahnsen <kris@embeddedTS.com>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
+        linux-input@vger.kernel.org, alsa-devel@alsa-project.org
+References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
+ <20230605-ep93xx-v3-29-3d63a5f1103e@maquefel.me>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230823-m48t86_device_tree-v1-2-240023b435ac@maquefel.me>
+In-Reply-To: <20230605-ep93xx-v3-29-3d63a5f1103e@maquefel.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,19 +120,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 11:03, Nikita Shubin via B4 Relay wrote:
+On 20/07/2023 13:29, Nikita Shubin via B4 Relay wrote:
 > From: Nikita Shubin <nikita.shubin@maquefel.me>
 > 
-> Add OF ID match table.
+> Add YAML bindings for ST M48T86 / Dallas DS12887 RTC.
 > 
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-How did these appear? It's v1, so it is a bit confusing.
-
 > Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
 
-> 
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
