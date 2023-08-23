@@ -2,479 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81103785192
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:32:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE4378519D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:34:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233310AbjHWHcj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 03:32:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48854 "EHLO
+        id S233364AbjHWHev (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 03:34:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233342AbjHWHce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:32:34 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37EA4FB;
-        Wed, 23 Aug 2023 00:32:32 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ADBC364B6C;
-        Wed, 23 Aug 2023 07:32:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68D70C433C7;
-        Wed, 23 Aug 2023 07:32:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692775950;
-        bh=oeJxFsLUX+jkWEdav/GnOIl5H5TmqsB9yM2IBgEkEOk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FcXiEniPnmAJgThA4ttyEjbnl/rg7BfenQrP+s13mwi8EM5GxWCwp2M46ZV6YRFXZ
-         lAh0lyv30OOdCGhIjkmD9tMvAoZummCLZFuO+SyMRlajNdVUFc/6dKCx8/sM0H0xeG
-         XOsqeLx6x+a3DdQxFcS3VGCZpG44VSdQBx2KVGap0Xwn2DInzYARKo65Uqta4oLSt+
-         dOpYm3SglzA5vC6XdhWfLZzgL2K5tnSNpjBGCZcYx6x7UGOM6GHBeOfbahk0O7uD1g
-         xERhP8qCCgCMklIjstcpcOariyyxzqD7nDBmm71DvDs4rtaEJqyTSNbNfTK8wdoc2d
-         ERhzc7SWhM5TA==
-Date:   Wed, 23 Aug 2023 09:32:28 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Ying Liu <victor.liu@nxp.com>
-Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "maarten.lankhorst@linux.intel.com" 
-        <maarten.lankhorst@linux.intel.com>,
-        "tzimmermann@suse.de" <tzimmermann@suse.de>,
-        Guido =?utf-8?Q?G=C3=BCnther?= <guido.gunther@puri.sm>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "Laurentiu Palcu (OSS)" <laurentiu.palcu@oss.nxp.com>,
-        "robh@kernel.org" <robh@kernel.org>
-Subject: Re: [PATCH v14 RESEND 1/6] dt-bindings: display: imx: Add
- i.MX8qxp/qm DPU binding
-Message-ID: <64bpiz5nt3xgboxya26gcdh6d7nyyflm2m56orgjwwwibh52n7@yk4ogdcierho>
-References: <20230822085949.816844-1-victor.liu@nxp.com>
- <20230822085949.816844-2-victor.liu@nxp.com>
- <scbtbu4cdjlsmbr6ugkpqslvfywidvbuqyekxuttfe4rmbp2st@lev2zfqe4h62>
- <AM7PR04MB70469E94D5FCFC46F51A72F3981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+        with ESMTP id S231473AbjHWHeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:34:50 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2080.outbound.protection.outlook.com [40.107.20.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FC8DFB;
+        Wed, 23 Aug 2023 00:34:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kzsu37T27uvlZb6l4NKBlc+hiXy6j2V6kXhZVHjOxeutr22VubB4Qo6OPAp0/m4zF7yGTTOPzvcVuMwYnjkROGW8c+xx0ttFrekvDDFLcgaAF6HVaqi8TIg+YA+osxIMsLAw2SKwBXbkTHjimfnca0LA92O0SSJ430GdsLSRsFzu2IgpiBarcrkOlkVhp9+40T28ybqLlS+YWmIrz8ydkyd/E187roJtN/W1rOkELpsN1sAyucMSxFQ0f5tGrnHCuEnunRCeJGHDA1zZPB6AjUtNbYTJsTndM1LN4KlwYxixzP60S5GfBM2duisx0ZK2fQb4ThKRLDDhwtuhb3qgTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9kCbXEAEVU62oQ29MBuWHA7B2lYm2gYVVW7wG/sxUTo=;
+ b=Bo/v2Z+xADeVHiNcLuMbFCQyv6oruboCocrHzOHuDHhvL62VLZeA2E9vh/lWjZURpkbg2nDoDQbzdZ7R03TfWoXtxwtjQAE8X1RxCN7sowY42Q+S3m5EllORRJREOq/Ni+dclvyTnGM5/NUiKgItYUhV8DXgwki89+6a29S6uTRE3JEUEKHzL0i4SmqoAWoOxA/F5f6JXnzaxIpS/IbnTzEnUoczwyKleJarq7o2IKIM9BbeGvTVWeQ/7k1ooqLSu1ikRJK4lEZLZw1mxO4Ff6pGx9a0s+Y4POt1m3ylG+IB5hMuIWlAz6wwTqC5/cy93z1X6ybzJUBJxyhAEoi/NQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9kCbXEAEVU62oQ29MBuWHA7B2lYm2gYVVW7wG/sxUTo=;
+ b=blr+YTX2t+jKjo4pGsXNwUk4hXbFTdz2yN1hSNQUAJwSdOhSLgZTkCcGmsxmD9pM8QhfsPeTjod6fc5s0Z4D/Ww1xLfZ4U5PUq2bIcKiKvk/lsXULbf6xtlTqLirMBLLrC5kEAMf+mEWwBzo+pDnLb9U9iKepPfnktgBKem7bUU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8630.eurprd04.prod.outlook.com (2603:10a6:10:2dd::15)
+ by AS4PR04MB9409.eurprd04.prod.outlook.com (2603:10a6:20b:4e8::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Wed, 23 Aug
+ 2023 07:34:44 +0000
+Received: from DU2PR04MB8630.eurprd04.prod.outlook.com
+ ([fe80::175:d311:2cb4:7915]) by DU2PR04MB8630.eurprd04.prod.outlook.com
+ ([fe80::175:d311:2cb4:7915%7]) with mapi id 15.20.6699.026; Wed, 23 Aug 2023
+ 07:34:44 +0000
+From:   Pankaj Gupta <pankaj.gupta@nxp.com>
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        clin@suse.com, conor+dt@kernel.org, pierre.gondois@arm.com,
+        ping.bai@nxp.com, xiaoning.wang@nxp.com, wei.fang@nxp.com,
+        peng.fan@nxp.com, haibo.chen@nxp.com, festevam@gmail.com,
+        linux-imx@nxp.com, davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
+        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
+        aisheng.dong@nxp.com, V.Sethi@nxp.com
+Cc:     Pankaj Gupta <pankaj.gupta@nxp.com>
+Subject: [PATCH v5 00/11] firmware: imx: NXP Secure-Enclave FW Driver
+Date:   Wed, 23 Aug 2023 13:03:19 +0530
+Message-Id: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0036.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::22) To DU2PR04MB8630.eurprd04.prod.outlook.com
+ (2603:10a6:10:2dd::15)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ktp5u4bmvdhpovpe"
-Content-Disposition: inline
-In-Reply-To: <AM7PR04MB70469E94D5FCFC46F51A72F3981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8630:EE_|AS4PR04MB9409:EE_
+X-MS-Office365-Filtering-Correlation-Id: 46ab42bf-6aed-4553-6cb9-08dba3ab6b56
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: /NYF6QXFP+GaVMlmKmepYiTssFRyVS4cTkzFGRvtskgNH0GYmrOWfu6V5KoFoMfS4MHAX/P4SzMRKp4MJOZyNMOMquin55RyyYiOzy3PRcm3Fb/pSwONtB2efDjWol8WKc2lefZj9V2HMlHaUD5YIJDu4WUP1LxcAaZZyNtJ44ZyiXqYG/qEhX+q3xet8IbJozPOpS8mMy3Ms4H1WP+E0wRzmLiXjk5Som2h8hH3OxHbfSnzq7UKOdWM5lwCSHMzHsKmfoZ6muRieiMXT9G1sJB1I0H3+bf13SydqU4mD0jRthuNSIXFDMpFzADVb60gil/z/5QlNA7R7m9zNDh+cyCUiz6BZCPnqF41RUdTOMjEOqrPBVspiqcmoL0mVvklqkEK4Eb3P7rXPgT8Hd0t0VccQYMPy5nez68rVJr0SIbQxv/n6M3uONMycbTQy3D8150xK0AkakFptUM1iK9IW92Ux3IgoB9DYt0CPGsp5C++Mjx1KEZnWbzrP9SMtX5WN437ix5cvK1lNcdjvaBXhwbu58xLGKByBAscxKU7kwboA15q/EDQUNX/qZr5cCrAgFmp9IxOLPeDO8z9+PgCyMgSVn8lq5VlHPqfZAFdHFQd/b9Gjsr0TaK9wV8S25Afb+9nATrJhH8nKzWcu0MK8A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(346002)(376002)(136003)(396003)(39860400002)(451199024)(1800799009)(186009)(2906002)(7416002)(38350700002)(52116002)(38100700002)(6506007)(6486002)(83380400001)(5660300002)(44832011)(26005)(86362001)(8676002)(2616005)(8936002)(4326008)(316002)(66946007)(6512007)(66556008)(66476007)(6636002)(478600001)(921005)(6666004)(36756003)(1076003)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?huVTqE/lkprhUZqF1k8a+E99fJrQjiEMS3TvEbn7WveRvuUqcCQgfaNI41AV?=
+ =?us-ascii?Q?eJD10cL0ZE1ddUrKSPKWD5LuNktS9PQ2OOMKtOrDpCqhkZ0Z/0pDi3N5PB2c?=
+ =?us-ascii?Q?3FCDSN3bAAP/IYOVWAAhpv1MQkrjqJdMQGyQSn383ibeDx38zoc177HKtqDh?=
+ =?us-ascii?Q?JfCZtVh+2cKEHqEOk8lhFpTT+HK3jVqID5HX3hg+mVWf7xAJ5OMh0a0MwjVa?=
+ =?us-ascii?Q?VkR4CXnGv4yV/c+nruVFqlEfqWyewQ8C/NBLK9rnbp+O44o1QsYpQ6b/EUBu?=
+ =?us-ascii?Q?UrI8Jj0UFR6kq8Icl9+qK2eovu1rcZqTeKeUAZ04sbZEI54hmiGO1kFqBuGK?=
+ =?us-ascii?Q?eQvpOcluHx4/I9M3bxllSA1Q8svzYV24FPTnnb5sCWwdnFLxXLkPuav9Zo5X?=
+ =?us-ascii?Q?OcaLEoHsgfTRz5zTDi3zfSCGV7LT+y9t+n9V5Mi+nkbsul0Cnm6pxPaUUpQ1?=
+ =?us-ascii?Q?OqwWf5RFkzHAj6gj9mzbeyRSgfB2nQMqJIURD13QJEgDVnsMEth3GrNK5fO9?=
+ =?us-ascii?Q?0dLBzYwcARQvegevw1yQS69z/ifhm1GJsN4HWZ4aS0KjQ83EOzcn29efSM8J?=
+ =?us-ascii?Q?fhRmR/7tU0SLc7ebIcU6nhz3MCkYp1hh7euIhjWxBGj8RJVErtkvliCRgMbw?=
+ =?us-ascii?Q?Rf4SOBaB5ncS0yF7P2GKaEkVZ+mUF2Hq2mIP8BPBAB+F21itn1/ahiepN22z?=
+ =?us-ascii?Q?aZVF95v2P7xEJWCx0M5eQMZeo6apnOWc7msFFg5f57g9lVrcVEYAHIjf4u5v?=
+ =?us-ascii?Q?4Yf7s6BxvXvOTvYS+d0EQRaDrilusBc+kiH7cPfHTuw+YVRfnkvl3ym1eg99?=
+ =?us-ascii?Q?BqrNUx0xDdz/sS6Ok7PsOqslDKiXy6m50DEhN/HPYCR14ojBqUnoRPMsn+AS?=
+ =?us-ascii?Q?+2GB5s5glsy1M4SejAahiwpRFz6ozfWjAhp3CZ1jLrScaW8EakB+YqqChe3a?=
+ =?us-ascii?Q?YdF1YMtNsgJaZlg4AKC35lJRxQVkMP2dzlbnS3IiZsfMWbEMcCTM90GLe42X?=
+ =?us-ascii?Q?6i5YO3MUa+/jU4nwVhPNE6Gf2j+sLLXfDsgWD26Xp63cyeGVjTumUli43HT8?=
+ =?us-ascii?Q?Vk0ZYc933ZlmK+vhHdDhzCd/3SnTy4zT+dn1ERyb4BtbL3egoqjCXO+2P0Gh?=
+ =?us-ascii?Q?irJUM56JZDzbrZ3bNqb3Tm8fADrszvOuNSThJtzgfqyKkC8RYCOVXFASZvut?=
+ =?us-ascii?Q?5r3N4BYJlQhIUo61mxHFmqgWukMWlBt0dUyK2Z6fhUvrL7i2J+HmUVm+Ek7u?=
+ =?us-ascii?Q?CDDJhCnInTo7hbWgUPcRRZkvHmTBH1675h1BhMJjw6v5XLUGn0DMWdEypKZp?=
+ =?us-ascii?Q?/9P+ArLRXgF7Im2nFBs4xpye551VZzFIeNxc1ES8H8CLqAB1ZfjNtAtAxsim?=
+ =?us-ascii?Q?0HMN74DuQvMQQjtk3olS1sAK//mmddUku99PyFaOkiQ6ep/b1lK8+r1Bt/id?=
+ =?us-ascii?Q?gsqP0I/8NTshJ78QZ4zt2dJ05fyIgOWaXPy4ItP8kxmdWxDhiMC5FGEs6mMj?=
+ =?us-ascii?Q?PVbCFaY19311PtOnhKicP8+8yNCK/8czgSJNjHIgzPJiOzbvnYsifxMrCyzM?=
+ =?us-ascii?Q?EVKohZOp5SH+hsRF1T+wFtt/f2cbCH/LvUP0WaC/?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46ab42bf-6aed-4553-6cb9-08dba3ab6b56
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8630.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 07:34:44.1347
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: I2NAcIcn7LhXQInHEYfOH+5pNVcpfmFj5HvGgOg4rtMuWiZEjjWhYlyuV2q18tHJh5jb4AuodSuuvqFROKrywQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9409
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+v5 Changes:
+  - 1/7 DT Binding: Disposed off comments from .yaml
+	-- to use "-", instead of "_".
+	-- to use generic name, concatinated with soc-id.
+	-- removed mu-did.
+	-- renamed the ele-mu to se-fw
+	-- moved the file from .../arm/freescale/ to .../firmware/
+  - 2/7 Changed the .dtsi, as per the comments.
+	-- removed mu-did
+	-- renamed the ele_mu to se-fw.
+	-- updated the compatible string.
+	-- tested the DTB.
+  - 4/7  Changed the .dtsi, as per the comments.
+	-- removed mu-did
+	-- renamed the ele_mu to se-fw.
+	-- updated the compatible string.
+	-- tested the DTB.
+  - 6/7 Changes in driver code:
+	-- replace pr_err with dev_err
+	-- removed export symbols, except one, which will be used in other driver.
+	-- Each API, send-recived based on device reference.
+	-- Divided the commits into smaller commits.
+		- Base Driver
+			-- Added ABI file.
+		- exchange init-fw message with enclave's fw
+		- enabled TRNG
+		- read-common-fuses
 
---ktp5u4bmvdhpovpe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v4 Changes:
+- Post internal review, changed the name from "ele-mu" to "se-fw".
+- Disposed-off comments in the dt-binding file.
+- Removed the non-hw related dt-bindings from the driver code.
+- Corrected the File MAINTAINERS for correct name of yaml file.
 
-On Wed, Aug 23, 2023 at 02:45:53AM +0000, Ying Liu wrote:
-> On  Tuesday, August 22, 2023 7:47 PM Maxime Ripard <mripard@kernel.org> w=
-rote:
-> >=20
-> > Hi,
->=20
-> Hi Maxime,
->=20
-> Thanks for your review.
->=20
-> >=20
-> > On Tue, Aug 22, 2023 at 04:59:44PM +0800, Liu Ying wrote:
-> > > This patch adds bindings for i.MX8qxp/qm Display Processing Unit.
-> > >
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > ---
-> > > v7->v14:
-> > > * No change.
-> > >
-> > > v6->v7:
-> > > * Add Rob's R-b tag back.
-> > >
-> > > v5->v6:
-> > > * Use graph schema. So, drop Rob's R-b tag as review is needed.
-> > >
-> > > v4->v5:
-> > > * No change.
-> > >
-> > > v3->v4:
-> > > * Improve compatible property by using enum instead of oneOf+const.
-> > (Rob)
-> > > * Add Rob's R-b tag.
-> > >
-> > > v2->v3:
-> > > * No change.
-> > >
-> > > v1->v2:
-> > > * Fix yamllint warnings.
-> > > * Require bypass0 and bypass1 clocks for both i.MX8qxp and i.MX8qm, as
-> > the
-> > >   display controller subsystem spec does say that they exist.
-> > > * Use new dt binding way to add clocks in the example.
-> > > * Trivial tweaks for the example.
-> > >
-> > >  .../bindings/display/imx/fsl,imx8qxp-dpu.yaml | 387 ++++++++++++++++=
-++
-> > >  1 file changed, 387 insertions(+)
-> > >  create mode 100644
-> > Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-dpu.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,imx8qx=
-p-
-> > dpu.yaml b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-
-> > dpu.yaml
-> > > new file mode 100644
-> > > index 000000000000..6b05c586cd9d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/imx/fsl,imx8qxp-
-> > dpu.yaml
-> > > @@ -0,0 +1,387 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/imx/fsl,imx8qxp-dpu.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Freescale i.MX8qm/qxp Display Processing Unit
-> > > +
-> > > +maintainers:
-> > > +  - Liu Ying <victor.liu@nxp.com>
-> > > +
-> > > +description: |
-> > > +  The Freescale i.MX8qm/qxp Display Processing Unit(DPU) is comprise=
-d of
-> > two
-> > > +  main components that include a blit engine for 2D graphics acceler=
-ations
-> > > +  and a display controller for display output processing, as well as=
- a
-> > command
-> > > +  sequencer.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - fsl,imx8qxp-dpu
-> > > +      - fsl,imx8qm-dpu
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    items:
-> > > +      - description: |
-> > > +          store9 shadow load interrupt(blit engine)
-> > > +      - description: |
-> > > +          store9 frame complete interrupt(blit engine)
-> > > +      - description: |
-> > > +          store9 sequence complete interrupt(blit engine)
-> > > +      - description: |
-> > > +          extdst0 shadow load interrupt
-> > > +          (display controller, content stream 0)
-> > > +      - description: |
-> > > +          extdst0 frame complete interrupt
-> > > +          (display controller, content stream 0)
-> > > +      - description: |
-> > > +          extdst0 sequence complete interrupt
-> > > +          (display controller, content stream 0)
-> > > +      - description: |
-> > > +          extdst4 shadow load interrupt
-> > > +          (display controller, safety stream 0)
-> > > +      - description: |
-> > > +          extdst4 frame complete interrupt
-> > > +          (display controller, safety stream 0)
-> > > +      - description: |
-> > > +          extdst4 sequence complete interrupt
-> > > +          (display controller, safety stream 0)
-> > > +      - description: |
-> > > +          extdst1 shadow load interrupt
-> > > +          (display controller, content stream 1)
-> > > +      - description: |
-> > > +          extdst1 frame complete interrupt
-> > > +          (display controller, content stream 1)
-> > > +      - description: |
-> > > +          extdst1 sequence complete interrupt
-> > > +          (display controller, content stream 1)
-> > > +      - description: |
-> > > +          extdst5 shadow load interrupt
-> > > +          (display controller, safety stream 1)
-> > > +      - description: |
-> > > +          extdst5 frame complete interrupt
-> > > +          (display controller, safety stream 1)
-> > > +      - description: |
-> > > +          extdst5 sequence complete interrupt
-> > > +          (display controller, safety stream 1)
-> > > +      - description: |
-> > > +          disengcfg0 shadow load interrupt
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          disengcfg0 frame complete interrupt
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          disengcfg0 sequence complete interrupt
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          framegen0 programmable interrupt0
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          framegen0 programmable interrupt1
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          framegen0 programmable interrupt2
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          framegen0 programmable interrupt3
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          signature0 shadow load interrupt
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          signature0 measurement valid interrupt
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          signature0 error condition interrupt
-> > > +          (display controller, display stream 0)
-> > > +      - description: |
-> > > +          disengcfg1 shadow load interrupt
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          disengcfg1 frame complete interrupt
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          disengcfg1 sequence complete interrupt
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          framegen1 programmable interrupt0
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          framegen1 programmable interrupt1
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          framegen1 programmable interrupt2
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          framegen1 programmable interrupt3
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          signature1 shadow load interrupt
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          signature1 measurement valid interrupt
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          signature1 error condition interrupt
-> > > +          (display controller, display stream 1)
-> > > +      - description: |
-> > > +          command sequencer error condition interrupt(command sequen=
-cer)
-> > > +      - description: |
-> > > +          common control software interrupt0(common control)
-> > > +      - description: |
-> > > +          common control software interrupt1(common control)
-> > > +      - description: |
-> > > +          common control software interrupt2(common control)
-> > > +      - description: |
-> > > +          common control software interrupt3(common control)
-> > > +      - description: |
-> > > +          framegen0 synchronization status activated interrupt
-> > > +          (display controller, safety stream 0)
-> > > +      - description: |
-> > > +          framegen0 synchronization status deactivated interrupt
-> > > +          (display controller, safety stream 0)
-> > > +      - description: |
-> > > +          framegen0 synchronization status activated interrupt
-> > > +          (display controller, content stream 0)
-> > > +      - description: |
-> > > +          framegen0 synchronization status deactivated interrupt
-> > > +          (display controller, content stream 0)
-> > > +      - description: |
-> > > +          framegen1 synchronization status activated interrupt
-> > > +          (display controller, safety stream 1)
-> > > +      - description: |
-> > > +          framegen1 synchronization status deactivated interrupt
-> > > +          (display controller, safety stream 1)
-> > > +      - description: |
-> > > +          framegen1 synchronization status activated interrupt
-> > > +          (display controller, content stream 1)
-> > > +      - description: |
-> > > +          framegen1 synchronization status deactivated interrupt
-> > > +          (display controller, content stream 1)
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: store9_shdload
-> > > +      - const: store9_framecomplete
-> > > +      - const: store9_seqcomplete
-> > > +      - const: extdst0_shdload
-> > > +      - const: extdst0_framecomplete
-> > > +      - const: extdst0_seqcomplete
-> > > +      - const: extdst4_shdload
-> > > +      - const: extdst4_framecomplete
-> > > +      - const: extdst4_seqcomplete
-> > > +      - const: extdst1_shdload
-> > > +      - const: extdst1_framecomplete
-> > > +      - const: extdst1_seqcomplete
-> > > +      - const: extdst5_shdload
-> > > +      - const: extdst5_framecomplete
-> > > +      - const: extdst5_seqcomplete
-> > > +      - const: disengcfg_shdload0
-> > > +      - const: disengcfg_framecomplete0
-> > > +      - const: disengcfg_seqcomplete0
-> > > +      - const: framegen0_int0
-> > > +      - const: framegen0_int1
-> > > +      - const: framegen0_int2
-> > > +      - const: framegen0_int3
-> > > +      - const: sig0_shdload
-> > > +      - const: sig0_valid
-> > > +      - const: sig0_error
-> > > +      - const: disengcfg_shdload1
-> > > +      - const: disengcfg_framecomplete1
-> > > +      - const: disengcfg_seqcomplete1
-> > > +      - const: framegen1_int0
-> > > +      - const: framegen1_int1
-> > > +      - const: framegen1_int2
-> > > +      - const: framegen1_int3
-> > > +      - const: sig1_shdload
-> > > +      - const: sig1_valid
-> > > +      - const: sig1_error
-> > > +      - const: cmdseq_error
-> > > +      - const: comctrl_sw0
-> > > +      - const: comctrl_sw1
-> > > +      - const: comctrl_sw2
-> > > +      - const: comctrl_sw3
-> > > +      - const: framegen0_primsync_on
-> > > +      - const: framegen0_primsync_off
-> > > +      - const: framegen0_secsync_on
-> > > +      - const: framegen0_secsync_off
-> > > +      - const: framegen1_primsync_on
-> > > +      - const: framegen1_primsync_off
-> > > +      - const: framegen1_secsync_on
-> > > +      - const: framegen1_secsync_off
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 8
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: axi
-> > > +      - const: cfg
-> > > +      - const: pll0
-> > > +      - const: pll1
-> > > +      - const: bypass0
-> > > +      - const: bypass1
-> > > +      - const: disp0
-> > > +      - const: disp1
-> > > +
-> > > +  power-domains:
-> > > +    items:
-> > > +      - description: DC power-domain
-> > > +      - description: PLL0 power-domain
-> > > +      - description: PLL1 power-domain
-> > > +
-> > > +  power-domain-names:
-> > > +    items:
-> > > +      - const: dc
-> > > +      - const: pll0
-> > > +      - const: pll1
-> > > +
-> > > +  fsl,dpr-channels:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +    description: |
-> > > +      List of phandle which points to DPR channels associated with
-> > > +      this DPU instance.
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: The DPU output port node from display stream0.
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: The DPU output port node from display stream1.
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > > +      - port@1
-> >=20
-> > Generally speaking, and looking at the main KMS drivers patch, it really
-> > looks like it's multiple device glued as one, with the driver un-gluing
-> > them and creating devices and their resources based on what actual
-> > devices you have in there.
-> >=20
-> > It's especially obvious for the CRTCs, and to some extent the embedded
-> > interrupt controller you have in your driver.
-> >=20
-> > This is *very* far from the usual way of describing things in the device
-> > tree, and you would usually have a driver that doesn't take care of
-> > creating the devices, because they are properly described in the device
-> > tree.
->=20
-> The DPU core driver(dpu-core.c) creates platform devices only for CRTCs,
-> no other device is created.  The CRTC devices, as components, are bound
-> together with the DPU DRM master device.  i.MX8qm SoC embeds two
-> DPU IPs, while i.MX8qxp SoC embeds one.  Each DPU supports two CRTCs.
-> So, e.g., for i.MX8qm, there could be at most four CRTCs under the imx8-d=
-pu
-> umbrella.
+v3 Changes:
+- update the commit message for documentation.
+- Fixed dt-binding checking error for file- fsl,ele_mu.yaml
+- Coverity fixes in the ele_mu.c
 
-Yeah, and that's fine. It should all be separate devices in the device
-tree though.
+v2 Changes:
+- Fixed Kernel Test Bot issues.
+- Removed ".../devicetree/bindings/mailbox/fsl,muap.txt"
 
-> > If you have a good reason to deviate from that design, then it should be
-> > explicitly discussed and explained.
->=20
-> The DPU is one single IP which cannot be split into separate devices.
+The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded
+secure enclave within the SoC boundary to enable features like
+- HSM
+- SHE
+- V2X
 
-Sure it can, your driver does so already by splitting it into several
-devices and accessing registers based on their stream_id.
+Communicates via message unit with linux kernel. This driver
+is enables communication ensuring well defined message sequence
+protocol between Application Core and enclave's firmware.
 
-> The "IPIdentifer" register in DPU register map kind of provides version
-> information for the IP.
+Driver configures multiple misc-device on the MU, for multiple
+user-space applications can communicate on single MU.
 
-That's fine too, just read the version register in the main KMS driver,
-every other component will then have access to it.
+It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
 
-> This dt-binding just follows generic dt-binding rule to describe the DPU =
-IP
-> hardware, not the software implementation.  DPU internal units do not
-> constitute separate devices.
+Pankaj Gupta (11):
+  dt-bindings: arm: fsl: add imx-se-fw binding doc
+  arm64: dts: imx8ulp-evk: added nxp secure enclave firmware
+  arm64: dts: imx8ulp-evk: reserved mem-ranges to constrain ele_fw
+    dma-range
+  arm64: dts: imx93-11x11-evk: added nxp secure enclave fw
+  arm64: dts: imx93-11x11-evk: reserved mem-ranges to constrain ele_fw
+    dma-range
+  firmware: imx: add driver for NXP EdgeLock Enclave
+  firmware: imx: init-fw api exchange on imx93
+  firmware: imx: enable trng
+  firmware: imx: enclave-fw: add handling for save/restore IMEM region
+  firmware: imx: enclave api to read-common-fuses
+  MAINTAINERS: Added maintainer details
 
-I mean, your driver does split them into separate devices so surely it
-constitutes separate devices.
+ Documentation/ABI/testing/se-cdev             |   29 +
+ .../bindings/firmware/fsl,imx-se-fw.yaml      |  121 ++
+ MAINTAINERS                                   |   10 +
+ arch/arm64/boot/dts/freescale/imx8ulp-evk.dts |   15 +
+ arch/arm64/boot/dts/freescale/imx8ulp.dtsi    |   11 +-
+ .../boot/dts/freescale/imx93-11x11-evk.dts    |   15 +
+ arch/arm64/boot/dts/freescale/imx93.dtsi      |   10 +-
+ drivers/firmware/imx/Kconfig                  |   21 +
+ drivers/firmware/imx/Makefile                 |    3 +
+ drivers/firmware/imx/ele_base_msg.c           |  272 ++++
+ drivers/firmware/imx/ele_common.c             |  188 +++
+ drivers/firmware/imx/ele_common.h             |   31 +
+ drivers/firmware/imx/ele_fw_api.c             |  110 ++
+ drivers/firmware/imx/ele_trng.c               |   48 +
+ drivers/firmware/imx/se_fw.c                  | 1274 +++++++++++++++++
+ drivers/firmware/imx/se_fw.h                  |  176 +++
+ include/linux/firmware/imx/ele_base_msg.h     |   66 +
+ include/linux/firmware/imx/ele_fw_api.h       |   24 +
+ include/linux/firmware/imx/ele_mu_ioctl.h     |   52 +
+ 19 files changed, 2474 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/ABI/testing/se-cdev
+ create mode 100644 Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
+ create mode 100644 drivers/firmware/imx/ele_base_msg.c
+ create mode 100644 drivers/firmware/imx/ele_common.c
+ create mode 100644 drivers/firmware/imx/ele_common.h
+ create mode 100644 drivers/firmware/imx/ele_fw_api.c
+ create mode 100644 drivers/firmware/imx/ele_trng.c
+ create mode 100644 drivers/firmware/imx/se_fw.c
+ create mode 100644 drivers/firmware/imx/se_fw.h
+ create mode 100644 include/linux/firmware/imx/ele_base_msg.h
+ create mode 100644 include/linux/firmware/imx/ele_fw_api.h
+ create mode 100644 include/linux/firmware/imx/ele_mu_ioctl.h
 
-Maxime
+-- 
+2.34.1
 
---ktp5u4bmvdhpovpe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOW2CwAKCRDj7w1vZxhR
-xbnLAP9Y36AdFk8XzOZEJZpJRr1hs65z15Xir93pfysw9ivxOQD+KXmdtF+Z4w6P
-O3s8WhaLg44GsH8nPub0HWgjyVcD2QE=
-=Ecdc
------END PGP SIGNATURE-----
-
---ktp5u4bmvdhpovpe--
