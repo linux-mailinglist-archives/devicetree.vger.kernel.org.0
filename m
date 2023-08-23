@@ -2,109 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A06785558
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A77B785569
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233351AbjHWK2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:28:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37082 "EHLO
+        id S233798AbjHWKc2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:32:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233546AbjHWK2G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:28:06 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA566CDF
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:28:03 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52a39a1c4d5so675301a12.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:28:03 -0700 (PDT)
+        with ESMTP id S230372AbjHWKc1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:32:27 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7094219A;
+        Wed, 23 Aug 2023 03:32:25 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b9cdba1228so85672291fa.2;
+        Wed, 23 Aug 2023 03:32:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692786482; x=1693391282;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LvuM6nH/6YTcW3ITFvO/Bk7VYEFeQzFDDqKyQWsxLTw=;
-        b=s4yv90Ye5ZCzokXtN4s7jyCBjT1XtE9sLqRTtM+TGaVXzEdNBeg/shxGyys5+CXV1S
-         uLea2QbwxHyo6pLCo/DQ/AWDXA0GDrCSnZEj5EKfGITZy4wzMKFgsmNqbqofjsgmYJaF
-         j8eFzMsvuvTOERw/E0w17i5/Gd+HT/wkyLpN+/f9t/f/uAryMeVASqzvrAJoPbvySNwO
-         Pbmf8Fguwn8nV7kLQjr+Vsm01aNH9zf/VtrB0BCEXiNtIE8x8kURkKiOQyAnKhwwsb5l
-         OmLxSnSeJCHixQ4UjvIeeMPC5wj/no2RDheX/hJ7m6ReuugThDYUgnfpqvYQ76hNAlk9
-         hRIw==
+        d=gmail.com; s=20221208; t=1692786743; x=1693391543;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZB2pJrofs4LzfpbPkQ+FsUFAgB6oSJLqrd6m25MNmGA=;
+        b=BYK3wl1zDwUSOmpgxxM1qMGVXhqyrppyB9kP5BBOGUSZRDalC37zF34c07SjncxfAE
+         mOWVErvXR95tWakhBpah5Y7jvQ/QNEZaCBrl+UTzun2OTK7I/3aebLlMdL5r1Zo41A9R
+         4kvrfEfCNKjHUzzPMv9/KPhfaWyeznRzbiT0A1v3cRG0C2CKVVkyozkO+zp7LdHPAwct
+         +qYLkLCppYtZdAmsYdVvjflWc0C5gflzGGfS6QneNsu1MTBToF1k3ZZPqYbEf8Jaja+X
+         LZGv7Mkxvampd0OHC7QeqkkIpVNwSSidiCDThSJNYSJd3RyhzsyD3is3njBf0T99bwC1
+         a7Mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692786482; x=1693391282;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LvuM6nH/6YTcW3ITFvO/Bk7VYEFeQzFDDqKyQWsxLTw=;
-        b=A1RbqxWmu/KcrDvXG0F/GWFCE91NFx48jT997VjVXHHkPuInmyvPj0ZNXpOfjhYn90
-         O6JttIY3AoyRVLgdwmqNSRbCJ1iZTJ8TquMuU838UPBxemHld+2Cp2miNNTjR1rmE774
-         99wC0iIk3vE/MKz91PAmDS+0Xb2hDD8fMc4mq4z2+miL0K2qrlUiZOFoDY4JUYnRHql6
-         pVffzSExw/oT49habPPzYrGeksmg/QYWRd7P7L7/SHMYnMbvEuP5ixsviC+5aiQ2MQNv
-         Ano3oc64xOLcYP8r95VYbs78snTXmOzoFh1Abe9n1bisze2NRONShhrM8MlVPUCudeFU
-         ajSg==
-X-Gm-Message-State: AOJu0YxSSRztHrppK0r+adlebzlsKV01eTdm916iCX1GFSY121VAIIfV
-        QZiLraf5i2jMfeJpq26Oje9GxA==
-X-Google-Smtp-Source: AGHT+IE//Pwjfo6u+MtWZyKJA0HohzqHgPMid1AFmo38HTxFEDwtEQR4MyJvQlnomEzgKPp6yv1HGA==
-X-Received: by 2002:a05:6402:124f:b0:522:bae5:282a with SMTP id l15-20020a056402124f00b00522bae5282amr10061971edw.1.1692786482420;
-        Wed, 23 Aug 2023 03:28:02 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id b1-20020aa7df81000000b00528dc95ad4bsm8497247edy.95.2023.08.23.03.28.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 03:28:01 -0700 (PDT)
-Message-ID: <715b3a1e-a7bb-6ca7-e402-05b0e09dbe42@linaro.org>
-Date:   Wed, 23 Aug 2023 12:28:00 +0200
+        d=1e100.net; s=20221208; t=1692786743; x=1693391543;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZB2pJrofs4LzfpbPkQ+FsUFAgB6oSJLqrd6m25MNmGA=;
+        b=b/qpV0GdZkV4+Me95XWyQ4JK3sszikhr6wdBwEhuW5xbcXUqBZGVHn5YVU5JJohwk2
+         Mj9jkTzQ66BMxNGw2QhAMGQ3hyYZIsvtbG8FU7u/C2d8qtmv2E5zFKNaypjrzXIh0niV
+         PjjLmq4hdctxKe03OnFhvG4m4vLQvwQFdICd+XHn9YdMDOkAEcy3RFJ/bVlKJfweZcoV
+         9sCHAvOtzzKeC3et8OX982ZaDt2OADWzN6y7G8/8hf3YzoSbj4WcnfeJlJ3wzt6jz1Mb
+         ow4Y+88pCQAg67xiodBl4PsWSYW8cn5IOSKxUsDoeyfMy1nsSrVodwExdAP0jubqDzGY
+         +kaQ==
+X-Gm-Message-State: AOJu0YyrdgGNVECUlXaLv761/TPdfTyb3rDOF5arhRbxcMkAHdsAz919
+        IqbSuNLiutBozS0NXrpgk9w=
+X-Google-Smtp-Source: AGHT+IFEf2//JCh/6d/J1+nsLndYyqZaB7YKabSBR9Bbx3WPt694cFFrWriXNoNgVdMUv9lFpSxWWQ==
+X-Received: by 2002:a2e:8014:0:b0:2b6:e618:b593 with SMTP id j20-20020a2e8014000000b002b6e618b593mr9419710ljg.31.1692786743473;
+        Wed, 23 Aug 2023 03:32:23 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id v16-20020a2e9f50000000b002b70a8478ddsm3169455ljk.44.2023.08.23.03.32.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 03:32:23 -0700 (PDT)
+Date:   Wed, 23 Aug 2023 13:32:19 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v19 04/19] PCI: designware-ep: Add INTx IRQs support
+Message-ID: <m76plvpf5zfvrajtnqycagp5yyd7c2njunn3clux2svof6zh27@gquktcx4n7qm>
+References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230823091153.2578417-5-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 2/4] dt-bindings: clock: add qca8386/qca8084 clock and
- reset definitions
-To:     Jie Luo <quic_luoj@quicinc.com>, andersson@kernel.org,
-        agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de
-Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_srichara@quicinc.com
-References: <20230823085031.27252-1-quic_luoj@quicinc.com>
- <20230823085031.27252-3-quic_luoj@quicinc.com>
- <692b7775-eeda-3c5b-cc24-c5dbdbb38c71@linaro.org>
- <7eaca76f-e7ad-cb1c-5a1d-5a2b68357e9c@quicinc.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7eaca76f-e7ad-cb1c-5a1d-5a2b68357e9c@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230823091153.2578417-5-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 12:24, Jie Luo wrote:
->>> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
->>
->> You ignored tag, so I wrote you friendly reminder. You responded:
->>
->> "Okay, got it, thanks Krzysztof for the reminder."
->>
->> so again you ignored the tag?
->>
->> No, come on. Doing mistakes is fine. Doing the same mistakes over and
->> over is not fine.
->>
->> Best regards,
->> Krzysztof
->>
-> oh, sorry for missed stating the reason for the tag removed, this patch 
-> is updated, i forget to state the reason that the register address is 
-> changed from 24 to 0x10, i will keep this in mind and add this info in 
-> the next patch set.
+On Wed, Aug 23, 2023 at 06:11:38PM +0900, Yoshihiro Shimoda wrote:
+> Add support for triggering INTx IRQs by using outbound iATU.
+> Outbound iATU is utilized to send assert and de-assert INTA TLPs
+> as simulated edge IRQ for INTA. (Other INT[BCD] are not asserted.)
+> This INTx support is optional (if there is no memory for INTx,
+> probe will not fail).
+> 
+> The message is generated based on the payloadless Msg TLP with type
+> 0x14, where 0x4 is the routing code implying the Terminate at
+> Receiver message. The message code is specified as b1000xx for
+> the INTx assertion and b1001xx for the INTx de-assertion.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> ---
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 70 +++++++++++++++++--
+>  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
+>  2 files changed, 68 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 747d5bc07222..4a8c116cdd4b 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -6,9 +6,11 @@
+>   * Author: Kishon Vijay Abraham I <kishon@ti.com>
+>   */
+>  
+> +#include <linux/delay.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+>  
+> +#include "../../pci.h"
+>  #include "pcie-designware.h"
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+> @@ -484,14 +486,61 @@ static const struct pci_epc_ops epc_ops = {
+>  	.get_features		= dw_pcie_ep_get_features,
+>  };
+>  
+> +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
+> +			       u8 routing)
+> +{
+> +	struct dw_pcie_ob_atu_cfg atu = { 0 };
+> +	struct pci_epc *epc = ep->epc;
+> +	int ret;
+> +
+> +	atu.func_no = func_no;
+> +	atu.code = code;
+> +	atu.routing = routing;
+> +	atu.type = PCIE_ATU_TYPE_MSG;
+> +	atu.cpu_addr = ep->intx_mem_phys;
+> +	atu.size = epc->mem->window.page_size;
+> +
+> +	ret = dw_pcie_ep_outbound_atu(ep, &atu);
+> +	if (ret)
+> +		return ret;
+> +
 
-That's not really a reason for dropping the tag.
+> +	/* A MWr with an effecitive length of '0' is converted to Msg */
 
-Best regards,
-Krzysztof
+1. writel() means 4-byte IO-write. What is the "effecitive" length you are
+talking about?
+2. You don't generate MWr TLP here. It's Msg TLP. See the atu.type you
+specified.
+3. s/effecitive/effective
 
+> +	writel(0, ep->intx_mem);
+
+IMO what is done here is a dummy-write triggering the INTx Msg being
+generated. I bet you could have done it within any address from
+ep->intx_mem to (ep->intx_mem + epc->mem->window.page_size) and by
+writing any value, not only 0 because the Msg TLP doesn't have the
+memory address and data.
+
+-Serge(y)
+
+> +
+> +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
+> +
+> +	return 0;
+> +}
+> +
+>  int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>  	struct device *dev = pci->dev;
+> +	int ret;
+>  
+> -	dev_err(dev, "EP cannot trigger legacy IRQs\n");
+> +	if (!ep->intx_mem) {
+> +		dev_err(dev, "legacy IRQs not supported\n");
+> +		return -EOPNOTSUPP;
+> +	}
+>  
+> -	return -EINVAL;
+> +	/*
+> +	 * Even though the PCI bus specification implies the level-triggered
+> +	 * INTx interrupts the kernel PCIe endpoint framework has a single
+> +	 * PCI_EPC_IRQ_INTx flag defined for the legacy IRQs simulation. Thus
+> +	 * this function sends the Deassert_INTx PCIe TLP after the Assert_INTx
+> +	 * message with the 50 usec duration basically implementing the
+> +	 * rising-edge triggering IRQ. Hopefully the interrupt controller will
+> +	 * still be able to register the incoming IRQ event...
+> +	 */
+> +	ret = dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_ASSERT_INTA,
+> +				  PCI_MSG_TYPE_R_ROUTING_LOCAL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(50, 100);
+> +
+> +	return dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_DEASSERT_INTA,
+> +				   PCI_MSG_TYPE_R_ROUTING_LOCAL);
+>  }
+>  EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_legacy_irq);
+>  
+> @@ -622,6 +671,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
+>  
+>  	dw_pcie_edma_remove(pci);
+>  
+> +	if (ep->intx_mem)
+> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
+> +				      epc->mem->window.page_size);
+> +
+>  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
+>  			      epc->mem->window.page_size);
+>  
+> @@ -793,9 +846,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  		goto err_exit_epc_mem;
+>  	}
+>  
+> +	ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
+> +					      epc->mem->window.page_size);
+> +	if (!ep->intx_mem)
+> +		dev_warn(dev, "Failed to reserve memory for INTx\n");
+> +
+>  	ret = dw_pcie_edma_detect(pci);
+>  	if (ret)
+> -		goto err_free_epc_mem;
+> +		goto err_free_epc_mem_intx;
+>  
+>  	if (ep->ops->get_features) {
+>  		epc_features = ep->ops->get_features(ep);
+> @@ -812,7 +870,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  err_remove_edma:
+>  	dw_pcie_edma_remove(pci);
+>  
+> -err_free_epc_mem:
+> +err_free_epc_mem_intx:
+> +	if (ep->intx_mem)
+> +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
+> +				      epc->mem->window.page_size);
+> +
+>  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
+>  			      epc->mem->window.page_size);
+>  
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index d31c018a3803..c17e5255fab6 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -365,6 +365,8 @@ struct dw_pcie_ep {
+>  	unsigned long		*ob_window_map;
+>  	void __iomem		*msi_mem;
+>  	phys_addr_t		msi_mem_phys;
+> +	void __iomem		*intx_mem;
+> +	phys_addr_t		intx_mem_phys;
+>  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
+>  };
+>  
+> -- 
+> 2.25.1
+> 
