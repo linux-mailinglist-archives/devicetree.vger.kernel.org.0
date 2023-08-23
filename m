@@ -2,197 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B4B678591A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 15:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45AB9785936
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 15:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233253AbjHWNXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 09:23:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55718 "EHLO
+        id S234225AbjHWN15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 09:27:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbjHWNXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 09:23:50 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DAD8E75;
-        Wed, 23 Aug 2023 06:23:18 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-317c3ac7339so4836248f8f.0;
-        Wed, 23 Aug 2023 06:23:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692796968; x=1693401768;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pzn+5bTpnSMNwUuNyyowNMIJDQZpkAi+7c7mgKTYoME=;
-        b=r6cn6rzIz0BUUjfTlEntcGmnQ1emT1LcuHfH0giUjqFalgnkFVgfmPmYn4JnZIGvGd
-         8vq36GiD1N7HPhbhCHGX/Vxtvs65nKwerH03TLGgA3Jh5i1/nmPkBqtxZiXkbYi8oD6w
-         K1UDpRQ5E5lLyAgjOBLJlKxACcWjaQUsQW2UVrjreVK0Idl3G7ovSzSNA8ZESvKUFo0M
-         ecZOdNlHkEQ4Ydi6elupAad5t7dKX48Z6n1ZhtAKWKVyVA57ib5L1rjRAO57N1NXxj7E
-         p7WSuw7k1/I+LKkLYV9HyAAmeIPbanf8mZR+mwtRVA4R9Ttdiuz3m5nwzUIsTQZjLgj4
-         FRTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692796968; x=1693401768;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pzn+5bTpnSMNwUuNyyowNMIJDQZpkAi+7c7mgKTYoME=;
-        b=TtCByPA6kzGkHy6R4HEjqHuLQAzA+YyJiTpd5DvuvXWzixhOctoIpGKFRtUgBmSXGL
-         JAqWTVdGPdXlNsmH0ms+sVmZV7DQqJvS2zngIwMQY9RKSP/IgTfmnPPuqKATBKyi+VFZ
-         opaHJTAbd0SCZEG/0JmRSXQV1I87wx91qZ9SphJvcF4Da/ec+a9+b1XyDSsY3Quqc/ug
-         ES39q88ik1oGfYe5kEj1Fi934heXIgIP8uZhQqXtvpOIbRDcR/jBQ1TVETALQykLmq04
-         VMO6RxtqnpzVYxbglZrvmDLAIHBj0AnOMX32fS2LNeStwSSw4xwub/8JpLVMRhCEikbB
-         +x1Q==
-X-Gm-Message-State: AOJu0YwIRFFj8MeN+m8Hm1DP/ZWbZu7eUu1KoHMGhPzZiKXb+VL/nvFs
-        LpOji0I6nGkYHAXqJgG1wRM=
-X-Google-Smtp-Source: AGHT+IE1gUkkpuMyRPjYkQSA46YH3/bOWjgb5ixYadB1u37Wfo9A/dssTd2q0MBm9JbD7/LteuPZ8g==
-X-Received: by 2002:a5d:4573:0:b0:315:ad1a:5abc with SMTP id a19-20020a5d4573000000b00315ad1a5abcmr9228900wrc.5.1692796967751;
-        Wed, 23 Aug 2023 06:22:47 -0700 (PDT)
-Received: from localhost ([37.174.115.23])
-        by smtp.gmail.com with ESMTPSA id p6-20020a5d68c6000000b00317f70240afsm19353163wrw.27.2023.08.23.06.22.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 06:22:47 -0700 (PDT)
-From:   Raphael Gallais-Pou <rgallaispou@gmail.com>
-To:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: phy: st: convert phy-stih407-usb to DT schema
-Date:   Wed, 23 Aug 2023 15:22:24 +0200
-Message-ID: <20230823132224.111326-1-rgallaispou@gmail.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S235984AbjHWN1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 09:27:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F40E6A;
+        Wed, 23 Aug 2023 06:27:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 494CD6249A;
+        Wed, 23 Aug 2023 13:27:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F0FC433C8;
+        Wed, 23 Aug 2023 13:26:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692797219;
+        bh=o0sg+HSgtc1t1FPAAWrCHcZYgvHkKUMPnoMkvMBlVJ4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KUfDM3xYQvKgSIFrMEEm+urIv68S7zPmz7NhXv1uCpX6tw7aFsz3rTV+6YW45lg8X
+         BVzW9ZJnfEvdh+Ml5s/BzJsiuIIw3BZm+dtGOX1duNfQix6d0/VEYJ5PsBQQlir2tL
+         MJvXduFn9jZES7JZdZ6hcxlydbAIKJwWKuBA/Fg0xWFdN5aNL0XGrJtuEDF1r1bM1i
+         Ob0KeoFsoy4+/T8SihJYnaSHz6H7SgPazDkHSr1GqYzpZZBh9DPdN0QFXJeVd3GuPa
+         ZR9M10Lsm+DcaCTDxm0u8+OL0mrwJm0BPGVSSoFZ/Z0AWX/z2wShjvtd2wiCLjp930
+         r1odOnXSvkoJQ==
+Received: (nullmailer pid 2212047 invoked by uid 1000);
+        Wed, 23 Aug 2023 13:26:57 -0000
+Date:   Wed, 23 Aug 2023 08:26:57 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] of: unittest: Run overlay apply/revert sequence three
+ times
+Message-ID: <20230823132657.GA2209836-robh@kernel.org>
+References: <a9fb4eb560c58d11a7f167bc78a137b46e76cf15.1692699743.git.geert+renesas@glider.be>
+ <20230822153230.GA219888-robh@kernel.org>
+ <CAMuHMdWLuATOi_5eUtqDPLn3W80H-c+_2CpSV2fV46Kv9i0MqA@mail.gmail.com>
+ <CAL_JsqJWyQNxWLTbFSVNOMO0aC9Cg74dyNZJ7A4oK87VJL0VTw@mail.gmail.com>
+ <CAL_Jsq+oDjOA0p1S_=hFjR8gZWA_5qXhUEp5=_vZ46d6ZUAHxQ@mail.gmail.com>
+ <CAMuHMdU_K5tJ+BAygfPD=GZNUCRKu1_SEaxg_YLbq0cZJS1fcQ@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAMuHMdU_K5tJ+BAygfPD=GZNUCRKu1_SEaxg_YLbq0cZJS1fcQ@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the st,stih407-usb2-phy binding to DT schema format.
+On Wed, Aug 23, 2023 at 09:41:40AM +0200, Geert Uytterhoeven wrote:
+> Hi Rob,
+> 
+> On Tue, Aug 22, 2023 at 9:22 PM Rob Herring <robh@kernel.org> wrote:
+> > On Tue, Aug 22, 2023 at 12:59 PM Rob Herring <robh@kernel.org> wrote:
+> > > On Tue, Aug 22, 2023 at 12:52 PM Geert Uytterhoeven
+> > > <geert@linux-m68k.org> wrote:
+> > > >
+> > > > Hi Rob,
+> > > >
+> > > > On Tue, Aug 22, 2023 at 5:32 PM Rob Herring <robh@kernel.org> wrote:
+> > > > > On Tue, Aug 22, 2023 at 12:22:34PM +0200, Geert Uytterhoeven wrote:
+> > > > > > Run the test for the overlay apply/revert sequence three times, to
+> > > > > > test if there are unbalanced of_node_put() calls causing reference
+> > > > > > counts to become negative.
+> > > > > >
+> > > > > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > > ---
+> > > > > > This is a reproducer for the issue fixed by commit 7882541ca06d51a6
+> > > > > > ("of/platform: increase refcount of fwnode") in dt/linus.
+> > > > >
+> > > > > Is this necessary? There were WARN backtraces without that fix.
+> > > >
+> > > > Did you see them?
+> > >
+> > > Yes, but that was also with your series applied. When I tested the
+> > > fix, I had dropped that, so maybe your series triggered it too.
+> >
+> > With the fix reverted on my dt/linus branch, I get this:
+> >
+> > [ 1.269977] ### dt-test ### pass of_unittest_overlay_10():2507
+> > [ 1.270123] ### dt-test ### pass of_unittest_overlay_10():2513
+> > [ 1.270290] ### dt-test ### pass of_unittest_overlay_10():2519
+> > [ 1.275673] ------------[ cut here ]------------
+> > [ 1.275790] refcount_t: addition on 0; use-after-free.
+> > [ 1.276118] WARNING: CPU: 1 PID: 1 at lib/refcount.c:25
+> > refcount_warn_saturate+0x120/0x144
+> > [ 1.276343] Modules linked in:
+> > [ 1.276558] CPU: 1 PID: 1 Comm: swapper/0 Tainted: G N
+> > 6.5.0-rc1-00010-g8e081e8346d1 #84
+> > [ 1.276791] Hardware name: linux,dummy-virt (DT)
+> > [ 1.276973] pstate: 600000c5 (nZCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+> > [ 1.277114] pc : refcount_warn_saturate+0x120/0x144
+> > [ 1.277219] lr : refcount_warn_saturate+0x120/0x144
+> > [ 1.277332] sp : ffff80008002b630
+> > [ 1.277410] x29: ffff80008002b630 x28: ffff80008002b978 x27: ffff0a00ffffff05
+> > [ 1.277585] x26: ffff80008002b9a9 x25: ffffd5ba808bec2f x24: ffff452a08002f18
+> > [ 1.277738] x23: ffff0000ffffff00 x22: ffff80008002b978 x21: 0000000000000000
+> > [ 1.277895] x20: ffff80008002b9dd x19: ffff452a08002f80 x18: 0000000000000006
+> > [ 1.278052] x17: 73657474696e752d x16: 747365743a313174 x15: 0765076507720766
+> > [ 1.278200] x14: 072d077207650774 x13: ffffd5b9814a0660 x12: 000000000000069c
+> > [ 1.278357] x11: 0000000000000234 x10: ffffd5b9814f8660 x9 : ffffd5b9814a0660
+> > [ 1.278529] x8 : 00000000ffffefff x7 : ffffd5b9814f8660 x6 : 80000000fffff000
+> > [ 1.278680] x5 : 0000000000000000 x4 : 0000000000000000 x3 : 0000000000000000
+> > [ 1.278829] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff452a02cb8000
+> > [ 1.279041] Call trace:
+> > [ 1.279171] refcount_warn_saturate+0x120/0x144
+> > [ 1.279322] kobject_get+0xb8/0xbc
+> > [ 1.279416] of_node_get+0x20/0x34
+> > [ 1.279497] of_fwnode_get+0x34/0x54
+> > [ 1.279567] fwnode_get_nth_parent+0xf0/0x12c
+> > [ 1.279666] fwnode_full_name_string+0x48/0xb8
+> > [ 1.279764] device_node_string+0x380/0x5a4
+> > [ 1.279841] pointer+0x38c/0x4ac
+> > [ 1.279900] vsnprintf+0x14c/0x6d0
+> > [ 1.279970] vprintk_store+0x168/0x47c
+> > [ 1.280055] vprintk_emit+0x104/0x2b4
+> > [ 1.280122] vprintk_default+0x38/0x44
+> > [ 1.280189] vprintk+0xd4/0xf0
+> > [ 1.280262] _printk+0x5c/0x84
+> > [ 1.280332] of_node_release+0x1ac/0x1b4
+> > [ 1.280413] kobject_put+0xb0/0x220
+> > [ 1.280492] of_changeset_destroy+0x50/0xf4
+> > [ 1.280584] free_overlay_changeset+0x24/0x104
+> > [ 1.280680] of_overlay_remove+0x240/0x2b8
+> > [ 1.280766] of_unittest_apply_revert_overlay_check.constprop.0+0xa8/0x310
+> > [ 1.280904] of_unittest+0xbf4/0x2e64
+> > [ 1.280986] do_one_initcall+0x7c/0x1c0
+> > [ 1.281072] kernel_init_freeable+0x1c4/0x294
+> > [ 1.281161] kernel_init+0x24/0x1dc
+> > [ 1.281242] ret_from_fork+0x10/0x20
+> >
+> > Then later on:
+> >
+> > [ 1.459652] ### dt-test ### EXPECT \ : ------------[ cut here ]------------
+> > [ 1.459877] ### dt-test ### EXPECT \ : WARNING: <<all>>
+> > [ 1.460227] ### dt-test ### EXPECT \ : refcount_t: underflow; use-after-free.
+> > [ 1.460508] ### dt-test ### EXPECT \ : ---[ end trace <<int>> ]---
+> > [ 1.460860] ### dt-test ### pass of_unittest_lifecycle():3187
+> > [ 1.461455] ### dt-test ### EXPECT / : ---[ end trace <<int>> ]---
+> > [ 1.461463] ### dt-test ### EXPECT / : refcount_t: underflow; use-after-free.
+> > [ 1.461789] ### dt-test ### EXPECT / : WARNING: <<all>>
+> > [ 1.462137] ### dt-test ### EXPECT / : ------------[ cut here ]------------
+> >
+> > So it seems we were getting the warning, but at the wrong point.
+> 
+> Thanks (and confirmed), I had missed that.
+> 
+> Note that it did not cause any test failures, though:
+> 
+>     ### dt-test ### end of unittest - 302 passed, 0 failed
+> 
+> With this patch:
+> 
+>     ### dt-test ### end of unittest - 303 passed, 1 failed
+> 
+> Anyway, it's up to you to decide to apply or not...
 
-Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
----
-Changes in v2:
-  * Removed quotes surrounding $ref
-  * Removed quotes surrounding const properties
-  * Changed 'st,syscfg' $ref value to phandle-array
-  * Changed authorship to my oss email address
+I guess that is better than searching thru the log. Applied.
 
-Changes in v3:
-  * Remove driver references
-  * Dropped obvious description
-  * Dropped label and set simpler node name
----
- .../bindings/phy/phy-stih407-usb.txt          | 24 -------
- .../bindings/phy/st,stih407-usb2-phy.yaml     | 63 +++++++++++++++++++
- 2 files changed, 63 insertions(+), 24 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
- create mode 100644 Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
-
-diff --git a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt b/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
-deleted file mode 100644
-index 35f03df00130..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-stih407-usb.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--ST STiH407 USB PHY controller
--
--This file documents the dt bindings for the usb picoPHY driver which is the PHY for both USB2 and USB3
--host controllers (when controlling usb2/1.1 devices) available on STiH407 SoC family from STMicroelectronics.
--
--Required properties:
--- compatible		: should be "st,stih407-usb2-phy"
--- st,syscfg		: phandle of sysconfig bank plus integer array containing phyparam and phyctrl register offsets
--- resets		: list of phandle and reset specifier pairs. There should be two entries, one
--			  for the whole phy and one for the port
--- reset-names		: list of reset signal names. Should be "global" and "port"
--See: Documentation/devicetree/bindings/reset/st,stih407-powerdown.yaml
--See: Documentation/devicetree/bindings/reset/reset.txt
--
--Example:
--
--usb2_picophy0: usbpicophy@f8 {
--	compatible	= "st,stih407-usb2-phy";
--	#phy-cells	= <0>;
--	st,syscfg	= <&syscfg_core 0x100 0xf4>;
--	resets		= <&softreset STIH407_PICOPHY_SOFTRESET>,
--			  <&picophyreset STIH407_PICOPHY0_RESET>;
--	reset-names	= "global", "port";
--};
-diff --git a/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
-new file mode 100644
-index 000000000000..e45cdd98aab2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/st,stih407-usb2-phy.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/st,stih407-usb2-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STiH407 USB PHY controller
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+description:
-+  The USB picoPHY device is the PHY for both USB2 and USB3 host controllers
-+  (when controlling usb2/1.1 devices) available on STiH407 SoC family from
-+  STMicroelectronics.
-+
-+properties:
-+  compatible:
-+    const: st,stih407-usb2-phy
-+
-+  st,syscfg:
-+    description: Phandle to the syscfg bank
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to syscfg
-+          - description: phyparam register offset
-+          - description: phyctrl register offset
-+
-+  resets:
-+    items:
-+      - description: Phandle and reset specifier pair for the whole phy.
-+      - description: Phandle and reset specifier pair for the port.
-+
-+  reset-names:
-+    items:
-+      - const: global
-+      - const: port
-+
-+  "#phy-cells":
-+    const: 0
-+
-+required:
-+  - compatible
-+  - st,syscfg
-+  - resets
-+  - reset-names
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/reset/stih407-resets.h>
-+    usb-phy {
-+        compatible = "st,stih407-usb2-phy";
-+        #phy-cells = <0>;
-+        st,syscfg = <&syscfg_core 0x100 0xf4>;
-+        resets = <&softreset STIH407_PICOPHY_SOFTRESET>,
-+                 <&picophyreset STIH407_PICOPHY0_RESET>;
-+        reset-names = "global", "port";
-+    };
-+...
--- 
-2.41.0
-
+Rob
