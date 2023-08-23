@@ -2,79 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A349D785D0B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 18:13:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14296785D2D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 18:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237450AbjHWQNs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 12:13:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33242 "EHLO
+        id S237528AbjHWQ0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 12:26:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234317AbjHWQNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 12:13:48 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982AFE68;
-        Wed, 23 Aug 2023 09:13:46 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso89604391fa.1;
-        Wed, 23 Aug 2023 09:13:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692807225; x=1693412025;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l95LCr0GMnr5YIrvqZTvdFeVvMdsvoY6X85sEcfYdiE=;
-        b=PlQI+RDkk1NVSZGlQ84IghRbiWgml+c5nhCu6EL9Adlzg+YYBScfkWOJMK5PjQ7GGF
-         rVvJ8SUfT72W+q2h3rTCOLrG1ZCh6/SLHp69P/pGMWGzivp4jQP2BaO1ibeoDDKTG98h
-         jlcrM/dUGy/NeTDagNToM3Ob60wtBQAiiADwEErEaJHxuXFlzGdMdL+WCBkI2ULyOMiy
-         fZJKWu0Azt7io9ky45aGIZDbc1SyTe6raDeR/VZ+PAhBzrVq2NeW0avh7AhIZikbmka3
-         HAp4IgTwRJAmgKiAsz7uh+ThJyLgH47ymSGVJY+Ok6so+/bmu0w5iOT7qp52I9vCn9/2
-         uD2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692807225; x=1693412025;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l95LCr0GMnr5YIrvqZTvdFeVvMdsvoY6X85sEcfYdiE=;
-        b=ciZp5p6ICFjQU4hhvzVeULImX3gpA17nOX2rmXna3U77itwrQWf9XHHC5/keuylFD8
-         SCy4CH08ZuMhzGHltOiK7dz2HUS1glSAQFkcVr/xHs7k/NgtTl44EPVRFq4OHHOTOneB
-         XUukY+0MqK1czBUxa4VAiH+6GL2f8ZjBkxIcGhlPSks80rNseIkfXAbwrvNPcGQ0bwH3
-         AxAdWCySzVZe3ylKz77nwUW+Ro4+yV1Abx2QLLpS5IYlgK3LIw8F1FFU8i0curNs3DMN
-         b7iqHhhzoZQ9n3uTSFUeuKH3vRw14NheL/dPQyZNdhosj5Hv/OzR7lOASXLICt6NL49p
-         iYjA==
-X-Gm-Message-State: AOJu0YwUVGizFLraEdOTz8zgr94hjV1HTjga5BsK445TUYZ5U3Fd4Hzc
-        dlGGGkaxDrR3YIc5FM9ktM+CAKg86siJJ2W0dNM=
-X-Google-Smtp-Source: AGHT+IEg3+HoSNgWCsU5nKzt+RBMxv37klHp8t/UlohBP0GSJi3Ntpjq/Fb5EwAahM5Tl0nX9STzlX0dMhXv7HMOebE=
-X-Received: by 2002:a2e:9dcd:0:b0:2b6:e105:6174 with SMTP id
- x13-20020a2e9dcd000000b002b6e1056174mr9882353ljj.47.1692807224549; Wed, 23
- Aug 2023 09:13:44 -0700 (PDT)
+        with ESMTP id S235835AbjHWQ03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 12:26:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1197B10F1;
+        Wed, 23 Aug 2023 09:26:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8CDEF646FD;
+        Wed, 23 Aug 2023 16:26:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E06AC433C7;
+        Wed, 23 Aug 2023 16:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692807983;
+        bh=qECGWHKOobEzMxHuX8r68lcnknGzvl9J0XZxy3E5EV0=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=bf/8ucgpTSoUFaso5roJFNIgYAH9KpnXiC/ZNs3wi/AINC54uiHRcPnH3fEX15bsy
+         b2XFJU1S4tBOH2VMg9e7De3DEA+/F0k0G9dpIuiOVnm3nL0sdDhWvsernsld5x2OzQ
+         xGz5qnvBRUxORlLczRKYtEW6PIqtGMnhKgZPbFnFvZYzHDL2Kx9C0NKoZYAdFHbJEl
+         R8J8gth3skepTKFP6NSRfysIsi7iG9/3y57DcbCcBHbRPdgLvbMcoS2kHvIDNB/JL6
+         A/W+PxjF6PbbBKUUw7+qAGyo6R3uAU/HYjXGBfB8jc+5wJ0cpbox4RRd/Gf1PHhjU1
+         yWz6v1M9Bj86w==
+From:   Mark Brown <broonie@kernel.org>
+To:     Seven Lee <wtli@nuvoton.com>
+Cc:     lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, conor+dt@kernel.org, YHCHuang@nuvoton.com,
+        KCHSU0@nuvoton.com, CTLIN0@nuvoton.com, SJLIN0@nuvoton.com,
+        scott6986@gmail.com, supercraig0719@gmail.com, dardar923@gmail.com
+In-Reply-To: <20230823071244.1861487-1-wtli@nuvoton.com>
+References: <20230823071244.1861487-1-wtli@nuvoton.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: nau8821: Add single-ended input
+ feature
+Message-Id: <169280798077.53791.13745062802650648258.b4-ty@kernel.org>
+Date:   Wed, 23 Aug 2023 17:26:20 +0100
 MIME-Version: 1.0
-References: <20230805180506.718364-1-bigunclemax@gmail.com>
- <20230805180506.718364-3-bigunclemax@gmail.com> <20230821154739.GA1720453-robh@kernel.org>
-In-Reply-To: <20230821154739.GA1720453-robh@kernel.org>
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Wed, 23 Aug 2023 20:13:33 +0400
-Message-ID: <CALHCpMjoxV+sUh6KSVXfEcWgc_ETBHWo2a7xHMT-nKS2xBYOvQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/5] ASoC: dt-bindings: Add schema for "allwinner,sun20i-d1-codec-analog"
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-034f2
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,33 +59,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=BF=D0=BD, 21 =D0=B0=D0=B2=D0=B3. 2023=E2=80=AF=D0=B3. =D0=B2 19:47, Rob=
- Herring <robh@kernel.org>:
->
-> On Sat, Aug 05, 2023 at 09:05:02PM +0300, Maksim Kiselev wrote:
-> > Add a DT schema to describe the analog part of the Allwinner D1/T113s
-> > internal audio codec.
-> >
-> > Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> > ---
-> >  .../allwinner,sun20i-d1-codec-analog.yaml     | 33 +++++++++++++++++++
-> >  1 file changed, 33 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,s=
-un20i-d1-codec-analog.yaml
->
-> Looks the same as allwinner,sun8i-a23-codec-analog.yaml. Why can't you
-> use that?
->
-Hmm. You're right. But let me explain my decision :)
-When I added a new file, I assumed that since this is a separate driver,
-then the binding should be in a separate file.
+On Wed, 23 Aug 2023 15:12:43 +0800, Seven Lee wrote:
+> Add input with single-ended control.
+> 
+> 
 
-As an example, I looked at the sun50i-a64-codec-analog.yaml binding.
-It is mostly the same as sun8i-a23-codec-analog.yaml too.
+Applied to
 
-So I really don't know which approach is better. If you advise me
-just add a new compatible sting to sun8i-a23-codec-analog.yaml,
-then I'll gladly do it in the next version.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Cheers,
-Maksim
+Thanks!
+
+[1/2] ASoC: dt-bindings: nau8821: Add single-ended input feature
+      commit: 91e28d0b51f994c5968aee2a941e9f62bc9e15d7
+[2/2] ASoC: nau8821: Improve AMIC recording performance.
+      commit: 014ee0692f29da8b08fed5da0fa14e04698a50f7
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
