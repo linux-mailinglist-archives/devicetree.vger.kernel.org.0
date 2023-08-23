@@ -2,59 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53BC0785D6A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 18:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58CB785DFD
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 19:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237622AbjHWQoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 12:44:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33746 "EHLO
+        id S231191AbjHWRAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 13:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231450AbjHWQoK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 12:44:10 -0400
+        with ESMTP id S229518AbjHWRAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 13:00:30 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D76E68
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 09:44:04 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C440FE68;
+        Wed, 23 Aug 2023 10:00:28 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 513D762853
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 16:44:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89573C433CB
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 16:44:03 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4A0B1649E3;
+        Wed, 23 Aug 2023 17:00:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE625C433C7;
+        Wed, 23 Aug 2023 17:00:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692809043;
-        bh=PuTCi+qdXK7OaTSSHkCuTquydRmPzIqwdP9Ry1oJ9X4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qfUJ4tZUi8mKAOEWhaU12/xZTEzKyOXm1KGE6kGxysDjTUJCZLLCWwbU5qil5tAvu
-         UrIKa2QAfDO74dWud6wVWXbcy5jhJJhm6roR8M+K0Zn/oKjz7qjkiO8W5fmVqPT2bN
-         CeK5x11Np312CjlotQypg5/PxzPCJVPft9gf7soUk6g4Vx22q+VlV+jpUzNm8INC/1
-         3fsJ5NxSiPlR1bJIeUftV1NtEHYWngr15ASDgsfqYxBwFStws6jsIWGS+GfMue82KA
-         0lX5aZdSe1ydGJVoy2kHXMYiDuArilEKpCTIVjmCm6RaXxlfJK0rUcWAEEiR0TLyDR
-         GVNumtkOpxorQ==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2bcc187e0b5so51404971fa.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 09:44:03 -0700 (PDT)
-X-Gm-Message-State: AOJu0YyL+naw7+EfQpWWg7B/9y2S0g+MxNJZQSbQ7W195iDKRiDeyHUZ
-        iTVk3o06Fe9siIta7C9QH3goKJZ37GAINIOldQ==
-X-Google-Smtp-Source: AGHT+IFIrNpjukJ47Qjq9PUSjGf61Z1gMprB5JhUH57KycGHKVPfXzso3N0AJ2+0z4/B15xfi+K2ZERc7YVuneb1kH4=
-X-Received: by 2002:a2e:b053:0:b0:2b9:6810:b333 with SMTP id
- d19-20020a2eb053000000b002b96810b333mr9454713ljl.14.1692809041389; Wed, 23
- Aug 2023 09:44:01 -0700 (PDT)
+        s=k20201202; t=1692810027;
+        bh=8VEsVfqtU9S9MgX99shwdJkXDGcWzkQCx635Hl8h+H8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uF1ZA1gZ2i/TKYqocN8CHEInCnahoWHZcMnr7altexmz1FDwEk+yWK3yUgfd7eAYG
+         bVuhcvBdVQsy7u51Ur8zIP85JADUqrO61CbjAsdyZGpMmGzv13kcjkw1Il8mzWaHbO
+         n8FXFiF5v6NoRB3bQdcOQnBjizF/0Kj07NMYWhkmdvO2kUYHoJl/kQKT2ZDcqts64v
+         OfgbDPfj+ylvXEjmxdH/KYDhugkwVrQ475Cv/+B7Bm1m43glz5uH48+i8Tq5HD6GQx
+         KYmFh+6Bduj6IgUjNDDRGBAiT1FiSAYRL+AKPNmcvf3zJNAq2xLf9KJNQvnjIQG1dd
+         1Ol7aKTGt9MQg==
+Received: (nullmailer pid 2470418 invoked by uid 1000);
+        Wed, 23 Aug 2023 17:00:25 -0000
+Date:   Wed, 23 Aug 2023 12:00:25 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arc: Explicitly include correct DT includes
+Message-ID: <20230823170025.GA2470216-robh@kernel.org>
+References: <20230714173949.4038981-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <6bb6289a1829bf4d03fc65994ad4887ca60afffa.1692795112.git.geert+renesas@glider.be>
-In-Reply-To: <6bb6289a1829bf4d03fc65994ad4887ca60afffa.1692795112.git.geert+renesas@glider.be>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 23 Aug 2023 11:43:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLauGcTb0NbU-MfkN1HD4==XrVG0ocsFzoMkSt0H3Q6kg@mail.gmail.com>
-Message-ID: <CAL_JsqLauGcTb0NbU-MfkN1HD4==XrVG0ocsFzoMkSt0H3Q6kg@mail.gmail.com>
-Subject: Re: [PATCH] [RFC] of: unittest: overlay_pci_node: Fix overlay style
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Lizhi Hou <lizhi.hou@amd.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230714173949.4038981-1-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -65,25 +57,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 23, 2023 at 7:52=E2=80=AFAM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Miscellaneous fixes and improvements to the overlay_pci_node:
->   - Add missing /plugin/,
+On Fri, Jul 14, 2023 at 11:39:49AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  arch/arc/plat-axs10x/axs10x.c | 1 -
+>  1 file changed, 1 deletion(-)
 
-Is it really missing if it wasn't needed since no unresolved phandles?
-I guess the sugar syntax needs, too?
+Ping!
 
->   - Convert to sugar syntax,
->   - Add missing blank lines between properties and subnodes.
->
-> As sugar syntax does not support empty target paths, the test device is
-> added to /testcase-data/overlay-node instead.
-
-There's a definite need for unspecified target paths. It's probably
-something of an oversight that a blank path was even allowed. I don't
-think putting in the wrong path is a good solution. There should be
-perhaps more discussion if a blank path is the right thing and then
-how to make the sugar syntax output a blank path.
-
-Rob
+> 
+> diff --git a/arch/arc/plat-axs10x/axs10x.c b/arch/arc/plat-axs10x/axs10x.c
+> index b821df7b0089..1feb990a56bc 100644
+> --- a/arch/arc/plat-axs10x/axs10x.c
+> +++ b/arch/arc/plat-axs10x/axs10x.c
+> @@ -6,7 +6,6 @@
+>   */
+>  
+>  #include <linux/of_fdt.h>
+> -#include <linux/of_platform.h>
+>  #include <linux/libfdt.h>
+>  
+>  #include <asm/asm-offsets.h>
+> -- 
+> 2.40.1
+> 
