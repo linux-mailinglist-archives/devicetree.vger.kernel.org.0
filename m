@@ -2,146 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 717B878551B
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2A9785505
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:11:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229973AbjHWKOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:14:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
+        id S233363AbjHWKL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234067AbjHWISW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:18:22 -0400
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F7E41739
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:13:28 -0700 (PDT)
-Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1bf1876ef69so6943415ad.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:13:28 -0700 (PDT)
+        with ESMTP id S234396AbjHWITk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:19:40 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB2563A97
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:15:14 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52a069edca6so4195777a12.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:15:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=quanta-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1692778408; x=1693383208;
-        h=content-transfer-encoding:from:in-reply-to:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uPYZRiCWdfcBmVk4Z2ZSZmkEBJcTzAi37FD8SmtDKSQ=;
-        b=COr884OY7Ti6LzBFMzohHrlTiyM9nEGBBZ829FMP8mdRS5G9NS5Ly6JjlSplLQSbmA
-         IzWoRRVSsId+RDCAm97h928CfZtt709/8FUrCroI7ePzXFS4VT8sRfgWAqF0+Ifgdjc/
-         NXYiqYCYA9d69g32qF64AI7vv1vj/KqTnUhxRU9LIofOFJ6IOXolga8WqgWm3Wl200TL
-         imcZJdcTR1ogbkB9zfFRZeKnRtGqmjGz+qml427AZIjaoOkdMywwZNxqH6rseIkCxLHZ
-         y0/QfaAZdhngAkjSYd/0JKAtuA1vEu83PSKkBVAOQ75A//oXwLIA6RSwGWS6tnO4dLob
-         USgg==
+        d=linaro.org; s=google; t=1692778513; x=1693383313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XmrY7GQ2ZmU1Y6/4QT60GHEf7jmYt1E4LHJ/Pbf7whQ=;
+        b=EpMLVcOTGZqveKGbAuLVEPgbej8ivmGXuWFDLivjS26RkUHKt2nLP4Przg6x+uNdYN
+         IY/ZpXeZsLVtTvG9u/xiIRzy8VEf7dTFijbBeWMp3TK0X6D8v2y1S5zjUQRuTN6FfuA7
+         9rx09NaC0yI3T+jzzYAk4heEbH8lqw4FUByOFZMQAlcD0qI0BfCiOm57xxDe8mQzhcEe
+         xfFyB9+Hid+Tpzr7BBPocy2GEvwLgQQKYS87tltK4rtYWf+KXnTg4Ctmg0cgU9dwOqUw
+         QdOgEFO92DEA8wOrincf5WHJ3mzEqHJmxYMe7O9DiGaZithpdmeqhCTfKNhNh64Uzu+c
+         xslw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692778408; x=1693383208;
-        h=content-transfer-encoding:from:in-reply-to:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uPYZRiCWdfcBmVk4Z2ZSZmkEBJcTzAi37FD8SmtDKSQ=;
-        b=UoFL0En1lOBn56j6aOLe8qi0sLXOiVCHQPoAJnEdgOrAzk3aWCfOdVElu6V79dNkx2
-         AvJ/PV/etdkU/v711MY8hAm2VHA4e8MGLJe0yM/LpiHbwl9jzWXD3pP0KLSqDeChCcb+
-         /vmUvpIUtaK0EA3Oc3RNbL/uhH/bs+BciU8TNFVkQuIzJfXm8k7EwFuTUZGla0UZprbO
-         z1uWPWZuTaDaRgWpaAdBevHGp6mBQ8aYNtiEi6TMLHEk6JXxpoubsCreFiGfx218eA5T
-         +HPKKmTDRIg0kd4rqRSZR8hUfYEdhaUtsiBvIfV2l1iqxkJzftB2J9Q8oyWyFa7VyFPo
-         Nk/Q==
-X-Gm-Message-State: AOJu0YzrVYmeXfNeEZgsDvy2K9C0M0SLmRTyeYDjUuQbqoTKmDFadcNC
-        yJjBwuw3ATEK7dcxwtNsOTsiXfeY3AupFIOz78gzFA==
-X-Google-Smtp-Source: AGHT+IFPpiv+dTOOaBaAhaKP/zWhWpdgtDNFuvpOw7a96FKFMPrgt6OkW0V+V/isPVgw3ijApW3WRg==
-X-Received: by 2002:a17:903:32c2:b0:1bf:1a9e:85f7 with SMTP id i2-20020a17090332c200b001bf1a9e85f7mr13240095plr.1.1692778407984;
-        Wed, 23 Aug 2023 01:13:27 -0700 (PDT)
-Received: from [192.168.0.224] (60-250-232-247.hinet-ip.hinet.net. [60.250.232.247])
-        by smtp.gmail.com with ESMTPSA id b23-20020a170902b61700b001b86492d724sm10284799pls.223.2023.08.23.01.13.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 01:13:27 -0700 (PDT)
-Message-ID: <701e84ba-3388-347a-369b-aa707e86ff06@quanta.corp-partner.google.com>
-Date:   Wed, 23 Aug 2023 16:13:24 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 2/2] arm64: dts: qcom: sc7180: Add sku_id and board id
- for lazor/limozeen
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        d=1e100.net; s=20221208; t=1692778513; x=1693383313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XmrY7GQ2ZmU1Y6/4QT60GHEf7jmYt1E4LHJ/Pbf7whQ=;
+        b=Q0PpshZGmTRO3kxwTcFqaHFB1liNjmjPzkKn/5ZKhWlzemAYnDW5LRa7g1gqAT1Ql0
+         jkjGU0XcY3uzMKVyBQgYxMPvo/17GVP7AbnaDaeWT0DimJEgiSmp+q1N/FRXvVkwFZDE
+         hAveWKOnyLsZHX3tS0sdzqbITs5gpApj/aocOfvPZO64sMRbXtYXrAeePtROCG27cpRI
+         hDkPT5VOw9HI370VXvwKUro4SuKneZgEuwwastX0mPO+XRkxxipmrtdTP5sQWZsScd2/
+         cUOT/41iWr+PGrsIHT9h8wpvHkqorcW1dzzfOuaUMyw2OIoRLOR7yXhs2g6CugLHxaZ0
+         wdXQ==
+X-Gm-Message-State: AOJu0YweVby1QGhNYY1TcSvaRKPSshSaVkz8YGiUh3fftRfGXphbFwEs
+        fOAEzSJiCLrBMrLwAnufgVAdzA==
+X-Google-Smtp-Source: AGHT+IFTIG0ewo2lFsWWkU4AVFpjs9a7khJlWa2e43Ubalk/rJaATZ5e92WLTd1q2ikXfONtAWwMCw==
+X-Received: by 2002:a17:907:20f0:b0:99e:1201:48bc with SMTP id rh16-20020a17090720f000b0099e120148bcmr9325335ejb.64.1692778512801;
+        Wed, 23 Aug 2023 01:15:12 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id v18-20020a170906b01200b0098e78ff1a87sm9539730ejy.120.2023.08.23.01.15.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 01:15:12 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230822100359.124282-1-sheng-liang.pan@quanta.corp-partner.google.com>
- <20230822180054.v5.2.I8f20fdfe34a2e8a38373bbd65587754b324f3dcb@changeid>
- <CAD=FV=U5XZn_BXuYrkZbr2JqiPptKt=JsyhYjciBzjKhmTdPDw@mail.gmail.com>
-In-Reply-To: <CAD=FV=U5XZn_BXuYrkZbr2JqiPptKt=JsyhYjciBzjKhmTdPDw@mail.gmail.com>
-From:   Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 1/3] dt-bindings: display: panel: add common dual-display schema
+Date:   Wed, 23 Aug 2023 10:14:58 +0200
+Message-Id: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+Add schema with common properties shared among dual display panel ICs.
 
-> Hi,
->
-> On Tue, Aug 22, 2023 at 3:04 AM Sheng-Liang Pan
-> <sheng-liang.pan@quanta.corp-partner.google.com> wrote:
->> SKU ID 10: Lazor LTE+Wifi, no-esim (Strapped 0 X 0)
->> SKU ID 15: Limozeen LTE+Wifi, TS, no esim (Strapped 1 X 0)
->> SKU ID 18: Limozeen LTE+Wifi, no TS, no esim (Strapped X 0 0)
->>
->> Even though the "no esim" boards are strapped differently than
->> ones that have an esim, the esim isn't represented in the
->> device tree so the same device tree can be used for LTE w/ esim
->> and LTE w/out esim.
->>
->> add BRD_ID(0, Z, 0) = 10 for new board with ALC5682i-VS
->>
->> Signed-off-by: Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>
->> ---
-> You should add a note here ("after the cut", in other words after the
-> "---" above but before your changelog) explaining that your patch
-> absolutely requires my patch [1] in order to compile. Please provide a
-> link to my patch (AKA include link [1]), too. I _think_ that maybe
-> you're using "patman" to format your patch? If so then this would be
-> done using "Commit-notes:". Maintainers have a lot of patches to apply
-> and we need to make it really easy for them to figure out what order
-> they need to apply patches in and which patches depend on others.
->
-> [1] https://lore.kernel.org/r/20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid/
->
-Patch v6 add dependent patch link.
->> Changes in v5:
->> - include rt5682s node for new board version 10
-> This isn't quite what you did in v5. I would say:
-> - rebased on patch moving rt5682s to a fragment
->
-done.
->
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
->> index 1c4f0773a242..cabe99c23a7c 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor-lazor-r9-kb.dts
->> @@ -14,8 +14,8 @@
->>   #include "sc7180-lite.dtsi"
->>
->>   / {
->> -       model = "Google Lazor (rev9+) with KB Backlight";
->> -       compatible = "google,lazor-sku2", "qcom,sc7180";
->> +       model = "Google Lazor (rev9) with KB Backlight";
->> +       compatible = "google,lazor-rev9-sku2", "qcom,sc7180";;
-> nit: the above line has two ";". Remove one.
->
-> IMO this is something you should spin a quick v6 for. Once that's fixed:
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
->
-done.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+---
 
-Sheng-Liang
+v2: https://lore.kernel.org/all/20230502120036.47165-1-krzysztof.kozlowski@linaro.org/
+v1: https://lore.kernel.org/all/20230416153929.356330-1-krzysztof.kozlowski@linaro.org/
+
+Changes since v2:
+1. New Patch
+---
+ .../display/panel/panel-common-dual.yaml      | 46 +++++++++++++++++++
+ 1 file changed, 46 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+new file mode 100644
+index 000000000000..83fcd643b5f5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+@@ -0,0 +1,46 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common Properties for Dual-Display Panels
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description:
++  Properties common for Panel IC supporting dual display panels.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    additionalProperties: false
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: First display panel
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Second display panel
++
++      "#address-cells": true
++      "#size-cells": true
++
++    required:
++      - port@0
++
++# Single-panel setups are still allowed.
++oneOf:
++  - required:
++      - ports
++  - required:
++      - port
++
++additionalProperties: true
+-- 
+2.34.1
 
