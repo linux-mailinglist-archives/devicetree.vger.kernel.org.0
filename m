@@ -2,238 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB8677850EE
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 08:57:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2447B78510F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233049AbjHWG5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 02:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35806 "EHLO
+        id S233099AbjHWHDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 03:03:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232983AbjHWG5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 02:57:05 -0400
-Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6ED4C7;
-        Tue, 22 Aug 2023 23:57:03 -0700 (PDT)
-Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-76dbe1866ecso25685185a.0;
-        Tue, 22 Aug 2023 23:57:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692773823; x=1693378623;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qU2P7dRQQgULo0zZUicyqjAPcRU7CHBoeG/KFxBvPnQ=;
-        b=BuZpCsDOlAM+aE0fTt7Ucc7gTdMZlb5mOUWyF+6FjgFnAftjnH5Z0c/li7ci7qdlgn
-         1AlFT35OzajBuWYkKoZGT0ZrivpGRegZTdX8+CRomLSch9aBgIgsig6Ckm6QpmcV/e7R
-         a96RU9OZ1xr6CnsR6RXuiQEXIuxFWlEHi/+D/1AZqdycR+NcRzeQ8nJnikqej0pPqhwR
-         dWHaRTuWR0hrWtjmoPtDxFjgOnyG39qMX9zGZI8XowC59mV8AxyQRXgvxW38C17rmBtU
-         Lw/zFRz3vJAbKfQbAKaJ7BP679d5e9Dt3nxKwAHpRcZLEOGjegNFpSLvMPnciJUberZI
-         eSDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692773823; x=1693378623;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qU2P7dRQQgULo0zZUicyqjAPcRU7CHBoeG/KFxBvPnQ=;
-        b=CfHQf8AMP9yc1Hlt7nFWYvDY80b1ULVoQuHTu9nF1nObj4qFlGJYO847jK80L+wIVV
-         TPbF3UfSB5ihDpLsySM7k3sLMmZcD0uOxH9LsxqS+xqa84TDDR61Lg45F3w15awtb6zU
-         f/w6oEWJz6W3WE3WOVqiRTuxllsBK4ST22KVlUg9KpxQFIaVyv/w2QNse5zGjSXrFO8g
-         gguptkhXi/k+u/9apG9XI9mFj40VKdosxmbbQ5n1rqgZvusaKiGQ/m7MsSwbpICIZioC
-         UoSfST/TyGHqrWRT3KtPOf4KyXYTSd4Sb5X+4xLiR3Eb6jJy5iglFJD7lywhtbFa97Lt
-         hAgg==
-X-Gm-Message-State: AOJu0YzTPMAcsYfwqeBOThpU8u+Frszxe2lkYFH7XqA/KyAwJ9QbfDgQ
-        +Szxs6F0WXTaLu6G+NzzW8jXrnOH0R7dENkJ6Q==
-X-Google-Smtp-Source: AGHT+IF2q9OyYV9NokpELU//pPqZcjhwdA9Z63NepXCLXLHLtLKOm8Ykp1Yzc2qZP7WiwxItaA8Weintu1FaRM8d4rU=
-X-Received: by 2002:a05:620a:25d1:b0:76c:e6b6:58d3 with SMTP id
- y17-20020a05620a25d100b0076ce6b658d3mr11713139qko.22.1692773822809; Tue, 22
- Aug 2023 23:57:02 -0700 (PDT)
+        with ESMTP id S233106AbjHWHDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:03:00 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89E39E65;
+        Wed, 23 Aug 2023 00:02:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692774176; x=1724310176;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=q5D2ljU2JGIhPaZ1OlS467jEnnsJpuDAECJw5x3ZlBo=;
+  b=WUFbsjQwmK5KY2QmfYLG3MnB0LCrO72V9V14nq65zmnzXHWnLYYxfOj2
+   rblJWGFDw3Ect53mD9hTaR9fyKFYoL52XDmdMb5F7ExOdXw31zT0bFsH8
+   7UR11ZyjBdsH5cNsW2EcUhiOP/sB2U5tjoUess4CmVF7JZyQUEnfr1Z4t
+   7PoHMrafFvxxMtzlXcb4eGP9mRryna+A0jlAGOUY0SGepWLG0325ZeF5P
+   kZOQPc6MDCYKGj0sRR9k73bBioGdRdj7p0C5TbUMm1eygBsvDX6An6M17
+   RlBklyECC60V8mqzwbfHZ+ZzeGOnKN2jNnfUEwChl5GtIZVEfwrnn2Ryc
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="359071539"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
+   d="scan'208";a="359071539"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Aug 2023 00:02:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
+   d="scan'208";a="880293467"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 23 Aug 2023 00:02:56 -0700
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Wed, 23 Aug 2023 10:02:51 +0300
+Date:   Wed, 23 Aug 2023 10:02:51 +0300
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Abdel Alkuor <alkuor@gmail.com>
+Cc:     devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, abdelalkuor@geotab.com,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 0/2] Add support for TPS25750
+Message-ID: <ZOWvG1MQw37IOHcM@kuha.fi.intel.com>
+References: <cover.1692559293.git.alkuor@gmail.com>
 MIME-Version: 1.0
-References: <20230814133238.741950-1-privatesub2@gmail.com>
- <20230814133238.741950-2-privatesub2@gmail.com> <20230822104854.1fa5f1aa@donnerap.manchester.arm.com>
-In-Reply-To: <20230822104854.1fa5f1aa@donnerap.manchester.arm.com>
-From:   =?UTF-8?B?0JDQu9C10LrRgdCw0L3QtNGAINCo0YPQsdC40L0=?= 
-        <privatesub2@gmail.com>
-Date:   Wed, 23 Aug 2023 09:57:07 +0300
-Message-ID: <CAF4idNneb1=40mQC=593Tmy8_OUAGiL4ROjK2XyL2BA35vM_WA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: pwm: Add binding for Allwinner
- D1/T113-S3/R329 PWM controller
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cover.1692559293.git.alkuor@gmail.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre,
+On Sun, Aug 20, 2023 at 03:32:25PM -0400, Abdel Alkuor wrote:
+> TPS25750 is USB Type-C and PD controller. The device is
+> highly configurable using App Customization online Tool 
+> developed by TI to generate loadable binary.
+> 
+> TPS25750 supports three modes; PTCH, APP, and BOOT. A configuration
+> can only be applied when the controller is on PTCH mode.
+> 
+> The controller attempts to load a configuration from EEPROM on
+> I2Cm bus. If no EEPROM is detected, then the driver tries to load
+> a configuration on I2Cs bus using a firmware file defined
+> in DT.
+> 
+> The driver implements the binary loading sequence which 
+> can be found on pg.53 in TPS25750 Host Interface Technical
+> Reference Manual (Rev. A) https://tinyurl.com/y9rkhu8a
+> 
+> The driver only supports resume pm callback as power management is
+> automatically controlled by the device. See pg.47 in TPS25750
+> datasheet https://tinyurl.com/3vfd2k43
+> 
+> v4:
+>  - PATCH 1: No change
+>  - PATCH 2: Fix comments style and drop of_match_ptr
+> v3:
+>  - PATCH 1: Fix node name
+>  - PATCH 2: Upload tps25750 driver patch
+> v2:
+>  - PATCH 1: General properties clean up
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Abdel Alkuor (2):
+>   dt-bindings: usb: Add ti,tps25750
+>   USB: typec: Add TI TPS25750 USB Type-C controller
+> 
+>  .../devicetree/bindings/usb/ti,tps25750.yaml  |   81 ++
+>  drivers/usb/typec/Kconfig                     |   13 +
+>  drivers/usb/typec/Makefile                    |    1 +
+>  drivers/usb/typec/tps25750.c                  | 1077 +++++++++++++++++
+>  drivers/usb/typec/tps25750.h                  |  162 +++
+>  5 files changed, 1334 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/ti,tps25750.yaml
+>  create mode 100644 drivers/usb/typec/tps25750.c
+>  create mode 100644 drivers/usb/typec/tps25750.h
 
-=D0=B2=D1=82, 22 =D0=B0=D0=B2=D0=B3. 2023=E2=80=AF=D0=B3. =D0=B2 12:49, And=
-re Przywara <andre.przywara@arm.com>:
->
-> On Mon, 14 Aug 2023 16:32:16 +0300
-> Aleksandr Shubin <privatesub2@gmail.com> wrote:
->
-> Hi Aleksandr,
->
-> > Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
-> > controller witch is different from the previous pwm-sun4i.
-> >
-> > The D1 and T113 are identical in terms of peripherals,
-> > they differ only in the architecture of the CPU core, and
-> > even share the majority of their DT. Because of that,
-> > using the same compatible makes sense.
-> > The R329 is a different SoC though, and should have
-> > a different compatible string added, especially as there
-> > is a difference in the number of channels.
-> >
-> > D1 and T113s SoCs have one PWM controller with 8 channels.
-> > R329 SoC has two PWM controllers in both power domains, one of
-> > them has 9 channels (CPUX one) and the other has 6 (CPUS one).
-> >
-> > Add a device tree binding for them.
-> >
-> > Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
-> > ---
-> >  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 85 +++++++++++++++++++
-> >  1 file changed, 85 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun=
-20i-pwm.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm=
-.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > new file mode 100644
-> > index 000000000000..9512d4bed322
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
-> > @@ -0,0 +1,85 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner D1, T113-S3 and R329 PWM
-> > +
-> > +maintainers:
-> > +  - Aleksandr Shubin <privatesub2@gmail.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - const: allwinner,sun20i-d1-pwm
-> > +      - items:
-> > +          - const: allwinner,sun20i-r329-pwm
-> > +          - const: allwinner,sun20i-d1-pwm
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#pwm-cells":
-> > +    const: 3
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: 24 MHz oscillator
-> > +      - description: Bus Clock
->
-> The manual tells me that the new PWMs can also use APB0 as the
-> input clock, which (finally!) allows PWM frequencies above 24 MHz.
-> So we should have an explicit reference to that clock - even if the bus
-> clock happens to be gated version of APB0.
+TPS25750 has the same host interface as TI TPS65xxx controllers, no?
+The register offsets at least are exactly the same.
 
-Should I change it to something like this:
-    pwm: pwm@2000c00 {
-      compatible =3D "allwinner,sun20i-d1-pwm";
-      reg =3D <0x02000c00 0x400>;
-      clocks =3D <&ccu CLK_BUS_PWM>, <&dcxo>, <&ccu CLK_APB0>;
-      clock-names =3D "bus", "hosc", "apb0";
-      resets =3D <&ccu RST_BUS_PWM>;
-      #pwm-cells =3D <0x3>;
-    };
+You need to first try to incorporate support for TI25750 support into
+the existing tipd driver (drivers/usb/typec/tipd/).
 
->
-> Cheers,
-> Andre
->
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: hosc
-> > +      - const: bus
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  allwinner,pwm-channels:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: The number of PWM channels configured for this instan=
-ce
-> > +    enum: [6, 9]
-> > +
-> > +allOf:
-> > +  - $ref: pwm.yaml#
-> > +
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: allwinner,sun20i-r329-pwm
-> > +
-> > +    then:
-> > +      required:
-> > +        - allwinner,pwm-channels
-> > +
-> > +    else:
-> > +      properties:
-> > +        allwinner,pwm-channels: false
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - "#pwm-cells"
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/sun20i-d1-ccu.h>
-> > +    #include <dt-bindings/reset/sun20i-d1-ccu.h>
-> > +
-> > +    pwm: pwm@2000c00 {
-> > +      compatible =3D "allwinner,sun20i-d1-pwm";
-> > +      reg =3D <0x02000c00 0x400>;
-> > +      clocks =3D <&dcxo>, <&ccu CLK_BUS_PWM>;
-> > +      clock-names =3D "hosc", "bus";
-> > +      resets =3D <&ccu RST_BUS_PWM>;
-> > +      #pwm-cells =3D <0x3>;
-> > +    };
-> > +
-> > +...
->
+thanks,
 
-Cheers,
-Aleksandr
+-- 
+heikki
