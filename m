@@ -2,143 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E34A7851DC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3441C7851F2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233517AbjHWHoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 03:44:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47878 "EHLO
+        id S233576AbjHWHs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 03:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233510AbjHWHoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:44:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E71E52;
-        Wed, 23 Aug 2023 00:43:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1306D6511C;
-        Wed, 23 Aug 2023 07:43:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DABBDC433C7;
-        Wed, 23 Aug 2023 07:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692776633;
-        bh=oK3yV228DJKbwbTXFb4RHff/R+/hOvYP/LBJ/ZoSh30=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kAzSuLjKrRLBN4VfR9xeAelF/xpKdHk+wzqKwaO/hba0tM4UzeZkHmiHxLx6D0gQL
-         /DICzsBbMFRC16rjQw+IOXs5Fu3Mxcbw/6k0xFX6fVTqimBOlQH8ioTTbhWPorP5eF
-         HVJo5EZc3Pc7m6l8r8t5X8F0q2XObe7kWmblm0WiIVKhJbDvCWhG+uWr9YaTvL65N9
-         cEByENw8+lfaSkDzJPhJTH5ffX4yFI6ap7iqgKvtKX7pCFU1I94cjn4KQGPeQEKpOO
-         JxhimQjOmUoz1vBwWdHVMRtkYew6NlkoTQvs/PZBX7OmGZslAoSNA2Gb66GN+DLLJp
-         XbREhkVVlIc9w==
-Date:   Wed, 23 Aug 2023 13:13:30 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Jim Quinlan <jim2101024@gmail.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 1/5] dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss
- property
-Message-ID: <20230823074330.GF3737@thinkpad>
-References: <20230508220126.16241-1-jim2101024@gmail.com>
- <20230508220126.16241-2-jim2101024@gmail.com>
+        with ESMTP id S233489AbjHWHsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:48:25 -0400
+Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1F92E52
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 00:48:22 -0700 (PDT)
+Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31c615eb6feso1192652f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 00:48:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692776901; x=1693381701;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yMLqQ07/1S4FGZac+b+3f8r1p2hwvkhxqYFR9XhasgQ=;
+        b=xPQOyHts+i9uO+7Lq2SW75l7BNzXbnEHzbY/GIalOHkJV0T9C1s+5e2PYA/yb58BRc
+         j3JJEx2+1mhKBwvTO2lioBRdZYiQRurrgvJyx2sdWR3Zd4a1ryZfz1PkrK79eJCrSMc8
+         HCTJM2m7WTAMp3zHz2u1Guc7CHjED0IIOQB8B+CJW2DPAWhLPMhaOebScjTyT4ipNn4e
+         Y9lU477EdYf0BA/2IscFXXaGlvGtStv0SwE1h7CwP7aMbc2RuN5ImU5o6X3iRxsQO+IC
+         yRGmw1iqFdhUYbu2X3QIKq168/Hmwi0u5YsS7X6VgaM2TGa0pyZnkdKsoLwzno1yWsu9
+         fVIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692776901; x=1693381701;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yMLqQ07/1S4FGZac+b+3f8r1p2hwvkhxqYFR9XhasgQ=;
+        b=HuZIsmsy6p8zU6SQMEgtLxiE8CROS9V6UwA0RpklR9tPbpu2J7EgS6+83N5tlckGJn
+         pXdqOle3A2HcOM6afRr7HG4aWD6F2m95OJik1OOyTFPE8zjsFNo5bYu7R//CeUjwqAAg
+         KvkzuTqQKI+ylyNfAtaGI1uvv7SBCtAEzz0aU8eYlfnTUrsP3RYsipZJ1Y7wXSTIr6XW
+         c8B5zMo4ZED6NPI5D9VnPVoZgRACUvj9bH9fNKnJXacutGpaS/8cRIFISKKiDfhJ8Vhc
+         3tK1w8nNbkU4N28Ynbo8UUBM3B9pCFPmQcmeF7kqOnnC8QWb14tGSlIls6dxGPs8sepl
+         g6yQ==
+X-Gm-Message-State: AOJu0Yx3oj9hXMgvv+Mk1AAxeT7tDXWxx/BjUcpMHTGiW4yBgTR8VcGZ
+        Up4nShrIWcK+e62MYZwuKIZvqw==
+X-Google-Smtp-Source: AGHT+IEJCgqNoN/t/JtugjJDUHt4ZTgJERVOv2dLtodMoCTxdTohodR2lggnhDmB/2raLk4Fvg/g7w==
+X-Received: by 2002:a5d:46cd:0:b0:317:5c36:913b with SMTP id g13-20020a5d46cd000000b003175c36913bmr9140847wrs.48.1692776901194;
+        Wed, 23 Aug 2023 00:48:21 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id g16-20020adff3d0000000b00318147fd2d3sm17986636wrp.41.2023.08.23.00.48.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 00:48:20 -0700 (PDT)
+Message-ID: <b544e079-c9de-23d3-80f7-cff89293eeb5@linaro.org>
+Date:   Wed, 23 Aug 2023 09:48:19 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 2/5] thermal/drivers/mediatek/lvts_thermal: Add suspend
+ and resume
+Content-Language: en-US
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        matthias.bgg@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, rdunlap@infradead.org,
+        ye.xingchen@zte.com.cn, p.zabel@pengutronix.de,
+        Alexandre Mergnat <amergnat@baylibre.com>
+Cc:     linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        wenst@chromium.org, james.lo@mediatek.com,
+        rex-bc.chen@mediatek.com, nfraprado@collabora.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+References: <20230530195132.2286163-1-bero@baylibre.com>
+ <20230530195132.2286163-3-bero@baylibre.com>
+ <371790cd-5a7c-8fa6-cc38-3a3680525092@collabora.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <371790cd-5a7c-8fa6-cc38-3a3680525092@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230508220126.16241-2-jim2101024@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 08, 2023 at 06:01:21PM -0400, Jim Quinlan wrote:
-> This commit adds the boolean "brcm,enable-l1ss" property:
-> 
->   The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
->   requires the driver probe() to deliberately place the HW one of three
->   CLKREQ# modes:
-> 
->   (a) CLKREQ# driven by the RC unconditionally
->   (b) CLKREQ# driven by the EP for ASPM L0s, L1
->   (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
-> 
->   The HW+driver can tell the difference between downstream devices that
->   need (a) and (b), but does not know when to configure (c).  All devices
->   should work fine when the driver chooses (a) or (b), but (c) may be
->   desired to realize the extra power savings that L1SS offers.  So we
->   introduce the boolean "brcm,enable-l1ss" property to inform the driver
->   that (c) is desired.  Setting this property only makes sense when the
->   downstream device is L1SS-capable and the OS is configured to activate
->   this mode (e.g. policy==powersupersave).
-> 
->   This property is already present in the Raspian version of Linux, but the
->   upstream driver implementation that follows adds more details and
->   discerns between (a) and (b).
-> 
-> Signed-off-by: Jim Quinlan <jim2101024@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> index 7e15aae7d69e..8b61c2179608 100644
-> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> @@ -64,6 +64,15 @@ properties:
->  
->    aspm-no-l0s: true
->  
-> +  brcm,enable-l1ss:
-> +    description: Indicates that PCIe L1SS power savings
-> +      are desired, the downstream device is L1SS-capable, and the
-> +      OS has been configured to enable this mode.  For boards
-> +      using a mini-card connector, this mode may not meet the
-> +      TCRLon maximum time of 400ns, as specified in 3.2.5.2.2
-> +      of the PCI Express Mini CEM 2.0 specification.
+On 31/05/2023 10:05, AngeloGioacchino Del Regno wrote:
 
-As Lorenzo said, this property doesn't belong in DT. DT is supposed to specify
-the hardware capability and not system/OS behavior. If this flag specifies
-whether the PCIe controller supports L1SS or not, then it is fine but apparantly
-this specifies that all downstream devices are L1SS capable which you cannot
-guarantee unless you poke into their LNKCAP during runtime.
+[ ... ]
 
-You should handle this in the driver itself.
-
-- Mani
-
-> +    type: boolean
-> +
->    brcm,scb-sizes:
->      description: u64 giving the 64bit PCIe memory
->        viewport size of a memory controller.  There may be up to
-> -- 
-> 2.17.1
+>>   static const struct lvts_ctrl_data mt8195_lvts_mcu_data_ctrl[] = {
+>>       {
+>>           .cal_offset = { 0x04, 0x07 },
+>> @@ -1268,6 +1300,8 @@ MODULE_DEVICE_TABLE(of, lvts_of_match);
+>>   static struct platform_driver lvts_driver = {
+>>       .probe = lvts_probe,
+>>       .remove = lvts_remove,
+>> +    .suspend = lvts_suspend,
 > 
+> Should we do that in noirq handlers?
+> We're risking to miss a thermal interrupt.
+
+I'm not sure missing a thermal interrupt is a problem in this context 
+but we may go in the irq routine with an undefined state sensor setup 
+(eg. the internal clock stopped in the suspend and then read the sensor 
+in the isr).
+
+IMO, using suspend_noirq and resume_noirq may be required here.
+
+Alexandre are you taking over the next iteration?
+
 
 -- 
-மணிவண்ணன் சதாசிவம்
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
