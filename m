@@ -2,142 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C492D785C49
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 17:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A0B3785C69
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 17:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236995AbjHWPiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 11:38:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38542 "EHLO
+        id S237136AbjHWPqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 11:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237291AbjHWPiS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 11:38:18 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A023710CC;
-        Wed, 23 Aug 2023 08:38:15 -0700 (PDT)
-Received: from p5dcc3441.dip0.t-ipconnect.de ([93.204.52.65] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qYpvt-002xI2-3t; Wed, 23 Aug 2023 17:38:09 +0200
-Date:   Wed, 23 Aug 2023 17:38:07 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Rob Herring <robh@kernel.org>
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        with ESMTP id S236949AbjHWPqN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 11:46:13 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90C571717;
+        Wed, 23 Aug 2023 08:45:33 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1bf55a81eeaso26878265ad.0;
+        Wed, 23 Aug 2023 08:45:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692805522; x=1693410322;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rgyeGdbslhNv497sxSi9T9F8ibgrZruUJHbypuA4l6Y=;
+        b=jixuxBy6dLyqzAugK26aoYw0LHQTx9DCcGP9ZOAzYpSmA3crvbg6NPiyoC4P6lFTgU
+         R1w8rNe43s2U/PV3ehvtlmAeDWIE93dhMXJNiyRUmM8K6B7jp71JoTE3AMMXa/EojZr+
+         vGR3WY2zfn6q1ZOZVMfixe6WWpWpf6Pl+c+EFBx0GILy52cD4x3zaQUOQvwNs0nrhBbe
+         oku0F6PnEUZbaI8P3rhWH6XeZJ9FUhB+B7AidlpWhG0gpd1fNu3nhZZQgPaHgBG6u/jG
+         JLPeiKY3z7GfzEfSd4UKGr0AIsHoxbd1l9vX1V8It7YLtECvMoxBfUqu5oTCFp9YGfaB
+         TK6A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692805522; x=1693410322;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rgyeGdbslhNv497sxSi9T9F8ibgrZruUJHbypuA4l6Y=;
+        b=LRVLsp6B7C/wRunb6NvQNioIWAEQ1rplyQhzlC6P9iWxMPxYVyFtNplBi4NU8VrxZU
+         4bnHUACq05gjoz/lqZZN5IgiHtGsPLQAyE2Wpb8RcKROu3iT84fwKlAhdu2gYJLtP+gD
+         zmh12XsHHqyq/h7RWp8n3dm4TkX69Di58uevfTSywMvH17eppHgSd58GWXT66MR+/M5B
+         ea0BNW0lKBGvC39Ev6tY36H9sDxbQeeCvKANze1TZSkRSjYy+nBrUBUIrd+uXPDZq9nk
+         DuhuT+k02jGWAaE/PJNSv8p62uZx7l6OFxeKDd/8pS5ofWnIGHgrfbiVM27UwAIhbGDa
+         hu9g==
+X-Gm-Message-State: AOJu0YynSDDiYIhWkDKhJMnnnx9lpFXXHXNfL21n9Kkaxmpug9quAy99
+        avrC3oQ/kJXz5nIYAZ/W5/8=
+X-Google-Smtp-Source: AGHT+IHoxUe6KTbUqRFXtM8YgfcSwLH7IdrqQeJIEYuWOh354lKGc750/NspA/0hl92k8FhJo7DrrQ==
+X-Received: by 2002:a17:902:b617:b0:1be:f76e:7664 with SMTP id b23-20020a170902b61700b001bef76e7664mr9480732pls.29.1692805522050;
+        Wed, 23 Aug 2023 08:45:22 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e5-20020a170902744500b001bdc5023783sm11131773plt.179.2023.08.23.08.45.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 08:45:21 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 23 Aug 2023 08:45:20 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        wim@linux-watchdog.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        bcousson@baylibre.com, tony@atomide.com, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: clock: add TWL6032 32K clocks
-Message-ID: <20230823173807.0b80a70a@aktux>
-In-Reply-To: <20230821205745.GA2270173-robh@kernel.org>
-References: <20230819134147.456060-1-andreas@kemnade.info>
-        <20230819134147.456060-2-andreas@kemnade.info>
-        <20230821205745.GA2270173-robh@kernel.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        quic_saipraka@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: qcom-wdt: document IPQ5018
+Message-ID: <79414186-3c5f-4166-a81a-6b346e544253@roeck-us.net>
+References: <20230816161455.3310629-1-robimarko@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230816161455.3310629-1-robimarko@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Aug 2023 15:57:45 -0500
-Rob Herring <robh@kernel.org> wrote:
+On Wed, Aug 16, 2023 at 06:13:59PM +0200, Robert Marko wrote:
+> Document the IPQ5018 watchdog compatible.
+> 
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> On Sat, Aug 19, 2023 at 03:41:45PM +0200, Andreas Kemnade wrote:
-> > To be able to be referenced from a future yaml-version of
-> > mfd/twl-family.txt depending on toplevel compatible have a separate
-> > file for the 6032  
-> 
-> Really, the parent needs to be done first...
-> 
-well, for some other subdevices, a yaml is already in the tree
-and Krzysztof recently added a R-By to another one.
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-But if the clocks should not have a node, then it is obvious.
-What would be the route to conversion here: Is a conversion
-of mfd/twl-family.txt without specifying subnodes ok for the first step,
-maybe with additionalProperties: yes?
-
-
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> >  .../bindings/clock/ti,twl6032-clk.yaml        | 38
-> > +++++++++++++++++++ 1 file changed, 38 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/clock/ti,twl6032-clk.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/clock/ti,twl6032-clk.yaml
-> > b/Documentation/devicetree/bindings/clock/ti,twl6032-clk.yaml new
-> > file mode 100644 index 0000000000000..aebd9f8d761a2 --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/ti,twl6032-clk.yaml
-> > @@ -0,0 +1,38 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/clock/ti,twl6032-clk.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Clocks of the TWL6032 PMIC
-> > +
-> > +maintainers:
-> > +  - Andreas Kemnade <andreas@kemnade.info>
-> > +
-> > +description:
-> > +  The TWL6032 has some 32Khz clock outputs which can be
-> > controlled.  
+> ---
+>  Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> outputs? Seems like only 1 with no clock cells to specify which one.
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,twl6032-clk32kaudio
-> > +      - ti,twl6032-clk32kg  
-> 
-> Or is it 1 output per compatible? I hope not.
-> 
-yes, it is. It was inspired by the clk-palmas driver:
-$ grep palmas.*32 arch/arm/boot/dts/ti/omap/omap5-*
-arch/arm/boot/dts/ti/omap/omap5-board-common.dtsi:
-clk32kgaudio: palmas_clk32k@1 {
-arch/arm/boot/dts/ti/omap/omap5-board-common.dtsi:
-	compatible = "ti,palmas-clk32kgaudio";
-
-Well, we have the CLK_IGNORE_UNUSED, so if we use #clock-cells = 1,
-an unused clock will not be touched by the kernel, right?
-
-> > +
-> > +  '#clock-cells':
-> > +    const: 0
-> > +
-> > +required:
-> > +  - compatible
-> > +  - '#clock-cells'
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    twl {
-> > +        clk32kaudio {
-> > +            compatible = "ti,twl6032-clk32kaudio";
-> > +            #clock-cells = <0>;
-> > +        };  
-> 
-> You don't need a child node to be a clock provider. Just add 
-> #clock-cells to the parent node.
-> 
-hmm, we have child nodes there for every subdevice in that family,
-even if I doubt it is totally technically required.
-So why should the clk device be an exception? 
-
-Regards,
-Andreas
+> diff --git a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> index 6d0fe6abd06a..5046dfa55f13 100644
+> --- a/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/qcom-wdt.yaml
+> @@ -18,6 +18,7 @@ properties:
+>        - items:
+>            - enum:
+>                - qcom,kpss-wdt-ipq4019
+> +              - qcom,apss-wdt-ipq5018
+>                - qcom,apss-wdt-ipq5332
+>                - qcom,apss-wdt-ipq9574
+>                - qcom,apss-wdt-msm8994
