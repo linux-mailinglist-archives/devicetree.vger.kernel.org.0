@@ -2,249 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C09785389
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 920AF785376
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235127AbjHWJKl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 05:10:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46176 "EHLO
+        id S234986AbjHWJFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:05:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235239AbjHWJHn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:07:43 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D27521BE
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:52:43 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a1de3417acso68546466b.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:52:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692780762; x=1693385562;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=aMAzBQ2JWtyTS8mD8e3Fxmu2d91tt0ITlswZAkxTIh4=;
-        b=OxEp5de1cW3arQOc7FTUhnrwD2M3065uhbMylGGIzlaSBIYnfSpA2ScRQUycl3Fn2I
-         6HQpegZ5L6O93HqxZhbsUxzYXnwfwPusJEGQqvIt+JzP/r9Wl3gCKmrQMqUK6kLf3iwP
-         02Df7eU/vgdF4o97ikufrsUegyIy3efwxfLmZ0a1j3QZWMpNOnoBOG+RcljTrKWtyy3i
-         P6sfFz+3NjFugVMhVprxslhMJXJt20YozDgBAmr37O8iVlowk5LSPo3f3pLZw3ke6qmI
-         Vn3ctXAiQKF8eawIwY5SOok00/fIvlpDXFETu2pLpx6jJKE+wSA3CE+Q4auY6vkqU3nP
-         Ymwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692780762; x=1693385562;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aMAzBQ2JWtyTS8mD8e3Fxmu2d91tt0ITlswZAkxTIh4=;
-        b=DSyh//6yhV6RZnTowV/hI0AncjlvFF9lKEouOhCJlLWBTprBmjvi/MUOfnzc0nc7ho
-         LhaniGH1dD+SBlwvuU3e5PchR0L1ks7I9Po3vp7PTH/5MrCMnQknHPfpWKEEPL3fRIa1
-         UJudf2Oe8jxD1t4D+gjxBGal/Wd65ZQUkB2LFM0eJLMQVyCdhI/faah51bjtu0jdzE30
-         qs6X2/lxWjnfqUV2saBGJ1Sg5k1Wk03xt1uYWGHmt+UPtHLoNAv/rfyA9ksP2Nc67yrn
-         1sK5ZDGvGhCnjL80lXESFndLE3ou490/1bl6TebpxvJKWuE0DIujRvtKA2KGgqk3jI8C
-         nfkQ==
-X-Gm-Message-State: AOJu0Yx6Y3jFG90y3w7X5XW2CdAW3/Xk1dwgP868HoHMq4ODhPosRnMO
-        Jt+Z2Ba2SRYUItupjPnSVspuDQ==
-X-Google-Smtp-Source: AGHT+IEZWFRQo+JFnpF1qlyr688eDH49YjAZuwvCYmHF+GBS3mKDm8CMK03WV266B3Bq58Lqb+bM7g==
-X-Received: by 2002:a17:906:28c:b0:99d:fcb7:60db with SMTP id 12-20020a170906028c00b0099dfcb760dbmr14077749ejf.16.1692780762254;
-        Wed, 23 Aug 2023 01:52:42 -0700 (PDT)
-Received: from krzk-bin.. ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id l9-20020a1709066b8900b009a168ab6ee2sm8665633ejr.164.2023.08.23.01.52.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 01:52:41 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] riscv: dts: use capital "OR" for multiple licenses in SPDX
-Date:   Wed, 23 Aug 2023 10:52:38 +0200
-Message-Id: <20230823085238.113642-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S235321AbjHWJER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:04:17 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D549710D1;
+        Wed, 23 Aug 2023 01:59:03 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2E50D1042;
+        Wed, 23 Aug 2023 01:59:43 -0700 (PDT)
+Received: from FVFF77S0Q05N (unknown [10.57.3.204])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A51B53F740;
+        Wed, 23 Aug 2023 01:59:00 -0700 (PDT)
+Date:   Wed, 23 Aug 2023 09:58:54 +0100
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Simon Glass <sjg@chromium.org>
+Cc:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        ron minnich <rminnich@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>
+Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
+Message-ID: <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
+References: <20230822203446.4111742-1-sjg@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230822203446.4111742-1-sjg@chromium.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Documentation/process/license-rules.rst and checkpatch expect the SPDX
-identifier syntax for multiple licenses to use capital "OR".  Correct it
-to keep consistent format and avoid copy-paste issues.
+On Tue, Aug 22, 2023 at 02:34:42PM -0600, Simon Glass wrote:
+> The Devicetree specification skips over handling of a logical view of
+> the memory map, pointing users to the UEFI specification.
+> 
+> It is common to split firmware into 'Platform Init', which does the
+> initial hardware setup and a "Payload" which selects the OS to be booted.
+> Thus an handover interface is required between these two pieces.
+> 
+> Where UEFI boot-time services are not available, but UEFI firmware is
+> present on either side of this interface, information about memory usage
+> and attributes must be presented to the "Payload" in some form.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Today Linux does that by passing:
 
----
+  /chosen/linux,uefi-mmap-start
+  /chosen/linux,uefi-mmap-size
+  /chosen/linux,uefi-mmap-desc-size
+  /chosen/linux,uefi-mmap-desc-ver
 
-Rebased on next-20230822, so might not apply cleanly.  What does not
-apply, can be skipped and I will fix it after next RC.
----
- arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi     | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts  | 2 +-
- .../boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts    | 2 +-
- .../boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts    | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts      | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts           | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts      | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts               | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi                    | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts         | 2 +-
- arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi                   | 2 +-
- arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi                | 2 +-
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi               | 2 +-
- 14 files changed, 14 insertions(+), 14 deletions(-)
+... or /chosen/xen,* variants of those.
 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi
-index 9b03fca2444c..ed7b12e65a10 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-common-regulators.dtsi
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
- 
- / {
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
-index 8785de3c9224..3a2c3281eb88 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-dongshan-nezha-stu.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
- #include <dt-bindings/gpio/gpio.h>
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts
-index 4df8ffb71561..711450ffb602 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-480p.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
- #include "sun20i-d1-lichee-rv-86-panel.dtsi"
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts
-index 1874fc05359f..b217799e6166 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel-720p.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
- #include "sun20i-d1-lichee-rv-86-panel.dtsi"
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi
-index 6cc7dd0c1ae2..10116fb3935a 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-86-panel.dtsi
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
- #include "sun20i-d1-lichee-rv.dts"
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-index 52b91e1affed..08cf716328a0 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv-dock.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts
-index d60a0562a8b1..204da82a5dc6 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-lichee-rv.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Jisheng Zhang <jszhang@kernel.org>
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts
-index f2e07043afb3..e2bb6bc16c13 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-mangopi-mq-pro.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
- #include <dt-bindings/gpio/gpio.h>
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-index 4ed33c1e7c9c..8dbe717c79ce 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-nezha.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
- 
- /*
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
-index 97e7cbb32597..b18f368e06e0 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1.dtsi
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
- 
- #include "sun20i-d1s.dtsi"
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts
-index e6d924f671fd..1a7d6ef33f17 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s-mangopi-mq.dts
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2022 Samuel Holland <samuel@sholland.org>
- 
- #include <dt-bindings/gpio/gpio.h>
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-index 8275630af977..450387265469 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
- 
- #define SOC_PERIPHERAL_IRQ(nr)	(nr + 16)
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi
-index b7156123df54..3b077dc086ab 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1-t113.dtsi
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
- 
- / {
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index 822f022eec2d..5a9d7f5a75b4 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
- // Copyright (C) 2021-2022 Samuel Holland <samuel@sholland.org>
- 
- #include <dt-bindings/clock/sun6i-rtc.h>
--- 
-2.34.1
+Can't we document / genericise that?
 
+Pointing to that rather than re-encoding it in DT means that it stays in-sync
+with the EFI spec and we won't back ourselves into a corner where we cannot
+encode something due to a structural difference. I don't think it's a good idea
+to try to re-encode it, or we're just setting ourselves up for futher pain.
+
+Thanks,
+Mark.
+
+> 
+> This aims to provide an initial schema for this mapping.
+> 
+> Note that this is separate from the existing /memory and /reserved-memory
+> nodes, since it is mostly concerned with what the memory is used for. It
+> may cover only a small fraction of available memory.
+> 
+> For now, no attempt is made to create an exhaustive binding, so there are
+> some example types listed. This can be completed once this has passed
+> initial review.
+> 
+> This binding does not include a binding for the memory 'attribute'
+> property, defined by EFI_BOOT_SERVICES.GetMemoryMap(). It may be useful
+> to have that as well, but perhaps not as a bit mask.
+> 
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+> 
+> Changes in v3:
+> - Reword commit message again
+> - cc a lot more people, from the FFI patch
+> - Split out the attributes into the /memory nodes
+> 
+> Changes in v2:
+> - Reword commit message
+> 
+>  dtschema/schemas/memory-map.yaml | 61 ++++++++++++++++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 dtschema/schemas/memory-map.yaml
+> 
+> diff --git a/dtschema/schemas/memory-map.yaml b/dtschema/schemas/memory-map.yaml
+> new file mode 100644
+> index 0000000..4b06583
+> --- /dev/null
+> +++ b/dtschema/schemas/memory-map.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
+> +# Copyright 2023 Google LLC
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/memory-map.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: /memory-map nodes
+> +description: |
+> +  Common properties always required in /memory-map nodes. These nodes are
+> +  intended to resolve the nonchalant clause 3.4.1 ("/memory node and UEFI")
+> +  in the Devicetree Specification.
+> +
+> +maintainers:
+> +  - Simon Glass <sjg@chromium.org>
+> +
+> +properties:
+> +  $nodename:
+> +    const: 'memory-map'
+> +
+> +patternProperties:
+> +  "^([a-z][a-z0-9\\-]+@[0-9a-f]+)?$":
+> +    type: object
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        minItems: 1
+> +        maxItems: 1024
+> +
+> +      usage:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description: |
+> +          Describes the usage of the memory region, e.g.:
+> +
+> +            "acpi-reclaim", "acpi-nvs", "bootcode", "bootdata", "bootdata",
+> +            "runtime-code", "runtime-data".
+> +
+> +            See enum EFI_MEMORY_TYPE in "Unified Extensible Firmware Interface
+> +            (UEFI) Specification" for all the types. For now there are not
+> +            listed here.
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    memory-map {
+> +        acpi@f0000 {
+> +            reg = <0xf0000 0x4000>;
+> +            usage = "acpi-reclaim";
+> +        };
+> +
+> +        runtime@12300000 {
+> +            reg = <0x12300000 0x28000>;
+> +            usage = "runtime-code";
+> +        };
+> +    };
+> +...
+> -- 
+> 2.42.0.rc1.204.g551eb34607-goog
+> 
