@@ -2,103 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70362785808
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 14:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E495785818
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 14:52:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234934AbjHWMsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 08:48:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52160 "EHLO
+        id S234498AbjHWMw3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 08:52:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233196AbjHWMsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 08:48:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5825FE47;
-        Wed, 23 Aug 2023 05:48:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 82C5D6404C;
-        Wed, 23 Aug 2023 12:48:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42453C433C7;
-        Wed, 23 Aug 2023 12:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692794899;
-        bh=hjen39C6ClFSUIbbViuLUmhXBL1KKbVLgLrYh3YC6l8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PrrmAVQUiUEcYhkXKySTgC9Zf52cjf70qkf+zaKQCtcN4BW39ZiO/XNWAdW/qkmzN
-         YwMDhbRSBjUJMEZ79nBD4LVpazKA9MMMLmQC/Pqu02tJ9aJMfV/vBYHjH5Tg6zVEs0
-         NKcohXDXKD5sUp0r9cyOvZudG82Vvwl8IIaJ4At74c1ky6c/WX7/BUBXGD7BoWO3xQ
-         IMqnunuIQi4B21c8HraDLxX2BDoicsLQm5vJeQGrSYRKgc5b2dLKqvP6BAWpGddSAF
-         Uxg2Df/Qh9CrZ6Sk0kvZNGTWqR6slVgvk+7ci7vLbjpIbQKynz4Dtc9lOZ6stStvvX
-         v6usD8pzv9pZw==
-Received: (nullmailer pid 2036422 invoked by uid 1000);
-        Wed, 23 Aug 2023 12:48:17 -0000
-Date:   Wed, 23 Aug 2023 07:48:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Sam Ravnborg <sam@ravnborg.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
-        Jianhua Lu <lujianhua000@gmail.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 2/3] dt-bindings: display: novatek,nt35950: define
- ports
-Message-ID: <20230823124817.GA2034925-robh@kernel.org>
-References: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
- <20230823081500.84005-2-krzysztof.kozlowski@linaro.org>
- <169278171739.1524810.6441506448861500441.robh@kernel.org>
- <32667691-ec7f-0dd3-b3ba-fdcd40f1fbca@linaro.org>
+        with ESMTP id S232211AbjHWMw2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 08:52:28 -0400
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F38FDE47
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 05:52:25 -0700 (PDT)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6477:4282:8a75:3696])
+        by michel.telenet-ops.be with bizsmtp
+        id d0sP2A0010iR7xF060sPH1; Wed, 23 Aug 2023 14:52:23 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtp (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1qYnLK-001Y3o-7o;
+        Wed, 23 Aug 2023 14:52:22 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1qYnLS-00HSD4-ON;
+        Wed, 23 Aug 2023 14:52:22 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Lizhi Hou <lizhi.hou@amd.com>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] [RFC] of: unittest: overlay_pci_node: Fix overlay style
+Date:   Wed, 23 Aug 2023 14:52:21 +0200
+Message-Id: <6bb6289a1829bf4d03fc65994ad4887ca60afffa.1692795112.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <32667691-ec7f-0dd3-b3ba-fdcd40f1fbca@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 23, 2023 at 11:53:56AM +0200, Krzysztof Kozlowski wrote:
-> On 23/08/2023 11:08, Rob Herring wrote:
-> > 
-> > On Wed, 23 Aug 2023 10:14:59 +0200, Krzysztof Kozlowski wrote:
-> >> The panel-common schema does not define what "ports" property is, so
-> >> bring the definition by referencing the panel-common-dual.yaml. Panels
-> >> can be single- or dual-link, thus require only one port@0.
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>
-> >> ---
-> >>
-> >> Changes since v2:
-> >> 1. Use panel-common-dual
-> >>
-> >> Changes since v1:
-> >> 1. Rework to add ports to device schema, not to panel-common.
-> >> ---
-> >>  .../devicetree/bindings/display/panel/novatek,nt35950.yaml     | 3 ++-
-> >>  1 file changed, 2 insertions(+), 1 deletion(-)
-> >>
-> > 
-> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> > 
-> > yamllint warnings/errors:
-> 
-> Previous patch seems to be missing in Patchwork, thus this error.
-> 
-> https://patchwork.ozlabs.org/project/devicetree-bindings/list/?submitter=83726&archive=both&state=*
+Miscellaneous fixes and improvements to the overlay_pci_node:
+  - Add missing /plugin/,
+  - Convert to sugar syntax,
+  - Add missing blank lines between properties and subnodes.
 
-Must have been some delay on that one as it is there now.
+As sugar syntax does not support empty target paths, the test device is
+added to /testcase-data/overlay-node instead.
 
-Rob
+Fixes: 26409dd045892904 ("of: unittest: Add pci_dt_testdrv pci driver")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+RFC, as I don't have a QEMU setup to run the test.
+---
+ .../of/unittest-data/overlay_pci_node.dtso    | 33 +++++++++----------
+ 1 file changed, 16 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/of/unittest-data/overlay_pci_node.dtso b/drivers/of/unittest-data/overlay_pci_node.dtso
+index c05e52e9e44a9583..f18c9795e6efa5f3 100644
+--- a/drivers/of/unittest-data/overlay_pci_node.dtso
++++ b/drivers/of/unittest-data/overlay_pci_node.dtso
+@@ -1,22 +1,21 @@
+ // SPDX-License-Identifier: GPL-2.0
+ /dts-v1/;
+-/ {
+-	fragment@0 {
+-		target-path="";
+-		__overlay__ {
+-			#address-cells = <3>;
+-			#size-cells = <2>;
+-			pci-ep-bus@0 {
+-				compatible = "simple-bus";
+-				#address-cells = <1>;
+-				#size-cells = <1>;
+-				ranges = <0x0 0x0 0x0 0x0 0x1000>;
+-				reg = <0 0 0 0 0>;
+-				unittest-pci@100 {
+-					compatible = "unittest-pci";
+-					reg = <0x100 0x200>;
+-				};
+-			};
++/plugin/;
++
++&{/testcase-data/overlay-node} {
++	#address-cells = <3>;
++	#size-cells = <2>;
++
++	pci-ep-bus@0 {
++		compatible = "simple-bus";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges = <0x0 0x0 0x0 0x0 0x1000>;
++		reg = <0 0 0 0 0>;
++
++		unittest-pci@100 {
++			compatible = "unittest-pci";
++			reg = <0x100 0x200>;
+ 		};
+ 	};
+ };
+-- 
+2.34.1
+
