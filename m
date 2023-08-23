@@ -2,205 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A09C7785640
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:52:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B61B378564E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233514AbjHWKw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:52:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43150 "EHLO
+        id S234129AbjHWK4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:56:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234168AbjHWKwf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:52:35 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311D9171A;
-        Wed, 23 Aug 2023 03:52:03 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2bbad32bc79so91586371fa.0;
-        Wed, 23 Aug 2023 03:52:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692787919; x=1693392719;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dRqhHJXq0Bktxo4H46C7zgVTLLHao9LqR7pClaczyyg=;
-        b=g9aT5cY0qg5/uOYhAX43HIno9Ld2yZYR1mu2rg5carT2KMhyo030PA10b8E91317GC
-         ak4xBcexedwhm2nrHROiiD3Qlydl+IRpZlG6k9VqrnPZxDh1mqg9gz0ci6wRrDErFBow
-         Q8Tbl/Q9dDrPD7fAlpvMHaMBvBXlfOoQP2ds/+DJ2XuN4L8ZT1NBDthyKg7GPzYiwA0Q
-         23+c9nlWS4m/mgNpVa/ULx58zyw2SCHuHBEuLeHUbcr9/QfdIpgm6rKNuu5qner5L9HZ
-         ez12vz+L76HFYsFH32hFAecwHxAlkYTwHqr46csKBkgWuqtLw1jx7+L60R7dPICjgNQA
-         PyRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692787919; x=1693392719;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dRqhHJXq0Bktxo4H46C7zgVTLLHao9LqR7pClaczyyg=;
-        b=g57s91+v9uNRi0yQcU9hcJWS7395WgsEoMHlJJad2qJ+HBRHQs6+QPuF6C6SdpgB4g
-         CpxrHf8DIL+erUoo/1bHXFkKwoOa86HsBs7Ii1bICLkzqYimSbmG602v0WNOv7mfOccC
-         1ppr+5ub7JOX2uYWr+jyWJus29X07hxxGa7g/ebOFuRT9qH1znTv37W4UXNW91fVxihz
-         fRq/P6Bmfy+SnUtGDweeUOEhMyMJQwRP6eadwMtz/gsbCnzNnBVlaLP0y0j/nTlc/DSP
-         BLzcpEUUq7aY3hT4GYJvDwcwaUqEHJGL7IIOJPga012fIf6L+ZbJC4mZLPDBSbG+mxKo
-         nCyg==
-X-Gm-Message-State: AOJu0YyxJg/w0jSO94A+HJyVEv2ruSegIpeLpZyPxQ4DOJdeqxkwZBx4
-        QF4hvba5KNwbc0UwgHp1piY=
-X-Google-Smtp-Source: AGHT+IFcjFkYYN1zTjIy03aZ9OVZHXp+Q5at0oljrFTh0tUeUKBOXh3Hy+PDiisA500c0O+wbXloHA==
-X-Received: by 2002:a05:651c:146:b0:2b6:9ed0:46f4 with SMTP id c6-20020a05651c014600b002b69ed046f4mr9301965ljd.23.1692787918876;
-        Wed, 23 Aug 2023 03:51:58 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id n23-20020a2e9057000000b002bcbb464a28sm1713321ljg.59.2023.08.23.03.51.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 03:51:58 -0700 (PDT)
-Date:   Wed, 23 Aug 2023 13:51:55 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
-        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v19 06/19] PCI: dwc: Add dw_pcie_link_set_max_link_width()
-Message-ID: <xx2acgfntcqzdiujo76xqt7prhgws4kgsmiupukzkmpmin5tzx@jzorkzrx4di3>
-References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
- <20230823091153.2578417-7-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S232161AbjHWK4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:56:06 -0400
+Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8ECCD5;
+        Wed, 23 Aug 2023 03:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=A0IfQ3GE4OZYWrbHk+XuRIci+HdUerkCEp4gSqVg1CY=; b=ixH5wEv23MRgT8EdKOFC+2XcBq
+        Zbr7ojt4TgC3mlPHt2/nt3SiGzNEazg42Cm44GEOB2TOaMgeDHAGmOMzdnAcYYj4XOWG4xyH+QT+s
+        NxJBkOZlXDI2vwhZK1crUAzDdVN7gzmeAr+sJIW6bG+YRljNivIfIZ0Do5zoH6H80rayAz0r0ndFb
+        gzNul1mtpWANTsi6QBCsBQfG9lQvPaBiAa6fdlqY34Kgm2a+VtJ80jyDf7y18eQJsJj+NuN7T5rP0
+        cF3wLemJJxsr4m3IOFlnM7AKX6w04ziNtyja2TNm56Nh6yjqG+WrAhk9qZJ5qeDTmZfD5RsKbY+Xr
+        9on7KwXw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55524)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.96)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1qYlWU-0002dt-13;
+        Wed, 23 Aug 2023 11:55:38 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1qYlWQ-0006l0-4y; Wed, 23 Aug 2023 11:55:34 +0100
+Date:   Wed, 23 Aug 2023 11:55:34 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Serge Semin <fancer.lancer@gmail.com>
+Cc:     Jakub Kicinski <kuba@kernel.org>,
+        Rohan G Thomas <rohan.g.thomas@intel.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Eric Dumazet <edumazet@google.com>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Synopsis XLGMII MAC, IEEE 802.3 and XLGMII interfaces
+Message-ID: <ZOXlpkbcAZ4okric@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230823091153.2578417-7-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 23, 2023 at 06:11:40PM +0900, Yoshihiro Shimoda wrote:
-> This patch is a preparation before adding the Max-Link-width capability
-> setup which would in its turn complete the max-link-width setup
-> procedure defined by Synopsys in the HW-manual. Seeing there is
-> a max-link-speed setup method defined in the DW PCIe core driver
-> it would be good to have a similar function for the link width setup.
-> That's why we need to define a dedicated function first from already
-> implemented but incomplete link-width setting up code.
-> 
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Manivannan Sadhasivam <mani@kernel.org>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 86 ++++++++++----------
->  1 file changed, 41 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index d1dfe6f2eb4c..976dcc511fdc 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -722,6 +722,46 @@ static void dw_pcie_link_set_max_speed(struct dw_pcie *pci, u32 link_gen)
->  
->  }
->  
-> +static void dw_pcie_link_set_max_link_width(struct dw_pcie *pci, u32 num_lanes)
-> +{
-> +	u32 lwsc, plc;
-> +
-> +	if (!num_lanes)
-> +		return;
-> +
-> +	/* Set the number of lanes */
-> +	plc = dw_pcie_readl_dbi(pci, PCIE_PORT_LINK_CONTROL);
+Hi,
 
-> +	plc &= ~PORT_LINK_FAST_LINK_MODE;
+Okay, I think it's time to get to the bottom of this, and below are my
+ramblings so far.
 
-Sigh... Anyway.
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+According to IEEE 802.3 80.1.3, XLGMII is the 40 Gb/s MII and CGMII
+is the 100 Gb/s MII. 81.1 goes on to state:
 
--Serge(y)
+The XLGMII/CGMII has the following characteristics:
 
-> +	plc &= ~PORT_LINK_MODE_MASK;
-> +
-> +	/* Set link width speed control register */
-> +	lwsc = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
-> +	lwsc &= ~PORT_LOGIC_LINK_WIDTH_MASK;
-> +	switch (num_lanes) {
-> +	case 1:
-> +		plc |= PORT_LINK_MODE_1_LANES;
-> +		lwsc |= PORT_LOGIC_LINK_WIDTH_1_LANES;
-> +		break;
-> +	case 2:
-> +		plc |= PORT_LINK_MODE_2_LANES;
-> +		lwsc |= PORT_LOGIC_LINK_WIDTH_2_LANES;
-> +		break;
-> +	case 4:
-> +		plc |= PORT_LINK_MODE_4_LANES;
-> +		lwsc |= PORT_LOGIC_LINK_WIDTH_4_LANES;
-> +		break;
-> +	case 8:
-> +		plc |= PORT_LINK_MODE_8_LANES;
-> +		lwsc |= PORT_LOGIC_LINK_WIDTH_8_LANES;
-> +		break;
-> +	default:
-> +		dev_err(pci->dev, "num-lanes %u: invalid value\n", num_lanes);
-> +		return;
-> +	}
-> +	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, plc);
-> +	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, lwsc);
-> +}
-> +
->  void dw_pcie_iatu_detect(struct dw_pcie *pci)
->  {
->  	int max_region, ob, ib;
-> @@ -1003,49 +1043,5 @@ void dw_pcie_setup(struct dw_pcie *pci)
->  	val |= PORT_LINK_DLL_LINK_EN;
->  	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
->  
-> -	if (!pci->num_lanes) {
-> -		dev_dbg(pci->dev, "Using h/w default number of lanes\n");
-> -		return;
-> -	}
-> -
-> -	/* Set the number of lanes */
-> -	val &= ~PORT_LINK_FAST_LINK_MODE;
-> -	val &= ~PORT_LINK_MODE_MASK;
-> -	switch (pci->num_lanes) {
-> -	case 1:
-> -		val |= PORT_LINK_MODE_1_LANES;
-> -		break;
-> -	case 2:
-> -		val |= PORT_LINK_MODE_2_LANES;
-> -		break;
-> -	case 4:
-> -		val |= PORT_LINK_MODE_4_LANES;
-> -		break;
-> -	case 8:
-> -		val |= PORT_LINK_MODE_8_LANES;
-> -		break;
-> -	default:
-> -		dev_err(pci->dev, "num-lanes %u: invalid value\n", pci->num_lanes);
-> -		return;
-> -	}
-> -	dw_pcie_writel_dbi(pci, PCIE_PORT_LINK_CONTROL, val);
-> -
-> -	/* Set link width speed control register */
-> -	val = dw_pcie_readl_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL);
-> -	val &= ~PORT_LOGIC_LINK_WIDTH_MASK;
-> -	switch (pci->num_lanes) {
-> -	case 1:
-> -		val |= PORT_LOGIC_LINK_WIDTH_1_LANES;
-> -		break;
-> -	case 2:
-> -		val |= PORT_LOGIC_LINK_WIDTH_2_LANES;
-> -		break;
-> -	case 4:
-> -		val |= PORT_LOGIC_LINK_WIDTH_4_LANES;
-> -		break;
-> -	case 8:
-> -		val |= PORT_LOGIC_LINK_WIDTH_8_LANES;
-> -		break;
-> -	}
-> -	dw_pcie_writel_dbi(pci, PCIE_LINK_WIDTH_SPEED_CONTROL, val);
-> +	dw_pcie_link_set_max_link_width(pci, pci->num_lanes);
->  }
-> -- 
-> 2.25.1
-> 
+  a)    The XLGMII supports a speed of 40 Gb/s.
+  b)    The CGMII supports a speed of 100 Gb/s.
+  c)    Data and delimiters are synchronous to a clock reference.
+  d)    It provides independent 64-bit wide transmit and receive data paths.
+  e)    It supports full duplex operation only.
+
+That seems very clear.
+
+According to
+https://www.synopsys.com/dw/ipdir.php?ds=dwc_ether_enterprise_mac
+XLGMII operates at 25 Gb/s, 40 Gb/s, 50 Gb/s and 100 Gb/s. This
+appears to "disagree" with IEEE 802.3.
+
+It appears, at least to me, that CGMII and XLGMII are physically
+similar interfaces, the only difference seems to be the speed of
+operation, so it would be entirely possible to have a MAC that
+can operate at both speeds - or indeed at other speeds such as
+Synopsys' "XLGMII" MAC.
+
+Now, the problem is... phylink interprets PHY_INTERFACE_MODE_XLGMII
+to mean the IEEE 802.3 defined 40 Gb/s mode - in that it _only_
+supports 40 Gb/s over that interface mode. Clearly, that's the right
+thing to be doing, because this is what IEEE defines and vendor
+stuff doesn't apply for generic code.
+
+phylib hasn't defined PHY_INTERFACE_MODE_CGMII yet, so phylink doesn't
+provide that (maybe it should.) However, when it does, phylink will
+then allow 100 Gb/s over CGMII.
+
+Are there other standards that define 25 and 50 Gb/s over an XLGMII-
+like link?
+
+Given the way things are at present, it means that the switch statement
+in stmmac_mac_link_up() for PHY_INTERFACE_MODE_XLGMII, only one case
+will ever be used - SPEED_40000. I'm guessing this isn't a problem as
+no one has reported any problems.
+
+Then... there's the inclusion of 10G, 2.5G and 1G in the XLGMII switch.
+The above link to Synopsys website suggests that XGMII is used for 10G
+and GMII for 1G.
+
+Given that this is just the MAC, and we would normally have a PCS after
+it (which may be XPCS), the interface used between the MAC and PCS isn't
+all that relevant, since PHY_INTERFACE_MODE_xxx primerily defines the
+interface to any PHY that is connected, and as a secondary function the
+interface to fiber (since [MAC - PCS - Serdes] - PHY - media and
+[MAC - PCS - Serdes] - media are common, it has made sense to use the
+PHY interface mode to define the protocol used on that part of the
+link that a PHY _could_ be connected to.)
+
+So, I'm not convinced that the fact that this MAC core uses XLGMII,
+XGMII and GMII has any relevance to the PHY_INTERFACE_MODE_ passed
+by phylink into functions such as stmmac_mac_link_up(), _unless_ a
+PHY is connected directly to the MAC.
+
+If XPCS is connected, that interface mode would be whatever XPCS is
+using to talk to the "outside world" not what the connection is
+between the MAC and XPCS. If we want to know what that is, then
+stmmac needs to be asking XPCS for that information (and maybe
+phylink needs to get that from its PCS on behalf of the MAC driver.)
+
+I think there's a lot that needs to be thought about here.
+
+Part 2 of this will be USXGMII... which I'll do as a separate email.
+
+Thanks.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
