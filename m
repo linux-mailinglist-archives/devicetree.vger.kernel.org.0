@@ -2,84 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E4527850A0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 08:27:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87C67850A8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 08:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232937AbjHWG1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 02:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35338 "EHLO
+        id S232957AbjHWGeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 02:34:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232424AbjHWG1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 02:27:46 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB20E59
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 23:27:44 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9a18a4136a9so443581866b.2
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 23:27:44 -0700 (PDT)
+        with ESMTP id S232950AbjHWGea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 02:34:30 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B5BE51
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 23:34:27 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a1ce529fdso1639525a12.1
+        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 23:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692772063; x=1693376863;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692772466; x=1693377266;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r5Oc56VzNR2aVjs0jVSRnsJUhpw2zj/HD9VsbzcLo7s=;
-        b=DUiAx5xPzaUEZONVMv/ajlmwn6R13EUUZ7ZqxvWYO3m5GscO0lfvmEJFZGy9fUOsQP
-         LqrScyfvELcdX76u+yPg8TFUaOvdT2Lff02UQtqw9prb3BZdbYRQ1kQh7FjJRMSpWPNe
-         EqtL/DwTTylXCruh0A4PSIt/gYClH5V90YeZKB6IWfnq7fCTvLjc9LaXdUxvHMLgxdj2
-         d+6/IXtixR4Jw+YgakSPL33/NQPZoDhcEgzZtAbMh+g6D0p/JyJI/p1wH/ea6XcDYywH
-         om8LoKCHd5jEQaYWSFr3GINfOGKpWSycqQcgbarPRRVPiciqXStydTp9luPi/kiK4pQE
-         fY0g==
+        bh=MU3Isdowj+DsCsRlrrGGs3GBgTkRvi+kExV2JBgHR90=;
+        b=o23yHBgavqwsKfMWauqdS8zT9YMRxkVFjiEKXjmj4j6hUI4WdoccYudq9NvCIxELcf
+         QCej+RLHtSFdaoUMy9FcdIkhhaJgAryOukZvsAPAgf9YjDKf/Ric/YkAth8km0XawcUK
+         oVyn635o9URUI8KhCuHpYeprJiQFPBdcWdy5V2bq3Msv1t1+Rp7+o4YZc28AfIgDEmNc
+         TKhGGhelBDLji1b+CKOVCt52KRPDE0UvroOydQUzC2MrMq4R+8udpgYls8zju9SW3kAl
+         +dGWWz+tskr9KiNtfSLSKfVuMWWkzt4Z9Lsc2g05a1azi2p8jozV6xJzY8/3A5TtZMOX
+         ILcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692772063; x=1693376863;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692772466; x=1693377266;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r5Oc56VzNR2aVjs0jVSRnsJUhpw2zj/HD9VsbzcLo7s=;
-        b=ap2aC2L14L0HqUTN1uubB6cJ2BX478Pev9eDh9dbfJk6dzvIlrhjThSMR3YR6M8dQT
-         avGXxrOVMVrCRwTFkOJ7Xa/xPOWCtxhCDjBJJWir//nn5Qy4++dhPEW+MRkCKqS0VJdN
-         1S66ERi/3+PddpXY3kHVUWOhhIZEMPxZjV1NMLr1y+j6MytoM9vc7zCzBxTok7VBKnSR
-         SiI9gCXq6ve2CIIkyZCuPU3OWgJAurNbu6Rd8cEU7x6u3zZdzGRWPp8/eHcA05oK6SVp
-         m4VI4Oard7eEr3icAg8aojgjkhRfUAohqhMRwbTNIFrthjapWPiYHaTJHbpVkPWgKJmH
-         WCnA==
-X-Gm-Message-State: AOJu0Ywyph8NlwmGADvBW2LEhIGQmorf+iYCgtXz8wP97JZApOaQr2rw
-        hqTQq26UQpfYLvOibkkdYqvCew==
-X-Google-Smtp-Source: AGHT+IHi1b/spa02y3F0OEnt2M1o/GMERkoNPp3UJjEHhkC9Gqexbv7cyCGUeH5zfIvKXMN3JFPEAA==
-X-Received: by 2002:a17:906:8445:b0:99c:281:9987 with SMTP id e5-20020a170906844500b0099c02819987mr9804003ejy.36.1692772062737;
-        Tue, 22 Aug 2023 23:27:42 -0700 (PDT)
+        bh=MU3Isdowj+DsCsRlrrGGs3GBgTkRvi+kExV2JBgHR90=;
+        b=dzmYljk6NjRrMSNJnZcrr4u0bP6y3aNf14YQjqwEb6u3I7MHgEbqAS8CthXIuulmJ/
+         /g3MkFY6zamWWsap+s9YyPoEKk29ey2cEE1b6uY2cWylFDwVOHMZV63iwsvv3rBdHf02
+         DjXpF6FzmMxrUxHlt4mMoVU+Zc4oR8KNI0nDirvXhk3IhktgwdrC4CxKbRa0uKij+gi2
+         WrGfmRfBxbgh3BF4h9s9drPHyQA+iVB8DfsDOFixOenxRRnOuOiyht0L7BGNhkhb3hrX
+         h/IeEATTH40GU0T+u1efFfBNsrUEoEYix+GdS2kLx8UW0GwrujG3ZVG2mecOBR4s/etY
+         mOBQ==
+X-Gm-Message-State: AOJu0Yz/lDp62LDeDUPCptSsB0wlKFoenHiWb3uIfkYKJBEwrGolnZGs
+        nl95DeQ4xO0CPm88AqHankO1WQ==
+X-Google-Smtp-Source: AGHT+IHhCJI/QD2v/0J0GgF4dGdn1D5mczy3eQQZvyXb4T25R/URjCtxqGab14wd0CHLKC83O5A11A==
+X-Received: by 2002:aa7:d3d2:0:b0:525:528d:836f with SMTP id o18-20020aa7d3d2000000b00525528d836fmr8428350edr.18.1692772466186;
+        Tue, 22 Aug 2023 23:34:26 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id r16-20020a170906705000b0099bd6026f45sm9441832ejj.198.2023.08.22.23.27.41
+        by smtp.gmail.com with ESMTPSA id w3-20020a056402128300b005222c6fb512sm8862885edv.1.2023.08.22.23.34.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Aug 2023 23:27:42 -0700 (PDT)
-Message-ID: <4db8ba95-0d0d-0d1c-1d90-29833f0405ae@linaro.org>
-Date:   Wed, 23 Aug 2023 08:27:40 +0200
+        Tue, 22 Aug 2023 23:34:25 -0700 (PDT)
+Message-ID: <5dfae814-7233-eb1f-cae7-f335e54ce1b6@linaro.org>
+Date:   Wed, 23 Aug 2023 08:34:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH V10 1/4] dt-bindings: clock: document Amlogic S4 SoC PLL
- clock controller
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-2-yu.tu@amlogic.com>
- <d2a6060a-c8a0-51c7-f621-1bed2c3074b4@linaro.org>
- <e9932f90-a011-ee9b-ef09-f2e2475bdd0d@amlogic.com>
- <c2faccd6-1d77-9b81-d8d9-830e95e804af@linaro.org>
- <eee9e730-f69b-1150-07fe-0d40a14b5a50@amlogic.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: usb: snps,dwc3: Add
+ runtime-suspend-on-usb-suspend property
 Content-Language: en-US
+To:     Elson Serrao <quic_eserrao@quicinc.com>,
+        gregkh@linuxfoundation.org, Thinh.Nguyen@synopsys.com,
+        rogerq@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
+ <20230814185043.9252-3-quic_eserrao@quicinc.com>
+ <a77403f5-8b99-3012-3843-1999ee8d12ce@linaro.org>
+ <6b27cd55-4e44-7a26-30ff-9692344cae4c@quicinc.com>
+ <31fa930a-51fb-6a7f-300d-e71f6b399eb1@linaro.org>
+ <a0a6c561-6319-00ba-c6db-f1dec9f0f0aa@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eee9e730-f69b-1150-07fe-0d40a14b5a50@amlogic.com>
+In-Reply-To: <a0a6c561-6319-00ba-c6db-f1dec9f0f0aa@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
@@ -90,52 +83,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 08:20, Yu Tu wrote:
+On 23/08/2023 01:58, Elson Serrao wrote:
 > 
 > 
-> On 2023/8/23 13:43, Krzysztof Kozlowski wrote:
->>
->> [ EXTERNAL EMAIL ]
->>
->> On 23/08/2023 04:24, Yu Tu wrote:
+> On 8/19/2023 2:35 AM, Krzysztof Kozlowski wrote:
+>> On 18/08/2023 21:16, Elson Serrao wrote:
 >>>
 >>>
->>> On 2023/8/23 0:32, Krzysztof Kozlowski wrote:
->>>> [ EXTERNAL EMAIL ]
->>>>> On 22/08/2023 10:27, Yu Tu wrote:
->>>>> Add the S4 PLL clock controller dt-bindings in the S4 SoC family.
+>>> On 8/15/2023 10:44 PM, Krzysztof Kozlowski wrote:
+>>>> On 14/08/2023 20:50, Elson Roy Serrao wrote:
+>>>>> This property allows dwc3 runtime suspend when bus suspend interrupt
+>>>>> is received even with cable connected. This would allow the dwc3
+>>>>> controller to enter low power mode during bus suspend scenario.
 >>>>>
->>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>>> This property would particularly benefit dwc3 IPs where hibernation is
+>>>>> not enabled and the dwc3 low power mode entry/exit is handled by the
+>>>>> glue driver. The assumption here is that the platform using this dt
+>>>>> property is capable of detecting resume events to bring the controller
+>>>>> out of suspend.
+>>>>>
+>>>>> Signed-off-by: Elson Roy Serrao <quic_eserrao@quicinc.com>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 5 +++++
+>>>>>    1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>>>>> index a696f23730d3..e19a60d06d2b 100644
+>>>>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>>>>> @@ -403,6 +403,11 @@ properties:
+>>>>>        description:
+>>>>>          Enable USB remote wakeup.
+>>>>>    
+>>>>> +  snps,runtime-suspend-on-usb-suspend:
+>>>>> +    description:
+>>>>> +      If True then dwc3 runtime suspend is allowed during bus suspend
+>>>>> +      case even with the USB cable connected.
 >>>>
->>>> Lovely. I sent youa  friendly reminder at v8 which turns our you
->>>> ignored. You keep ignoring, I will start ignoring as well from now on.
+>>>> This was no tested... but anyway, this is no a DT property but OS
+>>>> policy. There is no such thing as "runtime suspend" in the hardware,
+>>>> because you describe one particular OS.
+>>>>
+>>>> Sorry, no a DT property, drop the change entirely.
+>>>>
+>>>>
+>>> Hi Krzysztof
 >>>
->>> Hi Krzysztof，
+>>> Sorry my local dt checker had some issue and it did not catch these
+>>> errors. I have rectified it now.
 >>>
->>> Sorry. I did not forget the friendly reminder in v8, I consulted you for
->>> this at the time, so I re-sent V9 after adding the tag. Because it was
->>> just "meson" that was removed. But V10 is based on Neil's patch, which I
->>> think is a bit of a change. So I didn't dare add it. Instead of
->>> forgetting your reminder.
+>>> This dt property is mainly for skipping dwc3 controller halt when a USB
+>>> suspend interrupt is received with usb cable connected, so that we dont
+>>> trigger a DISCONNECT event. Perhaps a better name would reflect the true
+>>> usage of this?
 >>>
->>> So what should I do, I'll follow your advice exactly.
+>>> Something like snps,skip-dwc3-halt-on-usb-suspend. dwc3 cores where
+>>> hibernation feature is not enabled/supported can use this property
 >>
->> I don't think there was much difference between the version, which
->> received the review, and the current patch. Otherwise your changelog
->> should say that you drop Rb tag. Rebasing of something somewhere is not
->> the reason, so please describe what are the differences in the patch?
+>> So this is specific to DWC3 core, thus should be just implied by compatible.
+>>
 > 
-> The current patch and V9 patch difference is mainly based on Neil patch 
-> I put "include/dt - bindings/clock/amlogic,s4-pll-clkc.h" this document 
-> describes the clock index all exposed.
-
-Adding one include is insignificant change, thus any Rb tags should stay.
+> Hi Krzysztof
 > 
-> Next, I should add Rob's tag and resend it. If you have any other 
-> suggestions, please tell me and I will strictly follow your suggestions.
+> Apologies for not being clear. Below is the reasoning behind this dt entry.
+> 
+> When bus suspend interrupt is received and if usb cable is connected, 
+> dwc3 driver does not suspend. The aim of this series is to handle this 
+> interrupt when USB cable is connected to achieve power savings. OEMs 
+> might have their own implementation in their glue driver to turn off 
+> clocks and other resources when USB is not in use, thus saving power. 
+> But since glue layer has dependency on dwc3 driver (parent-child 
+> relationship) we need to allow dwc3 driver to NOT ignore the bus suspend 
+> interrupt and let the dwc3 driver suspend (so that glue driver can 
+> suspend as well)
 
-I cannot add someone's tag, thus on your next version you must include
-it. I told this last time.
+All this describes current OS implementation so has nothing to do with
+bindings.
+
+> 
+> Now it is the responsibility of glue driver to detect USB wakeup signal 
+> from the host during resume (since dwc3 driver is suspended at this 
+> point and cannot handle interrupts). Every OEM may not have the 
+> capability to detect wakeup signal. 
+
+Again, driver architecture.
+
+> The goal of this dt property is for 
+> the dwc3 driver to allow handling of the bus suspend interrupt when such 
+
+DT properties are not "for the drivers".
+
+> a capability exists on a given HW platform. When this property is
+
+Each platform has this capability. If not, then it is
+compatible-related, as I said before which you did not address.
+
+
+> defined dwc3 driver knows that the low power mode entry/exit is 
+> controlled by the glue driver and thus it can allow the suspend 
+> operation when bus suspend interrupt is received.
+> 
+> For example on Qualcomm platforms there is a phy sideband signalling 
+> which detects the wakeup signal when resume is initiated by the host.
+
+So compatible-specific.
+
+> Thus qcom platforms can benefit from this feature by defining this dt 
+> property. (in a parallel discussion with Thinh N to come up with a 
+> better name for this dt entry).
+
+Thanks, with quite a long message you at the end admitted this is
+compatible-specific. Exactly what I wrote it one sentence previously.
 
 Best regards,
 Krzysztof
