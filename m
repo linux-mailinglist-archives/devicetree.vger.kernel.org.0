@@ -2,261 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 122D4785423
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0526178546D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:41:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235244AbjHWJb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 05:31:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56036 "EHLO
+        id S236054AbjHWJlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:41:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235117AbjHWJbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:31:16 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33E661B5;
-        Wed, 23 Aug 2023 02:18:17 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37N8H0lo000423;
-        Wed, 23 Aug 2023 09:18:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=FfIoPDI/BVSgoM1L3UK9pwpNunmdkyV+R7jGXcOfKoo=;
- b=PXSi0ec6GIhm34tGIgCy0bL0HfljUoEURewwXSZo8E4VmDuLofNVbP2ZYOn+PpiCoCbo
- 5owtAgcU02aeUMkCTT499T7r9EalnPc66uoCSA2SKtZXHj1WusoFQsBSDHZ1IrLywEE9
- JhyTtHo7v+QUD6i5xsyEgFuXYTWEjLt9r4hHpvXoj4cfGfcxOuV7dJN44i3JsugoBMXw
- gSZI+DZkwXCtAIOSIy7jnaS8JtmFlJ/xPfLxl7D0aOiFqh/o/K1YXeF7tDLJ2CvS1W+W
- zGOSYhFFfwpHm1QlQIpGsh3rJbrLV3QtKvD0bfKeCFpbVTwgYgMLDCnKRNqDgsw1/wNU NA== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sn2be1kpp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Aug 2023 09:18:06 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 37N9I3d2018356;
-        Wed, 23 Aug 2023 09:18:03 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3sjptkpxtm-1;
-        Wed, 23 Aug 2023 09:18:03 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 37N9I3Qj018350;
-        Wed, 23 Aug 2023 09:18:03 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-nitirawa-hyd.qualcomm.com [10.213.109.152])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 37N9I2Sk018349;
-        Wed, 23 Aug 2023 09:18:03 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 2342877)
-        id 58CF65000AA; Wed, 23 Aug 2023 14:48:02 +0530 (+0530)
-From:   Nitin Rawat <quic_nitirawa@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Nitin Rawat <quic_nitirawa@quicinc.com>,
-        Manish Pandey <quic_mapa@quicinc.com>
-Subject: [PATCH V3 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support for SC7280
-Date:   Wed, 23 Aug 2023 14:47:57 +0530
-Message-Id: <20230823091757.31311-3-quic_nitirawa@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230823091757.31311-1-quic_nitirawa@quicinc.com>
-References: <20230823091757.31311-1-quic_nitirawa@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TyIjKyv0qcYtaJe63ZtBQey5qHGVNocQ
-X-Proofpoint-ORIG-GUID: TyIjKyv0qcYtaJe63ZtBQey5qHGVNocQ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-23_06,2023-08-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- adultscore=0 spamscore=0 mlxscore=0 priorityscore=1501 phishscore=0
- mlxlogscore=829 bulkscore=0 clxscore=1015 impostorscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308230084
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,UPPERCASE_50_75,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S235808AbjHWJlB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:41:01 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 793C52D45
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:35:28 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4ff8cf11b90so8461290e87.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:35:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692783327; x=1693388127;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b2WR3Ie0h6RR/yPxDJeAUQR54bpQnAIUQ5XkLuiEbOw=;
+        b=aoWioChoG5AbKY6UZJUCEVsha2OqtkBmtIK2rhxcqENKgskrbeqZGz3LFcAIYYfTty
+         aHLYMQb53eg+mEC8Y5jJJ11Ih8Vh0cfkf9SQtS7y52hrNwaQlwZppeJ2NAPjB2nrKSBR
+         H9/FlUayI9HpUFJFoZCKw/nW7SG/pJr15Znsfpi71NaTrDbtGC7fsAmVxw3DoKmqizUT
+         QifYJO4da/Zr7MxnCGo90kWNu9wRZ+0CqPV655v+IHWg75UQLk+I5ZNL4GDYBtZ9BPdk
+         +xuezddiQhdD3E7B421ANvjvFgX/Q6WpaafLA0Ze4T7MqX3wShtyygLpOoGqWuQsU1yy
+         oYIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692783327; x=1693388127;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b2WR3Ie0h6RR/yPxDJeAUQR54bpQnAIUQ5XkLuiEbOw=;
+        b=ZCH5kkyUtXqFMbsF7+pdu/EQLGXu6/61Km9f1Y2rtjatWTCx0sX9MxCOn9WmOMIqIE
+         FF7rLphK3UP8f9jmsztc1ENPABV54k53/ss/oAn/tc4V5rNx1RCCbvW/kJjfOVc0CbLp
+         Sgc2ZT17Z/xG2chRRzl7n427NJC1A7RjvyeR78O+dGJmTX6kbvPoKgWEhEkg0Ecmggtv
+         5uFAV3pRoHFa0PCRrjTr2tEplp2BTTz7GiAuPmcu2sayTRuZZxeHiV3qFY7+z7/lfXBm
+         bP+BMGT1wVH2rrlMez/HOq5gEWqh0LRukRWS5eM1nSPzF/ekdx7GUIQicfNjlUVxMCPt
+         ViMg==
+X-Gm-Message-State: AOJu0YxJpxIn9phgFmWRb19vYijQ+NPy7p43Eoz4vm4jIK9F+J2h1Pj4
+        CaAaUHy53LyzQvcY1OWAH1x7Hg==
+X-Google-Smtp-Source: AGHT+IGG8ZQMpcasgZT/TlzCMc5uvmu4o8YkKzwHP3aFkVzTO9t2EyjtCSFss5/JI0sVdgKcWAFlFA==
+X-Received: by 2002:ac2:4e0c:0:b0:500:7f71:e46b with SMTP id e12-20020ac24e0c000000b005007f71e46bmr7780180lfr.1.1692783326608;
+        Wed, 23 Aug 2023 02:35:26 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id s10-20020a056402164a00b0052a3c7c9e8bsm388894edx.56.2023.08.23.02.35.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 02:35:26 -0700 (PDT)
+Message-ID: <61ae58eb-d56c-59c1-81d7-b51322468680@linaro.org>
+Date:   Wed, 23 Aug 2023 11:35:24 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: panel: add common
+ dual-display schema
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
+ <20230823083427.GB4143@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230823083427.GB4143@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SC7280 specific register layout and table configs.
+On 23/08/2023 10:34, Laurent Pinchart wrote:
+> Hi Krzysztof,
+> 
+> Thank you for the patch.
+> 
+> On Wed, Aug 23, 2023 at 10:14:58AM +0200, Krzysztof Kozlowski wrote:
+>> Add schema with common properties shared among dual display panel ICs.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> v2: https://lore.kernel.org/all/20230502120036.47165-1-krzysztof.kozlowski@linaro.org/
+>> v1: https://lore.kernel.org/all/20230416153929.356330-1-krzysztof.kozlowski@linaro.org/
+>>
+>> Changes since v2:
+>> 1. New Patch
+>> ---
+>>  .../display/panel/panel-common-dual.yaml      | 46 +++++++++++++++++++
+>>  1 file changed, 46 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+>> new file mode 100644
+>> index 000000000000..83fcd643b5f5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+>> @@ -0,0 +1,46 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Common Properties for Dual-Display Panels
+>> +
+>> +maintainers:
+>> +  - Thierry Reding <thierry.reding@gmail.com>
+>> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>> +
+>> +description:
+>> +  Properties common for Panel IC supporting dual display panels.
+> 
+> Could you elaborate on what you mean by dual display panels ? From what
+> I understand of the patch series, this seems to be what I have called
+> dual port panels, that is panels that have two input ports to double the
+> bandwidth, but still operate as one display.
 
-Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
-Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
-Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
----
- drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 142 ++++++++++++++++++++++++
- 1 file changed, 142 insertions(+)
+Indeed, looks like that. I don't have the datasheets so I am trying to
+get some pieces of information. Judging by the usage of these panels -
+Qualcomm DSI with qcom,dual-dsi-mode - it indeed is one panel with two
+links.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-index 3927eba8e468..514fa14df634 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-@@ -177,6 +177,111 @@ static const struct qmp_phy_init_tbl msm8996_ufsphy_rx[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL2, 0x0E),
- };
+I would need to rephrase it.
 
-+static const struct qmp_phy_init_tbl sc7280_ufsphy_tx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_1_DIVIDER_BAND0_1, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_2_DIVIDER_BAND0_1, 0x03),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_3_DIVIDER_BAND0_1, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_4_DIVIDER_BAND0_1, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_LANE_MODE_1, 0x35),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TRAN_DRVR_EMP_EN, 0x0c),
-+};
-+
-+static const struct qmp_phy_init_tbl sc7280_ufsphy_rx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_LVL, 0x24),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_BAND, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0xf1),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CTRL2, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_TERM_BW, 0x1b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x06),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x1d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_MEASURE_TIME, 0x10),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0xc0),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x6d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0x6d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xed),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x3c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0xe0),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0xb1),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_LOW, 0xe0),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH2, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH4, 0xb1),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
-+};
-+
-+static const struct qmp_phy_init_tbl sc7280_ufsphy_pcs[] = {
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2, 0x6d),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0a),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL, 0x1f),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xff),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_PLL_CNTL, 0x03),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB, 0x16),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB, 0xd8),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_PWM_GEAR_BAND, 0xaa),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_HS_GEAR_BAND, 0x06),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x03),
-+	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x03),
-+};
-+
-+static const struct qmp_phy_init_tbl sc7280_ufsphy_hs_g4_rx[] = {
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_LVL, 0x24),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x0f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_BAND, 0x18),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0xf1),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CTRL2, 0x81),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x0e),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_TERM_BW, 0x6f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL1, 0x04),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x09),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x07),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x17),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_MEASURE_TIME, 0x20),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0x80),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x01),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x3f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xff),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x7f),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x2c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0x6d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0x6d),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0xed),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0x3c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_LOW, 0xe0),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH2, 0xc8),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH3, 0x3b),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH4, 0xb1),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
-+	QMP_PHY_INIT_CFG(QSERDES_V4_RX_GM_CAL, 0x0f),
-+};
-+
- static const struct qmp_phy_init_tbl sm6115_ufsphy_serdes[] = {
- 	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x0e),
- 	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x14),
-@@ -888,6 +993,40 @@ static const struct qmp_phy_cfg sa8775p_ufsphy_cfg = {
- 	.regs			= ufsphy_v5_regs_layout,
- };
-
-+static const struct qmp_phy_cfg sc7280_ufsphy_cfg = {
-+	.lanes                  = 2,
-+
-+	.offsets                = &qmp_ufs_offsets,
-+
-+	.tbls = {
-+		.serdes         = sm8150_ufsphy_serdes,
-+		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
-+		.tx             = sc7280_ufsphy_tx,
-+		.tx_num         = ARRAY_SIZE(sc7280_ufsphy_tx),
-+		.rx             = sc7280_ufsphy_rx,
-+		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_rx),
-+		.pcs            = sc7280_ufsphy_pcs,
-+		.pcs_num        = ARRAY_SIZE(sc7280_ufsphy_pcs),
-+	},
-+	.tbls_hs_b = {
-+		.serdes         = sm8150_ufsphy_hs_b_serdes,
-+		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_hs_b_serdes),
-+	},
-+	.tbls_hs_g4 = {
-+		.tx             = sm8250_ufsphy_hs_g4_tx,
-+		.tx_num         = ARRAY_SIZE(sm8250_ufsphy_hs_g4_tx),
-+		.rx             = sc7280_ufsphy_hs_g4_rx,
-+		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_hs_g4_rx),
-+		.pcs            = sm8150_ufsphy_hs_g4_pcs,
-+		.pcs_num        = ARRAY_SIZE(sm8150_ufsphy_hs_g4_pcs),
-+	},
-+	.clk_list               = sm8450_ufs_phy_clk_l,
-+	.num_clks               = ARRAY_SIZE(sm8450_ufs_phy_clk_l),
-+	.vreg_list              = qmp_phy_vreg_l,
-+	.num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
-+	.regs                   = ufsphy_v4_regs_layout,
-+};
-+
- static const struct qmp_phy_cfg sc8280xp_ufsphy_cfg = {
- 	.lanes			= 2,
-
-@@ -1648,6 +1787,9 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
- 	}, {
- 		.compatible = "qcom,sa8775p-qmp-ufs-phy",
- 		.data = &sa8775p_ufsphy_cfg,
-+	}, {
-+		.compatible = "qcom,sc7280-qmp-ufs-phy",
-+		.data = &sc7280_ufsphy_cfg,
- 	}, {
- 		.compatible = "qcom,sc8180x-qmp-ufs-phy",
- 		.data = &sm8150_ufsphy_cfg,
---
-2.17.1
+Best regards,
+Krzysztof
 
