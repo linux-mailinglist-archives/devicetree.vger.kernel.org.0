@@ -2,70 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 278FA7852AB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 10:27:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE14C7852F8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 10:46:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbjHWI1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 04:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54214 "EHLO
+        id S234665AbjHWIqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 04:46:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234265AbjHWI0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:26:22 -0400
-Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6AE81FDB
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:23:07 -0700 (PDT)
-Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-d776e1f181bso2054907276.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:23:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692778987; x=1693383787;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KZ77g28iu8cqX740PqcHv95tx/jb6oTcL4UNhuP2mP4=;
-        b=Swc4/RscuplUt5mV4OFAT14r21B5P6RH+ekNA1rUQivpVtFeqSuuw6fgo83EQ3P/Np
-         DZ3fun8/fcBRZGkaj1yt6u8r+F5gsX1O69mSqUESGMiqbm6B/WW80g1AR9j81O+g2F6b
-         Suh59omsyRyCG03pe5m8Z25HnXIlYeGsDLsSSyQSHkxT93Ys32g77SawXSSAJVAfwkpc
-         ai7V6kCxnN9oj92HUGg0ZCT7ftiO6LrrH4jegYapZWI43t0H6W3YAxX2gYE0Sq+UEtZj
-         5J/T1T+53vmRc4TyENHBa8+OoPgFxZmFvwwrDVb5KfrdRoMQg+uuEhkqLtT69USBM+CM
-         wAMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692778987; x=1693383787;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KZ77g28iu8cqX740PqcHv95tx/jb6oTcL4UNhuP2mP4=;
-        b=Xb6m8JfLFlAiSK8S+ZpfqezfYJHdZhZNSgsEReevfeK/Jo2NclK6rsvf29aWSzclUR
-         Q2Lu+9tbiuK0+Rnv4b2aqTig4PPmGnbircmFW5ulm80f5uI1slq5002XP22tX3kj9SAD
-         opR/FIGv6UVcBWBB7J9/s33Ew75zE6VTr1rzdsL3YMguxdcIxSVJfOaah/TlGMtQV3Um
-         1o/SODNVWLamhoH38B9vKTIAMyC1QWsL3ZrWWxqtB/bC5R6ocFipNydaPdcJlpHOSX3w
-         Fr+mMdCgfmy98BzhktnfyqUC46IgxtP4qTVweA5l5gopLJSt/DNyGwDv+XsIEiKz9umN
-         ifKw==
-X-Gm-Message-State: AOJu0YzEkjVdObRsZgSfsichenwcJSKg47u/xk16h6Bm5/1bHYSKawgu
-        DxliLA72wK0wjxzaPh4q80bAkYOkAYyOlbeLD1Wzpg==
-X-Google-Smtp-Source: AGHT+IEgOqtH7KZfrpwWJmSzqs3NDM3mGFUb9MH0eyNEGXIkXQgb7oqjTM5Y1OQ/fhXuGhP63RqGSta5EWs4EreOteM=
-X-Received: by 2002:a25:cc4f:0:b0:d74:4739:3e7b with SMTP id
- l76-20020a25cc4f000000b00d7447393e7bmr12589370ybf.29.1692778987058; Wed, 23
- Aug 2023 01:23:07 -0700 (PDT)
+        with ESMTP id S234841AbjHWIpq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:45:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 541742139;
+        Wed, 23 Aug 2023 01:28:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D76A4617B4;
+        Wed, 23 Aug 2023 08:28:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B18CC433C7;
+        Wed, 23 Aug 2023 08:28:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692779315;
+        bh=kmMIZya07jp0kBo4NYE6vzbjfqHZIMtz0RbugsVw+7Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=ukgweX5D9jqhW/B7AYRKE8lmyqmhRN5IlniYNz9xmpmjmraUhHl+ON3I6cQtIeb71
+         ZONjoaeNpbm5pLKvZTfZ8CnbyAQrwkmHi6+j1dvLAwGPiXsiybgzkiK3moerGLFoFf
+         6qfffl79AS6R+hAm+XYKMI85LrBG0wrZqgpCuUwX1VMeYq47PWRqOTCXudGE2J17c1
+         hJMFtM+xZ8HMCgBHb+Zrdx2GVK0fo0bU2l4ptsv52KcWt/kb+mA+2t30rTrESDnUAc
+         2xRSSzRPL7zJGc5qgkQaiOIjQXptSDAOmEvzhTHA0GvrcnTsFFiQD8N4L97/rLuEU3
+         vbON8RyKsopiA==
+Received: (nullmailer pid 1441435 invoked by uid 1000);
+        Wed, 23 Aug 2023 08:28:31 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-References: <20230821023928.3324283-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20230821023928.3324283-1-peng.fan@oss.nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 23 Aug 2023 10:22:55 +0200
-Message-ID: <CACRpkdaxtfDiTjms_JXCsymPu50rO7POZs5noTKqDz9qQryLrw@mail.gmail.com>
-Subject: Re: [PATCH V3 1/2] amba: bus: fix refcount leak
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, frowand.list@gmail.com,
-        andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        linux@armlinux.org.uk, arnd@arndb.de, jeremy.kerr@canonical.com,
-        isaacmanjarres@google.com, hdegoede@redhat.com,
-        ulf.hansson@linaro.org, rafael@kernel.org,
-        grant.likely@secretlab.ca, Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+From:   Rob Herring <robh@kernel.org>
+To:     Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org, haibo.chen@nxp.com,
+        festevam@gmail.com, peng.fan@nxp.com, conor+dt@kernel.org,
+        V.Sethi@nxp.com, sahil.malhotra@nxp.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, clin@suse.com, gaurav.jain@nxp.com,
+        linux-imx@nxp.com, robh+dt@kernel.org, ping.bai@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, aisheng.dong@nxp.com,
+        xiaoning.wang@nxp.com, devicetree@vger.kernel.org,
+        davem@davemloft.net, wei.fang@nxp.com,
+        alexander.stein@ew.tq-group.com, pierre.gondois@arm.com,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de
+In-Reply-To: <20230823073330.1712721-2-pankaj.gupta@nxp.com>
+References: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
+ <20230823073330.1712721-2-pankaj.gupta@nxp.com>
+Message-Id: <169277931130.1441418.1447733552044665055.robh@kernel.org>
+Subject: Re: [PATCH v5 01/11] dt-bindings: arm: fsl: add imx-se-fw binding
+ doc
+Date:   Wed, 23 Aug 2023 03:28:31 -0500
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -74,21 +66,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 21, 2023 at 4:34=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.co=
-m> wrote:
 
-> From: Peng Fan <peng.fan@nxp.com>
->
-> commit 5de1540b7bc4 ("drivers/amba: create devices from device tree")
-> increases the refcount of of_node, but not releases it in
-> amba_device_release, so there is refcount leak. By using of_node_put
-> to avoid refcount leak.
->
-> Fixes: 5de1540b7bc4 ("drivers/amba: create devices from device tree")
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On Wed, 23 Aug 2023 13:03:20 +0530, Pankaj Gupta wrote:
+> The NXP's i.MX EdgeLock Enclave, a HW IP creating an embedded
+> secure enclave within the SoC boundary to enable features like
+> - HSM
+> - SHE
+> - V2X
+> 
+> Communicates via message unit with linux kernel. This driver
+> is enables communication ensuring well defined message sequence
+> protocol between Application Core and enclave's firmware.
+> 
+> Driver configures multiple misc-device on the MU, for multiple
+> user-space applications can communicate on single MU.
+> 
+> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+> 
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> ---
+>  .../bindings/firmware/fsl,imx-se-fw.yaml      | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.yaml
+> 
 
-Makes sense.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Yours,
-Linus Walleij
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.example.dtb: se-fw: 'mu-id' is a required property
+	from schema $id: http://devicetree.org/schemas/firmware/fsl,imx-se-fw.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/fsl,imx-se-fw.example.dtb: se-fw: 'fsl,mu-id' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/firmware/fsl,imx-se-fw.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230823073330.1712721-2-pankaj.gupta@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
