@@ -2,4064 +2,1525 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 609AF785300
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 10:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B09A8785319
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 10:53:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234844AbjHWIrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 04:47:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51668 "EHLO
+        id S234941AbjHWIxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 04:53:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234667AbjHWIqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:46:23 -0400
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2113.outbound.protection.outlook.com [40.107.255.113])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5280A1996;
-        Wed, 23 Aug 2023 01:42:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GG6CrBDqTDGXB6lqW3W4cGoI3ENs5Z7dF2LZm9yNKhg87E48eW7gRpiTdfkihMMfVA3fna7f12M0kexRpA1Hv2yAUqcxuDIBLWTHmMzDrwHz73wupuQSLpfn4POUMtmL4WfoURUUOyj1AGhK2nd8c5+1vdjFMTPFF1mccSrh6OHhpUAFl9V5ulUAg6dEPguG4Ksvri/gN5Qd5d35mLdAL8XHpaQ8Vv4QNv2aM3JdbscxL6+yKKWA6VPL/+eNspYw0oSjiX7jcfRwG0Z4NtlsUJNUyUux/g9X8Yx9EpP8PI7X6it3w1VHG79PYV7y+ALDcE3oo1dyE4dcQbYvHXKhDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V6x4ZAug8mOYy9zS3oHoDGyvaPiz290JgStnzkKSkuU=;
- b=OISrBypJiSM6x3iVWPYH2cchg38NX7sGI0GDFwgoVAjvpQIg/FseS59OffuHOVvxyFwpQD/vwAwcPuVosFczRwK0fxzVydE50cTfNc+uS/PfQfoqnOBFZqv4SaU+OZrRKMZiXjTtc7jHBsHWXmkPiL1OPuYOCzZD/mNaHcZNg0ehfqzXsXODLz9Ahs/AxaMniomjCIUDcpAARc5SBN5qSsW0fExhbw6vsSrZVXrzZCCqeDK/hJRCTIh2iYi5IN4TLuO40VzUmuS7iEHZ4eF/Go4lKCRwjCUqQB86KZzOhUC3TpaaA+6zMAwAP0LtPBYlb8uMGeYlB2R+2UakM7/MLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V6x4ZAug8mOYy9zS3oHoDGyvaPiz290JgStnzkKSkuU=;
- b=wk3HWJED8kN9OUSPDPsxOO7pixkM94d+GfuuTRVN+cWOLAgNjFKOzGz3TU8tDdDi73/ua94AUL2lo0ug1pSyryG95bIrEeDxNAFI+EJ1RXOssbdUJgYEJnDnEjVr7nZvPOt7wEGe3PrvYH8sTwPa7/8SNFz+I5U6w+uYPN0Nlx1eZmRY2fzUg1n05lvd0QJOXnevWOXdkqn2AteBVK3dfwIa1ma/fWutbcsrissJFfhHGZqmjkL1A+Dj9s/utURoxOvE9XZJBySdSobNVlyJNXpJFHe7ZB6vQIt/n7paWu5z4jG7apXba8yI+mffQMVqR3Ti2t/YLKtYqItmefJNeg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from SG2PR03MB6730.apcprd03.prod.outlook.com (2603:1096:4:1d5::9) by
- SEZPR03MB7245.apcprd03.prod.outlook.com (2603:1096:101:a8::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6699.25; Wed, 23 Aug 2023 08:41:55 +0000
-Received: from SG2PR03MB6730.apcprd03.prod.outlook.com
- ([fe80::6f04:4b62:1127:59ed]) by SG2PR03MB6730.apcprd03.prod.outlook.com
- ([fe80::6f04:4b62:1127:59ed%4]) with mapi id 15.20.6678.029; Wed, 23 Aug 2023
- 08:41:54 +0000
-Message-ID: <7cb18947-282d-0a3c-bec0-2059d1cffd51@amlogic.com>
-Date:   Wed, 23 Aug 2023 16:41:50 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V10 4/4] clk: meson: S4: add support for Amlogic S4 SoC
- peripheral clock controller
-Content-Language: en-US
-To:     Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S235002AbjHWIrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:47:47 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12F5010E4
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:46:15 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b9b904bb04so84438401fa.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:46:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692780373; x=1693385173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wNochH5AzkkbM02iKAt64Ac4DR2vD4vaGcqyxMvLZVY=;
+        b=FhCexy8y7ro104msZGjkcgIBCQaHn2CRqvB2kep4Km9TOq/UMGFXLndYDYmnI5Mp6s
+         K4Nmnf7rhCKtTxqYeoN/ftfysDdubtlQXvoSym2EFt4ICaqVkQu5fW7cj1kDBkP0Hyqh
+         In0BKnVqt2+tYrO+9hJ2KpvIkIvWIBhiyvll4Y5G3itusRUgfgcK/sFjvWT9Z3iUbMlR
+         ep5rPN8RJuanqW62Pwqa+3iUiMl6XxdN1m8f8vQsWVIlqNbaVqK5n7C4wfoZJjZm9a6Z
+         LbK/qqgfLDnPuQZ03j3WqGpE/dnyfGc7DFIeo6e/h9fFCaho4h6hSZFbaOUMEY+5flnG
+         L3LA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692780373; x=1693385173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wNochH5AzkkbM02iKAt64Ac4DR2vD4vaGcqyxMvLZVY=;
+        b=S32fezIeLFo8oNiXBbmSzaR1REfo6oKanSTga42LbaIrFlTFRA4QURMpl6PRNxVz9Z
+         quUPr0k2VzQz4vt6nkZDtxxCsyOi5TvhfnmnuiY9TmcHRaN8db5q9z+YGAOLvenJx3Zb
+         wf53ZlmSbHi7vfYuMz1s4OdvW24Yry0FRFUsmQ2ORStAi280HdA4eCk7Nd1NJIJqgWLg
+         MNE1NgvLg/qfC4xBnuKauUYXTCA9lo6M2Wd8VQ7yycrvAIPuK3L2FHrRmERSrzfCzp5m
+         tZhF/C9Z3vLt8RhdhXS/KOupKJbX8KOFIvjb0DBGNgLU4sFedew8uk6lkW/bkCky6nWz
+         2T3A==
+X-Gm-Message-State: AOJu0YyuE157eWwSy8itfmD8JuVuTFSASqJUNFg6lkVDjvzASIThJZ9z
+        cH4UKn+i2HLHoqk8MJnkp7MSLw==
+X-Google-Smtp-Source: AGHT+IHkGj/NYJq/FRYjSbgE8fN+I3rSglzTGyg8tmrvX8t4CCjOU29Ss7Prv9aY3uR4AaZALKPw5g==
+X-Received: by 2002:a2e:7e10:0:b0:2b9:eaa7:c23f with SMTP id z16-20020a2e7e10000000b002b9eaa7c23fmr8238886ljc.49.1692780372918;
+        Wed, 23 Aug 2023 01:46:12 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id l7-20020a17090615c700b00999bb1e01dfsm9462805ejd.52.2023.08.23.01.46.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 01:46:12 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-5-yu.tu@amlogic.com>
- <1j7cpm9nfb.fsf@starbuckisacylon.baylibre.com>
-From:   Yu Tu <yu.tu@amlogic.com>
-In-Reply-To: <1j7cpm9nfb.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI1PR02CA0013.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::7) To SG2PR03MB6730.apcprd03.prod.outlook.com
- (2603:1096:4:1d5::9)
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: use capital "OR" for multiple licenses in SPDX
+Date:   Wed, 23 Aug 2023 10:45:40 +0200
+Message-Id: <20230823084540.112602-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG2PR03MB6730:EE_|SEZPR03MB7245:EE_
-X-MS-Office365-Filtering-Correlation-Id: 454c7be6-f836-45a1-cefb-08dba3b4cd99
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4Its0yQ7FaHHy3Lc/sNxvRL/La2cgA82oJGoM647kyuG5SaCiI9211X3Dw91fzL/knNMHHC6k1brqCUc0KHyFx2Z7I5Xnx276SnIN5ini6PfNyvzX4ujD57BH3ZhFJWxVwxp5pNu3LLDZCOhxM4qLsl5HmebC7Dx9nsfYn931xawnG3GBcLFtDThn6hCb8S8juU63yEtzKHVGp3666md1m5a7c+b+SHtr71AZqaWPT/9+4nYjBNvSHqac1kkvvS54VGpv5xRrtMeOJFDHCEqs+NMv8A/fct3VWgQBVsNaSyTJ8diyA6BUJgOpGuuK/zBVl4iGTUSiZILUmEYSzLHphlcpZe46xnVVBsfS3j0QZFC5xJ/3aysrfjoYki5FXeo6qM8+Pw0fJ6hIZvGDus6Vsxu/uT7Wdsh5Dnn7ZL71nMhhM1I0nnyqdotbaqNJk5jPTY3ZsnewWfms0e/RqXjdamRJDOv+uDnUq4c0Q1eol0t8SxMXCoVjUsg/dhHLzokN7NZ0uzq4XpK0OlUEFiqQeHzYPdpdFN1Kz8cx1cF7FSbqZsQNUlKqe/fF1k05RXoy7jGSG/QJyqXBpqSbUxTx1geL7yBX+nVHIbKB0hfGmhrOLCebGGDUnuEbhoI2gaR4HKRjgwlKmr4yIf4B3jLciaSC101U0MhkRcNLRjxFg/SRqlTST7xVV1vV+ZQE6N36emxvwjUrgTi0n2lo42fAl34j17uz6W745A7DFE0PFAdPnt+1eY9hcRZ111CXgt9
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6730.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(396003)(376002)(39850400004)(346002)(186009)(1800799009)(451199024)(86362001)(31696002)(44832011)(5660300002)(8676002)(8936002)(7416002)(30864003)(4326008)(2906002)(36756003)(6512007)(6506007)(53546011)(6486002)(6666004)(2616005)(26005)(921005)(107886003)(478600001)(12101799020)(83380400001)(31686004)(66556008)(66946007)(316002)(66476007)(38100700002)(41300700001)(110136005)(45980500001)(43740500002)(559001)(579004);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Slc4U0RsNTU3S3NkRXdNOHJaL3hXZzJTcFY4TlFicXhnK3ZFVnViT2ZJbXND?=
- =?utf-8?B?Q24yTCtTajVuZW9rSW4xSyticWpySzRCdmRJNWI2V2M1YWQ4TW1oYXQzbFNw?=
- =?utf-8?B?bU1LelE3TUJNTzIvaEx2SGpITGRmZXJLQkxrK0ExWkp6ZU5ka09zU1lnYW1n?=
- =?utf-8?B?dC8yWWFuNnB1MHNaYTA0eVVqc3lBM25zNHBZdnpkSVpTWE9KVkxoNXBGY1Y2?=
- =?utf-8?B?azhWUEZUWUdhRjJiZW0vOENYYjFZd01VUmJtT0lPRDFjRTV2U05PUzdRTHha?=
- =?utf-8?B?OE0xTVFONlh2TjJBSHoxN0dadFo5QjUrMUo1d1dQSjg0OWFFcEZBQTM3UU9Q?=
- =?utf-8?B?bHBFVG0yTVJjU0pxMFU4Wm5JcGVWTE45TTIxNmIzeTlma1RpNW1BcW1IMU1P?=
- =?utf-8?B?aTJzSGJEYVV4cWVUWUREcGtra1V3L1NFMEh5azJXTlJHYTRjKzNoaEtWeWNN?=
- =?utf-8?B?UFdCKzd2VGtCbGpJbklSSytuaFFOd1NYVm42MEFvS1ZzdzZTK28zU1FlL2Vw?=
- =?utf-8?B?UG4yKzAxc2ExKzJoVXJYWFNvWXV0bFcvU1RhU3VyM0RCdDlUeFp2TlZ4UTRL?=
- =?utf-8?B?M1Y0UFFLOWY3MXZmNXd0cFlpNHhRZE5mOXJTWEpGeGRnUUx0dDJwaE9BaEdQ?=
- =?utf-8?B?V1BmQ2MzcHhIa3UwMzhSOEw1UHlUQ0RpQW9pejVvcWJWdG5rZ2p3eWd5RzhO?=
- =?utf-8?B?TWxremFOZDFTS0NjMWVGdll2cjdxRldUdkU4aG50dEo0SXNXY2ZXSm5OYzZV?=
- =?utf-8?B?ZW5VNkdoTEZ0Vml0M0w2UDRXdWhuczlUL2w2ZGJvb1h4UFZMekZSSWFCenVX?=
- =?utf-8?B?aWpsOE1IZThzaWJocC83KzNhZ2dUVEtVSFBOUXR3aW5hd3ZDSnpMQ0RTTEdZ?=
- =?utf-8?B?WUhOaVI0dFRRdCs3OWdvMTNUck5MQzdRc0dyQmNkS010dVZQSHl1Sm9HQVlq?=
- =?utf-8?B?cGVmbUJRMHFYVWVpSVRDY0Y5NFI1em5aQlc3Y3BZVU01UHJOV1Q1bndvRU5k?=
- =?utf-8?B?R0xDY0JIVkNqeUNpU0Nkakk4RkdlekJDZFcydlpCanNNV2wwZ2MxYk5wckR2?=
- =?utf-8?B?NFJXTElNV0k3WjFXdGNNUlVvd1RzMUF0cmZ0YkZZL29vZyt2NVEwZFRwNEZu?=
- =?utf-8?B?a3pjVEpUdXFVVFhtNDJ3YnVrS1gwWG9xTFoxODNxMFBBanJwMURRTWFLbnVu?=
- =?utf-8?B?eis4QjZLR1haMTJWSGJnQjc0bnltWXVEdVpxcWtTeWhIN0JqVUZBei83Q1ZS?=
- =?utf-8?B?RXptbnJPOTkxWS9KemFaSGx1ZlJ2VVhpT2VuV04vcHc2UkkzUU1RQXVKRnhG?=
- =?utf-8?B?VTNYWlZsVXN0amVvVHIrOUkzWUxqTVRzR25IbTlxWVJiajZmRloxT3FjaFZk?=
- =?utf-8?B?Q2ZKWmlxMWsvdFBuRmJUa2NINUlsZVVQZFd0b2ZpV1l3S25IOE1mdEZMMVR6?=
- =?utf-8?B?NUNmU1Q4MThsaTZybmFPdEp5ZFlHSHdFSUFocE0wK25MRXdRV0I1V1hXMHF2?=
- =?utf-8?B?bys3cVh6ZzVWREMzL3I3cE50Q1FoTVdpZ2w2Wk0xTlJxNC9abUNVWWI1YkVr?=
- =?utf-8?B?T0MxOGNaeFBaLzlRUWg1UlhwRkpZS0hLRWdwQUcxQlNXVWYwWjhhck5iOTdn?=
- =?utf-8?B?MXNoODhIRGtTZGVKWkRoMjlsRlJWRHlkTzJVaEVzQTdLRGdyTmlnOE5OWkVY?=
- =?utf-8?B?K3dmajh4UE52dlRSZUtFTTYyTFJmSG5zNS9yV2hUcUFOeUloNCtOREFmOWtJ?=
- =?utf-8?B?dDRRZWhBekhZMXdWdlc1MEJEbzlsNldCNmcrK3BpalhqcWF1YmRXMnhRdW1W?=
- =?utf-8?B?Wm5ueXhFQ25LNHpKczJNRXNpTUoyNTh3d2RsZmxkTk9DWnY5WkpsRUFsMCtH?=
- =?utf-8?B?c3c4eEdPOUcvSUF2Vi9FSEFtWk1YeU9wbmhRYk9yNnVRV1Z0RWJuTHExU0FJ?=
- =?utf-8?B?U2dZYlRCa2JOcjA5TDM3ZE5xK29oVU5uWldGRUkwS25DZ2J1TFA2V2kzQ1JB?=
- =?utf-8?B?ZStvUHpXaHFEL0MzdFQ2ZnYrOG1SQ1JkZVdmUDNCWUcrWDVVcEhCUTE4b3BK?=
- =?utf-8?B?VmRMWmVLMDNKRUFodlREVmVQYjRxeWl3MTlHTWh1QnEweWx3NUp0RCsvUDVv?=
- =?utf-8?Q?LNRSb87gY1J1B7oU4Cket9phZ?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 454c7be6-f836-45a1-cefb-08dba3b4cd99
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6730.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 08:41:54.6002
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hVhGV+KWbLyM8c50xKSY8Udj3hwc+Yz07wSgGKEZCdsZluP9ffX3E8pRKFBssqZHK9M2/Wnp6TqV2OPlb+kV2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7245
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Documentation/process/license-rules.rst and checkpatch expect the SPDX
+identifier syntax for multiple licenses to use capital "OR".  Correct it
+to keep consistent format and avoid copy-paste issues.
 
+Correct also the format // -> .* in few Allwinner binding headers as
+pointed out by checkpatch:
 
-On 2023/8/23 16:13, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Tue 22 Aug 2023 at 16:27, Yu Tu <yu.tu@amlogic.com> wrote:
-> 
->> Add the peripherals clock controller driver in the S4 SoC family.
->>
->> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->> ---
->>   drivers/clk/meson/Kconfig          |   11 +
->>   drivers/clk/meson/Makefile         |    1 +
->>   drivers/clk/meson/s4-peripherals.c | 3787 ++++++++++++++++++++++++++++
->>   drivers/clk/meson/s4-peripherals.h |   57 +
->>   4 files changed, 3856 insertions(+)
->>   create mode 100644 drivers/clk/meson/s4-peripherals.c
->>   create mode 100644 drivers/clk/meson/s4-peripherals.h
->>
->> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
->> index e90982d77598..c5303e4c1604 100644
->> --- a/drivers/clk/meson/Kconfig
->> +++ b/drivers/clk/meson/Kconfig
->> @@ -156,4 +156,15 @@ config COMMON_CLK_S4_PLL
->>          Support for the PLL clock controller on Amlogic S805X2 and S905Y4 devices,
->>          AKA S4. Say Y if you want the board to work, because PLLs are the parent of
->>          most peripherals.
->> +
->> +config COMMON_CLK_S4_PERIPHERALS
->> +     tristate "S4 SoC peripherals clock controllers support"
->> +     depends on ARM64
->> +     default y
->> +     select COMMON_CLK_MESON_REGMAP
->> +     select COMMON_CLK_MESON_DUALDIV
->> +     select COMMON_CLK_MESON_VID_PLL_DIV
->> +     help
->> +       Support for the peripherals clock controller on Amlogic S805X2 and S905Y4
->> +       devices, AKA S4. Say Y if you want S4 peripherals clock controller to work.
->>   endmenu
->> diff --git a/drivers/clk/meson/Makefile b/drivers/clk/meson/Makefile
->> index 612cee923890..9ee4b954c896 100644
->> --- a/drivers/clk/meson/Makefile
->> +++ b/drivers/clk/meson/Makefile
->> @@ -23,3 +23,4 @@ obj-$(CONFIG_COMMON_CLK_GXBB) += gxbb.o gxbb-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_G12A) += g12a.o g12a-aoclk.o
->>   obj-$(CONFIG_COMMON_CLK_MESON8B) += meson8b.o meson8-ddr.o
->>   obj-$(CONFIG_COMMON_CLK_S4_PLL) += s4-pll.o
->> +obj-$(CONFIG_COMMON_CLK_S4_PERIPHERALS) += s4-peripherals.o
->> diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
->> new file mode 100644
->> index 000000000000..60de4beb1561
->> --- /dev/null
->> +++ b/drivers/clk/meson/s4-peripherals.c
->> @@ -0,0 +1,3787 @@
->> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->> +/*
->> + * Amlogic S4 Peripherals Clock Controller Driver
->> + *
->> + * Copyright (c) 2022-2023 Amlogic, inc. All rights reserved
->> + * Author: Yu Tu <yu.tu@amlogic.com>
->> + */
->> +
->> +#include <linux/clk-provider.h>
->> +#include <linux/of_device.h>
->> +#include <linux/platform_device.h>
->> +
->> +#include "clk-regmap.h"
->> +#include "vid-pll-div.h"
->> +#include "clk-dualdiv.h"
->> +#include "s4-peripherals.h"
->> +#include "meson-clkc-utils.h"
->> +#include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->> +
->> +static struct clk_regmap s4_rtc_32k_by_oscin_clkin = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_RTC_BY_OSCIN_CTRL0,
->> +             .bit_idx = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "rtc_32k_by_oscin_clkin",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "xtal", }
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static const struct meson_clk_dualdiv_param s4_32k_div_table[] = {
->> +     {
->> +             .dual   = 1,
->> +             .n1     = 733,
->> +             .m1     = 8,
->> +             .n2     = 732,
->> +             .m2     = 11,
->> +     },
->> +     {}
->> +};
->> +
->> +static struct clk_regmap s4_rtc_32k_by_oscin_div = {
->> +     .data = &(struct meson_clk_dualdiv_data){
->> +             .n1 = {
->> +                     .reg_off = CLKCTRL_RTC_BY_OSCIN_CTRL0,
->> +                     .shift   = 0,
->> +                     .width   = 12,
->> +             },
->> +             .n2 = {
->> +                     .reg_off = CLKCTRL_RTC_BY_OSCIN_CTRL0,
->> +                     .shift   = 12,
->> +                     .width   = 12,
->> +             },
->> +             .m1 = {
->> +                     .reg_off = CLKCTRL_RTC_BY_OSCIN_CTRL1,
->> +                     .shift   = 0,
->> +                     .width   = 12,
->> +             },
->> +             .m2 = {
->> +                     .reg_off = CLKCTRL_RTC_BY_OSCIN_CTRL1,
->> +                     .shift   = 12,
->> +                     .width   = 12,
->> +             },
->> +             .dual = {
->> +                     .reg_off = CLKCTRL_RTC_BY_OSCIN_CTRL0,
->> +                     .shift   = 28,
->> +                     .width   = 1,
->> +             },
->> +             .table = s4_32k_div_table,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "rtc_32k_by_oscin_div",
->> +             .ops = &meson_clk_dualdiv_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_rtc_32k_by_oscin_clkin.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_rtc_32k_by_oscin_sel = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_RTC_BY_OSCIN_CTRL1,
->> +             .mask = 0x1,
->> +             .shift = 24,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "rtc_32k_by_oscin_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_rtc_32k_by_oscin_div.hw,
->> +                     &s4_rtc_32k_by_oscin_clkin.hw,
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_rtc_32k_by_oscin = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_RTC_BY_OSCIN_CTRL0,
->> +             .bit_idx = 30,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "rtc_32k_by_oscin",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_rtc_32k_by_oscin_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_rtc_clk = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_RTC_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 0,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "rtc_clk_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_rtc_32k_by_oscin.hw,
->> +                     &s4_rtc_32k_by_oscin_div.hw,
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* The index 5 is AXI_CLK, which is dedicated to AXI. So skip it. */
->> +static u32 mux_table_sys_ab_clk_sel[] = { 0, 1, 2, 3, 4, 6, 7 };
->> +static const struct clk_parent_data sys_ab_clk_parent_data[] = {
->> +     { .fw_name = "xtal" },
->> +     { .fw_name = "fclk_div2" },
->> +     { .fw_name = "fclk_div3" },
->> +     { .fw_name = "fclk_div4" },
->> +     { .fw_name = "fclk_div5" },
->> +     { .fw_name = "fclk_div7" },
->> +     { .hw = &s4_rtc_clk.hw }
->> +};
->> +
->> +/*
->> + * This clock is initialized by ROMcode.
->> + * The chip was changed SYS CLK for security reasons. SYS CLK registers are not writable
->> + * in the kernel phase. Write of SYS related register will cause the system to crash.
->> + * Meanwhile, these clock won't ever change at runtime.
->> + * For the above reasons, we can only use ro_ops for SYS related clocks.
->> + */
->> +static struct clk_regmap s4_sysclk_b_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .mask = 0x7,
->> +             .shift = 26,
->> +             .table = mux_table_sys_ab_clk_sel,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sysclk_b_sel",
->> +             .ops = &clk_regmap_mux_ro_ops,
->> +             .parent_data = sys_ab_clk_parent_data,
->> +             .num_parents = ARRAY_SIZE(sys_ab_clk_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sysclk_b_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .shift = 16,
->> +             .width = 10,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sysclk_b_div",
->> +             .ops = &clk_regmap_divider_ro_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sysclk_b_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sysclk_b = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .bit_idx = 29,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sysclk_b",
->> +             .ops = &clk_regmap_gate_ro_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sysclk_b_div.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sysclk_a_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .mask = 0x7,
->> +             .shift = 10,
->> +             .table = mux_table_sys_ab_clk_sel,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sysclk_a_sel",
->> +             .ops = &clk_regmap_mux_ro_ops,
->> +             .parent_data = sys_ab_clk_parent_data,
->> +             .num_parents = ARRAY_SIZE(sys_ab_clk_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sysclk_a_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .shift = 0,
->> +             .width = 10,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sysclk_a_div",
->> +             .ops = &clk_regmap_divider_ro_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sysclk_a_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sysclk_a = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .bit_idx = 13,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sysclk_a",
->> +             .ops = &clk_regmap_gate_ro_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sysclk_a_div.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sys_clk = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SYS_CLK_CTRL0,
->> +             .mask = 0x1,
->> +             .shift = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sys_clk",
->> +             .ops = &clk_regmap_mux_ro_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sysclk_a.hw,
->> +                     &s4_sysclk_b.hw
->> +             },
->> +             .num_parents = 2,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ceca_32k_clkin = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_CECA_CTRL0,
->> +             .bit_idx = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "ceca_32k_clkin",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "xtal", }
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ceca_32k_div = {
->> +     .data = &(struct meson_clk_dualdiv_data){
->> +             .n1 = {
->> +                     .reg_off = CLKCTRL_CECA_CTRL0,
->> +                     .shift   = 0,
->> +                     .width   = 12,
->> +             },
->> +             .n2 = {
->> +                     .reg_off = CLKCTRL_CECA_CTRL0,
->> +                     .shift   = 12,
->> +                     .width   = 12,
->> +             },
->> +             .m1 = {
->> +                     .reg_off = CLKCTRL_CECA_CTRL1,
->> +                     .shift   = 0,
->> +                     .width   = 12,
->> +             },
->> +             .m2 = {
->> +                     .reg_off = CLKCTRL_CECA_CTRL1,
->> +                     .shift   = 12,
->> +                     .width   = 12,
->> +             },
->> +             .dual = {
->> +                     .reg_off = CLKCTRL_CECA_CTRL0,
->> +                     .shift   = 28,
->> +                     .width   = 1,
->> +             },
->> +             .table = s4_32k_div_table,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "ceca_32k_div",
->> +             .ops = &meson_clk_dualdiv_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_ceca_32k_clkin.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ceca_32k_sel_pre = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_CECA_CTRL1,
->> +             .mask = 0x1,
->> +             .shift = 24,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "ceca_32k_sel_pre",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_ceca_32k_div.hw,
->> +                     &s4_ceca_32k_clkin.hw
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ceca_32k_sel = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_CECA_CTRL1,
->> +             .mask = 0x1,
->> +             .shift = 31,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "ceca_32k_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_ceca_32k_sel_pre.hw,
->> +                     &s4_rtc_clk.hw
->> +             },
->> +             .num_parents = 2,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ceca_32k_clkout = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_CECA_CTRL0,
->> +             .bit_idx = 30,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "ceca_32k_clkout",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_ceca_32k_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cecb_32k_clkin = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_CECB_CTRL0,
->> +             .bit_idx = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "cecb_32k_clkin",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "xtal", }
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cecb_32k_div = {
->> +     .data = &(struct meson_clk_dualdiv_data){
->> +             .n1 = {
->> +                     .reg_off = CLKCTRL_CECB_CTRL0,
->> +                     .shift   = 0,
->> +                     .width   = 12,
->> +             },
->> +             .n2 = {
->> +                     .reg_off = CLKCTRL_CECB_CTRL0,
->> +                     .shift   = 12,
->> +                     .width   = 12,
->> +             },
->> +             .m1 = {
->> +                     .reg_off = CLKCTRL_CECB_CTRL1,
->> +                     .shift   = 0,
->> +                     .width   = 12,
->> +             },
->> +             .m2 = {
->> +                     .reg_off = CLKCTRL_CECB_CTRL1,
->> +                     .shift   = 12,
->> +                     .width   = 12,
->> +             },
->> +             .dual = {
->> +                     .reg_off = CLKCTRL_CECB_CTRL0,
->> +                     .shift   = 28,
->> +                     .width   = 1,
->> +             },
->> +             .table = s4_32k_div_table,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cecb_32k_div",
->> +             .ops = &meson_clk_dualdiv_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cecb_32k_clkin.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cecb_32k_sel_pre = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_CECB_CTRL1,
->> +             .mask = 0x1,
->> +             .shift = 24,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cecb_32k_sel_pre",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cecb_32k_div.hw,
->> +                     &s4_cecb_32k_clkin.hw
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cecb_32k_sel = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_CECB_CTRL1,
->> +             .mask = 0x1,
->> +             .shift = 31,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cecb_32k_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cecb_32k_sel_pre.hw,
->> +                     &s4_rtc_clk.hw
->> +             },
->> +             .num_parents = 2,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cecb_32k_clkout = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_CECB_CTRL0,
->> +             .bit_idx = 30,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cecb_32k_clkout",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cecb_32k_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_sc_parent_data[] = {
->> +     { .fw_name = "fclk_div4" },
->> +     { .fw_name = "fclk_div3" },
->> +     { .fw_name = "fclk_div5" },
->> +     { .fw_name = "xtal", }
->> +};
->> +
->> +static struct clk_regmap s4_sc_clk_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SC_CLK_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sc_clk_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_sc_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_sc_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sc_clk_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_SC_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sc_clk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sc_clk_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sc_clk_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_SC_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sc_clk_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sc_clk_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_12_24M_clk_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_CLK12_24_CTRL,
->> +             .bit_idx = 11,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "12_24m_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "xtal", }
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_12M_clk_div = {
->> +     .mult = 1,
->> +     .div = 2,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "12M",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_12_24M_clk_gate.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_12_24M_clk = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_CLK12_24_CTRL,
->> +             .mask = 0x1,
->> +             .shift = 10,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "12_24m",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_12_24M_clk_gate.hw,
->> +                     &s4_12M_clk_div.hw,
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* Video Clocks */
->> +static struct clk_regmap s4_vid_pll_div = {
->> +     .data = &(struct meson_vid_pll_div_data){
->> +             .val = {
->> +                     .reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->> +                     .shift   = 0,
->> +                     .width   = 15,
->> +             },
->> +             .sel = {
->> +                     .reg_off = CLKCTRL_VID_PLL_CLK_DIV,
->> +                     .shift   = 16,
->> +                     .width   = 2,
->> +             },
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vid_pll_div",
->> +             /*
->> +              * TODO meson_vid_pll_div_ro_ops to meson_vid_pll_div_ops
->> +              */
->> +             .ops = &meson_vid_pll_div_ro_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "hdmi_pll", }
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vid_pll_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VID_PLL_CLK_DIV,
->> +             .mask = 0x1,
->> +             .shift = 18,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vid_pll_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .hw = &s4_vid_pll_div.hw },
->> +                     { .fw_name = "hdmi_pll", }
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vid_pll = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_PLL_CLK_DIV,
->> +             .bit_idx = 19,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vid_pll",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vid_pll_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_vclk_parent_data[] = {
->> +     { .hw = &s4_vid_pll.hw },
->> +     { .fw_name = "gp0_pll", },
->> +     { .fw_name = "hifi_pll", },
->> +     { .fw_name = "mpll1", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 16,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vclk_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vclk_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 16,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk2_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vclk_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vclk_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_input = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_DIV,
->> +             .bit_idx = 16,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk_input",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk_sel.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_input = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_DIV,
->> +             .bit_idx = 16,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2_input",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2_sel.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VID_CLK_DIV,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk_input.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VIID_CLK_DIV,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk2_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk2_input.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .bit_idx = 19,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk_div.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .bit_idx = 19,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2_div.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_div1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .bit_idx = 0,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk_div1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_div2_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .bit_idx = 1,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk_div2_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_div4_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .bit_idx = 2,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk_div4_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_div6_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .bit_idx = 3,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk_div6_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk_div12_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL,
->> +             .bit_idx = 4,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk_div12_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_div1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .bit_idx = 0,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2_div1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_div2_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .bit_idx = 1,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2_div2_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_div4_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .bit_idx = 2,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2_div4_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_div6_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .bit_idx = 3,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2_div6_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vclk2_div12_en = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VIID_CLK_CTRL,
->> +             .bit_idx = 4,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vclk2_div12_en",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vclk2.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk_div2 = {
->> +     .mult = 1,
->> +     .div = 2,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk_div2",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk_div2_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk_div4 = {
->> +     .mult = 1,
->> +     .div = 4,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk_div4",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk_div4_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk_div6 = {
->> +     .mult = 1,
->> +     .div = 6,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk_div6",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk_div6_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk_div12 = {
->> +     .mult = 1,
->> +     .div = 12,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk_div12",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk_div12_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk2_div2 = {
->> +     .mult = 1,
->> +     .div = 2,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk2_div2",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk2_div2_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk2_div4 = {
->> +     .mult = 1,
->> +     .div = 4,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk2_div4",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk2_div4_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk2_div6 = {
->> +     .mult = 1,
->> +     .div = 6,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk2_div6",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk2_div6_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_fixed_factor s4_vclk2_div12 = {
->> +     .mult = 1,
->> +     .div = 12,
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vclk2_div12",
->> +             .ops = &clk_fixed_factor_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vclk2_div12_en.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* The 5,6,7 indexes corresponds to no real clock, so there are not used. */
->> +static u32 mux_table_cts_sel[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
->> +static const struct clk_hw *s4_cts_parent_hws[] = {
->> +     &s4_vclk_div1.hw,
->> +     &s4_vclk_div2.hw,
->> +     &s4_vclk_div4.hw,
->> +     &s4_vclk_div6.hw,
->> +     &s4_vclk_div12.hw,
->> +     &s4_vclk2_div1.hw,
->> +     &s4_vclk2_div2.hw,
->> +     &s4_vclk2_div4.hw,
->> +     &s4_vclk2_div6.hw,
->> +     &s4_vclk2_div12.hw
->> +};
->> +
->> +static struct clk_regmap s4_cts_enci_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VID_CLK_DIV,
->> +             .mask = 0xf,
->> +             .shift = 28,
->> +             .table = mux_table_cts_sel,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cts_enci_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_cts_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_cts_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cts_encp_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VID_CLK_DIV,
->> +             .mask = 0xf,
->> +             .shift = 20,
->> +             .table = mux_table_cts_sel,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cts_encp_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_cts_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_cts_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cts_vdac_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VIID_CLK_DIV,
->> +             .mask = 0xf,
->> +             .shift = 28,
->> +             .table = mux_table_cts_sel,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "cts_vdac_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_cts_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_cts_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* The 5,6,7 indexes corresponds to no real clock, so there are not used. */
->> +static u32 mux_table_hdmi_tx_sel[] = { 0, 1, 2, 3, 4, 8, 9, 10, 11, 12 };
->> +static const struct clk_hw *s4_cts_hdmi_tx_parent_hws[] = {
->> +     &s4_vclk_div1.hw,
->> +     &s4_vclk_div2.hw,
->> +     &s4_vclk_div4.hw,
->> +     &s4_vclk_div6.hw,
->> +     &s4_vclk_div12.hw,
->> +     &s4_vclk2_div1.hw,
->> +     &s4_vclk2_div2.hw,
->> +     &s4_vclk2_div4.hw,
->> +     &s4_vclk2_div6.hw,
->> +     &s4_vclk2_div12.hw
->> +};
->> +
->> +static struct clk_regmap s4_hdmi_tx_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_HDMI_CLK_CTRL,
->> +             .mask = 0xf,
->> +             .shift = 16,
->> +             .table = mux_table_hdmi_tx_sel,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hdmi_tx_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_cts_hdmi_tx_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_cts_hdmi_tx_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cts_enci = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL2,
->> +             .bit_idx = 0,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "cts_enci",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cts_enci_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cts_encp = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL2,
->> +             .bit_idx = 2,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "cts_encp",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cts_encp_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_cts_vdac = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL2,
->> +             .bit_idx = 4,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "cts_vdac",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_cts_vdac_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdmi_tx = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VID_CLK_CTRL2,
->> +             .bit_idx = 5,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hdmi_tx",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hdmi_tx_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* HDMI Clocks */
->> +static const struct clk_parent_data s4_hdmi_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", }
->> +};
->> +
->> +static struct clk_regmap s4_hdmi_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_HDMI_CLK_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hdmi_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_hdmi_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_hdmi_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdmi_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_HDMI_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hdmi_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_hdmi_sel.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdmi = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_HDMI_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hdmi",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_hdmi_div.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ts_clk_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_TS_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "ts_clk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_data = &(const struct clk_parent_data) {
->> +                     .fw_name = "xtal",
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ts_clk_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_TS_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "ts_clk",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_ts_clk_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/*
->> + * The MALI IP is clocked by two identical clocks (mali_0 and mali_1)
->> + * muxed by a glitch-free switch. The CCF can manage this glitch-free
->> + * mux because it does top-to-bottom updates the each clock tree and
->> + * switches to the "inactive" one when CLK_SET_RATE_GATE is set.
->> + */
->> +static const struct clk_parent_data s4_mali_0_1_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "gp0_pll", },
->> +     { .fw_name = "hifi_pll", },
->> +     { .fw_name = "fclk_div2p5", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", }
->> +};
->> +
->> +static struct clk_regmap s4_mali_0_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali_0_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_mali_0_1_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_mali_0_1_parent_data),
->> +             /*
->> +              * Don't request the parent to change the rate because
->> +              * all GPU frequencies can be derived from the fclk_*
->> +              * clocks and one special GP0_PLL setting. This is
->> +              * important because we need the MPLL clocks for audio.
-> 
-> The last part of this comment does not make a lot of sense to me.
-> MPLLs are not among the possible parent of this clock, did you mean HiFi ?
+  WARNING: Improper SPDX comment style for 'include/dt-bindings/reset/sun50i-h6-ccu.h', please use '/*' instead
 
-Sorry. It's HIFI PLL, and you're right.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Do you suggest that I delete it or change it to HIFI PLL? I will change 
-it in the next edition as you suggested
+---
 
-> 
->> +              */
->> +             .flags = 0,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_mali_0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali_0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_mali_0_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_mali_0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali_0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_mali_0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_mali_1_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali_1_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_mali_0_1_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_mali_0_1_parent_data),
->> +             .flags = 0,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_mali_1_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali_1_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_mali_1_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_mali_1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali_1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_mali_1_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_GATE | CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_hw *s4_mali_parent_hws[] = {
->> +     &s4_mali_0.hw,
->> +     &s4_mali_1.hw
->> +};
->> +
->> +static struct clk_regmap s4_mali_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_MALI_CLK_CTRL,
->> +             .mask = 1,
->> +             .shift = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "mali",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_mali_parent_hws,
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* VDEC clocks */
->> +static const struct clk_parent_data s4_dec_parent_data[] = {
->> +     { .fw_name = "fclk_div2p5", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "hifi_pll", },
->> +     { .fw_name = "gp0_pll", },
->> +     { .fw_name = "xtal", }
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p0_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDEC_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdec_p0_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_dec_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_dec_parent_data),
-> 
-> Nitpick: .flags = 0; to clearly show that you stopping rate propagation
-> here too (like you did on s4_mali_0_sel - no need to copy the comment though)
+Rebased on next-20230822, so might not apply cleanly.  What does not
+apply, can be skipped and I will fix it after next RC.
+---
+ Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml    | 2 +-
+ .../devicetree/bindings/arm/arm,coresight-dummy-sink.yaml       | 2 +-
+ .../devicetree/bindings/arm/arm,coresight-dummy-source.yaml     | 2 +-
+ .../devicetree/bindings/arm/arm,embedded-trace-extension.yaml   | 2 +-
+ .../devicetree/bindings/arm/arm,trace-buffer-extension.yaml     | 2 +-
+ Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml | 2 +-
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml        | 2 +-
+ .../devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml      | 2 +-
+ Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml      | 2 +-
+ Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml  | 2 +-
+ Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml  | 2 +-
+ Documentation/devicetree/bindings/clock/ti,cdce925.yaml         | 2 +-
+ Documentation/devicetree/bindings/clock/ti,sci-clk.yaml         | 2 +-
+ Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml          | 2 +-
+ .../devicetree/bindings/display/msm/dsi-controller-main.yaml    | 2 +-
+ Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml | 2 +-
+ Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 2 +-
+ Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml | 2 +-
+ Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml | 2 +-
+ Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml  | 2 +-
+ .../devicetree/bindings/display/msm/dsi-phy-common.yaml         | 2 +-
+ Documentation/devicetree/bindings/display/msm/mdss-common.yaml  | 2 +-
+ Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml    | 2 +-
+ Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml    | 2 +-
+ .../devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml      | 2 +-
+ .../devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml      | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml      | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml     | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml        | 2 +-
+ .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml       | 2 +-
+ .../devicetree/bindings/display/panel/himax,hx8394.yaml         | 2 +-
+ .../devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml | 2 +-
+ .../devicetree/bindings/display/panel/orisetech,otm8009a.yaml   | 2 +-
+ .../devicetree/bindings/display/panel/panel-dsi-cm.yaml         | 2 +-
+ .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml   | 2 +-
+ .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 +-
+ .../devicetree/bindings/display/panel/raydium,rm68200.yaml      | 2 +-
+ .../devicetree/bindings/display/panel/rocktech,jh057n00900.yaml | 2 +-
+ .../devicetree/bindings/display/panel/visionox,r66451.yaml      | 2 +-
+ .../devicetree/bindings/display/panel/visionox,rm69299.yaml     | 2 +-
+ .../devicetree/bindings/display/panel/visionox,vtdr6130.yaml    | 2 +-
+ .../devicetree/bindings/display/rockchip/rockchip-vop2.yaml     | 2 +-
+ .../bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml         | 2 +-
+ .../devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml          | 2 +-
+ Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml         | 2 +-
+ Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml       | 2 +-
+ Documentation/devicetree/bindings/hwmon/lm75.yaml               | 2 +-
+ Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml  | 2 +-
+ Documentation/devicetree/bindings/hwmon/national,lm90.yaml      | 2 +-
+ Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml      | 2 +-
+ Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml    | 2 +-
+ Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml          | 2 +-
+ Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml          | 2 +-
+ Documentation/devicetree/bindings/input/elan,ekth3000.yaml      | 2 +-
+ .../devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml | 2 +-
+ Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml      | 2 +-
+ Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml  | 2 +-
+ .../devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml        | 2 +-
+ .../devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml    | 2 +-
+ .../devicetree/bindings/power/reset/gpio-poweroff.yaml          | 2 +-
+ Documentation/devicetree/bindings/power/reset/gpio-restart.yaml | 2 +-
+ .../devicetree/bindings/power/reset/restart-handler.yaml        | 2 +-
+ Documentation/devicetree/bindings/power/supply/bq256xx.yaml     | 2 +-
+ .../devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml         | 2 +-
+ .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml         | 2 +-
+ .../devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml      | 2 +-
+ .../devicetree/bindings/remoteproc/ti,pru-consumer.yaml         | 2 +-
+ Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml  | 2 +-
+ .../devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml       | 2 +-
+ Documentation/devicetree/bindings/reset/ti,sci-reset.yaml       | 2 +-
+ Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml   | 2 +-
+ Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml     | 2 +-
+ Documentation/devicetree/bindings/usb/cypress,hx3.yaml          | 2 +-
+ Documentation/devicetree/bindings/usb/genesys,gl850g.yaml       | 2 +-
+ Documentation/devicetree/bindings/usb/realtek,rts5411.yaml      | 2 +-
+ Documentation/devicetree/bindings/usb/ti,usb8041.yaml           | 2 +-
+ Documentation/devicetree/bindings/usb/vialab,vl817.yaml         | 2 +-
+ include/dt-bindings/ata/ahci.h                                  | 2 +-
+ include/dt-bindings/clock/hi3559av100-clock.h                   | 2 +-
+ include/dt-bindings/clock/r8a779f0-cpg-mssr.h                   | 2 +-
+ include/dt-bindings/clock/rockchip,rk3588-cru.h                 | 2 +-
+ include/dt-bindings/clock/stm32mp1-clks.h                       | 2 +-
+ include/dt-bindings/clock/sun20i-d1-ccu.h                       | 2 +-
+ include/dt-bindings/clock/sun20i-d1-r-ccu.h                     | 2 +-
+ include/dt-bindings/clock/sun50i-a100-ccu.h                     | 2 +-
+ include/dt-bindings/clock/sun50i-h6-ccu.h                       | 2 +-
+ include/dt-bindings/clock/sun50i-h616-ccu.h                     | 2 +-
+ include/dt-bindings/clock/sun6i-rtc.h                           | 2 +-
+ include/dt-bindings/display/sdtv-standards.h                    | 2 +-
+ include/dt-bindings/gpio/meson-g12a-gpio.h                      | 2 +-
+ include/dt-bindings/power/amlogic,c3-pwrc.h                     | 2 +-
+ include/dt-bindings/power/meson-a1-power.h                      | 2 +-
+ include/dt-bindings/power/meson-axg-power.h                     | 2 +-
+ include/dt-bindings/power/meson-g12a-power.h                    | 2 +-
+ include/dt-bindings/power/meson-gxbb-power.h                    | 2 +-
+ include/dt-bindings/power/meson-s4-power.h                      | 2 +-
+ include/dt-bindings/power/meson-sm1-power.h                     | 2 +-
+ include/dt-bindings/power/meson8-power.h                        | 2 +-
+ include/dt-bindings/power/r8a779f0-sysc.h                       | 2 +-
+ include/dt-bindings/power/rk3588-power.h                        | 2 +-
+ include/dt-bindings/power/summit,smb347-charger.h               | 2 +-
+ include/dt-bindings/reset/rockchip,rk3588-cru.h                 | 2 +-
+ include/dt-bindings/reset/stm32mp1-resets.h                     | 2 +-
+ include/dt-bindings/reset/sun20i-d1-ccu.h                       | 2 +-
+ include/dt-bindings/reset/sun20i-d1-r-ccu.h                     | 2 +-
+ include/dt-bindings/reset/sun50i-a100-ccu.h                     | 2 +-
+ include/dt-bindings/reset/sun50i-a100-r-ccu.h                   | 2 +-
+ include/dt-bindings/reset/sun50i-h6-ccu.h                       | 2 +-
+ include/dt-bindings/reset/sun50i-h6-r-ccu.h                     | 2 +-
+ include/dt-bindings/reset/sun50i-h616-ccu.h                     | 2 +-
+ 130 files changed, 130 insertions(+), 130 deletions(-)
 
-I will change it in the next edition as you suggested.
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+index d6c84b6e7fe6..6216cfb0a188 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-cti.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ # Copyright 2019 Linaro Ltd.
+ %YAML 1.2
+ ---
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
+index cb78cfa56702..c960c8e0a9a5 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-sink.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/arm/arm,coresight-dummy-sink.yaml#
+diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
+index 5fedaed49a1f..6745b4cc8f1c 100644
+--- a/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,coresight-dummy-source.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/arm/arm,coresight-dummy-source.yaml#
+diff --git a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+index 108460627d9a..a88f96b0ca16 100644
+--- a/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,embedded-trace-extension.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ # Copyright 2021, Arm Ltd
+ %YAML 1.2
+ ---
+diff --git a/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml b/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
+index b1322658063a..bc0c6d8b7fdb 100644
+--- a/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,trace-buffer-extension.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ # Copyright 2021, Arm Ltd
+ %YAML 1.2
+ ---
+diff --git a/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml b/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
+index 491eef1e1b10..3b060c36b90c 100644
+--- a/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
++++ b/Documentation/devicetree/bindings/arm/arm,versatile-sysreg.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/arm/arm,versatile-sysreg.yaml#
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index e17b3d66d6e5..68f717670f78 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/arm/aspeed/aspeed.yaml#
+diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
+index ff378d5cbd32..4a323e8c785d 100644
+--- a/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
++++ b/Documentation/devicetree/bindings/arm/keystone/ti,k3-sci-common.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/arm/keystone/ti,k3-sci-common.yaml#
+diff --git a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+index 86b59de7707e..c24ad0968f3e 100644
+--- a/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
++++ b/Documentation/devicetree/bindings/arm/keystone/ti,sci.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/arm/keystone/ti,sci.yaml#
+diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+index 2ec9b5b24d73..ea3c5db6b52d 100644
+--- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpda.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ # Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ %YAML 1.2
+ ---
+diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+index 5c08342664ea..3bad47b7b02b 100644
+--- a/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tpdm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ # Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ %YAML 1.2
+ ---
+diff --git a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+index a4ec8dd5ddf1..95c1c6f8b755 100644
+--- a/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
++++ b/Documentation/devicetree/bindings/clock/ti,cdce925.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/clock/ti,cdce925.yaml#
+diff --git a/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml b/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
+index 63d976341696..0a9d6a4c4b66 100644
+--- a/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/ti,sci-clk.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/clock/ti,sci-clk.yaml#
+diff --git a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+index f0ef7685550a..ff10a0838ad6 100644
+--- a/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
++++ b/Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/crypto/ti,sa2ul.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+index b8d1f2b7d541..c6dbab65d5f7 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-controller-main.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+index e6b00d7387ce..69d13867b7cf 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-10nm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-phy-10nm.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+index 2361da5f6736..52bbe132e6da 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-phy-14nm.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
+index 9c1f9140c731..7e6687cb002b 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-20nm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-phy-20nm.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
+index 62fb3e484eb2..288d8babb76a 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-28nm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-phy-28nm.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+index 8e9031bbde73..dd6619555a12 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-7nm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-phy-7nm.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
+index 0f6f08890e7e..6b57ce41c95f 100644
+--- a/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
++++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-common.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/dsi-phy-common.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+index a8086ca09d9f..f69196e4cc76 100644
+--- a/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
++++ b/Documentation/devicetree/bindings/display/msm/mdss-common.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/mdss-common.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
+index 2fe032d0e8f8..91c774f106ce 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,mdp5.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,mdp5.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+index 5854a3a1224b..0999ea07f47b 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
+index 8d3cd46260fb..d5a64c8a921f 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,msm8998-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
+index 3c2b6ed98a56..e320ab1de6de 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,msm8998-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,msm8998-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
+index 414f4e7ebdf1..be6cd8adb3b6 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,qcm2290-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+index 2995b84b2cd4..4184b84d4c21 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,qcm2290-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,qcm2290-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+index ea75f0f95d5c..8137618237ce 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sc7180-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
+index 42ef06edddc4..3b9c103e504a 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sc7180-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
+index 26dc073bd19a..b0fbe86219d1 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sc7280-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
+index 078e1d1a7d2f..43500dad66e7 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sc7280-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
+index f2c8e16cf067..d19e3bec4600 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sc8280xp-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
+index c239544bc37f..db680fb12b6a 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sc8280xp-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
+index 0f7765d832e7..b917064bdf33 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sdm845-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+index 6ecb00920d7f..d6d7ac1b2ef8 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sdm845-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sdm845-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
+index bf62c2f5325a..510eb6c19364 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm6115-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+index b9f83088f370..17221b62a642 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6115-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm6115-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml
+index 63962a8f2faf..db255b1f4c20 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6350-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm6350-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
+index 595a9d56949c..30d36fffaedb 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm6375-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm6375-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
+index 2b3f3fe9bdf7..13146b3f053c 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8150-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
+index 5182e958e069..54cdaa827cd3 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8150-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8150-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
+index acd2ed391b2f..ffa5047e901f 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8250-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
+index 5cfb9b917e90..e887f031b8be 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8250-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8250-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+index 1a4e03531a1b..96ef2d9c3512 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8350-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+index 8c89fb7fc8a3..60d4aae1131b 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8350-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+index da3fd66c564f..2a5d3daed0e1 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8450-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+index cfad5049a966..bb22940b9385 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8450-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
+index 99908fbe74f0..16a541fca66f 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8550-dpu.yaml#
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
+index 5390a8e79ad3..48aea8005c86 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/msm/qcom,sm8550-mdss.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+index 1b2a1baa26f9..ffb35288ffbb 100644
+--- a/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
++++ b/Documentation/devicetree/bindings/display/panel/himax,hx8394.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/himax,hx8394.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+index a4b8569ab81c..74ff772973d6 100644
+--- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
++++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/mantix,mlaf057we51-x.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
+index ad7d3575190e..1e4f140f48b8 100644
+--- a/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
++++ b/Documentation/devicetree/bindings/display/panel/orisetech,otm8009a.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/orisetech,otm8009a.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
+index 4a36aa64c716..f8dc9929e833 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-dsi-cm.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/panel-dsi-cm.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+index 2f0238b770eb..2786c0b9b65d 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+index 90c04cff8281..73674baea75d 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/panel-simple-dsi.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml b/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
+index e8ce2315631a..46fe1014ebc4 100644
+--- a/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
++++ b/Documentation/devicetree/bindings/display/panel/raydium,rm68200.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/raydium,rm68200.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
+index 150e81090af2..5ea74426b1d5 100644
+--- a/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
++++ b/Documentation/devicetree/bindings/display/panel/rocktech,jh057n00900.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/rocktech,jh057n00900.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
+index 6ba323683921..187840bb76c7 100644
+--- a/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
++++ b/Documentation/devicetree/bindings/display/panel/visionox,r66451.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/visionox,r66451.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+index 444ac2a4772d..fa745a6f4456 100644
+--- a/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
++++ b/Documentation/devicetree/bindings/display/panel/visionox,rm69299.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/visionox,rm69299.yaml#
+diff --git a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+index 84562a5b710a..d5a8295106c1 100644
+--- a/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
++++ b/Documentation/devicetree/bindings/display/panel/visionox,vtdr6130.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/panel/visionox,vtdr6130.yaml#
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+index fba45091d909..b60b90472d42 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip-vop2.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop2.yaml#
+diff --git a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+index 38478dad8b25..584cce3211c0 100644
+--- a/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
++++ b/Documentation/devicetree/bindings/hwlock/allwinner,sun6i-a31-hwspinlock.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwlock/allwinner,sun6i-a31-hwspinlock.yaml#
+diff --git a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
+index 0a955c7b9706..5ba60d532fcd 100644
+--- a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
++++ b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwlock/ti,omap-hwspinlock.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+index 0e49b3901161..bf3332153ad8 100644
+--- a/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
++++ b/Documentation/devicetree/bindings/hwmon/jedec,jc42.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/jedec,jc42.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml b/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml
+index b1a4c235376e..e62aff670478 100644
+--- a/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml
++++ b/Documentation/devicetree/bindings/hwmon/lltc,ltc4151.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/lltc,ltc4151.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/lm75.yaml b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+index 8226e3b5d028..0b69897f0c63 100644
+--- a/Documentation/devicetree/bindings/hwmon/lm75.yaml
++++ b/Documentation/devicetree/bindings/hwmon/lm75.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/lm75.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml b/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml
+index 028d6e570131..f5e104c1b0d0 100644
+--- a/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml
++++ b/Documentation/devicetree/bindings/hwmon/microchip,mcp3021.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/microchip,mcp3021.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+index 7b9d48d6d6da..6e59c8fdef30 100644
+--- a/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
++++ b/Documentation/devicetree/bindings/hwmon/national,lm90.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/national,lm90.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
+index 306f67315835..48d654e52114 100644
+--- a/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
++++ b/Documentation/devicetree/bindings/hwmon/nxp,mc34vr500.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/nxp,mc34vr500.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
+index 80df7182ea28..14ac783c9a5f 100644
+--- a/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
++++ b/Documentation/devicetree/bindings/hwmon/sensirion,sht15.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/sensirion,sht15.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
+index c5a889e3e27b..7e5b62a0215d 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/ti,tmp102.yaml#
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+index dcbc6fbc3b48..8b5307c875ff 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,tmp108.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/hwmon/ti,tmp108.yaml#
+diff --git a/Documentation/devicetree/bindings/input/elan,ekth3000.yaml b/Documentation/devicetree/bindings/input/elan,ekth3000.yaml
+index 2a9bb6ace021..24dc2d69613f 100644
+--- a/Documentation/devicetree/bindings/input/elan,ekth3000.yaml
++++ b/Documentation/devicetree/bindings/input/elan,ekth3000.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/input/elan,ekth3000.yaml#
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+index 65523d9459d8..3cd5a1822e14 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/interrupt-controller/ti,pruss-intc.yaml#
+diff --git a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
+index be1539d234f9..3528b81daa25 100644
+--- a/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
++++ b/Documentation/devicetree/bindings/iommu/xen,grant-dma.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/iommu/xen,grant-dma.yaml#
+diff --git a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+index 4943c75e8a60..1a2001e58880 100644
+--- a/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
++++ b/Documentation/devicetree/bindings/mailbox/ti,omap-mailbox.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/mailbox/ti,omap-mailbox.yaml#
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
+index b35c4d256e40..99eac888ae03 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,mt7621-pci-phy.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/phy/mediatek,mt7621-pci-phy.yaml#
+diff --git a/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml b/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml
+index d16bd6e47f90..e9237c58ce45 100644
+--- a/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml
++++ b/Documentation/devicetree/bindings/phy/nvidia,tegra210-xusb-padctl.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/phy/nvidia,tegra210-xusb-padctl.yaml#
+diff --git a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
+index 45d66c775115..b54ec003a1e0 100644
+--- a/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
++++ b/Documentation/devicetree/bindings/power/reset/gpio-poweroff.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/power/reset/gpio-poweroff.yaml#
+diff --git a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+index d3d18e0f5db3..53535de0d41c 100644
+--- a/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
++++ b/Documentation/devicetree/bindings/power/reset/gpio-restart.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/power/reset/gpio-restart.yaml#
+diff --git a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+index f2ffdd29d52a..965a834a3dbe 100644
+--- a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
++++ b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/power/reset/restart-handler.yaml#
+diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+index 4fe9c3705265..a76afe3ca299 100644
+--- a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
++++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ # Copyright (C) 2020 Texas Instruments Incorporated
+ %YAML 1.2
+ ---
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+index f16e90380df1..9768db8663eb 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-dsp-rproc.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+index 54eecc567e0b..a492f74a8608 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/remoteproc/ti,k3-r5f-rproc.yaml#
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml
+index 1fdc2741c36e..94eb2033e79c 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,omap-remoteproc.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/remoteproc/ti,omap-remoteproc.yaml#
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+index 35f0bb38f7b2..2811334515d1 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
+diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+index cd55d80137f7..baccd98754a9 100644
+--- a/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-rproc.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/remoteproc/ti,pru-rproc.yaml#
+diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+index 9f677367dd9f..78aac69f1060 100644
+--- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/remoteproc/xlnx,zynqmp-r5fss.yaml#
+diff --git a/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml b/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
+index dcf9206e12be..e10eb98eddad 100644
+--- a/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/ti,sci-reset.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/reset/ti,sci-reset.yaml#
+diff --git a/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml b/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
+index f436f2cf1df7..6063784f0352 100644
+--- a/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
++++ b/Documentation/devicetree/bindings/reset/ti,tps380x-reset.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/reset/ti,tps380x-reset.yaml#
+diff --git a/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml b/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
+index 5df7688a1e1c..a750035d6234 100644
+--- a/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/sci-pm-domain.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/soc/ti/sci-pm-domain.yaml#
+diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+index 47add0d85fb8..28096619a882 100644
+--- a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
++++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/usb/cypress,hx3.yaml#
+diff --git a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+index 383625c2ef00..d0927f6768a4 100644
+--- a/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
++++ b/Documentation/devicetree/bindings/usb/genesys,gl850g.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/usb/genesys,gl850g.yaml#
+diff --git a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+index 9309f003cd07..f0784d2e86da 100644
+--- a/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
++++ b/Documentation/devicetree/bindings/usb/realtek,rts5411.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/usb/realtek,rts5411.yaml#
+diff --git a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+index 88ea6c952c66..c2e29bd61e11 100644
+--- a/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,usb8041.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/usb/ti,usb8041.yaml#
+diff --git a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+index 23a13e1d5c7a..76db9071b352 100644
+--- a/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
++++ b/Documentation/devicetree/bindings/usb/vialab,vl817.yaml
+@@ -1,4 +1,4 @@
+-# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+ %YAML 1.2
+ ---
+ $id: http://devicetree.org/schemas/usb/vialab,vl817.yaml#
+diff --git a/include/dt-bindings/ata/ahci.h b/include/dt-bindings/ata/ahci.h
+index 77997b35612c..b3f3b7cf9af8 100644
+--- a/include/dt-bindings/ata/ahci.h
++++ b/include/dt-bindings/ata/ahci.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause */
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+ /*
+  * This header provides constants for most AHCI bindings.
+  */
+diff --git a/include/dt-bindings/clock/hi3559av100-clock.h b/include/dt-bindings/clock/hi3559av100-clock.h
+index 5fe7689010a0..a4f0e997546c 100644
+--- a/include/dt-bindings/clock/hi3559av100-clock.h
++++ b/include/dt-bindings/clock/hi3559av100-clock.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later or BSD-2-Clause */
++/* SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause */
+ /*
+  * Copyright (c) 2019-2020, Huawei Tech. Co., Ltd.
+  *
+diff --git a/include/dt-bindings/clock/r8a779f0-cpg-mssr.h b/include/dt-bindings/clock/r8a779f0-cpg-mssr.h
+index f2ae1c6a82dd..c34be5624954 100644
+--- a/include/dt-bindings/clock/r8a779f0-cpg-mssr.h
++++ b/include/dt-bindings/clock/r8a779f0-cpg-mssr.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+ /*
+  * Copyright (C) 2021 Renesas Electronics Corp.
+  */
+diff --git a/include/dt-bindings/clock/rockchip,rk3588-cru.h b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+index b5616bca7b44..5790b1391201 100644
+--- a/include/dt-bindings/clock/rockchip,rk3588-cru.h
++++ b/include/dt-bindings/clock/rockchip,rk3588-cru.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+ /*
+  * Copyright (c) 2021 Rockchip Electronics Co. Ltd.
+  * Copyright (c) 2022 Collabora Ltd.
+diff --git a/include/dt-bindings/clock/stm32mp1-clks.h b/include/dt-bindings/clock/stm32mp1-clks.h
+index 25e8cfd43459..0a5324bcdbda 100644
+--- a/include/dt-bindings/clock/stm32mp1-clks.h
++++ b/include/dt-bindings/clock/stm32mp1-clks.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 or BSD-3-Clause */
++/* SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause */
+ /*
+  * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
+  * Author: Gabriel Fernandez <gabriel.fernandez@st.com> for STMicroelectronics.
+diff --git a/include/dt-bindings/clock/sun20i-d1-ccu.h b/include/dt-bindings/clock/sun20i-d1-ccu.h
+index e143b9929763..fdbfb404f92a 100644
+--- a/include/dt-bindings/clock/sun20i-d1-ccu.h
++++ b/include/dt-bindings/clock/sun20i-d1-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2020 huangzhenwei@allwinnertech.com
+  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
+diff --git a/include/dt-bindings/clock/sun20i-d1-r-ccu.h b/include/dt-bindings/clock/sun20i-d1-r-ccu.h
+index 4c2697fd32b0..f95c170711e5 100644
+--- a/include/dt-bindings/clock/sun20i-d1-r-ccu.h
++++ b/include/dt-bindings/clock/sun20i-d1-r-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
+  */
+diff --git a/include/dt-bindings/clock/sun50i-a100-ccu.h b/include/dt-bindings/clock/sun50i-a100-ccu.h
+index 28dc36e1a232..06a2031d466b 100644
+--- a/include/dt-bindings/clock/sun50i-a100-ccu.h
++++ b/include/dt-bindings/clock/sun50i-a100-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
+  */
+diff --git a/include/dt-bindings/clock/sun50i-h6-ccu.h b/include/dt-bindings/clock/sun50i-h6-ccu.h
+index a1545cd60e75..ef9123d81937 100644
+--- a/include/dt-bindings/clock/sun50i-h6-ccu.h
++++ b/include/dt-bindings/clock/sun50i-h6-ccu.h
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: (GPL-2.0+ or MIT)
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+  */
+diff --git a/include/dt-bindings/clock/sun50i-h616-ccu.h b/include/dt-bindings/clock/sun50i-h616-ccu.h
+index 1191aca53ac6..6f8f01e67628 100644
+--- a/include/dt-bindings/clock/sun50i-h616-ccu.h
++++ b/include/dt-bindings/clock/sun50i-h616-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2020 Arm Ltd.
+  */
+diff --git a/include/dt-bindings/clock/sun6i-rtc.h b/include/dt-bindings/clock/sun6i-rtc.h
+index c845493e4d37..3bd3aa3d57ce 100644
+--- a/include/dt-bindings/clock/sun6i-rtc.h
++++ b/include/dt-bindings/clock/sun6i-rtc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ 
+ #ifndef _DT_BINDINGS_CLK_SUN6I_RTC_H_
+ #define _DT_BINDINGS_CLK_SUN6I_RTC_H_
+diff --git a/include/dt-bindings/display/sdtv-standards.h b/include/dt-bindings/display/sdtv-standards.h
+index fbc1a3db2ea7..8249a2b47b79 100644
+--- a/include/dt-bindings/display/sdtv-standards.h
++++ b/include/dt-bindings/display/sdtv-standards.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0-only or X11 */
++/* SPDX-License-Identifier: GPL-2.0-only OR X11 */
+ /*
+  * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+  */
+diff --git a/include/dt-bindings/gpio/meson-g12a-gpio.h b/include/dt-bindings/gpio/meson-g12a-gpio.h
+index f7bd69350d18..fa7bb0bbf010 100644
+--- a/include/dt-bindings/gpio/meson-g12a-gpio.h
++++ b/include/dt-bindings/gpio/meson-g12a-gpio.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2018 Amlogic, Inc. All rights reserved.
+  * Author: Xingyu Chen <xingyu.chen@amlogic.com>
+diff --git a/include/dt-bindings/power/amlogic,c3-pwrc.h b/include/dt-bindings/power/amlogic,c3-pwrc.h
+index 1d98a25b08a4..61759df4b2e7 100644
+--- a/include/dt-bindings/power/amlogic,c3-pwrc.h
++++ b/include/dt-bindings/power/amlogic,c3-pwrc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2023 Amlogic, Inc.
+  * Author: hongyu chen1 <hongyu.chen1@amlogic.com>
+diff --git a/include/dt-bindings/power/meson-a1-power.h b/include/dt-bindings/power/meson-a1-power.h
+index 6cf50bfb8ccf..724c370d6853 100644
+--- a/include/dt-bindings/power/meson-a1-power.h
++++ b/include/dt-bindings/power/meson-a1-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2019 Amlogic, Inc.
+  * Author: Jianxin Pan <jianxin.pan@amlogic.com>
+diff --git a/include/dt-bindings/power/meson-axg-power.h b/include/dt-bindings/power/meson-axg-power.h
+index e5243884b249..ace0e468ce21 100644
+--- a/include/dt-bindings/power/meson-axg-power.h
++++ b/include/dt-bindings/power/meson-axg-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2020 BayLibre, SAS
+  * Author: Neil Armstrong <narmstrong@baylibre.com>
+diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
+index 93b03bdd60b7..44ec0c50e340 100644
+--- a/include/dt-bindings/power/meson-g12a-power.h
++++ b/include/dt-bindings/power/meson-g12a-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2019 BayLibre, SAS
+  * Author: Neil Armstrong <narmstrong@baylibre.com>
+diff --git a/include/dt-bindings/power/meson-gxbb-power.h b/include/dt-bindings/power/meson-gxbb-power.h
+index 1262dac696c0..8d0b32b6c02c 100644
+--- a/include/dt-bindings/power/meson-gxbb-power.h
++++ b/include/dt-bindings/power/meson-gxbb-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2019 BayLibre, SAS
+  * Author: Neil Armstrong <narmstrong@baylibre.com>
+diff --git a/include/dt-bindings/power/meson-s4-power.h b/include/dt-bindings/power/meson-s4-power.h
+index 462dd2cb938b..f210a524a592 100644
+--- a/include/dt-bindings/power/meson-s4-power.h
++++ b/include/dt-bindings/power/meson-s4-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2021 Amlogic, Inc.
+  * Author: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+diff --git a/include/dt-bindings/power/meson-sm1-power.h b/include/dt-bindings/power/meson-sm1-power.h
+index a020ab00c134..d78e710dbfff 100644
+--- a/include/dt-bindings/power/meson-sm1-power.h
++++ b/include/dt-bindings/power/meson-sm1-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2019 BayLibre, SAS
+  * Author: Neil Armstrong <narmstrong@baylibre.com>
+diff --git a/include/dt-bindings/power/meson8-power.h b/include/dt-bindings/power/meson8-power.h
+index dd8b2ddb82a7..7a55ba2cd22e 100644
+--- a/include/dt-bindings/power/meson8-power.h
++++ b/include/dt-bindings/power/meson8-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2019 Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+  */
+diff --git a/include/dt-bindings/power/r8a779f0-sysc.h b/include/dt-bindings/power/r8a779f0-sysc.h
+index 0ec8ad727ed9..cde1536e9ed0 100644
+--- a/include/dt-bindings/power/r8a779f0-sysc.h
++++ b/include/dt-bindings/power/r8a779f0-sysc.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+ /*
+  * Copyright (C) 2021 Renesas Electronics Corp.
+  */
+diff --git a/include/dt-bindings/power/rk3588-power.h b/include/dt-bindings/power/rk3588-power.h
+index 1b92fec013cb..6b91a50cc6d6 100644
+--- a/include/dt-bindings/power/rk3588-power.h
++++ b/include/dt-bindings/power/rk3588-power.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+ #ifndef __DT_BINDINGS_POWER_RK3588_POWER_H__
+ #define __DT_BINDINGS_POWER_RK3588_POWER_H__
+ 
+diff --git a/include/dt-bindings/power/summit,smb347-charger.h b/include/dt-bindings/power/summit,smb347-charger.h
+index 3205699b5e41..14f2f9cf2020 100644
+--- a/include/dt-bindings/power/summit,smb347-charger.h
++++ b/include/dt-bindings/power/summit,smb347-charger.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0-or-later or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0-or-later OR MIT) */
+ /*
+  * Author: David Heidelberg <david@ixit.cz>
+  */
+diff --git a/include/dt-bindings/reset/rockchip,rk3588-cru.h b/include/dt-bindings/reset/rockchip,rk3588-cru.h
+index 738e56aead93..d4264db2a07f 100644
+--- a/include/dt-bindings/reset/rockchip,rk3588-cru.h
++++ b/include/dt-bindings/reset/rockchip,rk3588-cru.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0 or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+ /*
+  * Copyright (c) 2021 Rockchip Electronics Co. Ltd.
+  * Copyright (c) 2022 Collabora Ltd.
+diff --git a/include/dt-bindings/reset/stm32mp1-resets.h b/include/dt-bindings/reset/stm32mp1-resets.h
+index 4ffa7c3612e6..9071f139649f 100644
+--- a/include/dt-bindings/reset/stm32mp1-resets.h
++++ b/include/dt-bindings/reset/stm32mp1-resets.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: GPL-2.0 or BSD-3-Clause */
++/* SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause */
+ /*
+  * Copyright (C) STMicroelectronics 2018 - All Rights Reserved
+  * Author: Gabriel Fernandez <gabriel.fernandez@st.com> for STMicroelectronics.
+diff --git a/include/dt-bindings/reset/sun20i-d1-ccu.h b/include/dt-bindings/reset/sun20i-d1-ccu.h
+index f8001cf50bf1..79e52aca5912 100644
+--- a/include/dt-bindings/reset/sun20i-d1-ccu.h
++++ b/include/dt-bindings/reset/sun20i-d1-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2020 huangzhenwei@allwinnertech.com
+  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
+diff --git a/include/dt-bindings/reset/sun20i-d1-r-ccu.h b/include/dt-bindings/reset/sun20i-d1-r-ccu.h
+index d93d6423d283..e20babc990af 100644
+--- a/include/dt-bindings/reset/sun20i-d1-r-ccu.h
++++ b/include/dt-bindings/reset/sun20i-d1-r-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2021 Samuel Holland <samuel@sholland.org>
+  */
+diff --git a/include/dt-bindings/reset/sun50i-a100-ccu.h b/include/dt-bindings/reset/sun50i-a100-ccu.h
+index 55c0ada99885..d13764bc1860 100644
+--- a/include/dt-bindings/reset/sun50i-a100-ccu.h
++++ b/include/dt-bindings/reset/sun50i-a100-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
+  */
+diff --git a/include/dt-bindings/reset/sun50i-a100-r-ccu.h b/include/dt-bindings/reset/sun50i-a100-r-ccu.h
+index 737bf6f66626..1e7c4431f03c 100644
+--- a/include/dt-bindings/reset/sun50i-a100-r-ccu.h
++++ b/include/dt-bindings/reset/sun50i-a100-r-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (c) 2020 Yangtao Li <frank@allwinnertech.com>
+  */
+diff --git a/include/dt-bindings/reset/sun50i-h6-ccu.h b/include/dt-bindings/reset/sun50i-h6-ccu.h
+index 81106f455097..d038ddfa4818 100644
+--- a/include/dt-bindings/reset/sun50i-h6-ccu.h
++++ b/include/dt-bindings/reset/sun50i-h6-ccu.h
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: (GPL-2.0+ or MIT)
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2017 Icenowy Zheng <icenowy@aosc.io>
+  */
+diff --git a/include/dt-bindings/reset/sun50i-h6-r-ccu.h b/include/dt-bindings/reset/sun50i-h6-r-ccu.h
+index 7950e799c76d..d541ade884fc 100644
+--- a/include/dt-bindings/reset/sun50i-h6-r-ccu.h
++++ b/include/dt-bindings/reset/sun50i-h6-r-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2016 Icenowy Zheng <icenowy@aosc.xyz>
+  */
+diff --git a/include/dt-bindings/reset/sun50i-h616-ccu.h b/include/dt-bindings/reset/sun50i-h616-ccu.h
+index cb6285a8d128..1bd8bb0a11be 100644
+--- a/include/dt-bindings/reset/sun50i-h616-ccu.h
++++ b/include/dt-bindings/reset/sun50i-h616-ccu.h
+@@ -1,4 +1,4 @@
+-/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+ /*
+  * Copyright (C) 2020 Arm Ltd.
+  */
+-- 
+2.34.1
 
-> 
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VDEC_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +             .flags = CLK_DIVIDER_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdec_p0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vdec_p0_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VDEC_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vdec_p0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vdec_p0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p1_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDEC3_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdec_p1_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_dec_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_dec_parent_data),
-> 
-> Same here and also where applicable in the rest of the driver.
-
-OKay.
-
-> 
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p1_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VDEC3_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +             .flags = CLK_DIVIDER_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdec_p1_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vdec_p1_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdec_p1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VDEC3_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vdec_p1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vdec_p1_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_hw *s4_vdec_mux_parent_hws[] = {
->> +     &s4_vdec_p0.hw,
->> +     &s4_vdec_p1.hw
->> +};
->> +
->> +static struct clk_regmap s4_vdec_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDEC3_CLK_CTRL,
->> +             .mask = 0x1,
->> +             .shift = 15,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdec_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_vdec_mux_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_vdec_mux_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_p0_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDEC2_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hevcf_p0_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_dec_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_dec_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_p0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VDEC2_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +             .flags = CLK_DIVIDER_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hevcf_p0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hevcf_p0_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_p0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VDEC2_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hevcf_p0_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hevcf_p0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_p1_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDEC4_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +             .flags = CLK_MUX_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hevcf_p1_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_dec_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_dec_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_p1_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VDEC4_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +             .flags = CLK_DIVIDER_ROUND_CLOSEST,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hevcf_p1_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hevcf_p1_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_p1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VDEC4_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hevcf_p1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hevcf_p1_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_hw *s4_hevcf_mux_parent_hws[] = {
->> +     &s4_hevcf_p0.hw,
->> +     &s4_hevcf_p1.hw
->> +};
->> +
->> +static struct clk_regmap s4_hevcf_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDEC4_CLK_CTRL,
->> +             .mask = 0x1,
->> +             .shift = 15,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hevcf",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_hevcf_mux_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_hevcf_mux_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* VPU Clock */
->> +static const struct clk_parent_data s4_vpu_parent_data[] = {
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "mpll1", },
->> +     { .hw = &s4_vid_pll.hw },
->> +     { .fw_name = "hifi_pll", },
->> +     { .fw_name = "gp0_pll", },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_0_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_0_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vpu_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vpu_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vpu_0_sel.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vpu_0_div.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_1_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_1_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vpu_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vpu_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_1_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_1_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vpu_1_sel.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vpu_1_div.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLK_CTRL,
->> +             .mask = 1,
->> +             .shift = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_0.hw,
->> +                     &s4_vpu_1.hw,
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data vpu_clkb_tmp_parent_data[] = {
->> +     { .hw = &s4_vpu.hw },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", }
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkb_tmp_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLKB_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 20,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkb_tmp_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = vpu_clkb_tmp_parent_data,
->> +             .num_parents = ARRAY_SIZE(vpu_clkb_tmp_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkb_tmp_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VPU_CLKB_CTRL,
->> +             .shift = 16,
->> +             .width = 4,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkb_tmp_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkb_tmp_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkb_tmp = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VPU_CLKB_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_clkb_tmp",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkb_tmp_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkb_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VPU_CLKB_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkb_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkb_tmp.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkb = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VPU_CLKB_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_clkb",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkb_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_vpu_clkc_parent_data[] = {
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "mpll1", },
->> +     { .hw = &s4_vid_pll.hw },
->> +     { .fw_name = "mpll2", },
->> +     { .fw_name = "gp0_pll", },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p0_mux  = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkc_p0_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vpu_clkc_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkc_p0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkc_p0_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_clkc_p0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkc_p0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p1_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkc_p1_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vpu_clkc_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vpu_clkc_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p1_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkc_p1_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkc_p1_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_p1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vpu_clkc_p1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vpu_clkc_p1_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_hw *s4_vpu_mux_parent_hws[] = {
->> +     &s4_vpu_clkc_p0.hw,
->> +     &s4_vpu_clkc_p1.hw
->> +};
->> +
->> +static struct clk_regmap s4_vpu_clkc_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VPU_CLKC_CTRL,
->> +             .mask = 0x1,
->> +             .shift = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vpu_clkc_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = s4_vpu_mux_parent_hws,
->> +             .num_parents = ARRAY_SIZE(s4_vpu_mux_parent_hws),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* VAPB Clock */
->> +static const struct clk_parent_data s4_vapb_parent_data[] = {
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "mpll1", },
->> +     { .hw = &s4_vid_pll.hw },
->> +     { .fw_name = "mpll2", },
->> +     { .fw_name = "fclk_div2p5", },
->> +};
->> +
->> +static struct clk_regmap s4_vapb_0_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vapb_0_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vapb_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vapb_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vapb_0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vapb_0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vapb_0_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vapb_0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vapb_0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vapb_0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vapb_1_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vapb_1_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vapb_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vapb_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vapb_1_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vapb_1_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vapb_1_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vapb_1 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vapb_1",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vapb_1_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vapb = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .mask = 1,
->> +             .shift = 31,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vapb_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vapb_0.hw,
->> +                     &s4_vapb_1.hw
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_ge2d_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VAPBCLK_CTRL,
->> +             .bit_idx = 30,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "ge2d_clk",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) { &s4_vapb.hw },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_esmclk_parent_data[] = {
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", },
->> +};
->> +
->> +static struct clk_regmap s4_hdcp22_esmclk_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_HDCP22_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hdcp22_esmclk_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_esmclk_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_esmclk_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdcp22_esmclk_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_HDCP22_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hdcp22_esmclk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hdcp22_esmclk_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdcp22_esmclk_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_HDCP22_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hdcp22_esmclk_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hdcp22_esmclk_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_skpclk_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", },
->> +};
->> +
->> +static struct clk_regmap s4_hdcp22_skpclk_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_HDCP22_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hdcp22_skpclk_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_skpclk_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_skpclk_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdcp22_skpclk_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_HDCP22_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "hdcp22_skpclk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hdcp22_skpclk_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_hdcp22_skpclk_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_HDCP22_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "hdcp22_skpclk_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_hdcp22_skpclk_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_vdin_parent_data[]  = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .hw = &s4_vid_pll.hw }
->> +};
->> +
->> +static struct clk_regmap s4_vdin_meas_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_VDIN_MEAS_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdin_meas_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_vdin_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_vdin_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdin_meas_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_VDIN_MEAS_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "vdin_meas_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vdin_meas_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_vdin_meas_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_VDIN_MEAS_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "vdin_meas_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_vdin_meas_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* EMMC/NAND clock */
->> +static const struct clk_parent_data s4_sd_emmc_clk0_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "fclk_div2", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "hifi_pll", },
->> +     { .fw_name = "fclk_div2p5", },
->> +     { .fw_name = "mpll2", },
->> +     { .fw_name = "mpll3", },
->> +     { .fw_name = "gp0_pll", },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_c_clk0_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_NAND_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sd_emmc_c_clk0_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_sd_emmc_clk0_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_c_clk0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_NAND_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sd_emmc_c_clk0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sd_emmc_c_clk0_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_c_clk0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_NAND_CLK_CTRL,
->> +             .bit_idx = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sd_emmc_c_clk0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sd_emmc_c_clk0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_a_clk0_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SD_EMMC_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sd_emmc_a_clk0_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_sd_emmc_clk0_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_a_clk0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_SD_EMMC_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sd_emmc_a_clk0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sd_emmc_a_clk0_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_a_clk0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_SD_EMMC_CLK_CTRL,
->> +             .bit_idx = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sd_emmc_a_clk0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sd_emmc_a_clk0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_b_clk0_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SD_EMMC_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sd_emmc_b_clk0_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_sd_emmc_clk0_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_sd_emmc_clk0_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_b_clk0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_SD_EMMC_CLK_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "sd_emmc_b_clk0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sd_emmc_b_clk0_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_sd_emmc_b_clk0 = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_SD_EMMC_CLK_CTRL,
->> +             .bit_idx = 23,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "sd_emmc_b_clk0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_sd_emmc_b_clk0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* SPICC Clock */
->> +static const struct clk_parent_data s4_spicc_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .hw = &s4_sys_clk.hw },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div2", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +};
->> +
->> +static struct clk_regmap s4_spicc0_mux = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_SPICC_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "spicc0_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_spicc_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_spicc_parent_data),
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_spicc0_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_SPICC_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 6,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "spicc0_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_spicc0_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_spicc0_gate = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_SPICC_CLK_CTRL,
->> +             .bit_idx = 6,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "spicc0",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_spicc0_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/* PWM Clock */
->> +static const struct clk_parent_data s4_pwm_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .hw = &s4_vid_pll.hw },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_a_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_a_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_a_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_a_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_a_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_a_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_a_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_a_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_b_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_b_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_b_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +             .shift = 16,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_b_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_b_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_b_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_AB_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_b_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_b_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_c_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_CD_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_c_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_c_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_CD_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_c_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_c_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_c_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_CD_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_c_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_c_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_d_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_CD_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_d_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_d_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_CD_CTRL,
->> +             .shift = 16,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_d_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_d_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_d_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_CD_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_d_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_d_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_e_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_EF_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_e_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_e_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_EF_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_e_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_e_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_e_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_EF_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_e_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_e_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_f_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_EF_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_f_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_f_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_EF_CTRL,
->> +             .shift = 16,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_f_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_f_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_f_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_EF_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_f_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_f_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_g_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_GH_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_g_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_g_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_GH_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_g_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_g_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_g_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_GH_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_g_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_g_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_h_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_GH_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_h_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_h_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_GH_CTRL,
->> +             .shift = 16,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_h_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_h_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_h_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_GH_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_h_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_h_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_i_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_IJ_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_i_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_i_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_IJ_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_i_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_i_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_i_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_IJ_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_i_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_i_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_j_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_PWM_CLK_IJ_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_j_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_pwm_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_pwm_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_j_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_PWM_CLK_IJ_CTRL,
->> +             .shift = 16,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_j_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_h_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_pwm_j_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_PWM_CLK_IJ_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "pwm_j_gate",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_pwm_j_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_saradc_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_SAR_CLK_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "saradc_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "xtal", },
->> +                     { .hw = &s4_sys_clk.hw },
->> +             },
->> +             .num_parents = 2,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_saradc_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_SAR_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "saradc_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_saradc_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_saradc_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_SAR_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "saradc_clk",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_saradc_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +/*
->> + * gen clk is designed for debug/monitor some internal clock quality. Some of the
->> + * corresponding clock sources are not described in the clock tree and internal clock
->> + * for debug, so they are skipped.
->> + */
->> +static u32 s4_gen_clk_mux_table[] = { 0, 4, 5, 7, 19, 21, 22,
->> +                                   23, 24, 25, 26, 27, 28 };
->> +static const struct clk_parent_data s4_gen_clk_parent_data[] = {
->> +     { .fw_name = "xtal", },
->> +     { .hw = &s4_vid_pll.hw },
->> +     { .fw_name = "gp0_pll", },
->> +     { .fw_name = "hifi_pll", },
->> +     { .fw_name = "fclk_div2", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "mpll0", },
->> +     { .fw_name = "mpll1", },
->> +     { .fw_name = "mpll2", },
->> +     { .fw_name = "mpll3", },
->> +};
->> +
->> +static struct clk_regmap s4_gen_clk_sel = {
->> +     .data = &(struct clk_regmap_mux_data){
->> +             .offset = CLKCTRL_GEN_CLK_CTRL,
->> +             .mask = 0x1f,
->> +             .shift = 12,
->> +             .table = s4_gen_clk_mux_table,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "gen_clk_sel",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_gen_clk_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_gen_clk_parent_data),
->> +             /*
->> +              *  Because the GEN clock can be connected to an external pad
->> +              *  and may be set up directly from the device tree. Don't
->> +              *  really want to automatically reparent.
->> +              */
->> +             .flags = CLK_SET_RATE_NO_REPARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_gen_clk_div = {
->> +     .data = &(struct clk_regmap_div_data){
->> +             .offset = CLKCTRL_GEN_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 11,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "gen_clk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_gen_clk_sel.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_gen_clk = {
->> +     .data = &(struct clk_regmap_gate_data){
->> +             .offset = CLKCTRL_GEN_CLK_CTRL,
->> +             .bit_idx = 11,
->> +     },
->> +     .hw.init = &(struct clk_init_data) {
->> +             .name = "gen_clk",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_gen_clk_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static const struct clk_parent_data s4_adc_extclk_in_parent_data[]  = {
->> +     { .fw_name = "xtal", },
->> +     { .fw_name = "fclk_div4", },
->> +     { .fw_name = "fclk_div3", },
->> +     { .fw_name = "fclk_div5", },
->> +     { .fw_name = "fclk_div7", },
->> +     { .fw_name = "mpll2", },
->> +     { .fw_name = "gp0_pll", },
->> +     { .fw_name = "hifi_pll", },
->> +};
->> +
->> +static struct clk_regmap s4_adc_extclk_in_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
->> +             .mask = 0x7,
->> +             .shift = 25,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "adc_extclk_in_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = s4_adc_extclk_in_parent_data,
->> +             .num_parents = ARRAY_SIZE(s4_adc_extclk_in_parent_data),
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_adc_extclk_in_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
->> +             .shift = 16,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "adc_extclk_in_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_adc_extclk_in_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_adc_extclk_in_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
->> +             .bit_idx = 24,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "adc_extclk_in",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_adc_extclk_in_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_demod_core_clk_mux = {
->> +     .data = &(struct clk_regmap_mux_data) {
->> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
->> +             .mask = 0x3,
->> +             .shift = 9,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "demod_core_clk_mux",
->> +             .ops = &clk_regmap_mux_ops,
->> +             .parent_data = (const struct clk_parent_data []) {
->> +                     { .fw_name = "xtal", },
->> +                     { .fw_name = "fclk_div7", },
->> +                     { .fw_name = "fclk_div4", },
->> +                     { .hw = &s4_adc_extclk_in_gate.hw }
->> +             },
->> +             .num_parents = 4,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_demod_core_clk_div = {
->> +     .data = &(struct clk_regmap_div_data) {
->> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
->> +             .shift = 0,
->> +             .width = 7,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "demod_core_clk_div",
->> +             .ops = &clk_regmap_divider_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_demod_core_clk_mux.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +static struct clk_regmap s4_demod_core_clk_gate = {
->> +     .data = &(struct clk_regmap_gate_data) {
->> +             .offset = CLKCTRL_DEMOD_CLK_CTRL,
->> +             .bit_idx = 8,
->> +     },
->> +     .hw.init = &(struct clk_init_data){
->> +             .name = "demod_core_clk",
->> +             .ops = &clk_regmap_gate_ops,
->> +             .parent_hws = (const struct clk_hw *[]) {
->> +                     &s4_demod_core_clk_div.hw
->> +             },
->> +             .num_parents = 1,
->> +             .flags = CLK_SET_RATE_PARENT,
->> +     },
->> +};
->> +
->> +#define MESON_GATE(_name, _reg, _bit) \
->> +     MESON_PCLK(_name, _reg, _bit, &s4_sys_clk.hw)
->> +
->> +static MESON_GATE(s4_ddr,            CLKCTRL_SYS_CLK_EN0_REG0, 0);
->> +static MESON_GATE(s4_dos,            CLKCTRL_SYS_CLK_EN0_REG0, 1);
->> +static MESON_GATE(s4_ethphy,         CLKCTRL_SYS_CLK_EN0_REG0, 4);
->> +static MESON_GATE(s4_mali,           CLKCTRL_SYS_CLK_EN0_REG0, 6);
->> +static MESON_GATE(s4_aocpu,          CLKCTRL_SYS_CLK_EN0_REG0, 13);
->> +static MESON_GATE(s4_aucpu,          CLKCTRL_SYS_CLK_EN0_REG0, 14);
->> +static MESON_GATE(s4_cec,            CLKCTRL_SYS_CLK_EN0_REG0, 16);
->> +static MESON_GATE(s4_sdemmca,                CLKCTRL_SYS_CLK_EN0_REG0, 24);
->> +static MESON_GATE(s4_sdemmcb,                CLKCTRL_SYS_CLK_EN0_REG0, 25);
->> +static MESON_GATE(s4_nand,           CLKCTRL_SYS_CLK_EN0_REG0, 26);
->> +static MESON_GATE(s4_smartcard,              CLKCTRL_SYS_CLK_EN0_REG0, 27);
->> +static MESON_GATE(s4_acodec,         CLKCTRL_SYS_CLK_EN0_REG0, 28);
->> +static MESON_GATE(s4_spifc,          CLKCTRL_SYS_CLK_EN0_REG0, 29);
->> +static MESON_GATE(s4_msr_clk,                CLKCTRL_SYS_CLK_EN0_REG0, 30);
->> +static MESON_GATE(s4_ir_ctrl,                CLKCTRL_SYS_CLK_EN0_REG0, 31);
->> +static MESON_GATE(s4_audio,          CLKCTRL_SYS_CLK_EN0_REG1, 0);
->> +static MESON_GATE(s4_eth,            CLKCTRL_SYS_CLK_EN0_REG1, 3);
->> +static MESON_GATE(s4_uart_a,         CLKCTRL_SYS_CLK_EN0_REG1, 5);
->> +static MESON_GATE(s4_uart_b,         CLKCTRL_SYS_CLK_EN0_REG1, 6);
->> +static MESON_GATE(s4_uart_c,         CLKCTRL_SYS_CLK_EN0_REG1, 7);
->> +static MESON_GATE(s4_uart_d,         CLKCTRL_SYS_CLK_EN0_REG1, 8);
->> +static MESON_GATE(s4_uart_e,         CLKCTRL_SYS_CLK_EN0_REG1, 9);
->> +static MESON_GATE(s4_aififo,         CLKCTRL_SYS_CLK_EN0_REG1, 11);
->> +static MESON_GATE(s4_ts_ddr,         CLKCTRL_SYS_CLK_EN0_REG1, 15);
->> +static MESON_GATE(s4_ts_pll,         CLKCTRL_SYS_CLK_EN0_REG1, 16);
->> +static MESON_GATE(s4_g2d,            CLKCTRL_SYS_CLK_EN0_REG1, 20);
->> +static MESON_GATE(s4_spicc0,         CLKCTRL_SYS_CLK_EN0_REG1, 21);
->> +static MESON_GATE(s4_usb,            CLKCTRL_SYS_CLK_EN0_REG1, 26);
->> +static MESON_GATE(s4_i2c_m_a,                CLKCTRL_SYS_CLK_EN0_REG1, 30);
->> +static MESON_GATE(s4_i2c_m_b,                CLKCTRL_SYS_CLK_EN0_REG1, 31);
->> +static MESON_GATE(s4_i2c_m_c,                CLKCTRL_SYS_CLK_EN0_REG2, 0);
->> +static MESON_GATE(s4_i2c_m_d,                CLKCTRL_SYS_CLK_EN0_REG2, 1);
->> +static MESON_GATE(s4_i2c_m_e,                CLKCTRL_SYS_CLK_EN0_REG2, 2);
->> +static MESON_GATE(s4_hdmitx_apb,     CLKCTRL_SYS_CLK_EN0_REG2, 4);
->> +static MESON_GATE(s4_i2c_s_a,                CLKCTRL_SYS_CLK_EN0_REG2, 5);
->> +static MESON_GATE(s4_usb1_to_ddr,    CLKCTRL_SYS_CLK_EN0_REG2, 8);
->> +static MESON_GATE(s4_hdcp22,         CLKCTRL_SYS_CLK_EN0_REG2, 10);
->> +static MESON_GATE(s4_mmc_apb,                CLKCTRL_SYS_CLK_EN0_REG2, 11);
->> +static MESON_GATE(s4_rsa,            CLKCTRL_SYS_CLK_EN0_REG2, 18);
->> +static MESON_GATE(s4_cpu_debug,              CLKCTRL_SYS_CLK_EN0_REG2, 19);
->> +static MESON_GATE(s4_vpu_intr,               CLKCTRL_SYS_CLK_EN0_REG2, 25);
->> +static MESON_GATE(s4_demod,          CLKCTRL_SYS_CLK_EN0_REG2, 27);
->> +static MESON_GATE(s4_sar_adc,                CLKCTRL_SYS_CLK_EN0_REG2, 28);
->> +static MESON_GATE(s4_gic,            CLKCTRL_SYS_CLK_EN0_REG2, 30);
->> +static MESON_GATE(s4_pwm_ab,         CLKCTRL_SYS_CLK_EN0_REG3, 7);
->> +static MESON_GATE(s4_pwm_cd,         CLKCTRL_SYS_CLK_EN0_REG3, 8);
->> +static MESON_GATE(s4_pwm_ef,         CLKCTRL_SYS_CLK_EN0_REG3, 9);
->> +static MESON_GATE(s4_pwm_gh,         CLKCTRL_SYS_CLK_EN0_REG3, 10);
->> +static MESON_GATE(s4_pwm_ij,         CLKCTRL_SYS_CLK_EN0_REG3, 11);
->> +
->> +/* Array of all clocks provided by this provider */
->> +static struct clk_hw *s4_periphs_hw_clks[] = {
->> +     [CLKID_RTC_32K_CLKIN]           = &s4_rtc_32k_by_oscin_clkin.hw,
->> +     [CLKID_RTC_32K_DIV]             = &s4_rtc_32k_by_oscin_div.hw,
->> +     [CLKID_RTC_32K_SEL]             = &s4_rtc_32k_by_oscin_sel.hw,
->> +     [CLKID_RTC_32K_XATL]            = &s4_rtc_32k_by_oscin.hw,
->> +     [CLKID_RTC]                     = &s4_rtc_clk.hw,
->> +     [CLKID_SYS_CLK_B_SEL]           = &s4_sysclk_b_sel.hw,
->> +     [CLKID_SYS_CLK_B_DIV]           = &s4_sysclk_b_div.hw,
->> +     [CLKID_SYS_CLK_B]               = &s4_sysclk_b.hw,
->> +     [CLKID_SYS_CLK_A_SEL]           = &s4_sysclk_a_sel.hw,
->> +     [CLKID_SYS_CLK_A_DIV]           = &s4_sysclk_a_div.hw,
->> +     [CLKID_SYS_CLK_A]               = &s4_sysclk_a.hw,
->> +     [CLKID_SYS]                     = &s4_sys_clk.hw,
->> +     [CLKID_CECA_32K_CLKIN]          = &s4_ceca_32k_clkin.hw,
->> +     [CLKID_CECA_32K_DIV]            = &s4_ceca_32k_div.hw,
->> +     [CLKID_CECA_32K_SEL_PRE]        = &s4_ceca_32k_sel_pre.hw,
->> +     [CLKID_CECA_32K_SEL]            = &s4_ceca_32k_sel.hw,
->> +     [CLKID_CECA_32K_CLKOUT]         = &s4_ceca_32k_clkout.hw,
->> +     [CLKID_CECB_32K_CLKIN]          = &s4_cecb_32k_clkin.hw,
->> +     [CLKID_CECB_32K_DIV]            = &s4_cecb_32k_div.hw,
->> +     [CLKID_CECB_32K_SEL_PRE]        = &s4_cecb_32k_sel_pre.hw,
->> +     [CLKID_CECB_32K_SEL]            = &s4_cecb_32k_sel.hw,
->> +     [CLKID_CECB_32K_CLKOUT]         = &s4_cecb_32k_clkout.hw,
->> +     [CLKID_SC_CLK_SEL]              = &s4_sc_clk_mux.hw,
->> +     [CLKID_SC_CLK_DIV]              = &s4_sc_clk_div.hw,
->> +     [CLKID_SC]                      = &s4_sc_clk_gate.hw,
->> +     [CLKID_12_24M]                  = &s4_12_24M_clk_gate.hw,
->> +     [CLKID_12M_CLK_DIV]             = &s4_12M_clk_div.hw,
->> +     [CLKID_12_24M_CLK_SEL]          = &s4_12_24M_clk.hw,
->> +     [CLKID_VID_PLL_DIV]             = &s4_vid_pll_div.hw,
->> +     [CLKID_VID_PLL_SEL]             = &s4_vid_pll_sel.hw,
->> +     [CLKID_VID_PLL]                 = &s4_vid_pll.hw,
->> +     [CLKID_VCLK_SEL]                = &s4_vclk_sel.hw,
->> +     [CLKID_VCLK2_SEL]               = &s4_vclk2_sel.hw,
->> +     [CLKID_VCLK_INPUT]              = &s4_vclk_input.hw,
->> +     [CLKID_VCLK2_INPUT]             = &s4_vclk2_input.hw,
->> +     [CLKID_VCLK_DIV]                = &s4_vclk_div.hw,
->> +     [CLKID_VCLK2_DIV]               = &s4_vclk2_div.hw,
->> +     [CLKID_VCLK]                    = &s4_vclk.hw,
->> +     [CLKID_VCLK2]                   = &s4_vclk2.hw,
->> +     [CLKID_VCLK_DIV1]               = &s4_vclk_div1.hw,
->> +     [CLKID_VCLK_DIV2_EN]            = &s4_vclk_div2_en.hw,
->> +     [CLKID_VCLK_DIV4_EN]            = &s4_vclk_div4_en.hw,
->> +     [CLKID_VCLK_DIV6_EN]            = &s4_vclk_div6_en.hw,
->> +     [CLKID_VCLK_DIV12_EN]           = &s4_vclk_div12_en.hw,
->> +     [CLKID_VCLK2_DIV1]              = &s4_vclk2_div1.hw,
->> +     [CLKID_VCLK2_DIV2_EN]           = &s4_vclk2_div2_en.hw,
->> +     [CLKID_VCLK2_DIV4_EN]           = &s4_vclk2_div4_en.hw,
->> +     [CLKID_VCLK2_DIV6_EN]           = &s4_vclk2_div6_en.hw,
->> +     [CLKID_VCLK2_DIV12_EN]          = &s4_vclk2_div12_en.hw,
->> +     [CLKID_VCLK_DIV2]               = &s4_vclk_div2.hw,
->> +     [CLKID_VCLK_DIV4]               = &s4_vclk_div4.hw,
->> +     [CLKID_VCLK_DIV6]               = &s4_vclk_div6.hw,
->> +     [CLKID_VCLK_DIV12]              = &s4_vclk_div12.hw,
->> +     [CLKID_VCLK2_DIV2]              = &s4_vclk2_div2.hw,
->> +     [CLKID_VCLK2_DIV4]              = &s4_vclk2_div4.hw,
->> +     [CLKID_VCLK2_DIV6]              = &s4_vclk2_div6.hw,
->> +     [CLKID_VCLK2_DIV12]             = &s4_vclk2_div12.hw,
->> +     [CLKID_CTS_ENCI_SEL]            = &s4_cts_enci_sel.hw,
->> +     [CLKID_CTS_ENCP_SEL]            = &s4_cts_encp_sel.hw,
->> +     [CLKID_CTS_VDAC_SEL]            = &s4_cts_vdac_sel.hw,
->> +     [CLKID_HDMI_TX_SEL]             = &s4_hdmi_tx_sel.hw,
->> +     [CLKID_CTS_ENCI]                = &s4_cts_enci.hw,
->> +     [CLKID_CTS_ENCP]                = &s4_cts_encp.hw,
->> +     [CLKID_CTS_VDAC]                = &s4_cts_vdac.hw,
->> +     [CLKID_HDMI_TX]                 = &s4_hdmi_tx.hw,
->> +     [CLKID_HDMI_SEL]                = &s4_hdmi_sel.hw,
->> +     [CLKID_HDMI_DIV]                = &s4_hdmi_div.hw,
->> +     [CLKID_HDMI]                    = &s4_hdmi.hw,
->> +     [CLKID_TS_CLK_DIV]              = &s4_ts_clk_div.hw,
->> +     [CLKID_TS]                      = &s4_ts_clk_gate.hw,
->> +     [CLKID_MALI_0_SEL]              = &s4_mali_0_sel.hw,
->> +     [CLKID_MALI_0_DIV]              = &s4_mali_0_div.hw,
->> +     [CLKID_MALI_0]                  = &s4_mali_0.hw,
->> +     [CLKID_MALI_1_SEL]              = &s4_mali_1_sel.hw,
->> +     [CLKID_MALI_1_DIV]              = &s4_mali_1_div.hw,
->> +     [CLKID_MALI_1]                  = &s4_mali_1.hw,
->> +     [CLKID_MALI_SEL]                = &s4_mali_mux.hw,
->> +     [CLKID_VDEC_P0_SEL]             = &s4_vdec_p0_mux.hw,
->> +     [CLKID_VDEC_P0_DIV]             = &s4_vdec_p0_div.hw,
->> +     [CLKID_VDEC_P0]                 = &s4_vdec_p0.hw,
->> +     [CLKID_VDEC_P1_SEL]             = &s4_vdec_p1_mux.hw,
->> +     [CLKID_VDEC_P1_DIV]             = &s4_vdec_p1_div.hw,
->> +     [CLKID_VDEC_P1]                 = &s4_vdec_p1.hw,
->> +     [CLKID_VDEC_SEL]                = &s4_vdec_mux.hw,
->> +     [CLKID_HEVCF_P0_SEL]            = &s4_hevcf_p0_mux.hw,
->> +     [CLKID_HEVCF_P0_DIV]            = &s4_hevcf_p0_div.hw,
->> +     [CLKID_HEVCF_P0]                = &s4_hevcf_p0.hw,
->> +     [CLKID_HEVCF_P1_SEL]            = &s4_hevcf_p1_mux.hw,
->> +     [CLKID_HEVCF_P1_DIV]            = &s4_hevcf_p1_div.hw,
->> +     [CLKID_HEVCF_P1]                = &s4_hevcf_p1.hw,
->> +     [CLKID_HEVCF_SEL]               = &s4_hevcf_mux.hw,
->> +     [CLKID_VPU_0_SEL]               = &s4_vpu_0_sel.hw,
->> +     [CLKID_VPU_0_DIV]               = &s4_vpu_0_div.hw,
->> +     [CLKID_VPU_0]                   = &s4_vpu_0.hw,
->> +     [CLKID_VPU_1_SEL]               = &s4_vpu_1_sel.hw,
->> +     [CLKID_VPU_1_DIV]               = &s4_vpu_1_div.hw,
->> +     [CLKID_VPU_1]                   = &s4_vpu_1.hw,
->> +     [CLKID_VPU]                     = &s4_vpu.hw,
->> +     [CLKID_VPU_CLKB_TMP_SEL]        = &s4_vpu_clkb_tmp_mux.hw,
->> +     [CLKID_VPU_CLKB_TMP_DIV]        = &s4_vpu_clkb_tmp_div.hw,
->> +     [CLKID_VPU_CLKB_TMP]            = &s4_vpu_clkb_tmp.hw,
->> +     [CLKID_VPU_CLKB_DIV]            = &s4_vpu_clkb_div.hw,
->> +     [CLKID_VPU_CLKB]                = &s4_vpu_clkb.hw,
->> +     [CLKID_VPU_CLKC_P0_SEL]         = &s4_vpu_clkc_p0_mux.hw,
->> +     [CLKID_VPU_CLKC_P0_DIV]         = &s4_vpu_clkc_p0_div.hw,
->> +     [CLKID_VPU_CLKC_P0]             = &s4_vpu_clkc_p0.hw,
->> +     [CLKID_VPU_CLKC_P1_SEL]         = &s4_vpu_clkc_p1_mux.hw,
->> +     [CLKID_VPU_CLKC_P1_DIV]         = &s4_vpu_clkc_p1_div.hw,
->> +     [CLKID_VPU_CLKC_P1]             = &s4_vpu_clkc_p1.hw,
->> +     [CLKID_VPU_CLKC_SEL]            = &s4_vpu_clkc_mux.hw,
->> +     [CLKID_VAPB_0_SEL]              = &s4_vapb_0_sel.hw,
->> +     [CLKID_VAPB_0_DIV]              = &s4_vapb_0_div.hw,
->> +     [CLKID_VAPB_0]                  = &s4_vapb_0.hw,
->> +     [CLKID_VAPB_1_SEL]              = &s4_vapb_1_sel.hw,
->> +     [CLKID_VAPB_1_DIV]              = &s4_vapb_1_div.hw,
->> +     [CLKID_VAPB_1]                  = &s4_vapb_1.hw,
->> +     [CLKID_VAPB]                    = &s4_vapb.hw,
->> +     [CLKID_GE2D]                    = &s4_ge2d_gate.hw,
->> +     [CLKID_VDIN_MEAS_SEL]           = &s4_vdin_meas_mux.hw,
->> +     [CLKID_VDIN_MEAS_DIV]           = &s4_vdin_meas_div.hw,
->> +     [CLKID_VDIN_MEAS]               = &s4_vdin_meas_gate.hw,
->> +     [CLKID_SD_EMMC_C_CLK_SEL]       = &s4_sd_emmc_c_clk0_sel.hw,
->> +     [CLKID_SD_EMMC_C_CLK_DIV]       = &s4_sd_emmc_c_clk0_div.hw,
->> +     [CLKID_SD_EMMC_C]               = &s4_sd_emmc_c_clk0.hw,
->> +     [CLKID_SD_EMMC_A_CLK_SEL]       = &s4_sd_emmc_a_clk0_sel.hw,
->> +     [CLKID_SD_EMMC_A_CLK_DIV]       = &s4_sd_emmc_a_clk0_div.hw,
->> +     [CLKID_SD_EMMC_A]               = &s4_sd_emmc_a_clk0.hw,
->> +     [CLKID_SD_EMMC_B_CLK_SEL]       = &s4_sd_emmc_b_clk0_sel.hw,
->> +     [CLKID_SD_EMMC_B_CLK_DIV]       = &s4_sd_emmc_b_clk0_div.hw,
->> +     [CLKID_SD_EMMC_B]               = &s4_sd_emmc_b_clk0.hw,
->> +     [CLKID_SPICC0_SEL]              = &s4_spicc0_mux.hw,
->> +     [CLKID_SPICC0_DIV]              = &s4_spicc0_div.hw,
->> +     [CLKID_SPICC0_EN]               = &s4_spicc0_gate.hw,
->> +     [CLKID_PWM_A_SEL]               = &s4_pwm_a_mux.hw,
->> +     [CLKID_PWM_A_DIV]               = &s4_pwm_a_div.hw,
->> +     [CLKID_PWM_A]                   = &s4_pwm_a_gate.hw,
->> +     [CLKID_PWM_B_SEL]               = &s4_pwm_b_mux.hw,
->> +     [CLKID_PWM_B_DIV]               = &s4_pwm_b_div.hw,
->> +     [CLKID_PWM_B]                   = &s4_pwm_b_gate.hw,
->> +     [CLKID_PWM_C_SEL]               = &s4_pwm_c_mux.hw,
->> +     [CLKID_PWM_C_DIV]               = &s4_pwm_c_div.hw,
->> +     [CLKID_PWM_C]                   = &s4_pwm_c_gate.hw,
->> +     [CLKID_PWM_D_SEL]               = &s4_pwm_d_mux.hw,
->> +     [CLKID_PWM_D_DIV]               = &s4_pwm_d_div.hw,
->> +     [CLKID_PWM_D]                   = &s4_pwm_d_gate.hw,
->> +     [CLKID_PWM_E_SEL]               = &s4_pwm_e_mux.hw,
->> +     [CLKID_PWM_E_DIV]               = &s4_pwm_e_div.hw,
->> +     [CLKID_PWM_E]                   = &s4_pwm_e_gate.hw,
->> +     [CLKID_PWM_F_SEL]               = &s4_pwm_f_mux.hw,
->> +     [CLKID_PWM_F_DIV]               = &s4_pwm_f_div.hw,
->> +     [CLKID_PWM_F]                   = &s4_pwm_f_gate.hw,
->> +     [CLKID_PWM_G_SEL]               = &s4_pwm_g_mux.hw,
->> +     [CLKID_PWM_G_DIV]               = &s4_pwm_g_div.hw,
->> +     [CLKID_PWM_G]                   = &s4_pwm_g_gate.hw,
->> +     [CLKID_PWM_H_SEL]               = &s4_pwm_h_mux.hw,
->> +     [CLKID_PWM_H_DIV]               = &s4_pwm_h_div.hw,
->> +     [CLKID_PWM_H]                   = &s4_pwm_h_gate.hw,
->> +     [CLKID_PWM_I_SEL]               = &s4_pwm_i_mux.hw,
->> +     [CLKID_PWM_I_DIV]               = &s4_pwm_i_div.hw,
->> +     [CLKID_PWM_I]                   = &s4_pwm_i_gate.hw,
->> +     [CLKID_PWM_J_SEL]               = &s4_pwm_j_mux.hw,
->> +     [CLKID_PWM_J_DIV]               = &s4_pwm_j_div.hw,
->> +     [CLKID_PWM_J]                   = &s4_pwm_j_gate.hw,
->> +     [CLKID_SARADC_SEL]              = &s4_saradc_mux.hw,
->> +     [CLKID_SARADC_DIV]              = &s4_saradc_div.hw,
->> +     [CLKID_SARADC]                  = &s4_saradc_gate.hw,
->> +     [CLKID_GEN_SEL]                 = &s4_gen_clk_sel.hw,
->> +     [CLKID_GEN_DIV]                 = &s4_gen_clk_div.hw,
->> +     [CLKID_GEN]                     = &s4_gen_clk.hw,
->> +     [CLKID_DDR]                     = &s4_ddr.hw,
->> +     [CLKID_DOS]                     = &s4_dos.hw,
->> +     [CLKID_ETHPHY]                  = &s4_ethphy.hw,
->> +     [CLKID_MALI]                    = &s4_mali.hw,
->> +     [CLKID_AOCPU]                   = &s4_aocpu.hw,
->> +     [CLKID_AUCPU]                   = &s4_aucpu.hw,
->> +     [CLKID_CEC]                     = &s4_cec.hw,
->> +     [CLKID_SDEMMC_A]                = &s4_sdemmca.hw,
->> +     [CLKID_SDEMMC_B]                = &s4_sdemmcb.hw,
->> +     [CLKID_NAND]                    = &s4_nand.hw,
->> +     [CLKID_SMARTCARD]               = &s4_smartcard.hw,
->> +     [CLKID_ACODEC]                  = &s4_acodec.hw,
->> +     [CLKID_SPIFC]                   = &s4_spifc.hw,
->> +     [CLKID_MSR]                     = &s4_msr_clk.hw,
->> +     [CLKID_IR_CTRL]                 = &s4_ir_ctrl.hw,
->> +     [CLKID_AUDIO]                   = &s4_audio.hw,
->> +     [CLKID_ETH]                     = &s4_eth.hw,
->> +     [CLKID_UART_A]                  = &s4_uart_a.hw,
->> +     [CLKID_UART_B]                  = &s4_uart_b.hw,
->> +     [CLKID_UART_C]                  = &s4_uart_c.hw,
->> +     [CLKID_UART_D]                  = &s4_uart_d.hw,
->> +     [CLKID_UART_E]                  = &s4_uart_e.hw,
->> +     [CLKID_AIFIFO]                  = &s4_aififo.hw,
->> +     [CLKID_TS_DDR]                  = &s4_ts_ddr.hw,
->> +     [CLKID_TS_PLL]                  = &s4_ts_pll.hw,
->> +     [CLKID_G2D]                     = &s4_g2d.hw,
->> +     [CLKID_SPICC0]                  = &s4_spicc0.hw,
->> +     [CLKID_USB]                     = &s4_usb.hw,
->> +     [CLKID_I2C_M_A]                 = &s4_i2c_m_a.hw,
->> +     [CLKID_I2C_M_B]                 = &s4_i2c_m_b.hw,
->> +     [CLKID_I2C_M_C]                 = &s4_i2c_m_c.hw,
->> +     [CLKID_I2C_M_D]                 = &s4_i2c_m_d.hw,
->> +     [CLKID_I2C_M_E]                 = &s4_i2c_m_e.hw,
->> +     [CLKID_HDMITX_APB]              = &s4_hdmitx_apb.hw,
->> +     [CLKID_I2C_S_A]                 = &s4_i2c_s_a.hw,
->> +     [CLKID_USB1_TO_DDR]             = &s4_usb1_to_ddr.hw,
->> +     [CLKID_HDCP22]                  = &s4_hdcp22.hw,
->> +     [CLKID_MMC_APB]                 = &s4_mmc_apb.hw,
->> +     [CLKID_RSA]                     = &s4_rsa.hw,
->> +     [CLKID_CPU_DEBUG]               = &s4_cpu_debug.hw,
->> +     [CLKID_VPU_INTR]                = &s4_vpu_intr.hw,
->> +     [CLKID_DEMOD]                   = &s4_demod.hw,
->> +     [CLKID_SAR_ADC]                 = &s4_sar_adc.hw,
->> +     [CLKID_GIC]                     = &s4_gic.hw,
->> +     [CLKID_PWM_AB]                  = &s4_pwm_ab.hw,
->> +     [CLKID_PWM_CD]                  = &s4_pwm_cd.hw,
->> +     [CLKID_PWM_EF]                  = &s4_pwm_ef.hw,
->> +     [CLKID_PWM_GH]                  = &s4_pwm_gh.hw,
->> +     [CLKID_PWM_IJ]                  = &s4_pwm_ij.hw,
->> +     [CLKID_HDCP22_ESMCLK_SEL]       = &s4_hdcp22_esmclk_mux.hw,
->> +     [CLKID_HDCP22_ESMCLK_DIV]       = &s4_hdcp22_esmclk_div.hw,
->> +     [CLKID_HDCP22_ESMCLK]           = &s4_hdcp22_esmclk_gate.hw,
->> +     [CLKID_HDCP22_SKPCLK_SEL]       = &s4_hdcp22_skpclk_mux.hw,
->> +     [CLKID_HDCP22_SKPCLK_DIV]       = &s4_hdcp22_skpclk_div.hw,
->> +     [CLKID_HDCP22_SKPCLK]           = &s4_hdcp22_skpclk_gate.hw,
->> +};
->> +
->> +/* Convenience table to populate regmap in .probe */
->> +static struct clk_regmap *const s4_periphs_clk_regmaps[] = {
->> +     &s4_rtc_32k_by_oscin_clkin,
->> +     &s4_rtc_32k_by_oscin_div,
->> +     &s4_rtc_32k_by_oscin_sel,
->> +     &s4_rtc_32k_by_oscin,
->> +     &s4_rtc_clk,
->> +     &s4_sysclk_b_sel,
->> +     &s4_sysclk_b_div,
->> +     &s4_sysclk_b,
->> +     &s4_sysclk_a_sel,
->> +     &s4_sysclk_a_div,
->> +     &s4_sysclk_a,
->> +     &s4_sys_clk,
->> +     &s4_ceca_32k_clkin,
->> +     &s4_ceca_32k_div,
->> +     &s4_ceca_32k_sel_pre,
->> +     &s4_ceca_32k_sel,
->> +     &s4_ceca_32k_clkout,
->> +     &s4_cecb_32k_clkin,
->> +     &s4_cecb_32k_div,
->> +     &s4_cecb_32k_sel_pre,
->> +     &s4_cecb_32k_sel,
->> +     &s4_cecb_32k_clkout,
->> +     &s4_sc_clk_mux,
->> +     &s4_sc_clk_div,
->> +     &s4_sc_clk_gate,
->> +     &s4_12_24M_clk_gate,
->> +     &s4_12_24M_clk,
->> +     &s4_vid_pll_div,
->> +     &s4_vid_pll_sel,
->> +     &s4_vid_pll,
->> +     &s4_vclk_sel,
->> +     &s4_vclk2_sel,
->> +     &s4_vclk_input,
->> +     &s4_vclk2_input,
->> +     &s4_vclk_div,
->> +     &s4_vclk2_div,
->> +     &s4_vclk,
->> +     &s4_vclk2,
->> +     &s4_vclk_div1,
->> +     &s4_vclk_div2_en,
->> +     &s4_vclk_div4_en,
->> +     &s4_vclk_div6_en,
->> +     &s4_vclk_div12_en,
->> +     &s4_vclk2_div1,
->> +     &s4_vclk2_div2_en,
->> +     &s4_vclk2_div4_en,
->> +     &s4_vclk2_div6_en,
->> +     &s4_vclk2_div12_en,
->> +     &s4_cts_enci_sel,
->> +     &s4_cts_encp_sel,
->> +     &s4_cts_vdac_sel,
->> +     &s4_hdmi_tx_sel,
->> +     &s4_cts_enci,
->> +     &s4_cts_encp,
->> +     &s4_cts_vdac,
->> +     &s4_hdmi_tx,
->> +     &s4_hdmi_sel,
->> +     &s4_hdmi_div,
->> +     &s4_hdmi,
->> +     &s4_ts_clk_div,
->> +     &s4_ts_clk_gate,
->> +     &s4_mali_0_sel,
->> +     &s4_mali_0_div,
->> +     &s4_mali_0,
->> +     &s4_mali_1_sel,
->> +     &s4_mali_1_div,
->> +     &s4_mali_1,
->> +     &s4_mali_mux,
->> +     &s4_vdec_p0_mux,
->> +     &s4_vdec_p0_div,
->> +     &s4_vdec_p0,
->> +     &s4_vdec_p1_mux,
->> +     &s4_vdec_p1_div,
->> +     &s4_vdec_p1,
->> +     &s4_vdec_mux,
->> +     &s4_hevcf_p0_mux,
->> +     &s4_hevcf_p0_div,
->> +     &s4_hevcf_p0,
->> +     &s4_hevcf_p1_mux,
->> +     &s4_hevcf_p1_div,
->> +     &s4_hevcf_p1,
->> +     &s4_hevcf_mux,
->> +     &s4_vpu_0_sel,
->> +     &s4_vpu_0_div,
->> +     &s4_vpu_0,
->> +     &s4_vpu_1_sel,
->> +     &s4_vpu_1_div,
->> +     &s4_vpu_1,
->> +     &s4_vpu,
->> +     &s4_vpu_clkb_tmp_mux,
->> +     &s4_vpu_clkb_tmp_div,
->> +     &s4_vpu_clkb_tmp,
->> +     &s4_vpu_clkb_div,
->> +     &s4_vpu_clkb,
->> +     &s4_vpu_clkc_p0_mux,
->> +     &s4_vpu_clkc_p0_div,
->> +     &s4_vpu_clkc_p0,
->> +     &s4_vpu_clkc_p1_mux,
->> +     &s4_vpu_clkc_p1_div,
->> +     &s4_vpu_clkc_p1,
->> +     &s4_vpu_clkc_mux,
->> +     &s4_vapb_0_sel,
->> +     &s4_vapb_0_div,
->> +     &s4_vapb_0,
->> +     &s4_vapb_1_sel,
->> +     &s4_vapb_1_div,
->> +     &s4_vapb_1,
->> +     &s4_vapb,
->> +     &s4_ge2d_gate,
->> +     &s4_hdcp22_esmclk_mux,
->> +     &s4_hdcp22_esmclk_div,
->> +     &s4_hdcp22_esmclk_gate,
->> +     &s4_hdcp22_skpclk_mux,
->> +     &s4_hdcp22_skpclk_div,
->> +     &s4_hdcp22_skpclk_gate,
->> +     &s4_vdin_meas_mux,
->> +     &s4_vdin_meas_div,
->> +     &s4_vdin_meas_gate,
->> +     &s4_sd_emmc_c_clk0_sel,
->> +     &s4_sd_emmc_c_clk0_div,
->> +     &s4_sd_emmc_c_clk0,
->> +     &s4_sd_emmc_a_clk0_sel,
->> +     &s4_sd_emmc_a_clk0_div,
->> +     &s4_sd_emmc_a_clk0,
->> +     &s4_sd_emmc_b_clk0_sel,
->> +     &s4_sd_emmc_b_clk0_div,
->> +     &s4_sd_emmc_b_clk0,
->> +     &s4_spicc0_mux,
->> +     &s4_spicc0_div,
->> +     &s4_spicc0_gate,
->> +     &s4_pwm_a_mux,
->> +     &s4_pwm_a_div,
->> +     &s4_pwm_a_gate,
->> +     &s4_pwm_b_mux,
->> +     &s4_pwm_b_div,
->> +     &s4_pwm_b_gate,
->> +     &s4_pwm_c_mux,
->> +     &s4_pwm_c_div,
->> +     &s4_pwm_c_gate,
->> +     &s4_pwm_d_mux,
->> +     &s4_pwm_d_div,
->> +     &s4_pwm_d_gate,
->> +     &s4_pwm_e_mux,
->> +     &s4_pwm_e_div,
->> +     &s4_pwm_e_gate,
->> +     &s4_pwm_f_mux,
->> +     &s4_pwm_f_div,
->> +     &s4_pwm_f_gate,
->> +     &s4_pwm_g_mux,
->> +     &s4_pwm_g_div,
->> +     &s4_pwm_g_gate,
->> +     &s4_pwm_h_mux,
->> +     &s4_pwm_h_div,
->> +     &s4_pwm_h_gate,
->> +     &s4_pwm_i_mux,
->> +     &s4_pwm_i_div,
->> +     &s4_pwm_i_gate,
->> +     &s4_pwm_j_mux,
->> +     &s4_pwm_j_div,
->> +     &s4_pwm_j_gate,
->> +     &s4_saradc_mux,
->> +     &s4_saradc_div,
->> +     &s4_saradc_gate,
->> +     &s4_gen_clk_sel,
->> +     &s4_gen_clk_div,
->> +     &s4_gen_clk,
->> +     &s4_ddr,
->> +     &s4_dos,
->> +     &s4_ethphy,
->> +     &s4_mali,
->> +     &s4_aocpu,
->> +     &s4_aucpu,
->> +     &s4_cec,
->> +     &s4_sdemmca,
->> +     &s4_sdemmcb,
->> +     &s4_nand,
->> +     &s4_smartcard,
->> +     &s4_acodec,
->> +     &s4_spifc,
->> +     &s4_msr_clk,
->> +     &s4_ir_ctrl,
->> +     &s4_audio,
->> +     &s4_eth,
->> +     &s4_uart_a,
->> +     &s4_uart_b,
->> +     &s4_uart_c,
->> +     &s4_uart_d,
->> +     &s4_uart_e,
->> +     &s4_aififo,
->> +     &s4_ts_ddr,
->> +     &s4_ts_pll,
->> +     &s4_g2d,
->> +     &s4_spicc0,
->> +     &s4_usb,
->> +     &s4_i2c_m_a,
->> +     &s4_i2c_m_b,
->> +     &s4_i2c_m_c,
->> +     &s4_i2c_m_d,
->> +     &s4_i2c_m_e,
->> +     &s4_hdmitx_apb,
->> +     &s4_i2c_s_a,
->> +     &s4_usb1_to_ddr,
->> +     &s4_hdcp22,
->> +     &s4_mmc_apb,
->> +     &s4_rsa,
->> +     &s4_cpu_debug,
->> +     &s4_vpu_intr,
->> +     &s4_demod,
->> +     &s4_sar_adc,
->> +     &s4_gic,
->> +     &s4_pwm_ab,
->> +     &s4_pwm_cd,
->> +     &s4_pwm_ef,
->> +     &s4_pwm_gh,
->> +     &s4_pwm_ij,
->> +     &s4_demod_core_clk_mux,
->> +     &s4_demod_core_clk_div,
->> +     &s4_demod_core_clk_gate,
->> +     &s4_adc_extclk_in_mux,
->> +     &s4_adc_extclk_in_div,
->> +     &s4_adc_extclk_in_gate,
->> +};
->> +
->> +static struct regmap_config clkc_regmap_config = {
->> +     .reg_bits       = 32,
->> +     .val_bits       = 32,
->> +     .reg_stride     = 4,
->> +};
->> +
->> +static struct meson_clk_hw_data s4_periphs_clks = {
->> +     .hws = s4_periphs_hw_clks,
->> +     .num = ARRAY_SIZE(s4_periphs_hw_clks),
->> +};
->> +
->> +static int meson_s4_periphs_probe(struct platform_device *pdev)
->> +{
->> +     struct device *dev = &pdev->dev;
->> +     struct regmap *regmap;
->> +     void __iomem *base;
->> +     int ret, i;
->> +
->> +     base = devm_platform_ioremap_resource(pdev, 0);
->> +     if (IS_ERR(base))
->> +             return dev_err_probe(dev, PTR_ERR(base),
->> +                                  "can't ioremap resource\n");
->> +
->> +     regmap = devm_regmap_init_mmio(dev, base, &clkc_regmap_config);
->> +     if (IS_ERR(regmap))
->> +             return dev_err_probe(dev, PTR_ERR(regmap),
->> +                                  "can't init regmap mmio region\n");
->> +
->> +     /* Populate regmap for the regmap backed clocks */
->> +     for (i = 0; i < ARRAY_SIZE(s4_periphs_clk_regmaps); i++)
->> +             s4_periphs_clk_regmaps[i]->map = regmap;
->> +
->> +     for (i = 0; i < s4_periphs_clks.num; i++) {
->> +             /* array might be sparse */
->> +             if (!s4_periphs_clks.hws[i])
->> +                     continue;
->> +
->> +             ret = devm_clk_hw_register(dev, s4_periphs_clks.hws[i]);
->> +             if (ret)
->> +                     return dev_err_probe(dev, ret,
->> +                                          "clock[%d] registration failed\n", i);
->> +     }
->> +
->> +     return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, &s4_periphs_clks);
->> +}
->> +
->> +static const struct of_device_id clkc_match_table[] = {
->> +     {
->> +             .compatible = "amlogic,s4-peripherals-clkc",
->> +     },
->> +     {}
->> +};
->> +
->> +static struct platform_driver s4_driver = {
->> +     .probe          = meson_s4_periphs_probe,
->> +     .driver         = {
->> +             .name   = "s4-periphs-clkc",
->> +             .of_match_table = clkc_match_table,
->> +     },
->> +};
->> +
->> +module_platform_driver(s4_driver);
->> +MODULE_AUTHOR("Yu Tu <yu.tu@amlogic.com>");
->> +MODULE_LICENSE("GPL");
->> diff --git a/drivers/clk/meson/s4-peripherals.h b/drivers/clk/meson/s4-peripherals.h
->> new file mode 100644
->> index 000000000000..56f8f28a913e
->> --- /dev/null
->> +++ b/drivers/clk/meson/s4-peripherals.h
->> @@ -0,0 +1,57 @@
->> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->> +/*
->> + * Copyright (c) 2022-2023 Amlogic, inc. All rights reserved
->> + * Author: Yu Tu <yu.tu@amlogic.com>
->> + */
->> +
->> +#ifndef __MESON_S4_PERIPHERALS_H__
->> +#define __MESON_S4_PERIPHERALS_H__
->> +
->> +#define CLKCTRL_RTC_BY_OSCIN_CTRL0                 0x008
->> +#define CLKCTRL_RTC_BY_OSCIN_CTRL1                 0x00c
->> +#define CLKCTRL_RTC_CTRL                           0x010
->> +#define CLKCTRL_SYS_CLK_CTRL0                      0x040
->> +#define CLKCTRL_SYS_CLK_EN0_REG0                   0x044
->> +#define CLKCTRL_SYS_CLK_EN0_REG1                   0x048
->> +#define CLKCTRL_SYS_CLK_EN0_REG2                   0x04c
->> +#define CLKCTRL_SYS_CLK_EN0_REG3                   0x050
->> +#define CLKCTRL_CECA_CTRL0                         0x088
->> +#define CLKCTRL_CECA_CTRL1                         0x08c
->> +#define CLKCTRL_CECB_CTRL0                         0x090
->> +#define CLKCTRL_CECB_CTRL1                         0x094
->> +#define CLKCTRL_SC_CLK_CTRL                        0x098
->> +#define CLKCTRL_CLK12_24_CTRL                      0x0a8
->> +#define CLKCTRL_VID_CLK_CTRL                       0x0c0
->> +#define CLKCTRL_VID_CLK_CTRL2                      0x0c4
->> +#define CLKCTRL_VID_CLK_DIV                        0x0c8
->> +#define CLKCTRL_VIID_CLK_DIV                       0x0cc
->> +#define CLKCTRL_VIID_CLK_CTRL                      0x0d0
->> +#define CLKCTRL_HDMI_CLK_CTRL                      0x0e0
->> +#define CLKCTRL_VID_PLL_CLK_DIV                    0x0e4
->> +#define CLKCTRL_VPU_CLK_CTRL                       0x0e8
->> +#define CLKCTRL_VPU_CLKB_CTRL                      0x0ec
->> +#define CLKCTRL_VPU_CLKC_CTRL                      0x0f0
->> +#define CLKCTRL_VID_LOCK_CLK_CTRL                  0x0f4
->> +#define CLKCTRL_VDIN_MEAS_CLK_CTRL                 0x0f8
->> +#define CLKCTRL_VAPBCLK_CTRL                       0x0fc
->> +#define CLKCTRL_HDCP22_CTRL                        0x100
->> +#define CLKCTRL_VDEC_CLK_CTRL                      0x140
->> +#define CLKCTRL_VDEC2_CLK_CTRL                     0x144
->> +#define CLKCTRL_VDEC3_CLK_CTRL                     0x148
->> +#define CLKCTRL_VDEC4_CLK_CTRL                     0x14c
->> +#define CLKCTRL_TS_CLK_CTRL                        0x158
->> +#define CLKCTRL_MALI_CLK_CTRL                      0x15c
->> +#define CLKCTRL_NAND_CLK_CTRL                      0x168
->> +#define CLKCTRL_SD_EMMC_CLK_CTRL                   0x16c
->> +#define CLKCTRL_SPICC_CLK_CTRL                     0x174
->> +#define CLKCTRL_GEN_CLK_CTRL                       0x178
->> +#define CLKCTRL_SAR_CLK_CTRL                       0x17c
->> +#define CLKCTRL_PWM_CLK_AB_CTRL                    0x180
->> +#define CLKCTRL_PWM_CLK_CD_CTRL                    0x184
->> +#define CLKCTRL_PWM_CLK_EF_CTRL                    0x188
->> +#define CLKCTRL_PWM_CLK_GH_CTRL                    0x18c
->> +#define CLKCTRL_PWM_CLK_IJ_CTRL                    0x190
->> +#define CLKCTRL_DEMOD_CLK_CTRL                     0x200
->> +
->> +#endif /* __MESON_S4_PERIPHERALS_H__ */
->> +
-> 
