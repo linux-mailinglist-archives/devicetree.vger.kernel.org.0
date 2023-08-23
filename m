@@ -2,109 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39A0A784F2D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 05:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4992B784F5B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 05:34:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbjHWDR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Aug 2023 23:17:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50516 "EHLO
+        id S232441AbjHWDei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Aug 2023 23:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230231AbjHWDRZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 23:17:25 -0400
-Received: from out-53.mta0.migadu.com (out-53.mta0.migadu.com [IPv6:2001:41d0:1004:224b::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B04CE8
-        for <devicetree@vger.kernel.org>; Tue, 22 Aug 2023 20:17:22 -0700 (PDT)
-Date:   Wed, 23 Aug 2023 13:16:57 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1692760640;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=zahP6Lk7k9gO6ZWwdWZ4JSMtgXLMnFQ0XU2AxSSHQqk=;
-        b=g10hba/RCjfZrCJZ6kvJA5qG83PfMboSMVC5DMuz1BkYsaHcEDYRQapCyCo3w7aQ428a2B
-        TQaxZ2edx7VaWhoF9KHaKWzAfcAPwe0tjp9RQLB78Ta5Z4uc4fgzYEcoIzSLmZF6GgBew1
-        +WnlAOaB9pEiwPCuDLbs8nHzTpj2y7kFxZX9DJFLwX1N77WqMqKPKME2H7ULtZrQHDqlaR
-        1R15js3rAHYtZUgrB8CeaiNfV6QKyKZz8KVLwRFzJwLXoopsHTDIZXqY7o6lgeyb9DIi2t
-        ekTP/JoNwBT8UamdiFVRN+drkQLekCyjlUoc+d92oR6WlLPKEfIcr9EROYyhvQ==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   John Watts <contact@jookia.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     linux-sunxi@lists.linux.dev,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S231522AbjHWDeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Aug 2023 23:34:37 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EE3CCCF2;
+        Tue, 22 Aug 2023 20:34:33 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8BxyepIfuVkXxYbAA--.45942S3;
+        Wed, 23 Aug 2023 11:34:32 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8AxDCNEfuVk7_FgAA--.20841S2;
+        Wed, 23 Aug 2023 11:34:32 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 4/4] can: sun4i_can: Add support for the Allwinner D1
-Message-ID: <ZOV6KclYNYVmbr6Y@titan>
-References: <20230721221552.1973203-2-contact@jookia.org>
- <20230721221552.1973203-6-contact@jookia.org>
- <CAMuHMdV2m54UAH0X2dG7stEg=grFihrdsz4+o7=_DpBMhjTbkw@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v4 0/2] gpio: loongson: add more gpio chip support
+Date:   Wed, 23 Aug 2023 11:34:25 +0800
+Message-Id: <20230823033427.23072-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdV2m54UAH0X2dG7stEg=grFihrdsz4+o7=_DpBMhjTbkw@mail.gmail.com>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8AxDCNEfuVk7_FgAA--.20841S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 22, 2023 at 02:30:16PM +0200, Geert Uytterhoeven wrote:
-> Hi John,
-> 
-> This makes this question pop up when configuring a kernel for any RISC-V
-> platform, not just for Allwinner RISC-V platforms.
+This patch was to add loongson 2k0500, 2k2000 and 3a5000 gpio chip
+driver support.
 
-Oh dear.
+Change in v4:
+		1. Reword the title and commit log information.
+		2. Remove the offset parse in DT and add it in of_device_id and
+		   acpi_device_id's data field.
+		3. Add more gpio chip dt-bindings support in yaml file.
+Change in v3:
+		1. Reword the dt-bindings patch commit log information.
+		2. Add "loongson,ls2k1000-gpio" compatible.
+Change in v2:
+		1. Reword the patch commit log information.
+		2. Add some GPIO register offset description in yaml.
 
-> In comparison, drivers/clk/sunxi-ng/Kconfig does have some
-> 
->     depends on MACH_SUN<foo>I || RISCV || COMPILE_TEST
-> 
-> but these are gated by ARCH_SUNXI at the top of the file.
+Yinbo Zhu (2):
+  gpio: dt-bindings: add more loongson gpio chip support
+  gpio: loongson: add more gpio chip support
 
-Ah, that is what I copied.
+ .../bindings/gpio/loongson,ls-gpio.yaml       |  23 ++-
+ drivers/gpio/gpio-loongson-64bit.c            | 136 ++++++++++++++++--
+ 2 files changed, 147 insertions(+), 12 deletions(-)
 
-> I'm not sure what's the best way to fix this:
->   - Replace RISCV by ARCH_SUNXI?
->     This would expose it on more ARM sun<foo>i platforms, making the
->     MACH_SUN4I || MACH_SUN7I superfluous?
->   - Replace RISCV by RISCV && ARCH_SUNXI?
+-- 
+2.20.1
 
-I'm not sure what the best approach here is. Just having it require ARCH_SUNXI
-would make sense to me but I'm not too sure why where's so many different MACH
-here in the first place.
-
-> Thanks for your comments!
-> 
-> >         help
-> >           Say Y here if you want to use CAN controller found on Allwinner
-> > -         A10/A20 SoCs.
-> > +         A10/A20/D1 SoCs.
-> >
-> >           To compile this driver as a module, choose M here: the module will
-> >           be called sun4i_can.
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-
-John.
