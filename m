@@ -2,89 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AE86785867
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 14:56:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AEFD785870
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 14:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235422AbjHWM4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 08:56:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55630 "EHLO
+        id S235389AbjHWM7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 08:59:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235360AbjHWM4h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 08:56:37 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DF8E63
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 05:56:16 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso86372171fa.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 05:56:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692795375; x=1693400175;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WML/yephaQhDmSkYaQilPoOdlfPN/mMwj3HRzRGa9sQ=;
-        b=ceQgV3ViQC6BYsSciNJ8Sb77oNmOUxrP42TGeRQVplyv0/Syln37fBYK6c/1XoLIeu
-         2sXKIHaSaKzH2Q7veoq6uznglB/64POjlU2WXtLLQLB9pG74trW5upvv1N6aB94BOKmu
-         GiU2Ed1qsR3mlHR5JUyHicD4KUe3VhL5MD/7emkgO6L38RrQ+B7g3+0qvE3Xl8daue5S
-         DaEq+vghyPCFt/NlsFQURtG0L3I8SSWqH9NXVlYjbEeJjM4t4+NFwZ4zY5i/o/53S7pH
-         r3ldO5XfIaFcVUUKWxZAFZXoxhDQW00IR1vw3YU/YxeR0v1j0rWTERimzU8ZFD0c76SL
-         pjwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692795375; x=1693400175;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WML/yephaQhDmSkYaQilPoOdlfPN/mMwj3HRzRGa9sQ=;
-        b=G+NpoofAaezDTC0x2R2dIQkIjL1eb2qIKBI//2d3E64GOYpn5jmGl7sCFSKQAvU4ZH
-         XZhBMhnXf2QLezvPo/TPp9SEYLKEZyxOizzKGhlIz4qyHboj9/uH11NwwmBr8JoONvv2
-         kvPHnJspkWz2YYnM1pOCD12fQhDAOK4mjnlOwOkvYrHvGERg4prLVt4h69BOfv/9bpmh
-         aAcKad1b3QNXoufHG0/lYU6DSMSHiiE8xoy9pE3aPliVamLvnUdkZHOCtJzeErB/2ZPp
-         wzZBsCR+DQ0PuoW4eN+EL5CA+RtyY721jc6HO3tNtaXBQ4DoLwi8YmRbLXzr3hNS8j3t
-         Jjrw==
-X-Gm-Message-State: AOJu0YzsJSWGcSxAjen+GaCUyGeNC/2mqBaA8EErAFlD1YSw4Oky0fTF
-        01dI7GIzRKonNoH8u0gnvMk3iA==
-X-Google-Smtp-Source: AGHT+IEuUJpmZVu+/uPNhfKbdCCkm0GkQTrh1fP5WTUuymrLJwbuyLzlFyb6c6K3+SohT5jzeUQAsg==
-X-Received: by 2002:a2e:3208:0:b0:2bc:d5c3:e86e with SMTP id y8-20020a2e3208000000b002bcd5c3e86emr3279689ljy.4.1692795375196;
-        Wed, 23 Aug 2023 05:56:15 -0700 (PDT)
-Received: from [192.168.1.101] (abyj76.neoplus.adsl.tpnet.pl. [83.9.29.76])
-        by smtp.gmail.com with ESMTPSA id a18-20020a05651c011200b002b6db0ed72fsm3220256ljb.48.2023.08.23.05.56.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 05:56:14 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 23 Aug 2023 14:56:03 +0200
-Subject: [PATCH v3 10/10] drm/msm/a6xx: Poll for GBIF unhalt status in
- hw_init
+        with ESMTP id S235420AbjHWM7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 08:59:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F268510F2;
+        Wed, 23 Aug 2023 05:59:28 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 558E8650D5;
+        Wed, 23 Aug 2023 12:59:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B65CC433C8;
+        Wed, 23 Aug 2023 12:59:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692795551;
+        bh=F91n1DPn24bjV9MAo7MD0EXAfdliZqVQJAhmLsbo/i0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IEzNxaWXC9HS994DnUcnEsFmqtPs1CYCrNBx+UB2lTXrBA2KqA5E1PYSe/FgjC0Vc
+         XZtcZmEHSOm+Or62q6hUlcqG3gUiKmryEO9MiZmaw8gajx4ES4T8XcYoByrfP5hS69
+         EczqZPwUq/iOsisvwrRxcKdQpGkCk/UF2tEvLbR3Esc6Ib8Un4o5sZSue9xkSRr7dc
+         xbp5UFV69cUrSygOupl+XdJQgiMAHrJlITHbqJtvG2+iy28E0Bp4h64aGII0HjZLpc
+         9F3wW7DE9waQzuyCVv+zmqigodkFtE1trKtqyRRsr7idMWHp6E0nv1gd5EGkqLhUOg
+         rCsJ/4/1so/Nw==
+Received: (nullmailer pid 2051073 invoked by uid 1000);
+        Wed, 23 Aug 2023 12:59:08 -0000
+Date:   Wed, 23 Aug 2023 07:59:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Seven Lee <wtli@nuvoton.com>
+Cc:     broonie@kernel.org, lgirdwood@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+        YHCHuang@nuvoton.com, KCHSU0@nuvoton.com, CTLIN0@nuvoton.com,
+        SJLIN0@nuvoton.com, scott6986@gmail.com, supercraig0719@gmail.com,
+        dardar923@gmail.com
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: nau8821: Add single-ended input
+ feature
+Message-ID: <20230823125908.GA2048264-robh@kernel.org>
+References: <20230823071244.1861487-1-wtli@nuvoton.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230628-topic-a7xx_drmmsm-v3-10-4ee67ccbaf9d@linaro.org>
-References: <20230628-topic-a7xx_drmmsm-v3-0-4ee67ccbaf9d@linaro.org>
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v3-0-4ee67ccbaf9d@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1692795358; l=1394;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=S69YtysEIHJMxY5KNnuCyMTYR/1rqHR9OdffW35mR5k=;
- b=C+vhtS17NfkOlAy63aCz44wrp4s5iNe+t3ePly8Xm3w/2HTmaNPacD2OedVXggpsO/jOlFh+w
- dVmnJNP5eMbDggeTQAkCqDDvoveGRVe/ElqK1WiZmLPox+EHCX5SA+Z
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230823071244.1861487-1-wtli@nuvoton.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -92,40 +61,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some GPUs - particularly A7xx ones - are really really stubborn and
-sometimes take a longer-than-expected time to finish unhalting GBIF.
+On Wed, Aug 23, 2023 at 03:12:43PM +0800, Seven Lee wrote:
+> Add input with single-ended control.
+> 
+> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+> ---
+>  .../devicetree/bindings/sound/nuvoton,nau8821.yaml         | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-Note that this is not caused by the request a few lines above.
+This is the second v1 I've gotten. Is there some change? Please version 
+your patches.
 
-Poll for the unhalt ack to make sure we're not trying to write bits to
-an essentially dead GPU that can't receive data on its end of the bus.
-Failing to do this will result in inexplicable GMU timeouts or worse.
+I acked the last one which you should add when sending a new version.
 
-This is a rather ugly hack which introduces a whole lot of latency.
+Acked-by: Rob Herring <robh@kernel.org>
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index 2313620084b6..11cb410e0ac7 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1629,6 +1629,10 @@ static int hw_init(struct msm_gpu *gpu)
- 		mb();
- 	}
- 
-+	/* Some GPUs are stubborn and take their sweet time to unhalt GBIF! */
-+	if (adreno_is_a7xx(adreno_gpu) && a6xx_has_gbif(adreno_gpu))
-+		spin_until(!gpu_read(gpu, REG_A6XX_GBIF_HALT_ACK));
-+
- 	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
- 
- 	if (adreno_is_a619_holi(adreno_gpu))
-
--- 
-2.42.0
-
+Rob
