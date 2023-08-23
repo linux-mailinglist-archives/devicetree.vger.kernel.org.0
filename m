@@ -2,203 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A93E78638A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 00:45:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0C627863F4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 01:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238748AbjHWWpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 18:45:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55770 "EHLO
+        id S238781AbjHWXdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 19:33:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238756AbjHWWpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 18:45:02 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B3A3CF1;
-        Wed, 23 Aug 2023 15:45:00 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fee600dce6so43587955e9.1;
-        Wed, 23 Aug 2023 15:45:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692830698; x=1693435498;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FUMCOUtyQrIYTwazhCYMZXOt/hI2ZI3M7opV35FQAKo=;
-        b=QADy7Uh4TWpNIiEFZ10c9vs0uL7pTCAgC15Utwt+b8HQ7+zEF+oB81ts/59MtFNsyo
-         Km8CIy5XS0JMtEe1hovG2OrIDdJzwwFyApKqRr4qCeSNdCJCeWBD/wFfqKpQsRPTmwdG
-         OlsC2ORT6KQLyJj1xktj5/9Zj92ddIAZ+gkaspouU925Ym4WzyAtsoMKI3PHcvwknwnJ
-         lRCpZBeJhCtGGEmDDxG5RWcOqQLDosTaWgyT0GziJR4xG8FbQpkpR+6xXxUXv+EckiSA
-         4lHCeKFUPQfS44tp/4ccBqxgusSQ9oxaC4Ozg7m2OiIFNkd1W2nBF+R7Smm9h7usannt
-         TNJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692830698; x=1693435498;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FUMCOUtyQrIYTwazhCYMZXOt/hI2ZI3M7opV35FQAKo=;
-        b=NpGBxyx1tYKZ/afXif+eeLqDdXRgJqI7ewSd7xRKjZVVFwQf+obz5DoyG9aomvg+jx
-         sqM3YNA9EP/08ZIZs2Tp23CbKCgrhx0ZzS6nVWHC7F6EzFg0kPvEieMjsTrKMW4biQmF
-         5tnFYKlxr9pz7+rOx0ouWfGG5jMKXu6/tJlkK8V5kQI2zgLaSCNulqkhY1ASAfgQvaqW
-         dM6w5ndfhGRPSpFD8lvowjflnkvKBQDjHWfTj28mitefcvZPXBI4LvXG4YdgC3kKh+s9
-         2VrmtBfkqfzHBlPcealRLqvIK/xiomCyy7K82HlJOEJmZpsBTefe8U2e3X3tCVeOg6hd
-         GfIA==
-X-Gm-Message-State: AOJu0YxASkAmUmyWfxIYGqB2ezg7ZdnmUSiD+mTCkT3CvMBoTEj1ZlgY
-        vE3e7922esIrOtueTnHnWXQ=
-X-Google-Smtp-Source: AGHT+IHohP4dIKk3Jaf3boxqhxtSI8hwzTdQ0rXclcDdJb0AyezIH/V/WFTA17lq1H5TsjWZjRMD8A==
-X-Received: by 2002:a1c:6a16:0:b0:3fe:1deb:82 with SMTP id f22-20020a1c6a16000000b003fe1deb0082mr10738652wmc.7.1692830698224;
-        Wed, 23 Aug 2023 15:44:58 -0700 (PDT)
-Received: from localhost ([37.169.46.77])
-        by smtp.gmail.com with ESMTPSA id t4-20020a1c7704000000b003fefe70ec9csm799602wmi.10.2023.08.23.15.44.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 15:44:58 -0700 (PDT)
-From:   Raphael Gallais-Pou <rgallaispou@gmail.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S238788AbjHWXcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 19:32:51 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498E9CED;
+        Wed, 23 Aug 2023 16:32:49 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37NNK2lR007641;
+        Wed, 23 Aug 2023 23:32:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=OJ5B+/q5lckh/d0On//S3WsqlQkp/wV2Y4VthieMN/Y=;
+ b=WDP5QbGehw5qfGon3s+O3Zbo/S5E4qyrWDSbST7n1q3nvgl0gJuJ+UYiCJII4CdMjz/m
+ /EEAkY1Aug/RxG3Zir9upsY/4ABY10mi+FgtqpdsIOyJMgScw0w4upHd6mdCBRAZq9Jw
+ RN2fEVgTOLxc/cAlE21sp6xrHp0KOk9k+URLYZHFsG8ldApLYIS9MvqeUJg3Hhw0vKF5
+ kBp0vjS2v86m7fopMmCGakAxC0MwxxSlCOTtJACibZwpnrmGKCT0SB+ryB2HMIex3rhZ
+ OuXGVKEKqtvDy+75GaUgZvqH2yNYWZPSKBYMWn1ppJvwP4W+3amkhaqtrHdIYNUX9Aa/ 2g== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3snqg3gfn8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 23 Aug 2023 23:32:38 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37NNWb6I000307
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 23 Aug 2023 23:32:37 GMT
+Received: from [10.216.6.154] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 23 Aug
+ 2023 16:32:33 -0700
+Message-ID: <d44be821-228b-4035-aa1e-c4f58db90422@quicinc.com>
+Date:   Thu, 24 Aug 2023 05:02:29 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: qcom,prng: document SM8550
+To:     <neil.armstrong@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3] dt-bindings: irqchip: convert st,stih407-irq-syscfg to DT schema
-Date:   Thu, 24 Aug 2023 00:44:53 +0200
-Message-ID: <20230823224453.126963-1-rgallaispou@gmail.com>
-X-Mailer: git-send-email 2.41.0
-MIME-Version: 1.0
+        Vinod Koul <vkoul@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230822-topic-sm8550-rng-v1-0-8e10055165d1@linaro.org>
+ <20230822-topic-sm8550-rng-v1-1-8e10055165d1@linaro.org>
+ <8479869b-9984-41e3-9812-c7f5727cfd2c@linaro.org>
+ <b73106c5-74e4-479d-8733-b99454768c15@quicinc.com>
+ <26bae022-c114-4871-8715-73d7e8aeaa52@linaro.org>
+ <f61ef601-1561-45d7-8f4a-947458472668@quicinc.com>
+ <dd3d28f1-ff5e-49e6-a9f7-0ec9265017cc@linaro.org>
+Content-Language: en-US
+From:   Om Prakash Singh <quic_omprsing@quicinc.com>
+In-Reply-To: <dd3d28f1-ff5e-49e6-a9f7-0ec9265017cc@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Lim0d8mpGYh8pssCt_Lur4LLQFQfWR4X
+X-Proofpoint-GUID: Lim0d8mpGYh8pssCt_Lur4LLQFQfWR4X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-23_15,2023-08-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 phishscore=0 mlxlogscore=999 spamscore=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308230210
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert deprecated format to DT schema format.
 
-Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes in v2:
-	- Added Conor's r-by
-	- Removed quotes surrounding $refs
-	- Hardcoded 'st,invert-ext' possible values
 
-Changes in v3:
-	- Fixed enum syntax warnings
-	- Removed reference to driver in favor of device
----
- .../st,sti-irq-syscfg.txt                     | 30 ---------
- .../st,stih407-irq-syscfg.yaml                | 64 +++++++++++++++++++
- 2 files changed, 64 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
+On 8/23/2023 1:25 PM, Neil Armstrong wrote:
+> Hi,
+> 
+> On 23/08/2023 02:10, Om Prakash Singh wrote:
+>>
+>>
+>> On 8/22/2023 9:34 PM, Konrad Dybcio wrote:
+>>> On 22.08.2023 16:54, Om Prakash Singh wrote:
+>>>> PRNG Block on most of newer target from Qualcomm have some 
+>>>> configuration where clock is configured by security firmware.
+>>>>
+>>>> Adding separate compatible string for each platform is overhead.
+>>>>
+>>>> We need to introduce common compatible string that can be used for 
+>>>> all platforms with same configuration.
+>>>>
+>>>> I would suggest to use "qcom,rng-ee" for newer platform, dropping 
+>>>> "p" also signifies it is not a Pseudo Random Number Generator.
+>>> Please reply inline and don't top-post.
+>>>
+>>>
+>>> Is this what you're trying to say?
+>>>
+>>> 1. sort out the clock requirements for designs where Linux manages it
+>>>     vs where the FW does so >
+>>> 2. introduce a new compatible for SoCs implementing a TRNG
+>>>
+>>> 3. for SoCs in 2., register the TRNG as a hwrng device
+>>
+>> Yes to all
+> 
+> I can send a proposal, but that means writing a new driver for this 
+> compatible in drivers/char/hw_random/ right ?
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt b/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
-deleted file mode 100644
-index 977d7ed3670e..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--STMicroelectronics STi System Configuration Controlled IRQs
-------------------------------------------------------------
--
--On STi based systems; External, CTI (Core Sight), PMU (Performance Management),
--and PL310 L2 Cache IRQs are controlled using System Configuration registers.
--This driver is used to unmask them prior to use.
--
--Required properties:
--- compatible	: Should be "st,stih407-irq-syscfg"
--- st,syscfg	: Phandle to Cortex-A9 IRQ system config registers
--- st,irq-device	: Array of IRQs to enable - should be 2 in length
--- st,fiq-device	: Array of FIQs to enable - should be 2 in length
--
--Optional properties:
--- st,invert-ext	: External IRQs can be inverted at will.  This property inverts
--		  these IRQs using bitwise logic.  A number of defines have been
--		  provided for convenience:
--			ST_IRQ_SYSCFG_EXT_1_INV
--			ST_IRQ_SYSCFG_EXT_2_INV
--			ST_IRQ_SYSCFG_EXT_3_INV
--Example:
--
--irq-syscfg {
--	compatible    = "st,stih407-irq-syscfg";
--	st,syscfg     = <&syscfg_cpu>;
--	st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
--			<ST_IRQ_SYSCFG_PMU_1>;
--	st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
--			<ST_IRQ_SYSCFG_DISABLED>;
--};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-new file mode 100644
-index 000000000000..985fa281f027
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
-@@ -0,0 +1,64 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/st,stih407-irq-syscfg.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: STMicroelectronics STi System Configuration Controlled IRQs
-+
-+maintainers:
-+  - Patrice Chotard <patrice.chotard@foss.st.com>
-+
-+description:
-+  On STi based systems; External, CTI (Core Sight), PMU (Performance
-+  Management), and PL310 L2 Cache IRQs are controlled using System
-+  Configuration registers.  This device is used to unmask them prior to use.
-+
-+properties:
-+  compatible:
-+    const: st,stih407-irq-syscfg
-+
-+  st,syscfg:
-+    description: Phandle to Cortex-A9 IRQ system config registers
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  st,irq-device:
-+    description: Array of IRQs to enable.
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      - description: Enable the IRQ of the channel one.
-+      - description: Enable the IRQ of the channel two.
-+
-+  st,fiq-device:
-+    description: Array of FIQs to enable.
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    items:
-+      - description: Enable the IRQ of the channel one.
-+      - description: Enable the IRQ of the channel two.
-+
-+  st,invert-ext:
-+    description: External IRQs can be inverted at will. This property inverts
-+      these IRQs using bitwise logic.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 1, 2, 4]
-+
-+required:
-+  - compatible
-+  - st,syscfg
-+  - st,irq-device
-+  - st,fiq-device
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq-st.h>
-+    irq-syscfg {
-+        compatible    = "st,stih407-irq-syscfg";
-+        st,syscfg     = <&syscfg_cpu>;
-+        st,irq-device = <ST_IRQ_SYSCFG_PMU_0>,
-+                        <ST_IRQ_SYSCFG_PMU_1>;
-+        st,fiq-device = <ST_IRQ_SYSCFG_DISABLED>,
-+                        <ST_IRQ_SYSCFG_DISABLED>;
-+    };
-+...
--- 
-2.41.0
+We can add hwrng support in same driver like 
+drivers/crypto/hisilicon/trng/trng.c
 
+As Krzysztof is suggesting we need to have platform specific compatible 
+string, we can go with your change. for hwrng support I will send 
+separate patches.
+
+> 
+> Neil
+> 
+>>
+>>>
+>>>
+>>> ?
+>>>
+>>> Konrad
+>>
+>> Thanks,
+>> Om
+> 
