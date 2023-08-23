@@ -2,113 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BFCD786206
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 23:16:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C8F786214
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 23:17:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237124AbjHWVPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 17:15:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56228 "EHLO
+        id S237289AbjHWVQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 17:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237089AbjHWVPX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 17:15:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F70110D9;
-        Wed, 23 Aug 2023 14:15:22 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D630562CCC;
-        Wed, 23 Aug 2023 21:15:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A063C433C8;
-        Wed, 23 Aug 2023 21:15:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692825321;
-        bh=Bz9WC4mbT4sUO+N5FkXmzqysmJcvwA45LQXrhS3WCRI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jxFbOPuLaQm/yXUxuM0Nd26+ie6RvOoBaWVne7Nzv1V0tBd5Vpz4t0RDWjLyTYe9k
-         tVvmKEyCNRqRr2tWMGDJdc8qJVG37eCkuY9iqD6nuenQN5LUeFv2vRknHVoiLyBz5C
-         wm0n3KMzvY06r6yi9eXcnVE3xHIi5Ay5i31qjzy/EZNrs7AsuzXMztsfoq8umxMSrH
-         kn8mpcg7gM78UrOKNV6VsNTkBfPlRwzcxI9SQCQcrHLsVHhZv7VTmGUGNyVOWunbCX
-         9tqwrDrj3yfQPm+V2H1YkYbLdg4p+lJMocHIS0dqI5qM80jw4nkLCULh9ymCvNI6B2
-         S31etcqsLEF3w==
-Date:   Wed, 23 Aug 2023 23:15:17 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Patrick Rudolph <patrick.rudolph@9elements.com>
-Cc:     Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        naresh.solanki@9elements.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v15 2/4] dt-bindings: i2c: Add Maxim MAX735x/MAX736x
- variants
-Message-ID: <ZOZ25TdCydCEoFFq@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Peter Rosin <peda@axentia.se>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        naresh.solanki@9elements.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230817071056.2125679-1-patrick.rudolph@9elements.com>
- <20230817071056.2125679-3-patrick.rudolph@9elements.com>
+        with ESMTP id S237885AbjHWVQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 17:16:48 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 468EC1720
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 14:16:35 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-d746d030a86so4837659276.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 14:16:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692825394; x=1693430194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iEpTjrnLVqxen66G7Uvz7Jyy/E11cVlVrjCW6/VyKj8=;
+        b=ZDmv2BjJU3fBSftYGcNM3tb+ILU/d9+cLODcLN7bJx5jE0GqvFKrPnlSYGlL0k9kWu
+         m0bch7za38IJ+CLWsWjflpljG/O8F9HEsNE/VWjVNStBDOBq3iJDnH2eTLO/dJEAtALA
+         zbXY+4ZWcbcUYtwqB7UctSATyz1sDYmgfZ/uZj88iB4dhaAHsNB4lm1XJShf+lSlTUF4
+         q1mw8cBg/PsTLqlxfYRQ9OdT1JyBSqfrgsLuehUHu9V36ypWdR+RMX9JIQmW7yxqcnfx
+         Bu1+6uVlgAFqvayOjaJa8cEpXa7Hm+cDiofeMeKPmewLASFqzTHTuUzB1cC9zTcv8uzK
+         +bQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692825394; x=1693430194;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iEpTjrnLVqxen66G7Uvz7Jyy/E11cVlVrjCW6/VyKj8=;
+        b=JXtZQ5KqOiQupGxs3QaS8uHY2IiUSqRtkov4LRK8s7nX9uOKORCVInVnm8TzD+//OP
+         Lng76NZQQCBeSh/pKbvaE96NRmp1PH1sQMPnMEAiS951EOoro22R9nPBNyKMgoNc6+sn
+         3bx6bWkce72SSzqyJ5Eoi0Eo+ynJIelSDitGpl5Aijdzo0mqfAjvQiPP0Y0Fnujad1L6
+         ACEC7D7Ebzfq9MfdcjvGzrQqTjgbTqzFhKD0slZq+ULq7yhbA1sA93rLMfptoa/DbR+Y
+         SUDlLTiPg5x4NYiyYbwGtTpyGd+mkC9FZEgUkgoKXk1J/8t+6+aX9BiOtN/UC+yvNEGO
+         hAoQ==
+X-Gm-Message-State: AOJu0YxV/96MYiBOYXwTHRGqBcf5+x1K+xOX/dl3wZt+QRnU1+xEc2sC
+        pgW+cuZrm3VWu9efoNWPEiKqRkYY7pOv4r+KGe5RcQ==
+X-Google-Smtp-Source: AGHT+IGU5hlAbzjKR6dHf8nG7wjH+gLTIhLdkOAR0BQZYCAzmvxO+0vsobrLpwu8+6G8uJRZXAov+P50unjaO9+ZE7g=
+X-Received: by 2002:a25:c08f:0:b0:d09:f39b:cecf with SMTP id
+ c137-20020a25c08f000000b00d09f39bcecfmr12862557ybf.9.1692825393910; Wed, 23
+ Aug 2023 14:16:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VFt4DzFPw48PdFrn"
-Content-Disposition: inline
-In-Reply-To: <20230817071056.2125679-3-patrick.rudolph@9elements.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230823183749.2609013-1-robh@kernel.org>
+In-Reply-To: <20230823183749.2609013-1-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 23 Aug 2023 23:16:22 +0200
+Message-ID: <CACRpkdbuB-NotnMXc9vZj-byjk7spCSkZ+Dx=R_eOqoSV5CdTA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Drop remaining unneeded quotes
+To:     Rob Herring <robh@kernel.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Corey Minyard <minyard@acm.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        M ark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-i3c@lists.infradead.org,
+        linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        alsa-devel@alsa-project.org, linux-scsi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 23, 2023 at 8:38=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
 
---VFt4DzFPw48PdFrn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Cleanup bindings dropping the last remaining unneeded quotes. With this,
+> the check for this can be enabled in yamllint.
+>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-On Thu, Aug 17, 2023 at 09:10:51AM +0200, Patrick Rudolph wrote:
-> Update the pca954x bindings to add support for the Maxim MAX735x/MAX736x
-> chips. The functionality will be provided by the existing pca954x driver.
->=20
-> For chips that are powered off by default add a regulator called vdd-supp=
-ly.
->=20
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Applied to for-next, thanks!
-
-
---VFt4DzFPw48PdFrn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmTmduUACgkQFA3kzBSg
-KbYP5RAAlBjescHFvavuZNDuYEyZ10b+5UNQe/KS+Il8JT9yqyTt2wTiuxnXjJfu
-Z/wpHCBotFfmlRMRTtbqtkvxQ4v6YPYRWJ93IoOs1HOPX4M0eajYCpQfDpKkbNy+
-t01GRi6mlDCoTf/KNMaKFA+eDYTP08Mk0qAzMVgaiCyUqfNjcGRzbvIEp2jjAwZ+
-Rg6AHbZS6KumMxW/rAlRYopQnEPF01YhsD4akYfzrTxQJ+Shqmqk3hNRjAIpYqyt
-b7iFozwEOOuyGcaht27JgHAp/Ob1woeAd48nLThvqEwAzySvNiTGalTj0HAD00nM
-Cw0XO4GEGPIiQ0THNiyZHecXD8wJUzL0pjRK+fVs4GXgw5sfktxa4jI9XXaAoZUi
-i/gtlrgjhv6dBM+YMa6qr8JqO5dQhwGiFgZ2LVmDDf6O3lKtTdFhndzre//urtdT
-Pm7ww8mNjcz2VzCbBjdfZu+B61MqZo5RF3Z4cgLGQPSHY1pymwx9dogY2Qx4i1ej
-M864c6dqKKm3+Gq1jpuLSN5Ot1td6Qhh0k5Fn00es5DjbA/u4iVkq+knTfWL+xX5
-4J1excxbOKGiNBjHS4S3L5PgBewW7sBC3HQJo29eQfWbIwFWV2wFTaKcs8RtG0rl
-J/cMBD9YJMnq1MfYPzIdaIiwdHO7cz9BUy75e+9CVqUgkxCHDhg=
-=G2yI
------END PGP SIGNATURE-----
-
---VFt4DzFPw48PdFrn--
+Yours,
+Linus Walleij
