@@ -2,92 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A9F786070
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 21:15:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F2ED786075
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 21:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238118AbjHWTOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 15:14:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37662 "EHLO
+        id S238167AbjHWTPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 15:15:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237937AbjHWTOZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 15:14:25 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 349DC10C3;
-        Wed, 23 Aug 2023 12:14:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=rTj1IElYNKOTSmBMYjpxrfdSx9LbepvWtxSNuEiKNdw=; b=hHYRdJ7m4WSrKp4bO0ErMQbX5Y
-        jI/RK4zD9Qm8SHN3Sc/fxT1nh7BAEJmaCHiT9LYPb/AuRmqrrB2x6q1ZENmhHp+KaYftwDwpY7rsZ
-        qP63np7rFNVdMBDRjxwtmws+ETdzyAAqbkHCx+KzTuJgGzqRgX0ruvB1veuRos3Dolr9sMKe4Szv9
-        nlkbxwq+OW2EtbTOpekrnwBtSmPCIgT5xAcKKspW6IJs4KARjdRSOTuVtLjoY2bPEUATK/tUmJ3/y
-        vem3xVrn3Rrfj9LaZrFIhDHUrH5cDKmtx8Q6HxFPtLxDqBnwQLYX2IYsHFeHflkvBNZNq5JX9MDLl
-        uw4npG5A==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1qYtJ5-001OUT-34;
-        Wed, 23 Aug 2023 19:14:20 +0000
-Message-ID: <3e7ec5cf-2e51-c999-d71d-86bfebda8ceb@infradead.org>
-Date:   Wed, 23 Aug 2023 12:14:18 -0700
+        with ESMTP id S238282AbjHWTOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 15:14:41 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D6D210DC;
+        Wed, 23 Aug 2023 12:14:38 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99df11828c6so31546866b.1;
+        Wed, 23 Aug 2023 12:14:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692818077; x=1693422877;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3GfGoPJfPXeL122AI/Y6i59RXbA4MoNTzdh5/a56Xn0=;
+        b=QJvDLNUBheJo6Z3mPsuYD5nZRJyW2l/OZodVbzD4U6Js7o5S2sE9dGB1wsabKctn2S
+         9tU+TeFm/qQCuHFmp9+YSNZFscM73NNk/0EBbZRVYyqTAlZqp4llP5sc9BvKrnVLTE4J
+         ZiQmZdxoRYvkbANv806hjyyKLb20aZqCYbTPdPq7pKNf5wAclWk+vJwjgLjsyvyo6dWZ
+         T2klMKPTCV0/DPK1JuLl8yOQEBFqT+8qtxTQxaPkokhC38PM/QV2mIhDHi+rlUHr5Keu
+         pU+J2vBCFvlIhfOsnGyHdzCN6h3rlGbVFTKCR7qnIQBk8bLMt/LcglVDySFm/y50gqXY
+         GjIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692818077; x=1693422877;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=3GfGoPJfPXeL122AI/Y6i59RXbA4MoNTzdh5/a56Xn0=;
+        b=PkmcXyB9Hk7aF+LbOagZ6kP82Ovcay6mqmHhSkSa8Dl+IYeQUelz57IZnc0zXUeQrQ
+         +5Eu2ex6LLK9LMXvNlQ2S5NUBQXxI1mD6knmN3Xp+RiQf4ousCEBDr9YY/Ou1nlBfYwJ
+         ghDL06Iv+WWVBirsFYHWd/RyRvlM8pg2B3U6zBGlzUJEoxREL/JOHDdLYEfyKDEZr/+L
+         CKwAOCQZ7LwT82G3RMH0X6jJD7qmPz5sGrMJFGDHkUAsgn1plRO90AnN/eu3nchwyqsH
+         BGhPm+v5sn4+r9FrBdp577EPV0FmnHAt7yCLuiAyGejJ8f934IMuvuTRiM6zXgUX0u4h
+         QJ6w==
+X-Gm-Message-State: AOJu0YyXvX+aDhMJ/Ry8E3Pbrv4sBCb4KoBcOfaG5HlLrEncaKOufmU/
+        Wke5fMtCgdx1r4fQVN+nFqEv8pn+bTi+Qg==
+X-Google-Smtp-Source: AGHT+IEyB/ZIs6kkflGm4CaDR9JI8pIkw1oTLixQ0Y4DZJKD0Tq/QtdPvoLjd898II3fszhvDVCRmw==
+X-Received: by 2002:a17:906:3051:b0:99c:5056:4e31 with SMTP id d17-20020a170906305100b0099c50564e31mr17063070ejd.15.1692818076698;
+        Wed, 23 Aug 2023 12:14:36 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id ci16-20020a170906c35000b0098e34446464sm10091272ejb.25.2023.08.23.12.14.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 12:14:36 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        arm@kernel.org, soc@kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/2] arm64: dts: use capital "OR" for multiple licenses in SPDX
+Date:   Wed, 23 Aug 2023 21:14:34 +0200
+Message-ID: <4824782.GXAFRqVoOG@jernej-laptop>
+In-Reply-To: <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
+References: <20230823085146.113562-1-krzysztof.kozlowski@linaro.org>
+ <20230823085146.113562-2-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/1] MAINTAINERS: Add entries for NXP(Freescale) eDMA
- drivers
-Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, vkoul@kernel.org
-Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        imx@lists.linux.dev, joy.zou@nxp.com, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, shenwei.wang@nxp.com
-References: <20230823184439.2618694-1-Frank.Li@nxp.com>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230823184439.2618694-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/23/23 11:44, Frank Li wrote:
-> Add the MAINTAINERS entries for NXP(Freescale) eDMA drivers
+Dne sreda, 23. avgust 2023 ob 10:51:46 CEST je Krzysztof Kozlowski napisal(a):
+> Documentation/process/license-rules.rst and checkpatch expect the SPDX
+> identifier syntax for multiple licenses to use capital "OR".  Correct it
+> to keep consistent format and avoid copy-paste issues.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->  MAINTAINERS | 8 ++++++++
->  1 file changed, 8 insertions(+)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 23eafda02056..eba417bb5ffb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8228,6 +8228,14 @@ L:	linuxppc-dev@lists.ozlabs.org
->  S:	Maintained
->  F:	drivers/dma/fsldma.*
->  
-> +FREESCALE eDMA DRIVER
-> +M:	Frank Li <Frank.Li@nxp.com>
-> +L:	imx@lists.linux.dev
-> +L:	dmaengine@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> +F:	drivers/dma/fsl-edma*.*
-> +
+> Rebased on next-20230822, so might not apply cleanly.  What does not
+> apply, can be skipped and I will fix it after next RC.
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-a100-allwinner-perf1.dts  | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-a100.dtsi                 | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-model-b.dts   | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero.dtsi   | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h616-orangepi-zero2.dts   | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h616-x96-mate.dts         | 2 +-
+>  arch/arm64/boot/dts/allwinner/sun50i-h618-orangepi-zero3.dts   | 2 +-
 
-This new entry should be after the following entry to maintain
-alphabetical order.
+For Allwinner:
+Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
->  FREESCALE DSPI DRIVER
->  M:	Vladimir Oltean <olteanv@gmail.com>
->  L:	linux-spi@vger.kernel.org
+Best regards,
+Jernej
 
--- 
-~Randy
+>  arch/arm64/boot/dts/arm/corstone1000-fvp.dts                   | 2 +-
+>  arch/arm64/boot/dts/arm/corstone1000-mps3.dts                  | 2 +-
+>  arch/arm64/boot/dts/arm/corstone1000.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/broadcom/stingray/bcm958802a802x.dts       | 2 +-
+>  arch/arm64/boot/dts/broadcom/stingray/stingray-board-base.dtsi | 2 +-
+>  arch/arm64/boot/dts/broadcom/stingray/stingray-pcie.dtsi       | 2 +-
+>  arch/arm64/boot/dts/broadcom/stingray/stingray-usb.dtsi        | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dts           | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-emcon-avari.dtsi          | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-emcon.dtsi                | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a77980a.dtsi                     | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779f0-spider-cpu.dtsi           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779f0-spider.dts                | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779f0.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m0.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1-salvator-xs.dts           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1-ulcb-kf.dts               | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1-ulcb.dts                  | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m1.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m2.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3-salvator-xs.dts           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3-ulcb-kf.dts               | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3-ulcb.dts                  | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m3.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m4.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m5-salvator-xs.dts           | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m5.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m6.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m7.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779m8.dtsi                      | 2 +-
+>  arch/arm64/boot/dts/renesas/r8a779mb.dtsi                      | 2 +-
+
+
+
