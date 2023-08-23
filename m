@@ -2,474 +2,450 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 68A287854EB
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5A37855F0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232204AbjHWKJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:09:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42796 "EHLO
+        id S235786AbjHWJ44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:56:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235653AbjHWJdQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:33:16 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3006ECF3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:21:03 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31781e15a0cso4772391f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:21:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1692782461; x=1693387261;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=l6KedzxmPUcJpLPxOUMzsZaF7EVrY0oKwVLT9T5HLGo=;
-        b=1+mkMHzSTnHjzOWx83zzVSrlxp8P8jvT0Sq3eW/t92L5CWuMyfd09uQGYAstuJC1nD
-         nQubzvLRr3CGDQHrk4LPFrzusyEVJtFMlMw9x+7W+H+7V4dpME6WpenF0FKUjaGAjJ/v
-         xC2bl5FctCtCEEXoLNUa92MkXArs7/vsMOsBI1SSuty4nJtfidxFCoSW71GzkCy1LVk/
-         5qcuLttStlKdnMByHlZhEBco5/ThcDZIVMFpuBMtkiD2WgfVTVL7vKzaeoH+TmKFY75k
-         AbtjJtn8nlI0ZEXPs8abjIBhmxufunhE8WUCwAunFUSzk+MUe5bC466R89vjmI036hum
-         Cx5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692782461; x=1693387261;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l6KedzxmPUcJpLPxOUMzsZaF7EVrY0oKwVLT9T5HLGo=;
-        b=MA9Zv6xnxhlAr/btnw5YGAuAegravRVUxtRBkA5Qw3XYgJJ7KwcOWoaYppQ+zE29e1
-         3IbsBZX80F7CjxXWaDsDuZA+2mGFbeoVhVKLoIA3PHP1DGS+xj0H0Oeu026etzLqJQam
-         SuJwH21XC6hIvqxE8X3e6pvpm+yGwOo9JQdi/LLJpanwlfhRpGYOmQ/eDdI5m5ZuIYZ9
-         18cT5T/z1jetVAuv7E2lJO62ADitSxJg9Csm/L5GfjBeAbqb9gAKApEOza3ZY8LUbiv7
-         eUxMxgSzqcKARdrnNGV7opE8ukzldsujiAh2AaT4hz4s+MNN8aOxtRYIOVz+nMEMEA+W
-         b91A==
-X-Gm-Message-State: AOJu0YyHaz8vi2wILaBB9McefLme1ZASnAjGA1KtTp7QBKgU/s65q5+r
-        1Pn0vdD7OiJy+RGPlJVROTz1xw==
-X-Google-Smtp-Source: AGHT+IEbFmmWrceL/znctMAoQN9/7mJ6yvA6RxxJS5smI872v2AOdHEkWmXqN86IRuvU6v5g+6dH2Q==
-X-Received: by 2002:a5d:54c1:0:b0:31c:65aa:b15a with SMTP id x1-20020a5d54c1000000b0031c65aab15amr2537433wrv.65.1692782461608;
-        Wed, 23 Aug 2023 02:21:01 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:c128:6cb5:cc63:7cbe])
-        by smtp.gmail.com with ESMTPSA id r10-20020adfdc8a000000b003197c2316ecsm18214096wrj.112.2023.08.23.02.21.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 02:21:01 -0700 (PDT)
-References: <20230822082750.27633-1-yu.tu@amlogic.com>
- <20230822082750.27633-3-yu.tu@amlogic.com>
- <1jbkey9obf.fsf@starbuckisacylon.baylibre.com>
- <3fa20b2f-c87f-1896-7d6d-a72b5e8aa6ba@amlogic.com>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S235266AbjHWJ4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:56:09 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 64AB830F2
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:55:11 -0700 (PDT)
+Received: from loongson.cn (unknown [112.20.109.102])
+        by gateway (Coremail) with SMTP id _____8AxqOh+1+VkhS4bAA--.19548S3;
+        Wed, 23 Aug 2023 17:55:10 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.102])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxLCN81+VkOz1hAA--.21192S2;
+        Wed, 23 Aug 2023 17:55:09 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-Subject: Re: [PATCH V10 2/4] dt-bindings: clock: document Amlogic S4 SoC
- peripherals clock controller
-Date:   Wed, 23 Aug 2023 11:14:57 +0200
-In-reply-to: <3fa20b2f-c87f-1896-7d6d-a72b5e8aa6ba@amlogic.com>
-Message-ID: <1j350a9ksj.fsf@starbuckisacylon.baylibre.com>
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 4/7] LoongArch: dts: DeviceTree for Loongson-2K0500
+Date:   Wed, 23 Aug 2023 17:55:03 +0800
+Message-Id: <48aff2aacea030e5d2acc89b0aa1ded52dd74906.1692783907.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.39.3
+In-Reply-To: <cover.1692783907.git.zhoubinbin@loongson.cn>
+References: <cover.1692783907.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8CxLCN81+VkOz1hAA--.21192S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW3AryUtw4kXryfArW3KrykJFc_yoWfGFy5pa
+        srC3yDWr40vF1jk3yUJFWjyFnxJa9YkF97Wwn7AFW8JrZ7tryqvr4xtFyfJF1rGrWDX342
+        qFnYv34UKF4DJwcCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
+        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+        0xBIdaVrnRJUUUBSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
+        wI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
+        xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
+        Wrv_ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
+        Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
+        z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
+        8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
+        2Ix0cI8IcVAFwI0_Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42
+        xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
+        7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUI0eHUUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add DeviceTree file for Loongson-2K0500 processor, which integrates one
+64-bit dual emission superscalar LA264 processor core.
 
-On Wed 23 Aug 2023 at 16:32, Yu Tu <yu.tu@amlogic.com> wrote:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+---
+ arch/loongarch/boot/dts/Makefile              |   2 +
+ .../boot/dts/loongson-2k0500-ref.dts          |  89 ++++++
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 254 ++++++++++++++++++
+ 3 files changed, 345 insertions(+)
+ create mode 100644 arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+ create mode 100644 arch/loongarch/boot/dts/loongson-2k0500.dtsi
 
-> On 2023/8/23 16:01, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->> On Tue 22 Aug 2023 at 16:27, Yu Tu <yu.tu@amlogic.com> wrote:
->> 
->>> Add the S4 peripherals clock controller dt-bindings in the S4 SoC
->>> family.
->>>
->>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
->>> ---
->>>   .../clock/amlogic,s4-peripherals-clkc.yaml    |  96 +++++++
->>>   .../clock/amlogic,s4-peripherals-clkc.h       | 236 ++++++++++++++++++
->>>   2 files changed, 332 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>>   create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>> new file mode 100644
->>> index 000000000000..e166563e7b14
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
->>> @@ -0,0 +1,96 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Amlogic S4 Peripherals Clock Controller
->>> +
->>> +maintainers:
->>> +  - Yu Tu <yu.tu@amlogic.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: amlogic,s4-peripherals-clkc
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: input fixed pll div2
->>> +      - description: input fixed pll div2p5
->>> +      - description: input fixed pll div3
->>> +      - description: input fixed pll div4
->>> +      - description: input fixed pll div5
->>> +      - description: input fixed pll div7
->>> +      - description: input hifi pll
->>> +      - description: input gp0 pll
->>> +      - description: input mpll0
->>> +      - description: input mpll1
->>> +      - description: input mpll2
->>> +      - description: input mpll3
->>> +      - description: input hdmi pll
->>> +      - description: input oscillator (usually at 24MHz)
->>> +      - description: input external 32kHz reference (optional)
->> The bindings described here does not make this last clock optional, but
->> requires it. This is going to be a problem since most platforms won't
->> have this clock.
->
-> Hi Jerome,
-> 	Do you mean that we can delete the description of "external 32kHz",
-> 	because we hardly use it?
-
-Absolutely not.
-Optional ressources need description too.
-
->
->> You are missing minItems.
->> Same below
->
-> I will add it in next version.
->
-
-I'm saying that because you did not provide minItems here, it gets
-implicitly set to the number of clocks you have declared, making the
-external 32k a required clock, not an optional one.
-
-You need to set minItems so the clocks is actually optional.
-Try removing the 32k in your example below and check how it goes with
-'make dt_binding_check'
-
->> 
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: fclk_div2
->>> +      - const: fclk_div2p5
->>> +      - const: fclk_div3
->>> +      - const: fclk_div4
->>> +      - const: fclk_div5
->>> +      - const: fclk_div7
->>> +      - const: hifi_pll
->>> +      - const: gp0_pll
->>> +      - const: mpll0
->>> +      - const: mpll1
->>> +      - const: mpll2
->>> +      - const: mpll3
->>> +      - const: hdmi_pll
->>> +      - const: xtal
->>> +      - const: ext_32k
->>> +
->>> +  "#clock-cells":
->>> +    const: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - clocks
->>> +  - clock-names
->>> +  - "#clock-cells"
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
->>> +
->>> +    clkc_periphs: clock-controller@fe000000 {
->>> +      compatible = "amlogic,s4-peripherals-clkc";
->>> +      reg = <0xfe000000 0x49c>;
->>> +      clocks = <&clkc_pll 3>,
->>> +              <&clkc_pll 13>,
->>> +              <&clkc_pll 5>,
->>> +              <&clkc_pll 7>,
->>> +              <&clkc_pll 9>,
->>> +              <&clkc_pll 11>,
->>> +              <&clkc_pll 17>,
->>> +              <&clkc_pll 15>,
->>> +              <&clkc_pll 25>,
->>> +              <&clkc_pll 27>,
->>> +              <&clkc_pll 29>,
->>> +              <&clkc_pll 31>,
->>> +              <&clkc_pll 20>,
->>> +              <&xtal>,
->>> +              <&ext_32k>;
->>> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
->>> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
->>> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
->>> +                    "ext_32k";
->>> +      #clock-cells = <1>;
->>> +    };
->>> +...
->>> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>> new file mode 100644
->>> index 000000000000..861a331963ac
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
->>> @@ -0,0 +1,236 @@
->>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
->>> +/*
->>> + * Copyright (c) 2022-2023 Amlogic, Inc. All rights reserved.
->>> + * Author: Yu Tu <yu.tu@amlogic.com>
->>> + */
->>> +
->>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
->>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
->>> +
->>> +#define CLKID_RTC_32K_CLKIN          0
->>> +#define CLKID_RTC_32K_DIV            1
->>> +#define CLKID_RTC_32K_SEL            2
->>> +#define CLKID_RTC_32K_XATL           3
->>> +#define CLKID_RTC                    4
->>> +#define CLKID_SYS_CLK_B_SEL          5
->>> +#define CLKID_SYS_CLK_B_DIV          6
->>> +#define CLKID_SYS_CLK_B                      7
->>> +#define CLKID_SYS_CLK_A_SEL          8
->>> +#define CLKID_SYS_CLK_A_DIV          9
->>> +#define CLKID_SYS_CLK_A                      10
->>> +#define CLKID_SYS                    11
->>> +#define CLKID_CECA_32K_CLKIN         12
->>> +#define CLKID_CECA_32K_DIV           13
->>> +#define CLKID_CECA_32K_SEL_PRE               14
->>> +#define CLKID_CECA_32K_SEL           15
->>> +#define CLKID_CECA_32K_CLKOUT                16
->>> +#define CLKID_CECB_32K_CLKIN         17
->>> +#define CLKID_CECB_32K_DIV           18
->>> +#define CLKID_CECB_32K_SEL_PRE               19
->>> +#define CLKID_CECB_32K_SEL           20
->>> +#define CLKID_CECB_32K_CLKOUT                21
->>> +#define CLKID_SC_CLK_SEL             22
->>> +#define CLKID_SC_CLK_DIV             23
->>> +#define CLKID_SC                     24
->>> +#define CLKID_12_24M                 25
->>> +#define CLKID_12M_CLK_DIV            26
->>> +#define CLKID_12_24M_CLK_SEL         27
->>> +#define CLKID_VID_PLL_DIV            28
->>> +#define CLKID_VID_PLL_SEL            29
->>> +#define CLKID_VID_PLL                        30
->>> +#define CLKID_VCLK_SEL                       31
->>> +#define CLKID_VCLK2_SEL                      32
->>> +#define CLKID_VCLK_INPUT             33
->>> +#define CLKID_VCLK2_INPUT            34
->>> +#define CLKID_VCLK_DIV                       35
->>> +#define CLKID_VCLK2_DIV                      36
->>> +#define CLKID_VCLK                   37
->>> +#define CLKID_VCLK2                  38
->>> +#define CLKID_VCLK_DIV1                      39
->>> +#define CLKID_VCLK_DIV2_EN           40
->>> +#define CLKID_VCLK_DIV4_EN           41
->>> +#define CLKID_VCLK_DIV6_EN           42
->>> +#define CLKID_VCLK_DIV12_EN          43
->>> +#define CLKID_VCLK2_DIV1             44
->>> +#define CLKID_VCLK2_DIV2_EN          45
->>> +#define CLKID_VCLK2_DIV4_EN          46
->>> +#define CLKID_VCLK2_DIV6_EN          47
->>> +#define CLKID_VCLK2_DIV12_EN         48
->>> +#define CLKID_VCLK_DIV2                      49
->>> +#define CLKID_VCLK_DIV4                      50
->>> +#define CLKID_VCLK_DIV6                      51
->>> +#define CLKID_VCLK_DIV12             52
->>> +#define CLKID_VCLK2_DIV2             53
->>> +#define CLKID_VCLK2_DIV4             54
->>> +#define CLKID_VCLK2_DIV6             55
->>> +#define CLKID_VCLK2_DIV12            56
->>> +#define CLKID_CTS_ENCI_SEL           57
->>> +#define CLKID_CTS_ENCP_SEL           58
->>> +#define CLKID_CTS_VDAC_SEL           59
->>> +#define CLKID_HDMI_TX_SEL            60
->>> +#define CLKID_CTS_ENCI                       61
->>> +#define CLKID_CTS_ENCP                       62
->>> +#define CLKID_CTS_VDAC                       63
->>> +#define CLKID_HDMI_TX                        64
->>> +#define CLKID_HDMI_SEL                       65
->>> +#define CLKID_HDMI_DIV                       66
->>> +#define CLKID_HDMI                   67
->>> +#define CLKID_TS_CLK_DIV             68
->>> +#define CLKID_TS                     69
->>> +#define CLKID_MALI_0_SEL             70
->>> +#define CLKID_MALI_0_DIV             71
->>> +#define CLKID_MALI_0                 72
->>> +#define CLKID_MALI_1_SEL             73
->>> +#define CLKID_MALI_1_DIV             74
->>> +#define CLKID_MALI_1                 75
->>> +#define CLKID_MALI_SEL                       76
->>> +#define CLKID_VDEC_P0_SEL            77
->>> +#define CLKID_VDEC_P0_DIV            78
->>> +#define CLKID_VDEC_P0                        79
->>> +#define CLKID_VDEC_P1_SEL            80
->>> +#define CLKID_VDEC_P1_DIV            81
->>> +#define CLKID_VDEC_P1                        82
->>> +#define CLKID_VDEC_SEL                       83
->>> +#define CLKID_HEVCF_P0_SEL           84
->>> +#define CLKID_HEVCF_P0_DIV           85
->>> +#define CLKID_HEVCF_P0                       86
->>> +#define CLKID_HEVCF_P1_SEL           87
->>> +#define CLKID_HEVCF_P1_DIV           88
->>> +#define CLKID_HEVCF_P1                       89
->>> +#define CLKID_HEVCF_SEL                      90
->>> +#define CLKID_VPU_0_SEL                      91
->>> +#define CLKID_VPU_0_DIV                      92
->>> +#define CLKID_VPU_0                  93
->>> +#define CLKID_VPU_1_SEL                      94
->>> +#define CLKID_VPU_1_DIV                      95
->>> +#define CLKID_VPU_1                  96
->>> +#define CLKID_VPU                    97
->>> +#define CLKID_VPU_CLKB_TMP_SEL               98
->>> +#define CLKID_VPU_CLKB_TMP_DIV               99
->>> +#define CLKID_VPU_CLKB_TMP           100
->>> +#define CLKID_VPU_CLKB_DIV           101
->>> +#define CLKID_VPU_CLKB                       102
->>> +#define CLKID_VPU_CLKC_P0_SEL                103
->>> +#define CLKID_VPU_CLKC_P0_DIV                104
->>> +#define CLKID_VPU_CLKC_P0            105
->>> +#define CLKID_VPU_CLKC_P1_SEL                106
->>> +#define CLKID_VPU_CLKC_P1_DIV                107
->>> +#define CLKID_VPU_CLKC_P1            108
->>> +#define CLKID_VPU_CLKC_SEL           109
->>> +#define CLKID_VAPB_0_SEL             110
->>> +#define CLKID_VAPB_0_DIV             111
->>> +#define CLKID_VAPB_0                 112
->>> +#define CLKID_VAPB_1_SEL             113
->>> +#define CLKID_VAPB_1_DIV             114
->>> +#define CLKID_VAPB_1                 115
->>> +#define CLKID_VAPB                   116
->>> +#define CLKID_GE2D                   117
->>> +#define CLKID_VDIN_MEAS_SEL          118
->>> +#define CLKID_VDIN_MEAS_DIV          119
->>> +#define CLKID_VDIN_MEAS                      120
->>> +#define CLKID_SD_EMMC_C_CLK_SEL              121
->>> +#define CLKID_SD_EMMC_C_CLK_DIV              122
->>> +#define CLKID_SD_EMMC_C                      123
->>> +#define CLKID_SD_EMMC_A_CLK_SEL              124
->>> +#define CLKID_SD_EMMC_A_CLK_DIV              125
->>> +#define CLKID_SD_EMMC_A                      126
->>> +#define CLKID_SD_EMMC_B_CLK_SEL              127
->>> +#define CLKID_SD_EMMC_B_CLK_DIV              128
->>> +#define CLKID_SD_EMMC_B                      129
->>> +#define CLKID_SPICC0_SEL             130
->>> +#define CLKID_SPICC0_DIV             131
->>> +#define CLKID_SPICC0_EN                      132
->>> +#define CLKID_PWM_A_SEL                      133
->>> +#define CLKID_PWM_A_DIV                      134
->>> +#define CLKID_PWM_A                  135
->>> +#define CLKID_PWM_B_SEL                      136
->>> +#define CLKID_PWM_B_DIV                      137
->>> +#define CLKID_PWM_B                  138
->>> +#define CLKID_PWM_C_SEL                      139
->>> +#define CLKID_PWM_C_DIV                      140
->>> +#define CLKID_PWM_C                  141
->>> +#define CLKID_PWM_D_SEL                      142
->>> +#define CLKID_PWM_D_DIV                      143
->>> +#define CLKID_PWM_D                  144
->>> +#define CLKID_PWM_E_SEL                      145
->>> +#define CLKID_PWM_E_DIV                      146
->>> +#define CLKID_PWM_E                  147
->>> +#define CLKID_PWM_F_SEL                      148
->>> +#define CLKID_PWM_F_DIV                      149
->>> +#define CLKID_PWM_F                  150
->>> +#define CLKID_PWM_G_SEL                      151
->>> +#define CLKID_PWM_G_DIV                      152
->>> +#define CLKID_PWM_G                  153
->>> +#define CLKID_PWM_H_SEL                      154
->>> +#define CLKID_PWM_H_DIV                      155
->>> +#define CLKID_PWM_H                  156
->>> +#define CLKID_PWM_I_SEL                      157
->>> +#define CLKID_PWM_I_DIV                      158
->>> +#define CLKID_PWM_I                  159
->>> +#define CLKID_PWM_J_SEL                      160
->>> +#define CLKID_PWM_J_DIV                      161
->>> +#define CLKID_PWM_J                  162
->>> +#define CLKID_SARADC_SEL             163
->>> +#define CLKID_SARADC_DIV             164
->>> +#define CLKID_SARADC                 165
->>> +#define CLKID_GEN_SEL                        166
->>> +#define CLKID_GEN_DIV                        167
->>> +#define CLKID_GEN                    168
->>> +#define CLKID_DDR                    169
->>> +#define CLKID_DOS                    170
->>> +#define CLKID_ETHPHY                 171
->>> +#define CLKID_MALI                   172
->>> +#define CLKID_AOCPU                  173
->>> +#define CLKID_AUCPU                  174
->>> +#define CLKID_CEC                    175
->>> +#define CLKID_SDEMMC_A                       176
->>> +#define CLKID_SDEMMC_B                       177
->>> +#define CLKID_NAND                   178
->>> +#define CLKID_SMARTCARD                      179
->>> +#define CLKID_ACODEC                 180
->>> +#define CLKID_SPIFC                  181
->>> +#define CLKID_MSR                    182
->>> +#define CLKID_IR_CTRL                        183
->>> +#define CLKID_AUDIO                  184
->>> +#define CLKID_ETH                    185
->>> +#define CLKID_UART_A                 186
->>> +#define CLKID_UART_B                 187
->>> +#define CLKID_UART_C                 188
->>> +#define CLKID_UART_D                 189
->>> +#define CLKID_UART_E                 190
->>> +#define CLKID_AIFIFO                 191
->>> +#define CLKID_TS_DDR                 192
->>> +#define CLKID_TS_PLL                 193
->>> +#define CLKID_G2D                    194
->>> +#define CLKID_SPICC0                 195
->>> +#define CLKID_SPICC1                 196
->>> +#define CLKID_USB                    197
->>> +#define CLKID_I2C_M_A                        198
->>> +#define CLKID_I2C_M_B                        199
->>> +#define CLKID_I2C_M_C                        200
->>> +#define CLKID_I2C_M_D                        201
->>> +#define CLKID_I2C_M_E                        202
->>> +#define CLKID_HDMITX_APB             203
->>> +#define CLKID_I2C_S_A                        204
->>> +#define CLKID_USB1_TO_DDR            205
->>> +#define CLKID_HDCP22                 206
->>> +#define CLKID_MMC_APB                        207
->>> +#define CLKID_RSA                    208
->>> +#define CLKID_CPU_DEBUG                      209
->>> +#define CLKID_VPU_INTR                       210
->>> +#define CLKID_DEMOD                  211
->>> +#define CLKID_SAR_ADC                        212
->>> +#define CLKID_GIC                    213
->>> +#define CLKID_PWM_AB                 214
->>> +#define CLKID_PWM_CD                 215
->>> +#define CLKID_PWM_EF                 216
->>> +#define CLKID_PWM_GH                 217
->>> +#define CLKID_PWM_IJ                 218
->>> +#define CLKID_HDCP22_ESMCLK_SEL              219
->>> +#define CLKID_HDCP22_ESMCLK_DIV              220
->>> +#define CLKID_HDCP22_ESMCLK          221
->>> +#define CLKID_HDCP22_SKPCLK_SEL              222
->>> +#define CLKID_HDCP22_SKPCLK_DIV              223
->>> +#define CLKID_HDCP22_SKPCLK          224
->>> +
->>> +#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
->> 
+diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
+index 1e24cdb5180a..aa0b21d73d4e 100644
+--- a/arch/loongarch/boot/dts/Makefile
++++ b/arch/loongarch/boot/dts/Makefile
+@@ -1,3 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ 
++dtb-$(CONFIG_MACH_LOONGSON64)	= loongson-2k0500-ref.dtb
++
+ obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
+diff --git a/arch/loongarch/boot/dts/loongson-2k0500-ref.dts b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+new file mode 100644
+index 000000000000..62615eeaa57b
+--- /dev/null
++++ b/arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+@@ -0,0 +1,89 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2023 Loongson Technology Corporation Limited
++ */
++
++/dts-v1/;
++
++#include "loongson-2k0500.dtsi"
++
++/ {
++	compatible = "loongson,ls2k0500-ref", "loongson,ls2k0500";
++	model = "Loongson-2K0500 Reference Board";
++
++	aliases {
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++		serial0 = &uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++		bootargs = "console=ttyS0,115200";
++	};
++
++	memory@200000 {
++		device_type = "memory";
++		reg = <0x0 0x200000 0x0 0xee00000>, /* 238 MB at 2 MB */
++		      <0x0 0x90000000 0x0 0x60000000>;
++	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		linux,cma {
++			compatible = "shared-dma-pool";
++			reusable;
++			size = <0x0 0x2000000>;
++			linux,cma-default;
++		};
++	};
++};
++
++&gmac0 {
++	status = "okay";
++
++	phy-mode = "rgmii";
++	bus_id = <0x0>;
++};
++
++&gmac1 {
++	status = "okay";
++
++	phy-mode = "rgmii";
++	bus_id = <0x1>;
++};
++
++&i2c0 {
++	status = "okay";
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++	eeprom@57{
++		compatible = "atmel,24c16";
++		reg = <0x57>;
++		pagesize = <16>;
++	};
++};
++
++&ehci0 {
++	status = "okay";
++};
++
++&ohci0 {
++	status = "okay";
++};
++
++&sata {
++	status = "okay";
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&rtc0 {
++	status = "okay";
++};
+diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+new file mode 100644
+index 000000000000..d1554a1cec49
+--- /dev/null
++++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
+@@ -0,0 +1,254 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2023 Loongson Technology Corporation Limited
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++	#address-cells = <2>;
++	#size-cells = <2>;
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		cpu-map {
++			cluster0 {
++				core0 {
++					cpu = <&cpu0>;
++				};
++			};
++		};
++
++		cpu0: cpu@0 {
++			compatible = "loongson,la264";
++			device_type = "cpu";
++			reg = <0x0>;
++			clocks = <&cpu_clk>;
++		};
++	};
++
++	cpu_clk: cpu-clk {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <500000000>;
++	};
++
++	cpuintc: interrupt-controller {
++		compatible = "loongson,cpu-interrupt-controller";
++		#interrupt-cells = <1>;
++		interrupt-controller;
++	};
++
++	bus@10000000 {
++		compatible = "simple-bus";
++		ranges = <0x0 0x10000000 0x0 0x10000000 0x0 0x10000000>,
++			 <0x0 0x2000000  0x0 0x2000000  0x0 0x2000000>,
++			 <0x0 0x20000000 0x0 0x20000000 0x0 0x10000000>,
++			 <0x0 0x40000000 0x0 0x40000000 0x0 0x40000000>,
++			 <0xfe 0x0 0xfe 0x0 0x0 0x40000000>;
++
++		#address-cells = <2>;
++		#size-cells = <2>;
++
++		isa@16400000 {
++			compatible = "isa";
++			ranges = <1 0x0 0x0 0x16400000 0x4000>;
++			#size-cells = <1>;
++			#address-cells = <2>;
++		};
++
++		liointc0: interrupt-controller@1fe11400 {
++			compatible = "loongson,liointc-2.0";
++			reg = <0x0 0x1fe11400 0x0 0x40>,
++			      <0x0 0x1fe11040 0x0 0x8>;
++			reg-names = "main", "isr0";
++
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			interrupt-parent = <&cpuintc>;
++			interrupts = <2>;
++			interrupt-names = "int0";
++
++			loongson,parent_int_map = <0xffffffff>, /* int0 */
++						  <0x00000000>, /* int1 */
++						  <0x00000000>, /* int2 */
++						  <0x00000000>; /* int3 */
++		};
++
++		liointc1: interrupt-controller@1fe11440 {
++			compatible = "loongson,liointc-2.0";
++			reg = <0x0 0x1fe11440 0x0 0x40>,
++			      <0x0 0x1fe11048 0x0 0x8>;
++			reg-names = "main", "isr0";
++
++			interrupt-controller;
++			#interrupt-cells = <2>;
++			interrupt-parent = <&cpuintc>;
++			interrupts = <4>;
++			interrupt-names = "int2";
++
++			loongson,parent_int_map = <0x00000000>, /* int0 */
++						  <0x00000000>, /* int1 */
++						  <0xffffffff>, /* int2 */
++						  <0x00000000>; /* int3 */
++		};
++
++		eiointc: interrupt-controller@1fe11600 {
++			compatible = "loongson,ls2k0500-eiointc";
++			reg = <0x0 0x1fe11600 0x0 0xea00>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++			interrupt-parent = <&cpuintc>;
++			interrupts = <3>;
++		};
++
++		gmac0: ethernet@1f020000 {
++			compatible = "snps,dwmac-3.70a";
++			reg = <0x0 0x1f020000 0x0 0x10000>;
++			interrupt-parent = <&liointc0>;
++			interrupts = <12 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			status = "disable";
++		};
++
++		gmac1: ethernet@1f030000 {
++			compatible = "snps,dwmac-3.70a";
++			reg = <0x0 0x1f030000 0x0 0x10000>;
++			interrupt-parent = <&liointc0>;
++			interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "macirq";
++			status = "disable";
++		};
++
++		sata: sata@1f040000 {
++			compatible = "snps,spear-ahci";
++			reg = <0x0 0x1f040000 0x0 0x10000>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <75>;
++			status = "disable";
++		};
++
++		ehci0: usb@1f050000 {
++			compatible = "generic-ehci";
++			reg = <0x0 0x1f050000 0x0 0x8000>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <71>;
++			status = "disable";
++		};
++
++		ohci0: usb@1f058000 {
++			compatible = "generic-ohci";
++			reg = <0x0 0x1f058000 0x0 0x8000>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <72>;
++			status = "disable";
++		};
++
++		uart0: serial@1ff40800 {
++			compatible = "ns16550a";
++			reg = <0x0 0x1ff40800 0x0 0x10>;
++			clock-frequency = <100000000>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <2>;
++			no-loopback-test;
++			status = "disabled";
++		};
++
++		i2c0: i2c@1ff48000 {
++			compatible = "loongson,ls2k-i2c";
++			reg = <0x0 0x1ff48000 0x0 0x0800>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <14>;
++			status = "disabled";
++		};
++
++		i2c@1ff48800 {
++			compatible = "loongson,ls2k-i2c";
++			reg = <0x0 0x1ff48800 0x0 0x0800>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <15>;
++			status = "disabled";
++		};
++
++		i2c@1ff49000 {
++			compatible = "loongson,ls2k-i2c";
++			reg = <0x0 0x1ff49000 0x0 0x0800>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <16>;
++			status = "disabled";
++		};
++
++		i2c@1ff49800 {
++			compatible = "loongson,ls2k-i2c";
++			reg = <0x0 0x1ff49800 0x0 0x0800>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <17>;
++			status = "disabled";
++		};
++
++		i2c@1ff4a000 {
++			compatible = "loongson,ls2k-i2c";
++			reg = <0x0 0x1ff4a000 0x0 0x0800>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <18>;
++			status = "disabled";
++		};
++
++		i2c@1ff4a800 {
++			compatible = "loongson,ls2k-i2c";
++			reg = <0x0 0x1ff4a800 0x0 0x0800>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <19>;
++			status = "disabled";
++		};
++
++		rtc0: rtc@1ff6c100 {
++			compatible = "loongson,ls2k0500-rtc", "loongson,ls7a-rtc";
++			reg = <0x0 0x1ff6c100 0x0 0x100>;
++			interrupt-parent = <&eiointc>;
++			interrupts = <35>;
++			status = "disabled";
++		};
++
++		pcie@1a000000 {
++			compatible = "loongson,ls2k-pci";
++			reg = <0x0 0x1a000000 0x0 0x02000000>,
++			      <0xfe 0x0 0x0 0x20000000>;
++
++			ranges = <0x2000000 0x0 0x40000000 0x0 0x40000000 0x0 0x40000000>,
++				 <0x1000000 0x0 0x4000 0x0 0x16404000 0x0 0x4000>;
++
++			device_type = "pci";
++			#address-cells = <3>;
++			#size-cells = <2>;
++
++			status = "disabled";
++
++			pcie@0,0 {
++				reg = <0x0000 0x0 0x0 0x0 0x0>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				interrupt-parent = <&eiointc>;
++				#interrupt-cells = <1>;
++				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
++				interrupt-map = <0x0 0x0 0x0 0x0 &eiointc 81>;
++				ranges;
++			};
++
++			pcie@1,0 {
++				reg = <0x0800 0x0 0x0 0x0 0x0>;
++				#address-cells = <3>;
++				#size-cells = <2>;
++				interrupt-parent = <&eiointc>;
++				#interrupt-cells = <1>;
++				interrupt-map-mask = <0x0 0x0 0x0 0x0>;
++				interrupt-map = <0x0 0x0 0x0 0x0 &eiointc 82>;
++				ranges;
++			};
++		};
++	};
++};
+-- 
+2.39.3
 
