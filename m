@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C2A9785505
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:11:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD7D0785503
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233363AbjHWKL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35958 "EHLO
+        id S232524AbjHWKLz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:11:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234396AbjHWITk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:19:40 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB2563A97
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:15:14 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52a069edca6so4195777a12.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:15:14 -0700 (PDT)
+        with ESMTP id S234412AbjHWITq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 04:19:46 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A90E03A9A
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:15:16 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9a1681fa868so641467466b.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 01:15:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692778513; x=1693383313;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XmrY7GQ2ZmU1Y6/4QT60GHEf7jmYt1E4LHJ/Pbf7whQ=;
-        b=EpMLVcOTGZqveKGbAuLVEPgbej8ivmGXuWFDLivjS26RkUHKt2nLP4Przg6x+uNdYN
-         IY/ZpXeZsLVtTvG9u/xiIRzy8VEf7dTFijbBeWMp3TK0X6D8v2y1S5zjUQRuTN6FfuA7
-         9rx09NaC0yI3T+jzzYAk4heEbH8lqw4FUByOFZMQAlcD0qI0BfCiOm57xxDe8mQzhcEe
-         xfFyB9+Hid+Tpzr7BBPocy2GEvwLgQQKYS87tltK4rtYWf+KXnTg4Ctmg0cgU9dwOqUw
-         QdOgEFO92DEA8wOrincf5WHJ3mzEqHJmxYMe7O9DiGaZithpdmeqhCTfKNhNh64Uzu+c
-         xslw==
+        d=linaro.org; s=google; t=1692778515; x=1693383315;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PqRFfyB6fBH2NjSEwbcQneI6aytxmQl02N3y/cGFN8Q=;
+        b=iHZOl1PZKN62nlsynpyoDx9vyDVvVCO3NcP7oVnW1ecm5RD1cdHMaDNM7ltaET90RA
+         Vi4eXQ3am5DKBisey3XxfvShn7luVkBBqhzdHaCwrUOJd3eVloo3kjHXyvoWcQl4wYcT
+         lYgGSSBLqjKK+S3uBCa4qOTBmYzuhRtBiES0iwlTYNelE4vEPEYov512pXM+F8rPZcDd
+         J0Glv/qMM16RjQPcEaO3HApk4tr+2NdUqV31dQOjAiyZ5FEG05la6qSdjAVYrpjEa3Oe
+         YQjxNTHUUr43V6ZHFxEVjAsNgK8UqS5TqhY0Ey/T+Y8Ca152aX2QnXOR0J9E7lo8Qh/V
+         VB7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692778513; x=1693383313;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XmrY7GQ2ZmU1Y6/4QT60GHEf7jmYt1E4LHJ/Pbf7whQ=;
-        b=Q0PpshZGmTRO3kxwTcFqaHFB1liNjmjPzkKn/5ZKhWlzemAYnDW5LRa7g1gqAT1Ql0
-         jkjGU0XcY3uzMKVyBQgYxMPvo/17GVP7AbnaDaeWT0DimJEgiSmp+q1N/FRXvVkwFZDE
-         hAveWKOnyLsZHX3tS0sdzqbITs5gpApj/aocOfvPZO64sMRbXtYXrAeePtROCG27cpRI
-         hDkPT5VOw9HI370VXvwKUro4SuKneZgEuwwastX0mPO+XRkxxipmrtdTP5sQWZsScd2/
-         cUOT/41iWr+PGrsIHT9h8wpvHkqorcW1dzzfOuaUMyw2OIoRLOR7yXhs2g6CugLHxaZ0
-         wdXQ==
-X-Gm-Message-State: AOJu0YweVby1QGhNYY1TcSvaRKPSshSaVkz8YGiUh3fftRfGXphbFwEs
-        fOAEzSJiCLrBMrLwAnufgVAdzA==
-X-Google-Smtp-Source: AGHT+IFTIG0ewo2lFsWWkU4AVFpjs9a7khJlWa2e43Ubalk/rJaATZ5e92WLTd1q2ikXfONtAWwMCw==
-X-Received: by 2002:a17:907:20f0:b0:99e:1201:48bc with SMTP id rh16-20020a17090720f000b0099e120148bcmr9325335ejb.64.1692778512801;
-        Wed, 23 Aug 2023 01:15:12 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692778515; x=1693383315;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PqRFfyB6fBH2NjSEwbcQneI6aytxmQl02N3y/cGFN8Q=;
+        b=NlSak1WonwtYI+sfweVdCoh36zTb0qdbFs2TbdBrdSu7JqY5ncENIY1ZQdqeggxjil
+         rQ9Tg3n34Ffe0hP21nHNrPbmBj/Aa22XZcCUEoqY3iueeo74s/QOYFz1nmEOfIncJmV4
+         JA/M+Npqc14AY387nTNT8ZkOZPXl+wFuuuKGm7zLeGtCIIDUCz11t7TJQ+llPKxE6IFA
+         HyBKEDVKDagdjnsFbhVznAXtYh//bQX/mv6LyG3d93nobNkauHxxodJAEWCHUnTrwYmm
+         DDeF6TELR0pCekrUmz2OnM7Y8ou8KROIyQZg2U0Sb5TtB1z8ehyxB9hGoQblicB1UKos
+         VI9g==
+X-Gm-Message-State: AOJu0Yzv9OkBNNWePAKUhTZfjQkqxbxmWWlV4b01pRW1iRUhs758KaP8
+        yQNSUsZlm+j0hd5cLUvpVG+yFzk9tPApBT7pJog=
+X-Google-Smtp-Source: AGHT+IGoWKgMFpxZ9BF5pSIbrht5kIRNqx7e0/bgz0+0hiqpzXF3RpNK5nrnWgjZRC4fE/5RdArPcQ==
+X-Received: by 2002:a17:907:2cf7:b0:99c:d05d:7b50 with SMTP id hz23-20020a1709072cf700b0099cd05d7b50mr8958826ejc.2.1692778515235;
+        Wed, 23 Aug 2023 01:15:15 -0700 (PDT)
 Received: from krzk-bin.. ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id v18-20020a170906b01200b0098e78ff1a87sm9539730ejy.120.2023.08.23.01.15.11
+        by smtp.gmail.com with ESMTPSA id v18-20020a170906b01200b0098e78ff1a87sm9539730ejy.120.2023.08.23.01.15.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Aug 2023 01:15:12 -0700 (PDT)
+        Wed, 23 Aug 2023 01:15:14 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Sam Ravnborg <sam@ravnborg.org>,
@@ -63,10 +64,12 @@ To:     Neil Armstrong <neil.armstrong@linaro.org>,
         dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 1/3] dt-bindings: display: panel: add common dual-display schema
-Date:   Wed, 23 Aug 2023 10:14:58 +0200
-Message-Id: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3 3/3] dt-bindings: display: novatek,nt36523: define ports
+Date:   Wed, 23 Aug 2023 10:15:00 +0200
+Message-Id: <20230823081500.84005-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
+References: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,74 +82,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add schema with common properties shared among dual display panel ICs.
+The panel-common schema does not define what "ports" property is, so
+bring the definition by referencing the panel-common-dual.yaml. Panels
+can be single- or dual-link, depending on the compatible, thus add
+if:then:else: block narrowing ports per variant.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 ---
 
-v2: https://lore.kernel.org/all/20230502120036.47165-1-krzysztof.kozlowski@linaro.org/
-v1: https://lore.kernel.org/all/20230416153929.356330-1-krzysztof.kozlowski@linaro.org/
-
 Changes since v2:
-1. New Patch
----
- .../display/panel/panel-common-dual.yaml      | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+1. Use panel-common-dual.
+2. Add if:then:else:
 
-diff --git a/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
-new file mode 100644
-index 000000000000..83fcd643b5f5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
-@@ -0,0 +1,46 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Common Properties for Dual-Display Panels
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-+
-+description:
-+  Properties common for Panel IC supporting dual display panels.
+Changes since v1:
+1. Rework to add ports to device schema, not to panel-common.
+---
+ .../display/panel/novatek,nt36523.yaml        | 25 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+index 5f7e4c486094..bbeea8cfa5fb 100644
+--- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
+@@ -14,9 +14,6 @@ description: |
+   panels. Support video mode panels from China Star Optoelectronics
+   Technology (CSOT) and BOE Technology.
+ 
+-allOf:
+-  - $ref: panel-common.yaml#
+-
+ properties:
+   compatible:
+     oneOf:
+@@ -38,7 +35,6 @@ properties:
+     description: regulator that supplies the I/O voltage
+ 
+   reg: true
+-  ports: true
+   rotation: true
+   backlight: true
+ 
+@@ -47,7 +43,26 @@ required:
+   - reg
+   - vddio-supply
+   - reset-gpios
+-  - ports
 +
 +allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    additionalProperties: false
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: First display panel
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Second display panel
-+
-+      "#address-cells": true
-+      "#size-cells": true
-+
-+    required:
-+      - port@0
-+
-+# Single-panel setups are still allowed.
-+oneOf:
-+  - required:
-+      - ports
-+  - required:
-+      - port
-+
-+additionalProperties: true
++  - $ref: panel-common-dual.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - novatek,nt36523w
++    then:
++      properties:
++        ports:
++          properties:
++            port@1: false
++    else:
++      properties:
++        port: false
++        ports:
++          required:
++            - port@1
+ 
+ unevaluatedProperties: false
+ 
 -- 
 2.34.1
 
