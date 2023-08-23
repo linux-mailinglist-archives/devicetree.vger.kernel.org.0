@@ -2,157 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C98CC78520E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:55:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9755178521E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 09:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233628AbjHWHzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 03:55:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35744 "EHLO
+        id S232236AbjHWH5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 03:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbjHWHzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:55:23 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652FECD0
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 00:55:21 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fef56f7223so20401835e9.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 00:55:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692777320; x=1693382120;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LRneTZRUa8cNy0srxSHuZvRzwItRI2yXoW2UtKvjV84=;
-        b=zMi9Kg6JnKkiOCApN1UHZOgHFh2i6WbZwKiWfNMJhTP0YcLnPhqjYtGoHsa2KL9uCl
-         ll1PppstbMvSt6v+N12uykxm05dWXOvpbJyTeWdZbscJ6r/Yto28AY9VO4WuVDmQFy/g
-         hji+USfZejzfd3XLL4J8I+izrbgywVakeg++lhsfF157OFcA6OExoaoXSQu2nd4BK3LG
-         CkVMSVA0Qa0r1FifISz8+3bi7xcWNIImgvxtjTTvr+MHDHpJykdDs2yskkvi9VnFEduN
-         WF4ib2gwSBm9gL5ba8mPo2KB7yIvhk5uJXyV/k5cdqVJSSixxhd8qom0/WtP6fM3Nf++
-         lmNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692777320; x=1693382120;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LRneTZRUa8cNy0srxSHuZvRzwItRI2yXoW2UtKvjV84=;
-        b=ZfPWvdjb9sKND8gzYOzp4kEwSev9s/TertO5BYzRrzRM9aMXuu37dMSLVzWhpJksgy
-         v8X68w0cP1NenTjH3XDL9Zz1aBP2LhEy9WAB7mKATyxwabb6Ipp1HvygbFX6WxsHqc4A
-         H3zMi+Orw/zkC7ZkCQY3CZmcCk3jTnVKJ455WOQl9Z4BGrF/hBTvXpxT3pArZg3qdwLK
-         4SkkGzBaGdmuZtiT1gh3HSPKJjQTiSbu4fOa1Gkpn7Mas42cI5ddc3/03cd+P5+qREv3
-         L8xHwOZ16CKE1g8meBjw2jH7oT26FcVU/4AWbKJPp1/ZZSXCViF0OAcO5SYnkj/6IoTk
-         lz2Q==
-X-Gm-Message-State: AOJu0YxH8Q7sxDgERhGHQwvtYM2JqCL7CXcc4qiE8jjYaY/JqGVrNUs9
-        gtKhPwjdwNNbR79EM2F2vd3ulQcj/XwIZjryKkl93A==
-X-Google-Smtp-Source: AGHT+IFzUCxBjFJpacEZ0cCouJ1S4MFuI4b7FnwIj+Snn5zburmfTxe9ZoVlX4tYEuogvDUfQBBXWw==
-X-Received: by 2002:a05:600c:22d4:b0:3fc:f9c:a3ed with SMTP id 20-20020a05600c22d400b003fc0f9ca3edmr9798385wmg.22.1692777319859;
-        Wed, 23 Aug 2023 00:55:19 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:cad:2140:c457:5132:4849:b9d9? ([2a01:e0a:cad:2140:c457:5132:4849:b9d9])
-        by smtp.gmail.com with ESMTPSA id n4-20020a5d4204000000b0031c5dda3aedsm5749631wrq.95.2023.08.23.00.55.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 00:55:19 -0700 (PDT)
-Message-ID: <dd3d28f1-ff5e-49e6-a9f7-0ec9265017cc@linaro.org>
-Date:   Wed, 23 Aug 2023 09:55:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: qcom,prng: document SM8550
-Content-Language: en-US, fr
-To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230480AbjHWH5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 03:57:24 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 723221BE;
+        Wed, 23 Aug 2023 00:57:22 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37N7ugTH3031092, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37N7ugTH3031092
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Aug 2023 15:56:42 +0800
+Received: from RTEXMBS06.realtek.com.tw (172.21.6.99) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Wed, 23 Aug 2023 15:56:48 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS06.realtek.com.tw (172.21.6.99) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Wed, 23 Aug 2023 15:56:48 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Wed, 23 Aug 2023 15:56:48 +0800
+From:   =?utf-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230822-topic-sm8550-rng-v1-0-8e10055165d1@linaro.org>
- <20230822-topic-sm8550-rng-v1-1-8e10055165d1@linaro.org>
- <8479869b-9984-41e3-9812-c7f5727cfd2c@linaro.org>
- <b73106c5-74e4-479d-8733-b99454768c15@quicinc.com>
- <26bae022-c114-4871-8715-73d7e8aeaa52@linaro.org>
- <f61ef601-1561-45d7-8f4a-947458472668@quicinc.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <f61ef601-1561-45d7-8f4a-947458472668@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 5/7] dt-bindings: pinctrl: realtek: add RTD1315E pinctrl binding
+Thread-Topic: [PATCH 5/7] dt-bindings: pinctrl: realtek: add RTD1315E pinctrl
+ binding
+Thread-Index: AQHZyS4KlrKw42BEDUewXNjTeqXxea/2B4ig
+Date:   Wed, 23 Aug 2023 07:56:48 +0000
+Message-ID: <ba502655bea5481aaee9209195f2bf79@realtek.com>
+References: <20230726090409.16606-1-tychang@realtek.com>
+ <20230726090409.16606-6-tychang@realtek.com>
+ <CACRpkdYzLiXSLpU63Nn84b+p3Nz5Ls-o94HsoAq514LvGkSiVg@mail.gmail.com>
+In-Reply-To: <CACRpkdYzLiXSLpU63Nn84b+p3Nz5Ls-o94HsoAq514LvGkSiVg@mail.gmail.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.181.166]
+x-kse-serverinfo: RTEXMBS06.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 23/08/2023 02:10, Om Prakash Singh wrote:
-> 
-> 
-> On 8/22/2023 9:34 PM, Konrad Dybcio wrote:
->> On 22.08.2023 16:54, Om Prakash Singh wrote:
->>> PRNG Block on most of newer target from Qualcomm have some configuration where clock is configured by security firmware.
->>>
->>> Adding separate compatible string for each platform is overhead.
->>>
->>> We need to introduce common compatible string that can be used for all platforms with same configuration.
->>>
->>> I would suggest to use "qcom,rng-ee" for newer platform, dropping "p" also signifies it is not a Pseudo Random Number Generator.
->> Please reply inline and don't top-post.
->>
->>
->> Is this what you're trying to say?
->>
->> 1. sort out the clock requirements for designs where Linux manages it
->>     vs where the FW does so >
->> 2. introduce a new compatible for SoCs implementing a TRNG
->>
->> 3. for SoCs in 2., register the TRNG as a hwrng device
-> 
-> Yes to all
-
-I can send a proposal, but that means writing a new driver for this compatible in drivers/char/hw_random/ right ?
-
-Neil
-
-> 
->>
->>
->> ?
->>
->> Konrad
-> 
-> Thanks,
-> Om
-
+SGkgTGludXMsDQoNClRoYW5rcyBmb3IgeW91ciByZXZpZXcuDQoNCj4NCj5IaSBUWSBDaGFuZywN
+Cj4NCj50aGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+DQo+T24gV2VkLCBKdWwgMjYsIDIwMjMgYXQg
+MTE6MDbigK9BTSBUWSBDaGFuZyA8dHljaGFuZ0ByZWFsdGVrLmNvbT4gd3JvdGU6DQo+DQo+PiBB
+ZGQgZGV2aWNlIHRyZWUgYmluZGluZ3MgZm9yIFJURDEzMTVFLg0KPj4NCj4+IFNpZ25lZC1vZmYt
+Ynk6IFRZIENoYW5nIDx0eWNoYW5nQHJlYWx0ZWsuY29tPg0KPg0KPk1heWJlIHlvdSBjb3VsZCB3
+cml0ZSBhIHNob3J0IHBhcmFncmFwaCBhYm91dCB0aGUgUlREMTMxNUUgc28gd2Uga25vdyB3aGF0
+DQo+dGhpcyBpcz8gSSBndWVzcyBpdCBpcyBzb21lIFNvQyB3aXRoIHNvbWUgaW50ZW5kZWQgdXNl
+IGNhc2U/DQo+DQoNCkkgd2lsbCBhZGQgaXQgaW4gdGhlIG5leHQgdmVyc2lvbi4NCg0KPiguLi4p
+DQo+PiArZGVzY3JpcHRpb246IHwNCj4+ICsgIEJpbmRpbmcgZm9yIFJlYWx0ZWsgREhDIFJURDEz
+MTVFIFNvQyBwaW4gY29udHJvbC4NCj4NCj5TYW1lIHRleHQgc2hvdWxkIGdvIGhlcmUgaW4gdGhh
+dCBjYXNlLg0KPg0KPj4gKyAgICAgICAgcmVhbHRlayxwZHJpdmU6DQo+PiArICAgICAgICAgIGRl
+c2NyaXB0aW9uOiB8DQo+PiArICAgICAgICAgICAgQW4gaW50ZWdlciBkZXNjcmliaW5nIHRoZSBs
+ZXZlbCB0byBhZGp1c3QgUE1PUyBvdXRwdXQgZHJpdmluZw0KPmNhcGFiaWxpdHkuDQo+PiArICAg
+ICAgICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPj4g
+KyAgICAgICAgICBtaW5pbXVtOiAwDQo+PiArICAgICAgICAgIG1heGltdW06IDcNCj4+ICsNCj4+
+ICsgICAgICAgIHJlYWx0ZWssbmRyaXZlOg0KPj4gKyAgICAgICAgICBkZXNjcmlwdGlvbjogfA0K
+Pj4gKyAgICAgICAgICAgIEFuIGludGVnZXIgZGVzY3JpYmluZyB0aGUgbGV2ZWwgdG8gYWRqdXN0
+IE5NT1Mgb3V0cHV0IGRyaXZpbmcNCj5jYXBhYmlsaXR5Lg0KPj4gKyAgICAgICAgICAkcmVmOiAv
+c2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCj4+ICsgICAgICAgICAgbWlu
+aW11bTogMA0KPj4gKyAgICAgICAgICBtYXhpbXVtOiA3DQo+DQo+SSB3b3VsZCByZW5hbWUgdGhl
+c2UgcmVhbHRlayxkcml2ZS1zdHJlbmd0aC1wIGFuZCByZWFsdGVrLGRyaXZlLXN0cmVuZ3RoLW4u
+DQoNClN1cmUsIEkgdGhpbmsgbmFtaW5nIHRoZW0gbGlrZSB0aGF0IG1ha2VzIGl0IGNsZWFyZXIu
+DQoNCj4NCj5Zb3UgbmVlZCB0byBleHBsYWluIHdoYXQgaXMgbWVhbnQgd2l0aCBQTU9TIGFuZCBO
+TU9TIGhlcmUuIElmIGl0IGlzIHdoYXQgSSB0aGluaw0KPml0IGlzLCBJIHRoaW5rIHNvbWUgQVND
+SUkgYXJ0IHdvdWxkIGJlIGhhbmR5IQ0KPg0KPllvdSBjYW4gcmV1c2UgbXkgQVNDSUkgYXJ0IGZy
+b20gRG9jdW1lbnRhdGlvbi9kcml2ZXItYXBpL2dwaW8vZHJpdmVyLnJzdDoNCj4NCj4gICAgICAg
+ICAgICAgICAgICAgICBWREQNCj4gICAgICAgICAgICAgICAgICAgICAgfA0KPiAgICAgICAgICAg
+IE9EICAgIHx8LS0rDQo+ICAgICAgICAgKy0tLyAtLS1vfHwgICAgIFAtTU9TLUZFVA0KPiAgICAg
+ICAgIHwgICAgICAgIHx8LS0rDQo+ICAgIElOIC0tKyAgICAgICAgICAgICstLS0tLSBvdXQNCj4g
+ICAgICAgICB8ICAgICAgICB8fC0tKw0KPiAgICAgICAgICstLS8gLS0tLXx8ICAgICBOLU1PUy1G
+RVQNCj4gICAgICAgICAgICBPUyAgICB8fC0tKw0KPiAgICAgICAgICAgICAgICAgICAgICB8DQo+
+ICAgICAgICAgICAgICAgICAgICAgR05EDQo+DQo+TWF5YmUgeW91IHdhbm5hIGRlbGV0ZSB0aGUg
+T0Qgc3dpdGNoIGlmIHRoZXNlIGRyaXZlcnMgZG9uJ3Qgc3VwcG9ydCB0aGF0Lg0KPg0KPldoYXQg
+ZG9lcyB0aGUgdmFsdWVzIDAuLjcgYWN0dWFsbHkgY29ycmVzcG9uZCB0bz8gSXMgaXQgdGhlIG51
+bWJlciBvZg0KPnRyYW5zaXN0b3JzL2RyaXZlciBzdGFnZXMgc2ltcGx5PyBUaGVuIHdyaXRlIHRo
+YXQuDQo+DQo+V2UgbmVlZCB0byB0aGluayB3aGV0aGVyIHRoaXMgaXMgc28gZ2VuZXJpY2FsbHkg
+dXNlZnVsIHRoYXQgaXQgc2hvdWxkIHNpbXBseSBiZQ0KPmRyaXZlLXN0cmVuZ3RoLXBtb3MgYW5k
+IGRyaXZlLXN0cmVuZ3RoLW5tb3MsIHNpbXBseSBwdXQsIGFzIG90aGVyIFNvQ3MgbWF5DQo+aW1w
+bGVtZW50IHRoZSBzYW1lLiBXaGF0IGRvIHBlb3BsZSB0aGluaz8NCj4NCg0KSSB3aWxsIGFkZCB0
+aGVzZSBpbiB0aGUgbmV4dCB2ZXJzaW9uLiBUaGUgdmFsdWVzIDAuLjcgaXMgdGhlIGxldmVsIG9m
+IHRoZSBkcml2aW5nIHN0cmVuZ3RoLiANClRoZXNlIGxldmVzIGNhbiBpbXBhY3QgdGhlIHJpc2lu
+Zy9mYWxsaW5nIHRpbWUgb2YgdGhlIHdhdmVmb3JtLCBhc3Npc3RpbmcgaW4gYWNoaWV2aW5nDQp0
+aGUgZGVzaXJlZCB0cmFuc2ZlciBzcGVlZC4NCg0KPj4gKyAgICAgICAgcmVhbHRlayxkY3ljbGU6
+DQo+PiArICAgICAgICAgIGRlc2NyaXB0aW9uOiB8DQo+PiArICAgICAgICAgICAgQW4gaW50ZWdl
+ciBkZXNjcmliaW5nIHRoZSBsZXZlbCB0byBhZGp1c3Qgb3V0cHV0IGR1dHkgY3ljbGUuDQo+PiAr
+ICAgICAgICAgICAgVmFsaWQgYXJndW1lbnRzIGFyZSBkZXNjcmliZWQgYXMgYmVsb3c6DQo+PiAr
+ICAgICAgICAgICAgMDogMG5zDQo+PiArICAgICAgICAgICAgMjogKyAwLjI1bnMNCj4+ICsgICAg
+ICAgICAgICAzOiArIDAuNW5zDQo+PiArICAgICAgICAgICAgNDogLTAuMjVucw0KPj4gKyAgICAg
+ICAgICAgIDU6IC0wLjVucw0KPj4gKyAgICAgICAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1s
+Iy9kZWZpbml0aW9ucy91aW50MzINCj4+ICsgICAgICAgICAgZW51bTogWyAwLCAyLCAzLCA0LCA1
+IF0NCj4NCj5UaGlzIGRvZXMgbm90IGV4cGxhaW4gdGhlIGR1dHkgY3ljbGUgb2YgKndoYXQqPw0K
+Pg0KPkl0IGxvb2tzIHJlYWxseSB1c2VmdWwgc28gcGxlYXNlIGV4cGxhaW4gdGhvcm91Z2hseSB3
+aGF0IGl0IGRvZXMuDQo+DQo+SSBndWVzcyB0aGlzIGlzIG5vdCBQV00gYmVjYXVzZSB0aGVuIHlv
+dSBjb3VsZCB1c2UgUElOX0NPTkZJR19NT0RFX1BXTS4NCj4NCg0KVGhpcyBpcyBub3QgUFdNLiBU
+aGUgZHV0eSBjeWNsZSBoZXJlIGlzIHRvIGFkanVzdCB0aGUgcHJvcG9ydGlvbiBvZiBwb3NpdGl2
+ZSBhbmQgbmVnYXRpdmUgd2F2ZWZvcm1zLCBhbmQgaXMgYWRqdXN0ZWQgaW4gbmFub3NlY29uZChu
+cykuDQoNCj5Zb3VycywNCj5MaW51cyBXYWxsZWlqDQo+DQoNClRoYW5rcywNClRZIENoYW5nDQo=
