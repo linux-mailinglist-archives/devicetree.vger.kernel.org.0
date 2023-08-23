@@ -2,323 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5023D785884
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 15:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5503F785892
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 15:13:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235276AbjHWNK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 09:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40686 "EHLO
+        id S235479AbjHWNNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 09:13:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234685AbjHWNK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 09:10:57 -0400
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC69BCEA
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 06:10:51 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6477:4282:8a75:3696])
-        by xavier.telenet-ops.be with bizsmtp
-        id d1Ap2A0080iR7xF011ApCk; Wed, 23 Aug 2023 15:10:50 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qYndA-001Y5a-J4;
-        Wed, 23 Aug 2023 15:10:49 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qYndJ-00HVW7-2r;
-        Wed, 23 Aug 2023 15:10:49 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Frank Wunderlich <frank-w@public-files.de>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: mediatek: mt8186: bpi-r3: Convert to sugar syntax
-Date:   Wed, 23 Aug 2023 15:10:48 +0200
-Message-Id: <f34a84d5c19b070ac95c93af9b6a60477736509f.1692796112.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S231472AbjHWNNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 09:13:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A56E4E;
+        Wed, 23 Aug 2023 06:13:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A14365663;
+        Wed, 23 Aug 2023 13:13:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE786C433C8;
+        Wed, 23 Aug 2023 13:13:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692796417;
+        bh=DaGglQshpU9aTm/Tv91gnQQDys7dUA7tLk3NwPkPRFE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MsPaOqQ+kqB2t/YvmWau52gagC8bfE45jMsvBQnlroxNCZYsBR5PJBhBCc77d10We
+         R3gRHOTSVZom8xz6+Ojn4fSqbgZ0BMreYCIM3zSTszk9NhHhaViyCDsCkeJXaXWII6
+         ydUKJ/3yzfTPSUN1foUMOz44KC2K/4HlcCa5lKFOaDF1FA9SNjSr13HJQuFCiF2Ixp
+         +woHAjlR1Add2jN6/FQFaFCjHvNN8lF0/+HJl2iXAJfeBuP+JIx3SF0XOpWYZ81c/Z
+         f5UiMfKsJAFfxO/5UUpOBKwSFeiXVQJha3FTLJ9ND2ihND+V01vbZHsLTxz2ZrykJV
+         0RjttZkHtsEKw==
+Received: (nullmailer pid 2148592 invoked by uid 1000);
+        Wed, 23 Aug 2023 13:13:34 -0000
+Date:   Wed, 23 Aug 2023 08:13:34 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        corbet@lwn.net, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+        BMC-SW@aspeedtech.com, patrick@stwcx.xyz
+Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
+ Control
+Message-ID: <20230823131334.GA2059582-robh@kernel.org>
+References: <20230817120029.221484-1-billy_tsai@aspeedtech.com>
+ <20230817120029.221484-2-billy_tsai@aspeedtech.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.6 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230817120029.221484-2-billy_tsai@aspeedtech.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Overlay syntactic sugar for generating target-path fragments is
-supported by the version of dtc supplied with the kernel since commit
-50aafd60898a8b3e ("scripts/dtc: Update to upstream version
-v1.4.6-21-g84e414b0b5bc").  Hence convert the Bananapi R3 overlay
-devicetree source files to sugar syntax, improving readability.
+On Thu, Aug 17, 2023 at 08:00:28PM +0800, Billy Tsai wrote:
+> Document the compatible for aspeed,ast2600-pwm-tach device, which can
+> support upto 16 PWM outputs and 16 fan tach input.
+> 
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> new file mode 100644
+> index 000000000000..1666304d0b0f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2021 Aspeed, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED G6 PWM and Fan Tach controller device driver
+> +
+> +maintainers:
+> +  - Billy Tsai <billy_tsai@aspeedtech.com>
+> +
+> +description: |
+> +  The ASPEED PWM controller can support upto 16 PWM outputs.
+> +  The ASPEED Fan Tacho controller can support upto 16 fan tach input.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2600-pwm-tach
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  aspeed,fan-tach-ch:
+> +    description: Specify the Fan tach input channels.
+> +    $ref: "/schemas/types.yaml#/definitions/uint8-array"
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-No changes in generated dtbo.
----
- .../mt7986a-bananapi-bpi-r3-emmc.dtso         | 28 +++---
- .../mt7986a-bananapi-bpi-r3-nand.dtso         | 74 ++++++++-------
- .../mediatek/mt7986a-bananapi-bpi-r3-nor.dtso | 90 +++++++++----------
- .../mediatek/mt7986a-bananapi-bpi-r3-sd.dtso  | 16 ++--
- 4 files changed, 98 insertions(+), 110 deletions(-)
+This property is already defined in aspeed-pwm-tacho.txt as a single u8 
+that goes in a fan node. You can't redefine its type and location here.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-index 779dc6782bb1986f..047a8388811eb9c0 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-emmc.dtso
-@@ -9,21 +9,17 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
--
--	fragment@0 {
--		target-path = "/soc/mmc@11230000";
--		__overlay__ {
--			bus-width = <8>;
--			max-frequency = <200000000>;
--			cap-mmc-highspeed;
--			mmc-hs200-1_8v;
--			mmc-hs400-1_8v;
--			hs400-ds-delay = <0x14014>;
--			non-removable;
--			no-sd;
--			no-sdio;
--			status = "okay";
--		};
--	};
- };
- 
-+&{/soc/mmc@11230000} {
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	cap-mmc-highspeed;
-+	mmc-hs200-1_8v;
-+	mmc-hs400-1_8v;
-+	hs400-ds-delay = <0x14014>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-index 543c13385d6e3f82..12ec15e3188de082 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nand.dtso
-@@ -9,46 +9,44 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+};
-+
-+&{/soc/spi@1100a000} {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	spi_nand: spi_nand@0 {
-+		compatible = "spi-nand";
-+		reg = <0>;
-+		spi-max-frequency = <10000000>;
-+		spi-tx-buswidth = <4>;
-+		spi-rx-buswidth = <4>;
- 
--	fragment@0 {
--		target-path = "/soc/spi@1100a000";
--		__overlay__ {
-+		partitions {
-+			compatible = "fixed-partitions";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			spi_nand: spi_nand@0 {
--				compatible = "spi-nand";
--				reg = <0>;
--				spi-max-frequency = <10000000>;
--				spi-tx-buswidth = <4>;
--				spi-rx-buswidth = <4>;
--
--				partitions {
--					compatible = "fixed-partitions";
--					#address-cells = <1>;
--					#size-cells = <1>;
--
--					partition@0 {
--						label = "bl2";
--						reg = <0x0 0x100000>;
--						read-only;
--					};
--
--					partition@100000 {
--						label = "reserved";
--						reg = <0x100000 0x280000>;
--					};
--
--					partition@380000 {
--						label = "fip";
--						reg = <0x380000 0x200000>;
--						read-only;
--					};
--
--					partition@580000 {
--						label = "ubi";
--						reg = <0x580000 0x7a80000>;
--					};
--				};
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2";
-+				reg = <0x0 0x100000>;
-+				read-only;
-+			};
-+
-+			partition@100000 {
-+				label = "reserved";
-+				reg = <0x100000 0x280000>;
-+			};
-+
-+			partition@380000 {
-+				label = "fip";
-+				reg = <0x380000 0x200000>;
-+				read-only;
-+			};
-+
-+			partition@580000 {
-+				label = "ubi";
-+				reg = <0x580000 0x7a80000>;
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-index e48881be4ed60c98..6a0d529b54aca5bd 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-nor.dtso
-@@ -9,54 +9,52 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
-+};
-+
-+&{/soc/spi@1100a000} {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
- 
--	fragment@0 {
--		target-path = "/soc/spi@1100a000";
--		__overlay__ {
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <10000000>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
- 			#address-cells = <1>;
--			#size-cells = <0>;
--			flash@0 {
--				compatible = "jedec,spi-nor";
--				reg = <0>;
--				spi-max-frequency = <10000000>;
--
--				partitions {
--					compatible = "fixed-partitions";
--					#address-cells = <1>;
--					#size-cells = <1>;
--
--					partition@0 {
--						label = "bl2";
--						reg = <0x0 0x40000>;
--						read-only;
--					};
--
--					partition@40000 {
--						label = "u-boot-env";
--						reg = <0x40000 0x40000>;
--					};
--
--					partition@80000 {
--						label = "reserved2";
--						reg = <0x80000 0x80000>;
--					};
--
--					partition@100000 {
--						label = "fip";
--						reg = <0x100000 0x80000>;
--						read-only;
--					};
--
--					partition@180000 {
--						label = "recovery";
--						reg = <0x180000 0xa80000>;
--					};
--
--					partition@c00000 {
--						label = "fit";
--						reg = <0xc00000 0x1400000>;
--					};
--				};
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "bl2";
-+				reg = <0x0 0x40000>;
-+				read-only;
-+			};
-+
-+			partition@40000 {
-+				label = "u-boot-env";
-+				reg = <0x40000 0x40000>;
-+			};
-+
-+			partition@80000 {
-+				label = "reserved2";
-+				reg = <0x80000 0x80000>;
-+			};
-+
-+			partition@100000 {
-+				label = "fip";
-+				reg = <0x100000 0x80000>;
-+				read-only;
-+			};
-+
-+			partition@180000 {
-+				label = "recovery";
-+				reg = <0x180000 0xa80000>;
-+			};
-+
-+			partition@c00000 {
-+				label = "fit";
-+				reg = <0xc00000 0x1400000>;
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-index f623bce075ce6ea4..d9e01967acc471b8 100644
---- a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-+++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sd.dtso
-@@ -9,15 +9,11 @@
- 
- / {
- 	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
--
--	fragment@0 {
--		target-path = "/soc/mmc@11230000";
--		__overlay__ {
--			bus-width = <4>;
--			max-frequency = <52000000>;
--			cap-sd-highspeed;
--			status = "okay";
--		};
--	};
- };
- 
-+&{/soc/mmc@11230000} {
-+	bus-width = <4>;
-+	max-frequency = <52000000>;
-+	cap-sd-highspeed;
-+	status = "okay";
-+};
--- 
-2.34.1
+To repeat what I've said in previous versions, work with others to 
+define a common fan and fan controller binding. Otherwise, anything new 
+with fan related properties is simply going to be rejected.
 
+Rob
