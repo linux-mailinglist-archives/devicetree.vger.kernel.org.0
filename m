@@ -2,134 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47E2E785530
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72643785543
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 12:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231626AbjHWKR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 06:17:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42744 "EHLO
+        id S233173AbjHWKSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 06:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232870AbjHWKR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:17:26 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73831735
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:16:55 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a1132b685so3542197a12.1
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 03:16:55 -0700 (PDT)
+        with ESMTP id S232892AbjHWKSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 06:18:54 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EFB110F;
+        Wed, 23 Aug 2023 03:18:26 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bcc14ea414so42927821fa.0;
+        Wed, 23 Aug 2023 03:18:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692785793; x=1693390593;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PkhmhhTWHkeRQp2PPUUxTCXWp1T0OTe7aVdp4fg5upo=;
-        b=LO6EWlz79jJJ9v/UQCg4OZKmPJO9+j6QHM1tngs1xZjP73VY2yTNyozqbCEjmHkgOJ
-         /I25kU9siRPAlFrz9dpUhrfTb7C4hK1nJcapsvmczx4ZFMRu+Id4skeNROqiKQ5j7fC1
-         ZyyN0rEkpFnovXZ/Y9YFpI+20NzFPUlKW8oib55lhQS8AfgOyDR1cSStWeGIk4mOE/f8
-         e8jk+ITZo8/vSFO72g6rBQt9NS7/HQQrfF/hlcYS6bEX+Ay7j17UK9K0sHHCYLh/aFQD
-         moxfheS5gy+jsjw+9CZRAFxsIYJOD76OVSKpIkrcpc8QGv+VCkZ89LVZ+6AtV/ge1cjC
-         e99w==
+        d=gmail.com; s=20221208; t=1692785901; x=1693390701;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VqL5rT9eEMblIWm5xVmqZIjJ0FlOc2kYm22GUWTmiYk=;
+        b=HNDUKkfJaUEFjMYiqpjdXpKcZSsIvetBHsmIj42xNserRXHDTdZt++QkK6eZLxwiyl
+         Wd8YwakK6pmKA6Bh2KfbMYd/rZELG+zHiaBnqWr4kc000B2mfKw5LVov2d14oYqe1SAd
+         Oqdb26pKt7oAU+SSyMZhNbwc1o3jPmp0PZd5+WGeWIaHi5zSIudjvHfCdwP0xzMJbBRS
+         4kWfy6wc+yvqpn2PgkN1OJCFDXs/MUjkXXKIVUlAVXCClUPVSp9FnNZ/Sn3tg1XhWBtR
+         iHSZ8aipFwh7f0CW014a6duvHAUULf3Hrr87mdPmdxXZiCGVkE80fcQa6q7wQZ/zCSzX
+         pibg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692785793; x=1693390593;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PkhmhhTWHkeRQp2PPUUxTCXWp1T0OTe7aVdp4fg5upo=;
-        b=kqwn6+OAQD9O/bQL/qGUCuK1YYQcFHAxG0S6oujPHiidvEwKljTZGM6QVeIyF5sZ+m
-         ouF7SzY4r4Hj32g+MbYacIQyka78GxeHqSDAWXUwYl+KUPc9JlbQJcIZRPp6MJq5xvXg
-         btKZLh/zF3C761tBgJDgZp3+sAWAWBuP62YkasXFzGOhtWlrLwqNyWBhkxQH87R6mtnr
-         3m6+m/4HTxLM9kggRrNFVMPG3rT3MWgNsdXO0N37yrt3kJEjJf2i4bZ3rfa7/Nwq6+Cu
-         8HeKPQDpstee9K8kbvMYHISYwunWC2RvUZBB+9TQfTbfNHmM8gpElAyiRr8b51kiOuro
-         ghuA==
-X-Gm-Message-State: AOJu0Yw6FgB3Icmh+7jqrDTioee1RXKbvpEfkZxqQjOKDxTrYkHh7Yz4
-        HqvmsXfQLrPOl+avSuVq66C3Zw==
-X-Google-Smtp-Source: AGHT+IG4cl/3Fz/QSS2cl3WXZt2VKfaSb/kNTKY6FTxfUyaMgKaOK/vEjbIWyu1Ae6CwwBgVchcQyg==
-X-Received: by 2002:a05:6402:1614:b0:522:1e2f:fa36 with SMTP id f20-20020a056402161400b005221e2ffa36mr8763754edv.28.1692785793520;
-        Wed, 23 Aug 2023 03:16:33 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id i15-20020a50fc0f000000b0051e1660a34esm9063699edr.51.2023.08.23.03.16.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 03:16:32 -0700 (PDT)
-Message-ID: <61b9e036-7864-65c6-d43b-463fff896ddc@linaro.org>
-Date:   Wed, 23 Aug 2023 12:16:28 +0200
+        d=1e100.net; s=20221208; t=1692785901; x=1693390701;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VqL5rT9eEMblIWm5xVmqZIjJ0FlOc2kYm22GUWTmiYk=;
+        b=Q8toiBezACF8PIYKAwN7XGwB4VJ+4N3XIJHA81zLXJ+fBlT7EnTl7xOlRVqq7TfcEL
+         gkpj+66z+YmeZGNuQ3E5ezLYbtWyzF25nfXKSkPrHrhs3yWNrlKWeURrMbbAsW4bRHOu
+         ltS0k2yx90JgS4jbtTqvGBdt0mLHXIpdsnRnRSFj5JeNiS2nTdtUsfcnyBkXialdZpOO
+         J0xzf9c5B3s1KGV4TQbb3hkNbyyIagASsCSpSz2b4IYMS+v6xVRs2zmlYG0CjlQmUwVF
+         ntJVYV3Wghksn26D5mqCEmckaAHDCUeBpBtbJ+e3QyJ5lGs5LifpC5lDZhoegf3mN6YK
+         su3g==
+X-Gm-Message-State: AOJu0YwobsbIynWArqMEjkj+AYqWzX6/X30IMXHOxLyKSScglFfJ/34g
+        4TdQfgW2rQl31DLyD1cePPA=
+X-Google-Smtp-Source: AGHT+IEPb0bWjvtUox2YlnaFpYYVWtBz4DJSg+0KR2D2AjzmNwne7OVOOBuO2ksy3Ds0kihqI9k2rQ==
+X-Received: by 2002:a2e:6e10:0:b0:2b9:cb50:7043 with SMTP id j16-20020a2e6e10000000b002b9cb507043mr9623503ljc.2.1692785900680;
+        Wed, 23 Aug 2023 03:18:20 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id w17-20020a05651c103100b002b6ee99fff2sm3163983ljm.34.2023.08.23.03.18.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Aug 2023 03:18:20 -0700 (PDT)
+Date:   Wed, 23 Aug 2023 13:18:18 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v19 01/19] PCI: Add INTx Mechanism Messages macros
+Message-ID: <iutmgdc4ux7bnbfvl6bqtyifxw6kytx2pge66pvsbhe2tzisrm@wjsp5aahbymc>
+References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
+ <20230823091153.2578417-2-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 29/42] dt-bindings: rtc: Add ST M48T86
-Content-Language: en-US
-To:     nikita.shubin@maquefel.me,
-        Hartley Sweeten <hsweeten@visionengravers.com>,
-        Lennert Buytenhek <kernel@wantstofly.org>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Lukasz Majewski <lukma@denx.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Mark Brown <broonie@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Damien Le Moal <dlemoal@kernel.org>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Andy Shevchenko <andy@kernel.org>,
-        Michael Peters <mpeters@embeddedTS.com>,
-        Kris Bahnsen <kris@embeddedTS.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
-        netdev@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-ide@vger.kernel.org,
-        linux-input@vger.kernel.org, alsa-devel@alsa-project.org
-References: <20230605-ep93xx-v3-0-3d63a5f1103e@maquefel.me>
- <20230605-ep93xx-v3-29-3d63a5f1103e@maquefel.me>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230605-ep93xx-v3-29-3d63a5f1103e@maquefel.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230823091153.2578417-2-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/07/2023 13:29, Nikita Shubin via B4 Relay wrote:
-> From: Nikita Shubin <nikita.shubin@maquefel.me>
+On Wed, Aug 23, 2023 at 06:11:35PM +0900, Yoshihiro Shimoda wrote:
+> Add "Message Routing" and "INTx Mechanism Messages" macros to enable
+> a PCIe driver to send messages for INTx Interrupt Signaling.
 > 
-> Add YAML bindings for ST M48T86 / Dallas DS12887 RTC.
+> The "Message Routing" is from Table 2-17, and the "INTx Mechanism
+> Messages" is from Table 2-18 on the PCI Express Base Specification,
+> Rev. 4.0 Version 1.0.
 > 
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  drivers/pci/pci.h | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+> 
+> diff --git a/drivers/pci/pci.h b/drivers/pci/pci.h
+> index a4c397434057..0b6df6c2c918 100644
+> --- a/drivers/pci/pci.h
+> +++ b/drivers/pci/pci.h
+> @@ -13,6 +13,24 @@
+>  
+>  #define PCIE_LINK_RETRAIN_TIMEOUT_MS	1000
+>  
+> +/* Message Routing (r[2:0]) */
 
+> +#define PCI_MSG_TYPE_R_ROUTING_RC	0
+> +#define PCI_MSG_TYPE_R_ROUTING_ADDR	1
+> +#define PCI_MSG_TYPE_R_ROUTING_ID	2
+> +#define PCI_MSG_TYPE_R_ROUTING_BC	3
+> +#define PCI_MSG_TYPE_R_ROUTING_LOCAL	4
+> +#define PCI_MSG_TYPE_R_ROUTING_GATHER	5
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I've just noticed. Using "R" and "Routing" simultaneously is
+redundant since "R" means routing. Just "R" would be enough.
+Thus PCI_MSG_TYPE_R_* would mean the R[2:0] subfield of the Message
+(Msg/MsgD) TLPs and we would shorten out the name length.
 
-Best regards,
-Krzysztof
+-Serge(y)
 
+> +
+> +/* INTx Mechanism Messages */
+> +#define PCI_MSG_CODE_ASSERT_INTA	0x20
+> +#define PCI_MSG_CODE_ASSERT_INTB	0x21
+> +#define PCI_MSG_CODE_ASSERT_INTC	0x22
+> +#define PCI_MSG_CODE_ASSERT_INTD	0x23
+> +#define PCI_MSG_CODE_DEASSERT_INTA	0x24
+> +#define PCI_MSG_CODE_DEASSERT_INTB	0x25
+> +#define PCI_MSG_CODE_DEASSERT_INTC	0x26
+> +#define PCI_MSG_CODE_DEASSERT_INTD	0x27
+> +
+>  extern const unsigned char pcie_link_speed[];
+>  extern bool pci_early_dump;
+>  
+> -- 
+> 2.25.1
+> 
