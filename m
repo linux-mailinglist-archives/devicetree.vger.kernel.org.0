@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5FE7854B0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A547854B2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Aug 2023 11:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236123AbjHWJ4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 05:56:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51332 "EHLO
+        id S236131AbjHWJ4W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 05:56:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236252AbjHWJ4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:56:08 -0400
+        with ESMTP id S236265AbjHWJ4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 05:56:09 -0400
 Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F362A268F
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:55:01 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9816F26B2
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 02:55:03 -0700 (PDT)
 Received: from loongson.cn (unknown [112.20.109.102])
-        by gateway (Coremail) with SMTP id _____8DxBfFz1+Vkci4bAA--.55702S3;
-        Wed, 23 Aug 2023 17:54:59 +0800 (CST)
+        by gateway (Coremail) with SMTP id _____8Bxyep11+Vkei4bAA--.46130S3;
+        Wed, 23 Aug 2023 17:55:01 +0800 (CST)
 Received: from localhost.localdomain (unknown [112.20.109.102])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxF81s1+VkLT1hAA--.37275S4;
-        Wed, 23 Aug 2023 17:54:59 +0800 (CST)
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxF81s1+VkLT1hAA--.37275S5;
+        Wed, 23 Aug 2023 17:55:00 +0800 (CST)
 From:   Binbin Zhou <zhoubinbin@loongson.cn>
 To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
         Huacai Chen <chenhuacai@loongson.cn>,
@@ -30,93 +30,151 @@ Cc:     Huacai Chen <chenhuacai@kernel.org>,
         loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
         loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
         Hongliang Wang <wanghongliang@loongson.cn>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 2/7] dt-bindings: loongarch: Add Loongson SoC boards compatibles
-Date:   Wed, 23 Aug 2023 17:54:50 +0800
-Message-Id: <0440d9437bcee66cf7ff5b7d8520da98a57829e9.1692783907.git.zhoubinbin@loongson.cn>
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 3/7] LoongArch: Allow device trees to be built into the kernel
+Date:   Wed, 23 Aug 2023 17:54:51 +0800
+Message-Id: <3e69929008c8190cff331941dd4d34f748e5e44a.1692783907.git.zhoubinbin@loongson.cn>
 X-Mailer: git-send-email 2.39.3
 In-Reply-To: <cover.1692783907.git.zhoubinbin@loongson.cn>
 References: <cover.1692783907.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxF81s1+VkLT1hAA--.37275S4
+X-CM-TRANSID: AQAAf8CxF81s1+VkLT1hAA--.37275S5
 X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7Cw4xKFyDZF47Gr4fKFWUKFX_yoW8Xw1UpF
-        43Ca47Kr4xKF17u393Xa48Aw4rZr95Ca42qF47JryDKayDXayFvw4ak34DZF47Aw4rtay7
-        XFy8Wr45KFWUCwcCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
+X-Coremail-Antispam: 1Uk129KBj93XoWxuF1kCFy7JF43Ar1fAryfZrc_yoWrGryfp3
+        srAw4kJr4kGr97tr92qrZ5WrZ8Jrs7Cw12q3W2yFy0kr17Xr10vw4Iqr9rZF1UGws5J3y0
+        gryrKa4agF4UJabCm3ZEXasCq-sJn29KB7ZKAUJUUUUx529EdanIXcx71UUUUU7KY7ZEXa
         sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-        0xBIdaVrnRJUUUBIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        0xBIdaVrnRJUUUBSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
         IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-        0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-        xVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
-        AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWU
-        tVWrXwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7V
-        AKI48JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY
-        6r1j6r4UMxCIbckI1I0E14v26r126r1DMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7
-        xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xII
-        jxv20xvE14v26ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw2
-        0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
-        67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8_gA5UUUUU==
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
+        wI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
+        xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
+        Jw0_WrylYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2
+        Ij64vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Y
+        z7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x
+        8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE
+        2Ix0cI8IcVAFwI0_Xr0_Ar1lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42
+        xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
+        7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU28nYUUUUU
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Loongson SoC boards binding with DT schema format using json-schema.
+Some systems do not provide a useful device tree to the kernel at boot
+time. Let's keep a device tree table in the kernel, keyed by the dts
+filename, containing the relevant DTBs.
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+Signed-off-by: Huacai Chen <chenhuacai@loongson.cn>
 ---
- .../bindings/loongarch/loongson.yaml          | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/loongarch/loongson.yaml
+ arch/loongarch/Kconfig           | 16 ++++++++++++++++
+ arch/loongarch/Makefile          | 10 ++++++++--
+ arch/loongarch/boot/dts/Makefile |  3 +--
+ arch/loongarch/kernel/setup.c    |  9 +++++++--
+ 4 files changed, 32 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/loongarch/loongson.yaml b/Documentation/devicetree/bindings/loongarch/loongson.yaml
-new file mode 100644
-index 000000000000..e1a4a97b7576
---- /dev/null
-+++ b/Documentation/devicetree/bindings/loongarch/loongson.yaml
-@@ -0,0 +1,34 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/loongarch/loongson.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
+index 46b4c217da14..61febadd4fce 100644
+--- a/arch/loongarch/Kconfig
++++ b/arch/loongarch/Kconfig
+@@ -326,6 +326,22 @@ config 64KB_3LEVEL
+ 
+ endchoice
+ 
++config BUILTIN_DTB
++	bool "Enable builtin dtb in kernel"
++	depends on OF
++	help
++	  Some systems do not provide a useful device tree to the kernel at boot
++	  time. Let's keep a device tree table in the kernel, keyed by the dts
++	  filename, containing the relevant DTBs.
 +
-+title: Loongson SoC-based boards
++config BUILTIN_DTB_NAME
++	string "Source file for LoongArch builtin dtb"
++	depends on BUILTIN_DTB
++	help
++	  Base name (without suffix, relative to arch/loongarch/boot/dts/)
++	  for the DTS file that will be used to produce the DTB linked into the
++	  kernel.
 +
-+maintainers:
-+  - Binbin Zhou <zhoubinbin@loongson.cn>
+ config CMDLINE
+ 	string "Built-in kernel command line"
+ 	help
+diff --git a/arch/loongarch/Makefile b/arch/loongarch/Makefile
+index fb0fada43197..abaa3df9fd6f 100644
+--- a/arch/loongarch/Makefile
++++ b/arch/loongarch/Makefile
+@@ -5,7 +5,8 @@
+ 
+ boot	:= arch/loongarch/boot
+ 
+-KBUILD_DEFCONFIG := loongson3_defconfig
++KBUILD_DEFCONFIG		:= loongson3_defconfig
++KBUILD_DTBS			:= dtbs
+ 
+ image-name-y			:= vmlinux
+ image-name-$(CONFIG_EFI_ZBOOT)	:= vmlinuz
+@@ -140,11 +141,14 @@ PHONY += vdso_install
+ vdso_install:
+ 	$(Q)$(MAKE) $(build)=arch/loongarch/vdso $@
+ 
+-all:	$(notdir $(KBUILD_IMAGE))
++all:	$(notdir $(KBUILD_IMAGE)) $(KBUILD_DTBS)
+ 
+ vmlinux.elf vmlinux.efi vmlinuz.efi: vmlinux
+ 	$(Q)$(MAKE) $(build)=$(boot) $(bootvars-y) $(boot)/$@
+ 
++# device-trees
++core-y += arch/loongarch/boot/dts/
 +
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: Loongson-2K0500 processor based boards
-+        items:
-+          - const: loongson,ls2k0500-ref
-+          - const: loongson,ls2k0500
+ install:
+ 	$(Q)install -D -m 755 $(KBUILD_IMAGE) $(INSTALL_PATH)/$(image-name-y)-$(KERNELRELEASE)
+ 	$(Q)install -D -m 644 .config $(INSTALL_PATH)/config-$(KERNELRELEASE)
+@@ -152,5 +156,7 @@ install:
+ 
+ define archhelp
+ 	echo '  install              - install kernel into $(INSTALL_PATH)'
++	echo '  dtbs                 - Device-tree blobs for enabled boards'
++	echo '  dtbs_install         - Install dtbs to $(INSTALL_DTBS_PATH)'
+ 	echo
+ endef
+diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
+index 5f1f55e911ad..1e24cdb5180a 100644
+--- a/arch/loongarch/boot/dts/Makefile
++++ b/arch/loongarch/boot/dts/Makefile
+@@ -1,4 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-dtstree	:= $(srctree)/$(src)
+ 
+-dtb-y := $(patsubst $(dtstree)/%.dts,%.dtb, $(wildcard $(dtstree)/*.dts))
++obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
+diff --git a/arch/loongarch/kernel/setup.c b/arch/loongarch/kernel/setup.c
+index 7783f0a3d742..e5008890beda 100644
+--- a/arch/loongarch/kernel/setup.c
++++ b/arch/loongarch/kernel/setup.c
+@@ -296,8 +296,13 @@ static void __init fdt_setup(void)
+ 	if (acpi_os_get_root_pointer())
+ 		return;
+ 
+-	/* Look for a device tree configuration table entry */
+-	fdt_pointer = efi_fdt_pointer();
++	/* We prefer to try to use built-in dtb, checking its legality first. */
++	if (!fdt_check_header(__dtb_start))
++		fdt_pointer = __dtb_start;
++	else
++		/* Fallback to efi dtb, when built-in dtb is not available. */
++		fdt_pointer = efi_fdt_pointer();
 +
-+      - description: Loongson-2K1000 processor based boards
-+        items:
-+          - const: loongson,ls2k1000-ref
-+          - const: loongson,ls2k1000
-+
-+      - description: Loongson-2K2000 processor based boards
-+        items:
-+          - const: loongson,ls2k2000-ref
-+          - const: loongson,ls2k2000
-+
-+additionalProperties: true
-+
-+...
+ 	if (!fdt_pointer || fdt_check_header(fdt_pointer))
+ 		return;
+ 
 -- 
 2.39.3
 
