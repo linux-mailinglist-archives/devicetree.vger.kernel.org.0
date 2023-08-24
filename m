@@ -2,80 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DC57875BA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C0907875C0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234332AbjHXQmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 12:42:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47980 "EHLO
+        id S239036AbjHXQnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 12:43:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238164AbjHXQlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:41:50 -0400
+        with ESMTP id S242739AbjHXQnM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:43:12 -0400
 Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D82FF1FC4
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:41:26 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so931328766b.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:41:26 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7B819B0
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:42:44 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdcade7fbso883370066b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:42:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692895284; x=1693500084;
+        d=linaro.org; s=google; t=1692895360; x=1693500160;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0FS7EMFMBMQsa9I3u4Ml+77nFwK7hyqXErIxoUJnqC0=;
-        b=X0DN9LnAboT/3gx1J+Zds4OhktoyfAeJD8iTd6M/fgKPT6287EoXGlW8fFNIfHZcXa
-         wXhNDXqpbszGLJyHYuilg/P0tcUTs+VZkSXfzrKofd0E6Up0V534lvzaBx7Ga/blUol4
-         Bf9hgCXKulKGIvzssb+BjpfAIA6rcr1NSq6Y+3BTYC2QFuDUULVoBepILOUeE3mUxbuq
-         InJo7gxcayRrzfu4IFM8OupZhZaIjV0DXrWm+HKChVHIV5Wtw2ttRLj/lJNeFloYyiH6
-         XsnGE1EQuovXLp814r1Te9bngN2Z/X37fi8uohIqrtFwaN3cf2VvbKAe3c+G6bWKPGi9
-         Jk6A==
+        bh=FRVTXGz++H59+3nilaNeFjWdjJ3kSI1rYdkOaYMbR6Q=;
+        b=OWz1mxqSKTG4Ws2n2ob+Ev6MkMfo5kvPd3Rs+GO1KhxPkDJOulx9VXNWBvJLPLkCsU
+         vf1r9HBJ5D759cqH5P8/XIaC5Zi3iLuWfNwj/3paWaicMP2kH6PMY7W67o6LOtJqnrq3
+         fjYrHJ1/LnQveippW69F7alZZqB/5sBGxBtgV8NPsMGumtmU1IDbT1TPwfeLmfYBAZdg
+         YVpbR9YS0hP4SwlX/ygDqBrEJCOEfBy3pqdNdEZXaTVVX/BH5ZLvxHqwSItHJF4Dy1KD
+         0xNjyXq7JDoPFVnY10J1oUSTaZlPfFTn399TpLVCBNwssIRB5a2zX78ZRbjmRPz/EEWD
+         qy9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692895284; x=1693500084;
+        d=1e100.net; s=20221208; t=1692895360; x=1693500160;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0FS7EMFMBMQsa9I3u4Ml+77nFwK7hyqXErIxoUJnqC0=;
-        b=ZF7nmQdiZkS0/I59i9YVMiIRxN8Lgw3rtLhy5DCsz0M7ODjDb8wcsb1Uhku/2Weeoh
-         Cl4JZ2T33xNKn6j3e69U+DIhW7WrjpgvziJ4fSdo/DXjYcAypcA7+NjdJrzA5OvSzAze
-         RV63g8iLSgFLa2+FbvifyVuSuBkzKJK8u/dpQVZ+zJ8YOcPwxs3xbYgzaZIOmpybDLJC
-         EVrETW6yT6ZppcCwsEm3cyRYI5yZdvM4o8XV6QDLq6TcJZXP4rp/2OvVh6HhivduG3dU
-         x9i5vy3sOG7Ox/W6dFluoeSH7prBJdtO0GQheTXeiPvcOQWfTSnmzYMtp3f1ZOTg444F
-         DsoQ==
-X-Gm-Message-State: AOJu0Ywe/3+dNwClSIkkgH6RtguwUM/axffWlV6D2UIDvAzFRCMqEwY8
-        m3ElAAqqDN2hmKvw4kPXC7/e5Q==
-X-Google-Smtp-Source: AGHT+IFNDVZV8EP0tO0tc1x5A4DMe/DGuNQHRROlfMng9ccWPr0BEmNVEmkQRSSovqIKaayywtoCVw==
-X-Received: by 2002:a17:906:31c1:b0:99c:fb44:d4b6 with SMTP id f1-20020a17090631c100b0099cfb44d4b6mr11640073ejf.62.1692895284201;
-        Thu, 24 Aug 2023 09:41:24 -0700 (PDT)
+        bh=FRVTXGz++H59+3nilaNeFjWdjJ3kSI1rYdkOaYMbR6Q=;
+        b=aWXJkQ99tM3mOUfVweK/09guX5iBxi2HpXCWbQwFnCalv2AllKVcYtFiND1nm9GLzk
+         aj9tCBXO4eg/mQkpSfUej1iVCa6Vv8aGtfTySPLCWRs7TSfPwtREOQuojOpjqZ3faUov
+         v3CDDAN0VfgRwQIYTLKr6imzx6ZVb58RX7W2e7YI8qhVThGqZQifu1MxuG8lN2SQhcc+
+         pX4xgWl9neieMf5cycwwFotRuUw6XpwC/hcQZOSpXZETL/GdAM+064grsvYFNK0+spU8
+         cWra8E5ZL7OykvpX6MTHbQ07/09KtOWn0BDq0E1SA/53oR3J+EXDljn5O3PtavbWJ+jf
+         R+wA==
+X-Gm-Message-State: AOJu0YwS5Qd02y+LJkGxSC/exp9aOCmwnRyII6p1spYHX/A0E6Ky8Aa6
+        24gvOGq51kIYuvFKt29vDMu2HQ==
+X-Google-Smtp-Source: AGHT+IF6dqWQ4k0Xod7n5CRdbTReJzNMx54la11pA1FVG0NFk2R7/E+0l/ShfQPPpCjJ/TVSTT1tSw==
+X-Received: by 2002:a17:907:77c4:b0:993:d536:3cb7 with SMTP id kz4-20020a17090777c400b00993d5363cb7mr12802741ejc.11.1692895360669;
+        Thu, 24 Aug 2023 09:42:40 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id kf18-20020a17090776d200b0098748422178sm11086669ejc.56.2023.08.24.09.41.23
+        by smtp.gmail.com with ESMTPSA id o15-20020a1709061b0f00b00985ed2f1584sm11172780ejg.187.2023.08.24.09.42.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 09:41:23 -0700 (PDT)
-Message-ID: <79c6a70b-47f1-b625-46a5-617b895ded91@linaro.org>
-Date:   Thu, 24 Aug 2023 18:41:22 +0200
+        Thu, 24 Aug 2023 09:42:40 -0700 (PDT)
+Message-ID: <78007d9e-99ef-0922-2198-83e8c674b82c@linaro.org>
+Date:   Thu, 24 Aug 2023 18:42:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3] dt-bindings: irqchip: convert st,stih407-irq-syscfg to
- DT schema
+Subject: Re: [PATCH v2 2/3] arm64: dts: imx93: add dma support for
+ lpuart[1..9]
 Content-Language: en-US
-To:     =?UTF-8?Q?Rapha=c3=abl_Gallais-Pou?= <rgallaispou@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-References: <20230823224453.126963-1-rgallaispou@gmail.com>
- <20230824134828.GA683810-robh@kernel.org>
- <530e8caf-a7ad-4c82-ab1b-58b728770703@gmail.com>
+To:     Frank Li <Frank.Li@nxp.com>, festevam@gmail.com
+Cc:     clin@suse.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
+        eagle.zhou@nxp.com, imx@lists.linux.dev, joy.zou@nxp.com,
+        kernel@pengutronix.de, krzysztof.kozlowski+dt@linaro.org,
+        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
+        linux-imx@nxp.com, linux-kernel@vger.kernel.org,
+        pierre.gondois@arm.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, shenwei.wang@nxp.com, sherry.sun@nxp.com
+References: <20230824163922.2952403-1-Frank.Li@nxp.com>
+ <20230824163922.2952403-5-Frank.Li@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <530e8caf-a7ad-4c82-ab1b-58b728770703@gmail.com>
+In-Reply-To: <20230824163922.2952403-5-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,24 +81,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 18:32, Raphaël Gallais-Pou wrote:
->>> +  st,invert-ext:
->>> +    description: External IRQs can be inverted at will. This property inverts
->>> +      these IRQs using bitwise logic.
->>
->> So this is a mask?
+On 24/08/2023 18:39, Frank Li wrote:
+> Add dma support for lpuart[1..9].
 > 
-> Of course, I did not had clarity given the hour I sent this, but it is 
-> indeed a bitmask.
->>
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [ 1, 2, 4]
->>
->> If so, then this is wrong if you want to set more than 1 bit.
-> So knowing this is a mask, it can take any integer between 1 and 4 in 
-> our case.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index acdca18673b7..849543d35ed7 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -336,6 +336,8 @@ lpuart1: serial@44380000 {
+>  				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX93_CLK_LPUART1_GATE>;
+>  				clock-names = "ipg";
+> +				dmas = <&edma1 16 0 0>, <&edma1 17 0 1>;
+> +				dma-names = "tx", "rx";
+>  				status = "disabled";
+>  			};
+>  
+> @@ -345,6 +347,8 @@ lpuart2: serial@44390000 {
+>  				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX93_CLK_LPUART2_GATE>;
+>  				clock-names = "ipg";
+> +				dmas = <&edma1 18 0 0>, <&edma1 19 0 1>;
+> +				dma-names = "tx", "rx";
+>  				status = "disabled";
+>  			};
+>  
+> @@ -666,6 +670,8 @@ lpuart3: serial@42570000 {
+>  				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
+>  				clocks = <&clk IMX93_CLK_LPUART3_GATE>;
+>  				clock-names = "ipg";
+> +				dmas = <&edma2 17 0 0>, <&edma2 18 0 1>;
+> +				dma-names = "tx","rx";
 
-No, 1 + 4 = 5. *more than 1 bit*
+Missing space after ,
 
 Best regards,
 Krzysztof
