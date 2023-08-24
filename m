@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EEB57867BA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E90D07867D6
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240184AbjHXGrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 02:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54198 "EHLO
+        id S238670AbjHXGwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 02:52:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240045AbjHXGrq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:47:46 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADDB9101
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:47:44 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so479258466b.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:47:44 -0700 (PDT)
+        with ESMTP id S240186AbjHXGvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:51:01 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10F9BE59
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:50:59 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-529fb2c6583so6132169a12.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:50:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692859663; x=1693464463;
+        d=linaro.org; s=google; t=1692859857; x=1693464657;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rWyCqPmgJ3hv088pfINrZgnv5A96Iv0KRz5jP4Vn3gE=;
-        b=Q1YxpQjwCSojzu8J7+jwEuQ5tsa8M8oZ/+fvYjx8tgyKlcSZKO1lJZAFcjvoM1qP7B
-         YWGXCzpqecdVLPDMIfxvovI6TgUmHg+AZfaarnDtkhGHEYwHNLnZiQPOBWF/1ENdHUyQ
-         2XjKvZVXv1XvXbx4xN0Sf3kp6r3muB35cVXIni3qM+o/6ipGnJPvAjuDS5hnIyUFT2H7
-         Haq9br+D7bFShH/PrPIu2fEDb9mUcZ8dyNkEqOh4iV+91xcMzLkMqboRXHt/5e3N02la
-         rpcHvpTLkZ32A48bPvzRmY+eqQFr4wGLscI2XdERPtvtRaIGrefupRoFbjFpxborNAN/
-         P2jw==
+        bh=BhmEfKLm2auvLzU1H0Y+LxP11/52EFLaIX+4lk/LSDc=;
+        b=uTd/E1u5tM2WP4N5gUw0ZdqO06dkIsLwIzV3VW59B30K7dsNk4+Wgsv/G/VNTusLV3
+         WzL44SI+wBc12C3TsBFHCT9z13n+cIfKa925OMquWlob3sVmkvhOiAdIl2bg5En25yAy
+         eizvtKqx7N0PElDsXtV19Yo93PqK3v9KfZI8y9korGVDqE0eOnSvcge7cjMBUgIXh0Ib
+         XByk9LhlJ1h/ipGeexkoz4snAwTBmFT+kTO8yEb51QProGbuHwkn19ElV7kSJVkwN5VR
+         dJlxE6xZ6H+WFjuMFM4S0e4uURIGa1rO+fleNSuxKtTzgz6qvzh/9mvfBG86R00HVwyw
+         F8XA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692859663; x=1693464463;
+        d=1e100.net; s=20221208; t=1692859857; x=1693464657;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rWyCqPmgJ3hv088pfINrZgnv5A96Iv0KRz5jP4Vn3gE=;
-        b=UXZZxGVIfcTKfsA3G81K1ihhc36B/iPLPeCq6IquspCmaoyFElIO3AMyYCZshdepua
-         cwtN4PN8ff6BIrfr5nAyGelWZimXSf+CjLIW9qBlQLJV4MN46Wci4lVBRRNzlKtHPQPP
-         X7GtLHz609X11lp2Ywrt+9qjbe79pXcheQ7qvzD6I+2LFfjMQ7kVy3qiaieFfjus+ZUS
-         whyVq9OAPnl5hu+cyxCdatgbKb682SlPh0Mmorsx3uR6UDOcQXR6zLiFSNcCf6cmk/C0
-         gWHebKdIaFtHHCKUSvvE034IbvGrWfxXnfvd4C7ED58Of6auHhxaDpUEpVQt3hSObOvZ
-         5FWg==
-X-Gm-Message-State: AOJu0YzsrenSbkU3pB6+ozGFN/IlqmvP8mvMnkqmMS9HKSadf4qClSsE
-        7QCb6VC4Hn2lJWt5F9BesgVjtg==
-X-Google-Smtp-Source: AGHT+IHfYRd2GZMGltUOIDuVqHLml+WqQhUAkxEy8QUA1nMKr5wWj9DOhrwgjT4jD06tdPeXmUeVIA==
-X-Received: by 2002:a17:906:53d9:b0:9a1:aa7b:482e with SMTP id p25-20020a17090653d900b009a1aa7b482emr5956781ejo.26.1692859663054;
-        Wed, 23 Aug 2023 23:47:43 -0700 (PDT)
+        bh=BhmEfKLm2auvLzU1H0Y+LxP11/52EFLaIX+4lk/LSDc=;
+        b=SHm9/eLPS66YDSbJbfLaRfVbdWcmcrUQZn2OU7LcK9VULWbcz9RsrT/N9Js+wEYADW
+         EtKyJUP/oFAfL0Nc0qkyA4IZ4R8oLmlb/hzdj4KEdk8ur/1JVB1Zma0J/e5WMfV7NT1+
+         uPhYPm0Q/qZzvZAiQIbymLH2kWTOUoypK+O0TiVFZewp54IJfMGc4oqTGHWu3emRJNgL
+         xd1G1/11oFxdVREbVRn877iWwNKtRFfmna/ggWlRkS4vFtNY6qAMR2l/csObiPuiQzxm
+         QBSeSU/SGzxeFkOAkdxUQq4zFe97vmS15VEwtsNnK2FDsaRbKS/FAQROQBwHHAfNcKjn
+         fJ+A==
+X-Gm-Message-State: AOJu0YxSge5Zm2IAeBv3H9n1jL3b9KsQ8vLJpJlZGMe885/vAgni9KFh
+        MO0xg05HvKdLhvxMK1ItTS3hPQ==
+X-Google-Smtp-Source: AGHT+IFKOvRo7+2xMvm/brGQ+qgng4Ksbl2gcHnXtNfV23t2a5eGx8+E9rqMZ5Gn8A/xmHc8/noUWg==
+X-Received: by 2002:a05:6402:505:b0:523:4922:c9c4 with SMTP id m5-20020a056402050500b005234922c9c4mr11878649edv.11.1692859857524;
+        Wed, 23 Aug 2023 23:50:57 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id i12-20020a1709061ccc00b00991e2b5a27dsm10595780ejh.37.2023.08.23.23.47.41
+        by smtp.gmail.com with ESMTPSA id c22-20020aa7c756000000b00522572f323dsm10023230eds.16.2023.08.23.23.50.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 23:47:42 -0700 (PDT)
-Message-ID: <d07213a9-6cf5-3577-a2c7-d0f2773a8247@linaro.org>
-Date:   Thu, 24 Aug 2023 08:47:41 +0200
+        Wed, 23 Aug 2023 23:50:57 -0700 (PDT)
+Message-ID: <3362bfaf-225b-0eb7-5219-9c2b365cafe5@linaro.org>
+Date:   Thu, 24 Aug 2023 08:50:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v6 4/5] net: ti: icssg-prueth: add packet timestamping and
- ptp support
+Subject: Re: [EXTERNAL] Re: [PATCH v6 1/5] dt-bindings: net: Add ICSS IEP
 Content-Language: en-US
-To:     MD Danish Anwar <danishanwar@ti.com>,
+To:     Md Danish Anwar <a0501179@ti.com>,
+        MD Danish Anwar <danishanwar@ti.com>,
         Randy Dunlap <rdunlap@infradead.org>,
         Roger Quadros <rogerq@kernel.org>,
         Simon Horman <simon.horman@corigine.com>,
@@ -75,14 +75,16 @@ Cc:     nm@ti.com, srk@ti.com, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, netdev@vger.kernel.org,
         linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230823113254.292603-1-danishanwar@ti.com>
- <20230823113254.292603-5-danishanwar@ti.com>
+ <20230823113254.292603-2-danishanwar@ti.com>
+ <d5a343c8-c384-6eea-94bf-e0c4f96e5fb0@linaro.org>
+ <a91e7db9-e442-acff-befd-2fa63e209b0a@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230823113254.292603-5-danishanwar@ti.com>
+In-Reply-To: <a91e7db9-e442-acff-befd-2fa63e209b0a@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,39 +92,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 13:32, MD Danish Anwar wrote:
-> From: Roger Quadros <rogerq@ti.com>
+On 24/08/2023 08:47, Md Danish Anwar wrote:
+> Hi Krzysztof,
 > 
-> Add packet timestamping TS and PTP PHC clock support.
+> On 24/08/23 12:13 pm, Krzysztof Kozlowski wrote:
+>> On 23/08/2023 13:32, MD Danish Anwar wrote:
+>>> Add a DT binding document for the ICSS Industrial Ethernet Peripheral(IEP)
+>>> hardware. IEP supports packet timestamping, PTP and PPS.
+>>>
+>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>
+>> Really? Where?
 > 
-> For AM65x and AM64x:
->  - IEP1 is not used
->  - IEP0 is configured in shadow mode with 1ms cycle and shared between
-> Linux and FW. It provides time and TS in number cycles, so special
-> conversation in ns is required.
->  - IEP0 shared between PRUeth ports.
->  - IEP0 supports PPS, periodic output.
->  - IEP0 settime() and enabling PPS required FW interraction.
->  - RX TS provided with each packet in CPPI5 descriptor.
->  - TX TS returned through separate ICSSG hw queues for each port. TX TS
-> readiness is signaled by INTC IRQ. Only one packet at time can be requested
-> for TX TS.
+> Conor gave his RB tag for patch 1 and 2 in v4
+> https://lore.kernel.org/all/20230814-quarters-cahoots-1fbd583baad9@spud/
+
+OK, My mistake, cover letter was not the place where I was looking for
+Conor's reviews...
+
+>>
+>>> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+>>
+>> Now you are making things up. Please stop faking tags.
 > 
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Co-developed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
-> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+> Roger provided his RB tag in v5 for all the patches
+> https://lore.kernel.org/all/5d077342-435f-2829-ba2a-cdf763b6b8e1@kernel.org/
+>>
+>>> Reviewed-by: Simon Horman <horms@kernel.org>
+>>
+>> Where?
+>>
+> 
+> Simon gave his RB tag for all the patches of this series in v5
+> https://lore.kernel.org/all/ZN9aSTUOT+SKESQS@vergenet.net/
 
-How patch author could review or not review its own code? How does it
-even work? I write a patch and for example judge - oh no, it is wrong,
-but I will still send it, just without my review. Or I write a patch -
-oh, I like it, I wrote excellent code, let me add review tag for my own
-code!
+OK, I still question though reviewing own code.
 
-> Reviewed-by: Simon Horman <horms@kernel.org>
-
-Where?
 
 
 Best regards,
