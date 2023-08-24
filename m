@@ -2,62 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D4B4B787A5C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 23:30:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6D657879C8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 23:00:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236050AbjHXVaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 17:30:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44974 "EHLO
+        id S243633AbjHXU7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 16:59:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243682AbjHXV3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 17:29:41 -0400
-X-Greylist: delayed 2093 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 24 Aug 2023 14:29:39 PDT
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3006::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 528FF1BCC
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 14:29:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202212; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=wfxs1fHWmILpiWBQJpId3QXIQEbM7IzZ2ByFhpiGuQ8=; b=Fp5+nh6xfRyvxmeAv1E5w5Rft3
-        KnDVEdzwZk0eJY6321z9Og0kEycAOQbVS4mJ3zd+luv7xfR9PG7MRvdVSBiaFFD+9CVAhOX0k/V47
-        y7Mt2ier0Q64vwL41fcVMj02oRfWhxuUH/pWmm0oyYYclvGe6dH3ATkf1nH5HcBkwBa94VYVmXX7/
-        InN5muZR7D739A0MO65alTbE+OyLazlSTihRR+zttYgROQ0hqpzsIsoVnQP5yZ7iJutfy1sZ9BZbJ
-        he0SGIZN6LKcMkb56LD/0NyZvvQivBcuQrIP1CKiG3aelzIPDh1isotHKRnyY0RPRS5KBYb5+gul7
-        JmGSEuBw==;
-Received: from [2a01:799:95f:2800:2fb5:c6db:11b1:a10f] (port=47942)
-        by smtp.domeneshop.no with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <noralf@tronnes.org>)
-        id 1qZHLn-00CJ5K-Nu;
-        Thu, 24 Aug 2023 22:54:43 +0200
-Message-ID: <43a910b6-2d91-cd4e-dd9e-e579bb41e447@tronnes.org>
-Date:   Thu, 24 Aug 2023 22:54:41 +0200
+        with ESMTP id S242778AbjHXU7W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 16:59:22 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E1121BC2;
+        Thu, 24 Aug 2023 13:59:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692910760; x=1724446760;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8DEArnJeuB0FcMiUzS3W+pvVFOIM+/0b2Mg5YZ+yJ4U=;
+  b=guvVqkeo3qgQ3vwQEg6ygBNtHfhMX/8rSEeMomXqnJAwEtAfNbzUtx5/
+   0aGPrVyv2aHfzPJ9OzViEbPrcuMNqLk2R6lYAiQM6If+C1FsKUbEvctOe
+   wEccIPkfceTJZnpvO/SKDZbJL6B9MNk/MjQo6lAUTMRzo4HPGFrr6moay
+   xTv1mMmPH3xCgUzkWz52F/EEd4/9QYgDQoayeBojJ6LQFCTa8JfCz68Uy
+   q5sLI9Lp4c0MIGPy6vjoHHubXMIoLAbTj1Yo0TNCo0Y0edNEXJGvFLyiH
+   e+Rp6vY/v8aPUL+YJwyK1zoGdtc7ZEa8X3PS0fQAnfPbxSc6NiuVRf4j8
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="374535716"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
+   d="scan'208";a="374535716"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2023 13:59:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="766702088"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
+   d="scan'208";a="766702088"
+Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
+  by orsmga008.jf.intel.com with ESMTP; 24 Aug 2023 13:59:15 -0700
+Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qZHQA-0002xc-1L;
+        Thu, 24 Aug 2023 20:59:14 +0000
+Date:   Fri, 25 Aug 2023 04:59:06 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+        Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Hanjun Guo <guohanjun@huawei.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Len Brown <lenb@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v1 1/1] amba: bus: balance firmware node reference
+ counting
+Message-ID: <202308250458.VwjoWF3t-lkp@intel.com>
+References: <20230824162654.2890992-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH V3 2/8] dt-bindings: display: panel: mipi-dbi-spi: add
- Saef SF-TC154B
-Content-Language: en-US
-To:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev
-Cc:     devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
-        heiko@sntech.de, uwu@icenowy.me, andre.przywara@arm.com,
-        daniel@ffwll.ch, airlied@gmail.com, sam@ravnborg.org,
-        neil.armstrong@linaro.org, samuel@sholland.org,
-        jernej.skrabec@gmail.com, wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>, noralf@tronnes.org
-References: <20230823212554.378403-1-macroalpha82@gmail.com>
- <20230823212554.378403-3-macroalpha82@gmail.com>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20230823212554.378403-3-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230824162654.2890992-1-andriy.shevchenko@linux.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,40 +76,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Andy,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on next-20230824]
+[cannot apply to rafael-pm/linux-next robh/for-next soc/for-next linus/master v6.5-rc7 v6.5-rc6 v6.5-rc5 v6.5-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/amba-bus-balance-firmware-node-reference-counting/20230825-003007
+base:   next-20230824
+patch link:    https://lore.kernel.org/r/20230824162654.2890992-1-andriy.shevchenko%40linux.intel.com
+patch subject: [PATCH v1 1/1] amba: bus: balance firmware node reference counting
+config: arm-randconfig-001-20230825 (https://download.01.org/0day-ci/archive/20230825/202308250458.VwjoWF3t-lkp@intel.com/config)
+compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
+reproduce: (https://download.01.org/0day-ci/archive/20230825/202308250458.VwjoWF3t-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308250458.VwjoWF3t-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/amba/bus.c:532:39: error: expected ')'
+     532 |         fwnode_handle_put(dev_fwnode(&d->dev);
+         |                                              ^
+   drivers/amba/bus.c:532:19: note: to match this '('
+     532 |         fwnode_handle_put(dev_fwnode(&d->dev);
+         |                          ^
+   1 error generated.
 
 
-On 8/23/23 23:25, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> The Saef SF-TC154B is a 1.54 inch 240x240 square panel with a MIPI DBI
-> compatible interface. The panel is used on the Anbernic RG-Nano
-> handheld gaming device.
-> 
-> The initialization of the panel requires a firmware binary which can
-> be made with the mipi-dbi-cmd[1] tool. The command sequence needed
-> can be found in both source[2] and binary form[3].
-> 
-> [1]: https://github.com/notro/panel-mipi-dbi
-> [2]: https://github.com/macromorgan/panel-mipi-dbi-firmware/raw/main/saef%2Csftc154b.txt
-> [3]: https://github.com/macromorgan/panel-mipi-dbi-firmware/raw/main/saef%2Csftc154b.bin
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
+vim +532 drivers/amba/bus.c
 
-Acked-by: Noralf Trønnes <noralf@tronnes.org>
+   527	
+   528	static void amba_device_release(struct device *dev)
+   529	{
+   530		struct amba_device *d = to_amba_device(dev);
+   531	
+ > 532		fwnode_handle_put(dev_fwnode(&d->dev);
+   533		if (d->res.parent)
+   534			release_resource(&d->res);
+   535		mutex_destroy(&d->periphid_lock);
+   536		kfree(d);
+   537	}
+   538	
 
->  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml    | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> index 2f0238b770eb..04cc5bfce051 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
-> @@ -66,6 +66,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - saef,sftc154b
->            - sainsmart18
->            - shineworld,lh133k
->        - const: panel-mipi-dbi-spi
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
