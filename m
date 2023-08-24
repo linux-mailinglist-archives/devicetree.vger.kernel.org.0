@@ -2,206 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 870537874FF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E3978750A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:17:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233594AbjHXQO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 12:14:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49188 "EHLO
+        id S239222AbjHXQRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 12:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242418AbjHXQN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:13:58 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5340C19A9;
-        Thu, 24 Aug 2023 09:13:50 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.02,195,1688396400"; 
-   d="scan'208";a="177560078"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 25 Aug 2023 01:13:49 +0900
-Received: from localhost.localdomain (unknown [10.226.93.115])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 02E9C4013DC0;
-        Fri, 25 Aug 2023 01:13:46 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] arm64: dts: renesas: rz-smarc-common: Use versa3 clk for audio mclk
-Date:   Thu, 24 Aug 2023 17:13:44 +0100
-Message-Id: <20230824161344.382188-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S242468AbjHXQQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:16:52 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B065A1BDB
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:16:47 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99c3c8adb27so905502766b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692893806; x=1693498606;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/tLvnwDOum/C7NqjeZ7WvB8PzqL6V7KZu8ifXgc/R3I=;
+        b=ErLDMrwMWUHzXBYMNr1tKPcG61iJdSIls2jHvL6v7OKr5jzMmaGMzKc1IoibYwan3/
+         ZJDF6qW+n5ZspYUEQkuOgI/Ck15ix2TFQ+sD3McDGh9LHC1/zFADzjtnpObSSEsIwR/y
+         SzohkoScuyz/of9kNxRCq7LkHPLShiXgZMid4j/bCi4G8rBWQCSoldkwnZuYRAWocqp/
+         0Iv3kgm43R6gxPqScSmryV+EfOGCiSYD1LL3EaA9oY6spZyZ9X2amf0UHHviSdszVOzh
+         Nw0FUf6eFeQCKZTHzBU5K0QGEs++2Cj8KqivHg6B8TM5yARUUojQXAcYbY9MdrFFojSb
+         mg5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692893806; x=1693498606;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/tLvnwDOum/C7NqjeZ7WvB8PzqL6V7KZu8ifXgc/R3I=;
+        b=Ksrti3p+GN1cG64f/wiz6Wuq7l0JJ/ln/K5LZH9UNyBirzPAYd56gIVAN0uYCfXuJz
+         jW6RM9WYnGY8ichCFBrRHQcC494C3vJ+2bYnlpeE5PAdSWpTmMd5OQnyq7xqD3ZwJBOF
+         kOa33DXhtDW2zGWA15jw6JYLBqRyRLocY+BwtCIVxmbyHY4HoDiFbgLLSD71TL3H5AbK
+         4NBqSNzEMpdfxIURbXlSvfI+vtF896dl1bQQzeMNsm/XZGrvCNAHzwksz/Of71GT/jpn
+         dDCSqeGyVOK8iseKfCgaPjXJTrNigpiDhIIEzDrDLx/2wpzXqdDn9Dwgpoe04YMSpcrG
+         d91g==
+X-Gm-Message-State: AOJu0YyvewXVX2FJu4YmFJq/JyrNn1vLeDFsRKe79pcF6Y8G4+8iokXY
+        rN98ko/ACWuvD0I4SR3jR7b16w==
+X-Google-Smtp-Source: AGHT+IGVYiqG8sxongGWVoLO3regR9d0PIYEfKPXZhPItNU2GX0VUHfAsgopHgYB6TbQsAmafzv+1g==
+X-Received: by 2002:a17:907:a066:b0:9a2:200:b694 with SMTP id ia6-20020a170907a06600b009a20200b694mr2101470ejc.11.1692893806151;
+        Thu, 24 Aug 2023 09:16:46 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id k20-20020a1709063e1400b00992b71d8f19sm11170893eji.133.2023.08.24.09.16.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Aug 2023 09:16:45 -0700 (PDT)
+Message-ID: <8d4e2110-4e43-06c4-126d-22c29050f13e@linaro.org>
+Date:   Thu, 24 Aug 2023 18:16:44 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/2] dt-bindings: misc: rohm,bm92txx: Add BM92Txx support
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     azkali <a.ffcc7@gmail.com>, Adam Jiang <chaoj@nvidia.com>,
+        CTCaer <ctcaer@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230824153059.212244-1-linkmauve@linkmauve.fr>
+ <20230824153059.212244-2-linkmauve@linkmauve.fr>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230824153059.212244-2-linkmauve@linkmauve.fr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently audio mclk uses a fixed clk of 11.2896MHz (multiple of 44.1kHz).
-Replace this fixed clk with the programmable versa3 clk that can provide
-the clocking to support both 44.1kHz (with a clock of 11.2896MHz) and
-48kHz (with a clock of 12.2880MHz), based on audio sampling rate for
-playback and record.
+On 24/08/2023 17:30, Emmanuel Gil Peyrot wrote:
+> The BM92T36 is used in the Nintendo Switch as its USB-C Power Delivery
+> controller.
+> 
+> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> ---
+>  .../bindings/misc/rohm,bm92txx.yaml           | 67 +++++++++++++++++++
+>  MAINTAINERS                                   |  5 ++
+>  2 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/rohm,bm92txx.yaml
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Made Versa3 clock mapping as per HW manual and updated clocks
-   property in codec_dai.
- * Replaced the node xtal->x1-clock and label x1_x2->x1 as x2 is a
-   different crystal.
- * Updated clock-frequency = <400000> for i2c0 node in RZ/G2UL SMARC EVK.
----
- .../boot/dts/renesas/rz-smarc-common.dtsi     | 14 +++++------
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 20 ++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 20 ++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 24 +++++++++++++++++++
- 4 files changed, 71 insertions(+), 7 deletions(-)
+That's not misc device but usb, so please put it in usb.
 
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index a7594ba3a998..b7a3e6caa386 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -32,12 +32,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	audio_mclock: audio_mclock {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <11289600>;
--	};
--
- 	snd_rzg2l: sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,format = "i2s";
-@@ -55,7 +49,7 @@ cpu_dai: simple-audio-card,cpu {
- 		};
- 
- 		codec_dai: simple-audio-card,codec {
--			clocks = <&audio_mclock>;
-+			clocks = <&versa3 2>;
- 			sound-dai = <&wm8978>;
- 		};
- 	};
-@@ -76,6 +70,12 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
- 		gpios-states = <1>;
- 		states = <3300000 1>, <1800000 0>;
- 	};
-+
-+	x1: x1-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
- };
- 
- &audio_clk1 {
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index 68eab8e26bf2..c05acd70f1fa 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -105,6 +105,26 @@ &i2c3 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 83fce96a2575..3c40b66b33b0 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -121,6 +121,26 @@ &i2c2 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-index 8eb411aac80d..dacf35c16648 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-@@ -20,6 +20,30 @@ &cpu_dai {
- 	sound-dai = <&ssi1>;
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+};
-+
- &i2c1 {
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
--- 
-2.25.1
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/rohm,bm92txx.yaml b/Documentation/devicetree/bindings/misc/rohm,bm92txx.yaml
+> new file mode 100644
+> index 000000000000..0322a7f096f0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/rohm,bm92txx.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2023 Emmanuel Gil Peyrot
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/rohm,bm92txx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: BM92Txx USB-C Power Delivery Controller
+> +
+> +maintainers:
+> +  - Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rohm,bm92t10
+> +      - rohm,bm92t20
+> +      - rohm,bm92t30
+> +      - rohm,bm92t36
+> +      - rohm,bm92t50
+
+Your driver suggests they are fully compatible.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  rohm,dp-signal-toggle-on-resume:
+> +    type: boolean
+> +    description: |
+> +      Do a toggle on resume instead of disable in suspend and enable in resume,
+> +      because this also disables the LED effects.
+
+That's OS policy, not suitable for DT. Drop the property.
+
+> +
+> +  rohm,led-static-on-suspend:
+> +    type: boolean
+> +    description: Dim or breathing dock LED.
+
+Ditto
+
+> +
+> +  rohm,dock-power-limit-disable:
+> +    type: boolean
+> +    description: Disable the power limit in dock mode.
+
+Your description copies property name, so it is not much useful. Why
+this is board-configurable?
+
+> +
+> +  rohm,dp-alerts-enable:
+> +    type: boolean
+> +    description: Enable DisplayPort alerts.
+
+Same questions.
+
+> +
+> +  rohm,pd-5v-current-limit-ma:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Use common property units.
+
+> +    default: 2000
+> +    description: Current limit in mA when voltage is 5V.
+> +
+
+You miss connector, so binding is incomplete. All these properties look
+duplicating connector properties.
+
+
+> +  rohm,pd-9v-current-limit-ma:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 2000
+> +    description: Current limit in mA when voltage is 9V.
+> +
+> +  rohm,pd-12v-current-limit-ma:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 1500
+> +    description: Current limit in mA when voltage is 12V.
+> +
+> +  rohm,pd-15v-current-limit-ma:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 1200
+> +    description: Current limit in mA when voltage is 15V.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+Missing example. You must have and it must be complete.
+
+Best regards,
+Krzysztof
 
