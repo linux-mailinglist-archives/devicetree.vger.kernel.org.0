@@ -2,111 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EEA787245
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 16:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFEF8787290
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 16:55:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236985AbjHXOw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 10:52:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38922 "EHLO
+        id S241557AbjHXOzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 10:55:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241714AbjHXOwB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 10:52:01 -0400
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2068.outbound.protection.outlook.com [40.107.21.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D15AA1;
-        Thu, 24 Aug 2023 07:51:58 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QvvkJiUPHY0gp7dhCdNEZA4qPhNH9HITHYcfBHg0slsC6qrDmAefTMy48aSaWw/mzkn4kZigjw1Gc9pLVKKj/FSSGp+JxQnyFg5Nypzao7qepPVsEC2K7KDHbRafdl46I85DCjgCYp5stN7h44B3WtgY5K2WPF75lc0ULnsMyJFSYYCswMozQh5J0fyjFIAN7kCiPQhM4yxAc+5clKrIRlCNNP27b5nPJb8u7nkql+qdcgzIUFAgUgAQb/FTuQCZuEhGyzfzW/5Qz60cQde33fJSdmxzSyx6h6svak+GSudDF1v4oroLxiUy9GAXSDoDmifYnWgD5d8yyZPl5Hp0OA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kzVhKj2YiMxGoP5EhsJIQ7mFqYkZQNz+J5Ltsjnfgh0=;
- b=G9+5ySWbX4EPoVIVErnf48PiZGiDHdWyG1xJJpeg2Df+oClxEPAPHy2pJLtP32xpQHQNCVvtIZ2DHKc3X6umFilN8mHfswYISSLM3oTwRp/ZuknSe97+0SCDMg2bU0yHCJdtWnpL2uDcYcIx9NV+8qyMmc9EeO6bvjvLLcuqA6OhBbrTXgowHwLbr7EgeWBHYIcSFwHPTfWpIxKElmw/mlpGUdZ533T1xLbLISoh9q1rmDRLlCUD0Vnlgg5iGndGLmmnhVuPR4sj3I9PWP31ixr126JCUUcOd9b98Z3iFS889BhNiyjRCwCLiBb9C/kaXqxZX7ImCvB8Ba1znfD1bw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kzVhKj2YiMxGoP5EhsJIQ7mFqYkZQNz+J5Ltsjnfgh0=;
- b=nswEW8iVaDmua19vl+ZkKD7Y0EJOGQjEQfgeSKCf7ihiQXa688ExnBYlmQeRVybOdYpYyaMWS8tRZVBSKlGanuj6A1/JRxmOzSIbAnxQSwGQDQfOsFgtNkUvjAJCEPVgSoNCYARX7icanFo8RZ8Enf0R9VPSdMIVVOdgVyTaz5c=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by PAXPR04MB9059.eurprd04.prod.outlook.com (2603:10a6:102:220::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 14:51:55 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::a680:2943:82d1:6aa8]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::a680:2943:82d1:6aa8%3]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 14:51:55 +0000
-Date:   Thu, 24 Aug 2023 10:51:41 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Randy Dunlap <rdunlap@infradead.org>
-Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
-        imx@lists.linux.dev, joy.zou@nxp.com, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, shenwei.wang@nxp.com, vkoul@kernel.org
-Subject: Re: [PATCH v2 1/1] MAINTAINERS: Add entries for NXP(Freescale) eDMA
- drivers
-Message-ID: <ZOdufcBktNwbvP8G@lizhi-Precision-Tower-5810>
-References: <20230824030454.2807336-1-Frank.Li@nxp.com>
- <2f664575-b821-2d10-0f0b-9ce443ba47a1@infradead.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2f664575-b821-2d10-0f0b-9ce443ba47a1@infradead.org>
-X-ClientProxiedBy: SJ0PR05CA0203.namprd05.prod.outlook.com
- (2603:10b6:a03:330::28) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S241917AbjHXOyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 10:54:50 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F258F19AD
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 07:54:47 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31c5327e5e8so651595f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 07:54:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692888886; x=1693493686;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mkAw/bivm1OGKzjaSsLX8nP7QHQBExerVYA8MZBISMY=;
+        b=lrBSCRCwwCFV0tQuVa7GVmAwI6r1yEuw7xAqRyOX1C427KUeSWUSX/F1ZsCwDzCaq7
+         s1S0LR1qK9q/YwFDa885VWWRy8iNRRnfaymnMqxR79SskbQdqEd3xpKbyIzMkM6bdCci
+         1u46jFW2FIYwyGWdYJ9HWRORrNo4RA4SJQQdFGi0MoXCfIx4KrOEByEpkDep8ISNWfnB
+         gRy5lMLNvW7ByMBB3sbKb1p1XtpTA4rfKN4yusY0l/vYQY3+JR08+he6xFUz2hintem0
+         8EhRttXtFQRoimFdyeIZDaNPqSYci0+SjuRqFlMp3BqAMbGvPpkDUfePfxv+gz68bTqv
+         xt3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692888886; x=1693493686;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mkAw/bivm1OGKzjaSsLX8nP7QHQBExerVYA8MZBISMY=;
+        b=cgxJuACYTJtapsFZsPPuW/2dsvNB205IK86Wur48zLsh7adOyhv0mMheuQyQA30Qwr
+         jtgyeCLB9CQFuDUl5lhCvZb1tcAE/YVmkBhuuSdN7rByX+fB+N2eya4Eu4GmGpFyqpdN
+         39woZ6EESDTYHnTGvOmh36v1o/7Qd1F1p6/K/VAoeUOhVEtOFzu9vtw8bmzH4oARjWgW
+         AnLValOYe7b20gmzyBVZlnN+rXqrAWa775DecvIhAF4nPwVf1fna3NyQw5r2RcwLOMBB
+         ZCE96wfWAjTMwoR3xIeT1AvHZqCvgY81vIwQ8iKmbAXIgAXNQX/5IXBCKu2E865mzLxt
+         tqcA==
+X-Gm-Message-State: AOJu0YxAUTTjjc2cd1UYavXzaE1HF+fEWhZ8pAFKNMmIeScmzCDQ0yL+
+        ZeAtPtjvx15iWrXqSQkMYBkSGw==
+X-Google-Smtp-Source: AGHT+IHRtF42Gk2O/Jbn0im820D3YniuUrsfbfG6LB6IaJc38fjjssskEpoRn3XkIl8Ntlzt2PT2Qg==
+X-Received: by 2002:a5d:5412:0:b0:319:735f:92c5 with SMTP id g18-20020a5d5412000000b00319735f92c5mr14859666wrv.32.1692888886338;
+        Thu, 24 Aug 2023 07:54:46 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id i14-20020a5d630e000000b0031980783d78sm22380031wru.54.2023.08.24.07.54.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Aug 2023 07:54:45 -0700 (PDT)
+Message-ID: <71a842cb-86c4-cd36-ba4c-0be480f8b16c@linaro.org>
+Date:   Thu, 24 Aug 2023 16:54:45 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|PAXPR04MB9059:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc956ee2-6c36-4c5d-44da-08dba4b1a8a7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 5kJCui5R8pKxGSEzwQVu3ZjzdAwLAXWUMzRS0mgjbMQnmnomO7wIi166BP80XMYLQiikJ6fAhNDWXgEUCD9mU7eEgJELmO1gvN1RjtLVU58TO4DfxNqwxLMH2gwe05ftUgT7u1sVTojmYj3wXgp3AQqt80Ji3rrI+td5IqCfTexJtPRHJFG2PwcAECIeJwZGylh9gMjWKowNzBlvCu+4rvNphYHwvbrwP7xxyiAu3p9+eOLS2+z5s47Sk5aicmlOpciTG5WjZ7Cee+DwyUCwSYMyJUJPAjjVHX+utF87TZHTzP+nn3KvLRcgFSKnRA57izwKdFGswKKiWRwRAIJtCRXwKRtM9MeEvX/yUuqG7CXos8WIiKP3Z0xUizUSMkIxcjzyKybQZqO+NicHgEm/LuizSCgCttNrVmhcpr2BHx71w5c0oflPBRpQNvpIkakeODndKUmIQRlI6JCESWEznphMf9AX2W0gPfsFa70hgwAvihTmV5oOpO8GS3RbTjgLq/UHMdVlCiQ12NHVsqjkrhYVUtiW3rWv34ZLHmft7dqMx4NJ+Ow5Hkkz+OcXPJAzqNF9rxONxVg8Y4QmLg6qKqtq9yQLeKfsDWey77NjBKDZIQWbSMenTC8OOWvVmoEr
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(136003)(346002)(366004)(376002)(396003)(39860400002)(451199024)(186009)(1800799009)(6506007)(33716001)(66946007)(66476007)(66556008)(316002)(6916009)(478600001)(38350700002)(26005)(38100700002)(6666004)(41300700001)(86362001)(9686003)(6486002)(6512007)(2906002)(53546011)(52116002)(8936002)(8676002)(4326008)(5660300002)(83380400001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vJHLHXkCU7WV27vbBldHVqJV0K3/z9JQkKbMvbci7K111bz3SWpTxep94J8n?=
- =?us-ascii?Q?XcThTF42BpjEL/ruvy3LTR587NjiMGdM9d6/l+tJ/k8u4PRzyOEQaElzuuMb?=
- =?us-ascii?Q?9O36h22lqF9nP3wgER+ABrhcEkW+I0KZD7n1bms3/18K/qCVkBR4jEUWnvtx?=
- =?us-ascii?Q?8wmx4YcJe0AfKOyYPKkvPWKLGiDyPAmcKOqpRwngaeqU5lzb7djWX2TEqBMh?=
- =?us-ascii?Q?SW3rpsVoWrdJSkGFJtq+tjJWMNTzr6oNqM/uInnTNQz8o+P/vccM/H0nz3Ad?=
- =?us-ascii?Q?jAle8VlMOEf2KEDD28JWuwtkbjqHGaeaSKBDlsgb9x8MrzecyuDNr8ezTJdK?=
- =?us-ascii?Q?hKqLeH6XN84ttO3tJZEmTsVOyVSZXj3k5Fr61XTeLnEGLIIJImC0rhH8yvm+?=
- =?us-ascii?Q?UrQ5CUO2NDMq8jaIzCNDSytwZE2AynwyIn7/42e0opSyGwqERdujJHepyYlj?=
- =?us-ascii?Q?8CdndaSV1fQ6KUMrVzVKXxEQnhlE1UNVdEut9TcqQj92tZysuPb5U9FrZilV?=
- =?us-ascii?Q?V2Z5mLRN2Y8nFv2QXTlxM+Pps2NuhqXV5QO4ZiP1agq2V2DNZGhqORUBF1+q?=
- =?us-ascii?Q?xmF828APQ+gL+d2E+UUz3Ftg+6i/LttE0/Bdf5O4Gk+LACNTv12MziKCHqsv?=
- =?us-ascii?Q?Ri/EI6NFiJmlNebo4qX1sCxhIsvjXes70TzvZxW98Vja8BwxgRv77nHWqEMp?=
- =?us-ascii?Q?3dcok+l7Pe/+viba1oVII8WtLRkPUjSnQnf4v2G/x63+1eEPGt3EfQh+WnYd?=
- =?us-ascii?Q?eIocZzT0Je1eAzIR4wgIp8E8QZMIAF4J//U8FrAdrMAOnAuU78cTrhr+p2YE?=
- =?us-ascii?Q?Jf1XP7YwRR/7gqG5/PlFPkMvhw+iVp0LjiTa4wFi6WjU/6CSj1mW6sxF/tYI?=
- =?us-ascii?Q?nbUKJ7E/LpFOYgPRq/nipGvDQsjVT++a30eZHEW7dOX3yLPT0c7mCREkmVVP?=
- =?us-ascii?Q?GxDAecdXwPrDzqhbP0eXDvReXzPGGSpAXc7Nt7aVqe144b2oowofQvcoq1wH?=
- =?us-ascii?Q?j7aieOIaC6zUxsQme9TrvN6ZgvSQaI5QUH3ZM/zI+TfiRfH5NKq75pGft6i/?=
- =?us-ascii?Q?uBpo1AVHI8b5ROdakpBuWQ5KNVTNvGs7fVWlwqM4xjeqyJZCZNRzEYJI3TKY?=
- =?us-ascii?Q?Vgr6Q2YcJWfsh5PU6jXiT770dSipNbK5A3idjgv0h9DmIO0gBusJgsmnwtA9?=
- =?us-ascii?Q?9UxCH6gqHWOQCfhut9q62hVKPAVde/A4SoC5Mc4lk73dRUCLq/D4JpabSRG8?=
- =?us-ascii?Q?vZAb/NJEoscXujQx2mKooZj2bFQPDn/zeBsEb3Y/a2W89jqQjOkVQ/I5QuHO?=
- =?us-ascii?Q?CtkGXd2NYjlzXgVBxOUmQ+kTPEl25ZBesBTJZLn0TCunyrPYXhWb5DTKxfIv?=
- =?us-ascii?Q?SdRHzacQEsfFO5GW7hZ+b0wvnKls4DRwHtlkj2V77T/L0D3Z1O9gjyTp1QD0?=
- =?us-ascii?Q?fbMhN74XYScAP5TUM+IRUQjnPRln84OUAhmxUCFv48K26TiUtbTLKiQc7i3o?=
- =?us-ascii?Q?UC/iSlpAemMEWpRv9AYtP1ln5K1E5jpWG7pd84Dq6J6AS1GasxD0ROXj2tdQ?=
- =?us-ascii?Q?HOPuMb6wR5n1v/t52U7rHEYVyKYY1Rj1Joj7aUzD?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc956ee2-6c36-4c5d-44da-08dba4b1a8a7
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 14:51:55.0893
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TzrYOAUZhKKvxjWMvzsgTYqi9kCumRJ47ViPa1gK92BhtZCScSmqERGqAoMXza+m5AIs/ATyCSGuuRMRnCIxiQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9059
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: imx8mm-thermal: Document
+ 'nxp,reboot-on-critical'
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20230823173334.304201-1-festevam@gmail.com>
+ <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
+ <CAOMZO5CPz=ysfjb_x3T0FqKxjTPy1zippZRnkMXCTuyD7fF57g@mail.gmail.com>
+ <8070b293-b187-b0cc-fd3d-d057c5623094@linaro.org>
+ <CAOMZO5AZh6DUbZJecwaK8jwGBRCj+40GF5OqyuV2c8mgXT9ZYg@mail.gmail.com>
+ <36e24244-3382-b6bb-5975-044112d21eed@linaro.org>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <36e24244-3382-b6bb-5975-044112d21eed@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -114,60 +82,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 23, 2023 at 09:32:28PM -0700, Randy Dunlap wrote:
-> Hi Frank,
-> 
-> This is still not in alphabetical order.
-> 
 
-Sorry, my brain dead.
+Hi Krzysztof,
 
-Frank
+On 24/08/2023 14:38, Krzysztof Kozlowski wrote:
+> On 24/08/2023 12:53, Fabio Estevam wrote:
+>> Hi Daniel,
+>>
+>> On Thu, Aug 24, 2023 at 7:35 AM Daniel Lezcano
+>> <daniel.lezcano@linaro.org> wrote:
+>>
+>>>> I will try a different approach by introducing a Kconfig option.
+>>>
+>>> Alternatively, the 'chosen' DT node could be used, no ?
+> 
+> Any DT property would be a problem, because I don't think it is static
+> configuration. For example board with the same DTS once should reboot
+> (during development) and once shutdown (some customer wants to be sure
+> it will stay shutdown after critical condition). It's runtime feature.
 
-> For v1, I said:
+Fabio described the feature as a firmware feature where the board does 
+not boot until the temperature goes below a certain temperature.
+
+That does not look a runtime feature but a platform specific one.
+
+ From my POV, if the firmware wants to take over the thermal boot of the 
+board, it is probably for a good reason (eg. the board will overheat 
+between the boot and the kernel puts in place the mitigation framework). 
+Letting the user to change that behavior can be dangerous.
+
+>> Good idea. I will introduce a module_param() then.
 > 
->   This new entry should be after the following entry to maintain
->   alphabetical order.
-> 
->   >  FREESCALE DSPI DRIVER
->   >  M:	Vladimir Oltean <olteanv@gmail.com>
->   >  L:	linux-spi@vger.kernel.org
-> 
-> 
-> and that's still the case: "eDMA" should be after the "DSPI" driver.
-> 
-> On 8/23/23 20:04, Frank Li wrote:
-> > Add the MAINTAINERS entries for NXP(Freescale) eDMA drivers
-> > 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > 
-> > Notes:
-> >     Change from v1 to v2
-> >     - alphabetical order
-> > 
-> >  MAINTAINERS | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 23eafda02056..fbab3c404eb9 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -8215,6 +8215,14 @@ S:	Maintained
-> >  F:	drivers/mmc/host/sdhci-esdhc-mcf.c
-> >  F:	include/linux/platform_data/mmc-esdhc-mcf.h
-> >  
-> > +FREESCALE eDMA DRIVER
-> > +M:	Frank Li <Frank.Li@nxp.com>
-> > +L:	imx@lists.linux.dev
-> > +L:	dmaengine@vger.kernel.org
-> > +S:	Maintained
-> > +F:	Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > +F:	drivers/dma/fsl-edma*.*
-> > +
-> >  FREESCALE DIU FRAMEBUFFER DRIVER
-> >  M:	Timur Tabi <timur@kernel.org>
-> >  L:	linux-fbdev@vger.kernel.org
-> 
-> -- 
-> ~Randy
+> Module params are usually discouraged
+
+Why?
+
+> and it also does not allow any
+> runtime configuration. I think you need sysfs ABI.
+
+There is already the sysfs ABI with module params
+
+/sys/module/<name>/parameters/reboot_on_critical
+
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
