@@ -2,85 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CFCE786C5E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:57:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E043B786C66
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233384AbjHXJ4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 05:56:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35652 "EHLO
+        id S235635AbjHXJ6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 05:58:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240361AbjHXJ4Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:56:16 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9351198E
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:56:13 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-5007c8308c3so7040725e87.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:56:13 -0700 (PDT)
+        with ESMTP id S240796AbjHXJ5u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:57:50 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43EF61984;
+        Thu, 24 Aug 2023 02:57:48 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1cc69d1f9b1so671326fac.1;
+        Thu, 24 Aug 2023 02:57:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692870972; x=1693475772;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/TAc5IOYScdftn/7ihH9yrOC71c7ZHl9nQtNZ57aAzw=;
-        b=Rxnh0KQvPGqDSbcYmpIDGGQpyEbfhbZ9eQVaUY8EllL119uZB3mq0DHxuvc6rsguaJ
-         f/D4fxx96ME4guCXPyVte4qKiCt+dXsDK3SRZu7KjBumziH8GxoQUL89gao7NdWYluSB
-         5GYrnvTwqAs4poUR7FNs7OKbkLG8e10lDm3Ha4ITFa5jzSrXxJI7ibQSPKRUEPwhaccr
-         GI1spCem957JhJDxBkMUaHjDm+7nAK92rHDoq/YOrD2PwTfoR/+i75DIAptXpAsVH5KD
-         +Sv8gpj1uDQmVrYZSmCEN6GZvYtpEU4cB2yOHDe5VC6SOG579evEI3X7eH00nhj4p2hP
-         lRtw==
+        d=gmail.com; s=20221208; t=1692871067; x=1693475867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gnuz4h1zVd36bEnzyA6pdlf7BZw/b0KCDnLlZw78Kp4=;
+        b=q/Sx37/+RpLmb9stgSdO3orPmabVWqg2V5QarM4CeBikVjhKlDFWGmCyL1YusxRBXx
+         rZI+XrDFElONpaTWauc9uZd407w/2Yy4AxRtqHQ4R6bzFSVJ9pEB7m9jGQxWRO9/9f1Y
+         8XijKJtGShv8bUe1CEnHg5N4NY5XmXxX5mtxjh2B9qQxTy26edR7Kdizad2arfeXDjkf
+         pSzHyGUUUKtOV3y1YVL0xBW56mxT4Dl/Dy/cp+nmDr+DGUHhj9F8liKGagf2deQYZieQ
+         /SWOM3tbE/G3hdbSZpOhJ8boltZUmF/IgoEIDl7A68C6XT/7ol5/I3BcHTebgYI1DA2m
+         8c7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692870972; x=1693475772;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/TAc5IOYScdftn/7ihH9yrOC71c7ZHl9nQtNZ57aAzw=;
-        b=EADoFWQTrT13w2C6G/xZNiyKPIbzBtq4d4zmb0S6oH5idXgDO1IpBYtRrvDOas86ys
-         cf0Fdu4Wvw/JQiTybCRR6vFQv7TnAjbZxVCbQBQly3m5ARU7EF8aP6NQQFvsPKHykiVd
-         Z2OAeQFK3OaIAxBzFBEed2//ySr27TtsWe8dj5lYpKgtjvAPpdhibyAmPRkca55mE13i
-         yFuy/gvwJu9TzINRTJpGrvZKSW+yUtBnm1/HSLWGlqiV8MDQSQtNrmGFGvIaMjDAMfGn
-         8Ab8m8aDWtCu9HnJ5vq91xtONW9AmyDVEXsFCwWTCioUB/WglANN6AeNXExTLJ24dU0y
-         sjVw==
-X-Gm-Message-State: AOJu0YwBMiwYKEVb/rX0Kj3//DC2M3Bbw4Pm6h/ovRb34y3Gr6odmPDS
-        YntkSRNrMWtd0ti23ZhXpLG41Q==
-X-Google-Smtp-Source: AGHT+IGi3/dzSL7cCm6mnmwvL81iYEMCtKE7TUsu3q5OW3kP/ALD7U9TDPFLcujSzdly1/Ey8S1ACQ==
-X-Received: by 2002:a05:6512:68d:b0:4f7:6017:8fb with SMTP id t13-20020a056512068d00b004f7601708fbmr13669092lfe.26.1692870971988;
-        Thu, 24 Aug 2023 02:56:11 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id k19-20020aa7d8d3000000b005257f90c976sm10216356eds.3.2023.08.24.02.56.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 02:56:11 -0700 (PDT)
-Message-ID: <b06c6161-0143-f1fe-2ea8-4c54ed824595@linaro.org>
-Date:   Thu, 24 Aug 2023 11:56:10 +0200
+        d=1e100.net; s=20221208; t=1692871067; x=1693475867;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gnuz4h1zVd36bEnzyA6pdlf7BZw/b0KCDnLlZw78Kp4=;
+        b=URUOBr/zxXWmCCemPbLLHWtdSqPT4GWBz4nPPlO8JULQRZ86EBDzEpavMzZW+ef6GA
+         DpkzdI8rudGKJe3Z5nQ4xHf0lGpSqhroAgFQXPKO6OWQpnb7dM+lRA+Xzrmvx70lt0GI
+         IXtxMEsSPokYT6o1LWaPHxYUN4jA1/q9+7MCuUBVYVIayhX+qtTHdbHsJyRYGPnVklOm
+         IsEDCaFEY2vImQNn3gXMH5C8YEhvyPabPzj4gBTEahyxGCpvTV6U/uIQovvB7IJBPgmH
+         iLN23rYW600EKUYrQe5M17zi03SZVJIdOMuK3uBhq3stsVI1Ek1hhXvAaBOhTrlFiTEz
+         8ptQ==
+X-Gm-Message-State: AOJu0YxMKBw6eT01qxMC9wyfCarKG9ZC3B8oKeZtbwE6iIDWdoqbax01
+        ioZwzqjAA1QzJNXuB9I3Wxc74kvQx5Iv35f28qPxfsfi
+X-Google-Smtp-Source: AGHT+IHhyz6p+ZQQn7I9tEK9nh2T+c1j2QRDXmVhjZDgwgVbyhwc+CwjohCWirQ/6CZfuAe0ACEmNyNKCXFHD082bkE=
+X-Received: by 2002:a05:6870:828d:b0:1c8:b870:4e5e with SMTP id
+ q13-20020a056870828d00b001c8b8704e5emr16153469oae.3.1692871067391; Thu, 24
+ Aug 2023 02:57:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC
- Type-C
-Content-Language: en-US
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230822102846.4683-1-stanley_chang@realtek.com>
- <20230822102846.4683-2-stanley_chang@realtek.com>
- <1e0632d6-73e9-4633-a709-bf9140f2fd32@linaro.org>
- <ca406c19e59145fd9e7e035ea5ad3eeb@realtek.com>
- <50ce8e71-613e-1ef5-0c23-67a2f6f78949@linaro.org>
- <1390ad28e50f493fa72209fe29b7f3f4@realtek.com>
- <5894c8db-4b85-e7dd-e894-33aa8a448153@linaro.org>
- <7e34f4bfd15244ac95e68ee2372ac0de@realtek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7e34f4bfd15244ac95e68ee2372ac0de@realtek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+References: <20230823173334.304201-1-festevam@gmail.com> <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
+In-Reply-To: <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 24 Aug 2023 06:57:35 -0300
+Message-ID: <CAOMZO5CPz=ysfjb_x3T0FqKxjTPy1zippZRnkMXCTuyD7fF57g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: imx8mm-thermal: Document 'nxp,reboot-on-critical'
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, linux-pm@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,49 +70,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 11:23, Stanley Chang[昌育德] wrote:
->>>
->>>>>
->>>>> And I will add “connector” to the title.
->>>>> title: Realtek DHC RTD SoCs USB Type-C Connector detection
->>>>
->>>> So usb...
->>>
->>> I refer to this binding, and it is in folder bindings/extcon.
->>> docs/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
->>> Title: ChromeOS EC USB Type-C Cable and Accessory Detection
->>
->> So maybe it should be moved as well?
->>
->> extcon is a Linux framework. If you think extcon is a type of hardware, then
->> please tell me what it is exactly. Please define it. And then I wonder why the
->> name "extcon" is anyhow connected to Type-C USB.
->>
-> 
-> Well, from my point of view. extcon stands for External Connector.
+On Thu, Aug 24, 2023 at 4:18=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-For connectors we have separate directory - connector. So no, it is not
-an external connector.
+> And if Linux changes the behavior of critical temperature to be "reboot"
+> instead of "poweroff", what happens with this property? You add now
+> property for a SW policy depending on one given implementation. Not
+> suitable for bindings, sorry.
 
-Anyway type "external connector" to Wikipedia or some hardware
-manufacturer website and find me examples of such hardware. It does not
-exist.
+Ok, understood.
 
-> HDMI connector, micro USB connector, type-c connector are all a kind of hardware, they are external connectors.
+I will try a different approach by introducing a Kconfig option.
 
-You did not write here bindings for connector...
-
-> I think the Type-C connector is a kind of extcon.
-
-There is no such thing as extcon. Otherwise please show me datasheets
-using this name. Show me Wikipedia article.
-
-> Of course, I agree that Type-C is part of USB.
-> 
-> So this binding can be usb or extcon, I don't think it is strictly restricted.
-
-
-
-Best regards,
-Krzysztof
-
+Thanks
