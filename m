@@ -2,143 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC8C78747C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 17:44:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA4777874E0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242185AbjHXPnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 11:43:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
+        id S242176AbjHXQF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 12:05:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241809AbjHXPnb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 11:43:31 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B12A198B
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 08:43:29 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-997c4107d62so915437066b.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 08:43:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692891807; x=1693496607;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ShB/qBaFEyCnDyqEu/IuL2+eMoqWlbW5uwGQYseJkOA=;
-        b=C/U292JKOs6/enn3dbhCwMIm2fAQNSmZyU4K8nV2vsRbZDTWfZGpmR0GtzfmGv9xlN
-         CvFigm8McnvcHYxorNg8N2FUy75mG1v0GvwLCpx4r9Xw5AehgLTCwsjIksYUJk31+U3p
-         gIvdMNaNIekTrmQewUbteT7gHUbGBVCDmXdd+zLs3TIAfBlAnHLptgGbEnEX9DwDlyF6
-         bLeYeMNcLyFnNtxqaTtnlRZthSk5JcSL5jpsMCxuAZEe/76StCL62UwY8zFxUCuLjUkW
-         UQeFHULWUmTCItfPbchWTIMMcd/TgLatkC/7eziz7JaCqPzDVMJtQbHdohUifMhysczv
-         XQvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692891807; x=1693496607;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ShB/qBaFEyCnDyqEu/IuL2+eMoqWlbW5uwGQYseJkOA=;
-        b=WyHUhGv5nZlcYVnPY6MDAhEA/pCjW4t1+TlMbEoj7ojj7bYSuyN5um+VO2DajdfJIO
-         ARPjn9SH9AetNxRGY8e73PDHBAs9d1B9/avph/XzQBOedX4TbSjwe1EsH/lywbdbunNS
-         M2tW5Jwh6nlLRb0PzMjwYZpxcDEraTJaU+/tEJWtv1MQIeoVL1gh3c/jKSljeUCalOt1
-         BYjOSsyVHBz8DBU9Gkw7Y/7vWNs9d1p7lMkYYdOvflk6doCF0+b2F4Itz9ExUAx/HVVr
-         6l62xezNzbLZ3/2Dus7utQXrgtqVRpwatiQuwQLnDoFuk+j79UI0JxeA83wiVIbDOOqg
-         Dmvg==
-X-Gm-Message-State: AOJu0Yws/PQSCXKjE+FtWP+YNtjuHLggSDYaJGv3xM5h2S51Y8+ulv57
-        Uaq0WqiiRj9x8/I3LjslhpED5Q==
-X-Google-Smtp-Source: AGHT+IHGGOgq0B5PuuAcO9YgQ+vMazklvWHF08tjq+1Bzx79ARleMa4x+At66p1asIGy6/7hC/xF0Q==
-X-Received: by 2002:a17:906:9bf6:b0:99d:eabc:2ed with SMTP id de54-20020a1709069bf600b0099deabc02edmr12754070ejc.32.1692891807534;
-        Thu, 24 Aug 2023 08:43:27 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id m11-20020a170906160b00b00992f81122e1sm11174328ejd.21.2023.08.24.08.43.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 08:43:27 -0700 (PDT)
-Message-ID: <e73d8321-9471-bbff-d273-9b53c938655f@linaro.org>
-Date:   Thu, 24 Aug 2023 17:43:26 +0200
+        with ESMTP id S242379AbjHXQFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:05:43 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374031996;
+        Thu, 24 Aug 2023 09:05:41 -0700 (PDT)
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37O9XXte014368;
+        Thu, 24 Aug 2023 18:05:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=selector1; bh=eLiR4Yrg36nAV4ckmGB/w
+        PqPu3zC6LLXLH1wrY+CNaU=; b=h2xwuEgTlLpBZLHDUaSTHwZaDlK7vH1OD82I4
+        JyjnAbVQWc/q2mIgUNm7PT6BUemn7EbWduZ0f+Yg98mtuA/NzvID3P/2gB0M9vAb
+        LBJ1e49L6XMVvzAJM2jiE4B74Yxyq0roj+uv3vKr77KneJf+Xl3AiXDJSzH2Kpeg
+        Aqj14FSIlp6cZq8wwk8gXchg7HSAcL2y6wB1Z8tNr44Ezx+svkYg8yk+LpeWvhkd
+        Pp6NHAQJRZpS265j1t6LSlbMGZzbuqdgZqyhZh3v5Ji5ba8Enyu0p8l+dbPdb2m1
+        Pl4dU6wgXIiujhQmE7b8WCxFhdF7KuvTUjdI5ixvgi16TS7kg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sn1y5rhjf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Aug 2023 18:05:15 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DBBAE100059;
+        Thu, 24 Aug 2023 18:05:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id CA001252239;
+        Thu, 24 Aug 2023 18:05:13 +0200 (CEST)
+Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 24 Aug
+ 2023 18:05:13 +0200
+Date:   Thu, 24 Aug 2023 18:05:06 +0200
+From:   Alain Volmat <alain.volmat@foss.st.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        <devicetree@vger.kernel.org>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        <linux-kernel@vger.kernel.org>, Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dan Scally <dan.scally@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>
+Subject: Re: [Linux-stm32] [PATCH v1 3/5] media: stm32-dcmipp: STM32 DCMIPP
+ camera interface driver
+Message-ID: <20230824160506.GA21560@gnbcxd0016.gnb.st.com>
+Mail-Followup-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        devicetree@vger.kernel.org,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dan Scally <dan.scally@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+References: <20220910144010.34272-1-hugues.fruchet@foss.st.com>
+ <20220910144010.34272-4-hugues.fruchet@foss.st.com>
+ <ZNC5k3PynnEWL/ou@kekkonen.localdomain>
+ <20230824110934.GA18226@gnbcxd0016.gnb.st.com>
+ <ZOdMghQXfNgKZ6cN@kekkonen.localdomain>
+ <20230824130432.GB27092@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: imx8mm-thermal: Document
- 'nxp,reboot-on-critical'
-Content-Language: en-US
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20230823173334.304201-1-festevam@gmail.com>
- <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
- <CAOMZO5CPz=ysfjb_x3T0FqKxjTPy1zippZRnkMXCTuyD7fF57g@mail.gmail.com>
- <8070b293-b187-b0cc-fd3d-d057c5623094@linaro.org>
- <CAOMZO5AZh6DUbZJecwaK8jwGBRCj+40GF5OqyuV2c8mgXT9ZYg@mail.gmail.com>
- <36e24244-3382-b6bb-5975-044112d21eed@linaro.org>
- <71a842cb-86c4-cd36-ba4c-0be480f8b16c@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <71a842cb-86c4-cd36-ba4c-0be480f8b16c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230824130432.GB27092@pendragon.ideasonboard.com>
+X-Disclaimer: ce message est personnel / this message is private
+X-Originating-IP: [10.129.178.213]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-24_12,2023-08-24_01,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 16:54, Daniel Lezcano wrote:
-> 
-> Hi Krzysztof,
-> 
-> On 24/08/2023 14:38, Krzysztof Kozlowski wrote:
->> On 24/08/2023 12:53, Fabio Estevam wrote:
->>> Hi Daniel,
->>>
->>> On Thu, Aug 24, 2023 at 7:35 AM Daniel Lezcano
->>> <daniel.lezcano@linaro.org> wrote:
->>>
->>>>> I will try a different approach by introducing a Kconfig option.
->>>>
->>>> Alternatively, the 'chosen' DT node could be used, no ?
->>
->> Any DT property would be a problem, because I don't think it is static
->> configuration. For example board with the same DTS once should reboot
->> (during development) and once shutdown (some customer wants to be sure
->> it will stay shutdown after critical condition). It's runtime feature.
-> 
-> Fabio described the feature as a firmware feature where the board does 
-> not boot until the temperature goes below a certain temperature.
-> 
-> That does not look a runtime feature but a platform specific one.
-> 
->  From my POV, if the firmware wants to take over the thermal boot of the 
-> board, it is probably for a good reason (eg. the board will overheat 
-> between the boot and the kernel puts in place the mitigation framework). 
-> Letting the user to change that behavior can be dangerous.
+Hi Laurent,
 
-OK, if this is supposed to be also accessed before user-space or even
-before kernel, then it makes sense in DT.
+On Thu, Aug 24, 2023 at 04:04:32PM +0300, Laurent Pinchart wrote:
+> On Thu, Aug 24, 2023 at 12:26:42PM +0000, Sakari Ailus wrote:
+> > On Thu, Aug 24, 2023 at 01:09:34PM +0200, Alain Volmat wrote:
+> > > Hi Sakari,
+> > > 
+> > > thanks a lot for the review.  I've already taken care of the comments I got
+> > > from Dan and will also add fixes for your comments as well before
+> > > pushing the v2.  Before going into that I thought I'd better clarify the
+> > > framerate part which seems the most tricky part.
+> > > 
+> > > On Mon, Aug 07, 2023 at 09:29:55AM +0000, Sakari Ailus wrote:
+> > 
+> > ...
+> > 
+> > > > > +static int dcmipp_byteproc_g_frame_interval(struct v4l2_subdev *sd,
+> > > > > +					    struct v4l2_subdev_frame_interval *fi)
+> > > > > +{
+> > > > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
+> > > > > +
+> > > > > +	if (IS_SINK(fi->pad))
+> > > > > +		fi->interval = byteproc->sink_interval;
+> > > > > +	else
+> > > > > +		fi->interval = byteproc->src_interval;
+> > > > > +
+> > > > > +	return 0;
+> > > > > +}
+> > > > > +
+> > > > > +static int dcmipp_byteproc_s_frame_interval(struct v4l2_subdev *sd,
+> > > > > +					    struct v4l2_subdev_frame_interval *fi)
+> > > > > +{
+> > > > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
+> > > > > +
+> > > > > +	mutex_lock(&byteproc->lock);
+> > > > > +
+> > > > > +	if (byteproc->streaming) {
+> > > > > +		mutex_unlock(&byteproc->lock);
+> > > > > +		return -EBUSY;
+> > > > > +	}
+> > > > > +
+> > > > > +	if (fi->interval.numerator == 0 || fi->interval.denominator == 0)
+> > > > > +		fi->interval = byteproc->sink_interval;
+> > > > > +
+> > > > > +	if (IS_SINK(fi->pad)) {
+> > > > > +		/*
+> > > > > +		 * Setting sink frame interval resets frame skipping.
+> > > > > +		 * Sink frame interval is propagated to src.
+> > > > > +		 */
+> > > > > +		byteproc->frate = 0;
+> > > > > +		byteproc->sink_interval = fi->interval;
+> > > > > +		byteproc->src_interval = byteproc->sink_interval;
+> > > > 
+> > > > Is this used for anything else than configure skipping?
+> > > > 
+> > > > I think I'd just have a control for it in that case.
+> > > > 
+> > > > I don't think exposing frame interval configuration is necessarily even
+> > > > meaningful for a device that just processes data but does not produce it.
+> > > 
+> > > The DCMIPP is able to perform frame drop, 1/2, 1/4, 1/8 basically.
+> > > As Dan pointed me out, indeed setting frame interval as we did on both
+> > > sink and source pad isn't a defined behavior.  I first thought that
+> > > using the frame interval was the proper way to do that but that is
+> > > indeed only used on producers such as sensors ....
+> > > Which ctrl would you propose in such case ?
+> > 
+> > We don't have one, AFAIK, and I think it may be unlikely this will be
+> > needed elsewhere. So I'd use a private control.
+> > 
+> > I wonder what others think. Cc Laurent as well.
+> 
+> What are the use cases for this feature ?
+
+This is basically to allow reducing the framerate of the
+captured stream when this is not possible at the producer
+(sensor) level and we need to lower down the stress on elements down the
+pipeline.
+
+Regards,
+Alain
 
 > 
->>> Good idea. I will introduce a module_param() then.
->>
->> Module params are usually discouraged
+> -- 
+> Regards,
 > 
-> Why?
-
-Because they don't scale with number of devices, are poorly documented
-and have general limitations comparing to sysfs. You can ask Greg for
-more details:
-
-https://lore.kernel.org/all/2023071135-opt-choosing-51dd@gregkh/
-
-> 
->> and it also does not allow any
->> runtime configuration. I think you need sysfs ABI.
-> 
-> There is already the sysfs ABI with module params
-> 
-> /sys/module/<name>/parameters/reboot_on_critical
-
-So patch solved?
-
-Best regards,
-Krzysztof
-
+> Laurent Pinchart
+> _______________________________________________
+> Linux-stm32 mailing list
+> Linux-stm32@st-md-mailman.stormreply.com
+> https://st-md-mailman.stormreply.com/mailman/listinfo/linux-stm32
