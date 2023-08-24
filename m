@@ -2,132 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E862E786B60
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:18:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA043786BAF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240615AbjHXJRe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 05:17:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41778 "EHLO
+        id S229475AbjHXJZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 05:25:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236673AbjHXJRO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:17:14 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBF2B198A;
-        Thu, 24 Aug 2023 02:17:11 -0700 (PDT)
-Received: from wsk (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: lukma@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 6313186537;
-        Thu, 24 Aug 2023 11:17:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1692868629;
-        bh=MjCYFkH+kWFgdHXjUV3IPSIdSKo1123l7R50xgXphJk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=wH/SP0401DvS3UXyFIV0UCPuBuH5eED4hHKap1Qf2v0YH/Ry2kUwM0CxDw2iobSTM
-         ArkNkFrY4HQYakEDJLUqVk7nyWwE1NUz/Nk8b8S1+YFPUM7VjOXg7TYSRUrS4baj82
-         bV/3heEAwPuj27tcLmTbrLkKAWqbtzDS3Q3MN6a4MvCw7qHwD0Z6PvJ0np25pDRaCO
-         ycvYw4um1vD2NuHXOSQBrZjx/rUVL/fV3Wh8GQ3E6c712XlJTNjP+Yz7TJznMx0qVQ
-         tYP1TQUhiO9Ykgu6/gQ9+mesr2O4RCesf7jrofCO8UM/iLtCp6VwfE5QQYr3iAugtm
-         fZgTdMLVcUkFQ==
-Date:   Thu, 24 Aug 2023 11:17:02 +0200
-From:   Lukasz Majewski <lukma@denx.de>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S238195AbjHXJZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:25:07 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA150E7F;
+        Thu, 24 Aug 2023 02:24:46 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37O9NQdzC010181, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37O9NQdzC010181
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 24 Aug 2023 17:23:26 +0800
+Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Thu, 24 Aug 2023 17:23:49 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Thu, 24 Aug 2023 17:23:48 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Thu, 24 Aug 2023 17:23:48 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+CC:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: at91: ksz9477_evb: Add tx-internal-delay-ps
- property for port5
-Message-ID: <20230824111702.1a034801@wsk>
-In-Reply-To: <20230727080656.3828397-1-lukma@denx.de>
-References: <20230727080656.3828397-1-lukma@denx.de>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC Type-C
+Thread-Topic: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC
+ Type-C
+Thread-Index: AQHZ1ONxPQNQ8ikjYkmsM4V64Zamr6/17aQAgAMBw+D//4itAIAAj2Mw//+WrQCAAIcBcA==
+Date:   Thu, 24 Aug 2023 09:23:48 +0000
+Message-ID: <7e34f4bfd15244ac95e68ee2372ac0de@realtek.com>
+References: <20230822102846.4683-1-stanley_chang@realtek.com>
+ <20230822102846.4683-2-stanley_chang@realtek.com>
+ <1e0632d6-73e9-4633-a709-bf9140f2fd32@linaro.org>
+ <ca406c19e59145fd9e7e035ea5ad3eeb@realtek.com>
+ <50ce8e71-613e-1ef5-0c23-67a2f6f78949@linaro.org>
+ <1390ad28e50f493fa72209fe29b7f3f4@realtek.com>
+ <5894c8db-4b85-e7dd-e894-33aa8a448153@linaro.org>
+In-Reply-To: <5894c8db-4b85-e7dd-e894-33aa8a448153@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/vzI0HJKtdWEXGL/5zVg7OHh";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/vzI0HJKtdWEXGL/5zVg7OHh
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
-
-Dear Community,
-
-> Without this change the KSZ9477 Evaluation board's Linux (v6.5-rc1)
-> shows following device warning:
->=20
-> 'ksz-switch spi1.0: Port 5 interpreting RGMII delay settings based on
-> "phy-mode" property, please update device tree to specify
-> "rx-internal-delay-ps" and "tx-internal-delay-ps"'
->=20
-> This is not critical, as KSZ driver by itself assigns default value of
-> tx delay to 2000 ps (as 'rgmii-txid' is set as PHY mode).
->=20
-> However, to avoid extra warnings in logs - the missing
-> 'tx-internal-delay-ps' has been specified with the default value of
-> 2000 ps.
->=20
-
-Gentle ping on this patch.
-
-Claudiu, could you pick it as well?
-
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> ---
->  arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts
-> b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts index
-> 99cd6d15998b..b66570080894 100644 ---
-> a/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts +++
-> b/arch/arm/boot/dts/microchip/at91-sama5d3_ksz9477_evb.dts @@ -152,6
-> +152,7 @@ label =3D "cpu";
->  				ethernet =3D <&macb0>;
->  				phy-mode =3D "rgmii-txid";
-> +				tx-internal-delay-ps =3D <2000>;
-> =20
->  				fixed-link {
->  					speed =3D <1000>;
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/vzI0HJKtdWEXGL/5zVg7OHh
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmTnIA4ACgkQAR8vZIA0
-zr2P5AgAoIPPnd/GsYkKjJRm0/8xk7A3nzmKSkn+olPPZMFBzLZP9EWnvI+3eYFw
-QzxvJPJyIt4bRcgtj5Ei/r4MrtiD/BU3g92sT4Q1uK4pIpAuLJvGI0b658k9zpA2
-FWK5KD035vX1QSn45CTq9/vlFGqBGSm9OKM30FtuayR/tZwxSdH58tqMwVCzc30c
-Jjy0DRS9s0YLTIGVyStrYkm5Tz0AMxhdO3tbm0nIi48/O8BQIQgxlRiNSbpbogvf
-lmvbO4sh+7ZjVvbjLoB73SRxAj4Fd4RXdqBMf+Z14O7kEknvCPDnEf8zQoyTpUsw
-ST7GuHD5WyPAuiQ55Ol4/VgCZMhSLA==
-=L7OX
------END PGP SIGNATURE-----
-
---Sig_/vzI0HJKtdWEXGL/5zVg7OHh--
+SGkgS3J6eXN6dG9mLA0KDQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9t
+OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+
+IFNlbnQ6IFRodXJzZGF5LCBBdWd1c3QgMjQsIDIwMjMgNDo0MyBQTQ0KPiBUbzogU3RhbmxleSBD
+aGFuZ1vmmIzogrLlvrddIDxzdGFubGV5X2NoYW5nQHJlYWx0ZWsuY29tPjsgTXl1bmdKb28gSGFt
+DQo+IDxteXVuZ2pvby5oYW1Ac2Ftc3VuZy5jb20+DQo+IENjOiBDaGFud29vIENob2kgPGN3MDAu
+Y2hvaUBzYW1zdW5nLmNvbT47IFJvYiBIZXJyaW5nDQo+IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBL
+cnp5c3p0b2YgS296bG93c2tpDQo+IDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+
+OyBDb25vciBEb29sZXkgPGNvbm9yK2R0QGtlcm5lbC5vcmc+Ow0KPiBsaW51eC1rZXJuZWxAdmdl
+ci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTog
+W1BBVENIIHYxIDIvMl0gZHQtYmluZGluZ3M6IGV4dGNvbjogQWRkIFJlYWx0ZWsgREhDIFJURCBT
+b0MNCj4gVHlwZS1DDQo+IA0KPiANCj4gRXh0ZXJuYWwgbWFpbC4NCj4gDQo+IA0KPiANCj4gT24g
+MjQvMDgvMjAyMyAwOToyMywgU3RhbmxleSBDaGFuZ1vmmIzogrLlvrddIHdyb3RlOg0KPiA+IEhp
+IEtyenlzenRvZiwNCj4gPg0KPiA+Pj4+PiArDQo+ID4+Pj4+ICt0aXRsZTogUmVhbHRlayBESEMg
+UlREIFNvQ3MgVVNCIFR5cGUtQyBkZXRlY3Rpb24NCj4gPj4+Pg0KPiA+Pj4+IFR5cGUtYyB1c3Vh
+bGx5IGdvIHRvIHVzYiBkaXJlY3RvcnkuDQo+ID4+Pg0KPiA+Pj4gVGhpcyBiaW5kaW5nIGlzIG5v
+dCBmb3IgYSB0eXBlLWMgY29udHJvbGxlci4NCj4gPj4+IEl0IGlzIGFuIGV4dGNvbiBkZXZpY2Ug
+Zm9yIHR5cGUtYyBjb25uZWN0b3IgZGV0ZWN0aW9uLg0KPiA+Pj4gU28gSSBwdXQgaXQgYXQgZXh0
+Y29uIGRpcmVjdG9yeS4NCj4gPj4NCj4gPj4gSWYgdGhpcyBpcyBub3QgYSB0eXBlLWMgY29udHJv
+bGxlciwgdGhlbiB3aGF0IGlzIGl0PyBFeHBsYWluIG1lDQo+ID4+IHBsZWFzZSB3aGF0IGlzIGFu
+ICJleHRjb24gZGV2aWNlIiB3aXRob3V0IHVzaW5nIGFueSBMaW51eCBzdWJzeXN0ZW0NCj4gbmFt
+aW5nLg0KPiA+DQo+ID4gU29ycnkuICJleHRjb24gZGV2aWNlIiBtYXkgYmUgdGhlIHdyb25nIG5h
+bWUgSSdtIHVzaW5nLg0KPiA+DQo+ID4gQXMgZmFyIGFzIEkga25vdywgdHlwZS1jIGNvbnRyb2xs
+ZXIgc3VwcG9ydHMgUEQgZGV0ZWN0aW9uLCByb2xlIGRldGVjdGlvbiwgcm9sZQ0KPiBzd2FwIGFu
+ZCBjYyBjb25maWd1cmF0aW9uLg0KPiA+IEJ1dCBpbiBvdXIgU29DLCB0eXBlIGMgbW9kdWxlIG9u
+bHkgc3VwcG9ydHMgcm9sZSBkZXRlY3Rpb24uDQo+ID4gU28gSSBkb24ndCB0aGluayBpdCdzIGEg
+dHlwZS1jIGNvbnRyb2xsZXIuDQo+IA0KPiBTbyBtb2R1bGUgaGFuZGxpbmcgc29tZSBwYXJ0cyBv
+ZiAiVHlwZS1DIiBpcyBub3QgYSAiVHlwZS1DIGNvbnRyb2xsZXIiDQo+IGJ1dCBpZiBzdWNoIG1v
+ZHVsZSBoYW5kbGVzIGEgYml0IG1vcmUsIGl0IGJlY29tZXMgVHlwZS1DPw0KDQpEdWUgdG8gaGFy
+ZHdhcmUgZnVuY3Rpb24gbGltaXRhdGlvbiwgaXQgY2FuJ3QgaGFuZGxlIHRoZSBmdWxsIGZ1bmN0
+aW9uIG9mIHR5cGUtYy4NCg0KPiA+DQo+ID4gSSBmb3VuZCBhIHNpbWlsYXIgZHJpdmVyIGF0DQo+
+ID4gZHJpdmVycy9leHRjb24vZXh0Y29uLXVzYmMtY3Jvcy1lYy5jDQo+ID4gSXQgYmVsb25ncyB0
+byBFeHRlcm5hbCBDb25uZWN0b3IsIHdoaWNoIGNhbiBkZXRlY3QgVVNCIFR5cGUgQyBjYWJsZXMu
+DQo+IA0KPiBUaGF0J3MgYSBkcml2ZXIsIG5vdCBhIGJpbmRpbmcuLi4NCj4gDQo+ID4NCj4gPiBT
+byBvdXIgZHJpdmVyIGlzIGFuIGV4dGVybmFsIGNvbm5lY3RvciBkcml2ZXIuDQo+IA0KPiBEcml2
+ZXIgeWVzLCBub3QgYmluZGluZy4NCj4gDQo+ID4NCj4gPj4+DQo+ID4+PiBBbmQgSSB3aWxsIGFk
+ZCDigJxjb25uZWN0b3LigJ0gdG8gdGhlIHRpdGxlLg0KPiA+Pj4gdGl0bGU6IFJlYWx0ZWsgREhD
+IFJURCBTb0NzIFVTQiBUeXBlLUMgQ29ubmVjdG9yIGRldGVjdGlvbg0KPiA+Pg0KPiA+PiBTbyB1
+c2IuLi4NCj4gPg0KPiA+IEkgcmVmZXIgdG8gdGhpcyBiaW5kaW5nLCBhbmQgaXQgaXMgaW4gZm9s
+ZGVyIGJpbmRpbmdzL2V4dGNvbi4NCj4gPiBkb2NzL2RldmljZXRyZWUvYmluZGluZ3MvZXh0Y29u
+L2V4dGNvbi11c2JjLWNyb3MtZWMueWFtbA0KPiA+IFRpdGxlOiBDaHJvbWVPUyBFQyBVU0IgVHlw
+ZS1DIENhYmxlIGFuZCBBY2Nlc3NvcnkgRGV0ZWN0aW9uDQo+IA0KPiBTbyBtYXliZSBpdCBzaG91
+bGQgYmUgbW92ZWQgYXMgd2VsbD8NCj4gDQo+IGV4dGNvbiBpcyBhIExpbnV4IGZyYW1ld29yay4g
+SWYgeW91IHRoaW5rIGV4dGNvbiBpcyBhIHR5cGUgb2YgaGFyZHdhcmUsIHRoZW4NCj4gcGxlYXNl
+IHRlbGwgbWUgd2hhdCBpdCBpcyBleGFjdGx5LiBQbGVhc2UgZGVmaW5lIGl0LiBBbmQgdGhlbiBJ
+IHdvbmRlciB3aHkgdGhlDQo+IG5hbWUgImV4dGNvbiIgaXMgYW55aG93IGNvbm5lY3RlZCB0byBU
+eXBlLUMgVVNCLg0KPiANCg0KV2VsbCwgZnJvbSBteSBwb2ludCBvZiB2aWV3LiBleHRjb24gc3Rh
+bmRzIGZvciBFeHRlcm5hbCBDb25uZWN0b3IuDQpIRE1JIGNvbm5lY3RvciwgbWljcm8gVVNCIGNv
+bm5lY3RvciwgdHlwZS1jIGNvbm5lY3RvciBhcmUgYWxsIGEga2luZCBvZiBoYXJkd2FyZSwgdGhl
+eSBhcmUgZXh0ZXJuYWwgY29ubmVjdG9ycy4NCkkgdGhpbmsgdGhlIFR5cGUtQyBjb25uZWN0b3Ig
+aXMgYSBraW5kIG9mIGV4dGNvbi4NCk9mIGNvdXJzZSwgSSBhZ3JlZSB0aGF0IFR5cGUtQyBpcyBw
+YXJ0IG9mIFVTQi4NCg0KU28gdGhpcyBiaW5kaW5nIGNhbiBiZSB1c2Igb3IgZXh0Y29uLCBJIGRv
+bid0IHRoaW5rIGl0IGlzIHN0cmljdGx5IHJlc3RyaWN0ZWQuDQoNClRoYW5rcywNClN0YW5sZXkN
+Cg0K
