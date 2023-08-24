@@ -2,94 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB47D786EF8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 107A5786F39
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:37:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231143AbjHXMYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 08:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43924 "EHLO
+        id S236833AbjHXMge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 08:36:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbjHXMXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:23:43 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7998010EF;
-        Thu, 24 Aug 2023 05:23:39 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id D8FA424DCA6;
-        Thu, 24 Aug 2023 20:23:34 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Aug
- 2023 20:23:34 +0800
-Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Aug
- 2023 20:23:34 +0800
-Message-ID: <a6f60dfc-ffbf-da4d-a81c-06caf92955d6@starfivetech.com>
-Date:   Thu, 24 Aug 2023 20:23:33 +0800
+        with ESMTP id S236957AbjHXMg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:36:26 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0556C1711;
+        Thu, 24 Aug 2023 05:36:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692880584; x=1724416584;
+  h=date:from:to:subject:message-id:references:mime-version:
+   in-reply-to;
+  bh=h2/3qkQJA1p3QI2y816NduJfSiyRPzj4RaZqFsPLusM=;
+  b=Eop8YOC7Na5q6WxoYr4JStie27r6xvPnhz51mcG6NQnn4vIoObMqQJsc
+   TuJd8V2L5DgTHhxl3M8u3QKONlEWSrAnZg1RsIFw/aEikb0jxKiAbNVyb
+   cRfYKS6Jh7iEOB7mpG4c+fgOO6jbkovdEGYyHTiEUuf1zno7htQd4iL3R
+   PMEyUeAk78bINAEjKpzHvIW17EZ3lxwwwJwHWgfQoXeegqW8+by7dLmJh
+   OQJiO9Q0NoRKx8oB7bKBR5yoM5vC/VUul4tbcQW3ErosoMC0a5nV32ua9
+   GAj6J6piQpALHw/4birPft1R2UACZ4tA/uwrBXPUgepPAlNkwH4HK6jIK
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="378181006"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
+   d="scan'208";a="378181006"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2023 05:36:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
+   d="scan'208";a="880788602"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2023 05:36:24 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+        by kekkonen.fi.intel.com (Postfix) with SMTP id 2AA1011FAB1;
+        Thu, 24 Aug 2023 15:26:42 +0300 (EEST)
+Date:   Thu, 24 Aug 2023 12:26:42 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Philippe CORNU <philippe.cornu@foss.st.com>,
+        Dan Scally <dan.scally@ideasonboard.com>,
+        laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v1 3/5] media: stm32-dcmipp: STM32 DCMIPP camera
+ interface driver
+Message-ID: <ZOdMghQXfNgKZ6cN@kekkonen.localdomain>
+References: <20220910144010.34272-1-hugues.fruchet@foss.st.com>
+ <20220910144010.34272-4-hugues.fruchet@foss.st.com>
+ <ZNC5k3PynnEWL/ou@kekkonen.localdomain>
+ <20230824110934.GA18226@gnbcxd0016.gnb.st.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v8 0/8] Add StarFive Camera Subsystem driver
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-        <changhuang.liang@starfivetech.com>
-References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
- <2023082436-spendable-reshuffle-878d@gregkh>
-Content-Language: en-US
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-In-Reply-To: <2023082436-spendable-reshuffle-878d@gregkh>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230824110934.GA18226@gnbcxd0016.gnb.st.com>
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
+Hi Alanin,
 
-On 2023/8/24 19:37, Greg Kroah-Hartman wrote:
-> On Thu, Aug 24, 2023 at 04:01:01PM +0800, Jack Zhu wrote:
->> Hi,
->> 
->> This series is the v8 series that attempts to support the Camera Subsystem
->> found on StarFive JH7110 SoC.
+On Thu, Aug 24, 2023 at 01:09:34PM +0200, Alain Volmat wrote:
+> Hi Sakari,
 > 
-> I don't see anything here about why this is in drivers/staging/media/
-> now and not just in drivers/media/.  What is preventing this to be put
-> into the correct place to start with?  What needs to be done to the code
-> to get it out of drivers/staging/media/ and who is going to do that
-> work?
+> thanks a lot for the review.  I've already taken care of the comments I got
+> from Dan and will also add fixes for your comments as well before
+> pushing the v2.  Before going into that I thought I'd better clarify the
+> framerate part which seems the most tricky part.
 > 
+> On Mon, Aug 07, 2023 at 09:29:55AM +0000, Sakari Ailus wrote:
 
-The series does not contain 3A interface. According to Laurent's suggestion,
-we put the driver in the staging directory first. In the next stage, we will
-continue to submit the 3A interface in the way of incremental development,
-and finally expect the code to be placed in the drivers/media/.
+...
 
-> thanks,
+> > > +static int dcmipp_byteproc_g_frame_interval(struct v4l2_subdev *sd,
+> > > +					    struct v4l2_subdev_frame_interval *fi)
+> > > +{
+> > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
+> > > +
+> > > +	if (IS_SINK(fi->pad))
+> > > +		fi->interval = byteproc->sink_interval;
+> > > +	else
+> > > +		fi->interval = byteproc->src_interval;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int dcmipp_byteproc_s_frame_interval(struct v4l2_subdev *sd,
+> > > +					    struct v4l2_subdev_frame_interval *fi)
+> > > +{
+> > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
+> > > +
+> > > +	mutex_lock(&byteproc->lock);
+> > > +
+> > > +	if (byteproc->streaming) {
+> > > +		mutex_unlock(&byteproc->lock);
+> > > +		return -EBUSY;
+> > > +	}
+> > > +
+> > > +	if (fi->interval.numerator == 0 || fi->interval.denominator == 0)
+> > > +		fi->interval = byteproc->sink_interval;
+> > > +
+> > > +	if (IS_SINK(fi->pad)) {
+> > > +		/*
+> > > +		 * Setting sink frame interval resets frame skipping.
+> > > +		 * Sink frame interval is propagated to src.
+> > > +		 */
+> > > +		byteproc->frate = 0;
+> > > +		byteproc->sink_interval = fi->interval;
+> > > +		byteproc->src_interval = byteproc->sink_interval;
+> > 
+> > Is this used for anything else than configure skipping?
+> > 
+> > I think I'd just have a control for it in that case.
+> > 
+> > I don't think exposing frame interval configuration is necessarily even
+> > meaningful for a device that just processes data but does not produce it.
 > 
-> greg k-h
+> The DCMIPP is able to perform frame drop, 1/2, 1/4, 1/8 basically.
+> As Dan pointed me out, indeed setting frame interval as we did on both
+> sink and source pad isn't a defined behavior.  I first thought that
+> using the frame interval was the proper way to do that but that is
+> indeed only used on producers such as sensors ....
+> Which ctrl would you propose in such case ?
+
+We don't have one, AFAIK, and I think it may be unlikely this will be
+needed elsewhere. So I'd use a private control.
+
+I wonder what others think. Cc Laurent as well.
 
 -- 
 Regards,
 
-Jack Zhu
+Sakari Ailus
