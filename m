@@ -2,163 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70790786EAD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB47D786EF8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236843AbjHXMGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 08:06:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57862 "EHLO
+        id S231143AbjHXMYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 08:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232918AbjHXMGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:06:08 -0400
-X-Greylist: delayed 880 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 24 Aug 2023 05:06:02 PDT
-Received: from luna.linkmauve.fr (82-65-109-163.subs.proxad.net [82.65.109.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5513198D;
-        Thu, 24 Aug 2023 05:06:02 -0700 (PDT)
-Received: by luna.linkmauve.fr (Postfix, from userid 1000)
-        id DC99D8CC50D; Thu, 24 Aug 2023 13:27:57 +0200 (CEST)
-From:   Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     Alexandre Courbot <acourbot@nvidia.com>,
-        azkali <a.ffcc7@gmail.com>, CTCaer <ctcaer@gmail.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] power: supply: bq24190_charger: Export current regulator
-Date:   Thu, 24 Aug 2023 13:27:35 +0200
-Message-ID: <20230824112741.201353-3-linkmauve@linkmauve.fr>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230824112741.201353-1-linkmauve@linkmauve.fr>
-References: <20230824112741.201353-1-linkmauve@linkmauve.fr>
+        with ESMTP id S230384AbjHXMXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:23:43 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7998010EF;
+        Thu, 24 Aug 2023 05:23:39 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id D8FA424DCA6;
+        Thu, 24 Aug 2023 20:23:34 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Aug
+ 2023 20:23:34 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Aug
+ 2023 20:23:34 +0800
+Message-ID: <a6f60dfc-ffbf-da4d-a81c-06caf92955d6@starfivetech.com>
+Date:   Thu, 24 Aug 2023 20:23:33 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,PDS_RDNS_DYNAMIC_FP,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SORBS_DUL,RDNS_DYNAMIC,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v8 0/8] Add StarFive Camera Subsystem driver
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Laurent Pinchart" <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+        <changhuang.liang@starfivetech.com>
+References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
+ <2023082436-spendable-reshuffle-878d@gregkh>
+Content-Language: en-US
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <2023082436-spendable-reshuffle-878d@gregkh>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexandre Courbot <acourbot@nvidia.com>
+Hi Greg,
 
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
- drivers/power/supply/bq24190_charger.c | 84 ++++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+On 2023/8/24 19:37, Greg Kroah-Hartman wrote:
+> On Thu, Aug 24, 2023 at 04:01:01PM +0800, Jack Zhu wrote:
+>> Hi,
+>> 
+>> This series is the v8 series that attempts to support the Camera Subsystem
+>> found on StarFive JH7110 SoC.
+> 
+> I don't see anything here about why this is in drivers/staging/media/
+> now and not just in drivers/media/.  What is preventing this to be put
+> into the correct place to start with?  What needs to be done to the code
+> to get it out of drivers/staging/media/ and who is going to do that
+> work?
+> 
 
-diff --git a/drivers/power/supply/bq24190_charger.c b/drivers/power/supply/bq24190_charger.c
-index a56122b39687..8c026e86aeb3 100644
---- a/drivers/power/supply/bq24190_charger.c
-+++ b/drivers/power/supply/bq24190_charger.c
-@@ -530,6 +530,81 @@ static int bq24190_set_otg_vbus(struct bq24190_dev_info *bdi, bool enable)
- }
- 
- #ifdef CONFIG_REGULATOR
-+static int bq24190_set_charging_current(struct regulator_dev *dev,
-+			int min_uA, int max_uA)
-+{
-+	struct bq24190_dev_info *bdi = rdev_get_drvdata(dev);
-+	u8 ss_reg;
-+	int in_current_limit;
-+	int ret = 0;
-+
-+	dev_info(bdi->dev, "Setting charging current %d mA\n", max_uA/1000);
-+
-+	ret = bq24190_read(bdi, BQ24190_REG_SS, &ss_reg);
-+	if (ret < 0)
-+		goto error;
-+
-+	if (max_uA == 0 && ss_reg != 0)
-+		return ret;
-+
-+	if (!(ss_reg & BQ24190_REG_SS_VBUS_STAT_MASK))
-+		in_current_limit = 500;
-+	else
-+		in_current_limit = max_uA / 1000;
-+
-+	return bq24190_set_field_val(bdi, BQ24190_REG_ISC,
-+			BQ24190_REG_ISC_IINLIM_MASK,
-+			BQ24190_REG_ISC_IINLIM_SHIFT,
-+			bq24190_isc_iinlim_values,
-+			ARRAY_SIZE(bq24190_isc_iinlim_values),
-+			in_current_limit);
-+error:
-+	dev_err(bdi->dev, "Charger enable failed, err = %d\n", ret);
-+	return ret;
-+}
-+
-+static const struct regulator_ops bq24190_chrg_ops = {
-+	.set_current_limit = bq24190_set_charging_current,
-+};
-+
-+static const struct regulator_desc bq24190_chrg_desc = {
-+	.name = "charger",
-+	.of_match = "charger",
-+	.type = REGULATOR_CURRENT,
-+	.owner = THIS_MODULE,
-+	.ops = &bq24190_chrg_ops,
-+};
-+
-+static const struct regulator_init_data bq24190_chrg_init_data = {
-+	.constraints = {
-+		.valid_ops_mask = REGULATOR_CHANGE_STATUS | REGULATOR_CHANGE_CURRENT,
-+		.min_uA = 0,
-+		.max_uA = 3000000,
-+	},
-+};
-+
-+static int bq24190_register_chrg_regulator(struct bq24190_dev_info *bdi)
-+{
-+	struct bq24190_platform_data *pdata = bdi->dev->platform_data;
-+	struct regulator_config cfg = { };
-+	struct regulator_dev *reg;
-+	int ret = 0;
-+
-+	cfg.dev = bdi->dev;
-+	if (pdata && pdata->regulator_init_data)
-+		cfg.init_data = pdata->regulator_init_data;
-+	else
-+		cfg.init_data = &bq24190_chrg_init_data;
-+	cfg.driver_data = bdi;
-+	reg = devm_regulator_register(bdi->dev, &bq24190_chrg_desc, &cfg);
-+	if (IS_ERR(reg)) {
-+		ret = PTR_ERR(reg);
-+		dev_err(bdi->dev, "Can't register regulator: %d\n", ret);
-+	}
-+
-+	return ret;
-+}
-+
- static int bq24190_vbus_enable(struct regulator_dev *dev)
- {
- 	return bq24190_set_otg_vbus(rdev_get_drvdata(dev), true);
-@@ -611,6 +686,11 @@ static int bq24190_register_vbus_regulator(struct bq24190_dev_info *bdi)
- 	return ret;
- }
- #else
-+static int bq24190_register_chrg_regulator(struct bq24190_dev_info *bdi)
-+{
-+	return 0;
-+}
-+
- static int bq24190_register_vbus_regulator(struct bq24190_dev_info *bdi)
- {
- 	return 0;
-@@ -1879,6 +1959,10 @@ static int bq24190_probe(struct i2c_client *client)
- 		goto out_charger;
- 	}
- 
-+	ret = bq24190_register_chrg_regulator(bdi);
-+	if (ret < 0)
-+		goto out_charger;
-+
- 	ret = bq24190_register_vbus_regulator(bdi);
- 	if (ret < 0)
- 		goto out_charger;
+The series does not contain 3A interface. According to Laurent's suggestion,
+we put the driver in the staging directory first. In the next stage, we will
+continue to submit the 3A interface in the way of incremental development,
+and finally expect the code to be placed in the drivers/media/.
+
+> thanks,
+> 
+> greg k-h
+
 -- 
-2.42.0
+Regards,
 
+Jack Zhu
