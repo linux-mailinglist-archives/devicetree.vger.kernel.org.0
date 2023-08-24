@@ -2,278 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2979E7875D7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D09527875EA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:47:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242675AbjHXQpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 12:45:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32876 "EHLO
+        id S238710AbjHXQrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 12:47:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242436AbjHXQpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:45:05 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66374198;
-        Thu, 24 Aug 2023 09:45:01 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C1707E0004;
-        Thu, 24 Aug 2023 16:44:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1692895499;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=sgKRd8PXna9jddAQ7rYYlYUO4KIn7jskOvosbl+/UOs=;
-        b=KTVnzD5eVG2mw9j6CEqcZhnTJSoCHDBkb/MYYvlHhrk7z6MfEr8ZRX0TSl957if3mHmwzS
-        6frES6KAXz+WuMYXmtFLD13OjX3VJcXVNJNMy7D6DCPoRgPj1bT8AtppiE+olPLBuMGg//
-        JxxP0rArWBg88Nbj10QQwE39F6YhX3z3MDZGAnJf48nbqoGxGXN8Xia5wJbKAGfZBJ+N6Q
-        HZA6C5qZftnN7pcS/5UaU+tLfQg+VnUhV0Zik7VF4qhFoxdGtvxD+UIMBMYu3kVD898JBR
-        BQPsXzVrFkC3MWJPlEnpAEFtwQr2EIdoqd1el7kRXYhmwqMBOoOEs+RVJBd09g==
-Date:   Thu, 24 Aug 2023 18:44:54 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Simon Horman <horms@kernel.org>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Andrew Lunn <andrew@lunn.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 21/28] net: wan: Add framer framework support
-Message-ID: <20230824184454.2a96b6fc@bootlin.com>
-In-Reply-To: <ZOJKH0xHpQc4HdUP@vergenet.net>
-References: <cover.1692376360.git.christophe.leroy@csgroup.eu>
-        <5f671caf19be0a9bb7ea7b96a6c86381e243ca4c.1692376361.git.christophe.leroy@csgroup.eu>
-        <ZOJKH0xHpQc4HdUP@vergenet.net>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S242729AbjHXQqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:46:46 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FBEF19B4;
+        Thu, 24 Aug 2023 09:46:33 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id 98e67ed59e1d1-26fa19322b5so483475a91.0;
+        Thu, 24 Aug 2023 09:46:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692895593; x=1693500393;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Dl3PFvJyj6Nc96D4YdaEEhHesJUYcDBBfF077zXjExs=;
+        b=Cra/RY1DU2ZlQjbk9E4XkgQASG9k8CALF2UZqmCk2XcTUBj9U1pAXrnBXcDq2IChrb
+         KmUHT4AsEzuZ72OqKcxmz3TVggP8JOxTSZPh4ccVMSIY+TQB8WtiDhIxiBaf3WYICoRt
+         M02DqnYqRBJN59A79L+w43G8A/fgnquagtU+qMEYCn6knE0vkaXKT1e5LKflNZgwOhRC
+         sGo8C+hV36/uY53ninaLKY+GZohD8q/yrG3CaifMJ06TVOaHvdnimqHcjhnZsSry3XXv
+         o3aEHW0LgYcwCZnc6hcMhQpnk0/mdeCevp+4K9dI/D7f44nNvDNrNxB3sXzDSgWkjhqe
+         9GOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692895593; x=1693500393;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Dl3PFvJyj6Nc96D4YdaEEhHesJUYcDBBfF077zXjExs=;
+        b=is6fL8vD9Zjg65quoOh9peq+LQLq4YsQJwtms87n8WgoQ+tAaDtABeNlz+0SceL5bu
+         Vv570hxZDEmbBIZPL3MgbQ/UmQruG+M0kbKPwT724ACtq2wO6RZvL1iJs5L0BOKcngAm
+         2R/yusSW388CCDQQOG1NeXHTzokT8V6UX3qliJBkeIErOadOpFDu5t6gqdJhOAV6euJ9
+         qmLKohBHQHyH3Ri7LqtjsRlBDlu2zvby80s6JEgIokGnhIFXB2ZbMn9nmgHVmVcgetwt
+         NJ3xhkDkd2PE+YiRFR7bE2vZLjEWDYGJQe6ksQGiZFXSWhkZsHxd69hfkLNxjqkc51e3
+         K/NA==
+X-Gm-Message-State: AOJu0YypullvNY9jlXFWxYh2Hr2JQmKFxVYdkIKCayjR09A7diLBR4z4
+        zqaJ98RLTNIaY3fIT7jCoy4VOY6xcRsk5KAUdQ18JK+yv/0=
+X-Google-Smtp-Source: AGHT+IHXsc1EGG4teFvNAFCt8C8bAL5yQkdLbuqsySgoXF4wg762cneoaYMGuwQCGh6tPn6R2XV/RfPCWbY4Ka8u1v4=
+X-Received: by 2002:a17:90a:4142:b0:26d:412d:9ce8 with SMTP id
+ m2-20020a17090a414200b0026d412d9ce8mr14585252pjg.0.1692895592930; Thu, 24 Aug
+ 2023 09:46:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230823173334.304201-1-festevam@gmail.com> <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
+ <CAOMZO5CPz=ysfjb_x3T0FqKxjTPy1zippZRnkMXCTuyD7fF57g@mail.gmail.com>
+ <8070b293-b187-b0cc-fd3d-d057c5623094@linaro.org> <CAOMZO5AZh6DUbZJecwaK8jwGBRCj+40GF5OqyuV2c8mgXT9ZYg@mail.gmail.com>
+ <36e24244-3382-b6bb-5975-044112d21eed@linaro.org> <71a842cb-86c4-cd36-ba4c-0be480f8b16c@linaro.org>
+ <e73d8321-9471-bbff-d273-9b53c938655f@linaro.org>
+In-Reply-To: <e73d8321-9471-bbff-d273-9b53c938655f@linaro.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 24 Aug 2023 13:46:21 -0300
+Message-ID: <CAOMZO5Crcqv9xhiR0nOhn+ka3-9P+PT-U=cQ6NZMpFVOwYaG6w@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: imx8mm-thermal: Document 'nxp,reboot-on-critical'
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+Hi Krzysztof and Daniel,
 
-On Sun, 20 Aug 2023 19:15:11 +0200
-Simon Horman <horms@kernel.org> wrote:
+On Thu, Aug 24, 2023 at 12:43=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-> On Fri, Aug 18, 2023 at 06:39:15PM +0200, Christophe Leroy wrote:
-> > From: Herve Codina <herve.codina@bootlin.com>
-> > 
-> > A framer is a component in charge of an E1/T1 line interface.
-> > Connected usually to a TDM bus, it converts TDM frames to/from E1/T1
-> > frames. It also provides information related to the E1/T1 line.
-> > 
-> > The framer framework provides a set of APIs for the framer drivers
-> > (framer provider) to create/destroy a framer and APIs for the framer
-> > users (framer consumer) to obtain a reference to the framer, and
-> > use the framer.
-> > 
-> > This basic implementation provides a framer abstraction for:
-> >  - power on/off the framer
-> >  - get the framer status (line state)
-> >  - be notified on framer status changes
-> >  - get/set the framer configuration
-> > 
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-> > Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>  
-> 
-> Hi Christophe and Herve,
-> 
-> some minor feedback from my side.
-> 
-> ...
-> 
-> > diff --git a/drivers/net/wan/framer/framer-core.c b/drivers/net/wan/framer/framer-core.c  
-> 
-> ...
-> 
-> > +/**
-> > + * framer_create() - create a new framer
-> > + * @dev: device that is creating the new framer
-> > + * @node: device node of the framer. default to dev->of_node.
-> > + * @ops: function pointers for performing framer operations
-> > + *
-> > + * Called to create a framer using framer framework.
-> > + */
-> > +struct framer *framer_create(struct device *dev, struct device_node *node,
-> > +			     const struct framer_ops *ops)
-> > +{
-> > +	int ret;
-> > +	int id;
-> > +	struct framer *framer;  
-> 
-> Please arrange local variable declarations for Networking code
-> using reverse xmas tree order - longest line to shortest.
+> OK, if this is supposed to be also accessed before user-space or even
+> before kernel, then it makes sense in DT.
 
-Yes, will be done in the next iteration.
+I think we reached a consensus now.
 
-> 
-> https://github.com/ecree-solarflare/xmastree is helpful here.
-> 
-> ...
-> 
-> > diff --git a/include/linux/framer/framer-provider.h b/include/linux/framer/framer-provider.h  
-> 
-> ...
-> 
-> > +/**
-> > + * struct framer_ops - set of function pointers for performing framer operations
-> > + * @init: operation to be performed for initializing the framer
-> > + * @exit: operation to be performed while exiting
-> > + * @power_on: powering on the framer
-> > + * @power_off: powering off the framer
-> > + * @flags: OR-ed flags (FRAMER_FLAG_*) to ask for core functionality
-> > + *          - @FRAMER_FLAG_POLL_STATUS:
-> > + *            Ask the core to perfom a polling to get the framer status and  
-> 
-> nit: perfom -> perform
+I will send a new version that uses the DT approach and populate
+tmu_tz_ops.critical inside probe() as suggested by Daniel.
 
-Will be fixed in the next iteration.
-
-> 
->      checkpatch.pl --codespell is your friend here
-> 
-> > + *            notify consumers on change.
-> > + *            The framer should call @framer_notify_status_change() when it
-> > + *            detects a status change. This is usally done using interrutps.  
-> 
-> nit: usally -> usually
->      interrutps -> interrupts
-
-Will be fixed in the next iteration.
-
-> 
-> ...
-> 
-> > diff --git a/include/linux/framer/framer.h b/include/linux/framer/framer.h
-> > new file mode 100644
-> > index 000000000000..0bee7135142f
-> > --- /dev/null
-> > +++ b/include/linux/framer/framer.h
-> > @@ -0,0 +1,199 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-or-later */
-> > +/*
-> > + * Generic framer header file
-> > + *
-> > + * Copyright 2023 CS GROUP France
-> > + *
-> > + * Author: Herve Codina <herve.codina@bootlin.com>
-> > + */
-> > +
-> > +#ifndef __DRIVERS_FRAMER_H
-> > +#define __DRIVERS_FRAMER_H
-> > +
-> > +#include <linux/err.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/notifier.h>
-> > +#include <linux/of.h>
-> > +#include <linux/device.h>
-> > +#include <linux/workqueue.h>
-> > +
-> > +/**
-> > + * enum framer_iface - Framer interface  
-> 
-> As this is a kernel-doc, please include documentation for
-> the defined constants: FRAMER_IFACE_E1 and FRAMER_IFACE_T1.
-> 
-> As flagged by: ./scripts/kernel-doc -none
-
-Will be done in the next iteration.
-
-> 
-> > + */
-> > +enum framer_iface {
-> > +	FRAMER_IFACE_E1,      /* E1 interface */
-> > +	FRAMER_IFACE_T1,      /* T1 interface */
-> > +};
-> > +
-> > +/**
-> > + * enum framer_clock_mode - Framer clock mode  
-> 
-> Likewise here too.
-> 
-> Also, nit: framer_clock_mode -> framer_clock_type
-> 
-
-Will be updated (doc and change to framer_clock_type) in the next iteration.
-
-> > + */
-> > +enum framer_clock_type {
-> > +	FRAMER_CLOCK_EXT, /* External clock */
-> > +	FRAMER_CLOCK_INT, /* Internal clock */
-> > +};
-> > +
-> > +/**
-> > + * struct framer_configuration - Framer configuration  
-> 
-> nit: framer_configuration -> framer_config
-
-Will be fixed in the next iteration.
-
-> 
-> > + * @line_iface: Framer line interface
-> > + * @clock_mode: Framer clock type
-> > + * @clock_rate: Framer clock rate
-> > + */
-> > +struct framer_config {
-> > +	enum framer_iface iface;
-> > +	enum framer_clock_type clock_type;
-> > +	unsigned long line_clock_rate;
-> > +};
-> > +
-> > +/**
-> > + * struct framer_status - Framer status
-> > + * @link_is_on: Framer link state. true, the link is on, false, the link is off.
-> > + */
-> > +struct framer_status {
-> > +	bool link_is_on;
-> > +};
-> > +
-> > +/**
-> > + * framer_event - event available for notification  
-> 
-> nit: framer_event -> enum framer_event
-
-Will be fixed in the next iteration.
-
-> 
-> A~d please document FRAMER_EVENT_STATUS in the kernel doc too.
-
-Will be documented in the next iteration.
-
-> 
-> > + */
-> > +enum framer_event {
-> > +	FRAMER_EVENT_STATUS,	/* Event notified on framer_status changes */
-> > +};  
-> 
-> ...
-
-Thanks for the review,
-Best regards,
-Hervé
+Thanks a lot for the review
