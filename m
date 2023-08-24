@@ -2,76 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF7A07878BD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 21:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C945D7878DE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 21:44:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235615AbjHXTil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 15:38:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48742 "EHLO
+        id S236639AbjHXTn3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 15:43:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243380AbjHXTiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 15:38:20 -0400
-Received: from mail-qv1-xf29.google.com (mail-qv1-xf29.google.com [IPv6:2607:f8b0:4864:20::f29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34AA51FF3;
-        Thu, 24 Aug 2023 12:38:17 -0700 (PDT)
-Received: by mail-qv1-xf29.google.com with SMTP id 6a1803df08f44-64f3ad95ec0so1189746d6.1;
-        Thu, 24 Aug 2023 12:38:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692905896; x=1693510696;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0pNXjP4YD8YCbiS4F9wDMpxOWm98T3b5y8pHcO+RMEw=;
-        b=aahapvrFGY7P6jqXJOpOx+C9sAW9Vu6MYSSFTrntNwzYb+FEXcarBvbGHSeqmQafH3
-         fV+PPkYD9JOESfaqruDxJbB4VWFt+QtmqXSHXU2x6VKre33BTWf/M/p2YwaM/TCuoeNy
-         HNoHdLEjctfyellA9KJ+0iksjrqzjOTlhJH3H2NnGDWv/G9VHFPMOBVRk78HjGx7t3Yj
-         B/FprvMvK44VcT0tIG9fej8QQ64wJBiBrKkvIzsb1n7bj+rL7UPEOWW3SVJe7yNkds99
-         K0222QbCaigc50CnjTIvQ+1X5jkycH7mspmIgb91YRX2aphkgn1eNHyEFo/a8FCBwSzV
-         O+Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692905896; x=1693510696;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0pNXjP4YD8YCbiS4F9wDMpxOWm98T3b5y8pHcO+RMEw=;
-        b=KMFzT3WZiZ7+oMds7IaNf8vTfDUtVL371QjkE7Cq2/QEsSwQS5tjV0LvrPv9SXFmvX
-         wXwkxBmNHLqfZfnSQewd+juXmglpk2M21Sz8aXql9f7HJhgNjvHXzhLBSD9KasxhiHgw
-         MkNfh0JC2VuM1hWVgidYYoHuN+BcwuiHU0H0qeFCnEOpjmmouU6+XK3fqcKwFtSIm5/Y
-         7BF2KVQBtTbczbxWzi3JWiQ1oVW5RY4mFKmBW0m2hVrI62SDNwwTK5N31NKvyXPoD49H
-         zVbsaLqRVGPi4/A6kzOZ4GYeL8EQDCYtE07m5OZ4NMZ5sOHVhqNvgjglN3/capTGsAmI
-         eJVQ==
-X-Gm-Message-State: AOJu0YzrnY2M6QSah/Xu4bxF/UpsXB1qmX0D6aQyFxSBOCpDnXrGwZQh
-        NhIcgezGUP8kOIEC4AMtr1s=
-X-Google-Smtp-Source: AGHT+IE8OWrIs6aQAelJ+psBoQwdK3wLaMcSWjWlfzt4Vh7kCM73sDWvJgjlNpdtPkJ6hN1BfStoFw==
-X-Received: by 2002:a0c:e7cc:0:b0:63d:281d:d9cf with SMTP id c12-20020a0ce7cc000000b0063d281dd9cfmr15224559qvo.64.1692905896206;
-        Thu, 24 Aug 2023 12:38:16 -0700 (PDT)
-Received: from shaak (modemcable063.135-226-192.mc.videotron.ca. [192.226.135.63])
-        by smtp.gmail.com with ESMTPSA id u25-20020a0cb699000000b0064f5e7728bcsm17490qvd.138.2023.08.24.12.38.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Aug 2023 12:38:15 -0700 (PDT)
-Date:   Thu, 24 Aug 2023 15:38:13 -0400
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: adc: ltc2309: switch to new .probe()
-Message-ID: <20230824193813.GC3659959@shaak>
-References: <20230824-ltc2309-v1-0-b87b4eb8030c@gmail.com>
- <20230824-ltc2309-v1-2-b87b4eb8030c@gmail.com>
- <f935f35f-e00b-4ebe-2071-de9d8f2f6512@linaro.org>
+        with ESMTP id S243354AbjHXTn3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 15:43:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922C81BE6;
+        Thu, 24 Aug 2023 12:43:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 30E6366D2B;
+        Thu, 24 Aug 2023 19:43:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB530C433C9;
+        Thu, 24 Aug 2023 19:43:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692906206;
+        bh=0V2DSkVF87pI/l8v/Q3/4st7Qd2divrO5JtOEUuR1Zs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kln5o0EWNpFYkWPILpgi8TiN+RwGpO9oc4tKWGXWziTKlUBBVBRqeCDZ5Lp/a4AQf
+         e0jDF8sqCe7ykXO+S1IZDZgSNIMtK6wr0/45qV8JwVlP8F0utJYHJj9V2SCW7QU8Yq
+         mT6zPx16BFvf+OqXW0G/fI/WRsOURjMM7tlzsKkjgODrFL5I1oEbMJXD0idAJ5TtuQ
+         wDceFtvy9mrWcNlCfawX89WfqzV5wXgmo9YHlmzORx9Bir2FdYDMcOWmXl7tNqzXhR
+         UEuY/cS2ZAU1iUZvw+9OvfYjMQE3TZVBJN/arCnbNxhvCBUOOoNmySursb3jXA0qLL
+         6Ot+PCY8KPJgw==
+Received: (nullmailer pid 1347243 invoked by uid 1000);
+        Thu, 24 Aug 2023 19:43:24 -0000
+Date:   Thu, 24 Aug 2023 14:43:24 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Guo Mengqi <guomengqi3@huawei.com>
+Cc:     vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, xuqiang36@huawei.com,
+        chenweilong@huawei.com
+Subject: Re: [PATCH v3 2/2] dt-bindings: dma: hisi: Add bindings for Hisi
+ Ascend sdma
+Message-ID: <20230824194324.GA1342234-robh@kernel.org>
+References: <20230824040007.1476-1-guomengqi3@huawei.com>
+ <20230824040007.1476-3-guomengqi3@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f935f35f-e00b-4ebe-2071-de9d8f2f6512@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+In-Reply-To: <20230824040007.1476-3-guomengqi3@huawei.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,39 +60,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 24, 2023 at 08:01:01PM +0200, Krzysztof Kozlowski wrote:
-> On 24/08/2023 18:55, Liam Beguin wrote:
-> > Recent changes to the I2C subsystem removed the id parameter of the
-> > probe function. Update driver to use the new prototype, and keep this as
-> > an independent commit to facilitate backporting.
-> > 
-> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
-> > ---
-> >  drivers/iio/adc/ltc2309.c | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
-> > index ee1fd9b82e2a..d26bbd70b0ff 100644
-> > --- a/drivers/iio/adc/ltc2309.c
-> > +++ b/drivers/iio/adc/ltc2309.c
-> > @@ -158,8 +158,7 @@ static const struct iio_info ltc2309_info = {
-> >  	.read_raw = ltc2309_read_raw,
-> >  };
-> >  
-> > -static int ltc2309_probe(struct i2c_client *client,
-> > -			 const struct i2c_device_id *id)
-> > +static int ltc2309_probe(struct i2c_client *client)
+On Thu, Aug 24, 2023 at 12:00:07PM +0800, Guo Mengqi wrote:
+> Add device-tree binding documentation for the Hisi Ascend sdma
+> controller.
 > 
-> This patch does not make sense. Do not send patch (1/3) which does not
-> compile and is buggy, just to immediately fix it. We do not add known
-> wrong code.
-
-Sorry about that! You're right, I missed that 1/3 doesn't build without
-this change. I might've pressed send too quickly here..
-
-> Best regards,
-> Krzysztof
+> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
+> ---
+>  .../bindings/dma/hisi,ascend-sdma.yaml        | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
+> new file mode 100644
+> index 000000000000..87b6132c1b4b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/hisi,ascend-sdma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HISI Ascend System DMA (SDMA) controller
+> +
+> +description: |
+> +  The Ascend SDMA controller is used for transferring data
+> +  in system memory. It utilizes IOMMU SVA feature and accepts
+> +  virtual address from user process.
+> +
+> +maintainers:
+> +  - Guo Mengqi <guomengqi3@huawei.com>
+> +
+> +allOf:
+> +  - $ref: dma-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hisilicon,ascend310-sdma
+> +      - hisilicon,ascend910-sdma
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#dma-cells':
+> +    const: 1
+> +    description:
+> +      Clients specify a single cell with channel number.
+> +
+> +  hisilicon,ascend-sdma-channel-map:
+> +    description: |
+> +      bitmap, each bit stands for a channel that is allowed to
+> +      use by this system. Maximum 64 bits.
+> +    $ref: /schemas/types.yaml#/definitions/uint64
 
-Thanks,
-Liam
+Sounds like the common property dma-channel-mask. Use that.
+
+> +
+> +  iommus:
+> +    maxItems: 1
+> +
+> +  pasid-num-bits:
+
+Needs a vendor prefix.
+
+> +    description: |
+> +      sdma utilizes iommu sva feature to transfer user space data.
+
+Isn't shared VA mostly a s/w concept?
+
+> +      It acts as a basic dma controller if not bound to user space.
+
+I don't understand what this means.
+
+> +    const: 0x10
+
+If only 1 value is allowed, what is the point of this property.
+
+Rob
