@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3152786DF7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 13:34:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45894786DEC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 13:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241054AbjHXLd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 07:33:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50654 "EHLO
+        id S241037AbjHXLd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 07:33:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241032AbjHXLdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 07:33:38 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35C7A1995
+        with ESMTP id S241034AbjHXLdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 07:33:40 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2D1199C
         for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:33:36 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-400a087b0bfso10557225e9.2
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-31aec0a1a8bso506416f8f.0
         for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692876814; x=1693481614;
+        d=linaro.org; s=google; t=1692876815; x=1693481615;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=t7JVgS4P+r3UmL+zEqqJ/GMQY1QC9tz8eDbv8910S9M=;
-        b=V53f72SG/otue/+tuFudA5Q8YGHWoaxA7TQozk08FfxNYzkL6TRFZ5XYrWXm+tu917
-         LHZXwhfDDX3PfUTOmDvQIESdsTA8k491RCtuRtr8+k+Nk/y8nx3qdVSjLlAPirGTLQhu
-         oBnn/0R10TpyKHJmulWLYI7WWxxnQrhKe6y1xhF1UOhIObAFW4WN3dvV4eFp/quYUsmV
-         aXhYBp38psQR7VXrWjHrkBM7Z6LgbPJuIScT2TlLcLFWTXS5jSDEeVRqEn1NdAigZ2TO
-         Ux2GEPMK/6Cj4IHH8u9YzD3oEBF7f0KtDwZkop3QwK/nwNhQXkVhtSBATD5LIxIFZhZG
-         7UFA==
+        bh=TT+3PtTEWwow+wvZw0jd3MVENA8M+HVZgmD6YM9pzZs=;
+        b=qzfeJ6wS7TKcsaWDOdGCNO04aZT98Y1qdgzZt8seaXw7MrmvEQcgfM+MDHy0Q+4T3k
+         aVOf7Ekbmo9Z3DRk4row2gD0VElkwqDphBZgGUhdX2jQvRZovjjGyrUIwA+Dr+1wHQHO
+         Y+kPjXy34j8cOzNNNZ+x1FmrZpcaIO0H2M1Hl9i9tVqHSMZzWu9ZoUDQGBbRqUny9CNf
+         G2630JQLIX6x7343CLim9m6zk7TTQJhG2aczDLGMrJnycx/Mjspwg4AxXssYJCu6Ve67
+         v1d3ZoO7LlysXZQXQxcV11nA+ILKL+bfwZzEaS+ytDabQb5LG5aWywi32xcgYZFzhsli
+         mPCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692876814; x=1693481614;
+        d=1e100.net; s=20221208; t=1692876815; x=1693481615;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=t7JVgS4P+r3UmL+zEqqJ/GMQY1QC9tz8eDbv8910S9M=;
-        b=bW1Gg1ULkQZoI753jkAjnlsOfccVADEeeiUEzqD41NuldfqwqUoKmjslDeCkhChoOG
-         iGOFKN+AbbYMnqluxeZoBZxa0uIt/xMvQaXpC7JYzEG+OP4hfSdz0RQz7w3Um3TvG9lV
-         nldkFbx5YVs5nHCCrtUnDNHkZMsrj2yirnFG5/Fbm5Oa7SX0xGibeCQ9D0+T8YZH9BRp
-         2Xi3nFUUMxEM24zXW/ygZclZNPNPic/LXZgLpHByJ51p7Fr3lL6OqkYhrrgiOOhTFQSe
-         rGX8uDIu3I7IBTBWUlCxHdmLvvgXzEO6QcQUTGqGWAatoXADmxH+j89h72yxige65BwP
-         Gpmw==
-X-Gm-Message-State: AOJu0YzFNZYs6oZgEE7eniN3s6mf3iMJ9Q/WcYETBAGcY2PyHaNaNRWi
-        mIWjoaEET2WTg8LxXilxd72NEA==
-X-Google-Smtp-Source: AGHT+IHf0MvesscCIVZNzz1z+yO4m4QsxlCrKzGMF4nH0xWogaqvZJyN56VfVspoOk4QUILlBU55nQ==
-X-Received: by 2002:adf:e886:0:b0:31a:d716:fd7e with SMTP id d6-20020adfe886000000b0031ad716fd7emr10256024wrm.71.1692876813920;
-        Thu, 24 Aug 2023 04:33:33 -0700 (PDT)
+        bh=TT+3PtTEWwow+wvZw0jd3MVENA8M+HVZgmD6YM9pzZs=;
+        b=ecl+Pa1FToGUwuHW7kIsc2HK3uU7otKDdxSDSTHx821BQ6OfNe1ogw01P4VN+eBTPK
+         Qd6bxX8pln5pWKB2EB9o24se6J9RMpShSoAf/CtW4ysPey6Zzi2F2oYafkUc56Uf0sqW
+         2AOAXvdL4hA3/b29rUcxwigJ4mHmo4jyovJ7tp26foDB0AIwfaxkAv0E+dGJ+1x0YtyF
+         1/rdU6v58wW+jyxPhs8glbWjvTndUsbljzarxHV0R078+OnvcOupXd90CmYIMfP1BsvB
+         B0K9YBmhm5wp9jfw2qu62kc7j9VvC9hL+mcQIVKKl7vwpDviqU0L13m1shUK4UzVQfum
+         9NLQ==
+X-Gm-Message-State: AOJu0Yyb0cjTWWLPAsY5V7f4Q2EELk5R8uIc+uFfSYbRKaMNoKuu90wp
+        LWkpx2Bty/gQczTClXRUi7ivKA==
+X-Google-Smtp-Source: AGHT+IEStLNUZ458nU+n7MPhji16NlK4/IAMBvZPbLGDl12OgwPwZ74622bDQM9ISblnXkvZc6EPOQ==
+X-Received: by 2002:adf:f986:0:b0:317:dadc:4a63 with SMTP id f6-20020adff986000000b00317dadc4a63mr11316924wrr.8.1692876815529;
+        Thu, 24 Aug 2023 04:33:35 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id e11-20020a5d65cb000000b003179d7ed4f3sm22063938wrw.12.2023.08.24.04.33.32
+        by smtp.gmail.com with ESMTPSA id e11-20020a5d65cb000000b003179d7ed4f3sm22063938wrw.12.2023.08.24.04.33.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Aug 2023 04:33:33 -0700 (PDT)
+        Thu, 24 Aug 2023 04:33:35 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 24 Aug 2023 13:33:22 +0200
-Subject: [PATCH v2 3/7] dt-bindings: crypto: qcom,prng: document that RNG
- on SM8450 is a TRNG
+Date:   Thu, 24 Aug 2023 13:33:23 +0200
+Subject: [PATCH v2 4/7] crypto: qcom-rng - Add support for trng
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230824-topic-sm8550-rng-v2-3-dfcafbb16a3e@linaro.org>
+Message-Id: <20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org>
 References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
 In-Reply-To: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -70,23 +69,22 @@ To:     Andy Gross <agross@kernel.org>,
         Vinod Koul <vkoul@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Om Prakash Singh <quic_omprsing@quicinc.com>
+        Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1667;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=822;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=58wxphp2h2TI0jORKIXbWmrB3KQFcJDowKn8tdRUZt8=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk50AHfonZie7b9AdU6R0NgcQ8qLlFJ07pEbuDwRPy
- LMYxB7GJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZOdABwAKCRB33NvayMhJ0fYjEA
- Cbmh8vjHfB/JtBtuEtXZ3GvClNvgfaYfr2V+grZgSUPiBD1Mxgx+jxQ49BRifHMDBxZrLKlN/ydraX
- SrqQdUsnKqskCEIaypmqRi7zZbPdzZPnAXuMKbyHr9zmfXc5+pGToiseqhiBUtKEQyevNbstyCKgbn
- WRSYTFdoVsONJSdrXToI08CZHNRDPO7cUbVn7gvactk6JMFhw5u1X/d52svCCLKfj9QS/eYweRZ8f5
- GxefR7QpbdvnT8v5fYpAA9p/vnUL/lvALK9iBrkvwV8GOdeOjd/OdljfbrOoR1asp8kDQfOkQ+/QWp
- 2XzBZEqcR41CITJIGpo0leRZ7w/5F1xtpiCDrpWG9WwHcjYWOXAcQ1z/w0FppNRTY5HeAbaa2ttsw0
- gxWklLb1znrWhaDkNje01FndKVtqOiXIDEyzgqVk+lhitIoaHA+EUYjgsChCj30xnjZ/ghqTLiyU1H
- KvANLDb6h/r0Levrk/lDtf7nS3WFHM5KYkEzq4NVN62r6Aks/m8Rm4khkPjBTIpTsmygaB4A1S8p4S
- rDqp/7iTFOYD1bwVKdGZA5OLfrnSwCw57LNr7CM269I++GBlIKYpLPZEqFGGhcRWQfoRkg/Wtk8tI5
- qUxTxyFar3oVyxcBm9Q1DcIxGufSd0C2Ex+fCbqKAMb0NJsiTJLYJBsMPxuQ==
+ bh=inzVwuMARlcbh5HV8mDTw43aUJjgrQvAQ/pIfweiQCc=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk50AH8nMEcPo71ueUkKxSD9CIiVFkHWu8XFprPW4l
+ U0OF9UKJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZOdABwAKCRB33NvayMhJ0UgHEA
+ DAu8DGfb+eUHnMWlyVwpItoK+XKhSCoDKRcF6x7mOwgKQX+chyG6UbnuDplIGGE9dv/gqdDfCveTew
+ bi+uQtoSxAKiJdZbfL39LMnk2kyYFHNDNMyRgfNA7fWuD8L03JK5QaYIblf4HdHIY21mYOhdleohGK
+ c6ztv+PfsPuzr9Gv2KwLy6BcU0nX1NZbUni5Fx9MwnmgLAEJCIXXIpIma+Y8SqrRq4/7yO92oY9ved
+ DPA0eTQ939cO1KLcFZq62P3Aa6QexWf2lef/+3aoKfZWBtuhb3cBa51mcdcYVWE4wFsGfv5UI8urUD
+ aXhVE5IS9bKBX/yhOrhtnbAAGaSl0pQX1RY9vJAPbnRTPzFFIRSlhtUjHrFWCystROKD4f70v8PjAe
+ 5cdV782+ixr0u/k5KzGheZcMiO/gAu1OQph8NyMumOktnBuw3pnnEM6V9WFjNBgZoXGsdwgjyXDEtF
+ qg70OhqI+smFV/K0m0aQgem2bTpvXODQaAUA/yPuDp1qHFpRNP4s0cIOmtjjfovESkxHQ64qyq3Tk4
+ VTX1OqNoGZZ1F7ss8FxxsLekfMKMHzzoVUwy39jqS1oQBC8xPAL7vpHzu7fZAoEWI7Js+86cC3W4K7
+ eOZDTNg6H0CwJRvd+Iy7lNoNWDseRFc7ELyP3h7XKWTOFRUZo2T15zXbhayA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -99,61 +97,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It has been reported at [1] the RNG HW on SM8450 is in fact a True Random
-Number Generator and no more Pseudo, document this by adding
-a new qcom,trng and the corresponding SoC specific sm8450 compatible.
+The SM8450 & later SoCs RNG HW is now a True Random Number Generator
+and a new compatible has been introduced to handle the difference.
 
-[1] https://lore.kernel.org/all/20230818161720.3644424-1-quic_omprsing@quicinc.com/
-
-Suggested-by: Om Prakash Singh <quic_omprsing@quicinc.com>
-Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../devicetree/bindings/crypto/qcom,prng.yaml      | 24 +++++++++++++++++-----
- 1 file changed, 19 insertions(+), 5 deletions(-)
+ drivers/crypto/qcom-rng.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-index bb42f4588b40..4245c9e424a3 100644
---- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-+++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
-@@ -11,9 +11,13 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - qcom,prng  # 8916 etc.
--      - qcom,prng-ee  # 8996 and later using EE
-+    oneOf:
-+      - enum:
-+          - qcom,prng  # 8916 etc.
-+          - qcom,prng-ee  # 8996 and later using EE
-+      - items:
-+          - const: qcom,sm8450-trng
-+          - const: qcom,trng
- 
-   reg:
-     maxItems: 1
-@@ -28,8 +32,18 @@ properties:
- required:
-   - compatible
-   - reg
--  - clocks
--  - clock-names
-+
-+allOf:
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: qcom,trng
-+    then:
-+      required:
-+        - clocks
-+        - clock-names
- 
- additionalProperties: false
- 
+diff --git a/drivers/crypto/qcom-rng.c b/drivers/crypto/qcom-rng.c
+index 825a729f205e..fb54b8cfc35f 100644
+--- a/drivers/crypto/qcom-rng.c
++++ b/drivers/crypto/qcom-rng.c
+@@ -207,6 +207,7 @@ MODULE_DEVICE_TABLE(acpi, qcom_rng_acpi_match);
+ static const struct of_device_id __maybe_unused qcom_rng_of_match[] = {
+ 	{ .compatible = "qcom,prng", .data = (void *)0},
+ 	{ .compatible = "qcom,prng-ee", .data = (void *)1},
++	{ .compatible = "qcom,trng", .data = (void *)1},
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, qcom_rng_of_match);
 
 -- 
 2.34.1
