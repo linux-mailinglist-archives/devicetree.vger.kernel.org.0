@@ -2,87 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6240078680B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 09:04:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8731786814
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 09:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232062AbjHXHEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 03:04:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50738 "EHLO
+        id S240284AbjHXHFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 03:05:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234976AbjHXHDc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 03:03:32 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 790AA1729
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:03:09 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bcf2de59cso833043066b.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:03:09 -0700 (PDT)
+        with ESMTP id S233209AbjHXHEe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 03:04:34 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4617B1AD
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:04:31 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99df431d4bfso832518666b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:04:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692860588; x=1693465388;
+        d=linaro.org; s=google; t=1692860670; x=1693465470;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P45nAftBMkI9aO/uXRibti5ezjszBIQ2T+bQqiHAg7Y=;
-        b=J/3793hrGTYLIQrFLs/3h4rLwByn+HYPUKOvdOVBZlRd49ONEBMKcLI2nh5WpE7pOo
-         UsO/Bvg2lPXd1bP9iKhA5AWiUX6XfhUQ9I7QIgiG0uwfzuW8NctmXlwOh/F8qgAiJyKH
-         nQpgGOy6tYTYHe06Z8P5v1zwdNuegaggmRC4G0ZkHv8NM7TXLgDRQzWq1L81IEoj6HgL
-         p8VZmyGRCuFgu7t3pVqyL6T8NSQ95KBB+hbbbBjBHx2wMwnztJGjGSXdwmyfvG7r9p7E
-         d2nJS14n/zfM5s3aoHnG3GMK8MrT1Gfh+3NFsWKnF7uuIFix3AXhtQkqZPYGyZN571kZ
-         ZrFg==
+        bh=epDel6TpPlgTi6sKB5gJ0l72hGnrt57/HnyL5WYVXDQ=;
+        b=KunHaC32uuSn1ziqE8KkBJSfNk48n7Be1u2t8yEB5C4r7BpE9/tCow/xRQFLAg23Qj
+         3b7kuORbbrgXKbEp3/NxQgls1lhJoLTMJJGw2d+A6jWaSDmtXAZjeAoC2IrAUDwIdaP7
+         bT9MuOHBlHcWKQAW9sxKJMK7Hj1xw0+adGhJQH19cG/ubssUL2yPV0Kz1MLUOMvH0qvP
+         jjQA0UmK8TnGH4whqUywmLDPI5SvJC2J0nvZmS++A0GcxmP9DM5/WYH7/pDAuLkEUs3X
+         Ys9/1jvAiN1e5NN+EtU+tiDraomqHeBI0nUnAjJ5Q78PPDDgiJo7thwmKxiZuwXmfkeS
+         zO/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692860588; x=1693465388;
+        d=1e100.net; s=20221208; t=1692860670; x=1693465470;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P45nAftBMkI9aO/uXRibti5ezjszBIQ2T+bQqiHAg7Y=;
-        b=LQGNp07kBKYN8MVHRWLCqQAYSNf+oDU7esWByo1VItyS2jou0vmIdF672X111OPKUJ
-         8LSKDF4hawA0hCNmWMWDnmfOOx/wUHgxyQytLIE8g4qzk3KwvGMlSb7uvhbhzrcPLIQC
-         7i5tuAUIboXY+GUQD9T/FYcNcUD9hKI9x8QCFpK8qYX9SqoE4U+1ycZtUk2yIy3X0wSN
-         j2+WFnFy4fVL1xUYh/Gv/QhZ+idFaXno0LVFv7VvbqpqzCenF0kAhT3HB1qgC9e6MNn2
-         JIipVkhkLJKOU6JIJRT2tZEzJUdh5A2uCszotJlc2sqvARv7bLX1hQlafsqUYermBmBn
-         hIVQ==
-X-Gm-Message-State: AOJu0YxJCrrgxqmV3fDv6FDJjtX27rEE4Tkv7zO/zS17I7zSUm0tbl93
-        DdXjGRLxqrbJDVBPDgN/4XOGgA==
-X-Google-Smtp-Source: AGHT+IG9k8iOK1esFA6zAJ01EbUnrxPhvANPyRf1UsmBAx7WseNQfibQsTJkl94LBBFoLMX8n0VUjQ==
-X-Received: by 2002:a17:907:2c54:b0:9a2:1e03:1572 with SMTP id hf20-20020a1709072c5400b009a21e031572mr305572ejc.19.1692860587958;
-        Thu, 24 Aug 2023 00:03:07 -0700 (PDT)
+        bh=epDel6TpPlgTi6sKB5gJ0l72hGnrt57/HnyL5WYVXDQ=;
+        b=CfKt3BSI811EHYLvngexoADKau1gREPM3y6prMmSWGF/JKy0+qHzdVnNTsfWxv+Tu1
+         zQniGnr18I3rkAjo7igxsjx4UWRcEWJXCJZpQ1ir4OFe/+PXvVQSK9Ua45be4pXYwf2C
+         VN8HpVU1s4hi7aZaJZ05aRt7jnTORANk+Nmgwubp/4N4OnzTofi0d9r6mluEiPS0ySqJ
+         lKaKbq3u7VZR2fHp1Erc2iBZsnZvcxoAzws53hv9DL9Kz3MBS+x/556MZdHa8zesbCQl
+         p2p1gHmcMrEAWIH+r8/ZRIpRcYWGapDbZNNBT0TACoikYC0k0IGEznIK3jCu0HpdZOxU
+         jDCA==
+X-Gm-Message-State: AOJu0Yy8VWrlaOPIkY1Vh/7XOHY0Kjzb6zICVWXJ7jOVZzio/CZY3yvY
+        KNiPnX08SlQMyMaom/YKC4TFqw==
+X-Google-Smtp-Source: AGHT+IE6R8i7XgIiAOlH2YmrMpDPdKnhhvHKTIFGgOMKQWjbC1Id3mCTDOtL8JrM7L+8mawHUqjSCg==
+X-Received: by 2002:a17:906:310d:b0:99b:ed53:5c12 with SMTP id 13-20020a170906310d00b0099bed535c12mr10628973ejx.17.1692860669780;
+        Thu, 24 Aug 2023 00:04:29 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id c8-20020a170906528800b009887f4e0291sm10559750ejm.27.2023.08.24.00.03.06
+        by smtp.gmail.com with ESMTPSA id lz16-20020a170906fb1000b0099297782aa9sm10416058ejb.49.2023.08.24.00.04.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 00:03:07 -0700 (PDT)
-Message-ID: <413bb886-a734-e607-8dd3-79ee501416b2@linaro.org>
-Date:   Thu, 24 Aug 2023 09:03:05 +0200
+        Thu, 24 Aug 2023 00:04:29 -0700 (PDT)
+Message-ID: <9edcfc47-ed89-8074-6bde-d747ae73de25@linaro.org>
+Date:   Thu, 24 Aug 2023 09:04:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v1 2/5] ASoC: dt-bindings: Add schema for
- "allwinner,sun20i-d1-codec-analog"
+Subject: Re: [PATCH 2/3] clk: twl: add clock driver for TWL6032
 Content-Language: en-US
-To:     Maxim Kiselev <bigunclemax@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-References: <20230805180506.718364-1-bigunclemax@gmail.com>
- <20230805180506.718364-3-bigunclemax@gmail.com>
- <20230821154739.GA1720453-robh@kernel.org>
- <CALHCpMjoxV+sUh6KSVXfEcWgc_ETBHWo2a7xHMT-nKS2xBYOvQ@mail.gmail.com>
+To:     Andreas Kemnade <andreas@kemnade.info>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     bcousson@baylibre.com, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, tony@atomide.com
+References: <20230819134147.456060-1-andreas@kemnade.info>
+ <20230819134147.456060-3-andreas@kemnade.info>
+ <a65a7d976be4212ef71fe32c4ed2dacb.sboyd@kernel.org>
+ <20230823165159.108875d0@aktux>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CALHCpMjoxV+sUh6KSVXfEcWgc_ETBHWo2a7xHMT-nKS2xBYOvQ@mail.gmail.com>
+In-Reply-To: <20230823165159.108875d0@aktux>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
@@ -93,27 +81,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 18:13, Maxim Kiselev wrote:
-> пн, 21 авг. 2023 г. в 19:47, Rob Herring <robh@kernel.org>:
+On 23/08/2023 16:51, Andreas Kemnade wrote:
+> On Tue, 22 Aug 2023 15:34:59 -0700
+> Stephen Boyd <sboyd@kernel.org> wrote:
+> 
+>> Quoting Andreas Kemnade (2023-08-19 06:41:46)
+>>> diff --git a/drivers/clk/clk-twl.c b/drivers/clk/clk-twl.c
+>>> new file mode 100644
+>>> index 0000000000000..deb5742393bac
+>>> --- /dev/null
+>>> +++ b/drivers/clk/clk-twl.c
+> [...]
+>>> +
+>>> +static struct platform_driver twl_clks_driver = {
+>>> +       .driver = {
+>>> +               .name = "twl-clk",
+>>> +               .of_match_table = twl_clks_of_match,
+>>> +       },
+>>> +       .probe = twl_clks_probe,
+>>> +       .remove_new = twl_clks_remove,
+>>> +};
+>>> +
+>>> +module_platform_driver(twl_clks_driver);
+>>> +
+>>> +MODULE_DESCRIPTION("Clock driver for TWL Series Devices");
+>>> +MODULE_ALIAS("platform:twl-clk");  
 >>
->> On Sat, Aug 05, 2023 at 09:05:02PM +0300, Maksim Kiselev wrote:
->>> Add a DT schema to describe the analog part of the Allwinner D1/T113s
->>> internal audio codec.
->>>
->>> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
->>> ---
->>>  .../allwinner,sun20i-d1-codec-analog.yaml     | 33 +++++++++++++++++++
->>>  1 file changed, 33 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun20i-d1-codec-analog.yaml
+>> This alias is unnecessary?
 >>
->> Looks the same as allwinner,sun8i-a23-codec-analog.yaml. Why can't you
->> use that?
->>
-> Hmm. You're right. But let me explain my decision :)
-> When I added a new file, I assumed that since this is a separate driver,
-> then the binding should be in a separate file.
+> The question is whether this driver should have a separate dt
+> node (and if a separate node, then one per clock as the clk-palmas
+> driver) or not. See Rob's review of the binding document.
+> So we have basically #clock-cells = <1>; in the twl parent
+> and a call to mfd_add_device() there in the former case and I guess
+> that alias is needed then.
+> 
 
-Driver architecture of one give OS does not matter for the bindings.
+You should not need the alias in any of these cases. platform alias for
+platform driver means you have incomplete tables and use alias instead
+of tables. Preference is to use tables.
 
 Best regards,
 Krzysztof
