@@ -2,102 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E420787834
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 20:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41BE7787838
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 20:50:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241706AbjHXSqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 14:46:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34838 "EHLO
+        id S243108AbjHXSta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 14:49:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243041AbjHXSpw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 14:45:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5ADEE50;
-        Thu, 24 Aug 2023 11:45:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 61FD963A36;
-        Thu, 24 Aug 2023 18:45:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 240E7C433C7;
-        Thu, 24 Aug 2023 18:45:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692902749;
-        bh=5Mb0MpT4Rr86M02kOZb7MIamOKaM0JtZAhyMccOWT7s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=nI4Lgs8EfxsSd5q6uLEntRdh9HoZ9PQxpfpgVjEhcdxgcMyPdyCeoXzbSPgM0YUba
-         V93MQQK8jnVd2TUM86y7SiVCNab/5bLyXG1rlHB3h786/LQu33QaadrO1tOjHOk+Ju
-         mBs08j8J3U2Gk1Jdh1o+1nhT2w8sryXzcnJwOmVlVcH+cFJPM5pWr/D+uz8NteZA+t
-         lvTRgEOIM/nOXxcpyyWCJqKl0MUcJLRdfCfkg+gFiF/fLbHJioCvEolH0nPllmuZgx
-         BbtfXmj0qDFObi4IFjRLxgyUyAEM8qro1Q1n5gjdjpucvI3trHm+yj4ZIexq2fwuiD
-         vA2NItjLkKZvg==
-Message-ID: <574e93da-ec74-f1a2-7170-c16bb225a2bb@kernel.org>
-Date:   Thu, 24 Aug 2023 20:45:41 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 01/11] dt-bindings: arm: fsl: add imx-se-fw binding doc
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Pankaj Gupta <pankaj.gupta@nxp.com>
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        clin@suse.com, conor+dt@kernel.org, pierre.gondois@arm.com,
-        ping.bai@nxp.com, xiaoning.wang@nxp.com, wei.fang@nxp.com,
-        peng.fan@nxp.com, haibo.chen@nxp.com, festevam@gmail.com,
-        linux-imx@nxp.com, davem@davemloft.net,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
-        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
-        aisheng.dong@nxp.com, V.Sethi@nxp.com,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-References: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
- <20230823073330.1712721-2-pankaj.gupta@nxp.com>
- <20230823124340.GA2022486-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20230823124340.GA2022486-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S243164AbjHXSt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 14:49:28 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D36AA1BD1;
+        Thu, 24 Aug 2023 11:49:22 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5007616b756so165060e87.3;
+        Thu, 24 Aug 2023 11:49:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692902961; x=1693507761;
+        h=mime-version:user-agent:content-transfer-encoding:in-reply-to:date
+         :cc:to:from:subject:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LHRS4UEXxu8F0WleFwTDxLVpmIkpw8qRBxsTWoqyCew=;
+        b=EzE2YpmXh9abD9+0dqFc9MXO0MNUNQieniyt6V4qvN5TbOLydMBrfnhUzSEiMPK2TG
+         HnK8yubCC0Vy5L/1zZm4zNSx/jIloKmOIH9XDItHJ3c8NcFSE/UxNpOyVnG3zeTQO6+9
+         /3NzsVVWEcLTRaVv47zkjW25i2/ak6L/uDcjF2hi0o9dMXXuQtTd4Ak3sJuiB819cd9t
+         ln7p4IAUV4h4YyIBPdd4rPwNqeDo9XfRAa6klh4o+da6x+z4JKJ/RvkOOPHTMydY4+1Q
+         ULpNX1KoZiDUofBobwzMgOFoYucjZsyDzZslglJE98EW7rCRyGVCxN3/8YnEGNW/mjcT
+         PGiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692902961; x=1693507761;
+        h=mime-version:user-agent:content-transfer-encoding:in-reply-to:date
+         :cc:to:from:subject:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=LHRS4UEXxu8F0WleFwTDxLVpmIkpw8qRBxsTWoqyCew=;
+        b=I72GuY87bQ67ZhoIZHHuz+aNhF8JbDJi86wvc8uZFeYD9XnvoVUADBcS5KAwnhr2mV
+         HmKGjjvDApdZlNJiP4JZpJGf3AoF4dRTwQ/RG069YjAVKVzZq8dArJjAxxfpUkh3zKCn
+         IU9EPsl0E+1I+94wsXGHdaGXwFCwc/q29OZ3AUMW4GaWDPxx8Hazro49vWbXE/uhorCO
+         2rlZpEn7I4zjlPcWWE05kY9dv+JaflVF2EWkcc9gvltVUVxHstVbFVwyeGVd4ypd4yDF
+         lM+ACwZ+mRHFhXkZRqvwAzM/Y6kK6by5ao5DA8ARVCI8a7/JL9eaOAjCGsEz/kL6zAz7
+         +zuQ==
+X-Gm-Message-State: AOJu0YzeEbNHuWY+s8IaAw/KSvj25A+VBIA9zdn+mGqSiZX0DHqX9yVP
+        CpmSxD7HnjNk6JEAi0oaZh8=
+X-Google-Smtp-Source: AGHT+IH4UH6SkmpNTWiDNASumNMT3avgYEaJSuF1a/GllfuoDAQfjLNGRgsgsTLHW4a+HgVEswOKCA==
+X-Received: by 2002:a05:6512:36c9:b0:4fe:17d6:af2b with SMTP id e9-20020a05651236c900b004fe17d6af2bmr10240267lfs.42.1692902960837;
+        Thu, 24 Aug 2023 11:49:20 -0700 (PDT)
+Received: from [192.168.100.57] ([77.105.14.121])
+        by smtp.gmail.com with ESMTPSA id i9-20020aa7c709000000b0052a198d8a4dsm59792edq.52.2023.08.24.11.49.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Aug 2023 11:49:20 -0700 (PDT)
+Message-ID: <add84df503df6b0bd3f572cd396dbde9da558eab.camel@gmail.com>
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: dsa: marvell: add
+ MV88E6361 switch to compatibility list
+From:   airat.gl@gmail.com
+To:     alexis.lothore@bootlin.com
+Cc:     andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
+        edumazet@google.com, f.fainelli@gmail.com, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        olteanv@gmail.com, pabeni@redhat.com, paul.arola@telus.com,
+        richardcochran@gmail.com, scott.roberts@telus.com,
+        thomas.petazzoni@bootlin.com
+Date:   Thu, 24 Aug 2023 20:49:17 +0200
+In-Reply-To: <20230517203430.448705-2-alexis.lothore@bootlin.com>
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Evolution 3.48.4 (by Flathub.org) 
+MIME-Version: 1.0
+X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SORTED_RECIPS,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 14:43, Rob Herring wrote:
->> +                                                          |
->> +  +------------------------------------------------------ |
->> +                     |             |           |          |
->> +  userspace     /dev/ele_muXch0    |           |          |
->> +                           /dev/ele_muXch1     |          |
->> +                                         /dev/ele_muXchY  |
->> +                                                          |
->> +
->> +  When a user sends a command to the firmware, it registers its device_ctx
->> +  as waiter of a response from firmware.
->> +
->> +  A user can be registered as receiver of command from the ELE.
->> +  Create char devices in /dev as channels of the form /dev/ele_muXchY with X
->> +  the id of the driver and Y for each users. It allows to send and receive
->> +  messages to the NXP EdgeLock Enclave IP firmware on NXP SoC, where current
->> +  possible value, i.e., supported SoC(s) are imx8ulp, imx93.
-> 
-> Looks like a bunch of Linux details which don't belong in the binding.
-> 
-> Why do you need your own custom interface to userspace? No one else has 
-> a similar feature in their platforms? Something like virtio or rpmsg 
-> doesn't work?
-
-+Cc Greg,
-
-I doubt they care. This is some stub-driver to pass messages from
-user-space to the firmware. The interface is undocumented, without
-examples and no user-space user.
-
-Best regards,
-Krzysztof
-
+Is there an error? The new string include 6163 instead of 6361
