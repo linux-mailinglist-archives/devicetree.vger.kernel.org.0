@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5032786E6E
+	by mail.lfdr.de (Postfix) with ESMTP id 42533786E6C
 	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 13:50:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233770AbjHXLuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 07:50:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
+        id S233804AbjHXLuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 07:50:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241247AbjHXLtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 07:49:45 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD7E1BDA
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:49:09 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe27849e6aso10234845e87.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:49:09 -0700 (PDT)
+        with ESMTP id S241266AbjHXLty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 07:49:54 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84D581BF6
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:49:18 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-5007abb15e9so7329647e87.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:49:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692877747; x=1693482547;
+        d=linaro.org; s=google; t=1692877755; x=1693482555;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ridaw9maBxtu9SXahhBrJGW7Zr6BoBicKUKqOgvkXus=;
-        b=nd+2mTN7O4iXWaglQ0sQjQ1QAELm0W6MPen/bDdx2hMs6g1PEL1THbj5JQwrpD6hcU
-         MaBLkP9he+bPaDbx17lggEMU38oak3yWZcA+15LZmc2r8lzGfBCgyvh1XlS6yhmP/r3V
-         HfwJIMiL6YRY0c4c/2AsuyMyIqFLE7GoX2g0/PE2xK5DglpGUWxKMvJjEjUh2HdBgsZP
-         AVaIQHzvNTlKN2UQu2SNi07THy6eHgc8gTu2rGSswi5gtbkITOSMCgDGbitIOQv2eLz8
-         G7+1FWfIqdsR/mfffUk3Jv9Bwn0tzSGevFGlPHYcJXl4n3pHTfz9sFe6ylfjLR1ziWPa
-         dGBw==
+        bh=11VkKGP09VP4FPS0hePOtWS36VY2vZURrYDBokfUolE=;
+        b=l6fjFmlv2dsntxFSLhMJ75h4BECRMXujcnGpPBZu5m7p0iXlTncqblfrlV4nFgsLT/
+         5rbzRCJeONssmdSap61WXG7hDRgETUDh7T9dnpKLOcvHoDkdU1kvxDYfzRdbfyYs22RZ
+         FurVsPsUwKivJFxu+J5f5VS/HI6WbTvP12rYmQichXuZSg5sERXks2Zcgw1KRRYUcI2+
+         Qcjg0ZYwmNA99dY8aG/Ti+7BIgvEcONvnJlyraOJU7cBgXDy4/5vD25O/FekL4tH1+gI
+         5xOT/du479jGhHb/kT9P5wDs0tcq9imjBTJBrLyubqteENwkQuX03MeNJ8JckD01ksE7
+         UN7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692877747; x=1693482547;
+        d=1e100.net; s=20221208; t=1692877755; x=1693482555;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ridaw9maBxtu9SXahhBrJGW7Zr6BoBicKUKqOgvkXus=;
-        b=F1pgr1wbYhtOWD+JondwJZKeIZzPJcLt6+qIV36Xilak/GM6PryL6F5sZ0XcmOspkf
-         KQ8M2jbw5qEwKhaTLeektq+aB9oKfYScXXQj+Ne7s2sjxtFlDjay7KcPwJLjG7gy3fwT
-         /5rL+c3xovEEdctqVZkP5Ow2IebBbG8W4RT9I7bn84POBrb2oo8CEsuYA3GkgXGSC4/N
-         LmbeZYsYw2x3WUuCL7PEIAxgVfu58KCoO0En+ME9ICy5vBMn+ix/wQyysOdw031DMkdR
-         d/JkMwKHQZvn/EGAUstKSqjKwsT7JGuiKycT4HnRdSQFlrZVZKz6HBIuM+C60HjenitM
-         fRMg==
-X-Gm-Message-State: AOJu0Yy4d3ihLC5g4dBfeoosA4OubDrb31qIHLnZhfxNlv8Ck4sYkDpM
-        EQ21Cp7FWy7FAmXuaGVohd+IWg==
-X-Google-Smtp-Source: AGHT+IHVJeDTux8vrpUjtkeMQp2Wl1nFzBdHwHppY8h1apFFb36v7NP31GKZ1a62dbzO6sfDNO6v0A==
-X-Received: by 2002:a05:6512:3d1f:b0:500:7dc0:b0b2 with SMTP id d31-20020a0565123d1f00b005007dc0b0b2mr12027642lfv.28.1692877746826;
-        Thu, 24 Aug 2023 04:49:06 -0700 (PDT)
+        bh=11VkKGP09VP4FPS0hePOtWS36VY2vZURrYDBokfUolE=;
+        b=VLc9P75+Tl12s0SNpeRWlcQ14gELhOm0OtPcnivUv7CoUzEF2FqthHoVz3Q4uORstj
+         dsDioxWiJhRFsOcTAYUbSDT40ppeTxIZChNUoAQ9rxFQApckQ7VMWAckcbM12JxN8TI4
+         KbYmJnWVr85YncyXAdnA+CHou9Oe0ld79oTW0XEhdAc8OPjwtEEPbXsOsbT4xfT7Leyi
+         kG31HjnxsiV+/rfRvboRzlAi4MjpX17WbB6qRPeyVywQPfCXOPzmdkpYmjl/8D4YSoJZ
+         FSs2uRr6eaO43WVjOIWup7A8EYvlaW21iEyT3X+WgfCpB+bStL2vRqwjxlmkXMLh+5RN
+         hJAQ==
+X-Gm-Message-State: AOJu0YyeIu/IziRT1UD63xdCiUlQINmcg87fYNclNXyGAR+YPrGZM3uY
+        TDbN6lY56MlqLzkIdlb3J/xVmg==
+X-Google-Smtp-Source: AGHT+IGjnRMX155MyOtK8jpOV+s3zeTY4YmNnsBtxwYVESX2N0HNlUD9ywodwdfvy4hbEH6chacNBg==
+X-Received: by 2002:a05:6512:3c8c:b0:500:828c:4c0a with SMTP id h12-20020a0565123c8c00b00500828c4c0amr9848995lfv.67.1692877754791;
+        Thu, 24 Aug 2023 04:49:14 -0700 (PDT)
 Received: from [192.168.1.101] (abyl28.neoplus.adsl.tpnet.pl. [83.9.31.28])
-        by smtp.gmail.com with ESMTPSA id ep11-20020a056512484b00b004ff96b0524dsm3134865lfb.119.2023.08.24.04.49.05
+        by smtp.gmail.com with ESMTPSA id ep11-20020a056512484b00b004ff96b0524dsm3134865lfb.119.2023.08.24.04.49.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 04:49:06 -0700 (PDT)
-Message-ID: <5eb0c264-fc23-4f6c-9e1f-c4e00805ac15@linaro.org>
-Date:   Thu, 24 Aug 2023 13:49:05 +0200
+        Thu, 24 Aug 2023 04:49:14 -0700 (PDT)
+Message-ID: <d6f04329-b749-44bb-86a4-52149f54d575@linaro.org>
+Date:   Thu, 24 Aug 2023 13:49:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: sm8550: add TRNG node
+Subject: Re: [PATCH v2 7/7] arm64: dts: qcom: sm8450: add TRNG node
 Content-Language: en-US
 To:     Neil Armstrong <neil.armstrong@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -67,7 +67,7 @@ To:     Neil Armstrong <neil.armstrong@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
- <20230824-topic-sm8550-rng-v2-6-dfcafbb16a3e@linaro.org>
+ <20230824-topic-sm8550-rng-v2-7-dfcafbb16a3e@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -104,11 +104,11 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230824-topic-sm8550-rng-v2-6-dfcafbb16a3e@linaro.org>
+In-Reply-To: <20230824-topic-sm8550-rng-v2-7-dfcafbb16a3e@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -118,7 +118,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 24.08.2023 13:33, Neil Armstrong wrote:
-> Add the Qualcomm True Random Number Generator node.
+> The SM8450 SoC has a True Random Number Generator, add the node with
+> the correct compatible set.
 > 
 > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
