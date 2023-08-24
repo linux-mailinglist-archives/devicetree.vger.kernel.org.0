@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20ED3786C72
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E82B8786C6B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240592AbjHXJ7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S238744AbjHXJ7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 24 Aug 2023 05:59:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36560 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240776AbjHXJ7D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:59:03 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B7F51995
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:59:00 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2bcb50e194dso73559581fa.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:59:00 -0700 (PDT)
+        with ESMTP id S240790AbjHXJ7F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:59:05 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2848D19A3
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:59:02 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5009969be25so2228872e87.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:59:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692871139; x=1693475939;
+        d=linaro.org; s=google; t=1692871140; x=1693475940;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Xhj9qr6wA2akPHSa65YNjD4meHDS+0P1VytRfMyGc3Q=;
-        b=pS6a55YmSTdQr/nJwGAN3HkdEcEkliowOt0rA6ZMXL3YTIVKl4wRlQK1VoNWwp5bXh
-         KJV6I2vw0xxVGBSl97GJxfvvWiQUL9jlIFCq4yn7IbJHVU4Ls9RjP/ICn8fVkQDyQmrG
-         QJqwcWeStGC+7qvfzzZqo/yFWOxOP34+nXn+rqeIzVesgMEtEYLsFUoN09WRsCgWxOQ4
-         EYVBr5rGIKTJgq8y4YoK+3J0ZJrLDXHUv9l/2r67Vc2p0ykVLgW+gjDPaffNQmMlGX8i
-         R2l+3nlXv/6WS6UdHzQFudQfgg4mQObjNyqodRRFcDYrz5BAefbl6uxX900R6oWyF4ZU
-         xvNA==
+        bh=YJpfYRgKZJ1m6qXhMS4xJKuQv/3eN0I4OwvdILv7FHk=;
+        b=VCsy1QOn/X9qGaCEKD5ovkYRhdHK/vjK9rDcbVqFhwkjvB7eyRm6FcmGC3cQoMYZRm
+         tN74nu0BztFi00Em0qEJIIHwX3K4XQK0W+Diog+yw1zpgeRD1EuTMzS6hA6lqAYCs4yG
+         pqo5BHt3Fg1Y3T7XCNOYQ5s2Rx1526z3B8qsDOnw086Gnmp0rZOeEza4A5oniwws4/ro
+         1REtVtkol8QyGppbLep94xdrtds9rFDmb22Bo3nznyRFFGoyJ3Le4L35KxnKWwb6zuC0
+         N7oMbdaKRCdf5DvpgNFuvzL6e9CQCzS9PLroAO7NSIbfuhh7xb+lPOdp8TovBVIDgDoi
+         ywBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692871139; x=1693475939;
+        d=1e100.net; s=20221208; t=1692871140; x=1693475940;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Xhj9qr6wA2akPHSa65YNjD4meHDS+0P1VytRfMyGc3Q=;
-        b=K9x6Y0g2HxSe/oYU/mAcoFJT7/kN2vx3jnx2dWfWDsCSs2ecIjVuml+KieeKNsrKxO
-         l1wsJjVKmbgEwuoR0bN3WLpNe+gHRMbVhqC9SRL9l2Dp8Sh8sgAgNQJ2ne7Va0UEVBZF
-         JVCBPHj9XYFU1bH50Sxx7wsjKTKcvVIs3yFZgYmZFqRWcXO2x7w/2KKb4NsOwi5BfkSD
-         yGEfL0ImeZ5QGo/A53Np+D/8dTDvhn3+oJybQ8UMBpZn5Jvz1rApcY0RRN2fQ8rB0lQc
-         Fd/dQbPscJ2gb9Yn/MlaDdYqPePEwD2SkL/yXRSaPrLgevtgqylq6fC0DY+SUp/d1rj3
-         gscw==
-X-Gm-Message-State: AOJu0YzPuvnCKMqJQpPOvwsXrh3G4DsEOImME+sJA3p9WLL8x7ZgdgSC
-        A+fcMF2+T0txSGJMOMoXTkU0uA==
-X-Google-Smtp-Source: AGHT+IEbJilHQNSoGAbtW7OY7i9wd48GrUOBtKvw0bkpQWCfxlXjJ9qcrnXW6Vzdj/l1VWLWJEYTdw==
-X-Received: by 2002:a05:6512:10d6:b0:4fd:c715:5667 with SMTP id k22-20020a05651210d600b004fdc7155667mr12192159lfg.20.1692871138915;
-        Thu, 24 Aug 2023 02:58:58 -0700 (PDT)
+        bh=YJpfYRgKZJ1m6qXhMS4xJKuQv/3eN0I4OwvdILv7FHk=;
+        b=NQ9hu/HyLXN0kF92UHv32/kJ8MPpq6ZyPVsekUitxDDDD0Xm66MmiNop3w6ceVCjQc
+         NrpEfa+U2gzRizYbCbGcjIRl1R6qhe6Z26O89dIiCZTs8QeOvQGq+dJD+q0h3MZvdru5
+         EKSsHqPp1scLBjLlBhoCkt4qOHfIgOWmQc5KqB7mnZeYKLwO5HhkBNpWGTJpDmQ1BT4b
+         jIKH4dP2o143eAp8Vf4hqf1t0VxFUvvpU3L7qhgjYcA91PwIfcJRcGGV16TWl1o1aDSm
+         uFpOAl6AJSPdwAsF96A0AsOkB8qSj0GFD6jVxG3UzqA3cwNrmdYWdJuSSpMfVgJ2sPKi
+         2Eug==
+X-Gm-Message-State: AOJu0Yx3avrv0qsBobbJxQY9kGEGaAvkAbSFxb2ZpOMtAOww2McI01FH
+        VkVgi8ibhM51pCCK6XWh7oegQM5Wh42O/9U1COmb9w==
+X-Google-Smtp-Source: AGHT+IFAHH7AuS9bTrFHe4m8PM8Ol77p2373uTrhYZxrCBXmWSlIb+Hjylqxt2CaYaKNdkO/5dBByw==
+X-Received: by 2002:a05:6512:1594:b0:500:9b26:9760 with SMTP id bp20-20020a056512159400b005009b269760mr2783160lfb.13.1692871140446;
+        Thu, 24 Aug 2023 02:59:00 -0700 (PDT)
 Received: from [10.167.154.1] ([2a00:f41:4882:ba34:4490:938b:eab4:c5ef])
-        by smtp.gmail.com with ESMTPSA id y2-20020a197502000000b0050096712dc8sm712301lfe.277.2023.08.24.02.58.57
+        by smtp.gmail.com with ESMTPSA id y2-20020a197502000000b0050096712dc8sm712301lfe.277.2023.08.24.02.58.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Aug 2023 02:58:58 -0700 (PDT)
+        Thu, 24 Aug 2023 02:59:00 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 24 Aug 2023 11:58:53 +0200
-Subject: [PATCH 2/3] arm64: dts: qcom: sdm845-tama: Add GPIO line names for
- PMIC GPIOs
+Date:   Thu, 24 Aug 2023 11:58:54 +0200
+Subject: [PATCH 3/3] arm64: dts: qcom: sdm845-tama: Add camera GPIO
+ regulators
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230824-topic-tama_gpio-v1-2-014e9d198dce@linaro.org>
+Message-Id: <20230824-topic-tama_gpio-v1-3-014e9d198dce@linaro.org>
 References: <20230824-topic-tama_gpio-v1-0-014e9d198dce@linaro.org>
 In-Reply-To: <20230824-topic-tama_gpio-v1-0-014e9d198dce@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -69,11 +69,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1692871134; l=4220;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692871134; l=2596;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=RfJk4m3j691N0aXP/c3pg1WYO/bCOpFVFAp7DphEu+4=;
- b=WygaPyy/GgDc3QXvnbLlYxW0h4M/YAcU/rISt0tpP6UFZ7sDwM0MoxUwMzqHZHhbnekRiF9ZM
- Jrj2t/7uP+uBFYv2pVX1ks+uKzErG3JUcwivkzNgzG4GkYV4UUoAEdO
+ bh=9Sh6/BNCkUcyih+fbYMiKEBA1FoWVsTp80dXXNG2QJE=;
+ b=eLCmC+l0hzDNKNnZLdRG0XX1gLOa78hP/vqNv3YVjzBJyaGBk0LRPFLljG7oQ1dGuGmMJf9Ud
+ sVwXlEiRtCbAqiOGlyhj/yimF5MjFac3GH0ZNa7Lu0x8VljxSDg5yy3
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,161 +86,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sony ever so graciously provides GPIO line names in their downstream
-kernel (though sometimes they are not 100% accurate and you can judge
-that by simply looking at them and with what drivers they are used).
-
-Add these to the Akari, Apollo & Akatsuki DTS-es to better document
-the hardware.
-
-pm8005 and pm8998 config is common for all three boards.
-Apollo has VIB_LDO_EN (replacing NC) on PMI8998_GPIO_5
-
-Akari and Akatsuki have WLC_EN_N (replacing NC) on PMI8998_GPIO_8
-
-Akari additionally has RSVD(WLC_EN_N) (replacing) on PMI8998_GPIO_11
-which sounds a bit like a forgot-to-update-documentation, but maybe
-it differs between SKUs.. Time will tell, when we get to enabling the
-wireless charger.
+Like on many other platforms, Tama devices utilize lots of GPIO-
+enabled regulators for the camera sensors. Define them in the DT.
 
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../dts/qcom/sdm845-sony-xperia-tama-akari.dts     | 17 +++++++++++
- .../dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts  | 17 +++++++++++
- .../dts/qcom/sdm845-sony-xperia-tama-apollo.dts    | 17 +++++++++++
- .../boot/dts/qcom/sdm845-sony-xperia-tama.dtsi     | 34 ++++++++++++++++++++++
- 4 files changed, 85 insertions(+)
+ .../boot/dts/qcom/sdm845-sony-xperia-tama.dtsi     | 57 ++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
-index d2cb6478a8c0..6e65909ab582 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akari.dts
-@@ -16,6 +16,23 @@ &panel {
- 	compatible = "sony,td4353-jdi-tama";
- };
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+index 430857233967..b02a1dc5fecd 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
+@@ -67,6 +67,36 @@ key-volume-up {
+ 		};
+ 	};
  
-+&pmi8998_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "",
-+			  "NC",
-+			  "NC",
-+			  "",
-+			  "WLC_EN_N",
-+			  "NC",
-+			  "NC", /* GPIO_10 */
-+			  "RSVD(WLC_EN_N)",
-+			  "CAM_IO_EN",
-+			  "",
-+			  "NC";
-+};
++	cam_vana_front_vreg: cam-vana-front-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "cam_vana_front_vreg";
++		gpio = <&tlmm 8 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
 +
- &tlmm {
- 	gpio-line-names = "NC", /* GPIO_0 */
- 			  "NC",
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
-index a91712f6af28..82e59e453354 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-akatsuki.dts
-@@ -44,6 +44,23 @@ &panel {
- 	/delete-property/ touch-reset-gpios;
++		pinctrl-0 = <&chat_cam_pwr_en>;
++		pinctrl-names = "default";
++	};
++
++	cam_vana_rear_vreg: cam-vana-rear-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "cam_vana_rear_vreg";
++		gpio = <&tlmm 27 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&main_cam_pwr_en>;
++		pinctrl-names = "default";
++	};
++
++	cam_vio_vreg: cam-vio-reagulator {
++		compatible = "regulator-fixed";
++		regulator-name = "cam_vio_vreg";
++		gpio = <&pmi8998_gpios 12 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		pinctrl-0 = <&cam_io_en>;
++		pinctrl-names = "default";
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -592,6 +622,17 @@ snapshot_n: snapshot-n-state {
+ 	};
  };
  
 +&pmi8998_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "",
-+			  "NC",
-+			  "NC",
-+			  "",
-+			  "WLC_EN_N",
-+			  "NC",
-+			  "NC", /* GPIO_10 */
-+			  "NC",
-+			  "CAM_IO_EN",
-+			  "",
-+			  "NC";
++	cam_io_en: cam-io-en-state {
++		pins = "gpio12";
++		function = "normal";
++		qcom,drive-strength = <3>;
++		power-source = <0>;
++		drive-push-pull;
++		output-low;
++	};
 +};
 +
  &pmi8998_wled {
- 	status = "disabled";
- };
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts
-index 52bd83d1febf..dc15ab1a2716 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama-apollo.dts
-@@ -18,6 +18,23 @@ &panel {
- 	width-mm = <56>;
- };
+ 	default-brightness = <800>;
+ 	qcom,switching-freq = <800>;
+@@ -660,6 +701,14 @@ sde_dsi_sleep: sde-dsi-sleep-state {
+ 		bias-pull-down;
+ 	};
  
-+&pmi8998_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "NC",
-+			  "",
-+			  "VIB_LDO_EN",
-+			  "NC",
-+			  "",
-+			  "NC",
-+			  "NC",
-+			  "NC", /* GPIO_10 */
-+			  "NC",
-+			  "CAM_IO_EN",
-+			  "",
-+			  "NC";
-+};
++	chat_cam_pwr_en: chat-cam-pwr-en-state {
++		pins = "gpio8";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-low;
++	};
 +
- &tlmm {
- 	gpio-line-names = "NC", /* GPIO_0 */
- 			  "NC",
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-index 7ee61b20452e..430857233967 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi
-@@ -524,7 +524,41 @@ &mdss_dsi0_phy {
- 	status = "okay";
- };
+ 	sde_te_active_sleep: sde-te-active-sleep-state {
+ 		pins = "gpio10";
+ 		function = "mdp_vsync";
+@@ -667,6 +716,14 @@ sde_te_active_sleep: sde-te-active-sleep-state {
+ 		bias-pull-down;
+ 	};
  
-+&pm8005_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "NC",
-+			  "",
-+			  "";
-+};
++	main_cam_pwr_en: main-cam-pwr-en-state {
++		pins = "gpio27";
++		function = "gpio";
++		drive-strength = <2>;
++		bias-disable;
++		output-low;
++	};
 +
- &pm8998_gpios {
-+	gpio-line-names = "NC", /* GPIO_1 */
-+			  "FOCUS_N",
-+			  "",
-+			  "NC",
-+			  "VOL_DOWN_N",
-+			  "VOL_UP_N",
-+			  "SNAPSHOT_N",
-+			  "NC",
-+			  "FLASH_THERM",
-+			  "NC", /* GPIO_10 */
-+			  "LCD_ID",
-+			  "RF_ID",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "NC",
-+			  "", /* GPIO_20 */
-+			  "NFC_CLK_REQ",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "";
-+
- 	focus_n: focus-n-state {
- 		pins = "gpio2";
- 		function = PMIC_GPIO_FUNC_NORMAL;
+ 	ts_default: ts-default-state {
+ 		reset-pins {
+ 			pins = "gpio99";
 
 -- 
 2.42.0
