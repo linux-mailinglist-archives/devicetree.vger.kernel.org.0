@@ -2,56 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59252787A0A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 23:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF00C787A14
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 23:18:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243592AbjHXVNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 17:13:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60304 "EHLO
+        id S236604AbjHXVRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 17:17:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243599AbjHXVNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 17:13:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14471BC9;
-        Thu, 24 Aug 2023 14:13:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 558FD6568B;
-        Thu, 24 Aug 2023 21:13:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2D11C433C7;
-        Thu, 24 Aug 2023 21:13:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692911600;
-        bh=bMNOF1IPmHkhD94US03s4hH9eZypWFFxL/sGQXlActw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fNw/ZxCLq0HE2J8t4T0ww3spNTHZBDczgIzuQUZitzHW3hOEEw26/IF/skkvlEOJR
-         f5ITOLHq745e9A2aL0kToZtERA2GyE9LnMNf8zRpjbf2yXD0KcYiK5HVT0x5KFks95
-         2t5BaLHgQg0GtghBsSh+Le+153T43fwuLs3MIOuqtVZa+vS/Ef4iBEz+X6j8Q14aQs
-         x6H4ppzqmFugWCejsIUYGZtO1H06RGhoAsvjpM849J55Btpu5VwqUiKjwum/cBq6kl
-         aFEduEyRVBK0Jh/LLfmqTHYOZ+ZfsoCS1wzDXn2xfJoAjtnoHMG1SlPADeVObDZw+X
-         5o9fa50YUX5Qg==
-Received: (nullmailer pid 1438783 invoked by uid 1000);
-        Thu, 24 Aug 2023 21:13:18 -0000
-Date:   Thu, 24 Aug 2023 16:13:18 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tzuyi Chang <tychang@realtek.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 6/7] dt-bindings: pinctrl: realtek: add RTD1319D
- pinctrl binding
-Message-ID: <20230824211318.GB1388146-robh@kernel.org>
-References: <20230824105703.19612-1-tychang@realtek.com>
- <20230824105703.19612-7-tychang@realtek.com>
+        with ESMTP id S235649AbjHXVRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 17:17:32 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE0E6CD2;
+        Thu, 24 Aug 2023 14:17:30 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-1c8cb3c9534so29288fac.1;
+        Thu, 24 Aug 2023 14:17:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692911850; x=1693516650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Gfg67xDwIeREm/U02TCjiTX/OXkral+DuxnEYXW3f0=;
+        b=mrgSHEbRhqgjEUKj05nJ5cniKrYNWC+Zlkp2FX435drm0Yoqm6OBuLBUJJAXiwThzf
+         8shTdpa1TzXS82jFYphOBgerXu4ZhJzOlm0jhu9m+l4tCk0cVglq7lmkNei+CcynYZ0w
+         eAY5qBpsH91zxWVtilQW1YHRETnhxS9UZNCbg2RbPnAhkBwW5Z+CHKMh5M1JUxGleL+3
+         cDBNVIMY23w/iXMnq1M9ZTprGksoIuWpeyIBaOlSC9RXlmm4fkzPs1LznNnLyI1fSoJz
+         3T/rZ+Fc4GlTqlaOFQFaTfzoFfrV7en0A5wiBf2eV3q1Ey641lRyElBG+mre1+9xNitA
+         vpTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692911850; x=1693516650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Gfg67xDwIeREm/U02TCjiTX/OXkral+DuxnEYXW3f0=;
+        b=ZUQ9K60ZVlyoa8wgyrjs7wAgPMN6/p5cEfxWtJW/gIEr5HXitm8sdHdktHwPG84+V6
+         zARW5IqSUFZmmBrXLtXxYzd64ZIufXd4XyLbZPMwfEFW70vqvps3FKQ7OV5iEW7DrSpt
+         AewAFpvAUFBzhJ5e8SjVt4UZyWdOfGP5q+YR07sbTe2zKw+b6NbNv5g6dOX4gIQmPEHG
+         u8BwFfv2cKh1+rd0t00WuuKPMK7T4EwtKfZNLzZivmfcnarwKnPI2snE79ETDtw4gAag
+         vHEOXlrFTdKfWOxs9LFS2AoAFGb3NkEma5sEmjHpdM6+e5ELAK2VyGhIphSuPKhpuLTi
+         KJ/w==
+X-Gm-Message-State: AOJu0Yw2Nw8UK5nw+P+UHUQd88RjLREslz2w5RW4GPBS5dVaHoDk8JdD
+        94wB8elUzPYCxI7kV5IEq/hWASPA1wvrv6taLTI=
+X-Google-Smtp-Source: AGHT+IFnBO8YWqdMJpsNAeS+hA0DFKKgvXAMdyDOLxgrnC0t5wz7Yg6DpnLnGWs9bUN0Hxa+m5/kIVYcEo0IuN6IQiw=
+X-Received: by 2002:a05:6871:209:b0:1b3:935b:165e with SMTP id
+ t9-20020a056871020900b001b3935b165emr16400018oad.4.1692911850009; Thu, 24 Aug
+ 2023 14:17:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824105703.19612-7-tychang@realtek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+References: <20230824165011.569386-1-festevam@gmail.com> <1bf12596-d6a1-8bac-1841-ba150cf135ef@linaro.org>
+In-Reply-To: <1bf12596-d6a1-8bac-1841-ba150cf135ef@linaro.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 24 Aug 2023 18:17:17 -0300
+Message-ID: <CAOMZO5DKYr01ysU=i0Q5XkRrnxoH=gLfk7MUhR_2xDwGOFZfrA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: imx8mm-thermal: Document nxp,reboot-on-critical
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     daniel.lezcano@linaro.org, linux-pm@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,224 +70,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 24, 2023 at 06:57:02PM +0800, Tzuyi Chang wrote:
-> Add device tree bindings for RTD1319D.
-> 
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-> ---
-> v1 to v2 change:
-> 1. Add a description for RTD1319D.
-> 2. Rename realtek,pdrive, realtekmndrive and realtek,dcycle.
-> 3. Add a description for PMOS and NMOS driving strength.
-> 4. Remove the wildcard in the compatible strings.
-> 5. Use '-pins$' to be node name pattern.
-> ---
->  .../pinctrl/realtek,rtd1319d-pinctrl.yaml     | 189 ++++++++++++++++++
->  1 file changed, 189 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..8653d42ac1f3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml
-> @@ -0,0 +1,189 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2023 Realtek Semiconductor Corporation
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/realtek,rtd1319d-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Realtek DHC RTD1319D Pin Controller
-> +
-> +maintainers:
-> +  - TY Chang <tychang@realtek.com>
-> +
-> +description:
-> +  The Realtek DHC RTD1319D is a high-definition media processor SoC. The
-> +  RTD1319D pin controller is used to control pin function, pull up/down
-> +  resistor, drive strength, schmitt trigger and power source.
-> +
-> +properties:
-> +  compatible:
-> +    const: realtek,rtd1319d-pinctrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  '^.*$':
+Hi Krzysztof,
 
-In case it was not obvious, my comment to use '-pins' applies here and 
-to the next patch.
+On Thu, Aug 24, 2023 at 2:51=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-> +    if:
+> It still does not scale. If it is supposed to be DT property, you need
+> to solve my concerns of relying on specific implementation.
+>
+> First, you need to cover all possible actions, not reverse existing OS
+> implementation. As I said before, If Linux decides to reboot by default,
+> this property becomes useless. No, it must be some sort of enum defining
+> desired allowed action or actions.
+>
+> Second, I don't think this is specific to this particular device, so
+> should be rather common property shared among all thermal handlers (and
+> in the future any other critical-condition-handler-devices).
 
-As does dropping if/then.
+I got your point and it makes sense.
 
-> +      type: object
-> +    then:
-> +      allOf:
-> +        - $ref: pincfg-node.yaml#
-> +        - $ref: pinmux-node.yaml#
-> +
-> +      properties:
-> +        pins:
-> +          items:
-> +            enum: [ gpio_0, gpio_1, gpio_2, gpio_3, gpio_4, gpio_5, gpio_6, gpio_7,
-> +                    gpio_8, gpio_9, gpio_10, gpio_11, gpio_12, gpio_13, gpio_14,
-> +                    gpio_15, gpio_16, gpio_17, gpio_18, gpio_19, gpio_20, gpio_21,
-> +                    gpio_22, gpio_23, usb_cc2, gpio_25, gpio_26, gpio_27, gpio_28,
-> +                    gpio_29, gpio_30, gpio_31, gpio_32, gpio_33, gpio_34, gpio_35,
-> +                    hif_data, hif_en, hif_rdy, hif_clk, gpio_40, gpio_41, gpio_42,
-> +                    gpio_43, gpio_44, gpio_45, gpio_46, gpio_47, gpio_48, gpio_49,
-> +                    gpio_50, usb_cc1, gpio_52, gpio_53, ir_rx, ur0_rx, ur0_tx,
-> +                    gpio_57, gpio_58, gpio_59, gpio_60, gpio_61, gpio_62, gpio_63,
-> +                    gpio_64, emmc_rst_n, emmc_dd_sb, emmc_clk, emmc_cmd, emmc_data_0,
-> +                    emmc_data_1, emmc_data_2, emmc_data_3, emmc_data_4, emmc_data_5,
-> +                    emmc_data_6, emmc_data_7, dummy, gpio_78, gpio_79, gpio_80,
-> +                    gpio_81, ur2_loc, gspi_loc, hi_width, sf_en, arm_trace_dbg_en,
-> +                    ejtag_aucpu_loc, ejtag_acpu_loc, ejtag_vcpu_loc, ejtag_scpu_loc,
-> +                    dmic_loc, ejtag_secpu_loc, vtc_dmic_loc, vtc_tdm_loc, vtc_i2si_loc,
-> +                    tdm_ai_loc, ai_loc, spdif_loc, hif_en_loc, sc0_loc, sc1_loc,
-> +                    scan_switch, wd_rset, boot_sel, reset_n, testmode ]
-> +
-> +        function:
-> +          enum: [ gpio, nf, emmc, tp0, tp1, sc0, sc0_data0, sc0_data1, sc0_data2,
-> +                  sc1, sc1_data0, sc1_data1, sc1_data2, ao, gspi_loc0, gspi_loc1,
-> +                  uart0, uart1, uart2_loc0, uart2_loc1, i2c0, i2c1, i2c3, i2c4,
-> +                  i2c5, pcie1, sdio, etn_led, etn_phy, spi, pwm0_loc0, pwm0_loc1,
-> +                  pwm1_loc0, pwm1_loc1, pwm2_loc0, pwm2_loc1, pwm3_loc0, pwm3_loc1,
-> +                  qam_agc_if0, qam_agc_if1, spdif_optical_loc0, spdif_optical_loc1,
-> +                  usb_cc1, usb_cc2, vfd, sd, dmic_loc0, dmic_loc1, ai_loc0, ai_loc1,
-> +                  tdm_ai_loc0, tdm_ai_loc1, hi_loc0, hi_m, vtc_i2so, vtc_i2si_loc0,
-> +                  vtc_i2si_loc1, vtc_dmic_loc0, vtc_dmic_loc1, vtc_tdm_loc0,
-> +                  vtc_tdm_loc1, dc_fan, pll_test_loc0, pll_test_loc1, ir_rx,
-> +                  uart2_disable, gspi_disable, hi_width_disable, hi_width_1bit,
-> +                  sf_disable, sf_enable, scpu_ejtag_loc0, scpu_ejtag_loc1,
-> +                  scpu_ejtag_loc2, acpu_ejtag_loc0, acpu_ejtag_loc1, acpu_ejtag_loc2,
-> +                  vcpu_ejtag_loc0, vcpu_ejtag_loc1, vcpu_ejtag_loc2, secpu_ejtag_loc0,
-> +                  secpu_ejtag_loc1, secpu_ejtag_loc2, aucpu_ejtag_loc0, aucpu_ejtag_loc1,
-> +                  aucpu_ejtag_loc2, iso_tristate, dbg_out0, dbg_out1, standby_dbg,
-> +                  spdif, arm_trace_debug_disable, arm_trace_debug_enable,
-> +                  aucpu_ejtag_disable, acpu_ejtag_disable, vcpu_ejtag_disable,
-> +                  scpu_ejtag_disable, secpu_ejtag_disable, vtc_dmic_loc_disable,
-> +                  vtc_tdm_disable, vtc_i2si_disable, tdm_ai_disable, ai_disable,
-> +                  spdif_disable, hif_disable, hif_enable, test_loop, pmic_pwrup ]
-> +
-> +        drive-strength:
-> +          enum: [4, 8]
-> +
-> +        bias-pull-down: true
-> +
-> +        bias-pull-up: true
-> +
-> +        bias-disable: true
-> +
-> +        input-schmitt-enable: true
-> +
-> +        input-schmitt-disable: true
-> +
-> +        drive-push-pull: true
-> +
-> +        power-source:
-> +          description: |
-> +            Valid arguments are described as below:
-> +            0: power supply of 1.8V
-> +            1: power supply of 3.3V
-> +          enum: [0, 1]
-> +
-> +        realtek,drive-strength-p:
-> +          description: |
-> +            Some of pins can be driven using the P-MOS and N-MOS transistor to
-> +            achieve finer adjustments. The block-diagram representation is as
-> +            follows:
-> +                           VDD
-> +                            |
-> +                        ||--+
-> +                 +-----o||     P-MOS-FET
-> +                 |      ||--+
-> +            IN --+          +----- out
-> +                 |      ||--+
-> +                 +------||     N-MOS-FET
-> +                        ||--+
-> +                            |
-> +                           GND
-> +            The driving strength of the P-MOS/N-MOS transistors impacts the
-> +            waveform's rise/fall times. Greater driving strength results in
-> +            shorter rise/fall times. Each P-MOS and N-MOS transistor offers
-> +            8 configurable levels (0 to 7), with higher values indicating
-> +            greater driving strength, contributing to achieving the desired
-> +            speed.
-> +
-> +            The realtek,drive-strength-p is used to control the driving strength
-> +            of the P-MOS output.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          minimum: 0
-> +          maximum: 7
-> +
-> +        realtek,drive-strength-n:
-> +          description: |
-> +            Similar to the realtek,drive-strength-p, the realtek,drive-strength-n
-> +            is used to control the driving strength of the N-MOS output.
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          minimum: 0
-> +          maximum: 7
-> +
-> +        realtek,duty-cycle:
-> +          description: |
-> +            An integer describing the level to adjust output duty cycle, controlling
-> +            the proportion of positive and negative waveforms in nanoseconds.
-> +            Valid arguments are described as below:
-> +            0: 0ns
-> +            2: + 0.25ns
-> +            3: + 0.5ns
-> +            4: -0.25ns
-> +            5: -0.5ns
-> +          $ref: /schemas/types.yaml#/definitions/uint32
-> +          enum: [ 0, 2, 3, 4, 5 ]
-> +
-> +      required:
-> +        - pins
-> +
-> +      additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +     pinctrl@4e000 {
-> +         compatible = "realtek,rtd1319d-pinctrl";
-> +         reg = <0x4e000 0x130>;
-> +
-> +         emmc-hs200-pins {
-> +             pins = "emmc_clk",
-> +                    "emmc_cmd",
-> +                    "emmc_data_0",
-> +                    "emmc_data_1",
-> +                    "emmc_data_2",
-> +                    "emmc_data_3",
-> +                    "emmc_data_4",
-> +                    "emmc_data_5",
-> +                    "emmc_data_6",
-> +                    "emmc_data_7";
-> +             function = "emmc";
-> +             realtek,drive-strength-p = <0x2>;
-> +             realtek,drive-strength-n = <0x2>;
-> +         };
-> +
-> +         i2c-0-pins {
-> +             pins = "gpio_12",
-> +                    "gpio_13";
-> +             function = "i2c0";
-> +             drive-strength = <4>;
-> +         };
-> +     };
-> -- 
-> 2.41.0
-> 
+I tested locally with a common DT property like this:
+
+index 4f3acdc4dec0..782cbb4ea487 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -75,6 +75,14 @@ patternProperties:
+           framework and assumes that the thermal sensors in this zone
+           support interrupts.
+
++      critical-action:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description:
++          The action that happens after the critical temperature is reache=
+d.
++          Possible values are 0 for shutdown and 1 for reboot.
++
++        enum: [ 0, 1 ]
++
+       thermal-sensors:
+         $ref: /schemas/types.yaml#/definitions/phandle-array
+         maxItems: 1
+
+Then in the board dts I can use:
+
++
++       thermal-zones {
++               cpu-thermal {
++                       critical-action =3D <THERMAL_CRITICAL_ACTION_REBOOT=
+>;
++               };
++       };
+ };
+
+I should probably be able to post something next week.
+
+Thanks
+Thanks
