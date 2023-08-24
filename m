@@ -2,169 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50D7D7869ED
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B35A07869F2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231435AbjHXIZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231854AbjHXIZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 24 Aug 2023 04:25:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjHXIYu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:24:50 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8661709
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:24:48 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b9cdba1228so100997881fa.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:24:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692865486; x=1693470286;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MBWUe/welSTyLE0XN0FKQ2m/IGgsZK6nJo7F/yrgL6Y=;
-        b=LSoHKy21NykeUkVhVQdpbUKajkdlZpVqlx/6hxXKj4EHeM4spA3kYQ3Jz4WKK5yvAP
-         /SSCnwZ/8xpB0IgIQ5yz/VRfVdPDRBEnG2gI6ZdJVWhr6PRN6V9aBZIUP2ol5FMKNMMV
-         TeUuJ9Ko+aGEJMWnVmkfed73CcADeoi+9f3BbGOfIts/ia/WOJNpYI4Ko9/OH48lUTYF
-         5I2yaQ9ce+D4/EmDDMqDLcpPa6w8rblGqAaxCFKMyB9zLU9n9L96tUXIS6mAScAzHHnV
-         VYaVHPsnNZOAi0lXPljkPMwugt3EIeHvQffSPWNofB00ySMNIyHHvg07rfpDJQ9OVHmv
-         O7oQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692865486; x=1693470286;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MBWUe/welSTyLE0XN0FKQ2m/IGgsZK6nJo7F/yrgL6Y=;
-        b=GQBdHJUH9H18WciHb3xkodV1aBJBqTZWlS2UaHUIwkvaVSGnx+OTjupxTtiOKTILOj
-         qZecgrtp5wUM2f2mj5or0XWdtmzaI0NX00CRcUxlee6Nz12OqNSn4CUJeGqJgwPXan8J
-         IpHKalRUPFR7WbX9IK3m7XNYgahpyrbm+upbDHAlNwJurMHEbkqFebxYjvYHBzSSlalc
-         Z2XKCxEtKALGL5Ik2j0/p8m1JB++cTIk29m/av6Byk/Jr5wYwWTL7zXc4biXohXttwMF
-         OD4oVvD0gxyoRIii/MGr5YYiRNoWi7uUNhhOzP9PrI7TnzHO8eP04wS+A+yGR9wxLXEt
-         DaMw==
-X-Gm-Message-State: AOJu0YycvLS7wmbrgPlcq6Aa+0qAhG2htdTDmbNMXcUDqHfRH+owrUd8
-        Obqn3PON6I04yYzbtA6imQ2Byg==
-X-Google-Smtp-Source: AGHT+IHWcZB9lXJ+vBSQhndi+/YAyJ3D89wEBDbfn5fmHYq1DWowl+vWIotNA3tOjxfImtYPyoRRuQ==
-X-Received: by 2002:a2e:8349:0:b0:2b9:5eae:814f with SMTP id l9-20020a2e8349000000b002b95eae814fmr9589719ljh.50.1692865486158;
-        Thu, 24 Aug 2023 01:24:46 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b? ([2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b])
-        by smtp.gmail.com with ESMTPSA id 14-20020a05600c024e00b003fe2bea77ccsm12946wmj.5.2023.08.24.01.24.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 01:24:42 -0700 (PDT)
-Message-ID: <cdab27cb-fea4-4f09-8a66-ce1aa1090186@linaro.org>
-Date:   Thu, 24 Aug 2023 10:24:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH V2 1/6] soc: amlogic: modify some power domains property
-Content-Language: en-US, fr
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232438AbjHXIZL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:25:11 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA7E21711;
+        Thu, 24 Aug 2023 01:25:08 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,195,1684767600"; 
+   d="scan'208";a="173816674"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 24 Aug 2023 17:25:08 +0900
+Received: from localhost.localdomain (unknown [10.226.93.115])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7E07F4010E05;
+        Thu, 24 Aug 2023 17:25:04 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>
-References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
- <20230824055930.2576849-2-xianwei.zhao@amlogic.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <20230824055930.2576849-2-xianwei.zhao@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v4 0/4] Fix Versa3 clock mapping
+Date:   Thu, 24 Aug 2023 09:24:57 +0100
+Message-Id: <20230824082501.87429-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+According to Table 3. ("Output Source") in the 5P35023 datasheet,
+the output clock mapping should be 0=REF, 1=SE1, 2=SE2, 3=SE3,
+4=DIFF1, 5=DIFF2. But the code uses inverse.
 
-On 24/08/2023 07:59, Xianwei Zhao wrote:
-> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
-> 
-> Some power domains for C3 can be using runtime PM,
-> remove ALWAYS_ON property. And add some power domains
-> description when ALWAYS_ON property.
+This patch series aims to document clock-output-names in bindings and
+fix the mapping in driver.
 
-The subject should now be:
-genpd: amlogic: ....
+Also added a fix for 64 by 64 division.
 
-same for patches 2 & 5.
+v3->v4:
+ * Dropped clock-output-names as there is no validation for it and people
+   can get it wrong.
+ * Updated commit header, description and example to reflect this change
+ * Retained Ack tag from Conor and Krzysztof as it is trivial change.
+ * Used clamped value for rate calculation in vc3_pll_round_rate().
+v2->v3:
+ * Dropped dts patch and added fix for 64 byte division to this patch
+   series.
+ * Added Rb tag from Geert for patch#3
+ * Added a patch to make vc3_clk_mux enum values depend on vc3_clk enum
+   values.
+v1->v2:
+ * Updated binding commit description to make it clear it fixes
+   "assigned-clock-rates" in the example based on 5P35023 datasheet.
 
-> 
-> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
-> ---
-> V1 -> V2: None
-> ---
->   drivers/genpd/amlogic/meson-secure-pwrc.c | 25 ++++++++++++-----------
->   1 file changed, 13 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> index 89c881c56cd7..5ac2437ab8ad 100644
-> --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> @@ -122,18 +122,19 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
->   };
->   
->   static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
-> -	SEC_PD(C3_NNA,	0),
-> -	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
-> -	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_NNA,		0),
-> +	SEC_PD(C3_AUDIO,	0),
-> +	SEC_PD(C3_SDIOA,	0),
-> +	SEC_PD(C3_EMMC,		0),
-> +	SEC_PD(C3_USB_COMB,	0),
-> +	SEC_PD(C3_SDCARD,	0),
-> +	/* ETH is for ethernet online wakeup, and should be always on */
-> +	SEC_PD(C3_ETH,		GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GE2D,		0),
-> +	SEC_PD(C3_CVE,		0),
-> +	SEC_PD(C3_GDC_WRAP,	0),
-> +	SEC_PD(C3_ISP_TOP,	0),
-> +	SEC_PD(C3_MIPI_ISP_WRAP, 0),
->   	SEC_PD(C3_VCODEC,	0),
->   };
->   
-> 
-> base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
+Biju Das (4):
+  dt-bindings: clock: versaclock3: Fix the assigned-clock-rates
+  clk: vc3: Fix 64 by 64 division
+  clk: vc3: Fix output clock mapping
+  clk: vc3: Make vc3_clk_mux enum values based on vc3_clk enum values
 
-With changed subject:
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+ .../bindings/clock/renesas,5p35023.yaml       |  8 +-
+ drivers/clk/clk-versaclock3.c                 | 81 +++++++++----------
+ 2 files changed, 44 insertions(+), 45 deletions(-)
+
+-- 
+2.25.1
+
