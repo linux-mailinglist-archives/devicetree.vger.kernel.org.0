@@ -2,85 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 381D0786418
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 01:48:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC0078646B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 03:05:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238868AbjHWXsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 19:48:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52556 "EHLO
+        id S234754AbjHXBEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 21:04:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237231AbjHWXre (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 19:47:34 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2628D10DB;
-        Wed, 23 Aug 2023 16:47:33 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37NN1NtM006062;
-        Wed, 23 Aug 2023 23:47:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=5+SXoW1Olh8Xle6G1JTgskHQYk8pDE1cm/GzmnJCbX8=;
- b=YjlvpFjZwfXtkq+TUU0jzTWT7wc9hCY/WcJDylMNSZreRB/DEs3xjGwCvwjHDcZHhuxZ
- 1yV3MDhVaXRE7Cj2xsOq53HMoKHXOYz7TEMariUMVxO/dEj0Mueyb4R0mJBcNKtQV0Eu
- 8Gp9A85nRedCd77VqCWX3pRCq9Dusj5o6KnyJXhldr21GgqGj1yO8EcbTXgX7K0kK99J
- DEvGnp2bMbbqz81QKOEZFJ57YNy7QJ4W8FyHJSN+44RBO0/lkBJV4ZKwYfXQkBWeK1gr
- h6hmvAGzQBdmAYjM5PhQ0FCT43oW/KVQ+99CcFVQu4XwkpHQOcwD33LQFb9/5zmZ9ZET Cg== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sn2exu5j1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Aug 2023 23:47:24 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37NNlMfT028975
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Aug 2023 23:47:23 GMT
-Received: from [10.216.6.154] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 23 Aug
- 2023 16:47:18 -0700
-Message-ID: <f52bfac1-8200-404d-ab33-5130008efebe@quicinc.com>
-Date:   Thu, 24 Aug 2023 05:17:14 +0530
+        with ESMTP id S238945AbjHXBEv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 21:04:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BCA101;
+        Wed, 23 Aug 2023 18:04:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9C51363BBA;
+        Thu, 24 Aug 2023 01:04:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B88F3C433C8;
+        Thu, 24 Aug 2023 01:04:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692839089;
+        bh=7irFKvrUWbJgoOVMhkGNrs8wK7fU9Q7/eAW1MtLZD04=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=L/lXJxXVeDNTcbKQBh4sv4dkc3q1Z24uD5UlD/Q5z7FtGdyuIfP0/BVrP0kWAaspT
+         bJoi+y+eO8HzqWepPd1aEyORf82sOEBnLqz3TVwIOILb0+wT1SphTiwzCTI3E+TJwo
+         7Z8bokSCtQTkCtNt1+/JlVAIjSHJOtT/gG6gMGPu0+WwQGe0SUuFp7CV6gzHpkFw4z
+         Xi+GdTjYNBJ4ny0jc95SHUdMiyaKUofgn4NoSpcdhLM4+xmaLES1koXDT1zJ7Hfj2w
+         k7pFxEChrsYUvv9hAvqKNC7OYHXIm6+J5n4rG81xHGMxjKDpYNTyelWfNCt+HF4nty
+         CsAoDizZDem2w==
+Message-ID: <e304f322-bda7-a28a-1c4d-86480fcc606a@kernel.org>
+Date:   Wed, 23 Aug 2023 18:04:48 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sm8550: Add PRNG
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arc: Explicitly include correct DT includes
 Content-Language: en-US
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230822-topic-sm8550-rng-v1-0-8e10055165d1@linaro.org>
- <20230822-topic-sm8550-rng-v1-2-8e10055165d1@linaro.org>
-From:   Om Prakash Singh <quic_omprsing@quicinc.com>
-In-Reply-To: <20230822-topic-sm8550-rng-v1-2-8e10055165d1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Rob Herring <robh@kernel.org>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20230714173949.4038981-1-robh@kernel.org>
+ <20230823170025.GA2470216-robh@kernel.org>
+From:   Vineet Gupta <vgupta@kernel.org>
+In-Reply-To: <20230823170025.GA2470216-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: aR02aBkTipHldSpOQydVM1ziXgYZduq0
-X-Proofpoint-ORIG-GUID: aR02aBkTipHldSpOQydVM1ziXgYZduq0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-23_15,2023-08-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=999
- mlxscore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- malwarescore=0 suspectscore=0 adultscore=0 phishscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308230211
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -89,30 +62,24 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 8/22/2023 7:41 PM, Neil Armstrong wrote:
-> Add the Qualcomm Pseudo-Random Number Generator.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
-Reviewed-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+On 8/23/23 10:00, Rob Herring wrote:
+> On Fri, Jul 14, 2023 at 11:39:49AM -0600, Rob Herring wrote:
+>> The DT of_device.h and of_platform.h date back to the separate
+>> of_platform_bus_type before it as merged into the regular platform bus.
+>> As part of that merge prepping Arm DT support 13 years ago, they
+>> "temporarily" include each other. They also include platform_device.h
+>> and of.h. As a result, there's a pretty much random mix of those include
+>> files used throughout the tree. In order to detangle these headers and
+>> replace the implicit includes with struct declarations, users need to
+>> explicitly include the correct includes.
+>>
+>> Signed-off-by: Rob Herring <robh@kernel.org>
+>> ---
+>>   arch/arc/plat-axs10x/axs10x.c | 1 -
+>>   1 file changed, 1 deletion(-)
+> Ping!
 
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 5 +++++
->   1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index d115960bdeec..643ec80feacc 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -1661,6 +1661,11 @@ mmss_noc: interconnect@1780000 {
->   			qcom,bcm-voters = <&apps_bcm_voter>;
->   		};
->   
-> +		rng: rng@10c3000 {
-> +			compatible = "qcom,sm8550-prng-ee", "qcom,prng-ee";
-> +			reg = <0 0x010c3000 0 0x1000>;
-> +		};
-> +
->   		pcie0: pci@1c00000 {
->   			device_type = "pci";
->   			compatible = "qcom,pcie-sm8550";
-> 
+Sorry this fell through cracks, added to for-curr now !
+
+Thx,
+-Vineet
