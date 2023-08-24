@@ -2,334 +2,540 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D16786500
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 04:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FBD78657B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 04:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239172AbjHXB7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Aug 2023 21:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53676 "EHLO
+        id S235833AbjHXCgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Aug 2023 22:36:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239155AbjHXB7A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 21:59:00 -0400
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2115.outbound.protection.outlook.com [40.107.114.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FAD5E59;
-        Wed, 23 Aug 2023 18:58:57 -0700 (PDT)
+        with ESMTP id S239569AbjHXCgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Aug 2023 22:36:11 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2116.outbound.protection.outlook.com [40.107.215.116])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 714ED1AD;
+        Wed, 23 Aug 2023 19:36:08 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T7+4TNi3u0Ia0JXd7pr/UOoc8SBe4uG1f8k6vYMTwGw/9nrrgmYZCpLCgRrC8gINkze5HQF4E5pH7//xOMcri4m+raKC1d7tBzrMKadKCOOorpyAAGLdkbB7VbmQFoNed3sYMs4ANfImoSh2x+UIbm+BN4zCi5uOaR314B6a/mIceGvSftuua2Sm4HkKEIbV5pY9+XfNPSGgv9LMxVVRi9MnS2Pl7AdNGAU6ysrVPwVzcwyXN9lyV4R8bKC6hSHp62/ygyQjS/u9wVUKVCxlTGquKAoDa3ujNDF6jG5U3LMpvtSyn0NYKA/x7c65lSyrGnOVtrx1bLMu5VdePO9rpw==
+ b=nPd+lP9ulH0akAIlNXJIX+Sak1cK5yiI4ujiWlA6MO+Wl9yTpIUlkSq/4velA/slRRfQmmdZ+Ff003hX7Gw0SaWMdZ+i+dqq0F4DwHWXVhMcADk2+rNdvPxyvFIhfavrVYAjFqB/1VfPj1c5kijM7Bd4SmnkNPbSEloUunuPXnQnGb9bmxdtkvUPSjM6B83M1f5TS5uvTolMbvUpCgGM33e0PjR7YEmTKttddP8aapXf/fx/C9vrWGoY/S04kLxZLaIJAhzTGVAx/gYtVchbV5VWSpzn3nkxK0230CPO9GcSMwb8NVaqsoD/IvgpH4/YZVsBT74Vq3bjjR9cqnBsYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=acwm1PzfxwIqAWWPkn3duRIFzyX/W0HImKLwklM4Irg=;
- b=flm/laq2ooUyvciWbdngj73TqyAFAAHj8IJKrGyM0lXuzj7XMYVlClCGEIEBPcyh68YL8i82/t58V9wkNSXvbLgwo7vl+d++owwVqXar1n6LMQGsy1TMTTxsfAIKbR82lOwO9XRz/F+F0sp2PoB8++HLXUfdwXrfE/jx733Jpv0xAyJ/5eMMIkk0IJMAODez/cBHkxNjS1lq93ZVcQi2iP1JPokm8NMtTomB0mlWYo/Zt2KctLfUb7EbqVRCSsTgR+HKOzreidAqK5qe5bFnFtBofz1rr0tKF06vljCgw25sFoRG07H3QUTWECuvcDhpyeEqoOpbwpSY0w4iI1RHyA==
+ bh=1Gt58MMLJ2HEDNvg6fscJjf1+Mr+t8ICgAEJpqfIoYg=;
+ b=OTj8BE7Thc8Au1KwQRhOkx9rOI0GCb5nnwaxq0cjR9q+ya8anogen4FZRxnMc8gQW6IPYVP2MCokvrjSg5rfYHrmLJjb3kNWwFzrLb5dy5qAPCGJJvh5bB2vzHYgDkdKAyZNHmEfywHSoo7ky+7wQpHgLMbOPmtlIXh5I/dVlcC/4FcCdg4rkMj/kCPsce4SxtCXNVzlc5BMKLXxBYrpbqKDnI8AZSso90AFgjzw9P/hc8wsNpSfumegsm8GBBJMcKGmK2yRBaQoe/DghHpqBUds4sK55eLkhRyxuZiF6yedkLid6OLP8uLlZaDon/ZLRN4d4xQ/5miqgG6+tash9A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=acwm1PzfxwIqAWWPkn3duRIFzyX/W0HImKLwklM4Irg=;
- b=B6Lg5EhHEKUNbvZPKNGynbBdJHMzndVx9uyTc310vu2bmrtOEZXXuxP/Su/lDVKKCf6wQkMFmSdJ6HSy4PKT43kjckzRe2/5vg4Q311+sgtjbSrHaTG2FtCczLy7lTR9I7LydexwqXgXjLtAw8eJZmavPXmYeYPFp5qmYmd7dTQ=
-Received: from OSYPR01MB5334.jpnprd01.prod.outlook.com (2603:1096:604:8a::15)
- by TYVPR01MB11313.jpnprd01.prod.outlook.com (2603:1096:400:365::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 01:58:52 +0000
-Received: from OSYPR01MB5334.jpnprd01.prod.outlook.com
- ([fe80::fe8:f613:9823:4075]) by OSYPR01MB5334.jpnprd01.prod.outlook.com
- ([fe80::fe8:f613:9823:4075%7]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 01:58:52 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Serge Semin <fancer.lancer@gmail.com>
-CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "kw@linux.com" <kw@linux.com>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: RE: [PATCH v19 04/19] PCI: designware-ep: Add INTx IRQs support
-Thread-Topic: [PATCH v19 04/19] PCI: designware-ep: Add INTx IRQs support
-Thread-Index: AQHZ1aHiKafVNbC7PUy4CRo+299zia/3ruuAgAEApVA=
-Date:   Thu, 24 Aug 2023 01:58:51 +0000
-Message-ID: <OSYPR01MB533420D69167B555EC33F345D81DA@OSYPR01MB5334.jpnprd01.prod.outlook.com>
-References: <20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com>
- <20230823091153.2578417-5-yoshihiro.shimoda.uh@renesas.com>
- <m76plvpf5zfvrajtnqycagp5yyd7c2njunn3clux2svof6zh27@gquktcx4n7qm>
-In-Reply-To: <m76plvpf5zfvrajtnqycagp5yyd7c2njunn3clux2svof6zh27@gquktcx4n7qm>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSYPR01MB5334:EE_|TYVPR01MB11313:EE_
-x-ms-office365-filtering-correlation-id: eadf6532-4071-4b34-ebd0-08dba445aa46
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rycEEF0IDNQKiFst8E4bi2TaEtYt8an4dFfn13Du1BHQ9dmyOAwFa2bFl6TuDUNV118XPhF0L4IbjK5nz7ZIlOilpUUTFdc31kWNugofAgZ2s3i6XkS0zPDAivIBcDXu8/1fyLce/fIhY+Cj7ju2amxzbOZDgbj5vd9XjufHIzMmBXRGX/RoGgwREN4OzgXH5DZUqNMjIAeEBU51LrksdglZqsPcGPbfndH/7QKqyPSRbwHxauGmFwswthy+sWGBimMKkAUeog7rGlyik6yUeisfBPXqtcc0W8KYZabcI9DNDLm1y0HT6A0mgLWpGyGXFW8FHSi4A8Avv6DyFp/Rr+DPocJB7Bmis3BIaTDynELOTWINHimTfbh7RI0slf8w/zfJQiWFMWEMs/ozOXGKZ7PyvlmxV/oft8+8Tj3HVSPijttQgXUiH+epH8qe40Plab0zAelOTz9n5W+RrPBJgGUPMs5eJkDWmTTIn8s2onosT4UP8fPq809hdaiDx0FtU3LwpIPPiXFXi7l1sd9fBNtp0BMa5YMNczaX8nS4aNXYgXXue4YItXJrJqLBuMZzlEMqc+VzPxjtGVKRMrKrHLPOQW0y4vUHXxwsD/xj7F6mmZDX9Z06HqBqUuKNwjR5
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSYPR01MB5334.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(396003)(39860400002)(346002)(366004)(136003)(186009)(1800799009)(451199024)(52536014)(5660300002)(4326008)(8676002)(8936002)(83380400001)(7416002)(33656002)(55016003)(71200400001)(38070700005)(38100700002)(122000001)(66946007)(76116006)(66556008)(66476007)(66446008)(64756008)(54906003)(316002)(6916009)(478600001)(41300700001)(9686003)(2906002)(6506007)(7696005)(86362001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?mESukFcbqzK0+vYa5PzSYc3gfdnqLptVeICtuYJT4rwUvHmAmnzCja+GGPIO?=
- =?us-ascii?Q?CJe5kR74Es+reDPUFSHL9lFkWqyGGT+nQC7+74yXVFNXWPxfuDWISVv8UZs4?=
- =?us-ascii?Q?xk/2Y5hdtL7wI439wWiHNt6sWpt06MhxT+2wHRLi0N/mVSZs2AN/kQ/wGZ2q?=
- =?us-ascii?Q?PUyM+XhlOSUuqArHdzuegSaxsq93pdwezC/0DRyRRXg3ic1i5TWcyC821Frq?=
- =?us-ascii?Q?eJ0HezI/FLLa9xHPMgN1NqkO0L+rrD7YaSY5nS+mgfPnPEOj9ZCdiCF/B8CM?=
- =?us-ascii?Q?W8r2EDh6LgWdcEHFQ1i7cEG1RevxXJCGt16l5/35beiAcr3OamTifSPEDfov?=
- =?us-ascii?Q?pYXOu/YXGs/jgesk4Wp5jOSC6DA1uKVRwg04c6tRuwCysEMEk5zn79eWVVdZ?=
- =?us-ascii?Q?2MFXaUhJpnhyznQSiXYm//Brj8jr9CQb9SVi2UiHzKr+0WL1oPMKDApWNVdu?=
- =?us-ascii?Q?wp1KbA48qDqO4adoe4fWk+wWTiklqOiuKwjjcyGrx2wdJ5DyPGJBP2jLMCeb?=
- =?us-ascii?Q?PHif1Sby68XjLLodUJ4ZF4Iyu45w12rN1rEgEPm+OAfCoat6sL3UuP61zAPs?=
- =?us-ascii?Q?yBOszvWPbeylTnj81YiSyjZq2KefEy4iCz6l91jc0+H/HyJM1Ave3DKzNHua?=
- =?us-ascii?Q?T8J4ydTfwBdUgBy3aUSJosACbJDiBRscEteu4VA3R4oxHyiQDYqGX/+llsfB?=
- =?us-ascii?Q?jIRla+Fzy5r1CTdjRLMCkYNrvdjeAPcZz3T7EJ9emUPX7gLpME9QACie4ZEd?=
- =?us-ascii?Q?Obo0nLIWEHqnLg78AAv7Yeb5+xnKaNURdAFSe9OBNAtqkhK1VNxcSA22QN1J?=
- =?us-ascii?Q?hbRYHZ3NzmKYtMbQptq47HrVjSJBODfo6efnFV1VHmoMV1oo5iYCzGeN4Q68?=
- =?us-ascii?Q?D7SUw+nV0fpejWzITj+7FzP6lW//g7GqBtHVRkH3tERpe5rKp/CSp+wOARKi?=
- =?us-ascii?Q?KyzRedSBv7eWSgO8LAFQ3+T94oe4ZZX+xq8AyISqY5HeOAWYB63T9k7PfN0i?=
- =?us-ascii?Q?pOblQNAg8hLIBj6WyKt0d+MY+Se55THQl3/jRPtu0yJOsmUHpBlf/+XrWmg4?=
- =?us-ascii?Q?VLrmu+q9z2eN79puHGE6RsQnQunTXfbAy5inqkOZHlG54mNAEgzZXBsXfp+g?=
- =?us-ascii?Q?iALqG9Wb8DgSbmLLxw+trq1mE95Abc0zCJszaXjvIs1kQytV5okdqaB0EZw8?=
- =?us-ascii?Q?PgSUbi65Q3WVhWeOKzEm+4eUVJ4YyzEUXKVFj85xv0bDXl7yyTMkrP7mW7sK?=
- =?us-ascii?Q?1kx1vPU40duGdKpAk3cIZH2g01IG5HijTTErx0Fa77+89PGdZapkE+0PGC7V?=
- =?us-ascii?Q?9yAR00w8AzxG7+NuB5s48//7uuS1yrcMuK4H4bQnOXpvOq96kgoYseZrweJr?=
- =?us-ascii?Q?IdmeLIetdxKBwinO1m9UDmmJxVoAKBLEU/2oBc+9/6w7gZvUf7HMwPnBQKTu?=
- =?us-ascii?Q?kj/q0q/bo2/6je6Dtw9moZXyYrqhruWy7OQC/nfyx5wBwcrTjxvaBWaEwwwy?=
- =?us-ascii?Q?rnmU0dyUX7HG977JQuqzgGaSjuYwCUZDO5RjYk1JkCB5/xvoWo4UiIl4l059?=
- =?us-ascii?Q?ViYuFek7FHqr4qP297STh0R9n5a/sHVcUu6FK0U7Pt1pLnNbly5aEVhNvfKl?=
- =?us-ascii?Q?x6QMrzkYkkUQqvlMKnXUjUZ6MkMf/ANXpwVG0EX24iGs8/iTJ2POxM0XrD3q?=
- =?us-ascii?Q?YOU/Wg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ bh=1Gt58MMLJ2HEDNvg6fscJjf1+Mr+t8ICgAEJpqfIoYg=;
+ b=lpvemQjZYjZaIRe8RkoUM/whIwyFMmXXdyBLvWfhpAZblk5d+TAAKJRw8gjUyvpt2aJf3V0mwCRDbfmrHQwPIctBuCtT7Q6KDqI8zGYEj3nYxpvYtYsc7DHLhiwsp7MqK3l88HpO3AjlumxkM61MZB7HJpNXdPE3LSTFksD6/PrpLqWaUHVPU+zblr46jiuync01gSGUh7MTyaQJgsGOCwPimca8lKe6x4cYqXLori4R3leFu5cuyjfk9XEZcEZZqEYGokaYcOa5dS3/Xtv0ZDhQCdVx+JQjR9oPhyFpLO/rBSWmTYrxZNUXxjniNcP0fZ2+9vmDTK+24ci5UTC3xQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from SG2PR03MB6730.apcprd03.prod.outlook.com (2603:1096:4:1d5::9) by
+ PUZPR03MB6187.apcprd03.prod.outlook.com (2603:1096:301:ba::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6699.27; Thu, 24 Aug 2023 02:36:04 +0000
+Received: from SG2PR03MB6730.apcprd03.prod.outlook.com
+ ([fe80::6f04:4b62:1127:59ed]) by SG2PR03MB6730.apcprd03.prod.outlook.com
+ ([fe80::6f04:4b62:1127:59ed%4]) with mapi id 15.20.6678.029; Thu, 24 Aug 2023
+ 02:36:04 +0000
+Message-ID: <a132b5d3-ae93-6ba6-e324-130897567477@amlogic.com>
+Date:   Thu, 24 Aug 2023 10:35:59 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH V10 2/4] dt-bindings: clock: document Amlogic S4 SoC
+ peripherals clock controller
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     kelvin.zhang@amlogic.com, qi.duan@amlogic.com
+References: <20230822082750.27633-1-yu.tu@amlogic.com>
+ <20230822082750.27633-3-yu.tu@amlogic.com>
+ <1jbkey9obf.fsf@starbuckisacylon.baylibre.com>
+ <3fa20b2f-c87f-1896-7d6d-a72b5e8aa6ba@amlogic.com>
+ <1j350a9ksj.fsf@starbuckisacylon.baylibre.com>
+From:   Yu Tu <yu.tu@amlogic.com>
+In-Reply-To: <1j350a9ksj.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SG2PR02CA0086.apcprd02.prod.outlook.com
+ (2603:1096:4:90::26) To SG2PR03MB6730.apcprd03.prod.outlook.com
+ (2603:1096:4:1d5::9)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SG2PR03MB6730:EE_|PUZPR03MB6187:EE_
+X-MS-Office365-Filtering-Correlation-Id: b742655d-9dbb-47c2-ded7-08dba44adc29
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vLbnFaVO+qOT0M1Zqj3pAfT3kGhjeDX4Jf15w8HnWnaobKJXDheeFiEuEsc2p879LqJ4a00XyYB8yu26GGuZHYzq/AsjxunDMiQ7e0aoBrNH3uYzhbN0iTbP14dHua70NS8XnHyM5jQC6V3z6IcfxCLmfX82CHl2RqPguFqV0/2x2lcU/nMnoHCWOOVs/2DGTppiVusQmsxzodN3LTCnkLpxp6g96JaP4cyAF1AphHEr+OEb2OW+v7uHCjjG31I2bx/zeuU/p1kB5gOcZgDfVtBbavMyp15sJHhyZeBfX2t3H2o502z4u/UxqUzibUFTKjsbCcf0xq6vdhzKJJG+XtreB9Y7PnSbQtUtIAwakh2zCVxVy9Rsx5sS7I8F4Lv4F/ZPh4RiPZg3CyD0PWXxsBhIpVFkr3M6j4NVvRqWe0E+kJb9cxN5A8nE13ukLlXPFtgTLpKOHeq/if5wUnteRZs9xeBARx4eHbSVfNPFiacp5nbcINyEJ0YaxRBBJ1X8ORcM2fHmJLTSH61+RwFWQ+TQuHBJUN15CHIHh5sVx4TjnmOdremQNkvKmeaAdoRozz2amjpi7zxS7D8gwobkFiCW2u+ybVuQpAVL9KynPKJOxipYy/Qk5be6KdMiuPzvGAisxNdAtDqUp3SPURORQcVoHQzeutio4Aq41B7pMiN6pmO2ZlESR5FLOlywl4s/OUaELgcP6eMjeZEpGX5YKqntCTFahxJehRaSaisGrmw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6730.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(39850400004)(136003)(366004)(376002)(346002)(186009)(1800799009)(451199024)(2616005)(5660300002)(107886003)(4326008)(8936002)(8676002)(36756003)(30864003)(2906002)(83380400001)(7416002)(44832011)(26005)(921005)(6666004)(38100700002)(66946007)(66556008)(66476007)(316002)(110136005)(478600001)(12101799020)(966005)(31686004)(41300700001)(6512007)(6506007)(86362001)(53546011)(31696002)(6486002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S0JDdGdORU4zc0hYUlgzcHFqbDJDSUVSVmdxNUlTcEMvVFJ0ang1eXBQYXla?=
+ =?utf-8?B?WTh5dWxBNzRtUURUN3Rza3BoMFpwMUFOYktqN3I5ZVhwdFhNQmR1czRheUFh?=
+ =?utf-8?B?aVR1cnVKcTlYYU9va1duMzZCL1gxaklNTVhGTSt5dTc1WFVNbkdaMCtZVGVy?=
+ =?utf-8?B?YllCSEI0dkhtR2pwLzlrUkZ3OTRrZjV3SXhYTHpOSlFJYUxoL1Z5NTdDUDBy?=
+ =?utf-8?B?WFBKQmJQM3B2RmV6ekdrU2RTd0NkZ3VFV1ZoVnBpbHVWczB1U0tCYTFFZnph?=
+ =?utf-8?B?cWFxc1JoREg1NzN0bi95eGZPa3pwS21TSjBmdlJzbDAxKzB2MWUrWGdGU2VQ?=
+ =?utf-8?B?TUl4bSt3Qk56eDVvYStQWk9sWEJEd3dGaDQyN0JpYzU1aE1BRUZHdzJlOUdt?=
+ =?utf-8?B?WkkxUmZVQ3pGYkN1a0pndWdyK3A5R3dCWExzZjZLczU3MjZrQlBMU21TVVVu?=
+ =?utf-8?B?MC9xc09uN3ZGYU0vYVBQUDRZSzVpWXhlMldvRWdQV0JFeWpOQmtHLzdYeW9X?=
+ =?utf-8?B?ZGdNVkptNWp4alNUcTFna3E0K0tzQVlXQ3RBT3dNU3NuTlBNckVmVTA5L1JK?=
+ =?utf-8?B?dDh6a0NSOGVJNy9PbGpzY3JOZjF2M1RJMWFFNE1zM0RMS2JOZTRnUjJrSE1E?=
+ =?utf-8?B?UEU3Mm5HSkltdnE4a09vVzNEUW5DNUpPRE81YzRZY09EMlJ0NWNXbVBQOHNO?=
+ =?utf-8?B?eFdDVEtRbFNYbHpYYkhVc3F1NHlyUGVGd2pjTlNjVFFGWEpOWUpXWGFWbEJj?=
+ =?utf-8?B?a2I2TTRsYml2c095VURlN0UxMzV5dDBRT2VZajdRUklEQWJLYXZXVCsyWTVS?=
+ =?utf-8?B?WWFrYWZ6S3Rlci9xRmIxVWxHVnUyWDlLMXJyT3pvWFJONWVTcDI1Y0VySlZV?=
+ =?utf-8?B?QitMUW1wNkUrRHZYb21hejRJVVBnQnpoVkowUzNxWE83K29nUDJJWjF6YWVh?=
+ =?utf-8?B?eU8xMEdNNHhlVWVpMW9OVkpMMi9wVzlpdFhrZHdvQ3k2SzUxUVBCc1FuV29O?=
+ =?utf-8?B?VXlvNlArN1RDanNhYWkvRThQN2xtYUZuNExHMTJHdUJxMjJaRVYvVm0vRUN6?=
+ =?utf-8?B?OUE0dkUxbjVSeGhVMmwxMTlzUG13c1gxTlViZkk4bjFnMEF1bUJUbmFqQUg0?=
+ =?utf-8?B?Y0ZlSkJGV2dSSStNS0FnRDhWL0lJaUgvMFI0aE1Zdkl3cHR0bGxiT1NDamta?=
+ =?utf-8?B?TW1xanljNnR6U0lzaDRoMUIrRkl6U050MjR5bnhYQzJ1UWVVSFVMOE05S1VH?=
+ =?utf-8?B?bjNyY2ptTXZ1UmErRUVFbFFqY3JyLzd6T2krN1BlQitvOFBVL0VLSXRodW1a?=
+ =?utf-8?B?ZVgvUUtVdFVqbnNSRDJJSjZBbkw3Z0I5WUxBamtVcGxXTUxoT0FlL084TVZa?=
+ =?utf-8?B?TmY5ZzFiU2h5SkhjYmhkN043N0tvRm1QSzZqNm1naXJhdXJ0ZXFCVFFDdzU4?=
+ =?utf-8?B?VEZPVWNqQW44ZndFVFIvVGhtT0J3ZFQxNHVnZm9iMmpBaEgrSENoM3N2RjZ2?=
+ =?utf-8?B?Uy9kOERFODhtTllBUFYxd3A5SmtBRFdlN0EwTkZycWZtWG44RDAwYVZ4UEVC?=
+ =?utf-8?B?dWNnSU4rQUk0WFJoc3F6R0w1a2J5bFVqL1BVT2xJVnROWWtGeXVzckpvYm9T?=
+ =?utf-8?B?VkhhWHRwK1lUbTR2dTgrcEVWRkRJcUJHNitWQWM3YTltYXIrWWJpcHhLTytS?=
+ =?utf-8?B?RG5oKzNveDUxSGh2N3p3UVFBenRNNXFhWkRwaEdqS3VhSVVlRFhTU2wwTGFP?=
+ =?utf-8?B?RnJkSWFWTXJINE9XNEZLdWhVMnpkUVlyaXRibzNYN1lnbDdiOHhDWGpLZXBq?=
+ =?utf-8?B?djJkUmlpc0J5R04xMFNxQzVyaER5cGhYYXVtTFNHblVyVmNLdmJRK2JhRzBG?=
+ =?utf-8?B?ZjE3bVlxVGgxOVhmZHFiQkVhdE03QVNRR3B4UDhzVUd1YkdqZmg5NlZQZFl6?=
+ =?utf-8?B?SjdjNXFSVXAyZE9RUGRZVjZsanhMU21sQmplVHR4SCsvaDR1WjF0cGJNcStS?=
+ =?utf-8?B?dWwyOU1rUzNVbDRzRUJKQTZBbXhMTHN6S2lVYnh6dXYrUlR3MWFISTBnRERn?=
+ =?utf-8?B?NWhTTGs0TlJ1cG0wZ1RoWW1nSHZFdnQrVGhjZzlIUG5JSnB6NUR0aklYNkFu?=
+ =?utf-8?Q?jVI8Mg6D9PJ2XiWEUQUhfP3dZ?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b742655d-9dbb-47c2-ded7-08dba44adc29
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6730.apcprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSYPR01MB5334.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eadf6532-4071-4b34-ebd0-08dba445aa46
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2023 01:58:51.9485
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 02:36:04.1811
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 14CUxGaJKrO0vXkp+k4P7VmkWKUzoz2dJjehDbWWpHErlRF/JiCLdJoBh+HZvlJoxn8EbG8sF3gANQMAWWjU1XP4x9Ti93ZLAqNyJt6Y0Em6fwKXl0ZbmnsZ0I1i2GBy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYVPR01MB11313
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dpi/NxclVBDJTW6yqp46flq/+klcebRsT2vx+fQQ1qCacCVNHOmnEqzrurVmDqyHDKskkEVwGlLyGqV6U0gd8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR03MB6187
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Serge,
 
-> From: Serge Semin, Sent: Wednesday, August 23, 2023 7:32 PM
->=20
-> On Wed, Aug 23, 2023 at 06:11:38PM +0900, Yoshihiro Shimoda wrote:
-> > Add support for triggering INTx IRQs by using outbound iATU.
-> > Outbound iATU is utilized to send assert and de-assert INTA TLPs
-> > as simulated edge IRQ for INTA. (Other INT[BCD] are not asserted.)
-> > This INTx support is optional (if there is no memory for INTx,
-> > probe will not fail).
-> >
-> > The message is generated based on the payloadless Msg TLP with type
-> > 0x14, where 0x4 is the routing code implying the Terminate at
-> > Receiver message. The message code is specified as b1000xx for
-> > the INTx assertion and b1001xx for the INTx de-assertion.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> > Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-> > ---
-> >  .../pci/controller/dwc/pcie-designware-ep.c   | 70 +++++++++++++++++--
-> >  drivers/pci/controller/dwc/pcie-designware.h  |  2 +
-> >  2 files changed, 68 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/=
-pci/controller/dwc/pcie-designware-ep.c
-> > index 747d5bc07222..4a8c116cdd4b 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> > @@ -6,9 +6,11 @@
-> >   * Author: Kishon Vijay Abraham I <kishon@ti.com>
-> >   */
-> >
-> > +#include <linux/delay.h>
-> >  #include <linux/of.h>
-> >  #include <linux/platform_device.h>
-> >
-> > +#include "../../pci.h"
-> >  #include "pcie-designware.h"
-> >  #include <linux/pci-epc.h>
-> >  #include <linux/pci-epf.h>
-> > @@ -484,14 +486,61 @@ static const struct pci_epc_ops epc_ops =3D {
-> >  	.get_features		=3D dw_pcie_ep_get_features,
-> >  };
-> >
-> > +static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 c=
-ode,
-> > +			       u8 routing)
-> > +{
-> > +	struct dw_pcie_ob_atu_cfg atu =3D { 0 };
-> > +	struct pci_epc *epc =3D ep->epc;
-> > +	int ret;
-> > +
-> > +	atu.func_no =3D func_no;
-> > +	atu.code =3D code;
-> > +	atu.routing =3D routing;
-> > +	atu.type =3D PCIE_ATU_TYPE_MSG;
-> > +	atu.cpu_addr =3D ep->intx_mem_phys;
-> > +	atu.size =3D epc->mem->window.page_size;
-> > +
-> > +	ret =3D dw_pcie_ep_outbound_atu(ep, &atu);
-> > +	if (ret)
-> > +		return ret;
-> > +
->=20
-> > +	/* A MWr with an effecitive length of '0' is converted to Msg */
->=20
-> 1. writel() means 4-byte IO-write. What is the "effecitive" length you ar=
-e
-> talking about?
-> 2. You don't generate MWr TLP here. It's Msg TLP. See the atu.type you
-> specified.
-> 3. s/effecitive/effective
->=20
-> > +	writel(0, ep->intx_mem);
->=20
-> IMO what is done here is a dummy-write triggering the INTx Msg being
-> generated. I bet you could have done it within any address from
-> ep->intx_mem to (ep->intx_mem + epc->mem->window.page_size) and by
-> writing any value, not only 0 because the Msg TLP doesn't have the
-> memory address and data.
 
-You're correct. The following cases could work correctly too.
+On 2023/8/23 17:14, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On Wed 23 Aug 2023 at 16:32, Yu Tu <yu.tu@amlogic.com> wrote:
+> 
+>> On 2023/8/23 16:01, Jerome Brunet wrote:
+>>> [ EXTERNAL EMAIL ]
+>>> On Tue 22 Aug 2023 at 16:27, Yu Tu <yu.tu@amlogic.com> wrote:
+>>>
+>>>> Add the S4 peripherals clock controller dt-bindings in the S4 SoC
+>>>> family.
+>>>>
+>>>> Signed-off-by: Yu Tu <yu.tu@amlogic.com>
+>>>> ---
+>>>>    .../clock/amlogic,s4-peripherals-clkc.yaml    |  96 +++++++
+>>>>    .../clock/amlogic,s4-peripherals-clkc.h       | 236 ++++++++++++++++++
+>>>>    2 files changed, 332 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>>    create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..e166563e7b14
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+>>>> @@ -0,0 +1,96 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +# Copyright (C) 2022-2023 Amlogic, Inc. All rights reserved
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/clock/amlogic,s4-peripherals-clkc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Amlogic S4 Peripherals Clock Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Yu Tu <yu.tu@amlogic.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: amlogic,s4-peripherals-clkc
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  clocks:
+>>>> +    items:
+>>>> +      - description: input fixed pll div2
+>>>> +      - description: input fixed pll div2p5
+>>>> +      - description: input fixed pll div3
+>>>> +      - description: input fixed pll div4
+>>>> +      - description: input fixed pll div5
+>>>> +      - description: input fixed pll div7
+>>>> +      - description: input hifi pll
+>>>> +      - description: input gp0 pll
+>>>> +      - description: input mpll0
+>>>> +      - description: input mpll1
+>>>> +      - description: input mpll2
+>>>> +      - description: input mpll3
+>>>> +      - description: input hdmi pll
+>>>> +      - description: input oscillator (usually at 24MHz)
+>>>> +      - description: input external 32kHz reference (optional)
+>>> The bindings described here does not make this last clock optional, but
+>>> requires it. This is going to be a problem since most platforms won't
+>>> have this clock.
+>>
+>> Hi Jerome,
+>>        Do you mean that we can delete the description of "external 32kHz",
+>>        because we hardly use it?
+> 
+> Absolutely not.
+> Optional ressources need description too.
 
-writel(0xffffffff, ep->intx_mem);
-writeb(0xff, ep->intx_mem);
-writeb(0xff, ep->intx_mem + 0x100);
+OKay. I got it.
 
-So, my adding comment was completely wrong. I should have checked this befo=
-re.
-And then, I'll change the comment like below. But, what do you think?
+> 
+>>
+>>> You are missing minItems.
+>>> Same below
+>>
+>> I will add it in next version.
+>>
+> 
+> I'm saying that because you did not provide minItems here, it gets
+> implicitly set to the number of clocks you have declared, making the
+> external 32k a required clock, not an optional one.
+> 
+> You need to set minItems so the clocks is actually optional.
+> Try removing the 32k in your example below and check how it goes with
+> 'make dt_binding_check'
 
------
-+	/* A dummy-write ep->intx_mem is converted to a Msg TLP */
-+	writel(0, ep->intx_mem);
------
+thank you I see. I tried. I had to follow your advice, or there'd be a 
+warning.
 
-Best regards,
-Yoshihiro Shimoda
-
-> -Serge(y)
->=20
-> > +
-> > +	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  int dw_pcie_ep_raise_legacy_irq(struct dw_pcie_ep *ep, u8 func_no)
-> >  {
-> >  	struct dw_pcie *pci =3D to_dw_pcie_from_ep(ep);
-> >  	struct device *dev =3D pci->dev;
-> > +	int ret;
-> >
-> > -	dev_err(dev, "EP cannot trigger legacy IRQs\n");
-> > +	if (!ep->intx_mem) {
-> > +		dev_err(dev, "legacy IRQs not supported\n");
-> > +		return -EOPNOTSUPP;
-> > +	}
-> >
-> > -	return -EINVAL;
-> > +	/*
-> > +	 * Even though the PCI bus specification implies the level-triggered
-> > +	 * INTx interrupts the kernel PCIe endpoint framework has a single
-> > +	 * PCI_EPC_IRQ_INTx flag defined for the legacy IRQs simulation. Thus
-> > +	 * this function sends the Deassert_INTx PCIe TLP after the Assert_IN=
-Tx
-> > +	 * message with the 50 usec duration basically implementing the
-> > +	 * rising-edge triggering IRQ. Hopefully the interrupt controller wil=
-l
-> > +	 * still be able to register the incoming IRQ event...
-> > +	 */
-> > +	ret =3D dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_ASSERT_INTA,
-> > +				  PCI_MSG_TYPE_R_ROUTING_LOCAL);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	usleep_range(50, 100);
-> > +
-> > +	return dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_DEASSERT_INTA,
-> > +				   PCI_MSG_TYPE_R_ROUTING_LOCAL);
-> >  }
-> >  EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_legacy_irq);
-> >
-> > @@ -622,6 +671,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
-> >
-> >  	dw_pcie_edma_remove(pci);
-> >
-> > +	if (ep->intx_mem)
-> > +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> > +				      epc->mem->window.page_size);
-> > +
-> >  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
-> >  			      epc->mem->window.page_size);
-> >
-> > @@ -793,9 +846,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
-> >  		goto err_exit_epc_mem;
-> >  	}
-> >
-> > +	ep->intx_mem =3D pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
-> > +					      epc->mem->window.page_size);
-> > +	if (!ep->intx_mem)
-> > +		dev_warn(dev, "Failed to reserve memory for INTx\n");
-> > +
-> >  	ret =3D dw_pcie_edma_detect(pci);
-> >  	if (ret)
-> > -		goto err_free_epc_mem;
-> > +		goto err_free_epc_mem_intx;
-> >
-> >  	if (ep->ops->get_features) {
-> >  		epc_features =3D ep->ops->get_features(ep);
-> > @@ -812,7 +870,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
-> >  err_remove_edma:
-> >  	dw_pcie_edma_remove(pci);
-> >
-> > -err_free_epc_mem:
-> > +err_free_epc_mem_intx:
-> > +	if (ep->intx_mem)
-> > +		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-> > +				      epc->mem->window.page_size);
-> > +
-> >  	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
-> >  			      epc->mem->window.page_size);
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci=
-/controller/dwc/pcie-designware.h
-> > index d31c018a3803..c17e5255fab6 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware.h
-> > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > @@ -365,6 +365,8 @@ struct dw_pcie_ep {
-> >  	unsigned long		*ob_window_map;
-> >  	void __iomem		*msi_mem;
-> >  	phys_addr_t		msi_mem_phys;
-> > +	void __iomem		*intx_mem;
-> > +	phys_addr_t		intx_mem_phys;
-> >  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
-> >  };
-> >
-> > --
-> > 2.25.1
-> >
+> 
+>>>
+>>>> +
+>>>> +  clock-names:
+>>>> +    items:
+>>>> +      - const: fclk_div2
+>>>> +      - const: fclk_div2p5
+>>>> +      - const: fclk_div3
+>>>> +      - const: fclk_div4
+>>>> +      - const: fclk_div5
+>>>> +      - const: fclk_div7
+>>>> +      - const: hifi_pll
+>>>> +      - const: gp0_pll
+>>>> +      - const: mpll0
+>>>> +      - const: mpll1
+>>>> +      - const: mpll2
+>>>> +      - const: mpll3
+>>>> +      - const: hdmi_pll
+>>>> +      - const: xtal
+>>>> +      - const: ext_32k
+>>>> +
+>>>> +  "#clock-cells":
+>>>> +    const: 1
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - clocks
+>>>> +  - clock-names
+>>>> +  - "#clock-cells"
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/clock/amlogic,s4-peripherals-clkc.h>
+>>>> +
+>>>> +    clkc_periphs: clock-controller@fe000000 {
+>>>> +      compatible = "amlogic,s4-peripherals-clkc";
+>>>> +      reg = <0xfe000000 0x49c>;
+>>>> +      clocks = <&clkc_pll 3>,
+>>>> +              <&clkc_pll 13>,
+>>>> +              <&clkc_pll 5>,
+>>>> +              <&clkc_pll 7>,
+>>>> +              <&clkc_pll 9>,
+>>>> +              <&clkc_pll 11>,
+>>>> +              <&clkc_pll 17>,
+>>>> +              <&clkc_pll 15>,
+>>>> +              <&clkc_pll 25>,
+>>>> +              <&clkc_pll 27>,
+>>>> +              <&clkc_pll 29>,
+>>>> +              <&clkc_pll 31>,
+>>>> +              <&clkc_pll 20>,
+>>>> +              <&xtal>,
+>>>> +              <&ext_32k>;
+>>>> +      clock-names = "fclk_div2", "fclk_div2p5", "fclk_div3", "fclk_div4",
+>>>> +                    "fclk_div5", "fclk_div7", "hifi_pll", "gp0_pll",
+>>>> +                    "mpll0", "mpll1", "mpll2", "mpll3", "hdmi_pll", "xtal",
+>>>> +                    "ext_32k";
+>>>> +      #clock-cells = <1>;
+>>>> +    };
+>>>> +...
+>>>> diff --git a/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> new file mode 100644
+>>>> index 000000000000..861a331963ac
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+>>>> @@ -0,0 +1,236 @@
+>>>> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+>>>> +/*
+>>>> + * Copyright (c) 2022-2023 Amlogic, Inc. All rights reserved.
+>>>> + * Author: Yu Tu <yu.tu@amlogic.com>
+>>>> + */
+>>>> +
+>>>> +#ifndef _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
+>>>> +#define _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H
+>>>> +
+>>>> +#define CLKID_RTC_32K_CLKIN          0
+>>>> +#define CLKID_RTC_32K_DIV            1
+>>>> +#define CLKID_RTC_32K_SEL            2
+>>>> +#define CLKID_RTC_32K_XATL           3
+>>>> +#define CLKID_RTC                    4
+>>>> +#define CLKID_SYS_CLK_B_SEL          5
+>>>> +#define CLKID_SYS_CLK_B_DIV          6
+>>>> +#define CLKID_SYS_CLK_B                      7
+>>>> +#define CLKID_SYS_CLK_A_SEL          8
+>>>> +#define CLKID_SYS_CLK_A_DIV          9
+>>>> +#define CLKID_SYS_CLK_A                      10
+>>>> +#define CLKID_SYS                    11
+>>>> +#define CLKID_CECA_32K_CLKIN         12
+>>>> +#define CLKID_CECA_32K_DIV           13
+>>>> +#define CLKID_CECA_32K_SEL_PRE               14
+>>>> +#define CLKID_CECA_32K_SEL           15
+>>>> +#define CLKID_CECA_32K_CLKOUT                16
+>>>> +#define CLKID_CECB_32K_CLKIN         17
+>>>> +#define CLKID_CECB_32K_DIV           18
+>>>> +#define CLKID_CECB_32K_SEL_PRE               19
+>>>> +#define CLKID_CECB_32K_SEL           20
+>>>> +#define CLKID_CECB_32K_CLKOUT                21
+>>>> +#define CLKID_SC_CLK_SEL             22
+>>>> +#define CLKID_SC_CLK_DIV             23
+>>>> +#define CLKID_SC                     24
+>>>> +#define CLKID_12_24M                 25
+>>>> +#define CLKID_12M_CLK_DIV            26
+>>>> +#define CLKID_12_24M_CLK_SEL         27
+>>>> +#define CLKID_VID_PLL_DIV            28
+>>>> +#define CLKID_VID_PLL_SEL            29
+>>>> +#define CLKID_VID_PLL                        30
+>>>> +#define CLKID_VCLK_SEL                       31
+>>>> +#define CLKID_VCLK2_SEL                      32
+>>>> +#define CLKID_VCLK_INPUT             33
+>>>> +#define CLKID_VCLK2_INPUT            34
+>>>> +#define CLKID_VCLK_DIV                       35
+>>>> +#define CLKID_VCLK2_DIV                      36
+>>>> +#define CLKID_VCLK                   37
+>>>> +#define CLKID_VCLK2                  38
+>>>> +#define CLKID_VCLK_DIV1                      39
+>>>> +#define CLKID_VCLK_DIV2_EN           40
+>>>> +#define CLKID_VCLK_DIV4_EN           41
+>>>> +#define CLKID_VCLK_DIV6_EN           42
+>>>> +#define CLKID_VCLK_DIV12_EN          43
+>>>> +#define CLKID_VCLK2_DIV1             44
+>>>> +#define CLKID_VCLK2_DIV2_EN          45
+>>>> +#define CLKID_VCLK2_DIV4_EN          46
+>>>> +#define CLKID_VCLK2_DIV6_EN          47
+>>>> +#define CLKID_VCLK2_DIV12_EN         48
+>>>> +#define CLKID_VCLK_DIV2                      49
+>>>> +#define CLKID_VCLK_DIV4                      50
+>>>> +#define CLKID_VCLK_DIV6                      51
+>>>> +#define CLKID_VCLK_DIV12             52
+>>>> +#define CLKID_VCLK2_DIV2             53
+>>>> +#define CLKID_VCLK2_DIV4             54
+>>>> +#define CLKID_VCLK2_DIV6             55
+>>>> +#define CLKID_VCLK2_DIV12            56
+>>>> +#define CLKID_CTS_ENCI_SEL           57
+>>>> +#define CLKID_CTS_ENCP_SEL           58
+>>>> +#define CLKID_CTS_VDAC_SEL           59
+>>>> +#define CLKID_HDMI_TX_SEL            60
+>>>> +#define CLKID_CTS_ENCI                       61
+>>>> +#define CLKID_CTS_ENCP                       62
+>>>> +#define CLKID_CTS_VDAC                       63
+>>>> +#define CLKID_HDMI_TX                        64
+>>>> +#define CLKID_HDMI_SEL                       65
+>>>> +#define CLKID_HDMI_DIV                       66
+>>>> +#define CLKID_HDMI                   67
+>>>> +#define CLKID_TS_CLK_DIV             68
+>>>> +#define CLKID_TS                     69
+>>>> +#define CLKID_MALI_0_SEL             70
+>>>> +#define CLKID_MALI_0_DIV             71
+>>>> +#define CLKID_MALI_0                 72
+>>>> +#define CLKID_MALI_1_SEL             73
+>>>> +#define CLKID_MALI_1_DIV             74
+>>>> +#define CLKID_MALI_1                 75
+>>>> +#define CLKID_MALI_SEL                       76
+>>>> +#define CLKID_VDEC_P0_SEL            77
+>>>> +#define CLKID_VDEC_P0_DIV            78
+>>>> +#define CLKID_VDEC_P0                        79
+>>>> +#define CLKID_VDEC_P1_SEL            80
+>>>> +#define CLKID_VDEC_P1_DIV            81
+>>>> +#define CLKID_VDEC_P1                        82
+>>>> +#define CLKID_VDEC_SEL                       83
+>>>> +#define CLKID_HEVCF_P0_SEL           84
+>>>> +#define CLKID_HEVCF_P0_DIV           85
+>>>> +#define CLKID_HEVCF_P0                       86
+>>>> +#define CLKID_HEVCF_P1_SEL           87
+>>>> +#define CLKID_HEVCF_P1_DIV           88
+>>>> +#define CLKID_HEVCF_P1                       89
+>>>> +#define CLKID_HEVCF_SEL                      90
+>>>> +#define CLKID_VPU_0_SEL                      91
+>>>> +#define CLKID_VPU_0_DIV                      92
+>>>> +#define CLKID_VPU_0                  93
+>>>> +#define CLKID_VPU_1_SEL                      94
+>>>> +#define CLKID_VPU_1_DIV                      95
+>>>> +#define CLKID_VPU_1                  96
+>>>> +#define CLKID_VPU                    97
+>>>> +#define CLKID_VPU_CLKB_TMP_SEL               98
+>>>> +#define CLKID_VPU_CLKB_TMP_DIV               99
+>>>> +#define CLKID_VPU_CLKB_TMP           100
+>>>> +#define CLKID_VPU_CLKB_DIV           101
+>>>> +#define CLKID_VPU_CLKB                       102
+>>>> +#define CLKID_VPU_CLKC_P0_SEL                103
+>>>> +#define CLKID_VPU_CLKC_P0_DIV                104
+>>>> +#define CLKID_VPU_CLKC_P0            105
+>>>> +#define CLKID_VPU_CLKC_P1_SEL                106
+>>>> +#define CLKID_VPU_CLKC_P1_DIV                107
+>>>> +#define CLKID_VPU_CLKC_P1            108
+>>>> +#define CLKID_VPU_CLKC_SEL           109
+>>>> +#define CLKID_VAPB_0_SEL             110
+>>>> +#define CLKID_VAPB_0_DIV             111
+>>>> +#define CLKID_VAPB_0                 112
+>>>> +#define CLKID_VAPB_1_SEL             113
+>>>> +#define CLKID_VAPB_1_DIV             114
+>>>> +#define CLKID_VAPB_1                 115
+>>>> +#define CLKID_VAPB                   116
+>>>> +#define CLKID_GE2D                   117
+>>>> +#define CLKID_VDIN_MEAS_SEL          118
+>>>> +#define CLKID_VDIN_MEAS_DIV          119
+>>>> +#define CLKID_VDIN_MEAS                      120
+>>>> +#define CLKID_SD_EMMC_C_CLK_SEL              121
+>>>> +#define CLKID_SD_EMMC_C_CLK_DIV              122
+>>>> +#define CLKID_SD_EMMC_C                      123
+>>>> +#define CLKID_SD_EMMC_A_CLK_SEL              124
+>>>> +#define CLKID_SD_EMMC_A_CLK_DIV              125
+>>>> +#define CLKID_SD_EMMC_A                      126
+>>>> +#define CLKID_SD_EMMC_B_CLK_SEL              127
+>>>> +#define CLKID_SD_EMMC_B_CLK_DIV              128
+>>>> +#define CLKID_SD_EMMC_B                      129
+>>>> +#define CLKID_SPICC0_SEL             130
+>>>> +#define CLKID_SPICC0_DIV             131
+>>>> +#define CLKID_SPICC0_EN                      132
+>>>> +#define CLKID_PWM_A_SEL                      133
+>>>> +#define CLKID_PWM_A_DIV                      134
+>>>> +#define CLKID_PWM_A                  135
+>>>> +#define CLKID_PWM_B_SEL                      136
+>>>> +#define CLKID_PWM_B_DIV                      137
+>>>> +#define CLKID_PWM_B                  138
+>>>> +#define CLKID_PWM_C_SEL                      139
+>>>> +#define CLKID_PWM_C_DIV                      140
+>>>> +#define CLKID_PWM_C                  141
+>>>> +#define CLKID_PWM_D_SEL                      142
+>>>> +#define CLKID_PWM_D_DIV                      143
+>>>> +#define CLKID_PWM_D                  144
+>>>> +#define CLKID_PWM_E_SEL                      145
+>>>> +#define CLKID_PWM_E_DIV                      146
+>>>> +#define CLKID_PWM_E                  147
+>>>> +#define CLKID_PWM_F_SEL                      148
+>>>> +#define CLKID_PWM_F_DIV                      149
+>>>> +#define CLKID_PWM_F                  150
+>>>> +#define CLKID_PWM_G_SEL                      151
+>>>> +#define CLKID_PWM_G_DIV                      152
+>>>> +#define CLKID_PWM_G                  153
+>>>> +#define CLKID_PWM_H_SEL                      154
+>>>> +#define CLKID_PWM_H_DIV                      155
+>>>> +#define CLKID_PWM_H                  156
+>>>> +#define CLKID_PWM_I_SEL                      157
+>>>> +#define CLKID_PWM_I_DIV                      158
+>>>> +#define CLKID_PWM_I                  159
+>>>> +#define CLKID_PWM_J_SEL                      160
+>>>> +#define CLKID_PWM_J_DIV                      161
+>>>> +#define CLKID_PWM_J                  162
+>>>> +#define CLKID_SARADC_SEL             163
+>>>> +#define CLKID_SARADC_DIV             164
+>>>> +#define CLKID_SARADC                 165
+>>>> +#define CLKID_GEN_SEL                        166
+>>>> +#define CLKID_GEN_DIV                        167
+>>>> +#define CLKID_GEN                    168
+>>>> +#define CLKID_DDR                    169
+>>>> +#define CLKID_DOS                    170
+>>>> +#define CLKID_ETHPHY                 171
+>>>> +#define CLKID_MALI                   172
+>>>> +#define CLKID_AOCPU                  173
+>>>> +#define CLKID_AUCPU                  174
+>>>> +#define CLKID_CEC                    175
+>>>> +#define CLKID_SDEMMC_A                       176
+>>>> +#define CLKID_SDEMMC_B                       177
+>>>> +#define CLKID_NAND                   178
+>>>> +#define CLKID_SMARTCARD                      179
+>>>> +#define CLKID_ACODEC                 180
+>>>> +#define CLKID_SPIFC                  181
+>>>> +#define CLKID_MSR                    182
+>>>> +#define CLKID_IR_CTRL                        183
+>>>> +#define CLKID_AUDIO                  184
+>>>> +#define CLKID_ETH                    185
+>>>> +#define CLKID_UART_A                 186
+>>>> +#define CLKID_UART_B                 187
+>>>> +#define CLKID_UART_C                 188
+>>>> +#define CLKID_UART_D                 189
+>>>> +#define CLKID_UART_E                 190
+>>>> +#define CLKID_AIFIFO                 191
+>>>> +#define CLKID_TS_DDR                 192
+>>>> +#define CLKID_TS_PLL                 193
+>>>> +#define CLKID_G2D                    194
+>>>> +#define CLKID_SPICC0                 195
+>>>> +#define CLKID_SPICC1                 196
+>>>> +#define CLKID_USB                    197
+>>>> +#define CLKID_I2C_M_A                        198
+>>>> +#define CLKID_I2C_M_B                        199
+>>>> +#define CLKID_I2C_M_C                        200
+>>>> +#define CLKID_I2C_M_D                        201
+>>>> +#define CLKID_I2C_M_E                        202
+>>>> +#define CLKID_HDMITX_APB             203
+>>>> +#define CLKID_I2C_S_A                        204
+>>>> +#define CLKID_USB1_TO_DDR            205
+>>>> +#define CLKID_HDCP22                 206
+>>>> +#define CLKID_MMC_APB                        207
+>>>> +#define CLKID_RSA                    208
+>>>> +#define CLKID_CPU_DEBUG                      209
+>>>> +#define CLKID_VPU_INTR                       210
+>>>> +#define CLKID_DEMOD                  211
+>>>> +#define CLKID_SAR_ADC                        212
+>>>> +#define CLKID_GIC                    213
+>>>> +#define CLKID_PWM_AB                 214
+>>>> +#define CLKID_PWM_CD                 215
+>>>> +#define CLKID_PWM_EF                 216
+>>>> +#define CLKID_PWM_GH                 217
+>>>> +#define CLKID_PWM_IJ                 218
+>>>> +#define CLKID_HDCP22_ESMCLK_SEL              219
+>>>> +#define CLKID_HDCP22_ESMCLK_DIV              220
+>>>> +#define CLKID_HDCP22_ESMCLK          221
+>>>> +#define CLKID_HDCP22_SKPCLK_SEL              222
+>>>> +#define CLKID_HDCP22_SKPCLK_DIV              223
+>>>> +#define CLKID_HDCP22_SKPCLK          224
+>>>> +
+>>>> +#endif /* _DT_BINDINGS_CLOCK_AMLOGIC_S4_PERIPHERALS_CLKC_H */
+>>>
+> 
