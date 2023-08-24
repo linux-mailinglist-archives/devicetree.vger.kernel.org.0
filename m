@@ -2,134 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6BD786FE2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 15:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8B8786FEB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 15:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233718AbjHXNEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 09:04:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52212 "EHLO
+        id S235566AbjHXNIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 09:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239004AbjHXNEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 09:04:31 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38559E79;
-        Thu, 24 Aug 2023 06:04:29 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C4E7B87F3;
-        Thu, 24 Aug 2023 15:03:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1692882188;
-        bh=lmURSCwOgg+aQoQ721pMBdHJuBeAn08oT40y6zo6TFo=;
+        with ESMTP id S238756AbjHXNII (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 09:08:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41142E5E;
+        Thu, 24 Aug 2023 06:08:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C781564821;
+        Thu, 24 Aug 2023 13:08:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0209C433C7;
+        Thu, 24 Aug 2023 13:08:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1692882485;
+        bh=5kv7c0ZfFob0DGy0661SYa21MIEtjGdTk1bTOfjvva4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nhLxMlpiJQnligF7VzMZbyIZ479Gf5a9oQPN1MQ1JhV7umyyImZPnqz2phU5NPO6R
-         zPFdbE6PSH0i6vBC1G24MqZa+ymQNZMdAMc/IXS6mHXp8w7TpO0SQ962ReglrRTc5n
-         xRQ3eqs5mNSqKwlsunRR8VMGN+Nt67RSOXOW6ML4=
-Date:   Thu, 24 Aug 2023 16:04:32 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Philippe CORNU <philippe.cornu@foss.st.com>,
-        Dan Scally <dan.scally@ideasonboard.com>
-Subject: Re: [PATCH v1 3/5] media: stm32-dcmipp: STM32 DCMIPP camera
- interface driver
-Message-ID: <20230824130432.GB27092@pendragon.ideasonboard.com>
-References: <20220910144010.34272-1-hugues.fruchet@foss.st.com>
- <20220910144010.34272-4-hugues.fruchet@foss.st.com>
- <ZNC5k3PynnEWL/ou@kekkonen.localdomain>
- <20230824110934.GA18226@gnbcxd0016.gnb.st.com>
- <ZOdMghQXfNgKZ6cN@kekkonen.localdomain>
+        b=C7wyzQZN9knqog/1W+XLEFj/J6gQPE3dXwgAfIIiIxMe0zlmQOHAgkw/7FlHHDXeV
+         UNQXEYEbG5zoTQPwotgPSlZsOHL1QNnIMH1Halw9VM69/ymG89FgIcsJQRYuSfgnXv
+         1Ty+H3dofPEfyVIWEub+MCrf32cOBWkcXiDm+aMk=
+Date:   Thu, 24 Aug 2023 15:08:02 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linus.walleij@linaro.org, quic_jhugo@quicinc.com,
+        nipun.gupta@amd.com, tzimmermann@suse.de, ogabbay@kernel.org,
+        mathieu.poirier@linaro.org, axboe@kernel.dk,
+        damien.lemoal@opensource.wdc.com, linux@zary.sk, arnd@arndb.de,
+        yangyicong@hisilicon.com, benjamin.tissoires@redhat.com,
+        masahiroy@kernel.org, jacek.lawrynowicz@linux.intel.com,
+        geert+renesas@glider.be, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com
+Subject: Re: [PATCHv5 2/4] wiegand: add Wiegand bus driver
+Message-ID: <2023082412-grandly-imply-4a2f@gregkh>
+References: <20230824111015.57765-1-m.zatovic1@gmail.com>
+ <20230824111015.57765-3-m.zatovic1@gmail.com>
+ <2023082420-quaking-barley-47b4@gregkh>
+ <ZOdSudrhg/9u3a9N@fedora>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZOdMghQXfNgKZ6cN@kekkonen.localdomain>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZOdSudrhg/9u3a9N@fedora>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 24, 2023 at 12:26:42PM +0000, Sakari Ailus wrote:
-> On Thu, Aug 24, 2023 at 01:09:34PM +0200, Alain Volmat wrote:
-> > Hi Sakari,
+On Thu, Aug 24, 2023 at 02:53:13PM +0200, Martin Zaťovič wrote:
+> On Thu, Aug 24, 2023 at 01:40:35PM +0200, Greg KH wrote:
+> > On Thu, Aug 24, 2023 at 01:10:13PM +0200, Martin Zaťovič wrote:
+> > > +static inline void wiegand_controller_put(void *ptr)
 > > 
-> > thanks a lot for the review.  I've already taken care of the comments I got
-> > from Dan and will also add fixes for your comments as well before
-> > pushing the v2.  Before going into that I thought I'd better clarify the
-> > framerate part which seems the most tricky part.
-> > 
-> > On Mon, Aug 07, 2023 at 09:29:55AM +0000, Sakari Ailus wrote:
+> > Why is this a void *?  It should be "struct wiegand_controller *"
 > 
-> ...
-> 
-> > > > +static int dcmipp_byteproc_g_frame_interval(struct v4l2_subdev *sd,
-> > > > +					    struct v4l2_subdev_frame_interval *fi)
-> > > > +{
-> > > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
-> > > > +
-> > > > +	if (IS_SINK(fi->pad))
-> > > > +		fi->interval = byteproc->sink_interval;
-> > > > +	else
-> > > > +		fi->interval = byteproc->src_interval;
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> > > > +static int dcmipp_byteproc_s_frame_interval(struct v4l2_subdev *sd,
-> > > > +					    struct v4l2_subdev_frame_interval *fi)
-> > > > +{
-> > > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
-> > > > +
-> > > > +	mutex_lock(&byteproc->lock);
-> > > > +
-> > > > +	if (byteproc->streaming) {
-> > > > +		mutex_unlock(&byteproc->lock);
-> > > > +		return -EBUSY;
-> > > > +	}
-> > > > +
-> > > > +	if (fi->interval.numerator == 0 || fi->interval.denominator == 0)
-> > > > +		fi->interval = byteproc->sink_interval;
-> > > > +
-> > > > +	if (IS_SINK(fi->pad)) {
-> > > > +		/*
-> > > > +		 * Setting sink frame interval resets frame skipping.
-> > > > +		 * Sink frame interval is propagated to src.
-> > > > +		 */
-> > > > +		byteproc->frate = 0;
-> > > > +		byteproc->sink_interval = fi->interval;
-> > > > +		byteproc->src_interval = byteproc->sink_interval;
-> > > 
-> > > Is this used for anything else than configure skipping?
-> > > 
-> > > I think I'd just have a control for it in that case.
-> > > 
-> > > I don't think exposing frame interval configuration is necessarily even
-> > > meaningful for a device that just processes data but does not produce it.
-> > 
-> > The DCMIPP is able to perform frame drop, 1/2, 1/4, 1/8 basically.
-> > As Dan pointed me out, indeed setting frame interval as we did on both
-> > sink and source pad isn't a defined behavior.  I first thought that
-> > using the frame interval was the proper way to do that but that is
-> > indeed only used on producers such as sensors ....
-> > Which ctrl would you propose in such case ?
-> 
-> We don't have one, AFAIK, and I think it may be unlikely this will be
-> needed elsewhere. So I'd use a private control.
-> 
-> I wonder what others think. Cc Laurent as well.
+> It is a void* because it is being passed to devm_add_action_or_reset()
+> and this function only accepts a pointer to a function that accepts a void*
+> parameter. I am not sure if there is a way around it.
 
-What are the use cases for this feature ?
+Why is this passed to that function?  This feels odd, I'll look at it
+again when you send your next version, but this is not a normal "put"
+type of call at all to have.
 
--- 
-Regards,
+And inline functions can't be passed as parameters (well they can, but
+then they are no longer an inline function...)
 
-Laurent Pinchart
+thanks,
+
+greg k-h
