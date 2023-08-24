@@ -2,67 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 307C2786D2A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 12:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12075786D32
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 12:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232278AbjHXKxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 06:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58010 "EHLO
+        id S235976AbjHXK5k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 06:57:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240864AbjHXKxb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 06:53:31 -0400
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2B7B1BC8;
-        Thu, 24 Aug 2023 03:53:24 -0700 (PDT)
-Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-68a4dab8172so715288b3a.0;
-        Thu, 24 Aug 2023 03:53:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692874404; x=1693479204;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8gUHdUrECoEc8fKuUIWJlVGzJ7tfO882UEJY0YGuwF0=;
-        b=mhHTD2pTpOUZsBknlsz7LGxov8DXy1OkPFhvQUHOI1Juy5zuQH/9d/uHaqpPg/fPJ+
-         EYz3l6Zymrsk2DOKUYZTRH0/mgzTVi+Tf/WYao24HskGG+hQkK1xq3hNbXz/xJaY0TSx
-         VBZDrOQOmwsR6WoEKJl7ieBXJKVstL7D+LiaQNXoinOjhLWq7Rh0ZmfEwi32jPQtYBiH
-         F/axHDzSrecxf+/nbw3zUMTc+8s+sJGPhXNT0ieb9vfvST06f5F9hhKmTLTxB9gBRvNg
-         KgstsDMC7stPjZP3957glGecArXF4nsfiqe0E5eS1ly0cOam9BxQUvT+YfwFHigGGWkQ
-         Qpog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692874404; x=1693479204;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8gUHdUrECoEc8fKuUIWJlVGzJ7tfO882UEJY0YGuwF0=;
-        b=fDHma4ZLY2frCXRmf7d0o+p05c+t0wrFJAnunGZpcV3XAfqJf3rp9Z8gmcAjsxosnY
-         52GxLp1plY+8x5JchZakCnz8jrXJdCsWBtOwqNpfbo4UmKqBXLcRynmKuDidWC9EFFyg
-         uvhi4QpihTrzp9gTUhPA0hp0ghIwpK3b6Nj6qOyHsA88tx2oPwIzYC1NsaWtoQxJCD5G
-         bNeagPSphdsTuDNGeT90YJN1b4tSA90uheRIkHuORHbX4FWA9z8F3MuCuNX2TA0jbdYm
-         WmsgPER6jxyIgixiA8hrHjl4CcqWeSEsh6DlZlDHMLp5QOBUwJ2NeXlA39DsTV26Awq2
-         Me3w==
-X-Gm-Message-State: AOJu0Ywc60VYNLnHmigY8haQCNWOxxNVu5c+KPa9xggVUu47i7GxLeNY
-        5w920ZQKeTItZtNjFFgpnoHnYvMeEBRJf4o95+8=
-X-Google-Smtp-Source: AGHT+IF60DrziaWfCvYr06XqIGyxNhW+r2ME39cwrMpcuB7GN9L6OyaY7e5u+VPuhzCZUOSEhyCOb1iNifEtuv1XlMo=
-X-Received: by 2002:a17:90a:2a47:b0:263:730b:f568 with SMTP id
- d7-20020a17090a2a4700b00263730bf568mr13585315pjg.3.1692874404257; Thu, 24 Aug
- 2023 03:53:24 -0700 (PDT)
+        with ESMTP id S240892AbjHXK5U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 06:57:20 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 98B5010F9;
+        Thu, 24 Aug 2023 03:57:17 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37OAujkF7014164, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37OAujkF7014164
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 24 Aug 2023 18:56:45 +0800
+Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.17; Thu, 24 Aug 2023 18:57:07 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
+ 15.1.2507.17 via Frontend Transport; Thu, 24 Aug 2023 18:57:07 +0800
+From:   Tzuyi Chang <tychang@realtek.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/7] Add pinctrl driver support for Realtek DHC SoCs
+Date:   Thu, 24 Aug 2023 18:56:56 +0800
+Message-ID: <20230824105703.19612-1-tychang@realtek.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-References: <20230823173334.304201-1-festevam@gmail.com> <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
- <CAOMZO5CPz=ysfjb_x3T0FqKxjTPy1zippZRnkMXCTuyD7fF57g@mail.gmail.com> <8070b293-b187-b0cc-fd3d-d057c5623094@linaro.org>
-In-Reply-To: <8070b293-b187-b0cc-fd3d-d057c5623094@linaro.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 24 Aug 2023 07:53:12 -0300
-Message-ID: <CAOMZO5AZh6DUbZJecwaK8jwGBRCj+40GF5OqyuV2c8mgXT9ZYg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: imx8mm-thermal: Document 'nxp,reboot-on-critical'
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,15 +50,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+These patches add the bindings and the pinctrl drivers for Realtek
+DHC(Digital Home Center) RTD SoCs(RTD1619B, RTD1319D and RTD1315E).
 
-On Thu, Aug 24, 2023 at 7:35=E2=80=AFAM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
+Change log:
+v1 -> v2:
+1. Rename realtek,pdriver, realtek,ndriver and realtek,dcycle
+2. Remove the wildcard in the compatible strings
+3. Add the description for RTD1315E, RTD1319D and RTD1315E
+4. Add the description for P-MOS and N-MOS driving strength
 
-> > I will try a different approach by introducing a Kconfig option.
->
-> Alternatively, the 'chosen' DT node could be used, no ?
+Tzuyi Chang (7):
+  pinctrl: realtek: Add common pinctrl driver for Realtek DHC RTD SoCs
+  pinctrl: realtek: Add pinctrl driver for RTD1315E
+  pinctrl: realtek: Add pinctrl driver for RTD1319D
+  pinctrl: realtek: Add pinctrl driver for RTD1619B
+  dt-bindings: pinctrl: realtek: add RTD1315E pinctrl binding
+  dt-bindings: pinctrl: realtek: add RTD1319D pinctrl binding
+  dt-bindings: pinctrl: realtek: add RTD1619B pinctrl binding
 
-Good idea. I will introduce a module_param() then.
+ .../pinctrl/realtek,rtd1315e-pinctrl.yaml     |  191 ++
+ .../pinctrl/realtek,rtd1319d-pinctrl.yaml     |  189 ++
+ .../pinctrl/realtek,rtd1619b-pinctrl.yaml     |  188 ++
+ drivers/pinctrl/Kconfig                       |    1 +
+ drivers/pinctrl/Makefile                      |    1 +
+ drivers/pinctrl/realtek/Kconfig               |   23 +
+ drivers/pinctrl/realtek/Makefile              |    6 +
+ drivers/pinctrl/realtek/pinctrl-rtd.c         |  568 ++++++
+ drivers/pinctrl/realtek/pinctrl-rtd.h         |  124 ++
+ drivers/pinctrl/realtek/pinctrl-rtd1315e.c    | 1439 +++++++++++++++
+ drivers/pinctrl/realtek/pinctrl-rtd1319d.c    | 1609 +++++++++++++++++
+ drivers/pinctrl/realtek/pinctrl-rtd1619b.c    | 1601 ++++++++++++++++
+ 12 files changed, 5940 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1315e-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1319d-pinctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/realtek,rtd1619b-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/realtek/Kconfig
+ create mode 100644 drivers/pinctrl/realtek/Makefile
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd.c
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd.h
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1315e.c
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1319d.c
+ create mode 100644 drivers/pinctrl/realtek/pinctrl-rtd1619b.c
 
-Thanks!
+-- 
+2.41.0
+
