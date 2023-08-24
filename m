@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4267786A11
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFDC0786A14
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:31:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjHXIah (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 04:30:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33264 "EHLO
+        id S234156AbjHXIbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 04:31:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240520AbjHXIaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:30:18 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 143E71724
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:30:13 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bcc846fed0so46595891fa.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:30:12 -0700 (PDT)
+        with ESMTP id S234638AbjHXIat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:30:49 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15E7E171B
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:30:47 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50091b91a83so3415175e87.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:30:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692865811; x=1693470611;
+        d=linaro.org; s=google; t=1692865845; x=1693470645;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Xg+6LU2qLbyDNeIWBYMZUpdqHpT0GomQwi8jpOi5ytg=;
-        b=fe3VF2AVkhDbqpW0ZGtyKbG0XrZ+YhEZnFsVuKuENQyhcAatjzyBUL1D4NhCTh0I9c
-         uFLwdUH3kj2LdhnJM0CMy7JEM3JmTMuIxuUIoTDe0BRtLz9AkoD034k+imMTBU5jRdlB
-         Qm5w8vQZdhgtPkrQXm5kJ+1wbDKTiFaqFhZbuYnqgF+mcKxk3VYggVeuW2ItRRIvcwZH
-         vtENLjzTjunqHph6zziQfw/s6MerFOeAr2kaUS+5Nz40L9d6yEE+f/rrc7fPclk9BBDs
-         gCVtpmzsIKq0E52HpRzOd2uWnZ1MV7YqPwd7exn1UQwt/zI1df6IzRzfByqZl5jLw9XK
-         85wA==
+        bh=sRy8xMJqy84kf7uXRw/eHLuxoHjrotPEc4vQZu2qMs4=;
+        b=O+aNJRCG5gSYhyCsijqXDezqocG5OuOi1DJYrGcYP/yGSkjcS3wTo8FUauXratDacf
+         yzS1h/RZgK4NX0W6EJhgpcBu1dpDlZz7VNE5X07g1AXneVdSiKskDiV7P0Rm7SvWJYfO
+         +1GGIKpZlDGRdvQhKdUgXbTSc+H7zgKaLGZ1ErvyNaWMjnD7xLKjek9IZFvdaNM7d4Xm
+         VVu//QwTi4ttT4T3lRf7WNIXKbkfBrRqb2S3luY9GRg2VtW7HbNsjm6H9AtZkAE+cPVD
+         oJ4YoGcv8P1ijHZfxLbJowAGoGhIECV1Xu2RaIAapCbHhZw60tlhAMYob2TmNqBKEl8i
+         2TCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692865811; x=1693470611;
+        d=1e100.net; s=20221208; t=1692865845; x=1693470645;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Xg+6LU2qLbyDNeIWBYMZUpdqHpT0GomQwi8jpOi5ytg=;
-        b=Oi8EBL9Wk3amph7gDB+umOxIZ5JoDcvEdZ+WNqyzC0LZCgxx4YR6G3tBK4SbAjnYFO
-         U4Jq2aPQ8ilyqO+wUpZyyYtL+mDhbimFb5ygQUX1jad6rfRLwbnMQRDnAdu8H43RLOsc
-         gQr0AU4J74U7Epmj4j3IUMBBkSKoQ6gqt3PdrSzD0Hetuyst+rcI+XzQ3Ia0Sh+jraqb
-         c1JZrZGitiWOm+zcwt1EZbWCYk0B7Xwu8lGoIAXayFVuHleVrqWqPx8+52MXN2K7YhYw
-         mZn3SEf5h9kKcburj5+B1qZIc/vu1ztygY3twtlliyW2ZMLhOEZ+ol+7jJjVAu1/qnwO
-         7pPA==
-X-Gm-Message-State: AOJu0YytjX9RzH5y2Ft9ynSuC3YmDftr1QU5AxO7mvlvfQqcbGYh59Gw
-        DpfYuM3Z6THSti4IUflUEvdi+w==
-X-Google-Smtp-Source: AGHT+IFDCWnxfbeRf73G5R+6eO8t/eBJyXZxQHkqwUUV8xzI53EYnlXBAV2kZKRkg/QOEUjdWfS4fQ==
-X-Received: by 2002:a2e:9096:0:b0:2bc:d5f1:b9cf with SMTP id l22-20020a2e9096000000b002bcd5f1b9cfmr4753306ljg.27.1692865811211;
-        Thu, 24 Aug 2023 01:30:11 -0700 (PDT)
+        bh=sRy8xMJqy84kf7uXRw/eHLuxoHjrotPEc4vQZu2qMs4=;
+        b=dK5PYy1bupn6oR2N3kI/OabKJgr6YB+TjKjEom5Fh20tao00ZX3VET8NYWHqcDxo1b
+         CgN308J3lqUkIHxFu9xHr+XF3m62ubv5hpWSAMDHb5ZG7QbzT4zYjXIpxq5+I+PBLDzD
+         El+Jtd/pWfaV5gSe8/YXmsMfDAND54liQqHfHcT18GmVylWnWFDoZM7I3fAN+HwNeyUD
+         bdBsZ+cAUSHq/3DLI1dcSVBKlcH4/YJmBiNoMPzXEz8Ch0Hgetk+5etp5xxJnvFtLVTu
+         uui0iHFDc9xK3gLWb5J639Rp8N+WBSGy/e1lj2chokUYTM3/w45urG6DEES6xgBKTEvS
+         cXhA==
+X-Gm-Message-State: AOJu0YxJCb+4pDqT4BGe4vli8jKlJXmE9fWhqKZ4aLlRAYXij1F5SKiE
+        GeHdp1Bk6OWgf5j+QlFveJs8Mg==
+X-Google-Smtp-Source: AGHT+IFHhm+TWFYflreH1RasNxMKNwnJDeyyAJPqK+5h1u92DvQuyhfswDqodp7D0C9bN6etC1PVug==
+X-Received: by 2002:a05:6512:36cd:b0:500:9d6c:913e with SMTP id e13-20020a05651236cd00b005009d6c913emr1172825lfs.52.1692865845170;
+        Thu, 24 Aug 2023 01:30:45 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b? ([2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b])
-        by smtp.gmail.com with ESMTPSA id 22-20020a05600c22d600b003fbd9e390e1sm1907393wmg.47.2023.08.24.01.30.10
+        by smtp.gmail.com with ESMTPSA id 22-20020a05600c22d600b003fbd9e390e1sm1907393wmg.47.2023.08.24.01.30.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 01:30:10 -0700 (PDT)
-Message-ID: <91e4a3f1-84ed-4433-90fc-bdfb9b08e57a@linaro.org>
-Date:   Thu, 24 Aug 2023 10:30:08 +0200
+        Thu, 24 Aug 2023 01:30:44 -0700 (PDT)
+Message-ID: <97c05c1f-1d59-4dc8-9a1b-ae2fea61e094@linaro.org>
+Date:   Thu, 24 Aug 2023 10:30:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH V2 3/6] soc: amlogic: init power domain state
+Subject: Re: [PATCH V2 5/6] soc: amlogic: Add support for T7 power domains
+ controller
 Content-Language: en-US, fr
 To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -67,7 +68,7 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Kevin Hilman <khilman@baylibre.com>
 References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
- <20230824055930.2576849-4-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-6-xianwei.zhao@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -93,59 +94,137 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230824055930.2576849-4-xianwei.zhao@amlogic.com>
+In-Reply-To: <20230824055930.2576849-6-xianwei.zhao@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
 On 24/08/2023 07:59, Xianwei Zhao wrote:
 > From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
 > 
-> If initial power domain with 'AWAY_ON' property state is off,
-> turn on the power.
+> Add support for T7 power controller. T7 power control
+> registers are in secure domain, and should be accessed by SMC.
 > 
 > Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
 > ---
-> V1 -> V2: None
+> V1 -> V2: Modify T7_NIC flag  "ALWAYS_ON"
 > ---
->   drivers/genpd/amlogic/meson-secure-pwrc.c | 5 ++++-
->   1 file changed, 4 insertions(+), 1 deletion(-)
+>   drivers/genpd/amlogic/meson-secure-pwrc.c | 73 +++++++++++++++++++++++
+>   1 file changed, 73 insertions(+)
 > 
 > diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> index 76527f4946b4..3e7e3bd25d1f 100644
+> index 3e7e3bd25d1f..2233f6cb7e71 100644
 > --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
 > +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
-> @@ -55,7 +55,7 @@ static bool pwrc_secure_is_off(struct meson_secure_pwrc_domain *pwrc_domain)
->   			  pwrc_domain->index, 0, 0, 0, 0) < 0)
->   		pr_err("failed to get power domain status\n");
+> @@ -13,6 +13,7 @@
+>   #include <dt-bindings/power/meson-a1-power.h>
+>   #include <dt-bindings/power/amlogic,c3-pwrc.h>
+>   #include <dt-bindings/power/meson-s4-power.h>
+> +#include <dt-bindings/power/amlogic,t7-pwrc.h>
+>   #include <linux/arm-smccc.h>
+>   #include <linux/firmware/meson/meson_sm.h>
+>   #include <linux/module.h>
+> @@ -164,6 +165,69 @@ static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
+>   	SEC_PD(S4_AUDIO,	0),
+>   };
 >   
-> -	return is_off;
-> +	return !!is_off;
-
-Can you explain this ? the function returns bool, so if if_off is > 0, it would return true,
-so I don't see why you would need to transform is_off into 1 or 0 using !!.
-
->   }
->   
->   static int meson_secure_pwrc_off(struct generic_pm_domain *domain)
-> @@ -222,6 +222,9 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
->   		dom->base.power_on = meson_secure_pwrc_on;
->   		dom->base.power_off = meson_secure_pwrc_off;
->   
-> +		if (match->domains[i].is_off(dom) && (dom->base.flags & GENPD_FLAG_ALWAYS_ON))
-> +			meson_secure_pwrc_on(&dom->base);
+> +static struct meson_secure_pwrc_domain_desc t7_pwrc_domains[] = {
+> +	SEC_PD(T7_DSPA,		0),
+> +	SEC_PD(T7_DSPB,		0),
+> +	TOP_PD(T7_DOS_HCODEC,	0, PWRC_T7_NIC3_ID),
+> +	TOP_PD(T7_DOS_HEVC,	0, PWRC_T7_NIC3_ID),
+> +	TOP_PD(T7_DOS_VDEC,	0, PWRC_T7_NIC3_ID),
+> +	TOP_PD(T7_DOS_WAVE,	0, PWRC_T7_NIC3_ID),
+> +	SEC_PD(T7_VPU_HDMI,	0),
+> +	SEC_PD(T7_USB_COMB,	0),
+> +	SEC_PD(T7_PCIE,		0),
+> +	TOP_PD(T7_GE2D,		0, PWRC_T7_NIC3_ID),
+> +	/* SRAMA is used as ATF runtime memory, and should be always on */
+> +	SEC_PD(T7_SRAMA,	GENPD_FLAG_ALWAYS_ON),
+> +	/* SRAMB is used as ATF runtime memory, and should be always on */
+> +	SEC_PD(T7_SRAMB,	GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(T7_HDMIRX,	0),
+> +	SEC_PD(T7_VI_CLK1,	0),
+> +	SEC_PD(T7_VI_CLK2,	0),
+> +	/* ETH is for ethernet online wakeup, and should be always on */
+> +	SEC_PD(T7_ETH,		GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(T7_ISP,		0),
+> +	SEC_PD(T7_MIPI_ISP,	0),
+> +	TOP_PD(T7_GDC,		0, PWRC_T7_NIC3_ID),
+> +	TOP_PD(T7_DEWARP,	0, PWRC_T7_NIC3_ID),
+> +	SEC_PD(T7_SDIO_A,	0),
+> +	SEC_PD(T7_SDIO_B,	0),
+> +	SEC_PD(T7_EMMC,		0),
+> +	TOP_PD(T7_MALI_SC0,	0, PWRC_T7_NNA_TOP_ID),
+> +	TOP_PD(T7_MALI_SC1,	0, PWRC_T7_NNA_TOP_ID),
+> +	TOP_PD(T7_MALI_SC2,	0, PWRC_T7_NNA_TOP_ID),
+> +	TOP_PD(T7_MALI_SC3,	0, PWRC_T7_NNA_TOP_ID),
+> +	SEC_PD(T7_MALI_TOP,	0),
+> +	TOP_PD(T7_NNA_CORE0,	0, PWRC_T7_NNA_TOP_ID),
+> +	TOP_PD(T7_NNA_CORE1,	0, PWRC_T7_NNA_TOP_ID),
+> +	TOP_PD(T7_NNA_CORE2,	0, PWRC_T7_NNA_TOP_ID),
+> +	TOP_PD(T7_NNA_CORE3,	0, PWRC_T7_NNA_TOP_ID),
+> +	SEC_PD(T7_NNA_TOP,	0),
+> +	SEC_PD(T7_DDR0,		GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(T7_DDR1,		GENPD_FLAG_ALWAYS_ON),
+> +	/* DMC0 is for DDR PHY ana/dig and DMC, and should be always on */
+> +	SEC_PD(T7_DMC0,		GENPD_FLAG_ALWAYS_ON),
+> +	/* DMC1 is for DDR PHY ana/dig and DMC, and should be always on */
+> +	SEC_PD(T7_DMC1,		GENPD_FLAG_ALWAYS_ON),
+> +	/* NOC is related to clk bus, and should be always on */
+> +	SEC_PD(T7_NOC,		GENPD_FLAG_ALWAYS_ON),
+> +	/* NIC is for the Arm NIC-400 interconnect, and should be always on */
+> +	SEC_PD(T7_NIC2,		GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(T7_NIC3,		0),
+> +	/* CPU accesses the interleave data to the ddr need cci, and should be always on */
+> +	SEC_PD(T7_CCI,		GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(T7_MIPI_DSI0,	0),
+> +	SEC_PD(T7_SPICC0,	0),
+> +	SEC_PD(T7_SPICC1,	0),
+> +	SEC_PD(T7_SPICC2,	0),
+> +	SEC_PD(T7_SPICC3,	0),
+> +	SEC_PD(T7_SPICC4,	0),
+> +	SEC_PD(T7_SPICC5,	0),
+> +	SEC_PD(T7_EDP0,		0),
+> +	SEC_PD(T7_EDP1,		0),
+> +	SEC_PD(T7_MIPI_DSI1,	0),
+> +	SEC_PD(T7_AUDIO,	0),
+> +};
 > +
->   		pm_genpd_init(&dom->base, NULL, match->domains[i].is_off(dom));
+>   static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>   {
+>   	int i;
+> @@ -257,6 +321,11 @@ static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
+>   	.count = ARRAY_SIZE(s4_pwrc_domains),
+>   };
 >   
->   		pwrc->xlate.domains[i] = &dom->base;
+> +static struct meson_secure_pwrc_domain_data amlogic_secure_t7_pwrc_data = {
+> +	.domains = t7_pwrc_domains,
+> +	.count = ARRAY_SIZE(t7_pwrc_domains),
+> +};
+> +
+>   static const struct of_device_id meson_secure_pwrc_match_table[] = {
+>   	{
+>   		.compatible = "amlogic,meson-a1-pwrc",
+> @@ -270,6 +339,10 @@ static const struct of_device_id meson_secure_pwrc_match_table[] = {
+>   		.compatible = "amlogic,meson-s4-pwrc",
+>   		.data = &meson_secure_s4_pwrc_data,
+>   	},
+> +	{
+> +		.compatible = "amlogic,t7-pwrc",
+> +		.data = &amlogic_secure_t7_pwrc_data,
+> +	},
+>   	{ /* sentinel */ }
+>   };
+>   MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
 
+With updated subject:
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
