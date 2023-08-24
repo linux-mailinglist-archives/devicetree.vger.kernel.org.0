@@ -2,113 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D6D778678F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:35:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6B1786786
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233726AbjHXGfJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 02:35:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49414 "EHLO
+        id S238654AbjHXGcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 02:32:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240147AbjHXGef (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:34:35 -0400
-X-Greylist: delayed 403 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 23 Aug 2023 23:34:32 PDT
-Received: from out-21.mta1.migadu.com (out-21.mta1.migadu.com [IPv6:2001:41d0:203:375::15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A910B137
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:34:32 -0700 (PDT)
+        with ESMTP id S240138AbjHXGb7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:31:59 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C17F51701
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:31:53 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-50043cf2e29so7352567e87.2
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:31:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692858712; x=1693463512;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MkXUytM4APvBf/WIGJ2/OJYgxtV1wh1rm1M4ur5Z1fE=;
+        b=BLoc/WkDGP2X6E6KgzEbfYD/ZQR6CZsfn5QSbuWukoF/TBjtur9N6rXmorT6cQctvI
+         rq3q7dE0gkVUDozo8Zl5KsrYSI46kXVCN3XNzwsKN/A5Eca3TbAmsexqlmaZ6UVdVEiB
+         kB4l56Ux23EFSHsODHQxnks7ra/U1Ow5G8R3suGogXQDI8yNMWqWg6BsW/TrgJ15qb+H
+         CDQ5vE0J/4m/yijNzmH/cmBZIm1zdZ/L4QOBZaHU8CQiWbg3vjKE5qkfVm6pBHwJ8u88
+         s+wECGSMqD4NkZy4DV4vKCPl1BqNtw+emIY+15/x/DfKC7E8CiffTibU4dTO8CeysHMS
+         ObEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692858712; x=1693463512;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MkXUytM4APvBf/WIGJ2/OJYgxtV1wh1rm1M4ur5Z1fE=;
+        b=K1Gya9O/FLJIeb1Qrz74wb9w3Ir2Vl6p9m6CFEK72Lm4obQ5A8DomtWl53jgG/rgIm
+         NZo/2oy50vOpqn/NfHAaE/m5aEEq8WYTj/Y2FDrJY9G6zLyRHFGOzEUYwIldyDplxbb2
+         /Yyk47gVj9t/prqYF2V2IJE1ZBaRC7xZ7L8qyhnWEOHOCgfWdjY0nivM7LTOEsAUfUR5
+         bxFpogwwqD+GyswlCNAYcycfbzRu6eRfGrSyDLcSHVdazqHdJymRr/erVRxv6q3rEkyS
+         avlDjtwpx4PBJt+V4hNvhRoqNXM0/fTsR/BDb1bpqynAoGJaDFlyp+4T2Q2JEh7wH0gL
+         IciA==
+X-Gm-Message-State: AOJu0YwCHs5byi0jd0sypUgt1cwIgvR0pDC8iKBOfRdIKqogo2y5fR3J
+        cocwjfsrovGVSz+aOeb9pnjMNg==
+X-Google-Smtp-Source: AGHT+IF1EkeSpVUpI9rk+rAnB7/ELYaPSWH162DDLwcm188uNu0v3HENMLiNw3z31Xpegz63nIHw9g==
+X-Received: by 2002:a05:6512:2395:b0:4fb:8ee0:b8a5 with SMTP id c21-20020a056512239500b004fb8ee0b8a5mr13650471lfv.46.1692858711724;
+        Wed, 23 Aug 2023 23:31:51 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id d19-20020aa7c1d3000000b005232ea6a330sm10171793edp.2.2023.08.23.23.31.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 23:31:51 -0700 (PDT)
+Message-ID: <541ce5de-88b2-7d67-6aaa-2faaeb4f6703@linaro.org>
+Date:   Thu, 24 Aug 2023 08:31:50 +0200
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-        t=1692858465;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=l6IxgWmKRKi+I5lqpm5Wgd0S2sdauV2HZZ0NQlY4DP4=;
-        b=dfhY3alx1/XKkgAfnlq82B8EZDL1jL9RntK0zdUXmkn83OszAv5QKemGoodf/iCuojCiwN
-        a8HtZWrVsq377brYfWITHfS2t/IEFOkz6vWPlYLutMoYu3slrPeYSdKeN4QuP5p65ZAwWI
-        DtIo3mDR00VnADl5HMeppCF5Tjg7WtI=
-Date:   Thu, 24 Aug 2023 06:27:44 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   cixi.geng@linux.dev
-Message-ID: <2aeec29689a56fcfa60aa499f73f9a10f783c4ec@linux.dev>
-TLS-Required: No
-Subject: Re: [PATCH] arm64: dts: sprd: fix the cpu node for UMS512
-To:     "Chunyan Zhang" <zhang.lyra@gmail.com>,
-        "SoC Team" <soc@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org
-Cc:     conor+dt@kernel.org, orsonzhai@gmail.com,
-        baolin.wang@linux.alibaba.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        cixi.geng1@unisoc.com
-In-Reply-To: <CAAfSe-sorWk5zhzevAoxwbiyk2YoDU9d47FLXcT43q1ZwHdvdg@mail.gmail.com>
-References: <CAAfSe-sorWk5zhzevAoxwbiyk2YoDU9d47FLXcT43q1ZwHdvdg@mail.gmail.com>
- <20230711162346.5978-1-cixi.geng@linux.dev>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: Add HPE GXP UDCG Controller
+Content-Language: en-US
+To:     "Yu, Richard" <richard.yu@hpe.com>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "Hawkins, Nick" <nick.hawkins@hpe.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Chang, Clay" <clayc@hpe.com>
+References: <20230706215910.78772-1-richard.yu@hpe.com>
+ <20230706215910.78772-2-richard.yu@hpe.com>
+ <9f1bd0f1-d93e-243a-4622-721319fd1235@linaro.org>
+ <SJ0PR84MB20854B4A444283E31025FA398D0AA@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+ <e2e7c830-07f4-a34e-6bf8-c9e8dc33bf57@linaro.org>
+ <SJ0PR84MB2085BDDFD7C46A73C489A6E48D12A@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+ <834800aa-65f4-4c99-4586-51a24355bc59@linaro.org>
+ <SJ0PR84MB20859D909E55BB1BC62EE3C68D1CA@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <SJ0PR84MB20859D909E55BB1BC62EE3C68D1CA@SJ0PR84MB2085.NAMPRD84.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-August 17, 2023 at 4:26 PM, "Chunyan Zhang" <zhang.lyra@gmail.com> wrote:
+On 23/08/2023 18:07, Yu, Richard wrote:
+> 
+> Thank you, Mr. Kozlowski.
+> 
+>>> I am implementing this driver using the Aspeed virtual hub driver as example. 
+>>>
+>>> Just like the Aspeed virtual hub is in the Devicetree:
+>>>
+>>> vhub: usb-vhub@1e6a0000 {
+>>> 	compatible = "aspeed,ast2600-usb-vhub";
+>>> 	reg = <0x1e6a0000 0x350>;
+>>> 	interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+>>> 	clocks = <&syscon ASPEED_CLK_GATE_USBPORT1CLK>;
+>>> 	aspeed,vhub-downstream-ports = <7>;
+>>> 	aspeed,vhub-generic-endpoints = <21>;
+>>> 	pinctrl-names = "default";
+>>> 	pinctrl-0 = <&pinctrl_usb2ad_default>;
+>>> 	status = "disabled";
+>>> };
+>>>
+>>> In my case:  (I am replacing "udcg" with "vhub" and remove the vehci reference).
+>>>
+>>>  vhub: usb-vhub@80400800 {
+>>> 	compatible = "hpe,gxp-vhub";
+>>> 	reg = <0x80400800 0x0200>, <0x80401000 0x8000>;
+>>> 	reg-names = "vhub", "udc";
+>>> 	interrupts = <13>;
+>>> 	interrupt-parent = <&vic1>;
+>>> 	hpe,vhub-downstream-ports = <4>;
+>>> 	hpe,vhub-generic-endpoints = <16>;
+>>> };
+> 
+> 
+>> The hub is not virtual, it is real. I understand that it is some software block or FPGA, but still I propose to skip any references to virtual.
+> 
+> I will remove any references to "virtual" in comment and documentation.
+> 
+> 
+>>>>>> + hpe,vehci-downstream-ports:
+>>>>>> + description: Number of downstream ports supported by the GXP
+>>>>
+>>>>
+>>>>>> Why do you need this property in DT and what exactly does it represent?
+>>>>>> You have one device - EHCI controller - and on some boards it is 
+>>>>>> further customized? Even though it is the same device?
+>>>>>
+>>>>> That is correct. We can configure this VHUB Controller to have one 
+>>>>> to
+>>>>> 8 virtual ports. This is similar to the aspeed virtual USB HUB 
+>>>>> "aspeed,vhub-downstream-ports" moving forward in the next patch we 
+>>>>> are going to use "hpe,vhub-downstream-ports"
+>>>
+>>>> Moving forward you need to address this lack of physical presence...
+>>>> Aren't these different devices and you just forgot to customize the compatible?
+>>>
+>>> I don’t fully understand here. Isn't the lack of physical presence 
+>>> similar to the Aspeed virtual hub driver?
+> .
+>> I don't know Aspeed virtual hub driver. In any case, driver is irrelevant to the bindings.
+> 
+>> Why setting maximum number of downstream ports or devices would be needed per-board? 
+>> Do you save some resources that way?
+> 
+> That is correct. Each port/devices will have to allocate resources and create device descriptor entry.
 
+The answer to "why" is not "that is correct".
 
->=20
->=20On Wed, 12 Jul 2023 at 00:24, Cixi Geng <cixi.geng@linux.dev> wrote:
->=20
->=20>=20
->=20> From: Cixi Geng <cixi.geng1@unisoc.com>
-> >=20
->=20>  The UMS512 Socs have 8 cores contains 6 a55 and 2 a75.
-> >  modify the cpu nodes to correct information.
-> >=20
->=20>  Fixes: 2b4881839a39 ("arm64: dts: sprd: Add support for Unisoc's U=
-MS512")
-> >  Signed-off-by: Cixi Geng <cixi.geng1@unisoc.com>
-> >=20
->=20
-> Acked-by: Chunyan Zhang <zhang.lyra@gmail.com>
->=20
->=20Thanks,
-> Chunyan
->=20
-Hi=20All=EF=BC=8C
-please help to review this patch=EF=BC=8C If there are no issues, I hope =
-to apply as soon as possible=EF=BC=8Cthanks=EF=BC=81
-> >=20
->=20> ---
-> >  arch/arm64/boot/dts/sprd/ums512.dtsi | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >=20
->=20>  diff --git a/arch/arm64/boot/dts/sprd/ums512.dtsi b/arch/arm64/boo=
-t/dts/sprd/ums512.dtsi
-> >  index 024be594c47d..97ac550af2f1 100644
-> >  --- a/arch/arm64/boot/dts/sprd/ums512.dtsi
-> >  +++ b/arch/arm64/boot/dts/sprd/ums512.dtsi
-> >  @@ -96,7 +96,7 @@ CPU5: cpu@500 {
-> >=20
->=20>  CPU6: cpu@600 {
-> >  device_type =3D "cpu";
-> >  - compatible =3D "arm,cortex-a55";
-> >  + compatible =3D "arm,cortex-a75";
-> >  reg =3D <0x0 0x600>;
-> >  enable-method =3D "psci";
-> >  cpu-idle-states =3D <&CORE_PD>;
-> >  @@ -104,7 +104,7 @@ CPU6: cpu@600 {
-> >=20
->=20>  CPU7: cpu@700 {
-> >  device_type =3D "cpu";
-> >  - compatible =3D "arm,cortex-a55";
-> >  + compatible =3D "arm,cortex-a75";
-> >  reg =3D <0x0 0x700>;
-> >  enable-method =3D "psci";
-> >  cpu-idle-states =3D <&CORE_PD>;
-> >  --
-> >  2.34.1
-> >
->
+> Currently, I set the number of downstream ports to be 4. Thus, I will have:
+> 
+> /sys/bus/platform/devices/80400800.vhub/80400800.vhub:p1   <=== for kvm keyboard/mouse
+> /sys/bus/platform/devices/80400800.vhub/80400800.vhub:p2   <=== for virtual CD/DVD/ISO image
+> /sys/bus/platform/devices/80400800.vhub/80400800.vhub:p3   <=== for virtual USB key
+> /sys/bus/platform/devices/80400800.vhub/80400800.vhub:p4   <=== for virtual NIC
+
+So resources in Linux? That's not really relevant and important. I still
+do not see the need of this property.
+
+> 
+> Just like aspeed:
+> In g5 (aspeed-g5.dtsi), aspeed,vhub-downstream-ports = <5>;
+> In g6 (aspeed-g6.dtsi), aspeed,vhub-downstream-ports = <7>;
+
+I did not review that. Poor or incorrect example is not an argument. If
+they introduced obvious bugs or obvious non-DT properties, shall you do
+the same?
+
+Best regards,
+Krzysztof
+
