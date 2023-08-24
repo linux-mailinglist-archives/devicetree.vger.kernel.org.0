@@ -2,130 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA043786BAF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:26:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B45CD786BC3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:28:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229475AbjHXJZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 05:25:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37978 "EHLO
+        id S237278AbjHXJ1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 05:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238195AbjHXJZH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:25:07 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BA150E7F;
-        Thu, 24 Aug 2023 02:24:46 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37O9NQdzC010181, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37O9NQdzC010181
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Aug 2023 17:23:26 +0800
-Received: from RTEXDAG01.realtek.com.tw (172.21.6.100) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Thu, 24 Aug 2023 17:23:49 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXDAG01.realtek.com.tw (172.21.6.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 24 Aug 2023 17:23:48 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Thu, 24 Aug 2023 17:23:48 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-CC:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S240729AbjHXJ10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:27:26 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F8719A3
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:27:22 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fe15bfb1adso9927703e87.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 02:27:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692869241; x=1693474041;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6zPKzgSts8Q/FDkxiHJwwyN2uApuU5now1q6IOWDgHw=;
+        b=wtAtorKCE6qSqEMpx/IVho0A+zLc2LjVI8bPp+aOUVWNRGnEYzmuiOwMf3I161jd8D
+         /7qw59rojPVLbPwqz5Em3IhABcUPPiNZ8NyDCwKqE48O/x6t9zaNnR1xhIO9atTucrDh
+         KB/XzB6uXxtniiNfCuRhPBfy/sVixshuc5MzE1IskLKiCypMd7XUuGg9VDSAqS13bkgg
+         s9cY6iAV5zQdLy5QRjmr//eyUTxd9OnF+AENihBTxiM08a/uAkHRj/zUNa+iIeGF12wj
+         4CJK5upo2GCu/qWJArWGZorDNgl3iLq1iHapMx8DdUW6FiMnTM6cZ7t3PT5rNz1Tk866
+         EAAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692869241; x=1693474041;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6zPKzgSts8Q/FDkxiHJwwyN2uApuU5now1q6IOWDgHw=;
+        b=fCOGU/QsBFtuYGp8rsRYInv7/7kn/zagwYwJduuWa9njyqqqCzDM9yPoXhPjZ7PvJQ
+         O2tdlNQcTL7m4cBpY0hppTsRgerLwoZ2R4862gEK0hd0TY7Mu1ClauH5NBn5rXdNLUkj
+         q76MEHHUJDS25D2ICZgZMEFb/stp2vQ3dfdPspIuwj8TjzKT6UM1qjzjSA7Q0RuRhNr2
+         zUemUujl5yCKJShHuPle8a7cXSqHI8JHJX68fPN8WyYRFJkAS4SGj4xu4mfTclYX7IKp
+         XbU/X877CMn7DZ9t+27qip5d4sIrdLDGmL3n72QL6jqWeFwpYSADhY7QxOXwghus50e7
+         lX6A==
+X-Gm-Message-State: AOJu0YwxOZWNWZZInRL9ZEJRm1oeFQljQaQHGY9dEMfRLN3s33GrjEGG
+        lbVXBt2I9h7qIririmMXx71qQkrThu5XXkCTsdhVbw==
+X-Google-Smtp-Source: AGHT+IGyQSRppeHoZcGDkVVB4Dg2v0mdSsMwHodWyyPfVktwb2GR3M4IIKB/jlE5Y8cxDpxSY2H4r6LpW0WzSY7hy/4=
+X-Received: by 2002:a05:6512:39c1:b0:4ff:8b28:7b22 with SMTP id
+ k1-20020a05651239c100b004ff8b287b22mr10749853lfu.68.1692869240834; Thu, 24
+ Aug 2023 02:27:20 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+In-Reply-To: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 24 Aug 2023 11:26:42 +0200
+Message-ID: <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+To:     Shenwei Wang <shenwei.wang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC Type-C
-Thread-Topic: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC
- Type-C
-Thread-Index: AQHZ1ONxPQNQ8ikjYkmsM4V64Zamr6/17aQAgAMBw+D//4itAIAAj2Mw//+WrQCAAIcBcA==
-Date:   Thu, 24 Aug 2023 09:23:48 +0000
-Message-ID: <7e34f4bfd15244ac95e68ee2372ac0de@realtek.com>
-References: <20230822102846.4683-1-stanley_chang@realtek.com>
- <20230822102846.4683-2-stanley_chang@realtek.com>
- <1e0632d6-73e9-4633-a709-bf9140f2fd32@linaro.org>
- <ca406c19e59145fd9e7e035ea5ad3eeb@realtek.com>
- <50ce8e71-613e-1ef5-0c23-67a2f6f78949@linaro.org>
- <1390ad28e50f493fa72209fe29b7f3f4@realtek.com>
- <5894c8db-4b85-e7dd-e894-33aa8a448153@linaro.org>
-In-Reply-To: <5894c8db-4b85-e7dd-e894-33aa8a448153@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXDAG01.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, imx@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9t
-OiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+
-IFNlbnQ6IFRodXJzZGF5LCBBdWd1c3QgMjQsIDIwMjMgNDo0MyBQTQ0KPiBUbzogU3RhbmxleSBD
-aGFuZ1vmmIzogrLlvrddIDxzdGFubGV5X2NoYW5nQHJlYWx0ZWsuY29tPjsgTXl1bmdKb28gSGFt
-DQo+IDxteXVuZ2pvby5oYW1Ac2Ftc3VuZy5jb20+DQo+IENjOiBDaGFud29vIENob2kgPGN3MDAu
-Y2hvaUBzYW1zdW5nLmNvbT47IFJvYiBIZXJyaW5nDQo+IDxyb2JoK2R0QGtlcm5lbC5vcmc+OyBL
-cnp5c3p0b2YgS296bG93c2tpDQo+IDxrcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc+
-OyBDb25vciBEb29sZXkgPGNvbm9yK2R0QGtlcm5lbC5vcmc+Ow0KPiBsaW51eC1rZXJuZWxAdmdl
-ci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTog
-W1BBVENIIHYxIDIvMl0gZHQtYmluZGluZ3M6IGV4dGNvbjogQWRkIFJlYWx0ZWsgREhDIFJURCBT
-b0MNCj4gVHlwZS1DDQo+IA0KPiANCj4gRXh0ZXJuYWwgbWFpbC4NCj4gDQo+IA0KPiANCj4gT24g
-MjQvMDgvMjAyMyAwOToyMywgU3RhbmxleSBDaGFuZ1vmmIzogrLlvrddIHdyb3RlOg0KPiA+IEhp
-IEtyenlzenRvZiwNCj4gPg0KPiA+Pj4+PiArDQo+ID4+Pj4+ICt0aXRsZTogUmVhbHRlayBESEMg
-UlREIFNvQ3MgVVNCIFR5cGUtQyBkZXRlY3Rpb24NCj4gPj4+Pg0KPiA+Pj4+IFR5cGUtYyB1c3Vh
-bGx5IGdvIHRvIHVzYiBkaXJlY3RvcnkuDQo+ID4+Pg0KPiA+Pj4gVGhpcyBiaW5kaW5nIGlzIG5v
-dCBmb3IgYSB0eXBlLWMgY29udHJvbGxlci4NCj4gPj4+IEl0IGlzIGFuIGV4dGNvbiBkZXZpY2Ug
-Zm9yIHR5cGUtYyBjb25uZWN0b3IgZGV0ZWN0aW9uLg0KPiA+Pj4gU28gSSBwdXQgaXQgYXQgZXh0
-Y29uIGRpcmVjdG9yeS4NCj4gPj4NCj4gPj4gSWYgdGhpcyBpcyBub3QgYSB0eXBlLWMgY29udHJv
-bGxlciwgdGhlbiB3aGF0IGlzIGl0PyBFeHBsYWluIG1lDQo+ID4+IHBsZWFzZSB3aGF0IGlzIGFu
-ICJleHRjb24gZGV2aWNlIiB3aXRob3V0IHVzaW5nIGFueSBMaW51eCBzdWJzeXN0ZW0NCj4gbmFt
-aW5nLg0KPiA+DQo+ID4gU29ycnkuICJleHRjb24gZGV2aWNlIiBtYXkgYmUgdGhlIHdyb25nIG5h
-bWUgSSdtIHVzaW5nLg0KPiA+DQo+ID4gQXMgZmFyIGFzIEkga25vdywgdHlwZS1jIGNvbnRyb2xs
-ZXIgc3VwcG9ydHMgUEQgZGV0ZWN0aW9uLCByb2xlIGRldGVjdGlvbiwgcm9sZQ0KPiBzd2FwIGFu
-ZCBjYyBjb25maWd1cmF0aW9uLg0KPiA+IEJ1dCBpbiBvdXIgU29DLCB0eXBlIGMgbW9kdWxlIG9u
-bHkgc3VwcG9ydHMgcm9sZSBkZXRlY3Rpb24uDQo+ID4gU28gSSBkb24ndCB0aGluayBpdCdzIGEg
-dHlwZS1jIGNvbnRyb2xsZXIuDQo+IA0KPiBTbyBtb2R1bGUgaGFuZGxpbmcgc29tZSBwYXJ0cyBv
-ZiAiVHlwZS1DIiBpcyBub3QgYSAiVHlwZS1DIGNvbnRyb2xsZXIiDQo+IGJ1dCBpZiBzdWNoIG1v
-ZHVsZSBoYW5kbGVzIGEgYml0IG1vcmUsIGl0IGJlY29tZXMgVHlwZS1DPw0KDQpEdWUgdG8gaGFy
-ZHdhcmUgZnVuY3Rpb24gbGltaXRhdGlvbiwgaXQgY2FuJ3QgaGFuZGxlIHRoZSBmdWxsIGZ1bmN0
-aW9uIG9mIHR5cGUtYy4NCg0KPiA+DQo+ID4gSSBmb3VuZCBhIHNpbWlsYXIgZHJpdmVyIGF0DQo+
-ID4gZHJpdmVycy9leHRjb24vZXh0Y29uLXVzYmMtY3Jvcy1lYy5jDQo+ID4gSXQgYmVsb25ncyB0
-byBFeHRlcm5hbCBDb25uZWN0b3IsIHdoaWNoIGNhbiBkZXRlY3QgVVNCIFR5cGUgQyBjYWJsZXMu
-DQo+IA0KPiBUaGF0J3MgYSBkcml2ZXIsIG5vdCBhIGJpbmRpbmcuLi4NCj4gDQo+ID4NCj4gPiBT
-byBvdXIgZHJpdmVyIGlzIGFuIGV4dGVybmFsIGNvbm5lY3RvciBkcml2ZXIuDQo+IA0KPiBEcml2
-ZXIgeWVzLCBub3QgYmluZGluZy4NCj4gDQo+ID4NCj4gPj4+DQo+ID4+PiBBbmQgSSB3aWxsIGFk
-ZCDigJxjb25uZWN0b3LigJ0gdG8gdGhlIHRpdGxlLg0KPiA+Pj4gdGl0bGU6IFJlYWx0ZWsgREhD
-IFJURCBTb0NzIFVTQiBUeXBlLUMgQ29ubmVjdG9yIGRldGVjdGlvbg0KPiA+Pg0KPiA+PiBTbyB1
-c2IuLi4NCj4gPg0KPiA+IEkgcmVmZXIgdG8gdGhpcyBiaW5kaW5nLCBhbmQgaXQgaXMgaW4gZm9s
-ZGVyIGJpbmRpbmdzL2V4dGNvbi4NCj4gPiBkb2NzL2RldmljZXRyZWUvYmluZGluZ3MvZXh0Y29u
-L2V4dGNvbi11c2JjLWNyb3MtZWMueWFtbA0KPiA+IFRpdGxlOiBDaHJvbWVPUyBFQyBVU0IgVHlw
-ZS1DIENhYmxlIGFuZCBBY2Nlc3NvcnkgRGV0ZWN0aW9uDQo+IA0KPiBTbyBtYXliZSBpdCBzaG91
-bGQgYmUgbW92ZWQgYXMgd2VsbD8NCj4gDQo+IGV4dGNvbiBpcyBhIExpbnV4IGZyYW1ld29yay4g
-SWYgeW91IHRoaW5rIGV4dGNvbiBpcyBhIHR5cGUgb2YgaGFyZHdhcmUsIHRoZW4NCj4gcGxlYXNl
-IHRlbGwgbWUgd2hhdCBpdCBpcyBleGFjdGx5LiBQbGVhc2UgZGVmaW5lIGl0LiBBbmQgdGhlbiBJ
-IHdvbmRlciB3aHkgdGhlDQo+IG5hbWUgImV4dGNvbiIgaXMgYW55aG93IGNvbm5lY3RlZCB0byBU
-eXBlLUMgVVNCLg0KPiANCg0KV2VsbCwgZnJvbSBteSBwb2ludCBvZiB2aWV3LiBleHRjb24gc3Rh
-bmRzIGZvciBFeHRlcm5hbCBDb25uZWN0b3IuDQpIRE1JIGNvbm5lY3RvciwgbWljcm8gVVNCIGNv
-bm5lY3RvciwgdHlwZS1jIGNvbm5lY3RvciBhcmUgYWxsIGEga2luZCBvZiBoYXJkd2FyZSwgdGhl
-eSBhcmUgZXh0ZXJuYWwgY29ubmVjdG9ycy4NCkkgdGhpbmsgdGhlIFR5cGUtQyBjb25uZWN0b3Ig
-aXMgYSBraW5kIG9mIGV4dGNvbi4NCk9mIGNvdXJzZSwgSSBhZ3JlZSB0aGF0IFR5cGUtQyBpcyBw
-YXJ0IG9mIFVTQi4NCg0KU28gdGhpcyBiaW5kaW5nIGNhbiBiZSB1c2Igb3IgZXh0Y29uLCBJIGRv
-bid0IHRoaW5rIGl0IGlzIHN0cmljdGx5IHJlc3RyaWN0ZWQuDQoNClRoYW5rcywNClN0YW5sZXkN
-Cg0K
+On Fri, 18 Aug 2023 at 17:35, Shenwei Wang <shenwei.wang@nxp.com> wrote:
+>
+> Documenting the regulator power domain properties and usage examples.
+
+As Rob and Krzysztof already pointed out, I agree that this binding
+looks a bit questionable.
+
+Rather than adding a new DT binding, why can't we just use the
+existing way of describing a platform specific power-domain provider?
+This still looks platform specific to me.
+
+Kind regards
+Uffe
+
+>
+> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
+> ---
+>  .../bindings/power/regulator-pd.yaml          | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/regulator-pd.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/power/regulator-pd.yaml b/Documentation/devicetree/bindings/power/regulator-pd.yaml
+> new file mode 100644
+> index 000000000000..181d2fa83f8a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/regulator-pd.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/power/regulator-pd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Regulator Power Domain
+> +
+> +maintainers:
+> +  - Shenwei Wang <shenwei.wang@nxp.com>
+> +
+> +description: |
+> +  This describes a power domain which manages a group of regulators.
+> +
+> +allOf:
+> +  - $ref: power-domain.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: regulator-power-domain
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +  regulator-number:
+> +    minimum: 1
+> +    maximum: 100
+> +    description: The count of regulator to be managed by this power domain
+> +
+> +patternProperties:
+> +  "regulator-[0-99]-supply$":
+> +    description: The regulator supply phandle to be managed by this power domain
+> +
+> +required:
+> +  - compatible
+> +  - '#power-domain-cells'
+> +  - regulator-number
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    reg1: regulator-1 {
+> +       compatible = "regulator-fixed";
+> +       regulator-name = "REG1";
+> +       regulator-min-microvolt = <3000000>;
+> +       regulator-max-microvolt = <3000000>;
+> +       gpio = <&lsio_gpio4 19 GPIO_ACTIVE_HIGH>;
+> +       enable-active-high;
+> +    };
+> +
+> +    reg2: regulator-2 {
+> +       compatible = "regulator-fixed";
+> +       regulator-name = "REG2";
+> +       regulator-min-microvolt = <3000000>;
+> +       regulator-max-microvolt = <3000000>;
+> +       gpio = <&lsio_gpio4 20 GPIO_ACTIVE_HIGH>;
+> +       enable-active-high;
+> +    };
+> +
+> +    power-controller {
+> +        compatible = "regulator-power-domain";
+> +        #power-domain-cells = <1>;
+> +
+> +        regulator-number = <2>;
+> +        regulator-0-supply = <&reg1>;
+> +        regulator-1-supply = <&reg2>;
+> +    };
+> --
+> 2.34.1
+>
