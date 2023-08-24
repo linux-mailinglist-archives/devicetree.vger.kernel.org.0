@@ -2,131 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6253778774B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 19:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1F04787754
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 19:57:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231130AbjHXRvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 13:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40490 "EHLO
+        id S242900AbjHXR4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 13:56:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242335AbjHXRvS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 13:51:18 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6A01BD9
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 10:51:15 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bf1f632b8so3607666b.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 10:51:15 -0700 (PDT)
+        with ESMTP id S242921AbjHXR4f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 13:56:35 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E801BDC
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 10:56:32 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99c353a395cso3192766b.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 10:56:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692899474; x=1693504274;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692899791; x=1693504591;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=pJwYbQingK9UzpeC6Ucuw5wzc4dJ8UK8h4zfV1Q1+NY=;
-        b=Z+CLJREF2M8lyxWY5zIDOoqiHga4dauarTQz4/i7eLLJKe5iIqh8VpbnihQJDOtIxp
-         e0SSgeYTrv/ut/bIAswDmGDi/vpKeJ/JOt1++zFREND+4L5Crq2qxVXaU2yxuqkIA+wZ
-         Lk7ZxbJ8+I/FXPxoWe2x+Bn5EymaFwp8B5+Ncf7AWqj+AprxN9nFqnoAYvfa19fhAtAj
-         bJt7DWQRVL7mxUNUZ8dEpDetV8zplp/f2q013jHS45gGEr0oy/XCA8PikEZEQsEwWKd/
-         r8G8Qaerny1gSFXKyknKkTGUZ9W8BVPz2YktOA5tcXwBfTgGwBLm14ScB5QBPfd5II/p
-         ji1g==
+        bh=SeIgpg7tqDJqBOc+expoJZjjqwMIao0DSZsNACjkV2c=;
+        b=L+Vfes/QxwQJk6tqzaN7PYVP7w4ICiwynn1QH0Hig4CtFnDHleAS/SmiW9dRj4I0/r
+         WwuoJPA5mHJCLeu95b6ReNuGoSIZFEEsxCLuRX2PE3P4o4O9JT6qO8/+EZ5mGe+r1y+h
+         YLvRezK6dIiBiklZDNU0V32AlbFBtavduWzUl0zSbE1dlgYjM3k8YLhEGIwEvPd8eteC
+         MIAuAFwPULq2PGsg4etbsMyVG7HeyxVBLRkYxLpCJp6IyxZIm4ybOKzPoKfOGsR39Kxe
+         QO0WUYDDIOaz+RzFU4wXQMKMcsdyv7a5bS+55f8+uO1sM1beyq1nDBnrCQ+t5s2WVefb
+         xT+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692899474; x=1693504274;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692899791; x=1693504591;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pJwYbQingK9UzpeC6Ucuw5wzc4dJ8UK8h4zfV1Q1+NY=;
-        b=LAD4wMYh8k7RkKmmtcfgWDMumOiOoqpaFDe4f3tpG0P+fV36wuvp189Sfu02KgZoZ6
-         IW+OzYqcjs67R4LnWdPRv4g7AXkC02QjBc4FWFiLk3qhRL+OEbn/auK5RK2zYoFyKuw6
-         Md27juvA68NunxaksCHPRYMBYhM8ExEj+JAXooVdhLJGTzGILBZhPnZNQ5pM5Dfx7/Ys
-         W76m/yYnyRn/MRxC9Od4hgVhvXM5ND39IwA0i46DuE8YoQxj2+GEEMP9K3rhLHmW4QA0
-         uJw4GsBK+eWOC/NzIsBnMxXF3ln6IeAKOEWi+j/NYAmNxy4ownhk0gLDQJo6ZUEU+aNl
-         EJKg==
-X-Gm-Message-State: AOJu0Yzs3nee6nBMG9oot8HMY3/tBWn66Cvue0Da4j4ER2NWtojE5K/H
-        kO9qsKt5jENQmSi56fRCusNTWQ==
-X-Google-Smtp-Source: AGHT+IGo4PFl9cwsmMlNZ0tZch0ldDhPvF4McWX2iykVavsQ/K1xdQi4wrPi04cevJ5GONRmmHpabA==
-X-Received: by 2002:a17:906:5daa:b0:99d:d4ec:6c5d with SMTP id n10-20020a1709065daa00b0099dd4ec6c5dmr12191982ejv.73.1692899473913;
-        Thu, 24 Aug 2023 10:51:13 -0700 (PDT)
+        bh=SeIgpg7tqDJqBOc+expoJZjjqwMIao0DSZsNACjkV2c=;
+        b=YFnN/dMKpRUpKgTEEMnPdnhft4c+/b8AkiWToM/6Pb42bavgiWJku7RirMB+gQak+N
+         8wGraswzTC/bbNVbvpgEdZVxEbPMmn8KkFcCPjOlTWtwgr3izZgDGSTghxvdXR9PxDN/
+         pJ7iPFDkyXqXDamrbv2wT+Ae036lDaaLyj5WUnlVjNR7fTAaPA1v7wRpp34NLcRITrGe
+         JmsWT9Q5zFRRcRG8LwxlL1O2NxVAlLd5iXsgKlH3NY/Ggxw7LY8rz8Ts4B2PYttxEobr
+         c1V+ntYHyjlXT4kwWpQ95S3G27AFdrnl22S/urqC5fI0BvYI+DvOz9KaFT7bLauUZk2r
+         lpPw==
+X-Gm-Message-State: AOJu0YxuInGcWWB0/lEn9kuDRsXi3f6TwKq5PaDZn9K1RcATfFXYlzgN
+        lbSGDAZHPApHLMHaKxM1p6B0cQ==
+X-Google-Smtp-Source: AGHT+IGy1QVnvIcc8n9xLBEYihQVUWgrW17xm3/XEuV2xRk0cRnqNo6UrdD6MfIy30Llypv2gQ2/Kw==
+X-Received: by 2002:a17:906:10dc:b0:9a1:bf00:ae53 with SMTP id v28-20020a17090610dc00b009a1bf00ae53mr6579043ejv.69.1692899791218;
+        Thu, 24 Aug 2023 10:56:31 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id w20-20020a170906b19400b0098f33157e7dsm11152296ejy.82.2023.08.24.10.51.12
+        by smtp.gmail.com with ESMTPSA id o15-20020a1709061b0f00b00985ed2f1584sm11239555ejg.187.2023.08.24.10.56.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 10:51:13 -0700 (PDT)
-Message-ID: <1bf12596-d6a1-8bac-1841-ba150cf135ef@linaro.org>
-Date:   Thu, 24 Aug 2023 19:51:12 +0200
+        Thu, 24 Aug 2023 10:56:30 -0700 (PDT)
+Message-ID: <e54273c7-4728-7577-f053-b15307d3a083@linaro.org>
+Date:   Thu, 24 Aug 2023 19:56:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: imx8mm-thermal: Document
- nxp,reboot-on-critical
-To:     Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org
-Cc:     linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20230824165011.569386-1-festevam@gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: iio: adc: add lltc,ltc2309 bindings
 Content-Language: en-US
+To:     Liam Beguin <liambeguin@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230824-ltc2309-v1-0-b87b4eb8030c@gmail.com>
+ <20230824-ltc2309-v1-3-b87b4eb8030c@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230824165011.569386-1-festevam@gmail.com>
+In-Reply-To: <20230824-ltc2309-v1-3-b87b4eb8030c@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 18:50, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 24/08/2023 18:55, Liam Beguin wrote:
+> Add devicetree bindings for the Linear Technology LTC2309 ADC driver.
 > 
-> Currently, after the SoC reaches the critical temperature, the board
-> goes through a poweroff mechanism.
-> 
-> In some cases, such behavior does not suit well, as the board may be
-> unattended in the field and rebooting may be a better approach.
-> 
-> The bootloader may also check the temperature and only allow the boot to
-> proceed when the temperature is below a certain threshold.
-> 
-> Introduce the 'nxp,reboot-on-critical' property to indicate that the
-> board will go through a reboot after the critical temperature is reached.
-> 
-> When this property is absent, the default behavior of forcing a shutdown
-> is kept.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> ---
-> Changes since v4:
-> - None. Went back to using device tree property.
-> 
->  .../devicetree/bindings/thermal/imx8mm-thermal.yaml         | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> index d2c1e4573c32..9ac70360fd35 100644
-> --- a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> @@ -32,6 +32,12 @@ properties:
->    clocks:
->      maxItems: 1
->  
-> +  nxp,reboot-on-critical:
-> +    description: Property to indicate that the system will go through a reboot
-> +      after the critical temperature is reached. If absent, the system will
-> +      go through shutdown after the critical temperature is reached.
-> +    type: boolean
+> Signed-off-by: Liam Beguin <liambeguin@gmail.com>
 
-It still does not scale. If it is supposed to be DT property, you need
-to solve my concerns of relying on specific implementation.
+Thank you for your patch. There is something to discuss/improve.
 
-First, you need to cover all possible actions, not reverse existing OS
-implementation. As I said before, If Linux decides to reboot by default,
-this property becomes useless. No, it must be some sort of enum defining
-desired allowed action or actions.
 
-Second, I don't think this is specific to this particular device, so
-should be rather common property shared among all thermal handlers (and
-in the future any other critical-condition-handler-devices).
+> +++ b/Documentation/devicetree/bindings/iio/adc/lltc,ltc2309.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: GPL-2.0
+
+Wrong license. Run checkpatch before sending patches.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/lltc,ltc2309.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Linear Technology / Analog Devices LTC2309 ADC
+> +
+> +maintainers:
+> +  - Liam Beguin <liambeguin@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lltc,ltc2309
+> +
+> +  refcomp-supply:
+> +    description: Power supply for the reference voltage
+
+refcomp is not a supply. It is called "Reference Buffer Output.". You
+probably wanted vref-supply, which suggests you should just add it to
+ltc2497 bindings. I don't see any differences.
+
+> +
+> +  reg:
+> +    enum:
+> +      - 0x08
+> +      - 0x09
+> +      - 0x0a
+> +      - 0x0b
+> +      - 0x18
+> +      - 0x19
+> +      - 0x1a
+> +      - 0x1b
+> +      - 0x28
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@28 {
+> +            #io-channel-cells = <1>;
+> +            compatible = "lltc,ltc2309";
+> +            reg = <0x28>;
+
+If the example stays, then order is compatible first, then reg, then the
+rest. Also add the supply to make example complete.
+
+But I think this should be squashed with other binding so no need for
+the example.
 
 Best regards,
 Krzysztof
