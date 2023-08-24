@@ -2,89 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2738786754
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:10:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 159E6786778
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:28:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239972AbjHXGJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 02:09:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40906 "EHLO
+        id S238066AbjHXG1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 02:27:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239987AbjHXGJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:09:28 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3AA9C10F3;
-        Wed, 23 Aug 2023 23:09:27 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37O68pmU6020106, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37O68pmU6020106
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Aug 2023 14:08:51 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.32; Thu, 24 Aug 2023 14:09:14 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Thu, 24 Aug 2023 14:09:14 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Thu, 24 Aug 2023 14:09:14 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S240071AbjHXG1F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:27:05 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D611DB
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:27:01 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5256d74dab9so7951451a12.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:27:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692858420; x=1693463220;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PNCdYqQUps0lM4Vetry0zqGJRLv4Xo41z8z74LlzZb4=;
+        b=Xo5tYdr4AOaUWBl9YgA2xLc+5vPD866bVqitEfg1TfsSsnS56D0YlqbwLQ8cSBZA0f
+         LDLgSKlNH8dcTXg7IUj0IE9C2PUDygKYV+c37UHVkaTxJ2Tlja9VxXo/LEx6Q86eDht1
+         fDtYy6b1x4Dimjwd21qkx0UclkRmsvzcsQhQU6W/R2CRmDFixrI6JxhD7iJrA7gZIQv2
+         Rdcj7Cznd7ofiATaoPg4XQfw/jFOj+yw50ZmNEZS3MAAslBmMKJSPTchpxPQo4w2ewlQ
+         JfPH6fvGIWDVJIuVkl2Ibbtq8K0hpctiQQScEAklaft/snw+V9KkQ9zKQtWdMVU4wXfQ
+         mzGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692858420; x=1693463220;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PNCdYqQUps0lM4Vetry0zqGJRLv4Xo41z8z74LlzZb4=;
+        b=hNyN5Ziex4Ljggd19sSIT0210Fd5vGG0FKr1JmgPT+29exM/vvcpemv9sHKwqeFyGa
+         eLZnaTZbgssl/aMOnIdxpWjIXT3sKSe3Vojim1ZduRIg4M1l5L0x/aqSW0Ty121iNwHd
+         81NExjT70QK2I/VgK1ThDC38jSyiCanpeJhfhMLX9V4DKstF8pqQko3G0Q2IHatcVauo
+         zRLVN2uVzDA/vEe27mLRnjaB84IMvgMxbZBOJLv/KnzKmg9ylMY0c3xO3lmTBJWtiVYe
+         MghvkdTmZn4oSJYreCy4zJy+GrmjAD7JMmAf1CC5ZDn2HfAGECj4toFfa4/OM3WQ7xE1
+         z2Hg==
+X-Gm-Message-State: AOJu0Yz+LbAzd26sQ3dwCqs53NsyGfhxrIEDtqX7fKm6V4Hfsra5X/wA
+        OQ1SeNFISjAAxiTieVpPrXpOmVU2OmTxSL4EyOg=
+X-Google-Smtp-Source: AGHT+IFaKPL1GVeABrkF8YiNtStdFGw2o9uVH285QObhdfvwGKEaqB3vttmpLJpDTcJl19n6m4VyTw==
+X-Received: by 2002:aa7:d5c5:0:b0:523:1410:b611 with SMTP id d5-20020aa7d5c5000000b005231410b611mr11092414eds.25.1692858419763;
+        Wed, 23 Aug 2023 23:26:59 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id p6-20020aa7d306000000b0052574ef0da1sm9966034edq.28.2023.08.23.23.26.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Aug 2023 23:26:59 -0700 (PDT)
+Message-ID: <50ce8e71-613e-1ef5-0c23-67a2f6f78949@linaro.org>
+Date:   Thu, 24 Aug 2023 08:26:58 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC
+ Type-C
+To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>,
         MyungJoo Ham <myungjoo.ham@samsung.com>
-CC:     Chanwoo Choi <cw00.choi@samsung.com>,
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
-Thread-Topic: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
-Thread-Index: AQHZ1ONvA6JhKCipAECuqR11IG4J/a/17JuAgAMMUbA=
-Date:   Thu, 24 Aug 2023 06:09:14 +0000
-Message-ID: <46f0b3f33e884098b7336f29df2d5821@realtek.com>
 References: <20230822102846.4683-1-stanley_chang@realtek.com>
- <e33cd680-eeca-ac4b-ee4a-4c0a1d6cd00c@linaro.org>
-In-Reply-To: <e33cd680-eeca-ac4b-ee4a-4c0a1d6cd00c@linaro.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-KSE-Antivirus-Interceptor-Info: fallback
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+ <20230822102846.4683-2-stanley_chang@realtek.com>
+ <1e0632d6-73e9-4633-a709-bf9140f2fd32@linaro.org>
+ <ca406c19e59145fd9e7e035ea5ad3eeb@realtek.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ca406c19e59145fd9e7e035ea5ad3eeb@realtek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQo+IA0KPiANCj4gPiArc3RhdGljIHN0cnVjdCBwbGF0Zm9ybV9kcml2
-ZXIgZXh0Y29uX3J0a190eXBlX2NfZHJpdmVyID0gew0KPiA+ICsgICAgIC5wcm9iZSAgICAgICAg
-ICA9IGV4dGNvbl9ydGtfdHlwZV9jX3Byb2JlLA0KPiA+ICsgICAgIC5yZW1vdmVfbmV3ICAgICA9
-IGV4dGNvbl9ydGtfdHlwZV9jX3JlbW92ZSwNCj4gPiArICAgICAuZHJpdmVyICAgICAgICAgPSB7
-DQo+ID4gKyAgICAgICAgICAgICAubmFtZSAgID0gImV4dGNvbi1ydGstdHlwZV9jIiwNCj4gPiAr
-ICAgICAgICAgICAgIC5vZl9tYXRjaF90YWJsZSA9IGV4dGNvbl9ydGtfdHlwZV9jX21hdGNoLA0K
-PiA+ICsgICAgICAgICAgICAgLnBtID0gREVWX1BNX09QUywNCj4gPiArICAgICB9LA0KPiA+ICt9
-Ow0KPiA+ICsNCj4gPiArbW9kdWxlX3BsYXRmb3JtX2RyaXZlcihleHRjb25fcnRrX3R5cGVfY19k
-cml2ZXIpOw0KPiA+ICsNCj4gPiArTU9EVUxFX0RFU0NSSVBUSU9OKCJSZWFsdGVrIEV4dGNvbiBU
-eXBlIEMgZHJpdmVyIik7DQo+ID4gK01PRFVMRV9BTElBUygicGxhdGZvcm06ZXh0Y29uLXJ0ay10
-eXBlLWMiKTsNCj4gDQo+IERyb3AgYWxpYXMuIFlvdSBoYXZlIHNvbWV0aGluZyByZWFsbHkgbWlz
-c2luZyBoZXJlIGlmIHlvdSBuZWVkIGl0Lg0KDQpPa2F5LiBJIHdpbGwgcmVtb3ZlLg0KDQo+ID4g
-K01PRFVMRV9BVVRIT1IoIlN0YW5sZXkgQ2hhbmcgPHN0YW5sZXlfY2hhbmdAcmVhbHRlay5jb20+
-Iik7DQo+ID4gK01PRFVMRV9MSUNFTlNFKCJHUEwiKTsNCj4gDQpUaGFua3MsDQpTdGFubGV5DQo=
+On 24/08/2023 08:03, Stanley Chang[昌育德] wrote:
+> Hi Krzysztof,
+> 
+>> On 22/08/2023 12:28, Stanley Chang wrote:
+>>> Document the device-tree bindings for Realtek SoCs Type-C.
+>>> Realtek DHC (digital home center) RTD SoCs support a Type-C module.
+>>>
+>>> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+>>> ---
+>>>  .../bindings/extcon/extcon-rtk-type-c.yaml    | 77 +++++++++++++++++++
+>>>  1 file changed, 77 insertions(+)
+>>>  create mode 100644
+>>> Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
+>>
+>> Filename like compatible.
+> 
+> I will rename.
+> 
+>>>
+>>> diff --git
+>>> a/Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
+>>> b/Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
+>>> new file mode 100644
+>>> index 000000000000..d14b9ee544b9
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/extcon/extcon-rtk-type-c.yaml
+>>> @@ -0,0 +1,77 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # Copyright
+>>> +2023 Realtek Semiconductor Corporation %YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/extcon/extcon-rtk-type-c.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Realtek DHC RTD SoCs USB Type-C detection
+>>
+>> Type-c usually go to usb directory.
+> 
+> This binding is not for a type-c controller.
+> It is an extcon device for type-c connector detection.
+> So I put it at extcon directory.
+
+If this is not a type-c controller, then what is it? Explain me please
+what is an "extcon device" without using any Linux subsystem naming.
+
+> 
+> And I will add “connector” to the title.
+> title: Realtek DHC RTD SoCs USB Type-C Connector detection
+
+So usb...
+
+
+>>
+>>> +
+>>> +  realtek,rd-ctrl-gpio:
+>>> +    description: The gpio node to control external Rd on board.
+>>
+>> The names are always "gpios".
+> 
+> Do you mean "realtek,rd-ctrl-gpios" ?
+
+Yes, like all of such properties in DTS and bindings. Everywhere.
+
+>>
+>>> +    maxItems: 1
+>>> +
+>>
+>> You miss here connector. Probably also VBUS supply and other supplies.
+>>
+> Ok, I will add connector.
+> 
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    type-c@7220 {
+>>> +        compatible = "realtek,rtd1619b-type-c";
+>>> +        reg = <0x7220 0x20>;
+>>> +        interrupts = <0 60 4>;
+>>
+>> Use proper defines for common constants.
+> 
+> Ok, I will revise this.
+> 
+>>> +
+>>> +        pinctrl-names = "default";
+>>> +        pinctrl-0 = <&usb_cc1_pins>, <&usb_cc2_pins>;
+> 
+> You mention that the property of pinctrl not need in doc.
+> Do I need to add the property of pintrl in example?
+
+Does not matter.
+
+Best regards,
+Krzysztof
+
