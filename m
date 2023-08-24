@@ -2,189 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 744F67877E0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 20:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8748D787815
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 20:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242954AbjHXScE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 14:32:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52584 "EHLO
+        id S229700AbjHXSgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 14:36:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243100AbjHXSb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 14:31:59 -0400
-Received: from smtp.smtpout.orange.fr (smtp-23.smtpout.orange.fr [80.12.242.23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755491BEC
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:31:51 -0700 (PDT)
-Received: from [192.168.1.18] ([86.243.2.178])
-        by smtp.orange.fr with ESMTPA
-        id ZF7QqAefwuWDMZF7Rqe7Po; Thu, 24 Aug 2023 20:31:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-        s=t20230301; t=1692901908;
-        bh=nPsDNUjBoakY0a/VnBFZAypFsdRwpC9qQ/hznAqbH/g=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To;
-        b=VPg0zs3QpX8+1VbR+lNw3MYEEhAA7PHPxtG6IO0tPTiMoUC+tB5S+AbPMwkT4YPrW
-         gMT1XE1GyCj99tRP6zCmczJVRrwCrWXecpfMR2w63qVrU5jktnvAxwUO0kyHe41dE4
-         EkFPetm+uWmlgkV2+Emhfp3XJVG7zFQMZ9mAv52NYzetCRYWC2nGBKcK3vu75+o7CN
-         lZU4ZmqLdwU+L5eO1II6bO/8bF9ppd7zwHsV22JA61zlIPTfnB7pf7xZ2E9O8qk3mr
-         ITF/u93ACO/yi4tTqGx8VZv7KIsgmJbIaaH237zFUCo5jzcds+3ENhtNkWAZO0U+8Z
-         64EQnUi+QWYFQ==
-X-ME-Helo: [192.168.1.18]
-X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
-X-ME-Date: Thu, 24 Aug 2023 20:31:48 +0200
-X-ME-IP: 86.243.2.178
-Message-ID: <74183f7b-6e53-ba3d-2160-1e526d61073b@wanadoo.fr>
-Date:   Thu, 24 Aug 2023 20:31:44 +0200
+        with ESMTP id S243161AbjHXSgL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 14:36:11 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDB921BF6
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:35:38 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b9f0b7af65so1379901fa.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:35:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692902110; x=1693506910;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=63IMv05Wwo79pfsmf+e0wX0GK3Q1zRO0q/xIjyXo/aY=;
+        b=ldzTAUlb5sUN3Sv9DwwPtFk+2of5oPdIhSVhXVYc5DE+6lYaUPvyCznSM6dVSOyTAr
+         kOjajgVtM3d+YzqXAkC6avIJwnxd5+o0t4GPXIVNXB1Ihpt8017fmxJpG4zxkgJiHtPC
+         IVqd6mK/65oRQwMJXOuUCxbZ5yz00gSG+ekSTrOczM+QBDi3Bnii6kus+V7xUDn2abdV
+         GaFiKPgFzid2y68/Ipnurg1H9yYJez738+jC+CSoB/XkvmP5KGoKgyQJfMqfhhPqyPwG
+         T6ZLsM9NcQbT4vg2+u3lZBNa38sixSE+le/Y/ke/xiUxfB5Mr7/s4w+ulrxmbhl94eM+
+         p18Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692902110; x=1693506910;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=63IMv05Wwo79pfsmf+e0wX0GK3Q1zRO0q/xIjyXo/aY=;
+        b=SOvjhejah6w65PSIYAK23XDRZNzeTwKPjTE0kWGMSnORmlo9p6h/pPVcCI6gX0Z2Pr
+         s2NUNOy7F3MfGoxni+hWbRuH02rJkOs34inPxQhq87RNA/rk4yGhIb5jghGnXyHScrgF
+         bqLVQYOsoV75UHQptioexDz/07YxN2ajRA87mNJjj0Rdfq9AN9N2RKN1c1s02kufi8NH
+         aYVDS4YJmqZouOhwrxoiL8TzLQ5ce7mcmAfo5PnPH6cwrvU3ZTQ0gJQ0MMS1POtZ9J5S
+         PtzZgA9Sw2fbDEViFaYS3kL542BX6IkP4+BMdxeDfXplvMdXSpnIedNF/fq8ajqUCwT9
+         GaTQ==
+X-Gm-Message-State: AOJu0YwmuK64QMrhqSIDki8KF35vPLJ1dYbVej2ECwr2G9vRA2rcRmQH
+        YkrH8H14m/kAssJX9BenAkzLPg==
+X-Google-Smtp-Source: AGHT+IEtd5lEmEoTesgIafxH/9D8vmp8+ZH+cx9fliUkshNJAGljW11juAwI+hqOSe/uPDY/dPfXhA==
+X-Received: by 2002:a2e:978c:0:b0:2bc:bb3e:1abe with SMTP id y12-20020a2e978c000000b002bcbb3e1abemr10525939lji.41.1692902110352;
+        Thu, 24 Aug 2023 11:35:10 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id v18-20020a170906b01200b0098e78ff1a87sm11314650ejy.120.2023.08.24.11.35.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Aug 2023 11:35:09 -0700 (PDT)
+Message-ID: <b20852ee-068f-5fd0-ad3d-c74e236c1f87@linaro.org>
+Date:   Thu, 24 Aug 2023 20:35:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v8 3/8] media: staging: media: starfive: camss: Add core
- driver
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
-        changhuang.liang@starfivetech.com
-References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
- <20230824080109.89613-4-jack.zhu@starfivetech.com>
-Content-Language: fr
-From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20230824080109.89613-4-jack.zhu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v5 07/11] firmware: imx: init-fw api exchange on imx93
+Content-Language: en-US
+To:     Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
+        conor+dt@kernel.org, pierre.gondois@arm.com, ping.bai@nxp.com,
+        xiaoning.wang@nxp.com, wei.fang@nxp.com, peng.fan@nxp.com,
+        haibo.chen@nxp.com, festevam@gmail.com, linux-imx@nxp.com,
+        davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
+        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
+        aisheng.dong@nxp.com, V.Sethi@nxp.com
+References: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
+ <20230823073330.1712721-8-pankaj.gupta@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230823073330.1712721-8-pankaj.gupta@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le 24/08/2023 à 10:01, Jack Zhu a écrit :
-> Add core driver for StarFive Camera Subsystem. The code parses
-> the device platform resources and registers related devices.
+On 23/08/2023 09:33, Pankaj Gupta wrote:
+> On imx93 platforms, exchange init-fw message with enclave's firmware
+> is to be done.
 > 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
-
-...
-
-> diff --git a/drivers/staging/media/starfive/camss/Kconfig b/drivers/staging/media/starfive/camss/Kconfig
+>  drivers/firmware/imx/Makefile           |  2 +-
+>  drivers/firmware/imx/ele_fw_api.c       | 56 +++++++++++++++++++++++++
+>  drivers/firmware/imx/se_fw.c            | 11 +++++
+>  include/linux/firmware/imx/ele_fw_api.h | 19 +++++++++
+>  4 files changed, 87 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/firmware/imx/ele_fw_api.c
+>  create mode 100644 include/linux/firmware/imx/ele_fw_api.h
+> 
+> diff --git a/drivers/firmware/imx/Makefile b/drivers/firmware/imx/Makefile
+> index eab3f03e2e5e..bc6ed5514a19 100644
+> --- a/drivers/firmware/imx/Makefile
+> +++ b/drivers/firmware/imx/Makefile
+> @@ -2,5 +2,5 @@
+>  obj-$(CONFIG_IMX_DSP)		+= imx-dsp.o
+>  obj-$(CONFIG_IMX_SCU)		+= imx-scu.o misc.o imx-scu-irq.o rm.o imx-scu-soc.o
+>  obj-$(CONFIG_IMX_SCU_PD)	+= scu-pd.o
+> -sec_enclave-objs		= se_fw.o ele_common.o ele_base_msg.o
+> +sec_enclave-objs		= se_fw.o ele_common.o ele_base_msg.o ele_fw_api.o
+>  obj-${CONFIG_IMX_SEC_ENCLAVE}	+= sec_enclave.o
+> diff --git a/drivers/firmware/imx/ele_fw_api.c b/drivers/firmware/imx/ele_fw_api.c
 > new file mode 100644
-> index 000000000000..8d20e2bd2559
+> index 000000000000..1df1fbcb6d9e
 > --- /dev/null
-> +++ b/drivers/staging/media/starfive/camss/Kconfig
-> @@ -0,0 +1,17 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +config VIDEO_STARFIVE_CAMSS
-> +	tristate "Starfive Camera Subsystem driver"
-> +	depends on V4L_PLATFORM_DRIVERS
-> +	depends on VIDEO_DEV && OF
-> +	depends on HAS_DMA
-> +	depends on PM
-> +	select MEDIA_CONTROLLER
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	select VIDEOBUF2_DMA_CONTIG
-> +	select V4L2_FWNODE
-> +	help
-> +	   Enable this to support for the Starfive Camera subsystem
-> +	   found on Starfive JH7110 SoC.
+> +++ b/drivers/firmware/imx/ele_fw_api.c
+> @@ -0,0 +1,56 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright 2023 NXP
+> + */
 > +
-> +	   To compile this driver as a module, choose M here: the
-> +	   module will be called stf-camss.
-
-stf_camss? (s/-/_)
-
-> diff --git a/drivers/staging/media/starfive/camss/Makefile b/drivers/staging/media/starfive/camss/Makefile
-> new file mode 100644
-> index 000000000000..f53c5cbe958f
-> --- /dev/null
-> +++ b/drivers/staging/media/starfive/camss/Makefile
-> @@ -0,0 +1,9 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Makefile for StarFive Camera Subsystem driver
-> +#
+> +#include <linux/dma-mapping.h>
+> +#include <linux/firmware/imx/ele_fw_api.h>
 > +
-> +starfive-camss-objs += \
-> +		stf_camss.o
+> +#include "ele_common.h"
 > +
-> +obj-$(CONFIG_VIDEO_STARFIVE_CAMSS) += starfive-camss.o
-
-I'm not an expert in Makefile files, but this stf_camss.o and 
-starfive-camss.o look strange to me.
-
-> diff --git a/drivers/staging/media/starfive/camss/stf_camss.c b/drivers/staging/media/starfive/camss/stf_camss.c
-> new file mode 100644
-> index 000000000000..75ebc3a35218
-> --- /dev/null
-> +++ b/drivers/staging/media/starfive/camss/stf_camss.c
-
-...
-
-> +static int stfcamss_of_parse_ports(struct stfcamss *stfcamss)
+> +/* Fill a command message header with a given command ID and length in bytes. */
+> +static int plat_fill_cmd_msg_hdr(struct ele_mu_priv *priv,
+> +				 struct mu_hdr *hdr,
+> +				 uint8_t cmd, uint32_t len)
 > +{
-> +	struct device_node *node = NULL;
-> +	int ret, num_subdevs = 0;
+> +	int err = 0;
 > +
-> +	for_each_endpoint_of_node(stfcamss->dev->of_node, node) {
-> +		struct stfcamss_async_subdev *csd;
+> +	hdr->tag = priv->cmd_tag;
+> +	hdr->ver = MESSAGING_VERSION_7;
+> +	hdr->command = cmd;
+> +	hdr->size = (uint8_t)(len / sizeof(uint32_t));
 > +
-> +		if (!of_device_is_available(node))
-> +			continue;
+> +	return err;
+> +}
 > +
-> +		csd = v4l2_async_nf_add_fwnode_remote(&stfcamss->notifier,
-> +						      of_fwnode_handle(node),
-> +						      struct stfcamss_async_subdev);
-> +		if (IS_ERR(csd)) {
-> +			ret = PTR_ERR(csd);
-> +			dev_err(stfcamss->dev, "failed to add async notifier\n");
-> +			v4l2_async_nf_cleanup(&stfcamss->notifier);
+> +int ele_init_fw(struct device *dev)
+> +{
+> +	struct ele_mu_priv *priv = dev_get_drvdata(dev);
+> +	int ret;
+> +	unsigned int tag, command, size, ver, status;
+> +
+> +	ret = plat_fill_cmd_msg_hdr(priv,
+> +				    (struct mu_hdr *)&priv->tx_msg.header,
+> +				    ELE_INIT_FW_REQ, 4);
 
-having it here, looks strange to me.
-It is already called in the error handling path of the probe.
+This is some weird code. Why do you store TX and RX messages in state
+container? This should be local to the function.
 
-Should there be a "of_node_put(node);" if we return here?
-
-> +			return ret;
-> +		}
+> +	if (ret)
+> +		return ret;
 > +
-> +		ret = stfcamss_of_parse_endpoint_node(stfcamss, node, csd);
+> +	ret = imx_ele_msg_send_rcv(priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	tag = MSG_TAG(priv->rx_msg.header);
+> +	command = MSG_COMMAND(priv->rx_msg.header);
+> +	size = MSG_SIZE(priv->rx_msg.header);
+> +	ver = MSG_VER(priv->rx_msg.header);
+> +	status = RES_STATUS(priv->rx_msg.data[0]);
+> +
+> +	if (tag == priv->rsp_tag
+> +		&& command == ELE_INIT_FW_REQ
+> +		&& size == ELE_INIT_FW_RSP_SZ
+> +		&& ver == MESSAGING_VERSION_7
+> +		&& status == priv->success_tag)
+> +		return 0;
+
+Your coding style here and in all other places like this is unreadable.
+Fix alignment.
+
+> +
+> +	return -EINVAL;
+> +}
+> diff --git a/drivers/firmware/imx/se_fw.c b/drivers/firmware/imx/se_fw.c
+> index 2c97b2adf18b..88300c41d62b 100644
+> --- a/drivers/firmware/imx/se_fw.c
+> +++ b/drivers/firmware/imx/se_fw.c
+> @@ -8,6 +8,7 @@
+>  #include <linux/dev_printk.h>
+>  #include <linux/errno.h>
+>  #include <linux/export.h>
+> +#include <linux/firmware/imx/ele_fw_api.h>
+>  #include <linux/firmware/imx/ele_base_msg.h>
+>  #include <linux/firmware/imx/ele_mu_ioctl.h>
+>  #include <linux/genalloc.h>
+> @@ -41,6 +42,7 @@ struct imx_info {
+>  	uint8_t *se_name;
+>  	uint8_t *pool_name;
+>  	bool reserved_dma_ranges;
+> +	bool init_fw;
+>  };
+>  
+>  static LIST_HEAD(priv_data_list);
+> @@ -55,6 +57,7 @@ static const struct imx_info imx8ulp_info = {
+>  	.se_name = "ele",
+>  	.pool_name = "sram-pool",
+>  	.reserved_dma_ranges = true,
+> +	.init_fw = false,
+>  };
+>  
+>  static const struct imx_info imx93_info = {
+> @@ -67,6 +70,7 @@ static const struct imx_info imx93_info = {
+>  	.se_name = "ele",
+>  	.pool_name = NULL,
+>  	.reserved_dma_ranges = true,
+> +	.init_fw = true,
+>  };
+>  
+>  static const struct of_device_id se_fw_match[] = {
+> @@ -1120,6 +1124,13 @@ static int se_fw_probe(struct platform_device *pdev)
+>  		priv->flags |= RESERVED_DMA_POOL;
+>  	}
+>  
+> +	if (info->init_fw) {
+> +		/* start initializing ele fw */
+> +		ret = ele_init_fw(dev);
 > +		if (ret)
-> +			return ret;
-> +
-> +		num_subdevs++;
+> +			dev_err(dev, "Failed to initialize ele fw.\n");
 > +	}
 > +
-> +	return num_subdevs;
-> +}
+>  	if (info->socdev) {
+>  		ret = imx_soc_device_register(dev, info);
+>  		if (ret) {
+> diff --git a/include/linux/firmware/imx/ele_fw_api.h b/include/linux/firmware/imx/ele_fw_api.h
+> new file mode 100644
+> index 000000000000..36c3f743cb38
+> --- /dev/null
+> +++ b/include/linux/firmware/imx/ele_fw_api.h
 
-...
+There is no need this to be Linux-wide. Keep it next to the driver.
 
-> +static int stfcamss_remove(struct platform_device *pdev)
-> +{
-> +	struct stfcamss *stfcamss = platform_get_drvdata(pdev);
-> +
-> +	v4l2_device_unregister(&stfcamss->v4l2_dev);
-> +	media_device_cleanup(&stfcamss->media_dev);
 
-Is a "v4l2_async_nf_cleanup(&stfcamss->notifier);" missing to match the 
-error handling path of the probe?
+Best regards,
+Krzysztof
 
-> +	pm_runtime_disable(&pdev->dev);
-> +
-> +	return 0;
-> +}
-> +
-
-...
