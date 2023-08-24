@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C0907875C0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F09B77875C7
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 18:44:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239036AbjHXQnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 12:43:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47878 "EHLO
+        id S239792AbjHXQn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 12:43:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242739AbjHXQnM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:43:12 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A7B819B0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:42:44 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdcade7fbso883370066b.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:42:44 -0700 (PDT)
+        with ESMTP id S242749AbjHXQnj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 12:43:39 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A34E1BF8
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:43:22 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bcc846fed0so54255861fa.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 09:43:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692895360; x=1693500160;
+        d=linaro.org; s=google; t=1692895400; x=1693500200;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FRVTXGz++H59+3nilaNeFjWdjJ3kSI1rYdkOaYMbR6Q=;
-        b=OWz1mxqSKTG4Ws2n2ob+Ev6MkMfo5kvPd3Rs+GO1KhxPkDJOulx9VXNWBvJLPLkCsU
-         vf1r9HBJ5D759cqH5P8/XIaC5Zi3iLuWfNwj/3paWaicMP2kH6PMY7W67o6LOtJqnrq3
-         fjYrHJ1/LnQveippW69F7alZZqB/5sBGxBtgV8NPsMGumtmU1IDbT1TPwfeLmfYBAZdg
-         YVpbR9YS0hP4SwlX/ygDqBrEJCOEfBy3pqdNdEZXaTVVX/BH5ZLvxHqwSItHJF4Dy1KD
-         0xNjyXq7JDoPFVnY10J1oUSTaZlPfFTn399TpLVCBNwssIRB5a2zX78ZRbjmRPz/EEWD
-         qy9g==
+        bh=MhNikzhh9eyMrDoIEuRkwpx1JH9DFmpQLb9Zaw13Qy0=;
+        b=PDjoFLERmxIiohisUaSL6+3gzt3DAVcvCSfU+4Kk+INBbN1VhCkpmAgGL3i4tr/sTe
+         0T9p+F3BFITd33UsV+z2Su7H0N4dpwumQXIiGRhl7BRgVbLiJpKv7roXVYzwuVxn8+AF
+         T1yP1U6JwXwk3tkvvQV/+1PRoQTk5eC4aNyg1oCM+v7xvICYl9uCD/pleJVojDKM2dUD
+         u46d0HSd78nc1KTR6AwfEuI83txDBhELpYo1Jv4wXdrlGyzDwBd06UHR7YITsw6HNTBQ
+         yqSOO2BNTuU9z6bYXzl/Tnsx5p/sUe+4SBaUtTUFPIp3mD3NWxKm2C7/Thy2vVEkhjK0
+         TRew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692895360; x=1693500160;
+        d=1e100.net; s=20221208; t=1692895400; x=1693500200;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FRVTXGz++H59+3nilaNeFjWdjJ3kSI1rYdkOaYMbR6Q=;
-        b=aWXJkQ99tM3mOUfVweK/09guX5iBxi2HpXCWbQwFnCalv2AllKVcYtFiND1nm9GLzk
-         aj9tCBXO4eg/mQkpSfUej1iVCa6Vv8aGtfTySPLCWRs7TSfPwtREOQuojOpjqZ3faUov
-         v3CDDAN0VfgRwQIYTLKr6imzx6ZVb58RX7W2e7YI8qhVThGqZQifu1MxuG8lN2SQhcc+
-         pX4xgWl9neieMf5cycwwFotRuUw6XpwC/hcQZOSpXZETL/GdAM+064grsvYFNK0+spU8
-         cWra8E5ZL7OykvpX6MTHbQ07/09KtOWn0BDq0E1SA/53oR3J+EXDljn5O3PtavbWJ+jf
-         R+wA==
-X-Gm-Message-State: AOJu0YwS5Qd02y+LJkGxSC/exp9aOCmwnRyII6p1spYHX/A0E6Ky8Aa6
-        24gvOGq51kIYuvFKt29vDMu2HQ==
-X-Google-Smtp-Source: AGHT+IF6dqWQ4k0Xod7n5CRdbTReJzNMx54la11pA1FVG0NFk2R7/E+0l/ShfQPPpCjJ/TVSTT1tSw==
-X-Received: by 2002:a17:907:77c4:b0:993:d536:3cb7 with SMTP id kz4-20020a17090777c400b00993d5363cb7mr12802741ejc.11.1692895360669;
-        Thu, 24 Aug 2023 09:42:40 -0700 (PDT)
+        bh=MhNikzhh9eyMrDoIEuRkwpx1JH9DFmpQLb9Zaw13Qy0=;
+        b=h7rMZnoDx9J78+nGF0T0m4ABWH89LoWDf3KHGM1XEIBKLHqirsC96s1ZMhP/56wpqo
+         H1zbt9WaveJJ+QesD4AqK3SNQtGrc863jzkEfk+68KHIS/s9ifIrtJxUADfwSN60JIwE
+         83pjXr9MNwxL0pnSnzB9oGyUcHrLA/x1DQJhN04P5maHmuPqZqnPO1EPmv4EiF3gpOBI
+         tsDg1RsRgp4MmeXtvCYZye+owgFR9zs134pM1XmOnxxiCGpxmZA4XmwMq4OE8NbPJSQZ
+         YU4CDSmXnDBePejVAdJw3b2fcEkwfa9tHjQPQXWRHdsZ6Ys36kxCkprkNQQPbQqSw9/h
+         lN9A==
+X-Gm-Message-State: AOJu0Yzgiro+svoFQLzzZsiT+7vskVRZRo9rdWI7Kye1DgNqi7UZ8zhs
+        m+JCnNY8Eyl3j+4/TCM3/i/usw==
+X-Google-Smtp-Source: AGHT+IEUCWFeSlki8RwvSQkR7uTgoukotEH1DBXjt3MQ0tdHbYwZNDakkUYgqZ8EKbxOphgoG97j2Q==
+X-Received: by 2002:a05:6512:3e9:b0:4fb:8de9:ac0e with SMTP id n9-20020a05651203e900b004fb8de9ac0emr9588579lfq.1.1692895400332;
+        Thu, 24 Aug 2023 09:43:20 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id o15-20020a1709061b0f00b00985ed2f1584sm11172780ejg.187.2023.08.24.09.42.39
+        by smtp.gmail.com with ESMTPSA id o15-20020aa7dd4f000000b0051dd19d6d6esm10781906edw.73.2023.08.24.09.43.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 09:42:40 -0700 (PDT)
-Message-ID: <78007d9e-99ef-0922-2198-83e8c674b82c@linaro.org>
-Date:   Thu, 24 Aug 2023 18:42:38 +0200
+        Thu, 24 Aug 2023 09:43:19 -0700 (PDT)
+Message-ID: <c9ede9cd-282a-37b9-4fbb-5b27fb276247@linaro.org>
+Date:   Thu, 24 Aug 2023 18:43:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 2/3] arm64: dts: imx93: add dma support for
- lpuart[1..9]
+Subject: Re: [PATCH v2 1/3] arm64: dts: imx93: add edma1 and edma2
 Content-Language: en-US
 To:     Frank Li <Frank.Li@nxp.com>, festevam@gmail.com
 Cc:     clin@suse.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
@@ -66,9 +65,9 @@ Cc:     clin@suse.com, conor+dt@kernel.org, devicetree@vger.kernel.org,
         pierre.gondois@arm.com, robh+dt@kernel.org, s.hauer@pengutronix.de,
         shawnguo@kernel.org, shenwei.wang@nxp.com, sherry.sun@nxp.com
 References: <20230824163922.2952403-1-Frank.Li@nxp.com>
- <20230824163922.2952403-5-Frank.Li@nxp.com>
+ <20230824163922.2952403-2-Frank.Li@nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230824163922.2952403-5-Frank.Li@nxp.com>
+In-Reply-To: <20230824163922.2952403-2-Frank.Li@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,43 +81,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 24/08/2023 18:39, Frank Li wrote:
-> Add dma support for lpuart[1..9].
+> Add edma<n> nodes.
 > 
 > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx93.dtsi | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 116 +++++++++++++++++++++++
+>  1 file changed, 116 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> index acdca18673b7..849543d35ed7 100644
+> index 6f85a05ee7e1..acdca18673b7 100644
 > --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
 > +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
-> @@ -336,6 +336,8 @@ lpuart1: serial@44380000 {
->  				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX93_CLK_LPUART1_GATE>;
->  				clock-names = "ipg";
-> +				dmas = <&edma1 16 0 0>, <&edma1 17 0 1>;
-> +				dma-names = "tx", "rx";
->  				status = "disabled";
->  			};
+> @@ -185,6 +185,46 @@ aips1: bus@44000000 {
+>  			#size-cells = <1>;
+>  			ranges;
 >  
-> @@ -345,6 +347,8 @@ lpuart2: serial@44390000 {
->  				interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX93_CLK_LPUART2_GATE>;
->  				clock-names = "ipg";
-> +				dmas = <&edma1 18 0 0>, <&edma1 19 0 1>;
-> +				dma-names = "tx", "rx";
->  				status = "disabled";
->  			};
->  
-> @@ -666,6 +670,8 @@ lpuart3: serial@42570000 {
->  				interrupts = <GIC_SPI 68 IRQ_TYPE_LEVEL_HIGH>;
->  				clocks = <&clk IMX93_CLK_LPUART3_GATE>;
->  				clock-names = "ipg";
-> +				dmas = <&edma2 17 0 0>, <&edma2 18 0 1>;
-> +				dma-names = "tx","rx";
+> +			edma1: dma-controller@44000000{
 
-Missing space after ,
+Missing space. In other places as well.
+
+> +				compatible = "fsl,imx93-edma3";
+> +				reg = <0x44000000 0x200000>;
+> +				#dma-cells = <3>;
+> +				dma-channels = <31>;
+
+
+...
+
+> +				clocks = <&clk IMX93_CLK_EDMA2_GATE>;
+> +				clock-names = "dma";
+> +				fsl,edma-axi;
+> +				status = "okay";
+
+Drop.
+
+> +			};
+> +
+>  			wakeupmix_gpr: syscon@42420000 {
+>  				compatible = "fsl,imx93-wakeupmix-syscfg", "syscon";
+>  				reg = <0x42420000 0x1000>;
 
 Best regards,
 Krzysztof
