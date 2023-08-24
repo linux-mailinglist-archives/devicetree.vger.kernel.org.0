@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832F37867A9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:45:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAAEE7867B2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235278AbjHXGoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 02:44:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43122 "EHLO
+        id S238044AbjHXGqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 02:46:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240181AbjHXGoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:44:08 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B17210FD
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:43:56 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so6469462a12.3
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:43:56 -0700 (PDT)
+        with ESMTP id S240238AbjHXGpc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:45:32 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDE8E1701
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:45:25 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c1f6f3884so831515366b.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:45:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692859434; x=1693464234;
+        d=linaro.org; s=google; t=1692859524; x=1693464324;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ti0tJCov0gsw8bly+e2gyZeZthleb2G4QELgyb6xbJk=;
-        b=I1zZJTfjm821j0x0yIfW4QMqklnH56r4qmM4t/5dYbVuZvxkzL6f3cpaltMFY/XXb5
-         EbBmse/2gH7Az1sjHnvD9d+bFlnXxuvT+dLR4XipRXRu1xwKka+Q9LO1v+FFzL+GIaWz
-         0cVmlYk9dfAS+JngsrZjYRBPG+0nml6up0U9AIoleTYqjuor4sjx9/J71jj6x5FSSxDb
-         vslV6rKx06UALgB1NX3JGRM1uHitgAyN5A8+zq5pvCynRMWjsL7Gqq5Xpmeu+eaSQE1v
-         B/ivDRgW24kbp+udc2TWTWgk1ia0hjrO4iUBWDsezAR6QDlNXXxd9oR59pEWV/KdP+G5
-         TkYA==
+        bh=rnNGmf2WWBgfkQAyVC3feikVFhEUoK2YZ6y9s10fp+g=;
+        b=ZoaOILWVeHmGVSqeM8U7E3ZXekN3WMc75pFN7wcLlHYTcopJoS9k+ERfYsEddO37UB
+         lNwbBVOiwhYBlZZvGk62x2SiK5hoGOOoeze07ubjx+kvO64UaP3LFy2ss+tZax/2Ej5O
+         Oqq2PQdY8LWmJVZUYc+mv7ezbTJwUHQkwPQg99g0CX+sixtpDTYDzENZUjSGBLqXN/2N
+         bjr0DnPTi8kGxZCKDc1O7UgFkUrPPH8ArytEFZeeUVn4M7y2ehTZQTfSicgotjrWaNuR
+         /F4ww+S+CPEElNzVsrbZuhdaxIsDPbXU3zZxRxo2hbXmXdJJzlzoes34XKmgGE/m6C6c
+         uiBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692859434; x=1693464234;
+        d=1e100.net; s=20221208; t=1692859524; x=1693464324;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ti0tJCov0gsw8bly+e2gyZeZthleb2G4QELgyb6xbJk=;
-        b=CPIq0uvgdU0UaVNe8XKBtn5O+GxR9TTKtD3CV4eZf4G7zIf191hwryJrOjoxKWXn3A
-         mCWjzsnsBMdp9odnh4C4HX9I5/q+z03ipfyUF5EQH82VRyXiL2u/15iNicMutkd75Yqk
-         Fw34/4jnIJmMwDyYp8kY6gLdve+9KFYrbq/n2Xb2qhHVX1CSqgAtL+m+TD79R4YUgJuW
-         7o5D4qM0z4DIzZEUbHAYAdrSUySc24lVZ5yqQm9zqzZzwo6HOwhNya/vj5ywO70Lrzp7
-         asxxpZ4ov5Ufx8gljdMG+8GXnNIk2e1lysv4pjekuQwuJGHl8fELOGrSCukl6C+fHoQ8
-         rpkA==
-X-Gm-Message-State: AOJu0YzWycs79sv8+OAzmS8Fm6+/rpKsHGSHoO2dMyEKFI1l6JkRuOJe
-        jRQ5lHFJjGUyNtdO7AtPmSbcgg==
-X-Google-Smtp-Source: AGHT+IEQvZYgarQloyMnR+HnLjWh6aBRXyE5c7u2/JigeeURkpGl76ThL5cokigKZvqW5eh82CHhgg==
-X-Received: by 2002:aa7:d34f:0:b0:523:b1b0:f69f with SMTP id m15-20020aa7d34f000000b00523b1b0f69fmr10351857edr.32.1692859434571;
-        Wed, 23 Aug 2023 23:43:54 -0700 (PDT)
+        bh=rnNGmf2WWBgfkQAyVC3feikVFhEUoK2YZ6y9s10fp+g=;
+        b=gAdF87NNZZLzVQLVZJ5dT/qUwpYBtaYZ/OMSdNNWpTgLSDDAXXBn5tLXV6EyXsPhJT
+         v8qY782JZRsWJJNwr5Ee2tSg9pOzN5juxOuuPnrOdr1+SWmaSSZNzZlZAmieR9+TKS8P
+         C1u0C2bogGgXM7M2IJ9rIRL5oM9P3a+eemjNwW1mlS7QGqnV/fTopDkPJviz171o9B1v
+         9CkoSZGZY3pzuAP2Z4bMftglI1ELjFnEpYzcoYP5vIglSqFD1XekXrQBK+u+hByalWFp
+         S8x86p2M58s8w65ow1vkdunx4OHd/kDlrQ/RZR7Pd2DtpKVW/axNE5x+uz+a0ZF3SG+x
+         GFqg==
+X-Gm-Message-State: AOJu0Yyp7cAUzQDK76YeuFAvDlDhzCgxI5CQHfy+CCCin9peMuKCrOEs
+        BQC/VIsq7lqFCPEwzCVP3ra4Kg==
+X-Google-Smtp-Source: AGHT+IGy78witumN00EVCy5UGo3smU/gaSGULiiCcVwhomJv/wCO+KpTMU2P5OmjNabYfnDdCjVcfw==
+X-Received: by 2002:a17:906:249:b0:9a1:cbe4:d033 with SMTP id 9-20020a170906024900b009a1cbe4d033mr3788327ejl.53.1692859524373;
+        Wed, 23 Aug 2023 23:45:24 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id x21-20020aa7dad5000000b0052284228e3bsm10068665eds.8.2023.08.23.23.43.53
+        by smtp.gmail.com with ESMTPSA id t7-20020a1709060c4700b00988c0c175c6sm10571133ejf.189.2023.08.23.23.45.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 23:43:54 -0700 (PDT)
-Message-ID: <d5a343c8-c384-6eea-94bf-e0c4f96e5fb0@linaro.org>
-Date:   Thu, 24 Aug 2023 08:43:52 +0200
+        Wed, 23 Aug 2023 23:45:24 -0700 (PDT)
+Message-ID: <1326776f-2592-f231-2056-a231729da50a@linaro.org>
+Date:   Thu, 24 Aug 2023 08:45:22 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v6 1/5] dt-bindings: net: Add ICSS IEP
+Subject: Re: [PATCH v6 2/5] dt-bindings: net: Add IEP property in ICSSG
 Content-Language: en-US
 To:     MD Danish Anwar <danishanwar@ti.com>,
         Randy Dunlap <rdunlap@infradead.org>,
@@ -74,14 +74,14 @@ Cc:     nm@ti.com, srk@ti.com, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, netdev@vger.kernel.org,
         linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20230823113254.292603-1-danishanwar@ti.com>
- <20230823113254.292603-2-danishanwar@ti.com>
+ <20230823113254.292603-3-danishanwar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230823113254.292603-2-danishanwar@ti.com>
+In-Reply-To: <20230823113254.292603-3-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,84 +90,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 23/08/2023 13:32, MD Danish Anwar wrote:
-> Add a DT binding document for the ICSS Industrial Ethernet Peripheral(IEP)
-> hardware. IEP supports packet timestamping, PTP and PPS.
+> Add IEP property in ICSSG hardware DT binding document.
+> ICSSG uses IEP (Industrial Ethernet Peripheral) to support timestamping
+> of ethernet packets, PTP and PPS.
 > 
 > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Really? Where?
+Where? Please provide link.
 
 > Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
-Now you are making things up. Please stop faking tags.
+Where? Please provide link.
 
 > Reviewed-by: Simon Horman <horms@kernel.org>
 
-Where?
+Where? Please provide link.
+
+Otherwise all of them look like fake ways to sneak patches into the
+kernel. Our work here depends a lot on the trust. Trust once lost, is
+tricky to get back.
 
 > Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 > ---
->  .../devicetree/bindings/net/ti,icss-iep.yaml  | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> new file mode 100644
-> index 000000000000..75668bea8614
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/ti,icss-iep.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Texas Instruments ICSS Industrial Ethernet Peripheral (IEP) module
-> +
-> +maintainers:
-> +  - Md Danish Anwar <danishanwar@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ti,am642-icss-iep
-> +              - ti,j721e-icss-iep
-> +          - const: ti,am654-icss-iep
-> +
-> +      - const: ti,am654-icss-iep
-> +
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description: phandle to the IEP source clock
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-
-Drop stray blank line
-
-> +    /* AM65x */
-> +    icssg0_iep0: iep@2e000 {
-> +        compatible = "ti,am654-icss-iep";
-> +        reg = <0x2e000 0x1000>;
-> +        clocks = <&icssg0_iepclk_mux>;
-> +    };
-
-Choose one example.
 
 
 Best regards,
