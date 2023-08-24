@@ -2,44 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1022478745C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 17:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97160787462
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 17:37:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235564AbjHXPfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 11:35:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50724 "EHLO
+        id S237166AbjHXPhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 11:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242263AbjHXPfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 11:35:20 -0400
-Received: from hutie.ust.cz (hutie.ust.cz [IPv6:2a03:3b40:fe:f0::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FDBB1BF8;
-        Thu, 24 Aug 2023 08:34:52 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
-        t=1692891289; bh=GwsgEUYaQb7+bVesJDUFzEJB/MJBATC71jeWdqAmb7g=;
-        h=Subject:From:In-Reply-To:Date:Cc:References:To;
-        b=KYOuD+79PobS0zc7xAahjmoTeI590qhuoXbsZ5P+bo8qXpka0aMYQI2AoOcYId/dp
-         O5eVQfEVc7PNgvZmC+RhMp8jeJpMDktmxm46QWBlW9EjsAlS2aZTAHtF1d+MGeKsgV
-         IDiwH57q9aK5KZm1sVQq4LTB6B31x0nEsp8V3Yl8=
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
-Subject: Re: [PATCH 2/2] dmaengine: apple-sio: Add Apple SIO driver
-From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
-In-Reply-To: <ZMuOt2THchrNDjDH@matsya>
-Date:   Thu, 24 Aug 2023 17:34:49 +0200
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242258AbjHXPg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 11:36:59 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11459CEE;
+        Thu, 24 Aug 2023 08:36:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A183B66ADE;
+        Thu, 24 Aug 2023 15:36:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7D7DC433C7;
+        Thu, 24 Aug 2023 15:36:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692891417;
+        bh=udpk6Bq8Wx/zflg+ajja1KX//tlMQjqwLZJgeFdW5lY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=QeC+09CRU2R4oXjg4P5pkAmEtIGMAo6P/+jSP7gz5xXz9HdDYP1MhjvF7Ppz5P/2U
+         LG+ZTqoviCFLXc+r1U+B8RUuufLvwWKRbnLNUciJQmHN4tYrDSuKC9I29SHus1E3cl
+         CoLEjkuFqSz+Kn+pNdBuxKM4LWgC4lO+S1avKwSLyJP8nx7Ym5RguxvqOaPnbfv0r7
+         ewXi3NbDIU3Ecx8kwaZTjqe2P2VDxkXwBZdphfceK5lfQZ+Frg1vfCsE9rJyBo5azf
+         UcaZzPkrthi4Uvk8ZXgOJMrfyNG/AOrfOXLk0TvVAQ+TyQ0ow/SAkb7ZNzQn2rDk6M
+         tmProyEuMhw5A==
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Cyril Brulebois <kibi@debian.org>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jim Quinlan <jim2101024@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <18F85C87-4ED4-446C-8F63-901D85A9D474@cutebit.org>
-References: <20230712133806.4450-1-povik+lin@cutebit.org>
- <20230712133806.4450-3-povik+lin@cutebit.org> <ZMlLjg9UBi3QO/qV@matsya>
- <7D43A9F3-892C-4E74-9618-DB37360B7641@cutebit.org> <ZMuOt2THchrNDjDH@matsya>
-To:     Vinod Koul <vkoul@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
+Subject: Re: (subset) [PATCH v6 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ# mode
+Date:   Thu, 24 Aug 2023 17:36:48 +0200
+Message-Id: <169289132759.77081.8928790286058337767.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230623144100.34196-1-james.quinlan@broadcom.com>
+References: <20230623144100.34196-1-james.quinlan@broadcom.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,56 +66,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sorry I missed this message before.
+On Fri, 23 Jun 2023 10:40:53 -0400, Jim Quinlan wrote:
+> v6 -- No code has been changed.
+>    -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
+>    -- Changed sign-off and author email address for all commits.
+>       This was due to a change in Broadcom's upstreaming policy.
+> 
+> v5 -- Remove DT property "brcm,completion-timeout-us" from
+>       "DT bindings" commit.  Although this error may be reported
+>       as a completion timeout, its cause was traced to an
+>       internal bus timeout which may occur even when there is
+>       no PCIe access being processed.  We set a timeout of four
+>       seconds only if we are operating in "L1SS CLKREQ#" mode.
+>    -- Correct CEM 2.0 reference provided by HW engineer,
+>       s/3.2.5.2.5/3.2.5.2.2/ (Bjorn)
+>    -- Add newline to dev_info() string (Stefan)
+>    -- Change variable rval to unsigned (Stefan)
+>    -- s/implementaion/implementation/ (Bjorn)
+>    -- s/superpowersave/powersupersave/ (Bjorn)
+>    -- Slightly modify message on "PERST#" commit.
+>    -- Rebase to torvalds master
+> 
+> [...]
 
-> On 3. 8. 2023, at 13:25, Vinod Koul <vkoul@kernel.org> wrote:
->=20
-> On 01-08-23, 23:55, Martin Povi=C5=A1er wrote:
->=20
->>> can you use virt_dma_chan, that should simplify list handling etc
->>=20
->> I looked into that when I wrote the sister driver apple-admac.c, I =
-don=E2=80=99t
->> remember anymore why I decided against it, and I don=E2=80=99t think =
-it came up
->> during review. Now that this driver is done, I hope we can take it as =
-is.
->>=20
->> There=E2=80=99s some benefit from the drivers having a similar =
-structure, I sent
->> one or two fixes to apple-admac for things I found out because I was
->> writing this other driver.
->=20
-> And this would be a chance to covert the other one and get rid of list
-> handling code in that driver as well
+Applied to controller/brcmstb, thanks!
 
-I guess...
+[4/5] PCI: brcmstb: Assert PERST# on BCM2711
+      https://git.kernel.org/pci/pci/c/8eb8c2735306
+[5/5] PCI: brcmstb: Remove stale comment
+      https://git.kernel.org/pci/pci/c/6dac1507a654
 
->>>> +};
->>>> +
->>>> +#define SIO_NTAGS		16
->>>> +
->>>> +typedef void (*sio_ack_callback)(struct sio_chan *, void *, bool);
->>>=20
->>> any reason not to use dmaengine callbacks?
->>=20
->> Not sure what dmaengine callback you mean here. This callback means
->> the coprocessor acked a tag, not sure how we can fit something =
-dmaengine
->> onto it.
->=20
-> Okay lets understand, how is this one used
-
-This one is used to signal completion of IPC calls to the coprocessor =
-when
-that call is made from atomic context. Only user (currently) is issuing =
-of
-coproc descriptors. I can provide more detail but not sure in what
-direction.
-
-Martin
-
-> --=20
-> ~Vinod
->=20
-
+Thanks,
+Lorenzo
