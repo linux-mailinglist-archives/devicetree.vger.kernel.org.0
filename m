@@ -2,65 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 493887876E9
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 19:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3076787724
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 19:35:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242588AbjHXRVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 13:21:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35416 "EHLO
+        id S234787AbjHXRfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 13:35:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242885AbjHXRVF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 13:21:05 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6A36E50;
-        Thu, 24 Aug 2023 10:21:03 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7CD9167534;
-        Thu, 24 Aug 2023 17:21:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93FE2C433C9;
-        Thu, 24 Aug 2023 17:21:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692897662;
-        bh=9yXrtO8fbh1grXof5RIUb0YcKlKXU12c1Zzn5iHyObE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FDrX7Rcp83NB2WpIiiMtrECnSTxd6CBscUgoQpV698UNM9zFlxKqt5L+Gee0AtsRP
-         cf+kktoQr/cKwzbURzlGdTayHaj9BRS9J6Tp8+aIwahMWAhx/jyKOevssMOHj0xjhT
-         w8z3MvJ6sRsdRx4sp+IeBZZ5RWhzzxMsgUtYc0AC85djfMmZYMkB1/MgLmAdQqQ3OR
-         /m7uK4g39wqwWaDWg1XN8132lVjfT5SFNwMZUoSBWCUDLTeK38tsP0Ii9ccpzALpAC
-         g/68KfAIloBdSqCddFRrUQpbDQFmWrGrqwcDW+Dd6sx+8SaxVa9WXIYlYhh1bs4593
-         kcjuR0yppN02A==
-Received: (nullmailer pid 1066930 invoked by uid 1000);
-        Thu, 24 Aug 2023 17:21:00 -0000
-Date:   Thu, 24 Aug 2023 12:21:00 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S238973AbjHXRev (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 13:34:51 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3423519B7;
+        Thu, 24 Aug 2023 10:34:50 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37OEZTt6002284;
+        Thu, 24 Aug 2023 17:34:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=19x/YS7ofBvdsImdZrMv6o0tQe5FWEu3TCJlkwu/aeo=;
+ b=VfKDuGqrE4k4vtI6dWUC4BrIhIA7d3NMy5SuyDnvlLr8KF8EsvLSp01ZeUL8lxt5xOwA
+ wN3WA7gCeuIOHwl8xiVqBrgaK6JddAkMsHnqZc0x/r19QxnYvnC7mth3rjuCG9dt/MOs
+ TtJzjbkufyAHrS063GXew3YhCIZxqVdYBB13PhnGiHw1jhxrgi+mtmE4nAZampnAD35G
+ ttkeMGrqVxKswnjA0WGUMVWApkTkn/acZo1mqvQW4i6RkTVGzIps4SBzIakJTlL8BHer
+ wj7HESjwbLSKZ7UbT2EBJcG53PotgjbCAyRKDkic4wtwtn7i1wig80qQ7eCocuvYOlz0 WA== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3snkumuaf3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Aug 2023 17:34:46 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37OHYiT6014000
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Aug 2023 17:34:44 GMT
+Received: from hu-ajipan-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 24 Aug 2023 10:34:39 -0700
+From:   Ajit Pandey <quic_ajipan@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jianhua Lu <lujianhua000@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 3/3] dt-bindings: display: novatek,nt36523: define
- ports
-Message-ID: <169289765993.1066873.13186532623781949639.robh@kernel.org>
-References: <20230823081500.84005-1-krzysztof.kozlowski@linaro.org>
- <20230823081500.84005-3-krzysztof.kozlowski@linaro.org>
+        Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+CC:     Ajit Pandey <quic_ajipan@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/4] clk: qcom: Add support for GCC and RPMHCC on SM4450
+Date:   Thu, 24 Aug 2023 23:04:06 +0530
+Message-ID: <20230824173410.550126-1-quic_ajipan@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230823081500.84005-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UPWaIaREEvTArPIvGgdUySmfq2drxBvV
+X-Proofpoint-ORIG-GUID: UPWaIaREEvTArPIvGgdUySmfq2drxBvV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-24_13,2023-08-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=811
+ spamscore=0 suspectscore=0 adultscore=0 clxscore=1011 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2308240149
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,27 +84,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series add dt-bindings and driver support for GCC and RPMHCC on
+SM4450 platform.
 
-On Wed, 23 Aug 2023 10:15:00 +0200, Krzysztof Kozlowski wrote:
-> The panel-common schema does not define what "ports" property is, so
-> bring the definition by referencing the panel-common-dual.yaml. Panels
-> can be single- or dual-link, depending on the compatible, thus add
-> if:then:else: block narrowing ports per variant.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Use panel-common-dual.
-> 2. Add if:then:else:
-> 
-> Changes since v1:
-> 1. Rework to add ports to device schema, not to panel-common.
-> ---
->  .../display/panel/novatek,nt36523.yaml        | 25 +++++++++++++++----
->  1 file changed, 20 insertions(+), 5 deletions(-)
-> 
+Ajit Pandey (4):
+  dt-bindings: clock: qcom: Add RPMHCC for SM4450
+  clk: qcom: rpmh: Add RPMH clocks support for SM4450
+  dt-bindings: clock: qcom: Add GCC clocks for SM4450
+  clk: qcom: Add GCC driver support for SM4450
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+ .../bindings/clock/qcom,rpmhcc.yaml           |    1 +
+ .../bindings/clock/qcom,sm4450-gcc.yaml       |   54 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/clk-rpmh.c                   |   21 +
+ drivers/clk/qcom/gcc-sm4450.c                 | 2898 +++++++++++++++++
+ include/dt-bindings/clock/qcom,sm4450-gcc.h   |  197 ++
+ 7 files changed, 3181 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+ create mode 100644 drivers/clk/qcom/gcc-sm4450.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm4450-gcc.h
+
+-- 
+2.25.1
 
