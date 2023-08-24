@@ -2,450 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67B57786DE2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 13:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7C89786E04
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 13:34:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236734AbjHXLdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 07:33:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52024 "EHLO
+        id S241065AbjHXLeA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 07:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240510AbjHXLcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 07:32:52 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8770B10FC;
-        Thu, 24 Aug 2023 04:32:49 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d650a22abd7so6478702276.3;
-        Thu, 24 Aug 2023 04:32:49 -0700 (PDT)
+        with ESMTP id S241018AbjHXLdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 07:33:35 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 878DF198B
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:33:32 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31adc5c899fso5967639f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 04:33:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692876768; x=1693481568;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sFzuk6LjNd6O3SJJcDHZwMhSOEnjaTo2LUY1fJylIvY=;
-        b=iQNdyhF+GnMTD3X9aPCAsEjySzRqLMQmpDyKFky61tmbtE8s29lGC+bqlrRnHvHzo2
-         L1bQj5qTAkug8xnWRnQoCzQNEMtHaCnt22LlnFe+FxCKe8d+lSlMUa2oHKvwUdJC1eVv
-         W2pYkt8q2W9BiKuZBzNcfPFI/eCoaAh0jZBzch3FWtuFV4cyKVeIB8Ss7jrg39rWU6o/
-         k+T1DjpG296DMhtF+hnbzWKbXb3bEqlpg2SWsZuNhnFO9aFkc9KEQztlRO8orkAS9uon
-         rdhHV9T2l5UoGayO9R+o4ZPmuxDPVWJs+wakBZ8b/BMMgy2XjeU2CdfaZ99t0qb7uwm8
-         iavQ==
+        d=linaro.org; s=google; t=1692876811; x=1693481611;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yC8fuqTzuiabrnYWwAhiJIKgyhh3Mk1H5rlP+xTvTnI=;
+        b=igQv/zrnXwHM5gwk8wWQESGx3C+u/yZGYbbhqE/71fO2mGsqYeLjKR/39WqnIyMoKK
+         fo2iaeQdN55xgyTC7dkEsjcTPcH/WoE+i6YIDK0+BA8v84tmiBqCzZxS9sH6ZAACGbmI
+         YsOtv17vEGgCyPcCFWMUdXSDP9HHAEpUUKvt0kBsJv2PMgGmjyLjmyISWu76EddxCTDn
+         EbaqmGaR44oHPFgDcKqrljPyp6kkRaN/CfP5fgGJ9d7CVWHLHbTi3rn2O49ciwhhiUnH
+         dxWJ6usUTvXjp2PglDox+rlrOUKT/luxPlYffiNznVPUV5VRqZlA2H4RHtPe+gSY1fra
+         GVwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692876768; x=1693481568;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sFzuk6LjNd6O3SJJcDHZwMhSOEnjaTo2LUY1fJylIvY=;
-        b=EixIA9XfaaULLxcZUXFxJMjhH+n2A+ld4xuvDP0QMs3zEYUPG+525kayCJHWE5w/lQ
-         JjIwlsrGmuT5BMTEKWfnJzix85PpJyjxkXxMWtY8N6tGxBPhgaBHbQOE12tFD7Fia7d2
-         PyfnVqORHmktGtvAuQ53fykoOpy2FP4BXPbQPWOJtxoAomvzgxSo6qhTkKyoelmNR2XO
-         hdeqgzK1LOdqFgKtPHfsXhUyZxfkLdAbwFnvPALXysygQFhFrALPQ0tj3lAxTr4PGbZC
-         nOsZs/za1vVx+8p6owex+u9TNljl4G90JL88b8AnNRzWU7d95rkOW/Lpltmp6JvyO7SE
-         qeKA==
-X-Gm-Message-State: AOJu0YykSlHUD366WTxB/VkfMx+2ZsGe+oVf3sN2sak1ID8QbVsjRXHA
-        nEIcsg2bpx2jA4Jl64MFbqWqDS884N96dZ48zng=
-X-Google-Smtp-Source: AGHT+IEn8aX0Ghqxzi2g8EaeBYAiNIRZKT80Gmb0Nz9tRlI2YyrtbNPuIBXaV4jh4+DIBUvVEDYqBkMyUujAPQqm/Tg=
-X-Received: by 2002:a81:8882:0:b0:55a:3ce9:dc3d with SMTP id
- y124-20020a818882000000b0055a3ce9dc3dmr15016049ywf.13.1692876768535; Thu, 24
- Aug 2023 04:32:48 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692876811; x=1693481611;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yC8fuqTzuiabrnYWwAhiJIKgyhh3Mk1H5rlP+xTvTnI=;
+        b=laFkaY6gVecNLa8X7jBbLkCD1KMAjK1hK4hlL29EuTrgGhY95VPVR9NyKUIfMF2Jjp
+         dgZe4SdhMjnRN6ix6Px33iGE/rJ4WbktJtiyNwVFiobKcTdEkjr/dsUkex/HrbXMLqBJ
+         z10asFM7X9z8pjdTU5H3xoALLctQwCDzNgLkVj8ERq6j5lWFL5651r2jUaeZ1g2fzk4s
+         bFlvMtfS33bofCvEkouINo0L081xdG9gwSk52jFC5VvaVuiN6DADI3+X1ZU8ZaazfMdo
+         EsyWtIlgeB6q5xYHJxk9CY8EyyLXbyb+lgkQEbHfF90ehNjE9ikh1qatxImLmuYPwrRP
+         gO3Q==
+X-Gm-Message-State: AOJu0YxIFrP3c2PcJ4KAqMCCqvcxg71CDSnB8hPuOjXUWj0ZdDXSimoE
+        W13vtGvTcBmMamSy4lwd6ZRFmA==
+X-Google-Smtp-Source: AGHT+IEuKIOqpYdFLoEc3uJDous6FKrrl9wXIPxcO+vuIcm6WuADk3WDktemifszunQw4zVYDY2uEA==
+X-Received: by 2002:a05:6000:1807:b0:316:fc86:28ae with SMTP id m7-20020a056000180700b00316fc8628aemr10125694wrh.15.1692876810636;
+        Thu, 24 Aug 2023 04:33:30 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id e11-20020a5d65cb000000b003179d7ed4f3sm22063938wrw.12.2023.08.24.04.33.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Aug 2023 04:33:30 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/7] arm64: qcom: sm8550: enable RNG
+Date:   Thu, 24 Aug 2023 13:33:19 +0200
+Message-Id: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
 MIME-Version: 1.0
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
- <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org> <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
- <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org>
-In-Reply-To: <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Thu, 24 Aug 2023 19:32:36 +0800
-Message-ID: <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP8/52QC/32NQQ6CQAxFr0K6tqZTHJ248h6GBYEKTXSGdAjRE
+ O7uyAFcvpf891fIYioZrtUKJotmTbEAHyroxjYOgtoXBiauKTDjnCbtML+C94QWB+xC7U58CbU
+ wQZlNJg9978l7U3jUPCf77A+L+9k/scUhYRBH5L07+97dnhpbS8dkAzTbtn0Bi1oLc7EAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        =?utf-8?q?=EF=BF=BCOm_Prakash_Singh?= <quic_omprsing@quicinc.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1392;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=ouJjqlHbJ9Q1ClPHm6B8a1xk6Kp+RJrUCNvbJ68Jc/8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk50AGVZrb06NDM7Lo+iLktpmxPB8RGE+vbQWDsN4b
+ l9WNHzuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZOdABgAKCRB33NvayMhJ0SShD/
+ 495Rv4XzpodSbsg30ceHZ7dtVHdXZn/Vn4A4F03LybVg2rkjntADljZ9CGLUyPAY+mwKABxAwORAVZ
+ D1TY0lnzWrb0zO58uMvwzM3hOE+oCoMN2AaPg7KZSFMtoEnYxlRg3jHf2kpB3zQOFa7GVuAGlbuWpM
+ ubgL4pASC9qdibXzcK7AmGe/O4zQYUfHOJ2PnxTfITRsH56cHeyld1pzvZ3kpn2dkw90Iy7FEuU669
+ b3ukeyO/8xsTU1Ss8/TIE2yrQ+WeDJ4QEk0AaW1XOjoyjoxvsDfjKAq9G5ZNDnDFJ4RYzrfsudtFSv
+ Px3YWv5DtOLIM2z0flvEVmo6mJovxMtZPb6gxP0Oe6monA+3hcDd6PCLkq8BHtDxDgFq7S/8VhGeoL
+ dbO6COS4hJ+XsRZ/f8Xvhj62FkDASbn3X3jYAO31hyJ6zyUa9A4FHgaYpVnz9gUtNnZySCuWrX8i7j
+ PKHckt3WGsnHA8WA0fSU2eVWCA5K3Tq1XQWhJ20cDozyJK6jdYfK8/lzE9yrHhB89v06S3+PLVvmdy
+ PpZ8tPaKcz0JBw6uXKes5HcybWlmnD1WA9/MH5K1MnWpYO7eEB8DOcIZ0dlij7xMOmpYoySHQ8yoeT
+ euli+hqPMwnRzhITixnU/qxMXdANI75Vk8u4I8CzUfa4FKBYCW6TTlN60ETw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+Enable RNG on SM8550 by reverting the PRNG bindings & DT
+for SM8450 and correctly document it as a True Random Number Generator.
 
-Thanks for your detailed reply.
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Revert SM8450 DT & bindings
+- Add new qcom,trng compatible and use it for SM8450 & SM8550
+- Explicitly didn't collect the Reviewed-by tags due to the compatible change
+- Link to v1: https://lore.kernel.org/r/20230822-topic-sm8550-rng-v1-0-8e10055165d1@linaro.org
 
-On Tue, Aug 22, 2023 at 4:30=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/08/2023 10:13, Binbin Zhou wrote:
-> > Hi Krzysztof:
-> >
-> > Thanks for your detailed reply.
-> >
-> > On Tue, Aug 22, 2023 at 1:44=E2=80=AFPM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 21/08/2023 08:13, Binbin Zhou wrote:
-> >>> Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
-> >>> Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
-> >>> routes for 64-bit interrupt sources.
-> >>>
-> >>> For liointc-2.0, we need to define two liointc nodes in dts, one for
-> >>> "0-31" interrupt sources and the other for "32-63" interrupt sources.
-> >>> This applies to mips Loongson-2K1000.
-> >>>
-> >>> Unfortunately, there are some warnings about "loongson,liointc-2.0":
-> >>> 1. "interrupt-names" should be "required", the driver gets the parent
-> >>> interrupts through it.
-> >>
-> >> No, why? Parent? This does not make sense.
-> >
-> > This was noted in the v1 patch discussion. The liointc driver now gets
-> > the parent interrupt via of_irq_get_byname(), so I think the
-> > "interrupt-names" should be "required".
->
-> of_irq_get_byname() does not give you parent interrupt, but the
-> interrupt. Why do you need parent interrupt and what is it?
->
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/drivers/irqchip/irq-loongson-liointc.c?h=3Dv6.5-rc6#n345
-> >
-> > static const char *const parent_names[] =3D {"int0", "int1", "int2", "i=
-nt3"};
-> >
-> >         for (i =3D 0; i < LIOINTC_NUM_PARENT; i++) {
-> >                 parent_irq[i] =3D of_irq_get_byname(node, parent_names[=
-i]);
-> >                 if (parent_irq[i] > 0)
-> >                         have_parent =3D TRUE;
-> >         }
-> >         if (!have_parent)
-> >                 return -ENODEV;
->
-> How requiring parents interrupt is related to other changes in this
-> file? One logical change, one patch.
+---
+Neil Armstrong (7):
+      Revert "dt-bindings: crypto: qcom,prng: Add SM8450"
+      Revert "arm64: dts: qcom: sm8450: Add PRNG"
+      dt-bindings: crypto: qcom,prng: document that RNG on SM8450 is a TRNG
+      crypto: qcom-rng - Add support for trng
+      dt-bindings: crypto: qcom,prng: document SM8550
+      arm64: dts: qcom: sm8550: add TRNG node
+      arm64: dts: qcom: sm8450: add TRNG node
 
-Yes, that was my mistake, whether or not the interrupt-names need to
-be "required" is another issue. It does not cause a check warning.
-I'll think about it some more.
->
-> Anyway why did you do it and take it by names? Names here are basically
-> useless if they match indices, so just get interrupt by indices.
+ Documentation/devicetree/bindings/crypto/qcom,prng.yaml | 8 +++++---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi                    | 2 +-
+ arch/arm64/boot/dts/qcom/sm8550.dtsi                    | 5 +++++
+ drivers/crypto/qcom-rng.c                               | 1 +
+ 4 files changed, 12 insertions(+), 4 deletions(-)
+---
+base-commit: 28c736b0e92e11bfe2b9997688213dc43cb22182
+change-id: 20230822-topic-sm8550-rng-c83142783e20
 
-There is a match between interrupts, interrupt names and interrupt maps:
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
-interrupt->interrupt name->interrupt map
-2->int0->int_map[0]
-3->int1->int_map[1]
-4->int2->int_map[2]
-5->int3->int_map[3]
-
-As part of the 2k1000 liointc1 node:
-
-                liointc1: interrupt-controller@1fe11440 {
-....
-                        interrupt-parent =3D <&cpuintc>;
-                        interrupts =3D <3>;
-                        interrupt-names =3D "int1";
-
-                        loongson,parent_int_map =3D <0x00000000>, /* int0 *=
-/
-                                                <0xffffffff>, /* int1 */
-                                                <0x00000000>, /* int2 */
-                                                <0x00000000>; /* int3 */
-                };
-
-To ensure this mapping relationship, the interrupt name becomes the
-intermediate bridge.
-
->
-> >
-> >>
-> >>>
-> >>> 2. Since not all CPUs are multicore, e.g. Loongson-2K0500 is a
-> >>> single-core CPU, there is no core1-related registers. So "reg" and
-> >>> "reg-names" should be set to "minItems 2".
-> >>>
-> >>> 3. Routing interrupts from "int0" is a common solution in practice, b=
-ut
-> >>> theoretically there is no such requirement, as long as conflicts are
-> >>> avoided. So "interrupt-names" should be defined by "pattern".
-> >>
-> >> Why? What the pattern has to do with anything in routing or not routin=
-g
-> >> something?
-> >
-> > First of all, interrupt routing is configurable and each intx handles
-> > up to 32 interrupt sources. int0-int3 you can choose a single one or a
-> > combination of multiple ones, as long as the intx chosen matches the
-> > parent interrupt and is not duplicated:
-> > Parent interrupt --> intx
-> > 2-->int0
-> > 3-->int1
-> > 4-->int2
-> > 5-->int3
-> >
-> > As:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/arch/mips/boot/dts/loongson/loongson64g-package.dtsi?h=3Dv6.5-rc6#n24
-> >
-> > In addition, if there are 64 interrupt sources, such as the mips
-> > Loongson-2K1000, and we need two dts nodes to describe the interrupt
-> > routing, then there is bound to be a node without "int0".
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/arch/mips/boot/dts/loongson/loongson64-2k1000.dtsi?h=3Dv6.5-rc6#n60
->
-> All of them start from 0, so why do you want to allow here starting from =
-3?
-
-Actually now we are all starting at int0.
-Since the 2K1000 has 64 interrupt sources, we need two nodes to route
-the interrupts. Usually liointc0 (handle 0-31 interrupts sources )uses
-int0 and liointc1 (handle 32-63 interrupts sources ) uses int1.
-As follows:
-
-                liointc0: interrupt-controller@1fe11400 {
-.....
-                        interrupt-parent =3D <&cpuintc>;
-                        interrupts =3D <2>;
-                        interrupt-names =3D "int0";
-
-                        loongson,parent_int_map =3D <0xffffffff>, /* int0 *=
-/
-                                                <0x00000000>, /* int1 */
-                                                <0x00000000>, /* int2 */
-                                                <0x00000000>; /* int3 */
-                };
-
-                liointc1: interrupt-controller@1fe11440 {
-....
-                        interrupt-parent =3D <&cpuintc>;
-                        interrupts =3D <3>;
-                        interrupt-names =3D "int1";
-
-                        loongson,parent_int_map =3D <0x00000000>, /* int0 *=
-/
-                                                <0xffffffff>, /* int1 */
-                                                <0x00000000>, /* int2 */
-                                                <0x00000000>; /* int3 */
-                };
-
-At this point, liointc1 will be warned that it is not starting from
-int0, and that int0 is actually being used by liointc0.
-
->
-> >
-> > According to the current dt-binding rule, if the node does not have
-> > "int0", there will be a dts_check warning, which is not in line with
-> > our original intention.
->
-> Why DT node would not have int0? Provide proper upstreamed Linux kernel
-> source proving this, not some imaginary code.
->
-> >
-> >>
-> >>>
-> >>> This fixes dtbs_check warning:
-> >>>
-> >>> DTC_CHK arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb
-> >>> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-co=
-ntroller@1fe11440: interrupt-names:0: 'int0' was expected
-> >>>       From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> >>> arch/mips/boot/dts/loongson/loongson64_2core_2k1000.dtb: interrupt-co=
-ntroller@1fe11440: Unevaluated properties are not allowed ('interrupt-names=
-' was unexpected)
-> >>>       From schema: Documentation/devicetree/bindings/interrupt-contro=
-ller/loongson,liointc.yaml
-> >>>
-> >>> Fixes: f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add Loongson=
--2K1000 LIOINTC")
-> >>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> >>> ---
-> >>> V2:
-> >>> 1. Update commit message;
-> >>> 2. "interruprt-names" should be "required", the driver gets the paren=
-t
-> >>> interrupts through it;
-> >>> 3. Add more descriptions to explain the rationale for multiple nodes;
-> >>> 4. Rewrite if-else statements.
-> >>>
-> >>> Link to V1:
-> >>> https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loong=
-son.cn/
-> >>>
-> >>>  .../loongson,liointc.yaml                     | 74 +++++++++--------=
---
-> >>>  1 file changed, 37 insertions(+), 37 deletions(-)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/l=
-oongson,liointc.yaml b/Documentation/devicetree/bindings/interrupt-controll=
-er/loongson,liointc.yaml
-> >>> index 00b570c82903..f695d3a75ddf 100644
-> >>> --- a/Documentation/devicetree/bindings/interrupt-controller/loongson=
-,liointc.yaml
-> >>> +++ b/Documentation/devicetree/bindings/interrupt-controller/loongson=
-,liointc.yaml
-> >>> @@ -11,11 +11,11 @@ maintainers:
-> >>>
-> >>>  description: |
-> >>>    This interrupt controller is found in the Loongson-3 family of chi=
-ps and
-> >>> -  Loongson-2K1000 chip, as the primary package interrupt controller =
-which
-> >>> +  Loongson-2K series chips, as the primary package interrupt control=
-ler which
-> >>>    can route local I/O interrupt to interrupt lines of cores.
-> >>> -
-> >>> -allOf:
-> >>> -  - $ref: /schemas/interrupt-controller.yaml#
-> >>> +  In particular, the Loongson-2K1000/2K0500 has 64 interrupt sources=
- that we
-> >>> +  need to describe with two dts nodes. One for interrupt sources "0-=
-31" and
-> >>> +  the other for interrupt sources "32-63".
-> >>>
-> >>>  properties:
-> >>>    compatible:
-> >>> @@ -24,15 +24,9 @@ properties:
-> >>>        - loongson,liointc-1.0a
-> >>>        - loongson,liointc-2.0
-> >>>
-> >>> -  reg:
-> >>> -    minItems: 1
-> >>> -    minItems: 3
-> >>> +  reg: true
-> >>
-> >> No. Constraints must be here.
-> >
-> > May I ask a question:
-> > Since different compatibles require different minItems/minItems for
->
-> You don't have this case here. I don't see any device asking for 4 regs.
->
-> > the attribute, this writeup of defining the attribute to be true first
-> > and then defining the specific value in an if-else statement is not
-> > recommended?
->
-> The top-level defines widest constraints and if:else: narrows them per
-> each variant.
->
-> ...
->
-> >>> +        reg-names:
-> >>> +          minItems: 2
-> >>> +          items:
-> >>> +            - const: main
-> >>> +            - const: isr0
-> >>> +            - const: isr1
-> >>
-> >> Srsly, why this is moved here from the top? It does not make sense.
-> >
-> > In liointc-2.0, we need to deal with two dts nodes, and the setting
-> > and routing registers are not contiguous, so the driver needs
-> > "reg-names" to get the corresponding register mapping. So I put all
-> > this in the liointc-2.0 section.
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/drivers/irqchip/irq-loongson-liointc.c?h=3Dv6.5-rc6#n225
->
-> This is driver. You need to show the DTS, not driver.
->
-> >
-> >         if (revision > 1) {
-> >                 for (i =3D 0; i < LIOINTC_NUM_CORES; i++) {
-> >                         int index =3D of_property_match_string(node,
-> >                                         "reg-names", core_reg_names[i])=
-;
-> >
-> >                         if (index < 0)
-> >                                 continue;
-> >
-> >                         priv->core_isr[i] =3D of_iomap(node, index);
-> >                 }
-> >
-> >                 if (!priv->core_isr[0])
-> >                         goto out_iounmap;
-> >         }
-> >
-> >
-> > I referenced other dt-binding writeups and thought this would be cleare=
-r.
-> >
-> > Is this if-else style not recommended? Should I keep the v1 patch write=
-up?
-> > https://lore.kernel.org/all/20230815084713.1627520-1-zhoubinbin@loongso=
-n.cn/
->
-> if:else: is recommended, we do not discuss it. Your v1 was making
-> everything totally loose, so incorrect. Explain - why the reg-names are
-> not correct for the other variant? We expect just to have maxItems for
-> the other variant... unless reg-names are not correct, then they can be
-> made false - which you didn't.
->
-This is mainly due to discontinuities in register definitions.
-
-Interrupt routing configuration involves two aspects of registers (32 bits)=
-:
-1. interrupt configuration registers: including interrupt enable,
-interrupt status, etc;
-2. the CORE routing register: indicating which CORE to route to.
-
-First of all, for liointc-1.0, e.g. Loongson-3A, they are contiguous
-and we only need a set of register definitions, so reg-names are not
-needed.
-
-                liointc: interrupt-controller@3ff01400 {
-                        compatible =3D "loongson,liointc-1.0";
-                        reg =3D <0 0x3ff01400 0x64>;
-...........
-                };
-
-However, for liointc-2.0, e.g. Loongson-2K1000, they are not
-contiguous and we can only define them separately (main/isr0/isr1).
-
-                liointc0: interrupt-controller@1fe11400 {
-                        compatible =3D "loongson,liointc-2.0";
-                        reg =3D <0 0x1fe11400 0 0x40>,
-                                <0 0x1fe11040 0 0x8>,
-                                <0 0x1fe11140 0 0x8>;
-                        reg-names =3D "main", "isr0", "isr1";
-..........
-                };
-
-
-Unfortunately, the Loongson-2K0500 is again special in that it is a
-single-core CPU. therefore the core1 routing register (isr1) does not
-exist.
-
-                liointc0: interrupt-controller@1fe11400 {
-                        compatible =3D "loongson,liointc-2.0";
-                        reg =3D <0x0 0x1fe11400 0x0 0x40>,
-                              <0x0 0x1fe11040 0x0 0x8>;
-                        reg-names =3D "main", "isr0";
-......
-                };
-
-So I would like to set the minItems of reg-names to 2 (main/isr0).
-
-Thanks.
-Binbin
-
->
-> Best regards,
-> Krzysztof
->
