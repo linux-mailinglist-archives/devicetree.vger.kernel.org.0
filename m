@@ -2,118 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73CCA786FAD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97478786FB1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236638AbjHXMxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S238079AbjHXMxw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 24 Aug 2023 08:53:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58834 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241070AbjHXMxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:53:23 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02F632102;
-        Thu, 24 Aug 2023 05:53:00 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b703a0453fso110607101fa.3;
-        Thu, 24 Aug 2023 05:53:00 -0700 (PDT)
+        with ESMTP id S241409AbjHXMxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:53:42 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74DF1BCD;
+        Thu, 24 Aug 2023 05:53:17 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so8333394a12.0;
+        Thu, 24 Aug 2023 05:53:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692881578; x=1693486378;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0ZbCgUGLVJxh28Fxtwbt5g9eIsJm3RzEc1jzzP0yoCo=;
-        b=Zm1eTXCTpxH13MilotK4gLLyp1TbdHgb3kXzTCRMZ7vm6+7pNxA5vKT8tQNSJ8w3NW
-         3rM8MZZUbCWFGiOUrYDUKeL1ak8UPEI+B+4ybjWK4wGrvPlpBHPGXwrVw3ZcZj/iyQpg
-         kEUcIrb5O/3QPr3UqMKaHoST5ZrljRcUnu5NzmC2BlGibqm2E3bXjySa3KFHaveorf57
-         Q9ky8w0/4RYjiS12m7S+g4bz9lEqg7L4Pw2P+JSlbv02uvcpuU4Jx9I6roRqIo7qzIaT
-         hrc/6wUj9EbZEu0wMu8Q9dySRYC65QGM7tKvMYVdCwGkW7Ms2loBkgIXNzchQrSVTm3A
-         xuYQ==
+        d=gmail.com; s=20221208; t=1692881596; x=1693486396;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=a0dA5RBeqQfeg878QxKWVqpPWMWAEfr+8oDDT8byqQI=;
+        b=RF9ui2WSjGQ6tmIHflrg+sz4KTW/5vgSY49OnreCxBuh47WCh2TVPJN2SWvHan34x6
+         7dMRs5M2Zwk1kUYgd0htxegkIac+deoicYBbw/Ae6dinHTXopD3TeHHrzG1Ofd9SWh9m
+         eJsySo1U5huPIruN039gIwHmO1969eNLjH0MgilRVMsTrKwA2zEgn1qOPixVDif3Uy7Q
+         Ece8Ux/sbUttbFOlbjkczeYSZ/eI7wYNEjJxI+OZS8b9jZHN9j/ckQYKmU+MGUb7bVIq
+         Uc3xpWczTuQQfIDWKXPjpclTztR0waA6/9RTQlQjCLt+oDEPRcBviiTdVdUSaCJGmFrX
+         /PRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692881578; x=1693486378;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692881596; x=1693486396;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0ZbCgUGLVJxh28Fxtwbt5g9eIsJm3RzEc1jzzP0yoCo=;
-        b=kAA0Qzv6uK5gK0ZuK9u3SO+ABpyiXqwXPyjUEU4StrOkKLFvHoEeRPM6lB31GJYnfw
-         1sAV3AnisHr51jo7z5VNeonjGAdm72kH9g7i5DHaspfFk1fyZKDcHJ4ohJ8kYX6rOuQV
-         3h1iwlOC0MOYE33hzswqXJYJlcqy6KiAVg2MCi69BkVk60g1FPrDw2sPnLiBzyQu+udg
-         FRLaqkoNkeH5TOdYaJGvPmH5vG2N5Hl1MKAiRBuXntOffdukEKEEOhSNa0HivnUR/tWC
-         fnbp2WYqirG5Y8JTScHIHemWHYp1BNvNVLHYiE7+Fi2yoQeHD2xddtP9chqvS7FwKf/E
-         e3gA==
-X-Gm-Message-State: AOJu0YwdzLhyHKfHJemlUo4DZ5Rq8WKyTzwmKU50quT+8o2insBiN9pi
-        0oUs8n6MFoOlfXChXezyoSM=
-X-Google-Smtp-Source: AGHT+IHUj25zsFGZ+80EmSJ3pzZ9+7FoEVs88pwzrJzoTaPK1DtahFJU8ZEEyM7xNK3RdPsHBIwQuQ==
-X-Received: by 2002:a05:6512:689:b0:4fe:85c:aeba with SMTP id t9-20020a056512068900b004fe085caebamr14218210lfe.21.1692881578458;
-        Thu, 24 Aug 2023 05:52:58 -0700 (PDT)
-Received: from [172.16.196.206] ([213.255.186.46])
-        by smtp.gmail.com with ESMTPSA id q4-20020a19a404000000b0050078c9b53asm2270206lfc.231.2023.08.24.05.52.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 05:52:57 -0700 (PDT)
-Message-ID: <eb47d0c9-9144-c947-f91e-d487c6ec9c45@gmail.com>
-Date:   Thu, 24 Aug 2023 15:52:56 +0300
+        bh=a0dA5RBeqQfeg878QxKWVqpPWMWAEfr+8oDDT8byqQI=;
+        b=IyU4MHuRRledJQpNtckcriXQdkwXtZZp4fcA1XVBxN27CPubtWL1+PEOLJ5cUGLWB/
+         d6y69tVPnlGy+3rx3NlzGi8FzLjXJKBooFjHjeNxShekKvBYxoPyVG0tj1XWZJFnWYvM
+         eO52euJtd2dfQ6oRc6L+laF6eEiZaNf3YtYPGYRX85CefOLe07afgTfaES8PbhNobuia
+         Cb2KszCnDp2SzDEVkM/AbPnPPa+p4n8xyQKjaiUs/Frbf3aPbiRjoq98fPJ1tV2Wx/Zx
+         RD9fItaSXC7kHHmxWq4Y42Dyd21N8Ok6KVgkeQ+McUemCNDTZrsWOoHLQ3ObhkI5zrpN
+         j4ag==
+X-Gm-Message-State: AOJu0Ywx7gm/SeavgUz3MUILuvtIN0jicgleDyctLoKfdOukbYGzeLMy
+        moMh5RHlNX+hPLDyY1DXMjA=
+X-Google-Smtp-Source: AGHT+IHv0X6KM0uXkODlETxpSedIundnk78PbDvW0KmpO6HfL0/XBwc9GqUwPP4VLqm9gGglEBBxLg==
+X-Received: by 2002:aa7:dd47:0:b0:523:ad6e:7d00 with SMTP id o7-20020aa7dd47000000b00523ad6e7d00mr9713493edw.6.1692881595960;
+        Thu, 24 Aug 2023 05:53:15 -0700 (PDT)
+Received: from fedora ([85.93.123.158])
+        by smtp.gmail.com with ESMTPSA id v14-20020a056402184e00b0052a3edff5c3sm1362554edy.87.2023.08.24.05.53.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Aug 2023 05:53:15 -0700 (PDT)
+Date:   Thu, 24 Aug 2023 14:53:13 +0200
+From:   Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linus.walleij@linaro.org, quic_jhugo@quicinc.com,
+        nipun.gupta@amd.com, tzimmermann@suse.de, ogabbay@kernel.org,
+        mathieu.poirier@linaro.org, axboe@kernel.dk,
+        damien.lemoal@opensource.wdc.com, linux@zary.sk, arnd@arndb.de,
+        yangyicong@hisilicon.com, benjamin.tissoires@redhat.com,
+        masahiroy@kernel.org, jacek.lawrynowicz@linux.intel.com,
+        geert+renesas@glider.be, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com
+Subject: Re: [PATCHv5 2/4] wiegand: add Wiegand bus driver
+Message-ID: <ZOdSudrhg/9u3a9N@fedora>
+References: <20230824111015.57765-1-m.zatovic1@gmail.com>
+ <20230824111015.57765-3-m.zatovic1@gmail.com>
+ <2023082420-quaking-barley-47b4@gregkh>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v8 6/7] iio: accel: kionix-kx022a: Add a function to
- retrieve number of bytes in buffer
-Content-Language: en-US, en-GB
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc:     jic23@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1692824815.git.mehdi.djait.k@gmail.com>
- <923d01408680f5ac88ca8ee565a990645578ee83.1692824815.git.mehdi.djait.k@gmail.com>
- <ZOdFyKHBc6BcOgZw@smile.fi.intel.com>
-From:   Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <ZOdFyKHBc6BcOgZw@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2023082420-quaking-barley-47b4@gregkh>
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/24/23 14:58, Andy Shevchenko wrote:
-> On Wed, Aug 23, 2023 at 11:16:40PM +0200, Mehdi Djait wrote:
->> Since Kionix accelerometers use various numbers of bits to report data, a
->> device-specific function is required.
->> Implement the function as a callback in the device-specific chip_info structure
+On Thu, Aug 24, 2023 at 01:40:35PM +0200, Greg KH wrote:
+> On Thu, Aug 24, 2023 at 01:10:13PM +0200, Martin Zaťovič wrote:
+> > +static inline void wiegand_controller_put(void *ptr)
 > 
-> ...
+> Why is this a void *?  It should be "struct wiegand_controller *"
+
+It is a void* because it is being passed to devm_add_action_or_reset()
+and this function only accepts a pointer to a function that accepts a void*
+parameter. I am not sure if there is a way around it.
+
 > 
->> +	int ret, fifo_bytes;
->> +
->> +	ret = regmap_read(data->regmap, KX022A_REG_BUF_STATUS_1, &fifo_bytes);
->> +	if (ret) {
->> +		dev_err(data->dev, "Error reading buffer status\n");
->> +		return ret;
->> +	}
->> +
->> +	if (fifo_bytes == KX022A_FIFO_FULL_VALUE)
->> +		return KX022A_FIFO_MAX_BYTES;
->> +
->> +	return fifo_bytes;
+> Please never use void * if at all possible.
 > 
-> This will be called each time ->get_fifo_bytes() called.
-> Do you expect the fifo_bytes to be changed over times?
-> Shouldn't we simply cache the value?
+> > +static inline void wiegand_unregister_driver(struct wiegand_driver *wdrv)
+> > +{
+> > +	if (wdrv)
+> 
+> How could this ever be true?
+> 
+> > +		driver_unregister(&wdrv->driver);
+> > +}
+> > +
+> > +static inline struct wiegand_driver *to_wiegand_driver(struct device_driver *drv)
+> > +{
+> > +	return drv ? container_of(drv, struct wiegand_driver, driver) : NULL;
+> 
+> How could drv be NULL?
+> 
+> And you should make this a const *, right?
 
-I think this value tells how many samples there currently is in the 
-FIFO. Caching it does not sound meaningful unless I am missing something.
+Will fix the other issues. Thank you!
 
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+> 
+> thanks,
+> 
+> greg k-h
