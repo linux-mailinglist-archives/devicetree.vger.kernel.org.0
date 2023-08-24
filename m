@@ -2,133 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CAA6787851
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 21:02:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 311E4787886
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 21:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243067AbjHXTBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 15:01:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43164 "EHLO
+        id S243221AbjHXTdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 15:33:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbjHXTBu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 15:01:50 -0400
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2067.outbound.protection.outlook.com [40.107.6.67])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030951BCE;
-        Thu, 24 Aug 2023 12:01:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=H5YID0RQWM8HBYkbRMiEyE1/vFv+ZLJ4a5m9AVWg+Gnnxn7Ayuj9BJPvv1PoGk4t+qMSbm+nD21R0eespfqyDpkQLHqlT83ZNju2ert4o3X7ifnfIlEmm3H8BGSITSiFU7PrmJURGRYiF+x2gBxVflHAsjcR50S8rJWUr1HLfoHwJhn8O315CzK0iqxHqntmOwYRdvxTni88pEvhQjoWd8pabx/OJJBS9UhFF9S9Y67V63OiGyJpVCe1fG/s+xtk2l6qLuz5Fq3O3vSVfXrvN2YMcgHgGz/E+Ih/01kNBTs/OfNU2ImBKTNhYAT11Xq7lEuKAR7XCxd5/N7plNvyjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tL9T7NwWO7l2JB7m2fFJb3CYzqYVl/uoOP21Vk2r+lY=;
- b=FxVEnOngExikka1OueOWHKBLi/lpreBJNh66VVh6IrKIHhGEbgi5qgiXvFIVWYh4+RXTVhAK9dRR8ZL5Os10AizOWTAwVpJPElnahfXW34H3EyOM/rjfHggujvzi1zM5jE8HzINaT7HNkUFTlE0HWaFOZlbhQRVfUI33pdvz0mf57+YN4jYyditpTO+0Y8W10HNvJGFvqsAkq9dD8AOHT15OtsR5XaKnpbuvWGtv4MJ4KiAmZkt5SEWnwCBs7RRV934fvohirfT4B3SMF3Fu4buySjguDrY/Y/WWRlbmjb7NkoTb+6EmdqRJr0inYaJ1yF4CbreecSH9bDCo2XdjuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tL9T7NwWO7l2JB7m2fFJb3CYzqYVl/uoOP21Vk2r+lY=;
- b=lHoldhJmP2cft3iAF98qdIzJJ+OF3Zl/AWvVWeQoh/0Q7h2kGeCjKny9ZuRXsqwFnO21D7257AQAgu1CzS3r7IbboNDgfRVXLohQbGhbSjbdoVUsO1MwjSQafREcRMhK9GDgRBW4lsf6mDZrav0x/c1e3g4dkCBekEL4jjyN66k=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AS1PR04MB9477.eurprd04.prod.outlook.com (2603:10a6:20b:4d9::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
- 2023 19:01:45 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::a680:2943:82d1:6aa8]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::a680:2943:82d1:6aa8%3]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
- 19:01:44 +0000
-Date:   Thu, 24 Aug 2023 15:01:30 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     "tglx@linutronix.de" <tglx@linutronix.de>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>
-Cc:     Aisheng Dong <aisheng.dong@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>, "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
-        Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-Subject: Re: [PATCH 0/3] Add RC-to-EP doorbell with platform MSI controller
-Message-ID: <ZOepCkqSnUmTdGHX@lizhi-Precision-Tower-5810>
-References: <20230426203436.1277307-1-Frank.Li@nxp.com>
- <AM6PR04MB483849BE4788EE893306F38E88759@AM6PR04MB4838.eurprd04.prod.outlook.com>
- <ZIdFFV5TdAy//Aat@lizhi-Precision-Tower-5810>
- <ZLVK7xX7kPjNaah+@lizhi-Precision-Tower-5810>
+        with ESMTP id S243251AbjHXTdD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 15:33:03 -0400
+Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 196D11FC0;
+        Thu, 24 Aug 2023 12:32:58 -0700 (PDT)
+Received: by mail-qv1-xf34.google.com with SMTP id 6a1803df08f44-64f5aeb81d1so1238556d6.0;
+        Thu, 24 Aug 2023 12:32:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692905577; x=1693510377;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=PXTiADtFRccT5Y0voFX1op9t21pDs8SfnmVkAo137ds=;
+        b=jAMC81iGLsIWjAraBZgU89taVexv2lGcT2XTVx0NSJT5edaiaL82F0Fo6k2LU7afwv
+         yNO7vcns1ie2vGK886yelsn9ltvOtbIvL03DF6noVdGO0R09Q7NVGsjaO0vdrSdnKEjb
+         1yzK73KgWPELXEXqerthwGzLVcLxpMefghRGGu/9tLnqQ1Z1rdkBBSU3DLbUGVhj2lLW
+         +GuDEWkp9klPubtECtYzftIM/YzTLQERtAzVNY3UVj3xXjcyzpaGihe0I6RBLr3KN0mh
+         NopzbXMokeS5ptQ4HXoKe7aCd6KY3HckI0G/sG1eZXIN+etAltRrFfv7Abvb630Golx4
+         YGyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692905577; x=1693510377;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=PXTiADtFRccT5Y0voFX1op9t21pDs8SfnmVkAo137ds=;
+        b=K6FlC2qg8HUN+UM7kpdIO6Ey1i3XISLp4JNym8I+wXvbN+mXYIq2YsGXy4h2zM9huQ
+         Ppx627TLTYNZ2E6PRBULm+F4zIUYGyJp9zIDqEUIHV5z1Xuu7sdvNP+L0jGNCwxIG5lT
+         36GiLBkZI5G4/D72+i1joF8hjvfwaL1lWm7pCtzfaMcWaErUi8tX3UO/rBz2pMdZLIGO
+         E6xiNg0XIW8UuzNiExWVqIQFhj+XvEsZ8ClrsgDeyJkUfgzC/fDuUU2x8UKZgyYDSY/W
+         INjlUEtM6KI8lS3iixb2AuBNnIfu6evtK9qbofCxPsGQWTn9He6BjyvS43sagFleyxYt
+         YnBQ==
+X-Gm-Message-State: AOJu0YxmtbXhocyoSPzsqB4YDFc7T6UxTZihHGbyyZwtSJjmwCYhaKNy
+        Ohv8fgv4xK2ZkQBlYeyljeU=
+X-Google-Smtp-Source: AGHT+IGwWWK+z/JuHDt19SBFENb3BLGaGrIO8dsgT43TTRjXI0smAq9VkMOoyvvThqOYKrJbhlcj7g==
+X-Received: by 2002:a05:6214:3bc4:b0:64f:42f7:8452 with SMTP id ng4-20020a0562143bc400b0064f42f78452mr14950509qvb.40.1692905577002;
+        Thu, 24 Aug 2023 12:32:57 -0700 (PDT)
+Received: from shaak (modemcable063.135-226-192.mc.videotron.ca. [192.226.135.63])
+        by smtp.gmail.com with ESMTPSA id l9-20020a0ce509000000b0064a5de64668sm14353qvm.141.2023.08.24.12.32.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Aug 2023 12:32:56 -0700 (PDT)
+Date:   Thu, 24 Aug 2023 15:32:54 -0400
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/3] iio: adc: add ltc2309 support
+Message-ID: <20230824193254.GB3659959@shaak>
+References: <20230824-ltc2309-v1-0-b87b4eb8030c@gmail.com>
+ <20230824-ltc2309-v1-1-b87b4eb8030c@gmail.com>
+ <fe4a3bf9-2260-fb41-a20b-2bf05b6c02e9@linaro.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZLVK7xX7kPjNaah+@lizhi-Precision-Tower-5810>
-X-ClientProxiedBy: SJ0PR13CA0062.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::7) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AS1PR04MB9477:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4fddd50-2eef-4927-b081-08dba4d48efb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kOJjNhuwIo4tGF212aUHbDJja5Gg2dhCK9CedxvoV7BKUlJVfV8kt70ib/hDMP7dEAIhj/Uzaclf2Q7ppAMwVWR6yC/FKlz7FHOBk1RsHKDmpf95GAbTE74s05IRQ1QiNWjKGRuUdA/rNnUHx6K/BXlpUcltQljVibn7XBwWTKVPkexA8pjSDsgd9/X70UnPv8ee/GdQymJlFOJPTvBEsAOo2i+tFzOv7zE/IAY4PBJjuTXUF+hqrGTzZF7tI3VLiMl/FsrepgIU7BRysmJmrsx/JZvc4hxDhxZ+B/5D6f9mA0mThFuwkgE2SyLv6kcf378rT5AfsH2c5G7mvbX/HLszQCEeWSRkz5oafDyawA8irzWkDnaay7KPzFtlMt5QxDlFwGk/li5cMuBatk+LimpvBJ1BchWc6d6LFz5zONe0ZE6BCLICfVoen308zFxIUCth9pqC0/kfFmHqj/e4KdhA0K+uaWocX2TV0GRHqjq5v8a0rE3s6TUO2lSEauJiqslspGFgw+fhWs/nkzXVUvfoCF/5i4EDz/QAgLb0CWGcGiTdSuU88jVzsT/y2JSF5leNePIsCDVjzMKmImEf7Iy0VPzKZ80txOqzpxWTJHjm0klnFFmCWTh2wCKrlIoN
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(376002)(39860400002)(396003)(366004)(136003)(346002)(186009)(1800799009)(451199024)(5660300002)(8936002)(4326008)(8676002)(83380400001)(7416002)(38350700002)(26005)(38100700002)(6666004)(66556008)(66946007)(66476007)(6506007)(54906003)(33716001)(316002)(110136005)(478600001)(41300700001)(52116002)(2906002)(6512007)(9686003)(86362001)(6486002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PbCHERB2t17Yh8fASB2woDylN4RvJ2RUYHzFJidw3IzDxhC+HYiEcyiixuOB?=
- =?us-ascii?Q?mKLlcHe0ISPLb0+P5dOAUVBfPUS0zn+fl7WZxyniK70/+rM9+upFEeeQz1B/?=
- =?us-ascii?Q?6ETX3EHIXvjukuNEq3qa3+ufEBYUdlmiKleCwHlyoqvfDdekuiDKbq4I8uLZ?=
- =?us-ascii?Q?1oIMWhStSSt8eJa0luzf/F1FvKAmLZPXVaSD56fn9eBw3juKOBR2M4c94ymX?=
- =?us-ascii?Q?Yfjzqi+llUXAp+XLlSYkC+jPqatObKtaZq3FDytKBSQKWwQUWAN9PLYOXuXD?=
- =?us-ascii?Q?JWFjOVt9o2WsCuBYoKox/Y21C55nxqlhuAZvhw6STN0uI+SxGt3JQTnywtQP?=
- =?us-ascii?Q?0ec3ejC+EYy/FiUdgBGtDRpJdsOlE0ELIJ/blziFIkNbB3MTApYG9OEmsZYg?=
- =?us-ascii?Q?z3XNgv+qPasWxp+0HiAKFK/njQlhBdYHeJkPQyuKmkL5txB1HGowkZr9IRrs?=
- =?us-ascii?Q?dnDA8f6kpOLI1PzfcxJIpOksQow7FARiL4MQlerXtGtaTMd7PY0t8YlPwfyU?=
- =?us-ascii?Q?AN95tY7FQRoFL80UVYScZly/6W4Ej8N6raCHW+Gnff1NOd1g/pMQR8MEeQdc?=
- =?us-ascii?Q?jDuj2V52v6A2Rb0yJaBme+PP9vmkWbEniC4e9BvUnfB7pk61tY+qbifOynCY?=
- =?us-ascii?Q?AxFRkb1eZpdqsUVzwBVJXxvDzG3iHHunWEW2CpVs7kBwpXS8rVD/+nEnbiXO?=
- =?us-ascii?Q?acXlucwrGKVumlBtdm57iangXkQUr+w3iPOSJ7755ISGUk/iz97URtSjyL4f?=
- =?us-ascii?Q?+KgSqmfeLSXM9zS5hZ97LT/i2GYIlDTp7z+sNtUU01Wp0ini8Y159tlcONzI?=
- =?us-ascii?Q?XToQAWKT6su249ovlow02lVVwYCMAi4RQWNgwuGM5WMT0Yn8XBvJXU8EEava?=
- =?us-ascii?Q?kTrCgbPLy/eOyit5JO4p6JYkD/DOiFLp1Rcm/TT7kYMQUSm7Ajxg2vfzGRkE?=
- =?us-ascii?Q?lk8vBnxxEoBi6R/A0w1zCMx1GpCpnXhbD21gWVFmy91TnZgHKW2yrEcbTRCE?=
- =?us-ascii?Q?o0FU7m4bOduKNGz97n8ePxXJ99yvkxomftC8fgPt9FhX7z3lkVGtw5fAUYls?=
- =?us-ascii?Q?iHehqiBaGyLj5nMvjhLG0FD8FoHG4A3aa2lZM06i6qTunNPapmxlt11Z2pZw?=
- =?us-ascii?Q?oIaC5WpfLDTvqDJiqiQ6xwFLUf5rdfIyNZIM/b2WEtJkySZf9Y0gRU9cdbks?=
- =?us-ascii?Q?etSuyumDnZNfCa3uSxh4JAyf1Urx0CmnvzQkUgh2rPbEfSREPKn1SxqA7M2W?=
- =?us-ascii?Q?Psa1MDuvQaqbLvMt8kPvtzKQ1Ix24OHilrqrVZvwDx8bGJd1a7CYY1J6cdSg?=
- =?us-ascii?Q?HvPCdZSfGWDhGtewvuHetrgLHjia3PoO7TT4c73dg/3LChssF6ZDrUgvjId6?=
- =?us-ascii?Q?meyWTfFsBCCpI5Q/qdnPvcGuQXtzsJ/HnNcmCMy9gAoX/ErseSxx4pqgDWMG?=
- =?us-ascii?Q?ywCyTf6Jy5kGBUTLDh8S+lycK20+BN8zPuBuB9Z6meCtoe7HszWJYwGJkcQz?=
- =?us-ascii?Q?C0yDgUwC4uoCU87E6gKPm34/+FSpFiGh7fwQyLMsFhcgo3S+tmxWGNsJDdmf?=
- =?us-ascii?Q?sjrV4BSbfL/siR8mkulsA7z++o86ckTDiTXUyf5V?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4fddd50-2eef-4927-b081-08dba4d48efb
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 19:01:44.5602
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: N6FgnfEuLhH0/XHO8ZM3JDZqzGOiDxC11Xn4oYPs/m8xD3Iz5MackjP5fPL3qBZmPQNc8ZiSHtTSYAAmjgCfPQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9477
+In-Reply-To: <fe4a3bf9-2260-fb41-a20b-2bf05b6c02e9@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -136,52 +79,198 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 17, 2023 at 10:06:39AM -0400, Frank Li wrote:
-> On Mon, Jun 12, 2023 at 12:17:25PM -0400, Frank Li wrote:
-> > On Fri, May 12, 2023 at 02:45:12PM +0000, Frank Li wrote:
-> > > > 
-> > > > This patches add new API to pci-epf-core, so any EP driver can use it.
-> > > > 
-> > > > The key point is comments from Thomas Gleixner, who suggest use new
-> > > > PCI/IMS. But arm platform change still not be merged yet.
-> > > > 
-> > > > git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-v2-arm
-> > > > 
-> > > > So I still use existed method implement RC to EP doorbell.
-> > > > 
-> > > > If Thomas Gleixner want to continue work on devmsi-v2-arm, I can help test
-> > > > and update this patch.
-> > > > 
-> > > 
-> > > Ping?
+On Thu, Aug 24, 2023 at 08:00:11PM +0200, Krzysztof Kozlowski wrote:
+> On 24/08/2023 18:55, Liam Beguin wrote:
+> > The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
 > > 
-> > Ping? 
-> 
-> ping? 
-
-@Mani
-     Do you have chance to review these patches? It provide a common
-method with GIC ITS to implement notification from RC to EP.
-
-Frank
-
-> 
+> > This implements support for all single-ended and differential channels,
+> > in unipolar mode only.
 > > 
-> > > 
-> > > > Frank Li (3):
-> > > >   PCI: endpoint: Add RC-to-EP doorbell support using platform MSI
-> > > >     controller
-> > > >   misc: pci_endpoint_test: Add doorbell test case
-> > > >   tools: PCI: Add 'B' option for test doorbell
-> > > > 
-> > > >  drivers/misc/pci_endpoint_test.c    |  41 +++++++++++
-> > > >  drivers/pci/endpoint/pci-epf-core.c | 109
-> > > > ++++++++++++++++++++++++++++
-> > > >  include/linux/pci-epf.h             |  16 ++++
-> > > >  include/uapi/linux/pcitest.h        |   1 +
-> > > >  tools/pci/pcitest.c                 |  16 +++-
-> > > >  5 files changed, 182 insertions(+), 1 deletion(-)
-> > > > 
-> > > > --
-> > > > 2.34.1
-> > > 
+> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
+> > ---
+> >  drivers/iio/adc/Kconfig   |  10 ++
+> >  drivers/iio/adc/Makefile  |   1 +
+> >  drivers/iio/adc/ltc2309.c | 232 ++++++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 243 insertions(+)
+> > 
+> 
+> 
+> 
+> > +static int ltc2309_read_raw(struct iio_dev *indio_dev,
+> > +			    struct iio_chan_spec const *chan, int *val,
+> > +			    int *val2, long mask)
+> > +{
+> > +	struct ltc2309 *ltc2309 = iio_priv(indio_dev);
+> > +	u16 buf;
+> > +	int ret;
+> > +	u8 din;
+> > +
+> > +	mutex_lock(&ltc2309->lock);
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_RAW:
+> > +		din = FIELD_PREP(LTC2309_DIN_CH_MASK, chan->address & 0x0f) |
+> > +			FIELD_PREP(LTC2309_DIN_UNI, 1) |
+> > +			FIELD_PREP(LTC2309_DIN_SLEEP, 0);
+> > +
+> > +		ret = i2c_smbus_write_byte(ltc2309->client, din);
+> > +		if (ret < 0) {
+> > +			dev_err(ltc2309->dev, "i2c command failed: %pe\n",
+> > +				ERR_PTR(ret));
+> > +			goto out;
+> > +		}
+> > +
+> > +		ret = i2c_master_recv(ltc2309->client, (char *)&buf, 2);
+> > +		if (ret < 0) {
+> > +			dev_err(ltc2309->dev, "i2c read failed: %pe\n",
+> > +				ERR_PTR(ret));
+> > +			goto out;
+> > +		}
+> > +
+> > +		*val = be16_to_cpu(buf) >> 4;
+> > +
+> > +		ret = IIO_VAL_INT;
+> > +		break;
+> > +	case IIO_CHAN_INFO_SCALE:
+> > +		*val = ltc2309->vref_mv;
+> > +		*val2 = LTC2309_ADC_RESOLUTION;
+> > +		ret = IIO_VAL_FRACTIONAL_LOG2;
+> 
+> Why this case is in critical section?
+> 
+
+my bad, I'll reduce it to INFO_RAW.
+
+> > +		break;
+> > +	default:
+> > +		ret = -EINVAL;
+> > +		break;
+> > +	}
+> > +
+> > +out:
+> > +	mutex_unlock(&ltc2309->lock);
+> > +	return ret;
+> > +}
+> > +
+> > +static const struct iio_info ltc2309_info = {
+> > +	.read_raw = ltc2309_read_raw,
+> > +};
+> > +
+> > +static int ltc2309_probe(struct i2c_client *client,
+> > +			 const struct i2c_device_id *id)
+> > +{
+> > +	struct iio_dev *indio_dev;
+> > +	struct ltc2309 *ltc2309;
+> > +	int ret = 0;
+> > +
+> > +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*ltc2309));
+> > +	if (!indio_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	i2c_set_clientdata(client, indio_dev);
+> > +
+> > +	ltc2309 = iio_priv(indio_dev);
+> > +	ltc2309->dev = &indio_dev->dev;
+> > +	ltc2309->client = client;
+> > +	ltc2309->vref_mv = 4096; /* Default to the internal ref */
+> > +
+> > +	indio_dev->name = DRIVER_NAME;
+> > +	indio_dev->dev.parent = &client->dev;
+> > +	indio_dev->modes = INDIO_DIRECT_MODE;
+> > +	indio_dev->channels = ltc2309_channels;
+> > +	indio_dev->num_channels = ARRAY_SIZE(ltc2309_channels);
+> > +	indio_dev->info = &ltc2309_info;
+> > +
+> > +	ltc2309->refcomp = devm_regulator_get_optional(&client->dev, "refcomp");
+> > +	if (!IS_ERR_OR_NULL(ltc2309->refcomp)) {
+> > +		ret = regulator_enable(ltc2309->refcomp);
+> > +		if (ret) {
+> > +			dev_err(ltc2309->dev, "failed to enable REFCOMP\n");
+> > +			return ret;
+> > +		}
+> > +
+> > +		ret = regulator_get_voltage(ltc2309->refcomp);
+> > +		if (ret < 0)
+> 
+> You have unbalanced regulator. Same in all further error paths.
+> 
+
+Right, will fix.
+
+I was going to add an action with devm_add_action_or_reset(), and
+noticed a lot of duplicate code adding a custom disable action. Does
+adding something like this make sense?
+
+-- >8 --
+
+diff --git a/drivers/regulator/devres.c b/drivers/regulator/devres.c
+index 90bb0d178885..ff94f35fad87 100644
+--- a/drivers/regulator/devres.c
++++ b/drivers/regulator/devres.c
+@@ -70,12 +70,17 @@ struct regulator *devm_regulator_get_exclusive(struct device *dev,
+ }
+ EXPORT_SYMBOL_GPL(devm_regulator_get_exclusive);
+
+-static void regulator_action_disable(void *d)
++/**
++ * regulator_action_disable - Generic disable action for managed resource
++ * @d: regulator to disable
++ */
++void regulator_action_disable(void *d)
+ {
+ 	struct regulator *r = (struct regulator *)d;
+
+ 	regulator_disable(r);
+ }
++EXPORT_SYMBOL_GPL(regulator_action_disable);
+
+ static int _devm_regulator_get_enable(struct device *dev, const char *id,
+ 				      int get_type)
+diff --git a/include/linux/regulator/consumer.h b/include/linux/regulator/consumer.h
+index 39b666b40ea6..4c018af5d008 100644
+--- a/include/linux/regulator/consumer.h
++++ b/include/linux/regulator/consumer.h
+@@ -207,6 +207,8 @@ struct regulator *__must_check regulator_get_optional(struct device *dev,
+ 						      const char *id);
+ struct regulator *__must_check devm_regulator_get_optional(struct device *dev,
+ 							   const char *id);
++
++void regulator_action_disable(void *d);
+ int devm_regulator_get_enable(struct device *dev, const char *id);
+ int devm_regulator_get_enable_optional(struct device *dev, const char *id);
+ void regulator_put(struct regulator *regulator);
+
+-- >8 --
+
+This would let consumers reuse it directly with something like:
+
+	devm_add_action_or_reset(ltc2309->dev,
+				 regulator_action_disable,
+				 ltc2309->vref);
+
+
+Maybe it should be a separate series, including the cleanup?
+
+> > +			return ret;
+> > +
+> > +		ltc2309->vref_mv = ret / 1000;
+> > +		if (ret)
+> > +			return ret;
+
+I just noticed this extra if. will remove too.
+
+> > +	}
+> > +
+> > +	mutex_init(&ltc2309->lock);
+> > +
+> > +	return devm_iio_device_register(&client->dev, indio_dev);
+> > +}
+> > +
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks,
+Liam
