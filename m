@@ -2,148 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 107A5786F39
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3571C786F12
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 14:31:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236833AbjHXMge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 08:36:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45064 "EHLO
+        id S234653AbjHXMbK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 08:31:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236957AbjHXMg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:36:26 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0556C1711;
-        Thu, 24 Aug 2023 05:36:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692880584; x=1724416584;
-  h=date:from:to:subject:message-id:references:mime-version:
-   in-reply-to;
-  bh=h2/3qkQJA1p3QI2y816NduJfSiyRPzj4RaZqFsPLusM=;
-  b=Eop8YOC7Na5q6WxoYr4JStie27r6xvPnhz51mcG6NQnn4vIoObMqQJsc
-   TuJd8V2L5DgTHhxl3M8u3QKONlEWSrAnZg1RsIFw/aEikb0jxKiAbNVyb
-   cRfYKS6Jh7iEOB7mpG4c+fgOO6jbkovdEGYyHTiEUuf1zno7htQd4iL3R
-   PMEyUeAk78bINAEjKpzHvIW17EZ3lxwwwJwHWgfQoXeegqW8+by7dLmJh
-   OQJiO9Q0NoRKx8oB7bKBR5yoM5vC/VUul4tbcQW3ErosoMC0a5nV32ua9
-   GAj6J6piQpALHw/4birPft1R2UACZ4tA/uwrBXPUgepPAlNkwH4HK6jIK
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="378181006"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
-   d="scan'208";a="378181006"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2023 05:36:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
-   d="scan'208";a="880788602"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2023 05:36:24 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-        by kekkonen.fi.intel.com (Postfix) with SMTP id 2AA1011FAB1;
-        Thu, 24 Aug 2023 15:26:42 +0300 (EEST)
-Date:   Thu, 24 Aug 2023 12:26:42 +0000
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Philippe CORNU <philippe.cornu@foss.st.com>,
-        Dan Scally <dan.scally@ideasonboard.com>,
-        laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH v1 3/5] media: stm32-dcmipp: STM32 DCMIPP camera
- interface driver
-Message-ID: <ZOdMghQXfNgKZ6cN@kekkonen.localdomain>
-References: <20220910144010.34272-1-hugues.fruchet@foss.st.com>
- <20220910144010.34272-4-hugues.fruchet@foss.st.com>
- <ZNC5k3PynnEWL/ou@kekkonen.localdomain>
- <20230824110934.GA18226@gnbcxd0016.gnb.st.com>
+        with ESMTP id S236610AbjHXMau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 08:30:50 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 588F919BD;
+        Thu, 24 Aug 2023 05:30:46 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37OBoSVV009144;
+        Thu, 24 Aug 2023 12:30:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=UCRqQS1uw01pWHW2gGk1Ogj876uWF0qoV3nbx5t6ZWk=;
+ b=PIfQn33ffym4zJKCoELodPhakaLh7l4G0R+YeUX5fwotDQejP905uPYqgceQSc085SGu
+ +CbTziGHXj3LlqUEH555130RamP88MPKa+no+qQpDTHzlSQcn2nYGeh8s+gILsvS2/sJ
+ QP9bJaVtDXY5YCj/ch1oEwXmeI15d0B0vWSdhESk65hKt2ACQDueOyapgq4V0ruTExnu
+ EjNVZX94mytRA2KTRAJiksnW1h3daDwWJDZFTQZOMbYlrSTK4+dLQSV1wM0VrbDqkzi+
+ FpdfbHA84+5wz92rW80enqAAxPWq7iQrUvi55lvFzXCEw4gVvDXnPttYfNpPja7CNpql RQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3snqg3huxh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Aug 2023 12:30:33 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37OCUWHl009622
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Aug 2023 12:30:32 GMT
+Received: from hu-priyjain-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 24 Aug 2023 05:30:27 -0700
+From:   Priyansh Jain <quic_priyjain@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath <thara.gopinath@gmail.com>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_manafm@quicinc.com>, <quic_priyjain@quicinc.com>
+Subject: [PATCH v2 0/2] Enable tsens and thermal for sa8775p SoC
+Date:   Thu, 24 Aug 2023 17:59:59 +0530
+Message-ID: <20230824123001.26778-1-quic_priyjain@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824110934.GA18226@gnbcxd0016.gnb.st.com>
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RHsGDsR-W526B-LM6zOspyU-lnUaBXV5
+X-Proofpoint-GUID: RHsGDsR-W526B-LM6zOspyU-lnUaBXV5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-24_09,2023-08-24_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ lowpriorityscore=0 suspectscore=0 phishscore=0 mlxlogscore=814 spamscore=0
+ bulkscore=0 priorityscore=1501 impostorscore=0 adultscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308240103
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alanin,
+Adding compatible string in TSENS dt-bindings, device node
+for TSENS controller and Thermal zone support
 
-On Thu, Aug 24, 2023 at 01:09:34PM +0200, Alain Volmat wrote:
-> Hi Sakari,
-> 
-> thanks a lot for the review.  I've already taken care of the comments I got
-> from Dan and will also add fixes for your comments as well before
-> pushing the v2.  Before going into that I thought I'd better clarify the
-> framerate part which seems the most tricky part.
-> 
-> On Mon, Aug 07, 2023 at 09:29:55AM +0000, Sakari Ailus wrote:
+Changes since v2:
+- Indentation mistakes are resolved
+- Updated offset of tsens srot region in reg property
+- Updated tsens reg property cells properly
 
-...
+Priyansh Jain (2):
+  dt-bindings: thermal: tsens: Add sa8775p compatible
+  arm64: dts: qcom: Enable tsens and thermal for sa8775p SoC
 
-> > > +static int dcmipp_byteproc_g_frame_interval(struct v4l2_subdev *sd,
-> > > +					    struct v4l2_subdev_frame_interval *fi)
-> > > +{
-> > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
-> > > +
-> > > +	if (IS_SINK(fi->pad))
-> > > +		fi->interval = byteproc->sink_interval;
-> > > +	else
-> > > +		fi->interval = byteproc->src_interval;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int dcmipp_byteproc_s_frame_interval(struct v4l2_subdev *sd,
-> > > +					    struct v4l2_subdev_frame_interval *fi)
-> > > +{
-> > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
-> > > +
-> > > +	mutex_lock(&byteproc->lock);
-> > > +
-> > > +	if (byteproc->streaming) {
-> > > +		mutex_unlock(&byteproc->lock);
-> > > +		return -EBUSY;
-> > > +	}
-> > > +
-> > > +	if (fi->interval.numerator == 0 || fi->interval.denominator == 0)
-> > > +		fi->interval = byteproc->sink_interval;
-> > > +
-> > > +	if (IS_SINK(fi->pad)) {
-> > > +		/*
-> > > +		 * Setting sink frame interval resets frame skipping.
-> > > +		 * Sink frame interval is propagated to src.
-> > > +		 */
-> > > +		byteproc->frate = 0;
-> > > +		byteproc->sink_interval = fi->interval;
-> > > +		byteproc->src_interval = byteproc->sink_interval;
-> > 
-> > Is this used for anything else than configure skipping?
-> > 
-> > I think I'd just have a control for it in that case.
-> > 
-> > I don't think exposing frame interval configuration is necessarily even
-> > meaningful for a device that just processes data but does not produce it.
-> 
-> The DCMIPP is able to perform frame drop, 1/2, 1/4, 1/8 basically.
-> As Dan pointed me out, indeed setting frame interval as we did on both
-> sink and source pad isn't a defined behavior.  I first thought that
-> using the frame interval was the proper way to do that but that is
-> indeed only used on producers such as sensors ....
-> Which ctrl would you propose in such case ?
-
-We don't have one, AFAIK, and I think it may be unlikely this will be
-needed elsewhere. So I'd use a private control.
-
-I wonder what others think. Cc Laurent as well.
+ .../bindings/thermal/qcom-tsens.yaml          |    1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 1096 +++++++++++++++++
+ 2 files changed, 1097 insertions(+)
 
 -- 
-Regards,
+2.17.1
 
-Sakari Ailus
