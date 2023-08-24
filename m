@@ -2,81 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EFFC786AB8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:53:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50D7D7869ED
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:25:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230311AbjHXIwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 04:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51056 "EHLO
+        id S231435AbjHXIZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 04:25:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238017AbjHXIwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:52:23 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E422919A0;
-        Thu, 24 Aug 2023 01:52:15 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37O62MmW021046;
-        Thu, 24 Aug 2023 08:10:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=cx+s08Cj0Mu6Wb6EWjkiCwnzR8pat8n2GF6Pj7jxloM=;
- b=iT/3bF0FFS/89XLAf7FspeRNJn17ynONWKmsv9VQEL+PaKA+/yaTcIfDUkNM0o4APndR
- CaMxUYIlzn163bdtyAj4aoFBgpJqK6IWSBYSTawZtqtclHcQBmmI3aP08E7KLvwkfU2Z
- Rrr2AYpTIpwN5tw3bJ+G6rCfa38nTweG0jeJUfGVK01TRTrD7Q5Vuai8GbgzEpB8RVmH
- dNWK1kB85VJM11wFWlCl6+Aj7vSOc/x6YF9iVWDGVJNni1wXAx6eat0HlsMgCShW2bnG
- K3sJUwGEXCZzDD0koiUnu7zCW/ZQpqeIe5AX8uH/j8sySuLBlunhISUcVFxkgOQAy8Ko eQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sp1k9g7v8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Aug 2023 08:10:52 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37O8Ap9Z029352
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Aug 2023 08:10:51 GMT
-Received: from [10.253.13.101] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 24 Aug
- 2023 01:10:15 -0700
-Message-ID: <f3f05dfe-a8eb-6d73-f51d-470104782655@quicinc.com>
-Date:   Thu, 24 Aug 2023 16:10:13 +0800
+        with ESMTP id S231494AbjHXIYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:24:50 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8661709
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:24:48 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b9cdba1228so100997881fa.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:24:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692865486; x=1693470286;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MBWUe/welSTyLE0XN0FKQ2m/IGgsZK6nJo7F/yrgL6Y=;
+        b=LSoHKy21NykeUkVhVQdpbUKajkdlZpVqlx/6hxXKj4EHeM4spA3kYQ3Jz4WKK5yvAP
+         /SSCnwZ/8xpB0IgIQ5yz/VRfVdPDRBEnG2gI6ZdJVWhr6PRN6V9aBZIUP2ol5FMKNMMV
+         TeUuJ9Ko+aGEJMWnVmkfed73CcADeoi+9f3BbGOfIts/ia/WOJNpYI4Ko9/OH48lUTYF
+         5I2yaQ9ce+D4/EmDDMqDLcpPa6w8rblGqAaxCFKMyB9zLU9n9L96tUXIS6mAScAzHHnV
+         VYaVHPsnNZOAi0lXPljkPMwugt3EIeHvQffSPWNofB00ySMNIyHHvg07rfpDJQ9OVHmv
+         O7oQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692865486; x=1693470286;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MBWUe/welSTyLE0XN0FKQ2m/IGgsZK6nJo7F/yrgL6Y=;
+        b=GQBdHJUH9H18WciHb3xkodV1aBJBqTZWlS2UaHUIwkvaVSGnx+OTjupxTtiOKTILOj
+         qZecgrtp5wUM2f2mj5or0XWdtmzaI0NX00CRcUxlee6Nz12OqNSn4CUJeGqJgwPXan8J
+         IpHKalRUPFR7WbX9IK3m7XNYgahpyrbm+upbDHAlNwJurMHEbkqFebxYjvYHBzSSlalc
+         Z2XKCxEtKALGL5Ik2j0/p8m1JB++cTIk29m/av6Byk/Jr5wYwWTL7zXc4biXohXttwMF
+         OD4oVvD0gxyoRIii/MGr5YYiRNoWi7uUNhhOzP9PrI7TnzHO8eP04wS+A+yGR9wxLXEt
+         DaMw==
+X-Gm-Message-State: AOJu0YycvLS7wmbrgPlcq6Aa+0qAhG2htdTDmbNMXcUDqHfRH+owrUd8
+        Obqn3PON6I04yYzbtA6imQ2Byg==
+X-Google-Smtp-Source: AGHT+IHWcZB9lXJ+vBSQhndi+/YAyJ3D89wEBDbfn5fmHYq1DWowl+vWIotNA3tOjxfImtYPyoRRuQ==
+X-Received: by 2002:a2e:8349:0:b0:2b9:5eae:814f with SMTP id l9-20020a2e8349000000b002b95eae814fmr9589719ljh.50.1692865486158;
+        Thu, 24 Aug 2023 01:24:46 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b? ([2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b])
+        by smtp.gmail.com with ESMTPSA id 14-20020a05600c024e00b003fe2bea77ccsm12946wmj.5.2023.08.24.01.24.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Aug 2023 01:24:42 -0700 (PDT)
+Message-ID: <cdab27cb-fea4-4f09-8a66-ce1aa1090186@linaro.org>
+Date:   Thu, 24 Aug 2023 10:24:40 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 1/4] clk: qcom: branch: Add clk_branch2_mdio_ops
-To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <catalin.marinas@arm.com>,
-        <conor+dt@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <mturquette@baylibre.com>,
-        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>, <will@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_srichara@quicinc.com>
-References: <20230823085031.27252-1-quic_luoj@quicinc.com>
- <20230823085031.27252-2-quic_luoj@quicinc.com>
- <2819cf11177d81ab1fcface7e742cf50.sboyd@kernel.org>
-Content-Language: en-US
-From:   Jie Luo <quic_luoj@quicinc.com>
-In-Reply-To: <2819cf11177d81ab1fcface7e742cf50.sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH V2 1/6] soc: amlogic: modify some power domains property
+Content-Language: en-US, fr
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-2-xianwei.zhao@amlogic.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20230824055930.2576849-2-xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oonPTLbz0wkaJ_1CoqaRcYlSrOzsxEx3
-X-Proofpoint-ORIG-GUID: oonPTLbz0wkaJ_1CoqaRcYlSrOzsxEx3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-24_05,2023-08-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- malwarescore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- lowpriorityscore=0 clxscore=1015 spamscore=0 mlxlogscore=980
- impostorscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2308100000 definitions=main-2308240066
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,32 +105,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 8/24/2023 2:04 AM, Stephen Boyd wrote:
-> Quoting Luo Jie (2023-08-23 01:50:28)
->> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
->> index fc4735f74f0f..5e08c026ca4a 100644
->> --- a/drivers/clk/qcom/clk-branch.c
->> +++ b/drivers/clk/qcom/clk-branch.c
->> @@ -153,3 +153,10 @@ const struct clk_ops clk_branch_simple_ops = {
->>          .is_enabled = clk_is_enabled_regmap,
->>   };
->>   EXPORT_SYMBOL_GPL(clk_branch_simple_ops);
->> +
->> +const struct clk_ops clk_branch2_mdio_ops = {
->> +       .prepare = clk_branch2_enable,
->> +       .unprepare = clk_branch2_disable,
->> +       .is_prepared = clk_is_enabled_regmap,
->> +};
->> +EXPORT_SYMBOL_GPL(clk_branch2_mdio_ops);
+On 24/08/2023 07:59, Xianwei Zhao wrote:
+> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
 > 
-> I'd call it clk_branch2_simple_prepare_ops or something like that.
-> There's nothing mdio specific about it.
+> Some power domains for C3 can be using runtime PM,
+> remove ALWAYS_ON property. And add some power domains
+> description when ALWAYS_ON property.
 
-Thanks Stephen for the proposal.
+The subject should now be:
+genpd: amlogic: ....
 
-As for qcom clock controller, only the device accessed by MDIO bus has 
-this kind of ops, the clk_branch2_mdio_ops can also imply that the MDIO
-bus is used for accessing the HW register, i think this is also the 
-reason that Konrad suggested this ops name.
+same for patches 2 & 5.
+
+> 
+> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+> ---
+> V1 -> V2: None
+> ---
+>   drivers/genpd/amlogic/meson-secure-pwrc.c | 25 ++++++++++++-----------
+>   1 file changed, 13 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
+> index 89c881c56cd7..5ac2437ab8ad 100644
+> --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
+> @@ -122,18 +122,19 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+>   };
+>   
+>   static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
+> -	SEC_PD(C3_NNA,	0),
+> -	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
+> -	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(C3_NNA,		0),
+> +	SEC_PD(C3_AUDIO,	0),
+> +	SEC_PD(C3_SDIOA,	0),
+> +	SEC_PD(C3_EMMC,		0),
+> +	SEC_PD(C3_USB_COMB,	0),
+> +	SEC_PD(C3_SDCARD,	0),
+> +	/* ETH is for ethernet online wakeup, and should be always on */
+> +	SEC_PD(C3_ETH,		GENPD_FLAG_ALWAYS_ON),
+> +	SEC_PD(C3_GE2D,		0),
+> +	SEC_PD(C3_CVE,		0),
+> +	SEC_PD(C3_GDC_WRAP,	0),
+> +	SEC_PD(C3_ISP_TOP,	0),
+> +	SEC_PD(C3_MIPI_ISP_WRAP, 0),
+>   	SEC_PD(C3_VCODEC,	0),
+>   };
+>   
+> 
+> base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
+
+With changed subject:
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
