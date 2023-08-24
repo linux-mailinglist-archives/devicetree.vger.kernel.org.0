@@ -2,142 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A7A786A69
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBD85786A9D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:48:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229764AbjHXIoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 04:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36236 "EHLO
+        id S230027AbjHXIsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 04:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230527AbjHXInf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:43:35 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B22CC172A
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:43:15 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52557cc5e7bso8264407a12.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692866594; x=1693471394;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=psTM6PkHgTPawHaVJ6bzDvzcYA39tQTvt5rxleFKO10=;
-        b=iEPC3IDzW6YHX96pOPzSzmpcFyWj2zBpgPpv4qRhnpeI55+VoEPcde53/SNq4SYI7r
-         OxR1k/QwJ+/WfycLMU7wlU6soKokoNFBmjiHgPhw+um218Kk9jOyImB9pH9qH5ALjioa
-         SxMWWatJ8v0LqLge0/abSFyFnk4ybq3dA3s5VBTBKHKQYM/E+qLHUQ0qZCfRfYazE6GR
-         o3X/l43LHTetY8xpgtFIPo6LY6yzmPsGIidJTfSZ03tCUP8psBofK+ZyTmdy6OfJBn6A
-         8AlpgQZrnjPBPnbjgE0RjR9y3yZwhVBv8T8SxM52Z1hYV6S0Mrr/HEgRC0708uBqQMnQ
-         blZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692866594; x=1693471394;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=psTM6PkHgTPawHaVJ6bzDvzcYA39tQTvt5rxleFKO10=;
-        b=W7o/bW7Nt8m7brllrALVaIDSFUEayFO+7tIyL8cl6opwtnS1QcvYVZTxaiWCD1VXMX
-         f55papj3tlJ65B2WFJvbjpx2qtX77jeLsqWNbY98wHGQNxRiqLarqCBD31usIcJefcfc
-         ElnhsVcSNzdK6BA7u7cxAwXYWmoZub4le03Uj7w0fuqn/gqe3tIXMQSGHtPurHHIZ6AP
-         uOONTpC3VU9MqDIKVYvVz01/KN0j+fYGcjAMY0ELebEKNGIGolgOC4V/r1NLeba26xEj
-         pLRQdwblCgVZiemP5zyfOREQFsNTf5l1Jv/242eCzE4YB9N7Gl7/bIBidHP2VhycBFi/
-         2U+g==
-X-Gm-Message-State: AOJu0Ywj8BnBOSYPOdvieD5wnY5MTplYp07UgSdEmtphnkOFqXDJ0xjy
-        kmHQ237ZwOEwkXzY+UHrFPR2BA==
-X-Google-Smtp-Source: AGHT+IFwelOoWI5YGd5zWjT5DX3gKXVt9ooLDINX8jgzGT4asChH6rsKBW+mzfLxZ1BYuPmx980gvQ==
-X-Received: by 2002:a50:ec8c:0:b0:525:4471:6b59 with SMTP id e12-20020a50ec8c000000b0052544716b59mr12411056edr.7.1692866594088;
-        Thu, 24 Aug 2023 01:43:14 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id q1-20020aa7da81000000b0052237dfa82fsm10159282eds.64.2023.08.24.01.43.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 01:43:13 -0700 (PDT)
-Message-ID: <5894c8db-4b85-e7dd-e894-33aa8a448153@linaro.org>
-Date:   Thu, 24 Aug 2023 10:43:12 +0200
-MIME-Version: 1.0
+        with ESMTP id S240607AbjHXIsJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:48:09 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2100.outbound.protection.outlook.com [40.107.215.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 630DB199F;
+        Thu, 24 Aug 2023 01:46:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VaPN800neYuE1Na6xKL/YNN5KgZ5cWUlbQy683TlixbSAG5wJWjvyXz56EOQAsJsUnrNoP3k3igTrt+ORtxv+82m2h48mbsvSQG7oHJfXcbHkO8zsYLJJvfYe3138MxohR8Hb+qrrBr91Kwubh7SVDpDWj5aBwxbUwYPPtUhoUwfSiiTIvhKlUL0Bnxw72CRxnOTT+l/PnLLSTVLFNGi0XSbMtNcK58+rQ4bdNcg1XY9AfJlIt0JfJO1dqFEGmxx1yZ73aKaaon/bn0XU7s2h9HDHA+vVckNFkYzyBy63O3AYZkVZbp6zfp8W+rxjcp5vdB8kPJ5fdxAsAuHfMMVlw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kBW7YUDrFW5AEPUE8vlSwBsrSF5LzqyLyO+gpJqFzZA=;
+ b=E7CNa0bQsARiYbAUOtnbotDbG5ApeeyMMigi0jPRQn9aNA5Ol7h+RCOsTy+yUWJf+IheZYd8jg9YsEECQN8eG5J3/PceqFsuV7cPPNtgvsPk7e6PKec2+CD2OxQr/aDT65ViOTSap/wzPQ9I0wx++w+nSiB/damORiCqzWioB4xxWwmuhOIIVAJO6UttyLK5QW+VNGfsqvnEbUKekxQCd2SQ+i66N8ZKw3Ma6z0ebux/7ciML8gqLZQzq9a3nDyj4vHDIh5jdFoiJI7oBTiPTuFbtvYpejgmxt6WNcY5yCyvgTOk9zpIIHY/GnGVdzvRIdG0ojxmet1SVurtNn6/WQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kBW7YUDrFW5AEPUE8vlSwBsrSF5LzqyLyO+gpJqFzZA=;
+ b=Wg+8Qvk+qWRAUDR+6JlRLSgGViorjPf9upeZKpAC7CcL8/h/1vGfApo6OenXqAOScu2aSIoD845+TkW7cfQq8QfKsuT10ZEmzrTdsqQUTH3uRQN8/FxHRtJ54hAEjW6jdhSxUs4xavSB9kdeGgA3cH0pByoeQUiiaoUwUN7l/bla+sso6JJ1+EKM4C/f1CRIjIwZ5Tor20Pt9IsGbR564cKSOjiLVWUPLTR8gfCscSXWjF4qqCJHzEblpTcE6Ia1xr94LlChy/qBFMiJ/h9XL7x1Qi91KZPmvHgJxMaRXpZbn9up6XB4k9nlSkJVjO7LxOcGOxMylsknpuMv7VsdMQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by SEYPR03MB8203.apcprd03.prod.outlook.com (2603:1096:101:1a2::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
+ 2023 08:46:15 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::f065:6e23:803b:2a75]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::f065:6e23:803b:2a75%7]) with mapi id 15.20.6699.025; Thu, 24 Aug 2023
+ 08:46:15 +0000
+Message-ID: <423f82b6-d6b8-ee2e-1b31-fe5f1552553e@amlogic.com>
+Date:   Thu, 24 Aug 2023 16:46:09 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v1 2/2] dt-bindings: extcon: Add Realtek DHC RTD SoC
- Type-C
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V2 3/6] soc: amlogic: init power domain state
 Content-Language: en-US
-To:     =?UTF-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     neil.armstrong@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20230822102846.4683-1-stanley_chang@realtek.com>
- <20230822102846.4683-2-stanley_chang@realtek.com>
- <1e0632d6-73e9-4633-a709-bf9140f2fd32@linaro.org>
- <ca406c19e59145fd9e7e035ea5ad3eeb@realtek.com>
- <50ce8e71-613e-1ef5-0c23-67a2f6f78949@linaro.org>
- <1390ad28e50f493fa72209fe29b7f3f4@realtek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1390ad28e50f493fa72209fe29b7f3f4@realtek.com>
-Content-Type: text/plain; charset=UTF-8
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-4-xianwei.zhao@amlogic.com>
+ <91e4a3f1-84ed-4433-90fc-bdfb9b08e57a@linaro.org>
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <91e4a3f1-84ed-4433-90fc-bdfb9b08e57a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SI2P153CA0005.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:140::11) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEYPR03MB8203:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6e535ddd-0cab-4028-7079-08dba47e9390
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uvhdhvg9AGtj9O7JLNR9YhGzJugCo23GReqnbQe902l/HxoUCzAzVP97eMw1d/S9H0GXobxkKQ3Cp4ZJl+Rhva+L6Z0/WUpDsJMgVOFEXRWxkc01WWUrUhSb5A4dyKv9eQXVnYaQJsdMDGy/17yQPazaq02EIRLLppLmV+o+W2qHPLGL43sYyowtSWOSXDlfBPYm3iL06OoOzT2+JNB+anU1wdkuZQtCW0Jhq4r6KsZhCQnRnOjnObrwipGitA0crsR8b8UGuXjz3hfUW1q6fVElI2DfFwiNg/ktdz3jZuY4h/PLwnXEiVnUXyEGq4WIYngEtSRglQqDwYqUhyDcK0Yb0+7J/1VQXbRmtsIWiyZICBPqKVNyT/Z6x2ow9QbRxJTXjjIgVo2yD6trprODgSwlmMYOjazKIp+8SE/ZsHDbAta/cYMovHGEliF4k2clqkrEr4DvzvRNvARXkkudcTXDGkM0YxCQ4Ak4AyFUm1lKJ+YAj6uy4UFulO3ozLX+x+qnfgI9bYEQPYivl+S49XE4pmWJ4UGxEHjeL7iBPw7lctqtB7+MC5xj5MagKjCTl+KHUhJ0EACHcTdcpPnadGr2hU+fPRLo63JZ43ucF2ZzI4x1g0axFJTYYBznIRiz1s5aKsmgPbsudonkVS/N2vz7RhmrYz7JPzY5wxIoy+QcY7+c7EypZR9ywrXBDZlBBiSONrqYcF0wm5KVKXExNAe2SM6Tfo6sQy0DRVYIgANNv/yfQEKZ+EbqDZQCPxY/
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(366004)(376002)(346002)(396003)(39850400004)(451199024)(186009)(1800799009)(54906003)(66476007)(66556008)(66946007)(316002)(478600001)(26005)(44832011)(38100700002)(6666004)(86362001)(53546011)(6486002)(31696002)(41300700001)(6506007)(6512007)(12101799020)(31686004)(4326008)(8936002)(8676002)(2616005)(5660300002)(2906002)(83380400001)(36756003)(45980500001)(43740500002)(309714004);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R3JrNjNZdHRHSjh1Y2JkdzcwWHo4MktBZXhQVFFvck1laWFQdUZZU3d3M2s4?=
+ =?utf-8?B?L0tzeTNCN2xsaDIyWXFiS3J1a3ZmTnpVeEtWSXJIVVBmQ0RQc2hLMFZYSGdD?=
+ =?utf-8?B?UTFqZDVXOEp0Z0Rjc0FRTTEwc2o5ODVubmg5WmgydlBZc1lEMGhDZGFxbVZq?=
+ =?utf-8?B?L2FXN0xxbm85UUV4OWw4akVkRFR1M1hyVEVDQUFXcVdRWGduWkE5YUZwdjFv?=
+ =?utf-8?B?QnlacWFjSHYvbUV3eFlKQlN1UUVQTzBNcUVVaVpSTWFjV2kvMWZNa0xsaDVs?=
+ =?utf-8?B?YWdCaDAyNHVvZVR3ZTdteGVCNlBDSnRIT3E1ZmMxRHJxb0U5bEtDQjlDaHM0?=
+ =?utf-8?B?cmx2L0R0WXR4bnhPaUlVSnJMeS9oN29Ha1ZCcWxFVUJML3MrQ0plaFRMY0M3?=
+ =?utf-8?B?SWRFbkZENm5DT09tZXU4WUFRUHJZZklIQjU2RWpkTnIrenZYNFZqMWM1aEdW?=
+ =?utf-8?B?NHlsZ0lPSEY4b3N4YVBieXpFcHI4SWhaVFJ5Z3A4UzhHb2NHMWZLSW44WWpj?=
+ =?utf-8?B?NVN3dFJxK3lib2R3VG5tSWM3MUluQzNOZnI3cFpyS0hndlE1cjRsMjhxeU5J?=
+ =?utf-8?B?YWpmaGtDaTVLL01Ca3daSmNTQTJkb3lSQ2ZRU21vT3dxYlBvQURBVmlYN0px?=
+ =?utf-8?B?cTJvamxvTlQ5M1RSUDl2bExSUkV3K25WdUhWRlA4MXF2SEw0ZHpaQUhwaEgr?=
+ =?utf-8?B?WXk1V0VUZUdrS2tWRVc0aTgyMU9tWE1qNFFSUUJWeEk1cWtDWjlSSFJHK1Nk?=
+ =?utf-8?B?Zkk5V0FTTVdSRGVRWjlyVVR4aTVKZFQ2bFNqblArNGlxd21zQk00NTU2Njcr?=
+ =?utf-8?B?bncwb21IQkh2SHh5V0RVOGNhTGx5U3Y5aWc2QVM1NUR0RUw1cWM0REMzYWRL?=
+ =?utf-8?B?TzlkaDcxVGEzdEJvQmhwL2liblZDVnhjQjZWdWN5Qm5BME8zSG1zL0hHR1Fk?=
+ =?utf-8?B?WkNwOVRaWlR5aEJnVlIvWHJEWjd5QnYybTl2KzdoWnRkZXRKSmdYTEVZWXNE?=
+ =?utf-8?B?SGlTelJPUjBhaTZaOG5JaC8vNy9VazdhczJrSThUeU02OHpDV1c1V0pSWXUz?=
+ =?utf-8?B?VG1FWm5iaG5VQkErRFRVUXJZTUJCYTU3ZkRISVR5NUR3R2ZOYi9wYlZNREFq?=
+ =?utf-8?B?YXhCemhaS3RYK1VBTU5mdVhMcWtVbW5UaUliQ2pPYTRCS2hGdDErdndneVVy?=
+ =?utf-8?B?dnJnQ0I3U0wrUFhDRVB4OHhZdVowaXltQ2k1NEYzU2VhU2kwYngxV2F0Q2Zs?=
+ =?utf-8?B?VnN6enJsNmVhbkVGOFAvdUl5MUYvWkREaW1oOEJ0SDBEMzNTK3BXYmwxZmNp?=
+ =?utf-8?B?bitGRTRDS2F2cjcrOEo4MGllMUtCL2ZpMHgyOGMyZ24xaCtjZGNhNEhZcFBS?=
+ =?utf-8?B?NjNZbWJLREE4RmJKZDNDQXB1cHRPQVJEcFdJSi9zUlR1N0JVTnoweHFuVWlj?=
+ =?utf-8?B?d1hyZFcyMkgyTFVXaitZUEluN1llQVgrZ0JlR0cxemllTHZaZlFPV1pLL0RF?=
+ =?utf-8?B?WnowNVRnZlhvcFA5QllObjMzVG5HM1RIeFFPRkRPdU52RHdBdkdxNDlqNEpC?=
+ =?utf-8?B?TldZKzJ2TXRRaFkyYllFcHZlRkRyY0JzRFFKMTNZcmM5T0hHVUlMNXN6b2tq?=
+ =?utf-8?B?UTgrUDR5UEVhNDBFUWJ4TDJBenBtV1VHNUNzY3FPT2FnQlBNZVZBU3U2Z0RO?=
+ =?utf-8?B?dzFkZlNzSkNod1hIS3JremI5WExDZ0pqc0k3Z1QwUWVpTzBYVmxaQ1hZS0Qz?=
+ =?utf-8?B?bFhIZzZYU1hIQVVUZm54Z1o1V1pnQU5lT2t3Vkw0ZzlqbU5KT0Q4T2NDd1Br?=
+ =?utf-8?B?U0s0dzVvOU9NMHpIMkg0SjdqMVRsVFFNejg4TzcyckhSQm1EaEYzWlU1YzF0?=
+ =?utf-8?B?SFNDVWV3T1E3azEwVWZKNHdaYlpjR2E2SG92U3RmVHVUQmZLcnNpRk1TazZD?=
+ =?utf-8?B?bHk5eDkyaEFWeWd1SnBTYmFJWWExWjI2T1FHaisvSmlCNEJ3dk5VWDV4VzVS?=
+ =?utf-8?B?emFiMmY2Ri9pR2sreEdENFNHenVSNEtSOEoyb1lpVVdsZnZkVEoyN0pkTDBG?=
+ =?utf-8?B?ODBESzYrWG1qQXo1NVNqVC9qTWIvUTArYnJPSkhtM0J1SkxtNGUzZ3Z0RzdL?=
+ =?utf-8?B?dGs3K3IvRzBGUUxJdWVhUEVldHZNOWpiOHh2R1l2QzVsYVhhNXNuK0JHS1Q3?=
+ =?utf-8?B?T3c9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6e535ddd-0cab-4028-7079-08dba47e9390
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 08:46:15.2650
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sa3Wap/jp6Zk2bb1JYXoSV81YzfmbMRWnOaaIl1UzjCEw03Dg1cii2Lh+fyyEQCLHFEDl148HVhqBFG7q9ThLZ2VaPg7iDCWwbMcbnEqnyo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB8203
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 09:23, Stanley Chang[昌育德] wrote:
-> Hi Krzysztof,
+Hi Neil,
+    Thanks for your reply.
+
+On 2023/8/24 16:30, Neil Armstrong wrote:
+> [ EXTERNAL EMAIL ]
 > 
->>>>> +
->>>>> +title: Realtek DHC RTD SoCs USB Type-C detection
->>>>
->>>> Type-c usually go to usb directory.
->>>
->>> This binding is not for a type-c controller.
->>> It is an extcon device for type-c connector detection.
->>> So I put it at extcon directory.
+> Hi,
+> 
+> On 24/08/2023 07:59, Xianwei Zhao wrote:
+>> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
 >>
->> If this is not a type-c controller, then what is it? Explain me please what is an
->> "extcon device" without using any Linux subsystem naming.
-> 
-> Sorry. "extcon device" may be the wrong name I'm using.
-> 
-> As far as I know, type-c controller supports PD detection, role detection, role swap and cc configuration.
-> But in our SoC, type c module only supports role detection.
-> So I don't think it's a type-c controller.
-
-So module handling some parts of "Type-C" is not a "Type-C controller"
-but if such module handles a bit more, it becomes Type-C?
-
-> 
-> I found a similar driver at
-> drivers/extcon/extcon-usbc-cros-ec.c
-> It belongs to External Connector, which can detect USB Type C cables.
-
-That's a driver, not a binding...
-
-> 
-> So our driver is an external connector driver.
-
-Driver yes, not binding.
-
-> 
->>>
->>> And I will add “connector” to the title.
->>> title: Realtek DHC RTD SoCs USB Type-C Connector detection
+>> If initial power domain with 'AWAY_ON' property state is off,
+>> turn on the power.
 >>
->> So usb...
+>> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+>> ---
+>> V1 -> V2: None
+>> ---
+>>   drivers/genpd/amlogic/meson-secure-pwrc.c | 5 ++++-
+>>   1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c 
+>> b/drivers/genpd/amlogic/meson-secure-pwrc.c
+>> index 76527f4946b4..3e7e3bd25d1f 100644
+>> --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
+>> +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
+>> @@ -55,7 +55,7 @@ static bool pwrc_secure_is_off(struct 
+>> meson_secure_pwrc_domain *pwrc_domain)
+>>                         pwrc_domain->index, 0, 0, 0, 0) < 0)
+>>               pr_err("failed to get power domain status\n");
+>>
+>> -     return is_off;
+>> +     return !!is_off;
 > 
-> I refer to this binding, and it is in folder bindings/extcon.
-> docs/devicetree/bindings/extcon/extcon-usbc-cros-ec.yaml
-> Title: ChromeOS EC USB Type-C Cable and Accessory Detection
-
-So maybe it should be moved as well?
-
-extcon is a Linux framework. If you think extcon is a type of hardware,
-then please tell me what it is exactly. Please define it. And then I
-wonder why the name "extcon" is anyhow connected to Type-C USB.
-
-Best regards,
-Krzysztof
-
+> Can you explain this ? the function returns bool, so if if_off is > 0, 
+> it would return true,
+> so I don't see why you would need to transform is_off into 1 or 0 using !!.
+> 
+I will remove this modify, in next version.
+>>   }
+>>
+>>   static int meson_secure_pwrc_off(struct generic_pm_domain *domain)
+>> @@ -222,6 +222,9 @@ static int meson_secure_pwrc_probe(struct 
+>> platform_device *pdev)
+>>               dom->base.power_on = meson_secure_pwrc_on;
+>>               dom->base.power_off = meson_secure_pwrc_off;
+>>
+>> +             if (match->domains[i].is_off(dom) && (dom->base.flags & 
+>> GENPD_FLAG_ALWAYS_ON))
+>> +                     meson_secure_pwrc_on(&dom->base);
+>> +
+>>               pm_genpd_init(&dom->base, NULL, 
+>> match->domains[i].is_off(dom));
+>>
+>>               pwrc->xlate.domains[i] = &dom->base;
+> 
