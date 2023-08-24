@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 004A2787A2B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 23:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D78787A2E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 23:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243645AbjHXVUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 17:20:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46890 "EHLO
+        id S243202AbjHXVUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 17:20:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243640AbjHXVUC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 17:20:02 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087441BE9
+        with ESMTP id S243647AbjHXVUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 17:20:03 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D34441BCC
         for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 14:20:00 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4ffa94a7a47so371283e87.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 14:19:59 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-500913779f5so366850e87.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 14:20:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692911998; x=1693516798;
+        d=linaro.org; s=google; t=1692911999; x=1693516799;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mp3OxMlQ5f/3XEucj+vCtx08B1iilIkI8HF7qdGL8lY=;
-        b=WMBR48fEAtiuOFYSaAKrg4lOQzMbcPMvh+ryvhJwfZ4uZTZdNM0rVvoS1cIA4hyEzG
-         VdZWINIra6uL44IR7Qc2lAj5Gmkc2f9zT5CkOWzAcKyFW3WNtABjwbsf/LmGvG/JVq9w
-         4AvbBSXX0yMWQAn/xNUkecOLsApdGquNJ20+q/07/NXyD7OGxyw8uUCMQgHKU6AFjP8P
-         vadmUQ4nt3s8EaKA//L/0njnc0pKYoVLSdszEU868p4rhU/2te5Z+SlWV4iw8pV0+VcW
-         GL7Fz/UAFtojRpuGGHwiL3KEXmER7VykqJHuCPvihXmbVZ2XABICrEhxF8kOZ3p9YbSM
-         TjKA==
+        bh=oeyhlBcYF6kNyxOOHtFnOfb9CYrap2bu/TWYuUuCiA8=;
+        b=LIr+P2Qfud/QJoZPo5WWibefJc3ywVDYnMn6/WPQuItRiJdK5jLEVMmOFp8oUFtwcA
+         pDPjjrWnuDFEPfaSR1UEl1HoREknYlVQqFv5+EstYlOiXqDevbtYuiDT2rzQlylRTKgd
+         /OOCQWqulMYXuFTLCAjGWvj/mSQ3W601cez75LPjLMHzJs3Le7oc41Re692JiO3yyc+B
+         2Seql30cEY92jK9XMIEXEjd8rbdNlCyThZVf6eb/9Y6vIBTNyhXWZTRIAbXmkm4vTk8T
+         z0DkiB+dbSn3IKIbc1QClx+G2Xq3hNn5JAPLKRFcLwNYKxMqu87rRdwJnGSOTChU8nk7
+         AinQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692911998; x=1693516798;
+        d=1e100.net; s=20221208; t=1692911999; x=1693516799;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Mp3OxMlQ5f/3XEucj+vCtx08B1iilIkI8HF7qdGL8lY=;
-        b=eAdZ3n8p/Gkp2wKG2NuKu48aG2WmbGiV6SprQrdpAAiQNxCRn10HmgDJfF9+C/Qw6A
-         kGlsM9MFWfx0rvzf2C87YJqlfPNbfD3hDBWMbgHwnRP4cx7rMLZS1Wg8H4O+uQqJKPD5
-         Pl3kAuJQ+xjaKIilis8AhGlQzzSU89o1fo2tn4JutyUH2hjI8fkm+HW6tKOX72d0//FG
-         fGR3XCJ/dCoxYPAPi99+mm32ugwguyaAY1toGLg0drd6ICK+Vj5UHRYvg1RKpXlzldKh
-         7w3P02Ra197OoRJcX932FFxyxnOIk5zIitjzW4O1HZppIwzSbbuA5ww4zTy9ULJ27oFa
-         LFqg==
-X-Gm-Message-State: AOJu0Yy+nTJLkwOYv/q+iQVKVmzKyQZxYAo3rpJNr+WXy1leFBoyJXqb
-        /+3cyuK137uXRpMMrk3zkoAqGw==
-X-Google-Smtp-Source: AGHT+IHyH9FMI2+xgQbIvbU7paqUhcBUhQrFf+ntRdkpX+dNWu28gijxu2GMP5ehPe1DYBin4RC8gQ==
-X-Received: by 2002:ac2:4557:0:b0:4fd:fef8:7a81 with SMTP id j23-20020ac24557000000b004fdfef87a81mr10715275lfm.55.1692911998388;
-        Thu, 24 Aug 2023 14:19:58 -0700 (PDT)
+        bh=oeyhlBcYF6kNyxOOHtFnOfb9CYrap2bu/TWYuUuCiA8=;
+        b=ayd7821e0nhP7fFgi4L0bnwRj9ybTt4GI1/yd7bdDdTr1haLU0byogPC0+Eh278vQv
+         z9WkUhJG+6KXS8F+w19LzvzIgyjBoLs2YAePw4TS/ITbY+s/axnQZkLCLDKRBX3irlgQ
+         lEQLcaSD6EnXq6Z5MeOsMsAjMhOfYOgSUNYlRTl27zO8beq0l/e3CLA/ESiOlt4fsedp
+         L/HkP90VbL4mmBaWEqcK8Hxta+x/TcXOMz0ZwY4UTNXVjaHs8K0sZLMOaCogeQZ60iCU
+         KPersvz7Sc7YRrD6MwsRSHmJfnCvmrAohYO7XXFMuLY44ayWYmaaxwP1OvPDmYCI9DEt
+         MQ4g==
+X-Gm-Message-State: AOJu0YwxG9lTNkis0ku8kYbKlhVilucc6e5uxMDteELpYA3YJVMuL8hk
+        CImAcz0XzpPcWprChazOyr0jM0u+y2M7jH/uuYI=
+X-Google-Smtp-Source: AGHT+IHZw9qQMogH4O1NpLODa4xg3NVisfCxkfeFsG4nZb7pI8xGMxKpmeC5k2th8AGz7xkyx+Rq3g==
+X-Received: by 2002:a05:6512:3241:b0:4fd:f889:b9d2 with SMTP id c1-20020a056512324100b004fdf889b9d2mr10728157lfr.38.1692911999257;
+        Thu, 24 Aug 2023 14:19:59 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id j29-20020a056512029d00b004fe4ab686b4sm17690lfp.167.2023.08.24.14.19.57
+        by smtp.gmail.com with ESMTPSA id j29-20020a056512029d00b004fe4ab686b4sm17690lfp.167.2023.08.24.14.19.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Aug 2023 14:19:57 -0700 (PDT)
+        Thu, 24 Aug 2023 14:19:58 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,9 +61,9 @@ To:     Andy Gross <agross@kernel.org>,
 Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
         Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
         linux-phy@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH v3 05/16] phy: qcom-qmp: move PCS MISC V4 registers to separate header
-Date:   Fri, 25 Aug 2023 00:19:41 +0300
-Message-Id: <20230824211952.1397699-6-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 06/16] phy: qcom-qmp-usb: populate offsets configuration
+Date:   Fri, 25 Aug 2023 00:19:42 +0300
+Message-Id: <20230824211952.1397699-7-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230824211952.1397699-1-dmitry.baryshkov@linaro.org>
 References: <20230824211952.1397699-1-dmitry.baryshkov@linaro.org>
@@ -78,70 +78,150 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move PCS MISC V4 registers to the separate header.
+Populate offsets configuration for the rest of USB PHYs to make it
+possible to switch them to the new (single-node) bindings style.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h | 17 +++++++++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp-usb.c         |  1 +
- drivers/phy/qualcomm/phy-qcom-qmp.h             |  8 --------
- 3 files changed, 18 insertions(+), 8 deletions(-)
- create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 41 +++++++++++++++++++++++--
+ 1 file changed, 38 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h
-new file mode 100644
-index 000000000000..e256a089f228
---- /dev/null
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v4.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2017, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef QCOM_PHY_QMP_PCS_MISC_V4_H_
-+#define QCOM_PHY_QMP_PCS_MISC_V4_H_
-+
-+/* Only for QMP V4 PHY - PCS_MISC registers */
-+#define QPHY_V4_PCS_MISC_TYPEC_CTRL			0x00
-+#define QPHY_V4_PCS_MISC_TYPEC_PWRDN_CTRL		0x04
-+#define QPHY_V4_PCS_MISC_PCS_MISC_CONFIG1		0x08
-+#define QPHY_V4_PCS_MISC_CLAMP_ENABLE			0x0c
-+#define QPHY_V4_PCS_MISC_TYPEC_STATUS			0x10
-+#define QPHY_V4_PCS_MISC_PLACEHOLDER_STATUS		0x14
-+
-+#endif
 diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-index 411cf0ae148d..42a1a3f00759 100644
+index 42a1a3f00759..2a094f2345f0 100644
 --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
 +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-@@ -21,6 +21,7 @@
+@@ -1280,6 +1280,13 @@ static const struct qmp_usb_offsets qmp_usb_offsets_ipq9574 = {
  
- #include "phy-qcom-qmp.h"
- #include "phy-qcom-qmp-pcs-misc-v3.h"
-+#include "phy-qcom-qmp-pcs-misc-v4.h"
- #include "phy-qcom-qmp-pcs-usb-v4.h"
- #include "phy-qcom-qmp-pcs-usb-v5.h"
+ static const struct qmp_usb_offsets qmp_usb_offsets_v3 = {
+ 	.serdes		= 0,
++	.pcs		= 0x600,
++	.tx		= 0x200,
++	.rx		= 0x400,
++};
++
++static const struct qmp_usb_offsets qmp_usb_offsets_v3_qcm2290 = {
++	.serdes		= 0x0,
+ 	.pcs		= 0xc00,
+ 	.pcs_misc	= 0xa00,
+ 	.tx		= 0x200,
+@@ -1288,6 +1295,14 @@ static const struct qmp_usb_offsets qmp_usb_offsets_v3 = {
+ 	.rx2		= 0x800,
+ };
  
-diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
-index 32d897684755..71f063f4a56e 100644
---- a/drivers/phy/qualcomm/phy-qcom-qmp.h
-+++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
-@@ -126,14 +126,6 @@
- #define QSERDES_V4_DP_PHY_AUX_INTERRUPT_STATUS		0x0d8
- #define QSERDES_V4_DP_PHY_STATUS			0x0dc
++static const struct qmp_usb_offsets qmp_usb_offsets_v4 = {
++	.serdes		= 0,
++	.pcs		= 0x0800,
++	.pcs_usb	= 0x0e00,
++	.tx		= 0x0200,
++	.rx		= 0x0400,
++};
++
+ static const struct qmp_usb_offsets qmp_usb_offsets_v5 = {
+ 	.serdes		= 0,
+ 	.pcs		= 0x0200,
+@@ -1299,6 +1314,8 @@ static const struct qmp_usb_offsets qmp_usb_offsets_v5 = {
+ static const struct qmp_phy_cfg ipq8074_usb3phy_cfg = {
+ 	.lanes			= 1,
  
--/* Only for QMP V4 PHY - PCS_MISC registers */
--#define QPHY_V4_PCS_MISC_TYPEC_CTRL			0x00
--#define QPHY_V4_PCS_MISC_TYPEC_PWRDN_CTRL		0x04
--#define QPHY_V4_PCS_MISC_PCS_MISC_CONFIG1		0x08
--#define QPHY_V4_PCS_MISC_CLAMP_ENABLE			0x0c
--#define QPHY_V4_PCS_MISC_TYPEC_STATUS			0x10
--#define QPHY_V4_PCS_MISC_PLACEHOLDER_STATUS		0x14
--
- #define QSERDES_V5_DP_PHY_STATUS			0x0dc
++	.offsets		= &qmp_usb_offsets_v3,
++
+ 	.serdes_tbl		= ipq8074_usb3_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(ipq8074_usb3_serdes_tbl),
+ 	.tx_tbl			= msm8996_usb3_tx_tbl,
+@@ -1333,6 +1350,8 @@ static const struct qmp_phy_cfg ipq9574_usb3phy_cfg = {
+ static const struct qmp_phy_cfg msm8996_usb3phy_cfg = {
+ 	.lanes			= 1,
  
- /* Only for QMP V6 PHY - DP PHY registers */
++	.offsets		= &qmp_usb_offsets_v3,
++
+ 	.serdes_tbl		= msm8996_usb3_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(msm8996_usb3_serdes_tbl),
+ 	.tx_tbl			= msm8996_usb3_tx_tbl,
+@@ -1385,6 +1404,8 @@ static const struct qmp_phy_cfg sc8280xp_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg qmp_v3_usb3_uniphy_cfg = {
+ 	.lanes			= 1,
+ 
++	.offsets		= &qmp_usb_offsets_v3,
++
+ 	.serdes_tbl		= qmp_v3_usb3_uniphy_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(qmp_v3_usb3_uniphy_serdes_tbl),
+ 	.tx_tbl			= qmp_v3_usb3_uniphy_tx_tbl,
+@@ -1403,6 +1424,8 @@ static const struct qmp_phy_cfg qmp_v3_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg msm8998_usb3phy_cfg = {
+ 	.lanes			= 2,
+ 
++	.offsets		= &qmp_usb_offsets_v3_qcm2290,
++
+ 	.serdes_tbl             = msm8998_usb3_serdes_tbl,
+ 	.serdes_tbl_num         = ARRAY_SIZE(msm8998_usb3_serdes_tbl),
+ 	.tx_tbl                 = msm8998_usb3_tx_tbl,
+@@ -1419,6 +1442,8 @@ static const struct qmp_phy_cfg msm8998_usb3phy_cfg = {
+ static const struct qmp_phy_cfg sm8150_usb3_uniphy_cfg = {
+ 	.lanes			= 1,
+ 
++	.offsets		= &qmp_usb_offsets_v4,
++
+ 	.serdes_tbl		= sm8150_usb3_uniphy_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_serdes_tbl),
+ 	.tx_tbl			= sm8150_usb3_uniphy_tx_tbl,
+@@ -1440,6 +1465,8 @@ static const struct qmp_phy_cfg sm8150_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg sm8250_usb3_uniphy_cfg = {
+ 	.lanes			= 1,
+ 
++	.offsets		= &qmp_usb_offsets_v4,
++
+ 	.serdes_tbl		= sm8150_usb3_uniphy_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_serdes_tbl),
+ 	.tx_tbl			= sm8250_usb3_uniphy_tx_tbl,
+@@ -1461,6 +1488,8 @@ static const struct qmp_phy_cfg sm8250_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg sdx55_usb3_uniphy_cfg = {
+ 	.lanes			= 1,
+ 
++	.offsets		= &qmp_usb_offsets_v4,
++
+ 	.serdes_tbl		= sm8150_usb3_uniphy_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_serdes_tbl),
+ 	.tx_tbl			= sdx55_usb3_uniphy_tx_tbl,
+@@ -1482,6 +1511,8 @@ static const struct qmp_phy_cfg sdx55_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg sdx65_usb3_uniphy_cfg = {
+ 	.lanes			= 1,
+ 
++	.offsets		= &qmp_usb_offsets_v5,
++
+ 	.serdes_tbl		= sm8150_usb3_uniphy_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_serdes_tbl),
+ 	.tx_tbl			= sdx65_usb3_uniphy_tx_tbl,
+@@ -1503,6 +1534,8 @@ static const struct qmp_phy_cfg sdx65_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
+ 	.lanes			= 1,
+ 
++	.offsets		= &qmp_usb_offsets_v5,
++
+ 	.serdes_tbl		= sm8150_usb3_uniphy_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(sm8150_usb3_uniphy_serdes_tbl),
+ 	.tx_tbl			= sm8350_usb3_uniphy_tx_tbl,
+@@ -1524,7 +1557,7 @@ static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
+ static const struct qmp_phy_cfg qcm2290_usb3phy_cfg = {
+ 	.lanes			= 2,
+ 
+-	.offsets		= &qmp_usb_offsets_v3,
++	.offsets		= &qmp_usb_offsets_v3_qcm2290,
+ 
+ 	.serdes_tbl		= qcm2290_usb3_serdes_tbl,
+ 	.serdes_tbl_num		= ARRAY_SIZE(qcm2290_usb3_serdes_tbl),
+@@ -2078,8 +2111,10 @@ static int qmp_usb_parse_dt(struct qmp_usb *qmp)
+ 
+ 	qmp->serdes = base + offs->serdes;
+ 	qmp->pcs = base + offs->pcs;
+-	qmp->pcs_misc = base + offs->pcs_misc;
+-	qmp->pcs_usb = base + offs->pcs_usb;
++	if (offs->pcs_usb)
++		qmp->pcs_usb = base + offs->pcs_usb;
++	if (offs->pcs_misc)
++		qmp->pcs_misc = base + offs->pcs_misc;
+ 	qmp->tx = base + offs->tx;
+ 	qmp->rx = base + offs->rx;
+ 
 -- 
 2.39.2
 
