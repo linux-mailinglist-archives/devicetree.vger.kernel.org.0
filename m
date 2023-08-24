@@ -2,59 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4152F7873FE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 17:23:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48042787415
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 17:26:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233485AbjHXPWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 11:22:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48052 "EHLO
+        id S242083AbjHXP0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 11:26:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241295AbjHXPW0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 11:22:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E7D019B0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 08:22:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D8E3667120
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 15:22:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84BDCC433C8;
-        Thu, 24 Aug 2023 15:22:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692890544;
-        bh=7JhRfbopQaOogreIPejQDXFlXIIj835fOjpo1rdhrvg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=n3NuT2Sbufm+uP2yyu+PPTDUn34OSdOVe8nkOHpirnCm6/0YbnURhuhRLmOt2Gt+j
-         ycLCBMdw5pDc6LV79meDuu3xh4ZJT5A5UnSXBTamhD3xIt+ZOhRjhinu9Pqk5KbsfN
-         RftNgaypVKIbi2YMaP0ZP7bfyz+M4dGlZZ0DeLLcuL0ToeDrIyqQsI2h2NMj0aDuWO
-         s4fBq1WLpK96X+Y007SJXDNIjc0DzcTeZKMIzuKSlv2O0Eaa+38paaaOgbZI0AUQan
-         yL+QVCbYKB2iZh/jTVHTwxAWAwkcq/fH76vh5Poafc4BCdDlePj80kdWjRcEdt77nY
-         LQO0QWhKZxpJQ==
-Date:   Thu, 24 Aug 2023 16:22:18 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        mripard@kernel.org, jagan@edgeble.ai, heiko@sntech.de,
-        uwu@icenowy.me, andre.przywara@arm.com, daniel@ffwll.ch,
-        airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
-        noralf@tronnes.org, samuel@sholland.org, jernej.skrabec@gmail.com,
-        wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V3 2/8] dt-bindings: display: panel: mipi-dbi-spi: add
- Saef SF-TC154B
-Message-ID: <20230824-science-praising-2ca38dba9af0@spud>
-References: <20230823212554.378403-1-macroalpha82@gmail.com>
- <20230823212554.378403-3-macroalpha82@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hkp6JIsJttgpt6Su"
-Content-Disposition: inline
-In-Reply-To: <20230823212554.378403-3-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        with ESMTP id S242183AbjHXPZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 11:25:49 -0400
+Received: from hutie.ust.cz (hutie.ust.cz [IPv6:2a03:3b40:fe:f0::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38D219B7;
+        Thu, 24 Aug 2023 08:25:45 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cutebit.org; s=mail;
+        t=1692890743; bh=19CkIfvlAl+YSMEuVQTfws4iElND6kxTEoiR5RaC2Xg=;
+        h=Subject:From:In-Reply-To:Date:Cc:References:To;
+        b=NKd7o6qaEKUtlt5GVLO8Z2r/oFM7RxV0FJywpSnr6OiEyKobQ9KeuvXCSpoJIEy11
+         zqX6BC6hbyiTImS0q3TYRg2tj223AR1ZPJtUlfygaMpDYahS7w0wBGu/YNQb70UBeI
+         QX7mZosai947/6+yuBwQ1scIm9fDTkNtZmw13kus=
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.1\))
+Subject: Re: [PATCH 2/2] dmaengine: apple-sio: Add Apple SIO driver
+From:   =?utf-8?Q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>
+In-Reply-To: <ZMuQvhIg0AHH2e7V@matsya>
+Date:   Thu, 24 Aug 2023 17:25:41 +0200
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, asahi@lists.linux.dev,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <831F5957-18B4-4EB9-A755-0E5FE58A83E5@cutebit.org>
+References: <20230712133806.4450-1-povik+lin@cutebit.org>
+ <20230712133806.4450-3-povik+lin@cutebit.org> <ZMlLjg9UBi3QO/qV@matsya>
+ <7D43A9F3-892C-4E74-9618-DB37360B7641@cutebit.org>
+ <38B71067-7D67-41B7-BF49-87511BAA06CF@cutebit.org> <ZMuQvhIg0AHH2e7V@matsya>
+To:     Vinod Koul <vkoul@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,68 +49,80 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---hkp6JIsJttgpt6Su
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 3. 8. 2023, at 13:34, Vinod Koul <vkoul@kernel.org> wrote:
+>=20
+> On 03-08-23, 10:32, Martin Povi=C5=A1er wrote:
+>=20
+>>>>> +static int sio_alloc_tag(struct sio_data *sio)
+>>>>> +{
+>>>>> +	struct sio_tagdata *tags =3D &sio->tags;
+>>>>> +	int tag, i;
+>>>>> +
+>>>>> +	/*
+>>>>> +	 * Because tag number 0 is special, the usable tag range
+>>>>> +	 * is 1...(SIO_NTAGS - 1). So, to pick the next usable tag,
+>>>>> +	 * we do modulo (SIO_NTAGS - 1) *then* plus one.
+>>>>> +	 */
+>>>>> +
+>>>>> +#define SIO_USABLE_TAGS (SIO_NTAGS - 1)
+>>>>> +	tag =3D (READ_ONCE(tags->last_tag) % SIO_USABLE_TAGS) + 1;
+>>>>> +
+>>>>> +	for (i =3D 0; i < SIO_USABLE_TAGS; i++) {
+>>>>> +		if (!test_and_set_bit(tag, &tags->allocated))
+>>>>> +			break;
+>>>>> +
+>>>>> +		tag =3D (tag % SIO_USABLE_TAGS) + 1;
+>>>>> +	}
+>>>>> +
+>>>>> +	WRITE_ONCE(tags->last_tag, tag);
+>>>>> +
+>>>>> +	if (i < SIO_USABLE_TAGS)
+>>>>> +		return tag;
+>>>>> +	else
+>>>>> +		return -EBUSY;
+>>>>> +#undef SIO_USABLE_TAGS
+>>>>> +}
+>>>>=20
+>>>> can you use kernel mechanisms like ida to alloc and free the =
+tags...
+>>>=20
+>>> I can look into that.
+>>=20
+>> Documentation says IDA is deprecated in favour of Xarray, both look
+>> like they serve to associate a pointer with an ID. I think neither
+>> structure beats a simple bitfield and a static array for the per-tag
+>> data. Agree?
+>=20
+> yeah xarray am not too sure. I would still go with ida, we will see =
+when
+> it is relly removed.
 
-On Wed, Aug 23, 2023 at 04:25:48PM -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
->=20
-> The Saef SF-TC154B is a 1.54 inch 240x240 square panel with a MIPI DBI
-> compatible interface. The panel is used on the Anbernic RG-Nano
-> handheld gaming device.
->=20
-> The initialization of the panel requires a firmware binary which can
-> be made with the mipi-dbi-cmd[1] tool. The command sequence needed
-> can be found in both source[2] and binary form[3].
->=20
-> [1]: https://github.com/notro/panel-mipi-dbi
-> [2]: https://github.com/macromorgan/panel-mipi-dbi-firmware/raw/main/saef=
-%2Csftc154b.txt
-> [3]: https://github.com/macromorgan/panel-mipi-dbi-firmware/raw/main/saef=
-%2Csftc154b.bin
->=20
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+Sorry for letting this sleep for a while.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I don=E2=80=99t like the idea of submitting a new driver to use a =
+deprecated
+interface. For all I know someone can come along later and mark the =
+driver
+as broken in the process of finally removing IDA, with good excuse to do =
+so.
 
-Thanks,
-Conor.
+> If you need a bitfield why not use bitmap apis.
+> I dont like drivers implementing the basic logic which kernel provides
 
-> ---
->  .../devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml    | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-d=
-bi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-db=
-i-spi.yaml
-> index 2f0238b770eb..04cc5bfce051 100644
-> --- a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
-yaml
-> +++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.=
-yaml
-> @@ -66,6 +66,7 @@ properties:
->    compatible:
->      items:
->        - enum:
-> +          - saef,sftc154b
->            - sainsmart18
->            - shineworld,lh133k
->        - const: panel-mipi-dbi-spi
+I think one improvement to take up is to use the DECLARE_BITMAP macro =
+for
+the `allocated` bitmap. Other than that this already uses the bitmap.h/
+bitops.h functions to the degree it can if the goal is to
+
+ (1) allocate and free the tags reliably under SMP with atomic ops
+
+ (2) in best-effort manner (but without locking of the counter) make
+     the tag numbers consecutive
+
+The latter behaviour is there to make traces easier to read.
+
+Martin
+
 > --=20
-> 2.34.1
->=20
+> ~Vinod
 
---hkp6JIsJttgpt6Su
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOd1qgAKCRB4tDGHoIJi
-0onQAQD0bPdGB277UvE6qnuZ1eoDAZM5HYcYryvPZvD0E9gR0wEAzyZZRS6I7sdi
-1XjrHct/ffNuU8lGxuFOam88vyQjBAI=
-=I1BL
------END PGP SIGNATURE-----
-
---hkp6JIsJttgpt6Su--
