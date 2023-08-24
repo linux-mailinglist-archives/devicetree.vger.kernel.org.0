@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD1FB786BE8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:30:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42E0B786C42
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240428AbjHXJa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 05:30:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34488 "EHLO
+        id S236207AbjHXJry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 05:47:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239433AbjHXJ34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:29:56 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8CC10F;
-        Thu, 24 Aug 2023 02:29:54 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37O9SWaj017447;
-        Thu, 24 Aug 2023 09:29:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=6bZ620qEvkbrHV7D/BfIRZQUDwzV6fiMdsV1nBDq/NE=;
- b=e2aBXhzpD9f/K/BDbmwUeqAuRLHTsKQtaAFBk2o+B4RpWAP8WwIOoOeZV9FHBJY20IJa
- bmnfFQHZxj8K1tPA5adIzsmzB2eDbdlLxZcn/cH3wbwQF54Ps2T468j3DhlGqU3h0wB0
- 2nuJeWJPlL9CJBOVYg7TEfJkDgL0UyF5m+3gpW7X2pNopfGA1y6lTfJxOkziSp7AuqZa
- EmLkVWJB1x+Dupux0M2UcpP0P4JddZ8bp5Rlxl9lMruAQk38kGpFb34Se+JAz8WHcXEE
- MtkcH29JHstaJLkG80EUnJKbCtaxu5SmwCvI+wdKUzGvHdIeorv1jINVnzq8f/iHJIW+ Jw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3snkumsyek-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Aug 2023 09:29:42 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37O9Tegd003868
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Aug 2023 09:29:40 GMT
-Received: from [10.216.60.202] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 24 Aug
- 2023 02:29:34 -0700
-Message-ID: <6df0d730-7fa0-f0f3-ceb8-b011feaff824@quicinc.com>
-Date:   Thu, 24 Aug 2023 14:59:21 +0530
+        with ESMTP id S240675AbjHXJrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:47:48 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 161D710C7;
+        Thu, 24 Aug 2023 02:47:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A2B286431B;
+        Thu, 24 Aug 2023 09:47:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87AA9C433C7;
+        Thu, 24 Aug 2023 09:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692870455;
+        bh=jpIcgpyOmQBzytNpmhA45q0sBknQ9noZJX6C0UvzR4E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=PQH56xIeRfV6F2rA9n/tCd1UEoKryH/JWeMK7zcwllISQnpd1I+3U7YpvYq2WTyhB
+         5AuKGAaeu3vqXvBIdxKm3uBAoMnWmrlBdpBVGRKLtsFVl0+xZfT+vFog/A/xSYivIO
+         eZznYwXL0dLIiNsY0jKAV62+8llPViJjf2iM+d6le+vW18pCV8c3zsqSYY/9zjzj5N
+         bXIs9BlFtrHBRpS6ueidHHwfKlIqnhH2GGrocbXLgVkY5oiCAaDJEMgOfJzYXHxYmm
+         uM9hEzYC1I1EbZxhGBcx1ybfmrs9SH4tW6iawSKgq87r+J2dbL83i+XOWEkZsLv+rf
+         EA4K/6fa0Y3DQ==
+Date:   Thu, 24 Aug 2023 11:47:32 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Ying Liu <victor.liu@nxp.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "maarten.lankhorst@linux.intel.com" 
+        <maarten.lankhorst@linux.intel.com>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        Guido =?utf-8?Q?G=C3=BCnther?= <guido.gunther@puri.sm>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "Laurentiu Palcu (OSS)" <laurentiu.palcu@oss.nxp.com>,
+        "robh@kernel.org" <robh@kernel.org>
+Subject: Re: [PATCH v14 RESEND 1/6] dt-bindings: display: imx: Add
+ i.MX8qxp/qm DPU binding
+Message-ID: <2k3cc3yfwqlpquxrdmzmaafz55b3lnqomzxjsvtetfriliqj3k@tv6uh7dzc2ea>
+References: <20230822085949.816844-1-victor.liu@nxp.com>
+ <20230822085949.816844-2-victor.liu@nxp.com>
+ <scbtbu4cdjlsmbr6ugkpqslvfywidvbuqyekxuttfe4rmbp2st@lev2zfqe4h62>
+ <AM7PR04MB70469E94D5FCFC46F51A72F3981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+ <64bpiz5nt3xgboxya26gcdh6d7nyyflm2m56orgjwwwibh52n7@yk4ogdcierho>
+ <AM7PR04MB7046E8DD816FC99193B07E07981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.1
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: tsens: Add sa8775p compatible
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Thara Gopinath <thara.gopinath@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_manafm@quicinc.com>
-References: <20230821112928.19284-1-quic_priyjain@quicinc.com>
- <20230821112928.19284-2-quic_priyjain@quicinc.com>
- <ea0a31ac-6860-4cd2-a2ec-25416d035278@linaro.org>
-From:   Priyansh Jain <quic_priyjain@quicinc.com>
-In-Reply-To: <ea0a31ac-6860-4cd2-a2ec-25416d035278@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 0JRwRwWSu2AKDMI40Wu9PBF981uLJDgh
-X-Proofpoint-ORIG-GUID: 0JRwRwWSu2AKDMI40Wu9PBF981uLJDgh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-24_06,2023-08-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- spamscore=0 suspectscore=0 adultscore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 phishscore=0 mlxscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2308240076
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6rb56x6m6vahizvh"
+Content-Disposition: inline
+In-Reply-To: <AM7PR04MB7046E8DD816FC99193B07E07981CA@AM7PR04MB7046.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,27 +83,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
 
-On 8/21/2023 5:21 PM, Konrad Dybcio wrote:
-> On 21.08.2023 13:29, Priyansh Jain wrote:
->> Add compatibility string for the thermal sensors on sa8775p platform.
->>
->> Signed-off-by: Priyansh Jain <quic_priyjain@quicinc.com>
->> ---
->>   Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> index 27e9e16e6455..37d0c9150327 100644
->> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->> @@ -65,6 +65,7 @@ properties:
->>                 - qcom,sm8350-tsens
->>                 - qcom,sm8450-tsens
->>                 - qcom,sm8550-tsens
->> +              - qcom,sa8775p-tsens
->>             - const: qcom,tsens-v2
-> Please keep this sorted alphanumerically.
-Sure will update in next revision.
-> Konrad
+--6rb56x6m6vahizvh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 23, 2023 at 08:47:51AM +0000, Ying Liu wrote:
+> > > This dt-binding just follows generic dt-binding rule to describe the =
+DPU IP
+> > > hardware, not the software implementation.  DPU internal units do not
+> > > constitute separate devices.
+> >=20
+> > I mean, your driver does split them into separate devices so surely it
+> > constitutes separate devices.
+>=20
+> My driver treats them as DPU internal units, especially not Linux devices.
+>=20
+> Let's avoid Linuxisms when implementing this dt-binding and just be simple
+> to describe necessary stuff exposing to DPU's embodying system/SoC, like
+> reg, interrupts, clocks and power-domains.
+
+Let's focus the conversation here, because it's redundant with the rest.
+
+Your driver registers two additional devices, that have a different
+register space, different clocks, different interrupts, different power
+domains, etc. That has nothing to do with Linux, it's hardware
+properties.
+
+That alone is a very good indication to me that these devices should be
+modeled as such. And your driver agrees.
+
+Whether or not the other internal units need to be described as separate
+devices, I can't really tell, I don't have the datasheet.
+
+But at least the CRTC and the interrupt controller should be split away,
+or explained and detailed far better than "well it's just convenient".
+
+Maxime
+
+--6rb56x6m6vahizvh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZOcnNAAKCRDj7w1vZxhR
+xbJhAQDZaTkwwHUSQvHmPGZpRlOyyyziNVb6jv9YxbU1HZ0pywD/WigGDCjifkiR
+8nfYBdnZbrK5UeFqdTRPOCdu3I0hEgw=
+=X+lc
+-----END PGP SIGNATURE-----
+
+--6rb56x6m6vahizvh--
