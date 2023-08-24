@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25359786B30
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:11:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75B3E786B66
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 11:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233535AbjHXJKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 05:10:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49924 "EHLO
+        id S235725AbjHXJSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 05:18:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235115AbjHXJKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:10:20 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBAE710FA;
-        Thu, 24 Aug 2023 02:10:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 707C566868;
-        Thu, 24 Aug 2023 09:10:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD22FC433CC;
-        Thu, 24 Aug 2023 09:10:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692868216;
-        bh=7M2xqO1AKiy66zJXRZ//i4wSn+wQl5CkWQs5eGyEols=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UaCn6ZVe225sX5NaZDcDs9oSE1RypLFGbrd8IvEqX4ijSeAmZ3YzLv8gd6qDnummg
-         /puBieqcwhAOmigju3arMX+WbVhSc4LDyRHBbP0gNmiyyC7PrBwbD00OKN9C0P7KS/
-         9jqBwNUBLvwfKT6JWK5dQNDp7w4k9EiDq062stg9C2K/Acxy0uFEfq+geEWBkOtvUm
-         uTZOGlyET1LWblPQDHjvi7HWVLKiBfZ/zk/lWUDUYdmIH8Rj6l9vgLHp9HpkpKREm1
-         SuDKv2dc7jNF1S9WJEuw2SL/qIiyxQc3ZylVWFortxNwHyAwPjzjC/BODaAgtPr0CS
-         BiB5qCY5rXIKg==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4fe8c16c1b4so10007586e87.2;
-        Thu, 24 Aug 2023 02:10:16 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzBQjvfjskzy+ei6I7l3x8C9QHkqPpEZRcli6RBX1Hx+33Gd2qB
-        gDX3wziFxF7gACVbLNlDo8J8FDHlHemfO/dsJgg=
-X-Google-Smtp-Source: AGHT+IEPbWrWaIcRd6K499nFrbiiTHWR7hUuTXAc8g5hvMnTaZ9GhrUD90DQzmZfscTZhkyjTgykTwhlMpySKF6Ohhc=
-X-Received: by 2002:a05:6512:2208:b0:4ff:74e2:4268 with SMTP id
- h8-20020a056512220800b004ff74e24268mr13170713lfu.56.1692868214708; Thu, 24
- Aug 2023 02:10:14 -0700 (PDT)
+        with ESMTP id S240758AbjHXJR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 05:17:58 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F18B1BFC;
+        Thu, 24 Aug 2023 02:17:48 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-31c5327e5e8so406027f8f.1;
+        Thu, 24 Aug 2023 02:17:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692868667; x=1693473467;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=09q7RDvoiIxat2c5cDkQKRvlHf2HPpY9ZqqDIN8IDyw=;
+        b=H88ukWVgASsdpcgCONgvZ9IAJozlWejIujj45rRH7ZYc4W22DSpGHDkbvMK5ffuEYU
+         fcr/VEUT4UUE9LVPqqabVJcPwDI+GxDSHblzndFDF6bOD1vxGV2xvgNEeqWNMsTpzGJi
+         IY/QmoeP3YBG2PyTUKeJBcBWQVmte7CWrpjlmfT7Rvqmr3NaESABwyTRl1vKBZ2w6OyD
+         ogcyOjqcqY7myPZHiAKvQKGxTB+BWAZs3K/2bpApQOa0TC/wTdmHB+095NVIxTLtZMe+
+         ZiRZAuOFRLlGML1wjdbqq4JwSRCRErTZRjhwGB5jfPxFQa1PQGbOsr1KMArBbTcqdXzq
+         sIbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692868667; x=1693473467;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=09q7RDvoiIxat2c5cDkQKRvlHf2HPpY9ZqqDIN8IDyw=;
+        b=Pj+AgubInbVtCFdKrzWPiKp0msDxcJ42QMDOIDSmza0tdenxtzEygWDR7Uu9RZ6VtD
+         aVlkidC+BpieaHaUGog0qv06pldoUM7Yfa9tdmI0Vn8yXdSHVOhzFM/8bF6j1seI2pOP
+         2q/seHCGoFrAUbXxJ5Y+a8eUckJqsRciM7qCAwHrJUloJfKaiV48wyFpqoQqzV/qHHgF
+         AyuPoFG9aoq/eMnH0Rqr4BhdI2eLnVgBXicyi48Sq0f+ri4OyirzD3Pf/kLqTSGTXgpH
+         DdQr+d+fWWK8G802PgSNyH4AcAP7jR+10KlWI2ifaWJSm7BeoQ5PLRWnK28KgI/e8nNR
+         sQ0g==
+X-Gm-Message-State: AOJu0YxpHXyBrllJ7vItuERzBTnRwaABl87N+8GkwuSL+PU0IY4VCyXR
+        FZWUGjJZ01845eTZPF08CjA=
+X-Google-Smtp-Source: AGHT+IFC+6dK3vZQm5xR0Z6qdBt5ocXAtvotuQ2V5GMpgoEnCEud39gpNjrHEYiW61xFTFrtfI+03w==
+X-Received: by 2002:a5d:4e8a:0:b0:318:416:a56a with SMTP id e10-20020a5d4e8a000000b003180416a56amr11179510wru.13.1692868666930;
+        Thu, 24 Aug 2023 02:17:46 -0700 (PDT)
+Received: from david-ryuzu.fritz.box (ip4d167053.dynamic.kabel-deutschland.de. [77.22.112.83])
+        by smtp.googlemail.com with ESMTPSA id k8-20020a7bc408000000b003fe23b10fdfsm2022214wmi.36.2023.08.24.02.17.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Aug 2023 02:17:46 -0700 (PDT)
+From:   David Wronek <davidwronek@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org,
+        David Wronek <davidwronek@gmail.com>
+Subject: [PATCH v5 0/4] Add initial support for SM7125 and Xiaomi SM7125 platform
+Date:   Thu, 24 Aug 2023 11:15:03 +0200
+Message-ID: <20230824091737.75813-1-davidwronek@gmail.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
- <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com> <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
-In-Reply-To: <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Thu, 24 Aug 2023 11:10:03 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
-Message-ID: <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
-To:     Simon Glass <sjg@chromium.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,140 +76,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Aug 2023 at 22:04, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi,
->
-> On Wed, 23 Aug 2023 at 08:24, Ard Biesheuvel <ardb@kernel.org> wrote:
-> >
-> > On Wed, 23 Aug 2023 at 10:59, Mark Rutland <mark.rutland@arm.com> wrote:
-> > >
-> > > On Tue, Aug 22, 2023 at 02:34:42PM -0600, Simon Glass wrote:
-> > > > The Devicetree specification skips over handling of a logical view of
-> > > > the memory map, pointing users to the UEFI specification.
-> > > >
-> > > > It is common to split firmware into 'Platform Init', which does the
-> > > > initial hardware setup and a "Payload" which selects the OS to be booted.
-> > > > Thus an handover interface is required between these two pieces.
-> > > >
-> > > > Where UEFI boot-time services are not available, but UEFI firmware is
-> > > > present on either side of this interface, information about memory usage
-> > > > and attributes must be presented to the "Payload" in some form.
-> >
-> > Not quite.
-> >
-> > This seems to be intended for consumption by Linux booting in ACPI
-> > mode, but not via UEFI, right?
->
-> Actually, this is for consumption by firmware. The goal is to allow
-> edk2 to boot into U-Boot and vice versa, i.e. provide some
-> interoperability between firmware projects. I will use the "Platform
-> Init" and "Payload" terminology here too.
->
+This series introduces support for the Qualcomm SM7125 SoC and the
+Xiaomi SM7125 platform.
 
-OK. It was the cc to linux-acpi@ and the authors of the
-ACPI/SMBIOS-without-UEFI patches that threw me off here.
+Signed-off-by: David Wronek <davidwronek@gmail.com>
+---
+Changes in v2:
+- Allow qcom,board-id and qcom,msm-id properties
+- Use QCOM_SCM_VMID_MSS_MSA definition
+- Change initial regulator modes from LPM to HPM
+- Move status to the bottom of nodes
+- Fix up PM6150 interrupts
+- Move clk patch to beginning of series
+- Fix up copyright
+- Take ownership of all commits with permission
+- Link to v1: https://lore.kernel.org/all/20230704163848.169853-2-davidwronek@gmail.com/
 
-If we are talking about an internal interface for firmware components,
-I'd be inclined to treat this as an implementation detail, as long as
-the OS is not expected to consume these DT nodes.
+Changes in v3:
+- Disable pm6150 rtc by default
+- Fix wrong pm8150l PMIC in joyeuse dts
+- Link to v2: https://lore.kernel.org/all/20230706124339.134272-1-davidwronek@gmail.com/
 
-However, I struggle to see the point of framing this information as a
-'UEFI memory map'. Neither EDK2 nor u-boot consume this information
-natively, and there is already prior art in both projects to consume
-nodes following the existing bindings for device_type=memory and the
-/reserved-memory node. UEFI runtime memory is generally useless
-without UEFI runtime services, and UEFI boot services memory is just
-free memory.
+Changes in v4:
+- Fix key-vol-down node name
+- Link to v3: https://lore.kernel.org/all/20230715091932.161507-1-davidwronek@gmail.com/
 
-There is also an overlap with the handover between secure and
-non-secure firmware on arm64, which is also DT based, and communicates
-available memory as well as RAM regions that are reserved for firmware
-use.
+Changes in v5:
+- Rename common dtsi to sm7125-xiaomi-common
+- Link to v4: https://lore.kernel.org/all/20230723190725.1619193-1-davidwronek@gmail.com/
 
-In summary, I don't see why a non-UEFI payload would care about UEFI
-semantics for pre-existing memory reservations, or vice versa. Note
-that EDK2 will manage its own memory map, and expose it via UEFI boot
-services and not via DT.
+---
+David Wronek (4):
+  dt-bindings: arm: qcom: Document SM7125 and xiaomi,joyeuse board
+  arm64: dts: qcom: pm6150: Add resin and rtc nodes
+  arm64: dts: qcom: Add SM7125 device tree
+  arm64: dts: qcom: Add support for the Xiaomi SM7125 platform
 
-...
->
-> There is no intent to implement the UEFI spec, here. It is simply that
-> some payloads (EDK2) are used to having this information.
->
-> Imagine splitting EDK2 into two parts, one of which does platform init
-> and the other which (the payload) boots the OS. The payload wants
-> information from Platform Init and it needs to be in a devicetree,
-> since that is what we have chosen for this interface. So to some
-> extent this is unrelated to whether you have EFI boot services. We
-> just need to be able to pass the information across the interface.
-> Note that the user can (without recompilation, etc.) replace the
-> second part with U-Boot (for example) and it must still work.
->
+ .../devicetree/bindings/arm/qcom.yaml         |   7 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |  16 +
+ .../boot/dts/qcom/sm7125-xiaomi-common.dtsi   | 423 ++++++++++++++++++
+ .../boot/dts/qcom/sm7125-xiaomi-joyeuse.dts   |  16 +
+ arch/arm64/boot/dts/qcom/sm7125.dtsi          |  16 +
+ 6 files changed, 479 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125.dtsi
 
-OK, so device tree makes sense for this. This is how I implemented the
-EDK2 port that targets QEMU/mach-virt - it consumes the DT to discover
-the UART, RTC,, memory, PCI host bridge, etc.
+-- 
+2.42.0
 
-But I don't see a use case for a UEFI memory map here.
-
-
-> >
-> > >
-> > > Today Linux does that by passing:
-> > >
-> > >   /chosen/linux,uefi-mmap-start
-> > >   /chosen/linux,uefi-mmap-size
-> > >   /chosen/linux,uefi-mmap-desc-size
-> > >   /chosen/linux,uefi-mmap-desc-ver
-> > >
-> > > ... or /chosen/xen,* variants of those.
-> > >
-> > > Can't we document / genericise that?
->
-> That seems to me to be the fields from the EFI memory-map call, but
-> where is the actual content? I looked in the kernel but it seems to be
-> an internal interface (between the stub and the kernel)?
->
-> > >
-> >
-> > Given the ACPI angle, promoting this to external ABI would introduce a
-> > DT dependency to ACPI boot. So we'll at least have to be very clear
-> > about which takes precedence, or maybe disregard everything except the
-> > /chosen node when doing ACPI boot?
-> >
-> > This also argues for not creating an ordinary binding for this (i.e.,
-> > describing it as part of the platform topology), but putting it under
-> > /chosen as a Linux-only boot tweak.
-> >
-> > > Pointing to that rather than re-encoding it in DT means that it stays in-sync
-> > > with the EFI spec and we won't back ourselves into a corner where we cannot
-> > > encode something due to a structural difference. I don't think it's a good idea
-> > > to try to re-encode it, or we're just setting ourselves up for futher pain.
-> > >
-> >
-> > What I would prefer is to formalize pseudo-EFI boot and define the
-> > bare required minimum (system table + memory map + config tables) in
-> > an arch-agnostic manner. That way, the only thing that needs to be
-> > passed via DT/boot_params/etc is the (pseudo-)EFI system table
-> > address, and everything else (SMBIOS, ACPI as well as the EFI memory
-> > map and even the initrd) can be passed via config tables as usual, all
-> > of which is already supported in (mostly) generic kernel code.
-> >
-
-<snip some lines>
-
->
-> Here I believe you are talking about booting the kernel in EFI mode,
-> but that is not the intent of this patch. This is all about things
-> happening in firmware. Now, if the payload (second) part of the
-> firmware decides it wants to offer EFI boot services and boot the
-> kernel via the EFI stub, then it may very well pack this information
-> (with a few changes) into a system table and make it available to the
-> kernel stub. But by then this FDT binding is irrelevant, since it has
-> served its purpose (which, to reiterate, is to facilitate information
-> passage from platform init to 'payload').
->
-
-Indeed. As long as this binding is never consumed by the OS, I don't
-have any objections to it - I just fail to see the point.
