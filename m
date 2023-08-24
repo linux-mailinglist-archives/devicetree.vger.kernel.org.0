@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BAD778679E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832F37867A9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 08:45:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240159AbjHXGly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 02:41:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58342 "EHLO
+        id S235278AbjHXGoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 02:44:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240132AbjHXGlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:41:24 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F24010FA
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:41:21 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5007c8308c3so6809198e87.0
-        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:41:21 -0700 (PDT)
+        with ESMTP id S240181AbjHXGoI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 02:44:08 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B17210FD
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:43:56 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so6469462a12.3
+        for <devicetree@vger.kernel.org>; Wed, 23 Aug 2023 23:43:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692859280; x=1693464080;
+        d=linaro.org; s=google; t=1692859434; x=1693464234;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9i9P/L8yrXEBknvUsgFXYcHwitiPfQ3Qj/oqiiME4Lo=;
-        b=ZuwcSB5Hus8aOVLW2o1wnZ1BI4QqPj5ZQdLJvmCxifzTiZqutuagzuEA1DOLN2fqeB
-         NzydH4s0b9CdTWryqzjY6Oyyej7z3Ypl/h0iWf3Zue4iaFXDfitpR8lcc7zq5GABmG3Q
-         8EC2glB64JYIvSNByn3iTzZwLRP1WDLra7orTjgxVvOXuUQKtYkpANjnrBwhuWmqDlLQ
-         w9Ix+F+oDFVULIdgL4Xj/BIY4zn89iJd6i4nut7yYQyzwLoWDZcDyKPxG0g4oc+/YRTY
-         sOqznOYSYLDbcygVgsUS8whCrJlN0T0eov6qpN5A8HQB7Rf8JE062298n2Y9tF7Cv76g
-         unzg==
+        bh=ti0tJCov0gsw8bly+e2gyZeZthleb2G4QELgyb6xbJk=;
+        b=I1zZJTfjm821j0x0yIfW4QMqklnH56r4qmM4t/5dYbVuZvxkzL6f3cpaltMFY/XXb5
+         EbBmse/2gH7Az1sjHnvD9d+bFlnXxuvT+dLR4XipRXRu1xwKka+Q9LO1v+FFzL+GIaWz
+         0cVmlYk9dfAS+JngsrZjYRBPG+0nml6up0U9AIoleTYqjuor4sjx9/J71jj6x5FSSxDb
+         vslV6rKx06UALgB1NX3JGRM1uHitgAyN5A8+zq5pvCynRMWjsL7Gqq5Xpmeu+eaSQE1v
+         B/ivDRgW24kbp+udc2TWTWgk1ia0hjrO4iUBWDsezAR6QDlNXXxd9oR59pEWV/KdP+G5
+         TkYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692859280; x=1693464080;
+        d=1e100.net; s=20221208; t=1692859434; x=1693464234;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9i9P/L8yrXEBknvUsgFXYcHwitiPfQ3Qj/oqiiME4Lo=;
-        b=dBWYVzI9h09NRQxmERnxVfXvl6+lDXU0WXTvTavYNM/e9xuBWmMygOZAD1+V05yp+n
-         uzThHtJiycIl6F0voxlE0sSlf3gnGL44favKIoo4VSSNMkqjhARbPT/JRVVqvuZstI4C
-         rrKAHzmPALebwadNNUWYlX2iQPSHkofX2d1K9Fm7iNZh/2wZzNlBkr0fiz6YtB9mr+L3
-         6I2cK/yuGVj+Ldcd0s5RBHLemP52ZvLiHgzbJf+CctCTNyvdpq28smIVWJBDpEZwR0mb
-         i+4BRNwGJKtqXpegP2H5OItFAGD/sWMk0zM/SuNlkRcvcuOVph4VvBViYIrkrwPKol8M
-         9U2Q==
-X-Gm-Message-State: AOJu0YymE8vG7gLa4xIMrjW0fm4AD9Ja17YX/Wuo7H7Xys4h2GN6x47J
-        fpSg+prdY9g2r5rcZPxk0JKmtA==
-X-Google-Smtp-Source: AGHT+IG/WSER3YY2uiYGuTReO1vmCy0UJBRwseBs67v3EaFPUs/cxt5WDmhCRYsE/Jjdn53EClnBzg==
-X-Received: by 2002:a19:2d17:0:b0:4fe:1b7b:3cc9 with SMTP id k23-20020a192d17000000b004fe1b7b3cc9mr9654809lfj.38.1692859279564;
-        Wed, 23 Aug 2023 23:41:19 -0700 (PDT)
+        bh=ti0tJCov0gsw8bly+e2gyZeZthleb2G4QELgyb6xbJk=;
+        b=CPIq0uvgdU0UaVNe8XKBtn5O+GxR9TTKtD3CV4eZf4G7zIf191hwryJrOjoxKWXn3A
+         mCWjzsnsBMdp9odnh4C4HX9I5/q+z03ipfyUF5EQH82VRyXiL2u/15iNicMutkd75Yqk
+         Fw34/4jnIJmMwDyYp8kY6gLdve+9KFYrbq/n2Xb2qhHVX1CSqgAtL+m+TD79R4YUgJuW
+         7o5D4qM0z4DIzZEUbHAYAdrSUySc24lVZ5yqQm9zqzZzwo6HOwhNya/vj5ywO70Lrzp7
+         asxxpZ4ov5Ufx8gljdMG+8GXnNIk2e1lysv4pjekuQwuJGHl8fELOGrSCukl6C+fHoQ8
+         rpkA==
+X-Gm-Message-State: AOJu0YzWycs79sv8+OAzmS8Fm6+/rpKsHGSHoO2dMyEKFI1l6JkRuOJe
+        jRQ5lHFJjGUyNtdO7AtPmSbcgg==
+X-Google-Smtp-Source: AGHT+IEQvZYgarQloyMnR+HnLjWh6aBRXyE5c7u2/JigeeURkpGl76ThL5cokigKZvqW5eh82CHhgg==
+X-Received: by 2002:aa7:d34f:0:b0:523:b1b0:f69f with SMTP id m15-20020aa7d34f000000b00523b1b0f69fmr10351857edr.32.1692859434571;
+        Wed, 23 Aug 2023 23:43:54 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id h3-20020aa7c603000000b005256ae8494asm10063848edq.17.2023.08.23.23.41.18
+        by smtp.gmail.com with ESMTPSA id x21-20020aa7dad5000000b0052284228e3bsm10068665eds.8.2023.08.23.23.43.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Aug 2023 23:41:19 -0700 (PDT)
-Message-ID: <41cabea8-f694-f860-b3c1-757e9b8119f8@linaro.org>
-Date:   Thu, 24 Aug 2023 08:41:17 +0200
+        Wed, 23 Aug 2023 23:43:54 -0700 (PDT)
+Message-ID: <d5a343c8-c384-6eea-94bf-e0c4f96e5fb0@linaro.org>
+Date:   Thu, 24 Aug 2023 08:43:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH] Title: Select GPIO command source.
+Subject: Re: [PATCH v6 1/5] dt-bindings: net: Add ICSS IEP
 Content-Language: en-US
-To:     peteryin <peteryin.openbmc@gmail.com>, joel@jms.id.au,
-        andrew@aj.id.au, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, eajames@linux.ibm.com,
-        johnny_huang@aspeedtech.com, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     peteryin <peter.yin@quantatw.com>
-References: <20230823160810.1067102-1-peteryin.openbmc@gmail.com>
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Simon Horman <simon.horman@corigine.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     nm@ti.com, srk@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230823113254.292603-1-danishanwar@ti.com>
+ <20230823113254.292603-2-danishanwar@ti.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230823160810.1067102-1-peteryin.openbmc@gmail.com>
+In-Reply-To: <20230823113254.292603-2-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,101 +89,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 18:08, peteryin wrote:
-> From: peteryin <peter.yin@quantatw.com>
+On 23/08/2023 13:32, MD Danish Anwar wrote:
+> Add a DT binding document for the ICSS Industrial Ethernet Peripheral(IEP)
+> hardware. IEP supports packet timestamping, PTP and PPS.
 > 
-> Description:
->   The capability to choose the GPIO command source
-> between ARM LPC and Coprocessor CPU is supported.
-> 
-> Test Plan:
-> Get Bank gpio command source
->   e.g.
->   cd /sys/bus/platform/drivers/aspeed-command-source/
->   cat 1e780000.gpio-command-source/bank_abcd
->   ARM ARM ARM ARM
-> 
-> Set Bank gpio command source.
->   e.g.
->   cd /sys/bus/platform/drivers/aspeed-command-source/
-> 
->   echo "A ARM" > 1e780000.gpio-command-source/bank_abcd
->   or
->   echo "A LPC" > 1e780000.gpio-command-source/bank_abcd
->   or$
->   echo "A COP" > 1e780000.gpio-command-source/bank_abcd
-> 
-> Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Really? Where?
+
+> Reviewed-by: Roger Quadros <rogerq@kernel.org>
+
+Now you are making things up. Please stop faking tags.
+
+> Reviewed-by: Simon Horman <horms@kernel.org>
+
+Where?
+
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 > ---
->  .../sysfs-driver-aspeed-gpio-command-source   |  24 ++
->  .../soc/aspeed/gpio-command-source.yaml       |  58 ++++
-
-Bindings are separate patches. And it would be pointed out by checkpatch.
-
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
-
-Please use standard email subjects, so with the PATCH keyword in the
-title. `git format-patch` helps here to create proper versioned patches.
-Another useful tool is b4. Skipping the PATCH keyword makes filtering of
-emails more difficult thus making the review process less convenient.
-
->  drivers/soc/aspeed/Kconfig                    |   9 +
->  drivers/soc/aspeed/Makefile                   |   1 +
->  drivers/soc/aspeed/aspeed-command-source.c    | 266 ++++++++++++++++++
->  5 files changed, 358 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-aspeed-gpio-command-source
->  create mode 100644 Documentation/devicetree/bindings/soc/aspeed/gpio-command-source.yaml
->  create mode 100644 drivers/soc/aspeed/aspeed-command-source.c
+>  .../devicetree/bindings/net/ti,icss-iep.yaml  | 61 +++++++++++++++++++
+>  1 file changed, 61 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ti,icss-iep.yaml
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-driver-aspeed-gpio-command-source b/Documentation/ABI/testing/sysfs-driver-aspeed-gpio-command-source
+> diff --git a/Documentation/devicetree/bindings/net/ti,icss-iep.yaml b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
 > new file mode 100644
-> index 000000000000..4698f47a1f75
+> index 000000000000..75668bea8614
 > --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-driver-aspeed-gpio-command-source
-> @@ -0,0 +1,24 @@
-> +What:		/sys/bus/platform/drivers/aspeed-command-source/\*command\*/bank\*
-> +Date:		August 2023
-> +Contact:	Peter Yin <peter.yin@quantatw.com>
-> +Description:	Get or set the gpio command source for ARM, LPC or Coprocessor CPU.
-> +
-> +		When read, each file shows the list of available options with bank
-> +		that depends on the selected bank file.
-> +
-> +		e.g.
-> +		get gpio command source
-> +		cd /sys/bus/platform/drivers/aspeed-command-source/
-> +		cat 1e780000.gpio-command-source/bank_abcd
-> +		ARM ARM ARM ARM
-> +		In this case, gets bank gpio command source.
-> +
-> +
-> +		e.g.
-> +		set gpio command source
-> +		cd /sys/bus/platform/drivers/aspeed-command-source/
-> +		echo "A ARM" > 1e780000.gpio-command-source/bank_abcd
-> +		or
-> +		echo "A LPC" > 1e780000.gpio-command-source/bank_abcd
-> +		or
-> +		echo "A COP" > 1e780000.gpio-command-source/bank_abcd
-> diff --git a/Documentation/devicetree/bindings/soc/aspeed/gpio-command-source.yaml b/Documentation/devicetree/bindings/soc/aspeed/gpio-command-source.yaml
-> new file mode 100644
-> index 000000000000..034183667501
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/aspeed/gpio-command-source.yaml
-> @@ -0,0 +1,58 @@
+> +++ b/Documentation/devicetree/bindings/net/ti,icss-iep.yaml
+> @@ -0,0 +1,61 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# # Copyright (c) 2023 Quanta Inc.
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/soc/aspeed/gpio-command-source.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/net/ti,icss-iep.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments ICSS Industrial Ethernet Peripheral (IEP) module
+> +
+> +maintainers:
+> +  - Md Danish Anwar <danishanwar@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ti,am642-icss-iep
+> +              - ti,j721e-icss-iep
+> +          - const: ti,am654-icss-iep
+> +
+> +      - const: ti,am654-icss-iep
+> +
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: phandle to the IEP source clock
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +
 
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
+Drop stray blank line
+
+> +    /* AM65x */
+> +    icssg0_iep0: iep@2e000 {
+> +        compatible = "ti,am654-icss-iep";
+> +        reg = <0x2e000 0x1000>;
+> +        clocks = <&icssg0_iepclk_mux>;
+> +    };
+
+Choose one example.
+
 
 Best regards,
 Krzysztof
