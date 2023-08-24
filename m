@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73319787772
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 20:08:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02D7C78777E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 20:10:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242997AbjHXSHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 14:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42234 "EHLO
+        id S242967AbjHXSKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 14:10:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242253AbjHXSHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 14:07:13 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89C2210E0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:07:11 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52a3aa99bcdso269902a12.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:07:11 -0700 (PDT)
+        with ESMTP id S242992AbjHXSKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 14:10:18 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679F11BD6
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:10:15 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99df431d4bfso6093166b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 11:10:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692900430; x=1693505230;
+        d=linaro.org; s=google; t=1692900614; x=1693505414;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SNsiJrErSwjlu0Cfj9DTAj/ei9LJJOL39t6xspM++DU=;
-        b=uZsDdfi9TnEUePdHmGF9o8f+AHqC2kq+0XeRHUevvRe/dXBSrCbS5CJqW6PwuBjnxP
-         +x5WUXEBO/KvVzDzEgQUgGQVbiQlqnZs4v8VuvZTVqrpn1HR3cywATAYyVrJ6sab3ndR
-         yieqFNpNQJK+ch0XprIbTIJzRhzdg+YQeTxXDV2im8gH5Fkecq7BIeoUc6cV9Xqrx0GH
-         4uo6romKwNBAIj2h3Z6t2Og7mSqh4KvUcFpGaO9UGV5d/k++zo/s83HatUHljQXqRrit
-         nCm3dDQdCqOkPNZg2gXDUC+dyvRvcDvXA1ksBt2PlLOzqFUzegWxNBClPeHrKPUqXe7Q
-         KUow==
+        bh=J6mGu+vItjjNV4zY7FbQDAFgR7t3lk2A3umS/8njaFE=;
+        b=v/D/sQP8ng02i4fU6asAERGx6yOf5H7v3AbLPE9b3NasxOqZ9eZJgzGyXJGJ1RqREa
+         AqtPe1PZUo1K71fnZZfDyoH4c8/12D+WYnU67PgwC73050uZnFPKnmbRU8+tlOU6VmfQ
+         FBTzH+T6qraEzSTKkxvwoQoZn/HYFCCGwpYK/GgEBjl8kNfG07oJMu9ibapWMKHTVj3e
+         6OX8fEDRZaQdsrC1FKSN4rug9Nk22v7KdFGHmTxSjonOp8BsrbjSoc20Ezi09dFEBvlM
+         AlaHvvySwgmH4pr9rye32UrMeU6cru8vmTPdqleaDZ9DkWamN1AGPY1+tAD6biSBz0WC
+         8zHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692900430; x=1693505230;
+        d=1e100.net; s=20221208; t=1692900614; x=1693505414;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SNsiJrErSwjlu0Cfj9DTAj/ei9LJJOL39t6xspM++DU=;
-        b=I4dJnI9no0NDSyz4B4MX1Z/3xjaUuSE5rAC3kTqhLoPTz1igbBOBL04TiaarjECPB2
-         mK4C2TT8XKk/UyOdyVPQQFPolwqEuzk/ko8HIysdDsBjZnD6VH6TyjwzYCxtkYDrnjOf
-         3a2oN8SaekojUTXVuRqHtXoIVkc5LuDGf7xXSXX6e8WxBVwMN76gJEpmQImfuYgM11UE
-         OBMxh/BSPm/jywv4r16IDCE2EcjkUpRDssg7VzNKhuW/syXcuHE8xeaVJSYQtYoIZdsp
-         LDOgAH4Fjnazztf9sewQOYiej1YZw/S5xBHbnfO5N28lRFc4ZQbnhUoBtIiMrnkKLeHc
-         UBJA==
-X-Gm-Message-State: AOJu0YxPiBGuFtUcw8pcPJ8ANPtCr+h92MjBKWcbrRZ1NhrCJBR/T9GA
-        wgfWTFHPgyEcDH6TBrr56Nr5SA==
-X-Google-Smtp-Source: AGHT+IH6zD496GztLRBoA0hxHEdrLiGr/znb4J0/yVBC8p/LERI8GQycAMjvRNjzkkYoy6fOAIEIrQ==
-X-Received: by 2002:a50:fb04:0:b0:523:2e63:b9b with SMTP id d4-20020a50fb04000000b005232e630b9bmr12690578edq.24.1692900430035;
-        Thu, 24 Aug 2023 11:07:10 -0700 (PDT)
+        bh=J6mGu+vItjjNV4zY7FbQDAFgR7t3lk2A3umS/8njaFE=;
+        b=UU6095wfQyYV6+h8qmeanvqLwrqlnGUhb0j/IPbfD5d87aB34Nus0dZ9EaeH6Bpgdk
+         onuGzaCQLdYVujU+N6MNLRX3xPsBCnKjuf5kepi4leK/ltmG2Na8N9FDiDFGQPJZ+Y/w
+         LdJpF1zAdbQeweh9O0KoH4jGOqKt5s7LWVmoP7T98GjR1pJRXv9Igb+gIUqq3hUHf4IB
+         B31Ex29S/XCguuIYpigz47uMfB5S1SmkILV6zqjLQ5VF1hej4XZWTk1MSIMhJ0AOiAzE
+         KPIhMd26d8oq+WDw+SV1zWjSNr8awIMM4hpYYbkhW5ElQRLR7d/5Aqrlf0LjzusWdrXI
+         kXsw==
+X-Gm-Message-State: AOJu0YwG6MSbLKJ8jTAKzK8VSw24inwMwXo8TzYLxXJr/ojTR7KtA5r1
+        CUo+LzerkHeJW4m4NbUqUYDx+w==
+X-Google-Smtp-Source: AGHT+IHC03VZHX6r8eAXA6FznTMk+aaRDkAzn7su3T/xEtwghxzqA0FrMAgHLLnd8EHBJz2gAPTFEQ==
+X-Received: by 2002:a17:907:789a:b0:99c:e037:e4b8 with SMTP id ku26-20020a170907789a00b0099ce037e4b8mr13152361ejc.72.1692900613819;
+        Thu, 24 Aug 2023 11:10:13 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id c6-20020a056402120600b005232c051605sm22287edw.19.2023.08.24.11.07.08
+        by smtp.gmail.com with ESMTPSA id k20-20020a1709063e1400b00992b71d8f19sm11272711eji.133.2023.08.24.11.10.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 11:07:09 -0700 (PDT)
-Message-ID: <e16687f5-bfea-f986-ea89-575f4ac87989@linaro.org>
-Date:   Thu, 24 Aug 2023 20:07:08 +0200
+        Thu, 24 Aug 2023 11:10:13 -0700 (PDT)
+Message-ID: <161de126-87b0-3440-8517-330b529c3fb6@linaro.org>
+Date:   Thu, 24 Aug 2023 20:10:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/4] dt-bindings: clock: qcom: Add RPMHCC for SM4450
+Subject: Re: [PATCH 3/4] dt-bindings: clock: qcom: Add GCC clocks for SM4450
 Content-Language: en-US
 To:     Ajit Pandey <quic_ajipan@quicinc.com>,
         Andy Gross <agross@kernel.org>,
@@ -71,15 +71,15 @@ To:     Ajit Pandey <quic_ajipan@quicinc.com>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20230824173410.550126-1-quic_ajipan@quicinc.com>
- <20230824173410.550126-2-quic_ajipan@quicinc.com>
+ <20230824173410.550126-4-quic_ajipan@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230824173410.550126-2-quic_ajipan@quicinc.com>
+In-Reply-To: <20230824173410.550126-4-quic_ajipan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -87,12 +87,57 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 24/08/2023 19:34, Ajit Pandey wrote:
-> Add compatible string for qcom RPMHCC for SM4450 platform.
+> Add support for qcom global clock controller bindings for SM4450 platform.
 > 
 > Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
 > ---
+>  .../bindings/clock/qcom,sm4450-gcc.yaml       |  54 +++++
+>  include/dt-bindings/clock/qcom,sm4450-gcc.h   | 197 ++++++++++++++++++
+>  2 files changed, 251 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm4450-gcc.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+> new file mode 100644
+> index 000000000000..8c767bdf7f9d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,sm4450-gcc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Global Clock & Reset Controller on SM4450
+> +
+> +maintainers:
+> +  - Ajit Pandey <quic_ajipan@quicinc.com>
+> +  - Taniya Das <quic_tdas@quicinc.com>
+> +
+> +description: |
+> +  Qualcomm global clock control module provides the clocks, resets and power
+> +  domains on SM4450
+> +
+> +  See also:: include/dt-bindings/clock/qcom,sm4450-gcc.h
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,sm4450-gcc
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Sleep clock source
+> +      - description: UFS Phy Rx symbol 0 clock source (Optional clock)
+> +      - description: UFS Phy Rx symbol 1 clock source (Optional clock)
+> +      - description: UFS Phy Tx symbol 0 clock source (Optional clock)
+> +      - description: USB3 Phy wrapper pipe clock source (Optional clock)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I doubt that these are really optional clocks. They are set as parents
+of your clocks in the controller, so if these clocks are physically
+missing, how does the clock controller work?
+
 
 Best regards,
 Krzysztof
