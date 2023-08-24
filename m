@@ -2,184 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61DB9786AA1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A636786AAE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234344AbjHXIsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 04:48:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33014 "EHLO
+        id S229727AbjHXIua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 04:50:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240563AbjHXIsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:48:04 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F611BC1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:47:37 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4ffa01fc987so761826e87.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:47:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692866842; x=1693471642;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Luu2mgu5dBhR6s0bCtSFfR5zNZajHF5BW8EWntyR8Zc=;
-        b=QUg6K6RRwKwmJKro0tziz7F+gHcpcXqtWXrEdODclSfX6hERwyWAQ7gi38RTf+Si7y
-         UqEtpQTRWG5L8nzjPmgnc2AsuiCsShq4ze/ZHNTCZ0e1z2p2U9CPTVIylMhvnaHoMLHP
-         VfNXkbDvVcim1WDv8+rEEHZsYHdlJVTln1wcV8xHatpawV6EpozV7h97MdEGXmuLmEJq
-         m2ms1I/TIlDIYqWe6951t9M4mBsCaO325sQMKgC4poip7vheGdnc3n8YqkNSwlbISnLf
-         LqnsDMdzpZKUz2fk5ZErjYJ/xRhNFtSqy04fw4ykl/19rl9npekV3Ce5SF033yxwC9bp
-         aKTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692866842; x=1693471642;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Luu2mgu5dBhR6s0bCtSFfR5zNZajHF5BW8EWntyR8Zc=;
-        b=EE7iHOwPBZSdQ5hCVM4kCl8nqVysyuaDKNiCIFbJ+kpQ4Gr0YZTLd4Usdg60WYrkXh
-         BZE4hjrKUEAqy798mFSZ3JqHI9l2RF6FwsOsHlfUNYUnxQ3CnXr5H2ThDYxqo9FJftrq
-         p607Zs0lrYk9cKM09V9tRZB0ot1OtiJ1vtKwkFGFs4PP9D2qKvVURspzeaH09Xp52Xv/
-         HF3LBiNENglQXVZB6BFLftTtPk+JETIoIzaLkmLm2OJzYTnBuALJdykaSyHyXpa/xAyc
-         UjdCeT7gPOjQeIM/6FyM+WVaZtuvSgYSK0wr8lgQ+OMul3XW5RV128vqwyzO2XNancRv
-         7AVA==
-X-Gm-Message-State: AOJu0YwdJqnbsuTKcNdoNE/7W4oWClxDDvImW400kfBo9NDMF+z1rasW
-        zMLg4+HXgV+jvjLQYVXmJlBGyA==
-X-Google-Smtp-Source: AGHT+IFxr2lky/zZxRDrtPoerryLLsp8lOpSvqyqiX9re9sZXlPeGUSvwTTorceGzllqJ3qri5xsvQ==
-X-Received: by 2002:ac2:4f15:0:b0:4ff:8f76:678c with SMTP id k21-20020ac24f15000000b004ff8f76678cmr6695568lfr.1.1692866842361;
-        Thu, 24 Aug 2023 01:47:22 -0700 (PDT)
-Received: from ?IPV6:2a00:f41:4882:ba34:4490:938b:eab4:c5ef? ([2a00:f41:4882:ba34:4490:938b:eab4:c5ef])
-        by smtp.gmail.com with ESMTPSA id w12-20020a05651203cc00b004ff8ee47f2fsm3063805lfp.1.2023.08.24.01.47.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 01:47:22 -0700 (PDT)
-Message-ID: <868da572-cff1-42b6-9931-06b6a8c73809@linaro.org>
-Date:   Thu, 24 Aug 2023 10:47:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] dt-bindings: clock: Add ipq9574 NSSCC clock and reset
- definitions
+        with ESMTP id S231247AbjHXIuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:50:17 -0400
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2108.outbound.protection.outlook.com [40.107.255.108])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 181EEE68;
+        Thu, 24 Aug 2023 01:50:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Os5Ip5G78X5b4rTMhDwnGasHQJOlVhGGe6VUnKLMxgpd1E2tKDoK/ANqHrVciXo+HzhtMrLIgCsEV/eqmi2aIhZBQM0rpapLREEFuP8dOzx93zLx672DcczXhlfo64cm12z/mTuTmfi1yZbLzOeQ/Wgx0Zh4OmzofOUXxb6qn9Za7ELh+U5rHNNW5H1V9f6EuZ1cOUWrNu5gxPoGRKfHC5401PSlXq6ctrzpU72sGJLDI/gJd2ItjsiYav8BeuFXGXjy1OV8CKBAAzIpzfKU8MK9HHPW9xeG3ozUUSj1yut/VvchrOb4pDvqNG0E+My9Fu/A1689tor1jgY5uuP/RQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=37Vl5Nuu2wsxh2ubxYsgjMJwR/5AB0inptuA3fXV7Tw=;
+ b=bpZy6f+82AkswMHxo1aADP1sx0ib94nfQ8jT6x8kOQCJIsTO4w6blXk/uc0/NKfUboBSCYGNl7hT3Mp4od+IIi3GQv/lkIqav4dyAIsNRBIYcJW8hAJZ90vZ5Vy291cVwIG8z6Ml8N7/UlL5Q47TMud5hA2uXs8I9DO0/mYvwUTjy95aiB062vk2r8+3GDPE50YMPWXmPRLS9LiElLgbwCCuJ6SxNk61dp+XXyu7NX+8sZJ52CEz8G2/zIqVRgR93q7/mt4XTkgBEP11n064m/znwdPl0PYLTD5pS5jm6UChCN7GA0yxIMKgha5zsBNRmXU2ms4hgdSYNKLZYEf2yA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=37Vl5Nuu2wsxh2ubxYsgjMJwR/5AB0inptuA3fXV7Tw=;
+ b=E6JiG2YLcUui5UZKj7sBgprqMo4peA8nN4xrbX2seN3xU/dtCFtOyeVgtmMYWeNKArtMst+PYzRAv0oxDmY3EVnqFn7TmxCX/QKPa9J4s40C8Ewwek6xD5arqN5vRaAIhTxjA2tRUYTP3kW/yD0E1C8ecFLrxtq5a+0aW+bVsAGqkXXpHgVvxJr+kPFeqeFYw2JfLQMAzpadbS5VKeCKO/fJ22vczMypyZaWOeX++3A05ISluQR37bJr7W5R9t0lZw/sTc1a8IyKWOntEEpAZkLnaLy6RFZ8xOfF/3w6YhHcr2mBT6TtWEWNfLoHaDAeyq4B2YFRwkKBHOb82CsqWA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by KL1PR03MB7527.apcprd03.prod.outlook.com (2603:1096:820:ea::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Thu, 24 Aug
+ 2023 08:50:11 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::f065:6e23:803b:2a75]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::f065:6e23:803b:2a75%7]) with mapi id 15.20.6699.025; Thu, 24 Aug 2023
+ 08:50:11 +0000
+Message-ID: <7180c992-2dbc-f673-56d4-a328c11c7faf@amlogic.com>
+Date:   Thu, 24 Aug 2023 16:49:59 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH V2 5/6] soc: amlogic: Add support for T7 power domains
+ controller
 Content-Language: en-US
-To:     Kathiravan T <quic_kathirav@quicinc.com>,
-        Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, richardcochran@gmail.com, arnd@arndb.de,
-        geert+renesas@glider.be, neil.armstrong@linaro.org,
-        nfraprado@collabora.com, rafal@milecki.pl,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
-Cc:     quic_saahtoma@quicinc.com
-References: <20230711093529.18355-1-quic_devipriy@quicinc.com>
- <20230711093529.18355-4-quic_devipriy@quicinc.com>
- <ea229d40-0bce-87e8-edef-72a7f251c051@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <ea229d40-0bce-87e8-edef-72a7f251c051@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     neil.armstrong@linaro.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-6-xianwei.zhao@amlogic.com>
+ <97c05c1f-1d59-4dc8-9a1b-ae2fea61e094@linaro.org>
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <97c05c1f-1d59-4dc8-9a1b-ae2fea61e094@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: SG2PR06CA0181.apcprd06.prod.outlook.com (2603:1096:4:1::13)
+ To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KL1PR03MB7527:EE_
+X-MS-Office365-Filtering-Correlation-Id: c4b0de6a-9113-4cbc-da5a-08dba47f2007
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zS98ERu2vFCfr07X48fJzHQmNdaa2jDmoYoIV3P45VziSU9MQtC2RaS8nB3YZOs0q1mC7ogtkYR4sMj9f/8ePUmCVyY84mpxqWwmfA9m4A2Zp51AwvMl6DfHtYbtEGMsPema4dZ2ZwUxx+AoUNCRnW1wpjInG0o47Ars34sV0XDEe6uN/Ar12U/3XfOzVrRIAK57G91VFw5evooBKvEN7MdfJcS1c3xVIrpEmn4xfO0lYX7EwQOH1bm3COYcYRSZ0PoPOK6XrpGEZ6LC3yKtLXWic3b2Tf1ydYFPxh1EJ8rUdE4Y56m5CbIMPxe5Pugbyy0zhAtUMRleWyUHTjqsgVx4eBDBS/kujq8T3z3iWfwSV4u1hP3O5q5PRiSpl+45k54hMdf6hc/bh3bu5smyyAVxjvX0eRi4dUBd1WtXyqwyDN51vrjroUhzkaWFLdbzHGFqZOuyD+kuejZMg6c37R3TtXeiX5eThMRh0mHlcmW3mL3VpR/JecN0b3LfH7mcMxnq5vY00PYk7oXJfDWwor1Hd4ekoFKZRtksIevhqZwMWAsgfx/cKt+lxvvQ1c8TCTfBlDRUufAtXuTRk1lN9SGaSJ0BTuBHk222O08n/c4rKEUPpW4k3sCDNgiK18Yg3AUyMho/H2Bu3gy4iU+LLjiR30KMM8UJwBvdIUdOHO8yGsToDPlXrvIVaGj6h2+vByAKtUbPGWzjOWPmZY7p6tVGNBwLjW2M8veA05//YpE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(376002)(366004)(346002)(396003)(136003)(451199024)(186009)(1800799009)(2616005)(6506007)(6486002)(53546011)(316002)(12101799020)(8936002)(8676002)(4326008)(54906003)(66946007)(66476007)(66556008)(41300700001)(6512007)(26005)(5660300002)(44832011)(6666004)(31686004)(478600001)(83380400001)(36756003)(86362001)(31696002)(2906002)(38100700002)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N2xTaHNyUWVUbEUwT3ZobXJjZG94U1ljREVleVJOMW5scjRpSnZWVFB2aTJs?=
+ =?utf-8?B?c29meTIvSXNMMlVUSUZmNzhsS0hMaEJack1RWUZWakdueG9OSzNrOUNaUkdR?=
+ =?utf-8?B?K3ozN2tXZ0c5bzlxbC9mZ1dpeXFZN2hUSHMxWEtmZHRVamZIUVFxM1dHYUdj?=
+ =?utf-8?B?MkcrZlFLSVQweWx0MkhNUjEzc1BxNGRpTXJYWi9vNUs0Z1lxZ0JuNGVlUHRn?=
+ =?utf-8?B?c1UzVTRLSWtFUlowMW9EeWN5S1BxRUE2ZFEwYWkzVXZMZEVOU3dwYVU3T2g2?=
+ =?utf-8?B?M0ZxSnFmdG5NSFgvV0UzRytxMGVvVEI0emdUV09peVFJazZCZmxWYzZkbVdB?=
+ =?utf-8?B?ZlhBTU1xTy9TM2w0aGxOWmZoRHpxOTVoY2VSM3pqSG9HNjl3aDdDRGM0WDd4?=
+ =?utf-8?B?TGtub1BiTU1tR3pZd2hCQ3NEMFlyU1E2ZGM4MkEwR01odGQ0a2R1NVRtSHN2?=
+ =?utf-8?B?SXQ3OHVyeDNKMXZmRk5HVzA0K3lUeS9Xd3RZblFiTjFEcFl5bUFEMmM2c09y?=
+ =?utf-8?B?Q3ByZVFCMmdMT29JalBSK1MreUY0UCs3VVFrRTZJdzRRcEhabG5JTFpqUHdJ?=
+ =?utf-8?B?akFSaFFkNGR3d0EzVG9VTVloTUtMS3ZVV1cvZ1VWbVFlL1RyTmJWL2FyN1lO?=
+ =?utf-8?B?NUdyQlFBREZka3k2ZkYxRFFLVnN1cENhazIvZ09jK0ZXeHBoMVVlU3BEUEkw?=
+ =?utf-8?B?MFlFTDczMExrajNBNjFTSFI0QmFxUnUrOFdROHBoOUROWmsxd3VPbVVMT2wr?=
+ =?utf-8?B?R0VsTXBZdnN0SXBEVEN1eEcvb2ZNUWZVbFIxMERXUTV6ZUNBTnNpNW9vdWpW?=
+ =?utf-8?B?STFFWTNUMEgxQVdQQndiOXdKK1lzVytVQWYxQkVncGFqVStuampRYkFVeHVN?=
+ =?utf-8?B?eDBOSEhFVFpxUnd2Tk1SMCtyWWsyZm0zY1FJNXZGWEZhUVlUMHVkVVVUT1h6?=
+ =?utf-8?B?WEM3dDY0WjY4dURkc0ZVbEZmcVVFcXQxZm54UU1WdDI4Um4yd2RFTlU4ejhq?=
+ =?utf-8?B?R2RlV3RDYml3NWF2ZjFUR1ZvV0hOTlJsMjd4UjVWMUpNZEd2d3M3bUtVREVP?=
+ =?utf-8?B?Zzk4QXoxK0t6TnpLY0dyeXFqSHp3aFl1RWkvRFF2YTBuZU9abnJ0Wkt1VnFK?=
+ =?utf-8?B?bzJkY3dQRHhUZzIyRi9aVUlHT0pMeGRLZkVnUERoWXRVNlhiRUtpYk1BejF0?=
+ =?utf-8?B?bWNEajVBVUtpRGd3a0poMTJPUXUxc015QzVBS0hmQ0F6SDl5czlqdnJXbzJY?=
+ =?utf-8?B?dFpJaUNnMEJFTFNXZ0F0OUpsSDJ3SHdBRDJsTUxva2FtL1JkVlgrQ0U2R3VP?=
+ =?utf-8?B?ZXp6Y3Z3LzRVUVBmcU56eS85Wm84MDFzYmpSSWE4aklzZ0FvanAyR2ZzK2pD?=
+ =?utf-8?B?bFdHTjh3L2tQcjArb245RGV5R3hPWi9kRFFycW5zcXF2aWJ3VnNFVk5YU0w3?=
+ =?utf-8?B?NGVkRlpTU3loR2ExL1RjcTAzMVh5aVVLZ1VjU1J6NEtNRk5oWjJYdFlXY1ox?=
+ =?utf-8?B?Qk43NnJqOUVsbUJ5Rkg1cWNTTW5CbU9nZ1FrWkF0M3ppR3dzRE44TE8xUmdw?=
+ =?utf-8?B?Q05QdHEzaFo0Wjd2OWhITjhoeWVMZmlYeEsySzlPZEpEWjRkRDJ4M3Q0WVht?=
+ =?utf-8?B?ZEh6MU1LbUZIWHRsaWExY1F6azFWbjFvcjFlZFN6bGZmQnNxcDF6YnIwbE9y?=
+ =?utf-8?B?ZEFYaCtZVElxV0RLWVZZN2FqT1JjUUdJTG1JUzQ1eDRKdzRzb2RYNWhqVStP?=
+ =?utf-8?B?OWZVZzk1V1M1cHNvMGJ3Wk5HcXova2lxdStXaDhrU3BUSHNRdHhNN1JLWDd6?=
+ =?utf-8?B?MHRiMmJteFJZSmlvT1dtT2pOK1pKZlNMYzBzbFdMNUZGVmZocVdaOW82blA3?=
+ =?utf-8?B?OFlkalNDU2xXZy9jWm5Hb096TTRXV3RMUTFkZUhIYXd1U3d2MjY2WTUrNGF6?=
+ =?utf-8?B?L21lODM3V215ZERrZmZLQ04zN0s1TG16dElWV0JiZ29GZzFVWWR2ZDVGTTFl?=
+ =?utf-8?B?V3c2a2ZwU21nZFZpV2Z6Rk0xK29veDdOSjUxaEl0ZW1Bd3pSMEJlbzU2dEdC?=
+ =?utf-8?B?SFN1QWtLWTNqM0djMXR5LzZCUXMxUTZmbjZhWEE0bjVvQWhjcDMzcjA2SW14?=
+ =?utf-8?B?amFPTXlidnU4V3JuSE5TM21rVEd6WElvZ2EvSERaWUZTTWhFWjJTSU0zMEla?=
+ =?utf-8?B?VVE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c4b0de6a-9113-4cbc-da5a-08dba47f2007
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 08:50:10.9584
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: npjlhtlWUx0YbXLcbEIopWs6YQu4+MslBi9nxAcWRc8CoMHyzkCFcLaJFP/BdO1EgKPK49JsuR/kXvYgarHLhiDTr1Cigcj1JAEqXuwklBM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7527
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24.08.2023 07:18, Kathiravan T wrote:
-> 
-> On 7/11/2023 3:05 PM, Devi Priya wrote:
->> Add NSSCC clock and reset definitions for ipq9574.
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
->>   .../bindings/clock/qcom,ipq9574-nsscc.yaml    |  76 +++++++++
->>   .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
->>   .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
->>   3 files changed, 362 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->>   create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
->>   create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->> new file mode 100644
->> index 000000000000..1e8754760785
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->> @@ -0,0 +1,76 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/qcom,ipq9574-nsscc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm Networking Sub System Clock & Reset Controller on IPQ9574
->> +
->> +maintainers:
->> +  - Bjorn Andersson <andersson@kernel.org>
->> +  - Anusha Rao <quic_anusha@quicinc.com>
->> +
->> +description: |
->> +  Qualcomm networking sub system clock control module provides the clocks,
->> +  resets and power domains on IPQ9574
->> +
->> +  See also::
->> +    include/dt-bindings/clock/qcom,ipq9574-nsscc.h
->> +    include/dt-bindings/reset/qcom,ipq9574-nsscc.h
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,ipq9574-nsscc
->> +
->> +  clocks:
->> +    items:
->> +      - description: Bias PLL cc clock source
->> +      - description: Bias PLL nss noc clock source
->> +      - description: Bias PLL ubi nc clock source
->> +      - description: GCC GPLL0 out aux clock source
->> +      - description: Uniphy0 GCC Rx clock source
->> +      - description: Uniphy0 GCC Tx clock source
->> +      - description: Uniphy1 GCC Rx clock source
->> +      - description: Uniphy1 GCC Tx clock source
->> +      - description: Uniphy2 GCC Rx clock source
->> +      - description: Uniphy2 GCC Tx clock source
-> 
-> 
-> These are UniphyX *NSS* TX/RX clock source?
-Wouldn't that be "source from GCC"?
+Hi Neil,
+     Thanks for your reply.
 
-Konrad
+On 2023/8/24 16:30, Neil Armstrong wrote:
+> [ EXTERNAL EMAIL ]
+> 
+> On 24/08/2023 07:59, Xianwei Zhao wrote:
+>> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
+>>
+>> Add support for T7 power controller. T7 power control
+>> registers are in secure domain, and should be accessed by SMC.
+>>
+>> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+>> ---
+>> V1 -> V2: Modify T7_NIC flag  "ALWAYS_ON"
+>> ---
+>>   drivers/genpd/amlogic/meson-secure-pwrc.c | 73 +++++++++++++++++++++++
+>>   1 file changed, 73 insertions(+)
+>>
+>> diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c 
+>> b/drivers/genpd/amlogic/meson-secure-pwrc.c
+>> index 3e7e3bd25d1f..2233f6cb7e71 100644
+>> --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
+>> +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
+>> @@ -13,6 +13,7 @@
+>>   #include <dt-bindings/power/meson-a1-power.h>
+>>   #include <dt-bindings/power/amlogic,c3-pwrc.h>
+>>   #include <dt-bindings/power/meson-s4-power.h>
+>> +#include <dt-bindings/power/amlogic,t7-pwrc.h>
+>>   #include <linux/arm-smccc.h>
+>>   #include <linux/firmware/meson/meson_sm.h>
+>>   #include <linux/module.h>
+>> @@ -164,6 +165,69 @@ static struct meson_secure_pwrc_domain_desc 
+>> s4_pwrc_domains[] = {
+>>       SEC_PD(S4_AUDIO,        0),
+>>   };
+>>
+>> +static struct meson_secure_pwrc_domain_desc t7_pwrc_domains[] = {
+>> +     SEC_PD(T7_DSPA,         0),
+>> +     SEC_PD(T7_DSPB,         0),
+>> +     TOP_PD(T7_DOS_HCODEC,   0, PWRC_T7_NIC3_ID),
+>> +     TOP_PD(T7_DOS_HEVC,     0, PWRC_T7_NIC3_ID),
+>> +     TOP_PD(T7_DOS_VDEC,     0, PWRC_T7_NIC3_ID),
+>> +     TOP_PD(T7_DOS_WAVE,     0, PWRC_T7_NIC3_ID),
+>> +     SEC_PD(T7_VPU_HDMI,     0),
+>> +     SEC_PD(T7_USB_COMB,     0),
+>> +     SEC_PD(T7_PCIE,         0),
+>> +     TOP_PD(T7_GE2D,         0, PWRC_T7_NIC3_ID),
+>> +     /* SRAMA is used as ATF runtime memory, and should be always on */
+>> +     SEC_PD(T7_SRAMA,        GENPD_FLAG_ALWAYS_ON),
+>> +     /* SRAMB is used as ATF runtime memory, and should be always on */
+>> +     SEC_PD(T7_SRAMB,        GENPD_FLAG_ALWAYS_ON),
+>> +     SEC_PD(T7_HDMIRX,       0),
+>> +     SEC_PD(T7_VI_CLK1,      0),
+>> +     SEC_PD(T7_VI_CLK2,      0),
+>> +     /* ETH is for ethernet online wakeup, and should be always on */
+>> +     SEC_PD(T7_ETH,          GENPD_FLAG_ALWAYS_ON),
+>> +     SEC_PD(T7_ISP,          0),
+>> +     SEC_PD(T7_MIPI_ISP,     0),
+>> +     TOP_PD(T7_GDC,          0, PWRC_T7_NIC3_ID),
+>> +     TOP_PD(T7_DEWARP,       0, PWRC_T7_NIC3_ID),
+>> +     SEC_PD(T7_SDIO_A,       0),
+>> +     SEC_PD(T7_SDIO_B,       0),
+>> +     SEC_PD(T7_EMMC,         0),
+>> +     TOP_PD(T7_MALI_SC0,     0, PWRC_T7_NNA_TOP_ID),
+>> +     TOP_PD(T7_MALI_SC1,     0, PWRC_T7_NNA_TOP_ID),
+>> +     TOP_PD(T7_MALI_SC2,     0, PWRC_T7_NNA_TOP_ID),
+>> +     TOP_PD(T7_MALI_SC3,     0, PWRC_T7_NNA_TOP_ID),
+>> +     SEC_PD(T7_MALI_TOP,     0),
+>> +     TOP_PD(T7_NNA_CORE0,    0, PWRC_T7_NNA_TOP_ID),
+>> +     TOP_PD(T7_NNA_CORE1,    0, PWRC_T7_NNA_TOP_ID),
+>> +     TOP_PD(T7_NNA_CORE2,    0, PWRC_T7_NNA_TOP_ID),
+>> +     TOP_PD(T7_NNA_CORE3,    0, PWRC_T7_NNA_TOP_ID),
+>> +     SEC_PD(T7_NNA_TOP,      0),
+>> +     SEC_PD(T7_DDR0,         GENPD_FLAG_ALWAYS_ON),
+>> +     SEC_PD(T7_DDR1,         GENPD_FLAG_ALWAYS_ON),
+>> +     /* DMC0 is for DDR PHY ana/dig and DMC, and should be always on */
+>> +     SEC_PD(T7_DMC0,         GENPD_FLAG_ALWAYS_ON),
+>> +     /* DMC1 is for DDR PHY ana/dig and DMC, and should be always on */
+>> +     SEC_PD(T7_DMC1,         GENPD_FLAG_ALWAYS_ON),
+>> +     /* NOC is related to clk bus, and should be always on */
+>> +     SEC_PD(T7_NOC,          GENPD_FLAG_ALWAYS_ON),
+>> +     /* NIC is for the Arm NIC-400 interconnect, and should be always 
+>> on */
+>> +     SEC_PD(T7_NIC2,         GENPD_FLAG_ALWAYS_ON),
+>> +     SEC_PD(T7_NIC3,         0),
+>> +     /* CPU accesses the interleave data to the ddr need cci, and 
+>> should be always on */
+>> +     SEC_PD(T7_CCI,          GENPD_FLAG_ALWAYS_ON),
+>> +     SEC_PD(T7_MIPI_DSI0,    0),
+>> +     SEC_PD(T7_SPICC0,       0),
+>> +     SEC_PD(T7_SPICC1,       0),
+>> +     SEC_PD(T7_SPICC2,       0),
+>> +     SEC_PD(T7_SPICC3,       0),
+>> +     SEC_PD(T7_SPICC4,       0),
+>> +     SEC_PD(T7_SPICC5,       0),
+>> +     SEC_PD(T7_EDP0,         0),
+>> +     SEC_PD(T7_EDP1,         0),
+>> +     SEC_PD(T7_MIPI_DSI1,    0),
+>> +     SEC_PD(T7_AUDIO,        0),
+>> +};
+>> +
+>>   static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>>   {
+>>       int i;
+>> @@ -257,6 +321,11 @@ static struct meson_secure_pwrc_domain_data 
+>> meson_secure_s4_pwrc_data = {
+>>       .count = ARRAY_SIZE(s4_pwrc_domains),
+>>   };
+>>
+>> +static struct meson_secure_pwrc_domain_data 
+>> amlogic_secure_t7_pwrc_data = {
+>> +     .domains = t7_pwrc_domains,
+>> +     .count = ARRAY_SIZE(t7_pwrc_domains),
+>> +};
+>> +
+>>   static const struct of_device_id meson_secure_pwrc_match_table[] = {
+>>       {
+>>               .compatible = "amlogic,meson-a1-pwrc",
+>> @@ -270,6 +339,10 @@ static const struct of_device_id 
+>> meson_secure_pwrc_match_table[] = {
+>>               .compatible = "amlogic,meson-s4-pwrc",
+>>               .data = &meson_secure_s4_pwrc_data,
+>>       },
+>> +     {
+>> +             .compatible = "amlogic,t7-pwrc",
+>> +             .data = &amlogic_secure_t7_pwrc_data,
+>> +     },
+>>       { /* sentinel */ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
+> 
+> With updated subject:
+Will do.
+> 
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
