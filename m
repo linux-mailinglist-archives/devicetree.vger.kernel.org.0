@@ -2,73 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08042787900
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 21:59:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 497A478793C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 22:23:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243337AbjHXTzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 15:55:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58316 "EHLO
+        id S243453AbjHXUX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 16:23:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243229AbjHXTzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 15:55:24 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5285C1BE6;
-        Thu, 24 Aug 2023 12:55:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1692906922; x=1724442922;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HHxd+sRQno+zlKMlOXPg8GU8rShd+SQCJ3iQuiwJQoA=;
-  b=iqr37zVJlwf4CSAlXcHKqADe8xmuDJCGA26pe9jGasuKVcTu9QvhNnr6
-   H/mjeF5MqmpHpFnkMxIg5N+hC7560b7CotTsDx68En8eUNEta7Y5B8Zpx
-   hjuDPL0TlI2u6hJ1eQUGv3+Ga8kzUwBXB8IPmGFroXcbPgA3xlvMZYPe6
-   dzyp2aqsP7pK27r4kNXVXszCwPY6KeqnWq+GqT59NXRgsea2lIC3qYtxT
-   SoHI5+zlvBuT7lbvZySsVRq8fs44eWS2etrcF6g/wsKJCUFu5ulXKjCxM
-   MXTOMMnpUDRGTiLqnFMvqfyBFaTNZABEgWSp13r+ry9tfQr5BJ9XybK3m
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="359543617"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
-   d="scan'208";a="359543617"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Aug 2023 12:55:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="740339883"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
-   d="scan'208";a="740339883"
-Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
-  by fmsmga007.fm.intel.com with ESMTP; 24 Aug 2023 12:55:18 -0700
-Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qZGQH-0002wA-1Q;
-        Thu, 24 Aug 2023 19:55:17 +0000
-Date:   Fri, 25 Aug 2023 03:54:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
-        Rob Herring <robh@kernel.org>, linux-acpi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Hanjun Guo <guohanjun@huawei.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Len Brown <lenb@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v1 1/1] amba: bus: balance firmware node reference
- counting
-Message-ID: <202308250317.taQ9kshJ-lkp@intel.com>
-References: <20230824162654.2890992-1-andriy.shevchenko@linux.intel.com>
+        with ESMTP id S243515AbjHXUXM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 16:23:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7F711BF0;
+        Thu, 24 Aug 2023 13:23:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4B7CF63591;
+        Thu, 24 Aug 2023 20:23:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0215C433C7;
+        Thu, 24 Aug 2023 20:23:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692908589;
+        bh=3PBtJkg2WZ3R/qS+hkh2lrKdXxwwnQiMiY+RDme0Jsk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SFYwBMIb2Au7arswiPDu9WGX9Z9aCR4Jg6WU4i6c9JuA13KlGwG+vk2mS+yLKande
+         I9A8HNOmOwY4+f6s60c9d2IoYm9P9qDUJjkjF5FVPbyvZsKcWNtS6ir7VeUz+IOdug
+         IjHoingdNMjUrMinR5zkGbZiOohE/B6XcjHrPN8kzQCWXnAeSRK83YYUHVTjfJ8ZL2
+         LwREZTF2Rqe+9uuPGFC9ho+uJ+5koTacW/ugCtLscV7QAvl2g0PqorSz3RDPe9zSkj
+         x/+CK3VJuwr8vVkSkc/bsPwZdo8feq/Qnil9THLYMEjWJbhQNVnrV/A8svmywMA9O6
+         K0C47KledO7ug==
+Received: (nullmailer pid 1388034 invoked by uid 1000);
+        Thu, 24 Aug 2023 20:23:07 -0000
+Date:   Thu, 24 Aug 2023 15:23:07 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Stanley Chang <stanley_chang@realtek.com>
+Cc:     Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v5 2/2] dt-bindings: usb: dwc3: Add Realtek DHC RTD SoC
+ DWC3 USB
+Message-ID: <169290858708.1387981.16009079026714581138.robh@kernel.org>
+References: <20230824082824.18859-1-stanley_chang@realtek.com>
+ <20230824082824.18859-2-stanley_chang@realtek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230824162654.2890992-1-andriy.shevchenko@linux.intel.com>
+In-Reply-To: <20230824082824.18859-2-stanley_chang@realtek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,58 +62,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
 
-kernel test robot noticed the following build errors:
+On Thu, 24 Aug 2023 16:28:09 +0800, Stanley Chang wrote:
+> Document the DWC3 USB bindings for Realtek SoCs.
+> 
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+> ---
+> v4 to v5 change:
+>     No change.
+> v3 to v4 change:
+>     Add reg for register set for pm control.
+>     Remove maximum-speed in example.
+> v2 to v3 change:
+>     Add description for reg
+>     Remove property for realtek,unlink-usb3-port.
+>     Remove property for realtek,disable-usb3-phy.
+>     Use the maximum-speed instead of the above two properties.
+> v1 to v2 change:
+>     Revise the subject.
+>     Rename the file.
+>     Fix dtschema warnings.
+>     Remove the property realtek,enable-l4icg.
+>     Drop status.
+> ---
+>  .../bindings/usb/realtek,rtd-dwc3.yaml        | 80 +++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/realtek,rtd-dwc3.yaml
+> 
 
-[auto build test ERROR on next-20230824]
-[cannot apply to rafael-pm/linux-next robh/for-next soc/for-next linus/master v6.5-rc7 v6.5-rc6 v6.5-rc5 v6.5-rc7]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Andy-Shevchenko/amba-bus-balance-firmware-node-reference-counting/20230825-003007
-base:   next-20230824
-patch link:    https://lore.kernel.org/r/20230824162654.2890992-1-andriy.shevchenko%40linux.intel.com
-patch subject: [PATCH v1 1/1] amba: bus: balance firmware node reference counting
-config: arm-defconfig (https://download.01.org/0day-ci/archive/20230825/202308250317.taQ9kshJ-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20230825/202308250317.taQ9kshJ-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308250317.taQ9kshJ-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/amba/bus.c: In function 'amba_device_release':
->> drivers/amba/bus.c:532:46: error: expected ')' before ';' token
-     532 |         fwnode_handle_put(dev_fwnode(&d->dev);
-         |                          ~                   ^
->> drivers/amba/bus.c:536:18: error: expected ';' before '}' token
-     536 |         kfree(d);
-         |                  ^
-         |                  ;
-     537 | }
-         | ~                 
-
-
-vim +532 drivers/amba/bus.c
-
-   527	
-   528	static void amba_device_release(struct device *dev)
-   529	{
-   530		struct amba_device *d = to_amba_device(dev);
-   531	
- > 532		fwnode_handle_put(dev_fwnode(&d->dev);
-   533		if (d->res.parent)
-   534			release_resource(&d->res);
-   535		mutex_destroy(&d->periphid_lock);
- > 536		kfree(d);
-   537	}
-   538	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
