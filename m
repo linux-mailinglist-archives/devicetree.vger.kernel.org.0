@@ -2,108 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3F447869EF
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48F3786A02
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234814AbjHXIZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 04:25:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41138 "EHLO
+        id S234631AbjHXI23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 04:28:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232616AbjHXIZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:25:15 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1DB431709;
-        Thu, 24 Aug 2023 01:25:12 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,195,1684767600"; 
-   d="scan'208";a="173816691"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 24 Aug 2023 17:25:12 +0900
-Received: from localhost.localdomain (unknown [10.226.93.115])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id AE5814010E04;
-        Thu, 24 Aug 2023 17:25:08 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4 1/4] dt-bindings: clock: versaclock3: Fix the assigned-clock-rates
-Date:   Thu, 24 Aug 2023 09:24:58 +0100
-Message-Id: <20230824082501.87429-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230824082501.87429-1-biju.das.jz@bp.renesas.com>
-References: <20230824082501.87429-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S235822AbjHXI2H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:28:07 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE85B171F
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:28:03 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b974031aeaso100262871fa.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 01:28:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692865682; x=1693470482;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kjdwqQ0uWrlbkJWuo+U46KrH7QKTD79xul20PtUY7QA=;
+        b=WIqcdixLKmmLdnaQukswEXoSl09AoNij4ym3q4xq8v/0rg7k0HSPbaGDi+elDo4TyX
+         qzADCpfDmZFGa4mSzmKT0xEY4857ffkU5qoFWwVlYTf6HHFnOMJSb06jEaJY9yX/zRdi
+         JlRp/Sotqs86M7x5zBgkXPdMgpqiMcIiHdCLkbpqlvj1S/qDTj7N7zr/6PAJ3Okbgq3c
+         /pK27etNgdjCu4tJbovzfYH9tq/qy3qEAHb0AMiyqbav4bqDlJMKzxRfq/QC+Xi4nh1F
+         VPHz26bia1/ZRw/oz1XC1RapKAo84KrmrIgzOFbhm9SnvflaO3QBlr2xpHLPtlcHrDY1
+         TXgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692865682; x=1693470482;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=kjdwqQ0uWrlbkJWuo+U46KrH7QKTD79xul20PtUY7QA=;
+        b=G+LX7WjN4yjow/4uF0coRQ7xFdgVk/ovMMXL7VxMMM7d4h55Y9rLWEsGRmrHpvEQRC
+         UV90sc/XCC0CAbsEwqJWaoLzjechGeF+KIP9s1cv4OF1fHc6J6LDdHyLImH7tqRLdzWS
+         QRlKsYZpcLX9sl0YIUA37DKQeGIA8uFViOrn1uDK4EivwNnIKLzMU4Ep2SQ/z5YNXX/f
+         BFhuH0+KGvXQkCVtqckF1SfT6bhg3KIyHH8KOcfGS/9LQgj/6cu4Kq9h9qtFoEMG6q7H
+         +kD9eMYIHlWvRwtM/4BuawQdzauJlpVCRpDf82NypDSTcnSBms0mDspTfLDIUb95H7wP
+         U9TQ==
+X-Gm-Message-State: AOJu0YwLv+mbdrtcPJKsNhFqCwelPkSJMHZwXLXJd5vmAWUwmVK7fxMN
+        2vM6qh5sPeTteDEAM5qjopgqRQ==
+X-Google-Smtp-Source: AGHT+IGH78Fy+8c6JwG7qxeJucEClM0wxXMWmDebYumzqcZd35hvZR5BLwgj8VKI43fxqmP4PIdX+w==
+X-Received: by 2002:a2e:8051:0:b0:2bc:e827:a4ff with SMTP id p17-20020a2e8051000000b002bce827a4ffmr896249ljg.9.1692865681962;
+        Thu, 24 Aug 2023 01:28:01 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b? ([2a01:e0a:982:cbb0:e6d5:d4d4:f3a1:e44b])
+        by smtp.gmail.com with ESMTPSA id x4-20020adff0c4000000b003180fdf5589sm21866081wro.6.2023.08.24.01.28.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Aug 2023 01:28:01 -0700 (PDT)
+Message-ID: <741c1e35-648d-4c2f-a939-24bcbec93911@linaro.org>
+Date:   Thu, 24 Aug 2023 10:27:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH V2 2/6] soc: amlogic: add driver to support power parent
+ node
+Content-Language: en-US, fr
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-3-xianwei.zhao@amlogic.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20230824055930.2576849-3-xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the "assigned-clock-rates" for each clock output in the
-example based on Table 3. ("Output Source") in the 5P35023
-datasheet(ie: {REF,SE1,SE2,SE3,DIFF1,DIFF2}).
+Hi,
 
-While at it, replace clocks phandle in the example from x1_x2->x1 as
-X2 is a different 32768 kHz crystal.
+On 24/08/2023 07:59, Xianwei Zhao wrote:
+> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
+> 
+> Some power domains depends on other domains, Such as Amlogic T7 SoC.
+> Add parent node to support this case.
+> 
+> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+> ---
+> V1 -> V2: None
+> ---
+>   drivers/genpd/amlogic/meson-secure-pwrc.c | 26 ++++++++++++++++++++++-
+>   1 file changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/genpd/amlogic/meson-secure-pwrc.c b/drivers/genpd/amlogic/meson-secure-pwrc.c
+> index 5ac2437ab8ad..76527f4946b4 100644
+> --- a/drivers/genpd/amlogic/meson-secure-pwrc.c
+> +++ b/drivers/genpd/amlogic/meson-secure-pwrc.c
+> @@ -19,10 +19,12 @@
+>   
+>   #define PWRC_ON		1
+>   #define PWRC_OFF	0
+> +#define PWRC_NO_PARENT  ((1UL << (sizeof(unsigned int) * 8)) - 1)
 
-Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Fixes: a03d23f860eb ("dt-bindings: clock: Add Renesas versa3 clock generator bindings")
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-v3->v4:
- * Dropped clock-output-names as there is no validation for it and people
-   can get it wrong.
- * Updated commit header, description and example to reflect this change
- * Retained Ack tag from Conor and Krzysztof as it is trivial change.
-v2->v3:
- * No change.
-v1->v2:
- * Updated commit description to make it clear it fixes
-   "assigned-clock-rates" in the example based on 5P35023 datasheet.
----
- .../devicetree/bindings/clock/renesas,5p35023.yaml        | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+This is fishy, just use UINT_MAX
 
-diff --git a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-index 839648e753d4..8260af2a36db 100644
---- a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-+++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-@@ -68,7 +68,7 @@ examples:
-             reg = <0x68>;
-             #clock-cells = <1>;
- 
--            clocks = <&x1_x2>;
-+            clocks = <&x1>;
- 
-             renesas,settings = [
-                 80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-@@ -79,8 +79,8 @@ examples:
-             assigned-clocks = <&versa3 0>, <&versa3 1>,
-                               <&versa3 2>, <&versa3 3>,
-                               <&versa3 4>, <&versa3 5>;
--            assigned-clock-rates = <12288000>, <25000000>,
--                                   <12000000>, <11289600>,
--                                   <11289600>, <24000000>;
-+            assigned-clock-rates = <24000000>, <11289600>,
-+                                   <11289600>, <12000000>,
-+                                   <25000000>, <12288000>;
-         };
-     };
--- 
-2.25.1
+>   
+>   struct meson_secure_pwrc_domain {
+>   	struct generic_pm_domain base;
+>   	unsigned int index;
+> +	unsigned int parent;
+>   	struct meson_secure_pwrc *pwrc;
+>   };
+>   
+> @@ -34,6 +36,7 @@ struct meson_secure_pwrc {
+>   
+>   struct meson_secure_pwrc_domain_desc {
+>   	unsigned int index;
+> +	unsigned int parent;
+>   	unsigned int flags;
+>   	char *name;
+>   	bool (*is_off)(struct meson_secure_pwrc_domain *pwrc_domain);
+> @@ -90,8 +93,19 @@ static int meson_secure_pwrc_on(struct generic_pm_domain *domain)
+>   {						\
+>   	.name = #__name,			\
+>   	.index = PWRC_##__name##_ID,		\
+> -	.is_off = pwrc_secure_is_off,	\
+> +	.is_off = pwrc_secure_is_off,		\
+>   	.flags = __flag,			\
+> +	.parent = PWRC_NO_PARENT,		\
+> +}
+> +
+> +#define TOP_PD(__name, __flag, __parent)	\
+> +[PWRC_##__name##_ID] =				\
+> +{						\
+> +	.name = #__name,			\
+> +	.index = PWRC_##__name##_ID,		\
+> +	.is_off = pwrc_secure_is_off,		\
+> +	.flags = __flag,			\
+> +	.parent = __parent,			\
+>   }
+>   
+>   static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
+> @@ -202,6 +216,7 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>   
+>   		dom->pwrc = pwrc;
+>   		dom->index = match->domains[i].index;
+> +		dom->parent = match->domains[i].parent;
+>   		dom->base.name = match->domains[i].name;
+>   		dom->base.flags = match->domains[i].flags;
+>   		dom->base.power_on = meson_secure_pwrc_on;
+> @@ -212,6 +227,15 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
+>   		pwrc->xlate.domains[i] = &dom->base;
+>   	}
+>   
+> +	for (i = 0; i < match->count; i++) {
+> +		struct meson_secure_pwrc_domain *dom = pwrc->domains;
+> +
+> +		if (!match->domains[i].name || match->domains[i].parent == PWRC_NO_PARENT)
+> +			continue;
+> +
+> +		pm_genpd_add_subdomain(&dom[dom[i].parent].base, &dom[i].base);
+> +	}
+> +
+>   	return of_genpd_add_provider_onecell(pdev->dev.of_node, &pwrc->xlate);
+>   }
+>   
 
