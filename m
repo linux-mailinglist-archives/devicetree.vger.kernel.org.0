@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB5978682C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 09:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98BC0786835
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 09:19:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240305AbjHXHP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 03:15:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40134 "EHLO
+        id S234530AbjHXHTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 03:19:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240467AbjHXHP5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 03:15:57 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 166EAE4E
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:15:55 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99de884ad25so853777466b.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:15:55 -0700 (PDT)
+        with ESMTP id S240303AbjHXHSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 03:18:32 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1928E7C
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:18:30 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so7989998a12.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 00:18:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692861353; x=1693466153;
+        d=linaro.org; s=google; t=1692861509; x=1693466309;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MgLATBYJzz7m+lw2uYv1KHF9JGwpz8b2a+H6baqeGgg=;
-        b=FcS0oOd6aB0ImZi68UnNSZl+uztMLQO+hKR5O5gmerz1xHTVNkNEqEY2XtSws7CXCn
-         pxscU0RkTra7sIvakFf6UmdJ1hjsmTFLw0TADvPbWzJ24lgmZuceFWkgpPk/gh0D5Dvf
-         Tw5yE8gWjRqrpUpk8ds/Kxr5MGZB82o7YpJdI+mNrbyHX4o1JD70Bps+qgIZoyWUcGGu
-         Drtv0/Ud8sd3wOSEwrguknfyHl+coRy2dP5HFUpHEeRzx9ZFvt9gldvMG+IfTTSZ2Qt9
-         Ft/0TUWH6LXjHCPZGQVJMjlpeGBNNLKYW8Og5Zxtp9zDCRmGg2wFn3ThwrHbMzpy4UWv
-         b0KQ==
+        bh=+jrKqRkmU8w7XJNGtuc7xd6gu0lGzcy/INNpKyR106g=;
+        b=FnkSV4GGEaHncIQRHrpa5IKfq2pfVj66tXsHw72ftlradrJxvDbpDTAqGOKQ9vw549
+         yF1vRVzJrSdb4XCce0WAiXJKR7YHVfvRORMwYN+37kh5Hs/JIzj4YIBvSUsAFlCIlKsg
+         AAcu53+bAoEGL3jnQ+obiFdD/QuJIysgLJmB+H8Hk7u4p65zVJZaxO4Jr9/HMDf+n0Wm
+         3KgS3UnoxgveiJpDw9BkaAMJhX7rWznGqYDSAi8JxERyfrh5q9qKfw2UvW6GUBHK61TU
+         qqhO/4seu2C5/uutgsud39hRcD1ICOJFCV09lsj/LcaxGSST4sS9gZhEX3E9iRZO751v
+         OVDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692861353; x=1693466153;
+        d=1e100.net; s=20221208; t=1692861509; x=1693466309;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MgLATBYJzz7m+lw2uYv1KHF9JGwpz8b2a+H6baqeGgg=;
-        b=cpTtwjZSlw0KN+W/zi/0bc3gw+nULntterAWCaUd/tZXlhVVXtL+zU0eVYgad86eCX
-         uKvuAb6tGJ0IvYbtiFfYSWFD+mfNIqUmtX0WTggeeS6IaAc1TP3DYzck0fx8IgIvClJ+
-         zauPK4J08AntNKp3luTFa6zbJpDt4FlIbKcoy4UX1/GRa14NBNzibIzcHkEfY5BPawcd
-         jhN04CPBu9ZCi1MLXc1UO0vziW+U6lG3FeZ+qvL8rNPlgaiSm/80BHX095GwpyjI9CYH
-         nvuDLb+NkouV7ZJ45T1P3aHwLhn/A9qlEZ594LRLlHoap9wevtoVqhTX0aopoYKT7PBl
-         26fQ==
-X-Gm-Message-State: AOJu0YwGduOHAGxLDM2N0nSlpU6fosZJ8PxLllgOnVbd/L7C3ZtMaKW0
-        l9jV3cvTE/E+dKcfhe+0k77MEA==
-X-Google-Smtp-Source: AGHT+IERlDVVWHhshVztkfejQKy+zATfjV9rmg6d5qwDMRx+kT7ZhgVa2HTV0j0RMbXHGk/Q6a2F3w==
-X-Received: by 2002:a17:906:1ba1:b0:987:4e89:577f with SMTP id r1-20020a1709061ba100b009874e89577fmr11005277ejg.24.1692861353577;
-        Thu, 24 Aug 2023 00:15:53 -0700 (PDT)
+        bh=+jrKqRkmU8w7XJNGtuc7xd6gu0lGzcy/INNpKyR106g=;
+        b=aVSLhUOh/QVThmo5C4srm+Bfl0Uc+k7z/NlR9w4+LgmDwJksUVBYthmk7H89AwNCwy
+         8ok7fphmhQYtYMrG4cfRp23xTcOZRmRqbU691Tdq7+COQC/iHmyPLkY+spei+wBwdMxw
+         gxYvY5ANoIxh6cY5WQ7+V1X5kxxvwez7RBfPk85vv7F72l7Ms6xU6a+DgJNQTqViz3x+
+         wMfWBUvzeOy6N9gY2CzS2gx3a+KpHaSyoBKQPjQILHEGfXcDPMGqOR/GckQmUiYqTF9/
+         UyVzodd1s8lNQRpeh+G1359pT/ffZyuaxtKHTY0HcVx8lDfy6TFTpRuS9bEl/ev7dH7H
+         rBTQ==
+X-Gm-Message-State: AOJu0YwPWZBap88DmU5IaiHhgNFf+11bEq4HGSXe2VTVr1ekr8DEYFME
+        iIBpQhTycgppAeovDJ6YiTssqw==
+X-Google-Smtp-Source: AGHT+IFcjKjHkCuBTPVVykJBcWy2+2HshxuF4UkguJycVvPs5AXGhcZlKWxuTzFVqVkZxq8V6MKPCw==
+X-Received: by 2002:a17:907:271a:b0:9a1:d7cd:6028 with SMTP id w26-20020a170907271a00b009a1d7cd6028mr2900756ejk.56.1692861509227;
+        Thu, 24 Aug 2023 00:18:29 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id sa19-20020a170906edb300b0099ca4f61a8bsm10683298ejb.92.2023.08.24.00.15.52
+        by smtp.gmail.com with ESMTPSA id bv17-20020a170906b1d100b00992e265495csm10537159ejb.212.2023.08.24.00.18.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 00:15:53 -0700 (PDT)
-Message-ID: <b3a6c920-9de5-2788-61ff-beaa60a7a942@linaro.org>
-Date:   Thu, 24 Aug 2023 09:15:52 +0200
+        Thu, 24 Aug 2023 00:18:28 -0700 (PDT)
+Message-ID: <cd1985cf-f13b-8d5b-1f67-f93bae98ce7d@linaro.org>
+Date:   Thu, 24 Aug 2023 09:18:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 2/2] dt-bindings: dma: hisi: Add bindings for Hisi
- Ascend sdma
+Subject: Re: [PATCH 1/2] dt-bindings: imx8mm-thermal: Document
+ 'nxp,reboot-on-critical'
 Content-Language: en-US
-To:     Guo Mengqi <guomengqi3@huawei.com>, vkoul@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     xuqiang36@huawei.com, chenweilong@huawei.com
-References: <20230824040007.1476-1-guomengqi3@huawei.com>
- <20230824040007.1476-3-guomengqi3@huawei.com>
+To:     Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org
+Cc:     linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20230823173334.304201-1-festevam@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230824040007.1476-3-guomengqi3@huawei.com>
+In-Reply-To: <20230823173334.304201-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,82 +75,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 06:00, Guo Mengqi wrote:
-> Add device-tree binding documentation for the Hisi Ascend sdma
-> controller.
+On 23/08/2023 19:33, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
-> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
+> Currently, after the board reaches the critical temperature, the system
+> goes through a poweroff mechanism.
+> 
+> In some cases, such behavior does not suit well, as the board may be
+> unattended in the field and rebooting may be a better approach.
+> 
+> The bootloader may also check the temperature and only allow the boot to
+> proceed when the temperature is below a certain threshold.
+> 
+> Introduce the 'nxp,reboot-on-critical' property to indicate that the
+> board will go through a reboot after the critical temperature is reached.
+> 
+> When this property is absent, the default behavior of forcing a shutdown
+> is kept.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 > ---
->  .../bindings/dma/hisi,ascend-sdma.yaml        | 75 +++++++++++++++++++
->  1 file changed, 75 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
-
-Filename matching compatible, so hisilicon,ascend-sdma.yaml. hisi, is a
-deprecated prefix, so don't use it.
-
-
+>  .../devicetree/bindings/thermal/imx8mm-thermal.yaml         | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
-> new file mode 100644
-> index 000000000000..87b6132c1b4b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/hisi,ascend-sdma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HISI Ascend System DMA (SDMA) controller
+> diff --git a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
+> index d2c1e4573c32..9ac70360fd35 100644
+> --- a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
+> @@ -32,6 +32,12 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  nxp,reboot-on-critical:
+> +    description: Property to indicate that the system will go through a reboot
+> +      after the critical temperature is reached. If absent, the system will
+> +      go through shutdown after the critical temperature is reached.
 
-What is HISI? HiSilicon?
-
-> +
-> +description: |
-> +  The Ascend SDMA controller is used for transferring data
-> +  in system memory. It utilizes IOMMU SVA feature and accepts
-> +  virtual address from user process.
-> +
-> +maintainers:
-> +  - Guo Mengqi <guomengqi3@huawei.com>
-> +
-> +allOf:
-> +  - $ref: dma-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hisilicon,ascend310-sdma
-> +      - hisilicon,ascend910-sdma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#dma-cells':
-> +    const: 1
-> +    description:
-> +      Clients specify a single cell with channel number.
-> +
-> +  hisilicon,ascend-sdma-channel-map:
-> +    description: |
-> +      bitmap, each bit stands for a channel that is allowed to
-> +      use by this system. Maximum 64 bits.
-> +    $ref: /schemas/types.yaml#/definitions/uint64
-
-Why some channels would not be allowed to be used on some board with
-ascend310? Who decides on this?
-
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  pasid-num-bits:
-> +    description: |
-> +      sdma utilizes iommu sva feature to transfer user space data.
-> +      It acts as a basic dma controller if not bound to user space.
-> +    const: 0x10
-
+And if Linux changes the behavior of critical temperature to be "reboot"
+instead of "poweroff", what happens with this property? You add now
+property for a SW policy depending on one given implementation. Not
+suitable for bindings, sorry.
 
 Best regards,
 Krzysztof
