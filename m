@@ -2,220 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F18A0786930
-	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00873786992
+	for <lists+devicetree@lfdr.de>; Thu, 24 Aug 2023 10:08:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237970AbjHXIBt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 24 Aug 2023 04:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57820 "EHLO
+        id S229706AbjHXIIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 04:08:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236613AbjHXIBU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:01:20 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 163EE1711;
-        Thu, 24 Aug 2023 01:01:16 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id A45CD24E333;
-        Thu, 24 Aug 2023 16:01:13 +0800 (CST)
-Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Aug
- 2023 16:01:13 +0800
-Received: from xiaofei.localdomain (180.164.60.184) by EXMBX073.cuchost.com
- (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 24 Aug
- 2023 16:01:12 +0800
-From:   Jack Zhu <jack.zhu@starfivetech.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229892AbjHXIHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 04:07:53 -0400
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF911BCD;
+        Thu, 24 Aug 2023 01:07:18 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A58C56000A;
+        Thu, 24 Aug 2023 08:06:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1692864415;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=5iy90UPBEpYr9Ks6Pdn0quIrhraOkWjQhbq0wpTYDBM=;
+        b=XizArq1AmE8u1PlEKB4g8NjhXu0zjN5QFi79zW24HbCXBErrvogWggSj9arbq+KhrFKB+O
+        uNFRNoDum6eiw6b1FusyrSJGtFu52oxgQ2aZxvU94bbYQ6VeF6C6+aaiIjsvth2eXnzCxv
+        fG9eW8n1Z7MjHVpGZKNTWsEMTPK6e/12/dzQCGsxQ9uVm1S5ddD2cTGo7DkevkDqa3KU8H
+        w1ZbBKh6080wCbuer4WK7KK05Jg/bzrwy8FVePWax3FVuMu3JvmQ+yeRvZQEooNr0+hv60
+        bNmbWEfq0tXu55UOuMr9+VZp+jY7MAOxARwAMNEhCJ6ymjR+mtZvO+UxG0Uu9Q==
+Date:   Thu, 24 Aug 2023 10:06:48 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@arm.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
-        <jack.zhu@starfivetech.com>, <changhuang.liang@starfivetech.com>
-Subject: [PATCH v8 8/8] media: staging: media: starfive: camss: Register devices
-Date:   Thu, 24 Aug 2023 16:01:09 +0800
-Message-ID: <20230824080109.89613-9-jack.zhu@starfivetech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230824080109.89613-1-jack.zhu@starfivetech.com>
-References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Andy Shevchenko <andy@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Corey Minyard <minyard@acm.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Richard Weinberger <richard@nod.at>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        M ark Brown <broonie@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-i3c@lists.infradead.org,
+        linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-media@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        alsa-devel@alsa-project.org, linux-scsi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Drop remaining unneeded quotes
+Message-ID: <20230824100648.5b6e8b70@xps-13>
+In-Reply-To: <20230823183749.2609013-1-robh@kernel.org>
+References: <20230823183749.2609013-1-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
- (172.16.6.83)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register ISP sub-device and video devices for StarFive Camera
-Subsystem.
+Hi Rob,
 
-Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
----
- .../staging/media/starfive/camss/stf_camss.c  | 97 ++++++++++++++++++-
- 1 file changed, 96 insertions(+), 1 deletion(-)
+robh@kernel.org wrote on Wed, 23 Aug 2023 13:28:47 -0500:
 
-diff --git a/drivers/staging/media/starfive/camss/stf_camss.c b/drivers/staging/media/starfive/camss/stf_camss.c
-index 918b8b2a7713..ab8d700d3016 100644
---- a/drivers/staging/media/starfive/camss/stf_camss.c
-+++ b/drivers/staging/media/starfive/camss/stf_camss.c
-@@ -120,6 +120,85 @@ static int stfcamss_of_parse_ports(struct stfcamss *stfcamss)
- 	return num_subdevs;
- }
- 
-+static int stfcamss_register_devs(struct stfcamss *stfcamss)
-+{
-+	struct stf_capture *cap_yuv = &stfcamss->captures[STF_CAPTURE_YUV];
-+	struct stf_isp_dev *isp_dev = &stfcamss->isp_dev;
-+	int ret;
-+
-+	ret = stf_isp_register(isp_dev, &stfcamss->v4l2_dev);
-+	if (ret < 0) {
-+		dev_err(stfcamss->dev,
-+			"failed to register stf isp%d entity: %d\n", 0, ret);
-+		return ret;
-+	}
-+
-+	ret = stf_capture_register(stfcamss, &stfcamss->v4l2_dev);
-+	if (ret < 0) {
-+		dev_err(stfcamss->dev,
-+			"failed to register capture: %d\n", ret);
-+		goto err_isp_unregister;
-+	}
-+
-+	ret = media_create_pad_link(&isp_dev->subdev.entity, STF_ISP_PAD_SRC,
-+				    &cap_yuv->video.vdev.entity, 0, 0);
-+	if (ret)
-+		goto err_cap_unregister;
-+
-+	cap_yuv->video.source_subdev = &isp_dev->subdev;
-+
-+	return ret;
-+
-+err_cap_unregister:
-+	stf_capture_unregister(stfcamss);
-+err_isp_unregister:
-+	stf_isp_unregister(&stfcamss->isp_dev);
-+
-+	return ret;
-+}
-+
-+static void stfcamss_unregister_devs(struct stfcamss *stfcamss)
-+{
-+	stf_isp_unregister(&stfcamss->isp_dev);
-+	stf_capture_unregister(stfcamss);
-+}
-+
-+static int stfcamss_subdev_notifier_bound(struct v4l2_async_notifier *async,
-+					  struct v4l2_subdev *subdev,
-+					  struct v4l2_async_subdev *asd)
-+{
-+	struct stfcamss *stfcamss =
-+		container_of(async, struct stfcamss, notifier);
-+	struct stfcamss_async_subdev *csd =
-+		container_of(asd, struct stfcamss_async_subdev, asd);
-+	enum stf_port_num port = csd->port;
-+	struct stf_isp_dev *isp_dev = &stfcamss->isp_dev;
-+	struct stf_capture *cap_raw = &stfcamss->captures[STF_CAPTURE_RAW];
-+	struct media_pad *pad;
-+	int ret;
-+
-+	if (port == STF_PORT_CSI2RX) {
-+		pad = &isp_dev->pads[STF_ISP_PAD_SINK];
-+	} else {
-+		dev_err(stfcamss->dev, "not support port %d\n", port);
-+		return -EPERM;
-+	}
-+
-+	ret = v4l2_create_fwnode_links_to_pad(subdev, pad, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = media_create_pad_link(&subdev->entity, 1,
-+				    &cap_raw->video.vdev.entity, 0, 0);
-+	if (ret)
-+		return ret;
-+
-+	isp_dev->source_subdev = subdev;
-+	cap_raw->video.source_subdev = subdev;
-+
-+	return 0;
-+}
-+
- static int stfcamss_subdev_notifier_complete(struct v4l2_async_notifier *ntf)
- {
- 	struct stfcamss *stfcamss =
-@@ -130,6 +209,7 @@ static int stfcamss_subdev_notifier_complete(struct v4l2_async_notifier *ntf)
- 
- static const struct v4l2_async_notifier_operations
- stfcamss_subdev_notifier_ops = {
-+	.bound = stfcamss_subdev_notifier_bound,
- 	.complete = stfcamss_subdev_notifier_complete,
- };
- 
-@@ -214,6 +294,12 @@ static int stfcamss_probe(struct platform_device *pdev)
- 		goto err_cleanup_notifier;
- 	}
- 
-+	ret = stf_isp_init(stfcamss);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to init isp: %d\n", ret);
-+		goto err_cleanup_notifier;
-+	}
-+
- 	stfcamss_mc_init(pdev, stfcamss);
- 
- 	ret = v4l2_device_register(stfcamss->dev, &stfcamss->v4l2_dev);
-@@ -228,6 +314,12 @@ static int stfcamss_probe(struct platform_device *pdev)
- 		goto err_unregister_device;
- 	}
- 
-+	ret = stfcamss_register_devs(stfcamss);
-+	if (ret < 0) {
-+		dev_err(dev, "Failed to register subdevice: %d\n", ret);
-+		goto err_unregister_media_dev;
-+	}
-+
- 	pm_runtime_enable(dev);
- 
- 	stfcamss->notifier.ops = &stfcamss_subdev_notifier_ops;
-@@ -236,11 +328,13 @@ static int stfcamss_probe(struct platform_device *pdev)
- 		dev_err(dev, "Failed to register async subdev nodes: %d\n",
- 			ret);
- 		pm_runtime_disable(dev);
--		goto err_unregister_media_dev;
-+		goto err_unregister_subdevs;
- 	}
- 
- 	return 0;
- 
-+err_unregister_subdevs:
-+	stfcamss_unregister_devs(stfcamss);
- err_unregister_media_dev:
- 	media_device_unregister(&stfcamss->media_dev);
- err_unregister_device:
-@@ -262,6 +356,7 @@ static int stfcamss_remove(struct platform_device *pdev)
- {
- 	struct stfcamss *stfcamss = platform_get_drvdata(pdev);
- 
-+	stfcamss_unregister_devs(stfcamss);
- 	v4l2_device_unregister(&stfcamss->v4l2_dev);
- 	media_device_cleanup(&stfcamss->media_dev);
- 	pm_runtime_disable(&pdev->dev);
--- 
-2.34.1
+> Cleanup bindings dropping the last remaining unneeded quotes. With this,
+> the check for this can be enabled in yamllint.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
+Acked-by: Miquel Raynal <miquel.raynal@bootlin.com> # for mtd
+
+Thanks,
+Miqu=C3=A8l
