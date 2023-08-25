@@ -2,194 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9878788CDE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 17:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F7C3788D53
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 18:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240258AbjHYP62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 11:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51268 "EHLO
+        id S1344052AbjHYQnv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 12:43:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245283AbjHYP6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 11:58:11 -0400
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02olkn2023.outbound.protection.outlook.com [40.92.44.23])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E761926A5
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 08:58:07 -0700 (PDT)
+        with ESMTP id S1344100AbjHYQne (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 12:43:34 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2071.outbound.protection.outlook.com [40.107.94.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 328C526AF;
+        Fri, 25 Aug 2023 09:43:10 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=of8CbPhzmoHrfvbZqkSXw/mKU3CKO9PXpXSdoO/pFEeVYFChc/xsGFequcXJ84BPZo2LxT0egyk7yHHp4uqTnEyiXGHDEgreCVOqiUpgOfiqK7Ch6IyDUIURLcBetB0vVkoCNW+fWX7uuDwR5bZF+kXlUTO+S77kunoDOVB0eutjUGKtMb1BnuSMihUuBcFN7TEbRqI3aBfosHaCQ9kHEkzau4vEmJEGAP02ZYM1rXEj0b3UQoB4m8pi9InIZOcrV4RzPW7IadpCkiIW3LqNM2nSPrxFWmj6fklZWOOY1TPST5+lVyFlQQeT82t+f+a4P5iQ3DBwn7dZSPCogD7NSg==
+ b=JBswCa2z5p3+B8xA60kmTdOaukK8qzaAN97NCMq/FiVmTe/mxsAQyPCI6sRPcYbYM/BR8GO0Xhld3cfg834yaEj7+DCRBQaRv8InXMxsAtbeSpMEmBziABO6NLK5O2iKPXZ6Z0fFYnWetw9f1qSAcJ8Fg1vfw4MmtjHksbDFdcsIZ7hfCH/l3V/PDEulYNFRMJJLDjWE3bq1uf1Wt+2ose6BRDYatZedAnsmget3qYRgv3UtulcDLF9KTdaJ3+gGevuzu2naBLKNKaJtI55vvoMZIaIyut54004GIJ6FR/zhfUyusQMwlEPnvFn93aV7CXlYrwy0Nxq6P9DwCIZa3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=brncIlW6JYhMOPQSBLPg9Jq95vO2hb0QYyGuSVM8bX0=;
- b=kuH+CDSX4BNA/lgGsyEBLpXhymOBCljP8SBoTjMLPbt8cIR9eoYUKxfCHzQQPFoTYLnRUt9hcePwzRfo3zfbY78MI26B6Ipsow01ssmjCOKmXn4a1azzdMBjjX/QqxQvJcytkSgAwrxeBUAZEXgqbADVUhcL4h0sz4trA0+Pi9Yv4hpYJb3PRehewBQGx+8Yqu6E2DEKgq2mQ7s9bHat9/ibJvfnhXrwH34t7wk+s1dXF/d/+bc5850Nve5qUwe9t1cJBinLxp95PDXjbnehztyAqkvjN1iNz/J/waS5g7V8zNG2SwbNvEllYEDkASIWoZFnyglZctFPoBH+l5PFqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
+ bh=fKPlg9BqjPcPP3zg1I1aEPGcieKY9YGo3NeK3I/tO1Q=;
+ b=fftM7yd5fAmzzcHXYEaKe+0e4RR5HjLr1rnewe66w6d5MQvjflujp57Dkc40WqtDdHIBxFiA+HnSqxhL0+aKk9dkRfRp/NI9xTkYIuprjCBZrJxAkYbiOqMGC0YvnT4GpYA9SoZXqjGqUSVKZjf6ZwZElrttFeWEAbQmuSIoQA1IXMcNxq04hmfGPh5QHId+vyWdh1MfiGZm2o2VMcCqY9YoQcqcsw28friBJyeUNRI4Gpj3q04A/V01UBD6iiUeAo2j15GtiQuiTUM9VmrLvycp+Sg867Mk/J5MKteZwoTVxnxQQ+mHHc1YdDeUrZ1bsDB4jYKywPkkmo8isnKQuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=suse.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=brncIlW6JYhMOPQSBLPg9Jq95vO2hb0QYyGuSVM8bX0=;
- b=LtqT/chZ5tYf7hpGkTQ5oOmKace/Li1RPZXF2YekNb1TODHLSCnOKpWni3jH4PENHgyxrl/rJ6clDUtluvrCYxibk7g6WoOOANqm4U0VvK70d50WzMcamUcmYuBjIkxuSOH3iKjJ/84NGnnOOAo8O1htgm8linieP4QUnMtueg2vPrKnrsVxR8wJSrLpiL7j7QETgE7Yfh0iB3xoDhUGodHFu3iHmn7JGmWiW1TbJLF5Vi9XRMxURP8hmR4qjTzSYPMjNHQgc9u3GvCGq5EcMBIWuwp9daDYnf7YECQnXEx8YjUIc9bGoFSzR9V0jePtnhzV1TkOFczULoXnzApRVw==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by SN7PR06MB7152.namprd06.prod.outlook.com (2603:10b6:806:108::14) with
+ bh=fKPlg9BqjPcPP3zg1I1aEPGcieKY9YGo3NeK3I/tO1Q=;
+ b=EXZAB1+zfZZ1udeaYo4S+0N1rkZ6wVnrNUnqwF0lzQL3HiH2AnqYMAwvF3qaiHkVn5cqYG1/+AcBX5B0YYHW7JpjNztv/OsMUoxiJmtwSaFUfWXvbwwLNzuxGOEiCN19WYsMWHjsDcSwNfaOTVZXPOklpXMiPGXfZVxilO4NhDaZzzBB2pFyiFxmraxG4zpjgL3yBhpjH0xGXTm0rcf+tnaLk4xE0yc6o+BbIlbvxDjzgXiGdlEHs4IS26cD/rOh6dfRjdsZZxhqBD08hyZELdGaqX8nhRa1+gXBsjDYqsunBlu3TZMH0msJnrT2/CSG3Qvt8u+gMWZYpL94ue2sig==
+Received: from PH8PR22CA0006.namprd22.prod.outlook.com (2603:10b6:510:2d1::10)
+ by BY5PR12MB4854.namprd12.prod.outlook.com (2603:10b6:a03:1d1::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Fri, 25 Aug
- 2023 15:58:05 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::20a7:a1ca:1ef2:ec9f]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::20a7:a1ca:1ef2:ec9f%4]) with mapi id 15.20.6699.027; Fri, 25 Aug 2023
- 15:58:05 +0000
-Date:   Fri, 25 Aug 2023 10:58:00 -0500
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
-        heiko@sntech.de, uwu@icenowy.me, daniel@ffwll.ch,
-        airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
-        noralf@tronnes.org, samuel@sholland.org, jernej.skrabec@gmail.com,
-        wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH V3 6/8] ARM: dts: sun8i: v3s: add EHCI and OHCI to v3s dts
-Message-ID: <SN6PR06MB53420D67BB7E11486388637EA5E3A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230823212554.378403-1-macroalpha82@gmail.com>
- <20230823212554.378403-7-macroalpha82@gmail.com>
- <20230824222150.5a0d16e3@slackpad.lan>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824222150.5a0d16e3@slackpad.lan>
-X-TMN:  [Tw23LzFkVDhEdVAcj1MJbmginMfDFa+5]
-X-ClientProxiedBy: DS7PR03CA0043.namprd03.prod.outlook.com
- (2603:10b6:5:3b5::18) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZOjPiANPzjkEQ+qw@wintermute.localhost.fail>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.30; Fri, 25 Aug
+ 2023 16:43:07 +0000
+Received: from SN1PEPF000252A1.namprd05.prod.outlook.com
+ (2603:10b6:510:2d1:cafe::96) by PH8PR22CA0006.outlook.office365.com
+ (2603:10b6:510:2d1::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27 via Frontend
+ Transport; Fri, 25 Aug 2023 16:43:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ SN1PEPF000252A1.mail.protection.outlook.com (10.167.242.8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6699.14 via Frontend Transport; Fri, 25 Aug 2023 16:43:06 +0000
+Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Fri, 25 Aug 2023
+ 09:42:55 -0700
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail203.nvidia.com
+ (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Fri, 25 Aug
+ 2023 09:42:54 -0700
+Received: from nmalwade-dt.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server id 15.2.986.37 via Frontend
+ Transport; Fri, 25 Aug 2023 09:42:52 -0700
+From:   Ninad Malwade <nmalwade@nvidia.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>
+CC:     Ninad Malwade <nmalwade@nvidia.com>
+Subject: [PATCH V2 0/4] hwmon: ina3221: Add selective summation support
+Date:   Sat, 26 Aug 2023 00:42:45 +0800
+Message-ID: <20230825164249.22860-1-nmalwade@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SN7PR06MB7152:EE_
-X-MS-Office365-Filtering-Correlation-Id: d06df98f-189f-4c36-b77e-08dba5841126
+X-MS-TrafficTypeDiagnostic: SN1PEPF000252A1:EE_|BY5PR12MB4854:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a1861b6-5897-4d6c-f920-08dba58a5beb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: jh1GsE7va4xSJ+VpM/EO/gbRHojbdJDRXSleMo9a8kzUp9y4bd2gyOxaaXhLStW2Cakr12AjQjk3QXK/CNxNwkZS9dIHr3O4+/dzqj043iih153eaS1kWw2jYHwsHgR5hJAa5Qv7g617LT+HWfm/JZg95MtqFMqmxd9YHJg3+s+glUVhSn0HrnRhf7OppTTdlcgMIomyza0+5KrelJpqoeG9KGsttZ530I4eq6W4Y4+XK+vCC04EIbRdMFmB6/ithFYL1AddkcY3OYeVHAvY+bzwFwLTer/KNPJ9SStr3E+wWQ7JCaKEiIoPnh82rY89ZN9oJYzc3X+QWTAqcoiSjdgSHkXS08X8o/MSxk06AfKuybpIAVWoJsZYSzy8LNR9wf+yk2dm0tOmt5/hrCjY2aStJZEhhoAHKtApISZ2b63g6mPOiOm5YkZiSPkH45yg2rAZr+ecZJeIO7PN1R0OYqZEwej4tg+x1OLnSoQlSAM/aUmahOcNrqznUgL00AqwophruMbjXYflRrLYNti1l6ni9Vk5thyKo5um/eA823oIJTL42Bo1uj8NwJcG011+
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wPmxocLcdtxXrI982J2kOVoCXEMGgyJLR/SsZyeMBpSvFTPHziPOHjFZCAsc?=
- =?us-ascii?Q?AG/vxmbKjZQltV8wFgeauettDs8r2s7kt3gOkpuh0amceHo+Of2Ibj8GhEDW?=
- =?us-ascii?Q?Ci/c+kf2WvZHiPR0ceSfWK4h7Zffq223yTLIf3NhOLlSbqzzPlXlv4osSokp?=
- =?us-ascii?Q?A+tew+WHTxAad7KOzCRt6nBseQpUWBbKky/MlS1f1Kw8rV1hePwlUwOj6Z4D?=
- =?us-ascii?Q?+60WsmZmix5CjdI3fUjSkNWghbD+ocZKDHU9VKY6mlUnZ1Yt9+JrRumQ/clP?=
- =?us-ascii?Q?hEy0CqOu2Rdk5ZCMGWFIb01YwRJt8aSjM2tKrVycLc/w5hljaXh64pajg+ls?=
- =?us-ascii?Q?3x3k60jmpcMLsCZ44aBQUOTmLwYQS2RQialIuCYtLrblGXlUj3wUKRXYy5Kc?=
- =?us-ascii?Q?DQt3YmGTlFZiqKEWBMJkI+P74E4AP0K3GOVQpdcJM9Ft5xRwQn8Is+z0usTz?=
- =?us-ascii?Q?Tpo16vB9cl7tdpjBVjwSJntigMISxo4XUXJaN8FSOvNQZQA9K6maPVOT2qgA?=
- =?us-ascii?Q?PB82G8x0BfwnfW4M1dAdlb83mMt2uV5wQYH0SNpTNrtBE4RK9o+sWXYLEbUm?=
- =?us-ascii?Q?JRjyyLG/HdPBcHOdCNxS4xMG9E1mbPAh3hQA+sZSGl3/wxeTGrAxBM8/jkWQ?=
- =?us-ascii?Q?9+c3JRFyc/CzXZXZ/OFMRlklnQjgi81eXRURA+AWnEhvyTCvGKZczv4mzPSe?=
- =?us-ascii?Q?Vs7AywP2E0yoZcJ5UpEubjd1iDcnxA8lMfy9DA6Mc4HZBsMFoTp6cx9v5vEG?=
- =?us-ascii?Q?/ne/Nse2/5HYbMgcajtbeewQ6ANQwCP22EAV21lu9lanrgYcBDsoChVsRqPe?=
- =?us-ascii?Q?ECpW0OpGP9Mn+ldcE4gRQD8Qr6FFzy8dLk+S8gg6XDIi2CrLn1F/27PqSTvP?=
- =?us-ascii?Q?hFfC5+jldLbfhymP0EtzcjZaxZAs8p69bC/zhULYKDqFisFo0r7nky1PnlNO?=
- =?us-ascii?Q?o4fl0dIGGVDvjhcpPZQEF9M9MqfzwAznXeh16U7X2AXc/+TJxcBmRogJEM3k?=
- =?us-ascii?Q?zzTc2cLZ5Kq9U9r8jK7Ceox+So0GJjs2qv1Ga0bVB45uscA/SF+PyndRAD6S?=
- =?us-ascii?Q?tW0rPrdqzWLM/qSxqTiZYsx7lsMEQCVIDPtS6J6cd0wcrKdYa+rdju+5Dqv6?=
- =?us-ascii?Q?FlH71/DwKMCCqwBD+jgKUuwMYrvJbq0gvCcKec7Qq/mSgt5p5paha0gV8he4?=
- =?us-ascii?Q?hlvhCq84oAtn+4+kjm+vD1M6VHLejMb/iXHvxrH/SFD6cdjMUc8CqQsxdCw?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: d06df98f-189f-4c36-b77e-08dba5841126
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2023 15:58:05.2241
+X-Microsoft-Antispam-Message-Info: 77JkQ3vb/NSWCxNFkI1GXtD+kM066nuAX8W9X957XMN7+R+jlkEGo+XIKIY1CnLUAixwSmfcY/Gv59Gm+4/qgrMTZudNodw2UvJIJlju3jVj03YbDyGb1T70FZxRl7epnGXuojEsjyiTVbrJ/CgNg95TCFcBP3WSIwrDBB9rrNLJHV6XnxcdzjQ2DbUuW41DQMC0/+UX5RZgGntSoJqiZuZMBVKL0aJzbtcP7pANDLp2ciVxLRO72YUfzXxXLv3qzSpJ+CLV14v7+IgzJHqobOc70+8wpjl18h7SlCkQYHOH2IeH5gi7abE2SCVkBNQY6EkcEvHgAnYOEJ97bFpqj0VmxpkfrAu8FHG4h361BYYCSJ+QL0xclPiMnAqZgiSpklAisorHA5PkozNRIREu5kk4x0HIuFQc7xVS8JKMZ48IYZrzpLv24OHwqo2GgosYWOH/v58cz4dDxS/j/WYiME5MVOe0mDiwzJ9jcg4m6wqhWRXXNSQDOIjOuYo12XXMQFrUJ3ycEEjDKcTecv+Fp0O9I/AXcoAXl5NKUZo9fwHckSzRjCWaY7Q1/JmxCYBbG/WW9cSzIJD/o7ZA6uS3susRjPMkyst1N5LnavAnrlFh3W5qvZ3+scUNQa54oxyoM6BBe+fmacOlkas4thJkE6hqItxp3UVZN1k670Kj1u182daXMcO/arwwz8ustXFuJYhjiSOrKph0fKCDq2S2ZUcA2X+Q+08Buf/8DvrQ3BBm2nmgI8YjMQV+mE6M3IJ2PW/bAmWkHvRRC/X3rbjNYA==
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230031)(4636009)(396003)(346002)(136003)(376002)(39860400002)(1800799009)(82310400011)(451199024)(186009)(40470700004)(46966006)(36840700001)(1076003)(336012)(36860700001)(83380400001)(478600001)(26005)(47076005)(40480700001)(2616005)(426003)(5660300002)(107886003)(2906002)(8936002)(4326008)(8676002)(921005)(356005)(82740400003)(7636003)(40460700003)(110136005)(70206006)(70586007)(86362001)(41300700001)(7696005)(36756003)(6666004)(316002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2023 16:43:06.7912
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR06MB7152
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a1861b6-5897-4d6c-f920-08dba58a5beb
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF000252A1.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4854
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 24, 2023 at 10:21:50PM +0100, Andre Przywara wrote:
-> On Wed, 23 Aug 2023 16:25:52 -0500
-> Chris Morgan <macroalpha82@gmail.com> wrote:
-> 
-> Hi Chris,
-> 
-> > From: Chris Morgan <macromorgan@hotmail.com>
-> > 
-> > Add the EHCI and OHCI controller to the Allwinner v3s to support using
-> > USB in host mode.
-> 
-> Alright, so was it really that easy? I was afraid we left out host mode
-> for a reason back then ....
+The current INA3221 driver always sums the shunt voltage for all enabled
+channels regardless of the shunt-resistor used for each channel. Summing
+the shunt-voltage for channels is only meaningful if the shunt resistor
+is the same for each channel. This series adds device-tree support to
+allow which channels are summed in device-tree.
 
-Can't speak to that, but it is working for me as both a host and a
-gadget.
+Jon Hunter (2):
+  dt-bindings: hwmon: ina3221: Add summation-bypass
+  arm64: tegra: Populate ina3221 for Tegra234 boards
 
-> 
-> > 
-> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > ---
-> >  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> > index c87476ea31e2..eb63dd274305 100644
-> > --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> > @@ -319,6 +319,25 @@ usbphy: phy@1c19400 {
-> >  			#phy-cells = <1>;
-> >  		};
-> >  
-> > +		ehci: usb@1c1a000 {
-> > +			compatible = "allwinner,sun8i-v3s-ehci", "generic-ehci";
-> > +			reg = <0x01c1a000 0x100>;
-> > +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
-> > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-> 
-> Please add the link the PHY here:
-> 			phys = <&usbphy 0>;
-> 			phy-names = "usb";
+Ninad Malwade (1):
+  hwmon: ina3221: Add selective support for summation channel control
 
-usbphy 0 doesn't work, but if I do phys = <&usbphy 1>; for here and the
-OHCI node it does work. Is that expected/acceptable? By "doesn't work"
-I mean the device is always in HOST mode if I use 0 and switches
-correctly (the extcon shows HOST=0 when unplugged or plugged into my
-computer, and shows HOST=1 if I plug in a device which I assume is
-the desired behavior).
+Thierry Reding (1):
+  dt-bindings: hwmon: ina3221: Convert to json-schema
 
-> 
-> > +			status = "disabled";
-> > +		};
-> > +
-> > +		ohci: usb@1c1a400 {
-> > +			compatible = "allwinner,sun8i-v3s-ohci", "generic-ohci";
-> > +			reg = <0x01c1a400 0x100>;
-> > +			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
-> > +				 <&ccu CLK_USB_OHCI0>;
-> > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-> 
-> ... and here.
-> 
-> That would be definitely the right thing to do, but please check
-> whether it still works, especially OTG operation.
-> 
-> The addresses, clocks, resets and interrupts match the manual.
-> 
-> Cheers,
-> Andre.
-> 
-> 
-> > +			status = "disabled";
-> > +		};
-> > +
-> >  		ccu: clock@1c20000 {
-> >  			compatible = "allwinner,sun8i-v3s-ccu";
-> >  			reg = <0x01c20000 0x400>;
-> 
+ .../devicetree/bindings/hwmon/ina3221.txt     |  54 --------
+ .../devicetree/bindings/hwmon/ti,ina3221.yaml | 127 ++++++++++++++++++
+ .../arm64/boot/dts/nvidia/tegra234-p3701.dtsi |  53 ++++++++
+ .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi |  29 ++++
+ drivers/hwmon/ina3221.c                       |  39 +++++-
+ 5 files changed, 243 insertions(+), 59 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
 
-Thank you,
-Chris
+-- 
+2.17.1
+
