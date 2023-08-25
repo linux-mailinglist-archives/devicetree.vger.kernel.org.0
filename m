@@ -2,79 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFA147886B4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5547D7886ED
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:18:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244485AbjHYMMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:12:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47110 "EHLO
+        id S242188AbjHYMRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 08:17:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244625AbjHYML6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:11:58 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C88C91BC2
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:11:56 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a3ff5f0abso1306575a12.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:11:56 -0700 (PDT)
+        with ESMTP id S244814AbjHYMRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:17:37 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB11C2686
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:16:54 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401b5516104so6994655e9.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:16:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692965515; x=1693570315;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MzqGDlYO53VtpNTfk9/2jQSIhaYzka5q6tmocMJNTUk=;
-        b=Iw+vGU0WxM/n2TkZrEPhVytepIiLpJLCrgunLLHrb1dt2WzeE0v+25Q8ohu/3VhBMH
-         isuG+szZerc1JZs/j5z/zpz+/JuDv2mK1hTQcwhIBY047MnqxhMvqLYS1CUKsgDj0IqY
-         UNZ5uBoljRyzVqd5PdSzUUGcSsX/Jdjgjtet/lbCenTGyZx2MDuZNxDhie99jtRGN83O
-         IJkHCO/f4Vhovn92yzawIxGFJMtCwqlNTrof8HpLKXBVnEHaEWdl8LV1zbNuwj1oP/Ti
-         wwzriRyZzkG/dwaxaChFSoSfeO5MBw8L6/zxOUossa73ZoYg47OM2P3D9xNreGEo6cFx
-         RHnw==
+        d=linaro.org; s=google; t=1692965801; x=1693570601;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o7W3K6QieOMlEGkELlxavl+PcEL/5xKZFRwCQWMzW5I=;
+        b=lGawyDxFUMgbdHeE2koQ5KcxJuXV/iJw3TTRgxmLIObGXulXUhEPJnx0xecUBKAJpA
+         Ca2dYbsYwIp9vv86H6MagZ6wXjHjswkjzgzLDeS3SixoIgzYXyrIdc/ulKk2rf652GVp
+         TIgSzL0crZ0qhhHXYUQbPPt/5xAKnOCHCtyFU/etBkFFkz5lk2BaWZe3W52Gi+oAdFx8
+         06Ws3MZra2x4CxbZSUqyfhCc+b22wJ09FXGpxZUXGBmhF8qJLTDEYUwuf7z0QJDQEMHd
+         cvCOVP09pbZXRK6HCJRDNaLg/miI8lvLEw0lxcRxe1HTyN1CHYDMpRaNNnVFEPCHGckQ
+         vPwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692965515; x=1693570315;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MzqGDlYO53VtpNTfk9/2jQSIhaYzka5q6tmocMJNTUk=;
-        b=f3oh+TFzBbb+mua1VoeTV78pZoqRKRpUhU9RtOA6XBc585728uH9l2fYVaKhdpVBFF
-         wODl5vhFYxmnWmpUj+9XL/g5SRf71ihRLbzNXRFoaKhyYfn/sGjOsL/bkoKii1XM0xsU
-         PWxliVEAl/tJVfDiDObYvd2KzFmwLsdub1xGkbzrnEw8duOzi6hpRi+W2/dvAGWZ/sP7
-         TAdpLjieD+hBc6Tbq/MKnG2I74SGJT4j3D+MldXh6Fh/186lelQlPCnXzygTBqRXTx03
-         0WUSWgjyAUEwv8L8FWfc1uCLgdyUjLKeDwIZzHeQp4lFf2tIoA61zy2EQtdyqBgeWLmN
-         PS8w==
-X-Gm-Message-State: AOJu0Yx9Yx+z2sZiH3Jdtkl8gNwiCUt1DnJHHPFuSHVvagPFhNdFjEw5
-        wEEBV2BPVCcx159QHumETRjAkQ==
-X-Google-Smtp-Source: AGHT+IGUKhjqKcVWlKdpqBhagGpbCfzvbRoRShHrZQRitS1v8wNgCijkMtLxjEvIGq8epHehT9iSbA==
-X-Received: by 2002:aa7:d952:0:b0:523:ae0a:a447 with SMTP id l18-20020aa7d952000000b00523ae0aa447mr15166905eds.13.1692965515299;
-        Fri, 25 Aug 2023 05:11:55 -0700 (PDT)
-Received: from krzk-bin.. ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id l5-20020a056402124500b005222c6fb512sm952311edw.1.2023.08.25.05.11.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Aug 2023 05:11:54 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        d=1e100.net; s=20221208; t=1692965801; x=1693570601;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=o7W3K6QieOMlEGkELlxavl+PcEL/5xKZFRwCQWMzW5I=;
+        b=K9IL4kMiC7hqq6A2MMcY3NA8BtSS0Ybc0C9yrO5aCSD1rgdR0G/lIC4Z0cD+Dz4ZxG
+         jSL5eL0q9MqQj/C3pThlI8Mirisn1f0Oyj1ksySRbrnJhC7aU7uSO8FG5Wn/iu0LbUKZ
+         70JiQfcNIBwDkGvUFP81lXbcCqNwnl9I0KNNSatH71DnOu6qOc3FYdWkCOC4ORY8kPL7
+         HRqwFqAckm8Z49aX9cmulUbPntZ/gQEdiU8zqguwprlzu62k8189rFf7HaQeJZXc1Qup
+         neR8z0b/dPoISOIt8lJEJvY91dFMQ3Jv+iu2PM8utBeBV4M015FjWyVL09PSUL09Z4fw
+         rQNA==
+X-Gm-Message-State: AOJu0Yx7H2Rs86JsEcoOPHpXl1a3i7V4DrCbVxoR0u19vtbsjM9bHVGL
+        zmkyUsrqDV/kTl5lcPMXqxXkuA==
+X-Google-Smtp-Source: AGHT+IFatSYfdQ8wgd9jKCT40sM9oeeY/ZuR3qwKdKNIQTZvKeZ8tkb1COEsYjFTJOuKxzoqMamt/Q==
+X-Received: by 2002:a1c:7508:0:b0:3fb:a102:6d7a with SMTP id o8-20020a1c7508000000b003fba1026d7amr13978738wmc.28.1692965800627;
+        Fri, 25 Aug 2023 05:16:40 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4e1:71e1:b02b:811e? ([2a01:e0a:982:cbb0:4e1:71e1:b02b:811e])
+        by smtp.gmail.com with ESMTPSA id u2-20020a05600c00c200b003fe2a40d287sm2061684wmm.1.2023.08.25.05.16.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Aug 2023 05:16:40 -0700 (PDT)
+Message-ID: <32873c1f-6c8a-425e-8965-a6f727d1408a@linaro.org>
+Date:   Fri, 25 Aug 2023 14:16:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 3/3] arm64: dts: meson: add IR controller for Meson-S4 SoC
+To:     zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jianhua Lu <lujianhua000@gmail.com>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 3/3] dt-bindings: display: novatek,nt36523: define ports
-Date:   Fri, 25 Aug 2023 14:11:42 +0200
-Message-Id: <20230825121142.101759-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230825121142.101759-1-krzysztof.kozlowski@linaro.org>
-References: <20230825121142.101759-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
+        kelvin.zhang@amlogic.com
+References: <20230825115310.39993-1-zelong.dong@amlogic.com>
+ <20230825115310.39993-4-zelong.dong@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20230825115310.39993-4-zelong.dong@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,79 +110,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The panel-common schema does not define what "ports" property is, so
-bring the definition by referencing the panel-common-dual.yaml. Panels
-can be single- or dual-link, depending on the compatible, thus add
-if:then:else: block narrowing ports per variant.
+On 25/08/2023 13:53, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Add the IR controller device of Meson-S4 SoC family.
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts    |  6 ++++++
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 15 +++++++++++++++
+>   2 files changed, 21 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> index 8ffbcb2b1ac5..c1f322c73982 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
+> @@ -28,3 +28,9 @@ memory@0 {
+>   &uart_B {
+>   	status = "okay";
+>   };
+> +
+> +&ir {
+> +	status = "okay";
+> +	pinctrl-0 = <&remote_pins>;
+> +	pinctrl-names = "default";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index f24460186d3d..5a3abcc08ee5 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -106,6 +106,14 @@ gpio: bank@4000 {
+>   					#gpio-cells = <2>;
+>   					gpio-ranges = <&periphs_pinctrl 0 0 82>;
+>   				};
+> +
+> +				remote_pins: remote-pin {
+> +					mux {
+> +						groups = "remote_in";
+> +						function = "remote_in";
+> +						bias-disable;
+> +					};
+> +				};
+>   			};
+>   
+>   			gpio_intc: interrupt-controller@4080 {
+> @@ -133,6 +141,13 @@ reset: reset-controller@2000 {
+>   				reg = <0x0 0x2000 0x0 0x98>;
+>   				#reset-cells = <1>;
+>   			};
+> +
+> +			ir: ir@84040 {
+> +				compatible = "amlogic,meson-s4-ir";
+> +				reg = <0x0 0x84040 0x0 0x30>;
+> +				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
+> +				status = "disabled";
+> +			};
+>   		};
+>   	};
+>   };
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-
----
-
-Changes since v3:
-1. Rb tag
-
-Changes since v2:
-1. Use panel-common-dual.
-2. Add if:then:else:
-
-Changes since v1:
-1. Rework to add ports to device schema, not to panel-common.
----
- .../display/panel/novatek,nt36523.yaml        | 25 +++++++++++++++----
- 1 file changed, 20 insertions(+), 5 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-index 5f7e4c486094..bbeea8cfa5fb 100644
---- a/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36523.yaml
-@@ -14,9 +14,6 @@ description: |
-   panels. Support video mode panels from China Star Optoelectronics
-   Technology (CSOT) and BOE Technology.
- 
--allOf:
--  - $ref: panel-common.yaml#
--
- properties:
-   compatible:
-     oneOf:
-@@ -38,7 +35,6 @@ properties:
-     description: regulator that supplies the I/O voltage
- 
-   reg: true
--  ports: true
-   rotation: true
-   backlight: true
- 
-@@ -47,7 +43,26 @@ required:
-   - reg
-   - vddio-supply
-   - reset-gpios
--  - ports
-+
-+allOf:
-+  - $ref: panel-common-dual.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - novatek,nt36523w
-+    then:
-+      properties:
-+        ports:
-+          properties:
-+            port@1: false
-+    else:
-+      properties:
-+        port: false
-+        ports:
-+          required:
-+            - port@1
- 
- unevaluatedProperties: false
- 
--- 
-2.34.1
-
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
