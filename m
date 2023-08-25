@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF5F78803C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 08:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B84DA788042
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 08:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242335AbjHYGsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 02:48:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44338 "EHLO
+        id S242411AbjHYGtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 02:49:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242476AbjHYGs2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 02:48:28 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28BEA1FF1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:48:20 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52a0856b4fdso839057a12.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:48:20 -0700 (PDT)
+        with ESMTP id S242430AbjHYGt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 02:49:27 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 491C119AE
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:49:24 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99cdb0fd093so65391066b.1
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:49:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692946098; x=1693550898;
+        d=linaro.org; s=google; t=1692946163; x=1693550963;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=G8i2MFIt9PPqdiA+U5wmi4xH4F0pC3lElXMemaJZn+M=;
-        b=nYrg8AojLgKfBTJR0zhZr48566By9omWhYw+Kq3sOrzLq7icKWhoJcL/6LFJZdho5P
-         sTIgp1gksE0/7K8CBOD0yspGPqVaowW/RZCzLgpOe8mKEzaPf4XDHW58TXJ9mq+lAbo3
-         itRxQz1VmH49t0gl+8z+5Km2lSeX4EDLdu5wLqhVVxnjleSC8k5mXrrP27RJI+wSmuzk
-         AGVugAE5E4PpVyz6cV/MNJTi2T2p8UGumpZpbfcW0kl+tFlVJBr/jpZxh3xksHfQ/cLf
-         YoNTbblSaYtDwJ7R7r9npyNWgJylAEeY7YnGlX7KNktnehBuPMqOMTwTD9+k3N8tVY/Y
-         PaVg==
+        bh=lajo7OqjOl8rNN2v6USsxhYYBHIrPlabiPvdvBF4vXE=;
+        b=dzoDs5/lDF0GjQ5kZXZxk2yOa49Piy22tw3skoTulieeCRGnP9Mv7HnYX3IjPFh6pd
+         HaMBy4bbjmA1xChFTcs48EyjUlsf/NSu9R7NZ35h62lrUIvy5+OF8AMYHvJiLekM29H2
+         2OlSutBxRTPj8yFiU13mUUVjYea3zoKx/QoEngtqssASp87p9OfWagBMgvGIlsnTBL7/
+         Z4nfbas0owDAM+427A5QSq5CL9gGS3cUkz8q52amlSw9lr+rFitpIZgeZ2+zSMLpeyI9
+         G0W598lKD1Rn2uPD+sB1l4NkpFzsaEfza0/hBHfTMhZ70GfizXngR8miIj/C7nsTSM54
+         pHjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692946098; x=1693550898;
+        d=1e100.net; s=20221208; t=1692946163; x=1693550963;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G8i2MFIt9PPqdiA+U5wmi4xH4F0pC3lElXMemaJZn+M=;
-        b=NU+LKFWStENtH1uJKfPtBrK+zhVF8UFqCaOGK4/aGR5l8oJiitisXvAHrCNFkOUaVK
-         tml7AerufVFY2dPaPRyHNvVTXY9OnPnjHOu/c48YZ6vGVIb0DohVh65jThDXHS0ZpjFr
-         lLic7pnJZ6VIwBgGtl8OiVV/rtRjAUWfDfXpuD65tasco+jn2azBY1SyWqcJhJ1m1v1s
-         IAb7iJS111RhnbpG+MTnYDU7gz4z2foa0i4O8ihZXaB4MH2JgkEIN1L14xQdCrvkfZkg
-         NEqk6tl9Ne5h7XLpzFhNvQE5XDtY87Q6nVHBLsFYqQXeX0hGAUqFNgV+LW7Ia0CM/975
-         wcaA==
-X-Gm-Message-State: AOJu0YwYOGXrETsrymmKUQEIgL31NAq4e/IwGI1dLR20TMztr/P9IhWx
-        EJAqGlMkGNnnhhytMmCaxLJazw==
-X-Google-Smtp-Source: AGHT+IG1z3CKEe9GDWj6KdXNBIZTtTn0My78Dw9qopv5OUPpIdAbGaSU1cOUD33d11NlsXOVgQFmIQ==
-X-Received: by 2002:aa7:d996:0:b0:522:d6f4:c0eb with SMTP id u22-20020aa7d996000000b00522d6f4c0ebmr11753745eds.40.1692946098347;
-        Thu, 24 Aug 2023 23:48:18 -0700 (PDT)
+        bh=lajo7OqjOl8rNN2v6USsxhYYBHIrPlabiPvdvBF4vXE=;
+        b=gFlGWavYIqFJeiXIai1q1qKpHi7pWsXCkpNxopljHtBm1mIfuYNPjcQ9HumdwTyRiT
+         3abqrIIK4ru/9HPKWvW8wgKp4bP/WhVpERBbKin8S8bGF/CnDKxNj50DNsJplVT9DQvu
+         31k5RB156G92xFQ+KBPDZLgT7gDFdBJrAqztaSAL5YbcxdZQH/S4svkDqdbppfiCAazb
+         ieeNcyArtpcfCzaiIEpOQp59383ErSBh3XBWyHx6XtIzfN1sM0e+UbuoDoYYJschQEiR
+         QBCfaG0NqVN+SsVa1Z02PgZZKlQCZsEOcJjHkvsXZhIr9FjcZAD1KB5g4fsxdMmTf6It
+         T2bQ==
+X-Gm-Message-State: AOJu0YwTiGNufGd86qaTsLq0ySEIqB9fQEd4cIlnKIM2/OAc49RLVUjW
+        BHkynrzLZ9J/0iIySZketDwuTA==
+X-Google-Smtp-Source: AGHT+IHM0u5TqZw/AW+78y+hWyLMRR4dUmiJS290WiUMgNgRrW7spqkKVWWxp/6asczYj3lW/GZuRw==
+X-Received: by 2002:a17:906:2d0:b0:9a1:d0bb:d215 with SMTP id 16-20020a17090602d000b009a1d0bbd215mr5444386ejk.5.1692946162757;
+        Thu, 24 Aug 2023 23:49:22 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id n25-20020a05640206d900b0052a1c0c859asm663682edy.59.2023.08.24.23.48.17
+        by smtp.gmail.com with ESMTPSA id h1-20020a1709062dc100b00992b1c93279sm595709eji.110.2023.08.24.23.49.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 23:48:17 -0700 (PDT)
-Message-ID: <f8a1391d-3716-04e5-7e36-fe670c75df4c@linaro.org>
-Date:   Fri, 25 Aug 2023 08:48:16 +0200
+        Thu, 24 Aug 2023 23:49:22 -0700 (PDT)
+Message-ID: <2eda319d-bdd9-bfeb-005a-5989cf674501@linaro.org>
+Date:   Fri, 25 Aug 2023 08:49:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: mfd: syscon: Add compatibles for
- Loongson-1 syscon
+Subject: Re: [PATCH 1/2] TSD: arm64: dts: rockchip: use codec as clock master
 Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Jakob Unterwurzacher <jakobunt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
- <20230824125012.1040288-2-keguang.zhang@gmail.com>
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     jakob.unterwurzacher@theobroma-systems.com,
+        Ermin Sunj <ermin.sunj@theobroma-systems.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230823122000.585787-1-jakob.unterwurzacher@theobroma-systems.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230824125012.1040288-2-keguang.zhang@gmail.com>
+In-Reply-To: <20230823122000.585787-1-jakob.unterwurzacher@theobroma-systems.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,12 +79,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 14:50, Keguang Zhang wrote:
-> Add Loongson LS1B and LS1C compatibles for system controller.
+On 23/08/2023 14:19, Jakob Unterwurzacher wrote:
+> From: Ermin Sunj <ermin.sunj@theobroma-systems.com>
 > 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> If the codec is not the clock master, the MCLK needs to be
+> synchronous to both I2S_SCL ans I2S_LRCLK. We do not have that
+> on Haikou, causing distorted audio.
+> 
+> Before:
+> 
+>  Running audioloopback.py script on Ringneck, 1kHz
+>  output sine wave is not stable and shows distortion.
+> 
+> After:
+> 
+>  10h stress tests audioloopback.py failed only one time.
+>  That is 0.00014% failure rate.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What is TSD? Why it is in the subject prefix?
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
 Best regards,
 Krzysztof
