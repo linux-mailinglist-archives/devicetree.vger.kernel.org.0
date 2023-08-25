@@ -2,212 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6E417890E2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:55:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D9B78915D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 00:01:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231573AbjHYVzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 17:55:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50020 "EHLO
+        id S229513AbjHYWA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 18:00:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231579AbjHYVyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:54:51 -0400
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4DA626B9
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:54:48 -0700 (PDT)
-Received: by mail-oi1-x230.google.com with SMTP id 5614622812f47-3a7d7de894bso985835b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:54:48 -0700 (PDT)
+        with ESMTP id S231247AbjHYWAo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 18:00:44 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B8826B1
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 15:00:42 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99c4923195dso165737566b.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 15:00:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693000488; x=1693605288;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1693000839; x=1693605639;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aUB0c4DZYSd7UHceLzlYwxM/QQKvpF3crbJF9Mw+h+4=;
-        b=Bp1JMR3nDBXAuSdiGS/TTvtwjpmApNJ5gBzyXM2ziSpIGezW9zX0vSjd/CBtlI83AP
-         NvO/Z7swz7c4yTJZs2K143fw+1Odzrk9eGZBcKNfXz2ntov8ZvMj53M7MQdXKedie3Yj
-         YD88TA4xGYzSaq7rJJC5gnAJG19881oUiNJRWnaV8Wf5xB6t8difUAGSeOiGrPyzQwyO
-         GQOgvXB0BDB2eICErJqP1DmJMpr5XUxrzZtAFZYawNtsjM7uoa6QufH3cim71I7MX16h
-         SDE2CsCsEirON5bZeUf2uJUJ4KKNqKJp6/cftpIq3T/weqXOUfySW5bT6f/+Uzy4LOPK
-         Gt9g==
+        bh=yhpqi3RsiTeSycikChKIyWBlkmV4boq70Ok6Dhkoa6w=;
+        b=Hcex+n20KpYmrze4S7I3IT7jXAZjpWWeLKxyACv4IOBOi3lveq7d31L65l5xF4Gb/1
+         cyStIYnapfrMQNuTe8mDrQE3kJP5YrrpWIkNMX6pET89RctAttmhBx2caM3WE6dUz0ru
+         F+PiYnAkPQe4BNGjdpHLRuMmiE4ItC8i4LF9w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693000488; x=1693605288;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1693000839; x=1693605639;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aUB0c4DZYSd7UHceLzlYwxM/QQKvpF3crbJF9Mw+h+4=;
-        b=Ujwl1ILmo+IU70KYQKrqXRXr+rG+OjeIT2cq3lvpCVfYt7auGwF5arnnmevVuxkkDA
-         7TQGWWwMvva/HvNECNNwgo8UnAC5fU136xUSqUqslbUqqxpKYwTxbp7oPckKf+Ibwmaz
-         F2qasj2nLzJeNv6yIC+QOSFL6vcyYDpNEXOIA0nlrK+SMYNPm0fTT+v3PfaZr/JpHcrS
-         WdolLtbzeAHnQFYWgc1k9vcc2EO6kKMeeI9to3+tgAKfeW/KK80Pj8mkJUVuxMMkBSTg
-         n1kqVouM40MXDpX+L2IhVCHz3VycATE4BCBka+ddlbabUq5fIv3Q7adi+SOKGhNmEDlX
-         YNeA==
-X-Gm-Message-State: AOJu0YxgxXeHvsaulTBAGxl2XZd2WSDOEc+upEvT2hOjg2AJqOw2kwuq
-        A6PcV6OMaa37Yr4b9NbxU7+d4Q==
-X-Google-Smtp-Source: AGHT+IFCzTAp+l4L9lrapiEro99Zwxcom5GGO8P4cVIZvvSLm/6u3PAR9sRa7TC9syvDW3BDOcLGbA==
-X-Received: by 2002:a05:6808:1a92:b0:3a7:2690:94d5 with SMTP id bm18-20020a0568081a9200b003a7269094d5mr3592060oib.8.1693000488295;
-        Fri, 25 Aug 2023 14:54:48 -0700 (PDT)
-Received: from localhost ([136.49.140.41])
-        by smtp.gmail.com with ESMTPSA id x11-20020a056808144b00b003a1ec14d8c6sm1191645oiv.23.2023.08.25.14.54.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Aug 2023 14:54:47 -0700 (PDT)
-From:   Sam Protsenko <semen.protsenko@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        JaeHun Jung <jh0801.jung@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] arm64: dts: exynos: Enable USB support on E850-96 board
-Date:   Fri, 25 Aug 2023 16:54:45 -0500
-Message-Id: <20230825215445.28309-3-semen.protsenko@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230825215445.28309-1-semen.protsenko@linaro.org>
-References: <20230825215445.28309-1-semen.protsenko@linaro.org>
+        bh=yhpqi3RsiTeSycikChKIyWBlkmV4boq70Ok6Dhkoa6w=;
+        b=alj3IyY5qvNstk6ntTloCChCRMGORBlxjXA6/T8DWBlQklksrcTsGsHPlwGe6PZcZr
+         AAkpYilnmRxUGqin3wq+YZcvzKhh6CEcEvYofKQKhwWzlhfJH4Zz6LnkYXC79KuWpHqm
+         J/bW2fY9oNeX3gW7llmf+SsLJrAaEV+cJAXeDa5kqfjTqFOEQcbECwmdGNKIOFyXsiY7
+         FZwL/oKpPyLWQ0kZZNhuXdG8eqrMs3pVJQ3DRT18ylIrOWN39RK0vMLxACvrx/QML5bn
+         vTsnFUxK3X9ggl0MCr3kfUHQe31vkIJLgBeomrHDxz/C5iHa+MSYibLvLl7qiRFIAyBM
+         KE3g==
+X-Gm-Message-State: AOJu0YzqIaZTiERrvdp1rVxM5ZS2dS75/CQ8tVzgiyc1xLKneoRiE786
+        7MnmlwM2JRlbrC6lslmkXHxdJYTFdPYnIY+aMM+9Vw==
+X-Google-Smtp-Source: AGHT+IFHXmhFquS37Lf3g29IcyR1Rc1OVPVus3pO6+/aeY93P3FBnGT3G3xHmplaC7hKAHc6shqkSg==
+X-Received: by 2002:a17:906:8a76:b0:9a5:7e64:5c55 with SMTP id hy22-20020a1709068a7600b009a57e645c55mr1951928ejc.22.1693000839553;
+        Fri, 25 Aug 2023 15:00:39 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
+        by smtp.gmail.com with ESMTPSA id p21-20020a170906229500b0099cf44adf2csm1389100eja.46.2023.08.25.15.00.38
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Aug 2023 15:00:39 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-3fe2d620d17so29155e9.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 15:00:38 -0700 (PDT)
+X-Received: by 2002:a05:600c:1c86:b0:3fe:e9ea:9653 with SMTP id
+ k6-20020a05600c1c8600b003fee9ea9653mr85660wms.4.1693000838168; Fri, 25 Aug
+ 2023 15:00:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230811-topic-7280_lmhirq-v1-1-c262b6a25c8f@linaro.org>
+ <CAD=FV=XKeE7_ciuvfAic+24kyOF0yaFT7iCJWgN9NaW-zG+vKA@mail.gmail.com> <d413843f-5187-41ee-89aa-1f4dc0bc729d@linaro.org>
+In-Reply-To: <d413843f-5187-41ee-89aa-1f4dc0bc729d@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 25 Aug 2023 15:00:26 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wh1xSz8MOt-GY7w_ha3shNpAnGOwXdrqJE17oJB+cG4Q@mail.gmail.com>
+Message-ID: <CAD=FV=Wh1xSz8MOt-GY7w_ha3shNpAnGOwXdrqJE17oJB+cG4Q@mail.gmail.com>
+Subject: Re: [PATCH RFT] arm64: dts: qcom: sc7280: Add missing LMH interrupts
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The E850-96 board has a micro-USB socket and two USB 2.0 host sockets.
-The USB role (host or peripheral) is selected automatically depending on
-micro-USB cable attachment state:
-  - micro-USB cable is attached: USB device role
-  - micro-USB cable is detached: USB host role
+Hi,
 
-USB can't act simultaneously as a device and a host, because Exynos850
-SoC has only one USB controller and there are no external USB
-controllers on the E850-96 board. So the USB switch chip (specifically
-TS3USB221A) connects SoC USB lines either to micro-USB connector or to
-USB hub chip (LAN9514), w.r.t. micro-USB cable attachment state.
+On Fri, Aug 25, 2023 at 2:07=E2=80=AFPM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
+>
+> > I put the same kernel on a trogdor device and that did normal Linux
+> > throttling OK. So something is definitely wonky with sc7280... I dug
+> > enough to find that if I used "step_wise" instead of "power_allocator"
+> > that it works OK, so I guess something is wonky about the config of
+> > power_allocator on sc7280. In any case, it's not affected by your
+> > patch and I've already probably spent too much time on it. :-P
+> Hm, perhaps it would be worth to try this patch on a non-chrome 7280
+> device.. Would you guys have standard android-y or windows-y firmware
+> that you could flash on these to try out, or should I try poking
+> somebody else?
 
-When USB works in the host role, Ethernet capability becomes available
-too, as the LAN9514 chip (providing USB hub) also enables Ethernet PHY
-and Ethernet MAC.
+I don't have hardware that runs anything other than the standard
+ChromeOS bootloader, sorry!
 
-Dynamic role switching is done in gpio-usb-b-connector, using current
-micro-USB VBUS line level as a trigger:
-  - VBUS=high: SoC USB lines are wired to micro-USB socket
-  - VBUS=low: SoC USB lines are wired to USB hub chip
-
-In order to make USB host functional when the board was booted with
-micro-USB cable disconnected, role-switch-default-mode = "host" is used.
-
-One can use E850-96 board schematics [1] to figure out how exactly all
-related USB hardware connections and lines reflect into corresponding
-device tree definitions.
-
-As PMIC regulators are not implemented yet, we rely on USB LDOs being
-already enabled in the bootloader. A dummy regulator is provided to
-"usbdrd" vdd nodes for now.
-
-[1] https://www.96boards.org/documentation/consumer/e850-96b/hardware-docs/
-
-Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
----
-Changes in v2:
-  - none
-
- .../boot/dts/exynos/exynos850-e850-96.dts     | 58 +++++++++++++++++++
- 1 file changed, 58 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-index 6ed38912507f..8d733361ef82 100644
---- a/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos850-e850-96.dts
-@@ -29,6 +29,22 @@ chosen {
- 		stdout-path = &serial_0;
- 	};
- 
-+	connector {
-+		compatible = "gpio-usb-b-connector", "usb-b-connector";
-+		label = "micro-USB";
-+		type = "micro";
-+		vbus-supply = <&reg_usb_host_vbus>;
-+		id-gpios = <&gpa0 0 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&micro_usb_det_pins>;
-+
-+		port {
-+			usb_dr_connector: endpoint {
-+				remote-endpoint = <&usb1_drd_sw>;
-+			};
-+		};
-+	};
-+
- 	/*
- 	 * RAM: 4 GiB (eMCP):
- 	 *   - 2 GiB at 0x80000000
-@@ -111,6 +127,20 @@ bt_active_led: led-5 {
- 		};
- 	};
- 
-+	/* TODO: Remove this once PMIC is implemented  */
-+	reg_dummy: regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dummy_reg";
-+	};
-+
-+	reg_usb_host_vbus: regulator-1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_host_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		gpio = <&gpa3 5 GPIO_ACTIVE_LOW>;
-+	};
-+
- 	/*
- 	 * RTC clock (XrtcXTI); external, must be 32.768 kHz.
- 	 *
-@@ -172,6 +202,12 @@ key_volup_pins: key-volup-pins {
- 		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
- 		samsung,pin-drv = <EXYNOS5420_PIN_DRV_LV1>;
- 	};
-+
-+	micro_usb_det_pins: micro-usb-det-pins {
-+		samsung,pins = "gpa0-0";
-+		samsung,pin-function = <EXYNOS_PIN_FUNC_INPUT>;
-+		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
-+	};
- };
- 
- &rtc {
-@@ -186,6 +222,28 @@ &serial_0 {
- 	pinctrl-0 = <&uart1_pins>;
- };
- 
-+&usbdrd {
-+	status = "okay";
-+	vdd10-supply = <&reg_dummy>;
-+	vdd33-supply = <&reg_dummy>;
-+};
-+
-+&usbdrd_dwc3 {
-+	dr_mode = "otg";
-+	usb-role-switch;
-+	role-switch-default-mode = "host";
-+
-+	port {
-+		usb1_drd_sw: endpoint {
-+			remote-endpoint = <&usb_dr_connector>;
-+		};
-+	};
-+};
-+
-+&usbdrd_phy {
-+	status = "okay";
-+};
-+
- &usi_uart {
- 	samsung,clkreq-on; /* needed for UART mode */
- 	status = "okay";
--- 
-2.39.2
-
+-Doug
