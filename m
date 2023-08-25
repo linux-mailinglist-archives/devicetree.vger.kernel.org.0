@@ -2,125 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A977788722
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32E0978872B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:27:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241393AbjHYMY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:24:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34420 "EHLO
+        id S242844AbjHYM0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 08:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37554 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244879AbjHYMY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:24:56 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A906D213F;
-        Fri, 25 Aug 2023 05:24:19 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-500a8b2b73eso836226e87.0;
-        Fri, 25 Aug 2023 05:24:19 -0700 (PDT)
+        with ESMTP id S244880AbjHYM0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:26:30 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69A9526B6
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:26:00 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-58fb8963617so9963537b3.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:26:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692966198; x=1693570998;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5WBrrXndAbZbJ6p/Nar438q9WSE55oh82llBeggBy/I=;
-        b=nQKj+pQZTHkdy7VgNuuNZ5VbLAFDgDEuEL3vnqILoN1t679DgqEme3Vjbkd3n4VMq5
-         lUQ1mXtgPXbQwWwAfHxIGLBbTN6rM0h93vmPfaiw1xq1IVAqLPirjHNld5FYOXvtD9ou
-         Q8Iuz1IQ27Uj07Apu2NkZd5L1xSKHRqToOADnED2h6AJZHkGTsMuMIvMu1Ip6GeRPayL
-         ok5Yb0XVnQTfHyC1Ukz9n4evX6asCr3ROV5IqKo9rj7z9BZpq7FB1Voq3Im8mUgHt47H
-         jCsD+10MXWzx5mSDLkvoXc/ZB+0M1Z3MV80CgIG0fNdwClxYWpHLjSXUUF5QyMrl955v
-         fw0g==
+        d=linaro.org; s=google; t=1692966318; x=1693571118;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=imTtF6oMDfUUdZZOXaDJRn5vC8nuYTa4GJ6U0uaioBA=;
+        b=LjrX5q74j68I1VUl5oO9TUBIMmOBTPj1Vwy6sA95yTKrKny16GyqMuCQdgRCJS2sSf
+         UyO1ObVQ3ldNV4uvynAiIi0Xw6LVJPGWO0XCW7F2EndaB9TnUNtxXTpceKVazPHulz0T
+         lcmoPSbi+9SMB9UkWv7CQC4MHQm0sjDdLAHz69csq8RrwX5fDFGCMmzGRsm5j5mkno5W
+         8EeFqLMHe3jsA1B7VuoUPgPOLFGtGeUv72Oa5cvHCDU/ONZ7bD3/4sK5SDY/SHs45AdE
+         wbsQey/XRGdkEQyTeblklJJOxHVSpXRSVfKLd7Q0/MEL+96lUlvSNdKxStk5EzKxnlLP
+         UT7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692966198; x=1693570998;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5WBrrXndAbZbJ6p/Nar438q9WSE55oh82llBeggBy/I=;
-        b=cMfJI5dIGeqDfysiPnlBKVK0DPqLyGrZbbRz9Z4K227PecEGRPSqsOawIWRFhu+O1X
-         m0xZjpxeaDYNCQouGVq68h13EXDUoE3nGVbnpe8G7IyEtww7f/i4B2EG/7DvFpaw6Jj6
-         p6XqrPeYG26OVB6iYKH2rYtl540BcSQJrvbw0UUMGD4zWQ9urMAHVDbt6osIBCg8LuKE
-         pP+rJUVQd4pll0HRjs8+8SfcbBwdA1/hTPsvypJTRbI7staYgNWZ0xInX2A3KNyVUNp0
-         GGuuBtPug1hhXYq/HqKhcnLZD12N7csEZ6+0JhL7JcYsImjEi4Awpq4ez6A52PWdhHBW
-         49pA==
-X-Gm-Message-State: AOJu0YxT+5Dlc3Xq3EOLLSaQKIcCf4b6s0ALJQnk0BvCGXPVVbi/n7tk
-        zkAMmpo7p5sLgNooXmg2CUBHDg2nyGC6iaHyGRQ=
-X-Google-Smtp-Source: AGHT+IGeYIhpQZQwYWBlFn9c0G+s1a43UuUYm0kyyGIY5iX6yP6g9N7SODjnUUyYfFNtPqSfJYqUJqDnDZHKZW5hPxc=
-X-Received: by 2002:a05:6512:689:b0:4fd:d64f:c0a6 with SMTP id
- t9-20020a056512068900b004fdd64fc0a6mr16089445lfe.48.1692966198141; Fri, 25
- Aug 2023 05:23:18 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1692966318; x=1693571118;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=imTtF6oMDfUUdZZOXaDJRn5vC8nuYTa4GJ6U0uaioBA=;
+        b=jpPkO6fkR4c1DPIn47rQRAFF24TlR8GXHuLv3o7Is+G6W/gidibv96Lz+Trw0uMw4G
+         4uEcPsFaIyAtaVAW3TtAKQ7m9tiRya++SJ0La/7nuPDUTp078tYzP0OsIOeeyACDGNJM
+         sZW0w7FxXupfJF8hHtY7odyp3aI0XYk2irE12xk8xLinkj9Egcg2hMVIb5sil58tYs0z
+         X0PwUVtGw2uggDceF4BYOUUk4yV9njGYi3WEs4OgswZCPY/f9L1lbxsdYesX8s7Ld96F
+         TCFuYHhZ4XOuLwHVeM13STkSX3gveO48ndHLj71Yd/qh3mzS4nq8pFdQtkU9EjSulyeK
+         XFYQ==
+X-Gm-Message-State: AOJu0YyD1VcghYZG5d7myF0aiErVwoXWVGOhRCUObUzyUgs8fH4HuUsC
+        5Wqy1mJLVBUhOG5qOy1imjmlxHk8F3RnoiGY4t3KCbCwZlMUiOSheYkdSQ==
+X-Google-Smtp-Source: AGHT+IGzX+k1WodF6SQPMN6CDVYnV4vxVt6RIf05NBatVhakz7fxdBWuUoY22uoRqj2+6v0uLXCfzghx5tVitq3nYq0=
+X-Received: by 2002:a81:df0d:0:b0:586:9ce4:14e8 with SMTP id
+ c13-20020a81df0d000000b005869ce414e8mr15051293ywn.52.1692966318735; Fri, 25
+ Aug 2023 05:25:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
- <20230824125012.1040288-5-keguang.zhang@gmail.com> <b8b414cf-c425-f322-51e6-c825e58ae6ed@linaro.org>
-In-Reply-To: <b8b414cf-c425-f322-51e6-c825e58ae6ed@linaro.org>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Fri, 25 Aug 2023 20:22:41 +0800
-Message-ID: <CAJhJPsV_OTY540D4_jryN57qEgK59fXJa03N5HZi=_qQWw78sQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+ <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com> <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Fri, 25 Aug 2023 14:24:43 +0200
+Message-ID: <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+To:     Shenwei Wang <shenwei.wang@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 25, 2023 at 2:47=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 24 Aug 2023 at 18:35, Shenwei Wang <shenwei.wang@nxp.com> wrote:
 >
-> On 24/08/2023 14:50, Keguang Zhang wrote:
-> > Add two new F: entries for Loongson1 Ethernet driver
-> > and dt-binding document.
-> > Add a new F: entry for the rest Loongson-1 dt-binding documents.
+>
+>
+> > -----Original Message-----
+> > From: Ulf Hansson <ulf.hansson@linaro.org>
+> > Sent: Thursday, August 24, 2023 4:27 AM
+> > To: Shenwei Wang <shenwei.wang@nxp.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+> > Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
+> > imx@lists.linux.dev; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > dl-linux-imx <linux-imx@nxp.com>
+> > Subject: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
 > >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > ---
-> > V2 -> V3: Update the entries and the commit message
-> > V1 -> V2: Improve the commit message
+> > Caution: This is an external email. Please take care when clicking links or
+> > opening attachments. When in doubt, report the message using the 'Report this
+> > email' button
 > >
-> >  MAINTAINERS | 3 +++
-> >  1 file changed, 3 insertions(+)
 > >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 250c43c675cb..f462f3d19e4a 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -14341,9 +14341,12 @@ MIPS/LOONGSON1 ARCHITECTURE
-> >  M:   Keguang Zhang <keguang.zhang@gmail.com>
-> >  L:   linux-mips@vger.kernel.org
-> >  S:   Maintained
-> > +F:   Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
-> > +F:   Documentation/devicetree/bindings/net/loongson,ls1[bc]-*.yaml
+> > On Fri, 18 Aug 2023 at 17:35, Shenwei Wang <shenwei.wang@nxp.com> wrote:
+> > >
+> > > Documenting the regulator power domain properties and usage examples.
+> >
+> > As Rob and Krzysztof already pointed out, I agree that this binding looks a bit
+> > questionable.
+> >
+> > Rather than adding a new DT binding, why can't we just use the existing way of
+> > describing a platform specific power-domain provider?
 >
-> This should be just one pattern */loongson,* or even just N: loongson,
-> if you want to cover any future versions as well (not only ls1).
+> Can you please provide more details on how you thought we should implement this
+> feature using the existing way? Very appreciate if you could provide a simple example.
 >
-Got it.
-Will change to "net/loongson,ls1*.yaml" in next version.
-Thanks!
-
-> Best regards,
-> Krzysztof
+> > This still looks platform specific to me.
 >
+> What does platform specific exactly mean here?  I want to make sure I understand
+> what you were referring to.
 
+There are plenty of examples of how a platform specific genpd provider
+looks in DT. You may have a look a imx platforms for example.
 
---=20
-Best regards,
+git grep "#power-domain-cells" arch/arm/boot/dts/nxp/imx
 
-Keguang Zhang
+The genpd provider then needs to be a consumer of the resources it
+needs. In this case a couple of regulators it seems like.
+
+[...]
+
+Kind regards
+Uffe
