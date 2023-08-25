@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED89D787FC0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 08:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58F9788003
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 08:38:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231270AbjHYGWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 02:22:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47434 "EHLO
+        id S232699AbjHYGiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 02:38:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240364AbjHYGV2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 02:21:28 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2852D1FEF
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:21:20 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a1132b685so892944a12.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:21:20 -0700 (PDT)
+        with ESMTP id S242246AbjHYGh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 02:37:59 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D711BD9
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:37:57 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-986d8332f50so68438466b.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:37:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692944478; x=1693549278;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1692945475; x=1693550275;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CBxnZfv7/cH1hRB0BhsWxJRlKySChDxPip0EzQICdP8=;
-        b=v8kdgE5e4XH4nsipzfMsATjh5Oy01RtVCq5xvJd2GoQII71ClGbkLd02yu5J94HcPy
-         rnw71C8Itn6w/02FswZ2Ivsa0N3dQ9Ofwtx//vFtHG6ULEv2luOQvVwrGMcOBQdDsSzw
-         qvSoC1uwYBfgyLfdAWwhkqf3eMe6SR6jZp874Bq6AXit3XFsYpbmEBrfiZrR3yDKQ9Hp
-         vt91MnKjP/yw81XJq5rYLvySUtmQNeoTrltEr1zba0DpqGiC67BI7Ru5OmYh2NdRNPkX
-         ZLy/vybV98yylUYcKNJH97/3qKdICWKeqm5MWMvAd5fGIuwY2BrecWUErSUQF9TOUTim
-         47VQ==
+        bh=5+0GSay6taxycoZO6OBj1m5ETfkXUUoJMPJ0/kOmu9w=;
+        b=fbgaqHCOPQ9G60i+iwMr9mzCZhZANvvhX/VAcVRVlYoK3HTFs7mIvgMHuse2DD3845
+         Zcyl7SmVY772U3pT02yQ/hAxenx1AyDgtmJqq/Zv0k6fQW49otImf8/mjyYplk+12Ghz
+         t5XDFLFFFoGuy8Xfp7lYhNEMinmswlEAVLjbEh2sF/Wo0moxzQfa69enb39ZfPbigQ2R
+         +bYmhNiJyIPWpXinmAGYyfVNvgFsz02/uI9ark2nQfrNAkVlj49HwLMKwbXzPtFxR1dS
+         aihIUh80NEzZNhohGcoigA2lumLB/4/5wHuvSVyFJKg0tzR3CNOOSg/kkTa/dvIRZEwt
+         CHaw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692944478; x=1693549278;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1692945475; x=1693550275;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CBxnZfv7/cH1hRB0BhsWxJRlKySChDxPip0EzQICdP8=;
-        b=X9xWJgXI9GfEoGXjghACMgKkSXddhbU063x6mMfghInt5kAgOWEZysqYjxAwn6QzXp
-         8SeBVp3NrGaJF7I0unzuwf+gAfFnhfV9Ku5o8VnaqMt8nIy73fiyfUw5jR2jqhPrL6OO
-         rrQouxMK2Xfuum6Yu9KcsTxsWN+64zDUSGqASX0pNUKbs2NE2lV+/DQyVhOmueZK4NLj
-         NdzFaQw5v+op7UqeIf6CGzQDmHDTu2MpDzCwjJHrR5t3v4iD825CxnKq42CnQFjCSjRS
-         F2AJK7JcK9Tv05uahwhZ18TGfAWGgauJlo9TIWHnc0esTXb1iDarZQxA9QTTDU3G0Gq3
-         /pCQ==
-X-Gm-Message-State: AOJu0YxkR1QpiT3zKC9i45C/pdK5SgRcYxPYnYZJLyVC+jmQkhXOhbAO
-        wtWZ320tRopi5OpS2DNvTbfxew==
-X-Google-Smtp-Source: AGHT+IFljUSTpwe44zryqFCU44Zs/vd81YaW0Y2DPrJTJb8DDeiQwlMm6Xs2N4hra1eh0QlpLazdiA==
-X-Received: by 2002:a17:906:3ca1:b0:9a1:891b:6eed with SMTP id b1-20020a1709063ca100b009a1891b6eedmr10694918ejh.76.1692944478566;
-        Thu, 24 Aug 2023 23:21:18 -0700 (PDT)
+        bh=5+0GSay6taxycoZO6OBj1m5ETfkXUUoJMPJ0/kOmu9w=;
+        b=PQ2FdkDvQBUdKCr5G16CAGp4OLjhdzF/lYTVfn6w7dnhDoR9IpliIL2/ldRBMkdU3h
+         77y6l8JwNfievMpJXqLYULPmGoSB1lXEktMRt3K2OAdqREs0pYDC3v1ZwUt0//JFsEi3
+         r+rFGQDZyLSqOwhPtfEKtGT6ydNS90853MpvbuTFXiP6D/EvDeQNkzABuhFchWNvusaH
+         9bnbE2s6s+9YWrtJrq2P1n/49V9ctKvbsB0/9TZnivkJRWYz/fF4/pqxwD2rdLoMWSTW
+         QOQohKnOp+ckQxjCQ+OGr5xo8xRs7nT7jy1YG1a8Kb+cXbBeiQOASWi/TbYHyzVr/LC1
+         KL9g==
+X-Gm-Message-State: AOJu0YxbY0olO3BmVmqmcMm0d855qVqr36J7FxgwnlpFqPqYDwi/JBQP
+        Gyf7uRl3LlAHyaGOoynkd72aUA==
+X-Google-Smtp-Source: AGHT+IEypP8YwF3zoacWp0xHNurKmkvB3OGpiijSl3m27OY1zGiRUfgfDWioUJnwQYSII3jRGVN2mQ==
+X-Received: by 2002:a17:907:788d:b0:977:befe:d888 with SMTP id ku13-20020a170907788d00b00977befed888mr13159727ejc.13.1692945475666;
+        Thu, 24 Aug 2023 23:37:55 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id re4-20020a170906d8c400b009930042510csm570386ejb.222.2023.08.24.23.21.17
+        by smtp.gmail.com with ESMTPSA id i9-20020a1709061cc900b0098e42bef736sm596537ejh.176.2023.08.24.23.37.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 23:21:18 -0700 (PDT)
-Message-ID: <eb951323-d896-5ab9-e477-7dd412af58e5@linaro.org>
-Date:   Fri, 25 Aug 2023 08:21:17 +0200
+        Thu, 24 Aug 2023 23:37:55 -0700 (PDT)
+Message-ID: <18fbfb35-fc8f-5062-859c-152d3ef933d8@linaro.org>
+Date:   Fri, 25 Aug 2023 08:37:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/2] dt-bindings: gpio: pca95xx: document new tca9538 chip
-Content-Language: en-US
-To:     Liam Beguin <liambeguin@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
+Subject: Re: [PATCH v3 01/16] dt-bindings: phy: migrate QMP USB PHY bindings
+ to qcom,sc8280xp-qmp-usb3-uni-phy.yaml
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org
-References: <20230824-tca9538-v1-0-ee3bf2065065@gmail.com>
- <20230824-tca9538-v1-2-ee3bf2065065@gmail.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org
+References: <20230824211952.1397699-1-dmitry.baryshkov@linaro.org>
+ <20230824211952.1397699-2-dmitry.baryshkov@linaro.org>
+Content-Language: en-US
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230824-tca9538-v1-2-ee3bf2065065@gmail.com>
+In-Reply-To: <20230824211952.1397699-2-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,15 +85,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2023 01:16, Liam Beguin wrote:
-> The previous patch added support for this chip. 
+On 24/08/2023 23:19, Dmitry Baryshkov wrote:
+> Migrate legacy bindings (described in qcom,msm8996-qmp-usb3-phy.yaml)
+> to qcom,sc8280xp-qmp-usb3-uni-phy.yaml. This removes a need to declare
+> the child PHY node or split resource regions.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
 
-This is not needed. If by any chance this would go via different trees,
-it would stop to make any sense.
 
-Also, is wrong. Bindings come *always* before the users.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
