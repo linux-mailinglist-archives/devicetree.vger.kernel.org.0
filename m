@@ -2,111 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 428DE788DA4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 19:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0114C788DC6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 19:24:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230004AbjHYRL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 13:11:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50722 "EHLO
+        id S241163AbjHYRX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 13:23:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231494AbjHYRLe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 13:11:34 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9185A2108;
-        Fri, 25 Aug 2023 10:11:32 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1ccc0d2e697so750794fac.0;
-        Fri, 25 Aug 2023 10:11:32 -0700 (PDT)
+        with ESMTP id S240403AbjHYRXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 13:23:24 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF5D2132
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 10:23:21 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bcb54226e7so14424391fa.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 10:23:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692983491; x=1693588291;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5TXtssFWEbngFOBY6yX34qGGzd1NAEnaVWIBTkGjN80=;
-        b=LR2PBsansT5Cso6XEXkTcjclHoN7Ck55DqhoFZyrIsWAxmoRm/frhcloh/j1EZmo91
-         Jwftyc5+H9110krpwC+1P6Igy7Ss7WNU+CceLb1RM1G5n8w58Zj3dMKKXVy3RlIM0XCv
-         ZzRIuoGeTcLZMzTOrkOyIsWDwzO7UC9pVRH9ehlmEe8ZQf44YpqQJu0/VzHGx8WO57ZX
-         XSwexAHKwRMXrIY91KaLPPEoTypvldKpe+JsuhcJrDD/z3f0uYRNDqDCxEZyjO1lXbb0
-         Rbni/zKDfD5vw2GQ4f/JVZuKP0Bvf4/cTzTQK4N60vn1LtlI8c8oMcCkLskVf8CRPm0y
-         NDbQ==
+        d=linaro.org; s=google; t=1692984200; x=1693589000;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r+IbZPjvkKJyHb1t49FSi3dEugB3CnJDHGvd+okiiCs=;
+        b=L6Fqf83e7W5LtDR+x18E59//1P2tJRk15WBcSKAB9RqKpy0FI6/zxZK44xfcvY226t
+         3q0OgysfbKZMyiFhlfcAidNIk7MyJp0uNO1bk23xTDjvLum69uOT9ASPZKL3Ps28XMOZ
+         fD0IskR25QygVbt0lWRChtt2U6Ei3UbhIEqj0E5IEAQKczz1FK3ER5oNqugYYHBxQ6YZ
+         Hrj6Zi1RJ//A8LSZgK/P18Jix1acNjrNTVw4bK9ZChnm9TXeJqN0OxG+oy7P3PDHfq45
+         DDMBdVrQCI0+no9eDWdTuhUgfa+XyFpRnME4EALFI2SI1UTrz7w4U+iF5v6Jjjpc5X5g
+         DfGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692983491; x=1693588291;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5TXtssFWEbngFOBY6yX34qGGzd1NAEnaVWIBTkGjN80=;
-        b=Q6sKYQQeF5FLL2H9k/SwkxTWsqKCvqS/OpO/xvh4Dqy325+HAFFT2dzwzEeBSrqLvy
-         0cMgG/AWfru+LPOo5GByMVKgGTRHVxR40snYPD/Qf0v9uuk7hF2/IFBeZ24tHQzvONT5
-         EfkGiAbO89IhZ2r3Vv3MKcRGarYQi7f6bbCRPQ87xjDmyBBQ/zsUUgOzbp/sBIpb+6pA
-         angSq2Ekj0loEsQVExmlavLzNgEvoWxD9sb/i+W6xcHpVk+lh4wX+G722255Qyoc1PaO
-         /f0SjW/XTiury1nfCtBV8TOZBZn2hsJ2noWxBoePCVt1DwjDL+ZulRW3ICXOVzzxcNyW
-         p8ZQ==
-X-Gm-Message-State: AOJu0YzyW/Xz/Hfq0hK/xLkE5Oj4SLV4wtqfU6uhk9UMnvfx2aV2JTq6
-        oC69siRUAQ9s2OrHr7isGOlYUPSgcBg=
-X-Google-Smtp-Source: AGHT+IHWE8uA0T/glQdvRBHB1C8RwiwLy4ooXIfQ29VrR+JNv+mxP2N9hdHDFgDu/L7kpDIiG+svzQ==
-X-Received: by 2002:a05:6870:14d0:b0:1c0:25c0:ebe5 with SMTP id l16-20020a05687014d000b001c025c0ebe5mr3484282oab.53.1692983491594;
-        Fri, 25 Aug 2023 10:11:31 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id o3-20020a17090a3d4300b002636dfcc6f5sm2004478pjf.3.2023.08.25.10.11.30
+        d=1e100.net; s=20221208; t=1692984200; x=1693589000;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r+IbZPjvkKJyHb1t49FSi3dEugB3CnJDHGvd+okiiCs=;
+        b=N0qyKAyBpO2k4g6U6qkecU63KqxmyhHHNPNmqZpc0m8ow9Lz62tcz0SQHfODcy5UQs
+         PU6r+lpxKYBRTKgDcGUhx6sruIskkL4xD00QvaHRRisy0omlLKRz0PEk616znPeAmwr5
+         F/+TSFTkllJUFbxnJpfEOWFmXoU6iKFoTyPG0oqgxFdTBzogjqYhc9SVVZ5JwPgQHDdU
+         5uyJTlJ67SbU3rzgDC6Hu7594lNrYJQcc2KVg8jRMZb20AFn1Y+tJn4YBrVTDFDFiI2M
+         thxHDvIyABS1OH0JQ+eZgox6mPotiFrOFPVudytj0poq2U8WtAyPeZvFpWx3kdtM8V3v
+         NtSA==
+X-Gm-Message-State: AOJu0Ywm5qVf3wsjWYMWJc2spJyorhDJbyfZK+hxKYc+6NXd3VYnoszC
+        F0U410+AT+9Uk4NyTSUYPfL8YA==
+X-Google-Smtp-Source: AGHT+IFz74chb8GNV0TvbPeKiDYOfdvYxFbfaLudKM3TO2LC00g7saucA952LOvNyDlPCmD+YEaArQ==
+X-Received: by 2002:a2e:8e75:0:b0:2bc:d3b1:d6c1 with SMTP id t21-20020a2e8e75000000b002bcd3b1d6c1mr3922260ljk.9.1692984200023;
+        Fri, 25 Aug 2023 10:23:20 -0700 (PDT)
+Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
+        by smtp.gmail.com with ESMTPSA id n11-20020a2e904b000000b002bcb1e1322asm407647ljg.63.2023.08.25.10.23.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Aug 2023 10:11:31 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Fri, 25 Aug 2023 10:11:29 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Ninad Malwade <nmalwade@nvidia.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V2 0/4] hwmon: ina3221: Add selective summation support
-Message-ID: <482ac044-e163-478c-8e67-5f03d7dc7820@roeck-us.net>
-References: <20230825164249.22860-1-nmalwade@nvidia.com>
+        Fri, 25 Aug 2023 10:23:19 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/2] SM6115 TX Macro
+Date:   Fri, 25 Aug 2023 19:23:11 +0200
+Message-Id: <20230825-topic-6115tx-v1-0-ebed201ad54b@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230825164249.22860-1-nmalwade@nvidia.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH/j6GQC/x2NQQqDMBAAvyJ7diHZEKl+RTwkca0LEiWxRRD/3
+ qXHGRjmhspFuMLQ3FD4K1X2rGDbBtIa8ptRZmUgQ868yOO5H5Kws9afF0ZPLhgyfed60CSGyhh
+ LyGnVKH+2TeVReJHr/xin5/kBQbU9P3MAAAA=
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692984198; l=733;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=6lIAsjfzQ31TGPmRwzbj9mEehySlk7glxjS1fp/ikjk=;
+ b=95YZjoDqhfV8cGN0KBrCUDtJnXEOnqGCQEDqlozHGrWV3GbSNhrb33HP9DBfPL4rahhYhRC1E
+ ljV9+8EF/L5CUQ40uPHOJqDbueF3gRSLJ5JkXAgwEm/uv2EzWNBmKF7
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 26, 2023 at 12:42:45AM +0800, Ninad Malwade wrote:
-> The current INA3221 driver always sums the shunt voltage for all enabled
-> channels regardless of the shunt-resistor used for each channel. Summing
-> the shunt-voltage for channels is only meaningful if the shunt resistor
-> is the same for each channel. This series adds device-tree support to
-> allow which channels are summed in device-tree.
-> 
+Like most Qualcomm SoCs, SM6115 has a TX Macro.
 
-V2, but no change log. I am not going to review this series.
+Only some minor changes were required.
 
-Guenter
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM6115
+      ASoC: codecs: lpass-tx-macro: Add SM6115 support
 
-> Jon Hunter (2):
->   dt-bindings: hwmon: ina3221: Add summation-bypass
->   arm64: tegra: Populate ina3221 for Tegra234 boards
-> 
-> Ninad Malwade (1):
->   hwmon: ina3221: Add selective support for summation channel control
-> 
-> Thierry Reding (1):
->   dt-bindings: hwmon: ina3221: Convert to json-schema
-> 
->  .../devicetree/bindings/hwmon/ina3221.txt     |  54 --------
->  .../devicetree/bindings/hwmon/ti,ina3221.yaml | 127 ++++++++++++++++++
->  .../arm64/boot/dts/nvidia/tegra234-p3701.dtsi |  53 ++++++++
->  .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi |  29 ++++
->  drivers/hwmon/ina3221.c                       |  39 +++++-
->  5 files changed, 243 insertions(+), 59 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.txt
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> 
-> -- 
-> 2.17.1
-> 
+ .../bindings/sound/qcom,lpass-tx-macro.yaml        | 18 ++++++++++++++++++
+ sound/soc/codecs/lpass-macro-common.h              |  2 ++
+ sound/soc/codecs/lpass-tx-macro.c                  | 22 +++++++++++++++-------
+ 3 files changed, 35 insertions(+), 7 deletions(-)
+---
+base-commit: 6269320850097903b30be8f07a5c61d9f7592393
+change-id: 20230825-topic-6115tx-b523a0209639
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
