@@ -2,182 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 260347885C2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:30:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD9D9788613
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:40:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238347AbjHYL3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 07:29:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37574 "EHLO
+        id S237026AbjHYLjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 07:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242122AbjHYL3C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:29:02 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC7226B2
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:28:39 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-58fc4d319d2so9393607b3.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692962914; x=1693567714;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DeMuSlxUtzQfWCufq9OumalQo8UgVgjecOg8zY7pRu0=;
-        b=VENurXBZvcjbdL1mQlZRrpfxE/b/BPdhZCOflTBLiaOVdOgIb/88bM58+C27fiWcIE
-         wsh9ykLWOSRadrMWNF1O3+qzEOlMYlZjJDp4Ce7zhZd3utIu7cCofviHZgaHsqSU4T5j
-         zDYVofLRGrRlYwiVZZNXHNgCXJ1XYdEyGFpobY29+GS8ENvo6Ep9laE0gvYG1klwCat+
-         egPuOaftHKc8zbx8zBtJt4zT+Et4gUXAofcwFTuqDXWt+ce9uWo1sof2dGFiHK4hyjnz
-         MpkRKx0mscgPe2BjXZyos0n6X0HvTkmuL7OIeP+DviO2WCq0JbXYIrPmyxGVhRtmxW3m
-         qkUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692962914; x=1693567714;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DeMuSlxUtzQfWCufq9OumalQo8UgVgjecOg8zY7pRu0=;
-        b=ZmVs0cMMPX7TNgB3a3InSiTlTRNo47k7JqAaMo4M8iwiwO9/gIq0AoAF/ZRvKo57sL
-         onH9vz+U5Ng/9cmGaHp98QXTDuts7hRtSQUFZB6FmXTkVy1Qrv4YptkrIwpmKwvSOKtU
-         897tcmoamHHGyKvnfy0IOya639u39V1cTo7j9zWi1LZJaWF3ejncdERLAyjlsN5ji6v4
-         lbacEwqEiEGzhN4wzio0i/xHtt1FuhVxpPSIL4ubTcrIT4XUNhnLM5Vs8i5ZJ/veazL9
-         DgF1BWKF2qWwHaw32LIX8+BwYtZnjF6h2GJAyi/C4ndmVbVOrAY/OootTfaibvI2st3Z
-         HQqw==
-X-Gm-Message-State: AOJu0YyPwDFARgKCFmAlDKL049fqeWhvsBKyngV6qelXTy9MQHVWTebl
-        anYbrKAohnyhMCARdonjqJVng2n7s6kw8WnOHWqoaA==
-X-Google-Smtp-Source: AGHT+IHUgfu2tsexI+VJcgqvjEyLuKSLHFMu/xUlz+Q8AtTZDI1mZZPzp34WcqG0IR77T8xrrkPiuCDV4ZulMmomQ94=
-X-Received: by 2002:a25:d257:0:b0:d12:77c7:b362 with SMTP id
- j84-20020a25d257000000b00d1277c7b362mr18460990ybg.26.1692962913802; Fri, 25
- Aug 2023 04:28:33 -0700 (PDT)
+        with ESMTP id S236143AbjHYLjM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:39:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EFCA210C
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:38:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A4A2651E4
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:38:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00898C433CC
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:38:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1692963526;
+        bh=IhUN3wNeroegBsvK8L6MatBOMRiD07StyURe84Lkn7Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LWBI1XwfO+ztYopjuRVSl8GIKp3+BeR4aTdqw8FKqmxR5VZzJdeIpM3boMwjhVfXc
+         fKtwGHNPO4fjHU9jcZDY3zL0KnIpGfpFkXERm6+jHx4GgXJoLcvZdQPdWBC/IXBsMa
+         Kb1XFp/JOubRZFmQtmb2VAkFXSOmZqKDjjynldlfDpxpxIn3O7VaHiVFfPNj08+bls
+         EPJmJ10Loh9mWLU5Gd7eNVjrwHHXkBkiJRIG0IcbHnolu+03CWBE/mM5OL2YvtE/ga
+         m3+UpB0gU8navqNu8Zkar3OaMbf2eYmZ/rwlmschj3XftCOZp4A0M0DlgTZqM9U0Eq
+         mqSfN+n5tz0oQ==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5008d16cc36so1216133e87.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:38:45 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yz8D40AJX/7Xm/KCNywvx70slUZ2EswEAsLT6qm3bsJ/KdVkAD6
+        K5yT+dLzpnWQJXdMw1eAeo7vcxY2MuL1nlu1LPU=
+X-Google-Smtp-Source: AGHT+IFjMLJMaychfDPevyx63YRANWX74ZsjU8alQfZvoD4k7trTbs70l3tz4UR+TfzKoeCMfdvckNnPUazn/+ciTh8=
+X-Received: by 2002:a05:6512:3706:b0:4f9:586b:dba1 with SMTP id
+ z6-20020a056512370600b004f9586bdba1mr10516325lfr.4.1692963523857; Fri, 25 Aug
+ 2023 04:38:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230825091234.32713-1-quic_devipriy@quicinc.com> <20230825091234.32713-7-quic_devipriy@quicinc.com>
-In-Reply-To: <20230825091234.32713-7-quic_devipriy@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 25 Aug 2023 14:28:22 +0300
-Message-ID: <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
-Subject: Re: [PATCH V2 6/7] arm64: dts: qcom: ipq9574: Add support for nsscc node
-To:     Devi Priya <quic_devipriy@quicinc.com>
-Cc:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
-        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        quic_saahtoma@quicinc.com
+References: <cover.1692783907.git.zhoubinbin@loongson.cn>
+In-Reply-To: <cover.1692783907.git.zhoubinbin@loongson.cn>
+From:   Huacai Chen <chenhuacai@kernel.org>
+Date:   Fri, 25 Aug 2023 19:38:31 +0800
+X-Gmail-Original-Message-ID: <CAAhV-H7hi=yc=PfDBafXVS5CSwEeE2WmbAAhnnDm6iYFF3YzkQ@mail.gmail.com>
+Message-ID: <CAAhV-H7hi=yc=PfDBafXVS5CSwEeE2WmbAAhnnDm6iYFF3YzkQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/7] LoongArch: Add built-in dtb support
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Aug 2023 at 12:15, Devi Priya <quic_devipriy@quicinc.com> wrote:
->
-> Add a node for the nss clock controller found on ipq9574 based devices.
->
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
->  Changes in V2:
->         - Dropped the fixed clock node gcc_gpll0_out_aux and added
->           support for the same in gcc driver
->         - Updated the node name to clock-controller@39b00000
->         - Added clock-names to retrieve the nssnoc clocks and add them
->           to the list of pm clocks in nss driver
->
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 48 +++++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 51aba071c1eb..903311547e96 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> @@ -10,6 +10,8 @@
->  #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
-> +#include <dt-bindings/clock/qcom,ipq9574-nsscc.h>
-> +#include <dt-bindings/reset/qcom,ipq9574-nsscc.h>
->  #include <dt-bindings/thermal/thermal.h>
->
->  / {
-> @@ -18,6 +20,24 @@ / {
->         #size-cells = <2>;
->
->         clocks {
-> +               bias_pll_cc_clk: bias-pll-cc-clk {
-> +                       compatible = "fixed-clock";
-> +                       clock-frequency = <1200000000>;
-> +                       #clock-cells = <0>;
-> +               };
-> +
-> +               bias_pll_nss_noc_clk: bias-pll-nss-noc-clk {
-> +                       compatible = "fixed-clock";
-> +                       clock-frequency = <461500000>;
-> +                       #clock-cells = <0>;
-> +               };
-> +
-> +               bias_pll_ubi_nc_clk: bias-pll-ubi-nc-clk {
-> +                       compatible = "fixed-clock";
-> +                       clock-frequency = <353000000>;
-> +                       #clock-cells = <0>;
-> +               };
+This series looks good enough to me now, if no one has objections, I
+will queue it to loongarch-next.
 
-Which part provides these clocks?
+Huacai
 
-> +
->                 sleep_clk: sleep-clk {
->                         compatible = "fixed-clock";
->                         #clock-cells = <0>;
-> @@ -722,6 +742,34 @@ frame@b128000 {
->                                 status = "disabled";
->                         };
->                 };
-> +
-> +               nsscc: clock-controller@39b00000 {
-> +                       compatible = "qcom,ipq9574-nsscc";
-> +                       reg = <0x39b00000 0x80000>;
-> +                       clocks = <&gcc GCC_NSSNOC_NSSCC_CLK>,
-> +                                <&gcc GCC_NSSNOC_SNOC_CLK>,
-> +                                <&gcc GCC_NSSNOC_SNOC_1_CLK>,
-> +                                <&bias_pll_cc_clk>,
-> +                                <&bias_pll_nss_noc_clk>,
-> +                                <&bias_pll_ubi_nc_clk>,
-> +                                <&gcc GPLL0_OUT_AUX>,
-> +                                <0>,
-> +                                <0>,
-> +                                <0>,
-> +                                <0>,
-> +                                <0>,
-> +                                <0>,
-> +                                <&xo_board_clk>;
-
-If you move xo_board closer to the start of the list, it will be
-slightly easier to review.
-
-> +                       clock-names = "nssnoc_nsscc", "nssnoc_snoc", "nssnoc_snoc_1",
-> +                                     "bias_pll_cc_clk", "bias_pll_nss_noc_clk",
-> +                                     "bias_pll_ubi_nc_clk", "gpll0_out_aux", "uniphy0_nss_rx_clk",
-> +                                     "uniphy0_nss_tx_clk", "uniphy1_nss_rx_clk",
-> +                                     "uniphy1_nss_tx_clk", "uniphy2_nss_rx_clk",
-> +                                     "uniphy2_nss_tx_clk", "xo_board_clk";
-
-You are using clock indices. Please drop clock-names.
-
-> +                       #clock-cells = <1>;
-> +                       #reset-cells = <1>;
-> +                       #power-domain-cells = <1>;
-> +               };
->         };
+On Wed, Aug 23, 2023 at 5:55=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
+> wrote:
 >
->         thermal-zones {
+> Hi all:
+>
+> This patchset introduces LoongArch's built-in dtb support.
+>
+> As we know, the Loongson-2K family supports DT. Inevitably, some systems
+> do not provide a useful device tree to the kernel at boot time. Chasing
+> around bootloaders for these systems is a headache, so we just keep a
+> device tree table in the kernel, keyed by the dts filename, that
+> contains the relevant DTBs.
+>
+> Thanks.
+>
+> -----
+> V4:
+> patch(1/7):
+>   - Drop device_type property.
+> patch(2/7):
+>   - Rename board.yaml to loongson.yaml.
+> patch(4/7):
+>   - Keep the ranges attribute after compatible;
+>   - Add bootargs =3D "ttyS0,115200", which is needed for reference board;
+> patch(5/7):
+>   - Keep the ranges attribute after compatible;
+>   - Add bootargs =3D "ttyS0,115200", which is needed for reference board;
+>   - Change node name global-utilities to chipid.
+> patch(6/7):
+>   - Keep the ranges attribute after compatible;
+>   - Add bootargs =3D "ttyS0,115200", which is needed for reference board.
+>
+> Link to V3:
+> https://lore.kernel.org/all/cover.1692618548.git.zhoubinbin@loongson.cn/
+>
+> V3:
+> patch(1/7):
+>   - Add reference to the common cpu schema.
+> patch(2/7):
+>   - Add reviewed-by tag.
+> patch(4/7):
+>   - Drop bootargs;
+>   - Move the cpus node to dtsi, which is part of the SoC.
+> patch(5/7):
+>   - Drop bootargs;
+>   - Move the cpus node to dtsi, which is part of the SoC;
+>   - Fix gmac0/1-mdio node: compatible is always the first property;
+>   - Drop i2c-gpio node.
+> patch(6/7):
+>   - Drop bootargs;
+>   - Move the cpus node to dtsi, which is part of the SoC.
+>   - Changes liointc to liointc-1.0, for Loongson-2K2000 has 32 interrupt
+>     sources.
+>
+> Link to V2:
+> https://lore.kernel.org/all/cover.1692088166.git.zhoubinbin@loongson.cn/
+>
+> V2:
+> patch(1/7):
+>   - Drop model and clock-frequency properties;
+>   - Add clocks property;
+>   - Rewrite the description.
+> patch(2/7):
+>   - Add the proper compatibles for boards.
+> patch(4/7)(5/7)(6/7):
+>   - Format commit message head;
+>   - Drop undocumented compatible, such as pci_bridge compatible;
+>   - Distinguish the attributes, put SoC-related into DTSI and
+>     board-related into DTS;
+>   - Check DTS with 'make dtbs_check W=3D1'.
+> patch(7/7)
+>   - New patch;
+>   - Parses Molde name and CPU MHz from the DTS attribute.
+>
+> Link to V1:
+> https://lore.kernel.org/loongarch/cover.1686882123.git.zhoubinbin@loongso=
+n.cn/
+>
+> Binbin Zhou (7):
+>   dt-bindings: loongarch: Add CPU bindings for LoongArch
+>   dt-bindings: loongarch: Add Loongson SoC boards compatibles
+>   LoongArch: Allow device trees to be built into the kernel
+>   LoongArch: dts: DeviceTree for Loongson-2K0500
+>   LoongArch: dts: DeviceTree for Loongson-2K1000
+>   LoongArch: dts: DeviceTree for Loongson-2K2000
+>   LoongArch: Parsing CPU-related information from DTS
+>
+>  .../devicetree/bindings/loongarch/cpus.yaml   |  61 +++
+>  .../bindings/loongarch/loongson.yaml          |  34 ++
+>  arch/loongarch/Kconfig                        |  16 +
+>  arch/loongarch/Makefile                       |  10 +-
+>  arch/loongarch/boot/dts/Makefile              |   7 +-
+>  .../boot/dts/loongson-2k0500-ref.dts          |  89 ++++
+>  arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 254 +++++++++++
+>  .../boot/dts/loongson-2k1000-ref.dts          | 172 ++++++++
+>  arch/loongarch/boot/dts/loongson-2k1000.dtsi  | 397 ++++++++++++++++++
+>  .../boot/dts/loongson-2k2000-ref.dts          |  73 ++++
+>  arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 291 +++++++++++++
+>  arch/loongarch/kernel/env.c                   |  33 ++
+>  arch/loongarch/kernel/setup.c                 |   9 +-
+>  13 files changed, 1440 insertions(+), 6 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus.yaml
+>  create mode 100644 Documentation/devicetree/bindings/loongarch/loongson.=
+yaml
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500-ref.dts
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500.dtsi
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k1000-ref.dts
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k1000.dtsi
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k2000-ref.dts
+>  create mode 100644 arch/loongarch/boot/dts/loongson-2k2000.dtsi
+>
 > --
-> 2.34.1
+> 2.39.3
 >
-
-
--- 
-With best wishes
-Dmitry
