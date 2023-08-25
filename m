@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5547D7886ED
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 734DC788711
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:22:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242188AbjHYMRw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:17:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58216 "EHLO
+        id S233185AbjHYMWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 08:22:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244814AbjHYMRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:17:37 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB11C2686
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:16:54 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401b5516104so6994655e9.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:16:54 -0700 (PDT)
+        with ESMTP id S244796AbjHYMVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:21:47 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9741268C
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:21:21 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31c615eb6feso672453f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:21:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692965801; x=1693570601;
+        d=linaro.org; s=google; t=1692965998; x=1693570798;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=o7W3K6QieOMlEGkELlxavl+PcEL/5xKZFRwCQWMzW5I=;
-        b=lGawyDxFUMgbdHeE2koQ5KcxJuXV/iJw3TTRgxmLIObGXulXUhEPJnx0xecUBKAJpA
-         Ca2dYbsYwIp9vv86H6MagZ6wXjHjswkjzgzLDeS3SixoIgzYXyrIdc/ulKk2rf652GVp
-         TIgSzL0crZ0qhhHXYUQbPPt/5xAKnOCHCtyFU/etBkFFkz5lk2BaWZe3W52Gi+oAdFx8
-         06Ws3MZra2x4CxbZSUqyfhCc+b22wJ09FXGpxZUXGBmhF8qJLTDEYUwuf7z0QJDQEMHd
-         cvCOVP09pbZXRK6HCJRDNaLg/miI8lvLEw0lxcRxe1HTyN1CHYDMpRaNNnVFEPCHGckQ
-         vPwg==
+        bh=nHMjHCi8nL3iHIgcbWKICMPh5N5wLAaAe8hnVrLWWts=;
+        b=stSpww4kF0HfI75b/eWOhExLhhjPevwnLfPVWe0HermHZAv8tXzhNecSqYc8XiE3X8
+         y+gRUNDTSriSSKp1j84eabEVaRwcXVfo9X2TH/Fo/oQ1wVGKvSAf0E6Pzv/JOcPlbd6M
+         XS1WgHhrc5XbSd61e4DYhdf4mulHv+qsmvZnjvOUlboMm24zPMFMKXQdkir77/TaA4tN
+         XLah1OSo9F8POQxkSIhMOUp+j3UwKw/Hmv77+8UGKRr9R/WBPi1mVG6B1/3iTUSdp1KK
+         eh97E7gdcVBzuYdRYK7+Le7w/+eCQHjwO5nTBTEtIx8chlzcbLl2vfwHwBVi24rUYr0j
+         wHww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692965801; x=1693570601;
+        d=1e100.net; s=20221208; t=1692965998; x=1693570798;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=o7W3K6QieOMlEGkELlxavl+PcEL/5xKZFRwCQWMzW5I=;
-        b=K9IL4kMiC7hqq6A2MMcY3NA8BtSS0Ybc0C9yrO5aCSD1rgdR0G/lIC4Z0cD+Dz4ZxG
-         jSL5eL0q9MqQj/C3pThlI8Mirisn1f0Oyj1ksySRbrnJhC7aU7uSO8FG5Wn/iu0LbUKZ
-         70JiQfcNIBwDkGvUFP81lXbcCqNwnl9I0KNNSatH71DnOu6qOc3FYdWkCOC4ORY8kPL7
-         HRqwFqAckm8Z49aX9cmulUbPntZ/gQEdiU8zqguwprlzu62k8189rFf7HaQeJZXc1Qup
-         neR8z0b/dPoISOIt8lJEJvY91dFMQ3Jv+iu2PM8utBeBV4M015FjWyVL09PSUL09Z4fw
-         rQNA==
-X-Gm-Message-State: AOJu0Yx7H2Rs86JsEcoOPHpXl1a3i7V4DrCbVxoR0u19vtbsjM9bHVGL
-        zmkyUsrqDV/kTl5lcPMXqxXkuA==
-X-Google-Smtp-Source: AGHT+IFatSYfdQ8wgd9jKCT40sM9oeeY/ZuR3qwKdKNIQTZvKeZ8tkb1COEsYjFTJOuKxzoqMamt/Q==
-X-Received: by 2002:a1c:7508:0:b0:3fb:a102:6d7a with SMTP id o8-20020a1c7508000000b003fba1026d7amr13978738wmc.28.1692965800627;
-        Fri, 25 Aug 2023 05:16:40 -0700 (PDT)
+        bh=nHMjHCi8nL3iHIgcbWKICMPh5N5wLAaAe8hnVrLWWts=;
+        b=e+o0xYV5DxV5qXomtHMBphRhN/074vP50NlL4rjEFC4mFPJHSCYVld8K6aLoJ8qzY9
+         ShN2P3N+ZZNF1PQXKoNzo1MiAm1+L4LJVuDSyARZTOwrHmYovBpOJvTISmz4ZTKIZBws
+         nBK8yS8ktRMJjczwwHKl2fiLADCqTqW4xJp7Ags5CPRQdM8aDY4yQW9dCk6ZSjIOKHNB
+         Q60K+RpaJXp/rpCseP14hUrAdSFdelc7xkPvci03nZKO1EWb+TC/QioR9XJ/+w7GOGuP
+         akFefbcHFMl+Jier8EI96HuYU2CR4FvscRvjplAtSy/+vbR2K06pHQTVVvrYMBqbyTUs
+         W80Q==
+X-Gm-Message-State: AOJu0Yys8WKioPR9r4ZoCXA76TIk1xcDI+xeVM+a5G0pjj4Gy4CKN4wW
+        rzUpcs05fUHwdxG9SqJV0JH/pg==
+X-Google-Smtp-Source: AGHT+IErkRB/kpj/09WspYrWIaceU32Ug6rXwPqFBa48iPDlFLCkFheTF9ANCrHi7SZ2AjSvH8UDuw==
+X-Received: by 2002:a5d:5963:0:b0:31a:ccc7:29ee with SMTP id e35-20020a5d5963000000b0031accc729eemr12307289wri.7.1692965997883;
+        Fri, 25 Aug 2023 05:19:57 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:4e1:71e1:b02b:811e? ([2a01:e0a:982:cbb0:4e1:71e1:b02b:811e])
-        by smtp.gmail.com with ESMTPSA id u2-20020a05600c00c200b003fe2a40d287sm2061684wmm.1.2023.08.25.05.16.39
+        by smtp.gmail.com with ESMTPSA id g13-20020a5d64ed000000b003177f57e79esm2095673wri.88.2023.08.25.05.19.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 05:16:40 -0700 (PDT)
-Message-ID: <32873c1f-6c8a-425e-8965-a6f727d1408a@linaro.org>
-Date:   Fri, 25 Aug 2023 14:16:38 +0200
+        Fri, 25 Aug 2023 05:19:57 -0700 (PDT)
+Message-ID: <fcdb1fb2-784d-4235-aa47-9e489395c028@linaro.org>
+Date:   Fri, 25 Aug 2023 14:19:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add IR controller for Meson-S4 SoC
+Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
+ RC_DRIVER_SCANCODE
+Content-Language: en-US, fr
 To:     zelong dong <zelong.dong@amlogic.com>, Sean Young <sean@mess.org>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -71,8 +73,7 @@ Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
         Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
         kelvin.zhang@amlogic.com
 References: <20230825115310.39993-1-zelong.dong@amlogic.com>
- <20230825115310.39993-4-zelong.dong@amlogic.com>
-Content-Language: en-US, fr
+ <20230825115310.39993-2-zelong.dong@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -98,11 +99,11 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230825115310.39993-4-zelong.dong@amlogic.com>
+In-Reply-To: <20230825115310.39993-2-zelong.dong@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -113,60 +114,22 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 25/08/2023 13:53, zelong dong wrote:
 > From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Add the IR controller device of Meson-S4 SoC family.
+> Meson IR Controller supports hardware decoder in Meson-S4 and later
+> SoC. So far, protocol NEC could be decoded by hardware decoder.
 > 
 > Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 > ---
->   .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts    |  6 ++++++
->   arch/arm64/boot/dts/amlogic/meson-s4.dtsi         | 15 +++++++++++++++
->   2 files changed, 21 insertions(+)
+>   drivers/media/rc/meson-ir.c | 522 +++++++++++++++++++++++++++++++-----
+>   1 file changed, 451 insertions(+), 71 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> index 8ffbcb2b1ac5..c1f322c73982 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dts
-> @@ -28,3 +28,9 @@ memory@0 {
->   &uart_B {
->   	status = "okay";
->   };
-> +
-> +&ir {
-> +	status = "okay";
-> +	pinctrl-0 = <&remote_pins>;
-> +	pinctrl-names = "default";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> index f24460186d3d..5a3abcc08ee5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-> @@ -106,6 +106,14 @@ gpio: bank@4000 {
->   					#gpio-cells = <2>;
->   					gpio-ranges = <&periphs_pinctrl 0 0 82>;
->   				};
-> +
-> +				remote_pins: remote-pin {
-> +					mux {
-> +						groups = "remote_in";
-> +						function = "remote_in";
-> +						bias-disable;
-> +					};
-> +				};
->   			};
->   
->   			gpio_intc: interrupt-controller@4080 {
-> @@ -133,6 +141,13 @@ reset: reset-controller@2000 {
->   				reg = <0x0 0x2000 0x0 0x98>;
->   				#reset-cells = <1>;
->   			};
-> +
-> +			ir: ir@84040 {
-> +				compatible = "amlogic,meson-s4-ir";
-> +				reg = <0x0 0x84040 0x0 0x30>;
-> +				interrupts = <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
-> +				status = "disabled";
-> +			};
->   		};
->   	};
->   };
+
+<snip>
+
+It looks pretty good now, so far I'm ok with it:
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+I think some test reports would be needed to be sure it doesn't regress existing HW.
+
+Thanks,
+Neil
