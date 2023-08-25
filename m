@@ -2,192 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4277887EF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7A4378883C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 15:17:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244959AbjHYM5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
+        id S245012AbjHYNRW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 09:17:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245003AbjHYM4y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:56:54 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4AC2699
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:56:36 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c0cb7285fso114774166b.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:56:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692968195; x=1693572995;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MtEwEDc31XpRCbx957LHvDY3j7bJ3BCy8rsVcSY1Qg8=;
-        b=GFh2+yCXCJh68NAtuL+uu5tWmKdZw7rv7dK6cCbZOI6ARhUoZ6ygw+PqpSPTBjObeX
-         1mxosyQ701oM2XhS3eUerDU7SrLOkpfbtBbdaceaION1Ga5PPw5EpiY20WZWZ+9wE+ys
-         1f9po1qi85maLTDjHNCvru5HxFLgn3S9H1hyiQl3n0RDie0zeIMOcGuQwGJk7r5NNDPn
-         m2E/Aqnudgx+kI1fhgc/g7T6X0elbI0fabdn7zgLr5Fa875WgW2EldDyfXhUqEdm/IO3
-         7eYt7ZgI02w25jNeXkwfyv6xKT3vxzPP/q0wruTaO2VhARQ/RZlg33f36oQ8pz6IZPX/
-         jp+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692968195; x=1693572995;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MtEwEDc31XpRCbx957LHvDY3j7bJ3BCy8rsVcSY1Qg8=;
-        b=KADXFZqkKiLysMlbwoFqHBNUsZ17Gj1F9seyq9J/DbEI7DokLF19J5pnU3nlYko7nN
-         1gqhGZDV+SZg35s2lmEjo+PlBvJ7tL26666Z9iJe2zZKXJE/ueUlzncTbodCEt00u+sd
-         1PrBPimOlNkWWIliQLv99aUpMUmMQwqyCiCmcZ2NFXGzq0q7Hj80Z45t2EVaubk6vMmy
-         O0wvnPo2Bt97wLyxy1Asm/SQY4WGRKiG3wakpEOBgFczhPkVmC53NM+WZIMxgZSesQXi
-         sdya+47QzcDzwSr0hC69QSVU0vcSENp37sCDwgg8yVbcmqX1tPFkWliv5QOBuZLaiYMU
-         tHyg==
-X-Gm-Message-State: AOJu0Yxd+YYBKe12xTKOx4b9aXunO1JNpkT9XDhE0PKaRdgcjExCpJdi
-        vuo31Kc4i9Gu0sAV69kwErIzYg==
-X-Google-Smtp-Source: AGHT+IHWEo2JrvOndiaBEw6DoshlyovZ2Hv+lEN7ah9G3oYuyveDThMSkPasCswGZt9qnVYhy7wNfg==
-X-Received: by 2002:a17:906:5dd9:b0:99d:ec81:df58 with SMTP id p25-20020a1709065dd900b0099dec81df58mr13705838ejv.19.1692968195305;
-        Fri, 25 Aug 2023 05:56:35 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00999bb1e01dfsm923359eja.52.2023.08.25.05.56.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 05:56:34 -0700 (PDT)
-Message-ID: <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org>
-Date:   Fri, 25 Aug 2023 14:56:33 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc:
- Fix warnings about liointc-2.0
-Content-Language: en-US
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
+        with ESMTP id S245010AbjHYNQw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 09:16:52 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2048.outbound.protection.outlook.com [40.107.8.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3B4E78;
+        Fri, 25 Aug 2023 06:16:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fytUz5WUeUdHs2+Z3Le3BPHeNaLm/mEpvCq6hOw6atFJXq8B4R/HYE1TceEuSvxs1KtCcP8ZwqMjsEI73HOmJY9TXEQVXNOmbZG6+pODZ5o47Vm+G4wD+AJUYtvum29S7/UnTwqZUnF7cga92kmW3SPnqgErgszd6PYSLuSs/nww8teZZ0VpEGekxTugkQVyVcKbP5wvFGrcnj275nrK5QOVGTMkxNdXK0wF5+2dLVhP71bQcouC4UnJ9MdU9cAtCvI4qpPOWQnShuPhxFImv50XdwWbZkjsc40PpT35vJTn+KnWMRJ4itxFVOGTuamSZbWnETeiqZVFN/VenWf6Sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sjp+tAdQSYhzbrfDHYjQoc3R8JaovBUaF5DLN3iNiAw=;
+ b=DuwNH91ssHodiwcreYLuY/pserepIxEXzAEeyJNLWhVu/gMtUehTbCUzvIaOtow8SKmnVSdjkVQMCgFEPXQ0n0jBOaRVWot4uoptOxJIXFhlHfTOxX1hjIbytVg72BUgw/WclaZYE4wVLb+LqsxjtLUINjr2rQ3nuLxXSo2j+4bPcyn/z6jIAuEfxHogMEnLJx0ZXgG8hPH7gcEcMMuFcZAaCoysy9kNJ1e28O3znIAWrGhmwIxo5uOyPvNOLo241i7GFpWA3OM1ja55Ua+PpUV15uUgWMxvkvu11DcmuWTGPpR5q3yzp2RhGi/XZTGqRbh2LLGfRnof6Vw6H8Zfrg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sjp+tAdQSYhzbrfDHYjQoc3R8JaovBUaF5DLN3iNiAw=;
+ b=BJqAVtKcfWM8lFRwsTBEZHqHtAuzJmV7CCWgItYU10fK1em00ZTMVVJUfqW9tPvQzF471gwm2lewM8Pkn79rj1nzxsS085cxCxAu7GIXVb8GQss77QwdRA1MSD5x2lYBL3iBJdzMUIkgykql9EPPfvYWpHkMZVYVyO9kZkmxbUBTIx/B1c+uSjGWRHT+HCARjmJct6pfE+E4+Ftjvss0X8X7EtNGYSCTll/tVzAma9V6wl+C6hJWO+mVpniG4sgE5vGT75F5hHzHg86PiBToPjTvqj1hCgzstaLAldK0s/bFeORQqzyyFnZEMwRqSmyFMRNDTfj/9mFUvatjpz9Njw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from AM6PR04MB6311.eurprd04.prod.outlook.com (2603:10a6:20b:b7::20)
+ by DU0PR04MB9226.eurprd04.prod.outlook.com (2603:10a6:10:351::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Fri, 25 Aug
+ 2023 13:16:45 +0000
+Received: from AM6PR04MB6311.eurprd04.prod.outlook.com
+ ([fe80::e8bd:7711:50e:aaab]) by AM6PR04MB6311.eurprd04.prod.outlook.com
+ ([fe80::e8bd:7711:50e:aaab%4]) with mapi id 15.20.6699.028; Fri, 25 Aug 2023
+ 13:16:45 +0000
+Message-ID: <a59861f6-e138-1f37-3509-ecd39766fd1a@theobroma-systems.com>
+Date:   Fri, 25 Aug 2023 15:16:43 +0200
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Subject: Re: [PATCH 1/2] TSD: arm64: dts: rockchip: use codec as clock master
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Jakob Unterwurzacher <jakobunt@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
-        linux-kernel@vger.kernel.org
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
- <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
- <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
- <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org>
- <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Ermin Sunj <ermin.sunj@theobroma-systems.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230823122000.585787-1-jakob.unterwurzacher@theobroma-systems.com>
+ <2eda319d-bdd9-bfeb-005a-5989cf674501@linaro.org>
+From:   Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+In-Reply-To: <2eda319d-bdd9-bfeb-005a-5989cf674501@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR2P281CA0092.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9b::16) To AM6PR04MB6311.eurprd04.prod.outlook.com
+ (2603:10a6:20b:b7::20)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB6311:EE_|DU0PR04MB9226:EE_
+X-MS-Office365-Filtering-Correlation-Id: 57194e41-3c57-4f1d-86b0-08dba56d87c8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6IRwthPMe8iLlCtUWRjiXtyJkj3frfuzWXYCxQew2BCJGvIyCQvjuIrqj16S6NarlB64p7cRGwaPzwoaQV3ECedVWKY3dYEUCtWMq1DQbYI4rzTWjNbSwC3kz2/WR6MJMZMV/jm3+rH/koB2e6dF3PL4bC5lfEWNciGB9kUdajCW3mXqHY/v12SCJ5frt/4ShFrjlNdTLXkJOi8HYo51M03SitzjVwO8hyK32NJWPMOdmjwVA5lm8LKWvn1W4iWr4+bqONgW7C/fmP7AaRflk16C4gEqOiX22DutQBycJKx2WsKq2wm+I3kVfQbAOoiE0LHNNbxSs5Zj5Yg+x0H2rPqBikHZL9Miw2nReauEGtm9VaGP9r3YnnWZ7Odlt4/7PKxu2QT9ChtX6HBBjemaod1EzRQcxoJTfQu3Z27rJJ7uN87uSSfYttkHC8wJTsBYc+8kPXBJ1tcF4d2IPa6rNn0Cijl9v5BM0A5Cm2DpjNR8zO2jJdXFMUkaZvE4HFug44qptCnHyf4We4uMFkY9KBXYXPeV788NaOccX8rB7NsFvU3IWOpc4AWeoqWBEx8eWyUYM1aI68OMBEE3HS4hvUfV3m6UJ5HunY1klMQlZLLoFb0KtGZe0p+VCM2Mg64l
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6311.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(376002)(396003)(39850400004)(366004)(451199024)(186009)(1800799009)(6506007)(66946007)(66476007)(316002)(66556008)(478600001)(110136005)(44832011)(26005)(38100700002)(41300700001)(53546011)(86362001)(31696002)(6486002)(2906002)(6512007)(966005)(31686004)(8676002)(4326008)(8936002)(2616005)(5660300002)(83380400001)(4744005)(36756003)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a3hmbzUvV1dYbVVjaFZmSVc0U3I2WHJ1Tytjc0k3cTBlTkQyWjM0VXpYaVJD?=
+ =?utf-8?B?b25UNVI2Vi9pU3NkS2paYXlvVVA1Skl4ZmF2ZEpaZHVTY0JBYnMvUlVsdXF0?=
+ =?utf-8?B?djVvNDhqWjR3dTVOVjV2bERHdW9FVTZHM3I2UU02YzJVelJjNG9ya3M3Mjlv?=
+ =?utf-8?B?NjZ0MVoxdWIrTG5MQU15dEw2Uzd6ODg5R1lPNlhCWStsdFBDai9xa0lQSi9O?=
+ =?utf-8?B?WEdTc2U5SThKOW5GNGZCVCs3UEhKdHpCOGNQZ0FLQUdoTjJzemYya0NMd2tz?=
+ =?utf-8?B?NnhZZk53aENoNVozalI5b3ZYc0ZDdTJYcnZ2Y1dHWDJkR0ltM2V1VDdIS1Z0?=
+ =?utf-8?B?aUZwbGk3OU1XakNtV3BjbmtXM2ZFanhzQ2MvRHBFeGR6RFc5VWpUc0k3S0NI?=
+ =?utf-8?B?MGxYOXlQWEJaNmRTSnpleStzL0FIcXJvNXNLTWI4QmQ3dEIzWHVzbzdBK1lj?=
+ =?utf-8?B?Z1ZiMk5DZlRHalZhbW5BR2lxVzNidVJDTUU0R2RLYTZXb2ZFK2hqejJmZjE3?=
+ =?utf-8?B?Yk4yNzlqcmtpZzAwTExBTnNSL1FmQlczdjc0UFpLT2VFcENCRkY2Z2JkeEdI?=
+ =?utf-8?B?K0xRc0JqSXBkeVVyL0l5dXo5RWNoZHZBc3NPMjhMZWNua0NiU2tNOXE5NytG?=
+ =?utf-8?B?Q0l6WndaTlN3Rlg2RjdZQjVEdHNDSGpVQ1hBM09ZcERmU0FYRkxMQ0JtR1JC?=
+ =?utf-8?B?Q0dtUjRja3hoZGRoWkc2cmJ1aXlhOEZDNnZWLzE0Z25hSEh0L1JFUlVQeWRn?=
+ =?utf-8?B?MDBaZTIrQlhoQnFXZWhVcnQvdEFuSUpsczZGeEZMYUQ3RGJmdGRGY1RreVFF?=
+ =?utf-8?B?OUNqUTdubGxyZmFKOG9HUGNDSzhlVUVpNzY1dlUxdDB0RTNuUHVNYWVNakNk?=
+ =?utf-8?B?OW1VZUlWQmUzMUlXVEo0d1BkZnVndTVxVzJSQ1dYNE4rS0FTODdYSTRpZnhr?=
+ =?utf-8?B?enkyeWZmU3MzMERPakNGaVV0U2hNQUpxaCtLTDRuMTl5b1hZc3BkaWwvYzRH?=
+ =?utf-8?B?b1llNE9KOGRxY2dwVWJJK0xUNnhtSStQMEpQTlZzZFA0YUlaSVNBU2I0Nml3?=
+ =?utf-8?B?MEdIeWZacXU1enZRenVlWHd1VHovL3ZhOVVtcThNYTFEZ2JIa1V4WWJocHNj?=
+ =?utf-8?B?WHpiVWN6ZjlBaGpUTnZQaURwZW1qVFJwYmovTDBaa1ZpTFJTaWZOSnFaSldH?=
+ =?utf-8?B?M0k1cUQvS3RNY2huc3M5UkdjVmFYSFl3VHpnUWZjdU9YNlMxRmIxVy8yN2p4?=
+ =?utf-8?B?NGVFemQ0RExrdFFuQUJzNjlxSlM3eEtDbHBDeXBoK3JhYlo4ODFyZi9oZmZI?=
+ =?utf-8?B?Q0FPYTVXWFdKNjZ6emw0RTdGS2Z0U1ZJaUpHWEF2QzNtbjAvNXg2R3YzeWZt?=
+ =?utf-8?B?MnBOWEQ1ZzVhNVBrSWtHN3lqTnVhbzlrRWUwMUZqWS9DRk5kRkE3ZDJOUUFs?=
+ =?utf-8?B?Unh3bjhJenNOUHNoREswQXFuMjA1cCtYbkE0bXBHclNTWmh4YW1vdDExZW9x?=
+ =?utf-8?B?c3NXWFJUNVVVL0l2cmV0YWhlZ25vZnhHcjFjaVhWVXNWV1R4bXhjOVNIYU5U?=
+ =?utf-8?B?akVpYjh4dXBjbXE4aDJXcVp3S0pYeThyK2lSVW44VS90Yndha1RBL3F5cnRW?=
+ =?utf-8?B?TkJSNU9LelBnYzR3NXFKV1MyN2V3ck0yVnltQ0xHVTYyS1BxVTl6MkNicEpk?=
+ =?utf-8?B?Q2dTOUprZEVpaFloOE1PdGtJQ3c3UXRzMmsrVkxiUktiOW16UFRBR1FNbW5q?=
+ =?utf-8?B?K1hrVVVqcG1uUXJmMjJTMmxwT3BpeEFybjZrQU5SU2ZXQ3pFNjdLY0FrTHhX?=
+ =?utf-8?B?Nkl6eXRsejZBQ01MUFNnOTFMcElTL0JFdWdzM1F1NzMwL1ZEbFpMbzhmcWJx?=
+ =?utf-8?B?WG0xb3ZpOElVdElaeW84cFdEdkZRaG1OL2xqT3NMS1JpZkJzK0I5cGRHbkFz?=
+ =?utf-8?B?T3prWXNJeXJUZzRzSUwrS0dhY0lKdXZRdjZqRnF6clpVQU9ENWJmV2xCYmw5?=
+ =?utf-8?B?VlczTC8raTdwWHlaUmlkazVPM3Q2MWVnRisvV2FHUGxPTmpZSm5TaXFTSzFM?=
+ =?utf-8?B?c2VhYmRVM1BOOXA0MHlyU1l3UmRvMUMzWkk5MHI1S1ZHbytoK0VjcHJ4SG5Z?=
+ =?utf-8?B?a3VUL2JsMzliMFhRcVN3cHBsR1hmUXJJOUFYV2pkbTlvNzlqMnphdjFPWXdv?=
+ =?utf-8?Q?7heJlZHZVDc67EnfLgfGozp8SXGbgNuawn1mn4S63bNs?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 57194e41-3c57-4f1d-86b0-08dba56d87c8
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6311.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2023 13:16:45.4011
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AX8eNyw9Sde3NpH16NkDfNkRCwm/mkLmB8+RFdxt8xt9wNsK78/pDIO4M6plaMkLF13fRjMD0rZum3CKLqMJK3PMMZ4cXDVdXSaQCA0YqA7PPf8CUHugdBf6nH9GTs1Wa4B/FqVt/fATpHxSbJCZiA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9226
 X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/08/2023 13:32, Binbin Zhou wrote:
-> Hi Krzysztof:
+On 25.08.23 08:49, Krzysztof Kozlowski wrote:
 > 
-> Thanks for your detailed reply.
+> What is TSD? Why it is in the subject prefix?
 > 
-> On Tue, Aug 22, 2023 at 4:30 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 22/08/2023 10:13, Binbin Zhou wrote:
->>> Hi Krzysztof:
->>>
->>> Thanks for your detailed reply.
->>>
->>> On Tue, Aug 22, 2023 at 1:44 PM Krzysztof Kozlowski
->>> <krzysztof.kozlowski@linaro.org> wrote:
->>>>
->>>> On 21/08/2023 08:13, Binbin Zhou wrote:
->>>>> Since commit f4dee5d8e1fa ("dt-bindings: interrupt-controller: Add
->>>>> Loongson-2K1000 LIOINTC"), the loongson liointc supports configuring
->>>>> routes for 64-bit interrupt sources.
->>>>>
->>>>> For liointc-2.0, we need to define two liointc nodes in dts, one for
->>>>> "0-31" interrupt sources and the other for "32-63" interrupt sources.
->>>>> This applies to mips Loongson-2K1000.
->>>>>
->>>>> Unfortunately, there are some warnings about "loongson,liointc-2.0":
->>>>> 1. "interrupt-names" should be "required", the driver gets the parent
->>>>> interrupts through it.
->>>>
->>>> No, why? Parent? This does not make sense.
->>>
->>> This was noted in the v1 patch discussion. The liointc driver now gets
->>> the parent interrupt via of_irq_get_byname(), so I think the
->>> "interrupt-names" should be "required".
->>
->> of_irq_get_byname() does not give you parent interrupt, but the
->> interrupt. Why do you need parent interrupt and what is it?
->>
->>>
->>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/irqchip/irq-loongson-liointc.c?h=v6.5-rc6#n345
->>>
->>> static const char *const parent_names[] = {"int0", "int1", "int2", "int3"};
->>>
->>>         for (i = 0; i < LIOINTC_NUM_PARENT; i++) {
->>>                 parent_irq[i] = of_irq_get_byname(node, parent_names[i]);
->>>                 if (parent_irq[i] > 0)
->>>                         have_parent = TRUE;
->>>         }
->>>         if (!have_parent)
->>>                 return -ENODEV;
->>
->> How requiring parents interrupt is related to other changes in this
->> file? One logical change, one patch.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
 > 
-> Yes, that was my mistake, whether or not the interrupt-names need to
-> be "required" is another issue. It does not cause a check warning.
-> I'll think about it some more.
->>
->> Anyway why did you do it and take it by names? Names here are basically
->> useless if they match indices, so just get interrupt by indices.
+> Best regards,
+> Krzysztof
 > 
-> There is a match between interrupts, interrupt names and interrupt maps:
-> 
-> interrupt->interrupt name->interrupt map
-> 2->int0->int_map[0]
-> 3->int1->int_map[1]
-> 4->int2->int_map[2]
-> 5->int3->int_map[3]
-> 
-> As part of the 2k1000 liointc1 node:
-> 
->                 liointc1: interrupt-controller@1fe11440 {
-> ....
->                         interrupt-parent = <&cpuintc>;
->                         interrupts = <3>;
->                         interrupt-names = "int1";
-> 
->                         loongson,parent_int_map = <0x00000000>, /* int0 */
 
+Hi Krzysztof, sorry about that, Heiko commented similarily.
 
-How did you sneak this property? The version - v2 - which was reviewed
-by Rob:
-https://lore.kernel.org/all/20190905144316.12527-7-jiaxun.yang@flygoat.com/
-did not have it.
+TSD means "Theobroma Systems Design" but it should not have been used in 
+the patch, v2 fixes that and also gets the SOB lines in order:
 
-Now v3 suddenly appears with Rob's review and this property:
-https://lore.kernel.org/all/20200112081416.722218-4-jiaxun.yang@flygoat.com/
+https://lore.kernel.org/lkml/20230823131651.586934-1-jakob.unterwurzacher@theobroma-systems.com/T/
 
-Please help me understand this property appeared there and how did you
-get it reviewed?
-
->                                                 <0xffffffff>, /* int1 */
->                                                 <0x00000000>, /* int2 */
->                                                 <0x00000000>; /* int3 */
-
-So now you will keep bringing more hacks for a hacky property. No, this
-cannot go on.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Jakob
