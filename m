@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2F2788763
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:30:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C829788774
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232359AbjHYM3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:29:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49312 "EHLO
+        id S244812AbjHYMba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 08:31:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244889AbjHYM3i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:29:38 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FA3A2700
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:29:12 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so4002497a12.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:29:12 -0700 (PDT)
+        with ESMTP id S244897AbjHYMbU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:31:20 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29D46E6A
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:30:50 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-523b066d7ceso1302844a12.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:30:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692966523; x=1693571323;
+        d=linaro.org; s=google; t=1692966635; x=1693571435;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FhBMwE3MHaDX6ND3qGNugUwUVOyYbmNTlBBuciUOviU=;
-        b=aH7vGVSRCLDmoTWkEC7IZ1dxd68MnPouE/QYJjQCkH/C4i+4dEEIkFZ0acfdePNkR/
-         1KY+w5wnDJ9OBswFzVzNrZcVEFeqKaM1++X68UMw85vIhod7QZoq6j5/hl7povGcq1MB
-         DwS0FpeG3lY+v+lVl8qkUv4Px1o3JPYtZx6Eyzmyj2/DtKN/RTIQWW/Sbv7rrxiYgfUM
-         xOBPiRs4VAlyBeqXdcbHOgnE74hdirl4kLDlm4hgaXbQz9067XeSrb/tb3VkYiRySopS
-         eYoI8M0aaR6NtTDDwzd83LRqTmqT6XXTOQwde8zpezccRUBD4rYB4rpI7F+Aik8p3BLF
-         J8JQ==
+        bh=RGJySe5oV5RvT65+50/oiO7t28jIHypCcuPr0UQ4mVk=;
+        b=k/Z9BLU7irljc9SAQdIelUeKfRH/uOdl8aETiOxsEWAbA5T24oJU07WmsnVswDTL7z
+         nList5SAGKekwMimaimJ0ME1YjWpYagnwtqfzzqpRSYRph6Rh9GXSpjpnZ9NHDf8+xBK
+         UkZc0BZU+1cMPWBJXbHQ3TYVcYKYmGkCdvs/1rmUSOknGl0XZ9Oh9fpXLAZDa/AJo9Uz
+         n2wyiH3fEuepD1UmsBREDkRfLO1p87PLi3gJUPIsGvTfYnYu8wuc5i8mwmlb3ePkHtvB
+         4pRAX8UvcqipeEtzsOTPKqhQSlE5RBpJuRN9OQz+EekNqhZR/oTU50WbyIjMrtih/9jC
+         atBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692966523; x=1693571323;
+        d=1e100.net; s=20221208; t=1692966635; x=1693571435;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FhBMwE3MHaDX6ND3qGNugUwUVOyYbmNTlBBuciUOviU=;
-        b=eq/3xeNF7IHdS7CGOeBvUVKMwNpXsGP+JGS/TqcajZcXO6bXZ252QrkBUxKTJx8VWm
-         GkcP/7iypfYSGlmt7HwhEXEuxQZJ2OVA2tKP0/BPtJRbGmTc0zp72X3cY9K3q+KIrkM0
-         4Tgbr7aXNWhh/ZR07j1jVWEwmAbHx+01gbeoCUDV1mBtqsO0UIrayzVOzJtm7UZe29lv
-         MTcyha6Vg+6EP0Po2wPT47VCjCna6KqQ1GuG3/0nHarxQT0TUKWdxPNyHEFTNwP7uXww
-         /2qEgs9daMZGM2UFaR0xjhptr2CGyOLpRvyBqbPH7pHKasZPb6E8hgvap9NUjydnid29
-         EA9w==
-X-Gm-Message-State: AOJu0Yz4CQw4kRIQlAGoSc3+RYCqjIKrNNeJqnC9eNhUQOH1eIT6TNIR
-        JgidvJ3MYpVnBQuZ+HymkwRQXw==
-X-Google-Smtp-Source: AGHT+IElSbp36KrzVD5bvYcQ7Jekn8F93SVqrRsyyl1c1Vm8K052ePheCMZItL9tFxamFHFADIvCdA==
-X-Received: by 2002:a05:6402:11c8:b0:51e:5bd5:fe7e with SMTP id j8-20020a05640211c800b0051e5bd5fe7emr22520456edw.17.1692966523565;
-        Fri, 25 Aug 2023 05:28:43 -0700 (PDT)
+        bh=RGJySe5oV5RvT65+50/oiO7t28jIHypCcuPr0UQ4mVk=;
+        b=AdVm/mAtTkMtlwBp40rSAORpiK9tvnPdDGX0vK5yyFcF+eq9bhQz8vXlDe8GXyqFBg
+         Iydd2MkpHRsYxpvaAeiduvnyq6N4P5NEKhpQqTx7/hrCepRaIVfIc1NlNPp5u8uxSKZU
+         SnxNzFsxBI0TW39bc2N0g4xnU3sduJ+vNefbXNEH7U/GDUKTYzi1FB64qW7F1ISjs9dD
+         Rl0/C5EufpCOMnrU5dN7cubyBN7iOFw9OswaLaNhDqG2dksj0ZMb+rd5fck0udloEUvk
+         +KD3aS13IxFBI+dPRZ2eVs09yB/4J87FBC4AMqVp8X5gnJT/DlVTQqWmi0JLsnSrZgDn
+         bpXA==
+X-Gm-Message-State: AOJu0YyIURYlL2aSMpZIPQyreRqUCjmW7v4+AGULZyQ/1ZfygW1KXVTx
+        As/DBcQbmTlVu/G9DFAjhXg9Qw==
+X-Google-Smtp-Source: AGHT+IFV8ktlaz42ycnW/eurNZSB0myL1XwQezOptOEffZJu52cScVPqfwDGT9wSU8UMOUd/x9czUA==
+X-Received: by 2002:aa7:c2cd:0:b0:526:9626:e37d with SMTP id m13-20020aa7c2cd000000b005269626e37dmr13254744edp.37.1692966635044;
+        Fri, 25 Aug 2023 05:30:35 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id h11-20020aa7c60b000000b005227e53cec2sm957223edq.50.2023.08.25.05.28.41
+        by smtp.gmail.com with ESMTPSA id p8-20020aa7d308000000b005288f0e547esm967693edq.55.2023.08.25.05.30.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 05:28:43 -0700 (PDT)
-Message-ID: <da744640-9f06-69cd-16fc-44ddd1e8c7c2@linaro.org>
-Date:   Fri, 25 Aug 2023 14:28:40 +0200
+        Fri, 25 Aug 2023 05:30:34 -0700 (PDT)
+Message-ID: <29a968e9-9c6f-034d-35fe-71c42b5d7cbb@linaro.org>
+Date:   Fri, 25 Aug 2023 14:30:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH V2 2/7] dt-bindings: clock: gcc-ipq9574: Add definition
- for GPLL0_OUT_AUX
+Subject: Re: [PATCH V2 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
+ reset definitions
 Content-Language: en-US
 To:     Devi Priya <quic_devipriy@quicinc.com>, andersson@kernel.org,
         agross@kernel.org, konrad.dybcio@linaro.org,
@@ -69,9 +69,9 @@ To:     Devi Priya <quic_devipriy@quicinc.com>, andersson@kernel.org,
         linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org
 Cc:     quic_saahtoma@quicinc.com
 References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
- <20230825091234.32713-3-quic_devipriy@quicinc.com>
+ <20230825091234.32713-5-quic_devipriy@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230825091234.32713-3-quic_devipriy@quicinc.com>
+In-Reply-To: <20230825091234.32713-5-quic_devipriy@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,24 +85,20 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/08/2023 11:12, Devi Priya wrote:
-> Add the definition for GPLL0_OUT_AUX clock.
+> Add NSSCC clock and reset definitions for ipq9574.
 > 
 > Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
 > ---
->  include/dt-bindings/clock/qcom,ipq9574-gcc.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/dt-bindings/clock/qcom,ipq9574-gcc.h b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-> index 08fd3a37acaa..f5749bf53898 100644
-> --- a/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-> +++ b/include/dt-bindings/clock/qcom,ipq9574-gcc.h
-> @@ -216,4 +216,5 @@
->  #define GCC_CRYPTO_AHB_CLK				207
->  #define GCC_USB0_PIPE_CLK				208
->  #define GCC_USB0_SLEEP_CLK				209
-> +#define GPLL0_OUT_AUX					210
+>  Changes in V2:
+> 	- Referenced gcc.yaml and dropped the duplicate properties from
+> 	  the binding
+> 	- Updated Uniphy clock names
+> 	- Added nssnoc clocks and clock-names
 
-Although you remove here blank line...
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Rob's bot report is a result of patch #2 failing to apply.
 
 Best regards,
 Krzysztof
