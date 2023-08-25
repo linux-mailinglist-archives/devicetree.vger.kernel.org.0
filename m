@@ -2,169 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 860FD788EB7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 20:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ABA9788EC5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 20:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230231AbjHYS2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 14:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56898 "EHLO
+        id S230081AbjHYSfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 14:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbjHYS1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 14:27:38 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 589DDE67;
-        Fri, 25 Aug 2023 11:27:33 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4ffa94a7a47so1845056e87.1;
-        Fri, 25 Aug 2023 11:27:33 -0700 (PDT)
+        with ESMTP id S230050AbjHYSfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 14:35:06 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5922114
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:35:04 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2bb8a12e819so18861301fa.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:35:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1692988051; x=1693592851;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pi91gNrlpnAXuraBHh2yRna/sc+hxfkLOoI5kXfHcng=;
-        b=nJarkQiUNw56JjTilZn474jTNxZhpJtFMLXVQrEUUSvwZF7lOKl/1aUpzLnMKFe/ya
-         VD5Zi43DJ5Xwr9LZAIYb3mfJqzrPC0Y16Csonw5vdKhYc6nW6nHKKDqdDWcBPFKxQq0R
-         3i3hBzGy3QwU4TRPXep/h/B8nP+5QYI7U0tK0OhZOpJVIx6hhpOXH7nkfNmcnJDdOnMF
-         NeTey5GVUROANT9t/n6g7aPJOVR/kAwkltCyiQofE9sPitqBK/WrkfxjzpszS6Lk+rt+
-         9IIPXljUgiSNGaMkC6IfUSsmpSWWYBKBpBzFph7ZHvJEIrk06KaJq7Wm9LpOAR88mzRw
-         EIcA==
+        d=linaro.org; s=google; t=1692988502; x=1693593302;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/kKeIh1fnY4wLEq91BBc7Y7LLlmzcPIU/eHvt9PxBpg=;
+        b=E+UEaJi3hDK5DktYNiGGuf4MhkUL0lOI76jURQNNn0Uwj7SuXELKPqlLgP7L8WvPk8
+         aoL1CeUCvID1Rz/wBuDkbh4ssi8EW4Cd6i4rvAqEg4TnZemMSYlP21nwid23TM+7yTsW
+         AnIbzuD402JIOKK65QOhioDL4B7hgiLa/jRkHrrUCSJhe5Ywn5LYNGLT67kiqAUUhyFt
+         lyMYx0idv8t5sHxX3laXlKEJh5PkEMecZHtqgpvbLK03dxLtVNmW5MBirmZeElEZ/B4h
+         ZbvSVAqUaqGpXuAnoNB0MgIlQa2i/V2ATQGV3Ov6Alcb4hDriLMO9rp7FH0yZI4ZkIP/
+         s26Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692988051; x=1693592851;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pi91gNrlpnAXuraBHh2yRna/sc+hxfkLOoI5kXfHcng=;
-        b=bBD0qcZtzuFKRKFTNrSXApvy/uc8wellqfgpOfb3zpsG7DDJ92DZlwpVPPK5AdH1se
-         cHrLTMyB+GBGKTaT/18sgobOyNasNBXW5eao4KLp+FdQcn75UhF7Qyv2TzxEv9jSPped
-         PMuNSfyoju7hJ9oC4wVWw3bDcfShu7A7S9DEHKHGWBtu/HhUjTeRBFmbRC9juIeTus11
-         7v+Nc7ACvfKk0+q35XkBOj3zs06KT4NBipMXY2gFMyuTqHKLveZl3/hgVhR2qMJz2bfW
-         05j7JlR6jhUKnlmqGJnU0afsgqY/EshNiPoU3FHx7SCndiDXpEZLbudIAyUyjZ6ZZiwT
-         lpgw==
-X-Gm-Message-State: AOJu0YwvKXi/4fMmuPFQ6+k0G12Y7TDn7cbjQDVAk9d4vbcHdkWzy5EA
-        CNG6xkQgwraGeK7oAXMPJJA=
-X-Google-Smtp-Source: AGHT+IHpGxAAwWUcVwj27QtGoPWpakbTp4dHkAJsfti+D6luypuzh5eVe+BFZjw0Ql787CzbGhLE+Q==
-X-Received: by 2002:a05:6512:2029:b0:4fb:81f2:4228 with SMTP id s9-20020a056512202900b004fb81f24228mr12561802lfs.31.1692988051262;
-        Fri, 25 Aug 2023 11:27:31 -0700 (PDT)
-Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id f17-20020ac25331000000b00500a2091e2bsm376753lfh.99.2023.08.25.11.27.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Aug 2023 11:27:30 -0700 (PDT)
-Date:   Fri, 25 Aug 2023 21:27:26 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        robh+dt@kernel.org, manivannan.sadhasivam@linaro.org,
-        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v20 00/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
-Message-ID: <dgxpl5ubvpdgtgtkokgtn23kski2j57dwjddsthv6flza7bw2j@gp6rnifrxpbr>
-References: <20230825093219.2685912-1-yoshihiro.shimoda.uh@renesas.com>
+        d=1e100.net; s=20221208; t=1692988502; x=1693593302;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/kKeIh1fnY4wLEq91BBc7Y7LLlmzcPIU/eHvt9PxBpg=;
+        b=RhhDxVdBxeW8TMJ6IX3clp+QHUwvjcOmUfkbAVy3TjzTxU9TNhgKDwbbF747lB0Ooz
+         BV0kPvlt6Swab8YqzOmQa+NrZ/fqLadUMK6VWZe23226abRKxWwjPBbClLnd1HuDhgBw
+         PCCe2OI4PaBiw3TPcHyM2dv6ih/6eTKTtxuHh2JAgxkfVvQkDg355SCZowzRDElJ5o2n
+         3ddU456iELDdw31hx3wXCOhQzrZ6uBnDNb0FwAsfL95UIdHtQDZTsODRbZhp8aIh2yei
+         Z5lheyVs+GU8XGHL6z2qVAmTx2hJGt9fe2KVPMkOn9ztROMX+mM/x/6yiyxBOTvkH9ZX
+         ZNPw==
+X-Gm-Message-State: AOJu0YwEYCevQGzuyN3ppWXCrNoiOqAUpznvOdMtP57IS2T0mOcmqIDu
+        N6nUFLOi9YCLv+r+K+0n5xG7MA==
+X-Google-Smtp-Source: AGHT+IEWBwi4fHLkxIBiLDQeWxpyQjYHN1qXcSAdQ+hWJrmuW1d21BPJXr++Q29qk5EMvDJDmyuhYw==
+X-Received: by 2002:a2e:94ca:0:b0:2b5:7f93:b3b0 with SMTP id r10-20020a2e94ca000000b002b57f93b3b0mr13095587ljh.17.1692988502262;
+        Fri, 25 Aug 2023 11:35:02 -0700 (PDT)
+Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
+        by smtp.gmail.com with ESMTPSA id n12-20020a2e878c000000b002b787442f03sm438279lji.88.2023.08.25.11.35.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Aug 2023 11:35:01 -0700 (PDT)
+Message-ID: <284b4127-7bc6-459a-8861-743ab766d655@linaro.org>
+Date:   Fri, 25 Aug 2023 20:34:59 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230825093219.2685912-1-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845: Fix PSCI power domain names
+Content-Language: en-US
+To:     David Heidelberg <david@ixit.cz>,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230823222741.89584-1-david@ixit.cz>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230823222741.89584-1-david@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mani, Bjorn, Lorenzo, Krzysztof, Rob
+On 24.08.2023 00:27, David Heidelberg wrote:
+> The original commit hasn't been updated according to
+> refactoring done in sdm845.dtsi.
+> 
+> Fixes: a1ade6cac5a2 ("arm64: dts: qcom: sdm845: Switch PSCI cpu idle states from PC to OSI")
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+It's much less error-prone to do:
 
-On Fri, Aug 25, 2023 at 06:32:00PM +0900, Yoshihiro Shimoda wrote:
-> Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
-> To support them, modify PCIe DesignWare common codes.
+/delete-node/ &label
 
-No more comments from my side for this series. It looks good to me
-now. If you have nothing to note too please merge it in especially
-seeing it's already v20.)
-
--Serge(y)
-
-> 
-> Changes from v19:
-> https://lore.kernel.org/linux-pci/20230823091153.2578417-1-yoshihiro.shimoda.uh@renesas.com/
->  - Based on the latest pci.git / next branch and the following patches:
->    [PATCH v3 0/2] Cleanup IRQ type definitions
->    https://lore.kernel.org/linux-pci/20230802094036.1052472-1-dlemoal@kernel.org/
->  - Rename PCI_MSG_TYPE_R_* macros in the patch 01/19.
->  - Fix the comment in the patch 04/19.
->  - Add Reviewed-by in the patch {06,1[2678]/19.
->  - Modify common functions for the same method of clock handling in the patch
->    1[78]/19.
->  - Remove redundant gpio handling in the patch 16/19.
-> 
-> Changes from v18:
-> https://lore.kernel.org/linux-pci/20230721074452.65545-1-yoshihiro.shimoda.uh@renesas.com/
->  - Based on the latest pci.git / next branch and the following patches:
->    [PATCH v3 0/2] Cleanup IRQ type definitions
->    https://lore.kernel.org/linux-pci/20230802094036.1052472-1-dlemoal@kernel.org/
->  - Drop some patches about converting "legacy" to "INTx".
->  - Add detailed description in the patch 0[26]/19.
->  - Add a new patch "Expose dw_pcie_write_dbi2" in the patch 11/19.
->  - Revise typo in the patch 12/19.
->  - Fix calling order of deinit in the patch 12/19.
->  - Revise Kconfig about kernel module names in the patch 1[67]/19.
->  - Rename drivers' file names in the patch 1[67]/19.
->  - Some other minor change/fix in the patch 1[67]/19.
-> 
-> Yoshihiro Shimoda (19):
->   PCI: Add INTx Mechanism Messages macros
->   PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()
->   PCI: dwc: Add outbound MSG TLPs support
->   PCI: designware-ep: Add INTx IRQs support
->   PCI: dwc: endpoint: Add multiple PFs support for dbi2
->   PCI: dwc: Add dw_pcie_link_set_max_link_width()
->   PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW handling
->   PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
->   PCI: dwc: Add EDMA_UNROLL capability flag
->   PCI: dwc: Expose dw_pcie_ep_exit() to module
->   PCI: dwc: Expose dw_pcie_write_dbi2() to module
->   PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
->   dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
->   dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
->   dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
->   PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
->   PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
->   MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
->   misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
-> 
->  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 106 ++++++++
->  .../bindings/pci/rcar-gen4-pci-host.yaml      | 123 ++++++++++
->  .../bindings/pci/snps,dw-pcie-ep.yaml         |   4 +-
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |   4 +-
->  MAINTAINERS                                   |   1 +
->  drivers/misc/pci_endpoint_test.c              |   4 +
->  drivers/pci/controller/dwc/Kconfig            |  20 ++
->  drivers/pci/controller/dwc/Makefile           |   4 +
->  .../pci/controller/dwc/pcie-designware-ep.c   | 136 +++++++++--
->  .../pci/controller/dwc/pcie-designware-host.c |  52 ++--
->  drivers/pci/controller/dwc/pcie-designware.c  | 156 ++++++------
->  drivers/pci/controller/dwc/pcie-designware.h  |  29 ++-
->  .../controller/dwc/pcie-rcar-gen4-ep-drv.c    | 173 +++++++++++++
->  .../controller/dwc/pcie-rcar-gen4-host-drv.c  | 135 +++++++++++
->  drivers/pci/controller/dwc/pcie-rcar-gen4.c   | 227 ++++++++++++++++++
->  drivers/pci/controller/dwc/pcie-rcar-gen4.h   |  44 ++++
->  drivers/pci/controller/dwc/pcie-tegra194.c    |   6 -
->  drivers/pci/pci.h                             |  18 ++
->  18 files changed, 1111 insertions(+), 131 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
->  create mode 100644 Documentation/devicetree/bindings/pci/rcar-gen4-pci-host.yaml
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-ep-drv.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4-host-drv.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.c
->  create mode 100644 drivers/pci/controller/dwc/pcie-rcar-gen4.h
-> 
-> -- 
-> 2.25.1
-> 
+Konrad
