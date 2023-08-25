@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D8FF788223
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 10:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCF1B78828C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 10:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238812AbjHYIfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 04:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57594 "EHLO
+        id S240971AbjHYIou (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 04:44:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233535AbjHYIeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 04:34:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B2B619AC;
-        Fri, 25 Aug 2023 01:34:36 -0700 (PDT)
+        with ESMTP id S243954AbjHYIo1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 04:44:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD5FF26A8;
+        Fri, 25 Aug 2023 01:43:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9822A64BF7;
-        Fri, 25 Aug 2023 08:34:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78E9DC433C8;
-        Fri, 25 Aug 2023 08:34:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AFA46674DD;
+        Fri, 25 Aug 2023 08:43:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 18C50C433C7;
+        Fri, 25 Aug 2023 08:43:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692952475;
-        bh=FCtRh2nslorTFJV46o2tCNp1DvRCnNrBaxwZsCG8tak=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=YjUNLrJPPiUJlG4lIcryD4r6V7wD8BPdtN0Ru12DQxleU4yaYHjuDkNDBDT/NXTYM
-         foQVACKGxnBJNgqBD/Ws8daYb96WqoJeu+rQzFCM8cvktNR5z2N++6A+E3jjn+YTAk
-         /ohehroDPeQdRm3mrlNgtQcwknIF7kyqIjYcOUr7lMgoGGxKSzTTPFWneav12hT9IU
-         WqRprG4dHsJr+lkGpeZsLMMhIPlg+Nz8tV1LqqtAbqdnMFIsqCcX/tfh33E5TUCo2s
-         hqXsqYxB2vEcU5tvL5c/JAWCneZdAKxec1eKgxrMUnLZGQ3TZeMpuEsuEMk6YWDGr0
-         kP+8Ix7YnG26w==
-Date:   Fri, 25 Aug 2023 14:04:22 +0530
-From:   Manivannan Sadhasivam <mani@kernel.org>
-To:     Frank Li <Frank.li@nxp.com>
-Cc:     "tglx@linutronix.de" <tglx@linutronix.de>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "jdmason@kudzu.us" <jdmason@kudzu.us>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>, "kw@linux.com" <kw@linux.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "maz@kernel.org" <maz@kernel.org>,
-        "ntb@lists.linux.dev" <ntb@lists.linux.dev>,
-        Peng Fan <peng.fan@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-Subject: Re: [PATCH 0/3] Add RC-to-EP doorbell with platform MSI controller
-Message-ID: <20230825083422.GB6005@thinkpad>
-References: <20230426203436.1277307-1-Frank.Li@nxp.com>
- <AM6PR04MB483849BE4788EE893306F38E88759@AM6PR04MB4838.eurprd04.prod.outlook.com>
- <ZIdFFV5TdAy//Aat@lizhi-Precision-Tower-5810>
- <ZLVK7xX7kPjNaah+@lizhi-Precision-Tower-5810>
- <ZOepCkqSnUmTdGHX@lizhi-Precision-Tower-5810>
+        s=k20201202; t=1692953024;
+        bh=vnXQ9pNzSHGVvPmZJ7uQHNEZVNLQ05YRY8c7hb7Ravk=;
+        h=From:Subject:Date:To:Cc:Reply-To:From;
+        b=tOB+o2z3rw28M5KsCk0a9GGGpP9T911j7VmfFX67JuMW7wSlgZW/gTETOYVeGEw19
+         egVERGy8lWr9978ieHsSfyjkZtKCLQAwwdl66L8rDyFH5kmU94MUsez5FS/XcuKDtn
+         HeYVis91BDh17gJVBUFdZJpkgufZ0l8HcegXADT3iBmwK0l315NZQ8XkwVK+CzLYUe
+         3CGfb/amNeG+fDC3dXuy85jDNSq3Bc2aS9bsOvEFmD5ElKodg+LgtQ7MUl2HmeXFQq
+         MH1qywDTwFM0cR+JsubAjf/let6OVpj8C5y6TJym07HnlB8eMCegAURmTWZvOJLX2a
+         8sDZ6ZqSfX9xw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.lore.kernel.org (Postfix) with ESMTP id E925BC71134;
+        Fri, 25 Aug 2023 08:43:43 +0000 (UTC)
+From:   Nikita Shubin via B4 Relay 
+        <devnull+nikita.shubin.maquefel.me@kernel.org>
+Subject: [PATCH v2 0/2] device tree support for ST M48T86
+Date:   Fri, 25 Aug 2023 11:43:24 +0300
+Message-Id: <20230823-m48t86_device_tree-v2-0-21ff275f949d@maquefel.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZOepCkqSnUmTdGHX@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKxp6GQC/32NTQ6CMBBGr0JmbU0pVYor72EIGcogTSzotBIN4
+ e4WDuDyfT95CwRiRwEu2QJMswtuGhOoQwZ2wPFOwnWJQUlVSKMK4bWJ5tx0aWupiUwksFSEqCp
+ dVgbSscVAomUc7bBdPYZIvBVPpt59dtutTjy4ECf+7vI539K/njkXUigt06TVxQnt1ePrTT09j
+ p6gXtf1B2QIIJXPAAAA
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Nikita Shubin <nikita.shubin@maquefel.me>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.12.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1692953023; l=1298;
+ i=nikita.shubin@maquefel.me; s=20230718; h=from:subject:message-id;
+ bh=vnXQ9pNzSHGVvPmZJ7uQHNEZVNLQ05YRY8c7hb7Ravk=; =?utf-8?q?b=3DUMK5u45Hw5yI?=
+ =?utf-8?q?/xg/NWbYvdUnHJhZO/nb7EBm0ZXilbIfLzsQ7FHSj56ClPW4RbRvESJW8o2cnqsk?=
+ mlIGoqixDBVTcjor5QBif9BAnfX6kjz8V70snTLiYMQgzk7njo3W
+X-Developer-Key: i=nikita.shubin@maquefel.me; a=ed25519;
+ pk=vqf5YIUJ7BJv3EJFaNNxWZgGuMgDH6rwufTLflwU9ac=
+X-Endpoint-Received: by B4 Relay for nikita.shubin@maquefel.me/20230718 with auth_id=65
+X-Original-From: Nikita Shubin <nikita.shubin@maquefel.me>
+Reply-To: <nikita.shubin@maquefel.me>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -82,62 +79,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 24, 2023 at 03:01:30PM -0400, Frank Li wrote:
-> On Mon, Jul 17, 2023 at 10:06:39AM -0400, Frank Li wrote:
-> > On Mon, Jun 12, 2023 at 12:17:25PM -0400, Frank Li wrote:
-> > > On Fri, May 12, 2023 at 02:45:12PM +0000, Frank Li wrote:
-> > > > > 
-> > > > > This patches add new API to pci-epf-core, so any EP driver can use it.
-> > > > > 
-> > > > > The key point is comments from Thomas Gleixner, who suggest use new
-> > > > > PCI/IMS. But arm platform change still not be merged yet.
-> > > > > 
-> > > > > git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-v2-arm
-> > > > > 
-> > > > > So I still use existed method implement RC to EP doorbell.
-> > > > > 
-> > > > > If Thomas Gleixner want to continue work on devmsi-v2-arm, I can help test
-> > > > > and update this patch.
-> > > > > 
-> > > > 
-> > > > Ping?
-> > > 
-> > > Ping? 
-> > 
-> > ping? 
-> 
-> @Mani
->      Do you have chance to review these patches? It provide a common
-> method with GIC ITS to implement notification from RC to EP.
-> 
+Add device tree support for ST M48T86.
 
-Sorry for the delay. I was wating for a review from Thomas. But since this
-series hasn't caught his attention, I'll provide my review next week.
+The reason it can't go to trivial-rtc.yaml, is that it has 2 registers
+instead of a single one. The registers are 1 byte wide.
 
-- Mani
+Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+---
+Changes in v2:
+- add links to mailthreads where the actual tags were recieved:
+  - dt-bindings: rtc: Add ST M48T86 was Reviewed-by Krzysztof in v3 "ep93xx device tree conversion"
+  - rtc: m48t86: add DT support for m48t86:
+     - Acked-by Arnd in very first "ep93xx device tree conversion"
+     - Reviewed-by Linus in v1 "ep93xx device tree conversion"
 
-> Frank
-> 
-> > 
-> > > 
-> > > > 
-> > > > > Frank Li (3):
-> > > > >   PCI: endpoint: Add RC-to-EP doorbell support using platform MSI
-> > > > >     controller
-> > > > >   misc: pci_endpoint_test: Add doorbell test case
-> > > > >   tools: PCI: Add 'B' option for test doorbell
-> > > > > 
-> > > > >  drivers/misc/pci_endpoint_test.c    |  41 +++++++++++
-> > > > >  drivers/pci/endpoint/pci-epf-core.c | 109
-> > > > > ++++++++++++++++++++++++++++
-> > > > >  include/linux/pci-epf.h             |  16 ++++
-> > > > >  include/uapi/linux/pcitest.h        |   1 +
-> > > > >  tools/pci/pcitest.c                 |  16 +++-
-> > > > >  5 files changed, 182 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > --
-> > > > > 2.34.1
-> > > > 
+Was asked by Krzysztof to send this part separately.
 
+Link: https://lore.kernel.org/lkml/61b9e036-7864-65c6-d43b-463fff896ddc@linaro.org/
+Link: https://lore.kernel.org/lkml/20230601054549.10843-12-nikita.shubin@maquefel.me/
+
+---
+Nikita Shubin (2):
+      dt-bindings: rtc: Add ST M48T86
+      rtc: m48t86: add DT support for m48t86
+
+ .../devicetree/bindings/rtc/st,m48t86.yaml         | 38 ++++++++++++++++++++++
+ drivers/rtc/rtc-m48t86.c                           |  8 +++++
+ 2 files changed, 46 insertions(+)
+---
+base-commit: 89bf6209cad66214d3774dac86b6bbf2aec6a30d
+change-id: 20230823-m48t86_device_tree-a72eaa294798
+
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Nikita Shubin <nikita.shubin@maquefel.me>
+
