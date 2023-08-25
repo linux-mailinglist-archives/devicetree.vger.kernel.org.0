@@ -2,276 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02BDB787C2A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 01:56:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39F12787CB8
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 03:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237400AbjHXXzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Aug 2023 19:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46860 "EHLO
+        id S233988AbjHYBEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Aug 2023 21:04:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242036AbjHXXz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 19:55:27 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 537461FC1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 16:55:21 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fef56f7248so3131205e9.3
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 16:55:21 -0700 (PDT)
+        with ESMTP id S231506AbjHYBEF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Aug 2023 21:04:05 -0400
+Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17F3E19BB
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 18:04:04 -0700 (PDT)
+Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-68a56ed12c0so76986b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 18:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1692921320; x=1693526120;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vX05eZujr6ummHB+Pea1XhhUnFK9IwJ2yu2gDI+SJm8=;
-        b=Srov+QkHs2cin5P6Gpvk7cggs0Ybz3fiaRiPt64mD1944AwgjzvLWr9R+RbKF1X0WS
-         hEEiUJ2p5asZ4V7sE4SBJTexwQ/icccNH1W0vDZ3l/Ig3lnr7p2lpaC8JsGc3W4geG/J
-         NHO48kKYL6Dx6PQMX+39Zx2xLYN23ZbQMeL34+IZyJfLL9R8mZfCAHra4PuwdLkvrOA2
-         sX6gyiUXVDfBgNsb+tOf2o4twHRdW8x33VpwoeUPVufC4UUkOFyluK1SPCAjxRhWkyI7
-         yiGS2zEF82ZzW0LuJ52QkpLINrIGC+F3LOKUHcu8YLyi/dAwX7xRZ5M40AE4dHBNcWNP
-         ZtjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692921320; x=1693526120;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=linaro.org; s=google; t=1692925443; x=1693530243;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=vX05eZujr6ummHB+Pea1XhhUnFK9IwJ2yu2gDI+SJm8=;
-        b=lrBZDXSNs2ALjEWVDruJEpoK5GMuN+9mztUmryQIoCbVRLbgYrqUS7rfz+0jkOwrRw
-         Mt42rP6g9obyrGOgaGL2XnCOIDl0868tEOwiuav2nrakWU7BseTr4OiMOzGuXw4PSG2L
-         oJiFnKX1ncELuiOQSRMUJFjF1d3DYsbXgcGl/Q87KoWkKua+WI3h5eaHgfQia1dRAQI2
-         +1/EgWHT7jWQTv55Qfa6vYOI14/Vch8Et+ZeqS6CbLf7QoRuT0C8qm9/nahjRVCvJI2g
-         JiVp3g2C1lPv4gVPBxYhGWXOBsppk6QW56dU/pXFJRVYimjlazFLAGji7NcRCBlvI2LZ
-         Om2w==
-X-Gm-Message-State: AOJu0YxnzEuPxWSASxEjM9WS6Iu2PfPw3ESnw/FTUAsSwWKQ5rSwoHY0
-        ZFmGJOa7QGHNU1Us218Mzthuqgyjekmg1Sg7WIlJfg==
-X-Google-Smtp-Source: AGHT+IEKKRFgT1AIiAj5V+jfJ7uzLR7N1dqf90rEAhqEImaOMkv1VEhYmGPXuHbG9KGpD9mr23TjMP+VF0zdHPfDmTE=
-X-Received: by 2002:a5d:6949:0:b0:314:1e47:8bc2 with SMTP id
- r9-20020a5d6949000000b003141e478bc2mr12723342wrw.0.1692921319624; Thu, 24 Aug
- 2023 16:55:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230731174613.4133167-1-davidai@google.com> <20230731174613.4133167-3-davidai@google.com>
- <80f47262-9354-472f-8122-5ae262c0a46d@quicinc.com> <CABN1KCKUt3GN=LqF9AK3Dc+4x98Asj-wpW4UNYsfjRz4Di8N5Q@mail.gmail.com>
- <29bae535-6292-400e-813d-063498adbfce@quicinc.com>
-In-Reply-To: <29bae535-6292-400e-813d-063498adbfce@quicinc.com>
-From:   David Dai <davidai@google.com>
-Date:   Thu, 24 Aug 2023 16:55:08 -0700
-Message-ID: <CABN1KCKShVq5mQQFr7GcQ7WgzpcctsTm8jRdWnCP3Dap_yhiHQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] cpufreq: add virtual-cpufreq driver
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
+        bh=O78US63FfsQzmACvTjZMokzlCsmaMM4h32+Wp3IzgcU=;
+        b=h/OlHopVZqV0ui3E+m+IdDYT58/fes7lwYYaK/DEj//H9Wh7UqxCKfcYzGZ+ekMJ7f
+         qMPYNqWprGuGccHYWpsbSAU3ToS1t+y84N/nh29EwvJVTmAuBKcdxUePTY99d9xKPPBo
+         p/w6//TXZkPAz83UFrvdmxzoCkPtpuwRYV99jEAB2OnmMCWS+pXSMiQJPQFuVFk4yekP
+         YxWaTdH62vFrGbOZMz7i75GqPS40X50Q0IWJl3LltLg78563BJKSMm305AFnnvYacwjE
+         wKBLEKxnbnzIoqDS1LxK5oNxLIf/O6kqlsT8dCA9GT9AuU1z8wyXU82z4sMpHrrkXy+W
+         XGSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692925443; x=1693530243;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O78US63FfsQzmACvTjZMokzlCsmaMM4h32+Wp3IzgcU=;
+        b=O769Svt4o1shP2rB3xpFCQ36doeV3XzOzQHzRCjn35M5uTz2c2NXLQfWR8osALNuNN
+         CddAeH/WO5lmEmun+L2bjjrWyaSn3SHe1CSvHw9ERqSJkLDJLaWhhQvL4OSdmqElMUxt
+         XYGxpd9t36Y/+PUenKARH7PPSA7b0HknT4YIA9W3q4Q2wl4qCcSPHw/yYLDsMJPHtMCD
+         L0epUaQgTBEf01IiIq0/A0TVABU9/5F2RgWpLb2Z8gnqktVw3oJqftc8+RB4BhyroHFh
+         z7IzcMHuiaC5aG1o44MNqZdwM8kgnT7iL4bWQm1IozIfCopGnihH7aaanGaU3IJIhGvK
+         COVw==
+X-Gm-Message-State: AOJu0YzLZdtNlSVpVV8Mnghc9KL9lxR75/PFOgGVG1currs8FO1JvdUA
+        tkbxp/AQSit12oOCBua/nLViwQ==
+X-Google-Smtp-Source: AGHT+IFADa9to1oIspLe0Sh5Ftf307VsJJzQgb6brQ/sYjhq0w4KfW8P3TPfT//dHMboCCp5MQcUcQ==
+X-Received: by 2002:a05:6a21:6da5:b0:137:3eba:b81f with SMTP id wl37-20020a056a216da500b001373ebab81fmr22106910pzb.3.1692925443476;
+        Thu, 24 Aug 2023 18:04:03 -0700 (PDT)
+Received: from octopus ([2400:4050:c3e1:100:ebbb:f01b:5bbb:8d77])
+        by smtp.gmail.com with ESMTPSA id g15-20020a1709029f8f00b001b898595be7sm300108plq.291.2023.08.24.18.04.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Aug 2023 18:04:03 -0700 (PDT)
+Date:   Fri, 25 Aug 2023 10:03:59 +0900
+From:   AKASHI Takahiro <takahiro.akashi@linaro.org>
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Quentin Perret <qperret@google.com>,
-        Masami Hiramatsu <mhiramat@google.com>,
-        Will Deacon <will@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Marc Zyngier <maz@kernel.org>,
-        Oliver Upton <oliver.upton@linux.dev>,
-        Dietmar Eggemann <dietmar.eggemann@arm.com>,
-        Gupta Pankaj <pankaj.gupta@amd.com>,
-        Mel Gorman <mgorman@suse.de>, kernel-team@android.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v4 4/4] dt-bindings: firmware: arm,scmi: Add support for
+ pinctrl protocol
+Message-ID: <ZOf9/z5iPMUX3Ocu@octopus>
+Mail-Followup-To: AKASHI Takahiro <takahiro.akashi@linaro.org>,
+        Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
+References: <cover.1691518313.git.oleksii_moisieiev@epam.com>
+ <1dcf25b5c6b16b7138534e3c13827287f7c644cf.1691518314.git.oleksii_moisieiev@epam.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1dcf25b5c6b16b7138534e3c13827287f7c644cf.1691518314.git.oleksii_moisieiev@epam.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 6, 2023 at 8:22=E2=80=AFPM Pavan Kondeti <quic_pkondeti@quicinc=
-.com> wrote:
->
-> On Fri, Aug 04, 2023 at 04:46:11PM -0700, David Dai wrote:
-> > Hi Pavan,
-> >
-> > Thanks for reviewing!
-> >
-> > On Wed, Aug 2, 2023 at 9:18=E2=80=AFPM Pavan Kondeti <quic_pkondeti@qui=
-cinc.com> wrote:
-> > >
-> > > On Mon, Jul 31, 2023 at 10:46:09AM -0700, David Dai wrote:
-> > > > Introduce a virtualized cpufreq driver for guest kernels to improve
-> > > > performance and power of workloads within VMs.
-> > > >
-> > > > This driver does two main things:
-> > > >
-> > > > 1. Sends the frequency of vCPUs as a hint to the host. The host use=
-s the
-> > > > hint to schedule the vCPU threads and decide physical CPU frequency=
-.
-> > > >
-> > > > 2. If a VM does not support a virtualized FIE(like AMUs), it querie=
-s the
-> > > > host CPU frequency by reading a MMIO region of a virtual cpufreq de=
-vice
-> > > > to update the guest's frequency scaling factor periodically. This e=
-nables
-> > > > accurate Per-Entity Load Tracking for tasks running in the guest.
-> > > >
-> > > > Co-developed-by: Saravana Kannan <saravanak@google.com>
-> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > Signed-off-by: David Dai <davidai@google.com>
-> > >
-> > > [...]
-> > >
-> > > > +static void virt_scale_freq_tick(void)
-> > > > +{
-> > > > +     struct cpufreq_policy *policy =3D cpufreq_cpu_get(smp_process=
-or_id());
-> > > > +     struct virt_cpufreq_drv_data *data =3D policy->driver_data;
-> > > > +     u32 max_freq =3D (u32)policy->cpuinfo.max_freq;
-> > > > +     u64 cur_freq;
-> > > > +     u64 scale;
-> > > > +
-> > > > +     cpufreq_cpu_put(policy);
-> > > > +
-> > > > +     cur_freq =3D (u64)data->ops->get_freq(policy);
-> > > > +     cur_freq <<=3D SCHED_CAPACITY_SHIFT;
-> > > > +     scale =3D div_u64(cur_freq, max_freq);
-> > > > +
-> > > > +     this_cpu_write(arch_freq_scale, (unsigned long)scale);
-> > > > +}
-> > > > +
-> > >
-> > > We expect the host to provide the frequency in kHz, can you please ad=
-d a
-> > > comment about it. It is not very obvious when you look at the
-> > > REG_CUR_FREQ_OFFSET register name.
-> >
-> > I=E2=80=99ll include a KHZ in the offset names.
-> >
->
+On Tue, Aug 08, 2023 at 06:25:36PM +0000, Oleksii Moisieiev wrote:
+> Add new SCMI v3.2 pinctrl protocol bindings definitions and example.
+> 
+> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> 
+> ---
+> Changes v3 -> v4
+>   - reworked protocol@19 format
+> ---
+>  .../bindings/firmware/arm,scmi.yaml           | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> index 5824c43e9893..5318fe72354e 100644
+> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> @@ -233,6 +233,39 @@ properties:
+>        reg:
+>          const: 0x18
+>  
+> +  protocol@19:
+> +    type: object
+> +    allOf:
+> +      - $ref: "#/$defs/protocol-node"
+> +      - $ref: "../pinctrl/pinctrl.yaml"
 
-Hi Pavan,
+Does this rule require that the node name start with "pinctrl" or "pinmux"?
+If so, it doesn't match with "protocol@19".
 
-Apologies for the slow responses, I was out on vacation for the week
-prior to last week.
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        const: 0x19
+> +
+> +      '#pinctrl-cells':
+> +        const: 0
+> +
+> +    patternProperties:
+> +      '-pins$':
 
-> Sure, that would help. Also, can you limit the scale to
-> SCHED_CAPACITY_SCALE? It may be possible that host may be running at a
-> higher frequency than max_freq advertised on this guest.
+Is this restriction necessary?
+(Most pinctrl's do so, though.)
 
-Good catch, will include a check to limit freq_scale to SCHED_CAPACITY_SCAL=
-E.
+> +        type: object
+> +        allOf:
+> +          - $ref: "../pinctrl/pincfg-node.yaml#"
+> +          - $ref: "../pinctrl/pinmux-node.yaml#"
+> +        unevaluatedProperties: false
+> +
+> +        description:
 
->
-> > >
-> > > > +
-> > > > +static unsigned int virt_cpufreq_fast_switch(struct cpufreq_policy=
- *policy,
-> > > > +             unsigned int target_freq)
-> > > > +{
-> > > > +     virt_cpufreq_set_perf(policy);
-> > > > +     return target_freq;
-> > > > +}
-> > > > +
-> > > > +static int virt_cpufreq_target_index(struct cpufreq_policy *policy=
-,
-> > > > +             unsigned int index)
-> > > > +{
-> > > > +     return virt_cpufreq_set_perf(policy);
-> > > > +}
-> > > > +
-> > > > +static int virt_cpufreq_cpu_init(struct cpufreq_policy *policy)
-> > > > +{
-> > > > +     struct virt_cpufreq_drv_data *drv_data =3D cpufreq_get_driver=
-_data();
-> > > > +     struct cpufreq_frequency_table *table;
-> > > > +     struct device *cpu_dev;
-> > > > +     int ret;
-> > > > +
-> > > > +     cpu_dev =3D get_cpu_device(policy->cpu);
-> > > > +     if (!cpu_dev)
-> > > > +             return -ENODEV;
-> > > > +
-> > > > +     ret =3D dev_pm_opp_of_add_table(cpu_dev);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     ret =3D dev_pm_opp_get_opp_count(cpu_dev);
-> > > > +     if (ret <=3D 0) {
-> > > > +             dev_err(cpu_dev, "OPP table can't be empty\n");
-> > > > +             return -ENODEV;
-> > > > +     }
-> > > > +
-> > > > +     ret =3D dev_pm_opp_init_cpufreq_table(cpu_dev, &table);
-> > > > +     if (ret) {
-> > > > +             dev_err(cpu_dev, "failed to init cpufreq table: %d\n"=
-, ret);
-> > > > +             return ret;
-> > > > +     }
-> > > > +
-> > > > +     policy->freq_table =3D table;
-> > > > +     policy->dvfs_possible_from_any_cpu =3D false;
-> > > > +     policy->fast_switch_possible =3D true;
-> > > > +     policy->driver_data =3D drv_data;
-> > > > +
-> > > > +     /*
-> > > > +      * Only takes effect if another FIE source such as AMUs
-> > > > +      * have not been registered.
-> > > > +      */
-> > > > +     topology_set_scale_freq_source(&virt_sfd, policy->cpus);
-> > > > +
-> > > > +     return 0;
-> > > > +
-> > > > +}
-> > > > +
-> > >
-> > > Do we need to register as FIE source even with the below commit? By
-> > > registering as a source, we are not supplying any accurate metric. We
-> > > still fallback on the same source that cpufreq implements it.
-> >
-> > The arch_set_freq_scale() done at cpufreq driver=E2=80=99s frequency up=
-dates
-> > at cpufreq_freq_transition_end() and cpufreq_driver_fast_switch() only
-> > represent the guest=E2=80=99s frequency request. However, this does not
-> > accurately represent the physical CPU=E2=80=99s frequency that the vCPU=
- is
-> > running on. E.g. There may be other processes sharing the same
-> > physical CPU that results in a much higher CPU frequency than what=E2=
-=80=99s
-> > requested by the vCPU.
-> >
->
-> understood that policy->cur may not reflect the actual frequency. Is this
-> something needs to be advertised to cpufreq core so that it query the
-> underlying cpufreq driver and use it for frequency scale updates. This
-> also gives userspace to read the actual frequency when read from sysfs.
->
+I think the description may be a bit ambiguous.
 
-Adding a ->get() callback in the driver to advertise to the cpufreq
-core does not actually update the freq_scale if fast_switch is
-enabled. Since fast_switch is required for performance reasons, I
-don=E2=80=99t see value in adding ->get().
+> +          A pin multiplexing sub-node describe how to configure a
+> +          set of pins is some desired function.
 
-> In fact, cpufreq_driver_fast_switch() comment says that
-> cpufreq_driver::fast_switch() should return the *actual* frequency and
-> the same is used to update frequency scale updates. I understand that it
-> depends on other things like if host defer the frequency switch, the
-> value read from REG_CUR_FREQ_OFFSET may reflect the old value..
->
-> May be a comment in code would help.
->
+Even a sub-node that has pin multiplexing definitions may have
+pin property/parameter definitions. Right?
 
-Sounds good, I'll include a comment.
+> +          A single sub-node may define several pin configurations.
+
+Do you not allow for having a sub-node under a sub-node?
+
+> +          This sub-node is using default pinctrl bindings to configure
+
+Does "default pinctrl bindings" refer to "pinctrl-bindings.txt"?
+Is it necessary to specifically mention it here as it is for client devices?
+
+
+> +          pin multiplexing and using SCMI protocol to apply specified
+
+Again, not only multiplexing but also pin property/parameters.
 
 Thanks,
-David
+-Takahiro Akashi
 
-> Thanks,
-> Pavan
->
-> --
-> To unsubscribe from this group and stop receiving emails from it, send an=
- email to kernel-team+unsubscribe@android.com.
->
+> +          configuration using SCMI protocol.
+> +
+> +    required:
+> +      - reg
+> +
+>  additionalProperties: false
+>  
+>  $defs:
+> @@ -384,6 +417,26 @@ examples:
+>              scmi_powercap: protocol@18 {
+>                  reg = <0x18>;
+>              };
+> +
+> +            scmi_pinctrl: protocol@19 {
+> +                reg = <0x19>;
+> +                #pinctrl-cells = <0>;
+> +
+> +                i2c2-pins {
+> +                    groups = "i2c2_a", "i2c2_b";
+> +                    function = "i2c2";
+> +                };
+> +
+> +                mdio-pins {
+> +                    groups = "avb_mdio";
+> +                    drive-strength = <24>;
+> +                };
+> +
+> +                keys_pins: keys-pins {
+> +                    pins = "GP_5_17", "GP_5_20", "GP_5_22", "GP_2_1";
+> +                    bias-pull-up;
+> +                };
+> +            };
+>          };
+>      };
+>  
+> -- 
+> 2.25.1
