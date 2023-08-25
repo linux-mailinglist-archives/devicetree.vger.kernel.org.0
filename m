@@ -2,91 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D665A78854A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:59:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9101D788560
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232147AbjHYK71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 06:59:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39560 "EHLO
+        id S235336AbjHYLID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 07:08:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49882 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241815AbjHYK7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:59:15 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99F5D1BC9;
-        Fri, 25 Aug 2023 03:59:12 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37PAwoVT003475;
-        Fri, 25 Aug 2023 05:58:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1692961130;
-        bh=FaCrkca4JLKb6nFTJfggo8RMTTzc91fMCiax4jyX4qQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=oK/Xf439t0IB4qN+/eRD6VJDHsww/1WC5DO8wpXMCzQct9U7+tJ35ca85XjAIyDZa
-         5r7h0+7cpU+1Z/4jovZD3kvhljwxamj7lm+jtz5UdyzZjNLzvAniYzZgRRvUbXjp3s
-         BRMhoPkcbXvtDeSmdTmAFrqhxPL6RzqTDw+vT3VA=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37PAwo8S062184
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 25 Aug 2023 05:58:50 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 25
- Aug 2023 05:58:49 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 25 Aug 2023 05:58:49 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37PAwnAY006368;
-        Fri, 25 Aug 2023 05:58:49 -0500
-Date:   Fri, 25 Aug 2023 05:58:49 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Nicolas Belin <nbelin@baylibre.com>, Jai Luthra <j-luthra@ti.com>
-CC:     <narmstrong@baylibre.com>, <andrzej.hajda@intel.com>,
-        <robert.foss@linaro.org>, <devicetree@vger.kernel.org>,
-        <jonas@kwiboo.se>, "Andy . Hsieh" <Andy.Hsieh@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <jernej.skrabec@gmail.com>,
-        <dri-devel@lists.freedesktop.org>,
-        <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [3/3] drm: bridge: it66121: Add audio support
-Message-ID: <20230825105849.crhon42qndxqif4i@gondola>
-References: <20220316135733.173950-4-nbelin@baylibre.com>
+        with ESMTP id S243158AbjHYLHg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:07:36 -0400
+Received: from 167-179-156-38.a7b39c.syd.nbn.aussiebb.net (167-179-156-38.a7b39c.syd.nbn.aussiebb.net [167.179.156.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AE2A1BC9;
+        Fri, 25 Aug 2023 04:07:34 -0700 (PDT)
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+        by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
+        id 1qZUew-007idD-NO; Fri, 25 Aug 2023 19:07:23 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 25 Aug 2023 19:07:23 +0800
+Date:   Fri, 25 Aug 2023 19:07:23 +0800
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?B?77+8T20=?= Prakash Singh <quic_omprsing@quicinc.com>
+Subject: Re: [PATCH v2 1/7] Revert "dt-bindings: crypto: qcom,prng: Add
+ SM8450"
+Message-ID: <ZOiLa3yMHfrIQgmN@gondor.apana.org.au>
+References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
+ <20230824-topic-sm8550-rng-v2-1-dfcafbb16a3e@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220316135733.173950-4-nbelin@baylibre.com>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230824-topic-sm8550-rng-v2-1-dfcafbb16a3e@linaro.org>
+X-Spam-Status: No, score=2.7 required=5.0 tests=BAYES_00,HELO_DYNAMIC_IPADDR2,
+        PDS_RDNS_DYNAMIC_FP,RDNS_DYNAMIC,SPF_HELO_NONE,SPF_PASS,TVD_RCVD_IP
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:57-20220316, Nicolas Belin wrote:
-> Adding the audio support on the HDMI bridge for I2S only.
+On Thu, Aug 24, 2023 at 01:33:20PM +0200, Neil Armstrong wrote:
+> This reverts commit b9296bb41275 ("dt-bindings: crypto: qcom,prng: Add SM8450"),
+> since the RNG HW on the SM8450 SoC is in fact a True Random Number Generator,
+> a more appropriate compatible should be instead as reported at [1].
 > 
-> Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
-> Signed-off-by: Andy.Hsieh <Andy.Hsieh@mediatek.com>
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+> [1] https://lore.kernel.org/all/20230818161720.3644424-1-quic_omprsing@quicinc.com/
+> 
+> Suggested-by: ￼Om Prakash Singh <quic_omprsing@quicinc.com>
+> Suggested-by: ￼Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  drivers/gpu/drm/bridge/ite-it66121.c | 627 +++++++++++++++++++++++++++
->  1 file changed, 627 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index 64912b770086..514989676d07 100644
-> --- a/drivers/gpu/drm/bridge/ite-it66121.c
-> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
+>  .../devicetree/bindings/crypto/qcom,prng.yaml      | 24 +++++-----------------
+>  1 file changed, 5 insertions(+), 19 deletions(-)
 
-Not sure how, but I see this when HDMI is not connected on BeaglePlay
-
-https://gist.github.com/nmenon/f3d4a34ec9b9d188fbefb65f94090bcb
-
-Cc Jai Luthra
+Patch applied.  Thanks.
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
