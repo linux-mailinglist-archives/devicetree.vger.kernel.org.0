@@ -2,124 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 724DC788D85
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 19:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 428DE788DA4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 19:12:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344138AbjHYRBK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 13:01:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33354 "EHLO
+        id S230004AbjHYRL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 13:11:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230353AbjHYRAj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 13:00:39 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5128B10C3;
-        Fri, 25 Aug 2023 10:00:37 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37PECkBC007918;
-        Fri, 25 Aug 2023 17:00:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=7Ydgg4pJaP0kD/peIFkbYTaUPPhfK1TO7rA2tT1SOeY=;
- b=d45kYWA7bW6ja0UE41uWifh5k8ojFYavxroKfQZSXOMxftRbU9DqkWYLyzfNuQQytH9p
- V/D837m9AeWRQjmJQbFHBFoYR+/3LWrlYYcfYZEF+8tTTvQkv//1bYp8VVYO10Pp+sPC
- f9kO9AaXUALKMVyDVnN4kRo7TAFDTacqetTzkzNb2ua7mgjQ0ucJs0HeLC7g2t9tj88n
- D4sVcf/tA1/ydmI/FbuEym7sSxUOWe0YSNKi6jxCHCsRqop9q68loKljVagUjykaPmmh
- c18uDlGG9JcnJQIIv8mc9t7kOrCpNfPu48CI4mdLsim1PzKUMZXj1qs9/V/SDT8p8IwP mA== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3spmm69h4t-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Aug 2023 17:00:05 +0000
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37PH02Bv025880
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Aug 2023 17:00:04 GMT
-Received: from quicinc.com (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 25 Aug
- 2023 10:00:03 -0700
-Date:   Fri, 25 Aug 2023 10:00:01 -0700
-From:   Guru Das Srinagesh <quic_gurus@quicinc.com>
-To:     Nicolas Schier <nicolas@fjasle.eu>
-CC:     Masahiro Yamada <masahiroy@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        "Kees Cook" <keescook@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        <quic_pkondeti@quicinc.com>, <u.kleine-koenig@pengutronix.de>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>
-Subject: Re: [PATCH v2 1/1] scripts: Add add-maintainer.py
-Message-ID: <20230825170001.GB22659@quicinc.com>
-Mail-Followup-To: Nicolas Schier <nicolas@fjasle.eu>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Kees Cook <keescook@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_pkondeti@quicinc.com, u.kleine-koenig@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-References: <cover.1691049436.git.quic_gurus@quicinc.com>
- <829b08342568735095bbd3f8c44f435f44688018.1691049436.git.quic_gurus@quicinc.com>
- <ZOYicEP8D7kNGFin@fjasle.eu>
- <20230824214436.GA22659@quicinc.com>
- <ZOiUOcMOeYvMzq58@bergen.fjasle.eu>
+        with ESMTP id S231494AbjHYRLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 13:11:34 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9185A2108;
+        Fri, 25 Aug 2023 10:11:32 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1ccc0d2e697so750794fac.0;
+        Fri, 25 Aug 2023 10:11:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692983491; x=1693588291;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5TXtssFWEbngFOBY6yX34qGGzd1NAEnaVWIBTkGjN80=;
+        b=LR2PBsansT5Cso6XEXkTcjclHoN7Ck55DqhoFZyrIsWAxmoRm/frhcloh/j1EZmo91
+         Jwftyc5+H9110krpwC+1P6Igy7Ss7WNU+CceLb1RM1G5n8w58Zj3dMKKXVy3RlIM0XCv
+         ZzRIuoGeTcLZMzTOrkOyIsWDwzO7UC9pVRH9ehlmEe8ZQf44YpqQJu0/VzHGx8WO57ZX
+         XSwexAHKwRMXrIY91KaLPPEoTypvldKpe+JsuhcJrDD/z3f0uYRNDqDCxEZyjO1lXbb0
+         Rbni/zKDfD5vw2GQ4f/JVZuKP0Bvf4/cTzTQK4N60vn1LtlI8c8oMcCkLskVf8CRPm0y
+         NDbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692983491; x=1693588291;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5TXtssFWEbngFOBY6yX34qGGzd1NAEnaVWIBTkGjN80=;
+        b=Q6sKYQQeF5FLL2H9k/SwkxTWsqKCvqS/OpO/xvh4Dqy325+HAFFT2dzwzEeBSrqLvy
+         0cMgG/AWfru+LPOo5GByMVKgGTRHVxR40snYPD/Qf0v9uuk7hF2/IFBeZ24tHQzvONT5
+         EfkGiAbO89IhZ2r3Vv3MKcRGarYQi7f6bbCRPQ87xjDmyBBQ/zsUUgOzbp/sBIpb+6pA
+         angSq2Ekj0loEsQVExmlavLzNgEvoWxD9sb/i+W6xcHpVk+lh4wX+G722255Qyoc1PaO
+         /f0SjW/XTiury1nfCtBV8TOZBZn2hsJ2noWxBoePCVt1DwjDL+ZulRW3ICXOVzzxcNyW
+         p8ZQ==
+X-Gm-Message-State: AOJu0YzyW/Xz/Hfq0hK/xLkE5Oj4SLV4wtqfU6uhk9UMnvfx2aV2JTq6
+        oC69siRUAQ9s2OrHr7isGOlYUPSgcBg=
+X-Google-Smtp-Source: AGHT+IHWE8uA0T/glQdvRBHB1C8RwiwLy4ooXIfQ29VrR+JNv+mxP2N9hdHDFgDu/L7kpDIiG+svzQ==
+X-Received: by 2002:a05:6870:14d0:b0:1c0:25c0:ebe5 with SMTP id l16-20020a05687014d000b001c025c0ebe5mr3484282oab.53.1692983491594;
+        Fri, 25 Aug 2023 10:11:31 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id o3-20020a17090a3d4300b002636dfcc6f5sm2004478pjf.3.2023.08.25.10.11.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Aug 2023 10:11:31 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 25 Aug 2023 10:11:29 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Ninad Malwade <nmalwade@nvidia.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH V2 0/4] hwmon: ina3221: Add selective summation support
+Message-ID: <482ac044-e163-478c-8e67-5f03d7dc7820@roeck-us.net>
+References: <20230825164249.22860-1-nmalwade@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZOiUOcMOeYvMzq58@bergen.fjasle.eu>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: fz34qtDuVkPWFCbAnbkWr5SxCT20PqW0
-X-Proofpoint-GUID: fz34qtDuVkPWFCbAnbkWr5SxCT20PqW0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-25_15,2023-08-25_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- impostorscore=0 priorityscore=1501 malwarescore=0 phishscore=0
- clxscore=1015 mlxscore=0 adultscore=0 bulkscore=0 lowpriorityscore=0
- mlxlogscore=630 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308250152
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230825164249.22860-1-nmalwade@nvidia.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Aug 25 2023 13:44, Nicolas Schier wrote:
-> On Thu 24 Aug 2023 14:44:36 GMT, Guru Das Srinagesh wrote:
-> > > While testing, I thought that adding addresses without filtering-out duplicates
-> > > was odd; but as git-send-email does the unique filtering, it doesn't matter.
-> > 
-> > Since I'm using `set()` in this script, the uniqueness is guaranteed here as
-> > well - there won't be any duplicates.
+On Sat, Aug 26, 2023 at 12:42:45AM +0800, Ninad Malwade wrote:
+> The current INA3221 driver always sums the shunt voltage for all enabled
+> channels regardless of the shunt-resistor used for each channel. Summing
+> the shunt-voltage for channels is only meaningful if the shunt resistor
+> is the same for each channel. This series adds device-tree support to
+> allow which channels are summed in device-tree.
 > 
-> I thought about patch files that already have 'To/Cc' headers (e.g.  
-> 'git format-patch --to=... --cc=...' or by running add-maintainer.py 
-> multiple times for updating the lists of recipients.  The result is a 
-> patch file with possible duplicated lines; but as written: it does 
-> matter, effectively.
 
-Sorry, did you mean "does" or "does *not*"?
+V2, but no change log. I am not going to review this series.
 
-I'll make sure to test v3 of this script out on patches that have To/Cc already
-included and also run it multiple times on the same patch (effectively the same
-thing).
+Guenter
 
-Thank you.
-
-Guru Das.
+> Jon Hunter (2):
+>   dt-bindings: hwmon: ina3221: Add summation-bypass
+>   arm64: tegra: Populate ina3221 for Tegra234 boards
+> 
+> Ninad Malwade (1):
+>   hwmon: ina3221: Add selective support for summation channel control
+> 
+> Thierry Reding (1):
+>   dt-bindings: hwmon: ina3221: Convert to json-schema
+> 
+>  .../devicetree/bindings/hwmon/ina3221.txt     |  54 --------
+>  .../devicetree/bindings/hwmon/ti,ina3221.yaml | 127 ++++++++++++++++++
+>  .../arm64/boot/dts/nvidia/tegra234-p3701.dtsi |  53 ++++++++
+>  .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi |  29 ++++
+>  drivers/hwmon/ina3221.c                       |  39 +++++-
+>  5 files changed, 243 insertions(+), 59 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> 
+> -- 
+> 2.17.1
+> 
