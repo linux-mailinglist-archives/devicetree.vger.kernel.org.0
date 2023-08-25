@@ -2,52 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E62788F03
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 20:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1F47788F52
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 21:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjHYSzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 14:55:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39254 "EHLO
+        id S229733AbjHYTrY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 15:47:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230454AbjHYSz2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 14:55:28 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E56212A;
-        Fri, 25 Aug 2023 11:55:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=Gq1KATW+MR1e+UH1wuuhwAeoEshi/Sr/8ZzDp1gC4Jc=; b=LfbGpUjWA8sFlVDBJGMUfaooQT
-        M3gnS0PL+cblqa24tE4mJi/OBZpUunZA0kcFLcgSF5079YJCHPyFYVbe+cpv8TNd6qx8+CkhuYkSd
-        t8va1sd5Dy81oXz5WseVMPPEh0orQnLfjrHs7chxYe1EMqq0R49S+7ZKLoUDAawuZcfos3cnVLwx5
-        koZNfCzYLgax70xyzH6uSrEO+NzvqnmKImt5++mHtUmZgcuVjUeGbviZGEg3e4DJk2G6eEIFHUHc0
-        iPN9FQc8mz4defJn4jq60C59Pjhcr6kpinGwZy8D3vmqpAGiX6ppYvYpuRQziNhXbfJQMB7d9GZVA
-        tBLkNOmQ==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1qZbxm-005ttW-1m;
-        Fri, 25 Aug 2023 18:55:18 +0000
-Message-ID: <2077d280-2a94-55b6-4372-6a58735ebd22@infradead.org>
-Date:   Fri, 25 Aug 2023 11:55:17 -0700
+        with ESMTP id S229717AbjHYTrI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 15:47:08 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34B562684;
+        Fri, 25 Aug 2023 12:47:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692992826; x=1724528826;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NnTF+jRylX6pqFhPQQzonaRAuTlvz5MKVdA6jmYJrOw=;
+  b=DBIrmIeAzdD3Rv2YhYLC/7XPLiCoZpfxfbG9mUiNEI0r6xYglOJPlAgp
+   oEUPon+8vF6nB/gtOv6pOOzIlv91F4hK6xwnUhl98m9rVROj6x70/lAqa
+   XvwYCp4zXsol9WFgvimi3KraN+H3uNGpHD3zc7lTCi90Nc1q6ox1VGflt
+   cPyTVurAPBSLokmblxpiQxPdc2R3pQgV3cHMLSahBITv4baDzAs0YyZDq
+   NhmQ9wguOVS6LKprnAHD1W5iPej6CBhDLE6xl6AE25GVY4d2RNEDDk3UW
+   rhbAmnGCJhHjfmZWcbJcSJXnSJCFvfP5s3YcdTHTr0Pbf+2kNWYtHU/LT
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="461153550"
+X-IronPort-AV: E=Sophos;i="6.02,201,1688454000"; 
+   d="scan'208";a="461153550"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Aug 2023 12:47:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="807637391"
+X-IronPort-AV: E=Sophos;i="6.02,201,1688454000"; 
+   d="scan'208";a="807637391"
+Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
+  by fmsmga004.fm.intel.com with ESMTP; 25 Aug 2023 12:47:02 -0700
+Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qZclq-0003xd-0U;
+        Fri, 25 Aug 2023 19:47:02 +0000
+Date:   Sat, 26 Aug 2023 03:46:50 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Liam Beguin <liambeguin@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Liam Beguin <liambeguin@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: adc: add ltc2309 support
+Message-ID: <202308260324.RYZ1IVWw-lkp@intel.com>
+References: <20230825-ltc2309-v2-2-6d75f2b3fb50@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH] of: unittest: Fix of_unittest_pci_node() kconfig
- dependencies
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Lizhi Hou <lizhi.hou@amd.com>
-Cc:     kernel test robot <lkp@intel.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230824221743.1581707-1-robh@kernel.org>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20230824221743.1581707-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825-ltc2309-v2-2-6d75f2b3fb50@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,31 +72,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Liam,
+
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on a5e505a99ca748583dbe558b691be1b26f05d678]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Liam-Beguin/dt-bindings-iio-adc-add-lltc-ltc2309-bindings/20230826-022412
+base:   a5e505a99ca748583dbe558b691be1b26f05d678
+patch link:    https://lore.kernel.org/r/20230825-ltc2309-v2-2-6d75f2b3fb50%40gmail.com
+patch subject: [PATCH v2 2/2] iio: adc: add ltc2309 support
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230826/202308260324.RYZ1IVWw-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230826/202308260324.RYZ1IVWw-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308260324.RYZ1IVWw-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/iio/adc/ltc2309.c:163:6: warning: no previous prototype for 'ltc2309_regulator_disable' [-Wmissing-prototypes]
+     163 | void ltc2309_regulator_disable(void *regulator)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-On 8/24/23 15:17, Rob Herring wrote:
-> of_unittest_pci_node test depends on both CONFIG_PCI_DYNAMIC_OF_NODES
-> and CONFIG_OF_OVERLAY. Move the test into the existing
-> CONFIG_OF_OVERLAY ifdef and rework the CONFIG_PCI_DYNAMIC_OF_NODES
-> dependency to use IS_ENABLED() instead. This reduces the combinations to
-> build.
-> 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202308241954.oRNfVqmB-lkp@intel.com/
-> Fixes: 26409dd04589 ("of: unittest: Add pci_dt_testdrv pci driver")
-> Cc: Lizhi Hou <lizhi.hou@amd.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+vim +/ltc2309_regulator_disable +163 drivers/iio/adc/ltc2309.c
 
-
-Acked-by: Randy Dunlap <rdunlap@infradead.org>
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
-> ---
->  drivers/of/unittest.c | 16 +++++++---------
->  1 file changed, 7 insertions(+), 9 deletions(-)
-> 
+   162	
+ > 163	void ltc2309_regulator_disable(void *regulator)
+   164	{
+   165		struct regulator *r = (struct regulator *)regulator;
+   166	
+   167		regulator_disable(r);
+   168	}
+   169	
 
 -- 
-~Randy
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
