@@ -2,70 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18B797890B1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 157897890BB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:51:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231545AbjHYVqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 17:46:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46028 "EHLO
+        id S229537AbjHYVuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 17:50:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231611AbjHYVqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:46:11 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188E9271F
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:45:55 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2bb8a12e819so20931521fa.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:45:55 -0700 (PDT)
+        with ESMTP id S231234AbjHYVuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:50:13 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1502F26B8
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:50:11 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-5007f3d3235so2093377e87.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:50:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692999953; x=1693604753;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pHKlZ8/4vaMktrF5hqTmRR8yv61d2HdxgXhZLjedCzc=;
-        b=sjKPXzlfM2nvbwNPq0Bv5uXVuMAUSG11WG1WylCgUXINWrQmznp7Eq5PP1Zd3cg56b
-         4eUmsCeZiO29oxXPzXT3WB6kg8lR1M5FqgArLvhGbmjun1oqk4F1EO43N/xODw7xtP6Z
-         arZVw8Muj7GPiYbJGEfb8SSFWiL1euTchQZJTLdfHlqTo7BpZllhb3QBjHNsJaid7X7/
-         /45S84JnFBSyS/9R1TU0Jss7jL+UXTLCssRJaXRswrFzNqqPXpuUj6VD0S2edYeQESSy
-         9kHOiu9rqLQJhh4F15bHkfQIiDA2GK1nQ6i9LC3bFqXZvU3vUk69PTV/kXObIk+nqB1x
-         +cMw==
+        d=linaro.org; s=google; t=1693000209; x=1693605009;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jb6yYWGtGM3OAoqoOH9LGFrOdjxWi7fzkuGnVTDXJVw=;
+        b=hwO2tszlqsuqEesvkSkPGkWv4AOwySG6wGjlKRrJg2ELJ1x8zaS775X2P5M73pXtlW
+         Lj0O9h+PKZg5ICHYfx2FMlOhw+Ds6skBkfdQFF0vIxFUkAP8Cs0UPIoL7BsCHCQQHANN
+         4/+DVNKq+uHVP9blvf3fli17gChtvYNcQWh0pfCd8K/IsYCRhV5shCb2vAFNSdwFYfdJ
+         ctX8cmishy/3lMiF2YgfyLW9iYgv4nLeg/vCKzFQ7BA8NckzTWQ19BcgSIGFfZyH6ozp
+         /f2kVfmWPkzLlCQIQBcBFJnkqUX8FZtDChjN9F/gmyo9o+DVAPA/4yu/xpcgwG92t0AW
+         lmaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692999953; x=1693604753;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pHKlZ8/4vaMktrF5hqTmRR8yv61d2HdxgXhZLjedCzc=;
-        b=Dgif5Yv4ri6bQBUJKkBW/pPpGBy9AK3oSQ2k+JfUV4tg0+MhfCPm6JXfDA+QilUhZ1
-         giajW5UoZnh3ZrT4DuaCHrNoFVewgNkfO1rEyu5Pr/4zpnYGtZNXUH/DSHnX2AF0nsUp
-         jCmDNSgxyFQcRgun5yGeJIGmrWJeT5ZS9FzjA5qTzIb6WhLYGhB09gIAFheGJBvf8f2S
-         G2nMaGjYi6w59pA1JXg+2FBWMIbXjUa8ashKoKAQt0WZOQjmV3y0HuWlrV8RfXilf03B
-         pMTVLrgbXZDyh46Af7GzjtsPZ6WnCjSw4LpCOJBgtKMaCYf7pUScb/4C894z27sP6XJN
-         tr0w==
-X-Gm-Message-State: AOJu0YzrbKdwCtm2y47w0lqApmF5rLRo1XmcybS+1hhs6TUrnVrT+szY
-        MT5Wrq01txDzKcVZ4t0mszQZ/w==
-X-Google-Smtp-Source: AGHT+IFGP147b15BsApx3z8nN+KUd5VqFrpAFFx+WqmwseVKgBMozVfi+jQFD+0P/EaZWolV35vS+g==
-X-Received: by 2002:a05:651c:cf:b0:2bc:bdbd:1542 with SMTP id 15-20020a05651c00cf00b002bcbdbd1542mr12191190ljr.11.1692999953418;
-        Fri, 25 Aug 2023 14:45:53 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id f26-20020a2e6a1a000000b002b94327308asm486819ljc.133.2023.08.25.14.45.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Aug 2023 14:45:52 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        d=1e100.net; s=20221208; t=1693000209; x=1693605009;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jb6yYWGtGM3OAoqoOH9LGFrOdjxWi7fzkuGnVTDXJVw=;
+        b=LI7L+08RxftGeyoA3YBpnLewW9CSog7/lU7vRCf6HXMBBJ2hDn1h3HtarcV/18+B0k
+         DvXp+9OX/EVPW1rxXH5tbh7iOkn+70JdY4B42+2RILcUo8ZONmq2Juptj2aIwkjVm7m4
+         BeT6IBGKbGDX+HnLabAjEYwUtRVAn9Nudxa/uw1uXXCnbR74Bbz2iMVo4Zo1IMeLDECq
+         Kg7D9M/jTVIUMH+3zhCocBaIbYwpUS0Uh/9+0tjVa7bHxWE5RBX9S3P8ZEnZoBD8z74k
+         sAgnHg//d9Uw4o+FATiodJcsyawEyoGCwEdQ5/SJ2NB1IVctuW2YcnJyH8Yf5v8GgmgS
+         4G0Q==
+X-Gm-Message-State: AOJu0Ywcht9To1XHgOytHAtCEbOCfi+hBW3wtMCkWihj3tsJvvqNOpmP
+        6i25xdilnLBSdQj5nqPdHlgTvwvwGNr2wLuW1P1CAA==
+X-Google-Smtp-Source: AGHT+IGUXyvn5Lq2coBcevLbIP99+apdIoHTymb/bX0wnLBOEEszsGSNvkpuasOZZQtS/5qdhd4XGA==
+X-Received: by 2002:a19:ca44:0:b0:500:90d1:90a6 with SMTP id h4-20020a19ca44000000b0050090d190a6mr7413953lfj.63.1693000209235;
+        Fri, 25 Aug 2023 14:50:09 -0700 (PDT)
+Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
+        by smtp.gmail.com with ESMTPSA id a27-20020a056512021b00b004fe3512e26dsm436740lfo.291.2023.08.25.14.50.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Aug 2023 14:50:08 -0700 (PDT)
+Message-ID: <fead0473-abc8-4f1d-8cb3-2918bba43e62@linaro.org>
+Date:   Fri, 25 Aug 2023 23:50:07 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8350: fix pinctrl for UART18
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8350-hdk: add pmr735a regulators
-Date:   Sat, 26 Aug 2023 00:45:50 +0300
-Message-Id: <20230825214550.1650938-3-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230825214550.1650938-1-dmitry.baryshkov@linaro.org>
 References: <20230825214550.1650938-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230825214550.1650938-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,101 +110,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SM8350 HDK uses pmr735a to supply some of the voltages (e.g. to
-WiFi/BT chip). Declare corresponding regulators together with voltage
-boundaries.
+On 25.08.2023 23:45, Dmitry Baryshkov wrote:
+> On sm8350 QUP18 uses GPIO 68/69, not 58/59. Fix correponding UART18
+> pinconf configuraion.
+> 
+> Fixes: 98374e6925b8 ("arm64: dts: qcom: sm8350: Set up WRAP2 QUPs")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 75 +++++++++++++++++++++++++
- 1 file changed, 75 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index 69870f69fe4f..30ff85250505 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -321,6 +321,81 @@ vreg_l10c_1p2: ldo10 {
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
- 		};
- 	};
-+
-+	regulators-2 {
-+		compatible = "qcom,pmr735a-rpmh-regulators";
-+		qcom,pmic-id = "e";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+
-+		vdd-l1-l2-supply = <&vreg_s2e_0p85>;
-+		vdd-l3-supply = <&vreg_s1e_1p25>;
-+		vdd-l4-supply = <&vreg_s1c_1p86>;
-+		vdd-l5-l6-supply = <&vreg_s1c_1p86>;
-+		vdd-l7-bob-supply = <&vreg_bob>;
-+
-+		vreg_s1e_1p25: smps1 {
-+			regulator-name = "vreg_s1e_1p25";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1280000>;
-+		};
-+
-+		vreg_s2e_0p85: smps2 {
-+			regulator-name = "vreg_s2e_0p85";
-+			regulator-min-microvolt = <950000>;
-+			regulator-max-microvolt = <976000>;
-+		};
-+
-+		vreg_s3e_2p20: smps3 {
-+			regulator-name = "vreg_s3e_2p20";
-+			regulator-min-microvolt = <2200000>;
-+			regulator-max-microvolt = <2352000>;
-+		};
-+
-+		vreg_l1e_0p9: ldo1 {
-+			regulator-name = "vreg_l1e_0p9";
-+			regulator-min-microvolt = <912000>;
-+			regulator-max-microvolt = <912000>;
-+		};
-+
-+		vreg_l2e_1p2: ldo2 {
-+			regulator-name = "vreg_l2e_0p8";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		vreg_l3e_1p2: ldo3 {
-+			regulator-name = "vreg_l3e_1p2";
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		vreg_l4e_1p7: ldo4 {
-+			regulator-name = "vreg_l4e_1p7";
-+			regulator-min-microvolt = <1776000>;
-+			regulator-max-microvolt = <1872000>;
-+		};
-+
-+		vreg_l5e_0p8: ldo5 {
-+			regulator-name = "vreg_l5e_0p8";
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+		};
-+
-+		vreg_l6e_0p8: ldo6 {
-+			regulator-name = "vreg_l6e_0p8";
-+			regulator-min-microvolt = <480000>;
-+			regulator-max-microvolt = <904000>;
-+		};
-+
-+		vreg_l7e_2p8: ldo7 {
-+			regulator-name = "vreg_l7e_2p8";
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+		};
-+	};
- };
- 
- &cdsp {
--- 
-2.39.2
-
+Konrad
