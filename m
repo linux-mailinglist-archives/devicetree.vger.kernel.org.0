@@ -2,123 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48C4878851A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:40:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE63C78852C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:45:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244459AbjHYKkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 06:40:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53540 "EHLO
+        id S229658AbjHYKpH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 25 Aug 2023 06:45:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244495AbjHYKjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:39:53 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E58AD198A
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 03:39:50 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bc9e3cbf1so175926766b.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 03:39:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692959989; x=1693564789;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T4bCjQrZ7ywE3HWQV7oP/6H4w62lITlc52ygpwYMfFI=;
-        b=b/2B5kQNomuylgRRvXA3bIMXOMmpnHKBi9YGgMIqQniAJXNL347eXDGCMAp0rhbmRO
-         8tqMO/CKkHgbEE6h39avWZO8CDh04lC/FXnhEengWH9W8mp+MVwM/d4voiT5PmImrwR/
-         KJ4Z3izLAKR+bG5pvd2a/exarE0gImQCq1Atlaf67SB8Eji9IAERWhUX8JveT/gvLyE7
-         56giynFtUCXqGUIg30/TjLxfdYU1NwT5XDTaWYcjHJhcwa/HDxVTe0UoJ0uwuPJLPfk3
-         xcMeVChesfVvQBXtDrJ9U0P3o1+beJnptMamURKT8gHpWkeGeRFt/UCbxR9wk5J20BGs
-         1UjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692959989; x=1693564789;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T4bCjQrZ7ywE3HWQV7oP/6H4w62lITlc52ygpwYMfFI=;
-        b=ZV1dt5h96Q0JuVJVHZ4MuoDesh0WBoMGvxFW0TbtCmaa1aFEKVRB6B6dguZ2sNHhw4
-         Xi7Y3Qiw5l7xujNanYDibiGlMwjYa5k4ijM0FxB/2mZ8ul+ZQ8wpiSlyt1ZUc9QGQK72
-         6tG6ulY+CNyvROCVBfAgsnvDTratkeqgLZkydbS9GvXSoX76cpLwryVxEp72GI4z+K7K
-         TPmemTMdt/DZLOvzLmOhh9Stkg9v0Ffm6RbKLDdhTRcfAVaVeGNss+dWJXbw4uUTGojn
-         E5k4ZQ3dzn2YIFCqz3NkqHQijMA0mGTvI248R/Chp99/p7yBIyRo+rfuq1Q/dorMUIN/
-         Wy/g==
-X-Gm-Message-State: AOJu0Yw+6NZ7PhK4Qo9+OjU55uPeayx14yAwfsf6oez0pQHpmN+3zsUR
-        xsMt3rkeFyYrttorVahrEw4zew==
-X-Google-Smtp-Source: AGHT+IEMrMlgr7JpaeTq/MvmU3/4a1WTA6huvdVoSFYPUJSKNZ2VXpw0Gy2tBVpvZnmyuzvs9XADfQ==
-X-Received: by 2002:a17:907:2711:b0:9a1:df30:e158 with SMTP id w17-20020a170907271100b009a1df30e158mr6781455ejk.36.1692959989433;
-        Fri, 25 Aug 2023 03:39:49 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id rs25-20020a170907037900b0099bd1a78ef5sm819588ejb.74.2023.08.25.03.39.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 03:39:48 -0700 (PDT)
-Message-ID: <df519068-c9f0-1051-afb3-75f71ad31791@linaro.org>
-Date:   Fri, 25 Aug 2023 12:39:47 +0200
+        with ESMTP id S233105AbjHYKo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:44:59 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1232E54;
+        Fri, 25 Aug 2023 03:44:55 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 649C724E236;
+        Fri, 25 Aug 2023 18:44:54 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Aug
+ 2023 18:44:54 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Aug
+ 2023 18:44:53 +0800
+Message-ID: <a0c023e0-e145-f6f7-3a84-ac6045a6c495@starfivetech.com>
+Date:   Fri, 25 Aug 2023 18:44:53 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: ipq5018: Add USB related nodes
+Subject: Re: [PATCH v8 3/8] media: staging: media: starfive: camss: Add core
+ driver
 Content-Language: en-US
-To:     Nitheesh Sekar <quic_nsekar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, quic_srichara@quicinc.com,
-        quic_varada@quicinc.com, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Cc:     Amandeep Singh <quic_amansing@quicinc.com>
-References: <20230825093531.7399-1-quic_nsekar@quicinc.com>
- <20230825093531.7399-5-quic_nsekar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230825093531.7399-5-quic_nsekar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-staging@lists.linux.dev>,
+        <changhuang.liang@starfivetech.com>
+References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
+ <20230824080109.89613-4-jack.zhu@starfivetech.com>
+ <74183f7b-6e53-ba3d-2160-1e526d61073b@wanadoo.fr>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <74183f7b-6e53-ba3d-2160-1e526d61073b@wanadoo.fr>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2023 11:35, Nitheesh Sekar wrote:
-> Add USB phy and controller nodes.
+Hi Christophe,
+
+Thank you for your comment!
+
+On 2023/8/25 2:31, Christophe JAILLET wrote:
+> Le 24/08/2023 à 10:01, Jack Zhu a écrit :
+>> Add core driver for StarFive Camera Subsystem. The code parses
+>> the device platform resources and registers related devices.
+>>
+>> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+>> ---
 > 
-> Co-developed-by: Amandeep Singh <quic_amansing@quicinc.com>
-> Signed-off-by: Amandeep Singh <quic_amansing@quicinc.com>
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 54 +++++++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
+> ...
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 9f13d2dcdfd5..ff477923a823 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -238,6 +238,60 @@
->  				status = "disabled";
->  			};
->  		};
-> +
-> +		usbphy0: phy@5b000 {
-> +			compatible = "qcom,ipq5018-usb-hsphy";
-> +			reg = <0x0005b000 0x120>;
-> +
-> +			clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
-> +
-> +			resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
-> +
-> +			#phy-cells = <0>;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		usb: usb2@8a00000 {
+>> diff --git a/drivers/staging/media/starfive/camss/Kconfig b/drivers/staging/media/starfive/camss/Kconfig
+>> new file mode 100644
+>> index 000000000000..8d20e2bd2559
+>> --- /dev/null
+>> +++ b/drivers/staging/media/starfive/camss/Kconfig
+>> @@ -0,0 +1,17 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only
+>> +config VIDEO_STARFIVE_CAMSS
+>> +    tristate "Starfive Camera Subsystem driver"
+>> +    depends on V4L_PLATFORM_DRIVERS
+>> +    depends on VIDEO_DEV && OF
+>> +    depends on HAS_DMA
+>> +    depends on PM
+>> +    select MEDIA_CONTROLLER
+>> +    select VIDEO_V4L2_SUBDEV_API
+>> +    select VIDEOBUF2_DMA_CONTIG
+>> +    select V4L2_FWNODE
+>> +    help
+>> +       Enable this to support for the Starfive Camera subsystem
+>> +       found on Starfive JH7110 SoC.
+>> +
+>> +       To compile this driver as a module, choose M here: the
+>> +       module will be called stf-camss.
+> 
+> stf_camss? (s/-/_)
+> 
 
-Eee, where did you put these? Don't stuff things to the end of any list.
-This applies to your entire code: Makefile, Kconfig, .c, .h, .dts, .dtsi
-and other languages and projects as well.
+Refer to the writing method of other media drivers, most of them use hyphen. It
+may be better to use ‘starfive-camss'？
 
-Krzysztof
+>> diff --git a/drivers/staging/media/starfive/camss/Makefile b/drivers/staging/media/starfive/camss/Makefile
+>> new file mode 100644
+>> index 000000000000..f53c5cbe958f
+>> --- /dev/null
+>> +++ b/drivers/staging/media/starfive/camss/Makefile
+>> @@ -0,0 +1,9 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +#
+>> +# Makefile for StarFive Camera Subsystem driver
+>> +#
+>> +
+>> +starfive-camss-objs += \
+>> +        stf_camss.o
+>> +
+>> +obj-$(CONFIG_VIDEO_STARFIVE_CAMSS) += starfive-camss.o
+> 
+> I'm not an expert in Makefile files, but this stf_camss.o and starfive-camss.o look strange to me.
+> 
 
+Is it better to replace 'stf_camss.o' with 'stf-camss.o', which is consistent
+with the driving style of other media drivers?
+
+>> diff --git a/drivers/staging/media/starfive/camss/stf_camss.c b/drivers/staging/media/starfive/camss/stf_camss.c
+>> new file mode 100644
+>> index 000000000000..75ebc3a35218
+>> --- /dev/null
+>> +++ b/drivers/staging/media/starfive/camss/stf_camss.c
+> 
+> ...
+> 
+>> +static int stfcamss_of_parse_ports(struct stfcamss *stfcamss)
+>> +{
+>> +    struct device_node *node = NULL;
+>> +    int ret, num_subdevs = 0;
+>> +
+>> +    for_each_endpoint_of_node(stfcamss->dev->of_node, node) {
+>> +        struct stfcamss_async_subdev *csd;
+>> +
+>> +        if (!of_device_is_available(node))
+>> +            continue;
+>> +
+>> +        csd = v4l2_async_nf_add_fwnode_remote(&stfcamss->notifier,
+>> +                              of_fwnode_handle(node),
+>> +                              struct stfcamss_async_subdev);
+>> +        if (IS_ERR(csd)) {
+>> +            ret = PTR_ERR(csd);
+>> +            dev_err(stfcamss->dev, "failed to add async notifier\n");
+>> +            v4l2_async_nf_cleanup(&stfcamss->notifier);
+> 
+> having it here, looks strange to me.
+> It is already called in the error handling path of the probe.
+> 
+> Should there be a "of_node_put(node);" if we return here?
+> 
+
+We do not call a 'get' interface, is it necessary to use the 'put' interface?
+
+>> +            return ret;
+>> +        }
+>> +
+>> +        ret = stfcamss_of_parse_endpoint_node(stfcamss, node, csd);
+>> +        if (ret)
+>> +            return ret;
+>> +
+>> +        num_subdevs++;
+>> +    }
+>> +
+>> +    return num_subdevs;
+>> +}
+> 
+> ...
+> 
+>> +static int stfcamss_remove(struct platform_device *pdev)
+>> +{
+>> +    struct stfcamss *stfcamss = platform_get_drvdata(pdev);
+>> +
+>> +    v4l2_device_unregister(&stfcamss->v4l2_dev);
+>> +    media_device_cleanup(&stfcamss->media_dev);
+> 
+> Is a "v4l2_async_nf_cleanup(&stfcamss->notifier);" missing to match the error handling path of the probe?
+> 
+>> +    pm_runtime_disable(&pdev->dev);
+>> +
+>> +    return 0;
+>> +}
+>> +
+> 
+> ...
