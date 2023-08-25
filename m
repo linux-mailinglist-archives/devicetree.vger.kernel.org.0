@@ -2,176 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D3B678901C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7515F78902A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231325AbjHYVHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 17:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45218 "EHLO
+        id S230155AbjHYVJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 17:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231314AbjHYVHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:07:22 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 960282119
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:07:19 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50098cc8967so2149047e87.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:07:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692997638; x=1693602438;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Cx2kdN3V9PI0XkGpdSmIAj+sRhFlfp/arAzprHkdhNQ=;
-        b=fvQ3eYkUM0EPcqWeGmQ2kAuwNIbuF89OSurRg7XDXd6lcRFfne6hcZYQlKTdZ/ZCc5
-         FnQ2t+0aapFS02Sq2AOVspzKTuwzPHR6fSWAHfwTXyRBBIayk9HH7wUI863Hp+n3UhEe
-         xwu94CWHoevz6G19qogtXVpk564HIyjHBcDPXd3JPAk+9w0vhjsF0Q6SuicKNk3dBD3A
-         52W8aZKIvHaGGAPNUUSVKE7sazjVOBSa59mQll9me9V/nMulWDELzTfeUIddvNlA7EBM
-         UtrvjysOjUlnT37l9tRZSVwpDL6YDt7COCANMPj1yN3uhdC++/j10NfoH7X1SeECLxU7
-         n18A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692997638; x=1693602438;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cx2kdN3V9PI0XkGpdSmIAj+sRhFlfp/arAzprHkdhNQ=;
-        b=Yy3PwadUGuoAbt0649iZxC9WxXYDGilcINJCF/j9ES92Wr6ORMjpjKWRr1PfFGWkKC
-         zhXqO+tha6Jphh6d5/lQqvidaqutcKVnjlXWA7dBBriheRxF/dZ27hvC7fkSUkhUKvEF
-         RwWISkA6p2nBS0AyRngCTHiHVfwNQeYKxo0f3EAzqNkD+rmQS4rhxj6ez05JsmuHU/++
-         S7JZAbYCJwZrc7zhHIDjYkeS2VtefwXz4UcLVQ978+kPGn63+VRayj/nTy5niiwmdZlv
-         2PKx+5QRKm+dJMYNXumx6raoGqanBHEC69oa4BiuWAlM/GSEo/JhQoLn3lAY8tnSTHXa
-         zdaw==
-X-Gm-Message-State: AOJu0YxfhwnnMrYi8jOtEJnhA//h3Q4KulLzZYiaYhaWEwGjHj6Bk1of
-        c8kVq4l/nf6Tyy4YNon2hgTY+Q==
-X-Google-Smtp-Source: AGHT+IGHQOrvSaysxx19NYESHD6PK/o4oq4OmZ4ErncEk3iae8KfMtwhFnUH3iVVYNKkLB1Kbq9FeQ==
-X-Received: by 2002:a05:6512:b07:b0:4fd:fad6:5495 with SMTP id w7-20020a0565120b0700b004fdfad65495mr18092631lfu.18.1692997637827;
-        Fri, 25 Aug 2023 14:07:17 -0700 (PDT)
-Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
-        by smtp.gmail.com with ESMTPSA id i12-20020ac2522c000000b004fe38e566cfsm422631lfl.280.2023.08.25.14.07.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 14:07:17 -0700 (PDT)
-Message-ID: <d413843f-5187-41ee-89aa-1f4dc0bc729d@linaro.org>
-Date:   Fri, 25 Aug 2023 23:07:15 +0200
+        with ESMTP id S229853AbjHYVJY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:09:24 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 695B72114;
+        Fri, 25 Aug 2023 14:09:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692997762; x=1724533762;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9KgjcJf3oUFZsCckYwsRBIZm34FJhS+OzL6mTSQHt9U=;
+  b=P6jSh3p2IWtgunZMEG9Vs4OWNkm+FzMThejfMuf+chUpfjgnhBrq8pqf
+   EFNb8l7sbCa8wUjO5cuzy28fTzVB8gNgaOZcB3dz2YjBnUT1Ou1Nd6VQA
+   maCTDLToXJLuYu8hb4SQLkHCMQ/5m+yWKimu9KQMTEJnviihY1e6Lb/f4
+   6qv81rniG3XpnGi363ARF0/5E6Pskgll8gRSPc1V6S8snNloBvBRt/Vzg
+   VS+e2FjmW8bpAPYxolLcpGia3s6EvUjIYUzUbcnsBFKxc/BCojMYqoUe/
+   X7UPGtNCtV3Tp7cKFc31MefMZzEhXMDfV78hBz3ryg/OlkO0f2bLaVJXH
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="461167749"
+X-IronPort-AV: E=Sophos;i="6.02,202,1688454000"; 
+   d="scan'208";a="461167749"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Aug 2023 14:09:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="827717088"
+X-IronPort-AV: E=Sophos;i="6.02,202,1688454000"; 
+   d="scan'208";a="827717088"
+Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
+  by FMSMGA003.fm.intel.com with ESMTP; 25 Aug 2023 14:09:18 -0700
+Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qZe3S-00040B-0A;
+        Fri, 25 Aug 2023 21:09:18 +0000
+Date:   Sat, 26 Aug 2023 05:08:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Ninad Malwade <nmalwade@nvidia.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, Ninad Malwade <nmalwade@nvidia.com>,
+        Rajkumar Kasirajan <rkasirajan@nvidia.com>
+Subject: Re: [PATCH V2 3/4] hwmon: ina3221: add support for summation channel
+ control
+Message-ID: <202308260438.7OwsGAd8-lkp@intel.com>
+References: <20230825164249.22860-4-nmalwade@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFT] arm64: dts: qcom: sc7280: Add missing LMH interrupts
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230811-topic-7280_lmhirq-v1-1-c262b6a25c8f@linaro.org>
- <CAD=FV=XKeE7_ciuvfAic+24kyOF0yaFT7iCJWgN9NaW-zG+vKA@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <CAD=FV=XKeE7_ciuvfAic+24kyOF0yaFT7iCJWgN9NaW-zG+vKA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825164249.22860-4-nmalwade@nvidia.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.08.2023 22:17, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Aug 11, 2023 at 1:58 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> Hook up the interrupts that signal the Limits Management Hardware has
->> started some sort of throttling action.
->>
->> Fixes: 7dbd121a2c58 ("arm64: dts: qcom: sc7280: Add cpufreq hw node")
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->> test case:
->>
->> - hammer the CPUs (like compile the Linux kernel)
->> - watch -n1 "cat /proc/interrupts | grep dcvsh"
->> - the numbers go up up up up -> good
-> 
-> I'm not doing much on sc7280 these days,
-:( I'm really sad it got the boot
+Hi Ninad,
 
-but I did try putting your
-> patch on a sc7280-hoglin (AKA a CRD). I tried to stress the system out
-> a bunch (ran 8 instances of "while true; do true; done" and opened
-> something to activate the GPU). I didn't see any LMH interrupts fire.
-> Of course, with ChromeOS firmware LMH is _supposed_ to be mostly
-> disabled, so maybe that's right? Our policy was always to have Linux
-> do as much of the throttling as possible and only use LMH as a last
-> resort.
-> 
-> I assume I don't need any specific config option turned on?
-> 
-> I know that on other Qualcomm boards I see LMH nodes in the device
-> tree, which we don't have in sc7280. Like "qcom,sdm845-lmh". Is that
-> important? I haven't been following what's been going on with LMH in
-> Linux since we try not to use it.
-It used to be important, but on newer socs it's preconfigured in fw
+kernel test robot noticed the following build warnings:
 
-> 
-> For giggles, I also tried putting the patch on a sc7280-villager
-> device to see if it had different thermals. I even put my jacket over
-> it to try to keep it warm. I saw the sensors go up to 109C on the
-> medium cores and still no LMH interrupts. Oh, and then the device shut
-> itself down. I guess something about thermal throttling in Linux must
-> be disabled but then it still handles the critical state? :( That's
-> concerning...
-> 
-> I put the same kernel on a trogdor device and that did normal Linux
-> throttling OK. So something is definitely wonky with sc7280... I dug
-> enough to find that if I used "step_wise" instead of "power_allocator"
-> that it works OK, so I guess something is wonky about the config of
-> power_allocator on sc7280. In any case, it's not affected by your
-> patch and I've already probably spent too much time on it. :-P
-Hm, perhaps it would be worth to try this patch on a non-chrome 7280
-device.. Would you guys have standard android-y or windows-y firmware
-that you could flash on these to try out, or should I try poking
-somebody else?
+[auto build test WARNING on next-20230825]
+[also build test WARNING on linus/master v6.5-rc7]
+[cannot apply to groeck-staging/hwmon-next robh/for-next v6.5-rc7 v6.5-rc6 v6.5-rc5]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Konrad
+url:    https://github.com/intel-lab-lkp/linux/commits/Ninad-Malwade/dt-bindings-hwmon-ina3221-Convert-to-json-schema/20230826-004606
+base:   next-20230825
+patch link:    https://lore.kernel.org/r/20230825164249.22860-4-nmalwade%40nvidia.com
+patch subject: [PATCH V2 3/4] hwmon: ina3221: add support for summation channel control
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230826/202308260438.7OwsGAd8-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230826/202308260438.7OwsGAd8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308260438.7OwsGAd8-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/ina3221.c:108: warning: Function parameter or member 'summation_bypass' not described in 'ina3221_input'
+>> drivers/hwmon/ina3221.c:132: warning: Function parameter or member 'summation_channel_control' not described in 'ina3221_data'
+
+
+vim +108 drivers/hwmon/ina3221.c
+
+7cb6dcff1956ec Andrew F. Davis 2016-06-10   96  
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01   97  /**
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01   98   * struct ina3221_input - channel input source specific information
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01   99   * @label: label of channel input source
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  100   * @shunt_resistor: shunt resistor value of channel input source
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  101   * @disconnected: connection status of channel input source
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  102   */
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  103  struct ina3221_input {
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  104  	const char *label;
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  105  	int shunt_resistor;
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  106  	bool disconnected;
+3aab5d0b835881 Ninad Malwade   2023-08-26  107  	bool summation_bypass;
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01 @108  };
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  109  
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  110  /**
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  111   * struct ina3221_data - device specific information
+323aeb0eb5d9a6 Nicolin Chen    2018-11-05  112   * @pm_dev: Device pointer for pm runtime
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  113   * @regmap: Register map of the device
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  114   * @fields: Register fields of the device
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  115   * @inputs: Array of channel input source specific structures
+87625b24986bc2 Nicolin Chen    2018-11-05  116   * @lock: mutex lock to serialize sysfs attribute accesses
+59d608e152e582 Nicolin Chen    2018-09-29  117   * @reg_config: Register value of INA3221_CONFIG
+2057bdfb7184e9 Nicolin Chen    2019-10-16  118   * @summation_shunt_resistor: equivalent shunt resistor value for summation
+43dece162de047 Nicolin Chen    2019-01-17  119   * @single_shot: running in single-shot operating mode
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  120   */
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  121  struct ina3221_data {
+323aeb0eb5d9a6 Nicolin Chen    2018-11-05  122  	struct device *pm_dev;
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  123  	struct regmap *regmap;
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  124  	struct regmap_field *fields[F_MAX_FIELDS];
+a9e9dd9c6de5d8 Nicolin Chen    2018-10-01  125  	struct ina3221_input inputs[INA3221_NUM_CHANNELS];
+87625b24986bc2 Nicolin Chen    2018-11-05  126  	struct mutex lock;
+59d608e152e582 Nicolin Chen    2018-09-29  127  	u32 reg_config;
+2057bdfb7184e9 Nicolin Chen    2019-10-16  128  	int summation_shunt_resistor;
+3aab5d0b835881 Ninad Malwade   2023-08-26  129  	u32 summation_channel_control;
+43dece162de047 Nicolin Chen    2019-01-17  130  
+43dece162de047 Nicolin Chen    2019-01-17  131  	bool single_shot;
+7cb6dcff1956ec Andrew F. Davis 2016-06-10 @132  };
+7cb6dcff1956ec Andrew F. Davis 2016-06-10  133  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
