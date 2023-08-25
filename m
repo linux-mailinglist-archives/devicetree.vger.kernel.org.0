@@ -2,210 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97DD7788641
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:47:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11DB8788646
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243203AbjHYLqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 07:46:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35162 "EHLO
+        id S243759AbjHYLrO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 07:47:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243379AbjHYLqR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:46:17 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81941FF7;
-        Fri, 25 Aug 2023 04:46:06 -0700 (PDT)
-Received: from leknes.fjasle.eu ([46.142.97.125]) by mrelayeu.kundenserver.de
- (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1MEVmm-1qTTv01F8M-00FzdC; Fri, 25 Aug 2023 13:45:04 +0200
-Received: from localhost.fjasle.eu (kirkenes.fjasle.eu [10.10.0.5])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by leknes.fjasle.eu (Postfix) with ESMTPS id BB75D3F91C;
-        Fri, 25 Aug 2023 13:45:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fjasle.eu; s=mail;
-        t=1692963901; bh=LUBlIR9uims4Ic+E1eg4RARNsFeFff9QgTvUJ80cX8g=;
-        h=Date:From:To:Subject:References:In-Reply-To:From;
-        b=v+at3+xXvzcMRK3YtjLTFxfGKHkgIN9SjSwtL3aCndUvJg6FCmjoGiEVo9mf1G3U1
-         ePV8ilS9qxuvp/qw+eXm+nTceavdn1MPTbqFiSF7g2EK8NEURszwY1z/HTmN4I0BZl
-         Nh9pTbPB6H6NXqIAzGQKC+AaZ+k6VI3XIO0enmFM=
-Received: by localhost.fjasle.eu (Postfix, from userid 1000)
-        id 3A28C3949; Fri, 25 Aug 2023 13:44:57 +0200 (CEST)
-Date:   Fri, 25 Aug 2023 13:44:57 +0200
-From:   Nicolas Schier <nicolas@fjasle.eu>
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Kees Cook <keescook@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_pkondeti@quicinc.com, u.kleine-koenig@pengutronix.de,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] scripts: Add add-maintainer.py
-Message-ID: <ZOiUOcMOeYvMzq58@bergen.fjasle.eu>
-References: <cover.1691049436.git.quic_gurus@quicinc.com>
- <829b08342568735095bbd3f8c44f435f44688018.1691049436.git.quic_gurus@quicinc.com>
- <ZOYicEP8D7kNGFin@fjasle.eu>
- <20230824214436.GA22659@quicinc.com>
+        with ESMTP id S243476AbjHYLqp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:46:45 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD9A9E7F;
+        Fri, 25 Aug 2023 04:46:37 -0700 (PDT)
+X-UUID: 091e16f2433d11ee9cb5633481061a41-20230825
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=csGBmjXikOyh3y8p13e2JwCsy1lcw0WkGW0pikGKqoI=;
+        b=iV4Sgo1PW15Bb2HP+gvNyKHijWOskBdl8FrEUmce5JCJIjPRXSFk1ED7EFS3YBu3XAfik+oYXtBcrDhfrZUYspdEEFzbB74IqjiFE3q0rSH7nnIIiq6o9DXv7BJhuih+PezPurtfoXlVdpyjT7H1AhznzjURoqMrfIHJxSazUVU=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:7ec91a70-76ab-43c6-ab4b-a024ee108136,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:8b353013-4929-4845-9571-38c601e9c3c9,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 091e16f2433d11ee9cb5633481061a41-20230825
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1291513685; Fri, 25 Aug 2023 19:46:32 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 25 Aug 2023 19:46:30 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 25 Aug 2023 19:46:30 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        <stable@vger.kernel.org>
+Subject: [PATCH 1/4] arm64: dts: mediatek: mt8195-demo: fix the memory size to 8GB
+Date:   Fri, 25 Aug 2023 19:46:20 +0800
+Message-ID: <20230825114623.16884-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jjpaJEitG6LbK2XV"
-Content-Disposition: inline
-In-Reply-To: <20230824214436.GA22659@quicinc.com>
-X-Operating-System: Debian GNU/Linux trixie/sid
-Jabber-ID: nicolas@jabber.no
-X-Provags-ID: V03:K1:OpjvI+EpoKm6ZYkk+K9aTJlDjF7uHsQ+qFvZk8KggGXWPyGKsrW
- 6pVfhXWPooQ/5gpWW6ITajiNCTK7ZIzjNtU0dnWsawLj+akjZfHGeerrS7e/Cmca6ev4vqY
- 7/cwNYlX5c+d4AODzpxUEVPSiiNUMSONN9Z3WLURXIu7OCrvJgiOV369DWvgP6xgPCT9o+i
- m1kjau66iS3apeNEvEwBA==
-UI-OutboundReport: notjunk:1;M01:P0:xRdCoaZs1A4=;zq/8sb2ZB3CAJJ3Yb3QlMyo2aNf
- /KqdfBUlF2LtwAb7FpfZMuzem3WzZUQ6WzrLIv0ndmQh/4dvFXyx//8fnAVjN9JEnEXzHHVHS
- H6X+moSHU8KWtcdVknmm5eeR3D0FmXoFprOapA4KIbwqhNBGeKoazaVOANDHctYERoaJheNDr
- i1mfjABNGWH23qu5YZCKEKYwQhoawv3P0YJxS9hKJMam+ELoxWv1EdYxNm0DL/oJeDXOat49L
- PiJREIa+XZ08EWEfuSkebBuRYmskr/sD374dFAvkBwfBKFzFtHaJ2Z046KWozu6TuRqreAry6
- TBARSy7XaR5mBGn/Po/VFHqsPvD/86vMd8xXwOZtBjVYivitbGSDM+P3uh6aas8rvrbvq6iyr
- rwC5c8qhM0tHwHi8FO5oc7Fpj0aZVKH6JRVsh7AgISM4g8Zjgyu9aMTXF9W0uCyzzRl2r8oII
- 2ZPajGUB7fshjz+aeBbDQpH+eeUMmu4+NTZthZGqP/ygK/S+YBv3GqCqNxmwYfLsbDuOdroDr
- ArSPdj6YXXbLit6bpQDMguQD+R4OiuY7x6wlNmfWC8h1e58qHTDkT9OZjKZJGySRIFfx0G6z5
- snzrfR3lsZyqoji79GO3eaPYAVGVo3YXdB/WttsV/eNUrRcHLCM4zQWrMutWwZIPKkAjMb1AG
- KprKsXNo92RTxfEXf82V4HgYMUXS6PXDAWJ0SpriBpJQhiRe4BbS0oSl+Ca+Q0zYSoRLbU+OE
- ozlxt8ARFGMkZ8Js3CR7nXthvFWTjusd5oDE+9C1pLpXawe88FAotjXxYblitZvTcyXUZ2zpB
- KfbCVkHjf5qrQVe9BacOCvRIbiUItB/DE2wwGNhaP+UvsLGw1ln238z8MeggruXL+o0k6kTVH
- 5GJqWZrUIUsVU3w==
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE autolearn=ham autolearn_force=no
-        version=3.4.6
+        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The onboard dram of mt8195-demo board is 8GB.
 
---jjpaJEitG6LbK2XV
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Cc: stable@vger.kernel.org      # 6.1, 6.4
+Fixes: 6147314aeedc ("arm64: dts: mediatek: Add device-tree for MT8195 Demo board")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Thu 24 Aug 2023 14:44:36 GMT, Guru Das Srinagesh wrote:
-[...]
-> > > The script is quiet by default (only prints errors) and its verbosity
-> > > can be adjusted via an optional parameter.
-> >=20
-> > IMO, it would be nice to see which addresses are effectively added, e.g.
-> > comparable to the output of git send-email.  Perhaps somehing like:
-> >=20
-> >   $ scripts/add-maintainer.py *.patch
-> >   0001-fixup-scripts-Add-add-maintainer.py.patch: Adding 'To: Guru Das =
-Srinagesh <quic_gurus@quicinc.com>' (maintainer)
-> >   0001-fixup-scripts-Add-add-maintainer.py.patch: Adding 'Cc: linux-ker=
-nel@vger.kernel.org' (list)
-> >=20
-> > Perhaps verbosity should then be configurable.
->=20
-> Yes, this is already implemented - you just need to pass "--verbosity deb=
-ug" to
-> the script. Example based on commit 8648aeb5d7b7 ("power: supply: add Qua=
-lcomm
-> PMI8998 SMB2 Charger driver") converted to a patch:
->=20
->     $ ./scripts/add-maintainer.py --verbosity debug $u/upstream/patches/t=
-est2/0001-power-supply-add-Qualcomm-PMI8998-SMB2-Charger-drive.patch
->     INFO: GET: Patch: 0001-power-supply-add-Qualcomm-PMI8998-SMB2-Charger=
--drive.patch
->     DEBUG:
->     Sebastian Reichel <sre@kernel.org> (maintainer:POWER SUPPLY CLASS/SUB=
-SYSTEM and DRIVERS)
->     Andy Gross <agross@kernel.org> (maintainer:ARM/QUALCOMM SUPPORT)
->     Bjorn Andersson <andersson@kernel.org> (maintainer:ARM/QUALCOMM SUPPO=
-RT)
->     Konrad Dybcio <konrad.dybcio@linaro.org> (maintainer:ARM/QUALCOMM SUP=
-PORT)
->     Nathan Chancellor <nathan@kernel.org> (supporter:CLANG/LLVM BUILD SUP=
-PORT)
->     Nick Desaulniers <ndesaulniers@google.com> (supporter:CLANG/LLVM BUIL=
-D SUPPORT)
->     Tom Rix <trix@redhat.com> (reviewer:CLANG/LLVM BUILD SUPPORT)
->     linux-kernel@vger.kernel.org (open list)
->     linux-pm@vger.kernel.org (open list:POWER SUPPLY CLASS/SUBSYSTEM and =
-DRIVERS)
->     linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT)
->     llvm@lists.linux.dev (open list:CLANG/LLVM BUILD SUPPORT)
->    =20
->     INFO: ADD: Patch: 0001-power-supply-add-Qualcomm-PMI8998-SMB2-Charger=
--drive.patch
->     DEBUG: Cc Lists:
->     Cc: linux-arm-msm@vger.kernel.org
->     Cc: llvm@lists.linux.dev
->     Cc: linux-pm@vger.kernel.org
->     Cc: linux-kernel@vger.kernel.org
->     DEBUG: Cc Others:
->     Cc: Tom Rix <trix@redhat.com>
->     Cc: Nick Desaulniers <ndesaulniers@google.com>
->     Cc: Nathan Chancellor <nathan@kernel.org>
->     DEBUG: Cc Maintainers:
->     None
->     DEBUG: To Maintainers:
->     To: Sebastian Reichel <sre@kernel.org>
->     To: Andy Gross <agross@kernel.org>
->     To: Bjorn Andersson <andersson@kernel.org>
->     To: Konrad Dybcio <konrad.dybcio@linaro.org>
->    =20
->     INFO: Maintainers added to all patch files successfully
->=20
-> The first "GET:" output prints the output of `get_maintainer.pl` verbatim=
-, and
-> the "ADD:" output shows what exactly is getting added to that patch. Hope=
- this
-> is what you were expecting. Please let me know if you'd prefer any other
-> modifications to this debug output.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+index b2485ddfd33b..ff363ab925e9 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+@@ -48,7 +48,7 @@
+ 
+ 	memory@40000000 {
+ 		device_type = "memory";
+-		reg = <0 0x40000000 0 0x80000000>;
++		reg = <0 0x40000000 0x2 0x00000000>;
+ 	};
+ 
+ 	reserved-memory {
+-- 
+2.18.0
 
-ups.  I tested with --verbosity=3Dinfo but not with =3Ddebug, therefore I=
-=20
-missed it.  Sorry for the noise.
-
-
-[...]
-> > While testing, I thought that adding addresses without filtering-out du=
-plicates
-> > was odd; but as git-send-email does the unique filtering, it doesn't ma=
-tter.
->=20
-> Since I'm using `set()` in this script, the uniqueness is guaranteed here=
- as
-> well - there won't be any duplicates.
-
-I thought about patch files that already have 'To/Cc' headers (e.g. =20
-'git format-patch --to=3D... --cc=3D...' or by running add-maintainer.py=20
-multiple times for updating the lists of recipients.  The result is a=20
-patch file with possible duplicated lines; but as written: it does=20
-matter, effectively.
-
-Kind regards,
-Nicolas
-
---jjpaJEitG6LbK2XV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEh0E3p4c3JKeBvsLGB1IKcBYmEmkFAmTolDgACgkQB1IKcBYm
-EmkaMhAAkHXsFKcEogjsqkNaOcKrHgDBA9BLV6YXgTPR/BhMl7qgIbgDwKRdK5kG
-RZalx5oXxNTiGLTUxEZE+hBy/edkHXwuH9VQRRx+x7TuFijPP1vrU2UHQe/Cp3zP
-+8TueB4h+1m/4QryDXX8gKDMUA8gBym9r48A0K2Vow2/KbKbnEw9fngx04csW9oU
-Kv/SPio3lT1xq4YaaHgVsyLwlQFRQqKKdLwn08U4D0RTQVuNwlv3Ozu/QnMhAtSf
-SPFJO+xU2SbXoQxRnKBlno1rHwsfGM7MmMpbViOzOl/r0pXAr29KEVx3t/ZwBRzn
-g+J0hzJ6uh1TRO2m0wX2tg1SeW+kCAHzEXrnh8LM3Z80AOEFQvRV47LwAT+86X56
-CxdPq7ug6B5XTJvGUxJ3asP3AGURIX8SriWScRv+r+WE12xg7FhvcV/Oy7m6ZUhi
-4B54Nob7OmaDTO93ZBW0RxKItz4mgZ0OGNqDhcey7bpmROimFArZESZQ+kKB9fes
-z6oHsDY+3TpMCSkDIXd9neZXAkU9krOG/uihmYOiyz39WENXcAsOYkh1UZd+u2+b
-hRLyeKIl9Oy8+r4wg9It0hyj2wOXshtigbU9tXt/4X3IVFFv43MplR0hetiMt5wx
-xwuWnk+MohuUCK2XU5TplUY4lURbBqgGEPecu+w3Ac51Ejltb1Q=
-=Ofrj
------END PGP SIGNATURE-----
-
---jjpaJEitG6LbK2XV--
