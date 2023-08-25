@@ -2,106 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B84DA788042
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 08:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF97C7880A3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 09:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242411AbjHYGtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 02:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52232 "EHLO
+        id S231563AbjHYHKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 03:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242430AbjHYGt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 02:49:27 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 491C119AE
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:49:24 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99cdb0fd093so65391066b.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Aug 2023 23:49:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692946163; x=1693550963;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lajo7OqjOl8rNN2v6USsxhYYBHIrPlabiPvdvBF4vXE=;
-        b=dzoDs5/lDF0GjQ5kZXZxk2yOa49Piy22tw3skoTulieeCRGnP9Mv7HnYX3IjPFh6pd
-         HaMBy4bbjmA1xChFTcs48EyjUlsf/NSu9R7NZ35h62lrUIvy5+OF8AMYHvJiLekM29H2
-         2OlSutBxRTPj8yFiU13mUUVjYea3zoKx/QoEngtqssASp87p9OfWagBMgvGIlsnTBL7/
-         Z4nfbas0owDAM+427A5QSq5CL9gGS3cUkz8q52amlSw9lr+rFitpIZgeZ2+zSMLpeyI9
-         G0W598lKD1Rn2uPD+sB1l4NkpFzsaEfza0/hBHfTMhZ70GfizXngR8miIj/C7nsTSM54
-         pHjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692946163; x=1693550963;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lajo7OqjOl8rNN2v6USsxhYYBHIrPlabiPvdvBF4vXE=;
-        b=gFlGWavYIqFJeiXIai1q1qKpHi7pWsXCkpNxopljHtBm1mIfuYNPjcQ9HumdwTyRiT
-         3abqrIIK4ru/9HPKWvW8wgKp4bP/WhVpERBbKin8S8bGF/CnDKxNj50DNsJplVT9DQvu
-         31k5RB156G92xFQ+KBPDZLgT7gDFdBJrAqztaSAL5YbcxdZQH/S4svkDqdbppfiCAazb
-         ieeNcyArtpcfCzaiIEpOQp59383ErSBh3XBWyHx6XtIzfN1sM0e+UbuoDoYYJschQEiR
-         QBCfaG0NqVN+SsVa1Z02PgZZKlQCZsEOcJjHkvsXZhIr9FjcZAD1KB5g4fsxdMmTf6It
-         T2bQ==
-X-Gm-Message-State: AOJu0YwTiGNufGd86qaTsLq0ySEIqB9fQEd4cIlnKIM2/OAc49RLVUjW
-        BHkynrzLZ9J/0iIySZketDwuTA==
-X-Google-Smtp-Source: AGHT+IHM0u5TqZw/AW+78y+hWyLMRR4dUmiJS290WiUMgNgRrW7spqkKVWWxp/6asczYj3lW/GZuRw==
-X-Received: by 2002:a17:906:2d0:b0:9a1:d0bb:d215 with SMTP id 16-20020a17090602d000b009a1d0bbd215mr5444386ejk.5.1692946162757;
-        Thu, 24 Aug 2023 23:49:22 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id h1-20020a1709062dc100b00992b1c93279sm595709eji.110.2023.08.24.23.49.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Aug 2023 23:49:22 -0700 (PDT)
-Message-ID: <2eda319d-bdd9-bfeb-005a-5989cf674501@linaro.org>
-Date:   Fri, 25 Aug 2023 08:49:21 +0200
+        with ESMTP id S243014AbjHYHKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 03:10:01 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB5D91B2;
+        Fri, 25 Aug 2023 00:09:58 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37P3aE1u014750;
+        Fri, 25 Aug 2023 09:09:29 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        message-id:date:mime-version:subject:to:cc:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        selector1; bh=MDkalMNBjUowOXiPQHgwxlnVRmYOYGag+qE9vvVRST0=; b=ky
+        3GDz677qACDSvjVCC4/BauiwA4RCBzaiIWIHCHP2dao5n4Zu9x6rrNLcFj2qUno7
+        o5YmvWPwhfx5hRWA6nwxkRm8jxHtTpPpRu2aA/DIqctdKAHhWkqvKwocpEd3xb9e
+        CFFJ0OqT25n0vbL7ZzduuWqKAfDlNav4QgmidALKD8CD4MNMJn1sN3E73DXly1Ph
+        jPZKtuLyrWIQ2ukSkPCDztGfxnrNYFel3WLPz/8pagSkRfyDur1Kbg8b+wFS0zNG
+        amCSzpkrnmkHm6ehkAnYoxauB0fd6LjsLgu+qGmSCan2FZnzg5qQI3DixVFGaZc+
+        8Z6XjQIuXwM0nx6f0r/Q==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3spmhs8m88-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 25 Aug 2023 09:09:29 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id E5D9B100059;
+        Fri, 25 Aug 2023 09:09:28 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D1F88214D36;
+        Fri, 25 Aug 2023 09:09:28 +0200 (CEST)
+Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 25 Aug
+ 2023 09:09:28 +0200
+Message-ID: <dbf33e7f-92e0-71ec-3bd4-ffa150c80e71@foss.st.com>
+Date:   Fri, 25 Aug 2023 09:09:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] TSD: arm64: dts: rockchip: use codec as clock master
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v5 9/9] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
 Content-Language: en-US
-To:     Jakob Unterwurzacher <jakobunt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sean Nyekjaer <sean@geanix.com>, <l.goehrs@pengutronix.de>,
+        <a.fatoum@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     jakob.unterwurzacher@theobroma-systems.com,
-        Ermin Sunj <ermin.sunj@theobroma-systems.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230823122000.585787-1-jakob.unterwurzacher@theobroma-systems.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230823122000.585787-1-jakob.unterwurzacher@theobroma-systems.com>
-Content-Type: text/plain; charset=UTF-8
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>
+CC:     <dantuguf14105@gmail.com>,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230816122435.3153513-1-sean@geanix.com>
+ <20230816122435.3153513-9-sean@geanix.com>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20230816122435.3153513-9-sean@geanix.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.201.21.122]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-25_04,2023-08-24_01,2023-05-22_02
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 14:19, Jakob Unterwurzacher wrote:
-> From: Ermin Sunj <ermin.sunj@theobroma-systems.com>
-> 
-> If the codec is not the clock master, the MCLK needs to be
-> synchronous to both I2S_SCL ans I2S_LRCLK. We do not have that
-> on Haikou, causing distorted audio.
-> 
-> Before:
-> 
->  Running audioloopback.py script on Ringneck, 1kHz
->  output sine wave is not stable and shows distortion.
-> 
-> After:
-> 
->  10h stress tests audioloopback.py failed only one time.
->  That is 0.00014% failure rate.
+Hi Sean
 
-What is TSD? Why it is in the subject prefix?
+On 8/16/23 14:24, Sean Nyekjaer wrote:
+> Add support for the Octavo OSD32MP1-RED development board.
+> 
+> General features:
+>   - STM32MP157C
+>   - 512MB DDR3
+>   - CAN-FD
+>   - HDMI
+>   - USB-C OTG
+>   - UART
+> 
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+Series applied on stm32-next (Queued for v6.7).
 
-Best regards,
-Krzysztof
+Thanks
 
+Alex
