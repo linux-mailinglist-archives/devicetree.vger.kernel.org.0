@@ -2,67 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA987788C5A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 17:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E86788C5F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 17:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234735AbjHYPUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 11:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60524 "EHLO
+        id S236084AbjHYPVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 11:21:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240597AbjHYPT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 11:19:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA77212C
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 08:19:55 -0700 (PDT)
+        with ESMTP id S236430AbjHYPVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 11:21:15 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E54E2121;
+        Fri, 25 Aug 2023 08:21:13 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7F0A465283
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 15:19:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6A64C433CA
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 15:19:54 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 242AF63962;
+        Fri, 25 Aug 2023 15:21:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7806AC433C8;
+        Fri, 25 Aug 2023 15:21:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692976794;
-        bh=4IIMN3b2kTYVIvu/5e5trpnBMJWv+uT58S9QzRv0bAU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R7c1cryVSOxME9/BeSMQ9zIFCAkOeTfE+s2H3EgFxg3B594m0xJLnN5VlR9p+Phm8
-         3sPCHGZ4vMc9nniIpjfhFg6Q1mW4lRBhofErsCEW/TYgtA6H8/r8PKcl5QEsIbvs9+
-         Xjod8eQKyBCa4fqaLE4yQo2sPP7WPCnYgN1UdqLrKNIFSJsLHK3TbKUY+5PiyEwGi9
-         d2xRZeRBAAlT7YSOClf/aZFgVDyvwNcVwaXIGZ4wrJUUffjP3l22fXQjniQB5okogQ
-         0k93wHMH6qGeUYO7GuHqCUbubkqtPuK/y/cuWQ9Y7rGzDlcw4LgkSKNHh6n4xiOzvb
-         9SoXzgAP3MpNw==
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-525bd0b2b48so1492579a12.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 08:19:54 -0700 (PDT)
-X-Gm-Message-State: AOJu0YxtErW5+XYqiw90QPqJkUlsdpe+myUGnzJ5FkPBrCcad5jkjnBO
-        BAtq+UvjkXI0N9DlgbJ2N/Ay+aNSUNBSFTxG3F0=
-X-Google-Smtp-Source: AGHT+IEMI0O5voiMBdZeSfNdo1xEa2uTWFdFqG6MIazk/Jy3gtA8gmZPT/r4C5DSsfX0sUeycQbjleULnsMw16rUPOg=
-X-Received: by 2002:a17:906:5198:b0:9a1:b967:aca8 with SMTP id
- y24-20020a170906519800b009a1b967aca8mr8301421ejk.4.1692976793122; Fri, 25 Aug
- 2023 08:19:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1692783907.git.zhoubinbin@loongson.cn> <CAAhV-H7hi=yc=PfDBafXVS5CSwEeE2WmbAAhnnDm6iYFF3YzkQ@mail.gmail.com>
- <20230825-doubling-waltz-6444e26152db@wendy> <CAAhV-H7FAKa2_+rfyboVYxvQA0sJmaWnKj3yCJZkqe_FEx9J2Q@mail.gmail.com>
- <20230825-exorcist-periscope-045ad906d919@spud>
-In-Reply-To: <20230825-exorcist-periscope-045ad906d919@spud>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Fri, 25 Aug 2023 23:19:42 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H7LMYn2u8f1waTpWn8pS1jJC1BNVWzq5zw8vE+uecx+aQ@mail.gmail.com>
-Message-ID: <CAAhV-H7LMYn2u8f1waTpWn8pS1jJC1BNVWzq5zw8vE+uecx+aQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] LoongArch: Add built-in dtb support
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
+        s=k20201202; t=1692976872;
+        bh=nDviS9HsAv0tkzmQ79o/c/ExUauj2KyIQAmBYZo4VOA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=H1VGvFh3GHfqixzp+I2NJIVjntmd8evAuvYM3DOVK2J5VmvpprIMxfR2rt+ocIjRJ
+         5iaZdujV+t6geQGJ5F5F56fP/rVPo8faFC21YiERGKk5iKnyk59+fKq1+66uIqrnnS
+         Xdp/vRu3QaUD4fN7lyAXkfvTxuzs6BO9kItQSQhBDaJKSWOxTVJf9V1B5XA2Dodbus
+         dS1zxhzOILAmJ6Y80HZ/7ffKdgAGMwMjyeY+mAcLBFK0nXeIwQS4VEnaHDo+bua1uI
+         la4P6BmHm7y3dQw8s7ANV5RypO0jreBS4b5HO5pYgbikt6HSx8ajHv11Fky5DGQPMZ
+         eOSqCorq2x9IA==
+Date:   Fri, 25 Aug 2023 16:21:08 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: sdhci-msm: correct minimum number
+ of clocks
+Message-ID: <20230825-strut-hurried-c3a697851b68@spud>
+References: <20230825135503.282135-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ZNWDsuAgtxaqtp9A"
+Content-Disposition: inline
+In-Reply-To: <20230825135503.282135-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -73,32 +61,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Conor,
 
-On Fri, Aug 25, 2023 at 11:08=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Fri, Aug 25, 2023 at 11:06:40PM +0800, Huacai Chen wrote:
-> > Hi, Conor,
-> >
-> > On Fri, Aug 25, 2023 at 7:59=E2=80=AFPM Conor Dooley <conor.dooley@micr=
-ochip.com> wrote:
-> > >
-> > > On Fri, Aug 25, 2023 at 07:38:31PM +0800, Huacai Chen wrote:
-> > > > This series looks good enough to me now, if no one has objections, =
-I
-> > > > will queue it to loongarch-next.
-> > >
-> > > Have you not read Rob's replies?
-> > I'm sorry, I have read but I thought Binbin's reply has answered Rob's =
-question.
->
-> As far as I can tell, it didn't - but there were was a reply from Rob
-> about dtbs_check issues too IIRC.
-OK, I see. The dtbs_check warning is being fixed in [1], but it seems
-that Binbin hasn't got the key point of Krzysztof.
+--ZNWDsuAgtxaqtp9A
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://lore.kernel.org/linux-mips/d11873a1-b552-71f5-1100-7464687f8bb4@lin=
-aro.org/T/#t
+On Fri, Aug 25, 2023 at 03:55:02PM +0200, Krzysztof Kozlowski wrote:
+> In the TXT binding before conversion, the "xo" clock was listed as
+> optional.  Conversion kept it optional in "clock-names", but not in
+> "clocks".  This fixes dbts_check warnings like:
+>=20
+>   qcom-sdx65-mtp.dtb: mmc@8804000: clocks: [[13, 59], [13, 58]] is too sh=
+ort
+>=20
+> Cc: <stable@vger.kernel.org>
+> Fixes: a45537723f4b ("dt-bindings: mmc: sdhci-msm: Convert bindings to ya=
+ml")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Huacai
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Docum=
+entation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 80141eb7fc6b..10f34aa8ba8a 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -69,7 +69,7 @@ properties:
+>      maxItems: 4
+> =20
+>    clocks:
+> -    minItems: 3
+> +    minItems: 2
+>      items:
+>        - description: Main peripheral bus clock, PCLK/HCLK - AHB Bus clock
+>        - description: SDC MMC clock, MCLK
+> --=20
+> 2.34.1
+>=20
+
+--ZNWDsuAgtxaqtp9A
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOjG5AAKCRB4tDGHoIJi
+0giUAQDP0J2VGCvYJbWzw6NE42utrM2bU44XWNLv1LGnLLFE3wD+Mh6DsbRpHdnx
+dyRzV3v06uiDJWyquL8G9cn3F/maXw0=
+=c5cy
+-----END PGP SIGNATURE-----
+
+--ZNWDsuAgtxaqtp9A--
