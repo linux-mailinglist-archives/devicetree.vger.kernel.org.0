@@ -2,217 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C59F57882FE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 11:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE13788303
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 11:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231529AbjHYJHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S237354AbjHYJHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 25 Aug 2023 05:07:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34264 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234042AbjHYJGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 05:06:34 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 37252210D;
-        Fri, 25 Aug 2023 02:06:07 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.02,195,1688396400"; 
-   d="scan'208";a="173958064"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 25 Aug 2023 18:05:23 +0900
-Received: from localhost.localdomain (unknown [10.226.92.49])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 6DA504013513;
-        Fri, 25 Aug 2023 18:05:20 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v4] arm64: dts: renesas: rz-smarc-common: Use versa3 clk for audio mclk
-Date:   Fri, 25 Aug 2023 10:05:18 +0100
-Message-Id: <20230825090518.87394-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S244234AbjHYJHA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 05:07:00 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E515C212C;
+        Fri, 25 Aug 2023 02:06:44 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 86D7681BB;
+        Fri, 25 Aug 2023 17:06:43 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Aug
+ 2023 17:06:43 +0800
+Received: from [192.168.125.127] (113.72.145.205) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 25 Aug
+ 2023 17:06:42 +0800
+Message-ID: <5450650c-3750-a0ee-72a1-bfa0a4545e0a@starfivetech.com>
+Date:   Fri, 25 Aug 2023 17:06:36 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 09/11] dt-bindings: PCI: Add StarFive JH7110 PCIe
+ controller
+To:     Rob Herring <robh@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-pci@vger.kernel.org>,
+        Kevin Xie <kevin.xie@starfivetech.com>,
+        <linux-riscv@lists.infradead.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84s?= =?UTF-8?Q?ki?= <kw@linux.com>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Conor Dooley <conor@kernel.org>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        <linux-kernel@vger.kernel.org>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        <devicetree@vger.kernel.org>
+References: <20230814082016.104181-1-minda.chen@starfivetech.com>
+ <20230814082016.104181-10-minda.chen@starfivetech.com>
+ <169228685644.1140409.12427674208274594176.robh@kernel.org>
+Content-Language: en-US
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <169228685644.1140409.12427674208274594176.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.205]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently audio mclk uses a fixed clk of 11.2896MHz (multiple of 44.1kHz).
-Replace this fixed clk with the programmable versa3 clk that can provide
-the clocking to support both 44.1kHz (with a clock of 11.2896MHz) and
-48kHz (with a clock of 12.2880MHz), based on audio sampling rate for
-playback and record.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v3->v4:
- * Dropped clock-output-names from dtsi files.
- * Updated example with dropping clock-output-names.
-v2->v3:
- * No change.
-  ref: https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230817090810.203900-4-biju.das.jz@bp.renesas.com/
-v1->v2:
- * Added this patch as part of this series.
- * Replaced xtal->x1-clock and x1_x2->x1.
- * Added clock-output-names.
- * Updated clock-frequency = <400000> for RZ/G2UL i2c0
- * Updated assigned-clocks and assigned-clock-rates as per bindings.
- * Replaced mclk from '<&versa3 3>'->'<&versa3 2>'.
 
- ref: https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230802122510.275420-4-biju.das.jz@bp.renesas.com/
-v1:
- ref: https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230726080832.120669-1-biju.das.jz@bp.renesas.com/
----
- .../boot/dts/renesas/rz-smarc-common.dtsi     | 14 +++++------
- arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 20 ++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi | 20 ++++++++++++++++
- arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi | 24 +++++++++++++++++++
- 4 files changed, 71 insertions(+), 7 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-index a7594ba3a998..b7a3e6caa386 100644
---- a/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rz-smarc-common.dtsi
-@@ -32,12 +32,6 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
--	audio_mclock: audio_mclock {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <11289600>;
--	};
--
- 	snd_rzg2l: sound {
- 		compatible = "simple-audio-card";
- 		simple-audio-card,format = "i2s";
-@@ -55,7 +49,7 @@ cpu_dai: simple-audio-card,cpu {
- 		};
- 
- 		codec_dai: simple-audio-card,codec {
--			clocks = <&audio_mclock>;
-+			clocks = <&versa3 2>;
- 			sound-dai = <&wm8978>;
- 		};
- 	};
-@@ -76,6 +70,12 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
- 		gpios-states = <1>;
- 		states = <3300000 1>, <1800000 0>;
- 	};
-+
-+	x1: x1-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
- };
- 
- &audio_clk1 {
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-index 68eab8e26bf2..c05acd70f1fa 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-@@ -105,6 +105,26 @@ &i2c3 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-index 83fce96a2575..3c40b66b33b0 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
-@@ -121,6 +121,26 @@ &i2c2 {
- 
- 	status = "okay";
- 
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
- 		#sound-dai-cells = <0>;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-index 8eb411aac80d..dacf35c16648 100644
---- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc.dtsi
-@@ -20,6 +20,30 @@ &cpu_dai {
- 	sound-dai = <&ssi1>;
- };
- 
-+&i2c0 {
-+	clock-frequency = <400000>;
-+
-+	versa3: versa3@68 {
-+		compatible = "renesas,5p35023";
-+		reg = <0x68>;
-+		#clock-cells = <1>;
-+		clocks = <&x1>;
-+
-+		renesas,settings = [
-+			80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+			00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+			80 b0 45 c4 95
-+		];
-+
-+		assigned-clocks = <&versa3 0>, <&versa3 1>,
-+				  <&versa3 2>, <&versa3 3>,
-+				  <&versa3 4>, <&versa3 5>;
-+		assigned-clock-rates = <24000000>, <11289600>,
-+				       <11289600>, <12000000>,
-+				       <25000000>, <12288000>;
-+	};
-+};
-+
- &i2c1 {
- 	wm8978: codec@1a {
- 		compatible = "wlf,wm8978";
--- 
-2.25.1
-
+On 2023/8/17 23:40, Rob Herring wrote:
+> 
+> On Mon, 14 Aug 2023 16:20:14 +0800, Minda Chen wrote:
+>> Add StarFive JH7110 SoC PCIe controller dt-bindings.
+>> JH7110 using PLDA XpressRICH PCIe host controller IP.
+>> 
+>> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+>> ---
+>>  .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++++++++++++++++
+>>  1 file changed, 120 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+>> 
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+Hi Rob
+Thanks. 
+I see other PCIe maintainer have not reviewed PCIe driver codes(or no coments).
+Could you help to review PCIe driver codes patches? (I just commit new version 4). Thanks.
