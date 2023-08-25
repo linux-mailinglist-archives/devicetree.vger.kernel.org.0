@@ -2,120 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E1467890C1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA4477890DB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:55:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231489AbjHYVum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 17:50:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
+        id S230148AbjHYVy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 17:54:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbjHYVub (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:50:31 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACBC226B2
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:50:28 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2bcfdadd149so3064951fa.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:50:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693000227; x=1693605027;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+Mz9+fpZx1tjNK+xOkOAndKZeMYceki5AhX4Yupxzi8=;
-        b=RtmpenEjfPw0S5egvuMHV18PfDNTJq5VtKvu6ML3PP9bpQREs3fQVLTojRajlZNYiW
-         M65JZGiLyd20PHYJ9rai2On87K3K7Eylxfb75dW/cbNggNv5YbCKMo+/HzObQBgCGDuj
-         7W/ScLW17Efx+J9Ws4AP2u5qA2gopQ0Vw5uoTRKj56VGq7ddg7+ulzJjw2OegLEfVjxJ
-         Y4eDfvqQt2lUEVfkyr6ac9mf3rsgvIxqrZy3XbIOhljDB1qui9H/R+KnT/PzsToXJd3x
-         94YzkB0eiQlNaFDnOSkfL1Oa1g2yZ2XsOPhIUZmYIBzCEuFP8rOhwnjVJ8O78RLHSmkJ
-         xD2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693000227; x=1693605027;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+Mz9+fpZx1tjNK+xOkOAndKZeMYceki5AhX4Yupxzi8=;
-        b=fuPubTM7crsQtqmn2+Qrz9ErcPwved8PLQpNMr8UsV3Aw9mzKJu7NHXlz9MbxchzPu
-         y+sLrdvvWbicOh3efebqBEqyPNTDaxTRNmJ2EYGzyRvHXZcnbEDbVHE8w9yodJcn8jIe
-         IFzkxoKk7yzUEGB7VAsoT+oAG16aTgJXt/YzIxbs6GULBYZMQ2bSxi8kUtQcRe0QqpY3
-         aVCn1OUXc9aNqEeLdVIcHp3LKkIFC99GUZd8KAzLYpr6n2i/KFaa2Ad0lTMGVG2EaIXe
-         +jFACRjR6V1rX5qc5xX+d0ZoEA198hwomD7pP4SOuSDSMos3Ug1aDp0L706P7r4OQSS2
-         ug9g==
-X-Gm-Message-State: AOJu0Yyp05jjb8TcumwhFaaE4jvjlWFvr85NAVOlSUkvFi5osjLeUeoi
-        SLt7Cv3bz3W+Gf75DV4fJ+EdYg==
-X-Google-Smtp-Source: AGHT+IHMW76STZgZFzyBlduh4MYLa7jke3H9zQq1Bx/eCtVVlv7RkomldiiglMtTwQUkittNPbwprQ==
-X-Received: by 2002:a05:6512:104e:b0:4ff:990a:5d2e with SMTP id c14-20020a056512104e00b004ff990a5d2emr15928284lfb.20.1693000226984;
-        Fri, 25 Aug 2023 14:50:26 -0700 (PDT)
-Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
-        by smtp.gmail.com with ESMTPSA id a27-20020a056512021b00b004fe3512e26dsm436740lfo.291.2023.08.25.14.50.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 14:50:26 -0700 (PDT)
-Message-ID: <3d1d8fa9-e883-46bd-95cd-a1bed881bf32@linaro.org>
-Date:   Fri, 25 Aug 2023 23:50:26 +0200
+        with ESMTP id S231539AbjHYVya (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:54:30 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9C23126AF
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:54:26 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 46A24D75;
+        Fri, 25 Aug 2023 14:55:06 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 971453F762;
+        Fri, 25 Aug 2023 14:54:23 -0700 (PDT)
+Date:   Fri, 25 Aug 2023 22:53:26 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chris Morgan <macromorgan@hotmail.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
+        heiko@sntech.de, uwu@icenowy.me, daniel@ffwll.ch,
+        airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
+        noralf@tronnes.org, samuel@sholland.org, jernej.skrabec@gmail.com,
+        wens@csie.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH V3 6/8] ARM: dts: sun8i: v3s: add EHCI and OHCI to v3s
+ dts
+Message-ID: <20230825225326.613d0052@slackpad.lan>
+In-Reply-To: <SN6PR06MB53420D67BB7E11486388637EA5E3A@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20230823212554.378403-1-macroalpha82@gmail.com>
+        <20230823212554.378403-7-macroalpha82@gmail.com>
+        <20230824222150.5a0d16e3@slackpad.lan>
+        <SN6PR06MB53420D67BB7E11486388637EA5E3A@SN6PR06MB5342.namprd06.prod.outlook.com>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8350-hdk: add missing PMICs
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230825214550.1650938-1-dmitry.baryshkov@linaro.org>
- <20230825214550.1650938-2-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <20230825214550.1650938-2-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.08.2023 23:45, Dmitry Baryshkov wrote:
-> Include configuration for several PMICs presend on the board.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Fri, 25 Aug 2023 10:58:00 -0500
+Chris Morgan <macromorgan@hotmail.com> wrote:
 
-Konrad
+Hi Chris,
+
+> On Thu, Aug 24, 2023 at 10:21:50PM +0100, Andre Przywara wrote:
+> > On Wed, 23 Aug 2023 16:25:52 -0500
+> > Chris Morgan <macroalpha82@gmail.com> wrote:
+> > 
+> > Hi Chris,
+> >   
+> > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > 
+> > > Add the EHCI and OHCI controller to the Allwinner v3s to support using
+> > > USB in host mode.  
+> > 
+> > Alright, so was it really that easy? I was afraid we left out host mode
+> > for a reason back then ....  
+> 
+> Can't speak to that, but it is working for me as both a host and a
+> gadget.
+> 
+> >   
+> > > 
+> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > ---
+> > >  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 19 +++++++++++++++++++
+> > >  1 file changed, 19 insertions(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> > > index c87476ea31e2..eb63dd274305 100644
+> > > --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> > > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> > > @@ -319,6 +319,25 @@ usbphy: phy@1c19400 {
+> > >  			#phy-cells = <1>;
+> > >  		};
+> > >  
+> > > +		ehci: usb@1c1a000 {
+> > > +			compatible = "allwinner,sun8i-v3s-ehci", "generic-ehci";
+> > > +			reg = <0x01c1a000 0x100>;
+> > > +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
+> > > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;  
+> > 
+> > Please add the link the PHY here:
+> > 			phys = <&usbphy 0>;
+> > 			phy-names = "usb";  
+> 
+> usbphy 0 doesn't work, but if I do phys = <&usbphy 1>; for here and the
+> OHCI node it does work. Is that expected/acceptable?
+
+Well, that means it doesn't work, because the V3s has only one PHY, so
+"1" is invalid, and will either be ignored or rejected (any hints in
+dmesg?)
+
+> By "doesn't work"
+> I mean the device is always in HOST mode if I use 0 and switches
+> correctly (the extcon shows HOST=0 when unplugged or plugged into my
+> computer, and shows HOST=1 if I plug in a device which I assume is
+> the desired behavior).
+
+You mean the latter part was with <usbphy 1>, and that's the same
+behaviour as without the property?
+That would mean that this part is still broken - I think somewhere in
+the PHY driver. But this is a generic issue, and not specific to the
+V3s, and your patch is just revealing it.
+
+I will try to have a look in the next few days, to find the real
+culprit.
+
+Cheers,
+Andre
+
+> > > +			status = "disabled";
+> > > +		};
+> > > +
+> > > +		ohci: usb@1c1a400 {
+> > > +			compatible = "allwinner,sun8i-v3s-ohci", "generic-ohci";
+> > > +			reg = <0x01c1a400 0x100>;
+> > > +			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> > > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
+> > > +				 <&ccu CLK_USB_OHCI0>;
+> > > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;  
+> > 
+> > ... and here.
+> > 
+> > That would be definitely the right thing to do, but please check
+> > whether it still works, especially OTG operation.
+> > 
+> > The addresses, clocks, resets and interrupts match the manual.
+> > 
+> > Cheers,
+> > Andre.
+> > 
+> >   
+> > > +			status = "disabled";
+> > > +		};
+> > > +
+> > >  		ccu: clock@1c20000 {
+> > >  			compatible = "allwinner,sun8i-v3s-ccu";
+> > >  			reg = <0x01c20000 0x400>;  
+> >   
+> 
+> Thank you,
+> Chris
+> 
+
