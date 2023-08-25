@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC44788349
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 11:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A6D7788372
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 11:22:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234334AbjHYJOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 05:14:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48710 "EHLO
+        id S238940AbjHYJWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 05:22:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244204AbjHYJOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 05:14:16 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B07A1FC4;
-        Fri, 25 Aug 2023 02:14:13 -0700 (PDT)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37P8SFHK006449;
-        Fri, 25 Aug 2023 09:13:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=YAJKLOsaabW5kcpq5RYHImstw1IHiRUm+nOWUteEFWU=;
- b=oV1PCANjq2TCFJ18JZ4oMReG4OCviFrD408nN2llEKyD5qi79gcSTFNqGMIUeri4xoVa
- ioq6mZ4V2+VlSIsOzJB1VtSDmEh3zFKTYMe6SGoBSbqI/20DvrxMGwvjGjA+ZVCwcvlF
- Qv/+Ywzl8KQ1M8X2+UHw4vuvQAHGulzr4XzqdhcHNSrd1kLIxQ+dvzHwVpIJMGmSG/ag
- PRP2eZC8F3rLhA8CsD8a5GZP0OoZTS9czbkuXpqVd16wwWDrGu0A+oUB+0mvVSunV4H+
- eUe4b1q6m1l1vJkl4rui6CO5t5pAsE10ztW4OM7HX5voiFjhQXMTjeoazUBYWKmoTaf+ UA== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3spmny0j1c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Aug 2023 09:13:48 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37P9DlM7016025
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 25 Aug 2023 09:13:47 GMT
-Received: from devipriy-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Fri, 25 Aug 2023 02:13:40 -0700
-From:   Devi Priya <quic_devipriy@quicinc.com>
-To:     <andersson@kernel.org>, <agross@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <arnd@arndb.de>, <geert+renesas@glider.be>,
-        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>
-CC:     <quic_devipriy@quicinc.com>, <quic_saahtoma@quicinc.com>
-Subject: [PATCH V2 7/7] arm64: defconfig: Build NSS Clock Controller driver for IPQ9574
-Date:   Fri, 25 Aug 2023 14:42:34 +0530
-Message-ID: <20230825091234.32713-8-quic_devipriy@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230825091234.32713-1-quic_devipriy@quicinc.com>
-References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
+        with ESMTP id S244269AbjHYJVk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 05:21:40 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCEFD1FC4
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 02:21:29 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-52889bc61b6so1107059a12.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 02:21:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692955288; x=1693560088;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BZgZaMT5PxJw7tH308zexA8qRHLlWqjM6kGNr72Z26s=;
+        b=jgOPuKgBX8LsnrVBpxagR7rRtJfRP/bebUcJD3vsbi9xMm9l58gC5cw0r9Rwle91RV
+         Wja0F4kONox6Ip3jRnT9XV1l0mvTExirg4luRv4XJDQm2JvV9/i18ZZPEhs3fb8wp/EA
+         Wxi/KVB6lDqtjacSQIuEtNyipWhI37UPSYngi9L0IhEotJPJIBsZrQPxd+O2kFkqjPap
+         Oyj83NsoppXK2usstyN2s52q7Xr8jf836fC2pwmfwgYphLNfckGneihT7c9/Z5C1tu3I
+         pJV+fMDodmM9NYPDGckACE9KsEhilTtRo1YK5WuEF22EomDIDkAmJ9enp9I9A6eEpXa/
+         D9dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692955288; x=1693560088;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BZgZaMT5PxJw7tH308zexA8qRHLlWqjM6kGNr72Z26s=;
+        b=WH6K5pjLefP4RdLTiA7i+pMySXldmDHbbKdtTAD8D108vvsERpMD5yAVw60DkZ1MEt
+         A0lKN+8UQI1eBTU2aW5aorEU2xCfQVgoooyH5yKTmdquvqvVN+wV5jv8Jh89Igsmui1d
+         6Q3uBUHiAewtkgrDV3V887YGgivVshsrPc/hW5xA2tLyMovTj87ojSbY+GaBtXJtt2Th
+         wGXqYYTM4E/OjbcCxAMDqYVd1tz6dvD7NnhhPkVyHCeiNiz3o5E79ggC+iG6QeNgx2vk
+         LHc7AUDgy38RLPaHRRHe+i74uc9drGL7lQOGcWlVgrGWQOZCVS88kp/0vZLu8CPRslVt
+         oxjQ==
+X-Gm-Message-State: AOJu0YxtwVY03/za/Vgoe94ilMErUPxTAeU1M/tVexVM4znmHtDcZfl+
+        IDjsO+ZRxv087K78Vz6a4ncnRw==
+X-Google-Smtp-Source: AGHT+IEo+aS/DfSwbspGBPf6zJxemZO9RG5G7PRer+UtxBoyL3dwDOJaiFVu4h7L5dLcZvA/9TmNCQ==
+X-Received: by 2002:a17:906:76cf:b0:9a1:b98a:c723 with SMTP id q15-20020a17090676cf00b009a1b98ac723mr9218632ejn.4.1692955287927;
+        Fri, 25 Aug 2023 02:21:27 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id ck16-20020a170906c45000b00992b8d56f3asm738608ejb.105.2023.08.25.02.21.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Aug 2023 02:21:27 -0700 (PDT)
+Message-ID: <f04b6606-6ca9-28d1-6a10-1e543a5d5fb7@linaro.org>
+Date:   Fri, 25 Aug 2023 11:21:25 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: y1e0rThRuV1Wce8yboydpfLrhI9JS-I5
-X-Proofpoint-GUID: y1e0rThRuV1Wce8yboydpfLrhI9JS-I5
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-25_07,2023-08-24_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 lowpriorityscore=0 mlxlogscore=818 impostorscore=0
- bulkscore=0 clxscore=1015 phishscore=0 suspectscore=0 malwarescore=0
- mlxscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308250079
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 09/11] dt-bindings: PCI: Add StarFive JH7110 PCIe
+ controller
+To:     Minda Chen <minda.chen@starfivetech.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-pci@vger.kernel.org,
+        Kevin Xie <kevin.xie@starfivetech.com>,
+        linux-riscv@lists.infradead.org,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84s?= =?UTF-8?Q?ki?= <kw@linux.com>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Conor Dooley <conor@kernel.org>,
+        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        linux-kernel@vger.kernel.org,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        devicetree@vger.kernel.org
+References: <20230814082016.104181-1-minda.chen@starfivetech.com>
+ <20230814082016.104181-10-minda.chen@starfivetech.com>
+ <169228685644.1140409.12427674208274594176.robh@kernel.org>
+ <5450650c-3750-a0ee-72a1-bfa0a4545e0a@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5450650c-3750-a0ee-72a1-bfa0a4545e0a@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Build Qualcomm IPQ9574 NSSCC driver.
+On 25/08/2023 11:06, Minda Chen wrote:
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>
+> Hi Rob
+> Thanks. 
+> I see other PCIe maintainer have not reviewed PCIe driver codes(or no coments).
+> Could you help to review PCIe driver codes patches? (I just commit new version 4). Thanks.
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
----
- Changes in V2:
-	- Build IPQ9574 NSSCC driver as a module
+Please relax, and help out by reviewing other patches on the mailing
+lists in order to relieve the burden of maintainers and move your
+patches higher up the list.
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5315789f4868..a6406eef43c8 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1211,6 +1211,7 @@ CONFIG_IPQ_GCC_5018=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
-+CONFIG_IPQ_NSSCC_9574=m
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_GCC_8994=y
- CONFIG_MSM_GCC_8996=y
--- 
-2.34.1
+Best regards,
+Krzysztof
 
