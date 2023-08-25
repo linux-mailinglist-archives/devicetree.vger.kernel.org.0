@@ -2,149 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 228EE7886AB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17F947886B5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:12:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242624AbjHYMK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:10:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56974 "EHLO
+        id S242831AbjHYMMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 08:12:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244418AbjHYMKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:10:47 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25A69E6B;
-        Fri, 25 Aug 2023 05:10:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1692965445; x=1724501445;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7WOd2tGjgKOiq0ZivZVRqSVMJmTMZHLUBWKTtr0MnyE=;
-  b=iE9V7ajmWHoCs9GnNPVglRdzYJVwr3MgsLV7nyY3Cauj5yaSgCK4Mr/U
-   KNq51KkZ3vVjU6rvGxQVHRx6sH0X3ucknVER0J7o/qT3X0UkLpqhoBXzA
-   cZhVMgm6pVI83XCgtQU39FpWl031htxEhobE/U37W62x2xwI3yssR8HjP
-   waqfqLckQzejT/BXuUsLKtkdp0snJkLIJscz49nrUBFba1nqhXuioxKo9
-   ORqo0QZqeymT1IfVVH7243SPkbGVuVV8gPkDFoEuD5TxZ+wf+I7Newlxr
-   OI0sGDqSgDHE/W0h4XU8+VMbxyCioGFn6T0472OccvuhwPyrKFjFNq8Wi
-   w==;
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
-   d="asc'?scan'208";a="231709314"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Aug 2023 05:10:44 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 25 Aug 2023 05:09:57 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 25 Aug 2023 05:09:54 -0700
-Date:   Fri, 25 Aug 2023 13:09:13 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Minda Chen <minda.chen@starfivetech.com>
-CC:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
+        with ESMTP id S244621AbjHYML4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:11:56 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B30F1FD7
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:11:54 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4ff933f9ca8so1291952e87.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:11:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692965513; x=1693570313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qhIkzsyTKm670j6OXVUadyYcO048MWKmieMFi0kdsqU=;
+        b=oZ2Ey6AHeynFNLLoCwmcpV/iHUNu/GVg4qpIbNpwiA7oe1toexTbxTXhSQQD7/zQ98
+         5MIGiFL1oH/UueBNsNFT/tSN4BR06ivWpe0xbrVCjctcGYbzzlWnWW9pNxjZY/WLY4lV
+         AQFykQ78Qh0+ZsM6slzxVKSDWkm0Ht/v6+C8r2U3Qu0LTb6B5SNHymM90EK4PUbnXOkA
+         yl1ZP2Tc64Iy9EebcB0I4Ih6gzuG3fqtoX3N2gfYi8ni/JPawTPxuxfi1UWX45qQ01Ue
+         qZMvc5K/174DINLVkmoI62PtCDyU+xD6jl5GX/WiJxmqFCVfIuA+nhaBwV55ICa/9rLs
+         D2rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692965513; x=1693570313;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qhIkzsyTKm670j6OXVUadyYcO048MWKmieMFi0kdsqU=;
+        b=Mfhep/pz8G/ahRt077ixqK4wa/M/kf+q3QnV2g/CJVC8aWqTU7iFxWIzoF0MZEhwoR
+         BenLGSkoY6Uya43LEFxBMoKZZYisVwOkpmOkqF2ZXoTXE7lCM5nOw3Ek0clbrvxKuV+z
+         EvWD95qjoE3y8QOgZI4XBPwODAevK8BjRzphsgj1lwUHYMh5ReR10EURJHkmNv+vG5tJ
+         T8ckqDcvmUKt+TReZ8WSDq/3GMlxncj7DGsZptIRP+V1rHotGmBTwYNdaVmM5ljFAvUc
+         Q80egNru62f6PgGhF7Na8/vOndIqJ08r8diMI/uubwdBkVMCGfygT5cpPXTcVl58isD/
+         waUA==
+X-Gm-Message-State: AOJu0YxGLAZu6reM/AnVr6BUrTPIoVQp734P+l7Gx8i5ZNrTPx/hPNpl
+        pn5TD+lod2hXVA+lg+Cebd/8PQ==
+X-Google-Smtp-Source: AGHT+IELNGy+ZJX03ObKjQP+MzDwqRIy5Q5gtBaOdGmbJfuToQbeiU29jbARS+FjeuGm36A8/pxAhw==
+X-Received: by 2002:a05:6512:36d2:b0:500:9524:f733 with SMTP id e18-20020a05651236d200b005009524f733mr5221093lfs.20.1692965512717;
+        Fri, 25 Aug 2023 05:11:52 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id l5-20020a056402124500b005222c6fb512sm952311edw.1.2023.08.25.05.11.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Aug 2023 05:11:52 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v4 08/11] PCI: microchip: Move IRQ init functions to
- pcie-plda-host.c
-Message-ID: <20230825-sip-pentagon-e1760dcfce58@wendy>
-References: <20230825090129.65721-1-minda.chen@starfivetech.com>
- <20230825090129.65721-9-minda.chen@starfivetech.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Jianhua Lu <lujianhua000@gmail.com>,
+        Del Regno <angelogioacchino.delregno@somainline.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/3] dt-bindings: display: panel: add common dual-link schema
+Date:   Fri, 25 Aug 2023 14:11:40 +0200
+Message-Id: <20230825121142.101759-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3Mzadswy/UgLR3pW"
-Content-Disposition: inline
-In-Reply-To: <20230825090129.65721-9-minda.chen@starfivetech.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---3Mzadswy/UgLR3pW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Add schema with common properties shared among dual-link panel ICs.
 
-Daire, can you look at this one too please?
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On Fri, Aug 25, 2023 at 05:01:26PM +0800, Minda Chen wrote:
-> Move IRQ init functions to pcie-plda-host.c.
-> mc_handle_event() is merged to plda_handle_event().
-> Set most of the IRQ functions to static in pcie-plda-host.c
->=20
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+---
 
-> -void plda_handle_event(struct irq_desc *desc)
-> +static void plda_handle_event(struct irq_desc *desc)
->  {
->  	struct plda_pcie_rp *port =3D irq_desc_get_handler_data(desc);
->  	struct irq_chip *chip =3D irq_desc_get_chip(desc);
-> @@ -264,14 +268,18 @@ void plda_handle_event(struct irq_desc *desc)
-> =20
->  	chained_irq_enter(chip, desc);
-> =20
-> -	val =3D readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
-> -	origin =3D val;
-> -	val =3D val >> A_ATR_EVT_POST_ERR_SHIFT;
-> -	events |=3D val & 0xff;
-> -	if (origin & PM_MSI_INT_INTX_MASK)
-> -		events |=3D BIT(EVENT_PM_MSI_INT_INTX);
-> -	val =3D (origin >> PM_MSI_INT_MSI_SHIFT) & 0xf;
-> -	events |=3D val << EVENT_PM_MSI_INT_MSI;
-> +	if (port->ops && port->ops->get_events) {
+Changes since v3:
+1. Re-phrase description of binding and ports (Laurent)
+v3: https://lore.kernel.org/all/20230823081500.84005-1-krzysztof.kozlowski@linaro.org/
 
-I still don't love the dancing here. Can you just always register a
-callback?
+Changes since v2:
+1. New Patch
+v2: https://lore.kernel.org/all/20230502120036.47165-1-krzysztof.kozlowski@linaro.org/
+v1: https://lore.kernel.org/all/20230416153929.356330-1-krzysztof.kozlowski@linaro.org/
+---
+ .../display/panel/panel-common-dual.yaml      | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
 
-Thanks,
-Conor.
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+new file mode 100644
+index 000000000000..cc7ea3c35c77
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/panel-common-dual.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/panel-common-dual.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common Properties for Dual-Link Display Panels
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
++
++description:
++  Properties common for Panel IC supporting dual link panels.  Devices might
++  support also single link.
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    additionalProperties: false
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: First link
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description: Second link
++
++      "#address-cells": true
++      "#size-cells": true
++
++    required:
++      - port@0
++
++# Single-panel setups are still allowed.
++oneOf:
++  - required:
++      - ports
++  - required:
++      - port
++
++additionalProperties: true
+-- 
+2.34.1
 
-> +		events =3D port->ops->get_events(port);
-> +	} else {
-> +		val =3D readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
-> +		origin =3D val;
-> +		val =3D val >> A_ATR_EVT_POST_ERR_SHIFT;
-> +		events |=3D val & 0xff;
-> +		if (origin & PM_MSI_INT_INTX_MASK)
-> +			events |=3D BIT(EVENT_PM_MSI_INT_INTX);
-> +		val =3D (origin >> PM_MSI_INT_MSI_SHIFT) & 0xf;
-> +		events |=3D val << EVENT_PM_MSI_INT_MSI;
-> +	}
-> =20
->  	for_each_set_bit(bit, &events, port->num_events)
->  		generic_handle_domain_irq(port->event_domain, bit);
-
---3Mzadswy/UgLR3pW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOiZ6QAKCRB4tDGHoIJi
-0vy8AQCbzdPqfIsg4Rb+K+nCGb0DwA4IC2wBkiUhYzZPvjqQLQEApoBsItvyi8Rf
-Ge4Jyp0msR/nVvWuYP8BEVG8nnZTgQI=
-=zD2O
------END PGP SIGNATURE-----
-
---3Mzadswy/UgLR3pW--
