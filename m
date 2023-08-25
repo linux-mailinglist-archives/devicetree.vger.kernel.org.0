@@ -2,127 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAA1D788689
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92685788691
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 14:04:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239699AbjHYMBp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 08:01:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58416 "EHLO
+        id S232014AbjHYMDx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 08:03:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239941AbjHYMBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:01:37 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC39F198E
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:01:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1692964895; x=1724500895;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ZeZyfeKGvQL1c/itO010dweirYa6Wn++IE4GN+lXY78=;
-  b=uLcCzs8UtkhbzBbIJXwvw7CcbMs9Gmf+/lVaNxTS3Jta3nTkJXQh5kLI
-   KU6DuNadq1WSlC2kdS6GzRV6+JdmQd1DwMkvrHnr5NvaUd8lU+FEjNTaD
-   fYVWb/WmFkO3DtU2ZCyNYSYlEjexxcPsCv5hOXCKlScUbSwS6e6oNX0bm
-   QBWDqOD+AITwblaVXERh23ef+/7Z3tSGR4TLQW0VzD9E7TsPREErKpMWS
-   l8I0LSUbZV7kDTEpG3/aRarfiuHabdIiVdMqBnHwRAKn11cCkt4D8Uxyc
-   EawGHRnhnkYClCXS2qT0gfMQoK4EN3hRZEKjaddZl/gDYltzDUZ2gPQuC
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; 
-   d="asc'?scan'208";a="1305684"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Aug 2023 05:01:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 25 Aug 2023 05:01:33 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 25 Aug 2023 05:01:31 -0700
-Date:   Fri, 25 Aug 2023 13:00:50 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>
-CC:     Rob Herring <robh@kernel.org>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
+        with ESMTP id S241163AbjHYMDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 08:03:33 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2912102
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:03:30 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4ff9b389677so1225591e87.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 05:03:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692965009; x=1693569809;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=taeO1AEsh0uP1pYQ9HGpFayxmjVLAo8NHH2wQoNtLFM=;
+        b=rWU4iDDCZLjgqVS9HLbAQ2EG6MMqAi5q6+Twqdz6EWhrB8VyvX+wp5GTV7qVtAA0wx
+         brwTIf7sgBl0ZQDb03cMVwIcWUJThoC/yh3YMFX4oAZpSaG8Wkaq24H0R5Bj2dNCASj6
+         B8TLEYAUnr+vmQWQCAJWD/i7B39IAY2w4udR+Mb7ayGgSPGUf+teUxI4RBkTdRzfxa3W
+         dRwXisdZORU4D0SPEIGtnElzHfxi9+N2x4OV7AiuQ5raQ0DuWAvUG/NF4rTsJiR28mw8
+         H1Odj3dvv2gZz7Zu2Twew6WeC6ii4iHrVFr9kJLrtvtFCQH9g9EWYi0ktLK+Q88crxLu
+         VHFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692965009; x=1693569809;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=taeO1AEsh0uP1pYQ9HGpFayxmjVLAo8NHH2wQoNtLFM=;
+        b=KJpuh3AJHAaaU0ZyvYmalt4jM+3kYEOa7W7FuhczJ6LhhtjVb8t/H5KolsSACKDgS6
+         HCZZntfOcQ9wSK07yIba8mipV7J02/F7XCyrzSJuPwXZ/1xvsKAUn9gQxXUPHeie4Lrw
+         yT3c9tF/Jl8cBf0fhhEwlVES9Ep6DBktDSqgvmxvNLxsP/Q0R5d9o4AzG02BedUuA+vH
+         7dIaRdyLYtUE5l4gEBSIEB33wO7eRWMdyi9TOj6xp7LVg5q21kUYuLrAoROZC2Y8WkeK
+         FmbOaI8l+POmM5eklx0I3IlrM3HekW3youZhZVDsfTQWYt5C7+IxP/AFrCdF9FKfrCAI
+         UCIw==
+X-Gm-Message-State: AOJu0YzdBCcBZp4xK5sPH1TF7EI+sFA/FDt51PztgxAvJgv4ltex2H0F
+        anu0c0dhjXvUS/HkdMsAErtlNw==
+X-Google-Smtp-Source: AGHT+IHHPBfuWhEiDj0swCd1J9tLfn5NS1BOsfFV68R8Yh/Yt91I78MzNDbsdRnRJzelo10BvYmKmw==
+X-Received: by 2002:ac2:5a5e:0:b0:500:761b:72ff with SMTP id r30-20020ac25a5e000000b00500761b72ffmr11352182lfn.55.1692965008885;
+        Fri, 25 Aug 2023 05:03:28 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id t21-20020aa7d715000000b00523a43f9b1dsm940874edq.22.2023.08.25.05.03.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Aug 2023 05:03:28 -0700 (PDT)
+Message-ID: <851aa91b-dda9-c2df-0e8e-66dec6756899@linaro.org>
+Date:   Fri, 25 Aug 2023 14:03:26 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 2/3] dt-bindings: media: Add compatible for Meson-S4 IR
+ Controller
+Content-Language: en-US
+To:     zelong dong <zelong.dong@amlogic.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
-        <loongson-kernel@lists.loongnix.cn>,
-        Xuerui Wang <kernel@xen0n.name>, <loongarch@lists.linux.dev>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-Subject: Re: [PATCH v4 3/7] LoongArch: Allow device trees to be built into
- the kernel
-Message-ID: <20230825-hypocrite-smoking-cc6ce8c2936b@wendy>
-References: <cover.1692783907.git.zhoubinbin@loongson.cn>
- <3e69929008c8190cff331941dd4d34f748e5e44a.1692783907.git.zhoubinbin@loongson.cn>
- <20230823194250.GA2768550-robh@kernel.org>
- <CAMpQs4KQzXYDsMJesGGRVX=e_psyiik-Th2Y0CV=keU+-v86mQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="KsqxT0t8TAxpVqE1"
-Content-Disposition: inline
-In-Reply-To: <CAMpQs4KQzXYDsMJesGGRVX=e_psyiik-Th2Y0CV=keU+-v86mQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
+        kelvin.zhang@amlogic.com
+References: <20230825115310.39993-1-zelong.dong@amlogic.com>
+ <20230825115310.39993-3-zelong.dong@amlogic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230825115310.39993-3-zelong.dong@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---KsqxT0t8TAxpVqE1
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 25/08/2023 13:53, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Add new compatible for Amlogic's Meson-S4 IR Controller.
+> Meson IR Controller supports hardware decoder in Meson-S4 and later SoC.
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
 
-On Thu, Aug 24, 2023 at 11:20:34AM +0800, Binbin Zhou wrote:
-> Hi Rob:
->=20
-> On Thu, Aug 24, 2023 at 3:42=E2=80=AFAM Rob Herring <robh@kernel.org> wro=
-te:
-> >
-> > On Wed, Aug 23, 2023 at 05:54:51PM +0800, Binbin Zhou wrote:
-> > > Some systems do not provide a useful device tree to the kernel at boot
-> > > time. Let's keep a device tree table in the kernel, keyed by the dts
-> > > filename, containing the relevant DTBs.
-> >
-> > Support for this in other arches was added to support legacy bootloaders
-> > with no DT support. You should not need this for a new architecture. Fix
-> > the bootloader to provide a useful DT.
-> >
-> Yes, our bootloader already supports DT.
->=20
-> Our original intention of providing kernel built-in DTS is to describe
-> all possible device information of that SoC, so that everyone can use
-> it as a reference during development; we will unlikely to add more
-> .dts files to the kernel besides the reference ones.
->=20
-> And as a reference, our built-in DTS provides the most basic bootable
-> combinations (so it is generic enough) as an alternative in case the
-> DTS in the bootloader is unexpected.
->=20
-> Does this make any sense?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I don't see how this answers the question - as far as I can tell Rob was
-asking specifically about the building the dtb into the kernel, whereas
-your response seems to talk about havint the dts files in the kernel
-tree.
+Best regards,
+Krzysztof
 
---KsqxT0t8TAxpVqE1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOiX8QAKCRB4tDGHoIJi
-0mMdAQCaaVLfZyKQ+j/RLCRL7NKg22cLE3B7zY7QFUv8jaSxEQD+POPxvl8zvCSb
-lmpG4BcHfRU8QKAVQj8AuJ57nfm8eg0=
-=9MR/
------END PGP SIGNATURE-----
-
---KsqxT0t8TAxpVqE1--
