@@ -2,162 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 027817884EE
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7C27884E0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233959AbjHYK3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 06:29:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47860 "EHLO
+        id S230439AbjHYK00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 06:26:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242589AbjHYK2m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:28:42 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ACDDE67;
-        Fri, 25 Aug 2023 03:28:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
- s=s31663417; t=1692959298; x=1693564098; i=wahrenst@gmx.net;
- bh=k5qoGE4dPXibVOr3vbK/MFYzKHRbviky7F+alf86o64=;
- h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
- b=dRmtmorqsr94xZrNHs56xNvgcXYUiF4AM6qUDzXTbwEI+491ZPPg7t7brDHAMMerHs6SzCg
- OLlZLQWvSLffPgLJlTDtqlxZS0Ut8IU925fqaEEH1OCKe+1tVdnRhSDutk62WQ8J3a5SNrl1Z
- qUDoth7HK1pUsWTPu+4Dv46Yn5DlR13nsyNtlnnCwpI31Ldrlzt627EFvyG/sg1qJh3NMwy/i
- fKN3x0WEtAKcf4JcLEo0k53UaYmaThymy+9+d1E/PZ5l5tbCvzfxJlfq048reYrf0m1ad5hnZ
- zm4mF3DZlq/jRk5476qspu+Epjqaw8PJPSgLajfdJbDfurp70uFw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MNt0M-1qKB4M2EkC-00OJA5; Fri, 25
- Aug 2023 12:22:26 +0200
-Message-ID: <f7a1252f-d043-b197-6d21-2a603d928da3@gmx.net>
-Date:   Fri, 25 Aug 2023 12:22:24 +0200
+        with ESMTP id S244407AbjHYKZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:25:58 -0400
+Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBEA213C;
+        Fri, 25 Aug 2023 03:25:55 -0700 (PDT)
+Received: by mail-ot1-x330.google.com with SMTP id 46e09a7af769-6bc57401cb9so113958a34.0;
+        Fri, 25 Aug 2023 03:25:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1692959154; x=1693563954;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lChd/SApErGIwbFJ4qqX7l4KF8OgUcq2GE8XgvnXy8g=;
+        b=nKFmeiC+68/cXbnNU/dCC08Eb25EPsfmBdqzDEppzu1+dkqW9d2Pliv/PuRY5Y88Pk
+         TOPB98C1UXa318lT3u5aLXZayyhunKfMQnq6cOdISAUX4qCuliRXw9iqOHr8ys2l9NgV
+         Zv9iv1CdRhh9KnHD/4DHAJnB9TzTbrWuMCqDm0FnnWOLOH3eDnqyvuL8IXd5kCSIYOcl
+         bDU/WlWGBwKA0W74bYZUnFPv/lbHnvCKRr4GHB37Fyn96XFTK3c1FeWH1NiQZoUY/yMG
+         JZD062TPtRHz+VYwCin96SiQeqC7j9bXCto8ZRTx/UFjIzSyM1jiBby0/JcSCqgQaCCp
+         qfug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692959154; x=1693563954;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lChd/SApErGIwbFJ4qqX7l4KF8OgUcq2GE8XgvnXy8g=;
+        b=F2IG3rHtQKc+ZaQB8IFoiy/RsL2lIbgmHeOlYrXdq8hjoFNF5/SVYVUh5XH8dDWhb2
+         rvH/POS8sMp8BhnTDGszVnX1RkP4/imGSCZGcMX/JyRFR+GHhWduoIMOWafbKq+40wQy
+         dgsbsffJ4LKzD7SPk+Jag8aOfWze8sYDqy70RmNPDBg0ea33vpc7LOqW4tjsSQmCgglW
+         Kz56wJE7UNTF0kJTdu9DSAFn9fRkJxxAjVOE0AD6YYocA4kUd3gcFLJopoYDgyahS+a6
+         m8n2fwUTlKN6UsjBbnxLQmiO4RUj8Uu4fXaHeDKhAZuFpNkV9PEFy/+VQRqJPEM0H9sh
+         CdTw==
+X-Gm-Message-State: AOJu0YzgjM95yQ9QNH+ipIybZnxMZyy3sXEgOxpage4Ka6WVv1YgLJWV
+        r2CTCOPyolSWAqaE/rh4QLlij30vP1w=
+X-Google-Smtp-Source: AGHT+IHWPt4qLGFrEuR4p/3V/GdcPng6db4OjyXoOgFLvVBiQfoPtK+uNfbKj9toAxamYnGYlb8tXg==
+X-Received: by 2002:a05:6870:ecab:b0:1c8:bbd0:2fd5 with SMTP id eo43-20020a056870ecab00b001c8bbd02fd5mr22645791oab.4.1692959154289;
+        Fri, 25 Aug 2023 03:25:54 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:3d89:37d3:ba11:1a82])
+        by smtp.gmail.com with ESMTPSA id eb37-20020a056870a8a500b001bf3942ea12sm835916oab.1.2023.08.25.03.25.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Aug 2023 03:25:53 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     daniel.lezcano@linaro.org
+Cc:     rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/4] dt-bindings: thermal-zones: Document critical-action
+Date:   Fri, 25 Aug 2023 07:24:50 -0300
+Message-Id: <20230825102453.836627-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v5 06/11] firmware: imx: add driver for NXP EdgeLock
- Enclave
-To:     Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
-        conor+dt@kernel.org, pierre.gondois@arm.com, ping.bai@nxp.com,
-        xiaoning.wang@nxp.com, wei.fang@nxp.com, peng.fan@nxp.com,
-        haibo.chen@nxp.com, festevam@gmail.com, linux-imx@nxp.com,
-        davem@davemloft.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
-        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
-        aisheng.dong@nxp.com, V.Sethi@nxp.com
-Cc:     kernel test robot <lkp@intel.com>
-References: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
- <20230823073330.1712721-7-pankaj.gupta@nxp.com>
-Content-Language: en-US
-From:   Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20230823073330.1712721-7-pankaj.gupta@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:/3g46wka99ef0GHi5iaaBRud3jyEYUA2Ob5RlCoyBKXFgTpkQ38
- YDbKUnMLWCm2bCShYx8R/zMzNMaefhywhlF1iA7rQdCFt7OLFSCwezOVJPlNBP5sW+YDegT
- ezOfZdRXi1mLuBIXM1mHqWgulvAN530QLJ144juN5oEMm5aCg6I2RxrtuATp5nPZ8NzsSty
- 4XjT7/pR/g5r2fwWfdNOg==
-UI-OutboundReport: notjunk:1;M01:P0:SSlk7Glwg3Y=;LRNkAL1tbpSrTUjcTWD5jtK0lvI
- RpYbugfMwFBrVqqZNMylCBWz737SKrNF/IdelQZP7wXS9dbMRdouTUCJABMiZJzHOf0hsD9GE
- Vv/StWqZyXxMxWUIinEx0LM9d4cKpeM3SJHGSGbIiQrJOoJW/HEejumkqGmi0LbyOTTdyqWQs
- 7Z6kvJ0TPgJ8ZpCe0fasDrCU2WyH4dKgSbHe32s7OdzSFYxZ8VDslrCKKKTk2OwY7nn91h5h6
- YANJ0Cp/niQ5g2BWBdafiDVBbcEWpKXfHFlCR5r8vYLeKhXCsbOX+9RFcEyHh3dOJBL6rJXiS
- F82zOnOx7EBUqLdQOPlY8IwiST+SfNjp/CkjARhaZ6AJcw0XXvZvAV+6PF8DQd8amy/4iQ46L
- rGF3hSjAT19tkzO4+fhBGYJ8QuWuZ1R6lvsh8p56FYyVPFiZaKDZAgHhl7F8B/SJ0DDayNz6K
- hVNr1bPd7/lrfmdSS9E5G8KFJtpdspcyhqbL2Wkn3Ikntxlepdb3YAuR+jHcu8TaHdhXPM0O7
- rkGO5quB3zyRA1EfmkcCrlvfR7CYZyPqXTCLsIXHCJ9z5bW7wm3YvKvCxn5k1Yia+P2M61YDR
- fhWBRnIp9LByGx6tEjBJz/qzyVOq1pphJ/2YW2pW4wh9WRvKMhqRuC3OCqydDJ4vQu+ECuTvc
- gSTmxtipslgZuiMA0Jcp5IYZGMCGIgTvzzWkfFJ/Ox/z89oM6kMFrb1Gko9Fg2rsG9X6dBJTW
- 2dgnTbodNE+oC/kYhfhSJaENkJIlEmSU4auePaeYTJ0XP+XN3i0+X4NmHYaw4xnfex5KTlUUQ
- WqFroWZkY/CHFB7K2nTZHHkhI3EMvM8AUGOZj/ZJ8d1S6lIQSbVawQDpkQjWM30U2qyfyP+mh
- Z03XnknkN5bPMhTvspEyBrTGdHN6ah5AZAXK+MW3UwtlowfNs16ZHvFksGrFTyVZJHMz1vwIJ
- LHbVEpR/Wu86fC5NDsuFrGBRn2A=
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pankaj,
+From: Fabio Estevam <festevam@denx.de>
 
-Am 23.08.23 um 09:33 schrieb Pankaj Gupta:
-> The Edgelock Enclave , is the secure enclave embedded in the SoC
-> to support the features like HSM, SHE & V2X, using message based
-> communication channel.
->
-> ELE FW communicates on a dedicated MU with application core where
-> kernel is running. It exists on specific i.MX processors. e.g.
-> i.MX8ULP, i.MX93.
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes:https://lore.kernel.org/oe-kbuild-all/202304120902.bP52A56z-lkp@i=
-ntel.com
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> ---
->   Documentation/ABI/testing/se-cdev         |   29 +
->   drivers/firmware/imx/Kconfig              |   12 +
->   drivers/firmware/imx/Makefile             |    2 +
->   drivers/firmware/imx/ele_base_msg.c       |   62 ++
->   drivers/firmware/imx/ele_common.c         |   34 +
->   drivers/firmware/imx/ele_common.h         |   21 +
->   drivers/firmware/imx/se_fw.c              | 1201 +++++++++++++++++++++
->   drivers/firmware/imx/se_fw.h              |  168 +++
->   include/linux/firmware/imx/ele_base_msg.h |   37 +
->   include/linux/firmware/imx/ele_mu_ioctl.h |   52 +
->   10 files changed, 1618 insertions(+)
->   create mode 100644 Documentation/ABI/testing/se-cdev
->   create mode 100644 drivers/firmware/imx/ele_base_msg.c
->   create mode 100644 drivers/firmware/imx/ele_common.c
->   create mode 100644 drivers/firmware/imx/ele_common.h
->   create mode 100644 drivers/firmware/imx/se_fw.c
->   create mode 100644 drivers/firmware/imx/se_fw.h
->   create mode 100644 include/linux/firmware/imx/ele_base_msg.h
->   create mode 100644 include/linux/firmware/imx/ele_mu_ioctl.h
-...
-> +
-> +int ele_get_info(struct device *dev, phys_addr_t addr, u32 data_size)
-> +{
-> +	struct ele_mu_priv *priv =3D dev_get_drvdata(dev);
-> +	int ret;
-> +	unsigned int tag, command, size, ver, status;
-> +
-> +	ret =3D plat_fill_cmd_msg_hdr(priv,
-> +				    (struct mu_hdr *)&priv->tx_msg.header,
-> +				    ELE_GET_INFO_REQ, 16);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->tx_msg.data[0] =3D upper_32_bits(addr);
-> +	priv->tx_msg.data[1] =3D lower_32_bits(addr);
-> +	priv->tx_msg.data[2] =3D data_size;
-> +	ret =3D imx_ele_msg_send_rcv(priv);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	tag =3D MSG_TAG(priv->rx_msg.header);
-> +	command =3D MSG_COMMAND(priv->rx_msg.header);
-> +	size =3D MSG_SIZE(priv->rx_msg.header);
-> +	ver =3D MSG_VER(priv->rx_msg.header);
-> +	status =3D RES_STATUS(priv->rx_msg.data[0]);
-> +	if (tag =3D=3D priv->rsp_tag &&
-> +	    command =3D=3D ELE_GET_INFO_REQ &&
-> +	    size =3D=3D ELE_GET_INFO_REQ_MSG_SZ &&
-> +	    ver =3D=3D ELE_BASE_API_VERSION &&
-> +	    status =3D=3D priv->success_tag)
-> +		return 0;
-except of the coding style, i won't recommend this error handling. In
-case a user report a failure of ele_get_info(), we need to figure out
-which of these conditions failed. Why not check the conditions step by
-step and give a detailed error message.
+Document the critical-action property to describe the thermal
+action that will be taken after the critical temperature is reached.
 
-The same applies to the rest of the series.
+The possible values are:
 
-Best regards
-> +
-> +	return -EINVAL;
-> +}
->
+- 0 for shutdown
+- 1 for reboot.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../devicetree/bindings/thermal/thermal-zones.yaml        | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 4f3acdc4dec0..782cbb4ea487 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -75,6 +75,14 @@ patternProperties:
+           framework and assumes that the thermal sensors in this zone
+           support interrupts.
+ 
++      critical-action:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        description:
++          The action that happens after the critical temperature is reached.
++          Possible values are 0 for shutdown and 1 for reboot.
++
++        enum: [ 0, 1 ]
++
+       thermal-sensors:
+         $ref: /schemas/types.yaml#/definitions/phandle-array
+         maxItems: 1
+-- 
+2.34.1
+
