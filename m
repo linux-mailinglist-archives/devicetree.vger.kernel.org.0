@@ -2,183 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93DCD788ECC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 20:37:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B458788EE6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 20:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbjHYSgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 14:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35014 "EHLO
+        id S229587AbjHYSqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 14:46:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbjHYSgN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 14:36:13 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EFA2210B
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:36:11 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcc187e0b5so18511431fa.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:36:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692988570; x=1693593370;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oLEWMSPoyDheV9aTWoheYwMz3Vo4cd285Ih/pF7lT2I=;
-        b=pJQyhkVl8YcIipcJ9Pzn13f/51SIzHseZSrVHyxc/scyKp7w5fsxK3cIEPlHjeZrHt
-         7ZHxrE1tArirkg5nPVfBjrKajoBefPz9yQoQU7YmcMTMdctl+jxM9qQG1qE3w7JUzqpd
-         9C9oRpX6KCuD5AHYQOp1EkdHw28eBKFRSPcNNu/W4XikXdqZjC3Bucov4M9YlV7Jw6TS
-         gCMhOKiV8lYDps6chtAYxjD63Ef33wB6O93grYOZxwsEdgFcc/X6vLbxn56egIBLPoi+
-         fQfc2u4GWN8fSQieypYlVtMGYZwbmWbMEkdWfOkMOi1cg4fKsAa5t+VQIiPPuRE6AmlL
-         Zkjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692988570; x=1693593370;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oLEWMSPoyDheV9aTWoheYwMz3Vo4cd285Ih/pF7lT2I=;
-        b=BHMsuWu00QCvhxMLo9ZMF+Uem2zWHvXabQDyprlpsGXUSsK/Wf+ZLOhGLiIETaZh2t
-         7DJZXPDqX/o6ZVrVlaY9m5MN6Q5eKKAT0FYq6RLEMB3Fu+HX8eeKkjKm64ZXTiyIRaoN
-         9j+aKaJcGyoDAFWuO6B3CZiAyJlGp6l+Kw2QbuKSRtTUHxJrRlOMwYbdVi/RXQa/7Nql
-         HRqVtcoCUkq6UlY8sNGl1JT9RKgdfXYV8cWavay34BIunMoHMnAHaqJGRTBNwSKX6JIq
-         Y8N7ier2NiD10JNo36n0qMfIkOMjgbEXAW2Y0IIhF6bbdSL/oJcJAYmyyccpPnuxP4Hn
-         mb8A==
-X-Gm-Message-State: AOJu0Yzhn5x/h8xerJ99iNGJOC5Vg+9ARHXSoSWBWRqm8WfZgb4T9Ts+
-        YLeNZjugpF3JnrZey0tFIS5eaQ==
-X-Google-Smtp-Source: AGHT+IHR8jriiddvsNutBDC/1xD3vmu1DzeYiRUzYUGOZrKMh2tFjAv8dxJQY+RNx+WKq9/5jF2DQw==
-X-Received: by 2002:a2e:3610:0:b0:2bc:dea8:ba75 with SMTP id d16-20020a2e3610000000b002bcdea8ba75mr6346933lja.26.1692988569683;
-        Fri, 25 Aug 2023 11:36:09 -0700 (PDT)
-Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
-        by smtp.gmail.com with ESMTPSA id n12-20020a2e878c000000b002b787442f03sm438279lji.88.2023.08.25.11.36.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 11:36:09 -0700 (PDT)
-Message-ID: <cec27271-fe3f-44d2-83e5-3f96f1e50178@linaro.org>
-Date:   Fri, 25 Aug 2023 20:36:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sdm845: cheza doesn't support LMh
- node
-Content-Language: en-US
-To:     Doug Anderson <dianders@chromium.org>,
-        David Heidelberg <david@ixit.cz>
-Cc:     cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S230318AbjHYSqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 14:46:00 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9995CD2;
+        Fri, 25 Aug 2023 11:45:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1692989157; x=1724525157;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Bdi3UHV6cWAJbUhLUlM5vlImO4KnMAKOGjs965oD0OI=;
+  b=RahZIZ63Nhvm+8cMRBpJpRl2rXFVxEMktYlHlpkOCdVmL1Dys5k/VUVa
+   DrnS0spn/9T7SPlpdBFSezcoSsVGzh/AjBYYtRWNtA6QmlMpToeD9hxVI
+   Fm8qVtAc+T8xzNa0XlI3sKBwivgIg205uScDnOIjbXQx+OoxYJluoIy0p
+   XJ72ozEeo9d2aqfmrliQ2aEJLSeSeCzdAxLTM4o4c8aT8RvxgIlFli4Qs
+   8GuCtG0BXjF7mS7RWkCzzIgYlAmg6fjM9Wf3gX3mnumVnete0yqfPLJia
+   a+UWsZWXkq11bCQ7HyoANFPDUYVsNeumScQSWFZIYQVBvufK+MzJ3CKSN
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="378560385"
+X-IronPort-AV: E=Sophos;i="6.02,201,1688454000"; 
+   d="scan'208";a="378560385"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Aug 2023 11:45:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="984198849"
+X-IronPort-AV: E=Sophos;i="6.02,201,1688454000"; 
+   d="scan'208";a="984198849"
+Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 25 Aug 2023 11:45:50 -0700
+Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qZbob-0003uV-1G;
+        Fri, 25 Aug 2023 18:45:49 +0000
+Date:   Sat, 26 Aug 2023 02:45:11 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
+Cc:     oe-kbuild-all@lists.linux.dev, azkali <a.ffcc7@gmail.com>,
+        Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
+        Adam Jiang <chaoj@nvidia.com>, CTCaer <ctcaer@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230823222741.89584-1-david@ixit.cz>
- <20230823222741.89584-2-david@ixit.cz>
- <CAD=FV=WaW5jKwXDTvyXjy45PSWu8LoT0LxYKM_mZAH3LxZPwrQ@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <CAD=FV=WaW5jKwXDTvyXjy45PSWu8LoT0LxYKM_mZAH3LxZPwrQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic <dragan.cvetic@amd.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] misc: bm92txx: Add driver for the ROHM BM92Txx
+Message-ID: <202308260248.MfhnxNk4-lkp@intel.com>
+References: <20230824153059.212244-3-linkmauve@linkmauve.fr>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230824153059.212244-3-linkmauve@linkmauve.fr>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24.08.2023 20:24, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Aug 23, 2023 at 3:28 PM David Heidelberg <david@ixit.cz> wrote:
->>
->> Cheza firmware doesn't allow controlling LMh from the operating system.
->>
->> Fixes: 36c6581214c4 ("arm64: dts: qcom: sdm845: Add support for LMh node")
->> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Signed-off-by: David Heidelberg <david@ixit.cz>
->> ---
->>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 14 ++++++++++++++
->>  1 file changed, 14 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
->> index d86b0d112110..8cc8fc290fd3 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
->> @@ -143,6 +143,10 @@ panel_in_edp: endpoint {
->>         };
->>  };
->>
->> +&cpufreq_hw {
->> +       /delete-property/ interrupts-extended; /* reference to lmh_cluster[01] */
->> +};
->> +
->>  &psci {
->>         /delete-node/ power-domain-cpu0;
->>         /delete-node/ power-domain-cpu1;
->> @@ -275,6 +279,14 @@ &BIG_CPU_SLEEP_1
->>                            &CLUSTER_SLEEP_0>;
->>  };
->>
->> +&lmh_cluster0 {
->> +       status = "disabled";
->> +};
->> +
->> +&lmh_cluster1 {
->> +       status = "disabled";
->> +};
-> 
-> It's not a huge deal to me, but as I understand it usually you'd put
-> the "disabled" in sdm845.dtsi and then it would be up to all the other
-> sdm845 boards to mark this as "okay".
-it's more of a status = "nonstandardfirmware" :/
+Hi Emmanuel,
 
-> 
-> 
->>  /*
->>   * Reserved memory changes
->>   *
->> @@ -338,6 +350,8 @@ flash@0 {
->>
->>
->>  &apps_rsc {
->> +       /delete-property/ power-domains;
->> +
-> 
-> Is the deletion of the "power-domains" here related to LMh? That seems
-> like it was added to sdm845.dtsi in a separate commit that doesn't
-> talk about LMh at all...
-psci
+kernel test robot noticed the following build errors:
 
+[auto build test ERROR on char-misc/char-misc-testing]
+[also build test ERROR on char-misc/char-misc-next char-misc/char-misc-linus robh/for-next linus/master v6.5-rc7 next-20230825]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Emmanuel-Gil-Peyrot/dt-bindings-misc-rohm-bm92txx-Add-BM92Txx-support/20230824-233354
+base:   char-misc/char-misc-testing
+patch link:    https://lore.kernel.org/r/20230824153059.212244-3-linkmauve%40linkmauve.fr
+patch subject: [PATCH 2/2] misc: bm92txx: Add driver for the ROHM BM92Txx
+config: riscv-randconfig-r034-20230826 (https://download.01.org/0day-ci/archive/20230826/202308260248.MfhnxNk4-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20230826/202308260248.MfhnxNk4-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308260248.MfhnxNk4-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/misc/bm92txx.c: In function 'bm92t_cmd_write':
+   drivers/misc/bm92txx.c:2037:16: error: invalid storage class for function 'bm92t_usbhub_dp_sleep_write'
+    2037 | static ssize_t bm92t_usbhub_dp_sleep_write(struct file *file,
+         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2063:18: error: initializer element is not constant
+    2063 |         .write = bm92t_usbhub_dp_sleep_write,
+         |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2063:18: note: (near initialization for 'bm92t_usbhub_dp_sleep_fops.write')
+   drivers/misc/bm92txx.c:2066:12: error: invalid storage class for function 'bm92t_debug_init'
+    2066 | static int bm92t_debug_init(struct bm92t_info *info)
+         |            ^~~~~~~~~~~~~~~~
+>> drivers/misc/bm92txx.c:2126:1: warning: 'alias' attribute ignored [-Wattributes]
+    2126 | MODULE_DEVICE_TABLE(of, bm92t_of_match);
+         | ^~~~~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2129:36: error: invalid storage class for function 'bm92t_parse_dt'
+    2129 | static struct bm92t_platform_data *bm92t_parse_dt(struct device *dev)
+         |                                    ^~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2180:12: error: invalid storage class for function 'bm92t_probe'
+    2180 | static int bm92t_probe(struct i2c_client *client)
+         |            ^~~~~~~~~~~
+   drivers/misc/bm92txx.c:2316:12: error: invalid storage class for function 'bm92t_pm_suspend'
+    2316 | static int bm92t_pm_suspend(struct device *dev)
+         |            ^~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2335:12: error: invalid storage class for function 'bm92t_pm_resume'
+    2335 | static int bm92t_pm_resume(struct device *dev)
+         |            ^~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2365:20: error: initializer element is not constant
+    2365 |         .suspend = bm92t_pm_suspend,
+         |                    ^~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2365:20: note: (near initialization for 'bm92t_pm_ops.suspend')
+   drivers/misc/bm92txx.c:2366:19: error: initializer element is not constant
+    2366 |         .resume = bm92t_pm_resume,
+         |                   ^~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2366:19: note: (near initialization for 'bm92t_pm_ops.resume')
+   drivers/misc/bm92txx.c:2374:1: warning: 'alias' attribute ignored [-Wattributes]
+    2374 | MODULE_DEVICE_TABLE(i2c, bm92t_id);
+         | ^~~~~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2386:18: error: initializer element is not constant
+    2386 |         .probe = bm92t_probe,
+         |                  ^~~~~~~~~~~
+   drivers/misc/bm92txx.c:2386:18: note: (near initialization for 'bm92t_i2c_driver.<anonymous>.probe')
+   drivers/misc/bm92txx.c:2391:19: error: invalid storage class for function 'bm92t_init'
+    2391 | static int __init bm92t_init(void)
+         |                   ^~~~~~~~~~
+   In file included from drivers/misc/bm92txx.c:15:
+>> include/linux/module.h:131:49: error: invalid storage class for function '__inittest'
+     131 |         static inline initcall_t __maybe_unused __inittest(void)                \
+         |                                                 ^~~~~~~~~~
+   include/linux/module.h:118:41: note: in expansion of macro 'module_init'
+     118 | #define subsys_initcall_sync(fn)        module_init(fn)
+         |                                         ^~~~~~~~~~~
+   drivers/misc/bm92txx.c:2395:1: note: in expansion of macro 'subsys_initcall_sync'
+    2395 | subsys_initcall_sync(bm92t_init);
+         | ^~~~~~~~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c:2395:1: warning: 'alias' attribute ignored [-Wattributes]
+   drivers/misc/bm92txx.c:2397:20: error: invalid storage class for function 'bm92t_exit'
+    2397 | static void __exit bm92t_exit(void)
+         |                    ^~~~~~~~~~
+>> include/linux/module.h:139:49: error: invalid storage class for function '__exittest'
+     139 |         static inline exitcall_t __maybe_unused __exittest(void)                \
+         |                                                 ^~~~~~~~~~
+   drivers/misc/bm92txx.c:2401:1: note: in expansion of macro 'module_exit'
+    2401 | module_exit(bm92t_exit);
+         | ^~~~~~~~~~~
+   drivers/misc/bm92txx.c:2401:1: warning: 'alias' attribute ignored [-Wattributes]
+   drivers/misc/bm92txx.c:2403:1: error: expected declaration or statement at end of input
+    2403 | MODULE_LICENSE("GPL");
+         | ^~~~~~~~~~~~~~
+   drivers/misc/bm92txx.c: At top level:
+   drivers/misc/bm92txx.c:2008:16: warning: 'bm92t_cmd_write' defined but not used [-Wunused-function]
+    2008 | static ssize_t bm92t_cmd_write(struct file *file,
+         |                ^~~~~~~~~~~~~~~
+
+
+vim +/__inittest +131 include/linux/module.h
+
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  128  
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  129  /* Each module must use one module_init(). */
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  130  #define module_init(initfn)					\
+1f318a8bafcfba Arnd Bergmann  2017-02-01 @131  	static inline initcall_t __maybe_unused __inittest(void)		\
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  132  	{ return initfn; }					\
+cf68fffb66d60d Sami Tolvanen  2021-04-08  133  	int init_module(void) __copy(initfn)			\
+cf68fffb66d60d Sami Tolvanen  2021-04-08  134  		__attribute__((alias(#initfn)));		\
+92efda8eb15295 Sami Tolvanen  2022-09-08  135  	___ADDRESSABLE(init_module, __initdata);
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  136  
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  137  /* This is only required if you want to be unloadable. */
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  138  #define module_exit(exitfn)					\
+1f318a8bafcfba Arnd Bergmann  2017-02-01 @139  	static inline exitcall_t __maybe_unused __exittest(void)		\
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  140  	{ return exitfn; }					\
+cf68fffb66d60d Sami Tolvanen  2021-04-08  141  	void cleanup_module(void) __copy(exitfn)		\
+cf68fffb66d60d Sami Tolvanen  2021-04-08  142  		__attribute__((alias(#exitfn)));		\
+92efda8eb15295 Sami Tolvanen  2022-09-08  143  	___ADDRESSABLE(cleanup_module, __exitdata);
+0fd972a7d91d6e Paul Gortmaker 2015-05-01  144  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
