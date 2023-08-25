@@ -2,160 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA4477890DB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B2E7890DF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 23:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230148AbjHYVy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 17:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57168 "EHLO
+        id S231550AbjHYVy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 17:54:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231539AbjHYVya (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:54:30 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9C23126AF
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:54:26 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 46A24D75;
-        Fri, 25 Aug 2023 14:55:06 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 971453F762;
-        Fri, 25 Aug 2023 14:54:23 -0700 (PDT)
-Date:   Fri, 25 Aug 2023 22:53:26 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Chris Morgan <macromorgan@hotmail.com>
-Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
-        heiko@sntech.de, uwu@icenowy.me, daniel@ffwll.ch,
-        airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
-        noralf@tronnes.org, samuel@sholland.org, jernej.skrabec@gmail.com,
-        wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH V3 6/8] ARM: dts: sun8i: v3s: add EHCI and OHCI to v3s
- dts
-Message-ID: <20230825225326.613d0052@slackpad.lan>
-In-Reply-To: <SN6PR06MB53420D67BB7E11486388637EA5E3A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230823212554.378403-1-macroalpha82@gmail.com>
-        <20230823212554.378403-7-macroalpha82@gmail.com>
-        <20230824222150.5a0d16e3@slackpad.lan>
-        <SN6PR06MB53420D67BB7E11486388637EA5E3A@SN6PR06MB5342.namprd06.prod.outlook.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S231572AbjHYVyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 17:54:50 -0400
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C4226B0
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:54:47 -0700 (PDT)
+Received: by mail-oo1-xc33.google.com with SMTP id 006d021491bc7-570e63f5224so1264557eaf.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 14:54:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693000486; x=1693605286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ED3W7s12gubynwmMQJJ5mT7Z84AD3DiBoyeGrhqMwHs=;
+        b=q+NdNGNUcySfhgoSgFumNTOS4wlUTngAqhcxwENzdMjVjwoEjkXDVt7d4Q9NcGZHZ0
+         JwioqaoDWsbNQobKHqLJGUbU63inXej8lUUewxxQ0K2T57zAepCEiicq+GfBTySmbeXK
+         gRrikx7nWnEygE7Iy7JaEW9sCGcUzpCNYHEkX/Up7el7E6BB7kHCOmQoJ7pJli3foc3L
+         tSBU3gNTwtR/OGutFxtR/vavFCKkGJCNVuHcB0EEe0c+hDYSXtdp+DhFUjS+tG4MVLLB
+         H3IMOOGJJLaC9c4LaDjrdDcrYP8NsLqkgLXNrjz1jWHpB9p/98c6WfY72ZbLp4nGoM2u
+         qCKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693000486; x=1693605286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ED3W7s12gubynwmMQJJ5mT7Z84AD3DiBoyeGrhqMwHs=;
+        b=TEymfB8V9oFWAdd6k4FblDFwMIbF4w54lKqGjOK9OPCo9z13NhF3A9RyY/5arSbO9X
+         r5zCzPpiVYfLEeEm3M1rm9fhSoFEqCr9vBDEbVopBuKHXgmDGFd8pi8PlI62NwaiqpTz
+         ha+jgc5ERnOxsO0dFjJqvsPtaBkDJfIFWI0HasiRJXBmfh5A6ZHw8VmCEiCPIGbIxoJH
+         rNn2+5xGrxHDn9SdKAXsRgylx1XwqYi/qkJAiaF7K43ePTDC8iv/zRMWXogkfn/YpAqb
+         39XiF83LDdRR67ddK60fT3+yyzIHP7qZzU0BKi1VdH3uf+JI98MvuBVBoxLXXyrAqkKw
+         rFSw==
+X-Gm-Message-State: AOJu0YxCCaCyXzwTwe6DsDhDEYsus6bZGV2lAuQ/wSUAuwgMmTc9J8/p
+        tZGovUEQ9EU+HQ49ACoiKFvX4w50rvDl31dyv00=
+X-Google-Smtp-Source: AGHT+IHoZV3JvOhzhTqu5b0Kb+MjoNzOTBJvjrpdzduCjg96IVE1UXtO5l3VDKX+pPUzxVDktV/5wA==
+X-Received: by 2002:a05:6808:198f:b0:3a7:e779:7fc1 with SMTP id bj15-20020a056808198f00b003a7e7797fc1mr2708077oib.7.1693000486561;
+        Fri, 25 Aug 2023 14:54:46 -0700 (PDT)
+Received: from localhost ([136.49.140.41])
+        by smtp.gmail.com with ESMTPSA id r185-20020a4a4ec2000000b00570cb3e8a6dsm1405191ooa.7.2023.08.25.14.54.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Aug 2023 14:54:46 -0700 (PDT)
+From:   Sam Protsenko <semen.protsenko@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        JaeHun Jung <jh0801.jung@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] arm64: dts: exynos: Enable USB for E850-96 board
+Date:   Fri, 25 Aug 2023 16:54:43 -0500
+Message-Id: <20230825215445.28309-1-semen.protsenko@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Aug 2023 10:58:00 -0500
-Chris Morgan <macromorgan@hotmail.com> wrote:
+This patch series enables USB gadget, USB host and Ethernet support for
+E850-96 board. The most major change was done in USB PHY driver, as the
+register layout of PHY block in Exynos850 is very different from
+Exynos5 one.
 
-Hi Chris,
+Changes in v2:
+  - Removed already applied patches from the patch series
+  - Rebased on top of latest linux-next
+  - Put ranges after compatible in usbdrd node (patch #1)
 
-> On Thu, Aug 24, 2023 at 10:21:50PM +0100, Andre Przywara wrote:
-> > On Wed, 23 Aug 2023 16:25:52 -0500
-> > Chris Morgan <macroalpha82@gmail.com> wrote:
-> > 
-> > Hi Chris,
-> >   
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > 
-> > > Add the EHCI and OHCI controller to the Allwinner v3s to support using
-> > > USB in host mode.  
-> > 
-> > Alright, so was it really that easy? I was afraid we left out host mode
-> > for a reason back then ....  
-> 
-> Can't speak to that, but it is working for me as both a host and a
-> gadget.
-> 
-> >   
-> > > 
-> > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> > > ---
-> > >  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 19 +++++++++++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> > > index c87476ea31e2..eb63dd274305 100644
-> > > --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> > > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> > > @@ -319,6 +319,25 @@ usbphy: phy@1c19400 {
-> > >  			#phy-cells = <1>;
-> > >  		};
-> > >  
-> > > +		ehci: usb@1c1a000 {
-> > > +			compatible = "allwinner,sun8i-v3s-ehci", "generic-ehci";
-> > > +			reg = <0x01c1a000 0x100>;
-> > > +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
-> > > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;  
-> > 
-> > Please add the link the PHY here:
-> > 			phys = <&usbphy 0>;
-> > 			phy-names = "usb";  
-> 
-> usbphy 0 doesn't work, but if I do phys = <&usbphy 1>; for here and the
-> OHCI node it does work. Is that expected/acceptable?
+Sam Protsenko (8):
+  dt-bindings: usb: samsung,exynos-dwc3: Add Exynos850 support
+  dt-bindings: phy: samsung,usb3-drd-phy: Add Exynos850 support
+  usb: dwc3: exynos: Add support for Exynos850 variant
+  phy: exynos5-usbdrd: Make it possible to pass custom phy ops
+  phy: exynos5-usbdrd: Add 26MHz ref clk support
+  phy: exynos5-usbdrd: Add Exynos850 support
+  arm64: dts: exynos: Enable USB in Exynos850
+  arm64: dts: exynos: Enable USB support on E850-96 board
 
-Well, that means it doesn't work, because the V3s has only one PHY, so
-"1" is invalid, and will either be ignored or rejected (any hints in
-dmesg?)
+ .../bindings/phy/samsung,usb3-drd-phy.yaml    |   1 +
+ .../bindings/usb/samsung,exynos-dwc3.yaml     |  16 ++
+ .../boot/dts/exynos/exynos850-e850-96.dts     |  58 ++++++
+ arch/arm64/boot/dts/exynos/exynos850.dtsi     |  30 +++
+ drivers/phy/samsung/phy-exynos5-usbdrd.c      | 182 +++++++++++++++++-
+ drivers/usb/dwc3/dwc3-exynos.c                |   9 +
+ 6 files changed, 294 insertions(+), 2 deletions(-)
 
-> By "doesn't work"
-> I mean the device is always in HOST mode if I use 0 and switches
-> correctly (the extcon shows HOST=0 when unplugged or plugged into my
-> computer, and shows HOST=1 if I plug in a device which I assume is
-> the desired behavior).
-
-You mean the latter part was with <usbphy 1>, and that's the same
-behaviour as without the property?
-That would mean that this part is still broken - I think somewhere in
-the PHY driver. But this is a generic issue, and not specific to the
-V3s, and your patch is just revealing it.
-
-I will try to have a look in the next few days, to find the real
-culprit.
-
-Cheers,
-Andre
-
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > > +		ohci: usb@1c1a400 {
-> > > +			compatible = "allwinner,sun8i-v3s-ohci", "generic-ohci";
-> > > +			reg = <0x01c1a400 0x100>;
-> > > +			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> > > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
-> > > +				 <&ccu CLK_USB_OHCI0>;
-> > > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;  
-> > 
-> > ... and here.
-> > 
-> > That would be definitely the right thing to do, but please check
-> > whether it still works, especially OTG operation.
-> > 
-> > The addresses, clocks, resets and interrupts match the manual.
-> > 
-> > Cheers,
-> > Andre.
-> > 
-> >   
-> > > +			status = "disabled";
-> > > +		};
-> > > +
-> > >  		ccu: clock@1c20000 {
-> > >  			compatible = "allwinner,sun8i-v3s-ccu";
-> > >  			reg = <0x01c20000 0x400>;  
-> >   
-> 
-> Thank you,
-> Chris
-> 
+-- 
+2.39.2
 
