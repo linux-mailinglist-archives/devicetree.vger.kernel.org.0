@@ -2,151 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FFA27885A2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 260347885C2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:30:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242294AbjHYL11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 07:27:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39284 "EHLO
+        id S238347AbjHYL3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 07:29:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243899AbjHYL1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:27:18 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26EB72115
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:27:07 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5007616b756so1207460e87.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:27:07 -0700 (PDT)
+        with ESMTP id S242122AbjHYL3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:29:02 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFC7226B2
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:28:39 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-58fc4d319d2so9393607b3.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:28:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692962825; x=1693567625;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lxcpKq58Y0dVZy+8hut+gJq89Cu88bDtADLCXTUFucg=;
-        b=xWcNX43Tu9tRhvZRust1sHusglipxG0/TudWhZhAeLAWJGb53bc1b3mnXfXZ33PaD2
-         h/dgcZ/+5kCG/1wPxvAjiAbRCLyVudSHEEhWhi+PqbX2qQYEFZDon/j4/h5EoDrhk7l5
-         4l0z8lNFTKKyxEnpvgggZKjIucMh89Mln/ur/eOB+01sqXgF691T/wvDfvghQl8AQszJ
-         DI5my/j6re7sEYpVlb3mjO5TGlk3rRh/K5vV3Vyhb4wcPySP1I4hHpihQCThNIPngf69
-         wEwCV8GsSn7YJYwAFqN1i7aMYQwWa+RYwCBlm0Y60WqwHxV+ujJxKHtiVerLygpBQiea
-         6RZA==
+        d=linaro.org; s=google; t=1692962914; x=1693567714;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DeMuSlxUtzQfWCufq9OumalQo8UgVgjecOg8zY7pRu0=;
+        b=VENurXBZvcjbdL1mQlZRrpfxE/b/BPdhZCOflTBLiaOVdOgIb/88bM58+C27fiWcIE
+         wsh9ykLWOSRadrMWNF1O3+qzEOlMYlZjJDp4Ce7zhZd3utIu7cCofviHZgaHsqSU4T5j
+         zDYVofLRGrRlYwiVZZNXHNgCXJ1XYdEyGFpobY29+GS8ENvo6Ep9laE0gvYG1klwCat+
+         egPuOaftHKc8zbx8zBtJt4zT+Et4gUXAofcwFTuqDXWt+ce9uWo1sof2dGFiHK4hyjnz
+         MpkRKx0mscgPe2BjXZyos0n6X0HvTkmuL7OIeP+DviO2WCq0JbXYIrPmyxGVhRtmxW3m
+         qkUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692962825; x=1693567625;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lxcpKq58Y0dVZy+8hut+gJq89Cu88bDtADLCXTUFucg=;
-        b=h3O+R16jtbiUJNXRpgY2AqfC2Tow858gMPQbW3vchh+YMy4NEPzblq9l7Wyk//z6uk
-         1uSbvIcMUg2K6/0hYH1BU0s3FZ1+QBVnocAjS3pzqyGvZF6S8pl/fdmebCx2o9MZkzlT
-         mGoUXmhVaevMZXOIMwkBIKOk/mCiPJyFYMViTnEAHt74YrWbTvmA1vuOEvXiDSMWkfz7
-         h38mIz/c4trSmieAxyJXVtrEuBeMoB1GkfN11lR+9f/4ZTvhFJXsXDpXoyh45JZx7zjq
-         N+v9lSOIZcUq6s+KRUfhdjGgO+ZN/iPim6cZD48vxzJmsXVlofLOCOItLO7d/un9jBg0
-         YIpA==
-X-Gm-Message-State: AOJu0YzBf4211T/jDyQThQjyK672K9t6A+7X6ve4Xz2QBCoNhTro3vtH
-        UEkGII4BoZA6ucYAiL1ZTTq85g==
-X-Google-Smtp-Source: AGHT+IGC2Vf7sjQDdr5V4QHRIfVkhDfG8KHUs1E6JqOKtM2FEDh4ZHWiW4GAfGWqyxVFmC3dv1Il+A==
-X-Received: by 2002:a05:6512:1081:b0:4fb:8f79:631 with SMTP id j1-20020a056512108100b004fb8f790631mr13843222lfg.46.1692962825383;
-        Fri, 25 Aug 2023 04:27:05 -0700 (PDT)
-Received: from uffe-tuxpro14.. (h-94-254-63-18.NA.cust.bahnhof.se. [94.254.63.18])
-        by smtp.gmail.com with ESMTPSA id g7-20020ac25387000000b004fb7ac67bbdsm259164lfh.41.2023.08.25.04.27.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Aug 2023 04:27:04 -0700 (PDT)
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
-        Kevin Hilman <khilman@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 10/13] dt-bindings: power: Clarify performance capabilities of power-domains
-Date:   Fri, 25 Aug 2023 13:26:30 +0200
-Message-Id: <20230825112633.236607-11-ulf.hansson@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230825112633.236607-1-ulf.hansson@linaro.org>
-References: <20230825112633.236607-1-ulf.hansson@linaro.org>
+        d=1e100.net; s=20221208; t=1692962914; x=1693567714;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DeMuSlxUtzQfWCufq9OumalQo8UgVgjecOg8zY7pRu0=;
+        b=ZmVs0cMMPX7TNgB3a3InSiTlTRNo47k7JqAaMo4M8iwiwO9/gIq0AoAF/ZRvKo57sL
+         onH9vz+U5Ng/9cmGaHp98QXTDuts7hRtSQUFZB6FmXTkVy1Qrv4YptkrIwpmKwvSOKtU
+         897tcmoamHHGyKvnfy0IOya639u39V1cTo7j9zWi1LZJaWF3ejncdERLAyjlsN5ji6v4
+         lbacEwqEiEGzhN4wzio0i/xHtt1FuhVxpPSIL4ubTcrIT4XUNhnLM5Vs8i5ZJ/veazL9
+         DgF1BWKF2qWwHaw32LIX8+BwYtZnjF6h2GJAyi/C4ndmVbVOrAY/OootTfaibvI2st3Z
+         HQqw==
+X-Gm-Message-State: AOJu0YyPwDFARgKCFmAlDKL049fqeWhvsBKyngV6qelXTy9MQHVWTebl
+        anYbrKAohnyhMCARdonjqJVng2n7s6kw8WnOHWqoaA==
+X-Google-Smtp-Source: AGHT+IHUgfu2tsexI+VJcgqvjEyLuKSLHFMu/xUlz+Q8AtTZDI1mZZPzp34WcqG0IR77T8xrrkPiuCDV4ZulMmomQ94=
+X-Received: by 2002:a25:d257:0:b0:d12:77c7:b362 with SMTP id
+ j84-20020a25d257000000b00d1277c7b362mr18460990ybg.26.1692962913802; Fri, 25
+ Aug 2023 04:28:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230825091234.32713-1-quic_devipriy@quicinc.com> <20230825091234.32713-7-quic_devipriy@quicinc.com>
+In-Reply-To: <20230825091234.32713-7-quic_devipriy@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 25 Aug 2023 14:28:22 +0300
+Message-ID: <CAA8EJpo75zWLXuF-HC-Xz+6mvu_S1ET-9gzW=mOq+FjKspDwhw@mail.gmail.com>
+Subject: Re: [PATCH V2 6/7] arm64: dts: qcom: ipq9574: Add support for nsscc node
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
+        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        quic_saahtoma@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The power-domains bindings has in many years been used to describe so
-called performance-domains too. Rather than using a separate binding it has
-been convenient to re-use the power-domain bindings, as in some cases it's
-in fact a combination of the both that would be the best description.
+On Fri, 25 Aug 2023 at 12:15, Devi Priya <quic_devipriy@quicinc.com> wrote:
+>
+> Add a node for the nss clock controller found on ipq9574 based devices.
+>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  Changes in V2:
+>         - Dropped the fixed clock node gcc_gpll0_out_aux and added
+>           support for the same in gcc driver
+>         - Updated the node name to clock-controller@39b00000
+>         - Added clock-names to retrieve the nssnoc clocks and add them
+>           to the list of pm clocks in nss driver
+>
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 48 +++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 51aba071c1eb..903311547e96 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -10,6 +10,8 @@
+>  #include <dt-bindings/clock/qcom,ipq9574-gcc.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/reset/qcom,ipq9574-gcc.h>
+> +#include <dt-bindings/clock/qcom,ipq9574-nsscc.h>
+> +#include <dt-bindings/reset/qcom,ipq9574-nsscc.h>
+>  #include <dt-bindings/thermal/thermal.h>
+>
+>  / {
+> @@ -18,6 +20,24 @@ / {
+>         #size-cells = <2>;
+>
+>         clocks {
+> +               bias_pll_cc_clk: bias-pll-cc-clk {
+> +                       compatible = "fixed-clock";
+> +                       clock-frequency = <1200000000>;
+> +                       #clock-cells = <0>;
+> +               };
+> +
+> +               bias_pll_nss_noc_clk: bias-pll-nss-noc-clk {
+> +                       compatible = "fixed-clock";
+> +                       clock-frequency = <461500000>;
+> +                       #clock-cells = <0>;
+> +               };
+> +
+> +               bias_pll_ubi_nc_clk: bias-pll-ubi-nc-clk {
+> +                       compatible = "fixed-clock";
+> +                       clock-frequency = <353000000>;
+> +                       #clock-cells = <0>;
+> +               };
 
-Therefore, let's make it more clear that the power-domains bindings can be
-used to describe a performance-domain too.
+Which part provides these clocks?
 
-Cc: Rafael J. Wysocki <rjw@rjwysocki.net>
-Cc: Kevin Hilman <khilman@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
----
+> +
+>                 sleep_clk: sleep-clk {
+>                         compatible = "fixed-clock";
+>                         #clock-cells = <0>;
+> @@ -722,6 +742,34 @@ frame@b128000 {
+>                                 status = "disabled";
+>                         };
+>                 };
+> +
+> +               nsscc: clock-controller@39b00000 {
+> +                       compatible = "qcom,ipq9574-nsscc";
+> +                       reg = <0x39b00000 0x80000>;
+> +                       clocks = <&gcc GCC_NSSNOC_NSSCC_CLK>,
+> +                                <&gcc GCC_NSSNOC_SNOC_CLK>,
+> +                                <&gcc GCC_NSSNOC_SNOC_1_CLK>,
+> +                                <&bias_pll_cc_clk>,
+> +                                <&bias_pll_nss_noc_clk>,
+> +                                <&bias_pll_ubi_nc_clk>,
+> +                                <&gcc GPLL0_OUT_AUX>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <0>,
+> +                                <&xo_board_clk>;
 
-Changes in v3:
-	- New patch.
+If you move xo_board closer to the start of the list, it will be
+slightly easier to review.
 
----
- .../devicetree/bindings/power/power-domain.yaml | 17 +++++++++--------
- 1 file changed, 9 insertions(+), 8 deletions(-)
+> +                       clock-names = "nssnoc_nsscc", "nssnoc_snoc", "nssnoc_snoc_1",
+> +                                     "bias_pll_cc_clk", "bias_pll_nss_noc_clk",
+> +                                     "bias_pll_ubi_nc_clk", "gpll0_out_aux", "uniphy0_nss_rx_clk",
+> +                                     "uniphy0_nss_tx_clk", "uniphy1_nss_rx_clk",
+> +                                     "uniphy1_nss_tx_clk", "uniphy2_nss_rx_clk",
+> +                                     "uniphy2_nss_tx_clk", "xo_board_clk";
 
-diff --git a/Documentation/devicetree/bindings/power/power-domain.yaml b/Documentation/devicetree/bindings/power/power-domain.yaml
-index d1235e562041..8fdb529d560b 100644
---- a/Documentation/devicetree/bindings/power/power-domain.yaml
-+++ b/Documentation/devicetree/bindings/power/power-domain.yaml
-@@ -13,8 +13,9 @@ maintainers:
- 
- description: |+
-   System on chip designs are often divided into multiple PM domains that can be
--  used for power gating of selected IP blocks for power saving by reduced leakage
--  current.
-+  used for power gating of selected IP blocks for power saving by reduced
-+  leakage current. Moreover, in some cases the similar PM domains may also be
-+  capable of scaling performance for a group of IP blocks.
- 
-   This device tree binding can be used to bind PM domain consumer devices with
-   their PM domains provided by PM domain providers. A PM domain provider can be
-@@ -25,7 +26,7 @@ description: |+
- 
- properties:
-   $nodename:
--    pattern: "^(power-controller|power-domain)([@-].*)?$"
-+    pattern: "^(power-controller|power-domain|performance-domain)([@-].*)?$"
- 
-   domain-idle-states:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-@@ -44,11 +45,11 @@ properties:
- 
-   operating-points-v2:
-     description:
--      Phandles to the OPP tables of power domains provided by a power domain
--      provider. If the provider provides a single power domain only or all
--      the power domains provided by the provider have identical OPP tables,
--      then this shall contain a single phandle. Refer to ../opp/opp-v2-base.yaml
--      for more information.
-+      Phandles to the OPP tables of power domains that are capable of scaling
-+      performance, provided by a power domain provider. If the provider provides
-+      a single power domain only or all the power domains provided by the
-+      provider have identical OPP tables, then this shall contain a single
-+      phandle. Refer to ../opp/opp-v2-base.yaml for more information.
- 
-   "#power-domain-cells":
-     description:
+You are using clock indices. Please drop clock-names.
+
+> +                       #clock-cells = <1>;
+> +                       #reset-cells = <1>;
+> +                       #power-domain-cells = <1>;
+> +               };
+>         };
+>
+>         thermal-zones {
+> --
+> 2.34.1
+>
+
+
 -- 
-2.34.1
-
+With best wishes
+Dmitry
