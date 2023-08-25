@@ -2,118 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 117A178848A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 027817884EE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 12:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238489AbjHYKQN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 06:16:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59340 "EHLO
+        id S233959AbjHYK3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 06:29:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244402AbjHYKPm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:15:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80D0D26BB;
-        Fri, 25 Aug 2023 03:14:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B4B7661659;
-        Fri, 25 Aug 2023 10:14:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7E1CC433C8;
-        Fri, 25 Aug 2023 10:14:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692958490;
-        bh=F8oKNVTy6rC98/+pAVZNa2M+atmjLnnbW393Y6FNBxo=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=A8sw7xFVWcXBro5K9uPJOpgpgU7sA3zf9EWvvip2RG0ctsGSI70mxoQyHoBDNaVf/
-         NMTZlY8a3pXOfwJLZjwS6YO/Vhp9A1m5XG9tOSJnRpZbvovGknzdF8MvzalNXFKttE
-         G2TBUN7jNzf0UpoJxCWpTddFNy+ShUOkokH5Vv+cK/ad9fjrimWOtYzuH01UvqJTSM
-         9ZUqZG4fz+8luaaZ5tywnaNWMRdbXznrKlrSG4cpvysgMw4gaNDrsRftoN9iCLuQMi
-         qhkGjZc3UIf3oX8UkwuXG7tnB+/AYOOsW0j8kGmnic/eQKI2jwLvW84bWQYhpQ4Uxb
-         Lbn1BqYsXKFcg==
-Received: (nullmailer pid 2559857 invoked by uid 1000);
-        Fri, 25 Aug 2023 10:14:46 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S242589AbjHYK2m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 06:28:42 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ACDDE67;
+        Fri, 25 Aug 2023 03:28:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+ s=s31663417; t=1692959298; x=1693564098; i=wahrenst@gmx.net;
+ bh=k5qoGE4dPXibVOr3vbK/MFYzKHRbviky7F+alf86o64=;
+ h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=dRmtmorqsr94xZrNHs56xNvgcXYUiF4AM6qUDzXTbwEI+491ZPPg7t7brDHAMMerHs6SzCg
+ OLlZLQWvSLffPgLJlTDtqlxZS0Ut8IU925fqaEEH1OCKe+1tVdnRhSDutk62WQ8J3a5SNrl1Z
+ qUDoth7HK1pUsWTPu+4Dv46Yn5DlR13nsyNtlnnCwpI31Ldrlzt627EFvyG/sg1qJh3NMwy/i
+ fKN3x0WEtAKcf4JcLEo0k53UaYmaThymy+9+d1E/PZ5l5tbCvzfxJlfq048reYrf0m1ad5hnZ
+ zm4mF3DZlq/jRk5476qspu+Epjqaw8PJPSgLajfdJbDfurp70uFw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.129] ([37.4.248.43]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MNt0M-1qKB4M2EkC-00OJA5; Fri, 25
+ Aug 2023 12:22:26 +0200
+Message-ID: <f7a1252f-d043-b197-6d21-2a603d928da3@gmx.net>
+Date:   Fri, 25 Aug 2023 12:22:24 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Devi Priya <quic_devipriy@quicinc.com>
-Cc:     rafal@milecki.pl, agross@kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, richardcochran@gmail.com,
-        p.zabel@pengutronix.de, catalin.marinas@arm.com, will@kernel.org,
-        conor+dt@kernel.org, nfraprado@collabora.com,
-        quic_saahtoma@quicinc.com, sboyd@kernel.org,
-        konrad.dybcio@linaro.org, linux-arm-msm@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-clk@vger.kernel.org, arnd@arndb.de,
-        andersson@kernel.org, linux-arm-kernel@lists.infradead.org,
-        peng.fan@nxp.com, netdev@vger.kernel.org, geert+renesas@glider.be
-In-Reply-To: <20230825091234.32713-5-quic_devipriy@quicinc.com>
-References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
- <20230825091234.32713-5-quic_devipriy@quicinc.com>
-Message-Id: <169295848663.2559800.3580053610150304724.robh@kernel.org>
-Subject: Re: [PATCH V2 4/7] dt-bindings: clock: Add ipq9574 NSSCC clock and
- reset definitions
-Date:   Fri, 25 Aug 2023 05:14:46 -0500
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v5 06/11] firmware: imx: add driver for NXP EdgeLock
+ Enclave
+To:     Pankaj Gupta <pankaj.gupta@nxp.com>, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, clin@suse.com,
+        conor+dt@kernel.org, pierre.gondois@arm.com, ping.bai@nxp.com,
+        xiaoning.wang@nxp.com, wei.fang@nxp.com, peng.fan@nxp.com,
+        haibo.chen@nxp.com, festevam@gmail.com, linux-imx@nxp.com,
+        davem@davemloft.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, gaurav.jain@nxp.com,
+        alexander.stein@ew.tq-group.com, sahil.malhotra@nxp.com,
+        aisheng.dong@nxp.com, V.Sethi@nxp.com
+Cc:     kernel test robot <lkp@intel.com>
+References: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
+ <20230823073330.1712721-7-pankaj.gupta@nxp.com>
+Content-Language: en-US
+From:   Stefan Wahren <wahrenst@gmx.net>
+In-Reply-To: <20230823073330.1712721-7-pankaj.gupta@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:/3g46wka99ef0GHi5iaaBRud3jyEYUA2Ob5RlCoyBKXFgTpkQ38
+ YDbKUnMLWCm2bCShYx8R/zMzNMaefhywhlF1iA7rQdCFt7OLFSCwezOVJPlNBP5sW+YDegT
+ ezOfZdRXi1mLuBIXM1mHqWgulvAN530QLJ144juN5oEMm5aCg6I2RxrtuATp5nPZ8NzsSty
+ 4XjT7/pR/g5r2fwWfdNOg==
+UI-OutboundReport: notjunk:1;M01:P0:SSlk7Glwg3Y=;LRNkAL1tbpSrTUjcTWD5jtK0lvI
+ RpYbugfMwFBrVqqZNMylCBWz737SKrNF/IdelQZP7wXS9dbMRdouTUCJABMiZJzHOf0hsD9GE
+ Vv/StWqZyXxMxWUIinEx0LM9d4cKpeM3SJHGSGbIiQrJOoJW/HEejumkqGmi0LbyOTTdyqWQs
+ 7Z6kvJ0TPgJ8ZpCe0fasDrCU2WyH4dKgSbHe32s7OdzSFYxZ8VDslrCKKKTk2OwY7nn91h5h6
+ YANJ0Cp/niQ5g2BWBdafiDVBbcEWpKXfHFlCR5r8vYLeKhXCsbOX+9RFcEyHh3dOJBL6rJXiS
+ F82zOnOx7EBUqLdQOPlY8IwiST+SfNjp/CkjARhaZ6AJcw0XXvZvAV+6PF8DQd8amy/4iQ46L
+ rGF3hSjAT19tkzO4+fhBGYJ8QuWuZ1R6lvsh8p56FYyVPFiZaKDZAgHhl7F8B/SJ0DDayNz6K
+ hVNr1bPd7/lrfmdSS9E5G8KFJtpdspcyhqbL2Wkn3Ikntxlepdb3YAuR+jHcu8TaHdhXPM0O7
+ rkGO5quB3zyRA1EfmkcCrlvfR7CYZyPqXTCLsIXHCJ9z5bW7wm3YvKvCxn5k1Yia+P2M61YDR
+ fhWBRnIp9LByGx6tEjBJz/qzyVOq1pphJ/2YW2pW4wh9WRvKMhqRuC3OCqydDJ4vQu+ECuTvc
+ gSTmxtipslgZuiMA0Jcp5IYZGMCGIgTvzzWkfFJ/Ox/z89oM6kMFrb1Gko9Fg2rsG9X6dBJTW
+ 2dgnTbodNE+oC/kYhfhSJaENkJIlEmSU4auePaeYTJ0XP+XN3i0+X4NmHYaw4xnfex5KTlUUQ
+ WqFroWZkY/CHFB7K2nTZHHkhI3EMvM8AUGOZj/ZJ8d1S6lIQSbVawQDpkQjWM30U2qyfyP+mh
+ Z03XnknkN5bPMhTvspEyBrTGdHN6ah5AZAXK+MW3UwtlowfNs16ZHvFksGrFTyVZJHMz1vwIJ
+ LHbVEpR/Wu86fC5NDsuFrGBRn2A=
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Pankaj,
 
-On Fri, 25 Aug 2023 14:42:31 +0530, Devi Priya wrote:
-> Add NSSCC clock and reset definitions for ipq9574.
-> 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+Am 23.08.23 um 09:33 schrieb Pankaj Gupta:
+> The Edgelock Enclave , is the secure enclave embedded in the SoC
+> to support the features like HSM, SHE & V2X, using message based
+> communication channel.
+>
+> ELE FW communicates on a dedicated MU with application core where
+> kernel is running. It exists on specific i.MX processors. e.g.
+> i.MX8ULP, i.MX93.
+>
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes:https://lore.kernel.org/oe-kbuild-all/202304120902.bP52A56z-lkp@i=
+ntel.com
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
 > ---
->  Changes in V2:
-> 	- Referenced gcc.yaml and dropped the duplicate properties from
-> 	  the binding
-> 	- Updated Uniphy clock names
-> 	- Added nssnoc clocks and clock-names
-> 
->  .../bindings/clock/qcom,ipq9574-nsscc.yaml    | 107 ++++++++++++
->  .../dt-bindings/clock/qcom,ipq9574-nsscc.h    | 152 ++++++++++++++++++
->  .../dt-bindings/reset/qcom,ipq9574-nsscc.h    | 134 +++++++++++++++
->  3 files changed, 393 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,ipq9574-nsscc.h
->  create mode 100644 include/dt-bindings/reset/qcom,ipq9574-nsscc.h
-> 
+>   Documentation/ABI/testing/se-cdev         |   29 +
+>   drivers/firmware/imx/Kconfig              |   12 +
+>   drivers/firmware/imx/Makefile             |    2 +
+>   drivers/firmware/imx/ele_base_msg.c       |   62 ++
+>   drivers/firmware/imx/ele_common.c         |   34 +
+>   drivers/firmware/imx/ele_common.h         |   21 +
+>   drivers/firmware/imx/se_fw.c              | 1201 +++++++++++++++++++++
+>   drivers/firmware/imx/se_fw.h              |  168 +++
+>   include/linux/firmware/imx/ele_base_msg.h |   37 +
+>   include/linux/firmware/imx/ele_mu_ioctl.h |   52 +
+>   10 files changed, 1618 insertions(+)
+>   create mode 100644 Documentation/ABI/testing/se-cdev
+>   create mode 100644 drivers/firmware/imx/ele_base_msg.c
+>   create mode 100644 drivers/firmware/imx/ele_common.c
+>   create mode 100644 drivers/firmware/imx/ele_common.h
+>   create mode 100644 drivers/firmware/imx/se_fw.c
+>   create mode 100644 drivers/firmware/imx/se_fw.h
+>   create mode 100644 include/linux/firmware/imx/ele_base_msg.h
+>   create mode 100644 include/linux/firmware/imx/ele_mu_ioctl.h
+...
+> +
+> +int ele_get_info(struct device *dev, phys_addr_t addr, u32 data_size)
+> +{
+> +	struct ele_mu_priv *priv =3D dev_get_drvdata(dev);
+> +	int ret;
+> +	unsigned int tag, command, size, ver, status;
+> +
+> +	ret =3D plat_fill_cmd_msg_hdr(priv,
+> +				    (struct mu_hdr *)&priv->tx_msg.header,
+> +				    ELE_GET_INFO_REQ, 16);
+> +	if (ret)
+> +		return ret;
+> +
+> +	priv->tx_msg.data[0] =3D upper_32_bits(addr);
+> +	priv->tx_msg.data[1] =3D lower_32_bits(addr);
+> +	priv->tx_msg.data[2] =3D data_size;
+> +	ret =3D imx_ele_msg_send_rcv(priv);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	tag =3D MSG_TAG(priv->rx_msg.header);
+> +	command =3D MSG_COMMAND(priv->rx_msg.header);
+> +	size =3D MSG_SIZE(priv->rx_msg.header);
+> +	ver =3D MSG_VER(priv->rx_msg.header);
+> +	status =3D RES_STATUS(priv->rx_msg.data[0]);
+> +	if (tag =3D=3D priv->rsp_tag &&
+> +	    command =3D=3D ELE_GET_INFO_REQ &&
+> +	    size =3D=3D ELE_GET_INFO_REQ_MSG_SZ &&
+> +	    ver =3D=3D ELE_BASE_API_VERSION &&
+> +	    status =3D=3D priv->success_tag)
+> +		return 0;
+except of the coding style, i won't recommend this error handling. In
+case a user report a failure of ele_get_info(), we need to figure out
+which of these conditions failed. Why not check the conditions step by
+step and give a detailed error message.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+The same applies to the rest of the series.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dts:28.26-27 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230825091234.32713-5-quic_devipriy@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards
+> +
+> +	return -EINVAL;
+> +}
+>
