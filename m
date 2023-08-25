@@ -2,126 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CFF33788B0A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 16:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6995788BDE
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 16:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233163AbjHYOJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 10:09:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53310 "EHLO
+        id S1343820AbjHYOkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 10:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343714AbjHYOJ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 10:09:26 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A43E30DC
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 07:08:24 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-50078e52537so1452552e87.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 07:08:24 -0700 (PDT)
+        with ESMTP id S1343821AbjHYOkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 10:40:02 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6474EC;
+        Fri, 25 Aug 2023 07:40:00 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99bfcf4c814so124655766b.0;
+        Fri, 25 Aug 2023 07:40:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1692972498; x=1693577298;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=axteTkwlNxcxDBjG/ojqO7wTa/wt+0BzC+LNgL43cwU=;
-        b=p7ivgK7Ws/+u6OrGbT8SI+Aux6DTjmx2gGKTSy9++VZf/hzCDvFUOik2OexlhQ/HPy
-         7JWh5Bukhy3b4nlGjBJoz7M7TdGe+HlTtiM3smp768omOJuaER9DdOmAqhQTG9M/lYf9
-         ylZo65UKSLMU1yVEKK6DEjEilgAKYstewX+f0vo7zaZt2jP1xC6ZHFTvBUS1Ll4seCm3
-         GDL/9Zg0eiGVjXH0mnOYYQPvhMgjtpg8DDnMJhO2OB7nKYncwsblK/uOZDnxIpmbyQE2
-         vyopG/2gS1M4/+NrvpwougFnZhpcb5V9juI6uwX7MTlB8gFZbpQPxds6DFVbhEJfnrJW
-         CGmA==
+        d=gmail.com; s=20221208; t=1692974399; x=1693579199;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uFusswwH0YOVAcBlC18MK45EE7lJRCZhZwn/ixtEHfg=;
+        b=Ygczodz6N1bNrbWumgl/VONtBcnxvJLnW84LtmQC/b2d7SMueR8RA8zh24DsK4/RZ6
+         cD0x/n37dqsBL5ibxzX3fSR562ScX+pVAo839Ngi15p79uakQJJatgeyF0d2hQPitwKG
+         f41cWcFtXKcGh+3JOMdDARpEMzCInJVkQvYF5hzxW0PUXCUJX9eEpcVbeNtzdSklbF/S
+         pknSxeyxHSbh50cmuZvnGVcQbmvD+iQIJnf/CflHS+aRlN5voql2/IxwKPUrqdFtXXUh
+         dfRP/4ybu6FRZyOKUnQl1HeojxDIeVDD8b4y9GEVJVua2vUOaGvj6wDsQ/kC4eOEBDzN
+         +MWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1692972498; x=1693577298;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=axteTkwlNxcxDBjG/ojqO7wTa/wt+0BzC+LNgL43cwU=;
-        b=TbSNmMwGkLeHE/x2618aTfZ26ADnzzoYiAmYdZvqo5qd2vMatYZ3IsR89RF9+PmW//
-         ubRYOu1txgVIZPdrvdPDsLLR96aviVDYNGIlSi1BIiVWeEadOUhPG3Q7ckDX6UZ3/Mru
-         U/lJyFo/Fx2X7b+MFlF/rJQZAo873taMUx/tq84TaEJL7V9cwMsUqmtK5aWtRphBwVRa
-         J6P9hUcKxLiNW9Np3xkua3Umawlo7dbxQjutIrYiR6DzReS+EChpGswEOil6VUpkpcf9
-         wgJpgiPoqHL7vGs5cFZeSycO6G6RAuWns5um1FWLdvVktF9d7jCJK8LN54US6aYuG5ib
-         gDJQ==
-X-Gm-Message-State: AOJu0YwDHolVh9MusiozRwKc28Gyat3hNsTLdXv1XEzNYATFPuj2TkCa
-        jZVKRo2JYKBlsGQjLYmczLjq1Q==
-X-Google-Smtp-Source: AGHT+IEQFT9RdIzhS6nwwoj2TAYYRrtqJ68gsxKCzzXmUloW2nCW3c4TfA3v9qGaFbX0xguDdJDCcg==
-X-Received: by 2002:a19:5f5e:0:b0:4fb:8bea:f5f6 with SMTP id a30-20020a195f5e000000b004fb8beaf5f6mr12363751lfj.34.1692972498470;
-        Fri, 25 Aug 2023 07:08:18 -0700 (PDT)
-Received: from [192.168.1.101] (abxh59.neoplus.adsl.tpnet.pl. [83.9.1.59])
-        by smtp.gmail.com with ESMTPSA id m27-20020a056512015b00b005009dcb4503sm303800lfo.249.2023.08.25.07.08.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Aug 2023 07:08:17 -0700 (PDT)
-Message-ID: <2ecb64c5-c6bf-4dbb-a390-ef54bd649a9b@linaro.org>
-Date:   Fri, 25 Aug 2023 16:08:17 +0200
+        d=1e100.net; s=20221208; t=1692974399; x=1693579199;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uFusswwH0YOVAcBlC18MK45EE7lJRCZhZwn/ixtEHfg=;
+        b=C78yJJlCYJvvMO936xtnbcR/+PN3yexhtzXntdKeqtz/sTafW1127n1pfVwC4vMLwo
+         6dsrnza3UCeQmHU8wcuTPyNos1KQfbXI3gGFljlZ6DZUeXIx0WmlEYKJ7nnuudanC4Cx
+         ngOy29J54OtImsC1eM2bIz8qEwXky7LpWCt5nGdDRC6BGMrZrxHn26j8psdGOC91lENO
+         edKlm0Fu2TwxWCDSNHE+H3IKTqMBLzJ7bk8hIeuzMhrTU1Mxx4C1EjcVxU/zAnlz+ejH
+         KUevskqOUdInuuU/XGH6oPL0FZtg+8z8QKUJa/kjciSWL5Zw0itJupg2D2aJZsL9zKCO
+         Ah0A==
+X-Gm-Message-State: AOJu0YyJPqrpW0o2bqTnHLkfWc3IkjQUA8TdoiKBRwGKLDo8bTNBzNJV
+        CIQRPe04TJHESInlsidDZux9ZCFOYqINQvKTd4sUfK8Ftq1HKQ==
+X-Google-Smtp-Source: AGHT+IG3aEDZ4aPAYPDc4xb7NF73dfks5sxcLfeCUEDsvuJWJT0PqA0+fp/HSOOwVc5wLh2YjhwHBoA+9AgAFYjkHUs=
+X-Received: by 2002:a17:906:256:b0:9a1:cccb:5429 with SMTP id
+ 22-20020a170906025600b009a1cccb5429mr8328637ejl.15.1692974398889; Fri, 25 Aug
+ 2023 07:39:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: sdx65: fix SDHCI clocks order
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230825124115.1177577-1-keguang.zhang@gmail.com> <2856de1b-36cd-1d56-734a-401def967870@linaro.org>
+In-Reply-To: <2856de1b-36cd-1d56-734a-401def967870@linaro.org>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Fri, 25 Aug 2023 22:39:22 +0800
+Message-ID: <CAJhJPsWcjok7WnMKkQ4S3W46VLCQd-zP_8NLrG3RNtWJVd4muA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mips: loongson: Add LS1B demo board
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230825135613.282505-1-krzysztof.kozlowski@linaro.org>
- <20230825135613.282505-2-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230825135613.282505-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.08.2023 15:56, Krzysztof Kozlowski wrote:
-> Bindings expect clocks to be in different order:
-> 
->   qcom-sdx65-mtp.dtb: mmc@8804000: clock-names:0: 'iface' was expected
->   qcom-sdx65-mtp.dtb: mmc@8804000: clock-names:1: 'core' was expected
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Fri, Aug 25, 2023 at 8:45=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 25/08/2023 14:41, Keguang Zhang wrote:
+> > Add compatible for LS1B demo board.
+>
+> Where is the user of this binding? We do not add bindings without users.
+>
+OK. I'll put this patch and the DTS into one patch set later.
+>
+> Best regards,
+> Krzysztof
+>
 
-Konrad
+
+--=20
+Best regards,
+
+Keguang Zhang
