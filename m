@@ -2,189 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9D9788613
-	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DFB1788638
+	for <lists+devicetree@lfdr.de>; Fri, 25 Aug 2023 13:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237026AbjHYLjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Aug 2023 07:39:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
+        id S242546AbjHYLpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Aug 2023 07:45:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236143AbjHYLjM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:39:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EFCA210C
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:38:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9A4A2651E4
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:38:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00898C433CC
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 11:38:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1692963526;
-        bh=IhUN3wNeroegBsvK8L6MatBOMRiD07StyURe84Lkn7Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=LWBI1XwfO+ztYopjuRVSl8GIKp3+BeR4aTdqw8FKqmxR5VZzJdeIpM3boMwjhVfXc
-         fKtwGHNPO4fjHU9jcZDY3zL0KnIpGfpFkXERm6+jHx4GgXJoLcvZdQPdWBC/IXBsMa
-         Kb1XFp/JOubRZFmQtmb2VAkFXSOmZqKDjjynldlfDpxpxIn3O7VaHiVFfPNj08+bls
-         EPJmJ10Loh9mWLU5Gd7eNVjrwHHXkBkiJRIG0IcbHnolu+03CWBE/mM5OL2YvtE/ga
-         m3+UpB0gU8navqNu8Zkar3OaMbf2eYmZ/rwlmschj3XftCOZp4A0M0DlgTZqM9U0Eq
-         mqSfN+n5tz0oQ==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5008d16cc36so1216133e87.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:38:45 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yz8D40AJX/7Xm/KCNywvx70slUZ2EswEAsLT6qm3bsJ/KdVkAD6
-        K5yT+dLzpnWQJXdMw1eAeo7vcxY2MuL1nlu1LPU=
-X-Google-Smtp-Source: AGHT+IFjMLJMaychfDPevyx63YRANWX74ZsjU8alQfZvoD4k7trTbs70l3tz4UR+TfzKoeCMfdvckNnPUazn/+ciTh8=
-X-Received: by 2002:a05:6512:3706:b0:4f9:586b:dba1 with SMTP id
- z6-20020a056512370600b004f9586bdba1mr10516325lfr.4.1692963523857; Fri, 25 Aug
- 2023 04:38:43 -0700 (PDT)
+        with ESMTP id S243365AbjHYLon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Aug 2023 07:44:43 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB91211F
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:44:29 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-d748d8cf074so2610456276.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Aug 2023 04:44:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1692963869; x=1693568669;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0lUeyI4fG+FDzoU+xoIkG7zgsJsQ8wssCd33gQniM8E=;
+        b=PpM5LXbGVDKXPu7HA9XQabxscQ9kdsKHpV8cJFHFofNV4HQuJ/3Q8ytC2nizmeU3Lt
+         eICXM8ITKEsXkTskGsLgG9K49qXcl2FBH2uLt21KDnWMAhudLGGhMRvzIcywPs6FLVD8
+         RF6IlgGSKOKjiHtb4FcVQkDukJYMkABMXlQCEB4VzCpHHMU9Ye9nK81pSYRSqzSqPKwQ
+         yoWu7lcS5RdWTrnNfS6JJe7irUUJG9oB3vg+ASeofMSVppvAQvN7Xz1N1QPG9OXBIAUR
+         5qdHeTxFcSIJQSZNeryPlVy3Md/PRxaAJPGBDxKTyJhM69IIq1mXF8coLBeTgpGyHfBn
+         Nf2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1692963869; x=1693568669;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0lUeyI4fG+FDzoU+xoIkG7zgsJsQ8wssCd33gQniM8E=;
+        b=Br/kMP7n6aC2USu/ywJs1xqoERv8Uz/6uzd7/BTSwS4aGEzXsLTpi10c+GfZuJbA7A
+         U+/p5mSvtLwCmt/+sTF3SP3biao89yb+lUvF0bfexvJBF89Y4Wav5C60EAR42RH9j/iA
+         SQvG314QTBYtFNdRYIb7syo4nOYBZOaSylqzZRp9Q4f9r3YjoeAZ6CnTk8GBUXo6L/E/
+         swH1LXdRdaDSU8mGinUNiZ+FS54t910LQPg5CnRbU02hndBP2PR7pcr5HjkJY3muWVFU
+         HlLu50qeUft2usBW7WfJpwXfLKvMwRGW0PgZOaC8ihX6JNHVcp6dMpRtNnm0xRcV3qd4
+         UyGg==
+X-Gm-Message-State: AOJu0YzVWJeV/NUt/hioMGuSbjoMbCQ+1UE2hob2/R384MbvVom15Xtu
+        0WRonwGacvyHb5s7DwF58T9Jk1NQYaHisRPFRxtbqQ==
+X-Google-Smtp-Source: AGHT+IGehTBkUyxcAfJtXf+dmKgEKTFs4nGdMicyBfqrKZv7XIf7u/6KPfFf0MC/Cj1TvzrQPq+QFlZVfxkT4G5zxvw=
+X-Received: by 2002:a25:dbc4:0:b0:d66:fb56:86fe with SMTP id
+ g187-20020a25dbc4000000b00d66fb5686femr16493483ybf.31.1692963868889; Fri, 25
+ Aug 2023 04:44:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1692783907.git.zhoubinbin@loongson.cn>
-In-Reply-To: <cover.1692783907.git.zhoubinbin@loongson.cn>
-From:   Huacai Chen <chenhuacai@kernel.org>
-Date:   Fri, 25 Aug 2023 19:38:31 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H7hi=yc=PfDBafXVS5CSwEeE2WmbAAhnnDm6iYFF3YzkQ@mail.gmail.com>
-Message-ID: <CAAhV-H7hi=yc=PfDBafXVS5CSwEeE2WmbAAhnnDm6iYFF3YzkQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] LoongArch: Add built-in dtb support
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
+References: <20230825091234.32713-1-quic_devipriy@quicinc.com> <20230825091234.32713-6-quic_devipriy@quicinc.com>
+In-Reply-To: <20230825091234.32713-6-quic_devipriy@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 25 Aug 2023 14:44:17 +0300
+Message-ID: <CAA8EJpr+Wwgot-PDRtj-LVi79aD13B9WVREmjTXiR-8XEEx-rQ@mail.gmail.com>
+Subject: Re: [PATCH V2 5/7] clk: qcom: Add NSS clock Controller driver for IPQ9574
+To:     Devi Priya <quic_devipriy@quicinc.com>
+Cc:     andersson@kernel.org, agross@kernel.org, konrad.dybcio@linaro.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        richardcochran@gmail.com, arnd@arndb.de, geert+renesas@glider.be,
+        nfraprado@collabora.com, rafal@milecki.pl, peng.fan@nxp.com,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        quic_saahtoma@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series looks good enough to me now, if no one has objections, I
-will queue it to loongarch-next.
+On Fri, 25 Aug 2023 at 12:15, Devi Priya <quic_devipriy@quicinc.com> wrote:
+>
+> Add Networking Sub System Clock Controller(NSSCC) driver for ipq9574 based
+> devices.
+>
+> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+> ---
+>  Changes in V2:
+>         - Added depends on ARM64 || COMPILE_TEST in Kconfig
+>         - Added module_platform_driver
+>         - Dropped patch [2/6] - clk: qcom: gcc-ipq9574: Mark nssnoc clocks as critical
+>            & added pm_clk for nssnoc clocks
+>         - Updated the uniphy clock names
+>
+>  drivers/clk/qcom/Kconfig         |    7 +
+>  drivers/clk/qcom/Makefile        |    1 +
+>  drivers/clk/qcom/nsscc-ipq9574.c | 3109 ++++++++++++++++++++++++++++++
+>  3 files changed, 3117 insertions(+)
+>  create mode 100644 drivers/clk/qcom/nsscc-ipq9574.c
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index bd9bfb11b328..3ecc11e2c8e3 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -203,6 +203,13 @@ config IPQ_GCC_9574
+>           i2c, USB, SD/eMMC, etc. Select this for the root clock
+>           of ipq9574.
+>
+> +config IPQ_NSSCC_9574
+> +       tristate "IPQ9574 NSS Clock Controller"
+> +       depends on ARM64 || COMPILE_TEST
+> +       depends on IPQ_GCC_9574
+> +       help
+> +         Support for NSS clock controller on ipq9574 devices.
+> +
+>  config MSM_GCC_8660
+>         tristate "MSM8660 Global Clock Controller"
+>         depends on ARM || COMPILE_TEST
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index 4790c8cca426..3f084928962e 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -30,6 +30,7 @@ obj-$(CONFIG_IPQ_GCC_6018) += gcc-ipq6018.o
+>  obj-$(CONFIG_IPQ_GCC_806X) += gcc-ipq806x.o
+>  obj-$(CONFIG_IPQ_GCC_8074) += gcc-ipq8074.o
+>  obj-$(CONFIG_IPQ_GCC_9574) += gcc-ipq9574.o
+> +obj-$(CONFIG_IPQ_NSSCC_9574)   += nsscc-ipq9574.o
+>  obj-$(CONFIG_IPQ_LCC_806X) += lcc-ipq806x.o
+>  obj-$(CONFIG_MDM_GCC_9607) += gcc-mdm9607.o
+>  obj-$(CONFIG_MDM_GCC_9615) += gcc-mdm9615.o
+> diff --git a/drivers/clk/qcom/nsscc-ipq9574.c b/drivers/clk/qcom/nsscc-ipq9574.c
+> new file mode 100644
+> index 000000000000..65bdb449ae5f
+> --- /dev/null
+> +++ b/drivers/clk/qcom/nsscc-ipq9574.c
+> @@ -0,0 +1,3109 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/err.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/pm_clock.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include <dt-bindings/clock/qcom,ipq9574-nsscc.h>
+> +#include <dt-bindings/reset/qcom,ipq9574-nsscc.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-pll.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "clk-regmap-divider.h"
+> +#include "clk-regmap-mux.h"
+> +#include "common.h"
+> +#include "reset.h"
+> +
+> +/* Need to match the order of clocks in DT binding */
+> +enum {
+> +       DT_NSSNOC_NSSCC_CLK,
+> +       DT_NSSNOC_SNOC_CLK,
+> +       DT_NSSNOC_SNOC_1_CLK,
 
-Huacai
+Not using the index makes it seem that these clocks are not used,
+until one scrolls down to pm_clks.
 
-On Wed, Aug 23, 2023 at 5:55=E2=80=AFPM Binbin Zhou <zhoubinbin@loongson.cn=
-> wrote:
->
-> Hi all:
->
-> This patchset introduces LoongArch's built-in dtb support.
->
-> As we know, the Loongson-2K family supports DT. Inevitably, some systems
-> do not provide a useful device tree to the kernel at boot time. Chasing
-> around bootloaders for these systems is a headache, so we just keep a
-> device tree table in the kernel, keyed by the dts filename, that
-> contains the relevant DTBs.
->
-> Thanks.
->
-> -----
-> V4:
-> patch(1/7):
->   - Drop device_type property.
-> patch(2/7):
->   - Rename board.yaml to loongson.yaml.
-> patch(4/7):
->   - Keep the ranges attribute after compatible;
->   - Add bootargs =3D "ttyS0,115200", which is needed for reference board;
-> patch(5/7):
->   - Keep the ranges attribute after compatible;
->   - Add bootargs =3D "ttyS0,115200", which is needed for reference board;
->   - Change node name global-utilities to chipid.
-> patch(6/7):
->   - Keep the ranges attribute after compatible;
->   - Add bootargs =3D "ttyS0,115200", which is needed for reference board.
->
-> Link to V3:
-> https://lore.kernel.org/all/cover.1692618548.git.zhoubinbin@loongson.cn/
->
-> V3:
-> patch(1/7):
->   - Add reference to the common cpu schema.
-> patch(2/7):
->   - Add reviewed-by tag.
-> patch(4/7):
->   - Drop bootargs;
->   - Move the cpus node to dtsi, which is part of the SoC.
-> patch(5/7):
->   - Drop bootargs;
->   - Move the cpus node to dtsi, which is part of the SoC;
->   - Fix gmac0/1-mdio node: compatible is always the first property;
->   - Drop i2c-gpio node.
-> patch(6/7):
->   - Drop bootargs;
->   - Move the cpus node to dtsi, which is part of the SoC.
->   - Changes liointc to liointc-1.0, for Loongson-2K2000 has 32 interrupt
->     sources.
->
-> Link to V2:
-> https://lore.kernel.org/all/cover.1692088166.git.zhoubinbin@loongson.cn/
->
-> V2:
-> patch(1/7):
->   - Drop model and clock-frequency properties;
->   - Add clocks property;
->   - Rewrite the description.
-> patch(2/7):
->   - Add the proper compatibles for boards.
-> patch(4/7)(5/7)(6/7):
->   - Format commit message head;
->   - Drop undocumented compatible, such as pci_bridge compatible;
->   - Distinguish the attributes, put SoC-related into DTSI and
->     board-related into DTS;
->   - Check DTS with 'make dtbs_check W=3D1'.
-> patch(7/7)
->   - New patch;
->   - Parses Molde name and CPU MHz from the DTS attribute.
->
-> Link to V1:
-> https://lore.kernel.org/loongarch/cover.1686882123.git.zhoubinbin@loongso=
-n.cn/
->
-> Binbin Zhou (7):
->   dt-bindings: loongarch: Add CPU bindings for LoongArch
->   dt-bindings: loongarch: Add Loongson SoC boards compatibles
->   LoongArch: Allow device trees to be built into the kernel
->   LoongArch: dts: DeviceTree for Loongson-2K0500
->   LoongArch: dts: DeviceTree for Loongson-2K1000
->   LoongArch: dts: DeviceTree for Loongson-2K2000
->   LoongArch: Parsing CPU-related information from DTS
->
->  .../devicetree/bindings/loongarch/cpus.yaml   |  61 +++
->  .../bindings/loongarch/loongson.yaml          |  34 ++
->  arch/loongarch/Kconfig                        |  16 +
->  arch/loongarch/Makefile                       |  10 +-
->  arch/loongarch/boot/dts/Makefile              |   7 +-
->  .../boot/dts/loongson-2k0500-ref.dts          |  89 ++++
->  arch/loongarch/boot/dts/loongson-2k0500.dtsi  | 254 +++++++++++
->  .../boot/dts/loongson-2k1000-ref.dts          | 172 ++++++++
->  arch/loongarch/boot/dts/loongson-2k1000.dtsi  | 397 ++++++++++++++++++
->  .../boot/dts/loongson-2k2000-ref.dts          |  73 ++++
->  arch/loongarch/boot/dts/loongson-2k2000.dtsi  | 291 +++++++++++++
->  arch/loongarch/kernel/env.c                   |  33 ++
->  arch/loongarch/kernel/setup.c                 |   9 +-
->  13 files changed, 1440 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus.yaml
->  create mode 100644 Documentation/devicetree/bindings/loongarch/loongson.=
-yaml
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500-ref.dts
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k0500.dtsi
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k1000-ref.dts
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k1000.dtsi
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k2000-ref.dts
->  create mode 100644 arch/loongarch/boot/dts/loongson-2k2000.dtsi
->
+BTW: The NSSNOC_SNOC clocks make it look like there is an interconnect
+here (not a simple NIU).
+
+> +       DT_BIAS_PLL_CC_CLK,
+> +       DT_BIAS_PLL_NSS_NOC_CLK,
+> +       DT_BIAS_PLL_UBI_NC_CLK,
+> +       DT_GCC_GPLL0_OUT_AUX,
+> +       DT_UNIPHY0_NSS_RX_CLK,
+> +       DT_UNIPHY0_NSS_TX_CLK,
+> +       DT_UNIPHY1_NSS_RX_CLK,
+> +       DT_UNIPHY1_NSS_TX_CLK,
+> +       DT_UNIPHY2_NSS_RX_CLK,
+> +       DT_UNIPHY2_NSS_TX_CLK,
+> +       DT_XO,
+
+As I wrote, please move DT_XO closer to the beginning of the list.
+
+> +};
+> +
+> +enum {
+> +       P_BIAS_PLL_CC_CLK,
+> +       P_BIAS_PLL_NSS_NOC_CLK,
+> +       P_BIAS_PLL_UBI_NC_CLK,
+> +       P_GCC_GPLL0_OUT_AUX,
+> +       P_UBI32_PLL_OUT_MAIN,
+> +       P_UNIPHY0_NSS_RX_CLK,
+> +       P_UNIPHY0_NSS_TX_CLK,
+> +       P_UNIPHY1_NSS_RX_CLK,
+> +       P_UNIPHY1_NSS_TX_CLK,
+> +       P_UNIPHY2_NSS_RX_CLK,
+> +       P_UNIPHY2_NSS_TX_CLK,
+> +       P_XO,
+> +};
+> +
+> +static const struct alpha_pll_config ubi32_pll_config = {
+> +       .l = 0x3e,
+> +       .alpha = 0x6666,
+> +       .config_ctl_val = 0x200d4aa8,
+> +       .config_ctl_hi_val = 0x3c,
+> +       .main_output_mask = BIT(0),
+> +       .aux_output_mask = BIT(1),
+> +       .pre_div_val = 0x0,
+> +       .pre_div_mask = BIT(12),
+> +       .post_div_val = 0x0,
+> +       .post_div_mask = GENMASK(9, 8),
+> +       .alpha_en_mask = BIT(24),
+> +       .test_ctl_val = 0x1c0000c0,
+> +       .test_ctl_hi_val = 0x4000,
+> +};
+> +
+> +static struct clk_alpha_pll ubi32_pll_main = {
+> +       .offset = 0x28000,
+> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_NSS_HUAYRA],
+> +       .flags = SUPPORTS_DYNAMIC_UPDATE,
+> +       .clkr = {
+> +               .hw.init = &(const struct clk_init_data) {
+> +                       .name = "ubi32_pll_main",
+> +                       .parent_data = &(const struct clk_parent_data) {
+> +                               .index = DT_XO,
+> +                       },
+> +                       .num_parents = 1,
+> +                       .ops = &clk_alpha_pll_huayra_ops,
+> +               },
+> +       },
+> +};
+> +
+> +static struct clk_alpha_pll_postdiv ubi32_pll = {
+> +       .offset = 0x28000,
+> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_NSS_HUAYRA],
+> +       .width = 2,
+> +       .clkr.hw.init = &(const struct clk_init_data) {
+> +               .name = "ubi32_pll",
+> +               .parent_hws = (const struct clk_hw *[]) {
+> +                       &ubi32_pll_main.clkr.hw
+> +               },
+> +               .num_parents = 1,
+> +               .ops = &clk_alpha_pll_postdiv_ro_ops,
+> +               .flags = CLK_SET_RATE_PARENT,
+> +       },
+> +};
+> +
+
+[skipped clock tables, LGTM]
+
+> +static const struct of_device_id nss_cc_ipq9574_match_table[] = {
+> +       { .compatible = "qcom,ipq9574-nsscc" },
+> +       { }
+> +};
+> +MODULE_DEVICE_TABLE(of, nss_cc_ipq9574_match_table);
+> +
+> +static int nss_cc_ipq9574_probe(struct platform_device *pdev)
+> +{
+> +       struct regmap *regmap;
+> +       struct qcom_cc_desc nsscc_ipq9574_desc = nss_cc_ipq9574_desc;
+> +
+> +       int ret;
+> +
+> +       ret = devm_pm_runtime_enable(&pdev->dev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = devm_pm_clk_create(&pdev->dev);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       ret = of_pm_clk_add_clk(&pdev->dev, "nssnoc_nsscc");
+
+As we are switching to DT indices, better add new API that takes index
+rather than mixing indices and names.
+
+> +       if (ret < 0) {
+> +               dev_err(&pdev->dev, "Failed to acquire nssnoc_nsscc clock\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = of_pm_clk_add_clk(&pdev->dev, "nssnoc_snoc");
+> +       if (ret < 0) {
+> +               dev_err(&pdev->dev, "Failed to acquire nssnoc_snoc clock\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = of_pm_clk_add_clk(&pdev->dev, "nssnoc_snoc_1");
+> +       if (ret < 0) {
+> +               dev_err(&pdev->dev, "Failed to acquire nssnoc_snoc_1 clock\n");
+> +               return ret;
+> +       }
+> +
+> +       ret = pm_runtime_get(&pdev->dev);
+> +       if (ret)
+> +               return ret;
+> +
+> +       regmap = qcom_cc_map(pdev, &nsscc_ipq9574_desc);
+> +       if (IS_ERR(regmap))
+> +               return PTR_ERR(regmap);
+> +
+> +       clk_alpha_pll_configure(&ubi32_pll_main, regmap, &ubi32_pll_config);
+> +
+> +       return qcom_cc_really_probe(pdev, &nsscc_ipq9574_desc, regmap);
+> +}
+> +
+> +static const struct dev_pm_ops nss_cc_pm_ops = {
+> +       SET_RUNTIME_PM_OPS(pm_clk_suspend, pm_clk_resume, NULL)
+> +};
+> +
+> +static struct platform_driver nss_cc_ipq9574_driver = {
+> +       .probe = nss_cc_ipq9574_probe,
+> +       .driver = {
+> +               .name = "qcom,nsscc-ipq9574",
+> +               .of_match_table = nss_cc_ipq9574_match_table,
+> +               .pm = &nss_cc_pm_ops,
+> +       },
+> +};
+> +
+> +module_platform_driver(nss_cc_ipq9574_driver);
+> +
+> +MODULE_DESCRIPTION("QTI NSS_CC IPQ9574 Driver");
+> +MODULE_LICENSE("GPL");
 > --
-> 2.39.3
+> 2.34.1
 >
+
+
+-- 
+With best wishes
+Dmitry
