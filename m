@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64D787894FB
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:03:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E4D87894FE
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:04:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbjHZJCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 05:02:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45494 "EHLO
+        id S232180AbjHZJD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 05:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232179AbjHZJCa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:02:30 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB7F2691
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:02:27 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bcc846fed0so24605891fa.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:02:27 -0700 (PDT)
+        with ESMTP id S231741AbjHZJD1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:03:27 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF332691
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:03:24 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe61ae020bso2516265e87.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:03:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693040545; x=1693645345;
+        d=linaro.org; s=google; t=1693040603; x=1693645403;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2cf+7QyZ1hTChQ5yFt5LM81Rbwh0rlY1KlUlToQXk/o=;
-        b=y/4+MAQN3p/onp80538DUBl3rTgFbaZvPDt22AwmsxpaVzfA1m8YtoFkw8nsus3IOb
-         +XL5n/2nZDJkxVQqrO/EIG943ig+fFNyrl8nIX8l/SPQHE95MstinlBPmysCpmaq9ogk
-         mxWwx5r+E8FRXd7W2pc2ltz8ZImHeo+rt4iHQl67QsSgvqx+b79GTdryUmm5euwRZ0IB
-         HRKPb1s6O3eu5C2b7Sc4P+kVWeeVVuY6W197BivbsEnYloBfTYvFc59zkTtBybUR5KmW
-         hS212so/a2Zlag+tvlIIUmVqoPNLRKG/bvuAVcoMXaojspqNvOkpfrIo8Qgb2m7+k2R6
-         VhDQ==
+        bh=wFsaZfdxh3AgtRzh0fv8ru2xvQ5zjSC2AeHCCNN6BcY=;
+        b=y1K6XG4CixtcGZOMQEelOpWAFcE4LkjiiGkHsVceKtcZ+71M027qn36sKFKOJCbgaD
+         /g8sjUt1oWSfn8QyV1IWKJ+rVVphKn/pDNAug8L+Z2YabMmdok2B4MKxe5GozcdvoC5y
+         ip4FuF9CSybie2oZsodmtMfTj5JF108HpPvs8DkfFVOaN8f7UhwQIL8sOuVrBtNiOPzW
+         kWEzh99b8XBy1eXweb0sIdb5eMjR9GThcUcE2lrwDSHCrNoDNo6PFZU7swIeLJl7lOLF
+         yIPAU499q+dshDShvL1a3I5HwNRshDotkaKoehUuGNVxPHM9AM4ASKsXHECcppk+Hv9l
+         hfGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693040545; x=1693645345;
+        d=1e100.net; s=20221208; t=1693040603; x=1693645403;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2cf+7QyZ1hTChQ5yFt5LM81Rbwh0rlY1KlUlToQXk/o=;
-        b=dX2+cZBvT3ijUIIdHn1sCqsjdd1yIoT11OLxn4n0cM6Ufa8zqYeSkL7DzN+nqkwn//
-         pvgjhfsLr1srNFukwbYxOa2r+4vlA6AW8xC66DpuU1opGlqv6rQoKG6DAT3Gs4UQ8ee+
-         vZVhOw8KYmpv/AREVG3LcENho/nXMM3NWi6tsF5Pw6G/HIP8/Vo8h47r7dEuYn6k19Hs
-         OjrJdhV7Uk8cko9lZKiqHuML4oD48/hAtXgv1rZRHKGhgpbl08VrS34OnLdumiDVQtEM
-         k2tMpCgdt8c/t1AKBKuDyWOhIQ+6c7Gwq4bwpwHrmMin1aL/F7XSiG/ZEoyjwmyCu2td
-         lRvQ==
-X-Gm-Message-State: AOJu0YwFlyeo7zxKANUi1KrUE95LOUAA92G1QBIa6/Ur31jyEte8UnFQ
-        fijMWF7Z1Yp0JXcer+8TkT3geQ==
-X-Google-Smtp-Source: AGHT+IGAh4QI59KyFI1ork0ogRmLqW61j5qKsp513HNIqRaG5HRqAk4limtOTXpMK4HkR2avZbn0Eg==
-X-Received: by 2002:a05:6512:b28:b0:4ff:8f44:834f with SMTP id w40-20020a0565120b2800b004ff8f44834fmr16696115lfu.38.1693040545505;
-        Sat, 26 Aug 2023 02:02:25 -0700 (PDT)
+        bh=wFsaZfdxh3AgtRzh0fv8ru2xvQ5zjSC2AeHCCNN6BcY=;
+        b=DWqvJCRxu+5/kYY1IYDeVCtX/km3AV0xtcssCRAbc3N83DITeFMeI2N/w8K1+ZKIJk
+         kjQsGnd1eSfM3Kc8/To4VUMQQ5I35+0IcnZBr+kFsc1QnRPKsMAYEi86bG4fa+jzknTj
+         5x1Kn3ss1UDfXWkVzcCCmpJ7xLe2LBfmmkIJ8rRZr8/CnLogVhw20uuHrOSHZFp21YG+
+         BMdTsD35eHQjRXjpKnb8bmv92j+kykj+RyiOxbCgVjUFqzSak3cOpn0gFOWbJ37yZlG7
+         xzC5tvHj1bD9LIL1mgfqS74VEHUMY/Cx/xDVkc2xxqkN5mrn6Fl+fcMvAhWdhUM0MMSF
+         DBjg==
+X-Gm-Message-State: AOJu0Yxt8+h7uNkp/u7cz26Tf5B6Ls4F3y6rDFfkZced+uisDzLtTINs
+        eLwuoIttWCbxtqnEuTf7CSk3lVUcBw7T2yK7uRcUJg==
+X-Google-Smtp-Source: AGHT+IFA36nxyM2d+JQ8Xs6B70qdM3JznwQHiqEhhjT9A9fjmH2VMavbGjMk6+LdRNP07oVc2Ix4BA==
+X-Received: by 2002:a05:6512:704:b0:4ff:a25b:bca1 with SMTP id b4-20020a056512070400b004ffa25bbca1mr13700905lfs.33.1693040602801;
+        Sat, 26 Aug 2023 02:03:22 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id h20-20020a197014000000b004f864690901sm635184lfc.244.2023.08.26.02.02.24
+        by smtp.gmail.com with ESMTPSA id h20-20020a197014000000b004f864690901sm635184lfc.244.2023.08.26.02.03.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 02:02:25 -0700 (PDT)
-Message-ID: <1b36a23d-801c-4f21-9c3f-164ba3e5f92d@linaro.org>
-Date:   Sat, 26 Aug 2023 11:02:24 +0200
+        Sat, 26 Aug 2023 02:03:22 -0700 (PDT)
+Message-ID: <93977e76-db44-4ad3-ba3f-04e843baafd8@linaro.org>
+Date:   Sat, 26 Aug 2023 11:03:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-mtp: enable PCIe support
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8350-hdk: add pmr735a regulators
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -61,8 +61,8 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230825220854.1655162-1-dmitry.baryshkov@linaro.org>
- <20230825220854.1655162-5-dmitry.baryshkov@linaro.org>
+References: <20230825214550.1650938-1-dmitry.baryshkov@linaro.org>
+ <20230825214550.1650938-3-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -99,7 +99,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230825220854.1655162-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230825214550.1650938-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -111,50 +111,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.08.2023 00:08, Dmitry Baryshkov wrote:
-> Enable two PCIe hosts support on Qualcomm SDM845 MTP board.
+On 25.08.2023 23:45, Dmitry Baryshkov wrote:
+> The SM8350 HDK uses pmr735a to supply some of the voltages (e.g. to
+> WiFi/BT chip). Declare corresponding regulators together with voltage
+> boundaries.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 81 +++++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> index aec3f358d426..9fb41d2453c8 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-> @@ -533,6 +533,36 @@ &mss_pil {
->  	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
->  };
->  
-> +&pcie0 {
-> +	status = "okay";
-last
-
-> +	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pcie0_default_state>;
-flip
-
-[...]
-
-> +	pcie0_default_state: pcie0-default-state {
-> +		clkreq-pins {
-> +			pins = "gpio36";
-> +			function = "pci_e0";
-> +			bias-pull-up;
-> +		};
-> +
-> +		perst-n-pins {
-> +			pins = "gpio35";
-> +			function = "gpio";
-> +
-> +			drive-strength = <2>;
-drop newline
-
-> +			output-low;
-> +			bias-pull-down;
-flip
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
