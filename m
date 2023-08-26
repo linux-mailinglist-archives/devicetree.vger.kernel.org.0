@@ -2,119 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B16789894
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 20:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90CA778989B
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 20:11:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230111AbjHZSID (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 14:08:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46938 "EHLO
+        id S229810AbjHZSKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 14:10:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231318AbjHZSHm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 14:07:42 -0400
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B20710FF;
-        Sat, 26 Aug 2023 11:07:22 -0700 (PDT)
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-986d8332f50so247576166b.0;
-        Sat, 26 Aug 2023 11:07:22 -0700 (PDT)
+        with ESMTP id S231215AbjHZSKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 14:10:25 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC14E7D
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 11:10:21 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99cdb0fd093so242526366b.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 11:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693073420; x=1693678220;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4QiagJfRx5PmjGMtP0dUi7DvNIVha/t7dHrhZvI83zo=;
+        b=WsSgNBrqrlOgtnKRSmIfPV2pbGKqfKX1GCK0whPtAztjTVsT9PPs8OSoQxSvtsQJdF
+         D5Ndk9sTCcE4q9tyc77eUdIr2fBshZGlNcx2yrwpIRoSa5lIcr5zPKfu4Y1JzN+ViqUZ
+         1u359VPuql8fwxk3ebKBBU0lbyZ9VGWRruygvtu68RJjPWwa1MsUGw8XAGe5Ldpqdnss
+         9Ji0wJJhYWa+b91DpYAPLpnJO4GvlfTzPA7vBd3t9DJBizJqxuqR6WweN51WddUOEmGC
+         4Dm69tTgQpazyJ4CZNrryqIoUL0JIA0f8z+Acnw5snEqsp2PD/+IascZAwPD50xwewTz
+         pndA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693073241; x=1693678041;
+        d=1e100.net; s=20221208; t=1693073420; x=1693678220;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h0kZWHSaiCbSZZouMc9Cd5T9avQEho6jFDRRgwT4Ctc=;
-        b=fksoKPrbbNHtCg6oY5lUjbeVhi1nmgTgUXKsBtkKjqrvMcEeQXrJwSqZEF2RzBnWg0
-         eZPDkFqCjs+rha48l23S9upFm/pYClx64NbjnuhpfTAv2BBNgwEjMyExWJ9QtBMr+Sxp
-         LeQkbnYMq0aeOd9O4E9H+Dvl2DH77MfZYgXfcMHlLypTPek+0UihL3/YopOfeVkgEEDy
-         Dri/7ZOZKBM1+4ONptXx/fq2BOz63Fc8N3i+dQTJHIluaOT87I2pqHI4KrIiRi+iRMCf
-         tb4ER2SrtvFnbB+sL4SrhGOe4WYotxaBW1Kr6vhW2X/L489JMHcC2QLS3ir9yJB7weJr
-         d5og==
-X-Gm-Message-State: AOJu0YzWlWFcGr+EYV9Hw8NYotS2h1FSOWEkzv2XUgPdOMLYKVX/T1Ci
-        uvAu1oTvXhBZ825cPQeGfi8=
-X-Google-Smtp-Source: AGHT+IHPhlD8CyM5CErLxdEnnWbiZkLGcsudwktwI2j+HEH/R4+6x8uD+fI/UJcop8wTahGB7oi24w==
-X-Received: by 2002:a17:906:8462:b0:9a5:81cf:57b5 with SMTP id hx2-20020a170906846200b009a581cf57b5mr2937812ejc.2.1693073240411;
-        Sat, 26 Aug 2023 11:07:20 -0700 (PDT)
-Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id vw7-20020a170907058700b0099b921de301sm2454244ejb.159.2023.08.26.11.07.19
+        bh=4QiagJfRx5PmjGMtP0dUi7DvNIVha/t7dHrhZvI83zo=;
+        b=M7sHMA5toR92FPbxIXQWcEXR0JPwGaisjZM1dvkiIvnitS508wyXEtlxXC+KYJ3oaJ
+         0Q11tmaeWrwGavUFbQiAtNV8ssL7Bylpw+K/c6uKgYK66vmkQwWR2KAtzjXOkg2GilhG
+         KKVrhT7gYQuMbP+F0VVa99fLJaonxigz6zRDMO95KtpWYRb4w5IPS6CFA/vQVsJcblTg
+         HCFrKgybOUtvFADD8Gjp+OTP6mUCFqTW+vH1H5yPscovpP6Yp5VN91cS51XwJhTpWvpv
+         k1mhbmYreG+qiK+SIaMbi5GSHsWRjTjVXFdIA/0FYEY5xmVgi9YAMh4LHVsk+J2T0Loo
+         ZLyA==
+X-Gm-Message-State: AOJu0YwwN5MwQetUhT5ebHU+Ycr0DKobvlcMtxNQYBm8SJgkCpwAeVCr
+        Wm+camGxQ5BykYVVZo7uibt3ZQ==
+X-Google-Smtp-Source: AGHT+IEFWoVX8d9z28lL17g6Z+qe5o8zR28N7GoXPVvbRQc4gaGzV9XT5uFIFnm8ML7Ge9ve5Sb9tQ==
+X-Received: by 2002:a17:906:1090:b0:99b:c8db:d92f with SMTP id u16-20020a170906109000b0099bc8dbd92fmr17059997eju.69.1693073420226;
+        Sat, 26 Aug 2023 11:10:20 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.198])
+        by smtp.gmail.com with ESMTPSA id q22-20020a170906361600b00982cfe1fe5dsm2452697ejb.65.2023.08.26.11.10.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 11:07:19 -0700 (PDT)
-Message-ID: <29cfd5ef-16ae-4960-a95e-13b58c090604@linux.com>
-Date:   Sat, 26 Aug 2023 19:07:18 +0100
+        Sat, 26 Aug 2023 11:10:19 -0700 (PDT)
+Message-ID: <6fd3a9ab-667d-934b-f1c2-03776be93d4d@linaro.org>
+Date:   Sat, 26 Aug 2023 20:10:18 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/2] tty: serial: meson: Add a earlycon for the T7 SoC
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 0/2] arm64: dts: exynos: Enable USB for E850-96 board
 Content-Language: en-US
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Sam Protsenko <semen.protsenko@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        Nick <nick@khadas.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-References: <20230814080128.143613-1-tanure@linux.com>
- <20230814080128.143613-2-tanure@linux.com>
- <20230823082940.t4xjgfzwpt2hsfst@CAB-WSD-L081021>
-From:   Lucas Tanure <tanure@linux.com>
-In-Reply-To: <20230823082940.t4xjgfzwpt2hsfst@CAB-WSD-L081021>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        JaeHun Jung <jh0801.jung@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230825215445.28309-1-semen.protsenko@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230825215445.28309-1-semen.protsenko@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-08-2023 09:29, Dmitry Rokosov wrote:
-> Hello Lucas,
+On 25/08/2023 23:54, Sam Protsenko wrote:
+> This patch series enables USB gadget, USB host and Ethernet support for
+> E850-96 board. The most major change was done in USB PHY driver, as the
+> register layout of PHY block in Exynos850 is very different from
+> Exynos5 one.
 > 
-> Thank you for the patch! Please find my small comment below.
-> 
-> On Mon, Aug 14, 2023 at 09:01:28AM +0100, Lucas Tanure wrote:
->> The new Amlogic T7 SoC does not have a always-on uart,
->> so add OF_EARLYCON_DECLARE for it.
->>
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
->> Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->> Since v8:
->>   - Fix issues with git send-mail command line
->> Since v7:
->>   - Send to the correct maintainers
->>
->>   drivers/tty/serial/meson_uart.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
->> index 790d910dafa5..c4f61d82fb72 100644
->> --- a/drivers/tty/serial/meson_uart.c
->> +++ b/drivers/tty/serial/meson_uart.c
->> @@ -648,6 +648,8 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
->>   
->>   OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
->>   		    meson_serial_early_console_setup);
->> +OF_EARLYCON_DECLARE(meson, "amlogic,t7-uart",
->> +		    meson_serial_early_console_setup);
->>   
->>   #define MESON_SERIAL_CONSOLE_PTR(_devname) (&meson_serial_console_##_devname)
->>   #else
-> 
-> I suppose you need to add a separate meson_t7_uart_data to switch the T7
-> UART to a regular TTY devname 'ttyS'. For the new Amlogic SoCs, we have
-> agreed to use 'ttyS' instead of 'ttyAML'. Please refer to the already
-> applied patch series at [1] and the IRC discussion at [2].
-> 
-> Links:
->      [1] https://lore.kernel.org/all/20230705181833.16137-1-ddrokosov@sberdevices.ru/
->      [2] https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
-> 
-I asked Greg to drop this patch as is not need anymore.
-T7 will use S4 TTY/UART code.
+> Changes in v2:
+
+Thank you for the patch. Looks good.
+It is too late in the cycle for me to pick it up. I will take it after
+the merge window.
+
+Best regards,
+Krzysztof
+
