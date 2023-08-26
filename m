@@ -2,74 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFAEB7894EC
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 10:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 834B67894F4
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232147AbjHZI52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 04:57:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44696 "EHLO
+        id S232154AbjHZJBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 05:01:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231374AbjHZI5D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 04:57:03 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D578992
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 01:56:59 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fe61ae020bso2511382e87.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 01:56:59 -0700 (PDT)
+        with ESMTP id S232163AbjHZJAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:00:55 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7D8F1FF5
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:00:52 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bcfd3220d3so7877571fa.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:00:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693040218; x=1693645018;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693040451; x=1693645251;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7yGXBVcB5RgIvR3q2K2OKjd17MwrMmfxUPp5m1Q3U6U=;
-        b=O8/tV3d+PU+KQonm+fa1RT4kWPTirjw72aePQSJKw29KICS8rHEoXfEPgsamAXweRh
-         4GzPmu+OUe9M9fn6X8xDhHhw5YYSYkQgEHWYhErCtGNKBNfOM440ypHxcpMe+ZzjyiHZ
-         syGStyvWB6ab6ySnXRKw+uNTgJ62cignepIJ0pkzG03awsZBNAMBYlO/AUhAKP+NNMvv
-         bqL2Gy9vxU3xLkGb84jL+t5eq1/D5Ag6RN7cPsa2CoXOTPyWeqWY8c2kQQ3rWAznRLeF
-         +UUipb+ZFGGET/0hARFoetuZgt/5Bu8OdgMk6YWZW2JCDpmMCZnsL/NhBGJ4oE3zkipu
-         uYfg==
+        bh=2PVHdF5K8sQB30tpr75UVijtOECWvoKIlQGOrzlZj/Q=;
+        b=lpLzPGJ63lfL/s86yYdo8+HBzxaQd2aZrfCPIVhc/eFJPK3Rn9VLOQF9TwRcaBClyF
+         qjL3yVHna+146hRVkwz+2y892sURpTK2J02Y8y2MkY74+UqhzdMo97jIrL9WgU/YH+M2
+         bsOmt/VVSBzsn9sHBFRQhLe8P8HT8gzU1ve6QeUSQd0NNbfgKZ9FSwk/MYjpmSaP8qk9
+         4uw3gQ+Pq9yDr5q4VMz6twxrLOyhPWZkWuG2/DwKYg+EFYe/iFnPh7T2Ee+sb/bsWCh7
+         pLpTOgTgeVhm4H6+1/0BhFOMSoIhL4qvBSfAqMnGFUGoVTeYrkni38iYsnetcYOTo1dT
+         nh+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693040218; x=1693645018;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693040451; x=1693645251;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7yGXBVcB5RgIvR3q2K2OKjd17MwrMmfxUPp5m1Q3U6U=;
-        b=dvb69e0CqFllc/JMLlKf6WnEydMO6+83iSx2VpMdAHUGn4XuWFWQLRlvbG7Rn/SNzu
-         wbF0fMY781NU04wb6+JZngYUjdqxsYpyvKZW8RdnaKdgS+0bl8oeDYVIT5ofqAfSVv12
-         xR5fT7kaHwaFlrIJZgooeOjxkGJF9o2mLIH1+fXDlFsvU5PvwSkIHja1bGQgQvBJYUxX
-         WrcwcHy4LpYyiHGZ1s00Ou6DoHcFo4TBNvwFRiw0PNNrzQa9rIVGIDO0YgekJVoSNw8n
-         YPkXtT2kMfiKzf4iZXUIqsw80W7xWXtvjv/AWhUPVIS9zqPrfrtJpHLz720rlI7HO4iu
-         9meQ==
-X-Gm-Message-State: AOJu0Yw6eGOVgNZTcwXz1bqANBKk3sGzvUMVWs4JFJLIF0kR8qdU1Vif
-        q8nCrJRCct5TOJfCVemVPkI2Jg==
-X-Google-Smtp-Source: AGHT+IHvpksc/T0dDbtHLsxsdzmiLQ+zqP/zITpPHVj1AB5lTzNQAw5NjqmaRus9ritM1INyoRW28A==
-X-Received: by 2002:ac2:4a6e:0:b0:4fd:fedc:2ce5 with SMTP id q14-20020ac24a6e000000b004fdfedc2ce5mr14964274lfp.36.1693040217821;
-        Sat, 26 Aug 2023 01:56:57 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id q3-20020aa7d443000000b00525c01f91b0sm1893154edr.42.2023.08.26.01.56.56
+        bh=2PVHdF5K8sQB30tpr75UVijtOECWvoKIlQGOrzlZj/Q=;
+        b=bRqGw+rviXjs980QKL2vL7XNEkYXZu/qjwtza8xye19qXT15vuJi1BE+K+hRxfMhUe
+         oeTSC4jv2V4V/Fx0WGGnGGrDCmUTrRmgHW39HsIRZiL8z6+bwconG/cjEtjFnVK+Ehj3
+         nreoOHU+sQrspA+mfN89Lcy18meNe1QtgKyvkxJwbzQxOeh6xJqq0Yjr1aiMz2xe5Nmq
+         bGL8nOp/ECpX1Jovg3a1LoBcIacDFrC//Au+U5+Ib55jus2A5b2YbnmtXswLT5Pf5AM2
+         NrpDTcQCXlGaP/O3euj7zyindHug8n7N+dzqgGcRPAfAvEwhYPZRK6+Uhu112oQMgfRY
+         VLeA==
+X-Gm-Message-State: AOJu0Yyzo2C8fTLA8ScyStDFsLBeexScybc50ptugLeEH0yjLoy1raqn
+        m/uPseDa3fhOCdps+WGdnZUpWw==
+X-Google-Smtp-Source: AGHT+IGcVrb06QYJ47Au3vC/uxhk76UuhJcWjWN1Kw+o0a530IYWinY6p/JAOVXyaUofFx2+Ey6R7w==
+X-Received: by 2002:a05:6512:1584:b0:4f8:711b:18b0 with SMTP id bp4-20020a056512158400b004f8711b18b0mr17352466lfb.3.1693040450934;
+        Sat, 26 Aug 2023 02:00:50 -0700 (PDT)
+Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
+        by smtp.gmail.com with ESMTPSA id h20-20020a197014000000b004f864690901sm635184lfc.244.2023.08.26.02.00.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 01:56:57 -0700 (PDT)
-Message-ID: <7595f0d3-7a59-9837-ef6b-627be3688667@linaro.org>
-Date:   Sat, 26 Aug 2023 10:56:56 +0200
+        Sat, 26 Aug 2023 02:00:50 -0700 (PDT)
+Message-ID: <3bfc87d0-2d68-47e2-969f-28300afa7dfa@linaro.org>
+Date:   Sat, 26 Aug 2023 11:00:49 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V2 2/4] dt-bindings: hwmon: ina3221: Add summation-bypass
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: sdm845-mtp: switch to mbn firmware
 Content-Language: en-US
-To:     Ninad Malwade <nmalwade@nvidia.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-References: <20230825164249.22860-1-nmalwade@nvidia.com>
- <20230825164249.22860-3-nmalwade@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230825164249.22860-3-nmalwade@nvidia.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230825220854.1655162-1-dmitry.baryshkov@linaro.org>
+ <20230825220854.1655162-3-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230825220854.1655162-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,68 +111,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2023 18:42, Ninad Malwade wrote:
-> The INA3221 has a critical alert pin that can be controlled by the
-> summation control function. This function adds the single
-> shunt-voltage conversions for the desired channels in order to
-> compare the combined sum to the programmed limit. The Shunt-Voltage
-> Sum Limit register contains the programmed value that is compared
-> to the value in the Shunt-Voltage Sum register in order to
-> determine if the total summed limit is exceeded. If the
-> shunt-voltage sum limit value is exceeded, the critical alert pin
-> pulls low.
+On 26.08.2023 00:08, Dmitry Baryshkov wrote:
+> We have switched most of devices to use mbn (squashed) firmware files
+> instead of spit mdt+bNN. Even this DT uses modem.mbn and a630_zap.mbn.
+> Let's switch adsp and cdsp firmware files to use .mbn format too.
 > 
-> For the summation limit to have a meaningful value, it is necessary
-> to use the same shunt-resistor value on all included channels. Add a
-> new property, 'summation-bypass', to allow specific channels to be
-> excluded from the summation control function if the shunt resistor
-> is different to other channels.
-> 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  .../devicetree/bindings/hwmon/ti,ina3221.yaml  | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+Looks like 845 was mbn from the start
+
+https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log/qcom/sdm845?qt=grep&q=
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> index 0c6d41423d8c..20c23febf575 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
-> @@ -55,6 +55,24 @@ patternProperties:
->        shunt-resistor-micro-ohms:
->          description: shunt resistor value in micro-Ohm
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index 56f5bf52d9bd..7579ba66c6d8 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -114,7 +114,7 @@ trip-point {
 >  
-> +      summation-bypass:
-
-What is the type? There is no vendor prefix here, so you added it as a
-generic property. Which other devices use or can use it?
-
-> +        description: |
-> +          The INA3221 has a critical alert pin that can be controlled by the
-> +          summation control function. This function adds the single
-> +          shunt-voltage conversions for the desired channels in order to
-> +          compare the combined sum to the programmed limit. The Shunt-Voltage
-> +          Sum Limit register contains the programmed value that is compared
-> +          to the value in the Shunt-Voltage Sum register in order to
-> +          determine if the total summed limit is exceeded. If the
-> +          shunt-voltage sum limit value is exceeded, the critical alert pin
-> +          pulls low.
-> +
-> +          For the summation limit to have a meaningful value, it is necessary
-> +          to use the same shunt-resistor value on all included channels. If
-> +          this is not the case for specific channels, then the
-> +          'summation-bypass' can be populated for a specific channel to
-> +          exclude from the summation control function.
-
-I don't understand what this property does. You described feature in the
-device, that's good, but how does it map to the property? Bypass means
-disable?
-
-> +
->      additionalProperties: false
+>  &adsp_pas {
+>  	status = "okay";
+> -	firmware-name = "qcom/sdm845/adsp.mdt";
+> +	firmware-name = "qcom/sdm845/adsp.mbn";
+>  };
 >  
->      required:
-
-Best regards,
-Krzysztof
-
+>  &apps_rsc {
+> @@ -415,7 +415,7 @@ vreg_s3c_0p6: smps3 {
+>  
+>  &cdsp_pas {
+>  	status = "okay";
+> -	firmware-name = "qcom/sdm845/cdsp.mdt";
+> +	firmware-name = "qcom/sdm845/cdsp.mbn";
+>  };
+>  
+>  &gcc {
