@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C34789601
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 12:31:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6646789624
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 12:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232133AbjHZKag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 06:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60894 "EHLO
+        id S232386AbjHZKzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 06:55:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232174AbjHZKa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 06:30:27 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2B91FF0
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:30:24 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bcb89b476bso25143631fa.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:30:24 -0700 (PDT)
+        with ESMTP id S232119AbjHZKyl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 06:54:41 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45FD2123
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:54:38 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so2670661e87.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:54:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693045823; x=1693650623;
+        d=linaro.org; s=google; t=1693047277; x=1693652077;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WvCLjs9YLOF9i8wNeEp7LVv0uxwU1zCl6+4ptie1PJc=;
-        b=eO77/OQ7CFfG4k+g0LebKwDZKRMglgLyAK6kYhxsU/CgjatlShgB9GQ5dmhT3rma6V
-         YGn0RRymVMfI51crfJQWT6743m9S0R5zSbej0Z/4WKAMGd5QloU+gpS9zz0cg399j0cT
-         Vfof2nbtPmcqXHyqt2rqkS74kod8xxkE7b6tfS0VFI0WOi3apwTMk5K0evgN4zHnmf3D
-         RF/3lUHCv8FTOSK3BVCokg43iAUxMCGwt9ZvjcrwltVaiIiikM/9k/aYDzlw23mxTXAN
-         MCBACoGdWQ+iY+UjhSAhj++xwVMy41B6XXGt7etBo0alXxfi37vyAiRDVm1kJZ6nPt0L
-         6iQw==
+        bh=fvW40kDxKiV5M9iKM/xdzedUymQNFPZ0wT1RvuVsyRY=;
+        b=cFcdi+Yg9O5w6VvmAQJMCu9IVBLb8ecsCy9uGbOkCmqK3vJcDiGt/ZW8f6yPv0EGO7
+         Q6fAbcYD2mbhJ3lsI0pcdZtTkkIqJXFYnOX50KNR6IOPvTzoUOWz7CXpRRZ/dokssioL
+         LHSiCYktnCtJey8m7S/Gkj6ZSVx0p8u7sfTwQCJGk7u+/VTcPIcL9aCPv7Apn+cXSXBM
+         n6xA1og0mEylDuZF6/0O5EHXyOa2fvNt+bHAdOxFoZiMmOqIYu0fy6ywwMEmLGZiEBUT
+         SGaUyJNXEkYCfUg2bATARoodKXoogcLClotLiTmnTNF3gKT8AEZ4ElS58gff75x2sxBS
+         7rzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693045823; x=1693650623;
+        d=1e100.net; s=20221208; t=1693047277; x=1693652077;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WvCLjs9YLOF9i8wNeEp7LVv0uxwU1zCl6+4ptie1PJc=;
-        b=b0/J8ebzrwB/+C5oT3PHONqYW87cosTkqQSC7lrZIXjkLdJMBH3PbWU3yhNBMAqRzT
-         i1Kj+WKZd487s8x8oslDfbOCRIoRBchsYDB6hf0E9Zmup/Bho9HlCBnyuZRYwi3rrHPp
-         PR/foFRxjuBDoeuH7Uzy7kA3EcrEjF4YbxLZcSwgON8dUu7EYKC1luPBfFAaLCLUu9ZL
-         u+NLdatN8m/yjrjYibqzWPmd0l+S0ydbA32yOUdTQbQ729bxOLpgbMwpWBHL+x+cUHi3
-         KB2bvsaFrF4VXK/FkRnAt2zEQuqXZxNrkyJ1m1PrrAC3PE4+EPTj6Ubg6fqhsegH/XDF
-         qv1Q==
-X-Gm-Message-State: AOJu0YyHN0ElzFXUXt77NcRuIVggm21A4NSjbpznt4A6JGOz9n1g9Z2y
-        DWK+37HFATOHWXlaWTbRW4O9+A==
-X-Google-Smtp-Source: AGHT+IHDe10VH8SD0XeByT9XailgVCADz6Rp9kfj2MYi/eVzDu924iQVp26NRQsCsDOjVxVhXEzqjQ==
-X-Received: by 2002:a19:911a:0:b0:500:acf1:b432 with SMTP id t26-20020a19911a000000b00500acf1b432mr1752523lfd.63.1693045822953;
-        Sat, 26 Aug 2023 03:30:22 -0700 (PDT)
+        bh=fvW40kDxKiV5M9iKM/xdzedUymQNFPZ0wT1RvuVsyRY=;
+        b=Bbd5sBO6Y75wMveV+qWD3zTAwYnl+I8V8Ssrkhl3AiRKuixyBs43moNBBOU5gExcn2
+         p9m5wki7+7WKSJzjC2QHzeGF+HwYpNKwBcwJHqQaSgtlSvAJbCRery6W0wfUqvepaCOM
+         x2IQtUZJfVKNrC2JInVdjaAtzlttfU6C2zXa5BkdkM0C8t/ebodx6mW0sOhNJlG9qjD4
+         LHdfxjQH96GPSdJ4hQJapsj5x6elpbCZYCCmc2AJZDVTymCKhDbeGWaDjP05LWi0wCrb
+         joaHGTBPu7WCfmk29b3cvRN0bsDc+Ost8KHJXoWk7cVvwIltwN0PpSLbTJX857Wy8Ybb
+         +rzQ==
+X-Gm-Message-State: AOJu0YzhmyTT5sVky0MtM/zfSsHL7S/nD7vYDyYMkjU4JRDyvrHBX+Nm
+        2TmKF5CShF+UvYMSDMLiPa8l58WMg4bVB+AxxZ/76w==
+X-Google-Smtp-Source: AGHT+IG5g9nJsFf5SBX/zm7Sexuwn3kf9SZL40zyhW5MXPzO7LB41ZKAixNe8aA8MDe5M5DboNcBJg==
+X-Received: by 2002:a05:6512:3a89:b0:500:a2f1:c87f with SMTP id q9-20020a0565123a8900b00500a2f1c87fmr4897254lfu.33.1693047277080;
+        Sat, 26 Aug 2023 03:54:37 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id o13-20020ac2434d000000b004fe4d45f56bsm658996lfl.68.2023.08.26.03.30.21
+        by smtp.gmail.com with ESMTPSA id y3-20020ac255a3000000b005007cf8968esm655410lfg.264.2023.08.26.03.54.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 03:30:22 -0700 (PDT)
-Message-ID: <b234ae5b-e702-49d9-9017-e4acd0937a40@linaro.org>
-Date:   Sat, 26 Aug 2023 12:30:21 +0200
+        Sat, 26 Aug 2023 03:54:36 -0700 (PDT)
+Message-ID: <b65c8621-35c1-496a-bc4b-3e3f284ab0c5@linaro.org>
+Date:   Sat, 26 Aug 2023 12:54:35 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: msm8916-samsung-gt58: Add display
- panel
+Subject: Re: [PATCH v9 6/7] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
+ usb-role-switching for usb_1
 Content-Language: en-US
-To:     Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        sboyd@kernel.org, luca.weiss@fairphone.com
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Siddharth Manthan <siddharth.manthan@gmail.com>
-References: <20230725-gt5-panel-v1-0-7c787e33a614@trvn.ru>
- <20230725-gt5-panel-v1-2-7c787e33a614@trvn.ru>
+        linux-kernel@vger.kernel.org
+References: <20230816115151.501736-1-bryan.odonoghue@linaro.org>
+ <20230816115151.501736-7-bryan.odonoghue@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -103,7 +100,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230725-gt5-panel-v1-2-7c787e33a614@trvn.ru>
+In-Reply-To: <20230816115151.501736-7-bryan.odonoghue@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -116,15 +113,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.07.2023 13:52, Nikita Travkin wrote:
-> From: Siddharth Manthan <siddharth.manthan@gmail.com>
+On 16.08.2023 13:51, Bryan O'Donoghue wrote:
+> Switch on usb-role-switching for usb_1 via TCPM. We need to declare
+> usb-role-switch in &usb_1 and associate with the remote-endpoint in TCPM
+> which provides the necessary signal.
 > 
-> The device has a 8 inch lsl080al03 display. Add it to the device tree.
-> 
-> Signed-off-by: Siddharth Manthan <siddharth.manthan@gmail.com>
-> Co-developed-by: Nikita Travkin <nikita@trvn.ru>
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 19 ++++++++++++++++++-
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  4 ++++
+>  2 files changed, 22 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> index 55389f8903b5c..3e34f4e2af14a 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+> @@ -1269,7 +1269,12 @@ &usb_1 {
+>  };
+>  
+>  &usb_1_dwc3 {
+> -	dr_mode = "peripheral";
+> +	dr_mode = "otg";
+> +	usb-role-switch;
+> +};
+> +
+> +&usb_1_role_switch_out {
+> +	remote-endpoint = <&pm8150b_role_switch_in>;
+>  };
+>  
+>  &usb_1_hsphy {
+> @@ -1358,5 +1363,17 @@ connector {
+>  					 PDO_FIXED_DUAL_ROLE |
+>  					 PDO_FIXED_USB_COMM |
+>  					 PDO_FIXED_DATA_SWAP)>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				pm8150b_role_switch_in: endpoint {
+I'd rather this be moved to the pmic dt as well, under the tcpm
+definition
 
 Konrad
