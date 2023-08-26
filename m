@@ -2,135 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E0D7D789711
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 16:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34969789719
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 16:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232381AbjHZOBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 10:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60028 "EHLO
+        id S230461AbjHZODu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 10:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232792AbjHZOB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 10:01:28 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB6571991
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 07:01:23 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so2837905e87.3
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 07:01:23 -0700 (PDT)
+        with ESMTP id S229843AbjHZODd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 10:03:33 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0984D2117
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 07:03:31 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-d795e9a0816so1105892276.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 07:03:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693058482; x=1693663282;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sG+ykakkkDpjr4OKm8qU4Pv12nVdVlkpxc/7F+D8mBg=;
-        b=i/Fe4bHVC1LL90URoXJJWTLhU8f85Fq7c5HuPE/nVn3bewA+KaYU58Ou1gCZLllCW+
-         p+KlKo3tBxI6UnLXVhwAAoAy9hko3fmRqXuGm6GFZMiHocgGJKYwzlShnJvcjzHTYUlh
-         Chjh9c1EY2LP6NcNlTZ6UFr+bMBV6yqozMVZ5ylRyBoZrknYZPNQNDYmd7sdavg+5HbN
-         BNPZtzjmwFVOjGDAM/+wvxzLnF7QndNHtUE+FBZjvdm6U2xl51VwAhSaaWrlnnLEVQRd
-         c4MuNwcNn5O5ntMkjA4tz7GbmPFEjY48rTvChkRZ8vZcRmTCtmzRkcXiHsDmp9ImbvXr
-         V7mQ==
+        d=linaro.org; s=google; t=1693058610; x=1693663410;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OECpJpuzRGTpFfZZ6LF8wc0zJa5pdb5ic3jVGSKw5tA=;
+        b=IoOq02SqV5/YJ0l7TNDsn+czct3ySCCjTo6xDwYZo0DlVxd9MH0jaecDJyA6vTTm7q
+         uN8C9RUdAONSSAzUq2H0pO7A+sqgY6krm4QTydzZZujAMILU57AA7QaTFiMbLyfzRELw
+         chNCTQgjF3byPArrCWUXl2pDh4oG6TKhrOcOTXhAnXH7v7Ao+yVIagN8kEsZGEkTX+CT
+         +hmSScH5hr0fcCuDiNiaXicii7qZVjfos+l/Hv11p3kr5ewrFmMYaxVQ75n4vUU/JXO5
+         yHZhfQjAIYF0DoZtSsNd1VVorIfE2JNHyzjF6lHRjUTg8j3Yd2+QccXNtdVyqsqFN+qA
+         AAuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693058482; x=1693663282;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sG+ykakkkDpjr4OKm8qU4Pv12nVdVlkpxc/7F+D8mBg=;
-        b=fn0xslkvJr3KhjhDVZTdaiV/XR/b9H0cMT1sV4vb0XuFwqc1XpWkcHW+5QR+nwmffQ
-         F2fAPR+HOv7gzmAkKiLCJBseDxzWNXzxrni/7vl1q0MsgTOBaZ4Af/+Co2lEcCQ24K8C
-         rlrmiHOoXeNdYsxx4vr88d9YwrqTmqU4QAHq+zFQ1O9UzLAurGxcAh2nWb9Ej/NJ1y2x
-         JKK4swgcwudLLfaXoPfLpEx5gUVCt5wAjmhgOOJ7FxYiuXiIl7PrjJfkDdbgEdQyiNDe
-         C/fzqYkOVRATC4waN+RtA+iR1TcRIiYUHpmaFZeh2hN2hOeiZPzA/b1AYKMf8dzexvYM
-         y73Q==
-X-Gm-Message-State: AOJu0YxBYS3nooFhHXWbjYAE8sd6hojZvRhOd9D9AsOIEj4kPB9t7m0O
-        ROTduv3RXBxVP/SGa6lQ0zLDrg==
-X-Google-Smtp-Source: AGHT+IHheLhh98NdaDC8lLb2Sx8APVLkTMq4a2ys4wWVCcrTErIpQMjRfM0n+GPqBsqaFlqDlKB07g==
-X-Received: by 2002:a05:6512:3ca1:b0:500:7d05:552a with SMTP id h33-20020a0565123ca100b005007d05552amr16732505lfv.53.1693058481420;
-        Sat, 26 Aug 2023 07:01:21 -0700 (PDT)
-Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id b9-20020ac24109000000b004ff973cb14esm715131lfi.108.2023.08.26.07.01.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 07:01:21 -0700 (PDT)
-Message-ID: <fac8c6a5-b90f-4955-a5ef-e1c49e815174@linaro.org>
-Date:   Sat, 26 Aug 2023 16:01:19 +0200
+        d=1e100.net; s=20221208; t=1693058610; x=1693663410;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OECpJpuzRGTpFfZZ6LF8wc0zJa5pdb5ic3jVGSKw5tA=;
+        b=BRMtZiMIQadzf7crvWpQrgvKtw+198zt/v+hLxVgYHu0TdEzcqLxtNaSBXIvPpA+s1
+         qRjD7jyZjg9uWGlwHLq7JSLzZDHrCTVfeY4LkLsF1ZJ3yyW/VM+1hAI1kTL1eFZ49Z3g
+         7lrUbkXYT4Dugj51jvQNrrp1P6xFU599Wce9Prj/HvGTmaI8CfqzlEmdzLqoARyXV7ih
+         8Sc42M4CB/Clf1yaaRIZMEi3t+qxBr8sdp+yaOXrYLEcLHU9c3+fOLlPecp0BJwqxcLQ
+         dVU0ixsr1u5HhhSaF8Ngjs6f0RJ2m2eUhM2M8XRlOygzrvMtE8dqzFPIg9eGQ9p/yCSC
+         UIww==
+X-Gm-Message-State: AOJu0Yw5mJ2s9sHK3SuYElpyjmQs9IFqR+TW9kG8sbxoII5/QrfHvZEa
+        mu7n3UsOjuBddtYeDPq38Pj0270O2ItSOGawiB1cBQ==
+X-Google-Smtp-Source: AGHT+IEOaxMx9taSxugSxzekl96KMLWldfs1IBAMMp77dpDFnRICyJmOoCJx0scz3kVVVi/oF4ptbpdLLjGOO64POUE=
+X-Received: by 2002:a25:7352:0:b0:d4c:82ff:7bde with SMTP id
+ o79-20020a257352000000b00d4c82ff7bdemr20094707ybc.63.1693058610193; Sat, 26
+ Aug 2023 07:03:30 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: sdm845-mtp: switch to mbn firmware
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
+ <20230822001349.899298-17-dmitry.baryshkov@linaro.org> <2dea943a-7a9e-4963-8ae5-6b126c750f80@linaro.org>
+ <CAA8EJpoB6JYrFPZ7PMrVYvuwxgu6SH1zuPWG3q8Xy1J2YcCPcA@mail.gmail.com> <aff8e42f-4861-4953-966a-c6ac735404dd@linaro.org>
+In-Reply-To: <aff8e42f-4861-4953-966a-c6ac735404dd@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sat, 26 Aug 2023 17:03:18 +0300
+Message-ID: <CAA8EJpoRJwjfa1S=zqvTEQ6rJLkq_Py0KmcgQ7fYNj3986EDag@mail.gmail.com>
+Subject: Re: [PATCH v3 16/32] ARM: dts: qcom: mdm9615: split PMIC to separate
+ dtsi files
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230825220854.1655162-1-dmitry.baryshkov@linaro.org>
- <20230825220854.1655162-3-dmitry.baryshkov@linaro.org>
- <3bfc87d0-2d68-47e2-969f-28300afa7dfa@linaro.org>
- <CAA8EJpqTvqF5oSV9g_eWwPXxR+b+GfQpjetSHS+JYDm5kMhoxA@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <CAA8EJpqTvqF5oSV9g_eWwPXxR+b+GfQpjetSHS+JYDm5kMhoxA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.08.2023 15:57, Dmitry Baryshkov wrote:
-> On Sat, 26 Aug 2023 at 12:00, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 26.08.2023 00:08, Dmitry Baryshkov wrote:
->>> We have switched most of devices to use mbn (squashed) firmware files
->>> instead of spit mdt+bNN. Even this DT uses modem.mbn and a630_zap.mbn.
->>> Let's switch adsp and cdsp firmware files to use .mbn format too.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> Looks like 845 was mbn from the start
->>
->> https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/log/qcom/sdm845?qt=grep&q=
-> 
-> sdm845-mtp predates these files. So is there an r-b?
-Yes, I hit enter too fast
+On Sat, 26 Aug 2023 at 16:48, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 26.08.2023 15:43, Dmitry Baryshkov wrote:
+> > On Sat, 26 Aug 2023 at 15:08, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >> On 22.08.2023 02:13, Dmitry Baryshkov wrote:
+> >>> The PMIC is not a part of the SoC, so move PMIC to a separate file and
+> >>> include it from the board files.
+> >>>
+> >>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> >>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>> ---
+> >> [...]
+> >>
+> >>> +                     pmic {
+> >> Are you leaving an empty subnode here?
+> >
+> > No. It contains 'interrupts' property (which is specific to the SoC).
+> Meh, that's bad design.. should have been in the controller node!
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+It will not be logical either. The interrupt line comes from the PMIC.
 
-Konrad
+Wait. Maybe we should do it other way around: move IRQ to the _board_
+file, since it is just a GPIO line. Then we don't have to leave this
+band-aid in place.
+
+> But noboyd thought about this 10y+ ago so here we are
+>
+> Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>
+> Konrad
+
+
+
+-- 
+With best wishes
+Dmitry
