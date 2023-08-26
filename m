@@ -2,126 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 697F6789949
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 23:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 842997899AD
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 00:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229901AbjHZVvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 17:51:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51508 "EHLO
+        id S229936AbjHZWTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 18:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229865AbjHZVut (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 17:50:49 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F32CD1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 14:50:45 -0700 (PDT)
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E34F23F206
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 21:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1693086643;
-        bh=VjTIpaKc3M9gQ6muJD7ayrAgi+ZhVB11zZBZ8oimfFg=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=Q9VrHbf6IT0Yw68n55/HpfW8GkEnYfTztXHhSfNrpTdOFCDMIcQCNyyfqdheXMOuV
-         9OwnfwmJqpskMb0w0e5fSzelxg6E0USiHFdPjUld25U1A5Fout1PzidK0Vg8rYmdfg
-         Q9WwUxyP18KeZB+GcqxWcIG7KidmHWxXNq6LD+OHH93GDhMeiWgBgafu6YKUsNlRzD
-         AWSGozJchS4Wuj3Vdu20LdrtRgb9V4WtPlYPeuBoatoTAXBFos2wnJIpRfYNEFmcAS
-         TtYaITjwtibIqs3OwaciQYWHS+evXsaYg9QQvTJCZVpDFOlsE6eFBrmxww2eMG90Jh
-         Ny0X8EBBndHdg==
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-64a0166deb5so25227626d6.3
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 14:50:43 -0700 (PDT)
+        with ESMTP id S229825AbjHZWTW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 18:19:22 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9514C1A5
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 15:19:18 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4ffa01fc987so3625049e87.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 15:19:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693088357; x=1693693157;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JvB3jMe0gpOsGECFiHEKsTBKlTOqgMYMDdvAdME1Rtk=;
+        b=nEjHIotqJgHl/bLNJyw8EmxyfTF36EYqbKpfEfsIBU6VK48CVTHUwAsuOD75DoemXy
+         8oouVCeLpU8cKkYRdIrdEHeDOYnfNbXXkxBL+jiDcxyLwDOqo+gAUHI+zihd+TkP5Nye
+         hI52FnWQOqUbsgoDkjWGRCbhEdBxLacfRmlwlmn8qaTdYZWR848rzvqV6aOmJHyLerVf
+         n/pKF0FoXfwlIgrZL1V9qOdVNcF0grieTJoXa4zP7yZ/xPtPP1skaOAYtvUA95Euiz3d
+         HYVpU9mo13R4DSepfip6s+CmxYRobPljs/9B2tRXaTspUcea7ivA69+nbO9OXIgcECOH
+         d07w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693086642; x=1693691442;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1693088357; x=1693693157;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VjTIpaKc3M9gQ6muJD7ayrAgi+ZhVB11zZBZ8oimfFg=;
-        b=cTDrJ8Xp/VNsw8yPzngMQTWlR2QWtzAE0Fp/llf3XjFmiHaLj8Xqjvp6FFhNYn8BKO
-         h5q574zZjyCX5Z7zBmD8VYKHMJ1UVVBIaXK4YTtdybsE4s9++f/YjJO8pPTW4mGUtlsl
-         GJkIqmd+1fMiEx8TADYjfqxtAPswH30sV1Po5es3+qfYkQkshe7YAFzQK55IbllKTVRB
-         dW4HOk4TUH2lVioVdafonWU4++wBVlJqLULP+SiYYqHKho1ltT2aX+OebvhSmwzkysEB
-         WS6x6DnQ6ktwtPrt1c3ulyyTj8uYtki4hEsAsO2vNHxjaBQ33pgC3ZMoBQac72Pf0jnp
-         R8bg==
-X-Gm-Message-State: AOJu0Yz3dJjkx/hrqSxNYo/7ajEDAIbboWVygNNeN/GUOWiNejQo1Nzo
-        y6dbzRXMNU01i6Zqe6rI1i/1qmK0+E6ZpjxBK8nE/VmWFx8UKEV+rdQXvJ8Ng3NyWgb9cbOh7pc
-        47bt8VHycb5UkBofNwyp2K+FvoL5M6n66avgeEpOpP/grKT4jSPbjZWM=
-X-Received: by 2002:a05:622a:118c:b0:412:bea:af8f with SMTP id m12-20020a05622a118c00b004120beaaf8fmr7293524qtk.23.1693086642731;
-        Sat, 26 Aug 2023 14:50:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFnBLfcky1Z5PXKn1SUBVQjv9ZgfioMwralikcznERsXZJGRRjNVz25sqDnqt9XYzbuahJwL0KTCDKt/yzCUAg=
-X-Received: by 2002:a05:622a:118c:b0:412:bea:af8f with SMTP id
- m12-20020a05622a118c00b004120beaaf8fmr7293510qtk.23.1693086642493; Sat, 26
- Aug 2023 14:50:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230826182702.2641743-1-aurelien@aurel32.net>
-In-Reply-To: <20230826182702.2641743-1-aurelien@aurel32.net>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Sat, 26 Aug 2023 23:50:26 +0200
-Message-ID: <CAJM55Z8zsfywScSeoSyKogAJZndKuPTF+_4GGd9+9ZcYraqLHQ@mail.gmail.com>
-Subject: Re: [PATCH] riscv: dts: starfive: fix NOR flash reserved-data
- partition size
-To:     Aurelien Jarno <aurelien@aurel32.net>
-Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
+        bh=JvB3jMe0gpOsGECFiHEKsTBKlTOqgMYMDdvAdME1Rtk=;
+        b=D2V8TUMZfJwmkbZrXhu0lQ7MecR15+OTlU9PfXIKakl0kA448IwAEGxncJS/WMg1Yb
+         2snFLO+lNNK6mwfvZi7/opBaqcsmhDsnLa6Fs7FojjQ6uWQSmuuN7DBHItPmALiLVNih
+         VAEboUyjjr/8+eldhnY8EKZ/aXnZ/T2ZNTBGBWmiPB2C+Qqd7TdVOP71pIvxHZJOv+gK
+         WPmSahHh/9dJU+5Ak41KcJqYA39hxZ7U6E4jarXerfngrOmxvmw4/pPXhCL8G2hc2pnM
+         AGIZn/3tMj2nTGOwhU4bAvzKsADv0P9S+vQc9WQQ/yPrJGo5HqWmET3DLcDdiv5w9pmS
+         KBLg==
+X-Gm-Message-State: AOJu0YxgvoeqMjMKc6YtI6ZZjR3MmK3nrzbx2Eb0pKGKF1+Ok3htyfLT
+        oFqRvdRLG5NRgOVMmW3jLPbbVQ==
+X-Google-Smtp-Source: AGHT+IGNkNJ8/IqtZPo7zfRh2YIUEa2eTL39YA8XAr8TGcok1pxD57ka3Kkqpdl6GiBNgtauZ7jQwQ==
+X-Received: by 2002:a05:6512:1587:b0:4fe:27a0:68bc with SMTP id bp7-20020a056512158700b004fe27a068bcmr7611955lfb.27.1693088356741;
+        Sat, 26 Aug 2023 15:19:16 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id f25-20020a19ae19000000b004fbad341442sm868672lfc.97.2023.08.26.15.19.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Aug 2023 15:19:16 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/5] arm64: dts: qcom: sdm845-mtp: misc improvements
+Date:   Sun, 27 Aug 2023 01:19:10 +0300
+Message-Id: <20230826221915.846937-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 26 Aug 2023 at 20:28, Aurelien Jarno <aurelien@aurel32.net> wrote:
->
-> The Starfive VisionFive 2 has a 16MiB NOR flash, while the reserved-data
-> partition is declared starting at address 0x600000 with a size of
-> 0x1000000. This causes the kernel to output the following warning:
->
-> [   22.156589] mtd: partition "reserved-data" extends beyond the end of device "13010000.spi.0" -- size truncated to 0xa00000
->
-> It seems to be a confusion between the size of the partition and the end
-> address. Fix that by specifying the right size.
->
-> Fixes: 8384087a4223 ("riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC")
+Several misc improvements, take away from testing recent kernel on
+SDM845-MTP board.
 
-Thanks!
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Changes since v1:
+ - Reordered PCIe properties according to Konrad's suggestions
+ - Fixed pcie1 perst to have bias-pull-down instead of bias-disable
 
-> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index 498eb179d90f..30c85ba6da02 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -262,7 +262,7 @@ uboot@100000 {
->                                 reg = <0x100000 0x400000>;
->                         };
->                         reserved-data@600000 {
-> -                               reg = <0x600000 0x1000000>;
-> +                               reg = <0x600000 0xa00000>;
->                         };
->                 };
->         };
-> --
-> 2.39.2
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Dmitry Baryshkov (5):
+  arm64: dts: qcom: sdm845-mtp: fix WiFi configuration
+  arm64: dts: qcom: sdm845-mtp: specify wifi variant
+  arm64: dts: qcom: sdm845-mtp: switch to mbn firmware
+  arm64: dts: qcom: sdm845-mtp: enable Vol-/reset button
+  arm64: dts: qcom: sdm845-mtp: enable PCIe support
+
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 90 ++++++++++++++++++++++++-
+ 1 file changed, 88 insertions(+), 2 deletions(-)
+
+-- 
+2.39.2
+
