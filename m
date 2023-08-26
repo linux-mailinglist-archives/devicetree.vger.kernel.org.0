@@ -2,111 +2,421 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBB2A789765
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 16:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD718789861
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 19:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjHZO3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 10:29:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42726 "EHLO
+        id S230392AbjHZRRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 13:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbjHZO3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 10:29:34 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA2172114
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 07:29:30 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so5854972a12.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 07:29:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693060169; x=1693664969;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UoHwOTKGuupL476rFcW8I642v+ujJo8hTqxA/kEoIVc=;
-        b=yFKGic01iRVPyL4PsX55rDX8WIy7c6znpSM5R8aLe7RpP2VBqVwYhnRKZRjfQfvBkJ
-         SVd9InmtFtKNB8srwsbuTS66sEYRqZ2KtjwaHberQH1SvHeqYDYW/Q6TGLRanL3NdEpb
-         7xgifl+p3XTssLpg9RiB7OKGDuueJ1Sj1F0p2ydK+ELRu1bDqxbShFXVYfLJj+lK8uQr
-         AdST1hMObcMpVt4oXJ6oZORjh560bj9PyOEnYSVbVCYSgA5iaSoglN7uekh1N5PIAu+m
-         oCytOa8GlenkygJhgMH7P2sh+oUCPIeqhEhi3wRFZVx4BcSvzFvBV7QF6VG3YR9sfT4F
-         YesQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693060169; x=1693664969;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UoHwOTKGuupL476rFcW8I642v+ujJo8hTqxA/kEoIVc=;
-        b=lNl7d7ulm6cbCJyME3YtxfuLBlEJTCIj+C9sqkpTtV9oFG7iCDqhqtT6IFw2mKA2zV
-         E14C1OGIAGhoO2bKXkIG7vgrk+lUoYRliPI4L7Ngnq7fHNgBQ226XKfAVvqZOgKlFSnC
-         cTc08RLnBB/3Faywlh1rrp1weDJlmbnIB5171W7WVN0JwfeF5sDYKOLrHFH0cJMys3vj
-         zK/0nOqRrAN83HPVhkWht+S1vu1aKdcZrLrNI2XZ7Vp5eozoo6LrGRnx5GRYDC1PkK/x
-         mdbSE25WUuylQ2Ri44ybMNQaLY+WsxtTpsqJxZOb0Y4tUAdD46i1NAHJzn8R0RORw5UY
-         1Drg==
-X-Gm-Message-State: AOJu0Yy/8FTBpnkXokPQcOsnYOyKAXdPNuTbsPXgazEiBsD176wAS5vS
-        TuezL/T9bvknuQaeQNTMWepNjw==
-X-Google-Smtp-Source: AGHT+IFFtNX5/1x+vPBsm+ndbnTzoPdNJBmv/tkhp3W8Qop5+BkHCGF+0A7SABanuHFJLm3T355oQw==
-X-Received: by 2002:a17:907:7804:b0:9a1:914e:491a with SMTP id la4-20020a170907780400b009a1914e491amr19325263ejc.3.1693060169184;
-        Sat, 26 Aug 2023 07:29:29 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id l8-20020a1709067d4800b009a1c4d04989sm2227595ejp.217.2023.08.26.07.29.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 07:29:28 -0700 (PDT)
-Message-ID: <5847be93-68c3-95fb-1d3e-9678804b9a70@linaro.org>
-Date:   Sat, 26 Aug 2023 16:29:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 3/3] clk: qcom: Add SM6115 LPASSCC
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229784AbjHZRRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 13:17:15 -0400
+Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EDC11BD9;
+        Sat, 26 Aug 2023 10:17:12 -0700 (PDT)
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id AD4291000CF; Sat, 26 Aug 2023 18:17:10 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+        t=1693070230; bh=VxP0Fi3yWr5pqnwP3p3bKIpyMIhulSY2W1YAv2Bshqg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=B3d2gZasFILpLVGgeVKCKjOmshL3yy3cTQfLmpS+3f1mysc9kZZrZgC4Uibl0B70k
+         MgeKjKxQJAzjrczgPm6pyKren69q+DAYrfNjLJ8RUPQHHIky9QV8tyfNhw1Xcz6KnF
+         sj6hkSi0fZcHQRTX03nEshUsD+EgPWHcfh4ECbdgqAS/oB2VB7uEovNkBHf9AP2T9u
+         ZrRlOuuYKtzVTfoGdBynpAenxTx0emoEiGE6ltspDgXZwPH3keHsHw2f23W7/mNVKn
+         WjF8aQhnzZBFXRa0gjL3G+ZIhEVsdFq5e0Hb53X/FEX1N1wrAsBBbHfPuL0WhxMFy8
+         e9T1zBRkze6Cw==
+From:   Sean Young <sean@mess.org>
+To:     linux-media@vger.kernel.org
+Cc:     Sicelo <absicsz@gmail.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230825-topic-6115_lpasscc-v1-0-d4857be298e3@linaro.org>
- <20230825-topic-6115_lpasscc-v1-3-d4857be298e3@linaro.org>
- <a9d52cd9-845e-ff88-3c26-858cb6604e43@linaro.org>
- <CAA8EJprEnMjbKw2fbU1X7GV=ANARNhofSQh49Bdo1kvuOskbbQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJprEnMjbKw2fbU1X7GV=ANARNhofSQh49Bdo1kvuOskbbQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali.rohar@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Timo Kokkonen <timo.t.kokkonen@iki.fi>,
+        Tony Lindgren <tony@atomide.com>
+Subject: [PATCH v4 1/2] media: rc: remove ir-rx51 in favour of generic pwm-ir-tx
+Date:   Sat, 26 Aug 2023 18:17:10 +0100
+Message-Id: <20230826171710.366659-1-sean@mess.org>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2023 16:09, Dmitry Baryshkov wrote:
+The ir-rx51 is a pwm-based TX driver specific to the N900. This can be
+handled entirely by the generic pwm-ir-tx driver, and in fact the
+pwm-ir-tx driver has been compatible with ir-rx51 from the start.
 
->>> +MODULE_DEVICE_TABLE(of, lpasscc_sm6115_match_table);
->>
->> Everything here is almost the same as sc8280xp one, so this should be
->> added to sc8280xp. You cut some boilerplate and additional driver.
-> 
-> We have been there. It quickly becomes a nightmare to maintain.
-> Consider dispcc-sm8250.c
+Note that the suspend code in the ir-rx51 driver is unnecessary, since
+during transmit, the process is not in interruptable sleep. The process
+is not put to sleep until the transmit completes.
 
-Because too much was added. I do not propose to keep all resets here.
+Tested-by: Sicelo A. Mhlongo <absicsz@gmail.com>
+Signed-off-by: Sean Young <sean@mess.org>
+---
+ arch/arm/configs/omap2plus_defconfig |   1 -
+ drivers/media/rc/Kconfig             |  10 -
+ drivers/media/rc/Makefile            |   1 -
+ drivers/media/rc/ir-rx51.c           | 285 ---------------------------
+ drivers/media/rc/pwm-ir-tx.c         |   1 +
+ 5 files changed, 1 insertion(+), 297 deletions(-)
+ delete mode 100644 drivers/media/rc/ir-rx51.c
 
-> 
-> But I agree with you, this code looks too similar. If we expect more
-> similar lpasscc drivers, which provide no clocks, just several resets,
-> maybe we can create a common generic wrapper and make resets lists
-> corresponding driver data?
-
-This would also work.
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index b685018dcf54..ef39ab57b75a 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -484,7 +484,6 @@ CONFIG_LIRC=y
+ CONFIG_RC_DEVICES=y
+ CONFIG_IR_GPIO_TX=m
+ CONFIG_IR_PWM_TX=m
+-CONFIG_IR_RX51=m
+ CONFIG_IR_SPI=m
+ CONFIG_MEDIA_SUPPORT=m
+ CONFIG_V4L_PLATFORM_DRIVERS=y
+diff --git a/drivers/media/rc/Kconfig b/drivers/media/rc/Kconfig
+index 922c790b577e..d1b98dd5bee6 100644
+--- a/drivers/media/rc/Kconfig
++++ b/drivers/media/rc/Kconfig
+@@ -337,16 +337,6 @@ config IR_REDRAT3
+ 	   To compile this driver as a module, choose M here: the
+ 	   module will be called redrat3.
+ 
+-config IR_RX51
+-	tristate "Nokia N900 IR transmitter diode"
+-	depends on (OMAP_DM_TIMER && PWM_OMAP_DMTIMER && ARCH_OMAP2PLUS || COMPILE_TEST) && RC_CORE
+-	help
+-	   Say Y or M here if you want to enable support for the IR
+-	   transmitter diode built in the Nokia N900 (RX51) device.
+-
+-	   The driver uses omap DM timers for generating the carrier
+-	   wave and pulses.
+-
+ config IR_SERIAL
+ 	tristate "Homebrew Serial Port Receiver"
+ 	depends on HAS_IOPORT
+diff --git a/drivers/media/rc/Makefile b/drivers/media/rc/Makefile
+index a9285266e944..2bca6f7f07bc 100644
+--- a/drivers/media/rc/Makefile
++++ b/drivers/media/rc/Makefile
+@@ -43,7 +43,6 @@ obj-$(CONFIG_IR_MTK) += mtk-cir.o
+ obj-$(CONFIG_IR_NUVOTON) += nuvoton-cir.o
+ obj-$(CONFIG_IR_PWM_TX) += pwm-ir-tx.o
+ obj-$(CONFIG_IR_REDRAT3) += redrat3.o
+-obj-$(CONFIG_IR_RX51) += ir-rx51.o
+ obj-$(CONFIG_IR_SERIAL) += serial_ir.o
+ obj-$(CONFIG_IR_SPI) += ir-spi.o
+ obj-$(CONFIG_IR_STREAMZAP) += streamzap.o
+diff --git a/drivers/media/rc/ir-rx51.c b/drivers/media/rc/ir-rx51.c
+deleted file mode 100644
+index adbbe639a261..000000000000
+--- a/drivers/media/rc/ir-rx51.c
++++ /dev/null
+@@ -1,285 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-/*
+- *  Copyright (C) 2008 Nokia Corporation
+- *
+- *  Based on lirc_serial.c
+- */
+-#include <linux/clk.h>
+-#include <linux/module.h>
+-#include <linux/platform_device.h>
+-#include <linux/wait.h>
+-#include <linux/pwm.h>
+-#include <linux/of.h>
+-#include <linux/hrtimer.h>
+-
+-#include <media/rc-core.h>
+-
+-#define WBUF_LEN 256
+-
+-struct ir_rx51 {
+-	struct rc_dev *rcdev;
+-	struct pwm_device *pwm;
+-	struct pwm_state state;
+-	struct hrtimer timer;
+-	struct device	     *dev;
+-	wait_queue_head_t     wqueue;
+-
+-	unsigned int	freq;		/* carrier frequency */
+-	unsigned int	duty_cycle;	/* carrier duty cycle */
+-	int		wbuf[WBUF_LEN];
+-	int		wbuf_index;
+-	unsigned long	device_is_open;
+-};
+-
+-static inline void ir_rx51_on(struct ir_rx51 *ir_rx51)
+-{
+-	ir_rx51->state.enabled = true;
+-	pwm_apply_state(ir_rx51->pwm, &ir_rx51->state);
+-}
+-
+-static inline void ir_rx51_off(struct ir_rx51 *ir_rx51)
+-{
+-	ir_rx51->state.enabled = false;
+-	pwm_apply_state(ir_rx51->pwm, &ir_rx51->state);
+-}
+-
+-static int init_timing_params(struct ir_rx51 *ir_rx51)
+-{
+-	ir_rx51->state.period = DIV_ROUND_CLOSEST(NSEC_PER_SEC, ir_rx51->freq);
+-	pwm_set_relative_duty_cycle(&ir_rx51->state, ir_rx51->duty_cycle, 100);
+-
+-	return 0;
+-}
+-
+-static enum hrtimer_restart ir_rx51_timer_cb(struct hrtimer *timer)
+-{
+-	struct ir_rx51 *ir_rx51 = container_of(timer, struct ir_rx51, timer);
+-	ktime_t now;
+-
+-	if (ir_rx51->wbuf_index < 0) {
+-		dev_err_ratelimited(ir_rx51->dev,
+-				    "BUG wbuf_index has value of %i\n",
+-				    ir_rx51->wbuf_index);
+-		goto end;
+-	}
+-
+-	/*
+-	 * If we happen to hit an odd latency spike, loop through the
+-	 * pulses until we catch up.
+-	 */
+-	do {
+-		u64 ns;
+-
+-		if (ir_rx51->wbuf_index >= WBUF_LEN)
+-			goto end;
+-		if (ir_rx51->wbuf[ir_rx51->wbuf_index] == -1)
+-			goto end;
+-
+-		if (ir_rx51->wbuf_index % 2)
+-			ir_rx51_off(ir_rx51);
+-		else
+-			ir_rx51_on(ir_rx51);
+-
+-		ns = US_TO_NS(ir_rx51->wbuf[ir_rx51->wbuf_index]);
+-		hrtimer_add_expires_ns(timer, ns);
+-
+-		ir_rx51->wbuf_index++;
+-
+-		now = timer->base->get_time();
+-
+-	} while (hrtimer_get_expires_tv64(timer) < now);
+-
+-	return HRTIMER_RESTART;
+-end:
+-	/* Stop TX here */
+-	ir_rx51_off(ir_rx51);
+-	ir_rx51->wbuf_index = -1;
+-
+-	wake_up_interruptible(&ir_rx51->wqueue);
+-
+-	return HRTIMER_NORESTART;
+-}
+-
+-static int ir_rx51_tx(struct rc_dev *dev, unsigned int *buffer,
+-		      unsigned int count)
+-{
+-	struct ir_rx51 *ir_rx51 = dev->priv;
+-
+-	if (count > WBUF_LEN)
+-		return -EINVAL;
+-
+-	memcpy(ir_rx51->wbuf, buffer, count * sizeof(unsigned int));
+-
+-	/* Wait any pending transfers to finish */
+-	wait_event_interruptible(ir_rx51->wqueue, ir_rx51->wbuf_index < 0);
+-
+-	init_timing_params(ir_rx51);
+-	if (count < WBUF_LEN)
+-		ir_rx51->wbuf[count] = -1; /* Insert termination mark */
+-
+-	/*
+-	 * REVISIT: Adjust latency requirements so the device doesn't go in too
+-	 * deep sleep states with pm_qos_add_request().
+-	 */
+-
+-	ir_rx51_on(ir_rx51);
+-	ir_rx51->wbuf_index = 1;
+-	hrtimer_start(&ir_rx51->timer,
+-		      ns_to_ktime(US_TO_NS(ir_rx51->wbuf[0])),
+-		      HRTIMER_MODE_REL);
+-	/*
+-	 * Don't return back to the userspace until the transfer has
+-	 * finished
+-	 */
+-	wait_event_interruptible(ir_rx51->wqueue, ir_rx51->wbuf_index < 0);
+-
+-	/* REVISIT: Remove pm_qos constraint, we can sleep again */
+-
+-	return count;
+-}
+-
+-static int ir_rx51_open(struct rc_dev *dev)
+-{
+-	struct ir_rx51 *ir_rx51 = dev->priv;
+-
+-	if (test_and_set_bit(1, &ir_rx51->device_is_open))
+-		return -EBUSY;
+-
+-	ir_rx51->pwm = pwm_get(ir_rx51->dev, NULL);
+-	if (IS_ERR(ir_rx51->pwm)) {
+-		int res = PTR_ERR(ir_rx51->pwm);
+-
+-		dev_err(ir_rx51->dev, "pwm_get failed: %d\n", res);
+-		return res;
+-	}
+-
+-	return 0;
+-}
+-
+-static void ir_rx51_release(struct rc_dev *dev)
+-{
+-	struct ir_rx51 *ir_rx51 = dev->priv;
+-
+-	hrtimer_cancel(&ir_rx51->timer);
+-	ir_rx51_off(ir_rx51);
+-	pwm_put(ir_rx51->pwm);
+-
+-	clear_bit(1, &ir_rx51->device_is_open);
+-}
+-
+-static struct ir_rx51 ir_rx51 = {
+-	.duty_cycle	= 50,
+-	.wbuf_index	= -1,
+-};
+-
+-static int ir_rx51_set_duty_cycle(struct rc_dev *dev, u32 duty)
+-{
+-	struct ir_rx51 *ir_rx51 = dev->priv;
+-
+-	ir_rx51->duty_cycle = duty;
+-
+-	return 0;
+-}
+-
+-static int ir_rx51_set_tx_carrier(struct rc_dev *dev, u32 carrier)
+-{
+-	struct ir_rx51 *ir_rx51 = dev->priv;
+-
+-	if (carrier > 500000 || carrier < 20000)
+-		return -EINVAL;
+-
+-	ir_rx51->freq = carrier;
+-
+-	return 0;
+-}
+-
+-#ifdef CONFIG_PM
+-
+-static int ir_rx51_suspend(struct platform_device *dev, pm_message_t state)
+-{
+-	/*
+-	 * In case the device is still open, do not suspend. Normally
+-	 * this should not be a problem as lircd only keeps the device
+-	 * open only for short periods of time. We also don't want to
+-	 * get involved with race conditions that might happen if we
+-	 * were in a middle of a transmit. Thus, we defer any suspend
+-	 * actions until transmit has completed.
+-	 */
+-	if (test_and_set_bit(1, &ir_rx51.device_is_open))
+-		return -EAGAIN;
+-
+-	clear_bit(1, &ir_rx51.device_is_open);
+-
+-	return 0;
+-}
+-
+-static int ir_rx51_resume(struct platform_device *dev)
+-{
+-	return 0;
+-}
+-
+-#else
+-
+-#define ir_rx51_suspend	NULL
+-#define ir_rx51_resume	NULL
+-
+-#endif /* CONFIG_PM */
+-
+-static int ir_rx51_probe(struct platform_device *dev)
+-{
+-	struct pwm_device *pwm;
+-	struct rc_dev *rcdev;
+-
+-	pwm = pwm_get(&dev->dev, NULL);
+-	if (IS_ERR(pwm))
+-		return dev_err_probe(&dev->dev, PTR_ERR(pwm), "pwm_get failed\n");
+-
+-	/* Use default, in case userspace does not set the carrier */
+-	ir_rx51.freq = DIV_ROUND_CLOSEST_ULL(pwm_get_period(pwm), NSEC_PER_SEC);
+-	pwm_init_state(pwm, &ir_rx51.state);
+-	pwm_put(pwm);
+-
+-	hrtimer_init(&ir_rx51.timer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
+-	ir_rx51.timer.function = ir_rx51_timer_cb;
+-
+-	ir_rx51.dev = &dev->dev;
+-
+-	rcdev = devm_rc_allocate_device(&dev->dev, RC_DRIVER_IR_RAW_TX);
+-	if (!rcdev)
+-		return -ENOMEM;
+-
+-	rcdev->priv = &ir_rx51;
+-	rcdev->open = ir_rx51_open;
+-	rcdev->close = ir_rx51_release;
+-	rcdev->tx_ir = ir_rx51_tx;
+-	rcdev->s_tx_duty_cycle = ir_rx51_set_duty_cycle;
+-	rcdev->s_tx_carrier = ir_rx51_set_tx_carrier;
+-	rcdev->driver_name = KBUILD_MODNAME;
+-
+-	ir_rx51.rcdev = rcdev;
+-
+-	return devm_rc_register_device(&dev->dev, ir_rx51.rcdev);
+-}
+-
+-static const struct of_device_id ir_rx51_match[] = {
+-	{
+-		.compatible = "nokia,n900-ir",
+-	},
+-	{},
+-};
+-MODULE_DEVICE_TABLE(of, ir_rx51_match);
+-
+-static struct platform_driver ir_rx51_platform_driver = {
+-	.probe		= ir_rx51_probe,
+-	.suspend	= ir_rx51_suspend,
+-	.resume		= ir_rx51_resume,
+-	.driver		= {
+-		.name	= KBUILD_MODNAME,
+-		.of_match_table = of_match_ptr(ir_rx51_match),
+-	},
+-};
+-module_platform_driver(ir_rx51_platform_driver);
+-
+-MODULE_DESCRIPTION("IR TX driver for Nokia RX51");
+-MODULE_AUTHOR("Nokia Corporation");
+-MODULE_LICENSE("GPL");
+diff --git a/drivers/media/rc/pwm-ir-tx.c b/drivers/media/rc/pwm-ir-tx.c
+index 7732054c4621..c5f37c03af9c 100644
+--- a/drivers/media/rc/pwm-ir-tx.c
++++ b/drivers/media/rc/pwm-ir-tx.c
+@@ -23,6 +23,7 @@ struct pwm_ir {
+ 
+ static const struct of_device_id pwm_ir_of_match[] = {
+ 	{ .compatible = "pwm-ir-tx", },
++	{ .compatible = "nokia,n900-ir" },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(of, pwm_ir_of_match);
+-- 
+2.42.0
 
