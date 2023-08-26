@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 995BC7894F8
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64D787894FB
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:03:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232166AbjHZJBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 05:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58792 "EHLO
+        id S231755AbjHZJCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 05:02:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232164AbjHZJBo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:01:44 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E465E1FC3
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:01:41 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fe21e7f3d1so2585567e87.3
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:01:41 -0700 (PDT)
+        with ESMTP id S232179AbjHZJCa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:02:30 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB7F2691
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:02:27 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bcc846fed0so24605891fa.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:02:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693040500; x=1693645300;
+        d=linaro.org; s=google; t=1693040545; x=1693645345;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fQtB+NM9aQ0OrfsKUSXDh5bcBOMBirE4QFVTJoRvwY0=;
-        b=A9YGTS6/q7tyieDTCp60IhPEOaapMu6sYpcJROxLi/+bPZ87RJxg5MnGJ5/UfTBL/m
-         /mIpR8NcHen/Y0jVzzt+cQEWz/GKfLqWaHPThT80OtjVch5kzhyah5d5FVnohN9+bnvw
-         cHTixy0BRH15Elhc1X+IVc5+TsjAszzWA2xpiQHUJeyJfrEQKff6rafEzDDo8PzZvHVh
-         /Sci+r5aDXJGXtxdu/j/IbDC1xxf24RqjMsa/y6kFhDV9dJtx5iUohdCcpk7kyIhE+aP
-         FWjDyLdBxGNJmdYyLTtCkqgNLmf007h0mzerjLnTqKryNedud9Rv8A2hwDRMVylNnmxb
-         EfmQ==
+        bh=2cf+7QyZ1hTChQ5yFt5LM81Rbwh0rlY1KlUlToQXk/o=;
+        b=y/4+MAQN3p/onp80538DUBl3rTgFbaZvPDt22AwmsxpaVzfA1m8YtoFkw8nsus3IOb
+         +XL5n/2nZDJkxVQqrO/EIG943ig+fFNyrl8nIX8l/SPQHE95MstinlBPmysCpmaq9ogk
+         mxWwx5r+E8FRXd7W2pc2ltz8ZImHeo+rt4iHQl67QsSgvqx+b79GTdryUmm5euwRZ0IB
+         HRKPb1s6O3eu5C2b7Sc4P+kVWeeVVuY6W197BivbsEnYloBfTYvFc59zkTtBybUR5KmW
+         hS212so/a2Zlag+tvlIIUmVqoPNLRKG/bvuAVcoMXaojspqNvOkpfrIo8Qgb2m7+k2R6
+         VhDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693040500; x=1693645300;
+        d=1e100.net; s=20221208; t=1693040545; x=1693645345;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fQtB+NM9aQ0OrfsKUSXDh5bcBOMBirE4QFVTJoRvwY0=;
-        b=MLhTGnKC5gl8ykIzP4GmIFI6Eb5C8YEIGGO9uhTJmr6XTLItTGdZ7RJxxdNYW2pKm/
-         gcUzdwvt6zz2xZgHHQ04A0GyazJBIReGZpKr3o592exXt7cFXi1ge/eWV8CmbLOAbZ8A
-         qwKdME1a0UJkWTcKgjBWLDosO1CYUOZEBNHEFFcHGh2piWherEEdiulopq0XnLA87kvg
-         zXe4n8Vs+3nOEsSgzWvF4Kshj/DxyoJkTaVsTf2bT+SscxZPu68hOrXEYW2g+sksKJim
-         G3tzkP1T/5Uer11bhLfD6nMAqFB8Cg8n5taPnVlZNAksLAHV+aJMhx6iP34n+dnnnyUD
-         DYfw==
-X-Gm-Message-State: AOJu0YyEtQT+d6OCJCN2N9+j/W+ZcbPnCosR7J+GuPXNtlDSYyy29Zoo
-        mJ29EQ9lqyRAvLnyFbHK2iUWWg==
-X-Google-Smtp-Source: AGHT+IGjFbYig9LQ0mTDYS7YLYgWM4E65Oojs0Uyf/aSRN/RiiPcgN9S9bDzOph0MXp/9mLcCqE6IA==
-X-Received: by 2002:a19:f505:0:b0:500:a240:7240 with SMTP id j5-20020a19f505000000b00500a2407240mr4272200lfb.52.1693040500291;
-        Sat, 26 Aug 2023 02:01:40 -0700 (PDT)
+        bh=2cf+7QyZ1hTChQ5yFt5LM81Rbwh0rlY1KlUlToQXk/o=;
+        b=dX2+cZBvT3ijUIIdHn1sCqsjdd1yIoT11OLxn4n0cM6Ufa8zqYeSkL7DzN+nqkwn//
+         pvgjhfsLr1srNFukwbYxOa2r+4vlA6AW8xC66DpuU1opGlqv6rQoKG6DAT3Gs4UQ8ee+
+         vZVhOw8KYmpv/AREVG3LcENho/nXMM3NWi6tsF5Pw6G/HIP8/Vo8h47r7dEuYn6k19Hs
+         OjrJdhV7Uk8cko9lZKiqHuML4oD48/hAtXgv1rZRHKGhgpbl08VrS34OnLdumiDVQtEM
+         k2tMpCgdt8c/t1AKBKuDyWOhIQ+6c7Gwq4bwpwHrmMin1aL/F7XSiG/ZEoyjwmyCu2td
+         lRvQ==
+X-Gm-Message-State: AOJu0YwFlyeo7zxKANUi1KrUE95LOUAA92G1QBIa6/Ur31jyEte8UnFQ
+        fijMWF7Z1Yp0JXcer+8TkT3geQ==
+X-Google-Smtp-Source: AGHT+IGAh4QI59KyFI1ork0ogRmLqW61j5qKsp513HNIqRaG5HRqAk4limtOTXpMK4HkR2avZbn0Eg==
+X-Received: by 2002:a05:6512:b28:b0:4ff:8f44:834f with SMTP id w40-20020a0565120b2800b004ff8f44834fmr16696115lfu.38.1693040545505;
+        Sat, 26 Aug 2023 02:02:25 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id h20-20020a197014000000b004f864690901sm635184lfc.244.2023.08.26.02.01.39
+        by smtp.gmail.com with ESMTPSA id h20-20020a197014000000b004f864690901sm635184lfc.244.2023.08.26.02.02.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 02:01:40 -0700 (PDT)
-Message-ID: <81d6cbc4-7f42-43fd-b4b9-3c2604c9aca9@linaro.org>
-Date:   Sat, 26 Aug 2023 11:01:39 +0200
+        Sat, 26 Aug 2023 02:02:25 -0700 (PDT)
+Message-ID: <1b36a23d-801c-4f21-9c3f-164ba3e5f92d@linaro.org>
+Date:   Sat, 26 Aug 2023 11:02:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: sdm845-mtp: enable Vol-/reset
- button
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-mtp: enable PCIe support
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -63,7 +62,7 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230825220854.1655162-1-dmitry.baryshkov@linaro.org>
- <20230825220854.1655162-4-dmitry.baryshkov@linaro.org>
+ <20230825220854.1655162-5-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,13 +99,12 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230825220854.1655162-4-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230825220854.1655162-5-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -114,10 +112,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 26.08.2023 00:08, Dmitry Baryshkov wrote:
-> Wire up the Vol- / reset button on Qualcomm SDM845 MTP board.
+> Enable two PCIe hosts support on Qualcomm SDM845 MTP board.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 81 +++++++++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> index aec3f358d426..9fb41d2453c8 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> @@ -533,6 +533,36 @@ &mss_pil {
+>  	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
+>  };
+>  
+> +&pcie0 {
+> +	status = "okay";
+last
+
+> +	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
+> +
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie0_default_state>;
+flip
+
+[...]
+
+> +	pcie0_default_state: pcie0-default-state {
+> +		clkreq-pins {
+> +			pins = "gpio36";
+> +			function = "pci_e0";
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-n-pins {
+> +			pins = "gpio35";
+> +			function = "gpio";
+> +
+> +			drive-strength = <2>;
+drop newline
+
+> +			output-low;
+> +			bias-pull-down;
+flip
 
 Konrad
