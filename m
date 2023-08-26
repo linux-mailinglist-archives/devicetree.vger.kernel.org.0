@@ -2,91 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D0D57898C1
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 21:10:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B347898E1
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 22:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjHZTKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 15:10:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49864 "EHLO
+        id S229748AbjHZUAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 16:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229588AbjHZTJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 15:09:56 -0400
-X-Greylist: delayed 2566 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 26 Aug 2023 12:09:54 PDT
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EAC1E4B;
-        Sat, 26 Aug 2023 12:09:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
-        Subject:Cc:To:From:Content-Type:From:Reply-To:Subject:Content-ID:
-        Content-Description:In-Reply-To:References:X-Debbugs-Cc;
-        bh=NSzUijcZ/MgUsFtsx1EEVy2F3mZEyyGzlmPtWD+DEE8=; b=Bs9E3dPWJM6urKAmwdT9uCRujQ
-        9/PKZTFXAeq9yfoPJdpp1q2c7lV4uvcyYMveTkQce6t0ZGn/2CMFy2ULKB/aTZhBRpVh17EkLJ1kR
-        ukcP7UbbnpPO6FOQZI3JKgnviEBaynhenqfg4+kDfAaPIXC7Bh5BworGgrZ/EaKwYsNGbsoT06/23
-        LlqyNEV4Sz68ypi1qaPVa7GXYZc6K8Im8NNRsJdwV5mA05ae/izD5Gf9Fc4VdSNrJX13D7U4x/tYp
-        ZCqIYO7b7P+eL5oCEuHPhv6l3mIIALee9/OLMFAe9oi1XYJ1Gs8JdhyH3dqiZebMCpVwTXelTYWJ3
-        MBWesq0w==;
-Received: from [2a01:e34:ec5d:a741:9a7b:5831:531:65c9] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1qZy01-00AqTj-1Y; Sat, 26 Aug 2023 20:27:05 +0200
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1qZy00-00B5Ey-0m;
-        Sat, 26 Aug 2023 20:27:04 +0200
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229531AbjHZT7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 15:59:51 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CB95D8;
+        Sat, 26 Aug 2023 12:59:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B7B7A61F2F;
+        Sat, 26 Aug 2023 19:59:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84168C433C8;
+        Sat, 26 Aug 2023 19:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1693079988;
+        bh=wk7TTw46I9VQ1vaqjL5oYSR1MWRvL3QqszPe1Ac3vEE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jUceMAv4p78ZNILkEQmopDvcIZ44XkSx8YyqCQzeVhrnFNDWN3wcMc8ZoERhQFETn
+         c8e7ID/zkoi0nwVWXynboBvJsIvtCSXs4S3OcfJ2lr5Ac4GDBo5U/Nx3T1SLQfKXvo
+         VPZa3kfJE565DVd7Jkrtr2glSNkantuwuRdZjw1A=
+Date:   Sat, 26 Aug 2023 21:59:45 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Lucas Tanure <tanure@linux.com>
+Cc:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
+        Jiri Slaby <jirislaby@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        Aurelien Jarno <aurelien@aurel32.net>
-Subject: [PATCH] riscv: dts: starfive: fix NOR flash reserved-data partition size
-Date:   Sat, 26 Aug 2023 20:27:02 +0200
-Message-Id: <20230826182702.2641743-1-aurelien@aurel32.net>
-X-Mailer: git-send-email 2.39.2
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        Nick <nick@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v9 2/2] tty: serial: meson: Add a earlycon for the T7 SoC
+Message-ID: <2023082636-embolism-submitter-5e8c@gregkh>
+References: <20230814080128.143613-1-tanure@linux.com>
+ <20230814080128.143613-2-tanure@linux.com>
+ <20230823082940.t4xjgfzwpt2hsfst@CAB-WSD-L081021>
+ <29cfd5ef-16ae-4960-a95e-13b58c090604@linux.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <29cfd5ef-16ae-4960-a95e-13b58c090604@linux.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Starfive VisionFive 2 has a 16MiB NOR flash, while the reserved-data
-partition is declared starting at address 0x600000 with a size of
-0x1000000. This causes the kernel to output the following warning:
+On Sat, Aug 26, 2023 at 07:07:18PM +0100, Lucas Tanure wrote:
+> On 23-08-2023 09:29, Dmitry Rokosov wrote:
+> > Hello Lucas,
+> > 
+> > Thank you for the patch! Please find my small comment below.
+> > 
+> > On Mon, Aug 14, 2023 at 09:01:28AM +0100, Lucas Tanure wrote:
+> > > The new Amlogic T7 SoC does not have a always-on uart,
+> > > so add OF_EARLYCON_DECLARE for it.
+> > > 
+> > > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > > Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > ---
+> > > Since v8:
+> > >   - Fix issues with git send-mail command line
+> > > Since v7:
+> > >   - Send to the correct maintainers
+> > > 
+> > >   drivers/tty/serial/meson_uart.c | 2 ++
+> > >   1 file changed, 2 insertions(+)
+> > > 
+> > > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+> > > index 790d910dafa5..c4f61d82fb72 100644
+> > > --- a/drivers/tty/serial/meson_uart.c
+> > > +++ b/drivers/tty/serial/meson_uart.c
+> > > @@ -648,6 +648,8 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
+> > >   OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+> > >   		    meson_serial_early_console_setup);
+> > > +OF_EARLYCON_DECLARE(meson, "amlogic,t7-uart",
+> > > +		    meson_serial_early_console_setup);
+> > >   #define MESON_SERIAL_CONSOLE_PTR(_devname) (&meson_serial_console_##_devname)
+> > >   #else
+> > 
+> > I suppose you need to add a separate meson_t7_uart_data to switch the T7
+> > UART to a regular TTY devname 'ttyS'. For the new Amlogic SoCs, we have
+> > agreed to use 'ttyS' instead of 'ttyAML'. Please refer to the already
+> > applied patch series at [1] and the IRC discussion at [2].
+> > 
+> > Links:
+> >      [1] https://lore.kernel.org/all/20230705181833.16137-1-ddrokosov@sberdevices.ru/
+> >      [2] https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
+> > 
+> I asked Greg to drop this patch as is not need anymore.
+> T7 will use S4 TTY/UART code.
 
-[   22.156589] mtd: partition "reserved-data" extends beyond the end of device "13010000.spi.0" -- size truncated to 0xa00000
-
-It seems to be a confusion between the size of the partition and the end
-address. Fix that by specifying the right size.
-
-Fixes: 8384087a4223 ("riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC")
-Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
----
- arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 498eb179d90f..30c85ba6da02 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -262,7 +262,7 @@ uboot@100000 {
- 				reg = <0x100000 0x400000>;
- 			};
- 			reserved-data@600000 {
--				reg = <0x600000 0x1000000>;
-+				reg = <0x600000 0xa00000>;
- 			};
- 		};
- 	};
--- 
-2.39.2
-
+I can't drop it, I need a revert :(
