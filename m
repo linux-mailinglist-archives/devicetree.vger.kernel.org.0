@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B2FF789669
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 14:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C5F789673
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 14:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232519AbjHZMBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 08:01:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49260 "EHLO
+        id S230439AbjHZMDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 08:03:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231741AbjHZMBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 08:01:07 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29AE22107
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:01:04 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b962c226ceso25930391fa.3
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:01:04 -0700 (PDT)
+        with ESMTP id S232731AbjHZMDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 08:03:49 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FF652105
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:03:45 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4ff93a7f230so2097275e87.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:03:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693051262; x=1693656062;
+        d=linaro.org; s=google; t=1693051423; x=1693656223;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZpIF/kspXEWP+ED7ApWYX9k2YRiDKFAj43hIwcfHRok=;
-        b=qQaV1KeAu7h1gr6FRZgszmE+WMMjqFyWH8UP6gn2gELe5mZFMQaEWcSkbu7z8V5j9+
-         +scs2/pa+Kv5HvnJdVtO57+PAzxKSnw7xl5wnWRvQlDMl2xqtOmIyiIehzlIQ5k75lDx
-         iy69mRjY4Y+RseRmLvazleu86VrLFMgyVcRTp55YzXugJze8c+MttJPlzKDnth6CGPDk
-         /0VM4WzFmQ7xf5gF1Jl1VcjtmD1IbjvrwIFOOnfqEeMB2SCb7CBD8v2dYhvAY+DXGrTr
-         zdVaa9a/5prnHgBLvCcs/2vSFwI4myk7CrZMaK45oSWvkVNRFw7idzhQTPQb5LXb2Twb
-         jS6A==
+        bh=SG+FRA6Jdj7lloQ4CW4VDp8In+rYXljtoh+/xtNc81Q=;
+        b=AQjawv90XA6JscmYjGQ/4tY5fCDVRZdeTNh/TCIRnz/SMgswAbboswgnPhjXOvG1Au
+         mZUUf19xCG/1sL76eWHX7H4MUsI3KGYz7IwEIQNN7eP2vb3KHivEQh9JVU4hNpnvwDMV
+         Pft/TwotggUNwbMpPPkB8EDPwmuBc6Y/sXtLX6DOxuJPyxP0Y6e2TJpdw53GxFWy+y45
+         Egxa8Phc32xAJM5m8zSTqzHlAYw4vseLbMlTG60U8Yt+VqegzyEEyqYj1OA00Hnjnmy+
+         9xwOnb21zBfGemIbtRw/HZgBjweZq61JjNicpGQlgrwSxpG9km2a/dyVa2aUTlCgmmpY
+         /0qw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693051262; x=1693656062;
+        d=1e100.net; s=20221208; t=1693051423; x=1693656223;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZpIF/kspXEWP+ED7ApWYX9k2YRiDKFAj43hIwcfHRok=;
-        b=j2kTHDAaPa1RDIYp4MeYn2OPfsgyejVnB2BiDob9sWwuDXsmyd98FYBLYfIUcwJdDy
-         6RMafph1QHHdllaTIcaMX6jR18hmwMiuN+LbBp3pRSS4Q2vZ/HQ+MY+7bgPrNkBcaX9h
-         FnnHt+QABy2ls066JtQzyh9B0Aya+9ZIckpEDlVf2f7Tv6PSKXNjp0WOwsD3gAP+NMB7
-         OE6fiKU8XP5mTie9ISPjTbwQERmfkdMt7EGRUmJR4KP1F3jLWSHUtT/zkbL4/arJ5KGa
-         ga8BS5680qoSwdss8ogclOAD8BPJ+i7V6ubLgE+jOxVyavJk9sId6f5owLlolqNl55lF
-         G5Nw==
-X-Gm-Message-State: AOJu0Yw50BJcDYgzaYRaTtZu9nunNJ80nSOdCkgm+zl6WaDm6qLKgooc
-        PO4kufLYsY8kaJ7rgDBUejtaMw==
-X-Google-Smtp-Source: AGHT+IFCi14v5086qfu/+ybqQJUOmmw9vk0plNASNf2tPl4Cuea1GMollTWLsk91NXxTTmtW4IJ1wA==
-X-Received: by 2002:a2e:9097:0:b0:2bc:f252:6cc4 with SMTP id l23-20020a2e9097000000b002bcf2526cc4mr3083690ljg.10.1693051262345;
-        Sat, 26 Aug 2023 05:01:02 -0700 (PDT)
+        bh=SG+FRA6Jdj7lloQ4CW4VDp8In+rYXljtoh+/xtNc81Q=;
+        b=j5ibVrrViHn6xeOT8iWpNghempzUkKsWQYYT6DlJ54MXm0w4YaqImH15iph+H/xy44
+         7wvdZRFzQJtfNfak+SLo+SOuqCy7d0Gz4KrVQLs7da1EBji6xCzDP1DETwB+rIJEmD8j
+         sYzyFLS+Z9FNBpzOF3Gjt3+eI/nbIYbU4N6rKIa9WrdJuoXcwovodm+IVRP8zfYZXOnr
+         SHQ3iU7MsDBREZBxWHpCGQIXToq+1Kv8iT4ry/XAM16r6JqiMzKMbpHN9Gy0xBPBfkln
+         8RHgCXCciSkbXJbm7yeIlPnwRqXp/Wip4DjsqlD3OAxpbcTstUtOROWT80fqZNx0s1lg
+         En+w==
+X-Gm-Message-State: AOJu0YzzcxH1S2S2qOWixL/bLB3FtyPRg9CyBazEjXw4O5SVvKEr21Af
+        lAfFn1P0VY2CAboypTs0IolT3A==
+X-Google-Smtp-Source: AGHT+IFpvXi4fjnNXJ2u7zaCwDs8iSYEeMB5aZQE3cjcHpzGBtrCL/j3jjyZohowM9qd1n8rJPG8YA==
+X-Received: by 2002:a05:6512:6cb:b0:4f8:4b19:9533 with SMTP id u11-20020a05651206cb00b004f84b199533mr8533138lff.19.1693051423583;
+        Sat, 26 Aug 2023 05:03:43 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id 9-20020a05651c008900b002b9f41a1b9asm755355ljq.110.2023.08.26.05.01.01
+        by smtp.gmail.com with ESMTPSA id f17-20020ac25331000000b00500a2091e2bsm689347lfh.99.2023.08.26.05.03.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 05:01:02 -0700 (PDT)
-Message-ID: <724aa0d7-600f-48c9-8a5c-7f43823d0c49@linaro.org>
-Date:   Sat, 26 Aug 2023 14:01:00 +0200
+        Sat, 26 Aug 2023 05:03:43 -0700 (PDT)
+Message-ID: <024ded8e-d6b9-45dd-9633-03daa403f125@linaro.org>
+Date:   Sat, 26 Aug 2023 14:03:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: msm8916-samsung-fortuna: Add
- initial device trees
+Subject: Re: [PATCH v2 3/3] ARM: dts: qcom-msm8916-samsung-fortuna: Include
+ dts from arm64
 Content-Language: en-US
 To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
         linux-kernel@vger.kernel.org
@@ -66,12 +66,9 @@ Cc:     Andy Gross <agross@kernel.org>,
         Stephan Gerhold <stephan@gerhold.net>,
         Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Walter Broemeling <wallebroem@gmail.com>,
-        Joe Mason <buddyjojo06@outlook.com>,
-        Siddharth Manthan <siddharth.manthan@gmail.com>,
         Gareth Peoples <mail@gpeopl.es>
 References: <20230801111745.4629-1-linmengbo0689@protonmail.com>
- <20230801112123.4672-1-linmengbo0689@protonmail.com>
+ <20230801112134.4689-1-linmengbo0689@protonmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -108,12 +105,13 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230801112123.4672-1-linmengbo0689@protonmail.com>
+In-Reply-To: <20230801112134.4689-1-linmengbo0689@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -121,27 +119,45 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 1.08.2023 13:22, Lin, Meng-Bo wrote:
-> From: Walter Broemeling <wallebroem@gmail.com>
+> After adding all necessary support for MSM8916 SMP/cpuidle without PSCI
+> on ARM32, build fortunaltezt and heatqlte device trees from the arm64
+> tree together with the ARM32 include to allow booting this device on ARM32.
 > 
-> Samsung Galaxy Core Prime, Grand Prime and Ace 4 are phones based on
-> MSM8916. They are similar to the other Samsung devices based on MSM8916
-> with only a few minor differences.
+> The approach to include device tree files from other architectures is
+> inspired from e.g. the Raspberry Pi (bcm2711-rpi-4-b.dts) where this is
+> used to build the device tree for both ARM32 and ARM64.
 > 
-> This initial commit adds support for:
->  - fortuna3g (SM-G530H)
->  - fortunaltezt (SM-G530Y)
->  - gprimeltecan (SM-G530W)
->  - grandprimelte (SM-G530FZ)
->  - heatqlte (SM-G357FZ)
->  - rossa (SM-G360G)
-[...]
+> [Add workaround to TSENS problem]
+> Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> [Add heatqlte]
+> Co-developed-by: Gareth Peoples <mail@gpeopl.es>
+> Signed-off-by: Gareth Peoples <mail@gpeopl.es>
+> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
+> ---
+>  arch/arm/boot/dts/qcom-msm8916-samsung-fortunaltezt.dts | 8 ++++++++
+>  arch/arm/boot/dts/qcom-msm8916-samsung-heatqlte.dts     | 8 ++++++++
+>  arch/arm/boot/dts/qcom/Makefile                         | 2 ++
+>  3 files changed, 18 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/qcom-msm8916-samsung-fortunaltezt.dts
+>  create mode 100644 arch/arm/boot/dts/qcom-msm8916-samsung-heatqlte.dts
+> 
+> diff --git a/arch/arm/boot/dts/qcom-msm8916-samsung-fortunaltezt.dts b/arch/arm/boot/dts/qcom-msm8916-samsung-fortunaltezt.dts
+> new file mode 100644
+> index 000000000000..b9704fea7029
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/qcom-msm8916-samsung-fortunaltezt.dts
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +#include "arm64/qcom/msm8916-samsung-fortunaltezt.dts"
+> +#include "qcom-msm8916-smp.dtsi"
+> +
+> +&tsens {
+> +	/* FIXME: The device crashes when accessing the SROT region for some reason */
+> +	status = "disabled";
+All of SROT, or just e.g. TSENS_EN?
 
-
-> +&blsp_i2c1 {
-> +	/* SM5504 MUIC instead of SM5502 */
-> +	/delete-node/ extcon@25;
-use /delete-node/ &label instead
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+If only the headswitch is inaccessible, you may still reach
+the hardware if it's been turned on from bl
 
 Konrad
