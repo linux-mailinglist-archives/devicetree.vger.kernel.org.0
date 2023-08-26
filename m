@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43A76789659
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 13:53:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF57B78965F
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 13:55:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231770AbjHZLxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 07:53:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33948 "EHLO
+        id S232644AbjHZLy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 07:54:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229573AbjHZLxU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 07:53:20 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF0CF1BDA
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 04:53:16 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50098cc8967so2798860e87.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 04:53:16 -0700 (PDT)
+        with ESMTP id S232659AbjHZLyI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 07:54:08 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BB311FDB
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 04:54:05 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50087d47d4dso2741589e87.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 04:54:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693050795; x=1693655595;
+        d=linaro.org; s=google; t=1693050843; x=1693655643;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zlqYvrNT9PUAv5XmqZBjGuR+UnDR90WcQscjzLGLmHg=;
-        b=r3TzFirXmwBRpTs9p45zCc6tHqJwP4g0Q8TV95pqYUEKpjpqZ2IHoZ0Twyb7YOpAnu
-         aUCE5Zpp2AasnCrB2usKLPt3a27cGyEfaq7OOXAMHwu5aTh2ANv1q2Gyoq3vkMERs1Fg
-         pAYCyXeCZCiOxGcBUTicS+XHNlOjRnPc76oCY3p+WWxmUVIABsJgFQOOpjX0Hem8B0zz
-         MvAvJIxZ1M9nEuwxhAIHlH2Quum1PA8h+0z4dH3Zhm6MCv/pWMBC9Jr/Zlux/8dr8fh8
-         GVVX0Uv3tEeURODb+fpI9zAO92iaZqLTN9cIAzKdYDW/1ynM5ZHrIs478ZocwDvQFDoT
-         vufw==
+        bh=0EPL7CpeoFMQKYf4z4yYjBTqb+sh6kMqAld0BDX3+D0=;
+        b=twctIUtxpdCrBA8JWcIBD9SsZLshnmf59XH4A9iSrlrOpytGMja7r5SGm77ULd+yOE
+         BM5ohhyNQsZmyggCUGYzOg3HmGXySwmDvYs/+KAbLd1k6LEbp3cIv2w971h9yA10QnYL
+         KEUu+eJfUIUu8mNwCghguKaQjVS2E9ZABF1vgfhdOQE7VuUEN++xDDGrZXqQ3PSIQkjj
+         dWTxqxZi/GdlbNI4V8lB+d0rDjt0pNgb7axjmeDrSuCpjcbjY2LChXQqNOpM6RBta3qb
+         l4p/6wxmpLr7zzMpzQ57W5GS7+PjK/xEXq8pfowP8n8cP3h+9tle4JrsUInSjGob8EDZ
+         htog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693050795; x=1693655595;
+        d=1e100.net; s=20221208; t=1693050843; x=1693655643;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zlqYvrNT9PUAv5XmqZBjGuR+UnDR90WcQscjzLGLmHg=;
-        b=J6fnVL386ABY0Ml+9olXCrwMgrfg1pb27OgzVGg3FcUfAo8ZxojlRZd4bBFYISAzDA
-         7sdGpmsxitLwEmDmBeIMIwK2TkxWdG2AICD2G517IPuqJgUlLWQ2/sYiTGNqRqp15Dfu
-         LfQHAlEUq1O8fQqxL5wHdNq4NgK7Jxfpkgw4cqdAvtOXyvjplqKEDuNQyK89/biBAwDT
-         tAmEaerHUscptv3EShoyBttKXlRWqS9fByau28QlDviwVFk1R9e6hB81kHqyxrbYT/WJ
-         0hQa7pDoQ9lgbVcil0JVq67UbLO7XadqGCenqFJvi+mGUYZKLpkpywuvWyg3P2XP2ypZ
-         brXw==
-X-Gm-Message-State: AOJu0YxEBdrnQsSyJl1LFn92NaRywaej1bZYqJ8qtGXLKfZvRUxSXW19
-        4paBNhQEj+c1iiyVf13cNXagkA==
-X-Google-Smtp-Source: AGHT+IG+vab1Uyjae0tlLVaHthI4AF1AhvMp2RwXpOyJsWiIapsGe3TO2kZyCvks4SPsrrOUWzqaSA==
-X-Received: by 2002:a05:6512:2524:b0:4fe:676:8c0b with SMTP id be36-20020a056512252400b004fe06768c0bmr16056397lfb.11.1693050794997;
-        Sat, 26 Aug 2023 04:53:14 -0700 (PDT)
+        bh=0EPL7CpeoFMQKYf4z4yYjBTqb+sh6kMqAld0BDX3+D0=;
+        b=O0BkmTTUWOICQYMZv4W9IFpk7aPooV5Shw+IHf1P/wGXTsDc4w6GHNRhz4A8eb4IDR
+         VrB2qN+yjbXhKmTAOr1CUKu3Cq6lEYPem3fNPA9NIAgyFRq+LksneBveCGKhBH791A7G
+         urW2naWSoqX0X+PCafquDzkxS6bnIFouIUe5VensbdLL7MoH5WPmI5AHs6trH+gFdOeq
+         VByB/CKksykHgrtez92b0gwCbXbyjNSjVNej7BEteLSOjgEHQ4uNXFolN+8R78mPlamr
+         esMzbHaz7b007+o7hU5+435yKqiJTTfP9IKchTCjJcp3pRk1lcux/iSllr7C8KupaI3d
+         lnzQ==
+X-Gm-Message-State: AOJu0YzdOYahpy38j9MN5jGSGA2hd2flOeDPTma7e4kf9iu5+sArBtCj
+        DnK3cVcKGy5eXqU/27M/6s9f1g==
+X-Google-Smtp-Source: AGHT+IGQz3D0e/LO4hq0lAnDSzmewRMNFKZuEg8PxttLrhlcau0b09dIkzJ9letpNn7nnqUv2LhtPQ==
+X-Received: by 2002:a05:6512:4026:b0:4fe:d0f:1f1b with SMTP id br38-20020a056512402600b004fe0d0f1f1bmr17280471lfb.65.1693050843279;
+        Sat, 26 Aug 2023 04:54:03 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id q27-20020ac2515b000000b005008c11ca6dsm678165lfd.184.2023.08.26.04.53.13
+        by smtp.gmail.com with ESMTPSA id q27-20020ac2515b000000b005008c11ca6dsm678165lfd.184.2023.08.26.04.54.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 04:53:14 -0700 (PDT)
-Message-ID: <154203eb-dcdb-4152-aec0-cfcc1bf80c13@linaro.org>
-Date:   Sat, 26 Aug 2023 13:53:13 +0200
+        Sat, 26 Aug 2023 04:54:02 -0700 (PDT)
+Message-ID: <561e75e8-cb97-4d19-a9a4-e9029d91633e@linaro.org>
+Date:   Sat, 26 Aug 2023 13:54:02 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: qcom: sdm630: remove refs to nonexistent
  clocks
 Content-Language: en-US
-To:     Stephan Gerhold <stephan@gerhold.net>,
-        Alexey Minnekhanov <alexeymin@postmarketos.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+        linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
 References: <20230719073520.2644966-1-alexeymin@postmarketos.org>
- <9e38d2f5-6da4-089e-1c70-a89069708909@linaro.org>
- <b8cc0229-d663-3527-b320-51a48b4af5b5@postmarketos.org>
- <ZLexD5tdjYGhTCR9@gerhold.net>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -107,41 +102,28 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <ZLexD5tdjYGhTCR9@gerhold.net>
+In-Reply-To: <20230719073520.2644966-1-alexeymin@postmarketos.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.07.2023 11:46, Stephan Gerhold wrote:
-> On Wed, Jul 19, 2023 at 11:36:46AM +0300, Alexey Minnekhanov wrote:
->> On 19.07.2023 10:39, Krzysztof Kozlowski wrote:
->>> It does not look like you tested the DTS against bindings. Please run
->>> `make dtbs_check`
->>>
->>
->> If DT schema for interconnect requires bus clocks to be specified, I don't
->> even know what to put there now. Can we change schema?
->>
+On 19.07.2023 09:35, Alexey Minnekhanov wrote:
+> Since commit d6edc31f3a68 ("clk: qcom: smd-rpm: Separate out
+> interconnect bus clocks") rpmcc-sdm660 no longer provides
+> RPM_SMD_AGGR2_NOC_CLK and RPM_SMD_AGGR2_NOC_A_CLK clocks.
+> Remove them to fix various probe failures and get devices
+> booting again.
 > 
-> I think I mentioned the DT schema updates during the review of Konrad's
-> interconnect changes and he mentioned he would like to clean those up
-> after getting the series in. (Which would be sometime soon now I guess)
-> 
-> For now, having the &rpmcc "bus"/"bus_a"/"ipa" clocks specified on the
-> interconnect@... nodes is still valid. At runtime they will just be
-> ignored. Feel free to just keep them there for this initial fix.
-> 
-> For the other two usages (iommu@, usb@) these votes with minimal
-> frequency look a bit related to the "keep_alive" stuff Konrad added. [1]
-> Maybe that could be used here instead of bypassing interconnect with the
-> clock votes?
-or just pass interconnects=
+> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+> ---
+You need to update the bindings, see commits I made for 8998
 
 Konrad
