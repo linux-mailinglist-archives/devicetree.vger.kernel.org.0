@@ -2,152 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC93D789629
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 12:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08CF078963C
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 13:17:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232500AbjHZK4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 06:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40704 "EHLO
+        id S232565AbjHZLQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 07:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232585AbjHZK4J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 06:56:09 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2653B2682
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:56:04 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcc187e0b5so25718361fa.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:56:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693047362; x=1693652162;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c9HpIVI+fMQp5RpX7dOU0hW1G802oEZ2jlBCTUQkv5M=;
-        b=hhTLSgBIv0EfkOp95Hj/DLvdZ6HOcgRVZQrdWk5cZ1KyLt1HtXqPtdhNLVTyNvnOB0
-         AkfYLCCkyhvHTs+HB1gw8p3x9sZ8S5Iveb1kyZQSbN66xTJXw2XZIPPLcaUtt9tO0iXi
-         S4cJ8VZKKkLxQrljXVZu3wQjlzwlXW31Fk4i0cE7JVfhSEEhH20cTbjgGbIjb5RkpQrU
-         4O6W57P0dD7ArlWX/MvTi25lvRCqyxjPXyxqhPJgzyWl2dVtaSNjv5A7dpej6tsRb0Si
-         uM1dInSbMAowf9uL0epzo/AkEDhhNYMkp7sshLWUZVyjHUBm+bVye0CPQIBzWkhpPbpi
-         cNGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693047362; x=1693652162;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9HpIVI+fMQp5RpX7dOU0hW1G802oEZ2jlBCTUQkv5M=;
-        b=VR3gCabvFE/kDC4bu3gUQHXbksKrO+fLazxw/f3t67Si+wu3j2Ouop75G8lbQlMHpJ
-         Yr6HIhEBopQ8FBQokeQnvdlLazJ5DvYT1F21bOluPLhk9vw8feAeNpVvr1ugvZiJfy4c
-         bWJAK+9y9K4Da48Utu6mqpBQr9ObsnvUDkjzALcx6zt9t9W5pnWMUtBC8x9g1E8iLe03
-         ZHkdeZCDcGRBWjKlxUeIN4l5pI69RwpJkJqJSQzvYZdzCHFcISXH1nBI+LabOFesE7/R
-         DdManZXLq9EKOe2FhxBLKvo72BSdcNx+RmBT7gBIt9+vYAMQhjsjnpLxjZJTimKx1vvv
-         BHUA==
-X-Gm-Message-State: AOJu0YyT9+eqwOrzXRb853zdo+DuB7CLFzqH6pbyLDSCbj3pu/Q3EYPg
-        RBQOHAtckuvWKZs5vi2WRBcAA9Kn61DFXioTKIJpxw==
-X-Google-Smtp-Source: AGHT+IEcx2jTay6w2hVdv7KNjpJOM2L5349pzuj+be7QQ7RohDoCSkEgI8UuLz4EvrH+pw5EPOwasw==
-X-Received: by 2002:a05:6512:1584:b0:4fe:1c40:9266 with SMTP id bp4-20020a056512158400b004fe1c409266mr16898585lfb.17.1693047362321;
-        Sat, 26 Aug 2023 03:56:02 -0700 (PDT)
-Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id y3-20020ac255a3000000b005007cf8968esm655410lfg.264.2023.08.26.03.56.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 03:56:02 -0700 (PDT)
-Message-ID: <c202145a-79a5-412a-9f11-32fb701c0e0a@linaro.org>
-Date:   Sat, 26 Aug 2023 12:56:01 +0200
+        with ESMTP id S232561AbjHZLQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 07:16:15 -0400
+Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1172AA6;
+        Sat, 26 Aug 2023 04:16:11 -0700 (PDT)
+Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
+        by mx.skole.hr (mx.skole.hr) with ESMTP id 7AB1C833B0;
+        Sat, 26 Aug 2023 13:16:08 +0200 (CEST)
+From:   =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Date:   Sat, 26 Aug 2023 13:15:52 +0200
+Subject: [PATCH v2] arm: marvell: Fix maxium->maxim typo in brownstone dts
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 7/7] arm64: dts: qcom: qrb5165-rb5: Switch on TCPM
- orientation-switch for usb_1_qmpphy
-Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, agross@kernel.org,
-        andersson@kernel.org, lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        sboyd@kernel.org, luca.weiss@fairphone.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230816115151.501736-1-bryan.odonoghue@linaro.org>
- <20230816115151.501736-8-bryan.odonoghue@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230816115151.501736-8-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20230826-brownstone-typo-fix-v2-1-1f8196e9a2e3@skole.hr>
+X-B4-Tracking: v=1; b=H4sIAOje6WQC/32NQQ7CIBBFr9LM2jFAoaIr72G6sHQqRAMNNGjTc
+ HexB3D5XvLf3yBRdJTg0mwQKbvkgq8gDg0Ye/cPQjdWBsFEyzSTOMTw9mkJnnBZ54CT++CkBt4
+ ZeRp1p6Au50hV79VbX9m6OojrfpL5z/7vZY4cpW7FqKVhip2v6RledLQR+lLKF9NWNnW1AAAA
+To:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Haojian Zhuang <haojian.zhuang@gmail.com>,
+        Samuel Ortiz <sameo@linux.intel.com>,
+        Qing Xu <qingx@marvell.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+        =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1307;
+ i=duje.mihanovic@skole.hr; h=from:subject:message-id;
+ bh=49t1UVPg2Rf9WsD0FkWFL7j0VQBEwi2PNjeKLJosF0c=;
+ b=owEBbQKS/ZANAwAIAZoRnrBCLZbhAcsmYgBk6d718/XU0lY5w8yTymz1LpaNf7EY1BGPrCNP9
+ OdVd262jeiJAjMEAAEIAB0WIQRT351NnD/hEPs2LXiaEZ6wQi2W4QUCZOne9QAKCRCaEZ6wQi2W
+ 4RW1D/9i7CptAgOahcAu7WLrn2unQzhi89dBqSJRUPebZowFzlxRAaayCBQ0COHm7QDnt7whXOw
+ le5d2rb9dyPX3+v3qk0QdufuvNP3902GY0Yco2yQrt45vT4SLiBC8ZBK6ZJaVYeMVROypEfZwkU
+ mWHT4/V40Lj6B1Y26la6duahJZON+0A6d+pI6jSPp1gGtYM061Bs2zhnYO6rYk8fICNKuLFkNnC
+ EkneOmnW2OvcxL8TK4U+MatXnW0QFHyD+wJ4ClLd0QSnN1+F3nZhSh2qlvFmcRcwF9PQwajYneW
+ fwO8BWWIbevROQTrDtNz2JkXJJ6J5E83S5gv4h/z8Gzul7muE/3z+I2QzY993ezicb80lPBkpfV
+ 9U5ZUjcawtrWp4g4mskTe8wGDj+OwAjhkI1QQPOvMPjNfUjcCTdVjQs10yNVeGzw2+OnnonO4MH
+ Su7ZxQVxAc6WkvRjnpn+QOHLQvlodFzBAZLQL3kbRDabC2fJDJ6xQ6KfKjB0wcVONwtxnjLx1zy
+ n5QqGgqHiuUkVmUyTpP+qjs6tH9qpzobDyen7pgTy6oXlek3fava7u4BEaCAzf/THg2byEaL82Z
+ YSN7Pr85C1fD4SHsPuEaviJxm391DHuuzVyDtnHMeQCm28/d2grLik3jwpqbFowrqTmRoMLF9S8
+ J3CUZbPK3kfwQ8g==
+X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
+ fpr=53DF9D4D9C3FE110FB362D789A119EB0422D96E1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.08.2023 13:51, Bryan O'Donoghue wrote:
-> Switch on USB orientation-switching for usb_1_qmp via TCPM. Detecting the
-> orientation switch is required to get the PHY to reset and bring-up the PHY
-> with the CC lines set to the appropriate lane.
-> 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 12 ++++++++++++
->  arch/arm64/boot/dts/qcom/sm8250.dtsi     |  1 +
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index 3e34f4e2af14a..b878d765f8c42 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -1290,6 +1290,11 @@ &usb_1_qmpphy {
->  
->  	vdda-phy-supply = <&vreg_l9a_1p2>;
->  	vdda-pll-supply = <&vreg_l18a_0p92>;
-> +	orientation-switch;
-> +};
-> +
-> +&usb_1_qmpphy_out {
-> +	remote-endpoint = <&pm8150b_typec_mux_in>;
->  };
->  
->  &usb_2 {
-> @@ -1374,6 +1379,13 @@ pm8150b_role_switch_in: endpoint {
->  					remote-endpoint = <&usb_1_role_switch_out>;
->  				};
->  			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +				pm8150b_typec_mux_in: endpoint {
-should also go to pmic dt
+Fix an obvious spelling error in the PMIC compatible in the MMP2
+Brownstone DTS file.
 
-Konrad
+Without this, the PMIC would never probe.
+
+Fixes: 58f1193e6210 ("mfd: max8925: Add dts")
+Cc: stable@vger.kernel.org
+Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+---
+Changes in v2:
+- Address maintainer comments:
+  - Add Fixes: and Cc: tags
+- Change "for" to "in" in subject
+- Emphasize PMIC's inability to probe without patch
+- Link to v1: https://lore.kernel.org/r/20230804-brownstone-typo-fix-v1-1-4832d84c0509@skole.hr
+---
+ arch/arm/boot/dts/marvell/mmp2-brownstone.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/marvell/mmp2-brownstone.dts b/arch/arm/boot/dts/marvell/mmp2-brownstone.dts
+index 04f1ae1382e7..bc64348b8218 100644
+--- a/arch/arm/boot/dts/marvell/mmp2-brownstone.dts
++++ b/arch/arm/boot/dts/marvell/mmp2-brownstone.dts
+@@ -28,7 +28,7 @@ &uart3 {
+ &twsi1 {
+ 	status = "okay";
+ 	pmic: max8925@3c {
+-		compatible = "maxium,max8925";
++		compatible = "maxim,max8925";
+ 		reg = <0x3c>;
+ 		interrupts = <1>;
+ 		interrupt-parent = <&intcmux4>;
+
+---
+base-commit: 2ccdd1b13c591d306f0401d98dedc4bdcd02b421
+change-id: 20230804-brownstone-typo-fix-f5b16c47d865
+
+Best regards,
+-- 
+Duje Mihanović <duje.mihanovic@skole.hr>
+
+
