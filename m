@@ -2,130 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 296BE789569
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:47:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 461E0789583
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:48:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231879AbjHZJrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 05:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56804 "EHLO
+        id S232450AbjHZJsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 05:48:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40894 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232490AbjHZJqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:46:50 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 560E310D7
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:46:46 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99bfcf4c814so208485266b.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:46:46 -0700 (PDT)
+        with ESMTP id S232498AbjHZJrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:47:40 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1781BDB
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:47:37 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-5008faf4456so2568694e87.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:47:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693043205; x=1693648005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693043256; x=1693648056;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xEbLos18PAXF+VWDexugVSPY8cGgVPouJFgqeAIgj2g=;
-        b=lmCoxeIqztpe+opKBbUijFsC6GOPWVrhtomY78qaM6TlZjVaPJSPk8s5ZlFe61FC7l
-         p39cb4dpX1s+D3B0Jnrz9M1ECcH5aO7DTRyZAynGM5icqJjRr+caI80bdPdVM8Uw5+NN
-         nIraLLC7pxJAmJt/QEdO7exAcUMsT7DxAnUaheSCaI1U3qsTqzHK68dinbD21gZDajGR
-         rpiMi+G5nsu8DTn3+mDwZyD5pepNbhLfnuJ8CCWI2BVJzMQs+oylBtMUuKtL7vF1V+R0
-         dryzW4yO1sm0IETnkgkdQ9rKJMt269re2UQrEfOKeCK99vBwCHZE993T2DmaX9r1Epqq
-         5bKQ==
+        bh=mCjyvkNiRyZpzjsm80k366sW/ayXlbttNl0SthehxqI=;
+        b=evKldsDiET1PPux63QY/TgbJADKpJA3bC0TxVwrGHtemQKT7qdGhdCcylE6jTSFfyk
+         jvg/G3dcYpRWoN6yoWjUuEiAsj0wOPI2ZF6z1Y9j/ZGIsZeOCB8kUDa5Gda8J0ChGgFU
+         oHFFgdiD/LBBIiwNEAR62CRxQjUYAg3BlLezKXS4ecr7pNpEL0OXxstIgN+VVBMvEO/D
+         o0w/qEC9vU7PuHDXXUOqBygHmh/YiJqjyU8WPlCRkh+UAMrikQa245Sz2mdEbONr74W8
+         MTi8IZaXQ8INyx8NxawzMKE5w0AR9Eg7CB6rjidJ2aaWMQEBCwYtV6FDrb4oMchwIgg6
+         pW/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693043205; x=1693648005;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693043256; x=1693648056;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xEbLos18PAXF+VWDexugVSPY8cGgVPouJFgqeAIgj2g=;
-        b=jJOb7OtDyJTc2MrkpoA1BFFih57Wt1oebrowfJkqYuXDa4+2Ok2dxWRj4bZcdJdwF/
-         6vsGDGrkOCOeWLLVVKPYtW1smg8YgDzQ9yS4y7qublGaC+TlpcO64Vp086gkoF54IR0E
-         x2Cxt09JWgJTG9jJ//kSR6gH7GfD+B8QAW/B5sqOXtl0GKaFnp9ZTzSArG0xh40yd7B9
-         eZVUCEmWayPwKymwXBRy8gtiQgzW+duo2/UyLKT3xFQxjy/+NlIfD0Bb/haJg9QjhFRJ
-         bI40HKAIETgESS/4NGZTOt+rYQksg1GDIMGNIeCoVGZzmtZ3PAmrPEIigeDUzTXRpaRD
-         Swog==
-X-Gm-Message-State: AOJu0Yx3nAYRmgt95wvRAcS8VDobxzrZvyeViBOO+sFMen9sX32cGXJs
-        rNQUeeInafChFsDzM7WMPEAzMA==
-X-Google-Smtp-Source: AGHT+IEP7ndTWQOR+5ImclTFoFfHYoXYsPwZTnUGtRVfLr6CS1R55d2YXHpGL89sNFFvaNIT17wSUg==
-X-Received: by 2002:a17:906:2098:b0:9a1:dd2a:c2c6 with SMTP id 24-20020a170906209800b009a1dd2ac2c6mr7448605ejq.8.1693043204734;
-        Sat, 26 Aug 2023 02:46:44 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id d14-20020a17090648ce00b0099cb349d570sm1939294ejt.185.2023.08.26.02.46.43
+        bh=mCjyvkNiRyZpzjsm80k366sW/ayXlbttNl0SthehxqI=;
+        b=QVVP5yaAEZvqQI+lXuBTrL/l2Pj/WKmJBhTf2aHNK8l+73aN3QuxmQu/35NFNzrBi9
+         5y/7ELpM6x5CwaitvUqchJ4w48tAx9xNCx6soj+1+KVkyPODZvl0ZgWVjql6c5rmuaHJ
+         p0S7EoYUXPb+B8dElXStn0ouMMzOM6rblAVuooS45lncTBKUfpsSR2oyicXCK5AqeCK0
+         tcQoZEzhIe81/mVACVW+wLn3thNE3oc4G2+9kgI6QflZdpduLe7adJG8H5R+CHUysurf
+         qWuoe6glp3HeUFMaI2oEW+vsPMDpwrcRMPyrUmlxpeS2wUHbgqbLm1YMIK7vRVLTqLoV
+         VkwA==
+X-Gm-Message-State: AOJu0Yz4c3glzEN2DwzZVqQ3UycxxGnatg3wFomvYkXQrY/9w9cs0YPm
+        1I6pfHzyenttsJZutzwPSPJhEeTqLg0+I81aHc8bZQ==
+X-Google-Smtp-Source: AGHT+IHtviGxcbH/f17sR99Ur6AJOQhlXnlV0cwTxqQQMUymHOSIo3mCIqwUS7kBB8xo//gcyjqI3g==
+X-Received: by 2002:a05:6512:2256:b0:500:808c:9ee6 with SMTP id i22-20020a056512225600b00500808c9ee6mr14004831lfu.6.1693043255928;
+        Sat, 26 Aug 2023 02:47:35 -0700 (PDT)
+Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
+        by smtp.gmail.com with ESMTPSA id l17-20020ac25551000000b004fdfd79e732sm645732lfk.289.2023.08.26.02.47.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 02:46:44 -0700 (PDT)
-Message-ID: <4007687e-1176-cffa-5945-94787fe6d5d9@linaro.org>
-Date:   Sat, 26 Aug 2023 11:46:42 +0200
+        Sat, 26 Aug 2023 02:47:35 -0700 (PDT)
+Message-ID: <0a65427e-0f2a-469c-8565-d0b3b0831e89@linaro.org>
+Date:   Sat, 26 Aug 2023 11:47:34 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM6115
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: apq8064: add support to gsbi4 uart
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+To:     David Heidelberg <david@ixit.cz>, Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230825-topic-6115tx-v1-0-ebed201ad54b@linaro.org>
- <20230825-topic-6115tx-v1-1-ebed201ad54b@linaro.org>
- <1a0dc235-eb44-9923-6206-560199a70d4e@linaro.org>
- <f3c43297-1b05-47b6-a158-5b45df77cfed@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <f3c43297-1b05-47b6-a158-5b45df77cfed@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230812155234.338016-1-david@ixit.cz>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230812155234.338016-1-david@ixit.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2023 11:37, Konrad Dybcio wrote:
-> On 26.08.2023 11:32, Krzysztof Kozlowski wrote:
->> On 25/08/2023 19:23, Konrad Dybcio wrote:
->>> SM6115 has a TX Macro, requiring an NPL clock, but not DCODEC.
->>> Document it.
->>>
->>
->> ...
->>
->>>  
->>> +  - if:
->>> +      properties:
->>> +        compatible:
->>> +          enum:
->>> +            - qcom,sm6115-lpass-tx-macro
->>> +    then:
->>> +      properties:
->>> +        clocks:
->>> +          minItems: 4
->>> +          maxItems: 4
->>> +        clock-names:
->>> +          items:
->>> +            - const: mclk
->>> +            - const: npl
->>> +            - const: dcodec
->>> +            - const: fsgen
->>
->> Are you sure there is no macro? This means there will be no
->> LPASS_HW_MACRO_VOTE vote.
-> Yes.
+On 12.08.2023 17:52, David Heidelberg wrote:
+> This patch adds support to gsbi4 uart which is used in LG Mako.
 > 
-> Do you have downstream sources somewhere?
-> Also yes, but they're not public..
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Indeed. Looks correct:
+Bindings suggest qcom,[rt]x-crci may be useful for DMA transfers
+through this hw
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Konrad
