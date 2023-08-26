@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B99E57895F7
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 12:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B6437895F8
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 12:28:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232071AbjHZK1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 06:27:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
+        id S232032AbjHZK2Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 06:28:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232029AbjHZK1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 06:27:36 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD1761FEC
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:27:33 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4ffa248263cso2710519e87.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:27:33 -0700 (PDT)
+        with ESMTP id S232354AbjHZK2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 06:28:16 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF46B1FFE
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:28:14 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-50091b91a83so2551335e87.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:28:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693045652; x=1693650452;
+        d=linaro.org; s=google; t=1693045693; x=1693650493;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=whfvBzSTXHtTAIC5y4Yas2ZRIXRjzYOVYE0rVr0ZB1E=;
-        b=y3IE/CKLrOdvAz0Q8eQuy6rbFqZXg5Itu20v1gEh6MRlX5UQhPxCsOV3YwcW233G1y
-         PyCH8GYQ0+ZjWWW82OTCheJEaYqJnyrGE+OWdOfT7pJPJEq2VfMq0/NRbz6RaUkVmU/f
-         q5hcwOyjBbaduuGexQpQqjQTbZVgj0j5YfPNCaTdiM8XGg0SLiG1FjhdEGqxY2Nl3hYb
-         owRID7thX0k6U9qKaM38VUeMUkuol6kE9wCKZWWcgOwQj0GcgVZyjVblkaKimTxwgXRb
-         U/JHJTf/9S/bKYIW83KbrmJJm2zRAtO0OUtXYAmisYSlbzEEC8CtbRtPk8Uv0JhccpnI
-         hUFA==
+        bh=9NaqpQGhpgcdFIYlLox3jPu67fTUX1n/MSYQfQDLUR8=;
+        b=v978hgK98BtZFwGsy5EcrE6uFH3UrKXgHY28cyBA11TUxC9Mg+xR/iozQ95wQUvq+V
+         oAGYFN4ycdF8rZzKF7gB9F/MXOPC6WGu2GIR/5F8H6/TDS7ZPw26TAy4hFkCQcXdjyia
+         KkRNyyjiqwvpCvhQ43VLF9zxCyj4E5J6M2x+LIyOajMrLLoBeYQic5yF6fUTbgWB+lRT
+         T40WQFKvfmiyBY7oJtvVACYnn1tSJpcH1MRdFkmVzNRJlfmlTmm19TG4Y6seuZGKk1b8
+         XHSrTdld72E+P53odTkKM9aFDB/EfSVoHjUKAIYWp0vAOlCSCmpuuubCDIU3TzZcQaqQ
+         nYyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693045652; x=1693650452;
+        d=1e100.net; s=20221208; t=1693045693; x=1693650493;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=whfvBzSTXHtTAIC5y4Yas2ZRIXRjzYOVYE0rVr0ZB1E=;
-        b=FGRPDMncfzR+g5CLgH07x7qZzNBaEYT9ic8rXZMimsCGcYUZSUHQjgqHpCwmztnrl9
-         hbxrF6MOFfR+lBkomRh/V2zISiIU/rYTTtFa70pk3yqyZ1/wnwibpkphRUsBCCu5BlyA
-         6r0EBQf4lV0VMk9VB4nZD3/5QrYNEX9N9dt9+1aGSuMMhvDkT/sZgNTlSILS2GOIIbSb
-         8ByknDeQamgfZL3S50J4YbWDzIKME56kHVyBsd3vEAwAKRcF4BBJjOUhDmZlngfNR9EH
-         onOPERN2c1LL+E+/1dZ/RxS6MWVumx9FLw74ANDXLJF3QyHaNNs/2sPodFbo5/cKilN6
-         mpMg==
-X-Gm-Message-State: AOJu0YwJ6E85TTId/uEJZ0CqvoXw3iyMbTkJ8YiPXUF29B2uKmDQpqE3
-        NfbS6NEF1TSO5YKbvvJ/v4lH7Q==
-X-Google-Smtp-Source: AGHT+IEoNiWSpTvukWxpiClX15UVhv9B/Yzx6Q+zZA0HyMcSASEkIcBP9SW5ZKpRZNN8NygzKWtEYw==
-X-Received: by 2002:a19:e01d:0:b0:500:8f31:955b with SMTP id x29-20020a19e01d000000b005008f31955bmr7704995lfg.3.1693045651973;
-        Sat, 26 Aug 2023 03:27:31 -0700 (PDT)
+        bh=9NaqpQGhpgcdFIYlLox3jPu67fTUX1n/MSYQfQDLUR8=;
+        b=hxMql9ArtM2/8yM70Xw9dIc0TelZ2kiubd4l+I8OaAomG5+QpkEgaWyN9BVqjmNNhi
+         +JgBuwdSrcAHNqGOVRk4dbhg8JGM5H1a3Xk2DrM8Hh8wHr2lcnNZ9i3DQnIpp11MJ7NG
+         o+WHmzfSEbzwQdwhI0jtL+OLlSckJ/Tb6dJxsyDPNvUjOBtExGYCgdmAXArkdDlsU2rn
+         JShj9XERce8nw3QNW4QjYI76VxnAqtOdM+eL9qVBw4vwq/s3EkAV43sbtzLJ7NugLh89
+         OLdn/UQ9veepSlB8MQWE05KhmabE1vn3YESK+a0Es1MPyJo1OrK4gucN0JjRk1T5aUzu
+         ixJQ==
+X-Gm-Message-State: AOJu0Yz1EAJwqxHLJxibUt5DzkuDSOLbmMVXlvr1FIFCVVLNXSHDFDc0
+        J3VNpzsGbDr8gyVzwTkX2g/JQw==
+X-Google-Smtp-Source: AGHT+IFUAHbnBeb2eJEvhE5Io16hy36o/NNQVVMwB2dqai8gEej52VvUu3DYuNzwjRdZRG0ZYKm5Ww==
+X-Received: by 2002:a05:6512:11e3:b0:4fe:15b5:a5f9 with SMTP id p3-20020a05651211e300b004fe15b5a5f9mr13121848lfs.54.1693045693015;
+        Sat, 26 Aug 2023 03:28:13 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id o13-20020ac2434d000000b004fe4d45f56bsm658996lfl.68.2023.08.26.03.27.31
+        by smtp.gmail.com with ESMTPSA id o13-20020ac2434d000000b004fe4d45f56bsm658996lfl.68.2023.08.26.03.28.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 03:27:31 -0700 (PDT)
-Message-ID: <c6e54853-1944-4a91-83cc-09ca6784369c@linaro.org>
-Date:   Sat, 26 Aug 2023 12:27:31 +0200
+        Sat, 26 Aug 2023 03:28:12 -0700 (PDT)
+Message-ID: <dfea3272-7397-4a91-8f3d-b58a77e6c605@linaro.org>
+Date:   Sat, 26 Aug 2023 12:28:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 31/32] ARM: dts: qcom: pm8921: Disable keypad by
- default
+Subject: Re: [PATCH v3 19/32] ARM: dts: qcom: pm8921: reorder nodes
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -64,7 +63,7 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-input@vger.kernel.org
 References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
- <20230822001349.899298-32-dmitry.baryshkov@linaro.org>
+ <20230822001349.899298-20-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -101,7 +100,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230822001349.899298-32-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230822001349.899298-20-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -114,10 +113,11 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 22.08.2023 02:13, Dmitry Baryshkov wrote:
-> Since keypad is used only by some devices, disable it by default and enable explicitly.
+> Move pm8921 device nodes to follow the alphanumberic sorting order.
 > 
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+
