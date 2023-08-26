@@ -2,118 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76593789529
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E843C78952E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232225AbjHZJce (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 05:32:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58304 "EHLO
+        id S232254AbjHZJfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 05:35:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232295AbjHZJcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:32:20 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF7A61FD7
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:32:17 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52a3ec08d93so2321051a12.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:32:17 -0700 (PDT)
+        with ESMTP id S232252AbjHZJfB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:35:01 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 982531FF0
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:34:58 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-500913779f5so2610764e87.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:34:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693042336; x=1693647136;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693042497; x=1693647297;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fh95DS4/zs6n0cJh3VH9O2GqPzFB0e6cNn1CIcgmuSY=;
-        b=TDAQAo5smrHikxLKg+nQMYvYwLqljGPHZ1DSe64rjNScidr4IUZmAlcgJw/RXOyBS/
-         zScNdNNsZiyJGX+FSXYxY4No+fhdFLohDULc3oGbYCGkAp8Ra+Bs3ndhI7Kt5ARQPjEJ
-         msvXeh5vSxAbxN+u1Rb8LeKBu3C6wClV9hxnsRZJCbQv/o70KjI0rfBxSQp1uud7yz/D
-         KH62x5HYjvfO5sG4QKlPCNspEbInilnX+mDmCktyov4g8L482XHziXXSEsCvEUACy+0b
-         TmGuKSkxo+DmRF24LToJdN0jZMd30dFWD5l0sijeycr9weikRKqqlBDhxWVY+DolB1b9
-         jSnw==
+        bh=qJjUy008m5EmjqI644lFguoiPYi2xLJ74Lzsx/gb32Y=;
+        b=tdxfTVU6pCx9FxJkzFn/d445SpLgKfBDm9VyN2qQLJelmA/kXg82YngQpSwWydE4/7
+         rWSXd6A14MnLWVgVA4XGzCwxQO+fE5S/5d6CkN1Dt5kVTOupFmmPQuV0bcbnfecld2YW
+         gpON+Sjl/DfksiVA8PRLfakUbfAknjfyJmYPdXwHN0/S0H1OR1UrT2wF2Ov2S+30HtR8
+         Eg33XjvlET6YmgzRdOL4BHNGLwm5G0C8Zhux8IgP0Te+WGM+U+5UIPLQOMnBshdXO9cU
+         Yx5LK+5EJ2NQOzrmuumOuQpAEMBRRL27TSn85rJWgfLHD6MSiDuC0OYtSJ8V3xs6tE7R
+         L0jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693042336; x=1693647136;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693042497; x=1693647297;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fh95DS4/zs6n0cJh3VH9O2GqPzFB0e6cNn1CIcgmuSY=;
-        b=R2GBwQsRv3l3/9PG53SIu0w33mmP2v09XFz7FQ+2ZWY+7a7Iv83fCUvyms7/skhN2w
-         jJnTtzEyPsICpZyxnb6zc1mhSVxbj5Z5CqJs1Gnl+jSBRKJPEkckBavtEUAUhJTyJCCz
-         dAqlxCU5iToc/zTgUzt0BDUW/2JNK0e+8GctJVykAkXcGSYRE70bw3FmATV9WAW2alZ6
-         rhMcR31NA1NOhF6518+/BgwsvqgZkKgM1QtgYY+1rfKm1GeRiJNjxVocAA0M5QA/cwfp
-         sE35ISDkoS/TIZU0uWsQsC0uzAFBfd5zXmS64NjUfyOVH6zd1aQszQj8fQZjpzd+6+Hf
-         UCgg==
-X-Gm-Message-State: AOJu0YxU2SH3mnnmfaWEMRjbIzGSjajQ/rNVZ7bi69btMcNyrcPQkeyI
-        IfgqVyAydYYqn+yi+9Aou0HGzA==
-X-Google-Smtp-Source: AGHT+IGhLZfGwbn7DfIZKro/6nQ/hZy3z2cFeu4oKwg6fSTiT/1BXmYXl5MpIGrGmzMQsGFLQ/DFIw==
-X-Received: by 2002:a17:906:51d3:b0:9a1:e941:6f47 with SMTP id v19-20020a17090651d300b009a1e9416f47mr7412341ejk.42.1693042335907;
-        Sat, 26 Aug 2023 02:32:15 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id jj26-20020a170907985a00b0099bd86f9248sm1949705ejc.63.2023.08.26.02.32.14
+        bh=qJjUy008m5EmjqI644lFguoiPYi2xLJ74Lzsx/gb32Y=;
+        b=W5YnZ7mFG9nw8hFnMPiFXJyIqpC9+I5U7twnhKcdIZKVE6EdPy9QqrTQxp1ovV3W4c
+         wECGia3/V+EVPwNk4RKNvBSQpEtsxBz2CNs0I1YuTQugOWpNsVVkhT5pa9kbZd1WNGoJ
+         mJ/SwmsX8gosXb+a5gZFLGVs8iUGPAG9SDjxgyK3+ILGORwx0E5+Y69DdNODsdUXvV2K
+         kgiQWbeEyqjxYQJSt3uHS3+T/xye9QqZm6TqPMDYXQ3jyL9U7/mLLKOu7jklJsOlMoT/
+         A95Odl28FJ32sLL7kbAVTp31VBt70SqzR+DcpXUldTLcZiDyp+ZxjftCdpwFSe+TFXkZ
+         icKA==
+X-Gm-Message-State: AOJu0Yxa1ZTJEv3Nm+1xqlW3boupt4VkO+u0nRPngOiEFns1znQ7Ldor
+        1J8LproXfrcyGYJO7JFwZ7ghYA==
+X-Google-Smtp-Source: AGHT+IFtrEgtpiBeYf38+RPKYj4t3pQy14fvPCo3mclg+YH81KGBkfGxHxJS9ZWe+uqu4RpYC/4LJg==
+X-Received: by 2002:a05:6512:3706:b0:4e0:a426:6ddc with SMTP id z6-20020a056512370600b004e0a4266ddcmr12816569lfr.0.1693042496852;
+        Sat, 26 Aug 2023 02:34:56 -0700 (PDT)
+Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
+        by smtp.gmail.com with ESMTPSA id w19-20020a19c513000000b004fe15a2f0f6sm645453lfe.62.2023.08.26.02.34.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 02:32:15 -0700 (PDT)
-Message-ID: <1a0dc235-eb44-9923-6206-560199a70d4e@linaro.org>
-Date:   Sat, 26 Aug 2023 11:32:14 +0200
+        Sat, 26 Aug 2023 02:34:56 -0700 (PDT)
+Message-ID: <0f756c25-f65b-4a45-ac4d-b4211ca48e2c@linaro.org>
+Date:   Sat, 26 Aug 2023 11:34:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] ASoC: dt-bindings: qcom,lpass-tx-macro: Add SM6115
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sc7180: Move trogdor rt5682s bits
+ to a fragment
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
+To:     Douglas Anderson <dianders@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Sheng-Liang Pan <sheng-liang.pan@quanta.corp-partner.google.com>,
         Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        alsa-devel@alsa-project.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230825-topic-6115tx-v1-0-ebed201ad54b@linaro.org>
- <20230825-topic-6115tx-v1-1-ebed201ad54b@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230825-topic-6115tx-v1-1-ebed201ad54b@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230816112143.1.I7227efd47e0dc42b6ff243bd22aa1a3e01923220@changeid>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2023 19:23, Konrad Dybcio wrote:
-> SM6115 has a TX Macro, requiring an NPL clock, but not DCODEC.
-> Document it.
+On 16.08.2023 20:21, Douglas Anderson wrote:
+> Several trogdor boards have moved from the older rt5862i to the newer
+> rt5862s, at least on newer revisions of boards. Let's get rid of the
+> dts duplication across boards and promote this to a fragment.
 > 
+> Note: The old boards used to override the "compatible" in the "sound"
+> node with the exact same thing that was in "sc7180-trogdor.dtsi"
+> ("google,sc7180-trogdor"). I got rid of that.
+> 
+> This is validated to produce the same result when taking the dtbs
+> generated by the kernel build and then doing:
+> 
+>   for dtb in *trogdor*.dtb; do
+>     dtc -I dtb -O dts $dtb -o out/$dtb.dts;
+>   done
+> 
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
+Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-...
-
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,sm6115-lpass-tx-macro
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +          maxItems: 4
-> +        clock-names:
-> +          items:
-> +            - const: mclk
-> +            - const: npl
-> +            - const: dcodec
-> +            - const: fsgen
-
-Are you sure there is no macro? This means there will be no
-LPASS_HW_MACRO_VOTE vote. Do you have downstream sources somewhere?
-
-Best regards,
-Krzysztof
-
+Konrad
