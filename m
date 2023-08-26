@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A380378967C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 14:08:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EEF8789682
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 14:09:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232750AbjHZMHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 08:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60906 "EHLO
+        id S232742AbjHZMIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 08:08:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232747AbjHZMHE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 08:07:04 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD24C2105
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:07:01 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2bcc331f942so21316161fa.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:07:01 -0700 (PDT)
+        with ESMTP id S232818AbjHZMIb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 08:08:31 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ED982128
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:08:23 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b962535808so26602231fa.0
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 05:08:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693051620; x=1693656420;
+        d=linaro.org; s=google; t=1693051702; x=1693656502;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fxY8GzOUSjJpbnpDLCF9tnnYblSq+xTqK+i5DsaGhz0=;
-        b=xPuwmgJqltwIl5qjdyaSFaAR3hozi7pzkl283hOFK2jHekRzRsO8UHXQKXUT3J0+1Y
-         ZnK6qysEPNN4NykZwfy62Uh8JVXrzq9ggqjA1hnHMcMnxQSy6mgi2ELATbtP5Qha3msE
-         mLdGWbliwXX9E7N9R6L3LplGJcvOupwA1BQ5P801jz7bPEForgun34tFdCjt9eiU1MdV
-         Y7KDgjfmuWwO6nEdZyJb3gbMFLwg4fh7PsaqgKeLJYFRvM0196Lb/gBglNhelyJFw0LL
-         Ed8A64GJYi1w8qD1g41u5UyAw+tdlRvhehKumf7PFonAdcfMtwCDZv9bs0Ac/r23YXsU
-         tXPg==
+        bh=A/Nk20sjr3R6D6IHsR4WJ9+0MRrLI/D+ppaZpwqxZjc=;
+        b=pDJc6vbhnshShTafT+qB+tOfiRDyJzlnRz9pzl5YU+36FGGe6GVA6rn+dr4lqXwkoR
+         03IEYuNj2G6dthkTWpaN1kkC5AeJUkb4XBcUvh4TKZaOwotYqax37kth/7RLxnPUeZ12
+         nR3uwT3/Xk19Sam8BVC+QyJJzuR53CQ5VdqC1sCZ7XBfjKs7cFeZH6zJ2R8q8UVcsUNH
+         OJ8/HmRc3q0SkXbr7prTASSqd88FEnWzDUYOInlk7WYmSWPw2Obi8JULQ4g5NoobB60h
+         EqADpFjo/D7QY3vXYr9NzXMEdmCk6dWHdzrxkMogDj5ruvOCSvrtnmxGuVCWGXlLcM/t
+         s/nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693051620; x=1693656420;
+        d=1e100.net; s=20221208; t=1693051702; x=1693656502;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fxY8GzOUSjJpbnpDLCF9tnnYblSq+xTqK+i5DsaGhz0=;
-        b=DQpfoowPM59k/a/maT8BCmjlNmSbojkKD4F7B2ln3/pgWge9IHasP3jhJCYQX2Tbrg
-         NIPKlF3PnJru35e7MSFL7DOliwbNCQLoVXcNHjkxctzepW0SdQwcBKEqm9lt6g2zemdo
-         PZNYC0YA1kuKehQC9tJqE2cOzJiapsGRmQe+kapjgrBc/esqOiLPcexqREmybx5cvOJ7
-         /NABiUvfo+jFA252moTt1erugBbKwmXY9F3EsjRyownzpMJ9RjCUQRkqSvNnXr4zKRa1
-         /WuXzksODHcFw7ygiLUMI7SFQvzkiforsh/fpVgGwft0lYUeMV/eFYPAgP5q9hx4PmW8
-         hF/Q==
-X-Gm-Message-State: AOJu0YyVAMCS0ZI89D6964p6qAz8g1ZgyHC9xqNIeiVZTosOiVtXrODX
-        vPZDxpdWSBoqzjlVilsWAD50QTBwd8YrJiSTXGidNg==
-X-Google-Smtp-Source: AGHT+IH8TVip4xI95ezyyOf6FmQm74KohrLqFBiRaCOmUZfCvyGjphngtDD9yytWeUO2Vl23ErGyrg==
-X-Received: by 2002:a2e:b0c3:0:b0:2bc:c4fa:489c with SMTP id g3-20020a2eb0c3000000b002bcc4fa489cmr6166606ljl.8.1693051620086;
-        Sat, 26 Aug 2023 05:07:00 -0700 (PDT)
+        bh=A/Nk20sjr3R6D6IHsR4WJ9+0MRrLI/D+ppaZpwqxZjc=;
+        b=hoBBI26BFuHmATH+2nQLIMewqrWHbnYNpckwvVruoiLeKUCA+5td/7a7cvY1Jhp3Hp
+         RFx+146F9SVwXotTVsYvLCz9YzzMx/KGmkw4jNOobWT8B98gYssm5/c8F1GrHMzpsWGm
+         XR4128IySRbqnNZ+mcHpp+K9aA0zebl3nn49baQnpJer4RbHTJNA4eVFYrw5uL/i0o7p
+         ZBhyUJw2vbBn5hByXsvxowpUR/SYcReUmiEz/XTMhcVwDnocznIP2iwCPAxgGJZfoyTs
+         Nz1GL7tY0007v1ZjvlCCqOfQNoP4fqkV7eDkwNUDD/nUZD7LZeQY80bTYNrZXz6bcaBV
+         b8lQ==
+X-Gm-Message-State: AOJu0YwYJl+rTF2BMBBxyEjxxS3u3jFELMWiwWQMMnMwWlgqnk+ELjbI
+        9wneU4DGBJch45yvf1H99F1wag==
+X-Google-Smtp-Source: AGHT+IERBRMAF//oWt0RBbQ8DSRX4neBTslS36nF/4KQfWiWX4ojRajeDSDBNLxaOn6OmBCPRjZYwg==
+X-Received: by 2002:a05:651c:1027:b0:2b6:bc30:7254 with SMTP id w7-20020a05651c102700b002b6bc307254mr15007030ljm.13.1693051701915;
+        Sat, 26 Aug 2023 05:08:21 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id a8-20020a2e88c8000000b002b9f0b25ff6sm776135ljk.4.2023.08.26.05.06.59
+        by smtp.gmail.com with ESMTPSA id a8-20020a2e88c8000000b002b9f0b25ff6sm776135ljk.4.2023.08.26.05.08.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 05:06:59 -0700 (PDT)
-Message-ID: <cca2a215-e71d-4e8c-a5d9-93aa870b7995@linaro.org>
-Date:   Sat, 26 Aug 2023 14:06:58 +0200
+        Sat, 26 Aug 2023 05:08:21 -0700 (PDT)
+Message-ID: <2dea943a-7a9e-4963-8ae5-6b126c750f80@linaro.org>
+Date:   Sat, 26 Aug 2023 14:08:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v3 2/2] arm64: dts: qcom: msm8939-longcheer-l9100:
- Add initial device tree
+Subject: Re: [PATCH v3 16/32] ARM: dts: qcom: mdm9615: split PMIC to separate
+ dtsi files
 Content-Language: en-US
-To:     =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230815-bq_m5-v3-0-fd26d7c76a1f@apitzsch.eu>
- <20230815-bq_m5-v3-2-fd26d7c76a1f@apitzsch.eu>
+        linux-input@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
+ <20230822001349.899298-17-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -104,72 +102,30 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230815-bq_m5-v3-2-fd26d7c76a1f@apitzsch.eu>
+In-Reply-To: <20230822001349.899298-17-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.08.2023 21:49, André Apitzsch wrote:
-> This dts adds support for BQ Aquaris M5 (Longcheer L9100) released in
-> 2015.
+On 22.08.2023 02:13, Dmitry Baryshkov wrote:
+> The PMIC is not a part of the SoC, so move PMIC to a separate file and
+> include it from the board files.
 > 
-> Add a device tree with initial support for:
-> 
-> - GPIO keys
-> - Hall sensor
-> - SDHCI
-> - WCNSS (BT/WIFI)
-> - Accelerometer/Magnetometer
-> - Vibrator
-> - Touchscreen
-> - Front flash
-> 
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
-> ---> +	light-sensor@23 {
-> +		compatible = "liteon,ltr559";
-> +		reg = <0x23>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vddio-supply = <&pm8916_l5>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <113 IRQ_TYPE_EDGE_FALLING>;
-interrupts-extended = <&tlmm 113 IRQ_TYPE_EDGE_FALLING>;
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+[...]
 
-> +
-> +		pinctrl-0 = <&light_int_default>;
-> +		pinctrl-names = "default";
-> +	};
-> +
-> +	imu@68 {
-> +		compatible = "bosch,bmi160";
-> +		reg = <0x68>;
-> +
-> +		vdd-supply = <&pm8916_l17>;
-> +		vddio-supply = <&pm8916_l6>;
-> +	};
-> +};
-> +
-> +&blsp_i2c5 {
-> +	status = "okay";
-> +
-> +	touchscreen@4a {
-> +		compatible = "atmel,maxtouch";
-> +		reg = <0x4a>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-similarly here
-
-otherwise:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> +			pmic {
+Are you leaving an empty subnode here?
 
 Konrad
