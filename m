@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F9F3789596
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:53:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C55C789599
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229948AbjHZJx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 05:53:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49414 "EHLO
+        id S230237AbjHZJx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 05:53:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232443AbjHZJxT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:53:19 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48EE6C9
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:53:17 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-5007c8308c3so2607950e87.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:53:17 -0700 (PDT)
+        with ESMTP id S231280AbjHZJxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:53:46 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843911BE
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:53:42 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-500b3f7f336so7792e87.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:53:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693043595; x=1693648395;
+        d=linaro.org; s=google; t=1693043621; x=1693648421;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bxT0u5ag8dXMl0rBiE83QPDzaQ4lBfHYgvTwi16o0do=;
-        b=bGi+63scwQrXV3sKXQkfHUDbDO/oYtlJTHrURTsIjevz4rubZgBW2uEsCwQSmqiDEC
-         E3Src3l81hUvoicLKtbCc35bkI4o6BIW7be9LyIZUKj1Y2WTY/EpUXwOwsItOx+f40+2
-         MxTtkGdfvw8V5PnQOpf5K3On/eOXAJvHKkUU2hU/ynJVSOPfw8ZEKICYAp82L7eBto1B
-         ZJRnZakzTJXgXWaz/Jx4gG6VEpUTPvvl8LdaW4EpCkEt6GlS9BjUBw8tEzKNO4il0hXX
-         5QPeH1aMN02RTp7cyq+N/JBY6QQKx2BzVDTz0xZ+WQNf2JzWhZCRf8v7GwISlQqq1isl
-         BQPg==
+        bh=lwgd269gxjUosCYYFxs4t8hQP/Yl26oGDPqfLJK5Y1I=;
+        b=OimAFHzYmzStKRjSOffREcdk7UeMWpfaJmshrx0KjHT1QRHxGMYW6VnPIczxL6jcuW
+         Lbdouh4tL4tpIseypxw1+/+p5WO+1qM9nnCXojgFBtDDZVfYv3MwKfwmuyROv6T411CV
+         J8zKXqokJURoxRTHflvr5eJk5Mfeyjqmk++2jPJo/0nXat6Kb85j07jkiEiXj2ixpahC
+         vZfatmvlXbjn/LD1QTYOymPfg6taljwGIc5lDjl8CRBue/nJ27L2F0rs67+pCLfuC7Va
+         Xz6IM6iOeTFL7VkqiwMTD8bk9nMx0/6/tRk81fEmTvK6v6NPjBM/48QxrbgNFcDJwXzq
+         6YAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693043595; x=1693648395;
+        d=1e100.net; s=20221208; t=1693043621; x=1693648421;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bxT0u5ag8dXMl0rBiE83QPDzaQ4lBfHYgvTwi16o0do=;
-        b=SprkKlqqVJ2WTtU1sjviy5Pix3Ju/pAUdfxpZKm6m0LbYwqYf0uH6T0qp4UN0tgb7m
-         rF2Ag21TDrSE8HJAsNIoPtO2P81JBIeOhf6X8t55Va5ldVxVCA3vgDDs6hf8wPwxrK9S
-         rVmJWSpmvaK5XHnCYvmGEcBl18ccXOUjfJ8nxBZrSITLT2iUdGQXaDdjNBBRA8veMVGX
-         vfmUkNOWE4WKJOvUf3uumAkjwx0uZRZZ3+kG4jx4ujywV+3/joXp83mA4xklyhKWDQkW
-         T6a+JARMsSFoE2GlJPdK4fRVbkCYVxvIlXOiwWZ91x6N3dcjYob0DTU/UWOgldeDOhdd
-         NJpw==
-X-Gm-Message-State: AOJu0YydPV/hiUmxmYo38w4HuU8jcknjReA5g71uCq0xe5gR/BS9bAXm
-        4wkXV1Lj2d17TwhlfBWiQv99uw==
-X-Google-Smtp-Source: AGHT+IFVw25TED1aPUwqZVGvr4oXEBWUL0cmH8qxm/6LTB0SP8LMxC3ZNHs15rhHtloIZ4dsNI/MDQ==
-X-Received: by 2002:ac2:4c0f:0:b0:500:ac0b:8d51 with SMTP id t15-20020ac24c0f000000b00500ac0b8d51mr1945997lfq.37.1693043595562;
-        Sat, 26 Aug 2023 02:53:15 -0700 (PDT)
+        bh=lwgd269gxjUosCYYFxs4t8hQP/Yl26oGDPqfLJK5Y1I=;
+        b=YizUh+tseWGoMH8xyZqW25nmP16kuL0HRL9IBHyQgGaCuR33xqqGFERUmZH0QYm8mG
+         WA3D/XhTQMutHFhICkc5L3dLKNzJLFMfbB6tmZTds9MAW5NACC2hxVan2iGvAaAFib3S
+         ArJ7IF/slTKD0rNX8vgOg1Qb74/BFiRuESQmdaB5qmMxAnSPAbrcT+QY3PGFbP+4tlfE
+         oSGQxGVs/HL3ZJd/eALDUtmLRWzpM4v6oKKQ/aHaiU2SGtZCR9p8UvhOiH2j2ydohNxf
+         zbO3YQ8GtFNAIa7eHOs9jSjftZEUBEtZObkQwS066YIoO+czFSgmwd7Rl5doFZeJ3iX5
+         I35g==
+X-Gm-Message-State: AOJu0YxpMjJgcZ73zZsfWVl1NCJDC4Ga+qISiU4TJoLS9TYRbiUkusvj
+        s/pWm3MQFxeivz9ZAgSiJ0plVQ==
+X-Google-Smtp-Source: AGHT+IH116AltuvCjnY57igesskS+O8r6dfOtlKraQI87e7evEEE2BfGCP9zHUdmnJOXqTEM4kryAw==
+X-Received: by 2002:a05:6512:128c:b0:4ff:9aaa:6e3e with SMTP id u12-20020a056512128c00b004ff9aaa6e3emr21106954lfs.41.1693043620909;
+        Sat, 26 Aug 2023 02:53:40 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id u8-20020ac25188000000b00500a44e158csm649584lfi.235.2023.08.26.02.53.14
+        by smtp.gmail.com with ESMTPSA id u8-20020ac25188000000b00500a44e158csm649584lfi.235.2023.08.26.02.53.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 02:53:15 -0700 (PDT)
-Message-ID: <c85f884a-cfa0-4769-a8fe-4f1b1638d188@linaro.org>
-Date:   Sat, 26 Aug 2023 11:53:14 +0200
+        Sat, 26 Aug 2023 02:53:40 -0700 (PDT)
+Message-ID: <15787b7c-dc8d-4782-8ba1-98dca16aeb96@linaro.org>
+Date:   Sat, 26 Aug 2023 11:53:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/6] ARM: dts: qcom: add device tree for Nokia Lumia
- 735
+Subject: Re: [PATCH v2 6/6] ARM: dts: qcom: add device tree for Nokia Lumia
+ 830
 Content-Language: en-US
 To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
@@ -67,7 +67,7 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
 References: <20230813152623.64989-1-rayyan@ansari.sh>
- <20230813152623.64989-6-rayyan@ansari.sh>
+ <20230813152623.64989-7-rayyan@ansari.sh>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -104,7 +104,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230813152623.64989-6-rayyan@ansari.sh>
+In-Reply-To: <20230813152623.64989-7-rayyan@ansari.sh>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -118,8 +118,8 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 13.08.2023 17:23, Rayyan Ansari wrote:
-> Add an initial device tree for the Nokia Lumia 735, codenamed
-> "superman-lte".
+> Add an initial device tree for the Nokia Lumia 830, codenamed
+> "tesla".
 > 
 > Co-authored-by: Dominik Kobinski <dominikkobinski314@gmail.com>
 > Co-authored-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
@@ -129,81 +129,11 @@ On 13.08.2023 17:23, Rayyan Ansari wrote:
 > Signed-off-by: Jack Matthews <jm5112356@gmail.com>
 > Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
 > ---
->  arch/arm/boot/dts/qcom/Makefile               |  1 +
->  .../qcom-msm8926-microsoft-superman-lte.dts   | 52 +++++++++++++++++++
->  2 files changed, 53 insertions(+)
->  create mode 100644 arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-superman-lte.dts
-> 
-> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-> index 487e0a5987ce..7982620ec9f9 100644
-> --- a/arch/arm/boot/dts/qcom/Makefile
-> +++ b/arch/arm/boot/dts/qcom/Makefile
-> @@ -32,6 +32,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-msm8916-samsung-e7.dtb \
->  	qcom-msm8916-samsung-grandmax.dtb \
->  	qcom-msm8916-samsung-serranove.dtb \
-> +	qcom-msm8926-microsoft-superman-lte.dtb \
->  	qcom-msm8960-cdp.dtb \
->  	qcom-msm8960-samsung-expressatt.dtb \
->  	qcom-msm8974-lge-nexus5-hammerhead.dtb \
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-superman-lte.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-superman-lte.dts
-> new file mode 100644
-> index 000000000000..e612d752f2b9
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8926-microsoft-superman-lte.dts
-> @@ -0,0 +1,52 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2023, Jack Matthews <jm5112356@gmail.com>
-> + * Copyright (c) 2023, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> + * Copyright (c) 2023, Dominik Kobinski <dominikkobinski314@gmail.com>
-> + * Copyright (c) 2023, Rayyan Ansari <rayyan@ansari.sh>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "qcom-msm8226-microsoft-common.dtsi"
-> +
-> +/ {
-> +	model = "Nokia Lumia 735";
-> +	compatible = "microsoft,superman-lte", "qcom,msm8926", "qcom,msm8226";
-> +	chassis-type = "handset";
-> +};
-> +
-> +&blsp1_i2c3 {
-> +	status = "okay";
-> +
-> +	touchscreen@4b {
-> +		compatible = "syna,rmi4-i2c";
-> +		reg = <0x4b>;
-> +
-> +		interrupts-extended = <&tlmm 17 IRQ_TYPE_EDGE_FALLING>;
-> +		vdd-supply = <&pm8226_l15>;
-> +		vio-supply = <&pm8226_l6>;
-> +
-> +		pinctrl-0 = <&touchscreen_default>;
-> +		pinctrl-names = "default";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		rmi4-f01@1 {
-> +			reg = <0x01>;
-> +			syna,nosleep-mode = <1>;
-> +		};
-> +
-> +		rmi4-f11@11 {
-> +			reg = <0x11>;
-> +			syna,sensor-type = <1>;
-> +		};
-> +	};
-> +};
-> +
+
 > +&blsp1_i2c5 {
 > +	status = "disabled";
 > +
 > +	/delete-node/ touchscreen@4b;
-use /delete-node/ &touchscreen (need to add a label in common dt),
-it's less error-prone
+same as patch5
 
 Konrad
