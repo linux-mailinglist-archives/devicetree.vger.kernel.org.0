@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75B57789929
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 23:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 697F6789949
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 23:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbjHZVEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 17:04:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49146 "EHLO
+        id S229901AbjHZVvP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 17:51:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjHZVEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 17:04:12 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC5FE50;
-        Sat, 26 Aug 2023 14:04:09 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bcb54226e7so24262071fa.1;
-        Sat, 26 Aug 2023 14:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693083848; x=1693688648;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=HIW3TRdcZM8BB21Bzls1PHa43zWQN2HiFfuM5Vokr34=;
-        b=dtKisuZ1E5Uv+MovZUHmskuQJQ8Tj197eCFIMX2wluJpoNMTiFduzx5tXViYapuNQV
-         70b1Tnkv2s9muM3zfZSts/X1KR41WFWmCz2fCHnBQQz7R6h5rR0wG8YIGqZuXP/uGT5q
-         2GdnX0k4zzgQbdbQvI7zxcE3xVBJdGw397dJy5BhEgccW+a0899PQJcvluDmO8d6roPF
-         z0Q1YqfXn8HlT3re9NRfUu6lP48NHlTWjLA6XDKj+CLq8S+pNjmCE/nnc24WP6L++Yrh
-         Olef/Tm2c6DB6hCWbdYS47rQi4ev/jX94Ovtd7qQQBDBK6WstYbBDsThhm1pye8Mrh0b
-         lUnA==
+        with ESMTP id S229865AbjHZVut (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 17:50:49 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88F32CD1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 14:50:45 -0700 (PDT)
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E34F23F206
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 21:50:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1693086643;
+        bh=VjTIpaKc3M9gQ6muJD7ayrAgi+ZhVB11zZBZ8oimfFg=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=Q9VrHbf6IT0Yw68n55/HpfW8GkEnYfTztXHhSfNrpTdOFCDMIcQCNyyfqdheXMOuV
+         9OwnfwmJqpskMb0w0e5fSzelxg6E0USiHFdPjUld25U1A5Fout1PzidK0Vg8rYmdfg
+         Q9WwUxyP18KeZB+GcqxWcIG7KidmHWxXNq6LD+OHH93GDhMeiWgBgafu6YKUsNlRzD
+         AWSGozJchS4Wuj3Vdu20LdrtRgb9V4WtPlYPeuBoatoTAXBFos2wnJIpRfYNEFmcAS
+         TtYaITjwtibIqs3OwaciQYWHS+evXsaYg9QQvTJCZVpDFOlsE6eFBrmxww2eMG90Jh
+         Ny0X8EBBndHdg==
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-64a0166deb5so25227626d6.3
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 14:50:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693083848; x=1693688648;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HIW3TRdcZM8BB21Bzls1PHa43zWQN2HiFfuM5Vokr34=;
-        b=F59qWUVsrp+W4yFuck8W0bc3fhHG+6AZFUDmQOV+ztgx7Nas3th0AqRNkTiYzypb1K
-         9yP+w2KhtGQPO7KcCg6DXiKq/lhI1kiyPOsnC7hxRaP53U4tmKFEmcu7P8C/2GVkBdWj
-         AT7A5coPQd1KNNy/14dyd2XQzpOHQkXGAB1D27CEDrKeln14yxTv+Xti0A25xV7nKJ8i
-         vPFZKx5LHCxnGYfreTTJkrLjenn0xHnnBRVqk8P3vH+PK3QjbHmIjcsfl6itGUaHFEgY
-         66JseKkk5iHGPJ+xt6dPD7AhqFyT86IfTch2y2Tnkx0Bd/NvObBiVWol/BLWGxZ0EBtY
-         AoTg==
-X-Gm-Message-State: AOJu0YyYRqnhD/+8BQC0C413C4Amt0OeYjTBaqFO69Ca/Kswq5Zt2gFe
-        5+Ie7YVMpNbZBnvE/BoFhAs=
-X-Google-Smtp-Source: AGHT+IHFX3R3aJ//dDGKbAPbc0tu1Bp0PweEt0u3uFHVBQfJ6/o0ZZFsfV0+w+jDB2pZ+940KhLePA==
-X-Received: by 2002:a2e:80c8:0:b0:2bc:f1d3:b54b with SMTP id r8-20020a2e80c8000000b002bcf1d3b54bmr1796869ljg.4.1693083847462;
-        Sat, 26 Aug 2023 14:04:07 -0700 (PDT)
-Received: from mobilestation ([95.79.200.178])
-        by smtp.gmail.com with ESMTPSA id u11-20020a2ea16b000000b002b6dba16f28sm945259ljl.127.2023.08.26.14.04.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Aug 2023 14:04:07 -0700 (PDT)
-Date:   Sun, 27 Aug 2023 00:04:04 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1693086642; x=1693691442;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VjTIpaKc3M9gQ6muJD7ayrAgi+ZhVB11zZBZ8oimfFg=;
+        b=cTDrJ8Xp/VNsw8yPzngMQTWlR2QWtzAE0Fp/llf3XjFmiHaLj8Xqjvp6FFhNYn8BKO
+         h5q574zZjyCX5Z7zBmD8VYKHMJ1UVVBIaXK4YTtdybsE4s9++f/YjJO8pPTW4mGUtlsl
+         GJkIqmd+1fMiEx8TADYjfqxtAPswH30sV1Po5es3+qfYkQkshe7YAFzQK55IbllKTVRB
+         dW4HOk4TUH2lVioVdafonWU4++wBVlJqLULP+SiYYqHKho1ltT2aX+OebvhSmwzkysEB
+         WS6x6DnQ6ktwtPrt1c3ulyyTj8uYtki4hEsAsO2vNHxjaBQ33pgC3ZMoBQac72Pf0jnp
+         R8bg==
+X-Gm-Message-State: AOJu0Yz3dJjkx/hrqSxNYo/7ajEDAIbboWVygNNeN/GUOWiNejQo1Nzo
+        y6dbzRXMNU01i6Zqe6rI1i/1qmK0+E6ZpjxBK8nE/VmWFx8UKEV+rdQXvJ8Ng3NyWgb9cbOh7pc
+        47bt8VHycb5UkBofNwyp2K+FvoL5M6n66avgeEpOpP/grKT4jSPbjZWM=
+X-Received: by 2002:a05:622a:118c:b0:412:bea:af8f with SMTP id m12-20020a05622a118c00b004120beaaf8fmr7293524qtk.23.1693086642731;
+        Sat, 26 Aug 2023 14:50:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFnBLfcky1Z5PXKn1SUBVQjv9ZgfioMwralikcznERsXZJGRRjNVz25sqDnqt9XYzbuahJwL0KTCDKt/yzCUAg=
+X-Received: by 2002:a05:622a:118c:b0:412:bea:af8f with SMTP id
+ m12-20020a05622a118c00b004120beaaf8fmr7293510qtk.23.1693086642493; Sat, 26
+ Aug 2023 14:50:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230826182702.2641743-1-aurelien@aurel32.net>
+In-Reply-To: <20230826182702.2641743-1-aurelien@aurel32.net>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Sat, 26 Aug 2023 23:50:26 +0200
+Message-ID: <CAJM55Z8zsfywScSeoSyKogAJZndKuPTF+_4GGd9+9ZcYraqLHQ@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: starfive: fix NOR flash reserved-data
+ partition size
+To:     Aurelien Jarno <aurelien@aurel32.net>
+Cc:     devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 2/4] dt-bindings: net: Add Loongson-1 Ethernet
- Controller
-Message-ID: <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
-References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
- <20230824125012.1040288-3-keguang.zhang@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824125012.1040288-3-keguang.zhang@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,330 +83,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 24, 2023 at 08:50:10PM +0800, Keguang Zhang wrote:
-> Add devicetree binding document for Loongson-1 Ethernet controller.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Sat, 26 Aug 2023 at 20:28, Aurelien Jarno <aurelien@aurel32.net> wrote:
+>
+> The Starfive VisionFive 2 has a 16MiB NOR flash, while the reserved-data
+> partition is declared starting at address 0x600000 with a size of
+> 0x1000000. This causes the kernel to output the following warning:
+>
+> [   22.156589] mtd: partition "reserved-data" extends beyond the end of device "13010000.spi.0" -- size truncated to 0xa00000
+>
+> It seems to be a confusion between the size of the partition and the end
+> address. Fix that by specifying the right size.
+>
+> Fixes: 8384087a4223 ("riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC")
+
+Thanks!
+Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+
+> Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
 > ---
-> V2 -> V3: Split the DT-schema file into loongson,ls1b-gmac.yaml
->           and loongson,ls1c-emac.yaml (suggested by Serge Semin)
->           Change the compatibles to loongson,ls1b-gmac and loongson,ls1c-emac
->           Rename loongson,dwmac-syscon to loongson,ls1-syscon
->           Amend the title
->           Add description
->           Add Reviewed-by tag from Krzysztof Kozlowski(Sorry! I'm not sure)
-> V1 -> V2: Fix "clock-names" and "interrupt-names" property
->           Rename the syscon property to "loongson,dwmac-syscon"
->           Drop "phy-handle" and "phy-mode" requirement
->           Revert adding loongson,ls1b-dwmac/loongson,ls1c-dwmac
->           to snps,dwmac.yaml
-> 
->  .../bindings/net/loongson,ls1b-gmac.yaml      | 115 ++++++++++++++++++
->  .../bindings/net/loongson,ls1c-emac.yaml      | 114 +++++++++++++++++
->  2 files changed, 229 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
->  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml b/Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
-> new file mode 100644
-> index 000000000000..f661d5b86649
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/loongson,ls1b-gmac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-1B Gigabit Ethernet MAC Controller
-> +
-> +maintainers:
-> +  - Keguang Zhang <keguang.zhang@gmail.com>
-> +
-
-> +description:
-
-Use "|" to keep the text formatting.
-  description: |
-
-> +  Loongson-1B Gigabit Ethernet MAC Controller is based on
-> +  Synopsys DesignWare MAC (version 3.50a).
-> +
-
-> +  Main features
-> +  - Dual 10/100/1000Mbps GMAC controllers
-> +  - Full-duplex operation (IEEE 802.3x flow control automatic transmission)
-> +  - Half-duplex operation (CSMA/CD Protocol and back-pressure support)
-> +  - RX Checksum Offload
-> +  - TX Checksum insertion
-> +  - MII interface
-> +  - RGMII interface
-
-If only all the DW *MAC-based devices have such info in the
-bindings the life would have been much easier...
-
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - loongson,ls1b-gmac
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - loongson,ls1b-gmac
-> +      - const: snps,dwmac-3.50a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-
-> +  clock-names:
-> +    items:
-> +      - const: stmmaceth
-
-since there is a single clock then just:
-  clock-names:
-    const: stmmaceth
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-
-> +  interrupt-names:
-> +    items:
-> +      - const: macirq
-
-ditto. just
-  interrupt-names:
-    const: macirq
-
-> +
-> +  loongson,ls1-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon containing some extra configurations
-> +      including PHY interface mode.
-> +
-
-> +  phy-mode:
-> +    items:
-> +      - enum:
-> +          - mii
-> +          - rgmii-id
-
-it's a single string then just:
-  phy-mode:
-    enum: ...
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - loongson,ls1-syscon
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    gmac0: ethernet@1fe10000 {
-> +        compatible = "loongson,ls1b-gmac", "snps,dwmac-3.50a";
-> +        reg = <0x1fe10000 0x10000>;
-> +
-> +        clocks = <&clkc LS1X_CLKID_AHB>;
-> +        clock-names = "stmmaceth";
-> +
-> +        interrupt-parent = <&intc1>;
-> +        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +
-> +        loongson,ls1-syscon = <&syscon>;
-> +
-> +        phy-handle = <&phy0>;
-> +        phy-mode = "mii";
-> +        snps,pbl = <1>;
-> +
-> +        mdio {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "snps,dwmac-mdio";
-> +
-> +            phy0: ethernet-phy@0 {
-> +                reg = <0x0>;
-> +            };
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml b/Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
-> new file mode 100644
-> index 000000000000..1ffad41941bf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
-> @@ -0,0 +1,114 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/loongson,ls1c-emac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-1C Ethernet MAC Controller
-> +
-> +maintainers:
-> +  - Keguang Zhang <keguang.zhang@gmail.com>
-> +
-
-> +description:
-
-the same comment about the "|" modifier.
-
-> +  Loongson-1C Ethernet MAC Controller is based on
-> +  Synopsys DesignWare MAC (version 3.50a).
-> +
-
-> +  Main features
-> +  - 10/100Mbps
-> +  - Full-duplex operation (IEEE 802.3x flow control automatic transmission)
-> +  - Half-duplex operation (CSMA/CD Protocol and back-pressure support)
-> +  - IEEE 802.1Q VLAN tag detection for reception frames
-> +  - MII interface
-> +  - RMII interface
-
-Based on the plat_stmmacenet_data data defined for the LS1C MAC it
-also support support Tx COE. Isn't it? What about Rx COE?
-
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - loongson,ls1c-emac
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - loongson,ls1c-emac
-> +      - const: snps,dwmac-3.50a
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-
-> +  clock-names:
-> +    items:
-> +      - const: stmmaceth
-
-  clock-names:
-    const: stmmaceth
-?
-
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-
-> +  interrupt-names:
-> +    items:
-> +      - const: macirq
-
-  interrupt-names:
-    const: macirq
-?
-
-> +
-> +  loongson,ls1-syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the syscon containing some extra configurations
-> +      including PHY interface mode.
-> +
-
-> +  phy-mode:
-> +    items:
-> +      - enum:
-> +          - mii
-> +          - rmii
-
-  phy-mode:
-    enum: ...
-?
-
--Serge(y)
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - interrupts
-> +  - interrupt-names
-> +  - loongson,ls1-syscon
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    emac: ethernet@1fe10000 {
-> +        compatible = "loongson,ls1c-emac", "snps,dwmac-3.50a";
-> +        reg = <0x1fe10000 0x10000>;
-> +
-> +        clocks = <&clkc LS1X_CLKID_AHB>;
-> +        clock-names = "stmmaceth";
-> +
-> +        interrupt-parent = <&intc1>;
-> +        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-> +        interrupt-names = "macirq";
-> +
-> +        loongson,ls1-syscon = <&syscon>;
-> +
-> +        phy-handle = <&phy0>;
-> +        phy-mode = "mii";
-> +        snps,pbl = <1>;
-> +
-> +        mdio {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            compatible = "snps,dwmac-mdio";
-> +
-> +            phy0: ethernet-phy@13 {
-> +                reg = <0x13>;
-> +            };
-> +        };
-> +    };
-> -- 
+>  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 498eb179d90f..30c85ba6da02 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -262,7 +262,7 @@ uboot@100000 {
+>                                 reg = <0x100000 0x400000>;
+>                         };
+>                         reserved-data@600000 {
+> -                               reg = <0x600000 0x1000000>;
+> +                               reg = <0x600000 0xa00000>;
+>                         };
+>                 };
+>         };
+> --
 > 2.39.2
-> 
-> 
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
