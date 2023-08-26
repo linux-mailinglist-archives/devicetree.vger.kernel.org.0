@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C55C789599
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 11:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAB827895ED
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 12:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230237AbjHZJx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 05:53:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53002 "EHLO
+        id S230156AbjHZKZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 06:25:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231280AbjHZJxq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 05:53:46 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843911BE
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:53:42 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-500b3f7f336so7792e87.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 02:53:42 -0700 (PDT)
+        with ESMTP id S231965AbjHZKZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 06:25:35 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8490E1FFE
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:25:33 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-50043cf2e29so2544560e87.2
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 03:25:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693043621; x=1693648421;
+        d=linaro.org; s=google; t=1693045532; x=1693650332;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lwgd269gxjUosCYYFxs4t8hQP/Yl26oGDPqfLJK5Y1I=;
-        b=OimAFHzYmzStKRjSOffREcdk7UeMWpfaJmshrx0KjHT1QRHxGMYW6VnPIczxL6jcuW
-         Lbdouh4tL4tpIseypxw1+/+p5WO+1qM9nnCXojgFBtDDZVfYv3MwKfwmuyROv6T411CV
-         J8zKXqokJURoxRTHflvr5eJk5Mfeyjqmk++2jPJo/0nXat6Kb85j07jkiEiXj2ixpahC
-         vZfatmvlXbjn/LD1QTYOymPfg6taljwGIc5lDjl8CRBue/nJ27L2F0rs67+pCLfuC7Va
-         Xz6IM6iOeTFL7VkqiwMTD8bk9nMx0/6/tRk81fEmTvK6v6NPjBM/48QxrbgNFcDJwXzq
-         6YAQ==
+        bh=mMkKZeElWpfPqx+K2hw/VnJzrdmj56V+rGrQgQD808w=;
+        b=Tu+ZNfWX4MSEzzRfHaM4nQ1pEaDEpIgx46ikw3UqE1DV+Lz2ivNU1QQeZcx1U73TTZ
+         n2pE1t3zku0XSBR/JRhQg4kB09dtijKEzp3RkhjG+/kVXAk3R9vSt/ojMeOf5AzMC0fQ
+         BkwbWpUdFQGnh6bY7stGXBC2NLKOlGXamzvucCxW2JVlXFZTOA3wq0Efix0hClxA3Koi
+         BSf8wuU7oRb1uWXUgaSfbDhpZDAA8f4dfxwr373oudE+TBl+DyY/MHfn04WKXhbah2Zu
+         iaVI0BmH20/lgUx9a/FMW3EIOSUF6xCf8AcaMIAl5Num1SBjpeTtkRj5nDrIS9e6YRGi
+         Mv5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693043621; x=1693648421;
+        d=1e100.net; s=20221208; t=1693045532; x=1693650332;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lwgd269gxjUosCYYFxs4t8hQP/Yl26oGDPqfLJK5Y1I=;
-        b=YizUh+tseWGoMH8xyZqW25nmP16kuL0HRL9IBHyQgGaCuR33xqqGFERUmZH0QYm8mG
-         WA3D/XhTQMutHFhICkc5L3dLKNzJLFMfbB6tmZTds9MAW5NACC2hxVan2iGvAaAFib3S
-         ArJ7IF/slTKD0rNX8vgOg1Qb74/BFiRuESQmdaB5qmMxAnSPAbrcT+QY3PGFbP+4tlfE
-         oSGQxGVs/HL3ZJd/eALDUtmLRWzpM4v6oKKQ/aHaiU2SGtZCR9p8UvhOiH2j2ydohNxf
-         zbO3YQ8GtFNAIa7eHOs9jSjftZEUBEtZObkQwS066YIoO+czFSgmwd7Rl5doFZeJ3iX5
-         I35g==
-X-Gm-Message-State: AOJu0YxpMjJgcZ73zZsfWVl1NCJDC4Ga+qISiU4TJoLS9TYRbiUkusvj
-        s/pWm3MQFxeivz9ZAgSiJ0plVQ==
-X-Google-Smtp-Source: AGHT+IH116AltuvCjnY57igesskS+O8r6dfOtlKraQI87e7evEEE2BfGCP9zHUdmnJOXqTEM4kryAw==
-X-Received: by 2002:a05:6512:128c:b0:4ff:9aaa:6e3e with SMTP id u12-20020a056512128c00b004ff9aaa6e3emr21106954lfs.41.1693043620909;
-        Sat, 26 Aug 2023 02:53:40 -0700 (PDT)
+        bh=mMkKZeElWpfPqx+K2hw/VnJzrdmj56V+rGrQgQD808w=;
+        b=PiIvn0oXLh2VKw6bChaKsyldyXkFURkhGk+F9sDOEVbr1jKuLEn9BYV4aUQIDYsQgU
+         DIseN412keUE+RiAPYmYkHdDJIvWch2qnAt1XIF5t4mnAzX7KIbpijpYqrsObm86/4K5
+         mSzkTXXzl9pPekRWfIsJKZhZNT3+zr1cRnRL2/VsQDTlvjW3WI9SVnlPzzU6F94yWeqi
+         PYB1zhgCf4uGQU4zLUhkXHRhgZn8tqfe5fDCcwUZ4RZqF9p7OJiqq+e9Au3hsNZH8XKj
+         1WwDz1/DTLUiM8VZUvaySdiLuMrczmYJAi1Dvh9mp9AnrzAJoHM3kaM9imyBzIPjybIT
+         i7uQ==
+X-Gm-Message-State: AOJu0Yw/SH2T/RZBIAvLAOYti9jOMFCWEMO0R2iCmbYOWiZVPvvDtdws
+        fNhyuS6Sk9qZrOjoKGP218EKNb3LPEP8LQoxMRM0NQ==
+X-Google-Smtp-Source: AGHT+IGFnt0Bg/1KP54ptILb/NKUu+W+nRFLwN527n+rUpPVAihDT6X++FP6i+Mt1f/PEqcuMHjhTw==
+X-Received: by 2002:ac2:5e3b:0:b0:4f8:770f:1b01 with SMTP id o27-20020ac25e3b000000b004f8770f1b01mr12895941lfg.19.1693045531708;
+        Sat, 26 Aug 2023 03:25:31 -0700 (PDT)
 Received: from [192.168.1.101] (abyl74.neoplus.adsl.tpnet.pl. [83.9.31.74])
-        by smtp.gmail.com with ESMTPSA id u8-20020ac25188000000b00500a44e158csm649584lfi.235.2023.08.26.02.53.39
+        by smtp.gmail.com with ESMTPSA id o13-20020ac2434d000000b004fe4d45f56bsm658996lfl.68.2023.08.26.03.25.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 02:53:40 -0700 (PDT)
-Message-ID: <15787b7c-dc8d-4782-8ba1-98dca16aeb96@linaro.org>
-Date:   Sat, 26 Aug 2023 11:53:39 +0200
+        Sat, 26 Aug 2023 03:25:31 -0700 (PDT)
+Message-ID: <3cd23a62-1b07-4bbd-a610-39c454f30925@linaro.org>
+Date:   Sat, 26 Aug 2023 12:25:29 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/6] ARM: dts: qcom: add device tree for Nokia Lumia
- 830
+Subject: Re: [PATCH v3 32/32] ARM: dts: qcom: apq8060-dragonboard: rename mpp
+ ADC channels to adc-channel
 Content-Language: en-US
-To:     Rayyan Ansari <rayyan@ansari.sh>, linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Dominik Kobinski <dominikkobinski314@gmail.com>,
-        Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
-        Jack Matthews <jm5112356@gmail.com>,
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-References: <20230813152623.64989-1-rayyan@ansari.sh>
- <20230813152623.64989-7-rayyan@ansari.sh>
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-input@vger.kernel.org
+References: <20230822001349.899298-1-dmitry.baryshkov@linaro.org>
+ <20230822001349.899298-33-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -104,36 +101,24 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230813152623.64989-7-rayyan@ansari.sh>
+In-Reply-To: <20230822001349.899298-33-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13.08.2023 17:23, Rayyan Ansari wrote:
-> Add an initial device tree for the Nokia Lumia 830, codenamed
-> "tesla".
+On 22.08.2023 02:13, Dmitry Baryshkov wrote:
+> Use generic `adc-channel@N' node names for board-specific ADC channels
+> (routed to MPP pins) to follow the schema.
 > 
-> Co-authored-by: Dominik Kobinski <dominikkobinski314@gmail.com>
-> Co-authored-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> Co-authored-by: Jack Matthews <jm5112356@gmail.com>
-> Signed-off-by: Dominik Kobinski <dominikkobinski314@gmail.com>
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> Signed-off-by: Jack Matthews <jm5112356@gmail.com>
-> Signed-off-by: Rayyan Ansari <rayyan@ansari.sh>
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-
-> +&blsp1_i2c5 {
-> +	status = "disabled";
-> +
-> +	/delete-node/ touchscreen@4b;
-same as patch5
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
