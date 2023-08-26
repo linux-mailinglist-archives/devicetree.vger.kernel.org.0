@@ -2,116 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 135F9789869
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 19:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5354E789888
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 20:00:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230314AbjHZRcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 13:32:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40408 "EHLO
+        id S229605AbjHZR7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 13:59:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbjHZRbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 13:31:42 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DB7A198
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 10:31:39 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2bccda76fb1so29033311fa.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 10:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693071098; x=1693675898;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=K2rKCSZsu8/cjHlt5rvny4PL6NtTe+upkivFRUnpx0M=;
-        b=Sfrkbp2WO5UZ4s7fvSATxmQVfafN3gdvAubgBwTMywsS7OSelTX/DaXC6INNMsasHF
-         uMPZYL5l9RcDkb5Ymuqj+/EGRpT0RUTdzKX8tYEsxdgetDBey8E1ntZSElFAFWUx5RsF
-         QUd5FbluY8iOXyrqvyOQQ+6Akwi3qJFlNLzd8xRYJSe0eo/KMZf06uy6k2xEUUm0E3GP
-         IWUh/sCuCnYb4ozQ3fbUW26dINL4QX9XilChawQZR+1BXK7athc43Rp7lXm3kjOiueBd
-         UbpgNFZPu8Nl4us7OSoYTvatrW2dHyuXacZ6VXg7IJ5ANT9y7QGqvCUWuKoJpQZFmg0C
-         +bpQ==
+        with ESMTP id S229504AbjHZR7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 13:59:39 -0400
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E9BCF1;
+        Sat, 26 Aug 2023 10:59:36 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-99df431d4bfso248122066b.1;
+        Sat, 26 Aug 2023 10:59:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693071098; x=1693675898;
+        d=1e100.net; s=20221208; t=1693072775; x=1693677575;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K2rKCSZsu8/cjHlt5rvny4PL6NtTe+upkivFRUnpx0M=;
-        b=B9llOD8HzsBPAowgGo+hHGfLqDp9eFQbffgmalH4OOzv5Irng4IfE0sH/Du+lHbDhQ
-         2O2YwMymmsVQe2cQHv9d34lG5MgZHV8BN+RVW4f8nCtpWpem9HC9361And95ZhN/B18d
-         JbsQ8Y7H9DxVw+rOJGrY97cowHOwEsWcREQXHzxZ2hbCMuT7vO8EbcmXuPIblDp8yxj5
-         gafn4mrX/+tYGAGzri69NTeGH94F50+o6u37nse52tbz173gCeW+MQnI4OOTawVYxuUU
-         wt5+LRfVB/12rjkPl2LK34xZYDfp33ONrLRD+d98og/iAa+bEVcGzHFMCShimHhmKbtH
-         xXXQ==
-X-Gm-Message-State: AOJu0Yxv4BbZXNPjW4xjgph9z2q85Wze5OhLyNIPIrN9NCA+QRKHkhMe
-        hMj/hEk1mzXs4D2acf6RExVWCQ==
-X-Google-Smtp-Source: AGHT+IG9DjB0A++FAUKlFtKnVs7soasltg8AxGuvsxRAUqvxAEnosyk2s9yePUFBDzY+a78jDRIuhg==
-X-Received: by 2002:a2e:9d08:0:b0:2b9:b4eb:c39c with SMTP id t8-20020a2e9d08000000b002b9b4ebc39cmr14967716lji.8.1693071097760;
-        Sat, 26 Aug 2023 10:31:37 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id n18-20020a170906841200b0099ce23c57e6sm2401208ejx.224.2023.08.26.10.31.36
+        bh=hg3oMggEQHd+gc6q9L9POT/lEfSR5eoXULrpzdbLklk=;
+        b=C5I/rbP/qFjXL69nJBxyh7k4rhibPBW4Jai10JwwoxhdYXo9WU/pHfC6Qmv9hUUfi8
+         l5PpsGvOZ3gFDCHnFWJtmJBGV5s55cG4ZcKCOABHtr6rhtaSqIKdO9hQ7vTgTAFCyVqT
+         bJcEQXLRz1QF9+qk9E43hX6jye18TuzCumK0s/UXvi3Q4PsR98FBcaSl/bqqg3bBrEno
+         HEjdMz5vg0g1voSB8RjFqszbwuIncJAbZakeQ50ftF3pTs+PEYMkCvBQe9SgI4yD3ibA
+         fEzyt/dpUjqRFGwdr0QSa5CEkKSGR5PX/kP8ttjMhisE70GG8wBSTGObnFNOKRVQACMC
+         4+DA==
+X-Gm-Message-State: AOJu0YyxoocBMYo6kFl4zqS1lQnhALKVOq+pv+qU1Mr7ywmUJuRrKbJn
+        oFbrIN70nL7nBz3uL2SQu5Rk0CIf7WnQ8g==
+X-Google-Smtp-Source: AGHT+IGNOsWCDsUL5pZ0AiktNOZC7/JBxYAG4tbCmHfyMbugl7QB2wYm9fg1FEO7P/fQ6KOucMjekw==
+X-Received: by 2002:a17:907:7757:b0:9a1:aede:edfb with SMTP id kx23-20020a170907775700b009a1aedeedfbmr10817032ejc.12.1693072774840;
+        Sat, 26 Aug 2023 10:59:34 -0700 (PDT)
+Received: from [192.168.86.246] (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id s6-20020a1709060c0600b0099d45ed589csm2434635ejf.125.2023.08.26.10.59.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 10:31:37 -0700 (PDT)
-Message-ID: <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
-Date:   Sat, 26 Aug 2023 19:31:35 +0200
+        Sat, 26 Aug 2023 10:59:34 -0700 (PDT)
+Message-ID: <099b2b17-b236-4fd5-89a7-8ecbfbc9c323@linux.com>
+Date:   Sat, 26 Aug 2023 18:59:33 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 6/6] arm64: dts: add support for T7 power domain
+ controller
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>, neil.armstrong@linaro.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
- <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
- <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230824055930.2576849-1-xianwei.zhao@amlogic.com>
+ <20230824055930.2576849-7-xianwei.zhao@amlogic.com>
+ <27e55b16-065b-4a16-ab05-dded04f2c705@linaro.org>
+ <56c0b78a-b9dd-de6d-7d7e-654fc5dd8e1b@amlogic.com>
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+From:   Lucas Tanure <tanure@linux.com>
+In-Reply-To: <56c0b78a-b9dd-de6d-7d7e-654fc5dd8e1b@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/08/2023 17:44, Shenwei Wang wrote:
+On 24-08-2023 09:51, Xianwei Zhao wrote:
+> Hi Neil,
+>     Thanks for your reply.
+>
+> On 2023/8/24 16:32, Neil Armstrong wrote:
+>> [ EXTERNAL EMAIL ]
 >>
->> The genpd provider then needs to be a consumer of the resources it needs. In
->> this case a couple of regulators it seems like.
+>> On 24/08/2023 07:59, Xianwei Zhao wrote:
+>>> From: "xianwei.zhao" <xianwei.zhao@amlogic.com>
+>>>
+>>> Enable power domain controller for Amlogic T7 SoC
+>>>
+>>> Signed-off-by: xianwei.zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>> V1 -> V2: None
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 6 ++++++
+>>>   1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi 
+>>> b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>>> index 1423d4a79156..23cdad1b425b 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+>>> @@ -4,6 +4,7 @@
+>>>    */
+>>>
+>>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/power/amlogic,t7-pwrc.h>
+>>>
+>>>   / {
+>>>       interrupt-parent = <&gic>;
+>>> @@ -118,6 +119,11 @@ psci {
+>>>
+>>>       sm: secure-monitor {
+>>>               compatible = "amlogic,meson-gxbb-sm";
+>>> +
+>>> +             pwrc: power-controller {
+>>> +                     compatible = "amlogic,t7-pwrc";
+>>> +                     #power-domain-cells = <1>;
+>>> +             };
+>>>       };
+>>>
+>>>       soc {
 >>
-> 
-> If I understood your reply correctly,  it seems that the current implementation of 
-> regulator-pd is what you have described. Please correct me if I'm mistaken.
-> 
-> The following are the diff of scu-pd and this regulator-pd.
-> 
->     power-controller {						    power-controller {
->         compatible = "fsl,imx8qxp-scu-pd", "fsl,scu-pd";      |	        compatible = "regulator-power-domain";
->         #power-domain-cells = <1>;				        #power-domain-cells = <1>;
-> 							      >
-> 							      >	        regulator-number = <2>;
-> 							      >	        regulator-0-supply = <&reg1>;
-> 							      >	        regulator-1-supply = <&reg2>;
->     };								    };
-> 
-> Are you suggesting to move the regulator-pd to the imx directory and add a company prefix
-> to the compatible string?
+>> Please change the subject to:
+>> arm64: dts: amlogic: t7: add power domain controller node
+>>
+> Will do.
+>> With that:
+>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-There is no such part of iMX processor as such regulator-power-domain,
-so I don't recommend that approach. DTS nodes represent hardware, not
-your SW layers.
+Tested with Vim4 and all works fine.
 
-Best regards,
-Krzysztof
+Tested-by: Lucas Tanure <tanure@linux.com>
 
