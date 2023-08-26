@@ -2,83 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A26AB7894E1
-	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 10:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 353BB7894E9
+	for <lists+devicetree@lfdr.de>; Sat, 26 Aug 2023 10:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231790AbjHZIjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 04:39:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45518 "EHLO
+        id S232081AbjHZIxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 04:53:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232155AbjHZIjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 04:39:13 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD2DE213D
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 01:39:10 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bed101b70so197358366b.3
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 01:39:10 -0700 (PDT)
+        with ESMTP id S231839AbjHZIxI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 04:53:08 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D11CB0
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 01:53:05 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99cdb0fd093so206148066b.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 01:53:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693039149; x=1693643949;
+        d=linaro.org; s=google; t=1693039983; x=1693644783;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EYzLu3AMnSBzud06vqVq1DYv850gj02s8/sr8kWECTA=;
-        b=qlN9lkSoz+R+Wwuy0nxuQaqLw47sDENR1RxNYCmTu5wa7/xjxFLkqqKHaFNRAuvAmG
-         ku0VPwPrYf3tt4irem6XMKNlBx/nAX/uQ+KZP2Ri8rMUAb0iycjZoDyggPJB7sEVLG5A
-         aYzZjdqgVCpG6XCInzKTInplBzt8zuMzRZWOX5Zcl8rq4UHV+LWVPC8dSQ6pwdgiAGKY
-         B7ioVh0vb4PpAACHdRi8Ycg8RaWSFGRTL4V8phfaoUzfvBiXLfScbiXxzh2smeO96BS/
-         tsGs1Wv/+bLdEEiAgvfZo5rieE7HBdDQoVe6sknfCWhq2rokourV3e7S4Bm3b2e0zluJ
-         zQDQ==
+        bh=GrES3XKC44v3tZqigZZ+43EHjB3HiHp45anmtNLpWb8=;
+        b=xhuiGTqKkkulvez86oquvsGfDIiVNINbSPgb6neoSYbEF7CLGFlI8p1Wq6JdJvhjW/
+         iROyHkBKtz7P1wa0d8bgQ3wtU5viJi5PvZhTuaPGTvFnVQuLhyMyVHlTpCiGDo9KePyh
+         l7LpMA/9XRKLePWYkodKdZE0t6zSv1o7fsXmubs6j3pgsRldI2Rbm+40/K6TLxcEuQs8
+         6fs4uSQg0ZWXwYqX4G2QX9w8Mmfa+0KtlbFiOVJhLwjuIrpWga/J68RuGf6RaX3jzC/7
+         Bs5h7tHWIS/7YCtiFqW/DjwxTGfsD+UM29cSsLBgOtQY19O2XF88U5mNLwYdx9GI4tll
+         6dow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693039149; x=1693643949;
+        d=1e100.net; s=20221208; t=1693039983; x=1693644783;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EYzLu3AMnSBzud06vqVq1DYv850gj02s8/sr8kWECTA=;
-        b=jDgh4Wv57/KmgI+GJjU5kZBQzxNPCRCl+cYhOpJ0jcdLm4mX1Fbu05UTzQOKwbkD9F
-         ghcYGoHdEABlehu0AEO5Pz/+qrc2AHUODosRpFIzU5uIVDs5Sv+PeJMa5QG2dUQjT/5I
-         ncagcrPXOrNtG86s3F4GxRGUTifKfLobec4RzcAisiR5wbIjIENBXEWp+NMC9TdZER9N
-         7JLWwGFO+o2w7t571/9IAQLv+xjTas5Y5umhVJgidCfe5u/qftjZLDV9nczbjhg942M0
-         6oTsePni7KSKtMOAeIPbPgxSNKTCR2qXCyGZ3Wo/bAg3PdaXf8vb7ONEOwynAd5JDeL2
-         mSYg==
-X-Gm-Message-State: AOJu0YykYl34uSgobkkGVRqgFg9/Kxq97xoFqYskq3akTqPvdVqWVES9
-        T3RL8gbYKQe5FxLIPvZgWuf1FCuUMeS9FHTIEaY=
-X-Google-Smtp-Source: AGHT+IH0NSUHl+zlxwX59+CEhOV2G5X+o9fhfo/09fJz4+7mLKi1QQsroRh2/Q+KC0BC7koudme1MQ==
-X-Received: by 2002:a17:906:58:b0:9a2:1b05:24c5 with SMTP id 24-20020a170906005800b009a21b0524c5mr4521790ejg.43.1693039149327;
-        Sat, 26 Aug 2023 01:39:09 -0700 (PDT)
+        bh=GrES3XKC44v3tZqigZZ+43EHjB3HiHp45anmtNLpWb8=;
+        b=hM9MAXsVRS3LJJGW06r8gOAyS1p0eQFf2mYtqQOPH/WQHIVSfqWqZuNjSwJEzBFxrn
+         yP0O5OsfEGGn+F/eTHt1rmbOJbZRfUKYj11EUMJX3nuFBaXrcxq1o/bm99Nxg0PDLeUY
+         88STREzHZaQ1+MRBYXFhSiA5NtP12OIYC4fFdS0Ku1JBZWMOXICu3WXNooLs7l+l9szx
+         qHtpkgoxlU9Udr/n9e8OjvBNf+zG9AlLr77Vp5EjXDC3q6nWxg7xnpDLGjXs0CT52A7z
+         clLPfYSMpphBbT7daX9HXQY4jf2ybtZKjMSueSTKubXjC5PZ+/0LEEnuOsO9rP1Rkx6z
+         tFeQ==
+X-Gm-Message-State: AOJu0YzdyBvu3DnZ0tlAWRxktpzaAYiFrFYwmD9ZoTEqIl9vi38UptkS
+        y4SVzChLlb0iQX40NKVd7TkljQ==
+X-Google-Smtp-Source: AGHT+IEL8IWddWkFP1+eqMSXVqduyzRv/8Qwgpzc9D/F86qWWJZz/ClkQWXdL7u0I8ISBLcG5UCN5Q==
+X-Received: by 2002:a17:906:10c:b0:9a2:185b:5376 with SMTP id 12-20020a170906010c00b009a2185b5376mr4664148eje.49.1693039983449;
+        Sat, 26 Aug 2023 01:53:03 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.198])
-        by smtp.gmail.com with ESMTPSA id m19-20020a170906849300b0099cf91fe297sm1915891ejx.13.2023.08.26.01.39.08
+        by smtp.gmail.com with ESMTPSA id p18-20020a170906b21200b009926928d486sm1904581ejz.35.2023.08.26.01.53.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Aug 2023 01:39:08 -0700 (PDT)
-Message-ID: <afd4843b-427a-8535-78e2-f81879378371@linaro.org>
-Date:   Sat, 26 Aug 2023 10:39:07 +0200
+        Sat, 26 Aug 2023 01:53:03 -0700 (PDT)
+Message-ID: <05c115cc-ce7a-747a-2f91-045bb87db706@linaro.org>
+Date:   Sat, 26 Aug 2023 10:53:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v4 2/3] dt-bindings: usb: snps,dwc3: Add
- runtime-suspend-on-usb-suspend property
+Subject: Re: [PATCH V2 1/4] dt-bindings: hwmon: ina3221: Convert to
+ json-schema
 Content-Language: en-US
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Elson Serrao <quic_eserrao@quicinc.com>
-Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-References: <20230814185043.9252-1-quic_eserrao@quicinc.com>
- <20230814185043.9252-3-quic_eserrao@quicinc.com>
- <a77403f5-8b99-3012-3843-1999ee8d12ce@linaro.org>
- <6b27cd55-4e44-7a26-30ff-9692344cae4c@quicinc.com>
- <31fa930a-51fb-6a7f-300d-e71f6b399eb1@linaro.org>
- <a0a6c561-6319-00ba-c6db-f1dec9f0f0aa@quicinc.com>
- <5dfae814-7233-eb1f-cae7-f335e54ce1b6@linaro.org>
- <cf0227c8-cd02-81b6-9e13-2e7fe6f505f2@kernel.org>
- <20230826015257.mbogiefsbz5474ft@synopsys.com>
+To:     Ninad Malwade <nmalwade@nvidia.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Cc:     Thierry Reding <treding@nvidia.com>
+References: <20230825164249.22860-1-nmalwade@nvidia.com>
+ <20230825164249.22860-2-nmalwade@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230826015257.mbogiefsbz5474ft@synopsys.com>
+In-Reply-To: <20230825164249.22860-2-nmalwade@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,33 +80,149 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2023 03:53, Thinh Nguyen wrote:
->>>> For example on Qualcomm platforms there is a phy sideband signalling 
->>>> which detects the wakeup signal when resume is initiated by the host.
->>>
->>> So compatible-specific.
->>>
->>>> Thus qcom platforms can benefit from this feature by defining this dt 
->>>> property. (in a parallel discussion with Thinh N to come up with a 
->>>> better name for this dt entry).
->>>
->>> Thanks, with quite a long message you at the end admitted this is
->>> compatible-specific. Exactly what I wrote it one sentence previously.
->>>
+On 25/08/2023 18:42, Ninad Malwade wrote:
+> Convert the TI INA3221 bindings from the free-form text format to
+> json-schema.
 > 
-> Various dwc3 platforms often share a common capability that can be
-> shared with a common dt property. If we dedicate a property such as in
-> this case, it helps designers enable a certain feature without updating
-> the driver every time a new platform is introduced. It also helps keep
-> the driver a bit simpler on the compatible checks.
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+> ---
 
-That's not the purpose of bindings. Sorry.
+This is v2, so where is the changelog?
 
+>  .../devicetree/bindings/hwmon/ina3221.txt     |  54 ---------
+>  .../devicetree/bindings/hwmon/ti,ina3221.yaml | 109 ++++++++++++++++++
+>  2 files changed, 109 insertions(+), 54 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/hwmon/ina3221.txt
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
 > 
-> Regardless, what Krzysztof said is valid. Perhaps we can look into
-> enhancing dwc3 to maintain shared behavior based on compatible instead?
+
+...
+
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> new file mode 100644
+> index 000000000000..0c6d41423d8c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+> @@ -0,0 +1,109 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+
+I assume you do not use standard license because of copying the description?
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/hwmon/ti,ina3221.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Texas Instruments INA3221 Current and Voltage Monitor
+> +
+> +maintainers:
+> +  - Jean Delvare <jdelvare@suse.com>
+> +  - Guenter Roeck <linux@roeck-us.net>
+> +
+> +properties:
+> +  compatible:
+> +    const: ti,ina3221
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  ti,single-shot:
+> +    description: |
+> +      This chip has two power modes: single-shot (chip takes one measurement
+> +      and then shuts itself down) and continuous (chip takes continuous
+> +      measurements). The continuous mode is more reliable and suitable for
+> +      hardware monitor type device, but the single-shot mode is more power-
+> +      friendly and useful for battery-powered device which cares power
+> +      consumptions while still needs some measurements occasionally.
+> +
+> +      If this property is present, the single-shot mode will be used, instead
+> +      of the default continuous one for monitoring.
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +
+> +  "#address-cells":
+> +    description: Required only if a child node is present.
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    description: Required only if a child node is present.
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^input@[0-2]$":
+> +    description: The node contains optional child nodes for three channels.
+> +      Each child node describes the information of input source.
+> +    type: object
+> +    properties:
+> +      reg:
+> +        description: Must be 0, 1 and 2, corresponding to the IN1, IN2 or IN3
+> +          ports of the INA3221, respectively.
+> +        enum: [ 0, 1, 2 ]
+> +
+> +      label:
+> +        description: name of the input source
+> +
+> +      shunt-resistor-micro-ohms:
+> +        description: shunt resistor value in micro-Ohm
+> +
+> +    additionalProperties: false
+
+This should be rather after type:object for readability.
+
+> +
+> +    required:
+> +      - reg
+> +
+> +additionalProperties: false
+
+And this please keep like in example schema, so after required:.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/tegra186-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/reset/tegra186-reset.h>
+> +
+> +    i2c@3160000 {
+> +        compatible = "nvidia,tegra186-i2c";
+> +        reg = <0x03160000 0x10000>;
+> +        interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&bpmp TEGRA186_CLK_I2C1>;
+> +        clock-names = "div-clk";
+> +        resets = <&bpmp TEGRA186_RESET_I2C1>;
+> +        reset-names = "i2c";
+
+Drop all this. Not related, You only need i2c node with address/size-cells.
+
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ina3221@40 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
 
+> +            compatible = "ti,ina3221";
+> +            reg = <0x40>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            input@0 {
+> +                reg = <0x0>;
+> +                status = "disabled";
+
+Why is this node present? Binding said nodes are optional, so I assume
+it can be just skipped. If all children must be there, then you should
+actually require them in the binding (and mention it briefly in commit msg).
+
+> +            };
 Best regards,
 Krzysztof
 
