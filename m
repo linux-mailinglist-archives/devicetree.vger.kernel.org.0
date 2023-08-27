@@ -2,162 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8965078A1B5
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 23:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9BCF78A273
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 00:03:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjH0VCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 17:02:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55340 "EHLO
+        id S229586AbjH0WDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 18:03:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbjH0VB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 17:01:58 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE74B5;
-        Sun, 27 Aug 2023 14:01:52 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50078eba7afso4059410e87.0;
-        Sun, 27 Aug 2023 14:01:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693170110; x=1693774910;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ulpChpcoy8VlUT/kLKfOHdPOjX+o2BAu8P/16CYMK0s=;
-        b=RkZzDQPfUqj6F5fdvcMHzxoVR00+KYXLWxAOsSYAZNYJZ4ljhNN9I+wqLOGyDHiMnY
-         CQphZse3aOylU/9IZPZ1aaFu4w1cdLx4xqh4wqfdONz9AYHykj2B3c992BX3DpNwD86i
-         1xsabOhbm5HyLgNnv8N5fPdpUU31Bvxg4BXHP0pyfwkSx5akZzC5wn5gftVCN5gG74T3
-         8TerNlPig64gtArmqucYjto90irA4FA6NpQGxYKoc5L6DCtQs0z8Qef1JAsaEW/+AvPM
-         UjVu9IKuCoV64voI1Z6xIcfg3Ku2/KRbvx/VgSugSl15sUkV4G14Wd2itJzplGjsbeID
-         +RPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693170110; x=1693774910;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ulpChpcoy8VlUT/kLKfOHdPOjX+o2BAu8P/16CYMK0s=;
-        b=XnssbF+OvYbAW5vIrTPsMfkx0C3Q3tPsaUjKfDOYIXqcibaIRUvUSQsWOk5o421HaP
-         c1sF3fWdUIe8ULB88DbzJBaTrzDezEaPK9pkBJOYnSTqA7rVVEEtiD9ELSF+DLcTI8cW
-         DqUWFF2bj7Oe14+jHo3Q4tJzyevhTZNhIEnUagUm8G4ngSmNk5ttLag1k3xUOBrCKk8U
-         SVexIXM48UghKb6rJedPBBcJz2Kxs/FUzitmGBrvPFe4VvS3bNZF9a6BMREZbzgCvzG8
-         BPutYiLmVWlB2SAYWrJSBTRdr+i7Z/mt0mwFDA7LG1PhXYaj9M2MTlRRq4l+khBGoEOV
-         al5A==
-X-Gm-Message-State: AOJu0YwaHDRrVEtP3GhGU+WH6IUybyPEL82jkxG6V2700QjAivcmtbiB
-        MP8N08Z/2RgJ7A1P06zlSZY=
-X-Google-Smtp-Source: AGHT+IH7O3PchMh/vNAPMm9q+TNABaGxipRSESTad+5nesBzrvn2XS6gxhHJZi8/rdjfw4c+YKBc3Q==
-X-Received: by 2002:a05:6512:4012:b0:4fe:8ba9:4c4 with SMTP id br18-20020a056512401200b004fe8ba904c4mr21079937lfb.59.1693170109841;
-        Sun, 27 Aug 2023 14:01:49 -0700 (PDT)
-Received: from mobilestation ([95.79.200.178])
-        by smtp.gmail.com with ESMTPSA id c23-20020a197617000000b004ff748f6f1fsm1280986lff.69.2023.08.27.14.01.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 14:01:49 -0700 (PDT)
-Date:   Mon, 28 Aug 2023 00:01:47 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        with ESMTP id S229735AbjH0WCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 18:02:48 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF90122;
+        Sun, 27 Aug 2023 15:02:45 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 05F0E20002;
+        Sun, 27 Aug 2023 22:02:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1693173764;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=AMtPInGUsfczSnB1TI2Et6oH9omhoMU8QOgRekdB0bY=;
+        b=ScRlKBmDLloYSZdl6dsTrcFQ9BRTGiM8nq2bMzcfFqFPNjoXemSibGTCeX8vkVCzIvESn6
+        70gmhgiLOh6UG7lw5q32rfp0nG4+vleRG1xj4ByqQPfTeWEbwC6vO8NyPLZFqIWkw1EpDQ
+        JASUuqV+FtLelEZiz9n0C0ulJtJWm0bpmbLIYaa0nWK+LGNzxmj6OnBskMlHoFYmL2yUSO
+        eHkQIyESpX6d5qrH6sdz50sT1AtPb6kHxWdd/ghZIJQNhqPXz8Lhrd3XxhxFD6Gu2vwZv4
+        JODmvemrYo3/lmB4H82WVtsdGFiV+ijISWSbmMW4aewTq204V+qR9S7Un+2wFA==
+Date:   Mon, 28 Aug 2023 00:02:42 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Subject: Re: [PATCH v3 2/4] dt-bindings: net: Add Loongson-1 Ethernet
- Controller
-Message-ID: <q7o7wqodz5epyjdj7vlryaseugr2fjhef2cgsh65trw3r2jorm@5z5a5tyuyq4d>
-References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
- <20230824125012.1040288-3-keguang.zhang@gmail.com>
- <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
- <c32130ab-27dc-e991-10fd-db0fba25cc97@linaro.org>
+        Nikita Shubin <nikita.shubin@maquefel.me>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH v2 0/2] device tree support for ST M48T86
+Message-ID: <169317374591.539206.3523750932599468073.b4-ty@bootlin.com>
+References: <20230823-m48t86_device_tree-v2-0-21ff275f949d@maquefel.me>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c32130ab-27dc-e991-10fd-db0fba25cc97@linaro.org>
+In-Reply-To: <20230823-m48t86_device_tree-v2-0-21ff275f949d@maquefel.me>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
 
-On Sun, Aug 27, 2023 at 09:56:06AM +0200, Krzysztof Kozlowski wrote:
-> On 26/08/2023 23:04, Serge Semin wrote:
-> >> +  clock-names:
-> >> +    items:
-> >> +      - const: stmmaceth
-> > 
-> >   clock-names:
-> >     const: stmmaceth
-> > ?
+On Fri, 25 Aug 2023 11:43:24 +0300, Nikita Shubin wrote:
+> Add device tree support for ST M48T86.
+> 
+> The reason it can't go to trivial-rtc.yaml, is that it has 2 registers
+> instead of a single one. The registers are 1 byte wide.
+> 
 > 
 
-> The existing syntax is correct. This is a string array.
+Applied, thanks!
 
-Could you please clarify whether it's a requirement (always specify
-items: property for an array) or just an acceptable option (another
-one is suggested in my comment)? I am asking because:
-1. In this case the "clock-names" array is supposed to have only one
-item. Directly setting "const: stmmaceth" with no items: property
-shall simplify it.
-2. There are single-entry "clock-names" property in the DT-bindings
-defined as I suggested.
-3. There is a "compatible" property which is also a string array but
-it can be defined as I suggested (omitting the items property).
+[1/2] dt-bindings: rtc: Add ST M48T86
+      commit: a5aeccabb53673331f78a97ce492ce6d01f1e036
+[2/2] rtc: m48t86: add DT support for m48t86
+      commit: 6ec3f5ec2eecabab065a39f5e04562c8c3c81ece
 
-so based on all of that using the "items:"-based constraint here seems
-redundant. Am I wrong to think like that? If so in what aspect?
+Best regards,
 
--Serge(y)
-
-> 
-> > 
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +
-> > 
-> >> +  interrupt-names:
-> >> +    items:
-> >> +      - const: macirq
-> > 
-> >   interrupt-names:
-> >     const: macirq
-> > ?
-> 
-> As well.
-> 
-> > 
-> >> +
-> >> +  loongson,ls1-syscon:
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle
-> >> +    description:
-> >> +      Phandle to the syscon containing some extra configurations
-> >> +      including PHY interface mode.
-> >> +
-> > 
-> >> +  phy-mode:
-> >> +    items:
-> >> +      - enum:
-> >> +          - mii
-> >> +          - rmii
-> > 
-> >   phy-mode:
-> >     enum: ...
-> > ?
-> 
-> Here indeed, this is a string, not a list, so items are wrong.
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
