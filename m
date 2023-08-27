@@ -2,49 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3721789C5C
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 10:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D503789C5D
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 10:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbjH0Ix5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 04:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54970 "EHLO
+        id S229655AbjH0Iy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 04:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230397AbjH0Ixi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 04:53:38 -0400
-Received: from smtprelay02.ispgateway.de (smtprelay02.ispgateway.de [80.67.18.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B71E183
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:53:35 -0700 (PDT)
-Received: from [77.64.243.219] (helo=note-book.lan)
-        by smtprelay02.ispgateway.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <git@apitzsch.eu>)
-        id 1qaBS1-0000Bt-5J; Sun, 27 Aug 2023 10:48:53 +0200
-From:   =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-Date:   Sun, 27 Aug 2023 10:48:00 +0200
-Subject: [PATCH v4 2/2] arm64: dts: qcom: msm8939-longcheer-l9100: Add
- initial device tree
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20230827-bq_m5-v4-2-f8435fb8f955@apitzsch.eu>
-References: <20230827-bq_m5-v4-0-f8435fb8f955@apitzsch.eu>
-In-Reply-To: <20230827-bq_m5-v4-0-f8435fb8f955@apitzsch.eu>
-To:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S230247AbjH0IyF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 04:54:05 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802D7138
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:53:58 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e2a6a3768so3061741a12.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:53:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693126437; x=1693731237;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AIOmvXML/cuLLGF9rNxfRwP3kbtQiQ8jZrhNKHz+Zpg=;
+        b=NUQNtgHLb4wNKM7PhgEXaWoq5Wa7TOMOwh1SVLDglLHxR8FODbqsFHY6Dp3mFaRuMN
+         nwLiTTeNsrSpBODnTt9JEBMg63aHYEViwx6rzP0ZfSDsfsWk8W8x1DfSmt5lWwnWesZA
+         qNGGFbQ7GigoI4gpOxLdKhfOXneZUTS4DQn5zd6yqMfXJPwUGHaENzC2w6vgEiW+B2nJ
+         E2XFfENQSXNtBaQQll0Blg8ncIr35yv3XnceavHFUM4OwDgHhKurKLwrPXDDEXEslnQJ
+         ww+YZDsbfNj86zwgr+9LPBEXt3zVHzUqPz3AyaMtHJFLUb4YC/i5bHwwh99k2KUoPZq1
+         fIQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693126437; x=1693731237;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AIOmvXML/cuLLGF9rNxfRwP3kbtQiQ8jZrhNKHz+Zpg=;
+        b=AGTz0Z7WcNiWt8Ey/PQhmDk4VwRY5MTnD5QSmWkb6yp7t6GXT6uHmifHmdimq54ES7
+         9YNTq+4PD/bbBMbeFVvl9bZBQreRD+mXVbDoMT38PhY29ltfM3JLJJsBg+X0byhJalAL
+         9/CsfAYWVQ6fOOQyKPvvWvEMTKtcmQH9u28E2UtguzYRlL/omR/U9ac+R6FgOHCicN/D
+         pmFz+6e2BIRVAQx3jk1hR0fPpfxhHxXGKGBV6tBoAywMNOjp8X73KcuQ/oEyy71v8zwh
+         9O5kL0f2DiCTwEl1QhIdQkskOSUIGjhScoR+3zs7mz6T3VI+Qxcsq1c6l1b8EKTuxDWB
+         E7SA==
+X-Gm-Message-State: AOJu0Yx53E/WH367BW0Kx0SMZLJzPsiMOm9LKJQXwwwtk13xxZBDW3qG
+        EQ4OZvbKueNjt2Rj2nZkljnP/w==
+X-Google-Smtp-Source: AGHT+IE4tq5kC/NWnY0JkUXYN8QYeRtdiyikydTunheuao+RqJELMOuWCEzVPaachSj+TFJiWYn/9g==
+X-Received: by 2002:a17:907:a04d:b0:9a5:8afe:8c5d with SMTP id gz13-20020a170907a04d00b009a58afe8c5dmr3045387ejc.16.1693126437017;
+        Sun, 27 Aug 2023 01:53:57 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id w24-20020a17090649d800b009930308425csm3188020ejv.31.2023.08.27.01.53.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Aug 2023 01:53:56 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
-X-Mailer: b4 0.12.3
-X-Df-Sender: YW5kcmVAYXBpdHpzY2guZXU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
+        Conor Dooley <conor+dt@kernel.org>,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>,
+        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        stable@vger.kernel.org
+Subject: [PATCH] dt-bindings: PCI: qcom: fix SDX65 compatible
+Date:   Sun, 27 Aug 2023 10:53:51 +0200
+Message-Id: <20230827085351.21932-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,380 +80,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This dts adds support for BQ Aquaris M5 (Longcheer L9100) released in
-2015.
+Commit c0aba9f32801 ("dt-bindings: PCI: qcom: Add SDX65 SoC") adding
+SDX65 was not ever tested and is clearly bogus.  The qcom,sdx65-pcie-ep
+compatible is followed by fallback in DTS and there is no driver
+matching by this compatible.  Driver matches by its fallback
+qcom,sdx55-pcie-ep.  This fixes also dtbs_check warnings like:
 
-Add a device tree with initial support for:
+  qcom-sdx65-mtp.dtb: pcie-ep@1c00000: compatible: ['qcom,sdx65-pcie-ep', 'qcom,sdx55-pcie-ep'] is too long
 
-- GPIO keys
-- Hall sensor
-- SDHCI
-- WCNSS (BT/WIFI)
-- Accelerometer/Magnetometer
-- Vibrator
-- Touchscreen
-- Front flash
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: André Apitzsch <git@apitzsch.eu>
+Fixes: c0aba9f32801 ("dt-bindings: PCI: qcom: Add SDX65 SoC")
+Cc: <stable@vger.kernel.org>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/Makefile                  |   1 +
- .../boot/dts/qcom/msm8939-longcheer-l9100.dts      | 334 +++++++++++++++++++++
- 2 files changed, 335 insertions(+)
+ .../devicetree/bindings/pci/qcom,pcie-ep.yaml        | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 2cca20563a1d..f79b9eaab323 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -41,6 +41,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-new file mode 100644
-index 000000000000..6802714fda3f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-longcheer-l9100.dts
-@@ -0,0 +1,334 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-pm8916.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
-+
-+/ {
-+	model = "BQ Aquaris M5 (Longcheer L9100)";
-+	compatible = "longcheer,l9100", "qcom,msm8939";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* eMMC */
-+		mmc1 = &sdhc_2; /* SD card */
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	gpio-hall-sensor {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_hall_sensor_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Hall Effect Sensor";
-+
-+		event-hall-sensor {
-+			label = "Hall Effect Sensor";
-+			gpios = <&tlmm 20 GPIO_ACTIVE_LOW>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_LID>;
-+			linux,can-disable;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		label = "GPIO Buttons";
-+
-+		button-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			gpios = <&tlmm 17 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_WHITE>;
-+			default-state = "off";
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+
-+			pinctrl-0 = <&button_backlight_default>;
-+			pinctrl-names = "default";
-+		};
-+	};
-+
-+	reg_ts_vdd: regulator-vdd-ts {
-+		compatible = "regulator-fixed";
-+		regulator-name = "regulator-vdd-ts";
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+
-+		gpio = <&tlmm 78 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-0 = <&ts_vdd_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pm8916_pwm 0 100000>;
-+		brightness-levels = <0 255>;
-+		num-interpolated-steps = <255>;
-+		default-brightness-level = <128>;
-+		enable-gpios = <&tlmm 98 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&lcd_bl_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	flash-led-controller {
-+		compatible = "ocs,ocp8110";
-+		flash-gpios = <&tlmm 8 GPIO_ACTIVE_HIGH>;
-+		enable-gpios = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&camera_front_flash_default>;
-+		pinctrl-names = "default";
-+
-+		led {
-+			function = LED_FUNCTION_FLASH;
-+			color = <LED_COLOR_ID_WHITE>;
-+			flash-max-timeout-us = <250000>;
-+		};
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default &usb_id_switch_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+};
-+
-+&blsp_i2c3 {
-+	status = "okay";
-+
-+	magnetometer@d {
-+		compatible = "asahi-kasei,ak09911";
-+		reg = <0x0d>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vid-supply = <&pm8916_l6>;
-+
-+		reset-gpios = <&tlmm 68 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&mag_reset_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	light-sensor@23 {
-+		compatible = "liteon,ltr559";
-+		reg = <0x23>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l5>;
-+
-+		interrupts-extended = <&tlmm 113 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&light_int_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	imu@68 {
-+		compatible = "bosch,bmi160";
-+		reg = <0x68>;
-+
-+		vdd-supply = <&pm8916_l17>;
-+		vddio-supply = <&pm8916_l6>;
-+	};
-+};
-+
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen@4a {
-+		compatible = "atmel,maxtouch";
-+		reg = <0x4a>;
-+
-+		interrupts-extended = <&tlmm 13 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+
-+		vdda-supply = <&pm8916_l6>;
-+		vdd-supply = <&reg_ts_vdd>;
-+
-+		pinctrl-0 = <&ts_int_reset_default>;
-+		pinctrl-names = "default";
-+
-+		/* Keys listed from right to left */
-+		linux,keycodes = <KEY_APPSELECT KEY_HOMEPAGE KEY_BACK>;
-+	};
-+};
-+
-+&blsp_uart2 {
-+	status = "okay";
-+};
-+
-+&pm8916_mpps {
-+	pwm_out: mpp4-state {
-+		pins = "mpp4";
-+		function = "digital";
-+		power-source = <PM8916_MPP_VPH>;
-+		output-low;
-+		qcom,dtest = <1>;
-+	};
-+};
-+
-+&pm8916_pwm {
-+	pinctrl-0 = <&pwm_out>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&pm8916_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+	status = "okay";
-+};
-+
-+&pm8916_rpm_regulators {
-+	pm8916_l17: l17 {
-+		regulator-min-microvolt = <2850000>;
-+		regulator-max-microvolt = <2850000>;
-+	};
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3620";
-+};
-+
-+&tlmm {
-+	button_backlight_default: button-backlight-default-state {
-+		pins = "gpio17";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	camera_front_flash_default: camera-front-flash-default-state {
-+		pins = "gpio8", "gpio49";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_hall_sensor_default: gpio-hall-sensor-default-state {
-+		pins = "gpio20";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	lcd_bl_en_default: lcd-bl-en-default-state {
-+		pins = "gpio98";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	light_int_default: light-int-default-state {
-+		pins = "gpio113";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	mag_reset_default: mag-reset-default-state {
-+		pins = "gpio68";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio38";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_int_reset_default: ts-int-reset-default-state {
-+		pins = "gpio12", "gpio13";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	ts_vdd_default: ts-vdd-default-state {
-+		pins = "gpio78";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+
-+	usb_id_switch_default: usb-id-switch-default-state {
-+		pins = "gpio121";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		output-high;
-+	};
-+};
-
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+index 811112255d7d..c94b49498f69 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+@@ -11,10 +11,13 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,sdx55-pcie-ep
+-      - qcom,sdx65-pcie-ep
+-      - qcom,sm8450-pcie-ep
++    oneOf:
++      - enum:
++          - qcom,sdx55-pcie-ep
++          - qcom,sm8450-pcie-ep
++      - items:
++          - const: qcom,sdx65-pcie-ep
++          - const: qcom,sdx55-pcie-ep
+ 
+   reg:
+     items:
+@@ -110,7 +113,6 @@ allOf:
+           contains:
+             enum:
+               - qcom,sdx55-pcie-ep
+-              - qcom,sdx65-pcie-ep
+     then:
+       properties:
+         clocks:
 -- 
-2.42.0
+2.34.1
 
