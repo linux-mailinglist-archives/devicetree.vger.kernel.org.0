@@ -2,115 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1B43789D38
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC82789D49
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229650AbjH0LOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 07:14:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54956 "EHLO
+        id S229769AbjH0Lkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 07:40:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229672AbjH0LN5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:13:57 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0274913E
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:13:55 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a4818db4aso3044323a12.2
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:13:54 -0700 (PDT)
+        with ESMTP id S229631AbjH0Lkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:40:32 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 160E6125
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:40:30 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9a5b26d8e3aso5316966b.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:40:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693134833; x=1693739633;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ipcdNcF1O55wKKATQ+DbIVwlIv3Inh0Eycsv10ZWXYg=;
-        b=gG9WbV5hN7OFM7FC443031tdRNkobrrlmaBIZ/5CFo+ExWNgvBnpSH96OZgSABt5vC
-         MWptChLk1/ctM4SbD75j1YNZ045ku5etfd75BkuYo7+PoyaZGXCFvGZ8ypTbgxhkfmRm
-         1BbDvcCubU85k52Lms4cWHEgDmG1Bu1cT0aszEIcAD/brQsAIOEo1uIfZjGUY0nqxfsJ
-         IItq0HcpvG4zG+XsYnF0DGVsvP0l7Ub7qi6ElygdzONybYF893QWxuOxkgMeP1EebSZE
-         wBwmH9NW9Ru+8f2I4Ajxnp360+gQjDqGirTZUBDtBsDj5lu9hgCwO4cEtj7heIL27u8P
-         vXXw==
+        d=linaro.org; s=google; t=1693136428; x=1693741228;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r5yXjlx9eXs/s1lbf4NHbswyaJlJiZM8NIf6FC05ww0=;
+        b=NWmpa3ICKJgt/YAFRNQRWMpDVZ8JpJtB6egrzMBKx0soIWIHVZS0r7dFodVnJUVyaB
+         1KiNhGWLrvcerJy2J1X8OSXKleDEUDUVzoOgXU3K7Zl/EW8e6Cv0BXHdmx4PRjyetwAo
+         gajNF/bCh0wtSjv5rt95wI2Xr9U6QOLpmgRIqMrVvXcOS3yGh4yxXy7c57ZvUluzPm6f
+         HbQ8WCEz5bpJuvCqR+dVyIZHXPQkf1KCiCUsMuve/O+8A7YX7TSVx8eYwZ5HKpjdzhvk
+         ffk/v3rrtZnlO4giCzQXt1TZF7Ft9AxlHTJ2e09VhVrKAKXkVd6B3Xdt6n0IjcgbEGZi
+         /FtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693134833; x=1693739633;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ipcdNcF1O55wKKATQ+DbIVwlIv3Inh0Eycsv10ZWXYg=;
-        b=LlERNGTsTlHWhyA57MM77gsKPV/CSc/wDBMdnchfKnBmLDW7Byb1pzdDoT1kyRlQaQ
-         8zUHak8pQEQjOJ2Kv6S0lTe9uDvH7QYRhTnNAaY7zinaCdzzyAcgJ4eGLucxFBIfsmZU
-         OkjMmFdHpTCyVCfb/MbQTq2TIkDpwTHQyI9t8mt8opfSA2WSYP3JUfDORIi3T96A+VnZ
-         jYZ4kG+HJyJOzIyP5/x5MwiXwtnxC8ZBIpRr5oWkSY6VqkkteT8onkZ9bbM8XYlYt3jE
-         LYoslMJ7uQBzIC49e+S4lu1zTMaDzuaUiVYH90HFFNxksKmCOuTxjh96ewgFp3uNNGfz
-         Icjg==
-X-Gm-Message-State: AOJu0YzDlVR+4ZKEo+wradXOstXF1pYaOXoUsc7HcHA10ZFaLnnZaiiI
-        dG86Fvb6r8Td68JFwNi/8IJVwQ==
-X-Google-Smtp-Source: AGHT+IGepecW51Ioli3tongSTkDykLHgwpMsDI776z4B2Hit96uxsmBnKFHoQEoPv9JG8lMBVHSBEQ==
-X-Received: by 2002:a05:6402:398:b0:525:6e47:10f6 with SMTP id o24-20020a056402039800b005256e4710f6mr17581438edv.22.1693134833535;
-        Sun, 27 Aug 2023 04:13:53 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id h11-20020aa7c60b000000b005227e53cec2sm3207882edq.50.2023.08.27.04.13.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 04:13:53 -0700 (PDT)
-Message-ID: <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
-Date:   Sun, 27 Aug 2023 13:13:51 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH RESEND v5 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl
- and GPIO documentation
-Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
-Cc:     linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
-        joel@jms.id.au, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, j.neuschaefer@gmx.net,
-        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230809185722.248787-1-tmaimon77@gmail.com>
- <20230809185722.248787-2-tmaimon77@gmail.com>
- <20230821170941.GA1915730-robh@kernel.org>
- <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
+        d=1e100.net; s=20221208; t=1693136428; x=1693741228;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r5yXjlx9eXs/s1lbf4NHbswyaJlJiZM8NIf6FC05ww0=;
+        b=Lt4oztNmsPz7rYmE/R4Cd6L9z8xDePTUBuo6tvk9NgOKmcemwZi/aq3je5+Va1rnVZ
+         f2Eznn9ebZBdA+eG2PFflxxN8D0pPMxgoYrErPw3TwOntHhsllHP6Om+9Q9YPXUOHLeq
+         HQGcTwJolrpkmHi8nuP1MfKjnCFX/S6+NMYGUPBcZYD4abm1nmsYtC2g4HERK+2dgf/I
+         DX+ELZr31dHvF/kQpAPczAvUspR9g6lx705VEOU0gLuvmTVp2ToYM5G7j3mW7Bhyq0w6
+         JxECm0WBrwsB1tZeIBU3JEun8bRFoVB3o8dsTeDlSrHlQS8n7lUiyQLWlk5J11++4xU5
+         H8ig==
+X-Gm-Message-State: AOJu0YwusJ98YMd/Rzk+bX24hYWvuUHp4DqrP4TcYiVI86TyHsPMK0sa
+        VtLBdUJdrjRbbD2R1RHfaXpKmg==
+X-Google-Smtp-Source: AGHT+IFJzgqawTOC8x8uvouQh8iok/M1NAVoCFi9ln0CxPQRDAoA3OzEUGucKvKZAn5I4wWukUyZ2Q==
+X-Received: by 2002:a17:906:5354:b0:9a1:fab3:ee37 with SMTP id j20-20020a170906535400b009a1fab3ee37mr7016209ejo.14.1693136428400;
+        Sun, 27 Aug 2023 04:40:28 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id e2-20020a17090681c200b00997e99a662bsm3351927ejx.20.2023.08.27.04.40.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Aug 2023 04:40:27 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Odelu Kukatla <quic_okukatla@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: interconnect: qcom,rpmh: do not require reg on SDX65 MC virt
+Date:   Sun, 27 Aug 2023 13:40:26 +0200
+Message-Id: <20230827114026.47806-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/08/2023 11:44, Tomer Maimon wrote:
->>> +      pinctrl: pinctrl@f0800260 {
->>> +        compatible = "nuvoton,npcm845-pinctrl";
->>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
->>> +        #address-cells = <1>;
->>> +        #size-cells = <1>;
->>> +        nuvoton,sysgcr = <&gcr>;
->>> +
->>> +        gpio0: gpio@f0010000 {
->>
->> unit-address should be 0.
->>
->> Otherwise,
-> The unit-address is correct f0010000
+The MC virt interconnect in SDX65 DTSI does not have reg.  Similarly in
+the downstream DTS, thus assume this is an interconnect without own
+dedicated IO address space.  This fixes dtbs_check warnings like:
 
-Then how does it pass W=1 builds? How unit address can be f0010000 but
-reg is 0? Really...
+  qcom-sdx65-mtp.dtb: interconnect-mc-virt: 'reg' is a required property
 
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->>
->>> +          gpio-controller;
->>> +          #gpio-cells = <2>;
->>> +          reg = <0x0 0xB0>;
-> 
-> Thanks,
-> 
-> Tomer
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+index a46497af1fd8..74ab080249ff 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+@@ -113,6 +113,7 @@ allOf:
+         properties:
+           compatible:
+             enum:
++              - qcom,sdx65-mc-virt
+               - qcom,sm8250-qup-virt
+     then:
+       required:
+-- 
+2.34.1
 
