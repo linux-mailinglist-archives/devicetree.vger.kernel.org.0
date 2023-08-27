@@ -2,114 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E403789C2E
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 10:36:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE4C8789C3C
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 10:39:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230327AbjH0Ifz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 04:35:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36098 "EHLO
+        id S229556AbjH0IjI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 04:39:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230247AbjH0Ifc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 04:35:32 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B25C191
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:35:27 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-5298e43bb67so4745148a12.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:35:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693125325; x=1693730125;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9QgNqVUT0PUzMRYztLqBgJtsTJC3vN3Wx4d1g2QAn98=;
-        b=WO3WWSB3mLxJ4JegKG945hEcH+WL5j1z6/qqG+Ewa8BgXqsDOh4lQMmJyqtBVvx4T1
-         G7cLNnU/DT5p685loEIp6cA98FEklgkPZakXqOJo6y4lCZH6oVUtVAYq3h7A+ZIhZmtV
-         HCDW7n+TTh/z2XqLfGrcSBgVTUapcIBN4V/ExAungctz+COwKKtLe7ekQ9J1cA9D+Uq1
-         RHoR6k3Rx/4eKs6NVgindNe1cHu1zfhZJ/E8Jy6XFRh5NtEOgfQKUHnpwhn+UTcB0mw6
-         wdc4L/DuDRAzZkXxHSoOyEdKJA4RopjBE0S6FQyVjMKhAnBvMExE/gkYD4BJ3oPVDQ4N
-         8jNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693125325; x=1693730125;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9QgNqVUT0PUzMRYztLqBgJtsTJC3vN3Wx4d1g2QAn98=;
-        b=NjqtgQzyv6hHXq8iwuYGZhSUUaxsD5xgkHzgFv7DTJ3QEvkUB4h7PmLVFEi5etwQ4s
-         ggSGgSwIqGLFBLFLikL8wdufNsdnBOopSDAPHkLikaKb7liPNM5Qbq5NB6k9fzfiwy5O
-         InLbqS+7VeYBDqOLdvdebfeUBt9eOnqNtAoUTrkej53WUbhi7YFAiy05mxtQz/Su9O8s
-         S2XzhfKX7/kHFbs/4X7N0mx94OQAzmKSEYuPq+pG8PQIMDd20I7AS75uOInZJ5UfFxrl
-         AEASrnJg/A5BW11d8N3tAST1rqKMVn7i/XLOwJkderAu6sRxqileM1Ew3laIlFNOr9JR
-         AQ2g==
-X-Gm-Message-State: AOJu0Yw1Q8oJh3dUMnd41vsnLkkxcYYO/8R0/WFSIsOx56dFnnp5ArmX
-        I6+dinaZ78IYIbnhWMU7bF7dPg==
-X-Google-Smtp-Source: AGHT+IHFxiSvTWcd5IilQnNtpnYNzVsqATgW7ewhyWWd2IMPc2SKm/myh2nr3Y6KXX0l7Jky6PpEUQ==
-X-Received: by 2002:a05:6402:3586:b0:522:b9ae:db3c with SMTP id y6-20020a056402358600b00522b9aedb3cmr23265938edc.6.1693125325585;
-        Sun, 27 Aug 2023 01:35:25 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id s1-20020aa7c541000000b0052333e5237esm3046553edr.88.2023.08.27.01.35.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 01:35:25 -0700 (PDT)
-Message-ID: <39af3ab5-4fa5-5b3c-395a-e86e70bbe803@linaro.org>
-Date:   Sun, 27 Aug 2023 10:35:23 +0200
+        with ESMTP id S229529AbjH0Iin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 04:38:43 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F40FB7;
+        Sun, 27 Aug 2023 01:38:40 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 1DD1120002;
+        Sun, 27 Aug 2023 08:38:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+        t=1693125518;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=skW65uQLk894K9XJtfeHQDWUnHUg2Kk1PFt/VALrobw=;
+        b=TgU3MJmA9QvoUrT12sBLc5bWK9BNdvquWgzTEHXBCtHwHbog5s1pwPctEiNXG/edJLwCXf
+        YaZLjqtKOpgXEo5X1ub0mFsQKpNCA5BtJYpvCPUyDFD7a/7g4eXxLcrq8uqwwB5mGPnZd7
+        XclvxF/jntWYO1steCgqTYl2IJ19Sfh67MHyERsu6qqLCC1ep+MF530HXkVAcvUIWc1KmH
+        oEb6TiOGMMdGuWS2Tupi1PtcI2aKYi+f2Zxp95VIvoXwj1owAUnMLoWgqDba4X4CC7OEIY
+        802VYXxPFcdHEZRVAk2P6/ZS2FHI4YcyZZ1pPRKROq04s9AOyhf4OvTZmllh9Q==
+Message-ID: <b3edd0fe-af28-4ae5-a584-7cbaba8b2e06@arinc9.com>
+Date:   Sun, 27 Aug 2023 11:38:07 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 03/38] dt-bindings: mfd: qcom-pm8xxx: allow using
- interrupts-extended
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        linux-leds@vger.kernel.org
-References: <20230827005920.898719-1-dmitry.baryshkov@linaro.org>
- <20230827005920.898719-4-dmitry.baryshkov@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230827005920.898719-4-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <20230812091708.34665-1-arinc.unal@arinc9.com>
+ <20230812091708.34665-3-arinc.unal@arinc9.com>
+ <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+ <617c51cf-2c09-4865-ac60-96599db597e7@lunn.ch>
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <617c51cf-2c09-4865-ac60-96599db597e7@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/08/2023 02:58, Dmitry Baryshkov wrote:
-> Allow using interrupts-extended, which is a preferred form of interrupts
-> specification compared to the interrupt-parrent + interrupts pair.
+On 14.08.2023 16:09, Andrew Lunn wrote:
+>> Ah okay. I didn't consider the switch architecture where the data interface
+>> of the PHY is connected to the switch, and the PHY management interface is
+>> connected to the mdio bus that the switch is connected to.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
+> The generic Linux architecture for PHYs and binding them to a MAC via
+> a phandle allows the PHY to be on any MDIO bus anywhere. DSA has some
+> additional shortcuts to support 1:1 mapping if the switch has its own
+> MDIO bus, without describing it in DT, but this is just in addition to
+> the generic code.
+
+Understood.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> index 7fe3875a5996..33d9615e63c8 100644
-> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
-> @@ -37,6 +37,9 @@ properties:
->    interrupts:
->      maxItems: 1
->  
-> +  interrupts-extended:
-> +    maxItems: 1
+>> Not json-schema documentation, don't care about:
+>> - ar9331.txt
+>> - lan9303.txt
+>> - lantiq-gswip.txt
+>> - marvell.txt
+> 
+> The marvell switch can have up to 2 MDIO busses. If i remember
+> correctly, there is also one switch which has one MDIO bus per port.
 
-The entire patch is not needed. At least should not be needed. What
-problem are you trying to solve here?
+I will work on writing a schema for these once I'm done with this.
 
-
-Best regards,
-Krzysztof
-
+Arınç
