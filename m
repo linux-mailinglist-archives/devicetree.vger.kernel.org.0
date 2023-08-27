@@ -2,109 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D8D789DDB
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 14:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 859BF789DDE
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 14:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229664AbjH0M01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 08:26:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49940 "EHLO
+        id S229708AbjH0M3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 08:29:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229714AbjH0MZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 08:25:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D2410F;
-        Sun, 27 Aug 2023 05:25:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5937261451;
-        Sun, 27 Aug 2023 12:25:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03124C433C8;
-        Sun, 27 Aug 2023 12:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693139154;
-        bh=jvTptT0rkJ9XzewXN+Ilc6vx+jgmt3KNLGijCVtCL5E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PvnT0kXiTyaIeD95H55YeT7Yv3yzR/hf7mOgX0yqLMkuFSMiL6LJgCzJX5Wf5RZMH
-         OIYBXU+BYC0Khqeaun68JFwqpiFHvy6OXesHy9T7GlJ4dedbmmfYNLXkx1dxJxlTP1
-         1lL4FTP6KUp9ew6Bsko7LXVDBNIbVBxiRevxguaLNkppPTKwWfg8PUT9LHCvyUfH0+
-         TYiJxUqHGCbe32Dd4ofKN2k1Dx30DCiOx9YmU3w9s0VvlsHfsPSHvrIQLLUCkG2u2M
-         tIUJ91CX71VC0SU1L3CbZl8ibelQ0ZJKt17JOBwu6047taxjbZ5z5uUItlqVAH+1at
-         YOtybIUwFGYbQ==
-Date:   Sun, 27 Aug 2023 13:25:48 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Inochi Amaoto <inochiama@outlook.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229761AbjH0M2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 08:28:48 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D771E186
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 05:28:45 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99bf1f632b8so310178966b.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 05:28:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693139324; x=1693744124;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BIQMZSplS2rE5HA4WckOVzu7Ot+7UVATUf/Pm8921WU=;
+        b=yZF6sOQpHQDVi+FDWxMHhoUHRNfXzeOwnMTvx+WroZJFJQCITvayI9bwsLfXFiOtLR
+         PqzPwRlBKPnjUN9cT8z+gCLxbfKHX0tQaYscTXY/DtwjMHBWDyoTfkqGDy9yx3q1hfki
+         ddY9XwSmdsuGbv8i5KfbDxACrhUdL/cSp4BJ3B3aSHd4tIpDSTYDscAaZmNHyA3ZNoco
+         tp2GcbXZcg3dvkMpHUqbR2ing1V9feI07Sg3PQaCwNcIz+gY2HwCL0qL7uhQ7MJFRto1
+         z3peGpQoq1p65LGvVf1h7RMxE9jvBHd6EHV/JG2suRjbGN88EhsWEIBi/Nlue9kd771I
+         bDsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693139324; x=1693744124;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BIQMZSplS2rE5HA4WckOVzu7Ot+7UVATUf/Pm8921WU=;
+        b=kZcwQrZly2KLHQR8n/ybXk2r8Mtt3AVFq5w8Ib9GJPtO+N3jRFE5IB12hLZnogWcfs
+         qPaKiUyu9kXcH/ENQcvWbkJUWQ1Plo3JwCGWxyrkiCxiUpJTLwYvueuVLeK3sVZRKS+a
+         GExrVQn7IGECGhh2C9PcfwyluRfiO1pAKLfObEZQWkn/UAlCF1CYIgOVfU9G0Qs3Z3pb
+         eWWFUj92zQ5cLd//ql64IJi0VHlShPVhPkYCkoi7sFfDDVVqUAaa7pp3hdHIjG3k2KNf
+         +ZgZRIhzXRBeQ7cxD0JQ5Kxg17H7b5+ajcj+jB3mVPnTCT6Ku5oLeruVQOIp8AYdBi7g
+         85vg==
+X-Gm-Message-State: AOJu0Yxmj9maIkz1550lDrO3oBt1F5S5185TBI4lFas6HkMh2p9jnjl1
+        8SqiS/TRLChygDwVBwEi+37E/w==
+X-Google-Smtp-Source: AGHT+IF+so4Fk2URicgubG6xO1HCg+IhCafYbleB6GezafBokdUts2/y7TkO16ff8XY0B5bTecgBhg==
+X-Received: by 2002:a17:906:3156:b0:9a1:f81f:d0df with SMTP id e22-20020a170906315600b009a1f81fd0dfmr8070915eje.69.1693139324343;
+        Sun, 27 Aug 2023 05:28:44 -0700 (PDT)
+Received: from krzk-bin.. ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id rp25-20020a170906d97900b00993150e5325sm3384826ejb.60.2023.08.27.05.28.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Aug 2023 05:28:43 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko@sntech.de>, Wei Fu <wefu@redhat.com>,
-        Pei Chen <cp0613@linux.alibaba.com>,
-        Wenhan Chen <chenwenhan.cwh@alibaba-inc.com>,
-        Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] riscv: dts: allwinner: d1: Add PMU event node
-Message-ID: <20230827-frighten-casket-561437347911@spud>
-References: <IA1PR20MB49531D5F6612A5FFED734754BBE1A@IA1PR20MB4953.namprd20.prod.outlook.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] ARM: dts: qcom: drop incorrect cell-index from SPMI
+Date:   Sun, 27 Aug 2023 14:28:40 +0200
+Message-Id: <20230827122842.63741-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9O421g421KqLv44b"
-Content-Disposition: inline
-In-Reply-To: <IA1PR20MB49531D5F6612A5FFED734754BBE1A@IA1PR20MB4953.namprd20.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The SPMI controller (PMIC Arbiter) does not use nor allow 'cell-index'
+property:
 
---9O421g421KqLv44b
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+  qcom-sdx55-mtp.dtb: spmi@c440000: Unevaluated properties are not allowed ('cell-index' was unexpected)
 
-On Sun, Aug 27, 2023 at 02:45:01PM +0800, Inochi Amaoto wrote:
-> D1 has several pmu events supported by opensbi.
-> These events can be used by perf for profiling.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
-> Link: https://dl.linux-sunxi.org/D1/Xuantie_C906_R1S0_User_Manual.pdf
-> ---
-> changed from v2:
-> 1. move pmu node from /soc to / to avoid warnings when cheching.
->=20
-> The meaning of T-HEAD events can be found in this pending patch:
-> https://lore.kernel.org/linux-perf-users/IA1PR20MB4953DD82D0116EC291C2177=
-7BBE2A@IA1PR20MB4953.namprd20.prod.outlook.com
->=20
-> The patch above also provides a example that shows how to setup
-> environment and use perf with T-HEAD events.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/qcom/qcom-sdx55.dtsi | 1 -
+ arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 1 -
+ 2 files changed, 2 deletions(-)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+index 9c02d88e8eae..03da1ac9e43d 100644
+--- a/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-sdx55.dtsi
+@@ -641,7 +641,6 @@ spmi_bus: spmi@c440000 {
+ 			#size-cells = <0>;
+ 			interrupt-controller;
+ 			#interrupt-cells = <4>;
+-			cell-index = <0>;
+ 		};
+ 
+ 		tlmm: pinctrl@f100000 {
+diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+index ff596215ae3c..49c16ee2e169 100644
+--- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+@@ -551,7 +551,6 @@ spmi_bus: spmi@c440000 {
+ 			#interrupt-cells = <4>;
+ 			#address-cells = <2>;
+ 			#size-cells = <0>;
+-			cell-index = <0>;
+ 			qcom,channel = <0>;
+ 			qcom,ee = <0>;
+ 		};
+-- 
+2.34.1
 
-Thanks,
-Conor.
-
---9O421g421KqLv44b
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOtAzAAKCRB4tDGHoIJi
-0j5BAP91rXPhdIdPwVcemV7Mclmbtusox4Z+awvYVVbHlFkLQgD+OfL9j8jiRM53
-NprniGrPxfyWibOeShToODprEvZfAAM=
-=0gzT
------END PGP SIGNATURE-----
-
---9O421g421KqLv44b--
