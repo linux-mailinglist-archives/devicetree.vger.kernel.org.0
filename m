@@ -2,180 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 459097899B5
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 00:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0CE47899EA
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 02:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229932AbjHZWTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Aug 2023 18:19:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50394 "EHLO
+        id S229511AbjH0ASh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Aug 2023 20:18:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjHZWTZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 18:19:25 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490241AC
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 15:19:22 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe8c16c1b4so3113597e87.2
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 15:19:22 -0700 (PDT)
+        with ESMTP id S229475AbjH0ASK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 20:18:10 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423F01BE;
+        Sat, 26 Aug 2023 17:18:08 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bcbfb3705dso31704451fa.1;
+        Sat, 26 Aug 2023 17:18:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693088360; x=1693693160;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7HfcW2sKs/zrz1JXyCkhYKWgvTXW8hsLwfoBt2SnqaA=;
-        b=CG6f02NxvEHWWuCBh03fQjQ/iOuSaQD1oBApi/x6D2oRvDqt6dUjl0sqMGaajM0IJe
-         1aidb+telhttTzOQ/lDOfW2NMpMMpBkZtU5yZ2BCIgWqJFt8iRBQJLedo9wkcy13q8Kc
-         E/1YOniyVf1T8ErDvgeFCIYQzVy4xZgt9lDSud5lYUEXqaKPXwdyYB5MRLpYGWAfQMBY
-         TIcCNseV7+PBI75OXBz1ZWYei2ydlfFnDhSFeRfdeRxEDcHbZSevQZRdrWhSCvW0JQh1
-         /fpkLASTygeMsmPxbmpW9dChbS1TDiHiR6SX/H0lfxLK4NE88rdDCwbgoERk9O77By80
-         Ub+Q==
+        d=gmail.com; s=20221208; t=1693095486; x=1693700286;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=R0O9+Nd81lV61HUqL9J8WFR0wEb+50cA6S0W+jgCLe8=;
+        b=c/affskxQbENShZrDrcXcKAkTEXbHsnQQKmV0Pou8bPhhXgqTFq+jOGmmDB/J9k+Z3
+         Lwj8SoVltyelWC4dq4f05GgIu1Vl3mAC1moPIvkwCjrkQda++FmI0T73NwWdda9WZ4tl
+         ZPUL61i4oIuWMvnAWboCGhLHW5Yiz4OTRdctRiGAv3YePFte8v7Eb0sfg1dqQeEuzE6p
+         GI41iMMFHl97rHL/QlgVJZnR2W2SO8laQCgdHK0nAUme/x6tOqEILrLVU82JZDGO5H0c
+         NVJNCC7/BocOfV9X13sU7FSmqaC1KEGSjvkPH9+ez455BpePqhA8J5kTYASrGoC8D72D
+         8fLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693088360; x=1693693160;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7HfcW2sKs/zrz1JXyCkhYKWgvTXW8hsLwfoBt2SnqaA=;
-        b=ZPdrN8bZLE8QNdwMKVDVgBsNF+z+0bl7iKnevr+h7k2Gg4yR6g1owLwpfYSTilFXUj
-         NHDVGOeZS0QAABlL4PQFsrOJfZjsgky8Cso96nbiagX1URxrGwXZHny4ZQwnFajEBCrf
-         12wfPPOGbeZwVHNHSZTjhOX9GNrEZidrejitpCi20kGedGyMhlMXeQl/1+hv+HP6LDP4
-         XE3EYQb3POsknWcn7GNuCIHCS8PHIYDrHGdn4c2YiuOYQM1c6ENiYNdFI78jmrFiqCYm
-         7PxyY5RdPRNEV65HJaD0LRueUcxkFNpCQ2Py8Ekm9XmoMcxWq++4qZm5uJLEoHJ+1X1Y
-         WwEA==
-X-Gm-Message-State: AOJu0Yzj7gesy2HizCFYOm6JadDyxp9I2RwjqXmHCqNVfTA1Om5eY84t
-        4q4f2xmv/GE4YnIKK1dxG+697g==
-X-Google-Smtp-Source: AGHT+IG63JICgFMRbkTaMszSt6Xi3auTUa5JOgwfAlgsi5W2YmHHrBfVZqTyTCGtdYRJ/GYNTD4tBA==
-X-Received: by 2002:a05:6512:2347:b0:4ff:8f71:9713 with SMTP id p7-20020a056512234700b004ff8f719713mr18892741lfu.42.1693088360644;
-        Sat, 26 Aug 2023 15:19:20 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id f25-20020a19ae19000000b004fbad341442sm868672lfc.97.2023.08.26.15.19.19
+        d=1e100.net; s=20221208; t=1693095486; x=1693700286;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R0O9+Nd81lV61HUqL9J8WFR0wEb+50cA6S0W+jgCLe8=;
+        b=Q3AYhm4zZscO12pAJVRhSPBUI7l0GxSsBWQSfJVy2iNG7MLXS4vB5k6i1nMW0nHl3k
+         T+uR/DOCzlG2Wdt9y+DyzTX4X8Gjv9QcD1cCjK5FaDUnfw6Pc6iODecqMCK3glPu17W9
+         H0NgrYBwHPRiS75UGmV7eTy8UOCHUGlI0PK00uUj7EKhkt5MJgo+JqLOVu6jtVdK5ZpS
+         qppoYOC3B3G/NGSWUoHLy4qX9bUOYZkhU+NmlhBItQ/BK1ZVnxOyn2kE5iaf7mrKxCOX
+         S1uTy78cWNGcnxG9t/wMsr39AjtkI7faqgo62oMAlM+NWI+O5zn+dtZNNS4C2S8sErzp
+         mfOw==
+X-Gm-Message-State: AOJu0YzvD6HKCWvxd7uHdoRTbl9i1RLUMxzpnzr2IFZv7pfT3lhSOw/Q
+        oHjTXiYlcLJggj6Wp2PEs2DzbcToP0nFCw==
+X-Google-Smtp-Source: AGHT+IETf2PT2oT9j6J9nHb3QF2V2wh+kc6yhG5eIffZAbTs9nY9WVTgxgZMkeph09QnN5G5PyYhHw==
+X-Received: by 2002:a2e:3c0e:0:b0:2b6:3651:f12f with SMTP id j14-20020a2e3c0e000000b002b63651f12fmr17021462lja.3.1693095486177;
+        Sat, 26 Aug 2023 17:18:06 -0700 (PDT)
+Received: from mobilestation ([95.79.200.178])
+        by smtp.gmail.com with ESMTPSA id x1-20020a05651c104100b002bcd2653872sm1015042ljm.30.2023.08.26.17.18.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Aug 2023 15:19:20 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sdm845-mtp: enable PCIe support
-Date:   Sun, 27 Aug 2023 01:19:15 +0300
-Message-Id: <20230826221915.846937-6-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230826221915.846937-1-dmitry.baryshkov@linaro.org>
-References: <20230826221915.846937-1-dmitry.baryshkov@linaro.org>
+        Sat, 26 Aug 2023 17:18:05 -0700 (PDT)
+Date:   Sun, 27 Aug 2023 03:18:03 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Rohan G Thomas <rohan.g.thomas@intel.com>
+Cc:     alexandre.torgue@foss.st.com, conor+dt@kernel.org,
+        conor.dooley@microchip.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, edumazet@google.com,
+        joabreu@synopsys.com, krzysztof.kozlowski+dt@linaro.org,
+        kuba@kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        mcoquelin.stm32@gmail.com, netdev@vger.kernel.org,
+        pabeni@redhat.com, peppe.cavallaro@st.com, robh+dt@kernel.org
+Subject: Re: [PATCH net-next v5 1/2] dt-bindings: net: snps,dwmac: Tx queues
+ with coe
+Message-ID: <stdtvjzyaudpnxoj4pxdqw4okrmq2bkmbefvyapbs2racx4dhv@of5t463f4nm5>
+References: <l7yajzhpuotn62pjkxk43qtcn3u4zltpyqcvo224737bjg3eab@bzu6pirxbvh2>
+ <20230823171004.6825-1-rohan.g.thomas@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230823171004.6825-1-rohan.g.thomas@intel.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable two PCIe hosts support on Qualcomm SDM845 MTP board.
+On Thu, Aug 24, 2023 at 01:10:04AM +0800, Rohan G Thomas wrote:
+> >On Tue, Aug 22, 2023 at 05:15:25PM -0700, Jakub Kicinski wrote:
+> >> On Sat, 19 Aug 2023 10:31:31 +0800 Rohan G Thomas wrote:
+> >> > +      snps,tx-queues-with-coe:
+> >> > +        $ref: /schemas/types.yaml#/definitions/uint32
+> >> > +        description: number of TX queues that support TX checksum offloading
+> >> 
+> >
+> >> Is it going to be obvious that if not present all queues support
+> >> checksum offload? I think we should document the default.
+> >
+> >This question is debatable:
+> >1. By default the DW xGMAC and DW QoS Eth IP-cores are
+> >synthesized with only the very first Tx queue having Tx COE enabled.
+> >2. If TSO is disabled then the Tx COE can be individually enabled
+> >for each queue available on DW QoS Eth controller and for the very
+> >first N queues on DW xGMAC controller.
+> >3. If TSO is enabled then the Tx COE will be automatically and always
+> >enabled for as many first queues as there are TSO-capable
+> >DMA-channels.
+> >4. At the current state the STMMAC driver assumes that all Tx Queues
+> >support Tx COE.
+> >
+> >The entry 4 can't be changed since we'll risk to catch regressions on
+> >the platforms with no property specified. On the other hand it partly
+> >contradicts to the rest of the entries. I don't know what would be a
+> >correct way to specify the default value in this case. Most likely
+> >just keep the entry 4 and be done with it.
+> >
+> >BTW I just noticed that but the suggested "snps,tx-queues-with-coe"
+> >property semantic will only cover a DW XGMAC-part of the case 2. DW
+> >QoS Eth can be synthesized with Tx COE individually enabled for a
+> >particular queue if TSO is unavailable.
+> 
+> Hi Serge,
+> 
+> Didn't know about a different IP configuration supported by DW QoS Eth IP. If
+> this is the case, I think we can have a flag 'coe-unsupported' for any TX
+> queue subnode as below.
+> 
+> +          snps,coe-unsupported:
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 78 +++++++++++++++++++++++++
- 1 file changed, 78 insertions(+)
+> +            $ref: /schemas/types.yaml#/definitions/flag
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-index aec3f358d426..76bfa786612c 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
-@@ -533,6 +533,38 @@ &mss_pil {
- 	firmware-name = "qcom/sdm845/mba.mbn", "qcom/sdm845/modem.mbn";
- };
- 
-+&pcie0 {
-+	perst-gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-0 = <&pcie0_default_state>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&pcie0_phy {
-+	vdda-phy-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l26a_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1 {
-+	perst-gpios = <&tlmm 102 GPIO_ACTIVE_LOW>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie1_default_state>;
-+
-+	status = "okay";
-+};
-+
-+&pcie1_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l1a_0p875>;
-+	vdda-pll-supply = <&vreg_l26a_1p2>;
-+};
-+
- &pm8998_adc {
- 	channel@4c {
- 		reg = <ADC5_XO_THERM_100K_PU>;
-@@ -630,6 +662,52 @@ &sdhc_2 {
- 	cd-gpios = <&tlmm 126 GPIO_ACTIVE_LOW>;
- };
- 
-+&tlmm {
-+	pcie0_default_state: pcie0-default-state {
-+		clkreq-pins {
-+			pins = "gpio36";
-+			function = "pci_e0";
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio35";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio37";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	pcie1_default_state: pcie1-default-state {
-+		clkreq-pins {
-+			pins = "gpio103";
-+			function = "pci_e1";
-+			bias-pull-up;
-+		};
-+
-+		perst-n-pins {
-+			pins = "gpio102";
-+			function = "gpio";
-+			drive-strength = <16>;
-+			bias-pull-down;
-+		};
-+
-+		wake-n-pins {
-+			pins = "gpio104";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-+
- &uart9 {
- 	status = "okay";
- };
--- 
-2.39.2
+AFAIR tKrzysztof preferred to use type: boolean for the flags.
 
+> +            description:
+> +              TX checksum offload is unsupported by the TX queue. 
+
+> +              If TX checksum
+> +              offload is requested for a packet to be transmitted through this
+> +              TX queue then have a software fallback in the driver for checksum
+> +              calculation.
+
+This is redundant in the HW description.
+
+> 
+
+> If this is okay, I can rework the patch based on this. Covers both DW QoS Eth IP
+> and DW XGMAC IP cases.
+
+I guess that's the only choice we have seeing the driver already
+expects all the Tx queues having the COE supported.
+
+-Serge(y)
+
+> 
+> >
+> >-Serge(y)
+> >
+> >> -- 
+> >> pw-bot: cr
+> 
+> BR,
+> Rohan
