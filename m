@@ -2,129 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D503789C5D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 10:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F93C789CA3
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 11:30:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbjH0Iy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 04:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47600 "EHLO
+        id S230157AbjH0J3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 05:29:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230247AbjH0IyF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 04:54:05 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 802D7138
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:53:58 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e2a6a3768so3061741a12.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 01:53:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693126437; x=1693731237;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=AIOmvXML/cuLLGF9rNxfRwP3kbtQiQ8jZrhNKHz+Zpg=;
-        b=NUQNtgHLb4wNKM7PhgEXaWoq5Wa7TOMOwh1SVLDglLHxR8FODbqsFHY6Dp3mFaRuMN
-         nwLiTTeNsrSpBODnTt9JEBMg63aHYEViwx6rzP0ZfSDsfsWk8W8x1DfSmt5lWwnWesZA
-         qNGGFbQ7GigoI4gpOxLdKhfOXneZUTS4DQn5zd6yqMfXJPwUGHaENzC2w6vgEiW+B2nJ
-         E2XFfENQSXNtBaQQll0Blg8ncIr35yv3XnceavHFUM4OwDgHhKurKLwrPXDDEXEslnQJ
-         ww+YZDsbfNj86zwgr+9LPBEXt3zVHzUqPz3AyaMtHJFLUb4YC/i5bHwwh99k2KUoPZq1
-         fIQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693126437; x=1693731237;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AIOmvXML/cuLLGF9rNxfRwP3kbtQiQ8jZrhNKHz+Zpg=;
-        b=AGTz0Z7WcNiWt8Ey/PQhmDk4VwRY5MTnD5QSmWkb6yp7t6GXT6uHmifHmdimq54ES7
-         9YNTq+4PD/bbBMbeFVvl9bZBQreRD+mXVbDoMT38PhY29ltfM3JLJJsBg+X0byhJalAL
-         9/CsfAYWVQ6fOOQyKPvvWvEMTKtcmQH9u28E2UtguzYRlL/omR/U9ac+R6FgOHCicN/D
-         pmFz+6e2BIRVAQx3jk1hR0fPpfxhHxXGKGBV6tBoAywMNOjp8X73KcuQ/oEyy71v8zwh
-         9O5kL0f2DiCTwEl1QhIdQkskOSUIGjhScoR+3zs7mz6T3VI+Qxcsq1c6l1b8EKTuxDWB
-         E7SA==
-X-Gm-Message-State: AOJu0Yx53E/WH367BW0Kx0SMZLJzPsiMOm9LKJQXwwwtk13xxZBDW3qG
-        EQ4OZvbKueNjt2Rj2nZkljnP/w==
-X-Google-Smtp-Source: AGHT+IE4tq5kC/NWnY0JkUXYN8QYeRtdiyikydTunheuao+RqJELMOuWCEzVPaachSj+TFJiWYn/9g==
-X-Received: by 2002:a17:907:a04d:b0:9a5:8afe:8c5d with SMTP id gz13-20020a170907a04d00b009a58afe8c5dmr3045387ejc.16.1693126437017;
-        Sun, 27 Aug 2023 01:53:57 -0700 (PDT)
-Received: from krzk-bin.. ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id w24-20020a17090649d800b009930308425csm3188020ejv.31.2023.08.27.01.53.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 01:53:56 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S229878AbjH0J3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 05:29:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897B0E1;
+        Sun, 27 Aug 2023 02:29:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1EC23614EA;
+        Sun, 27 Aug 2023 09:29:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 062BDC433C8;
+        Sun, 27 Aug 2023 09:28:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693128540;
+        bh=2eeq+7FRTyNfKeldAGasRv6sGX46OUHFmY+FSc4kENM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=rX4IAGxD/LlIE/VrRxKItRZANI9+BMo5JoQ76E40dvbNge7TqlAp6AYk0OWg7w/z4
+         6WDtsPb7+ThXUVk0Tv198kiRMI1UyfZOJyqMd+s0P6hHO+G01RgZowgDd9sfL3lZL2
+         x4CkPFs+zdmHL7gVz/qlWxJTDgt8wcag23/aIHhqs1tQyb2a48oE4sydFd8OxyKFYS
+         mQvkkTnsEkhHqpNX9G2gHRtWTzxv0im8M9yzzrYp5hhEYibeaKpOa6ooxMR8MfqIc9
+         t9p6cLbYIIshVGUPAYWZm/5BNpfspq00ZU5Nl46pXWDGUyZ2OxQRBW6ScwQvlbZ1qE
+         y/ke+YhkqSXxg==
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>,
-        linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        stable@vger.kernel.org
-Subject: [PATCH] dt-bindings: PCI: qcom: fix SDX65 compatible
-Date:   Sun, 27 Aug 2023 10:53:51 +0200
-Message-Id: <20230827085351.21932-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, Maxime@vger.kernel.org,
+        Coquelin@vger.kernel.org, Simon Horman <simon.horman@corigine.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH net-next v2 0/3] add the dwmac driver for T-HEAD TH1520 SoC
+Date:   Sun, 27 Aug 2023 17:17:07 +0800
+Message-Id: <20230827091710.1483-1-jszhang@kernel.org>
+X-Mailer: git-send-email 2.40.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit c0aba9f32801 ("dt-bindings: PCI: qcom: Add SDX65 SoC") adding
-SDX65 was not ever tested and is clearly bogus.  The qcom,sdx65-pcie-ep
-compatible is followed by fallback in DTS and there is no driver
-matching by this compatible.  Driver matches by its fallback
-qcom,sdx55-pcie-ep.  This fixes also dtbs_check warnings like:
+Add the dwmac driver support for T-HEAD TH1520 SoC.
 
-  qcom-sdx65-mtp.dtb: pcie-ep@1c00000: compatible: ['qcom,sdx65-pcie-ep', 'qcom,sdx55-pcie-ep'] is too long
+Since the clk part isn't mainlined, so SoC dts(i) changes are not
+included in this series. However, it can be tested by using fixed-clock.
 
-Fixes: c0aba9f32801 ("dt-bindings: PCI: qcom: Add SDX65 SoC")
-Cc: <stable@vger.kernel.org>
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/pci/qcom,pcie-ep.yaml        | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+Since v1:
+  - rebase on the lastest net-next
+  - collect Reviewed-by tag
+  - address Krzysztof's comment of the dt binding
+  - fix "div is not initialised" issue pointed out by Simon
 
-diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-index 811112255d7d..c94b49498f69 100644
---- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-+++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
-@@ -11,10 +11,13 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - qcom,sdx55-pcie-ep
--      - qcom,sdx65-pcie-ep
--      - qcom,sm8450-pcie-ep
-+    oneOf:
-+      - enum:
-+          - qcom,sdx55-pcie-ep
-+          - qcom,sm8450-pcie-ep
-+      - items:
-+          - const: qcom,sdx65-pcie-ep
-+          - const: qcom,sdx55-pcie-ep
- 
-   reg:
-     items:
-@@ -110,7 +113,6 @@ allOf:
-           contains:
-             enum:
-               - qcom,sdx55-pcie-ep
--              - qcom,sdx65-pcie-ep
-     then:
-       properties:
-         clocks:
+Jisheng Zhang (3):
+  dt-bindings: net: snps,dwmac: allow dwmac-3.70a to set pbl properties
+  dt-bindings: net: add T-HEAD dwmac support
+  net: stmmac: add glue layer for T-HEAD TH1520 SoC
+
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   2 +
+ .../devicetree/bindings/net/thead,dwmac.yaml  |  77 +++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../net/ethernet/stmicro/stmmac/dwmac-thead.c | 302 ++++++++++++++++++
+ 5 files changed, 393 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/thead,dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+
 -- 
-2.34.1
+2.40.1
 
