@@ -2,136 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7AFF78A0DB
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 20:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0900F78A0DF
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 20:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229601AbjH0SE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 14:04:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40954 "EHLO
+        id S230450AbjH0SGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 14:06:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbjH0SEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 14:04:20 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BB2013E
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 11:04:15 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5008faf4456so3844298e87.3
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 11:04:15 -0700 (PDT)
+        with ESMTP id S230372AbjH0SGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 14:06:13 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 171BB18D
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 11:05:57 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bcde83ce9fso37474091fa.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 11:05:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693159453; x=1693764253;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693159555; x=1693764355;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gVnsqblWQkwO3gPfAsGjnlwJGNuNWvof44bXfeUPon4=;
-        b=XthCKJDJ+miNktFmTB1qst8pbgiWx0eJCLyU8/bHE4iCC8KJFOYek3vgneXmUjj8yd
-         F3CwGFiQhUlB9/kd5gOGzHLBgR1GaNjeHpMdsZDzyowmOqwB+KTRodgPnsJ0ek2x5M4i
-         Y6hbdWFXyNWdb2ce8hBxAysNOjlQ77WWNIPSTrJHhhH/dbl1H2MflI33yGAQ4yNQ3uG9
-         WLAPOyl9e6XfRnx/nfkvvCRGYWxlwkOc29d3mDyd8/OQB6PDFOVofEsL+k4BpgrePySH
-         qjGEsT8KbV8rIaIr1MfE+fgEbCodJEJ/cvblk1BVy5IvUjujPSZz/QjV4HJNlaUMfwZQ
-         2a2Q==
+        bh=rCvDnqW2L7Ij8+HnjKPfzqCAmR4DqEsTCL9vNoCu5/w=;
+        b=E/QbAPkdZRfFqTIkB8kVpr1Zm++z9EveIMU7CZbQ+0/BMN1O38Ax+fgMQg517VcEQg
+         Nr/j/aijQMb6xtOVlfSytjiV6hy99hYbOc8poTe/L3PniNvqeSwl+FXEwU90EqGwGQ+7
+         FdZCfvn3OcdiB5yKS3edRSlQ/rSfC5mjO63+dAUxDuO+alccyv20Gu9R2HtjdrF82d+e
+         FjLsqazl5rtRgzjvzHRUwXzHfVA3WM5CjMvICsAakN2C0V125DpOqi0n/6GSCjWC9f5j
+         IV3gfded2s7c13wFG3MUIBQUhkQfZVCW2JvK5RI5a7le7zl5F7eusj3ICdI4LtkwMZe8
+         mIVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693159453; x=1693764253;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693159555; x=1693764355;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gVnsqblWQkwO3gPfAsGjnlwJGNuNWvof44bXfeUPon4=;
-        b=QUKhv0D5Wbh3f7xECmQgFiqnZshgsFmL1MLdD+3nJ6ViBO0JTZ8NQqWJrVaMJBlFyy
-         gZR2VQrBRO8hS/AWupoW6+QLaoIhj+lUdXD2M02MQf1e/yp9zXsQsixMTJcNtt1/wVef
-         YjtxZRFWZat8CggbWr0IMt3l5brwmIh+F1FQ5cLnZQpI5148yTGC8OtvSWDaJ0b399F5
-         EG89kNXlA1fPtbniIlTQ0RqbHHtKurfngMrtOgPAYMZPnKMvWLKbe1zt7Sqx19SCNGmf
-         9+yAuYJtJmjWUvKi5kyS4XU0+ESPUSYvBT9b4Av1vgTEdcZYNGikO4l0mYzvTpNQ8hPi
-         vL2Q==
-X-Gm-Message-State: AOJu0YyaGAlQgdFoV605UuJ8i9ra6NrCMvV54+03Ci3duOBtOMIBPHmM
-        aXX+Q/fd3Vj9X71JGVXRMlIQxg==
-X-Google-Smtp-Source: AGHT+IG30d/KpP8cEvTO0ka59sjlKPUk+qeSYW9X0JaYYBH5ESIkTjswQQdnDXTO1zf7kJFi6SmaKw==
-X-Received: by 2002:a05:6512:1042:b0:4fe:d0f:1f1e with SMTP id c2-20020a056512104200b004fe0d0f1f1emr20474537lfb.25.1693159453433;
-        Sun, 27 Aug 2023 11:04:13 -0700 (PDT)
+        bh=rCvDnqW2L7Ij8+HnjKPfzqCAmR4DqEsTCL9vNoCu5/w=;
+        b=cmdunLN+REG9yzAGKS7nqIsqM7ZO4JDxvWZa0vx+0uSNMaUWkIkjmNmiAZFSvHJ1FK
+         PGA3lKeh9wagr12wxFoDuPChk8OVOkXLDA45YQfLPeRNLKxjhgmE1Qpabiow7AXc355y
+         aq4nLmDNbsEZ7M3koGsj8TNMWyHqK1sg2owZNB64Akl2LnIE2bE0ogNU+HxlR2F4wGWA
+         JwW6MvFh2HDFIyELLSmXYebNt2hm8tb1amTO58FTCnajSyeznqkxiNd0jSbSQRoX+bPs
+         9HK1uRgbtpr27OYG8WNhiWK89LPR1hynQl0yrtQijn47TmhNO743p/tnQwpG9xieGahE
+         NvXw==
+X-Gm-Message-State: AOJu0YzeVZ98ZZ+LL2uHNrIULILdWa1fBfMk/h/UP0nmmNlfrDcj3p4x
+        qGRrxXrMRvFMQqwyxa7Iy6PLyw==
+X-Google-Smtp-Source: AGHT+IELaR5h2o8X/ZZEhdmsgOUt4QqD9H2QGql9YX+tqSUrcyKhdRnm7c/Zhwfbk5KyhBM/azIuLg==
+X-Received: by 2002:ac2:4e0d:0:b0:4f8:77db:1d9e with SMTP id e13-20020ac24e0d000000b004f877db1d9emr20230809lfr.12.1693159555164;
+        Sun, 27 Aug 2023 11:05:55 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id l5-20020a056402124500b005222c6fb512sm3586828edw.1.2023.08.27.11.04.12
+        by smtp.gmail.com with ESMTPSA id da25-20020a056402177900b0052a626daf4csm1195821edb.47.2023.08.27.11.05.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 11:04:12 -0700 (PDT)
-Message-ID: <ddaa0a85-111b-5289-b8eb-afae5e5ab1df@linaro.org>
-Date:   Sun, 27 Aug 2023 20:04:11 +0200
+        Sun, 27 Aug 2023 11:05:54 -0700 (PDT)
+Message-ID: <f54feed5-4dc6-b22f-b72e-faecf322bfa5@linaro.org>
+Date:   Sun, 27 Aug 2023 20:05:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH RESEND v5 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl
- and GPIO documentation
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, linus.walleij@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230809185722.248787-1-tmaimon77@gmail.com>
- <20230809185722.248787-2-tmaimon77@gmail.com>
- <20230821170941.GA1915730-robh@kernel.org>
- <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
- <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
- <CAP6Zq1gcWHXUL=uuzkYkJ6VWwoS-9G_aEK2HizfAWr6oZZdzWQ@mail.gmail.com>
+Subject: Re: [PATCH v4 03/38] dt-bindings: mfd: qcom-pm8xxx: allow using
+ interrupts-extended
 Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        linux-leds@vger.kernel.org
+References: <20230827005920.898719-1-dmitry.baryshkov@linaro.org>
+ <20230827005920.898719-4-dmitry.baryshkov@linaro.org>
+ <39af3ab5-4fa5-5b3c-395a-e86e70bbe803@linaro.org>
+ <CAA8EJppw0Kxo3W560ucWey959368M1c8BFnvF4Ggi5XKCOfesw@mail.gmail.com>
+ <74dcc5b4-dda2-5de7-9e58-4191a0fb7972@linaro.org>
+ <CAA8EJpoWvoNfomMg34cL=h+qBLHQq3bZO2X-02Pcz6oLiKRxWA@mail.gmail.com>
+ <e6340d20-40f3-be5c-b4fc-33da59799d91@linaro.org>
+ <CAA8EJpoWEABv6RrZn9FE+5N79Kz=24BhmpdnGbnO+vzX3A8v_Q@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAP6Zq1gcWHXUL=uuzkYkJ6VWwoS-9G_aEK2HizfAWr6oZZdzWQ@mail.gmail.com>
+In-Reply-To: <CAA8EJpoWEABv6RrZn9FE+5N79Kz=24BhmpdnGbnO+vzX3A8v_Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/08/2023 17:30, Tomer Maimon wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comment
-> 
-> On Sun, 27 Aug 2023 at 14:13, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 27/08/2023 11:44, Tomer Maimon wrote:
->>>>> +      pinctrl: pinctrl@f0800260 {
->>>>> +        compatible = "nuvoton,npcm845-pinctrl";
->>>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
->>>>> +        #address-cells = <1>;
->>>>> +        #size-cells = <1>;
->>>>> +        nuvoton,sysgcr = <&gcr>;
->>>>> +
->>>>> +        gpio0: gpio@f0010000 {
+On 27/08/2023 14:57, Dmitry Baryshkov wrote:
+
+>>>>>>
+>>>>>> The entire patch is not needed. At least should not be needed. What
+>>>>>> problem are you trying to solve here?
+>>>>>
+>>>>> The main problem is the next chunk, which (currently) explicitly
+>>>>> requires `interrupts' property. My goal is to allow
+>>>>> `interrupts-extended' in addition to `interrupts'.
 >>>>
->>>> unit-address should be 0.
->>>>
->>>> Otherwise,
->>> The unit-address is correct f0010000
+>>>> They are allowed. Why do you think they aren't? That's why I don't
+>>>> understand what real problem is here.
+>>>
+>>> qcom-pm8xxx.yaml lists `interrupts' property under the `required'
+>>> clause. So I can not simply replace it with `interrupts-extended'
 >>
->> Then how does it pass W=1 builds? How unit address can be f0010000 but
->> reg is 0? Really...
-> Maybe because the ranges are ranges = <0x0 0x0 0xf0010000 0x8000>?
+>> Since when? So again: The entire patch is not needed.
+> 
+> Hmm, interesting. I'm pretty sure that I saw the issue, but now I can
+> no longer reproduce it. Maybe I misinterpreted some other warning
+> which I saw while this was WIP.
+> I see that it is handled by the `fixup_interrupts` in dtschema itself.
 
-And how does this mapping should cause the unit address to not match the
-reg? What type of rule is it?
-
-Except also incorrect address in pinctrl node.. but your DTS
-nuvoton-common-npcm8xx.dtsi has so many other bugs (duplicated nodes,
-not matching, unit addresses), that I don't wonder that you do not see
-other errors. But that's not a reason to add more. Rob gave you quite
-specific advice, so I really do not understand why do you keep arguing
-with it?
-
-
-> I didn't get any warning regarding the unit-address
-> bash-4.2$ make ARCH=arm64 dt_binding_check W=1
-
-DTS, not binding.
-
-BTW, your patches have errors. Please fix them:
-patch:226: new blank line at EOF.
-warning: 1 line adds whitespace errors.
-
+If interrupts were brought by some other schema and that one did not
+evaluate, then you could see errors about interrupt-extended. But that's
+not the case here.
 
 Best regards,
 Krzysztof
