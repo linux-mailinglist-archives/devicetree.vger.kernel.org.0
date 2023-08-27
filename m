@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E46789D8E
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C2F789D83
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:52:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229927AbjH0LvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 07:51:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52080 "EHLO
+        id S229941AbjH0LvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 07:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230038AbjH0Luz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:50:55 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC8619B
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:46 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50078e52537so3519074e87.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:46 -0700 (PDT)
+        with ESMTP id S230047AbjH0Lu4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:50:56 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7568119A
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:47 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-500760b296aso2789879e87.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693137045; x=1693741845;
+        d=linaro.org; s=google; t=1693137046; x=1693741846;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZJKq5xqa+IkQt1yiAXdQVIWb4sugXk36NSJJNWDebJk=;
-        b=A0EuRbs7w/GtYN7EPG/qGlkn7jtItAW+oh70XoHfcCvMTiW9LG0/GoJyMKM6ZAupuN
-         3yhR1kFQaT2qDNzObuUqgK8R+Scnvw6nA/nPC+bYGRTTXQV0ITnt3WxaWqYU3AIa7N5Z
-         FqWILKhXCpKxLaYU9Q8dtDS/SwU2EoouoePf0zCJ7YKIN3MGO6fmQ15unr3hAYx8Q96X
-         VvGBX2uMPN6TgA1u7Ne3zTf4HBAgBMJ8g/BngME292jPqG3Mctq61MDDHNGT3NWTBR6X
-         EGEBQdtj2THKTe1gue+9ByQn4YWcO2uBYutCgN4IMIGZRAJu4gapeuGmo5iKNsgvyqTi
-         e9mw==
+        bh=6+5JyGg/RVsbvystfdqTjelqQjEsUcHgseGOGd0sd2A=;
+        b=aSTNedRj9jCe9y3t0hQnZaMJKHOiM0JuipUnX25XmiichKI6Tfjv9PE7skbef6vDa+
+         xWwqvtfP2znXpUE2t5x1T4/rxfpUnayLBxI1+aiKgCrwSTxPGH/8SgXxP5DqLW9F0WkT
+         FrBZJk+sDiO66q1XRPkDEJzrFcwSNW5QsxQBKAy+HLC5if2hmeb/zlst432oX0I20Ioi
+         bKqNGSjXccv/c4lTuC1NfTacWyfd0Ezj/DnvBnl9jSQUDu7IOfcdrNtXlQikfpOdMdju
+         PfJ4p0ddG5blYbqPPXo94o67P+4FoSKjKjRleq2WMP8WPOphB5qAwmeSBCbBNXL3yCfR
+         K5Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693137045; x=1693741845;
+        d=1e100.net; s=20221208; t=1693137046; x=1693741846;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ZJKq5xqa+IkQt1yiAXdQVIWb4sugXk36NSJJNWDebJk=;
-        b=aTmoLMcnDszy8BQwJwqju9SszxEkpR0jhFusE2v+w4pM/Bh5M/hYoPR60zKix6y9Ys
-         XcqY6y89YStP3dDYyd5NL/lDtJl69VOjgRZA78H0qOcDPU9SbijWBYNrxVeEanVNUOPO
-         gMef7JiEF0qCEBocChSwAFpvrgVWaIBw7t78KczTgsNTq1GCLJwiNBEDmLt1ucsj2xhZ
-         fWYrUqXVy3234b0XTJB4EKV9M2peeGibiDpwUQSpcF9HSFK0F33vgbL0hVWJRlXifr73
-         uGUsidQSWooLHRCMgb2ChnYkARTyyQAhPR5vS4sUW0LDnR4AWE0F+BxzW4jnZw2V1Ey5
-         zXrw==
-X-Gm-Message-State: AOJu0YyCe3hZW+DF3hOF5SKj2XQny7mSDl/hD74bOE1oFYgFabwQbcfF
-        wKm80xG8FdMKh9EGsnhY0vgnPw==
-X-Google-Smtp-Source: AGHT+IH4vwUEa9C4O3F5XVX0DJ4Bmcnok2/i5QVe/7kjqRQk9U1QsVR59T4Dyn6xMcYMfwEuFRfyuA==
-X-Received: by 2002:a05:6512:32cc:b0:4fb:90c6:c31a with SMTP id f12-20020a05651232cc00b004fb90c6c31amr20255459lfg.14.1693137045037;
+        bh=6+5JyGg/RVsbvystfdqTjelqQjEsUcHgseGOGd0sd2A=;
+        b=G7bl+JIgiYj2Ve0kz+/bk6KvBQSReO/VnCLiMMaITfFU3wJuCdmbUPpeUs9dquv88n
+         4LJE0Gv7lqUpg5vVmEK2oeW4zpqRNQiwe65qArYmi67V+9SeNhfYUtS3D7FUNgZ4EB9W
+         jaPwnhG4AxvRwXfh+jaYDuDoE/YfdvUSYBkJ/raJf/MPQN5Y6NwiUykQzIkLwKwLwuqu
+         rWQk4xDA1NeZp2ACzf6uvDzu2km+2eJzApiV4EHwGdO2Xum52cbsIxymouPcTV56c4U+
+         oM2ff32GAte3R6uFlXbrpRJQz2XfU2ZfL32sc8/qSSocVgnocv0v/9t7W/x+BljqVK8d
+         OqRw==
+X-Gm-Message-State: AOJu0YyLMS/s5fhQyitC3Rn5naC2SCJ9N7zvlRIfmgC0W3ouogdCoB69
+        onbVr8cbdDl0NrYlWO2t4TVSxVuIva2PhtN2Z8I=
+X-Google-Smtp-Source: AGHT+IERPpheMJF2+A8ACb1ozqTwHyIWBqnIUx7wppUVgi9tjaJj72nweT2g1EdhwLJ0NbJZJNpCOQ==
+X-Received: by 2002:a05:6512:3d01:b0:500:a6c1:d8e0 with SMTP id d1-20020a0565123d0100b00500a6c1d8e0mr2395379lfv.22.1693137045746;
         Sun, 27 Aug 2023 04:50:45 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004ff9f88b86esm1114770lff.308.2023.08.27.04.50.44
+        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004ff9f88b86esm1114770lff.308.2023.08.27.04.50.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 04:50:44 -0700 (PDT)
+        Sun, 27 Aug 2023 04:50:45 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -66,9 +66,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
         Christian Marangi <ansuelsmth@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v4 12/23] ARM: dts: qcom: apq8064-sony-xperia-lagan-yuga: constraint cpufreq regulators
-Date:   Sun, 27 Aug 2023 14:50:22 +0300
-Message-Id: <20230827115033.935089-13-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 13/23] ARM: dts: qcom: apq8064: rename SAW nodes to power-manager
+Date:   Sun, 27 Aug 2023 14:50:23 +0300
+Message-Id: <20230827115033.935089-14-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
 References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
@@ -83,49 +83,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add additional constraints to the CPUfreq-related regulators, it is
-better be safe than sorry there.
+Per the power-domain.yaml, the power-controller node name is reserved
+for power-domain providers. Rename SAW2 nodes to 'power-manager', the
+name which is suggested by qcom,spm.yaml
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts
-index 2412aa3e3e8d..5b911e5f0b55 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-sony-xperia-lagan-yuga.dts
-@@ -139,7 +139,7 @@ pm8921_s2: s2 {
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+index 5b7d2c6f0ce9..2f94d26fc792 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+@@ -365,25 +365,25 @@ acc3: clock-controller@20b8000 {
+ 			#clock-cells = <0>;
  		};
  
- 		pm8921_s3: s3 {
--			regulator-min-microvolt = <500000>;
-+			regulator-min-microvolt = <950000>;
- 			regulator-max-microvolt = <1150000>;
- 			qcom,switch-mode-frequency = <4800000>;
- 			bias-pull-down;
-@@ -290,7 +290,7 @@ pm8921_l23: l23 {
+-		saw0: power-controller@2089000 {
++		saw0: power-manager@2089000 {
+ 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
+ 			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
+ 			regulator;
  		};
  
- 		pm8921_l24: l24 {
--			regulator-min-microvolt = <750000>;
-+			regulator-min-microvolt = <1050000>;
- 			regulator-max-microvolt = <1150000>;
- 			bias-pull-down;
- 		};
-@@ -344,7 +344,11 @@ pm8921_lvs6: lvs6 {
- 			bias-pull-down;
+-		saw1: power-controller@2099000 {
++		saw1: power-manager@2099000 {
+ 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
+ 			reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
+ 			regulator;
  		};
  
-+		/* HFPLL regulator */
- 		pm8921_lvs7: lvs7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-boot-on;
- 			bias-pull-down;
+-		saw2: power-controller@20a9000 {
++		saw2: power-manager@20a9000 {
+ 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
+ 			reg = <0x020a9000 0x1000>, <0x02009000 0x1000>;
+ 			regulator;
  		};
  
+-		saw3: power-controller@20b9000 {
++		saw3: power-manager@20b9000 {
+ 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
+ 			reg = <0x020b9000 0x1000>, <0x02009000 0x1000>;
+ 			regulator;
 -- 
 2.39.2
 
