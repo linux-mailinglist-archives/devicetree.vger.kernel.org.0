@@ -2,121 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 595D4789DB0
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:52:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2065789DBF
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 14:00:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230005AbjH0LvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 07:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45816 "EHLO
+        id S230026AbjH0MAW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 08:00:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230128AbjH0LvC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:51:02 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253AA1B8
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:55 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4ff882397ecso3492688e87.3
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:55 -0700 (PDT)
+        with ESMTP id S229817AbjH0MAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 08:00:17 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB7EE13E
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 05:00:12 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so300706066b.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 05:00:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693137053; x=1693741853;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rzx9Bm824S2wRWYFO7S2MdJvHvf/jzSVekqRFumNr7k=;
-        b=VKlq61LG7eiUVDlCu1oOs0TkRJTbsYvQqWvjCRgyDh4261NSRyrk6YloVEyca0sTaF
-         29YwGLcuj6pb1PlsAaw4qGzLFP67VXskypHQxXeV5Qoj1SFR7jCgT0H+msqeKhdMd9+M
-         cDLwdt2Tdlf2U2bSFAIuRR1nqc/1EjZAQakEXu/Oh1IE526FkyhpBnL4ABWEgIlE3tEy
-         juQNJrBC6Z3ON65rfiELxGYXrzkTeM4cmNs4EPGZF2ySaLVaHDq1d4DjwseGf6g5LVt7
-         vDfduzDIUESXJZ0rz6Ly9LZtPTVI26zgg16V9AGPwTOn3T+ufczczVmkdEFTqBNf0OlG
-         AkNA==
+        d=linaro.org; s=google; t=1693137611; x=1693742411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=A1vb1NKNxPWmF22t3LyBlcMBv4ZL6aYsl1zImyCmPqk=;
+        b=nkU9QDA3ZQPrE80K5WNGyInIxQ+rjGO9+Y4Z8NK3FX1YJWYxfR7fjbDSFwSImABVDH
+         mbe2eh0mTre7O4pp4wCf+6X4jRtTLqa2PUZZKoW/ZvG5GF2LO2sed8c7OXzDTFtn3LQ+
+         LPZbcQXOI5ABjn1Zq1JssUMUBZp/svujuVqjbJBLcf/ydP0ypHWCa/pCMRvMbKT6r7Xk
+         RHvdiFofd8NiFURYeL0gJ2wKwK/4q1ssGyQARjsVPjFKJenIRN9VcAUWg37/GiNyxMm5
+         ubi0xkOFN34WVQPEMIKTSyZZwrShzqb8fk4TPyncxI/tDiNojq9UvDAqSgWtnrwrh+mZ
+         MlwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693137053; x=1693741853;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rzx9Bm824S2wRWYFO7S2MdJvHvf/jzSVekqRFumNr7k=;
-        b=ezWVeudQPmqHGaz6KHPUFzeUkwj8HTY4xhSP4bvFxGaz37KqDGAjIzg3X2ZK1vjF/I
-         0G7TScOxkjUwvDU2jP5Yp9EliXErTWlUc1F2OSEztumj10eVA+XbAG80WosZYjp2Rj3i
-         6wVsX5lwNgUoz1Rv6xrNWTIkRoh9Y9nRvM9ipcLTeKoxM4I1KfsUAXHGOaZPj+Vx+r+c
-         IliVFjx6jOKiD7WHTZJShuJW6YdY25abisL08F/5uC4Dzch8SF0c9O/5r1AFxuCPjktu
-         9/7mrJjZjBHmCpSptDRKTLlr3P+ZdjSHDiktoamPYY5+LpULYLnTmFsAXrh+oXSrnQfT
-         +q1A==
-X-Gm-Message-State: AOJu0Yza2tLEkB+sTSPpB3vS2EgXfrpw3v1MIvWIeca+4hjO6v2XYsqm
-        kWVnnFU15ppF4NB95rQgaaZs4A==
-X-Google-Smtp-Source: AGHT+IGqlgoo4wUMXLVlAqHZbEMker1couiI+m+u0qpCzAbR2CI/aAjORLP/ZrpQrfkF8v7v6brvrA==
-X-Received: by 2002:a05:6512:4026:b0:4f9:570c:7b28 with SMTP id br38-20020a056512402600b004f9570c7b28mr20427762lfb.32.1693137053533;
-        Sun, 27 Aug 2023 04:50:53 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004ff9f88b86esm1114770lff.308.2023.08.27.04.50.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 04:50:53 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1693137611; x=1693742411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=A1vb1NKNxPWmF22t3LyBlcMBv4ZL6aYsl1zImyCmPqk=;
+        b=Hrl66/qzBXOddkZc/jy4HmiM3faL492+e5CJ1Sfa48mdKgfE2DJg46iFdhAx4CN1JJ
+         m0bqb+uX6ICrhdJ2DTZ2e3qrv6QooHMhVf1bFriwir2pQPf4iVGWGWsWkHJECjifookn
+         H/pnsUcRAaiF+pKlyKxQC05Or7HqIINyfHsMMcmAVPSnPo01cZdJsZ9BKYvGO12eAX3X
+         FfsC+bys7CxJcB087ownp1gG5LHfeURSyYwKP1qtUlinG2k4H0eSbPtCv0Q/DfNn3Wbb
+         0H+3T8oX1o6MCLFwt/3pSSw9H7g8eHgtfo5q7vBfBSKSqzDJW0yXXQ3smXDCAcsCdH7o
+         p7zQ==
+X-Gm-Message-State: AOJu0Ywjj9kFA5PUEV45C4NyBfNOhYXvE4nYY6MwOv2deenRc7ub0lA/
+        rEoja8TZ+r5tlBc5oWyDtD/q/Q==
+X-Google-Smtp-Source: AGHT+IHfvkkfwHnTPi8nCl9XpByE/JPq0GfNI6XI37kZ85boixd1ibZVDvSULqUh7Q6KLm4+pQXTmw==
+X-Received: by 2002:a17:906:18a1:b0:99d:fab5:e888 with SMTP id c1-20020a17090618a100b0099dfab5e888mr16063184ejf.34.1693137611153;
+        Sun, 27 Aug 2023 05:00:11 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id w26-20020a1709064a1a00b009786c8249d6sm3385960eju.175.2023.08.27.05.00.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Aug 2023 05:00:10 -0700 (PDT)
+Message-ID: <e6340d20-40f3-be5c-b4fc-33da59799d91@linaro.org>
+Date:   Sun, 27 Aug 2023 14:00:09 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v4 03/38] dt-bindings: mfd: qcom-pm8xxx: allow using
+ interrupts-extended
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v4 23/23] ARM: dts: qcom: ipq8064: drop 'regulator' property from SAW2 devices
-Date:   Sun, 27 Aug 2023 14:50:33 +0300
-Message-Id: <20230827115033.935089-24-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
-References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        linux-leds@vger.kernel.org
+References: <20230827005920.898719-1-dmitry.baryshkov@linaro.org>
+ <20230827005920.898719-4-dmitry.baryshkov@linaro.org>
+ <39af3ab5-4fa5-5b3c-395a-e86e70bbe803@linaro.org>
+ <CAA8EJppw0Kxo3W560ucWey959368M1c8BFnvF4Ggi5XKCOfesw@mail.gmail.com>
+ <74dcc5b4-dda2-5de7-9e58-4191a0fb7972@linaro.org>
+ <CAA8EJpoWvoNfomMg34cL=h+qBLHQq3bZO2X-02Pcz6oLiKRxWA@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJpoWvoNfomMg34cL=h+qBLHQq3bZO2X-02Pcz6oLiKRxWA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SAW2 device should describe the regulator constraints rather than
-just declaring that it has the regulator.
+On 27/08/2023 13:48, Dmitry Baryshkov wrote:
+> On Sun, 27 Aug 2023 at 14:12, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 27/08/2023 12:42, Dmitry Baryshkov wrote:
+>>> On Sun, 27 Aug 2023 at 11:35, Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>>
+>>>> On 27/08/2023 02:58, Dmitry Baryshkov wrote:
+>>>>> Allow using interrupts-extended, which is a preferred form of interrupts
+>>>>> specification compared to the interrupt-parrent + interrupts pair.
+>>>>>
+>>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>> ---
+>>>>>  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 10 +++++++++-
+>>>>>  1 file changed, 9 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+>>>>> index 7fe3875a5996..33d9615e63c8 100644
+>>>>> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
+>>>>> @@ -37,6 +37,9 @@ properties:
+>>>>>    interrupts:
+>>>>>      maxItems: 1
+>>>>>
+>>>>> +  interrupts-extended:
+>>>>> +    maxItems: 1
+>>>>
+>>>> The entire patch is not needed. At least should not be needed. What
+>>>> problem are you trying to solve here?
+>>>
+>>> The main problem is the next chunk, which (currently) explicitly
+>>> requires `interrupts' property. My goal is to allow
+>>> `interrupts-extended' in addition to `interrupts'.
+>>
+>> They are allowed. Why do you think they aren't? That's why I don't
+>> understand what real problem is here.
+> 
+> qcom-pm8xxx.yaml lists `interrupts' property under the `required'
+> clause. So I can not simply replace it with `interrupts-extended'
 
-Drop the 'regulator' property. If/when CPU voltage scaling is
-implemented for this platform, proper regulator nodes show be added
-instead.
+Since when? So again: The entire patch is not needed.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 2 --
- 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-index c3677440b786..191d1cb27cb7 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
-@@ -589,7 +589,6 @@ acc0: clock-controller@2088000 {
- 		saw0: regulator@2089000 {
- 			compatible = "qcom,saw2";
- 			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
--			regulator;
- 		};
- 
- 		acc1: clock-controller@2098000 {
-@@ -604,7 +603,6 @@ acc1: clock-controller@2098000 {
- 		saw1: regulator@2099000 {
- 			compatible = "qcom,saw2";
- 			reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
--			regulator;
- 		};
- 
- 		nss_common: syscon@3000000 {
--- 
-2.39.2
+Best regards,
+Krzysztof
 
