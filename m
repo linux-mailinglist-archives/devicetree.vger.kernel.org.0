@@ -2,50 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9BCF78A273
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 00:03:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADCF78A301
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 00:47:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjH0WDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 18:03:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52434 "EHLO
+        id S229436AbjH0Wp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 18:45:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229735AbjH0WCs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 18:02:48 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF90122;
-        Sun, 27 Aug 2023 15:02:45 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 05F0E20002;
-        Sun, 27 Aug 2023 22:02:42 +0000 (UTC)
+        with ESMTP id S229468AbjH0Wpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 18:45:40 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9094B12A;
+        Sun, 27 Aug 2023 15:45:37 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 41EEEE0004;
+        Sun, 27 Aug 2023 22:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1693173764;
+        t=1693176336;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=AMtPInGUsfczSnB1TI2Et6oH9omhoMU8QOgRekdB0bY=;
-        b=ScRlKBmDLloYSZdl6dsTrcFQ9BRTGiM8nq2bMzcfFqFPNjoXemSibGTCeX8vkVCzIvESn6
-        70gmhgiLOh6UG7lw5q32rfp0nG4+vleRG1xj4ByqQPfTeWEbwC6vO8NyPLZFqIWkw1EpDQ
-        JASUuqV+FtLelEZiz9n0C0ulJtJWm0bpmbLIYaa0nWK+LGNzxmj6OnBskMlHoFYmL2yUSO
-        eHkQIyESpX6d5qrH6sdz50sT1AtPb6kHxWdd/ghZIJQNhqPXz8Lhrd3XxhxFD6Gu2vwZv4
-        JODmvemrYo3/lmB4H82WVtsdGFiV+ijISWSbmMW4aewTq204V+qR9S7Un+2wFA==
-Date:   Mon, 28 Aug 2023 00:02:42 +0200
+        bh=dozuiHFWVmwXy/XjSULVyK7tV7sAHAuCVEVPDVdbkrA=;
+        b=egWOuQ7au4VP2cYnhvdtarFdFP1V5aHgAf3gFp2PQkqW7GOnV30IF1DqER7pyW0Zo+VB6u
+        QTf1DUYjQgza9xq14na6rzrymnlciuUDBPYnFqkZYB3Ottqr8XPVSiSvMgdyRVdKrKsdZP
+        JvELY00bVSI0TizzZ7sgFefgYKnc40ROWn9Jyo6PDBIdsOhkRdVhLol4C4Kgsp1df12SKZ
+        FXaM6APUFPyLeNDbeAa79h0ufZZlAXQwGEF42DE5a+P49cmDuQ4nNWDZ8uJVt9hj1kgygA
+        6+9SnHUyBrwEWvx/wZqMqsrwLolwh9kK0q4JxSlyVn0g/2GZdHlV2EpCAHudWA==
+Date:   Mon, 28 Aug 2023 00:45:34 +0200
 From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 0/2] device tree support for ST M48T86
-Message-ID: <169317374591.539206.3523750932599468073.b4-ty@bootlin.com>
-References: <20230823-m48t86_device_tree-v2-0-21ff275f949d@maquefel.me>
+        Aniket <aniketmaurya@google.com>
+Cc:     linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, joychakr@google.com,
+        manugautam@google.com
+Subject: Re: [PATCH] dt-bindings: i3c: Fix description for assigned-address
+Message-ID: <169317630418.562439.4628786119246659411.b4-ty@bootlin.com>
+References: <20230822051209.2837818-1-aniketmaurya@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230823-m48t86_device_tree-v2-0-21ff275f949d@maquefel.me>
+In-Reply-To: <20230822051209.2837818-1-aniketmaurya@google.com>
 X-GND-Sasl: alexandre.belloni@bootlin.com
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
@@ -57,20 +54,16 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 25 Aug 2023 11:43:24 +0300, Nikita Shubin wrote:
-> Add device tree support for ST M48T86.
-> 
-> The reason it can't go to trivial-rtc.yaml, is that it has 2 registers
-> instead of a single one. The registers are 1 byte wide.
+On Tue, 22 Aug 2023 05:12:09 +0000, Aniket wrote:
+> assigned-address is a valid property for I3C device with or without
+> static address. Fix the description and an example for the same.
 > 
 > 
 
 Applied, thanks!
 
-[1/2] dt-bindings: rtc: Add ST M48T86
-      commit: a5aeccabb53673331f78a97ce492ce6d01f1e036
-[2/2] rtc: m48t86: add DT support for m48t86
-      commit: 6ec3f5ec2eecabab065a39f5e04562c8c3c81ece
+[1/1] dt-bindings: i3c: Fix description for assigned-address
+      commit: 32e6b31a6a80ba9493fad802d68d41f4d63230cc
 
 Best regards,
 
