@@ -2,126 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55EB3789FFB
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 17:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2427978A02B
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 18:28:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230219AbjH0Pbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 11:31:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45812 "EHLO
+        id S229916AbjH0Q17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 12:27:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjH0PbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 11:31:06 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71CFEC;
-        Sun, 27 Aug 2023 08:31:03 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bcc4347d2dso35573751fa.0;
-        Sun, 27 Aug 2023 08:31:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693150262; x=1693755062;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5hyLyH0mDfFi9IsH9oag3TfSy1UdIPJs5zbsS8pbums=;
-        b=AEPXDMd65P5w9MhuYTMXNw/oNh1MH+G3kvUYmhSNKjYQ6PPs/uak9/dvRsscbxKz1d
-         wq+Pzk2vT3zCAUW01km2yt2FeqVjpXEjxB86/PRFh4yXicGJUuKlD8+QcH3Kkh7k244C
-         nu/y5AmrkbrQU304zW0ELTvnKCtpQsQwhfjL/hJ72n5/OSkRErJPURaO8G0NOwrM13Qi
-         cOtRqomWqZ5cgBHN1Gg693C37w7lg6MOOPXuWm4TZiCLdK4SpKqWI/8oqTgAN67G5sgs
-         UjgFz6U6160lBnlVtwGIppBsQZDV5ft4XHDbBincOGdIvCMVRmRPN8Kz+6HLrXAR8ERy
-         6CRQ==
+        with ESMTP id S229885AbjH0Q10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 12:27:26 -0400
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D05D0C1;
+        Sun, 27 Aug 2023 09:27:23 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1c0c6d4d650so19760255ad.0;
+        Sun, 27 Aug 2023 09:27:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693150262; x=1693755062;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5hyLyH0mDfFi9IsH9oag3TfSy1UdIPJs5zbsS8pbums=;
-        b=UQ8hTRhc4ldJfeajg/9k62SKAOOQGgkJFPZ2c6tWgJYZSayzKDDWhPSklZKRpo0u5N
-         hpaWHeOL5ioGpD8CoqOScZVJc67fsCo2Oc7PV0Zha1isbY6iiqUC+1W51iTJ7RCaSAaA
-         UHW4+jzb+TuJj1RRNBUWwHP1JHGvjvqfFlB8r8ydGZs3Ou3NUEIpYZSPQfPDR1+vSjVn
-         mfb2ciWB4EuEgHPTQwbp4ocgfxlTsBOfzkuxGB2qK/LvT7q81ZL/v7pRzcvGJGJaE8i+
-         yaOhyXEkyph7lsDOUOwhC5ri/nQTV+jm4Lm4ONqXwRQAxVJtXZDzpXCUmONmuSg+OA8H
-         yUkg==
-X-Gm-Message-State: AOJu0YzOuv8mrEEmJx0yTfYM+SEv75gNy0mqwg+Zr5qt/D2jKQ6pQGsr
-        blkn9M11BvnjNz4jQkwAi3cuJIu/pTo+WAFUcSE=
-X-Google-Smtp-Source: AGHT+IF6eeXSWjOmnwZg2jdWMWE1Ex1wqBTTysga0NQqKbYF8K8PfP948uHtG9/R94LZTmUbc5D2S+UonoeAAfteX0E=
-X-Received: by 2002:a2e:b5d9:0:b0:2bc:fce1:54d3 with SMTP id
- g25-20020a2eb5d9000000b002bcfce154d3mr2932915ljn.41.1693150261834; Sun, 27
- Aug 2023 08:31:01 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693153643; x=1693758443;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bqf0ICl6pyvfSGedRrmWV0KgewJjUsjj+Fcfy2g8HFo=;
+        b=fPYGWMVyNHz1bWlQBm+sdmzx1HlSGu9BPc8YZZwqQORxKiZZxaLgV59Lp4twfQl07H
+         ftjMJ4Lat4jIGYWHnJ7n0L0JWAQpVuoXKkgfzguKsI7C20PAwB/JMUfaN+BjhOZca5px
+         KmMVVrqDNpQmgD3RRU1916a4K7CIxqJdZOtjL9Qb/GNxwyCIWexYIqKnc2XKRAhDKaRP
+         UzyEPydqmrKqCcMdgo9o7YpegPjRT3MHFvvHJO2oQxkpTo6ViWBEiH+4FKO7Cj2VttND
+         RZ6tQok07VqVEz3faorV3GURHeO4eq/0+fE5L6FKzmseFibilPi0EdxYHmvVdG0q+FNe
+         gp8Q==
+X-Gm-Message-State: AOJu0Yyr129nplK5jNeYLouh0PqXfMNDp9UcSluBz4YpaaX+lSW89yDv
+        QKhG7WnJwyh8wShzgz632rQ=
+X-Google-Smtp-Source: AGHT+IGxjUi4tzjyOdm0G81ktTducGNMEGVWFe9lvPLMKSECgLhft8mo7kS+LhCku+FVsnyBtcAunQ==
+X-Received: by 2002:a17:903:22c6:b0:1be:f45c:bc38 with SMTP id y6-20020a17090322c600b001bef45cbc38mr25969686plg.2.1693153643118;
+        Sun, 27 Aug 2023 09:27:23 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id e4-20020a170902744400b001b03b7f8adfsm5464272plt.246.2023.08.27.09.27.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Aug 2023 09:27:22 -0700 (PDT)
+Date:   Mon, 28 Aug 2023 01:27:21 +0900
+From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org,
+        manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, marek.vasut+renesas@gmail.com,
+        fancer.lancer@gmail.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v20 00/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
+Message-ID: <20230827162721.GA2932694@rocinante>
+References: <20230825093219.2685912-1-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-References: <20230809185722.248787-1-tmaimon77@gmail.com> <20230809185722.248787-2-tmaimon77@gmail.com>
- <20230821170941.GA1915730-robh@kernel.org> <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
- <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
-In-Reply-To: <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Sun, 27 Aug 2023 18:30:50 +0300
-Message-ID: <CAP6Zq1gcWHXUL=uuzkYkJ6VWwoS-9G_aEK2HizfAWr6oZZdzWQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND v5 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl
- and GPIO documentation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, linus.walleij@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825093219.2685912-1-yoshihiro.shimoda.uh@renesas.com>
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hello,
 
-Thanks for your comment
+> Add R-Car S4-8 (R-Car Gen4) PCIe Host and Endpoint support.
+> To support them, modify PCIe DesignWare common codes.
 
-On Sun, 27 Aug 2023 at 14:13, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/08/2023 11:44, Tomer Maimon wrote:
-> >>> +      pinctrl: pinctrl@f0800260 {
-> >>> +        compatible = "nuvoton,npcm845-pinctrl";
-> >>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
-> >>> +        #address-cells = <1>;
-> >>> +        #size-cells = <1>;
-> >>> +        nuvoton,sysgcr = <&gcr>;
-> >>> +
-> >>> +        gpio0: gpio@f0010000 {
-> >>
-> >> unit-address should be 0.
-> >>
-> >> Otherwise,
-> > The unit-address is correct f0010000
->
-> Then how does it pass W=1 builds? How unit address can be f0010000 but
-> reg is 0? Really...
-Maybe because the ranges are ranges = <0x0 0x0 0xf0010000 0x8000>?
-I didn't get any warning regarding the unit-address
-bash-4.2$ make ARCH=arm64 dt_binding_check W=1
-DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
-  DTEX    Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dts
-  DTC_CHK Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dtb
-bash-4.2$ dt-mk-schema -V
-2023.7
->
-> >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>
-> >>> +          gpio-controller;
-> >>> +          #gpio-cells = <2>;
-> >>> +          reg = <0x0 0xB0>;
-> >
-> > Thanks,
-> >
-> > Tomer
->
-> Best regards,
-> Krzysztof
->
+Applied to controller/rcar, thank you!
 
-Best regards,
+[01/19] PCI: Add INTx Mechanism Messages macros
+        https://git.kernel.org/pci/pci/c/b6dc5750a17a
+[02/19] PCI: dwc: Change arguments of dw_pcie_prog_outbound_atu()
+        https://git.kernel.org/pci/pci/c/6cbd4d406cb0
+[03/19] PCI: dwc: Add outbound MSG TLPs support
+        https://git.kernel.org/pci/pci/c/6ab660b25520
+[04/19] PCI: designware-ep: Add INTx IRQs support
+        https://git.kernel.org/pci/pci/c/b788d6fd273e
+[05/19] PCI: dwc: endpoint: Add multiple PFs support for dbi2
+        https://git.kernel.org/pci/pci/c/6e4db9846cf4
+[06/19] PCI: dwc: Add dw_pcie_link_set_max_link_width()
+        https://git.kernel.org/pci/pci/c/d0f961f40da8
+[07/19] PCI: dwc: Add missing PCI_EXP_LNKCAP_MLW handling
+        https://git.kernel.org/pci/pci/c/a0473c77b4c1
+[08/19] PCI: tegra194: Drop PCI_EXP_LNKSTA_NLW setting
+        https://git.kernel.org/pci/pci/c/e45ff874cede
+[09/19] PCI: dwc: Add EDMA_UNROLL capability flag
+        https://git.kernel.org/pci/pci/c/2424c3ddbd4c
+[10/19] PCI: dwc: Expose dw_pcie_ep_exit() to module
+        https://git.kernel.org/pci/pci/c/3f937c80eb8e
+[11/19] PCI: dwc: Expose dw_pcie_write_dbi2() to module
+        https://git.kernel.org/pci/pci/c/a986f6fd339e
+[12/19] PCI: dwc: endpoint: Introduce .pre_init() and .deinit()
+        https://git.kernel.org/pci/pci/c/6504d294399e
+[13/19] dt-bindings: PCI: dwc: Update maxItems of reg and reg-names
+        https://git.kernel.org/pci/pci/c/5ca157f7d36c
+[14/19] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Host
+        https://git.kernel.org/pci/pci/c/af285bc39885
+[15/19] dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
+        https://git.kernel.org/pci/pci/c/738bded11aaa
+[16/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe Host support
+        https://git.kernel.org/pci/pci/c/943a310da907
+[17/19] PCI: rcar-gen4-ep: Add R-Car Gen4 PCIe Endpoint support
+        https://git.kernel.org/pci/pci/c/db4499d11f46
+[18/19] MAINTAINERS: Update PCI DRIVER FOR RENESAS R-CAR for R-Car Gen4
+        https://git.kernel.org/pci/pci/c/2e0ef5776946
+[19/19] misc: pci_endpoint_test: Add Device ID for R-Car S4-8 PCIe controller
+        https://git.kernel.org/pci/pci/c/33fa67818fe7
 
-Tomer
+	Krzysztof
