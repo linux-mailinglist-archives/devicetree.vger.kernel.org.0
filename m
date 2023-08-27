@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8AD1789A27
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 03:01:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75DFD789A21
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 03:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229918AbjH0BAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229950AbjH0BAE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sat, 26 Aug 2023 21:00:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42988 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbjH0A7d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 20:59:33 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E292E4B
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 17:59:30 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so3223802e87.1
-        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 17:59:30 -0700 (PDT)
+        with ESMTP id S229978AbjH0A7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Aug 2023 20:59:34 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E3CECDE
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 17:59:31 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso30292081fa.1
+        for <devicetree@vger.kernel.org>; Sat, 26 Aug 2023 17:59:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693097968; x=1693702768;
+        d=linaro.org; s=google; t=1693097969; x=1693702769;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YcbEnFCtTA9UEjtUWN7yvDCOIDS8kBLNF+kymOo1R3w=;
-        b=UShHV9j76+b2UGFB5EC7mePQoUg/FeJkI8Odj0XEg9yl6Y/6tzP1o1HYOMLoYGrsY/
-         bPr07/vlfUQXGFhlwyLSh99G/BFYRZljHiqFe8YrdYD4W+9RD/tCbnFbIBInYDgaRcNK
-         MRMo9F7XH+AimDgB48tvcZgOHpsKzwMfFC09QMwGITB17xd7VeKKXA3ODUcpeRLCEoVa
-         W8xBM43KxlHJXSQr/53nWHi71y5z6LXfI6Di3jlB2r6HZpMkHpyequGDsgo85cjX+rLV
-         vlw/oefl7qj+O/cflOnK0YVzgYKe3Pbt0DgrnS7cahy3zXfL9qKzDZ7GXnlFXvZdp+YL
-         Y9lg==
+        bh=FS4tS46Wt2bF/A6aYMT37LuXJaPlC2jK1TxmIfbaIXc=;
+        b=w+mTlmdTnNKyRDWWInYY6gjWSSboe//dx/nofUDQ1W+ujC+GZ0yM2ziAtkvdQWdREI
+         HPYT5yfKfVqd8QVufA62gfVpbb525oXAl5ne9cJQzO50ShRHSr6Hqd+xif0mkE8xTn5I
+         sfcHvo7cBa6zENLqjNm253735R4sCySB6+Yl/hOK8jlGsug/KRCUVj4vz7r4J3sUYlWv
+         Bu+d23iJuDMs3R9s9ahvpcXqtqxxnUAKHZGm6c/+VL0YD3N8yZMK1tTQk3M4inyyys6i
+         BNWDOjCU2IKwuZZ8reWqT8uliQTERVytKEQJRXIRnGTjVxEBGf6HX6L51r5NefiL0Nms
+         dNew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693097968; x=1693702768;
+        d=1e100.net; s=20221208; t=1693097969; x=1693702769;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YcbEnFCtTA9UEjtUWN7yvDCOIDS8kBLNF+kymOo1R3w=;
-        b=lf8saewJbuTI8GkTmvWN/i4XhjGsNXEVrTz2vSgLVAFwCiTA7aybZxUOO74ACpkF+t
-         /p+o5YZxUl8UllGG7dnAipe8V8/wI8QMN8omIuXejSF2JHY/A6GALGiGmiELYDl52i04
-         r6fJlFLVsAkeQq1BvhqY6YM+h4MtA/oUkxsvoT+68WMyPqY0cdenuqlcbUBZGsYKDYHM
-         VVIKJlnTEJxFdhjHX4FL8eSaOSX4C5uqGKoj/NVY2bMMtrCgbuSYavnkYNAU2SrZeOzE
-         gWj5ed8zckIt3w3Qv/hsShwBKIdjhS/UoufgfkLfwv2vp55gZmCHRN8NAdh54vhzU9HH
-         WWJQ==
-X-Gm-Message-State: AOJu0YwhrmCo1m983QntingCmHZBhpqSwITpgT3glv63Dgy/uLOct37v
-        rc53hCovUVhjCaO0NLUHqmx+6JeWqLJmwPqmB2s=
-X-Google-Smtp-Source: AGHT+IG71KDyuArP16wER/MBvZejk6g5ArMnhWS8q/w1v/qvxBf3oYq1dqBHZ7VVSpJT4nHsqqMdCg==
-X-Received: by 2002:a05:6512:5d0:b0:500:9bbf:da17 with SMTP id o16-20020a05651205d000b005009bbfda17mr5923510lfo.51.1693097968651;
-        Sat, 26 Aug 2023 17:59:28 -0700 (PDT)
+        bh=FS4tS46Wt2bF/A6aYMT37LuXJaPlC2jK1TxmIfbaIXc=;
+        b=GALoGZFIjJvqfve3jlql1JAY2fe+3P4BQPWRB56pqRT0eWWXZ/SK12SG16E7MiA2fI
+         cZyfeNmPjxyHg3BCVCVMxu34Ot2U6HCmvjYpHGmZ84A698A5vOTUirhpOuP1qMJPYf38
+         e6qeiTF+P6644S++70KwXgmh1L8SfNycnhxyfayrq3okFCyQiFMF3s080EDS4GapD3XG
+         gbhLnQ7qzsuAJ8cq1QV3Fz9Sgfw4YFwm5NeBt5Tds3at1AsSZkzfjGb8rbJioimY1NzQ
+         w2GZiy79orpdMSjoXXLR/L/k/5r1sTj495Ud2xuPnohuf2vXR2XHb6c2OQwOr04SNy8Q
+         J8dQ==
+X-Gm-Message-State: AOJu0YyEocXM857aCgcgVn5PPorfOGp6uD+kMA88lzumlnZtnG4t4GZJ
+        2xz5z6cDKQBf+t/hDfNH7egoyDenCxYsi5k/HcU=
+X-Google-Smtp-Source: AGHT+IGj8OZF/1EMhc/rsUi8zHDR6FWmCSqEK3x3PN3XBjBn/rkHpc0W3nLzI2Wiseg2XhWDtxojug==
+X-Received: by 2002:a05:6512:108d:b0:4ff:7f57:facd with SMTP id j13-20020a056512108d00b004ff7f57facdmr18637315lfg.54.1693097969478;
+        Sat, 26 Aug 2023 17:59:29 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
         by smtp.gmail.com with ESMTPSA id p18-20020ac246d2000000b00500a08e42e7sm917729lfo.124.2023.08.26.17.59.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
@@ -62,63 +62,50 @@ Cc:     Andy Gross <agross@kernel.org>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         linux-leds@vger.kernel.org
-Subject: [PATCH v4 07/38] ARM: dts: qcom: apq8064-nexus7: move sdcc1 node to proper place
-Date:   Sun, 27 Aug 2023 03:58:49 +0300
-Message-Id: <20230827005920.898719-8-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 08/38] ARM: dts: qcom: mdm9615-wp8548-mangoh-green: group include clauses
+Date:   Sun, 27 Aug 2023 03:58:50 +0300
+Message-Id: <20230827005920.898719-9-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230827005920.898719-1-dmitry.baryshkov@linaro.org>
 References: <20230827005920.898719-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move sdcc1 device node to follow the alphanumberic sorting order.
+Group file inclusion to follow contemporary practice.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548-mangoh-green.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-index c57c27cd8a20..0e80a5a8e3c6 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-@@ -181,13 +181,6 @@ &mdp {
- 	status = "okay";
- };
+diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548-mangoh-green.dts b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548-mangoh-green.dts
+index b269fdca1460..e3b4b93c3d38 100644
+--- a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548-mangoh-green.dts
++++ b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548-mangoh-green.dts
+@@ -6,11 +6,11 @@
+  * Author : Neil Armstrong <narmstrong@baylibre.com>
+  */
  
--/* eMMC */
--&sdcc1 {
--	vmmc-supply = <&pm8921_l5>;
--	vqmmc-supply = <&pm8921_s4>;
--	status = "okay";
--};
--
- &mdp_dsi1_out {
- 	remote-endpoint = <&dsi0_in>;
- };
-@@ -336,6 +329,13 @@ lvs7 {
- 	};
- };
++#include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/interrupt-controller/irq.h>
  
-+/* eMMC */
-+&sdcc1 {
-+	vmmc-supply = <&pm8921_l5>;
-+	vqmmc-supply = <&pm8921_s4>;
-+	status = "okay";
-+};
-+
- &usb_hs1_phy {
- 	v3p3-supply = <&pm8921_l3>;
- 	v1p8-supply = <&pm8921_l4>;
+ #include "qcom-mdm9615-wp8548.dtsi"
+-#include <dt-bindings/interrupt-controller/irq.h>
+-#include <dt-bindings/gpio/gpio.h>
+ 
+ / {
+ 	model = "MangOH Green with WP8548 Module";
 -- 
 2.39.2
 
