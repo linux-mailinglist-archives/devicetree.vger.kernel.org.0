@@ -2,77 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C3AF789BBC
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 09:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60161789BF4
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 09:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230102AbjH0HTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 03:19:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47984 "EHLO
+        id S230149AbjH0H4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 03:56:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjH0HTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 03:19:11 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 912B81B9;
-        Sun, 27 Aug 2023 00:18:49 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b962c226ceso33116511fa.3;
-        Sun, 27 Aug 2023 00:18:48 -0700 (PDT)
+        with ESMTP id S230144AbjH0H4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 03:56:13 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1CA109
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 00:56:10 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4ff8cf11b90so3517839e87.1
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 00:56:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693120727; x=1693725527;
+        d=linaro.org; s=google; t=1693122969; x=1693727769;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=S4MoG6zmEIEoss5hF5T8Ph2HnNBlyXezvZ47IyvuMWs=;
-        b=DXgZAE0zCyc+FSH4PBq0dSS9GLZEq5FKnhRYPebwZcI2Eu261Ax7MOlZbfOjCx/F+t
-         y2qlqnrYh5PfFD4KWMxbC27um40xkBOtfg2e4dUr5hZTULGDAdL4h+jsodYlMpuJkjZk
-         xmI5S4+J5aP8oBMFAFdHBJVnMvCLmgIpRj7b3MkLZNgXbvbbwWzb6LdwO3fj3mcZtm96
-         KtgdawTNz9Ag1nHE7v0bLHrHCbBWrfC2ThoqYZD8jsQDND9vC1aiIEfEvhclfeTkWM8g
-         /GN9c4JAseu6+uBf3IJRwOQr97VexGMREG0qRzdOLI8isJWJTAhFZjuLurslnNgzmIOv
-         L4sw==
+        bh=WtCfEv+4MKM7AB9nOhBJNz/fOo34fqcluKuKRBYbD48=;
+        b=qD7V+/1eeqflk5HBX6g3KX3146dEBk/Xkv8nuSU+gc3hnO6r9ofzuLGMPcc8Dn7C2e
+         GKlBdiZ2qE5uIrVHiTtm9JGCOOrTPB6mU9ujnBbMsXK1WVwupwtgLBNFxtBZiqvjaQyD
+         PdZrJzydTmbJlB+zh+djrY96msG3m1kA998NMjMmH+ugM569oMQCwSK03EFEx49Lhxtd
+         lVEVI6GG1tCWtccwwbwmN0/6vKwbixgoMys0rMT+EZp16KSvz5VxiTH1rr+FZDIDcOzR
+         PyyjxQ6Hp4+5N7egiFOWCMcHc9jbnIlMDtyzPyssB7v6CNdwRVdT6/nTEbCEDyAb5Dy7
+         +rCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693120727; x=1693725527;
+        d=1e100.net; s=20221208; t=1693122969; x=1693727769;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S4MoG6zmEIEoss5hF5T8Ph2HnNBlyXezvZ47IyvuMWs=;
-        b=g6HFGu7+KO0mEM+ZcmacuK13r7JdUvZicelva1FMFN2sAHVpGMlBxqlTtcj8UdyoLP
-         KR14ofDZJEomDpF+ALWtAE1uyr2bGv6W2g8LIn6e7KwLimEkycPGi9fb92F+s1um1aXe
-         o1U1cZtCxorSAM1CDw/MkwV/kVFiulE0R9ymasUS+XWDVJicRMSkj5bgiCwVOAU4siv/
-         FcZlaRPn6b9NH+b4WHZUpBDaox9PmTGdRJXkj6q0IOYP7Dv3mwkkQs5R6frjk8j/bdiE
-         6YV/qTj4Yj2WSgJIHxc7u+r0W1XJS/J6N840nu9jz4fNHJaYtp6xnxXLjspPRxNCRfTn
-         spKw==
-X-Gm-Message-State: AOJu0YwOU2jvPR8ciOY5+1hnOTZGxq4QRAQqQSyNI7Xs6H9QgXMDKPDn
-        3R/ppNMk1nwMp6cL1vhk77M=
-X-Google-Smtp-Source: AGHT+IGGsas71egMkpg/1x1jfdb/gWUoBY+smY73Pdlp3F6BUUHz+zbpxF21GiXcjtEdlh4IXmTXUg==
-X-Received: by 2002:a2e:a314:0:b0:2bc:d38e:b500 with SMTP id l20-20020a2ea314000000b002bcd38eb500mr11892233lje.42.1693120726926;
-        Sun, 27 Aug 2023 00:18:46 -0700 (PDT)
-Received: from [10.0.0.100] (host-85-29-92-32.kaisa-laajakaista.fi. [85.29.92.32])
-        by smtp.gmail.com with ESMTPSA id a5-20020a05651c010500b002bcc5e9aa66sm1114746ljb.101.2023.08.27.00.18.46
+        bh=WtCfEv+4MKM7AB9nOhBJNz/fOo34fqcluKuKRBYbD48=;
+        b=jbFkgbA8pdO4mN/97Ce1dvJF+tNbHHJ/u8MvGnNOr19/iHpy4fKVPbWe4qhIbWlr7N
+         CPA4/RLwsx8aWKoUKeuRkIlqZRkFuAZCzZ7u3r9pOyHwW9h1Ru8qHI+KZWIS8VWygQh0
+         rk0nAeVVSWsOdPieb0SyYMna1og1WjLJ5Z2ozgC75qj9MwelBr8fpkUkXWfh3OLph3RK
+         Mc6RnSJUI7kFxWyKjOulFwzLF8/Kcv42NQ2EwTzInw2vpgtOcc2cn3YSs0ApT7hHxXnP
+         WJfwVm+lWzUZCH0rY+0ju6mmf1j6BnabDzUAtDMOPlNrb1B9SoYG4CnFClTmPlU0Up4+
+         RZtA==
+X-Gm-Message-State: AOJu0YxDHnA2pRpTvtQxy5jTL5jWmqSePFBo7enOMB5uuj1E0SkNbvMD
+        +xYZ4XTiWGqdU6AY657brSSglw==
+X-Google-Smtp-Source: AGHT+IH+qv/LoraiYPu/y8KAOtXrIZc0aV8VyRf3SodaZ97qiCkEX4ZtlRNINc81TgAvCPpw8+aRAw==
+X-Received: by 2002:a05:6512:3e08:b0:500:b872:7899 with SMTP id i8-20020a0565123e0800b00500b8727899mr351076lfv.62.1693122968433;
+        Sun, 27 Aug 2023 00:56:08 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id rn14-20020a170906d92e00b00992afee724bsm3136783ejb.76.2023.08.27.00.56.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 00:18:46 -0700 (PDT)
-Message-ID: <00bf501f-6829-4be3-bf1d-40ae8495d970@gmail.com>
-Date:   Sun, 27 Aug 2023 10:18:56 +0300
+        Sun, 27 Aug 2023 00:56:07 -0700 (PDT)
+Message-ID: <c32130ab-27dc-e991-10fd-db0fba25cc97@linaro.org>
+Date:   Sun, 27 Aug 2023 09:56:06 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] dt-bindings: dma: ti: k3* : Update optional reg
- regions
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 2/4] dt-bindings: net: Add Loongson-1 Ethernet
+ Controller
 Content-Language: en-US
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Serge Semin <fancer.lancer@gmail.com>,
+        Keguang Zhang <keguang.zhang@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230810174356.3322583-1-vigneshr@ti.com>
- <9a8f06e0-b986-4434-a194-9679c82035ca@gmail.com>
- <1d2ab22e-9bbc-f876-f059-980f543551d4@ti.com>
-From:   =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
-In-Reply-To: <1d2ab22e-9bbc-f876-f059-980f543551d4@ti.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
+ <20230824125012.1040288-3-keguang.zhang@gmail.com>
+ <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,59 +90,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vignesh,
-
-On 11/08/2023 19:04, Vignesh Raghavendra wrote:
+On 26/08/2023 23:04, Serge Semin wrote:
+>> +  clock-names:
+>> +    items:
+>> +      - const: stmmaceth
 > 
-> There is been a relook at the arch post this driver was upstreamed. 
-> System firmware (SYSFW) is now two separate components:  TI Foundational 
-> Security (TIFS) running in a secure island and Device Management (DM) 
-> firmware (runs on boot R5 core) [0] shows boot flow diagram for AM62x.
+>   clock-names:
+>     const: stmmaceth
+> ?
 
-I see, I cannot argue with that.
-Is this change affecting the entire K3 family or only the new members?
-If the later then I would seek for conditionality for the new regions as
-non relooked SoCs these regions are off-limit for the SW.
-
-> Security critical items such as PSIL pairing, channel firewalls and 
-> credential configurations are under TIFS and is handled via TI SCI calls 
-> at all times.
-> 
-> But, things related to resource configuration (to ensure different cores 
-> dont step on each other) is under DM. Linux still needs to talk to DM 
-> for configuring these regions. But, when primary bootloader (R5 SPL) is 
-> running, there isn't a DM firmware (as it runs on the same core after R5 
-> SPL), it would need to configure DMA resources on its own. 
-> 
-> This update is mainly to aid R5 SPL to reuse kernel DT as is. 
-> Hope that helps
-
-Right, so Linux will need to use these soon ;)
+The existing syntax is correct. This is a string array.
 
 > 
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
 > 
-> [0] https://u-boot.readthedocs.io/en/latest/board/ti/am62x_sk.html?highlight=am62#boot-flow
-> (Similar boot flow for rest of K3 devices barring am65 and am64)
+>> +  interrupt-names:
+>> +    items:
+>> +      - const: macirq
+> 
+>   interrupt-names:
+>     const: macirq
+> ?
 
-OK, if the R5 needs to use DMA before DM then surely there is a need to
-configure the channel(s).
-I expect that R5 or DM will reset things back before booting the main CPU.
+As well.
 
 > 
->>
->>>
->>> Vignesh Raghavendra (3):
->>>    dt-bindings: dma: ti: k3-bcdma: Describe cfg register regions
->>>    dt-bindings: dma: ti: k3-pktdma: Describe cfg register regions
->>>    dt-bindings: dma: ti: k3-udma: Describe cfg register regions
->>>
->>>   .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 25 +++++++++++++------
->>>   .../devicetree/bindings/dma/ti/k3-pktdma.yaml | 18 ++++++++++---
->>>   .../devicetree/bindings/dma/ti/k3-udma.yaml   | 14 ++++++++---
->>>   3 files changed, 43 insertions(+), 14 deletions(-)
->>>
->>
+>> +
+>> +  loongson,ls1-syscon:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle to the syscon containing some extra configurations
+>> +      including PHY interface mode.
+>> +
 > 
+>> +  phy-mode:
+>> +    items:
+>> +      - enum:
+>> +          - mii
+>> +          - rmii
+> 
+>   phy-mode:
+>     enum: ...
+> ?
 
--- 
-Péter
+Here indeed, this is a string, not a list, so items are wrong.
+
+
+
+Best regards,
+Krzysztof
+
