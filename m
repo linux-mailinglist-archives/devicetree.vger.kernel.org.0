@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60161789BF4
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 09:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43AA4789BF9
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 09:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230149AbjH0H4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 03:56:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36330 "EHLO
+        id S229677AbjH0H7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 03:59:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230144AbjH0H4N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 03:56:13 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E1CA109
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 00:56:10 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4ff8cf11b90so3517839e87.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 00:56:10 -0700 (PDT)
+        with ESMTP id S229662AbjH0H6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 03:58:55 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD6C5EC
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 00:58:51 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so6719318a12.0
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 00:58:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693122969; x=1693727769;
+        d=linaro.org; s=google; t=1693123130; x=1693727930;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WtCfEv+4MKM7AB9nOhBJNz/fOo34fqcluKuKRBYbD48=;
-        b=qD7V+/1eeqflk5HBX6g3KX3146dEBk/Xkv8nuSU+gc3hnO6r9ofzuLGMPcc8Dn7C2e
-         GKlBdiZ2qE5uIrVHiTtm9JGCOOrTPB6mU9ujnBbMsXK1WVwupwtgLBNFxtBZiqvjaQyD
-         PdZrJzydTmbJlB+zh+djrY96msG3m1kA998NMjMmH+ugM569oMQCwSK03EFEx49Lhxtd
-         lVEVI6GG1tCWtccwwbwmN0/6vKwbixgoMys0rMT+EZp16KSvz5VxiTH1rr+FZDIDcOzR
-         PyyjxQ6Hp4+5N7egiFOWCMcHc9jbnIlMDtyzPyssB7v6CNdwRVdT6/nTEbCEDyAb5Dy7
-         +rCw==
+        bh=yzHei1g5YcSQyHI7e3WpJcQQ0IiVSLaR8OHizgTz2sU=;
+        b=NuyQFG2dWALVm9IlA6RPXxpye1iubdJRrWzysgAFBx/BVK3KOKkV7hAN92wbVpswjS
+         h6qSMZVbNdpWu7sBmD6Dj/G9W+Vmy9qCIEel4JiPHTrNt4SlRp4sRkGE7ErztcOzvhG9
+         ivW3te4QF6anSPrsQlxZeenilLkT2V2Q8Rh4216XeEWQevJ4LfGGmithk41G1MKqHSja
+         WEUC0pSDTGBY/fDKYpa2pnAvASbelWfKc0XhgDos3S520RvgG66nBoQZnNcMndoHYckD
+         pcuGIZdFOvha3da1TrwAzEHiDYABiP/5ypp03pqMeCJMQwAqo7vFXNSL9hCXLmOci03Y
+         5DCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693122969; x=1693727769;
+        d=1e100.net; s=20221208; t=1693123130; x=1693727930;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WtCfEv+4MKM7AB9nOhBJNz/fOo34fqcluKuKRBYbD48=;
-        b=jbFkgbA8pdO4mN/97Ce1dvJF+tNbHHJ/u8MvGnNOr19/iHpy4fKVPbWe4qhIbWlr7N
-         CPA4/RLwsx8aWKoUKeuRkIlqZRkFuAZCzZ7u3r9pOyHwW9h1Ru8qHI+KZWIS8VWygQh0
-         rk0nAeVVSWsOdPieb0SyYMna1og1WjLJ5Z2ozgC75qj9MwelBr8fpkUkXWfh3OLph3RK
-         Mc6RnSJUI7kFxWyKjOulFwzLF8/Kcv42NQ2EwTzInw2vpgtOcc2cn3YSs0ApT7hHxXnP
-         WJfwVm+lWzUZCH0rY+0ju6mmf1j6BnabDzUAtDMOPlNrb1B9SoYG4CnFClTmPlU0Up4+
-         RZtA==
-X-Gm-Message-State: AOJu0YxDHnA2pRpTvtQxy5jTL5jWmqSePFBo7enOMB5uuj1E0SkNbvMD
-        +xYZ4XTiWGqdU6AY657brSSglw==
-X-Google-Smtp-Source: AGHT+IH+qv/LoraiYPu/y8KAOtXrIZc0aV8VyRf3SodaZ97qiCkEX4ZtlRNINc81TgAvCPpw8+aRAw==
-X-Received: by 2002:a05:6512:3e08:b0:500:b872:7899 with SMTP id i8-20020a0565123e0800b00500b8727899mr351076lfv.62.1693122968433;
-        Sun, 27 Aug 2023 00:56:08 -0700 (PDT)
+        bh=yzHei1g5YcSQyHI7e3WpJcQQ0IiVSLaR8OHizgTz2sU=;
+        b=fefXZaYhkF4kDlVHr2mLHWe/RmQkpeZOVuMwILAqc8Lp4+WLyGARVKiyFxz36pbAya
+         Y5vp4c69Mutt80VdrH8h6x+GloPabrfT/8WIU4D70LPEkZdFWz/zLbZIGP188pUrkP2/
+         BMs159m/9+fAjSUqPQNoT31qj3w3smYSO0YpdD8AK2s8TMa2WgKEeWldLm43mcZT9a7r
+         NIUnP36lYRD9+OmORIbmLUJfdcKhaWFZ0Cr0RUfkzaxorEU7HcnrPjcb2P61ypeYvzp1
+         zFbD8Ri2/DRAEep6BWYDRr5a0LRpZa8marIenBITZ+X+gQmBtPAL5PeUuhLJeKeECeMo
+         rwJQ==
+X-Gm-Message-State: AOJu0YyDwmzo9LoTB3lVyrSoZIwi0pYA+L3JiGt8T8wYpr2jl+2ECiOw
+        QEn9+xYV0bqLVXHu2iHDynO/Gz8uL25Lb5IY+HE=
+X-Google-Smtp-Source: AGHT+IEScLBkcO8pNEPy/rMoZr5psWXGID4i8adwolALGUX2Z3hUeYCGx1OSe5h3fjCoxnJc0gD8KA==
+X-Received: by 2002:aa7:de12:0:b0:522:3149:159b with SMTP id h18-20020aa7de12000000b005223149159bmr26594190edv.2.1693123130231;
+        Sun, 27 Aug 2023 00:58:50 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id rn14-20020a170906d92e00b00992afee724bsm3136783ejb.76.2023.08.27.00.56.07
+        by smtp.gmail.com with ESMTPSA id n25-20020aa7c459000000b005259dd903e5sm3023822edr.67.2023.08.27.00.58.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 00:56:07 -0700 (PDT)
-Message-ID: <c32130ab-27dc-e991-10fd-db0fba25cc97@linaro.org>
-Date:   Sun, 27 Aug 2023 09:56:06 +0200
+        Sun, 27 Aug 2023 00:58:49 -0700 (PDT)
+Message-ID: <f425912e-e2de-2015-cc16-0631a1fd8abd@linaro.org>
+Date:   Sun, 27 Aug 2023 09:58:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 2/4] dt-bindings: net: Add Loongson-1 Ethernet
- Controller
+Subject: Re: [PATCH V2 1/3] ASoC: dt-bindings: fsl_easrc: Add support for
+ imx8mp-easrc
 Content-Language: en-US
-To:     Serge Semin <fancer.lancer@gmail.com>,
-        Keguang Zhang <keguang.zhang@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Adam Ford <aford173@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
- <20230824125012.1040288-3-keguang.zhang@gmail.com>
- <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230827023155.467807-1-aford173@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
+In-Reply-To: <20230827023155.467807-1-aford173@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -90,55 +87,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2023 23:04, Serge Semin wrote:
->> +  clock-names:
->> +    items:
->> +      - const: stmmaceth
+On 27/08/2023 04:31, Adam Ford wrote:
+> The i.MX8MP appears to have the same easrc support as the Nano, so
+> add imx8mp as an option with a fallback to imx8mn.
 > 
->   clock-names:
->     const: stmmaceth
-> ?
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 
-The existing syntax is correct. This is a string array.
-
-> 
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
-> 
->> +  interrupt-names:
->> +    items:
->> +      - const: macirq
-> 
->   interrupt-names:
->     const: macirq
-> ?
-
-As well.
-
-> 
->> +
->> +  loongson,ls1-syscon:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      Phandle to the syscon containing some extra configurations
->> +      including PHY interface mode.
->> +
-> 
->> +  phy-mode:
->> +    items:
->> +      - enum:
->> +          - mii
->> +          - rmii
-> 
->   phy-mode:
->     enum: ...
-> ?
-
-Here indeed, this is a string, not a list, so items are wrong.
-
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
