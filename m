@@ -2,102 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D956E789EB7
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 15:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55EB3789FFB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 17:32:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbjH0N0i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 09:26:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54924 "EHLO
+        id S230219AbjH0Pbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 11:31:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230236AbjH0N0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 09:26:06 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7408189
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 06:25:59 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-50078eba7afso3741008e87.0
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 06:25:59 -0700 (PDT)
+        with ESMTP id S229890AbjH0PbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 11:31:06 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C71CFEC;
+        Sun, 27 Aug 2023 08:31:03 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bcc4347d2dso35573751fa.0;
+        Sun, 27 Aug 2023 08:31:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693142758; x=1693747558;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hgscUjE5yDYSGHC1956h5azSC53EgKvpe5p9UzSNGuk=;
-        b=mXXXNgzGSReQ6jQUF/A8MlOxA9vGYi6rwjbMQRXQ/ehm+7xXMPk+BTFQiYeB18tw/4
-         a33hehxZRRXNdl97bnvRJul+UVAAH5hLPLhzyLudZzjbFetLxpBQn0CyowvsWTmVxpSa
-         gIoEWmc6IifWoy0AIj6rerCRscMN5A/aHTFBC5mk5NKcFH2XR1opS0AWIM0l/CcrMnx+
-         Ink6A/PRZRPocNkBVwHfCmIZGea1dKpmUTfWxTkjkZRP2x5Y16kIIf4mWmTDiVcOWpsL
-         k5VbXCg8JNcvJBiuSWbaGHbFTgPFYniy7n7kvZR+lVaICzjDSaqymOkzJo4sEa/JoxNg
-         WuQg==
+        d=gmail.com; s=20221208; t=1693150262; x=1693755062;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5hyLyH0mDfFi9IsH9oag3TfSy1UdIPJs5zbsS8pbums=;
+        b=AEPXDMd65P5w9MhuYTMXNw/oNh1MH+G3kvUYmhSNKjYQ6PPs/uak9/dvRsscbxKz1d
+         wq+Pzk2vT3zCAUW01km2yt2FeqVjpXEjxB86/PRFh4yXicGJUuKlD8+QcH3Kkh7k244C
+         nu/y5AmrkbrQU304zW0ELTvnKCtpQsQwhfjL/hJ72n5/OSkRErJPURaO8G0NOwrM13Qi
+         cOtRqomWqZ5cgBHN1Gg693C37w7lg6MOOPXuWm4TZiCLdK4SpKqWI/8oqTgAN67G5sgs
+         UjgFz6U6160lBnlVtwGIppBsQZDV5ft4XHDbBincOGdIvCMVRmRPN8Kz+6HLrXAR8ERy
+         6CRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693142758; x=1693747558;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hgscUjE5yDYSGHC1956h5azSC53EgKvpe5p9UzSNGuk=;
-        b=DAgArQj7hlwnTOeFLmE5J4X8X42vdF7ysZOO/5JQ/wz/uf1wiwGA83HhbueqAsrrNs
-         fiNI77JZn4UYZTuhctox2Yv2o9huw6QnRhvuBykuBs093m3WVF3HaS1ykM1BZ8S8yDiQ
-         tv3N2DPmENpRn54Mb7PBnuqmuANbi71xKfoYZvgl+BL0gEqFPtZA0jtUL3ll3jlK9LwK
-         SSiitqxBe69jVgCWdWMZ65rLyywIBxFf5+uSYSdAcN0pXOiH20G54zgBNy+vraHJ36iu
-         ZC+L+O4Shzjdd6TWR+jXlQ/4g+206j+1Y0nqFojfmQ25F13PscmgQcxoFLg0K9fIa6dQ
-         vN+A==
-X-Gm-Message-State: AOJu0YyCD4EeYwl4bdS6iRfJDK7qOmAmlgCGxSVB9QFZ6Qso3sEfY/li
-        W8xwVnPjBEv31g+MivEiu6ocVeZQMGpvRlMUUbM=
-X-Google-Smtp-Source: AGHT+IGy2k7YsLBurwPoagaVteEGqHoEFuFN2j79QP6Ia/1b3mFH5soRZ/nt7IeVX9r68//2ahCa7g==
-X-Received: by 2002:ac2:43c7:0:b0:500:8f64:52d4 with SMTP id u7-20020ac243c7000000b005008f6452d4mr10008489lfl.53.1693142757945;
-        Sun, 27 Aug 2023 06:25:57 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id t9-20020ac243a9000000b004faa2de9877sm1142040lfl.286.2023.08.27.06.25.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 06:25:57 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        linux-leds@vger.kernel.org
-Subject: [PATCH v5 37/37] ARM: dts: qcom: mdm9615: drop qcom, prefix from SSBI node name
-Date:   Sun, 27 Aug 2023 16:25:25 +0300
-Message-Id: <20230827132525.951475-38-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
-References: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
+        d=1e100.net; s=20221208; t=1693150262; x=1693755062;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5hyLyH0mDfFi9IsH9oag3TfSy1UdIPJs5zbsS8pbums=;
+        b=UQ8hTRhc4ldJfeajg/9k62SKAOOQGgkJFPZ2c6tWgJYZSayzKDDWhPSklZKRpo0u5N
+         hpaWHeOL5ioGpD8CoqOScZVJc67fsCo2Oc7PV0Zha1isbY6iiqUC+1W51iTJ7RCaSAaA
+         UHW4+jzb+TuJj1RRNBUWwHP1JHGvjvqfFlB8r8ydGZs3Ou3NUEIpYZSPQfPDR1+vSjVn
+         mfb2ciWB4EuEgHPTQwbp4ocgfxlTsBOfzkuxGB2qK/LvT7q81ZL/v7pRzcvGJGJaE8i+
+         yaOhyXEkyph7lsDOUOwhC5ri/nQTV+jm4Lm4ONqXwRQAxVJtXZDzpXCUmONmuSg+OA8H
+         yUkg==
+X-Gm-Message-State: AOJu0YzOuv8mrEEmJx0yTfYM+SEv75gNy0mqwg+Zr5qt/D2jKQ6pQGsr
+        blkn9M11BvnjNz4jQkwAi3cuJIu/pTo+WAFUcSE=
+X-Google-Smtp-Source: AGHT+IF6eeXSWjOmnwZg2jdWMWE1Ex1wqBTTysga0NQqKbYF8K8PfP948uHtG9/R94LZTmUbc5D2S+UonoeAAfteX0E=
+X-Received: by 2002:a2e:b5d9:0:b0:2bc:fce1:54d3 with SMTP id
+ g25-20020a2eb5d9000000b002bcfce154d3mr2932915ljn.41.1693150261834; Sun, 27
+ Aug 2023 08:31:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230809185722.248787-1-tmaimon77@gmail.com> <20230809185722.248787-2-tmaimon77@gmail.com>
+ <20230821170941.GA1915730-robh@kernel.org> <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
+ <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
+In-Reply-To: <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Sun, 27 Aug 2023 18:30:50 +0300
+Message-ID: <CAP6Zq1gcWHXUL=uuzkYkJ6VWwoS-9G_aEK2HizfAWr6oZZdzWQ@mail.gmail.com>
+Subject: Re: [PATCH RESEND v5 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl
+ and GPIO documentation
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>, linus.walleij@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Krzysztof,
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-index 07e712e890f6..b02336bd8370 100644
---- a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-@@ -258,7 +258,7 @@ gsbi5_serial: serial@16440000 {
- 			};
- 		};
- 
--		ssbi: qcom,ssbi@500000 {
-+		ssbi: ssbi@500000 {
- 			compatible = "qcom,ssbi";
- 			reg = <0x500000 0x1000>;
- 			qcom,controller-type = "pmic-arbiter";
--- 
-2.39.2
+Thanks for your comment
 
+On Sun, 27 Aug 2023 at 14:13, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 27/08/2023 11:44, Tomer Maimon wrote:
+> >>> +      pinctrl: pinctrl@f0800260 {
+> >>> +        compatible = "nuvoton,npcm845-pinctrl";
+> >>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
+> >>> +        #address-cells = <1>;
+> >>> +        #size-cells = <1>;
+> >>> +        nuvoton,sysgcr = <&gcr>;
+> >>> +
+> >>> +        gpio0: gpio@f0010000 {
+> >>
+> >> unit-address should be 0.
+> >>
+> >> Otherwise,
+> > The unit-address is correct f0010000
+>
+> Then how does it pass W=1 builds? How unit address can be f0010000 but
+> reg is 0? Really...
+Maybe because the ranges are ranges = <0x0 0x0 0xf0010000 0x8000>?
+I didn't get any warning regarding the unit-address
+bash-4.2$ make ARCH=arm64 dt_binding_check W=1
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+  DTEX    Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dts
+  DTC_CHK Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.example.dtb
+bash-4.2$ dt-mk-schema -V
+2023.7
+>
+> >>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>
+> >>> +          gpio-controller;
+> >>> +          #gpio-cells = <2>;
+> >>> +          reg = <0x0 0xB0>;
+> >
+> > Thanks,
+> >
+> > Tomer
+>
+> Best regards,
+> Krzysztof
+>
+
+Best regards,
+
+Tomer
