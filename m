@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72DA0789D58
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E0F789D5F
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:51:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229800AbjH0LvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S229866AbjH0LvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Sun, 27 Aug 2023 07:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52072 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229882AbjH0Lum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:50:42 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E3211AA
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:38 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4ff8cf11b90so3658042e87.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:38 -0700 (PDT)
+        with ESMTP id S229907AbjH0Luo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:50:44 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4351D130
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:39 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-5007f3d3235so3593765e87.2
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:50:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693137036; x=1693741836;
+        d=linaro.org; s=google; t=1693137037; x=1693741837;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ca1lCqRiuB+dn4eD6wRvmXrlOFXjwi+eXsVfOaPlfrY=;
-        b=fDoOejcfzbwe19CsC5cIGnRJDuUADqOk57Xiavi4d1himlAQR99YeRzVY5y99S43Ln
-         dvvS4bUmAgjviEi1KwLy0qXZOE5zvLB1OE6E1vwOPnNGa3+6WuN1GUvLmNGdYatnHiuk
-         aLwRh9GBMRdt1bL4MDJrL82Ketk/yJ9TFJzlJU5qr3oHZwIa6tdvl+4jmf4dckRT+72V
-         9ndmMJYJqBWyidMqRYesB8qsSzBiNY5h8i/E0AITIfbEJp0IddVCRzCS3j79BnbtPYKv
-         b2lwOUBP6zxFlaBhOrnBEV2pHG/ZFTa3mwVHf2pXqJYfoWHOhVTrGuGksofwfegzLlJc
-         ViVQ==
+        bh=ro+frU1rlZBxpMUoLWa0fuKb2nit2Il6DrrgMioSWzE=;
+        b=kVrCWnDlujG4mHtYucB+dfb+lZ8IoCUgXize2o9ICAfAWnp9uyyEB8CUU76ZXGeMY+
+         fNyOJzNqMAawRUbImkbTI4VZrlzJZHHrnGZSCjbMAfB0GOwu4+khYb37OBIxwBPTEF2n
+         uE4o1Fn9Ib6GdiaKozkNa+jaGiNfnsvmrp3Z+zNlc4JcHEURLr0fWrF3ndQgzz3lxYhS
+         XPn1kR47nv169Wia2E2zfZvTk9zr3W8ZeLLBHCXKKr093UQRei405JlDP50Av85F5cXo
+         2zgLmy9JuPsuvB+8lhD6MBHjwxxmwMLtevLevtUNSZVA16/4zkVA6gYpFi5C/Oa1boDr
+         G9yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693137036; x=1693741836;
+        d=1e100.net; s=20221208; t=1693137037; x=1693741837;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ca1lCqRiuB+dn4eD6wRvmXrlOFXjwi+eXsVfOaPlfrY=;
-        b=NzzR8qKAeI8lgBguF6Wu1aLUIb7z/oZaP5Ey7SyqyOdM2+uy8msvJQBGIsiiVUxyxe
-         CSJ+D9HrEzhlBZHhuRXjnXz46QzYTYCW6IgU81qhLd+QMYn6jhhaiKDXeL2aMH09fmz1
-         6I6hqIGeovM70qKawNOu4FhtfU8l37cxvdaYASieeDsJCrK3kyhhEm8SiqGIRoHj3G1u
-         vOFQ7bMXWEyG6tTZ3F4Splvf6LgIpfFEmzw/Xp8qi7lLubODAjvDnFSGK36p1uHf2mqg
-         wDl+/UbYTl8BzCGQDybVT2GEH0fwbQ69rqcX1F28dEW61x6uYTA/JXP6rbjnXiOU/jGx
-         dOMg==
-X-Gm-Message-State: AOJu0Yw1TAnnBJtG775YaZ1GOKHaDNCiA/OaJkvz/CPjraqBlejQkkOQ
-        C9sv3fn2E9YzV9kDiGawVrJISw==
-X-Google-Smtp-Source: AGHT+IFyZIPVYeMBLN7zioe1bDA719mHlp3XKfCKpKDpxPRm40Vc0kjyn/3jpYKnN+AZ2sv3SNTXzQ==
-X-Received: by 2002:a19:520b:0:b0:4f8:71cc:2b6e with SMTP id m11-20020a19520b000000b004f871cc2b6emr14940588lfb.33.1693137036363;
-        Sun, 27 Aug 2023 04:50:36 -0700 (PDT)
+        bh=ro+frU1rlZBxpMUoLWa0fuKb2nit2Il6DrrgMioSWzE=;
+        b=FDckHKZg4sa3yp+r+HjtUyg4DlFULbw43PGbRv8wKes708bFNySjYCiOemHu+3hMdV
+         7BF3fPmGkpkY9vL/SWbhJwR1xcJ+YsM92kaCOYGhnL2UuXWo7vvFrJAjL1VwERcn+d8U
+         EnMozzRzJ4qeu/wdjZcG8NnrljrzcSztfpZNOK5LNJUICHQ9o6cAgQ7uYgNLCDkzFnVa
+         PA4OezRgOdrhIaJeiIO7eS/+9XWHm76SSVB8RGt1pmklzHdF7wdIcHurR1CR6TNYz/w3
+         nMUbBHoGawiOunOuGHoJYYKBz8whXDJVs2rOeJLtSFbygQoj2w+bkS23K7WWyTyQEQp5
+         EnFw==
+X-Gm-Message-State: AOJu0YzXkLP4yXfqzRnBGFd7V7eq7PakU3kNlRVMky/nIMI21Es9HUhg
+        bA6YegUzNWXgbISL6CxFigKeCg==
+X-Google-Smtp-Source: AGHT+IGt2xgmWwOY0CUsVtOQyV9nxdtxLsPQavPhWLMXNuZlLE1bY4JF0pl4U12XqJVuGZD0wQUyqQ==
+X-Received: by 2002:a05:6512:114d:b0:4f8:67f0:7253 with SMTP id m13-20020a056512114d00b004f867f07253mr22826824lfg.49.1693137037268;
+        Sun, 27 Aug 2023 04:50:37 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004ff9f88b86esm1114770lff.308.2023.08.27.04.50.35
+        by smtp.gmail.com with ESMTPSA id a8-20020a19f808000000b004ff9f88b86esm1114770lff.308.2023.08.27.04.50.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 04:50:35 -0700 (PDT)
+        Sun, 27 Aug 2023 04:50:36 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -67,9 +67,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Christian Marangi <ansuelsmth@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 02/23] dt-bindings: soc: qcom: qcom,saw2: define optional regulator node
-Date:   Sun, 27 Aug 2023 14:50:12 +0300
-Message-Id: <20230827115033.935089-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v4 03/23] dt-bindings: clock: qcom,krait-cc: Krait core clock controller
+Date:   Sun, 27 Aug 2023 14:50:13 +0300
+Message-Id: <20230827115033.935089-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
 References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
@@ -85,48 +85,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SAW2 device can optionally provide a voltage regulator supplying the
-CPU core, cluster or L2 cache. Change the boolean 'regulator' property
-into a proper regulator description. This breaks schema compatibility
-for the sake of properly describing the regulator.
+Define bindings for the Qualcomm Krait CPU and L2 clock controller. This
+device is used on old Qualcomm SoCs (APQ8064, MSM8960) and supports up
+to 4 core clocks and a separate L2 clock. Furthermore, L2 clock is
+represented as the interconnect to facilitate L2 frequency scaling
+together with scaling the CPU frequencies.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../devicetree/bindings/soc/qcom/qcom,saw2.yaml   | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ include/dt-bindings/clock/qcom,krait-cc.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+ create mode 100644 include/dt-bindings/clock/qcom,krait-cc.h
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml
-index 84b3f01d590c..a2d871ba8c45 100644
---- a/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml
-+++ b/Documentation/devicetree/bindings/soc/qcom/qcom,saw2.yaml
-@@ -47,7 +47,7 @@ properties:
-     minItems: 1
- 
-   regulator:
--    type: boolean
-+    $ref: /schemas/regulator/regulator.yaml#
-     description: Indicates that this SPM device acts as a regulator device
-       device for the core (CPU or Cache) the SPM is attached to.
- 
-@@ -96,4 +96,17 @@ examples:
-         reg = <0x17912000 0x1000>;
-     };
- 
-+  - |
-+    /*
-+     * Example 3: SAW2 with the bundled regulator definition.
-+     */
-+    power-manager@2089000 {
-+        compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
-+        reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
+diff --git a/include/dt-bindings/clock/qcom,krait-cc.h b/include/dt-bindings/clock/qcom,krait-cc.h
+new file mode 100644
+index 000000000000..9d181873c414
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,krait-cc.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (C) 2023 Linaro Ltd. All rights reserved.
++ */
 +
-+        regulator {
-+            regulator-min-microvolt = <850000>;
-+            regulator-max-microvolt = <1300000>;
-+        };
-+    };
- ...
++#ifndef __DT_BINDINGS_CLOCK_QCOM_KRAIT_CC_H
++#define __DT_BINDINGS_CLOCK_QCOM_KRAIT_CC_H
++
++#define KRAIT_CPU_0		0
++#define KRAIT_CPU_1		1
++#define KRAIT_CPU_2		2
++#define KRAIT_CPU_3		3
++#define KRAIT_L2		4
++
++#endif
 -- 
 2.39.2
 
