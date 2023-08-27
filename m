@@ -2,80 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FD12789D31
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1B43789D38
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 13:14:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229785AbjH0LNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 07:13:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43156 "EHLO
+        id S229650AbjH0LOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 07:14:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbjH0LMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:12:46 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392F1139
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:12:44 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99de884ad25so304205066b.3
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:12:44 -0700 (PDT)
+        with ESMTP id S229672AbjH0LN5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 07:13:57 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0274913E
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:13:55 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a4818db4aso3044323a12.2
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 04:13:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693134763; x=1693739563;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693134833; x=1693739633;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=m2+EX0RxcwVmnF7KHWv8zJjpyFDFi3H3CVaoC8lb4p8=;
-        b=pFmKBWqmn5K2ttU0UcnGUxoxg3z7pP1aXqMIx8/KmC9yb/7+zEqhlMXuS9eC/LrWgY
-         utvNQ5jo9LT6Aq0rYc3ZjWBaVaOHgnyPcCFaXqCEq7ogGYdR8WP0JulcTeXbjYRkdkz+
-         aQL0ZOPfKQzDiDiMj672bEF2bgfOnl/JLm1CJL2rKqihklcIYKoWck2J4xY9FMp4oRJc
-         V+NA6hw6IS92G//nvNXTITyBOVfCmrqzfHEkG7w3wVusC/ZG0TsnpLggxjzvZkP0YO7T
-         aQf5SOKPm3fxMySn+R105FyIPukUl2Y3O+5U3OGmMabAT9qGOqWzEWjtCidiBMgjyrfg
-         uChw==
+        bh=ipcdNcF1O55wKKATQ+DbIVwlIv3Inh0Eycsv10ZWXYg=;
+        b=gG9WbV5hN7OFM7FC443031tdRNkobrrlmaBIZ/5CFo+ExWNgvBnpSH96OZgSABt5vC
+         MWptChLk1/ctM4SbD75j1YNZ045ku5etfd75BkuYo7+PoyaZGXCFvGZ8ypTbgxhkfmRm
+         1BbDvcCubU85k52Lms4cWHEgDmG1Bu1cT0aszEIcAD/brQsAIOEo1uIfZjGUY0nqxfsJ
+         IItq0HcpvG4zG+XsYnF0DGVsvP0l7Ub7qi6ElygdzONybYF893QWxuOxkgMeP1EebSZE
+         wBwmH9NW9Ru+8f2I4Ajxnp360+gQjDqGirTZUBDtBsDj5lu9hgCwO4cEtj7heIL27u8P
+         vXXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693134763; x=1693739563;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693134833; x=1693739633;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=m2+EX0RxcwVmnF7KHWv8zJjpyFDFi3H3CVaoC8lb4p8=;
-        b=K64LSU+ZyIpiffxpRHX3p7XszWjqMS+CVWGnMnN0cZAS2vm+vGLnBXg7U9SqCURYZ0
-         YJtKYFM2udMQOF6vrFH8YyFCeFpTKqA4hAC6Cx3AKXwUCmsK4fWQrH9IBu7iLWwB6p/m
-         W7Yv4F+i9Gxijtif/5+Fwp0KW0gNAwyQqw4bPCbSEqXzZtzeKQnNmK98wdfywe55PQpE
-         8ufuhs3RxyKUNrLqh60VGNtyVUFOgIa+Q4P1BqtQ5ShKNtp15YG1gGNMcX4orZXniWgw
-         ykNZeXPaI9X//xYqi2E/AKhwaQmNAbk7yG0H2dJ65HCtheygbUKyDjxTCBQVgK6FThxm
-         gw4g==
-X-Gm-Message-State: AOJu0YzaGDyI/KhjaIoR/I9brzq/+HlW/qHSk7jXMXhqVtxTcyRkLTMP
-        h/u8+/vRBR2E5QbKiXRmCllN8LfleTfu8mhw0Pw=
-X-Google-Smtp-Source: AGHT+IFSDj8zGhF5GgWY46a+LzcuxyHxjOFJBWGa4tDlI3RKCWeWMy3xezYz3PlJ+XcfBQsNxmnCRQ==
-X-Received: by 2002:a17:906:5daa:b0:99d:d4ec:6c5d with SMTP id n10-20020a1709065daa00b0099dd4ec6c5dmr17311263ejv.73.1693134762696;
-        Sun, 27 Aug 2023 04:12:42 -0700 (PDT)
+        bh=ipcdNcF1O55wKKATQ+DbIVwlIv3Inh0Eycsv10ZWXYg=;
+        b=LlERNGTsTlHWhyA57MM77gsKPV/CSc/wDBMdnchfKnBmLDW7Byb1pzdDoT1kyRlQaQ
+         8zUHak8pQEQjOJ2Kv6S0lTe9uDvH7QYRhTnNAaY7zinaCdzzyAcgJ4eGLucxFBIfsmZU
+         OkjMmFdHpTCyVCfb/MbQTq2TIkDpwTHQyI9t8mt8opfSA2WSYP3JUfDORIi3T96A+VnZ
+         jYZ4kG+HJyJOzIyP5/x5MwiXwtnxC8ZBIpRr5oWkSY6VqkkteT8onkZ9bbM8XYlYt3jE
+         LYoslMJ7uQBzIC49e+S4lu1zTMaDzuaUiVYH90HFFNxksKmCOuTxjh96ewgFp3uNNGfz
+         Icjg==
+X-Gm-Message-State: AOJu0YzDlVR+4ZKEo+wradXOstXF1pYaOXoUsc7HcHA10ZFaLnnZaiiI
+        dG86Fvb6r8Td68JFwNi/8IJVwQ==
+X-Google-Smtp-Source: AGHT+IGepecW51Ioli3tongSTkDykLHgwpMsDI776z4B2Hit96uxsmBnKFHoQEoPv9JG8lMBVHSBEQ==
+X-Received: by 2002:a05:6402:398:b0:525:6e47:10f6 with SMTP id o24-20020a056402039800b005256e4710f6mr17581438edv.22.1693134833535;
+        Sun, 27 Aug 2023 04:13:53 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id sd26-20020a170906ce3a00b00997d76981e0sm3309881ejb.208.2023.08.27.04.12.41
+        by smtp.gmail.com with ESMTPSA id h11-20020aa7c60b000000b005227e53cec2sm3207882edq.50.2023.08.27.04.13.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 04:12:42 -0700 (PDT)
-Message-ID: <74dcc5b4-dda2-5de7-9e58-4191a0fb7972@linaro.org>
-Date:   Sun, 27 Aug 2023 13:12:40 +0200
+        Sun, 27 Aug 2023 04:13:53 -0700 (PDT)
+Message-ID: <53987f0f-dfda-3572-1545-755072328be4@linaro.org>
+Date:   Sun, 27 Aug 2023 13:13:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v4 03/38] dt-bindings: mfd: qcom-pm8xxx: allow using
- interrupts-extended
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        linux-iio@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        linux-leds@vger.kernel.org
-References: <20230827005920.898719-1-dmitry.baryshkov@linaro.org>
- <20230827005920.898719-4-dmitry.baryshkov@linaro.org>
- <39af3ab5-4fa5-5b3c-395a-e86e70bbe803@linaro.org>
- <CAA8EJppw0Kxo3W560ucWey959368M1c8BFnvF4Ggi5XKCOfesw@mail.gmail.com>
+Subject: Re: [PATCH RESEND v5 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl
+ and GPIO documentation
 Content-Language: en-US
+To:     Tomer Maimon <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
+Cc:     linus.walleij@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
+        joel@jms.id.au, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, j.neuschaefer@gmx.net,
+        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230809185722.248787-1-tmaimon77@gmail.com>
+ <20230809185722.248787-2-tmaimon77@gmail.com>
+ <20230821170941.GA1915730-robh@kernel.org>
+ <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA8EJppw0Kxo3W560ucWey959368M1c8BFnvF4Ggi5XKCOfesw@mail.gmail.com>
+In-Reply-To: <CAP6Zq1i+P8Jh2_G9gJMdtCKcVF6m9vkWAP5rJXBCJ1aNfc2Bvw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,39 +82,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/08/2023 12:42, Dmitry Baryshkov wrote:
-> On Sun, 27 Aug 2023 at 11:35, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+On 27/08/2023 11:44, Tomer Maimon wrote:
+>>> +      pinctrl: pinctrl@f0800260 {
+>>> +        compatible = "nuvoton,npcm845-pinctrl";
+>>> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +        nuvoton,sysgcr = <&gcr>;
+>>> +
+>>> +        gpio0: gpio@f0010000 {
 >>
->> On 27/08/2023 02:58, Dmitry Baryshkov wrote:
->>> Allow using interrupts-extended, which is a preferred form of interrupts
->>> specification compared to the interrupt-parrent + interrupts pair.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->>>  Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml | 10 +++++++++-
->>>  1 file changed, 9 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
->>> index 7fe3875a5996..33d9615e63c8 100644
->>> --- a/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
->>> +++ b/Documentation/devicetree/bindings/mfd/qcom-pm8xxx.yaml
->>> @@ -37,6 +37,9 @@ properties:
->>>    interrupts:
->>>      maxItems: 1
->>>
->>> +  interrupts-extended:
->>> +    maxItems: 1
+>> unit-address should be 0.
 >>
->> The entire patch is not needed. At least should not be needed. What
->> problem are you trying to solve here?
-> 
-> The main problem is the next chunk, which (currently) explicitly
-> requires `interrupts' property. My goal is to allow
-> `interrupts-extended' in addition to `interrupts'.
+>> Otherwise,
+> The unit-address is correct f0010000
 
-They are allowed. Why do you think they aren't? That's why I don't
-understand what real problem is here.
+Then how does it pass W=1 builds? How unit address can be f0010000 but
+reg is 0? Really...
+
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>
+>>> +          gpio-controller;
+>>> +          #gpio-cells = <2>;
+>>> +          reg = <0x0 0xB0>;
+> 
+> Thanks,
+> 
+> Tomer
 
 Best regards,
 Krzysztof
