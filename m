@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3592A789E09
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 15:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E763789E0F
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 15:26:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbjH0N0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 09:26:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37528 "EHLO
+        id S229940AbjH0N0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 09:26:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbjH0NZk (ORCPT
+        with ESMTP id S229936AbjH0NZk (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 09:25:40 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3322C1AA
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1F321B3
         for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 06:25:32 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-500b3f7f336so1094592e87.1
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5007616b756so3754956e87.3
         for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 06:25:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693142730; x=1693747530;
+        d=linaro.org; s=google; t=1693142731; x=1693747531;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ii+ERiIP/+rN5/93TQF2YXZBm9/0F6AmtInKGYg6uG8=;
-        b=Nndiir1OQQ7p/7CLL+lR/kRb9CUERsWcu9dlmakFHvzaIW4syRNedOD8xCtqe3hqjU
-         YQuO4bHUVhIxZyPgO9pv9JLqdvjC5tSPs6FQDzG3dQKXUWzkH6yNpWa164UCB1SLsIzO
-         qv242zq3UX8BYST8xL1/YGgZdaQHTecGgS9JifRByvZRlDd7Gv8GAbkGuJ90v0pZWi/V
-         CAdQ5PkjlcJIWXHZceRaZsT9IjHPecnGpaSncjDZ8sqcj1BWDmNjPr5xzbtIf7jmRPjN
-         3GOtOpFH2X8PFqJUKho6Enw/MtD3gSb6ggfaJ4Ycf9sCgOkxF6SsA23tB3tiyVuNt3DJ
-         vgHg==
+        bh=u1RH0IG0rrFXei9V7mpYpuNzaTfiQ9cfBSSJRkGF8B0=;
+        b=l7ssnG8fWl2Uh3pRsNZ7pi5vjvdqrHp22Tfb1c+OrfI2nk6gGqm2le9Pbqn0ZyAUoJ
+         NQSKq5AhzPeMZvl5jKfNP4xeE+4PbfkoM+dYQQFoKGNBZ8s49U3g3zCh8B+fs9GyF1+m
+         8dj4cHXjV+zqGhpx4tQYVn9PbnzFjkLR8pmfgPvgg2YnM4cUHAFLbieWWn66MMIpw7cm
+         DhbWmgXgiWc0SKqTG3fn2i+B3rneU6uhFsSTftO2kTNbMcP9Gd0wBvrMGOn35HRvFYTL
+         3HdDfP9fMFnktMVyvk31NK6o7ZLUX7O+xSP74V23/kCWbxy1w6dSRj/X+81aK2WSBCuw
+         kF5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693142730; x=1693747530;
+        d=1e100.net; s=20221208; t=1693142731; x=1693747531;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ii+ERiIP/+rN5/93TQF2YXZBm9/0F6AmtInKGYg6uG8=;
-        b=HWvaFIjXsN4eWbEU31i4BXJasfP+q3fDSfq6ylnEfkbW553yFIKDwkzm+vKO/7ZYlQ
-         pFHPPHNidlJ+y8c93TOHYAUIstZXBmAlfdsg+G6QZnQF2OVY23sZLAufqEQjdzihcDVg
-         3X7kHZrL4lZaPqE1um0L7MPZFRWa8jz+aVzpTXi8oFJPjzu+D+nF9jyM1eynoEskAuhZ
-         M1uyT8QHUCBhm3jPYICcl24/kkQlVzwvAZaFd1uknx7bKyJ4tI4joDU3WbkqFyT0RgUW
-         DJKSUm5oXVn3pMBCdjEOPU8LwhnTpiq6+2pdARC7SgriaAvGHImpqEgw32HfLYu92uj3
-         5/7A==
-X-Gm-Message-State: AOJu0Yx6x/bEm6I2MRr+mBbLUEYOZlHCCSrNIOcc/BDgj+J4v0M/DeDq
-        RfWfJ6a1zo3Qc11QfsqGK7f4ueMLBzY0lp+Lvd0=
-X-Google-Smtp-Source: AGHT+IGhq0bpnyxKqxSd9Fl56JBgkUGGFQvUfCW1+9wkRnF0gwFyHjGyOhv3NyqP1bhH88dLdegG9A==
-X-Received: by 2002:ac2:4c28:0:b0:500:78ed:353d with SMTP id u8-20020ac24c28000000b0050078ed353dmr12514261lfq.58.1693142730294;
+        bh=u1RH0IG0rrFXei9V7mpYpuNzaTfiQ9cfBSSJRkGF8B0=;
+        b=kfIKkkVIImZHyBmvPwmf8ZpfecM0K5dNaRZqTkltftaMW/WzTZ+VSgcn4x4+J4kL+V
+         FmAofdsyigQ8u+qUYss+fOGOenDqI/Hfs7fH0sAt0NelfVoLPGjhmwXqvrcmk88A1DhA
+         6eLLM6itXKgCldAU8nZ3rDlVNQtzGxlb5Lwjy5QSSsIFxGq2bKVR5HaqpxuIYsRDXl39
+         c/OjTORo/xlZqw87FL7tKPboZUe2OJBI09qnP9gOCo/cIPnATLVl2ahj/OiyjGHQDmIz
+         453GNYUPNjPaE6LK28/KrxMCMpbZuDf4QC/jXL/XUvBT/kxekuc2GMre1E79dnlBW/nF
+         1ifQ==
+X-Gm-Message-State: AOJu0Ywx58FgCylioZNbBWKfD6dIpfFBRDG8V3QAfT/LUcetaVLZCFi5
+        fWV+0ymkhHyYvoMIIM6Hdb737tfCBWjzXLujE9k=
+X-Google-Smtp-Source: AGHT+IFlRJg2VB3CjxCY67h40Ds9BnXczCaD/wGcdFxzWU15UDLhSgRKC30D9LPOWc80GAkqLFzCRg==
+X-Received: by 2002:a19:385e:0:b0:4fd:d517:fbcd with SMTP id d30-20020a19385e000000b004fdd517fbcdmr13967001lfj.6.1693142730990;
         Sun, 27 Aug 2023 06:25:30 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id t9-20020ac243a9000000b004faa2de9877sm1142040lfl.286.2023.08.27.06.25.29
+        by smtp.gmail.com with ESMTPSA id t9-20020ac243a9000000b004faa2de9877sm1142040lfl.286.2023.08.27.06.25.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 06:25:29 -0700 (PDT)
+        Sun, 27 Aug 2023 06:25:30 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -62,16 +62,16 @@ Cc:     Andy Gross <agross@kernel.org>,
         Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
         linux-leds@vger.kernel.org
-Subject: [PATCH v5 04/37] ARM: dts: qcom: msm8960: introduce label for PMIC keypad
-Date:   Sun, 27 Aug 2023 16:24:52 +0300
-Message-Id: <20230827132525.951475-5-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v5 05/37] ARM: dts: qcom: msm8660-surf: use keypad label directly
+Date:   Sun, 27 Aug 2023 16:24:53 +0300
+Message-Id: <20230827132525.951475-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
 References: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,59 +80,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To simplify MSM8960 CDP board file, add label to PMIC keypad node.
+Directly use pm8058_keypad to declare keypad properties instead of
+referencing pm8058 top-level node.
 
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts | 20 +++++++++-----------
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi    |  2 +-
- 2 files changed, 10 insertions(+), 12 deletions(-)
+ arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts | 50 ++++++++++----------
+ 1 file changed, 24 insertions(+), 26 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
-index 6c1bc3818883..4641b4f2195d 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
-@@ -88,17 +88,15 @@ clk-pins {
- 	};
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
+index be18f1be29a1..86fbb6dfdc2a 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
+@@ -34,32 +34,30 @@ &gsbi12_serial {
+ 	status = "okay";
  };
  
--&pmicintc {
+-&pm8058 {
 -	keypad@148 {
 -		linux,keymap = <
--			MATRIX_KEY(0, 0, KEY_VOLUMEUP)
--			MATRIX_KEY(0, 1, KEY_VOLUMEDOWN)
--			MATRIX_KEY(0, 2, KEY_CAMERA_FOCUS)
--			MATRIX_KEY(0, 3, KEY_CAMERA)
+-			MATRIX_KEY(0, 0, KEY_FN_F1)
+-			MATRIX_KEY(0, 1, KEY_UP)
+-			MATRIX_KEY(0, 2, KEY_LEFT)
+-			MATRIX_KEY(0, 3, KEY_VOLUMEUP)
+-			MATRIX_KEY(1, 0, KEY_FN_F2)
+-			MATRIX_KEY(1, 1, KEY_RIGHT)
+-			MATRIX_KEY(1, 2, KEY_DOWN)
+-			MATRIX_KEY(1, 3, KEY_VOLUMEDOWN)
+-			MATRIX_KEY(2, 3, KEY_ENTER)
+-			MATRIX_KEY(4, 0, KEY_CAMERA_FOCUS)
+-			MATRIX_KEY(4, 1, KEY_UP)
+-			MATRIX_KEY(4, 2, KEY_LEFT)
+-			MATRIX_KEY(4, 3, KEY_HOME)
+-			MATRIX_KEY(4, 4, KEY_FN_F3)
+-			MATRIX_KEY(5, 0, KEY_CAMERA)
+-			MATRIX_KEY(5, 1, KEY_RIGHT)
+-			MATRIX_KEY(5, 2, KEY_DOWN)
+-			MATRIX_KEY(5, 3, KEY_BACK)
+-			MATRIX_KEY(5, 4, KEY_MENU)
 -			>;
--		keypad,num-rows = <1>;
+-		keypad,num-rows = <6>;
 -		keypad,num-columns = <5>;
 -	};
-+&pm8921_keypad {
++&pm8058_keypad {
 +	linux,keymap = <
-+		MATRIX_KEY(0, 0, KEY_VOLUMEUP)
-+		MATRIX_KEY(0, 1, KEY_VOLUMEDOWN)
-+		MATRIX_KEY(0, 2, KEY_CAMERA_FOCUS)
-+		MATRIX_KEY(0, 3, KEY_CAMERA)
++		MATRIX_KEY(0, 0, KEY_FN_F1)
++		MATRIX_KEY(0, 1, KEY_UP)
++		MATRIX_KEY(0, 2, KEY_LEFT)
++		MATRIX_KEY(0, 3, KEY_VOLUMEUP)
++		MATRIX_KEY(1, 0, KEY_FN_F2)
++		MATRIX_KEY(1, 1, KEY_RIGHT)
++		MATRIX_KEY(1, 2, KEY_DOWN)
++		MATRIX_KEY(1, 3, KEY_VOLUMEDOWN)
++		MATRIX_KEY(2, 3, KEY_ENTER)
++		MATRIX_KEY(4, 0, KEY_CAMERA_FOCUS)
++		MATRIX_KEY(4, 1, KEY_UP)
++		MATRIX_KEY(4, 2, KEY_LEFT)
++		MATRIX_KEY(4, 3, KEY_HOME)
++		MATRIX_KEY(4, 4, KEY_FN_F3)
++		MATRIX_KEY(5, 0, KEY_CAMERA)
++		MATRIX_KEY(5, 1, KEY_RIGHT)
++		MATRIX_KEY(5, 2, KEY_DOWN)
++		MATRIX_KEY(5, 3, KEY_BACK)
++		MATRIX_KEY(5, 4, KEY_MENU)
 +		>;
-+	keypad,num-rows = <1>;
++	keypad,num-rows = <6>;
 +	keypad,num-columns = <5>;
  };
  
- &rpm {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index d13080fcbeea..a34fda93d6a4 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -283,7 +283,7 @@ pwrkey@1c {
- 					pull-up;
- 				};
- 
--				keypad@148 {
-+				pm8921_keypad: keypad@148 {
- 					compatible = "qcom,pm8921-keypad";
- 					reg = <0x148>;
- 					interrupt-parent = <&pmicintc>;
+ /* eMMC */
 -- 
 2.39.2
 
