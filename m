@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EFCE789DD6
-	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 14:20:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D8D789DDB
+	for <lists+devicetree@lfdr.de>; Sun, 27 Aug 2023 14:26:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjH0MT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 08:19:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42664 "EHLO
+        id S229664AbjH0M01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 08:26:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbjH0MTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 08:19:36 -0400
+        with ESMTP id S229714AbjH0MZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 08:25:57 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C05910D;
-        Sun, 27 Aug 2023 05:19:33 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3D2410F;
+        Sun, 27 Aug 2023 05:25:55 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0DB8561234;
-        Sun, 27 Aug 2023 12:19:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2446CC433C8;
-        Sun, 27 Aug 2023 12:19:28 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5937261451;
+        Sun, 27 Aug 2023 12:25:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03124C433C8;
+        Sun, 27 Aug 2023 12:25:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693138772;
-        bh=U6oncp/62KbVKV/+0RJgkny9X6hK/dhm6Fjvyy8daa0=;
+        s=k20201202; t=1693139154;
+        bh=jvTptT0rkJ9XzewXN+Ilc6vx+jgmt3KNLGijCVtCL5E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SiX9ewwVM8stjlc3yHy6qyMofFxpTWcdQLHShhUMpus91DfcAarz4CuOLVMjXG791
-         yF5+KueOpjXT3bPoggDkrw6EJqOl8sA1TOkeGl9naLY9AT2t7AeYACawEbX7a0HqE7
-         fKek9IyfRW+imHnLonYYde7pP/xcpDwn4EYo4prxYE+fxqTG97wh9V9BweT4gqBXBy
-         tWxJDMzRBX+B4Q4KezVdEkDndAnBxOSSqhRp+KGu5xMkoKSH2Qml3cy2qetH2B6UQQ
-         +LhnX9C0h75V4xCYBzd5NRIZh4PBqSSa61OPaN/PpCyiJoMMgPz4ETcr6O6+K6bKKQ
-         7XTq9Gxl22i9w==
-Date:   Sun, 27 Aug 2023 13:19:26 +0100
+        b=PvnT0kXiTyaIeD95H55YeT7Yv3yzR/hf7mOgX0yqLMkuFSMiL6LJgCzJX5Wf5RZMH
+         OIYBXU+BYC0Khqeaun68JFwqpiFHvy6OXesHy9T7GlJ4dedbmmfYNLXkx1dxJxlTP1
+         1lL4FTP6KUp9ew6Bsko7LXVDBNIbVBxiRevxguaLNkppPTKwWfg8PUT9LHCvyUfH0+
+         TYiJxUqHGCbe32Dd4ofKN2k1Dx30DCiOx9YmU3w9s0VvlsHfsPSHvrIQLLUCkG2u2M
+         tIUJ91CX71VC0SU1L3CbZl8ibelQ0ZJKt17JOBwu6047taxjbZ5z5uUItlqVAH+1at
+         YOtybIUwFGYbQ==
+Date:   Sun, 27 Aug 2023 13:25:48 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Inochi Amaoto <inochiama@outlook.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Shengjiu Wang <shengjiu.wang@nxp.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 1/3] ASoC: dt-bindings: fsl_easrc: Add support for
- imx8mp-easrc
-Message-ID: <20230827-cackle-unseated-089a2d61ad4b@spud>
-References: <20230827023155.467807-1-aford173@gmail.com>
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Heiko Stuebner <heiko@sntech.de>, Wei Fu <wefu@redhat.com>,
+        Pei Chen <cp0613@linux.alibaba.com>,
+        Wenhan Chen <chenwenhan.cwh@alibaba-inc.com>,
+        Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] riscv: dts: allwinner: d1: Add PMU event node
+Message-ID: <20230827-frighten-casket-561437347911@spud>
+References: <IA1PR20MB49531D5F6612A5FFED734754BBE1A@IA1PR20MB4953.namprd20.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pLdAo1ePdGPvAelT"
+        protocol="application/pgp-signature"; boundary="9O421g421KqLv44b"
 Content-Disposition: inline
-In-Reply-To: <20230827023155.467807-1-aford173@gmail.com>
+In-Reply-To: <IA1PR20MB49531D5F6612A5FFED734754BBE1A@IA1PR20MB4953.namprd20.prod.outlook.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -69,62 +69,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pLdAo1ePdGPvAelT
+--9O421g421KqLv44b
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 26, 2023 at 09:31:53PM -0500, Adam Ford wrote:
-> The i.MX8MP appears to have the same easrc support as the Nano, so
-> add imx8mp as an option with a fallback to imx8mn.
+On Sun, Aug 27, 2023 at 02:45:01PM +0800, Inochi Amaoto wrote:
+> D1 has several pmu events supported by opensbi.
+> These events can be used by perf for profiling.
 >=20
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+> Link: https://dl.linux-sunxi.org/D1/Xuantie_C906_R1S0_User_Manual.pdf
 > ---
-> V2:  Fixed errors:
->      ['fsl,imx8mn-easrc'] is too short
->       'fsl,imx8mn-easrc' is not one of ['fsl,imx8mp-easrc']
->        =20
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,easrc.yaml b/Doc=
-umentation/devicetree/bindings/sound/fsl,easrc.yaml
-> index bdde68a1059c..a680d7aff237 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,easrc.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,easrc.yaml
-> @@ -14,7 +14,13 @@ properties:
->      pattern: "^easrc@.*"
-> =20
->    compatible:
-> -    const: fsl,imx8mn-easrc
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx8mn-easrc
+> changed from v2:
+> 1. move pmu node from /soc to / to avoid warnings when cheching.
+>=20
+> The meaning of T-HEAD events can be found in this pending patch:
+> https://lore.kernel.org/linux-perf-users/IA1PR20MB4953DD82D0116EC291C2177=
+7BBE2A@IA1PR20MB4953.namprd20.prod.outlook.com
+>=20
+> The patch above also provides a example that shows how to setup
+> environment and use perf with T-HEAD events.
 
-This one should probably stay const, no?
-Either way,
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
-> +      - items:
-> +          - enum:
-> +              - fsl,imx8mp-easrc
-> +          - const: fsl,imx8mn-easrc
-> =20
->    reg:
->      maxItems: 1
-> --=20
-> 2.39.2
->=20
-
---pLdAo1ePdGPvAelT
+--9O421g421KqLv44b
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOs/TgAKCRB4tDGHoIJi
-0jH9AQCC7Npm9ae30q6QfswRgEaeaCzWpth2K8fmNPeg0llAZgD/SpwyM8EKqToW
-1FU3s1ZufKnuqW2q/m7hE+yXGXitfgw=
-=PtcV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOtAzAAKCRB4tDGHoIJi
+0j5BAP91rXPhdIdPwVcemV7Mclmbtusox4Z+awvYVVbHlFkLQgD+OfL9j8jiRM53
+NprniGrPxfyWibOeShToODprEvZfAAM=
+=0gzT
 -----END PGP SIGNATURE-----
 
---pLdAo1ePdGPvAelT--
+--9O421g421KqLv44b--
