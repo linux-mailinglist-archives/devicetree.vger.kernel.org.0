@@ -2,118 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6847778B4AE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:43:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2984A78B4C2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjH1PnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 11:43:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36710 "EHLO
+        id S231767AbjH1PuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 11:50:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232459AbjH1PnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:43:16 -0400
+        with ESMTP id S229637AbjH1Ptl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:49:41 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2919D;
-        Mon, 28 Aug 2023 08:43:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A38DC5;
+        Mon, 28 Aug 2023 08:49:39 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 36CB9641E8;
-        Mon, 28 Aug 2023 15:43:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A5C5C433CA;
-        Mon, 28 Aug 2023 15:43:10 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 29A56649C0;
+        Mon, 28 Aug 2023 15:49:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D026FC433C8;
+        Mon, 28 Aug 2023 15:49:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693237392;
-        bh=l8mBaaM0TYGsK1UM6qYwETDaYnQ3tF3yQqXH6gOzhUY=;
+        s=k20201202; t=1693237778;
+        bh=EgwduPs67qveoZgcdAkipZLwkc8aT5xezge3BHjTvRg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZvZr7SMb2mlcEp9LwRjxXi9L36v182tEh1ALZPEzGhL1DI1Ps5MvKmIpbEz4ziNv0
-         Zq+dRtBIiuJd+n05fYVBQ6fW2sAYKSWgz3juJa/cap98jplL2aBtVMzNTnHIjF8iGR
-         wNTLz5GuLPU8J+SA69h+y7vtsxYyRh+v1VpdNKLJlHyNqFrHKLIDfNp26e7/Xjx9/7
-         xYAWGSGNOVN5fQvpY7qm29DYJfMTsAiUmeuMbeZWAu9iwwohsTj9x5DsgNwhdhS0h3
-         y2PsKJM11T8bYUNwu9xjCeYBDaeDWHHR1zEWw0m856BxiKMICiErNGNocG2oRLI+9b
-         DK1mrVWJXcCBg==
-Received: (nullmailer pid 607773 invoked by uid 1000);
-        Mon, 28 Aug 2023 15:43:09 -0000
-Date:   Mon, 28 Aug 2023 10:43:09 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Goud <srinivas.goud@amd.com>
-Cc:     wg@grandegger.com, mkl@pengutronix.de, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        p.zabel@pengutronix.de, git@amd.com, michal.simek@amd.com,
-        linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, appana.durga.rao@xilinx.com,
-        naga.sureshkumar.relli@xilinx.com
-Subject: Re: [PATCH v3 1/3] dt-bindings: can: xilinx_can: Add ECC property
- 'xlnx,has-ecc'
-Message-ID: <20230828154309.GA604444-robh@kernel.org>
-References: <1693234725-3615719-1-git-send-email-srinivas.goud@amd.com>
- <1693234725-3615719-2-git-send-email-srinivas.goud@amd.com>
+        b=LlHuE3se73qPb2ExjwJVhFAaLuJPJhhHepDASnBShkjs/So6Ed7mjchD/xdu4grrM
+         SCae18W1kHPOR4kOXzBdBPA1gII459kX5CiDcpahkhnUIl/uIsd57ILzWHlbo0K8cz
+         7iD3NYL3Nsj5/6b71I5YK49LQOvyMlau7denTSxBz7lglvvZ3J3xz2Fh3ehC+8KSz/
+         2Wlk04sB1/XtxwL20d6Sgr2ZN3dvF6etkDtxrzSzd/2TvWkAeS7heG++MMDSQWjeTk
+         6PfemCtrxGuGQMOJxUySc+Wi/hQsvhK6XBiA9qW+wIHHhvYrqvigh1ISAUj8ocjQlp
+         TqMbiXidClShg==
+Date:   Mon, 28 Aug 2023 16:49:33 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev
+Subject: Re: [PATCH 2/5] dt-bindings: soc: loongson,ls2k-pmc: Add missing
+ compatible for Loongson-2K2000
+Message-ID: <20230828-shrewdly-payee-c5eb091a0417@spud>
+References: <cover.1693218539.git.zhoubinbin@loongson.cn>
+ <54ee114c08f35ab8b5dc584fd76135ac9076f5a7.1693218539.git.zhoubinbin@loongson.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="EHhPijYPZzBKwGBx"
 Content-Disposition: inline
-In-Reply-To: <1693234725-3615719-2-git-send-email-srinivas.goud@amd.com>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <54ee114c08f35ab8b5dc584fd76135ac9076f5a7.1693218539.git.zhoubinbin@loongson.cn>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 08:28:43PM +0530, Srinivas Goud wrote:
-> ECC feature added to Tx and Rx FIFOs for Xilinx AXI CAN Controller.
-> Part of this feature configuration and counter registers added in
-> IP for 1bit/2bit ECC errors.
-> 
-> xlnx,has-ecc is optional property and added to Xilinx AXI CAN Controller
-> node if ECC block enabled in the HW
-> 
-> Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
+
+--EHhPijYPZzBKwGBx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Aug 28, 2023 at 08:38:32PM +0800, Binbin Zhou wrote:
+> Document the Power Management Unit system controller compatible for
+> Loongson-2K2000.
+>=20
+> This is a missing compatible, now we add it.
+>=20
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
 > ---
-> Changes in v3:
-> Update commit description
-> 
-> Changes in v2:
-> None
+>  .../devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k=
+-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pm=
+c.yaml
+> index da2dcfeebf12..7473c5659929 100644
+> --- a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.ya=
+ml
+> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.ya=
+ml
+> @@ -15,6 +15,7 @@ properties:
+>        - enum:
+>            - loongson,ls2k0500-pmc
+>            - loongson,ls2k1000-pmc
+> +          - loongson,ls2k2000-pmc
 
-Doesn't apply, dependency?
+Same thing here as the driver patch, the pmc on this newly added SoC
+appears to use the same codepaths as the existing ones. Does it share a
+programming model & should there be a fallback compatible here?
 
-> 
->  Documentation/devicetree/bindings/net/can/xilinx,can.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-> index 64d57c3..c842610 100644
-> --- a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
-> @@ -49,6 +49,10 @@ properties:
->    resets:
->      maxItems: 1
->  
-> +  xlnx,has-ecc:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description: CAN Tx and Rx fifo ECC enable flag (AXI CAN)
+>        - const: syscon
+> =20
+>    reg:
+> --=20
+> 2.39.3
+>=20
 
-has ECC or enable ECC?
+--EHhPijYPZzBKwGBx
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
->  required:
->    - compatible
->    - reg
-> @@ -137,6 +141,7 @@ examples:
->          interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
->          tx-fifo-depth = <0x40>;
->          rx-fifo-depth = <0x40>;
-> +        xlnx,has-ecc
+-----BEGIN PGP SIGNATURE-----
 
-Obviously not tested.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOzCDQAKCRB4tDGHoIJi
+0mJnAQC5PFTL8cQQxmV3Bs310RTUDpQiffTEZlPNe1A93VY/EAD5AXMuAU9VmRtZ
+K/Mv7mHKDQ7h+pNz0M2jzI1i9iLyvA4=
+=LQ8S
+-----END PGP SIGNATURE-----
 
->      };
->  
->    - |
-> -- 
-> 2.1.1
-> 
+--EHhPijYPZzBKwGBx--
