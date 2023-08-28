@@ -2,138 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B0C578A93F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 11:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E323C78A978
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 11:59:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjH1Jsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 05:48:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50972 "EHLO
+        id S229850AbjH1J7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 05:59:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230254AbjH1Js0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:48:26 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A0A6E7
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:48:20 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bc63e0d8cdso44008531fa.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:48:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693216098; x=1693820898;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zKlHsSeuVGTpkMdRS5+LwSEAr5nAZTkLGPaU8OU91kw=;
-        b=vrxU9MRTJVI2wEm1w5KY5/AjXquGR/9cwq19GOMM2vAL4TN+chHOVLgl65J+ihKaYd
-         cw6fg/G5yyta6HEYoqqiz0a3BsTxT15fKa/D9DeaV3Jnmqoc4ImNvWZR+NjcPXD79WT+
-         RZcjAmPIh7Tx2CjVtRc/vX59lJ26PwF/CvNIaUHyM4UFq3jPuCfVtShZvR/rJV/EmYLv
-         In7l+lsK32Lbn5T2RauQTaJj2vSxZsXi8nRYCXDv3XCsB6S5zRdosn0J/H1ELmtnCnq0
-         Q54ziDSkHKfpKe0/yA46BAllP8kib/Rl/BVagnMVewiCH9opTSibxIVgvmTpFmsQc7V/
-         FwEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693216098; x=1693820898;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zKlHsSeuVGTpkMdRS5+LwSEAr5nAZTkLGPaU8OU91kw=;
-        b=PM/RvEKnt1AwvqcRL7xa0yKLjY5mFp873w36DRV/Xvacz1eYy9mVu1nqlZ4MBNkWf1
-         JI8RV3JbIWYMcI0ywwMh1X5mBjCxzg8CRbelk3KlzJCycelh548B8hqrXrFGGPcWoyr1
-         fgzV1betOfr4ReDENAOSLRTI2wKhKUb9ROoxHFRcA8MoNjOiGG9dPxUOKV9pE4BbD8R4
-         vMjpmVXFLnbeFWLVxrUD4Q5zcNieL/0/h+0QZx8Q7CfvVJcdX8WRzP7z9CUe/Mob2EYb
-         /RvfZjIbeWSlodfO2J+beiw1zTTXrXFe1vfyPwjcRe3r2EGl21WU1bhphoSPgO2JMci8
-         Oskg==
-X-Gm-Message-State: AOJu0YxC+p3DzoPuB+Rp4p1YrEfyuoeD2NWutJ0ItMGE30dlyNuoa6OJ
-        aVEHz7ryow76nR9GW6FU82HlsA==
-X-Google-Smtp-Source: AGHT+IFaYsQ3+vhNlH2eIC8IHFmDnZdOcTcoqkP4FAv7PIMBSDyzbC9UH4Sgw+Mag133BPvkVzGMWA==
-X-Received: by 2002:a2e:9b18:0:b0:2bc:db99:1306 with SMTP id u24-20020a2e9b18000000b002bcdb991306mr11760946lji.38.1693216098466;
-        Mon, 28 Aug 2023 02:48:18 -0700 (PDT)
-Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id h10-20020a2e900a000000b002ba130e9a29sm1682693ljg.76.2023.08.28.02.48.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 02:48:18 -0700 (PDT)
-Message-ID: <31b528cf-53e3-41f8-921c-691614296da4@linaro.org>
-Date:   Mon, 28 Aug 2023 11:48:17 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fp4: Revert "arm64: dts:
- qcom: sm7225-fairphone-fp4: Add AW8695 haptics"
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S230245AbjH1J6u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:58:50 -0400
+X-Greylist: delayed 536 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 28 Aug 2023 02:58:47 PDT
+Received: from mout-y-209.mailbox.org (mout-y-209.mailbox.org [91.198.250.237])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B89791
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:58:47 -0700 (PDT)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mout-y-209.mailbox.org (Postfix) with ESMTPS id 4RZ5Pl4f7Lz9spy;
+        Mon, 28 Aug 2023 11:49:47 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+        t=1693216187;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=CcdTn8UfAzM6slmsMgUhSxZcDnljzHovdfdn5UI8RBc=;
+        b=PTUJNuELlPaeN8cSeuFfbUYhCLTZfBoJh+/EjxEUsdGMDLogysje1SCW1+7m4e49jaGBqd
+        bQlfgAXUj+kbiVnEOycfCKoRTJeI7dcnu11XfKV7pbjJ/PADWuuy4Kie0tBl8rmpbKslvA
+        NhahMutwHnvrGxEvoxRZQSRHqEcQmdtJQNawDUWvevVYSs+tABZfyEU7VJnTgKU3D5141k
+        pir6ImIyoDsWSYKienWPgcaZZYmBqdMVeP+UuQgRNgJKhM4LV0QUSEUdrhvUOZkzP0PXjn
+        aFZ2TV+385AD8534o+NuL6jeNTTDpyzL/7td51J8AFMEOQGmHhAzQfU5ED12Tw==
+From:   Elmar Albert <eal.git@mailbox.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Elmar Albert <ealbert@data-modul.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Luca Weiss <luca.weiss@fairphone.com>
-References: <20230827122842.63741-1-krzysztof.kozlowski@linaro.org>
- <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: display/panel: Add AUO G156HAN04.0 LVDS display
+Date:   Mon, 28 Aug 2023 11:49:42 +0200
+Message-Id: <20230828094943.123676-1-eal.git@mailbox.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-META: 7rgzgawhybhdfeyba56zuegtq5yy7img
+X-MBO-RS-ID: 5833fdb31cba27b5bb8
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.08.2023 14:28, Krzysztof Kozlowski wrote:
-> This reverts commit 413821b7777d062b57f8dc66ab088ed390cbc3ec because it
-> was never reviewed, was buggy (report from kernel test robot:
-> https://lore.kernel.org/all/202204090333.QZXMI2tu-lkp@intel.com/) and
-> used undocumented, broken bindings.  Half of the properties in this
-> device are questioned, thus adding DTS node causes only errors and does
-> not make the device usable without the bindings and driver part:
-> 
->   sm7225-fairphone-fp4.dtb: haptics@5a: failed to match any schema with compatible: ['awinic,aw8695']
->   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,tset: b'\x12' is not of type 'object', 'array', 'boolean', 'null'
->   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,r-spare: b'h' is not of type 'object', 'array', 'boolean', 'null'
-> 
-> Since bindings were abandoned (4 months since review), revert the commit
-> to avoid false sense of supporting something which is not supported.
-> 
-> Cc: Luca Weiss <luca.weiss@fairphone.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+From: Elmar Albert <ealbert@data-modul.com>
 
-Konrad
+Document support for the AUO G156HAN04.0 LVDS display.
+
+G156HAN04.0 is a Color Active Matrix Liquid Crystal Display composed of
+a TFT LCD panel, a driver circuit, and LED backlight system. The screen
+format is intended to supportthe 16:9 FHD, 1920(H) x 1080(V) screen
+and 16.7M colors (RGB 8-bits ) with LED backlight driving circuit.
+All input signals are LVDS interface compatible.
+
+G156HAN04.0 is designed for a display unit of notebook style
+personal computer and industrial machine.
+
+Signed-off-by: Elmar Albert <ealbert@data-modul.com>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+Cc: David Airlie <airlied@gmail.com>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 25b4589d4a58..cea702de664b 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -67,6 +67,8 @@ properties:
+       - auo,g121ean01
+         # AU Optronics Corporation 13.3" FHD (1920x1080) TFT LCD panel
+       - auo,g133han01
++        # AU Optronics Corporation 15.6" FHD (1920x1080) TFT LCD panel
++      - auo,g156han04
+         # AU Optronics Corporation 15.6" (1366x768) TFT LCD panel
+       - auo,g156xtn01
+         # AU Optronics Corporation 18.5" FHD (1920x1080) TFT LCD panel
+-- 
+2.34.1
+
