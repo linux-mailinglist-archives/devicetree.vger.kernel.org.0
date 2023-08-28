@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FAD778B843
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDF8078B846
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:28:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbjH1T15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233163AbjH1T15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 28 Aug 2023 15:27:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233096AbjH1T10 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:27:26 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11EC0CEC
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:27:03 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31c5a2e8501so3035282f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:27:03 -0700 (PDT)
+        with ESMTP id S233184AbjH1T13 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:27:29 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38C96CF5
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:27:05 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31c5c06e8bbso2954294f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:27:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693250822; x=1693855622;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+I1TnLNwxszbN8M9umRNZG7t7BQhMYgFfgmkLe46H00=;
-        b=zL2r5Fa2OvovZvTJsUmtRlvcM7/4bDbHwz/+SAizjrHGB3/bwjeR2RJvwhXrRdpMxb
-         RoqIv+AwrqiCQ0a7aQ+HPnVTTq5Qqa8zaWkc16WVSH4vELEvlDQUb/FPRQXBOccEcAgB
-         xSDgMDQqG4YF4Bj+o1fsth7TGz8marxRdL1FQaFxCcvfENBHV5DeLdEDKG+lEcSNUXnO
-         oT7RIOYq6Z/rRrOINKZUD3uEI7LQ+UyaLZ3nHlYALsxIUeUOgXvUHnYOpx7h1J9phke5
-         ByaenlZwxJa0vsq6DZnNhB9Ecind5uYaCRv2r6K88FeuG7Q3wphNehOj5IqZhWcxEB/v
-         Dtaw==
+        d=linaro.org; s=google; t=1693250823; x=1693855623;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wD/cr04vsZ/9/IOH8u0P4R4N+JejbyXPUXltlkLTn0E=;
+        b=M1YCfAkjhG7d0Ax1dScy8AVLJXABarbwhC5Mlo0zc9Ew3M2VGhafoaNLCteOa/m3yD
+         a51pY+t6Juattc/dWgCcW5nI0pvqguxlPp5FJ5vGaAgvMjH1KJoO9MGqXY1f0LbEVuI7
+         dJKjPfwyZAUduK1/So0X8teePZ51EJP1GYGb9KQA055/SgoaFN3Z3Q8eDsSODuQVesfi
+         g0wRYh8KooCB5ZAbAUhIOIXfrHkPDuslgoYMfLAr3MefJGv3an8ZasW5fR8A78XVetVA
+         euyZ0Es9Hjfyda8lIn2WMO4xWS1bmAZlTwxN+rxdnLC+ZZe9RX5vQ8mxd9qJ/kOV5sCJ
+         rijw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693250822; x=1693855622;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+I1TnLNwxszbN8M9umRNZG7t7BQhMYgFfgmkLe46H00=;
-        b=a3UM1XwnaTUM6w9J4Gz4XHmTCQNvdg0jhBgV3qmqomJOjPujKQDFrQ3QRKyaiI/ZFz
-         0Kt7/au4iL3ILcmVvAKGOMGZ86mnsTfe+xysmlIGeSt16U196h/YgF2afJG1gkifYpQm
-         mogI3ZeaeCLUvu7Ooh5F7vruXS4FgSmInrohbEz6HfpfcGRPHL0sMWVGo48745t50nEG
-         dmgD12pCULisbOF57GA21qgr4okiJFEVVzymwsrv36lyZY63pw3CbMp8wbFlEPVdzBSM
-         ggDL9no6oxtS4NLgGvOieAZx905tjEE27SkR986mQ3kopgolsDVDt9HAz6CywTnZwRbP
-         ZDbQ==
-X-Gm-Message-State: AOJu0YypsAp7vVLr8DlSKPQHY/wKZ8VzAtW4V7NsQ6DI42bDkwx844bd
-        LlLQW78OAwFsvWM2A52qua/AqsF1RBBoGzqZPwA=
-X-Google-Smtp-Source: AGHT+IFRafmDLjtEsJDP5s4bwx95AqWgutFAhLrZ8P//xmtwHnCubkYIeaz/6yYQH4/b3yQUfIZ6EQ==
-X-Received: by 2002:adf:f112:0:b0:317:5e91:5588 with SMTP id r18-20020adff112000000b003175e915588mr21843348wro.3.1693250822360;
-        Mon, 28 Aug 2023 12:27:02 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693250823; x=1693855623;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wD/cr04vsZ/9/IOH8u0P4R4N+JejbyXPUXltlkLTn0E=;
+        b=gWhyGbbRF1zvpwShLm4NJhuGzjaVYE2XTV3eIPIOeCut0aNV9zk3vXB91miOUZ6cDQ
+         BQuoiCYe9pq7ImKGxwDXDALdwb4/vrWuLuD9/Y7oNQohbDOI7XptOgQZXaofu7A2cg6i
+         gq190NF/UAwOx/PRQIAPcWfA9mHkorJJKak9Su47fZ0KFtpw7tgWEyrgfXcRo+GlzWak
+         NLykUFT3MakrSXeSkaavAHPpc9eH0A2+AIEF/5+QKbGV0q6Dgomhzc0LdChG1+nh/Oc7
+         NGZpWAdiHO07LV8sQ8lKpdZrF1bZ48AT5de7gJc0YwOjmjWF1S89j3LPzvBZTekHQZFJ
+         PUWA==
+X-Gm-Message-State: AOJu0YzagD1DU+yf89sh3fbKDMT1LL/NZyo2jup5xMmkqqn+mxe8ltkY
+        xT9EwrHx7V3bd8473iEZlzDItQ==
+X-Google-Smtp-Source: AGHT+IG2DjUhqTBQfx117neGDoGHgAk3CElFSNDlYxMkA8BW06/aoRj0xIELzMxoR+5xz/rb1iL0LQ==
+X-Received: by 2002:adf:e4c9:0:b0:31a:dbd8:95d4 with SMTP id v9-20020adfe4c9000000b0031adbd895d4mr19219586wrm.12.1693250823568;
+        Mon, 28 Aug 2023 12:27:03 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:8bd:7f16:d368:115f])
-        by smtp.gmail.com with ESMTPSA id i20-20020a5d5234000000b003141f96ed36sm11435319wra.0.2023.08.28.12.27.00
+        by smtp.gmail.com with ESMTPSA id i20-20020a5d5234000000b003141f96ed36sm11435319wra.0.2023.08.28.12.27.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Aug 2023 12:27:01 -0700 (PDT)
+        Mon, 28 Aug 2023 12:27:03 -0700 (PDT)
 From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -63,10 +64,12 @@ Cc:     kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [PATCH 00/11] arm64: qcom: add and enable SHM Bridge support
-Date:   Mon, 28 Aug 2023 21:24:56 +0200
-Message-Id: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
+Subject: [PATCH 01/11] firmware: qcom-scm: drop unneeded 'extern' specifiers
+Date:   Mon, 28 Aug 2023 21:24:57 +0200
+Message-Id: <20230828192507.117334-2-bartosz.golaszewski@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
+References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,47 +82,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SHM Bridge is a mechanism allowing to map limited areas of kernel's
-virtual memory to physical addresses and share those with the
-trustzone in order to not expose the entire RAM for SMC calls.
+The 'extern' specifier in front of a function declaration has no effect.
+Remove all of them from the qcom-scm header.
 
-This series adds support for Qualcomm SHM Bridge in form of a platform
-driver and library functions available to users. It enables SHM Bridge
-support for three platforms and contains a bunch of cleanups for
-qcom-scm.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+---
+ include/linux/firmware/qcom/qcom_scm.h | 101 ++++++++++++-------------
+ 1 file changed, 48 insertions(+), 53 deletions(-)
 
-Bartosz Golaszewski (11):
-  firmware: qcom-scm: drop unneeded 'extern' specifiers
-  firmware: qcom-scm: order includes alphabetically
-  firmware: qcom-scm: atomically assign and read the global __scm
-    pointer
-  firmware: qcom-scm: add support for SHM bridge operations
-  dt-bindings: document the Qualcomm TEE Shared Memory Bridge
-  firmware: qcom-shm-bridge: new driver
-  firmware: qcom-scm: use SHM bridge if available
-  arm64: defconfig: enable Qualcomm SHM bridge module
-  arm64: dts: qcom: sm8450: enable SHM bridge
-  arm64: dts: qcom: sa8775p: enable SHM bridge
-  arm64: dts: qcom: sm8150: enable SHM bridge
-
- .../bindings/firmware/qcom,shm-bridge.yaml    |  36 ++
- arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   4 +
- arch/arm64/boot/dts/qcom/sm8150.dtsi          |   4 +
- arch/arm64/boot/dts/qcom/sm8450.dtsi          |   4 +
- arch/arm64/configs/defconfig                  |   1 +
- drivers/firmware/Kconfig                      |   8 +
- drivers/firmware/Makefile                     |   1 +
- drivers/firmware/qcom-shm-bridge.c            | 452 ++++++++++++++++++
- drivers/firmware/qcom_scm-smc.c               |  20 +-
- drivers/firmware/qcom_scm.c                   | 106 +++-
- drivers/firmware/qcom_scm.h                   |   3 +
- include/linux/firmware/qcom/qcom_scm.h        | 109 +++--
- include/linux/firmware/qcom/shm-bridge.h      |  32 ++
- 13 files changed, 712 insertions(+), 68 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
- create mode 100644 drivers/firmware/qcom-shm-bridge.c
- create mode 100644 include/linux/firmware/qcom/shm-bridge.h
-
+diff --git a/include/linux/firmware/qcom/qcom_scm.h b/include/linux/firmware/qcom/qcom_scm.h
+index 250ea4efb7cb..0187fc54249e 100644
+--- a/include/linux/firmware/qcom/qcom_scm.h
++++ b/include/linux/firmware/qcom/qcom_scm.h
+@@ -59,12 +59,12 @@ enum qcom_scm_ice_cipher {
+ #define QCOM_SCM_PERM_RW (QCOM_SCM_PERM_READ | QCOM_SCM_PERM_WRITE)
+ #define QCOM_SCM_PERM_RWX (QCOM_SCM_PERM_RW | QCOM_SCM_PERM_EXEC)
+ 
+-extern bool qcom_scm_is_available(void);
++bool qcom_scm_is_available(void);
+ 
+-extern int qcom_scm_set_cold_boot_addr(void *entry);
+-extern int qcom_scm_set_warm_boot_addr(void *entry);
+-extern void qcom_scm_cpu_power_down(u32 flags);
+-extern int qcom_scm_set_remote_state(u32 state, u32 id);
++int qcom_scm_set_cold_boot_addr(void *entry);
++int qcom_scm_set_warm_boot_addr(void *entry);
++void qcom_scm_cpu_power_down(u32 flags);
++int qcom_scm_set_remote_state(u32 state, u32 id);
+ 
+ struct qcom_scm_pas_metadata {
+ 	void *ptr;
+@@ -72,54 +72,49 @@ struct qcom_scm_pas_metadata {
+ 	ssize_t size;
+ };
+ 
+-extern int qcom_scm_pas_init_image(u32 peripheral, const void *metadata,
+-				   size_t size,
+-				   struct qcom_scm_pas_metadata *ctx);
++int qcom_scm_pas_init_image(u32 peripheral, const void *metadata, size_t size,
++			    struct qcom_scm_pas_metadata *ctx);
+ void qcom_scm_pas_metadata_release(struct qcom_scm_pas_metadata *ctx);
+-extern int qcom_scm_pas_mem_setup(u32 peripheral, phys_addr_t addr,
+-				  phys_addr_t size);
+-extern int qcom_scm_pas_auth_and_reset(u32 peripheral);
+-extern int qcom_scm_pas_shutdown(u32 peripheral);
+-extern bool qcom_scm_pas_supported(u32 peripheral);
+-
+-extern int qcom_scm_io_readl(phys_addr_t addr, unsigned int *val);
+-extern int qcom_scm_io_writel(phys_addr_t addr, unsigned int val);
+-
+-extern bool qcom_scm_restore_sec_cfg_available(void);
+-extern int qcom_scm_restore_sec_cfg(u32 device_id, u32 spare);
+-extern int qcom_scm_iommu_secure_ptbl_size(u32 spare, size_t *size);
+-extern int qcom_scm_iommu_secure_ptbl_init(u64 addr, u32 size, u32 spare);
+-extern int qcom_scm_iommu_set_cp_pool_size(u32 spare, u32 size);
+-extern int qcom_scm_mem_protect_video_var(u32 cp_start, u32 cp_size,
+-					  u32 cp_nonpixel_start,
+-					  u32 cp_nonpixel_size);
+-extern int qcom_scm_assign_mem(phys_addr_t mem_addr, size_t mem_sz,
+-			       u64 *src,
+-			       const struct qcom_scm_vmperm *newvm,
+-			       unsigned int dest_cnt);
+-
+-extern bool qcom_scm_ocmem_lock_available(void);
+-extern int qcom_scm_ocmem_lock(enum qcom_scm_ocmem_client id, u32 offset,
+-			       u32 size, u32 mode);
+-extern int qcom_scm_ocmem_unlock(enum qcom_scm_ocmem_client id, u32 offset,
+-				 u32 size);
+-
+-extern bool qcom_scm_ice_available(void);
+-extern int qcom_scm_ice_invalidate_key(u32 index);
+-extern int qcom_scm_ice_set_key(u32 index, const u8 *key, u32 key_size,
+-				enum qcom_scm_ice_cipher cipher,
+-				u32 data_unit_size);
+-
+-extern bool qcom_scm_hdcp_available(void);
+-extern int qcom_scm_hdcp_req(struct qcom_scm_hdcp_req *req, u32 req_cnt,
+-			     u32 *resp);
+-
+-extern int qcom_scm_iommu_set_pt_format(u32 sec_id, u32 ctx_num, u32 pt_fmt);
+-extern int qcom_scm_qsmmu500_wait_safe_toggle(bool en);
+-
+-extern int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
+-			      u64 limit_node, u32 node_id, u64 version);
+-extern int qcom_scm_lmh_profile_change(u32 profile_id);
+-extern bool qcom_scm_lmh_dcvsh_available(void);
++int qcom_scm_pas_mem_setup(u32 peripheral, phys_addr_t addr, phys_addr_t size);
++int qcom_scm_pas_auth_and_reset(u32 peripheral);
++int qcom_scm_pas_shutdown(u32 peripheral);
++bool qcom_scm_pas_supported(u32 peripheral);
++
++int qcom_scm_io_readl(phys_addr_t addr, unsigned int *val);
++int qcom_scm_io_writel(phys_addr_t addr, unsigned int val);
++
++bool qcom_scm_restore_sec_cfg_available(void);
++int qcom_scm_restore_sec_cfg(u32 device_id, u32 spare);
++int qcom_scm_iommu_secure_ptbl_size(u32 spare, size_t *size);
++int qcom_scm_iommu_secure_ptbl_init(u64 addr, u32 size, u32 spare);
++int qcom_scm_iommu_set_cp_pool_size(u32 spare, u32 size);
++int qcom_scm_mem_protect_video_var(u32 cp_start, u32 cp_size,
++				   u32 cp_nonpixel_start,
++				   u32 cp_nonpixel_size);
++int qcom_scm_assign_mem(phys_addr_t mem_addr, size_t mem_sz, u64 *src,
++			const struct qcom_scm_vmperm *newvm,
++			unsigned int dest_cnt);
++
++bool qcom_scm_ocmem_lock_available(void);
++int qcom_scm_ocmem_lock(enum qcom_scm_ocmem_client id, u32 offset,
++			u32 size, u32 mode);
++int qcom_scm_ocmem_unlock(enum qcom_scm_ocmem_client id, u32 offset, u32 size);
++
++bool qcom_scm_ice_available(void);
++int qcom_scm_ice_invalidate_key(u32 index);
++int qcom_scm_ice_set_key(u32 index, const u8 *key, u32 key_size,
++			 enum qcom_scm_ice_cipher cipher,
++			 u32 data_unit_size);
++
++bool qcom_scm_hdcp_available(void);
++int qcom_scm_hdcp_req(struct qcom_scm_hdcp_req *req, u32 req_cnt, u32 *resp);
++
++int qcom_scm_iommu_set_pt_format(u32 sec_id, u32 ctx_num, u32 pt_fmt);
++int qcom_scm_qsmmu500_wait_safe_toggle(bool en);
++
++int qcom_scm_lmh_dcvsh(u32 payload_fn, u32 payload_reg, u32 payload_val,
++		       u64 limit_node, u32 node_id, u64 version);
++int qcom_scm_lmh_profile_change(u32 profile_id);
++bool qcom_scm_lmh_dcvsh_available(void);
+ 
+ #endif
 -- 
 2.39.2
 
