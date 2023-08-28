@@ -2,138 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E22078A65A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7FE978A670
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:27:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229543AbjH1HRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 03:17:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43820 "EHLO
+        id S229461AbjH1H0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 03:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbjH1HQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:16:42 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E060811D
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:16:36 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso363248466b.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:16:36 -0700 (PDT)
+        with ESMTP id S229794AbjH1H0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:26:45 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F09116
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:26:43 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5280ef23593so3805638a12.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693206995; x=1693811795;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hp/XWLpiEUgnU4ewp+U12wgdua4CvKI8JPQCjHO/yKw=;
-        b=xanC6T0ZvDvg9QZZGlQpFK52hRIe7CIP9jRQN+5MmuPrzxvENUlhlX4ht9ZAZE6GG9
-         yxpBHNOFFF5sX7fRM9e2s2KefgQ/hfwDdDO2+FnSVtQA2x3wZRzzoDbDLHthf9ihVrgX
-         ZuthEjdVBNLLjTyeebf6SxxpAunK90LGMI+Q1HItZa7sIUHp3IbknaNk8bEE/QWPowyn
-         w/u/EVj+1ZE0liiAhQ/ilzEv4oXQChNWMLhzIsoH+/4O0kK42xtL7lM46drQF5XxEiTg
-         dftq4JHk7ZlEjRyoazFxpWnc94k2hpGc3cpMcXGWyKlnqEOmNVwDmSPU7oeC0UTl3JuG
-         Wfgg==
+        d=fairphone.com; s=fair; t=1693207601; x=1693812401;
+        h=in-reply-to:references:from:subject:to:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lD+bH3AMRurEOkbO1lVj8kynQTkw3OHuE6DLrk9W2+w=;
+        b=HanQgw/owHxOSJ9ZXO5SKNKPj9oygSSaieibswIOOpOlWGgaCgZ3+Rwn5NlkJc+Rm9
+         p7S43H3BVVv32KfTsR0zMHuiGn881L+Z4ECw6BeambSg/nDc+EtQdPJWEcEHbM5k/bwg
+         PrfCHnIQ9hkmENzV91xXUJYohiOEYUMxT5TWkF4KQbA58Ui3wYvL+AO3aPmW8hFTaHMJ
+         DWTkBwsELhTtLNKOAObKKX5zq2dV8iqYW6US9qLwectQ2jcN53eVkUReNA8222odpdLZ
+         DFEuTniyuO/XJ6W14gwVdIl2qvRNsX8wDHeHRxKCgLdBjTmTIy/qiLwNLoHFrzx+3aaP
+         WOeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693206995; x=1693811795;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hp/XWLpiEUgnU4ewp+U12wgdua4CvKI8JPQCjHO/yKw=;
-        b=ZA623AJkn0M1ZYu+A5t1q75VKWt8pRakEGYu7BfkhW2kaf1zudJk8FaUFVX2QUJK+Z
-         NYpNGJfs/wFo7XZKi2bltdqC3OIZjPT7uPD5HZnx5BseqtU6AoK3c7QuHo/42eGitP8d
-         yLp3Sw7HQ42wvDzc5ICVdactijB2KE5nG5WRTUTm0Asapma1VsVA5KkVBbZbU8fYwFYg
-         YMVQom14Ze946O23WRqBfSv60KuomdZYlxGkls+CMh/a2C0ZJCRjDJZJ11y/+DMCVuxW
-         9xlFvNp6rowp16/1/st/tfU5s0x3KwH9HeA4OGnryiVBdB88wkf8SDPixzCj3oXFeIaz
-         Oa/w==
-X-Gm-Message-State: AOJu0Yzwu3jvADtnVyXetczr5EnJJ6CG0w1DOWctyg7te/Hxpa8gdWDT
-        pU+aG0jTxfkxXtSTQHAJ6Qwe8w==
-X-Google-Smtp-Source: AGHT+IHyMOpJrZ+Qzlb1fHwd1TbXXH7HRzRkGSV9ysIYUu/tn7Jd9mzMZNE7BODMEr/mwjXic/LV0g==
-X-Received: by 2002:a17:907:7714:b0:99b:4a29:fb6a with SMTP id kw20-20020a170907771400b0099b4a29fb6amr19071209ejc.59.1693206995315;
-        Mon, 28 Aug 2023 00:16:35 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id q4-20020a170906144400b00992f81122e1sm4292083ejc.21.2023.08.28.00.16.34
+        d=1e100.net; s=20221208; t=1693207601; x=1693812401;
+        h=in-reply-to:references:from:subject:to:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lD+bH3AMRurEOkbO1lVj8kynQTkw3OHuE6DLrk9W2+w=;
+        b=WZroqDwKuZTqPRT5E/EGMZ8krR36zh8OS5wmnrWNYxgM/oH80najJ1/yCHs5NJxmcO
+         TRF9qPPZpfgdzcV1AD0wssVUzaSQMRVYWrEMCqkUPLOGOtQyypNY5BqZdyGhmnPwaEL+
+         XsWO2yQCHt2NUZyYa8vI0UEMxCVbEgeRrIaOLJZtDAo1gAplqANOu43lWZsnWB452bO2
+         POTngh4I/Cn5jBcGvJc4aB3bx180a1I5z5zXWUo7T5rDEHTC5xsNfjHvvAGapOIMoL1X
+         g0FAVa9yDQLGMmO9IpabcPiIKDqS1G+OQVBvFI2O0aswUoiImQ1PNLXCQo7LqrplPuDE
+         Qqcg==
+X-Gm-Message-State: AOJu0YyqH9lxM21TVLg/9tlBSdIprG/iUegXFRbEPQzAAMlrQ8MWu+i/
+        0yABDREsyP1QKoUwY5xeLu9wXA==
+X-Google-Smtp-Source: AGHT+IECQi/+bCK/FrctXnpXooL6ck48hvBin19hwEds/rInCzSAhpQkXhFZ1B01lhVS1rWBX7KFxA==
+X-Received: by 2002:aa7:d9d8:0:b0:525:734a:bf30 with SMTP id v24-20020aa7d9d8000000b00525734abf30mr21317244eds.36.1693207601453;
+        Mon, 28 Aug 2023 00:26:41 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id k3-20020aa7d8c3000000b005224d960e66sm4139697eds.96.2023.08.28.00.26.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 00:16:34 -0700 (PDT)
-Message-ID: <683df184-6688-f006-c4d8-fa7000b7b771@linaro.org>
-Date:   Mon, 28 Aug 2023 09:16:33 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [RFC v4 0/4] StarFive's Pulse Width Modulation driver support
-Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        Conor Dooley <conor@kernel.org>,
-        William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-pwm@vger.kernel.org,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-References: <20230825081328.204442-1-william.qiu@starfivetech.com>
- <20230825-exclusion-doing-93532be4fa97@spud>
- <a49737f0-0a09-b558-ea06-b3d47a6e4240@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a49737f0-0a09-b558-ea06-b3d47a6e4240@starfivetech.com>
+        Mon, 28 Aug 2023 00:26:41 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Date:   Mon, 28 Aug 2023 09:26:40 +0200
+Message-Id: <CV4001I45VX3.O7ZEXEDZTHAR@otso>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fp4: Revert "arm64: dts:
+ qcom: sm7225-fairphone-fp4: Add AW8695 haptics"
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+X-Mailer: aerc 0.15.2
+References: <20230827122842.63741-1-krzysztof.kozlowski@linaro.org>
+ <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
+ <CV3ZCVK29BLY.D7Y8AEEOYLO3@otso>
+ <7859abb1-ae99-d33f-a8fc-c76304057df9@linaro.org>
+In-Reply-To: <7859abb1-ae99-d33f-a8fc-c76304057df9@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 09:12, Hal Feng wrote:
-> On Fri, 25 Aug 2023 16:06:12 +0100, Conor Dooley wrote:
->> On Fri, Aug 25, 2023 at 04:13:24PM +0800, William Qiu wrote:
->>> Hi,
->>>
->>> This patchset adds initial rudimentary support for the StarFive
->>> Pulse Width Modulation controller driver. And this driver will
->>> be used in StarFive's VisionFive 2 board.The first patch add
->>> Documentations for the device and Patch 2 adds device probe for
->>> the module.
->>>
->>> Changes v3->v4:
->>> - Rebased to v6.5rc7.
->>> - Sorted the header files in alphabetic order.
->>> - Changed iowrite32() to writel().
->>> - Added a way to turn off.
->>> - Moified polarity inversion implementation.
->>> - Added 7100 support.
->>> - Added dts patches.
->>> - Used the various helpers in linux/math.h.
->>> - Corrected formatting problems.
->>> - Renamed dtbinding  to 'starfive,jh7100-pwm.yaml'.
->>> - Dropped the redundant code.
->>>
->>> Changes v2->v3:
->>> - Fixed some formatting issues.
->>>
->>> Changes v1->v2:
->>> - Renamed the dt-binding 'pwm-starfive.yaml' to 'starfive,jh7110-pwm.yaml'.
->>> - Dropped the compatible's Items.
->>> - Dropped the unuse defines.
->>> - Modified the code to follow the Linux coding style.
->>> - Changed return value to dev_err_probe.
->>> - Dropped the unnecessary local variable.
->>>
->>> The patch series is based on v6.5rc7.
->>
->> Out of curiosity, why is this series still an RFC?
-> 
-> There was no comments received in v4. So William resend it and
-> request for comments.
+On Mon Aug 28, 2023 at 9:00 AM CEST, Krzysztof Kozlowski wrote:
+> On 28/08/2023 08:56, Luca Weiss wrote:
+> > Hi Krzysztof,
+> >=20
+> > On Sun Aug 27, 2023 at 2:28 PM CEST, Krzysztof Kozlowski wrote:
+> >> This reverts commit 413821b7777d062b57f8dc66ab088ed390cbc3ec because i=
+t
+> >> was never reviewed, was buggy (report from kernel test robot:
+> >> https://lore.kernel.org/all/202204090333.QZXMI2tu-lkp@intel.com/) and
+> >=20
+> > (I wouldn't say this part is accurate, the robot just didn't use a tree
+> > with the i2c10 node already present, it was sent in an earlier patch
+> > IIRC, but whatever)
+> >=20
+> >> used undocumented, broken bindings.  Half of the properties in this
+> >> device are questioned, thus adding DTS node causes only errors and doe=
+s
+> >> not make the device usable without the bindings and driver part:
+> >>
+> >>   sm7225-fairphone-fp4.dtb: haptics@5a: failed to match any schema wit=
+h compatible: ['awinic,aw8695']
+> >>   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,tset: b'\x12' is not of=
+ type 'object', 'array', 'boolean', 'null'
+> >>   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,r-spare: b'h' is not of=
+ type 'object', 'array', 'boolean', 'null'
+> >>
+> >> Since bindings were abandoned (4 months since review), revert the comm=
+it
+> >> to avoid false sense of supporting something which is not supported.
+> >=20
+> > I've been avoiding touching this topic again since I'm really not sure
+> > how to resolve.
+>
+> Happens, but the DTS should not have been applied in such case.
 
-The question was: why he requests for comments?
+True, back when it was applied I told Bjorn but I also thought I'd get
+the driver in soon also. Obviously this hasn't happened. So fine with me
+to revert now, and I'll add it back once the new bindings are in.
 
-RFC means *it should not be merged, it is not ready*.
+>
+> >=20
+> > There's a bunch of magic registers being written to in the downstream
+> > driver, I don't have any documentation for that so I'm not exactly sure
+> > what I can do to make nice bindings with proper properties.
+> >=20
+> > Would you recommend just hardcoding some of these properties in the
+> > driver, assuming they're constant for every AW8695, even though the
+> > downstream driver has these properties in devicetree? Because of that I
+> > assumed these properties could differ per implementation / usage of the
+> > AW8695 in different devices.
+>
+> Yes, keep them in the driver.
 
-Best regards,
-Krzysztof
+Okay.. I'll make sure to document this in the driver or commit message
+or somewhere so other people using the same AW8695 will know that this
+is hardcoded.
+
+Regards
+Luca
+
+>
+> Best regards,
+> Krzysztof
 
