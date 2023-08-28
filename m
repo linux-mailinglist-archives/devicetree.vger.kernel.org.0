@@ -2,198 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF09478AB0C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:28:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75B0D78AB65
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231189AbjH1K1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 06:27:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52296 "EHLO
+        id S231336AbjH1KaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 06:30:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231282AbjH1K1F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:27:05 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB6C8125;
-        Mon, 28 Aug 2023 03:27:01 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2bcc4347d2dso44166021fa.0;
-        Mon, 28 Aug 2023 03:27:01 -0700 (PDT)
+        with ESMTP id S231415AbjH1K3z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:29:55 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE2712F
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:29:51 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-99cdb0fd093so391046966b.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:29:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693218420; x=1693823220;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MOacA8ojmJi7uydWsnw+vyq5eodj37noaLcY/uneysk=;
-        b=jlBsnOB6z4KU50q4rbP0U8Xgd9MChxqe63qS2usMkMX5pgr7oaxFCeNxLuFSo2Av8k
-         PCySUWpQ937RovneZq+SX1nMrMVatMzTLxiIYnLmJpCodgmVGhjsqkH357J0G35KJ5jP
-         GXboBpyrUqqhYvYl3tPdSsr5V3CkFLA3dfDMZTO8bpURSqPv0rNtCie9Dr2fSPyWRnoE
-         jNItO1llflucm0hAjxBnhzPox7A4B1rw6fJeiwu6aQZTg6mrxotAnkUE8ULhDNFhcK0U
-         /ONtY6G2VU09s8hzDoJNVNa9CCkKQfIV9dRLsR/1UGzmiLoEIohme9D4XH68n4OcJqbx
-         g+BQ==
+        d=linaro.org; s=google; t=1693218589; x=1693823389;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xgWbl8lPDl41Al6QpsrWevt2TQ1ACauu918bY4j1z+s=;
+        b=bb/1I8Sm+ca97kh3b6g55IZcyB3k/N69Wdcm6OZ5O2Yp8H5f9FhmL3lg+5jbnGhVbl
+         /aTvMBwbieOYKlVj7VqcD2DYvC/Sb2uwGOy52Nm81n7mWyAGe8wXxPHQY9cU7hRPbIgZ
+         IpSm/Fi+TSeUmBhFZyp6CFHKrjsAFb2MENhkXo9LmULlSXI5J7+G+/sCvPC5ghCRTq49
+         5w1GsbIl2CSHsNuFWTlUHtPXfRQMtfWXjbtOaG+rurF3wcLeDJkr8L8/hNiF7qn6jLGU
+         UVguUParRgO9JTc5Q9oAlvTZABJDhe+0Zu7M99q2cf4ckB/byeUUkDUQc4R8SQ8TUlaL
+         u/xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693218420; x=1693823220;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MOacA8ojmJi7uydWsnw+vyq5eodj37noaLcY/uneysk=;
-        b=jJMIMg/Am6b9CzBwM2wWCga10srje49mGKk3/W8SvgJtTA8VfvZJotG6J3GmT5KYUK
-         REqqo0zGB69AglcwZbFhPUY6hVzYKUaTxKZiuzV0tNPXBfNJ2rJXGHh6iUBdB68OxoPk
-         +Z5Zc5Q26bsmTA0C88btOFHjlth6lXWMPKVfC6TFPg3U1u+wzQcLCH6PH7P39CuoGJLM
-         tzZZWzEjKxhFLT7LFoC+M6j6bj+16ZtB5TD9esK9igPT0ATOAsM097YXUlWGNPhtLBSn
-         7WjDzCuck5+mmqLbVuEQpTtRb/6pp4GLA9OT9Cf106aVAW74nUETS3JCf8fFsCAyfqg9
-         pD4g==
-X-Gm-Message-State: AOJu0YxuqLIyQZ9XsvaYt4FAMILRLk28jCzQW/tWYBCGLC5eqH64JJX3
-        gqAE+MfV3TMKpwaPU0dtSp2JqoBOFIYAL0W+3kU=
-X-Google-Smtp-Source: AGHT+IEDrPgEGY0GfDpk0pi8fMwuKJQ0qRtUXLd2M5JPp+MzHCQHn6IogguYmjIzPCiFOBH7gY1VEIc+bFzB4alMpBQ=
-X-Received: by 2002:a2e:9210:0:b0:2b7:7c:d5a1 with SMTP id k16-20020a2e9210000000b002b7007cd5a1mr18047149ljg.23.1693218419966;
- Mon, 28 Aug 2023 03:26:59 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693218589; x=1693823389;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xgWbl8lPDl41Al6QpsrWevt2TQ1ACauu918bY4j1z+s=;
+        b=DHNgDlRJ6eKoVTUIwxdPEIFV17Uc+iECtx66rjRlejhPC1DNaXBUtHIskAwHB40m+G
+         0cmpzJ7/DnOOeZP5jgUC/HZXoZ9es/JnQyElKA2H3ccIZ1GjhJpDpho1Wzc5UIxYqXUs
+         BZnbHpOVEIshyV2yxoXmx6ORI0CSxSaC7U04Q+fht/DicB/Ousi3oTu39j7kP1CnaDoj
+         rNisJWV30HxT2eO+o86AGnIExbZJg8oiOG6sK7bgiEGlCMTSQXOBNT9VL3+lRjvN4Lrm
+         nT0f30qOc/PqvZhnSz+HFGjjIU5ro8HMY9908SieHK1KxOJwVXAfIp+K/R4wKAw9pQ1W
+         vVvQ==
+X-Gm-Message-State: AOJu0YybHL32RtSjMbbpH7+fDVnPQ4Q7kQ4jnViETSb0XCQUYIHwq3+2
+        AZy9Ur6nfLd+iggLyEsHq1wvAQ==
+X-Google-Smtp-Source: AGHT+IEvflAPEhQk9eVSwuVE3hLZKV3uv9/1Nn0BRVXbRA8n/i3Y6qZDfP5ehGeIoJ4+m69+C2I4Ug==
+X-Received: by 2002:a17:907:7897:b0:993:f15f:efb7 with SMTP id ku23-20020a170907789700b00993f15fefb7mr19814166ejc.8.1693218589623;
+        Mon, 28 Aug 2023 03:29:49 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id e5-20020a170906044500b0099b8234a9fesm4462264eja.1.2023.08.28.03.29.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 03:29:49 -0700 (PDT)
+Message-ID: <5cb45ff4-a279-f47e-8d2f-700856cdff0f@linaro.org>
+Date:   Mon, 28 Aug 2023 12:29:48 +0200
 MIME-Version: 1.0
-References: <20230827203612.173562-1-tmaimon77@gmail.com> <20230827203612.173562-2-tmaimon77@gmail.com>
- <eccc6a7a-b30f-8c77-77cb-5deef47a1954@linaro.org>
-In-Reply-To: <eccc6a7a-b30f-8c77-77cb-5deef47a1954@linaro.org>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Mon, 28 Aug 2023 13:26:48 +0300
-Message-ID: <CAP6Zq1jj0WDbtL1zhr=tVyh2GPRy6-=oHjVURmJzNRm3n0HBNg@mail.gmail.com>
-Subject: Re: [PATCH v6 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO documentation
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx65: correct PCIe EP phy-names
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230827114519.48797-1-krzysztof.kozlowski@linaro.org>
+ <1c2faca3-d10c-429e-961d-447ae076d319@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1c2faca3-d10c-429e-961d-447ae076d319@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 28/08/2023 11:53, Konrad Dybcio wrote:
+> On 27.08.2023 13:45, Krzysztof Kozlowski wrote:
+>> Qualcomm PCIe endpoint bindings expect phy-names to be "pciephy":
+>>
+>>   arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dtb: pcie-ep@1c00000: phy-names:0: 'pciephy' was expected
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+> drivers/pci/controller/dwc/pcie-qcom-ep.c
+> 549:    pcie_ep->phy = devm_phy_optional_get(dev, "pciephy");
+> 
+> welp looks like this never worked..
 
-Thanks for your comments
+And if only it could have been spotted with some automated tooling,
+before posting to LKML...
 
-On Mon, 28 Aug 2023 at 10:10, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 27/08/2023 22:36, Tomer Maimon wrote:
-> > Added device tree binding documentation for Nuvoton Arbel BMC NPCM8XX
-> > pinmux and GPIO controller.
-> >
-> > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
->
->
-> > +  '^pin':
-> > +    $ref: pincfg-node.yaml#
-> > +
-> > +    properties:
-> > +      pins:
-> > +        description:
-> > +          A list of pins to configure in certain ways, such as enabling
-> > +          debouncing
->
-> What pin names are allowed?
-Do you mean to describe all the allowed pin items?
-for example:
-      items:
-        pattern:
-'GPIO0/IOX1_DI/SMB6C_SDA/SMB18_SDA|GPIO1/IOX1_LD/SMB6C_SCL/SMB18_SCL'
-or
-      items:
-        pattern: '^GPIO([0-9]|[0-9][0-9]|[1-2][0-4][0-9]|25[0-6])$'
+> 
+> 
+> Fixes: 9c0bb38414a4 ("ARM: dts: qcom: sdx65: Add support for PCIe EP")
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-is good enough?
->
-> > +
-> > +      bias-disable: true
-> > +
-> > +      bias-pull-up: true
-> > +
-> > +      bias-pull-down: true
-> > +
-> > +      input-enable: true
-> > +
-> > +      output-low: true
-> > +
-> > +      output-high: true
-> > +
-> > +      drive-push-pull: true
-> > +
-> > +      drive-open-drain: true
-> > +
-> > +      input-debounce:
-> > +        description:
-> > +          Debouncing periods in microseconds, one period per interrupt
-> > +          bank found in the controller
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +        minItems: 1
-> > +        maxItems: 4
-> > +
-> > +      slew-rate:
-> > +        description: |
-> > +          0: Low rate
-> > +          1: High rate
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        enum: [0, 1]
-> > +
-> > +      drive-strength:
-> > +        enum: [ 0, 1, 2, 4, 8, 12 ]
-> > +
-> > +    additionalProperties: false
-> > +
-> > +allOf:
-> > +  - $ref: pinctrl.yaml#
-> > +
-> > +required:
-> > +  - compatible
-> > +  - ranges
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +  - nuvoton,sysgcr
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    soc {
-> > +      #address-cells = <2>;
-> > +      #size-cells = <2>;
-> > +
-> > +      pinctrl: pinctrl@f0800260 {
->
-> Nothing improved here. Test your DTS. This is being reported - I checked.
-what do you suggest since the pinctrl doesn't have a reg parameter,
-maybe pinctrl: pinctrl@0?
-BTW, I have run both dt_binding_check and W=1 dtbs_check, and didn't
-see an issue related to the pinctrl: pinctrl@f0800260, do I need to
-add another flag to see the issue?
->
-> > +        compatible = "nuvoton,npcm845-pinctrl";
-> > +        ranges = <0x0 0x0 0xf0010000 0x8000>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        nuvoton,sysgcr = <&gcr>;
-> > +
-> > +        gpio0: gpio@0 {
-> > +          gpio-controller;
-> > +          #gpio-cells = <2>;
-> > +          reg = <0x0 0xB0>;
->
-> Keep lowercase hex.
-will be done in V7
->
->
-> Best regards,
-> Krzysztof
->
+
+Thanks
 
 Best regards,
+Krzysztof
 
-Tomer
