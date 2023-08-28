@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7399A78A954
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 11:53:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4783578A95A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 11:54:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229833AbjH1Jw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 05:52:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53514 "EHLO
+        id S229662AbjH1JyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 05:54:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230186AbjH1JwH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:52:07 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99B42103
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:52:04 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4ff8cf11b90so4706352e87.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:52:04 -0700 (PDT)
+        with ESMTP id S230267AbjH1Jxz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:53:55 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E0F10C
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:53:52 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-50098cc8967so4760053e87.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:53:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693216323; x=1693821123;
+        d=linaro.org; s=google; t=1693216431; x=1693821231;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MSaE3LvpwK8X6nkJiDbhzi5fZ4edk2FSMXZHs61BNJY=;
-        b=Sego55yAHBl3ZajQTyZoFvNg7IMEEXUZbRuiXpazegRQz41w23UqV+FHQr9FecO90m
-         jJKGaelQyKOAHdP0JIW+waMlnx7gK9VF/gHVD9Vqliq2ESV69bBfAYRBTC7y8rr6U2SQ
-         QrodsvEBbaoS/7fKcxjcl4o3FWXWBI0glMAkDHHYmH+j5voT6nQsjbFVoob7cF0/wv76
-         +UrNH1L+LWuAScV29f/jvD3c1iC3JeCDz7l6WcKZopR4Qd4tli6o5OMJ6Fr9C1F//kqm
-         EaGNYDj1OgVE30jVer+qOmoghd1jLw/Amq6ODzdTIiwIh5Qn4HvXTIwerfshGoyEs1f0
-         b35A==
+        bh=WhS4Tz6XsawIp89IhYulev3HaSOI9qsa3IDRG6a2MP8=;
+        b=Em1PYjMgjSVnHVWIMNDOE7865WdvOxJxKiwGxxBYUSc7E5DmgtV+7xEkklyZ6ShTX6
+         G8LV2gUsqspnW+IzYw3cZlKBmfft+FH7JVAoj/6JJP3w0wUpfZDIbFvC00/lsEp3zozl
+         t3CcJE0msOwWR7PLWAh0TKgVx1bXvDUxaUoE63SGaE1K3boM0u0n+6mdRa7FR7/XpNeA
+         FvMkZFPA6bbJ4WMyhbe1D7RZOmEvO/7tlAiRMhFwU68DJdXsWxJxQN7eUmOsVwCGvN5O
+         1Ls4uf3Blq0pvgOlH9W/ggQ/vfk+A5A1Aqj2ZAcL3yddeoGvPjGajexNr0h9cmh5ochR
+         kiLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693216323; x=1693821123;
+        d=1e100.net; s=20221208; t=1693216431; x=1693821231;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MSaE3LvpwK8X6nkJiDbhzi5fZ4edk2FSMXZHs61BNJY=;
-        b=Kdu/bQAH6iDTakJi0z+6FltCZfhtnONoSGGIAGO85pWsgp1Gakv8lM4gG6wnBAXvtf
-         bK4xlM/Mcg5HFuaKAuUGf+7UQa65hDbheR6F1ZKTM4OkAfnR8peJld3PKGMBbhbguf9x
-         4reXSe5/OtK2mzHTOorrIKzyDY0RNo1gIixgVVSNANKgHbGY0Jir9x52yb0daXdVpXoc
-         1ZnP54BkVxIcsUJxqbAaqKYRKMkHcj6YIXX3fzdLnIvhe7XTFGGi/1m8YABtHicp10jZ
-         mbQpDe4W9xkPI9BBos8PW729Dzr9C+3p9u7nqHQWc/dA0Y6WkOwe1/8zPfmdH+7zH4va
-         5HXQ==
-X-Gm-Message-State: AOJu0Yw5vO+MoJGi93Unxkik67laZ2i0VApObeyh9Qe6Q9JhfHo0iry2
-        PQZfla9KFmVRIeDmz7agqLGMgg==
-X-Google-Smtp-Source: AGHT+IHpF0cGweb+e8s2J6qzOOcIyvyMJi4yKqGqGjTZWpB8uXfCVHP4N5+ePLGgXb2ouHLaz45nuw==
-X-Received: by 2002:a05:6512:318f:b0:500:b74b:e53 with SMTP id i15-20020a056512318f00b00500b74b0e53mr2730908lfe.46.1693216322925;
-        Mon, 28 Aug 2023 02:52:02 -0700 (PDT)
+        bh=WhS4Tz6XsawIp89IhYulev3HaSOI9qsa3IDRG6a2MP8=;
+        b=AiYlJUHcMeY15oynLUJ1iVSmM8V/mJIxjbO5WBnkn116ILuXfwXwGm8g5O7IX/9kgH
+         EX2GC5i+hIvsBvxSE33wyah0DyL1jqUw14tJfsHkL5ciOAqNq7WMryH6iu55MroS8yc8
+         rltffjTp3yxYz//X7IG+60FJY5aqfUR/qUFpTvbbb/X53H/qBylRD4LOgB+50A8Fydq2
+         DO4PdulpeDQhDcQEkmXKaDFgSipKeSTZ8bHNJrtwzF3uWOTUszZipavb3Zln3uAlQFap
+         ie2ilZ57KIXrFs5013qBDyn3dlD168iLXZgMmSQVSs9Imqa2fh94rfPOZWhrIZkk+Aiw
+         i8eQ==
+X-Gm-Message-State: AOJu0YwBfNgJqBYtrEYKjiy6+ypIj3o1fefiCz28nT1Q7obMkrfjkil5
+        xI6CHzqHWqZL/OUsHWPkp62CoA==
+X-Google-Smtp-Source: AGHT+IG05YpZkQ3E/wkNvQwgkqFZ5u4ikOtkfPgT8CcrK0C7Sh5KnbqDnW344yrfLfluxbUIOCzxuw==
+X-Received: by 2002:a05:6512:3d15:b0:500:af82:7dd6 with SMTP id d21-20020a0565123d1500b00500af827dd6mr4890553lfv.41.1693216430645;
+        Mon, 28 Aug 2023 02:53:50 -0700 (PDT)
 Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id g25-20020ac25399000000b004ff8cd27a61sm1503303lfh.213.2023.08.28.02.52.01
+        by smtp.gmail.com with ESMTPSA id a5-20020a19f805000000b0050078c9b53asm1501045lff.231.2023.08.28.02.53.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 02:52:02 -0700 (PDT)
-Message-ID: <1e05953c-34b5-4b4b-bb88-29984c85f26b@linaro.org>
-Date:   Mon, 28 Aug 2023 11:52:01 +0200
+        Mon, 28 Aug 2023 02:53:50 -0700 (PDT)
+Message-ID: <1c2faca3-d10c-429e-961d-447ae076d319@linaro.org>
+Date:   Mon, 28 Aug 2023 11:53:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: qcom: sdx65: correct SPMI node name
+Subject: Re: [PATCH 1/2] ARM: dts: qcom: sdx65: correct PCIe EP phy-names
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -63,7 +63,7 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230827121459.62539-1-krzysztof.kozlowski@linaro.org>
+References: <20230827114519.48797-1-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,25 +100,33 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230827121459.62539-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230827114519.48797-1-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.08.2023 14:14, Krzysztof Kozlowski wrote:
-> Node names should not have vendor prefixes:
+On 27.08.2023 13:45, Krzysztof Kozlowski wrote:
+> Qualcomm PCIe endpoint bindings expect phy-names to be "pciephy":
 > 
->   qcom-sdx65-mtp.dtb: qcom,spmi@c440000: $nodename:0: 'qcom,spmi@c440000' does not match '^spmi@.*
+>   arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dtb: pcie-ep@1c00000: phy-names:0: 'pciephy' was expected
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
+drivers/pci/controller/dwc/pcie-qcom-ep.c
+549:    pcie_ep->phy = devm_phy_optional_get(dev, "pciephy");
+
+welp looks like this never worked..
+
+
+Fixes: 9c0bb38414a4 ("ARM: dts: qcom: sdx65: Add support for PCIe EP")
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
