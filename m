@@ -2,93 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A1B78B868
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1DCC78B870
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbjH1Tbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 15:31:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54664 "EHLO
+        id S232453AbjH1Tdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 15:33:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232031AbjH1TbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:31:11 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5A11124
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:30:48 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9a5be3166a2so120527266b.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:30:48 -0700 (PDT)
+        with ESMTP id S232239AbjH1Td0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:33:26 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A0D120
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:33:23 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so4721048a12.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:33:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693251047; x=1693855847;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1693251202; x=1693856002;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7FF3uWcCF/fBgcKyKYxNsxhAz0t2E3t1fA13G/6hVqE=;
-        b=WEEl2jADfaEkZMnwQHrnA1kfCneRgIh7ji/YjnBUeF0qSyiwTFRa19bkGzczgTWQPu
-         YAI+ASpbvsAVvg9AF3d4lXje4x8ZTlqkqr8yGmz01jFYVdqYUvdCDAJBSphkK3F8sVsr
-         4oI1cy7A6KefK+HFJ92pGJroNIlakD2oKPyTDZQ86VGmJGQbv73EIiuMTrLP7tuqpjoR
-         zyaHDvMAjfVLbA8m0Jf65GftzmQa/kvaOXGKmcIJ2AJSRXUN77U08wuBdauzgr6uENt/
-         0os0OO4SHMceKiPHCaujMPJbZFGrN3vmp+8buPKqqQgOcXK7gDotT8KdN9esZbaumi3J
-         8F9w==
+        bh=NXKJ9YSCjc+uvpiGbHAU6z0Pnzn1Gof/Cxg44Dd22MU=;
+        b=kgWRDa5GDd0Aj+nyg+JUQbLe5nBZ4OWVsxNaMKUgRaCvMpVlae5b0gkwhgy7N+dl2F
+         WePZTOyQl3EtJTSpufJ2ZUlRh8maRgkuAV9lZHxsqLzaASB0/aKPZjMNux3xFF80swF1
+         IlB04OxP8z434/crCuzUaRRJxFXcXBCW57F0RJJFJNH7tXg11t+/sxcBm12S/Ht1PA7C
+         WB5RKIYfFtHlB+ggcMtD/xI+ZdtJl2/8iEDfSUQX+Kk9wtNzpm/Qsu/lGbM2wPyA89xm
+         JxOjmrBJFbsBGqa69UBljK8sVi96RUONBJkJsBkSvMxaow8oFKKE268bLWFp4Fcj0fwK
+         7mLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693251047; x=1693855847;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1693251202; x=1693856002;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7FF3uWcCF/fBgcKyKYxNsxhAz0t2E3t1fA13G/6hVqE=;
-        b=MTahYw2fh8Bo26QTQjldQHbMkZRHTDVpjMmgPCtc7bboayXRmIE/Dsh/VoNsdgKnls
-         1o+vU/noYxQy/aHt/HhqoDMCaOKQ5P1hVRuYGzWMOnkq0FKbWbzmhrCYdEgozxUd/DLB
-         LBG6DCtp3rlmA51Bv3K5Alwckyj4cN0s7T+NGOgz+jusIrTXrmFRqFFZ6xfr/PuxWoEE
-         4lnYoniGS1t+92Db5W7PI4XywCJrjbjgOG1pBfKSZ4Psrpw+s2JIdSYSPgD/68Xatzi6
-         rEQ/cZf6VyCRJ6kEil9yJpejkakjuJr6U5sM447ytJnq1A1Lt1GGokMMTgSDF22woY7L
-         F38w==
-X-Gm-Message-State: AOJu0YxVVPPD3GCwkbV1CN6HqTq40JZLzfRVpEQvLYDWAJEQ/R5O3sdU
-        33pW3jb6OXvz+CgzsdXLC43ZMw==
-X-Google-Smtp-Source: AGHT+IEKG5tzShBpR2V6RQtN9mM20TxelL4ewWN+rJjWEoIaBql1h7z0FvNmPsb79dAbg0aOhovkIQ==
-X-Received: by 2002:a17:907:778d:b0:9a1:d7cd:603a with SMTP id ky13-20020a170907778d00b009a1d7cd603amr12300358ejc.58.1693251047351;
-        Mon, 28 Aug 2023 12:30:47 -0700 (PDT)
+        bh=NXKJ9YSCjc+uvpiGbHAU6z0Pnzn1Gof/Cxg44Dd22MU=;
+        b=HM700GUEWdyWAUAlQfFAR2dRP4l9nwxQw/BdWf0S71mcFEXydMvnJrnmyiTHkWvKML
+         ofz/mytihJl7stOQ+Z/eefzCdeieyHMk2AIGoHSdI4aMvFezztIhIUS6lD/KIksI5jOC
+         O0QVBWzv4GlQFUSmy9T2vFJnz8BVKLaZAlgdXGey16xnOxjDkzyM2MNpd8i3tUuysc5w
+         FWUee5zF4e6gF9UXAyJqeNjcYs473UVfE3BbBFchN/K6L+0EHoQX47bc17lNZbK0WNI3
+         fm8nVfHcLMYcXiUAfuXPjC1Tjd36Xnhiv5PTAKkOyzkwOZ2qOQPnlMmNVVE7R6VS5QkZ
+         abbg==
+X-Gm-Message-State: AOJu0Yybwt6WdWEYF7YP2u9+vCEsGA5IV+1RA6RyYA1+nlxiJqZETsOF
+        S8EXMjqHTfZZVcHuKxeJ206SDg==
+X-Google-Smtp-Source: AGHT+IEgBOCwkjHNLDNFijHoMW/wM1nrW+YrqvIQrnl/sFAbs0FySay/NbJl0CtHk1RSx6qwczSsKA==
+X-Received: by 2002:a17:907:7895:b0:9a1:f58b:96d9 with SMTP id ku21-20020a170907789500b009a1f58b96d9mr11327518ejc.58.1693251202274;
+        Mon, 28 Aug 2023 12:33:22 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id h7-20020a170906718700b0099bcf1c07c6sm5036313ejk.138.2023.08.28.12.30.46
+        by smtp.gmail.com with ESMTPSA id y11-20020a1709060a8b00b00997c1d125fasm5060429ejf.170.2023.08.28.12.33.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 12:30:46 -0700 (PDT)
-Message-ID: <2bd01950-20e0-51f1-91d2-88c9ee2e8dc0@linaro.org>
-Date:   Mon, 28 Aug 2023 21:30:45 +0200
+        Mon, 28 Aug 2023 12:33:21 -0700 (PDT)
+Message-ID: <d9560045-5c8e-96a6-48dd-c97190d0cdd2@linaro.org>
+Date:   Mon, 28 Aug 2023 21:33:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml
- file
+Subject: Re: [PATCH 3/7] thermal/drivers/qcom/tsens: Add support for IPQ5018
+ tsens
 Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
- <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
- <PAXPR04MB9185957B729588D3E7CA3A5089E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <51fe3126-16ba-ade6-b106-e3683f96ad26@linaro.org>
- <PAXPR04MB9185DC79721E78E631F9889589E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <154b36de-652b-3931-96e6-04e99253a09f@linaro.org>
- <PAXPR04MB91852AD4E5242306B57A910B89E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <f3e89479-14ab-d1d0-ad87-6f457f313c39@linaro.org>
- <PAXPR04MB9185D87525AA88A8C3543EEA89E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <465e61a0-895d-54b9-d1b9-424265c82855@linaro.org>
- <PAXPR04MB91851302EAB989EC8261AEFD89E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <1693250307-8910-1-git-send-email-quic_srichara@quicinc.com>
+ <1693250307-8910-4-git-send-email-quic_srichara@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB91851302EAB989EC8261AEFD89E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <1693250307-8910-4-git-send-email-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -96,58 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 21:23, Shenwei Wang wrote:
->>>>>     reg1: regulator-1 {
->>>>>       compatible = "regulator-fixed";
->>>>>       regulator-name = "REG1";
->>>>>       regulator-min-microvolt = <3000000>;
->>>>>       regulator-max-microvolt = <3000000>;
->>>>>       gpio = <&lsio_gpio4 19 GPIO_ACTIVE_HIGH>;
->>>>>       enable-active-high;
->>>>>     };
->>>>
->>>> There is a chip. This is the chip. If you have there only GPIO pin,
->>>> then your DTS is just wrong. Drop it. If you learn from wrong DTS,
->>>> then sure, power-domain- regulator seems like great idea...
->>>>
->>>
->>> When you talk about the chip, can you please be more specific?
->>
->> What to say more? The device node you quoted above is the regulator. You
->> brought specific example and now claim this is not a regulator, but just GPIO.
->> Please fix your DTS.
->>
+On 28/08/2023 21:18, Sricharan Ramabadhran wrote:
+> IPQ5018 has tsens IP V1.0, 4 sensors and 1 interrupt.
+> The soc does not have a RPM, hence tsens has to be reset and
+> enabled in the driver init. Adding the driver support for same.
 > 
-> The fixed-regulator is a virtual regulator driver that uses the GPIO pin. 
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 
-We do not talk about drivers but bindings and DTS. Why do you bring
-again drivers, all the time?
-
-> You claimed this
-> as a hardware chip.
-
-??? Sorry, this is getting boring. The DTS-snippet is a hardware chip.
-If it is not, then drop it from your DTS. I insist. Srsly, third time I
-insist.
-
-
-> 
-> The regulator-pd driver also uses the same GPIO pin. 
-
-Again, what is with the drivers? Can you stop bringing it to the discussion?
-
-> You now claimed this as a software layer.
-
-???
-
-> 
-> What's your standard?
-
-I don't think there is anything more to say. You clearly do not
-understand what is DTS, schematics and how the actual hardware looks like.
-
-I am not going to respond more to this patchset (which is a clear NAK
-just in case).
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
 Best regards,
 Krzysztof
