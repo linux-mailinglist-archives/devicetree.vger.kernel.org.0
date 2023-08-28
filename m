@@ -2,165 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 580BF78B472
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:30:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEFE78B460
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:25:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229699AbjH1PaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 11:30:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57850 "EHLO
+        id S229880AbjH1PYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 11:24:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjH1P3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:29:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66CFB124;
-        Mon, 28 Aug 2023 08:29:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 05A4961C64;
-        Mon, 28 Aug 2023 15:29:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 279ABC433C8;
-        Mon, 28 Aug 2023 15:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693236572;
-        bh=dhT/NBwMHiuduDbdnzNZlW5Q3qXsPNbsQZIelzXVMWU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BG530VfhxgnihhbytfskWoXrhTi2MQzMTmq/d57QU13tr3eamljeLiF0YoBH2zq5C
-         aavWkg2o44ar0++FFqxCNWh5aR8e5YVvLSVK20N7XPlmTy8BgbIfy3hIzXIPpdRNlB
-         GDUCvCu/oWcbxhPTk0YYt76vjBc1iVEzsmYkX3kofUqpeLxkGv1WIhmXhJiAmwtiv2
-         2NRF17TC5rq85vyA9jAV+vdbxJz27qbwWMppsaG+UlPrGKtjeUVarjcBXxtjm0q2Gg
-         RiUzuLN36ijcYdO5w4j1/mF0Mgc5yVZCAPptIt3nsf5a4gh40MZCt3eP/tMetteKTC
-         TfG38aU1upUvA==
-Date:   Mon, 28 Aug 2023 23:17:36 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>, Maxime@web.codeaurora.org,
-        Coquelin@web.codeaurora.org,
-        Simon Horman <simon.horman@corigine.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH net-next v2 2/3] dt-bindings: net: add T-HEAD dwmac
- support
-Message-ID: <ZOy6kLGZ1lR0I2sC@xhacker>
-References: <20230827091710.1483-1-jszhang@kernel.org>
- <20230827091710.1483-3-jszhang@kernel.org>
- <qc2nyqmuouig6qww2q7orlwzvcprjyruyeuyr5dqdpxysajjpv@6fzsgjgokry7>
+        with ESMTP id S231256AbjH1PYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:24:06 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 733BF129
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 08:24:02 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52a06f5f556so4487386a12.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 08:24:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693236241; x=1693841041;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=72V2x3mKZTjFbmEG9hhyFoPHvMJYQFTBTRNOrHHTebM=;
+        b=Ompvoblzs3Cp9UAhmm1CCL0laidAubR1emolqZQO5pGzyhcP5fs27FuiKSLo4jbnPc
+         ZJZLYcNrvuR/XnSGJPL2y0G4v0tg33+1UYeMtCbZu0WgF67eIUHuVcMOpMKcPCsL4knG
+         m9TboCQzBqEplZyQn0SsgMTnlApvrsQ54VSs6FOGePvX0+ntcwY2BWWLZk/IOxRqjbs/
+         mn5p+vlgdnCTymfmgLIQjuiREmqlFVqR+Oz2ZHZvYJaMuu1dY0xO4iQBBFAZKBKOmZgT
+         LZw3R0psqj+/QYYYyk4y3Co0Kixhlw5D0e7FWLyyMI4E5qS4VBtiXOuIUiCYGYPER3SG
+         ZqqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693236241; x=1693841041;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=72V2x3mKZTjFbmEG9hhyFoPHvMJYQFTBTRNOrHHTebM=;
+        b=dAa2Fd9qGujtx7MgLqylntPahoq08WmA2xfzoE0RWC3inBPw8Zeg+AAyH6hgeuSiDt
+         LFJRdJEvGsfekCl9aBpbuSjc5lKutYiW+b3Uu3i+m/c8mB3wZ2dEnczpCsdNHhwXiEbF
+         4PCIPLNakpjCP518DCohNpxhWmxUJw2zrkNM1CsEbo3LWVmHPR02I3uS7siRqUx+ooSI
+         5JqYEJ9hbcwvfduVGRLy6oL37gxuoCTlmSD9fUgtxh+k+APg4AYbm+qqCpXJcQKkxxe9
+         m2EQINMRQF3ZJbBIE/jQT9nmL7BO1+7f+IaDYvtDQA8s9CwX378tJLpHexRJQ4fuobE7
+         Tcmw==
+X-Gm-Message-State: AOJu0YzZ1yzxQuQSmw9lAeFRghjj+CxdqQCrQ54VjiyKgeTbZPnIdBXc
+        1wgzFEmyoEeI48OF+MEQZj7iSQ==
+X-Google-Smtp-Source: AGHT+IH9zZnahhAaJO4DU+2Gx+LWE+isMcEILa2c7LEidmge9Dr+hODq28bZiFtKa1uoaQGgr8j/Ig==
+X-Received: by 2002:a05:6402:12cb:b0:522:3410:de23 with SMTP id k11-20020a05640212cb00b005223410de23mr20309002edx.3.1693236240895;
+        Mon, 28 Aug 2023 08:24:00 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id f15-20020aa7d84f000000b0052228721f84sm4588463eds.77.2023.08.28.08.23.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 08:24:00 -0700 (PDT)
+Message-ID: <89c73602-43f1-30a4-ad58-637aadacd653@linaro.org>
+Date:   Mon, 28 Aug 2023 17:23:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <qc2nyqmuouig6qww2q7orlwzvcprjyruyeuyr5dqdpxysajjpv@6fzsgjgokry7>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
+To:     Vlastimil Babka <vbabka@suse.cz>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Jani Nikula <jani.nikula@intel.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+        Kees Cook <keescook@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        quic_pkondeti@quicinc.com, linux-kernel@vger.kernel.org,
+        kernel@quicinc.com, workflows@vger.kernel.org,
+        tools@linux.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <cover.1693037031.git.quic_gurus@quicinc.com>
+ <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
+ <87jztf37ny.fsf@intel.com>
+ <20230828133554.GA818859@hu-bjorande-lv.qualcomm.com>
+ <CAMuHMdU+3oj+-3=f5WFVTRsKQjqCpU8SnVqKSZGk8XRxhsDcVQ@mail.gmail.com>
+ <9aec0740-2482-d3ad-caf2-5e6278a050b3@suse.cz>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9aec0740-2482-d3ad-caf2-5e6278a050b3@suse.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 04:13:00PM +0300, Serge Semin wrote:
-> On Sun, Aug 27, 2023 at 05:17:09PM +0800, Jisheng Zhang wrote:
-> > Add documentation to describe T-HEAD dwmac.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
-> >  .../devicetree/bindings/net/thead,dwmac.yaml  | 77 +++++++++++++++++++
-> >  2 files changed, 78 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/thead,dwmac.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index b196c5de2061..73821f86a609 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -96,6 +96,7 @@ properties:
-> >          - snps,dwxgmac
-> >          - snps,dwxgmac-2.10
-> >          - starfive,jh7110-dwmac
-> > +        - thead,th1520-dwmac
-> >  
-> >    reg:
-> >      minItems: 1
-> > diff --git a/Documentation/devicetree/bindings/net/thead,dwmac.yaml b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
-> > new file mode 100644
-> > index 000000000000..bf8ec8ca2753
-> > --- /dev/null
+On 28/08/2023 17:14, Vlastimil Babka wrote:
+> On 8/28/23 15:48, Geert Uytterhoeven wrote:
+>> Hi Bjorn,
+>>
+>> On Mon, Aug 28, 2023 at 3:37 PM Bjorn Andersson
+>> <quic_bjorande@quicinc.com> wrote:
+>>> On Mon, Aug 28, 2023 at 11:14:41AM +0300, Jani Nikula wrote:
+>>>> On Sat, 26 Aug 2023, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
+>>>>> This script runs get_maintainer.py on a given patch file (or multiple
+>>>>> patch files) and adds its output to the patch file in place with the
+>>>>> appropriate email headers "To: " or "Cc: " as the case may be. These new
+>>>>> headers are added after the "From: " line in the patch.
+>>>>
+>>>> FWIW, I personally prefer tooling to operate on git branches and commits
+>>>> than patches. For me, the patches are just an intermediate step in
+>>>> getting the commits from my git branch to the mailing list. That's not
+>>>> where I add the Cc's, but rather in the commits in my local branch,
+>>>> where they're preserved. YMMV.
+>>>>
+>>>
+>>> May I ask how you add/carry the recipients in a commit?
+>>
+>> I guess below a "---" line in the commit description?
 > 
-> > +++ b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
-> 
-> see further regarding using dwmac in the names here.
-> 
-> > @@ -0,0 +1,77 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> 
-> > +title: T-HEAD DWMAC Ethernet controller
-> 
-> Additionally would be nice to have a brief controller "description:"
-> having the next info: the SoCs the controllers can be found on, the DW
-> (G)MAC IP-core version the ethernet controller is based on and some
-> data about the synthesize parameters: SMA (MDIO-bus), Tx/Rx COE, DMA
-> FIFOs size, perfect and hash MAC-filters size, L3L4 frame filters
-> availability, VLAN hash filter, SA/VLAN-tag insertion, ARP offload
-> engine, PHY interfaces (MII, RMII, RGMII, etc), EEE support, IEEE
-> 1588(-2008) Timestamping support, PMT and Wake-up frame support, MAC
-> Management counters (MMC). In addition to that for DW QoS
-> ETH/XGMAC/XLGMAC the next info would be useful: number of MTL Queues
-> and DMA channels, MTL queues capabilities (QoS-related), TSO
-> availability, SPO availability.
-> 
-> Note DMA FIFO sizes can be also constrained in the properties
-> "rx-fifo-depth" and "tx-fifo-depth"; perfect and hash MAC-filter sizes -
-> in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
+> Does that do anything special in commit log? I'd expect (and I do it that
+> way) it's rather just adding a
 
-Hi Serge,
-
-Thank you for your code review. I have different views here: If we
-only support the gmac controller in one specific SoC, these detailed
-information is nice to have, but what about if the driver/dt-binding
-supports the gmac controller in different SoCs? These detailed
-information will be outdated.
-
-what's more, I think the purpose of dt-binding is different from
-the one of documentation.
-
-So I prefer to put these GMAC IP related detailed information into
-the SoC's dtsi commit msg rather than polluting the dt-binding.
+It does. It goes away.
 > 
-> > +
-> > +maintainers:
-> > +  - Jisheng Zhang <jszhang@kernel.org>
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
+> Cc: Name <email>
 > 
-> > +          - thead,th1520-dwmac
-> 
-> Referring to the DW IP-core in the compatible string isn't very
-> much useful especially seeing you have a generic fallback compatible.
-> Name like "thead,th1520-gmac" looks more informative indicating its
-> speed capability.
+> in the tag area where s-o-b, reviewed-by etc are added.
 
-This is just to follow the common style as those dwmac-* does.
-I'm not sure which is better, but personally, I'd like to keep current
-common style.
+Why storing autogenerated scripts/get_maintainer.pl CC-entries in commit
+msg? The non-maintainer-output but the automated output? There is no
+single need to store automated output of get_maintainers.pl in the git
+log. It can be easily re-created at any given time, thus its presence in
+the git history is redundant and obfuscates the log.
+
+Best regards,
+Krzysztof
+
