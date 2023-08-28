@@ -2,181 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B1678A649
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7F2F78A64F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:13:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbjH1HLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 03:11:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45414 "EHLO
+        id S229678AbjH1HNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 03:13:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229633AbjH1HLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:11:01 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2406E1
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:10:57 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-98377c5d53eso359613166b.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:10:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693206656; x=1693811456;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zWhn4TLCrD9nnYOeDxCtGtHbvSHL8FcsnQppWoyo1ZQ=;
-        b=gz6VYD7cQSaCPEwUNZgwzM/ul0NvtDfRQCO3N4xGbmGYLoyXrp30hzbcCCSi1GbHv1
-         fo229owV2HnlbLRnnAdtpMlHtwF+Bnkc1J2rsT0ae/U7CR9jT7iCvkeIFKLM7w4BKFT3
-         WLWt0heF6JIgS1Tq96QJXN7NagjUdzAZr1my5Ao2JYFO/rgMTzB/DfPy2Y1iNVSo1JfC
-         Lb8+5ocFBN7aPl0/ZSBtQWgYttYD1jsg77tW0mgnvt7m28oBVezXqjEF+KuGYL4WFsOf
-         cLUup4wUViblHcreJJYwYY0SJfIL2dzCY51behwy3ny2qK9AHR43qeKMzRsJBgacDbJc
-         elRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693206656; x=1693811456;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zWhn4TLCrD9nnYOeDxCtGtHbvSHL8FcsnQppWoyo1ZQ=;
-        b=ge+Q+YYRpv41X42HBhcVoODFj/kse4vhGk2pR0t+8LW6tx7plsrEJmsA97BDR3V2gX
-         Sa+kAcMmSF/O2rde3eQzvRWPIRK2GLIURQ5yXqQbt4a9DjU7xOcX2WXxu+4vm8IMRtGV
-         4sNpdXSb0NvqPIqQhPJEg6KsJrjokRCaoRcYGwKRQPJ4ikVS1F46LUGTPk29ZpbTqmz7
-         IYUicU4kKipLeppqqKQjOuzR3Zle8/PGUYJiz+FMJM5IH1RHL9N//EVcEF/R1uKWciAB
-         AHolCFcJGRyrhJTjrA4LzeYg3I2coVgOLwDiGpTqZsAf8yy5DO7vuk2fdAzxwCy2dNPR
-         aGbQ==
-X-Gm-Message-State: AOJu0YwesuCPjge+HWijU9sCJt719+JjlIV9T1GWvFmkqvOJGpi9fNUd
-        4ct3dRIE0EfUAK1gELpJlim9UQ==
-X-Google-Smtp-Source: AGHT+IEaCRRwj6SO7Oi8ML0+d8UnRRo5zK1JU0aNPKESlrbjf2ZzvRCrS2h+a1pGRnqMm/7ZRhUQGw==
-X-Received: by 2002:a17:906:7391:b0:9a1:c659:7c62 with SMTP id f17-20020a170906739100b009a1c6597c62mr11455127ejl.66.1693206656333;
-        Mon, 28 Aug 2023 00:10:56 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id h1-20020a1709062dc100b0098921e1b064sm4269753eji.181.2023.08.28.00.10.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 00:10:55 -0700 (PDT)
-Message-ID: <eccc6a7a-b30f-8c77-77cb-5deef47a1954@linaro.org>
-Date:   Mon, 28 Aug 2023 09:10:54 +0200
+        with ESMTP id S229672AbjH1HM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:12:58 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98ACFA0;
+        Mon, 28 Aug 2023 00:12:53 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 2397980C5;
+        Mon, 28 Aug 2023 15:12:37 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 28 Aug
+ 2023 15:12:37 +0800
+Received: from [192.168.125.72] (113.72.145.245) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 28 Aug
+ 2023 15:12:35 +0800
+Message-ID: <a49737f0-0a09-b558-ea06-b3d47a6e4240@starfivetech.com>
+Date:   Mon, 28 Aug 2023 15:12:35 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v6 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
- documentation
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [RFC v4 0/4] StarFive's Pulse Width Modulation driver support
+To:     Conor Dooley <conor@kernel.org>,
+        William Qiu <william.qiu@starfivetech.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>,
+        "Emil Renner Berthing" <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        "Palmer Dabbelt" <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+References: <20230825081328.204442-1-william.qiu@starfivetech.com>
+ <20230825-exclusion-doing-93532be4fa97@spud>
 Content-Language: en-US
-To:     Tomer Maimon <tmaimon77@gmail.com>, linus.walleij@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
-        joel@jms.id.au, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, j.neuschaefer@gmx.net
-Cc:     openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-References: <20230827203612.173562-1-tmaimon77@gmail.com>
- <20230827203612.173562-2-tmaimon77@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230827203612.173562-2-tmaimon77@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230825-exclusion-doing-93532be4fa97@spud>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.145.245]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/08/2023 22:36, Tomer Maimon wrote:
-> Added device tree binding documentation for Nuvoton Arbel BMC NPCM8XX
-> pinmux and GPIO controller.
+On Fri, 25 Aug 2023 16:06:12 +0100, Conor Dooley wrote:
+> On Fri, Aug 25, 2023 at 04:13:24PM +0800, William Qiu wrote:
+>> Hi,
+>> 
+>> This patchset adds initial rudimentary support for the StarFive
+>> Pulse Width Modulation controller driver. And this driver will
+>> be used in StarFive's VisionFive 2 board.The first patch add
+>> Documentations for the device and Patch 2 adds device probe for
+>> the module.
+>> 
+>> Changes v3->v4:
+>> - Rebased to v6.5rc7.
+>> - Sorted the header files in alphabetic order.
+>> - Changed iowrite32() to writel().
+>> - Added a way to turn off.
+>> - Moified polarity inversion implementation.
+>> - Added 7100 support.
+>> - Added dts patches.
+>> - Used the various helpers in linux/math.h.
+>> - Corrected formatting problems.
+>> - Renamed dtbinding  to 'starfive,jh7100-pwm.yaml'.
+>> - Dropped the redundant code.
+>> 
+>> Changes v2->v3:
+>> - Fixed some formatting issues.
+>> 
+>> Changes v1->v2:
+>> - Renamed the dt-binding 'pwm-starfive.yaml' to 'starfive,jh7110-pwm.yaml'.
+>> - Dropped the compatible's Items.
+>> - Dropped the unuse defines.
+>> - Modified the code to follow the Linux coding style.
+>> - Changed return value to dev_err_probe.
+>> - Dropped the unnecessary local variable.
+>> 
+>> The patch series is based on v6.5rc7.
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+> Out of curiosity, why is this series still an RFC?
 
-
-> +  '^pin':
-> +    $ref: pincfg-node.yaml#
-> +
-> +    properties:
-> +      pins:
-> +        description:
-> +          A list of pins to configure in certain ways, such as enabling
-> +          debouncing
-
-What pin names are allowed?
-
-> +
-> +      bias-disable: true
-> +
-> +      bias-pull-up: true
-> +
-> +      bias-pull-down: true
-> +
-> +      input-enable: true
-> +
-> +      output-low: true
-> +
-> +      output-high: true
-> +
-> +      drive-push-pull: true
-> +
-> +      drive-open-drain: true
-> +
-> +      input-debounce:
-> +        description:
-> +          Debouncing periods in microseconds, one period per interrupt
-> +          bank found in the controller
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +        minItems: 1
-> +        maxItems: 4
-> +
-> +      slew-rate:
-> +        description: |
-> +          0: Low rate
-> +          1: High rate
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        enum: [0, 1]
-> +
-> +      drive-strength:
-> +        enum: [ 0, 1, 2, 4, 8, 12 ]
-> +
-> +    additionalProperties: false
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - ranges
-> +  - '#address-cells'
-> +  - '#size-cells'
-> +  - nuvoton,sysgcr
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      pinctrl: pinctrl@f0800260 {
-
-Nothing improved here. Test your DTS. This is being reported - I checked.
-
-> +        compatible = "nuvoton,npcm845-pinctrl";
-> +        ranges = <0x0 0x0 0xf0010000 0x8000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        nuvoton,sysgcr = <&gcr>;
-> +
-> +        gpio0: gpio@0 {
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          reg = <0x0 0xB0>;
-
-Keep lowercase hex.
-
+There was no comments received in v4. So William resend it and
+request for comments.
 
 Best regards,
-Krzysztof
-
+Hal
