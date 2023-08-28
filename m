@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7D178B873
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFF9C78B878
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231579AbjH1TeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 15:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55566 "EHLO
+        id S230119AbjH1Tex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 15:34:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232679AbjH1Td4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:33:56 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E869124
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:33:53 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe8c16c1b4so5555931e87.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:33:53 -0700 (PDT)
+        with ESMTP id S233498AbjH1Teb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:34:31 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652641A4
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:34:27 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52bca2e8563so706142a12.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:34:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693251231; x=1693856031;
+        d=linaro.org; s=google; t=1693251266; x=1693856066;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CiarbQtD+xC5DtTjisG8v8mGGJJMolzlgfURNHkn86w=;
-        b=PmOeSBTouvQtEcED9cysO6ruZgW1Szo0PTU18gI+tsZS3q7CxZfa//+Qm4TsRayb/f
-         t1Ct/eQe+OcqBVB/7fnRxhtKnWXPLtXbXBxjkNAU9ZaS4XjO3AW4SBGz7IEonSDLg0Uc
-         2wY8PLKaUOX1I/dstZz6EvPsKQlqgf9OvpbzCUnEQeIHIEI8QIpGQWB8jRUPWo1WuwXV
-         fX7jlX+mbGVGUkOoOiTW3J7ehlqfQsSZGX+436tjPxjKtHdlOWSC8+QucixsVhaOamnH
-         QZrKLyfc0lcrY1VMXEK4KQLhUWifpZtoNQ2FFqohC55FlmL2zpHLyVHXOMpgFt08qBeO
-         hgaw==
+        bh=2coO1h012/oKjichr/wIa11w8Pbfe2OzSpP2nef9GgQ=;
+        b=jjNxcPpKqgHSNUm/qblIO2MCLRET1PFeOPng3VWSGaJGXfrIEBHooMtQgmoD+gMOAQ
+         KXuInjpAFMJBKtJ1rRsrWDJWQGyN6D2efjJcDd5J+Iqr5LdvZHow+I8UJpbiU84y8V4M
+         4ZIhALkZy9Tm+4NEUKhTUjmwP9FPQUeedCRGb6fSSb/esWN+09G1a//5YzyZZtXA5ro+
+         w5hhyuJ1tO4jmaoHoJLF9pM9ccsSkh0m3jy3btuMV6/7WECej/sjZz5ibKoynvftWoeC
+         S3U7ErSe04OFr1bQ0xBGuTrg60w0WIh8VSl4zgGZI45EvHWuMJDfWHUQFWxURoQIGWuc
+         bmNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693251231; x=1693856031;
+        d=1e100.net; s=20221208; t=1693251266; x=1693856066;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CiarbQtD+xC5DtTjisG8v8mGGJJMolzlgfURNHkn86w=;
-        b=P5q2W24hSjtupbzAFv23XOLZzcYKrtuBVSB6nEY+92SFBoEPeuAVRpYpXF4bE7qQU8
-         xDCNKAZc/oCDsIWZFKZ7o4Z6le6f4BY/VlJ2ESIhHYUnJyqsktPcP5O/sMjS0nOKI1zE
-         RYmaP03jW98WxCIH0d2GsqkEaNaRf6/yjW9z5jpkqwy5GP0PwPVwcO8gvELoj64N2S3q
-         OKCqJNuzHvVqiRZxtsXHsiaPGd5fZYj26lW5c37xvUjX9/cSQPyNz0WutjGZQ25vyrmj
-         hLc6VUX2eSeC0vSn/j8d2a4fo1n7cE10YXdrQUO1EvjnCsCVXWQhxv7zpy84iPlT3yKp
-         zkFw==
-X-Gm-Message-State: AOJu0YyQbTVrU+dKjFbSBUzHlZSP4O6NzBjFW1wpqEIXvx+6OhsI5yeR
-        SMdpO3mA2oe9qfqRXrAhuCPagw==
-X-Google-Smtp-Source: AGHT+IHjz0sCfIdVIddGOrOzZRol2eqGwQHs8xLuV1s4P3Us5juhskU/HlZOlEIgzvFipqAoI2L4RQ==
-X-Received: by 2002:a05:6512:11e3:b0:4fb:ca59:42d7 with SMTP id p3-20020a05651211e300b004fbca5942d7mr17418630lfs.33.1693251231327;
-        Mon, 28 Aug 2023 12:33:51 -0700 (PDT)
+        bh=2coO1h012/oKjichr/wIa11w8Pbfe2OzSpP2nef9GgQ=;
+        b=OiOZeA++bUg3hAXLoqLzZfS5jSc9rnSX+XblusjAKPGL5F+rrMz5ednKE2E2LLVtML
+         8sAL0Q2UEbF/PemV+oE+PsNHMokEIG2XBKCt9muELWw1RedA3tWq7uUEkISZ5iCKZog+
+         AnAA8x8ZMVfrBggwRiLUlAztoNiUSzOG6qEztj2S2t7l5nf4rEqgZxtvdN19DF5iLwiq
+         0dOWDr5fFgMcdDhT2UJURQ19Es8TdIyy13NNGoQLS5c3V22jjtgfLQ74Q050K5Qz2t9s
+         DOzybOPhuDAEX/doyrQvp6ZDsWyqxFmwKkAdZJc2hsH3hQdz+qDOW/0U/jB464L4asYp
+         DD+A==
+X-Gm-Message-State: AOJu0Yx2ANXgEEOg3I6ASrno98yTcoQo7RyzgvrrIudZQN+xen+U3npu
+        XwFnEqCCNoKciS5T3TNrAF+iEg==
+X-Google-Smtp-Source: AGHT+IFWdt05+lelrHt3ly0RYGyDoWzb5bDDXZMDKF9y6ivOHq267LiJCFqK9wIyj5FoIv5nrMBGQw==
+X-Received: by 2002:a05:6402:398:b0:523:2e30:aaee with SMTP id o24-20020a056402039800b005232e30aaeemr18513536edv.32.1693251265893;
+        Mon, 28 Aug 2023 12:34:25 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id c21-20020aa7d615000000b005256aaa6e7asm4760940edr.78.2023.08.28.12.33.50
+        by smtp.gmail.com with ESMTPSA id o7-20020a056402038700b0052565298bedsm4741436edv.34.2023.08.28.12.34.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 12:33:50 -0700 (PDT)
-Message-ID: <4882b193-9135-f5f1-74b7-7321ced261ef@linaro.org>
-Date:   Mon, 28 Aug 2023 21:33:49 +0200
+        Mon, 28 Aug 2023 12:34:25 -0700 (PDT)
+Message-ID: <867ec3f0-1a43-8d1f-1475-363fc660ab60@linaro.org>
+Date:   Mon, 28 Aug 2023 21:34:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 4/7] thermal/drivers/qcom: Add IPQ5018 compatible
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: ipq5018: Add thermal zones
 Content-Language: en-US
 To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
         agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
@@ -65,9 +65,9 @@ To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-pm@vger.kernel.org
 References: <1693250307-8910-1-git-send-email-quic_srichara@quicinc.com>
- <1693250307-8910-5-git-send-email-quic_srichara@quicinc.com>
+ <1693250307-8910-8-git-send-email-quic_srichara@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1693250307-8910-5-git-send-email-quic_srichara@quicinc.com>
+In-Reply-To: <1693250307-8910-8-git-send-email-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,27 +81,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 28/08/2023 21:18, Sricharan Ramabadhran wrote:
-> IPQ5018 has tsens V1.0 IP with 4 sensors and 1 interrupt.
+> IPQ5018 has 4 thermal sensors (zones). With the
+> critical temperature being 120'C and action is to reboot.
+> Adding all the 4 zones here.
 > 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  drivers/thermal/qcom/tsens.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> index f39495b61952..a24eb88b3444 100644
-> --- a/drivers/thermal/qcom/tsens.c
-> +++ b/drivers/thermal/qcom/tsens.c
-> @@ -1101,6 +1101,9 @@ static SIMPLE_DEV_PM_OPS(tsens_pm_ops, tsens_suspend, tsens_resume);
->  
->  static const struct of_device_id tsens_table[] = {
->  	{
-> +		.compatible = "qcom,ipq5018-tsens",
-> +		.data = &data_ipq5018,
-> +	}, {
 
-This patch does not make sense on its own. It must be squashed. You
-already brought the IPQ5018 in previous patch.
+Not much benefit of having it separate patch... You added the
+thermal-sensor for this purpose.
 
 Best regards,
 Krzysztof
