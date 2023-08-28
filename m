@@ -2,458 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02E6678A4C4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 05:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 847F778A4F2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 06:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbjH1DTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 23:19:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
+        id S229975AbjH1EaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 00:30:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229993AbjH1DTX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 23:19:23 -0400
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3235F11D;
-        Sun, 27 Aug 2023 20:19:21 -0700 (PDT)
-Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-68a3f1d8be2so2185680b3a.3;
-        Sun, 27 Aug 2023 20:19:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693192760; x=1693797560;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=SxV4l6mlHU3mQ/9fiFdjek9/eZeTL4eJfpQUf2P54nk=;
-        b=crjy+4Ni2Ghud4KSDqZ9Xh49ym3plna27hs3mhYzrf61xlv0dcU7SOMgs51cQk4Wg/
-         vAAG3teXVIX7JuSfkCyFO3JrsvcE0G4JkM9CHUWs2fsYLKftY69rSDEUpao5XVws/I0m
-         ufE5LVbMTav5ILfa/8NhUKDUWTwiqGbzZT5eH8QgN0KWgaC+4Ian1V/ZHSzwYu0wJ6Fs
-         6hGgj+8r0QvrGzJy91lARPsOJkZdmi+NupIhCtry0HekLhGCp90un9Xg9lvSI7WvmShc
-         cqXfESg16tnLeDjEVEqfx0q8RPlWZjLTdsRK74lJ0xCu3YdRgcY3d6X3H+SsmW19wCMf
-         1+tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693192760; x=1693797560;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=SxV4l6mlHU3mQ/9fiFdjek9/eZeTL4eJfpQUf2P54nk=;
-        b=Xhpn+NwLDe65L7woP8YDFxaC9ztiI/7TjVT2f1ZHGNjhzIogH1t+3J1IGBWi9wkrEw
-         VUj/G6lweETvWfP7DqKkncjSbMW4on+KMwjhDsFpspuVgUKW4AdXgV2oF4FJ9ts5L24G
-         zpQYOahnl3MR8yifptTWfaPLWw1SPTmODbAjD7HQFBBqpmXA9Tub0+/RGOKFOhZb2tT5
-         aB4tXljPnR8hX3vE4HbAfVFaxYVFCOP3EpeVLiOEc2+9yV50ZjyjcAxAkUbjnFGWyCS8
-         KTfaVs6EXLeDByy36Nfo7LLwmkCTJa04+JCrT5FaLLT1k14D+ou2GnblIYa1GGoKqdYR
-         EpWg==
-X-Gm-Message-State: AOJu0YyPXddLsnqbePX6rusOy9tjlm6DtZM6MC1KuCeH8NmwmX8xtz1X
-        0v7G3duYumZQxzgBTGx+V07qKiJ3i4Is1w==
-X-Google-Smtp-Source: AGHT+IH4xCHiRJskVFoI5Npu1Zt5yppOy1NybY7nXwk0lGL08sZgItveAfmQEBPVj7vF3uyK2fcF+A==
-X-Received: by 2002:a05:6a21:78a3:b0:14b:e604:9f0a with SMTP id bf35-20020a056a2178a300b0014be6049f0amr14214767pzc.20.1693192760545;
-        Sun, 27 Aug 2023 20:19:20 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id c5-20020a170902d90500b001b9df8f14d7sm5967026plz.267.2023.08.27.20.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Aug 2023 20:19:19 -0700 (PDT)
-From:   peteryin <peteryin.openbmc@gmail.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
-        daniel-hsu@quantatw.com, peteryin <peteryin.openbmc@gmail.com>
-Subject: [PATCH v2] Minerva: Add Meta openBMC Minerva dts file.
-Date:   Mon, 28 Aug 2023 11:17:14 +0800
-Message-Id: <20230828031714.107382-1-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+        with ESMTP id S230084AbjH1E3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 00:29:47 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12olkn2093.outbound.protection.outlook.com [40.92.22.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A224F11B;
+        Sun, 27 Aug 2023 21:29:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FlflKsYB5NJzWocOrM5WDuqAeFpd3+wqI6wgb5UfT47lbjx/gDenvamkQe/siHVSTyazMwsRuNaNhZmk+ORjYAwwdGaratXyJBPmF8jloFvM7rsVBlmqbOFVn+1fqIxcAel5DPGh1ahTJkDjKWz8CqAGIp7ywGo4KZP1Fhp4AX8iCMrQ9RYw5RXkjx6uYO17eVtH/Q8ImJEXnfwEQWQqQGXbfCcvExv/doAYuYnTxUrJoCoL39NaM87K2eJvi84l5AsLhN6XkGGr6lgdZzV0/aAUmVR6IwfcpRdC0ljSMGLvgI8rEVxpCHhIO4jSlGcE6HbJLN5sKI93Y2h2r5HNsg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6NQE9upNQ3IadmN7eI59MzCMkoOLPkdZE0l6EUJlrXU=;
+ b=E44lSHnBaP1vYM80jjvKh5jEPyLTLUXqHNH7dPuMAopyoHvkQYFbPNcqjZjEXMx3JXaYNL5u2MchkE7Ke22nNFVt2fj/gp6FFhrnoagU3w8aIspsPKI2I0KNR2krNyL4FxbcV8VpamIQzyFpYYroUp8g9Mg8vcrMhq3PbU4dNd9KVAIVo8364xZaPV1zh6nQDLhSNpLUI4J/RTAhgiQDpLNVk3d6GHgV/AmXn8FW2AEy6jSQJaEmEfPDkUKGCJanDbNdRovRxjgPjhDABOfgnMCqX1SvyM9I5+rubRkuIP3The0ybCsOxSNlLXKvY2pPLixdWvX6FYYMp3GEYMdczw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6NQE9upNQ3IadmN7eI59MzCMkoOLPkdZE0l6EUJlrXU=;
+ b=jiHwIbyw10DT05AHJWbuxvq8Xoqfy8iDNe8Zkz9Fguczfilu5jvml85wwt7271bQzJUmLJHNSgGFq6A455nmf7lYDRCxf4LVxIjmQIF1/16CpHqrGsFoPfDThguvqLcrDJy3Pg79Fk8ByGnfduILoYwuHnogUBbe+8mJSft52UakpT6+4Qa1A6e3U2XcLKQUuioezVAc9FYBcIA2tI9/cQsrna31rO95u6wMR+pRY31Fvpjt4m9sVHEjQpMG3u6uSMT4gKOoEmKui+tszOAT0eloTQgYSC8COi6SzKcWblJAagLGKZpRkcNdlonvYUqAPyeKhkpKRjLVecT5qEpQbg==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by MN2PR20MB3381.namprd20.prod.outlook.com (2603:10b6:208:266::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
+ 2023 04:29:42 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::cbad:4566:1f3e:4e1f]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::cbad:4566:1f3e:4e1f%4]) with mapi id 15.20.6699.034; Mon, 28 Aug 2023
+ 04:29:42 +0000
+From:   Inochi Amaoto <inochiama@outlook.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Inochi Amaoto <inochiama@outlook.com>,
+        Heiko Stuebner <heiko@sntech.de>, Wei Fu <wefu@redhat.com>,
+        Pei Chen <cp0613@linux.alibaba.com>,
+        Wenhan Chen <chenwenhan.cwh@alibaba-inc.com>,
+        Guo Ren <guoren@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4] riscv: dts: allwinner: d1: Add PMU event node
+Date:   Mon, 28 Aug 2023 12:30:22 +0800
+Message-ID: <IA1PR20MB49534918FCA69399CE2E0C53BBE0A@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.42.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TMN:  [NJyrwR3WLTYvrL3WfJLhyd9GOjEVD6HUdBDM5E5jJlQ=]
+X-ClientProxiedBy: TYCP301CA0025.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:381::12) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID: <20230828043022.252724-1-inochiama@outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|MN2PR20MB3381:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1994859a-7c27-4fe8-a5dd-08dba77f6620
+X-MS-Exchange-SLBlob-MailProps: Om8TgR6f4ECsMdgbaV/b5CZ/hsW+YdiEPPQHgZGV3HoWHQgVcKP+niRMR92j1F4q8YNfbLB69Z9M5zm1MiasBr57csq3RvqObwi3B/pWCVmcNbdBlokxszblaISj7RWQkyJupb9zp0ZJUx6Gxgosw2tcO+23mVzzNDSk9Z5uQOzFtC6a30O/Ckrho95JzromeJbmrHVoJmphK6XaGwAWveuSu98iAr7xSbJmXuIc/mg4AM7e1FGN220fUwyP3Rky1xf7gnpjOcY2kcsElOR+Vgq7y3Wwk/FcvVILlh05Ke+3Hk07wmiHLOd6M7wZPXqu6EKd958jD3yjwv/CQwqZKf9vOm2436LvcZmIkVcfGOs5HK7cz9iDMWhdUT70HSujp9I4pmLSTYEdPlM7ITZmcI3CNFq5IPKpQ87TBIPb9ybsghAk7KkqhGnIYjOzvNQf63w0wAj/XM8oTQoZAsZFN9+1d1LwnAeES+TqBS3QLX12bR4GmgXmMXzMaxpuZ8HnbXqYGXrN48dT6iI6O0P7xA+oEz3zQQl5k1s1wWzDuxVVpo34rlkYenEIgIuqsl3BIWldOMqQ7v3YMhhad6yu+DM3ptiDr37CcQnT/LJkGYVU3hgNeq1kxIFJp+pOHNe6/m3ReojbssZ4lPUkSBKw40+W5KXk7GefSDYq8H/QNw+ELmSTlechaNLgh0qJnG0CJcprTxl/JhZk5mbIluG28DQqy0gRvVk25Nx+kMdSD/666J9LNYnCIDRJspy3a2Lgjrxbcy+hrPPW4zTJDPREz4ND1KOvQpL9xWyJ474kAomwAO2+R0kDXlXYU4GDCGCkeX5/cfBHU2BUfZ7lzLcoQtIuWaQa+wUf
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: X/0yqGPCmbk8TZ5ZJ4hc82pNtJfpLqQaI1ckuF2axxP3e5J52RcqduwzB3bqrrNTrfxdhPp9aCMeG1EwTkNSRMKkGLub1iTk+fS6V4y0QATQKg4AOXFOJP87V+L3kRNDc1L7M8H+GR9buaUF/ZoJtxxJQK2LNwogRZ0JfNEf7Kj7jVaSHMsiv/YP4PcZFNiTc4jTdUIts+UGAdo1ekj0AFJpx/LGAM1XZ0TlyMvSbvI/lcZLN7Lzcb0ZH4BXEYD1h5ynjZf/hkbLMphum0E+GCWnBw9okY6x0uGd2DkD87G0p6z6cRU8QNhLz2cub8Hk2rdrZnSEdgL4tsOzscbJPJ5Osil6kzqCjVg58uU+6gLDT1eUEkEMMz0f+iyCx2yHiusDuTHwt+6LFcbVrbZ1imAuuAAF397UD7kmQ4joNv26GjHNLBKHvt4gVOv16hrPeUqbQp2VPhS+AYP9dtvx2qmAhET6LfMA/vEuKjTQINqZEi/6dJhl95k0/8cgGxQIa/fXuhVSYpbFyBkFQlDI4EwvsbwLeX5QL5LhTm/QEPEx4TWEmx1aw1gl644MDPQgGCuWitrynSPQ5NzCCMHfxdtWvJvf6VWgT4xGZL6l5Bg=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tKHtGRkrVrQpJW8ox/3Q72qPq6YZJZXPLQHQ3BzWSOawzDruiWs3MXXdow9q?=
+ =?us-ascii?Q?E8tG/uvC6i7XT/Pa1PuIeVt/FQGNlAwuZNa0K7TeiRR606Q04fuxZzfsSXb+?=
+ =?us-ascii?Q?/uvXsYD4oKmgSf62LdgJBAQAbVlFKDVCqlHNqkPVWpUqPG8KWnhu97EfvKMa?=
+ =?us-ascii?Q?U6pbRfy3Zy6ot/2wJ9xugOIc/EZu89icug1bnKA6DEOkIvON5GKirvFkSMV6?=
+ =?us-ascii?Q?8aTshjumpXyxSqGBn6gXjtyPEm3B2aafGw23iK9mXDG5iRL0y/Cx01HfoWwO?=
+ =?us-ascii?Q?Qi9baoY2HzD0FVM3befeYBTYMcFdCOpCSiJMJFC/tfTUuTBYqxnePYADXNyY?=
+ =?us-ascii?Q?Mk95b9VLxo5KSW3MmJJfouObZS1s3QQcoBKvGfZuH9FKz9phN2j0TY8NVwEO?=
+ =?us-ascii?Q?4Ozz+/tglIAvZENBt3ebLZ0S1vOI2s8TeliKB4xQCNOvJh3zi5FbvrSC5uzO?=
+ =?us-ascii?Q?ZyxU+bdR7Rf2rN61JNyEYot+xUO7NRAbiogZi+VikMZELbH+Kkeljlq5VWnL?=
+ =?us-ascii?Q?+gvWcKdam4WfLj/ZXEIbSapKM7o3NeI5UvDsUGIbE64UQLnK+hq3argZwH8S?=
+ =?us-ascii?Q?a25Mqs2ZhOVNv8JwHLRveway3ApxGLyY97lG11fmDZnSoxendC65QpAWj22c?=
+ =?us-ascii?Q?7O+sJx+Q9AFRl7vHfh+G3zEOAaFfTN1LfdDppgnH8hNMXwn5PDL5sQyw964p?=
+ =?us-ascii?Q?mL7baWJ4kZhICs0TQrTj2fL3hxf4UWvBEZmjnar3iXZwOZfgxyZFviwvzqYG?=
+ =?us-ascii?Q?aaFWIx6UTCso0QbhzINJwFaCd9RbXitPDybLAEqqK5xC8e8WuZFq4b8iS3EX?=
+ =?us-ascii?Q?TAgrlQhlC8Ta53z4kbZ6tLwWDPK/26XasqwF+Mc94tDPSWSNJcRSVl+5nDxu?=
+ =?us-ascii?Q?cQ4M7eWaUx0fnpFw9OVTVisbTQEmbREtJtyAYQmLZFs5Ffb/S1jOUmTlBfiS?=
+ =?us-ascii?Q?qurYFNB+73rAV3nwfnXrzr5B9jZP8ghuUA8khbPhX1qk+5kTB4cFHVwYlyIx?=
+ =?us-ascii?Q?QIDoeql1LQ5iJ3xySR/C7ZAO70Cf4D4lmrPOS8B6D4E392BdmTzuuR5Wfy5g?=
+ =?us-ascii?Q?lZqtxLEZumK0xKu465yXpL2Q1/h3G3AxdKN2tVnZWoB8KI4Ie81vV6LPb118?=
+ =?us-ascii?Q?6fgywthjQ254aNMXJloW/XkGpm4W0YJ8L2EItHm7Uzp8NGMkd7gn2lEeXiwE?=
+ =?us-ascii?Q?FMILFRMs5O0KC1TNkDUkaoWumcTvIBXZ3nE5Cv6kPelULNL1zota4/zTooQ?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1994859a-7c27-4fe8-a5dd-08dba77f6620
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2023 04:29:42.2759
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR20MB3381
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=ham
-        autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is for Meta openBMC Minerva dts.
+D1 has several pmu events supported by opensbi.
+These events can be used by perf for profiling.
 
-Kernel:dev-6.1
-
-Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
-
+Signed-off-by: Inochi Amaoto <inochiama@outlook.com>
+Link: https://dl.linux-sunxi.org/D1/Xuantie_C906_R1S0_User_Manual.pdf
+Link: https://github.com/T-head-Semi/openc906/blob/main/C906_RTL_FACTORY/gen_rtl/pmu/rtl/aq_hpcp_top.v#L657
 ---
-v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
+changed from v3:
+1. remove wrong event mapping of 0x0000a
+2. add reference url of c906 events implementation (D1 only support events
+described in R1S0 user manual, but event mapping is the same)
 
-Change log:
-v1:
-    1. Create minerva dts file.
-v2:
-    1.Add facebook,minerva-bmc in aspeed.yaml
-    2.use stdout-path
-    3.Add Makefile
+changed from v2:
+1. move pmu node from /soc to / to avoid warnings when checking.
+
+The meaning of T-HEAD events can be found in this pending patch:
+https://lore.kernel.org/linux-perf-users/IA1PR20MB4953DD82D0116EC291C21777BBE2A@IA1PR20MB4953.namprd20.prod.outlook.com
+
+The patch above also provides a example that shows how to setup
+environment and use perf with T-HEAD events.
 ---
+ arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi | 39 +++++++++++++++++++
+ 1 file changed, 39 insertions(+)
 
- .../bindings/arm/aspeed/aspeed.yaml           |   1 +
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 329 ++++++++++++++++++
- 3 files changed, 331 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
-
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index fb4ce5df2fa0..9d1b26e7ca6b 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -79,6 +79,7 @@ properties:
-               - facebook,elbert-bmc
-               - facebook,fuji-bmc
-               - facebook,greatlakes-bmc
-+              - facebook,minerva-bmc
-               - ibm,everest-bmc
-               - ibm,rainier-bmc
-               - ibm,tacoma-bmc
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 6a897ff40ff0..e7c00905a08b 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1603,6 +1603,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-wedge400.dtb \
- 	aspeed-bmc-facebook-yamp.dtb \
- 	aspeed-bmc-facebook-yosemitev2.dtb \
-+	aspeed-bmc-facebook-minerva.dtb \
- 	aspeed-bmc-ibm-bonnell.dtb \
- 	aspeed-bmc-ibm-everest.dtb \
- 	aspeed-bmc-ibm-rainier.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
-new file mode 100644
-index 000000000000..fa4a803d68f2
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
-@@ -0,0 +1,329 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2023 Facebook Inc.
-+/dts-v1/;
+diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+index 8275630af977..53a984d78e3f 100644
+--- a/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
++++ b/arch/riscv/boot/dts/allwinner/sun20i-d1s.dtsi
+@@ -73,4 +73,43 @@ plic: interrupt-controller@10000000 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 	};
 +
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+
-+/ {
-+	model = "Facebook Minerva";
-+	compatible = "facebook,minerva-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial0 = &uart1;
-+		serial4 = &uart5;
++	pmu {
++		compatible = "riscv,pmu";
++		riscv,event-to-mhpmcounters =
++			<0x00003 0x00003 0x00000008>,
++			<0x00004 0x00004 0x00000010>,
++			<0x00005 0x00005 0x00000200>,
++			<0x00006 0x00006 0x00000100>,
++			<0x10000 0x10000 0x00004000>,
++			<0x10001 0x10001 0x00008000>,
++			<0x10002 0x10002 0x00010000>,
++			<0x10003 0x10003 0x00020000>,
++			<0x10019 0x10019 0x00000040>,
++			<0x10021 0x10021 0x00000020>;
++		riscv,event-to-mhpmevent =
++			<0x00003 0x00000000 0x00000001>,
++			<0x00004 0x00000000 0x00000002>,
++			<0x00005 0x00000000 0x00000007>,
++			<0x00006 0x00000000 0x00000006>,
++			<0x10000 0x00000000 0x0000000c>,
++			<0x10001 0x00000000 0x0000000d>,
++			<0x10002 0x00000000 0x0000000e>,
++			<0x10003 0x00000000 0x0000000f>,
++			<0x10019 0x00000000 0x00000004>,
++			<0x10021 0x00000000 0x00000003>;
++		riscv,raw-event-to-mhpmcounters =
++			<0x00000000 0x00000001 0xffffffff 0xffffffff 0x00000008>,
++			<0x00000000 0x00000002 0xffffffff 0xffffffff 0x00000010>,
++			<0x00000000 0x00000003 0xffffffff 0xffffffff 0x00000020>,
++			<0x00000000 0x00000004 0xffffffff 0xffffffff 0x00000040>,
++			<0x00000000 0x00000005 0xffffffff 0xffffffff 0x00000080>,
++			<0x00000000 0x00000006 0xffffffff 0xffffffff 0x00000100>,
++			<0x00000000 0x00000007 0xffffffff 0xffffffff 0x00000200>,
++			<0x00000000 0x0000000b 0xffffffff 0xffffffff 0x00002000>,
++			<0x00000000 0x0000000c 0xffffffff 0xffffffff 0x00004000>,
++			<0x00000000 0x0000000d 0xffffffff 0xffffffff 0x00008000>,
++			<0x00000000 0x0000000e 0xffffffff 0xffffffff 0x00010000>,
++			<0x00000000 0x0000000f 0xffffffff 0xffffffff 0x00020000>;
 +	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+			<&adc1 2>;
-+	};
-+
-+};
-+
-+// HOST BIOS Debug
-+&uart1 {
-+	status = "okay";
-+};
-+
-+
-+// SOL Host Console
-+&uart2 {
-+	status = "okay";
-+	pinctrl-0 = <>;
-+
-+};
-+
-+// SOL BMC Console
-+&uart4 {
-+	status = "okay";
-+	pinctrl-0 = <>;
-+};
-+
-+// BMC Debug Console
-+&uart5 {
-+	status = "okay";
-+};
-+
-+//MTIA
-+&uart6 {
-+	status = "okay";
-+};
-+
-+&uart_routing {
-+	status = "okay";
-+};
-+
-+&vuart1 {
-+	status = "okay";
-+	virtual;
-+	port=<0x3e8>;
-+	sirq = <7>;
-+	sirq-polarity = <0>;
-+	dma-mode;
-+	dma-channel = <12>;
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdtrst1_default>;
-+	aspeed,reset-type = "soc";
-+	aspeed,external-signal;
-+	aspeed,ext-push-pull;
-+	aspeed,ext-active-high;
-+	aspeed,ext-pulse-duration = <256>;
-+};
-+
-+
-+&mac3 {
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+	no-hw-checksum;
-+	use-ncsi;
-+	ncsi-ctrl,start-redo-probe;
-+	ncsi-ctrl,no-channel-monitor;
-+	mlx,multi-host;
-+	ncsi-package = <1>;
-+	ncsi-channel = <1>;
-+	ncsi-rexmit = <1>;
-+	ncsi-timeout = <2>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-128.dtsi"
-+	};
-+	flash@1 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "alt-bmc";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+
-+//BIOS Flash
-+&spi2 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "pnor";
-+		spi-max-frequency = <12000000>;
-+		spi-tx-bus-width = <2>;
-+		spi-rx-bus-width = <2>;
-+	};
-+};
-+
-+
-+&kcs2 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca8>;
-+};
-+
-+&kcs3 {
-+	status = "okay";
-+	aspeed,lpc-io-reg = <0xca2>;
-+};
-+
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>;
-+};
-+
-+&peci0 {
-+	status = "okay";
-+	clock-frequency = <1000000>;
-+};
-+
-+&sgpiom0 {
-+	status = "okay";
-+	max-ngpios = <128>;
-+	ngpios = <128>;
-+	bus-frequency = <2000000>;
-+	gpio-line-names =
-+	/*in - out - in - out */
-+	/*A0-A7*/   "","","","","","enable_sensors","","",
-+	/*A0-A7*/   "","","","","","","","",
-+	/*B0-B7*/   "","","","","","","","",
-+	/*B0-B7*/   "","","","","","","","",
-+	/*C0-C7*/   "","","","","","","","",
-+	/*C0-C7*/   "","","","","","","","",
-+	/*D0-D7*/   "","","","","","","","",
-+	/*D0-D7*/   "","","","","","","","",
-+	/*E0-E7*/   "","","","","","","","",
-+	/*E0-E7*/   "","","","","","","","",
-+	/*F0-F7*/   "","","","","","","","",
-+	/*F0-F7*/   "","","","","","","","",
-+	/*G0-G7*/   "","","","","","","","",
-+	/*G0-G7*/   "","","","","","","","",
-+	/*H0-H7*/   "","","","","","","","",
-+	/*H0-H7*/   "","","","","","","","";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	tmp75@4B {
-+		compatible = "ti,tmp75";
-+		reg = <0x4B>;
-+	};
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+// To Debug card
-+&i2c14 {
-+	status = "okay";
-+	multi-master;
-+	aspeed,hw-timeout-ms = <1000>;
-+};
-+
-+&i2c15 {
-+	status = "okay";
-+	// SCM FRU
-+	eeprom@50 {
-+		compatible = "atmel,24c64";
-+		reg = <0x50>;
-+	};
-+	// BSM FRU
-+	eeprom@56 {
-+		compatible = "atmel,24c64";
-+		reg = <0x56>;
-+	};
-+};
-+
-+&adc0 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	ref_voltage = <2500>;
-+	status = "okay";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc10_default>;
-+};
-+
-+&jtag1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_jtagm_default>;
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	pinctrl-names = "default";
-+	gpio-line-names =
-+	/*A0-A7*/	"","","","","","","","",
-+	/*B0-B7*/	"","","","","","","","",
-+	/*C0-C7*/	"","","","","","","","",
-+	/*D0-D7*/	"","","SOL_UART_SET","","","","","",
-+	/*E0-E7*/	"","","","","","","","",
-+	/*F0-F7*/	"","","","","","","","",
-+	/*G0-G7*/	"","","","","","","","",
-+	/*H0-H7*/	"","","","","","","","",
-+	/*I0-I7*/	"","","","","","","","",
-+	/*J0-J7*/	"","","","","","","","",
-+	/*K0-K7*/	"","","","","","","","",
-+	/*L0-L7*/	"","","","","","","","",
-+	/*M0-M7*/	"","","","","","","","",
-+	/*N0-N7*/	"LED_POSTCODE_0","LED_POSTCODE_1",
-+			"LED_POSTCODE_2","LED_POSTCODE_3",
-+			"LED_POSTCODE_4","LED_POSTCODE_5",
-+			"LED_POSTCODE_6","LED_POSTCODE_7",
-+	/*O0-O7*/	"","","","","","","","",
-+	/*P0-P7*/	"","","","","","","","",
-+	/*Q0-Q7*/	"","","","","","","","",
-+	/*R0-R7*/	"","","","","","","","",
-+	/*S0-S7*/	"","","","","","","","",
-+	/*T0-T7*/	"","","","","","","","",
-+	/*U0-U7*/	"","","","","","","","",
-+	/*V0-V7*/	"","","","","","","","",
-+	/*W0-W7*/	"","","","","","","","",
-+	/*X0-X7*/	"","","","","","","","",
-+	/*Y0-Y7*/	"","","","","","","","",
-+	/*Z0-Z7*/	"","","","","","","","";
-+};
-+
--- 
-2.25.1
+ };
+--
+2.42.0
 
