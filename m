@@ -2,146 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7FE978A670
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:27:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1616278A67C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjH1H0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 03:26:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41896 "EHLO
+        id S229456AbjH1H3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 03:29:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbjH1H0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:26:45 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05F09116
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:26:43 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5280ef23593so3805638a12.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:26:42 -0700 (PDT)
+        with ESMTP id S229583AbjH1H3K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:29:10 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B353AC6
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:29:07 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so3926138a12.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:29:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1693207601; x=1693812401;
-        h=in-reply-to:references:from:subject:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lD+bH3AMRurEOkbO1lVj8kynQTkw3OHuE6DLrk9W2+w=;
-        b=HanQgw/owHxOSJ9ZXO5SKNKPj9oygSSaieibswIOOpOlWGgaCgZ3+Rwn5NlkJc+Rm9
-         p7S43H3BVVv32KfTsR0zMHuiGn881L+Z4ECw6BeambSg/nDc+EtQdPJWEcEHbM5k/bwg
-         PrfCHnIQ9hkmENzV91xXUJYohiOEYUMxT5TWkF4KQbA58Ui3wYvL+AO3aPmW8hFTaHMJ
-         DWTkBwsELhTtLNKOAObKKX5zq2dV8iqYW6US9qLwectQ2jcN53eVkUReNA8222odpdLZ
-         DFEuTniyuO/XJ6W14gwVdIl2qvRNsX8wDHeHRxKCgLdBjTmTIy/qiLwNLoHFrzx+3aaP
-         WOeg==
+        d=linaro.org; s=google; t=1693207746; x=1693812546;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ncCz15Ca8yj1oTiFMyRiCrPjAtxLbzm5ILrKrkQBGa4=;
+        b=Y3ltKNaw4XNokhKNkRsZxIRn5Sl3hDxauYsqx/tDwYM2Y/30Nbo3jEhZYwMjwLGTqz
+         Cpqf2AyEf+KPajQMaPmZyAAtBLQUKEYZwu6lnYOod5mD/vCzAuRkmMd56sPV8qMAYG14
+         Diom48g2eF4cf3wlPX8EhJPIIQz+5xwYbeZ1oaFWaZ1IXNe32uogjHt2jEDXI5tXNTms
+         DdoRIKy0zeDK7Z4rYx620MtKiLyaSc7hJ5CCC41WKiLro2Syvj9rjQBfqpceKALj+Cly
+         FgCwsWouMB5a0VWyWQE54rIEWGIYKqNlU+nbuT3cCjAIlTftJC1jVvdbyZl5oy3gzbkb
+         WURA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693207601; x=1693812401;
-        h=in-reply-to:references:from:subject:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lD+bH3AMRurEOkbO1lVj8kynQTkw3OHuE6DLrk9W2+w=;
-        b=WZroqDwKuZTqPRT5E/EGMZ8krR36zh8OS5wmnrWNYxgM/oH80najJ1/yCHs5NJxmcO
-         TRF9qPPZpfgdzcV1AD0wssVUzaSQMRVYWrEMCqkUPLOGOtQyypNY5BqZdyGhmnPwaEL+
-         XsWO2yQCHt2NUZyYa8vI0UEMxCVbEgeRrIaOLJZtDAo1gAplqANOu43lWZsnWB452bO2
-         POTngh4I/Cn5jBcGvJc4aB3bx180a1I5z5zXWUo7T5rDEHTC5xsNfjHvvAGapOIMoL1X
-         g0FAVa9yDQLGMmO9IpabcPiIKDqS1G+OQVBvFI2O0aswUoiImQ1PNLXCQo7LqrplPuDE
-         Qqcg==
-X-Gm-Message-State: AOJu0YyqH9lxM21TVLg/9tlBSdIprG/iUegXFRbEPQzAAMlrQ8MWu+i/
-        0yABDREsyP1QKoUwY5xeLu9wXA==
-X-Google-Smtp-Source: AGHT+IECQi/+bCK/FrctXnpXooL6ck48hvBin19hwEds/rInCzSAhpQkXhFZ1B01lhVS1rWBX7KFxA==
-X-Received: by 2002:aa7:d9d8:0:b0:525:734a:bf30 with SMTP id v24-20020aa7d9d8000000b00525734abf30mr21317244eds.36.1693207601453;
-        Mon, 28 Aug 2023 00:26:41 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id k3-20020aa7d8c3000000b005224d960e66sm4139697eds.96.2023.08.28.00.26.41
+        d=1e100.net; s=20221208; t=1693207746; x=1693812546;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ncCz15Ca8yj1oTiFMyRiCrPjAtxLbzm5ILrKrkQBGa4=;
+        b=UYRXkdAsx78uMVg/M0eIixnXwj7h3Qbk3cRjiWALiNrJ6Xd4pzindKP7Pey+ECydHB
+         XCX3qS1L6dwLqJdSDro+DOGJwsXnNFh93cy3pwJvv3sXm/pmCFKiXliE6r2DCSajN0j9
+         Frt1EVuIjqshcn7yNmVuVCrEdvBP3BovMUi/ix0/AObYFVF2EQ0sXyZp/QHJVK7bV8hp
+         UMYWLVwLIsBCLqG4mV6p9dErIOyfuTE3SFFUzgsttfxiqaN4yzJMGaueEqXhyHV2gBZx
+         pfRxv3+kqrlZm+xnPHFzjp2IHASmM/co+UPS/ZwbzdDDTEnKtgz8vqedJoEmNmiZVzoJ
+         k9gw==
+X-Gm-Message-State: AOJu0Yy+ssoSfulHxt6Lhrv4IQ74bZBpVC7RT1X2iNGqJCPHLUyN2xFh
+        94YuWXTA6PK4PcxOBWOUdga4AQ==
+X-Google-Smtp-Source: AGHT+IEZVXu5s4APFn9qEPjvXInwBCeK+aeFnuvOZoEFe0yhJAfI53HIx6HUkp4PCUzag3ZJofaxbQ==
+X-Received: by 2002:aa7:d742:0:b0:525:4f9c:3505 with SMTP id a2-20020aa7d742000000b005254f9c3505mr19277217eds.29.1693207746256;
+        Mon, 28 Aug 2023 00:29:06 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id d8-20020a05640208c800b0052237dfa82fsm4155333edz.64.2023.08.28.00.29.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 00:26:41 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Mon, 28 Aug 2023 00:29:05 -0700 (PDT)
+Message-ID: <44b72757-712e-0e01-2a66-5b2a694b0ab0@linaro.org>
+Date:   Mon, 28 Aug 2023 09:29:04 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 3/6] arm64: dts: freescale: add initial device tree for
+ TQMLS1043A/TQMLS1046A
+Content-Language: en-US
+To:     Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+References: <20230823120952.317740-1-gregor.herburger@ew.tq-group.com>
+ <20230823120952.317740-4-gregor.herburger@ew.tq-group.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230823120952.317740-4-gregor.herburger@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 28 Aug 2023 09:26:40 +0200
-Message-Id: <CV4001I45VX3.O7ZEXEDZTHAR@otso>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fp4: Revert "arm64: dts:
- qcom: sm7225-fairphone-fp4: Add AW8695 haptics"
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.15.2
-References: <20230827122842.63741-1-krzysztof.kozlowski@linaro.org>
- <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
- <CV3ZCVK29BLY.D7Y8AEEOYLO3@otso>
- <7859abb1-ae99-d33f-a8fc-c76304057df9@linaro.org>
-In-Reply-To: <7859abb1-ae99-d33f-a8fc-c76304057df9@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon Aug 28, 2023 at 9:00 AM CEST, Krzysztof Kozlowski wrote:
-> On 28/08/2023 08:56, Luca Weiss wrote:
-> > Hi Krzysztof,
-> >=20
-> > On Sun Aug 27, 2023 at 2:28 PM CEST, Krzysztof Kozlowski wrote:
-> >> This reverts commit 413821b7777d062b57f8dc66ab088ed390cbc3ec because i=
-t
-> >> was never reviewed, was buggy (report from kernel test robot:
-> >> https://lore.kernel.org/all/202204090333.QZXMI2tu-lkp@intel.com/) and
-> >=20
-> > (I wouldn't say this part is accurate, the robot just didn't use a tree
-> > with the i2c10 node already present, it was sent in an earlier patch
-> > IIRC, but whatever)
-> >=20
-> >> used undocumented, broken bindings.  Half of the properties in this
-> >> device are questioned, thus adding DTS node causes only errors and doe=
-s
-> >> not make the device usable without the bindings and driver part:
-> >>
-> >>   sm7225-fairphone-fp4.dtb: haptics@5a: failed to match any schema wit=
-h compatible: ['awinic,aw8695']
-> >>   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,tset: b'\x12' is not of=
- type 'object', 'array', 'boolean', 'null'
-> >>   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,r-spare: b'h' is not of=
- type 'object', 'array', 'boolean', 'null'
-> >>
-> >> Since bindings were abandoned (4 months since review), revert the comm=
-it
-> >> to avoid false sense of supporting something which is not supported.
-> >=20
-> > I've been avoiding touching this topic again since I'm really not sure
-> > how to resolve.
->
-> Happens, but the DTS should not have been applied in such case.
+On 23/08/2023 14:09, Gregor Herburger wrote:
+> This adds support for the TQMLS1043A and TQMLS1046A SOM and the
+> MBLS10xxA baseboard. TQMLS1043A and TQMLS1046A share a common layout
+> and can be used on the MBLS10xxA.
+> 
+> Signed-off-by: Gregor Herburger <gregor.herburger@ew.tq-group.com>
 
-True, back when it was applied I told Bjorn but I also thought I'd get
-the driver in soon also. Obviously this hasn't happened. So fine with me
-to revert now, and I'll add it back once the new bindings are in.
+...
 
->
-> >=20
-> > There's a bunch of magic registers being written to in the downstream
-> > driver, I don't have any documentation for that so I'm not exactly sure
-> > what I can do to make nice bindings with proper properties.
-> >=20
-> > Would you recommend just hardcoding some of these properties in the
-> > driver, assuming they're constant for every AW8695, even though the
-> > downstream driver has these properties in devicetree? Because of that I
-> > assumed these properties could differ per implementation / usage of the
-> > AW8695 in different devices.
->
-> Yes, keep them in the driver.
+> +&i2c3 {
+> +	status = "okay";
+> +
+> +	i2c-mux@70 {
+> +		compatible = "nxp,pca9544";
+> +		reg = <0x70>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		i2c@0 {
+> +			reg = <0x0>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			gpioexp1: pca9555@20 {
 
-Okay.. I'll make sure to document this in the driver or commit message
-or somewhere so other people using the same AW8695 will know that this
-is hardcoded.
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
 
-Regards
-Luca
 
->
-> Best regards,
-> Krzysztof
+> +				compatible = "nxp,pca9555";
+> +				reg = <0x20>;
+> +				vcc-supply = <&reg_3v3>;
+> +				gpio-controller;
+> +				#gpio-cells = <2>;
+> +			};
+
+...
+
+> +
+> +&esdhc {
+> +	/* eSDHC or eMMC: set by bootloader */
+> +	non-removable;
+> +	disable-wp;
+> +	mmc-hs200-1_8v;
+> +	sd-uhs-sdr104;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr12;
+> +};
+> +
+
+Stray blank line.
+
+Best regards,
+Krzysztof
 
