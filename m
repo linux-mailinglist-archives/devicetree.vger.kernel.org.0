@@ -2,64 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6963378BA2D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 23:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76F4C78BA36
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 23:25:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231939AbjH1VUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 17:20:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59534 "EHLO
+        id S231928AbjH1VYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 17:24:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233646AbjH1VUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 17:20:06 -0400
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D67BC0
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 14:20:03 -0700 (PDT)
-Received: by mail-oi1-x234.google.com with SMTP id 5614622812f47-3a88e1a5286so2828069b6e.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 14:20:03 -0700 (PDT)
+        with ESMTP id S232573AbjH1VYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 17:24:14 -0400
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4222CE1
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 14:24:11 -0700 (PDT)
+Received: by mail-ua1-x92f.google.com with SMTP id a1e0cc1a2514c-79a10807b4fso1380368241.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 14:24:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693257603; x=1693862403;
+        d=linaro.org; s=google; t=1693257850; x=1693862650;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YIuUKH5HwO1E9pbfeUQWlkWarmbqHgkNrbIq8Hrhtq0=;
-        b=CZvl4j7uUfhlKcrWlrFV4x5q2sR/53TDV8j+rSvYGkY5OgkurpqG4/9LkRSmuTF+wx
-         LjgtGQXk9xttxTEqVcurzxUWGAhiiV2Fb4HEngM2syV81d4G2zdmNym+YTfxBvLhMNhl
-         3jvHyaFaOMhgT3Iuvr8eS56b6A1mZ0Ciya6noHmy2eruo1SjvKsv2XbOGdyom5aY1c2g
-         nSCBfZSgWOp5ZMdaOb0+2IgfE6zzpuurhWNDjZqH3hw4ZvfXKby5q6IUnWL2NMj3gvKj
-         HGJsYnnvV87BG4gJOg/2c/0sse7a+nktaBCQX8EvP7zS4zlmHRoSXBx6Y3WR1GRPPyQa
-         HoBA==
+        bh=7lV67ue8O8irkvkGHuS/WBKm22CaGpU8fd8tzzbnekE=;
+        b=YKgZ07SBHl90UfeK1BOTq1Cl7cD+BDiGvhvbKGCn8XWQcwQ0GUVGGnIjxVmFLkuYOZ
+         zol/G6ktBYRNUNTGU3DYy2KRnznB3neeUD+iv+8T+v1d27tdu4EYg/HJUN8gXLDzvEGK
+         adbNRy2apTHmXCczeRARWGunDOP+MvHHLgYyMrE88PMCpBnP7RAm+o4+RFawz11exgZW
+         bjSx3HvyI/sROjNARxXjA9vRoG4GZ5AntMcuBCl744E0K5nMn0D1jHvdjk+fE2ENWM+2
+         DueZmhbaLNpxfLi3y+quM0VXblHvTfj9EIIZCigLWepdrIE7A8WOyy/snlAsqGHma9w4
+         VN1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693257603; x=1693862403;
+        d=1e100.net; s=20221208; t=1693257850; x=1693862650;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YIuUKH5HwO1E9pbfeUQWlkWarmbqHgkNrbIq8Hrhtq0=;
-        b=hXny3/R7oWao38cF8Q5xU6d3FdQ8nvJP/iE91TjmSIK8FqH8hf4d7986nfjMe/18hs
-         7Men+N8t3m+wVlKlGWTVL5SuDwOGGB0dA723RVz+YOeMWF88mP4koCBebKWIePH09QcL
-         mFQ0g7VbC7tsaTcjXCWa84OPqtPf2eKINMXigscywcgvPM3CuHA1E8aSBySUn05g4ed0
-         dgP2rj8BY9ZAubtPaqve5TxVWCICnQRmqvdqYZsmRWfqaQ4x9figvz7UbIydfKWGSbiB
-         EYIF8KDvplQjf0S8ejLXfCjOgWPQv5TinHEDmGAt5gulJd2fZzISFM/OrH5BaKIUDu1T
-         WNMg==
-X-Gm-Message-State: AOJu0YzV+ewi0vX4VdCYHxi2EDkgho/R4NPdFxSOLcAVawqEEp14LKbe
-        9GxQq0QUYfXhftdEC1cognePene1SCbyBVvMbPQPlg==
-X-Google-Smtp-Source: AGHT+IFIR0wXTVo7lMdzb5cG9k85zy4w+X97lE+LJI5iBgLY8WXAYFNAyZCGRtaAEQNN8D/64HoFn6+DFjhGTKznGg4=
-X-Received: by 2002:a05:6358:7248:b0:134:d282:92e9 with SMTP id
- i8-20020a056358724800b00134d28292e9mr30904076rwa.29.1693257602734; Mon, 28
- Aug 2023 14:20:02 -0700 (PDT)
+        bh=7lV67ue8O8irkvkGHuS/WBKm22CaGpU8fd8tzzbnekE=;
+        b=AsuxFReDfZcnQ9dRhu19mVIbrlHjoj+cvKQ6LtYP8kl1LKohgPDWqvzL8NVbwxmfGf
+         iAkIm+muyWaGIwkNHE1vAc5v7d4CZGPKqGpQgxlVO2xrwBwLXElrhl0gvatqHp8opsMw
+         3OPud+WYqBM8RjkPh/g9o5VsvJojSL64SdGPSzYmyDzY6sDe7lwmyLXCaOv+3s59WoVL
+         jgoCU16ZE45wgHGzKZmjkv0DmznnKvRzLOoqRWRF58Z66oZ8tFYquk3/f677GodZXI3+
+         YwBXKociHgKdY4sRVieiQs+gq2KmmVB1HnZwGyWIf2zsJTRAhFiro4WZNAJMCN815oyG
+         cl3w==
+X-Gm-Message-State: AOJu0YxqVpRteVQDd/R0R3BIJ98LQN8KLYRhOENIQcHcMuTu9cd28T4N
+        Rx9yob5iu9ESt/om/Jsg+99aklyW0EFySmOAc2kSXA==
+X-Google-Smtp-Source: AGHT+IGREmO10YLmOwqdXyZCDAQIWVCiwCAVv/qlPkk2x3End3xHg5+MrsahL1WcwopFckKtTRbphYhNItA8ysw5Cis=
+X-Received: by 2002:a67:ef90:0:b0:44d:5c17:d067 with SMTP id
+ r16-20020a67ef90000000b0044d5c17d067mr16776983vsp.8.1693257850001; Mon, 28
+ Aug 2023 14:24:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <1693250307-8910-1-git-send-email-quic_srichara@quicinc.com> <1693250307-8910-7-git-send-email-quic_srichara@quicinc.com>
-In-Reply-To: <1693250307-8910-7-git-send-email-quic_srichara@quicinc.com>
+References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
+In-Reply-To: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 29 Aug 2023 00:19:51 +0300
-Message-ID: <CAA8EJpoxQkQFaF5qsqMF-fofkH2T+hVoOax_27DGuaVC1M+riQ@mail.gmail.com>
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: ipq5018: Add tsens node
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, linux-arm-msm@vger.kernel.org,
+Date:   Tue, 29 Aug 2023 00:23:59 +0300
+Message-ID: <CAA8EJpp_Uu62TDknZ-X0DQYinnwxxoriPpetfppCySxg_25YQg@mail.gmail.com>
+Subject: Re: [PATCH 00/11] arm64: qcom: add and enable SHM Bridge support
+To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -71,57 +77,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Aug 2023 at 22:20, Sricharan Ramabadhran
-<quic_srichara@quicinc.com> wrote:
+On Mon, 28 Aug 2023 at 22:29, Bartosz Golaszewski
+<bartosz.golaszewski@linaro.org> wrote:
 >
-> IPQ5018 has tsens V1.0 IP with 4 sensors.
-> There is no RPM, so tsens has to manually enabled.
-> Adding the tsens and nvmem node.
+> SHM Bridge is a mechanism allowing to map limited areas of kernel's
+> virtual memory to physical addresses and share those with the
+> trustzone in order to not expose the entire RAM for SMC calls.
 >
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 9f13d2dcdfd5..277b3cfc7f72 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -93,6 +93,29 @@ soc: soc@0 {
->                 #size-cells = <1>;
->                 ranges = <0 0 0 0xffffffff>;
->
-> +               qfprom_nvmem: qfprom_nvmem@a0000 {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
-> +                       reg = <0xa0000 0x1000>;
-> +
-> +                       tsens_calib: calib@248 {
-> +                               reg = <0x248 0x10>;
-> +                       };
+> This series adds support for Qualcomm SHM Bridge in form of a platform
+> driver and library functions available to users. It enables SHM Bridge
+> support for three platforms and contains a bunch of cleanups for
+> qcom-scm.
 
-NAK. Please define per-sensor fields here.
+Which users do you expect for this API?
 
-> +               };
-> +
-> +               tsens: thermal-sensor@4a9000 {
-> +                       compatible = "qcom,ipq5018-tsens", "qcom,tsens-v1";
-> +                       reg = <0x4a9000 0x1000>, /* TM */
-> +                             <0x4a8000 0x1000>; /* SORT */
-> +                       nvmem-cells = <&tsens_calib>;
-> +                       nvmem-cell-names = "calib";
-> +                       interrupts = <GIC_SPI 184 IRQ_TYPE_EDGE_RISING>;
-> +                       interrupt-names = "uplow";
-> +                       #qcom,sensors = <5>;
-> +                       #thermal-sensor-cells = <1>;
-> +               };
-> +
->                 tlmm: pinctrl@1000000 {
->                         compatible = "qcom,ipq5018-tlmm";
->                         reg = <0x01000000 0x300000>;
+Also, could you please describe your design a bit more? Why have you
+implemented the shm-bridge as a separate driver rather than a part of
+the SCM driver?
+
+>
+> Bartosz Golaszewski (11):
+>   firmware: qcom-scm: drop unneeded 'extern' specifiers
+>   firmware: qcom-scm: order includes alphabetically
+>   firmware: qcom-scm: atomically assign and read the global __scm
+>     pointer
+>   firmware: qcom-scm: add support for SHM bridge operations
+>   dt-bindings: document the Qualcomm TEE Shared Memory Bridge
+>   firmware: qcom-shm-bridge: new driver
+>   firmware: qcom-scm: use SHM bridge if available
+>   arm64: defconfig: enable Qualcomm SHM bridge module
+>   arm64: dts: qcom: sm8450: enable SHM bridge
+>   arm64: dts: qcom: sa8775p: enable SHM bridge
+>   arm64: dts: qcom: sm8150: enable SHM bridge
+>
+>  .../bindings/firmware/qcom,shm-bridge.yaml    |  36 ++
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi         |   4 +
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi          |   4 +
+>  arch/arm64/boot/dts/qcom/sm8450.dtsi          |   4 +
+>  arch/arm64/configs/defconfig                  |   1 +
+>  drivers/firmware/Kconfig                      |   8 +
+>  drivers/firmware/Makefile                     |   1 +
+>  drivers/firmware/qcom-shm-bridge.c            | 452 ++++++++++++++++++
+>  drivers/firmware/qcom_scm-smc.c               |  20 +-
+>  drivers/firmware/qcom_scm.c                   | 106 +++-
+>  drivers/firmware/qcom_scm.h                   |   3 +
+>  include/linux/firmware/qcom/qcom_scm.h        | 109 +++--
+>  include/linux/firmware/qcom/shm-bridge.h      |  32 ++
+>  13 files changed, 712 insertions(+), 68 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
+>  create mode 100644 drivers/firmware/qcom-shm-bridge.c
+>  create mode 100644 include/linux/firmware/qcom/shm-bridge.h
+>
 > --
-> 2.34.1
+> 2.39.2
 >
 
 
