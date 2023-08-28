@@ -2,181 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3A0578A61C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 08:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62FD278A620
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 08:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbjH1GzN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 02:55:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41152 "EHLO
+        id S229461AbjH1G4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 02:56:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjH1GzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 02:55:12 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC3EAE0
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:55:08 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-52a3ff5f0abso3839133a12.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:55:08 -0700 (PDT)
+        with ESMTP id S229552AbjH1G4e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 02:56:34 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B40D120
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:56:28 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a3ec08d93so3774586a12.2
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:56:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693205707; x=1693810507;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7ptVbyds4HPxErszif0wxUcSHmLuVkPZo/yMJrdkcDs=;
-        b=u0I+AIPq3WtDnTAreCyy90MCKvMJSVNboKn65rhdsoXltifxtaS6henYb7U0KLvsNW
-         i3wZxjTfgqN2DGvK+g6X5zL58jJHihTJBSEV+1gP9QOU5Tnx/Qg8QEVzU8jL6D/72qBR
-         stTOBbz4Wfqgfqu5+Fmk10KypDISxN8gdjsRZMcWX3qg+cWAIKaJaLJFRV61/btyTdXG
-         d+TWmGQoixmcQpB76hT7R8fMtEONUFXi5BsUvJgwln7TnTNjCPCENZT97Y9ix7MoWkrX
-         ewjOuQc4ovmaamkKRAx4EYWbGB4nPpyqXRpu5ZAkl3FQP5V7gjaSEr1qFs+64bVfk80/
-         iMZA==
+        d=fairphone.com; s=fair; t=1693205786; x=1693810586;
+        h=in-reply-to:references:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+CbUT7b5YjU9P228SDDHko9vselWOLP8ICBut5LNj2c=;
+        b=2rNhbgoRHVDFkzEpf81k4KaCrCEAsCDYs0ux+pAPX3dt8Sct/z38NnYADiB9GutA+H
+         joy9/F/84EF3vEdzMqqwZGd4bA3SGCH4KTCae9+pP8BA4zcq9WPvQ6UulTBoTlhElPpF
+         tjaxd3W1dzqsosSgoA4sv2mtYsN2P3WA7oBaP0guFWQCifaUZSMwyg6SnFoBOB7yoAMb
+         SzIPqBhy/Yr4dPp+E0HZTgPVa/d5gLVxvD9SfzTBbn3g+USdvf/gbzoHTKgZxhL3DZNI
+         ZWV7EyUuvLkbL17+IP8CJn4kpF0hNsd9uJ5hSz5FMTNwuRKDXhk2xKaD5LoHXdMmL54U
+         kWHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693205707; x=1693810507;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7ptVbyds4HPxErszif0wxUcSHmLuVkPZo/yMJrdkcDs=;
-        b=ClMrc5Uwb8P3HaBnN9rXVh1jgKwKOJ4fnAgZLSFobISwrHKUQCtdMMjiGCCJvjv88y
-         vXEHHOPSdB8Pi6gscvpy94jIcFp2PsM9pYRqMRBmvIG2zi3vInt3j0Q4+tSDUigUIjF+
-         Mk3ivL0goxSLogQ4P+oU6iU/cEGxG1rj5kuh1VTrKNFe5/tBWwgJFp+DLsyWlPhtm6qf
-         PaQL+KS0+2GMy377ful+WqwqX0gc/itOQmRdhSQG8x/XIWtpz1/bViYZZiq38u2PvWDF
-         wUba5mvQzwbihDDUsHAmIRsOwtEd8/nVuxF0bxR0wdqEs8xj+Wz7nL2T0q77Ia2xs+/7
-         HRXA==
-X-Gm-Message-State: AOJu0YzJOkgjZoMyqZppZRig897qMJnv6ioOAOpzLutiwvnM/Gu60ANJ
-        ct4cZzlM/ARs63y72mQuZUQsFQ==
-X-Google-Smtp-Source: AGHT+IE1kB47fLHbKb5MQZ/Hd2Twqa/OpuzYsNApKa6FCmlGY1PnQViOFPgPIAAC/uHevNyPrQA4Nw==
-X-Received: by 2002:a05:6402:545:b0:523:1400:2d7c with SMTP id i5-20020a056402054500b0052314002d7cmr16646990edx.35.1693205707362;
-        Sun, 27 Aug 2023 23:55:07 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id o7-20020a056402038700b0052565298bedsm4094401edv.34.2023.08.27.23.55.05
+        d=1e100.net; s=20221208; t=1693205786; x=1693810586;
+        h=in-reply-to:references:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+CbUT7b5YjU9P228SDDHko9vselWOLP8ICBut5LNj2c=;
+        b=djtNS+TiXURretrG9w9/PH+jK9FNrjGLav3u77N1kU3U1r1f0nRmlU418f7hV8XHRq
+         CLTgaunI2CmHznBXDSNk1lYk9NCb8PT23hbtjxAXwLPZpuB6g7pKSHdkMnIwFokcbGY9
+         Kpxuz8fq5egQ5GF9XPncMo19o8sY+Q0p80YQVrGSMM3raC8PHmxjZERW2hDeUb9394JG
+         a0Nz30vDzrolKPG8poKTT8xeSDp37KMDNVd3ALYssvkwBRnAFHbOndzpyHGTrvcrSI0J
+         ++8L5MFxBbwtdo4LILBKUVFGujboEJ/zQA+HLgEGtptb+7vXa224xzlPRoMndYquwXE0
+         QG1A==
+X-Gm-Message-State: AOJu0YzirP3yA6VP6NKNKELcGMAKkMWv1wxkwPLzCE+RP0o1E3R+vtUm
+        1dQhgYaYQgQc3NBsVUdVERcjXg==
+X-Google-Smtp-Source: AGHT+IGpD+i6cTIMpPLeel6+nmEVQ3zCBV3QHxnYxIWG/i4LHURGs8TnS7EH2Tl0fCt8kxtHdFJ+bQ==
+X-Received: by 2002:a17:906:2097:b0:9a2:19ea:88f7 with SMTP id 23-20020a170906209700b009a219ea88f7mr8449355ejq.64.1693205786646;
+        Sun, 27 Aug 2023 23:56:26 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id va17-20020a17090711d100b00992b71d8f19sm4320827ejb.133.2023.08.27.23.56.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 23:55:06 -0700 (PDT)
-Message-ID: <9f983d06-e82b-e572-e007-18d39c15ead7@linaro.org>
-Date:   Mon, 28 Aug 2023 08:55:05 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [EXT] Re: [PATCH v5 01/11] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-Content-Language: en-US
-To:     Varun Sethi <V.Sethi@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Pankaj Gupta <pankaj.gupta@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "clin@suse.com" <clin@suse.com>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Clark Wang <xiaoning.wang@nxp.com>,
-        Wei Fang <wei.fang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Bough Chen <haibo.chen@nxp.com>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Gaurav Jain <gaurav.jain@nxp.com>,
-        "alexander.stein@ew.tq-group.com" <alexander.stein@ew.tq-group.com>,
-        Sahil Malhotra <sahil.malhotra@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>
-References: <20230823073330.1712721-1-pankaj.gupta@nxp.com>
- <20230823073330.1712721-2-pankaj.gupta@nxp.com>
- <20230823124340.GA2022486-robh@kernel.org>
- <574e93da-ec74-f1a2-7170-c16bb225a2bb@kernel.org>
- <2023082422-proofing-dispense-1a1a@gregkh>
- <AM9PR04MB8211D170F1D484E083C8F899E8E0A@AM9PR04MB8211.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AM9PR04MB8211D170F1D484E083C8F899E8E0A@AM9PR04MB8211.eurprd04.prod.outlook.com>
+        Sun, 27 Aug 2023 23:56:26 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Mon, 28 Aug 2023 08:56:25 +0200
+Message-Id: <CV3ZCVK29BLY.D7Y8AEEOYLO3@otso>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fp4: Revert "arm64: dts:
+ qcom: sm7225-fairphone-fp4: Add AW8695 haptics"
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20230827122842.63741-1-krzysztof.kozlowski@linaro.org>
+ <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 08:00, Varun Sethi wrote:
-> Hi Greg,
-> 
->> -----Original Message-----
->> From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> Sent: Friday, August 25, 2023 12:54 AM
->> To: Krzysztof Kozlowski <krzk@kernel.org>
->> Cc: Rob Herring <robh@kernel.org>; Pankaj Gupta
->> <pankaj.gupta@nxp.com>; shawnguo@kernel.org; s.hauer@pengutronix.de;
->> kernel@pengutronix.de; clin@suse.com; conor+dt@kernel.org;
->> pierre.gondois@arm.com; Jacky Bai <ping.bai@nxp.com>; Clark Wang
->> <xiaoning.wang@nxp.com>; Wei Fang <wei.fang@nxp.com>; Peng Fan
->> <peng.fan@nxp.com>; Bough Chen <haibo.chen@nxp.com>;
->> festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>;
->> davem@davemloft.net; krzysztof.kozlowski+dt@linaro.org; linux-arm-
->> kernel@lists.infradead.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; Gaurav Jain <gaurav.jain@nxp.com>;
->> alexander.stein@ew.tq-group.com; Sahil Malhotra
->> <sahil.malhotra@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>; Varun
->> Sethi <V.Sethi@nxp.com>
->> Subject: [EXT] Re: [PATCH v5 01/11] dt-bindings: arm: fsl: add imx-se-fw
->> binding doc
->>
->> Caution: This is an external email. Please take care when clicking links
-> or
->> opening attachments. When in doubt, report the message using the 'Report
->> this email' button
->>
->>
->> On Thu, Aug 24, 2023 at 08:45:41PM +0200, Krzysztof Kozlowski wrote:
->>> On 23/08/2023 14:43, Rob Herring wrote:
->>>>> +                                                          |
->>>>> +  +------------------------------------------------------ |
->>>>> +                     |             |           |          |
->>>>> +  userspace     /dev/ele_muXch0    |           |          |
->>>>> +                           /dev/ele_muXch1     |          |
->>>>> +                                         /dev/ele_muXchY  |
->>>>> +                                                          |
->>>>> +
->>>>> +  When a user sends a command to the firmware, it registers its
->>>>> + device_ctx  as waiter of a response from firmware.
->>>>> +
->>>>> +  A user can be registered as receiver of command from the ELE.
->>>>> +  Create char devices in /dev as channels of the form
->>>>> + /dev/ele_muXchY with X  the id of the driver and Y for each
->>>>> + users. It allows to send and receive  messages to the NXP
->>>>> + EdgeLock Enclave IP firmware on NXP SoC, where current  possible
->> value, i.e., supported SoC(s) are imx8ulp, imx93.
->>>>
->>>> Looks like a bunch of Linux details which don't belong in the binding.
->>>>
->>>> Why do you need your own custom interface to userspace? No one else
->>>> has a similar feature in their platforms? Something like virtio or
->>>> rpmsg doesn't work?
->>>
->>> +Cc Greg,
->>>
->>> I doubt they care. This is some stub-driver to pass messages from
->>> user-space to the firmware. The interface is undocumented, without
->>> examples and no user-space user.
->>
->> Great, no user?  Let's delete the code then :)
->>
-> [Varun] We do have middleware applications that utilize the driver.
-> Following
-> are the links:
-> https://github.com/nxp-imx/imx-secure-enclave
-> https://github.com/nxp-imx/imx-smw
-> 
+Hi Krzysztof,
 
-Why this is not explained in the cover letter and in the patch adding
-the interfaces? You still need to document and explain the interface.
+On Sun Aug 27, 2023 at 2:28 PM CEST, Krzysztof Kozlowski wrote:
+> This reverts commit 413821b7777d062b57f8dc66ab088ed390cbc3ec because it
+> was never reviewed, was buggy (report from kernel test robot:
+> https://lore.kernel.org/all/202204090333.QZXMI2tu-lkp@intel.com/) and
 
-Best regards,
-Krzysztof
+(I wouldn't say this part is accurate, the robot just didn't use a tree
+with the i2c10 node already present, it was sent in an earlier patch
+IIRC, but whatever)
+
+> used undocumented, broken bindings.  Half of the properties in this
+> device are questioned, thus adding DTS node causes only errors and does
+> not make the device usable without the bindings and driver part:
+>
+>   sm7225-fairphone-fp4.dtb: haptics@5a: failed to match any schema with c=
+ompatible: ['awinic,aw8695']
+>   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,tset: b'\x12' is not of ty=
+pe 'object', 'array', 'boolean', 'null'
+>   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,r-spare: b'h' is not of ty=
+pe 'object', 'array', 'boolean', 'null'
+>
+> Since bindings were abandoned (4 months since review), revert the commit
+> to avoid false sense of supporting something which is not supported.
+
+I've been avoiding touching this topic again since I'm really not sure
+how to resolve.
+
+There's a bunch of magic registers being written to in the downstream
+driver, I don't have any documentation for that so I'm not exactly sure
+what I can do to make nice bindings with proper properties.
+
+Would you recommend just hardcoding some of these properties in the
+driver, assuming they're constant for every AW8695, even though the
+downstream driver has these properties in devicetree? Because of that I
+assumed these properties could differ per implementation / usage of the
+AW8695 in different devices.
+
+Or do you have any other suggestion?
+
+In any case:
+
+Acked-by: Luca Weiss <luca.weiss@fairphone.com>
+
+Regards
+Luca
+
+>
+> Cc: Luca Weiss <luca.weiss@fairphone.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 28 +------------------
+>  1 file changed, 1 insertion(+), 27 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm=
+64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> index 18171c5d8a38..568165f4f9e4 100644
+> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
+> @@ -386,36 +386,10 @@ &i2c8 {
+>  };
+> =20
+>  &i2c10 {
+> -	clock-frequency =3D <400000>;
+> -	status =3D "okay";
+> -
+>  	/* PM8008 PMIC @ 8 and 9 */
+>  	/* PX8618 @ 26 */
+>  	/* SMB1395 PMIC @ 34 */
+> -
+> -	haptics@5a {
+> -		compatible =3D "awinic,aw8695";
+> -		reg =3D <0x5a>;
+> -		interrupts-extended =3D <&tlmm 85 IRQ_TYPE_EDGE_FALLING>;
+> -		reset-gpios =3D <&tlmm 90 GPIO_ACTIVE_HIGH>;
+> -
+> -		awinic,f0-preset =3D <2350>;
+> -		awinic,f0-coefficient =3D <260>;
+> -		awinic,f0-calibration-percent =3D <7>;
+> -		awinic,drive-level =3D <125>;
+> -
+> -		awinic,f0-detection-play-time =3D <5>;
+> -		awinic,f0-detection-wait-time =3D <3>;
+> -		awinic,f0-detection-repeat =3D <2>;
+> -		awinic,f0-detection-trace =3D <15>;
+> -
+> -		awinic,boost-debug =3D /bits/ 8 <0x30 0xeb 0xd4>;
+> -		awinic,tset =3D /bits/ 8 <0x12>;
+> -		awinic,r-spare =3D /bits/ 8 <0x68>;
+> -
+> -		awinic,bemf-upper-threshold =3D <4104>;
+> -		awinic,bemf-lower-threshold =3D <1016>;
+> -	};
+> +	/* awinic,aw8695 @ 5a */
+>  };
+> =20
+>  &ipa {
 
