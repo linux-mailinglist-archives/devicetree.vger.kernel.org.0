@@ -2,178 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62FD278A620
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 08:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D067C78A62D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 08:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229461AbjH1G4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 02:56:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34978 "EHLO
+        id S229589AbjH1G7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 02:59:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjH1G4e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 02:56:34 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B40D120
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:56:28 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a3ec08d93so3774586a12.2
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:56:28 -0700 (PDT)
+        with ESMTP id S229574AbjH1G6h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 02:58:37 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C92DA2
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:58:34 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52a4737a08fso3695539a12.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 23:58:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1693205786; x=1693810586;
-        h=in-reply-to:references:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+CbUT7b5YjU9P228SDDHko9vselWOLP8ICBut5LNj2c=;
-        b=2rNhbgoRHVDFkzEpf81k4KaCrCEAsCDYs0ux+pAPX3dt8Sct/z38NnYADiB9GutA+H
-         joy9/F/84EF3vEdzMqqwZGd4bA3SGCH4KTCae9+pP8BA4zcq9WPvQ6UulTBoTlhElPpF
-         tjaxd3W1dzqsosSgoA4sv2mtYsN2P3WA7oBaP0guFWQCifaUZSMwyg6SnFoBOB7yoAMb
-         SzIPqBhy/Yr4dPp+E0HZTgPVa/d5gLVxvD9SfzTBbn3g+USdvf/gbzoHTKgZxhL3DZNI
-         ZWV7EyUuvLkbL17+IP8CJn4kpF0hNsd9uJ5hSz5FMTNwuRKDXhk2xKaD5LoHXdMmL54U
-         kWHA==
+        d=linaro.org; s=google; t=1693205912; x=1693810712;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OsZ4PYkksl2Z8LuGRY4k7e471htU4x9LtGFbo6V1i60=;
+        b=TuVb55xBcsGHkiLQRQqCHC52wDMkxqyZMBEB4E/SO+/bgyNb5hP9KYyM6Tv6aLhAwT
+         5sRRxDFx97PN6sJY7ydODM/gO9sEGK3hJnFLABlUfT3nZo+yM49q63w3VELDmYk8gEc7
+         abbXKrh8neYynegrRvEVCXu5BeHHZQNzMfWiKdskqSFBkcWzt2xlM8FifQKGwnW54UGa
+         gB6+pTSORTVzUmB+xO0d2NSx0ZiFcKVX9sYQPGP04NPKKG/QuR/Mq+TiFRw0Av/lQSmb
+         ufEdfDqkbeVw/b8rPAcUpcQR0wKeajakB0H830qpL1TvYsmW1U5suG6LYAxhxJjrkh8n
+         vHzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693205786; x=1693810586;
-        h=in-reply-to:references:to:from:subject:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=+CbUT7b5YjU9P228SDDHko9vselWOLP8ICBut5LNj2c=;
-        b=djtNS+TiXURretrG9w9/PH+jK9FNrjGLav3u77N1kU3U1r1f0nRmlU418f7hV8XHRq
-         CLTgaunI2CmHznBXDSNk1lYk9NCb8PT23hbtjxAXwLPZpuB6g7pKSHdkMnIwFokcbGY9
-         Kpxuz8fq5egQ5GF9XPncMo19o8sY+Q0p80YQVrGSMM3raC8PHmxjZERW2hDeUb9394JG
-         a0Nz30vDzrolKPG8poKTT8xeSDp37KMDNVd3ALYssvkwBRnAFHbOndzpyHGTrvcrSI0J
-         ++8L5MFxBbwtdo4LILBKUVFGujboEJ/zQA+HLgEGtptb+7vXa224xzlPRoMndYquwXE0
-         QG1A==
-X-Gm-Message-State: AOJu0YzirP3yA6VP6NKNKELcGMAKkMWv1wxkwPLzCE+RP0o1E3R+vtUm
-        1dQhgYaYQgQc3NBsVUdVERcjXg==
-X-Google-Smtp-Source: AGHT+IGpD+i6cTIMpPLeel6+nmEVQ3zCBV3QHxnYxIWG/i4LHURGs8TnS7EH2Tl0fCt8kxtHdFJ+bQ==
-X-Received: by 2002:a17:906:2097:b0:9a2:19ea:88f7 with SMTP id 23-20020a170906209700b009a219ea88f7mr8449355ejq.64.1693205786646;
-        Sun, 27 Aug 2023 23:56:26 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id va17-20020a17090711d100b00992b71d8f19sm4320827ejb.133.2023.08.27.23.56.25
+        d=1e100.net; s=20221208; t=1693205912; x=1693810712;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OsZ4PYkksl2Z8LuGRY4k7e471htU4x9LtGFbo6V1i60=;
+        b=j5MGQFKoPRtQeEqYa7FQzE3mzQojEZkM6YdtgZ7XRhV3+BVf0rw29YviW/1Bd8wTfk
+         4TT1DwbxL/gTpA8k013gMRDpTvoOCWeaf5kWv4BMlr7D0IyWrPsyNmies0/4AA1QVEMV
+         1zG3kxNKkee36930GjxCqLAHrTMPBBzsRc8ndDy+ZMOaPQInJI7EQW4FkW1WBGIGS6Kf
+         TvkZy5jNqWwPGSoLwSqOjLZR1Oj7Q8Tx10ln9X8u8vj0v2TEle35x093UnsOIDfFzkbn
+         sCTs9tdz0vhs4Wx9KKtM4IfLndX+EFvWppm4yBOlqd2jIc0tveF0hVs18ScskwMhbk6u
+         eh8g==
+X-Gm-Message-State: AOJu0Yw56GINOo1BRcX8nF32ScK79RzzbG5KbGE/YGVAbq+tltILxNA6
+        HtZCYiUPJDbcM1nirKCv+up0FQ==
+X-Google-Smtp-Source: AGHT+IGOJdi3bdWqq58P4lkBUQArH19QV7szZwfpc+gLL4zEowMV2nVFxe15AvzDXno7DvE31yt3dg==
+X-Received: by 2002:aa7:c38e:0:b0:523:3e5d:8aa2 with SMTP id k14-20020aa7c38e000000b005233e5d8aa2mr19724002edq.14.1693205912287;
+        Sun, 27 Aug 2023 23:58:32 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.225])
+        by smtp.gmail.com with ESMTPSA id f2-20020a056402150200b005233609e39dsm4170009edw.30.2023.08.27.23.58.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Aug 2023 23:56:26 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Sun, 27 Aug 2023 23:58:31 -0700 (PDT)
+Message-ID: <9f499fe5-db59-f4c8-6a50-93725b7287fd@linaro.org>
+Date:   Mon, 28 Aug 2023 08:58:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2] Minerva: Add Meta openBMC Minerva dts file.
+Content-Language: en-US
+To:     peteryin <peteryin.openbmc@gmail.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
+        daniel-hsu@quantatw.com
+References: <20230828031714.107382-1-peteryin.openbmc@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230828031714.107382-1-peteryin.openbmc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 28 Aug 2023 08:56:25 +0200
-Message-Id: <CV3ZCVK29BLY.D7Y8AEEOYLO3@otso>
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm7225-fp4: Revert "arm64: dts:
- qcom: sm7225-fairphone-fp4: Add AW8695 haptics"
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.15.2
-References: <20230827122842.63741-1-krzysztof.kozlowski@linaro.org>
- <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230827122842.63741-3-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 28/08/2023 05:17, peteryin wrote:
+> This is for Meta openBMC Minerva dts.
+> 
+> Kernel:dev-6.1
 
-On Sun Aug 27, 2023 at 2:28 PM CEST, Krzysztof Kozlowski wrote:
-> This reverts commit 413821b7777d062b57f8dc66ab088ed390cbc3ec because it
-> was never reviewed, was buggy (report from kernel test robot:
-> https://lore.kernel.org/all/202204090333.QZXMI2tu-lkp@intel.com/) and
+??? NAK. We do not develop there.
 
-(I wouldn't say this part is accurate, the robot just didn't use a tree
-with the i2c10 node already present, it was sent in an earlier patch
-IIRC, but whatever)
+Also subject is totally wrong. Drop redundant pieces, drop full stop.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
-> used undocumented, broken bindings.  Half of the properties in this
-> device are questioned, thus adding DTS node causes only errors and does
-> not make the device usable without the bindings and driver part:
->
->   sm7225-fairphone-fp4.dtb: haptics@5a: failed to match any schema with c=
-ompatible: ['awinic,aw8695']
->   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,tset: b'\x12' is not of ty=
-pe 'object', 'array', 'boolean', 'null'
->   sm7225-fairphone-fp4.dtb: haptics@5a: awinic,r-spare: b'h' is not of ty=
-pe 'object', 'array', 'boolean', 'null'
->
-> Since bindings were abandoned (4 months since review), revert the commit
-> to avoid false sense of supporting something which is not supported.
-
-I've been avoiding touching this topic again since I'm really not sure
-how to resolve.
-
-There's a bunch of magic registers being written to in the downstream
-driver, I don't have any documentation for that so I'm not exactly sure
-what I can do to make nice bindings with proper properties.
-
-Would you recommend just hardcoding some of these properties in the
-driver, assuming they're constant for every AW8695, even though the
-downstream driver has these properties in devicetree? Because of that I
-assumed these properties could differ per implementation / usage of the
-AW8695 in different devices.
-
-Or do you have any other suggestion?
-
-In any case:
-
-Acked-by: Luca Weiss <luca.weiss@fairphone.com>
-
-Regards
-Luca
-
->
-> Cc: Luca Weiss <luca.weiss@fairphone.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
+> 
 > ---
->  .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 28 +------------------
->  1 file changed, 1 insertion(+), 27 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts b/arch/arm=
-64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> index 18171c5d8a38..568165f4f9e4 100644
-> --- a/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm7225-fairphone-fp4.dts
-> @@ -386,36 +386,10 @@ &i2c8 {
->  };
-> =20
->  &i2c10 {
-> -	clock-frequency =3D <400000>;
-> -	status =3D "okay";
-> -
->  	/* PM8008 PMIC @ 8 and 9 */
->  	/* PX8618 @ 26 */
->  	/* SMB1395 PMIC @ 34 */
-> -
-> -	haptics@5a {
-> -		compatible =3D "awinic,aw8695";
-> -		reg =3D <0x5a>;
-> -		interrupts-extended =3D <&tlmm 85 IRQ_TYPE_EDGE_FALLING>;
-> -		reset-gpios =3D <&tlmm 90 GPIO_ACTIVE_HIGH>;
-> -
-> -		awinic,f0-preset =3D <2350>;
-> -		awinic,f0-coefficient =3D <260>;
-> -		awinic,f0-calibration-percent =3D <7>;
-> -		awinic,drive-level =3D <125>;
-> -
-> -		awinic,f0-detection-play-time =3D <5>;
-> -		awinic,f0-detection-wait-time =3D <3>;
-> -		awinic,f0-detection-repeat =3D <2>;
-> -		awinic,f0-detection-trace =3D <15>;
-> -
-> -		awinic,boost-debug =3D /bits/ 8 <0x30 0xeb 0xd4>;
-> -		awinic,tset =3D /bits/ 8 <0x12>;
-> -		awinic,r-spare =3D /bits/ 8 <0x68>;
-> -
-> -		awinic,bemf-upper-threshold =3D <4104>;
-> -		awinic,bemf-lower-threshold =3D <1016>;
-> -	};
-> +	/* awinic,aw8695 @ 5a */
->  };
-> =20
->  &ipa {
+> v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
+> 
+> Change log:
+> v1:
+>     1. Create minerva dts file.
+> v2:
+>     1.Add facebook,minerva-bmc in aspeed.yaml
+>     2.use stdout-path
+>     3.Add Makefile
+> ---
+> 
+>  .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 329 ++++++++++++++++++
+>  3 files changed, 331 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index fb4ce5df2fa0..9d1b26e7ca6b 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -79,6 +79,7 @@ properties:
+>                - facebook,elbert-bmc
+>                - facebook,fuji-bmc
+>                - facebook,greatlakes-bmc
+> +              - facebook,minerva-bmc
+>                - ibm,everest-bmc
+>                - ibm,rainier-bmc
+>                - ibm,tacoma-bmc
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 6a897ff40ff0..e7c00905a08b 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1603,6 +1603,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-facebook-wedge400.dtb \
+>  	aspeed-bmc-facebook-yamp.dtb \
+>  	aspeed-bmc-facebook-yosemitev2.dtb \
+> +	aspeed-bmc-facebook-minerva.dtb \
+
+Wrong order. 'm' is not after 'y'.
+
+...
+
+> +	/*X0-X7*/	"","","","","","","","",
+> +	/*Y0-Y7*/	"","","","","","","","",
+> +	/*Z0-Z7*/	"","","","","","","","";
+> +};
+> +
+
+Still redundant blank line.
+
+Best regards,
+Krzysztof
 
