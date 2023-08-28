@@ -2,84 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EED78A6D3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 09:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 190E978A6F8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 10:02:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229862AbjH1Hxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 03:53:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46072 "EHLO
+        id S229497AbjH1IBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 04:01:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229938AbjH1Hxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 03:53:48 -0400
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58F6C120
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:53:45 -0700 (PDT)
-Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-563f8e8a53dso1267914a12.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 00:53:45 -0700 (PDT)
+        with ESMTP id S229550AbjH1IBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 04:01:35 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEEC1119
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 01:01:32 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2bd0d135ca3so11381481fa.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 01:01:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693209225; x=1693814025;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yc5/64aDDHimpalFyKo/sDYTTFjFL1PiUBqmUUqNYNY=;
-        b=EVNyxX2D6EZ5nzDDCwGTnaKtkt4faXDCrRZB+EWpBULWw6ZofaARnr23A2UfkDFslR
-         VTHjtWH1hVnX6DCHF8Z9iAxLt1b1Tmgg0KwRSx0eTxhQlrrGKB+GRJb+qt+Mp637iu+1
-         djvqqUloB8V3bujW+Mdax+wO37dYgmDLV9XdQZtqymlzzMqCS4QgC6eYtcdeHu2gOPIW
-         42igJq3p/nyBsOyk6dUQ8NMZex3pu71WtSsJKnvwJsXe1yNt3w5luvk/LkE9tHSskA6Q
-         8aYzN4CS3gI9Wvqe8y2VYcVR/yC2qROUREGW0D7O+jxuWsNG/Ttr6n+Pykn3HQTP6FJv
-         Egvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693209225; x=1693814025;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1693209691; x=1693814491;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yc5/64aDDHimpalFyKo/sDYTTFjFL1PiUBqmUUqNYNY=;
-        b=bXIR4Zm16410j0icBhFba3rZXZ5sBcOniY/Gl8BkAkxK+8RW5H3CS1WL5VK+xtKj0t
-         SO9Al8DX3bk5n8m7RcneUAyBUAr6EV9rWMN4QIAUFsolGlt8HrxPyAigeTl/MYXs+UdX
-         ytBRWgE6N4uutFcFucpb58HqKHEX/ReCyKp61HkTJR8dyUyUBx1gLG3khGDF6RutoKlp
-         AVq5w4o/WdpZk2A2agoXfNSfC1XH0vMY0FK6pg55AVeFoXCu2SdiihvRujBn8ybKWi+d
-         OGMQdmNVy5ZYpDlestrolTiBemd1KDE+llC27lqiI72FYLpfPoAqtgxVZMcVihBBGGhk
-         NJsg==
-X-Gm-Message-State: AOJu0Yzj1JUcJATVLeNtIoZxjbQbQh/rwQkr9BzUofIiKvd1O0gwA9uW
-        jNOXXog9Y7Cu7UxMFo/GbZISCgjtynlXGCyF1oZaIg==
-X-Google-Smtp-Source: AGHT+IE4ZTuCbpfSd2u26y/GnloivJyZc/YSoHKEwSl0YpsN37Q/7zIWDf5qfNHHW8SlBatqk5kJBNfX4i4HRUvRd2I=
-X-Received: by 2002:a17:90a:3ec1:b0:26d:4642:1bd7 with SMTP id
- k59-20020a17090a3ec100b0026d46421bd7mr18663702pjc.34.1693209224797; Mon, 28
- Aug 2023 00:53:44 -0700 (PDT)
+        bh=yzA+Pcb496ZNITWGLYBbGlGwRmGMM9hWWTkk9F3cf9o=;
+        b=nZ7/49DSXK2COmjX4pXkI7rbI4ywI47IQcBiUIe3bMHd0D5HJ+lw9435RGpMjnBb8J
+         R3fA1KZN5gDXDlZigY/S0hTAQIPIzhdjXQvTHwubiI3jisyzO3xZlaeI6+Olg/Lv9TrH
+         9Q58H2vAdQGZMJmRVea6xEGwjjdnWqPI0UwB1t/FbFCZA0QWIl99NXmUnmoEIPvSOaQ8
+         0HZvRnw5GaOj5RovxAJFnH6IOiN2agYAhCmP9DFH/Z8n8ouJwB+ZEpNwIdoR7GJ6fpdt
+         /VmKa9ObQnoNFoI8YLBnNF63Tbn4FvoRnwwgsxzjfaCftAENl4d7dOpxLubCIP7/OBfk
+         tNdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693209691; x=1693814491;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yzA+Pcb496ZNITWGLYBbGlGwRmGMM9hWWTkk9F3cf9o=;
+        b=clhmCQbnPsBKuYCBhxJo8qnjujFKxzjc/FkH0IpEmIZ/CXg70tBKKm9gi9VbXuWcRZ
+         ukexiRK3dooLZObivjKCFN+HIdJyTVbG3CdtnK/KC1A9p0blO3eMqavblwDNP6mBKFz2
+         D8vmq7kLuMcIF335DhEsk5MLoqNtUP9JSVCH2JQYWnnxoDK2nx8dFufjKQBBLqTtQnxd
+         kOxHDiPBGUK8SIiS8bydMWk8JDYbGmzEmTwyNkdaw3yn+IuC5/vunpYaaJCYf8/NfBzV
+         OP3FgtDS37u+zF+fyRk7YxFxaod86lCSGAZWfBqGIiwfMe3OwJHPb+cHyGD8sALAv5HQ
+         TwZA==
+X-Gm-Message-State: AOJu0YxxumRdjXjA6DEpMc4/60mllmscomW4PFXkjTi8y1dF1iQtI6ZF
+        6lVtnidc6bi98uIsay17dt9eRg==
+X-Google-Smtp-Source: AGHT+IGYAvLKiXg4lwCUIbQDVIyGOwJSoywiHGhA+NsggymdBRdZU3wars3lwUxUjAzWuxK5p5hoOQ==
+X-Received: by 2002:a2e:8e97:0:b0:2bb:aaab:b42f with SMTP id z23-20020a2e8e97000000b002bbaaabb42fmr17455993ljk.49.1693209690894;
+        Mon, 28 Aug 2023 01:01:30 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5e59:c27b:747a:3f52? ([2a01:e0a:982:cbb0:5e59:c27b:747a:3f52])
+        by smtp.gmail.com with ESMTPSA id j11-20020adfe50b000000b003143867d2ebsm9792691wrm.63.2023.08.28.01.01.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 01:01:30 -0700 (PDT)
+Message-ID: <b6c48249-7e3e-4786-88f6-25b17ae7a932@linaro.org>
+Date:   Mon, 28 Aug 2023 10:01:30 +0200
 MIME-Version: 1.0
-References: <20230817120029.221484-1-billy_tsai@aspeedtech.com>
- <20230817120029.221484-2-billy_tsai@aspeedtech.com> <20230823131334.GA2059582-robh@kernel.org>
- <SG2PR06MB33659FFB0CBFFA55295E6A098B1DA@SG2PR06MB3365.apcprd06.prod.outlook.com>
-In-Reply-To: <SG2PR06MB33659FFB0CBFFA55295E6A098B1DA@SG2PR06MB3365.apcprd06.prod.outlook.com>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Mon, 28 Aug 2023 13:23:33 +0530
-Message-ID: <CABqG17g-s4h810JO-MO_TRRJhPkP=RMLDm7Jq6Sx4Gm1hRKqLg@mail.gmail.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: Support Aspeed g6 PWM TACH Control
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
-        Luke Chen <luke_chen@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 1/7] Revert "dt-bindings: crypto: qcom,prng: Add
+ SM8450"
+Content-Language: en-US, fr
+To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
+ <20230824-topic-sm8550-rng-v2-1-dfcafbb16a3e@linaro.org>
+ <20230824212903.GA1453763-robh@kernel.org>
+ <a9fa63e1-dcc4-4f44-97b0-03d5afd6435a@quicinc.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <a9fa63e1-dcc4-4f44-97b0-03d5afd6435a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,175 +114,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Billy,
+Hi,
 
+On 28/08/2023 08:25, Om Prakash Singh wrote:
+> 
+> 
+> On 8/25/2023 2:59 AM, Rob Herring wrote:
+>> On Thu, Aug 24, 2023 at 01:33:20PM +0200, Neil Armstrong wrote:
+>>> This reverts commit b9296bb41275 ("dt-bindings: crypto: qcom,prng: Add SM8450"),
+>>> since the RNG HW on the SM8450 SoC is in fact a True Random Number Generator,
+>>> a more appropriate compatible should be instead as reported at [1].
+>>>
+>>> [1] https://lore.kernel.org/all/20230818161720.3644424-1-quic_omprsing@quicinc.com/
+>>>
+>>> Suggested-by: ￼Om Prakash Singh <quic_omprsing@quicinc.com>
+>>> Suggested-by: ￼Konrad Dybcio <konrad.dybcio@linaro.org>
+>>
+>> Is it just me or looks like an unrenderable character in these.
+> Yes there are spacial character before Om and Konrad that should have been removed.
 
-On Mon, 28 Aug 2023 at 09:33, Billy Tsai <billy_tsai@aspeedtech.com> wrote:
->
-> On Thu, Aug 17, 2023 at 08:00:28PM +0800, Billy Tsai wrote:
->
-> >> Document the compatible for aspeed,ast2600-pwm-tach device, which can
->
-> >> support upto 16 PWM outputs and 16 fan tach input.
->
-> >>
->
-> >> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
->
-> >> ---
->
-> >>  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 57 +++++++++++++++++++
->
-> >>  1 file changed, 57 insertions(+)
->
-> >>  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
->
-> >>
->
-> >> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
->
-> >> new file mode 100644
->
-> >> index 000000000000..1666304d0b0f
->
-> >> --- /dev/null
->
-> >> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
->
-> >> @@ -0,0 +1,57 @@
->
-> >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->
-> >> +# Copyright (C) 2021 Aspeed, Inc.
->
-> >> +%YAML 1.2
->
-> >> +---
->
-> >> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#
->
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->
-> >> +
->
-> >> +title: ASPEED G6 PWM and Fan Tach controller device driver
->
-> >> +
->
-> >> +maintainers:
->
-> >> +  - Billy Tsai <billy_tsai@aspeedtech.com>
->
-> >> +
->
-> >> +description: |
->
-> >> +  The ASPEED PWM controller can support upto 16 PWM outputs.
->
-> >> +  The ASPEED Fan Tacho controller can support upto 16 fan tach input.
->
-> >> +
->
-> >> +properties:
->
-> >> +  compatible:
->
-> >> +    enum:
->
-> >> +      - aspeed,ast2600-pwm-tach
->
-> >> +
->
-> >> +  reg:
->
-> >> +    maxItems: 1
->
-> >> +
->
-> >> +  clocks:
->
-> >> +    maxItems: 1
->
-> >> +
->
-> >> +  resets:
->
-> >> +    maxItems: 1
->
-> >> +
->
-> >> +  "#pwm-cells":
->
-> >> +    const: 3
->
-> >> +
->
-> >> +  aspeed,fan-tach-ch:
->
-> >> +    description: Specify the Fan tach input channels.
->
-> >> +    $ref: "/schemas/types.yaml#/definitions/uint8-array"
->
->
->
-> >This property is already defined in aspeed-pwm-tacho.txt as a single u8
->
-> >that goes in a fan node. You can't redefine its type and location here.
->
->
->
-> Hi Rob,
->
->
->
-> I didn't redefine the type of property. The type of the aspeed,fan-tach-ch is unit8-array
->
-> in aspeed-pwm-tacho.txt.
->
-> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt#L48
->
-> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/hwmon/aspeed-pwm-tacho.txt#L71
->
->
->
-> >To repeat what I've said in previous versions, work with others to
->
-> >define a common fan and fan controller binding. Otherwise, anything new
->
-> >with fan related properties is simply going to be rejected.
->
->
->
-> Okay I will try to work with Naresh for defining a common fan binding.
->
->
->
-> Thanks for your suggestion.
->
->
->
-> Hi Naresh,
->
->
->
-> As Rob mentioned, it would be advisable for my dt-bindings to reference the common fan bindings instead of introducing specific properties.
->
-> I noticed that you have already submitted a related patch to the community, which seems to be pending for around 10 months.
->
-> https://lore.kernel.org/lkml/20221116213615.1256297-2-Naresh.Solanki@9elements.com/
->
-> Do you have plans to send the next version of the patch? Alternatively, can I proceed to cherry-pick this version of the patch and continue with
->
-> the upstreaming process in my patch serial?
-Sure, go ahead.
+Let me resend a v2 without this space and the review tags.
 
-Regards,
-Naresh
->
->
->
-> Thanks
->
-> Best Regards,
->
-> Billy Tsai
+Neil
+
+>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   .../devicetree/bindings/crypto/qcom,prng.yaml      | 24 +++++-----------------
+>>>   1 file changed, 5 insertions(+), 19 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>>> index 36b0ebd9a44b..bb42f4588b40 100644
+>>> --- a/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>>> +++ b/Documentation/devicetree/bindings/crypto/qcom,prng.yaml
+>>> @@ -11,13 +11,9 @@ maintainers:
+>>>   properties:
+>>>     compatible:
+>>> -    oneOf:
+>>> -      - enum:
+>>> -          - qcom,prng  # 8916 etc.
+>>> -          - qcom,prng-ee  # 8996 and later using EE
+>>> -      - items:
+>>> -          - const: qcom,sm8450-prng-ee
+>>> -          - const: qcom,prng-ee
+>>> +    enum:
+>>> +      - qcom,prng  # 8916 etc.
+>>> +      - qcom,prng-ee  # 8996 and later using EE
+>>>     reg:
+>>>       maxItems: 1
+>>> @@ -32,18 +28,8 @@ properties:
+>>>   required:
+>>>     - compatible
+>>>     - reg
+>>> -
+>>> -allOf:
+>>> -  - if:
+>>> -      not:
+>>> -        properties:
+>>> -          compatible:
+>>> -            contains:
+>>> -              const: qcom,sm8450-prng-ee
+>>> -    then:
+>>> -      required:
+>>> -        - clocks
+>>> -        - clock-names
+>>> +  - clocks
+>>> +  - clock-names
+>>>   additionalProperties: false
+>>>
+>>> -- 
+>>> 2.34.1
+>>>
+
