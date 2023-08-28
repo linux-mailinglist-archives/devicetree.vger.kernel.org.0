@@ -2,147 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0313978A798
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 10:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A64AF78A887
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 11:10:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230159AbjH1IWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 04:22:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54058 "EHLO
+        id S229877AbjH1JJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 05:09:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230075AbjH1IWS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 04:22:18 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB89DCF4
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 01:21:43 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99c0cb7285fso382646266b.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 01:21:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693210894; x=1693815694;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=R/ThTKBMXaBdcMw21bB4Tb4UrarGnjH7VR3jlnjNz0o=;
-        b=p0ofPENfE3XRABjMqYG0NDnT45lF6wkg4OivHw849Jmd0NTzi42hEWq4NSQm/ui6/H
-         mx+cwroHygO0OeNDvQFFKbX4ynkLaDOOF8/1d0TzAbG5PGFRXdDhu+hqF/kSxGrZdmvX
-         e6V0YiOH8qQPJoBgoNd331iQFOgFiRTtSX+bceYEo8QIdxaUjjggwwpKNCRG2lfuih9U
-         YUA9cUMkdFwbdO4XsGbhVJ9BbxWdk7vMCFIMK519m6PXam6shCgHvBUA+lep9Em5zDD3
-         AwQnmUMZj/8CrZwRg1r+SCdrak/ThkoTNCWe05o7IqFg06EMGtFoKmhu0dEJ+3/HhqUs
-         UKLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693210894; x=1693815694;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R/ThTKBMXaBdcMw21bB4Tb4UrarGnjH7VR3jlnjNz0o=;
-        b=SjpFC19t6viM/rQgjutp2dnItujULPYVTY0le97VUlIk1UYK501OaaKvedxpEjWChp
-         Xa6yrEK78SXtV550XDZzVZXLc6WFrmSZF0N1+oloHuwXwI7BG8GV6Om1AJMOi3YqpHKu
-         f9Yhg970fjusNUxHMG38P10fHeM8h8UK8OJ558rXUDI3glTu3XGu+ZhHRlDyE+VYi+1e
-         0G4tKn+DXugEJAKBd2uqjsdgTr2RMIhYfXPAZNxX5FmiGxDsZo1t+qKW4PmyfXCGpAAT
-         5Hv7362fAaUjkgWSWWJLWv9jQTQITJj2RjbeufnwNdFlyK/3R4837IeH5C115UyD3cVx
-         4Ofg==
-X-Gm-Message-State: AOJu0YzHBFtn/MbMTeXcuP3e5EGmVoU9XRfYZRgkTk2KPdBGyAC79Kb7
-        iEC3uYBcbOihrP38RK8Er8auKg==
-X-Google-Smtp-Source: AGHT+IFBUK6E4zrbQPaHC6jS5bTEiJnj2yId8vtYo61AG/BoM8FRNNTdWT0PxEWyM0E9uZwDnNK+lg==
-X-Received: by 2002:a17:907:a04a:b0:9a5:78c0:44e6 with SMTP id gz10-20020a170907a04a00b009a578c044e6mr5892043ejc.16.1693210894452;
-        Mon, 28 Aug 2023 01:21:34 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id v24-20020a17090606d800b0099364d9f0e2sm4368823ejb.98.2023.08.28.01.21.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 01:21:34 -0700 (PDT)
-Message-ID: <2efba6b3-2399-9deb-d0ce-78f7b5e12f30@linaro.org>
-Date:   Mon, 28 Aug 2023 10:21:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
-To:     Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Nicolas Schier <nicolas@fjasle.eu>,
-        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
-        Kees Cook <keescook@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_pkondeti@quicinc.com
-Cc:     linux-kernel@vger.kernel.org, kernel@quicinc.com,
-        workflows@vger.kernel.org, tools@linux.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-References: <cover.1693037031.git.quic_gurus@quicinc.com>
- <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
+        with ESMTP id S229626AbjH1JJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:09:11 -0400
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2082.outbound.protection.outlook.com [40.107.101.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C26EF3;
+        Mon, 28 Aug 2023 02:09:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hwREYNU1xgXWy13XrUAet9iINVCBwXLGBMg27hfbONH3QCHxPR8eQGF6zcDwjUOiwBD8aGkq2msOfVxuZAiLpA3pTF37qrABeLpet9019vQLW9DsFliOflkEyZbqeBb7ha5dtcBDjVuw5VHUsI9fOuG+NzCz01WJ0xjeoeWZstgPgsJA+6evs5qnrZaa51o669g38f/ey1J8qg2ZiiWDyoee5uMhKTX1LRdIum0nc1rdS13mIS/AeDkqVGcEeGQpsJ/BxsQ0oUw2/f7E4FdHnuh+ExDd2oWYn/JHZhhRZuy3WEmUIs2wtGJV8vzspj90jGmvlamSNII7hjYQrxLksw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RFIs7nA2DYh2xKmidD2YSYw8mg/zY7bHk7GgYLXRhx8=;
+ b=JULE2/ONF6Tu6LuH6CwpiDWlEwaMI/GxNBRHfnBNm6KlyKauDPTp4yCTR/LTYsY79AoSY879dGzjC1hKLHUQTCiyFVVmj0JMbhlBdTXo32mUK4RiYDQHhLLuvlRMkyzE6gWmEtAnz8bDuoJM6qcgU7Gpfl8hNCSludU2o4AOjE1y68/hn1QHymVSTNKkVwu0rfwh1C7f/cEc9FUaBRVCw0MyG2Dz4fAGwC6sKwYseo3NdGirGyJ9FTOAPBMonIRZUj/2HlXZK8NGuY/T+vii+b88xkRafod6hYW3pWAuEyj+Dl91ELxvV6ayHSaxHmTlMw/eLDFlX8dUS2OOimG/gw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RFIs7nA2DYh2xKmidD2YSYw8mg/zY7bHk7GgYLXRhx8=;
+ b=DZF0dz55+zKTw5r1+Pj2kTj1/ePbdC4VDJzPy5hHUqbWKzl96o9mWkXf7hdoWR+As/dlT+P40+0IWTNwyn1QsAyvn8bVP7bn1yQ8CU6Y81FAKkdTZbKDb9K3h6eQdUIqFdPrWFpgHTppfrryrV0NpqEU1IdLCV4XhStA0D8D5hE=
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
+ by SJ2PR12MB8831.namprd12.prod.outlook.com (2603:10b6:a03:4d0::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
+ 2023 09:09:05 +0000
+Received: from SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::2525:9c2a:5446:7605]) by SN7PR12MB7201.namprd12.prod.outlook.com
+ ([fe80::2525:9c2a:5446:7605%6]) with mapi id 15.20.6699.027; Mon, 28 Aug 2023
+ 09:09:05 +0000
+From:   "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
+Subject: RE: [PATCH v6 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Thread-Topic: [PATCH v6 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port
+ driver
+Thread-Index: AQHZ0bd0UZnWQ2UfsUKGgBlWnmvLwK/1NJwAgAo9UBA=
+Date:   Mon, 28 Aug 2023 09:09:04 +0000
+Message-ID: <SN7PR12MB72019898876F049A932209038BE0A@SN7PR12MB7201.namprd12.prod.outlook.com>
+References: <20230818093507.24435-4-thippeswamy.havalige@amd.com>
+ <20230821201400.GA367570@bhelgaas>
+In-Reply-To: <20230821201400.GA367570@bhelgaas>
+Accept-Language: en-US
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|SJ2PR12MB8831:EE_
+x-ms-office365-filtering-correlation-id: f5d7a6c0-9636-4e19-9e2c-08dba7a66d94
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: qzjU+xygtHL2d2f0bNxRHK0klrqE1hzv/AiLiC2aiERTe5zua2Phc7xCHCA1vZAguE3f9ZS0UtagwcnPjLANr9dDyOIo++w7Hkjo6EzNWv9QcPCcDAtdibeLDUI35cuc+B3EAi6weNcKJosRreexgHlO3EegmNM0uBjW753WGtSOcHYVnLmn6OzBWbT7/xoms6QQ6P6rjfOhWRtyyO77MI0uUrH7a1vmchkG2Rv9rYR8CRe5HVYBSe/NZM5NfY3C1lGZsBYGs3jFUxtqnCydO79O1OrDi16MDMSEWSYv35TD6ryK42E8se2zdBqyr6lEd/JtYdHtbOaAGMHrby6m6bOjAVh/aluMfcoaanX9zTqdmhG3MlWzxHur2jvuikh0vfBTnGDrN9bFpDvW0wyhpAz2mHdUcHCmpT1U6nmg+L0XQoVOQ4LbKdbXzSzgp1TQ7iqQJ4Cg/zX/MCAUuijzEAjZ6LxjuXt/gI75aQQAPiWtJVrinKBs7/WWS6+vZ7Xsj6yhYQy2RNUfZhO50SAUFqypKbp8bLkWzzZMWSjOl8CtytR6XnCIeokyCJ5A6W1dUD35mYe0UsL3ktnB3QjYdFFNqvO2YeLausTsk18Wh/um2SPM1TUUJhQOARLtnNVE
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(346002)(396003)(376002)(39860400002)(366004)(186009)(451199024)(1800799009)(7696005)(71200400001)(6506007)(86362001)(38100700002)(55016003)(38070700005)(33656002)(122000001)(83380400001)(2906002)(76116006)(26005)(53546011)(9686003)(478600001)(52536014)(8676002)(66946007)(4326008)(66446008)(8936002)(64756008)(5660300002)(66476007)(66556008)(7416002)(316002)(41300700001)(54906003)(6916009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?uEe/dZi5oMm3WYxRdUjq9+qXB1jMHxMiTaDdPFeWVJS6G0bLJCFZWe6rW2zH?=
+ =?us-ascii?Q?tRa8VVqnk+HKz74XE0mFn3f/gQin8h0sjhc1QSwbJaVTDIaYQECxfknUT4mG?=
+ =?us-ascii?Q?/mZdt5cqVmT953oLprk9k1ZYK7W8BArhH68SNzUDJ2Maf6aR5bdfMCtJCsfu?=
+ =?us-ascii?Q?yxTwC1BNJS2HZcV7aOiSmKFpZ/wGY9ujsfyVGqpsT8rIz9nH9tD3JKqBdUll?=
+ =?us-ascii?Q?xKmDFMgYzVE6/6EsbKeBToZFwSytrNT+MozpDsIgGWO5bAD4f5ZHsC3nqw/X?=
+ =?us-ascii?Q?EPjr48izzRrJsbwgbTVwp4Vg4ZNyhXhyfdu7fqlLMlO8kRC/OToBpIPZsSMk?=
+ =?us-ascii?Q?ZOM3A5/aMNzAH8D3fAtbswzAXSzRUXCRnVDtpq2kivCO+xHhZ+KkbaqbqrUT?=
+ =?us-ascii?Q?xkGjtQeU1lKunEF3gvbn8K3mFeLrGvmdAUHkl6sulr8feM4AWMxrJKuQbPJO?=
+ =?us-ascii?Q?ebD4Mka4C5z0T6OYzp/eMjPsE9o4Pc6UBYQtKUqAxcdGRX8YKI+1o+rS3mHG?=
+ =?us-ascii?Q?SYaDZ9AqtAmkCNyzQ3n5x8iV7uhKqMLB8JgnD6B28ts8Pbg07+WEEYjdrl1T?=
+ =?us-ascii?Q?dOYtTQtP32rbS3DO6AWlxJtETAaFOQbBOyGWnziY+Ofnm85cudHdMuL5rD4K?=
+ =?us-ascii?Q?4BQsCDVc9yywDS0XVbBxtjDlP2wAeH1u8qa0BCKpKnqGSlT7JUxgsgl4l6UQ?=
+ =?us-ascii?Q?sdOSuWftT1erSDAp7WtTwMuc/bu/D9FDEmh0fUwTwKEu6E8X7uHcJipDqrih?=
+ =?us-ascii?Q?qE5W4xWpX/QszseCyOZFlgUTFsl1yLtaCFBy9q/b4dnaaNj+VA0Nxkg/tL0L?=
+ =?us-ascii?Q?XvFDPa/GbSemJvXtaNITb2Fadr4+KGoiSeP09gpCli/oy+d9MvFReXDKDUlZ?=
+ =?us-ascii?Q?D+rJewpsfH9SvCn8M3P2F4WEdO82XjcSh9sOlMECwkSFOmYbp4vvTmsPDX3j?=
+ =?us-ascii?Q?WcwwulaEAnffdXwUQmU9guqMcu48lL/HnCByQzt1DgIj7BHbdRKnkjnnKbqn?=
+ =?us-ascii?Q?dTtHtBcO72fSoI2Ho41EHVJJ9BVIWj4Yfc3G4Q3y9AabSZszkaBYlIkMQEuw?=
+ =?us-ascii?Q?noselQXLo8s9ppcPplBnjHudd9famtW32u+9Xgo/0p0DXa+VRqybpRkGYJRo?=
+ =?us-ascii?Q?kx3WyH5fez5U7jp7BJ/9sf+w74iSCC0pWECrv9RdjmolGK71PhnKolfYPdnE?=
+ =?us-ascii?Q?R3jW+8RD9D8taajqg0ioCwdSzHrxtPv5Oti2dVMjsHswbZJTQnhMf8Ks/SrQ?=
+ =?us-ascii?Q?RtZwWq6mXZ3VkOUgxWmYWsXK81oYXI0dx7lNK9f/dPr38RfJIc1Js4WOsLdV?=
+ =?us-ascii?Q?bpzwI5FEC37WM/dN6uJ/pryI63OG6pQ+eH4KmZQe01XJHjkytznrmFGXqi04?=
+ =?us-ascii?Q?GhMC78k7JcwDq3EKiYNl8yuL21vZ17Q+9qjGTJAxjiQw/hVew8hwocL/lD0F?=
+ =?us-ascii?Q?n+gjh70snaoCiZL/+GUIwurKmPAiziiD9jiJP2q4vjvIlvARlayQeElBbnxL?=
+ =?us-ascii?Q?Gi6nBW4/rZifwzlYRpmcO0KUVLYTQq+XSOd8NttH4/Fj9TpJi3znPZKb66e5?=
+ =?us-ascii?Q?y6ycdgsnpHLeAA1toX8=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f5d7a6c0-9636-4e19-9e2c-08dba7a66d94
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2023 09:09:04.7353
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RP3jYbRo57o2zAYYJp2EPa8rolSGmO+Qot5Z3tqYriBrgtq/xSeZUzMxCknAZudCl5QjaLBtaXy3ipax1R6NZw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8831
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/08/2023 10:07, Guru Das Srinagesh wrote:
-> This script runs get_maintainer.py on a given patch file (or multiple
-> patch files) and adds its output to the patch file in place with the
-> appropriate email headers "To: " or "Cc: " as the case may be. These new
-> headers are added after the "From: " line in the patch.
-> 
-> Currently, for a single patch, maintainers and reviewers are added as
-> "To: ", mailing lists and all other roles are added as "Cc: ".
-> 
-> For a series of patches, however, a set-union scheme is employed in
-> order to solve the all-too-common problem of ending up sending only
-> subsets of a patch series to some lists, which results in important
-> pieces of context such as the cover letter (or other patches in the
-> series) being dropped from those lists. This scheme is as follows:
-> 
-> - Create set-union of all maintainers and reviewers from all patches and
->   use this to do the following per patch:
->   - add only that specific patch's maintainers and reviewers as "To: "
->   - add the other maintainers and reviewers from the other patches as "Cc: "
-> 
-> - Create set-union of all mailing lists corresponding to all patches and
->   add this to all patches as "Cc: "
-> 
-> - Create set-union of all other roles corresponding to all patches and
->   add this to all patches as "Cc: "
-> 
-> Please note that patch files that don't have any "Maintainer"s or
-> "Reviewers" explicitly listed in their `get_maintainer.pl` output will
+Hi Bjorn,
 
-So before you will ignoring the reviewers, right? One more reason to not
-get it right...
+Thanks, ll take all your comments and update them in next patch.
 
-> not have any "To: " entries added to them; developers are expected to
-> manually make edits to the added entries in such cases to convert some
-> "Cc: " entries to "To: " as desired.
-> 
-> The script is quiet by default (only prints errors) and its verbosity
-> can be adjusted via an optional parameter.
-> 
-> Signed-off-by: Guru Das Srinagesh <quic_gurus@quicinc.com>
-> ---
->  MAINTAINERS               |   5 ++
->  scripts/add-maintainer.py | 164 ++++++++++++++++++++++++++++++++++++++
->  2 files changed, 169 insertions(+)
->  create mode 100755 scripts/add-maintainer.py
-> 
+Regards,
+Thippeswamy H
 
-I do not see the benefits of this script. For me - it's unnecessarily
-more complicated instead of my simple bash function which makes
-everything one command less than here.
-One more thing to maintain.
-
-I don't see the benefits of this for newcomers, either. They should use
-b4. b4 can do much, much more, so anyone creating his workflow should
-start from b4, not from this script.
-
-Best regards,
-Krzysztof
-
+> -----Original Message-----
+> From: Bjorn Helgaas <helgaas@kernel.org>
+> Sent: Tuesday, August 22, 2023 1:44 AM
+> To: Havalige, Thippeswamy <thippeswamy.havalige@amd.com>
+> Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; l=
+inux-
+> pci@vger.kernel.org; devicetree@vger.kernel.org; bhelgaas@google.com;
+> lpieralisi@kernel.org; robh@kernel.org; kw@linux.com; Simek, Michal
+> <michal.simek@amd.com>; krzysztof.kozlowski+dt@linaro.org; Gogada,
+> Bharat Kumar <bharat.kumar.gogada@amd.com>
+> Subject: Re: [PATCH v6 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port d=
+river
+>=20
+> On Fri, Aug 18, 2023 at 03:05:07PM +0530, Thippeswamy Havalige wrote:
+> > Add support for Xilinx XDMA Soft IP core as Root Port.
+> >
+> > The Zynq UltraScale+ MPSoCs devices support XDMA soft IP module in
+> > programmable logic.
+> >
+> > The integrated XDMA soft IP block has integrated bridge function that
+> > can act as PCIe Root Port.
+> >
+> > Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> > Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+> > ---
+> > changes in v6:
+> > - Replaced chained irq's with regular interrupts.
+>=20
+> Thanks a million for working this out!
+>=20
+> Trivial comments below, wait a couple days before reposting in case there=
+ are
+> other comments.
+>=20
+> > +static inline bool xilinx_pl_dma_pcie_link_up(struct pl_dma_pcie
+> > +*port) {
+> > +	return (pcie_read(port, XILINX_PCIE_DMA_REG_PSCR) &
+> > +		XILINX_PCIE_DMA_REG_PSCR_LNKUP) ? 1 : 0;
+>=20
+> This function returns bool, so I think true/false would be more appropria=
+te
+> than 1/0.
+>=20
+> > +static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus,
+> > +					    unsigned int devfn)
+> > +{
+> > +	struct pl_dma_pcie *port =3D bus->sysdata;
+> > +
+> > +	/* Check if link is up when trying to access downstream ports */
+> > +	if (!pci_is_root_bus(bus)) {
+> > +		/*
+> > +		 * Checking whether link is up here is a last line of defence,
+> > +		 * if the link goes down after we check for link-up, we have a
+> > +		 * problem: if a PIO request is initiated while link-down, the
+> > +		 * whole controller hangs, and even after link comes up again,
+> > +		 * previous PIO requests won't work, and a reset of the whole
+> > +		 * PCIe controller is needed. Henceforth we need link-up
+> check
+> > +		 * here to avoid sending PIO request when link is down. This
+> > +		 * check is racy by definition and does not make controller
+> hang
+> > +		 * if the link goes down after this check is performed.
+>=20
+> This comment doesn't make sense to me.  "If PIO request initiated while l=
+ink-
+> down, controller hangs ... This check is racy and does not make controlle=
+r
+> hang if link goes down."  Which is it?
+>=20
+> My *guess* is that this check narrows the window but doesn't close it, so=
+ if
+> xilinx_pl_dma_pcie_link_up() finds the link up, but the link goes down be=
+fore
+> pci_generic_config_read() initiates the PIO request, the controller hangs=
+, and
+> a reset is required.
+>=20
+> > +		 */
+> > +		if (!xilinx_pl_dma_pcie_link_up(port))
+> > +			return false;
+> > +	} else if (devfn > 0)
+> > +		/* Only one device down on each root port */
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+>=20
+> > +/* INTx error interrupts are Xilinx controller specific interrupt,
+> > +used to
+> > + * notify user about error's such as cfg timeout, slave unsupported
+> > +requests,
+>=20
+> s/error's/errors/
+>=20
+> > + * fatal and non fatal error etc.
+>=20
+> > +		err =3D devm_request_irq(dev, irq,
+> xilinx_pl_dma_pcie_intr_handler,
+> > +				       IRQF_SHARED | IRQF_NO_THREAD,
+> intr_cause[i].sym, port);
+>=20
+> Rewrap to fit in 80 columns.
+>=20
+> > +	/* Needed for MSI DECODE MODE */
+> > +	pcie_write(port, XILINX_PCIE_DMA_IDR_ALL_MASK,
+> XILINX_PCIE_DMA_REG_MSI_LOW_MASK);
+> > +	pcie_write(port, XILINX_PCIE_DMA_IDR_ALL_MASK,
+> > +XILINX_PCIE_DMA_REG_MSI_HI_MASK);
+>=20
+> Rewrap.
+>=20
+> Bjorn
