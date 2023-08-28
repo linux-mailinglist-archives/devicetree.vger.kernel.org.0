@@ -2,97 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CC9278AE00
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C11E78AE02
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232256AbjH1Kyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 06:54:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33192 "EHLO
+        id S232276AbjH1Ky4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 06:54:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231992AbjH1KyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:54:23 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64C7EF9;
-        Mon, 28 Aug 2023 03:54:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1693220044; x=1724756044;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4pZBnIZicNCdeixiCbnx4jHKlVuLI1o9xP3TnOB5trk=;
-  b=jHuAb3szgQCsDF8m5BGU5TF64r5p5CBmGHCEJtrNplgdiOn8B6mYkCIw
-   WqqtC1nx1zaRVPyIeLYmFqeT8iTQaBoAphkgUOHDbid4T1AQaVfIA9IzL
-   kzOlvFD2vsfRB2T7Vi5darg6qNJAz9NXgt9hcwzeLecUBLTt2kmuqoMz5
-   fMBpaX0wbCxS9NfJ6pWpBE5vGOEFqJ+wXHp8EZf3ESJY7TAG268LMdkPx
-   9ntPxgsf0WB8CYsMziIkLCNevQajItepGQwZI+3tNrC5E2AnOJ3Rf+M82
-   oyVHH9hYz/E+M4UF4WZUxo1iboKFi6xHEdTKGXHcvAxzcf4wOI3dDAHsi
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="406063704"
-X-IronPort-AV: E=Sophos;i="6.02,207,1688454000"; 
-   d="scan'208";a="406063704"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Aug 2023 03:53:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; 
-   d="scan'208";a="881901151"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga001.fm.intel.com with ESMTP; 28 Aug 2023 03:53:39 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qaZsC-00F2mQ-30;
-        Mon, 28 Aug 2023 13:53:32 +0300
-Date:   Mon, 28 Aug 2023 13:53:32 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Mehdi Djait <mehdi.djait.k@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 6/7] iio: accel: kionix-kx022a: Add a function to
- retrieve number of bytes in buffer
-Message-ID: <ZOx8rAFBXMylgNzm@smile.fi.intel.com>
-References: <923d01408680f5ac88ca8ee565a990645578ee83.1692824815.git.mehdi.djait.k@gmail.com>
- <ZOdFyKHBc6BcOgZw@smile.fi.intel.com>
- <eb47d0c9-9144-c947-f91e-d487c6ec9c45@gmail.com>
- <ZOdddZ0Zpk5CknH8@smile.fi.intel.com>
- <CAFukWp2Z0OCrJdTy+wzVs9jdCm70YNR-66q06=xoyGhaHg=aog@mail.gmail.com>
- <ZOdfeaW6AxE4eeqw@smile.fi.intel.com>
- <CAFukWp0ubncNcMiw-s_h5GoP1_RsjTaw3XxayGMuaeJJJneBow@mail.gmail.com>
- <ZOdrtNQijmhN9RAx@smile.fi.intel.com>
- <20230827190732.5e2215d0@jic23-huawei>
- <61247547-690c-fb8b-3a45-cd60754836a7@gmail.com>
+        with ESMTP id S232345AbjH1Kyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:54:38 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCA419B
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:54:15 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bb97f2c99cso46215951fa.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:54:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693220053; x=1693824853;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MfwpRXji8Gob8iTzLFPaW1E26id4GY5S7pBe784OZ0o=;
+        b=vFHXqcplwjCk4JYLNBAqeluz5wn0kH+IlKhYt0o8vkLKsukIDjWoywBvxaqniiHyEp
+         o5V4Z5Wpgqj56jsyMSaKc3irizLrqk9qyfRFX4M7uj4+fBBY1ptiQg18ke9K1gpYtWoh
+         3VCnx8A/DjVBHnlB27JtY5kc/+DoQ+9b2a0eetbu6isNgryQoHpstjgo3HJOoChO3tLD
+         4h07It4Vj6lSTqgTL/lFAmm0mqPX83iX8MrNP4guhOj8K9vPRYULMj/yPRDavib0jLOZ
+         rKasXb/pWEo2pn5s1w+JAQ7ZE/SfQvBY1haMv2qjOc6N6UyjI076VC9d7gqfmrH5uwg/
+         AdkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693220053; x=1693824853;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MfwpRXji8Gob8iTzLFPaW1E26id4GY5S7pBe784OZ0o=;
+        b=X0Id49SHk3XoEkXSTwIpRIQT8FrZ4wnhJIvcmMzJJvl7QrQ08UY5OYYKVYIU4dW/or
+         v2xYjqDf/6PpHUwauVGtgPYv8yxtqJb4fERMpFHPgRUNf09EcLm3IwAvxYy9vEv3GPNd
+         y3vR1jC9m5AseaiwjsTkBVFxTzNCVKpLRiOYKDPEVHhz333igEHi5jmrb3zs78X+XMuP
+         tpsXax7cyzh1C26zo6ZrwupSbxp8TWZmLnNt9eQfMag11dOyASwrbn0vGwrXGfiHnftx
+         JbA2wZ/zS2HWEJeJTBghmNyl/Dz8X99joH3bRIz61s4VjPQxIJ1c+rfCG+AYDtEnCqsg
+         ePRQ==
+X-Gm-Message-State: AOJu0Yxg5Ttm3tt+J1gzSkGCypSyo2PglYCqvcs6fLplMAEHjmwPeV0j
+        G4eHKmCLLxenKVsL4l6zaGZ+R8q5xIU7KGqFBq5GKQ==
+X-Google-Smtp-Source: AGHT+IGEk/z7Kh8gLIlJ3TK7vfHKBVeWGAzy7vtbhbkXvQdJ/xtq62IDKSwK9oTJIo12X3YJL14vcQ==
+X-Received: by 2002:a2e:b0d8:0:b0:2bc:f5a0:cc25 with SMTP id g24-20020a2eb0d8000000b002bcf5a0cc25mr6002204ljl.2.1693220052953;
+        Mon, 28 Aug 2023 03:54:12 -0700 (PDT)
+Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
+        by smtp.gmail.com with ESMTPSA id w16-20020a2e9990000000b002b6d7682050sm1698240lji.89.2023.08.28.03.54.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 03:54:12 -0700 (PDT)
+Message-ID: <3b88827f-9cda-46b3-96ad-d10245afce1e@linaro.org>
+Date:   Mon, 28 Aug 2023 12:54:10 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <61247547-690c-fb8b-3a45-cd60754836a7@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 15/23] ARM: dts: qcom: apq8064: add Krait clock
+ controller
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20230827115033.935089-1-dmitry.baryshkov@linaro.org>
+ <20230827115033.935089-16-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230827115033.935089-16-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 09:24:25AM +0300, Matti Vaittinen wrote:
-> On 8/27/23 21:09, Jonathan Cameron wrote:
+On 27.08.2023 13:50, Dmitry Baryshkov wrote:
+> Add device node for the clock controller for the CPU cores and L2
+> clocks. It will be further used by the L2 and by the CPUfreq nodes.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 26 ++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+> index ba7d5ef8de17..a05e64bff07f 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+> @@ -213,6 +213,32 @@ sleep_clk: sleep_clk {
+>  		};
+>  	};
+>  
+> +	kraitcc: clock-controller {
+> +		compatible = "qcom,krait-cc-v1";
+> +		clocks = <&gcc PLL9>,
+> +			 <&gcc PLL10>,
+> +			 <&gcc PLL16>,
+> +			 <&gcc PLL17>,
+> +			 <&gcc PLL12>,
+> +			 <&acc0>,
+> +			 <&acc1>,
+> +			 <&acc2>,
+> +			 <&acc3>,
+> +			 <&l2cc>;
+> +		clock-names = "hfpll0",
+> +			      "hfpll1",
+> +			      "hfpll2",
+> +			      "hfpll3",
+> +			      "hfpll_l2",
+> +			      "acpu0_aux",
+> +			      "acpu1_aux",
+> +			      "acpu2_aux",
+> +			      "acpu3_aux",
+> +			      "acpu_l2_aux";
+> +		#clock-cells = <1>;
+> +		#interconnect-cells = <1>;
+Doesn't only the L2 device register with icc?
 
-...
-
-> I think that people who work on a driver like this should guess what this is
-> for.
-
-_This_ is the result of what people always forgot to think about, i.e. newcomers.
-What _if_ the newcomer starts with this code and already being puzzled enough on
-what the heck the function does. With all ambiguity we rise the threshold for the
-newcomers and make the kernel project not attractive to start with (besides the
-C language which is already considered as mastodon among youngsters).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Konrad
