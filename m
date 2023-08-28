@@ -2,152 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF76B78B08A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 14:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CBD078B0AD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 14:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229972AbjH1MgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 08:36:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56726 "EHLO
+        id S229572AbjH1Mj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 08:39:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231384AbjH1Mf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 08:35:57 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F69D123
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 05:35:53 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b974031aeaso48125951fa.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 05:35:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693226152; x=1693830952;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U8FHoF0EEmuxAOTXhuGWB0DeQBV57gCB/+pF5x9rYb8=;
-        b=gRDXI736iuTJFUUiRF4E62C+qEsccSMJ1SkQ9nG0QQNdFSO+Kt6BbzdhAUnFTjziGI
-         EeuMZa+UaUDJ+o07JNOtP1S1idXGzCuOzbgyMwziHzkdBfnn7y1EhhTxDUeQxXrsWjbk
-         jQhawFqvcQsACxULxRSjo6oi8DkDNA2MxjEem5JKXrUu3ff/C12sMtdMGIq8cH+oCmX1
-         +FnzUvPvXz7nQYTgWc22cfIF0/73cGcyIOVGJF8nplrtVTn9hFwO4SHZjnSu2flTBWP9
-         dk9B91+11lPK/whCssNn+wc2IYAhvRTCw8Q8NAKTUv/xVQTD7Q9hVym0NbiKxROuv2GC
-         WgiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693226152; x=1693830952;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U8FHoF0EEmuxAOTXhuGWB0DeQBV57gCB/+pF5x9rYb8=;
-        b=PK5OV2VkmwstUj5S+4GLlS1yGCil1bTaSa4CL0ejw564F2deaelcJJR7QKG8MYqoEN
-         K3q8lEX9CakIaJ+GeX0mY5iXTVUxpKGk/Q/9EvRynG7wpH+4HurW5ZI+mEAZvwrBlDio
-         YazlhSDuNJjnUAhcQvj0xL3AZZABcXDnAd6iGAxn0wEdmUCZYJqM53C8iuJrJpxPo49G
-         2NJ/twmUNS3NkQvbNCBLK2HAFR9ls/aQK80ofqzc8h6LuMGKcV3ZXBgJnFfo9SMda3ui
-         G6FocXwYQ22y1HjT+Kpu1eZUvwtsIxstkZQdCxedct4l7x1kMg7nBIQAVn/gVbsZRG6h
-         62xA==
-X-Gm-Message-State: AOJu0YxKi2e8CA53vdZ7QAplZ6DMR0dEAV3/UJ+NF74DavOtj4B+Pzqf
-        f0AuXmX8f7U+YXudjI5ylfZxpg==
-X-Google-Smtp-Source: AGHT+IHaVAV7m/SxxXQTce6SzKSz9Jg84rLyUgxT39ppgMlbeCRLlAK4JgHzs+HlNgnDqopNISb+nA==
-X-Received: by 2002:a2e:8918:0:b0:2bc:eaec:e23f with SMTP id d24-20020a2e8918000000b002bceaece23fmr9199572lji.43.1693226151808;
-        Mon, 28 Aug 2023 05:35:51 -0700 (PDT)
-Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id l26-20020a2e99da000000b002bcb239a7efsm1742551ljj.56.2023.08.28.05.35.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 05:35:51 -0700 (PDT)
-Message-ID: <790ead1e-7b15-4f88-bdf9-738b24531ef0@linaro.org>
-Date:   Mon, 28 Aug 2023 14:35:49 +0200
+        with ESMTP id S230173AbjH1MjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 08:39:00 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4C1F9107;
+        Mon, 28 Aug 2023 05:38:54 -0700 (PDT)
+Received: from loongson.cn (unknown [112.20.109.102])
+        by gateway (Coremail) with SMTP id _____8CxRuhclexk7oAcAA--.4825S3;
+        Mon, 28 Aug 2023 20:38:52 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.102])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8Dx5sxalexkNrJlAA--.29195S2;
+        Mon, 28 Aug 2023 20:38:51 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH 0/5] soc: loongson: Fix some issues about loongson_pm2
+Date:   Mon, 28 Aug 2023 20:38:30 +0800
+Message-Id: <cover.1693218539.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 5/7] clk: qcom: Add NSS clock Controller driver for
- IPQ9574
-Content-Language: en-US
-To:     Devi Priya <quic_devipriy@quicinc.com>, andersson@kernel.org,
-        agross@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, richardcochran@gmail.com, arnd@arndb.de,
-        geert+renesas@glider.be, nfraprado@collabora.com, rafal@milecki.pl,
-        peng.fan@nxp.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        netdev@vger.kernel.org
-Cc:     quic_saahtoma@quicinc.com
-References: <20230825091234.32713-1-quic_devipriy@quicinc.com>
- <20230825091234.32713-6-quic_devipriy@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230825091234.32713-6-quic_devipriy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8Dx5sxalexkNrJlAA--.29195S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj9xXoWrZrW3JrW3tr13Ww1kuw47WrX_yoWDAwbE9a
+        4Iqay8Jry3AF9rJayUXr48urW3WrWxZ3W0kF1Utr18W34Yyry5Xr1DurnxWFy3Xryjqr98
+        Xr48Wr4rAry0gosvyTuYvTs0mTUanT9S1TB71UUUUjUqnTZGkaVYY2UrUUUUj1kv1TuYvT
+        s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
+        cSsGvfJTRUUUbfkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
+        vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
+        w2x7M28EF7xvwVC0I7IYx2IY67AKxVW5JVW7JwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
+        W8JVWxJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+        Cr1j6rxdM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
+        kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUAVWU
+        twAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
+        8JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
+        6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
+        AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
+        0xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4
+        v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AK
+        xVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUxYiiDUUUU
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.08.2023 11:12, Devi Priya wrote:
-> Add Networking Sub System Clock Controller(NSSCC) driver for ipq9574 based
-> devices.
-> 
-> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-> ---
-[...]
+Hi all:
 
-> +	[UBI3_CLKRST_CLAMP_ENABLE] = { 0x28A04, 9 },
-Please make all hex lowercase.
+Since commit 67694c076bd7 ("soc: loongson2_pm: add power management support"),
+the Loongson-2K PM driver was added, some issues have been found and
+this patch set is planned to fix these issues.
 
-[...]
+Specific:
+Patch 1: Compilation error found by Randy;
+Patch 2/3: Add Loongson-2K2000 support;
+Patch 4/5: Add Loongson-2K SoC reboot/shutdown support as part of power
+management.
 
-> +	[PPE_FULL_RESET] = { 0x28A08, 0, 1, 0x1E0000 },
-{ .reg = 0x28a08, .bitmask = GENMASK(foo,bar) },
+Thanks.
 
-[...]
+Binbin Zhou (5):
+  soc: loongson: loongson_pm2: add dependency for INPUT
+  dt-bindings: soc: loongson,ls2k-pmc: Add missing compatible for
+    Loongson-2K2000
+  soc: loongson: loongson_pm2: Add missing compatible for
+    Loongson-2K2000
+  dt-bindings: soc: loongson,ls2k-pmc: Allow
+    syscon-reboot/syscon-poweroff as child
+  soc: loongson: loongson_pm2: Populate children syscon nodes
 
-> +	ret = devm_pm_runtime_enable(&pdev->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = devm_pm_clk_create(&pdev->dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = of_pm_clk_add_clk(&pdev->dev, "nssnoc_nsscc");
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "Failed to acquire nssnoc_nsscc clock\n");
-> +		return ret;
-dev_err_probe, everywhere?
+ .../soc/loongson/loongson,ls2k-pmc.yaml       | 30 ++++++++++++++++++-
+ drivers/soc/loongson/Kconfig                  |  1 +
+ drivers/soc/loongson/loongson2_pm.c           |  7 +++++
+ 3 files changed, 37 insertions(+), 1 deletion(-)
 
-Konrad
+-- 
+2.39.3
+
