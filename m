@@ -2,128 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A57578A964
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 11:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 707E778A97D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229969AbjH1Jzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 05:55:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
+        id S230240AbjH1J74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 05:59:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230293AbjH1JzF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:55:05 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57964107
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:55:02 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fe61ae020bso4515690e87.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:55:02 -0700 (PDT)
+        with ESMTP id S230247AbjH1J7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 05:59:40 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 076E5C6
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:59:38 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d77f97a0e72so2991883276.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 02:59:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693216500; x=1693821300;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3X1OvKh3M30efs7GIbR2zQZ3E1wXr2UIdynNowQXZOI=;
-        b=TUgrOT5snC6fcaEsbVTtMDXm9s9JRc7JBlgVDFSclVMGfK5zVogGBrK06p/11rMbaz
-         2id/WstV36zp6Na1ZQYFjnKR4yylvSGsLU/clLYj7wZV5g7/B4Y1ck7+zlKqa3bHe0ZZ
-         4cIbjNz0jdZubPGTpFDzDvb9ijoorQYgCdFl9HH3ba4PISfV6ACnnSUlGcGafkImuS8o
-         DEdkDQrqH+zDqTnhrGSZjtH8txqYQ+zdIi5oN5l8pSKrpADFsuL/VLZIfnOInhID0Y78
-         isk9QJO/+NSvqTMWsFwA3R9kOFgtT1as4vya1fU3X9FNdOyKBP/48R47XJ/JIGFM5Fmy
-         Yg8w==
+        d=linaro.org; s=google; t=1693216777; x=1693821577;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Ae2B/bJD6+pwU7iQXkYD7WW81UmVpdPoOKJ3dyD5y8=;
+        b=f8Yzvy+q9p7b+uTEWqZMvv9SEdH8DMylAj82MSyBNZMaceHWqEOUBmJ2QPp2Fq0Jhe
+         QZVJGaai3aWlYCwFJtU4A2K6OzSN0cFANsnL3Qjp2eilj8ChFys5NtfM3SC51dk7x0Li
+         AdPbQwd7PlborWBlILgSxNJm6rqtxx5fFfLlJp73GpBlt5hjU/Hm0Fpsou0XZiw6r5R3
+         0eg9Bghw94yVk/3e5KQqm3k0J02UvM+kA5BsCdeVpsvAqFoF2lvRh4wyiUzhak3DNBWH
+         BlNx7NDUaV0vY33rKkfDAdOOq0kuqp3oR6RFxMc/hrKsPOJmhC+HXH4EDZ9DiYPgNMSG
+         LkRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693216500; x=1693821300;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3X1OvKh3M30efs7GIbR2zQZ3E1wXr2UIdynNowQXZOI=;
-        b=D7+YKW3MFC+8BE/sK4zwDJXrpjWWcrUCsfRdp21riC5I63QK+QVzASIiDGuxHbfC4u
-         DuLzynOsN8uxBIyVqGADvle3LctAIaA7kZNQzEdZDeQR0bNC06WDvQrdEnlvT++7c9LQ
-         ElVtvH6keVHirozXdE6RF4cCyhrzu3jb8HoXSdqboxwxye2YD4ozAG6JTFuV6l2H7/17
-         hd01WlKsHwGfnVIz18O9CbU1QbE0x2qkTPsen4NCGW7Ti9ufDdWXxFZcbvv8W/jBt+wx
-         v8jfeymQzM+kOib6/V0dKyIYNTV6qz6fLba5qsQedFmZcKHR86jIJGEHQ7TnnWbrW9oC
-         x/Pw==
-X-Gm-Message-State: AOJu0YyRe76XP9svb9gQ0lu8YF9g78hGijcPmCU2REsOoX3cG39Eo1uC
-        Dsvz+NUeRz2KXr/lBvotCd5CCGc9ZYPwlHujjdzzTg==
-X-Google-Smtp-Source: AGHT+IGepXbA+XBxl27EhTRg8lSPVLMrhH4NlMYP5B+AQb2q1jvHRg6AObKfOIQKHHxPjA1nBkxaTQ==
-X-Received: by 2002:a05:6512:704:b0:4ff:a25b:bca1 with SMTP id b4-20020a056512070400b004ffa25bbca1mr16539503lfs.33.1693216500504;
-        Mon, 28 Aug 2023 02:55:00 -0700 (PDT)
-Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id a5-20020a19f805000000b0050078c9b53asm1501045lff.231.2023.08.28.02.54.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 02:55:00 -0700 (PDT)
-Message-ID: <77be3e0f-e154-478e-a40b-e98ebd349e10@linaro.org>
-Date:   Mon, 28 Aug 2023 11:54:59 +0200
+        d=1e100.net; s=20221208; t=1693216777; x=1693821577;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8Ae2B/bJD6+pwU7iQXkYD7WW81UmVpdPoOKJ3dyD5y8=;
+        b=IcqUxgDPDplxEY+KUOZd0pOLtkryjlK87TqFBhkQf6NBbQnTC9gQPaI1jcy7YX0OaD
+         Wn1QYcIys+GGu6fRw2+RflE/WJ8nxdfYET0LzEWDklr9Z8EhRD5bzZOMFmZH2NBNr+9n
+         qhspvyyL70F2zl6iu8dj2nbRHDMoPLb0Bxr/tvDpqAKNWhCP9zfWLGfVUV50okBoTJhy
+         GvM+LhtT37WtJ1InZWsT0FCQg4Rwp4rfuZxKoMS4Tr+xCsdDEyKzePp5Twfz8NGcgog8
+         L9+nv9zcqj63S5ACZpC4bADmUwd7uGCUogcH48Ajo/NMXupFg/NZfQwR0l7qQuXLLmnW
+         3fRQ==
+X-Gm-Message-State: AOJu0YxEYEB+BNioc1Qa0bMRLJd1IaVN9LTqs57PVZyCIauCTnlHFsXA
+        QomRuxWurw5+3/UbdUgBniX6G8GXiqVjRaizlDvlpg==
+X-Google-Smtp-Source: AGHT+IEaCoCpMUCPjNNvMpqNFEuip8dU+C99qMdfR/6PRAdeSAMP7ht991M5faWrDlN7Kt9uuuksTVQFdukE70njB/g=
+X-Received: by 2002:a25:2641:0:b0:d7a:c626:538a with SMTP id
+ m62-20020a252641000000b00d7ac626538amr6186920ybm.62.1693216777261; Mon, 28
+ Aug 2023 02:59:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: qcom: sdx65: add missing GCC clocks
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+ <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
+ <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
+ <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
+In-Reply-To: <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 28 Aug 2023 11:59:00 +0200
+Message-ID: <CAPDyKFro6roynXuS1caARpMK08hvARQ7mQfiJcDgCyJXiw=nzw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Shenwei Wang <shenwei.wang@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230827114519.48797-1-krzysztof.kozlowski@linaro.org>
- <20230827114519.48797-2-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230827114519.48797-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.08.2023 13:45, Krzysztof Kozlowski wrote:
-> The SDX65 GCC clock controller expects two required clocks:
-> pcie_pipe_clk and usb3_phy_wrapper_gcc_usb30_pipe_clk.  The first one is
-> provided by existing phy node, but second is not yet implemented.
-> 
->   qcom-sdx65-mtp.dtb: clock-controller@100000: clocks: [[11, 0], [11, 1], [12]] is too short
->   qcom-sdx65-mtp.dtb: clock-controller@100000: clock-names: ['bi_tcxo', 'bi_tcxo_ao', 'sleep_clk'] is too short
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On Sat, 26 Aug 2023 at 19:31, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 25/08/2023 17:44, Shenwei Wang wrote:
+> >>
+> >> The genpd provider then needs to be a consumer of the resources it needs. In
+> >> this case a couple of regulators it seems like.
+> >>
+> >
+> > If I understood your reply correctly,  it seems that the current implementation of
+> > regulator-pd is what you have described. Please correct me if I'm mistaken.
+> >
+> > The following are the diff of scu-pd and this regulator-pd.
+> >
+> >     power-controller {                                                    power-controller {
+> >         compatible = "fsl,imx8qxp-scu-pd", "fsl,scu-pd";      |               compatible = "regulator-power-domain";
+> >         #power-domain-cells = <1>;                                    #power-domain-cells = <1>;
+> >                                                             >
+> >                                                             >         regulator-number = <2>;
+> >                                                             >         regulator-0-supply = <&reg1>;
+> >                                                             >         regulator-1-supply = <&reg2>;
+> >     };                                                                    };
+> >
+> > Are you suggesting to move the regulator-pd to the imx directory and add a company prefix
+> > to the compatible string?
+>
+> There is no such part of iMX processor as such regulator-power-domain,
+> so I don't recommend that approach. DTS nodes represent hardware, not
+> your SW layers.
 
-Konrad
+I would agree if this was pure SW layers, but I don't think it is. At
+least, if I have understood the earlier discussions correctly [1],
+there are certainly one or more power-domains here. The power-domains
+just happen to be powered through something that can be modelled as a
+regular regulator(s). No?
+
+Note that, we already have other power-domains that are consumers of
+regulators too.
+
+Kind regards
+Uffe
+
+[1]
+https://lore.kernel.org/all/20220609150851.23084-1-max.oss.09@gmail.com/
