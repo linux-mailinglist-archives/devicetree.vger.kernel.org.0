@@ -2,52 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E340578A9B7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C16C78AAAC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjH1KPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 06:15:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36716 "EHLO
+        id S230456AbjH1KYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 06:24:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230367AbjH1KPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:15:15 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B04AB9
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:15:13 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qaZGv-0002t3-Ke; Mon, 28 Aug 2023 12:15:01 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qaZGt-002BsM-T2; Mon, 28 Aug 2023 12:14:59 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qaZGt-00GlUB-02; Mon, 28 Aug 2023 12:14:59 +0200
-Date:   Mon, 28 Aug 2023 12:14:56 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Abdel Alkuor <alkuor@gmail.com>
-Cc:     heikki.krogerus@linux.intel.com, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        abdelalkuor@geotab.com, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] USB: typec: Add TI TPS25750 USB Type-C controller
-Message-ID: <20230828101456.3245zuhlqdjjxzqy@pengutronix.de>
-References: <cover.1692559293.git.alkuor@gmail.com>
- <b7525b3501782c04172809cbe8b21bbb97fed863.1692559293.git.alkuor@gmail.com>
+        with ESMTP id S231130AbjH1KXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:23:53 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0135E119
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:23:48 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-500b66f8b27so1571218e87.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:23:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693218227; x=1693823027;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/Vf2xBekLNY4UkyniaFZccQg7OJqM7OsARHlmmZ/O20=;
+        b=Ifz2CNfPr8RAvr3LjT+YzMO2OnTDYjSglgHYJyzCY6gU7g+HZWBnGIZg49FQJBnK1o
+         Hlv66mELAm3G5YyWqToH7nBFKWLY+DmfeEbGhzDPcS/gYLaYzNz5DzwfmvNqWDO6wNHA
+         yWyw8T5zGjGq+ktuMXIwKHTlIssUiNkcCMNaZ6vb7O/HrPbUHyCgnBvSUCkVl2iN45V9
+         DM+EmnSbDjnH/Kz68EdtRnZasImvXy63KLkM/70q+sywMNC4KYSHJ8OfrpdHkytlDk85
+         kMdRNiSGu0sD/mzaFTwtCLX7rqou8Tbs/I8C0/pXEo53i9SALjCFLcfplApgDlHSN1lu
+         PqSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693218227; x=1693823027;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/Vf2xBekLNY4UkyniaFZccQg7OJqM7OsARHlmmZ/O20=;
+        b=XJg8NmtvtiXFncyFFYlmNvzxBKfxNj/KIygUIknHCPL7nP0+g/Atm+fmYy9DfHaG84
+         43bE10/baR3NfMDj8zSRKbEups06Om/AD4TXjhZyYgPIK2FzNhpso+Y1I6GHLiWWzcrf
+         XGUhce5IFVR2sSJvhmfBVJY3xYj5NKu9LtYC3M5vFem/TdyXIBBCi96ixZNTBfF1yQR1
+         j8vJhnNq2/DgPq8ykoR4ZkWoJQQYdFGrmFSSNkho7xWe/7A/FlgDgPQlfykKkt6J5x37
+         qlDWCCnaNSnZKgfmrcVLdoEWoqgb1TsNrtkjN7taLlA5ChEjXppQ7hSoZMbkcdiuA3Xs
+         9tDw==
+X-Gm-Message-State: AOJu0Yw5pB8NZVOGR32Bg3Ly1BfgeWiHpLFZHKTwDBfxB9cog6WDgBmc
+        obema7Zj0u29Q+jh0nxwHZ2Q9g==
+X-Google-Smtp-Source: AGHT+IEJbKfHbAed13DNoE4TuoOpJBRgQ2YAewCcsNelmqIZdXnxK6m3IDupo4cbIRb3l0ukuIrF0Q==
+X-Received: by 2002:a05:6512:e85:b0:500:8146:9ebc with SMTP id bi5-20020a0565120e8500b0050081469ebcmr18810886lfb.47.1693218227298;
+        Mon, 28 Aug 2023 03:23:47 -0700 (PDT)
+Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
+        by smtp.gmail.com with ESMTPSA id x29-20020ac259dd000000b004fbac2646e3sm1507819lfn.195.2023.08.28.03.23.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 03:23:46 -0700 (PDT)
+Message-ID: <7c3f63d2-9fc1-44c0-8320-ed376e04d472@linaro.org>
+Date:   Mon, 28 Aug 2023 12:23:45 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="4ldix2bjvvef5wne"
-Content-Disposition: inline
-In-Reply-To: <b7525b3501782c04172809cbe8b21bbb97fed863.1692559293.git.alkuor@gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 36/37] ARM: dts: qcom: ipq8064: drop qcom, prefix from
+ SSBI node name
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        devicetree@vger.kernel.org, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        linux-arm-msm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        linux-iio@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        linux-leds@vger.kernel.org
+References: <20230827132525.951475-1-dmitry.baryshkov@linaro.org>
+ <20230827132525.951475-37-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230827132525.951475-37-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,49 +118,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 27.08.2023 15:25, Dmitry Baryshkov wrote:
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+"eeh" to not have a commit message at all..
 
---4ldix2bjvvef5wne
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Could at least say something about vendor prefixes being forbidden
+in node names to explain the rationale.
 
-Hello,
-
-On Sun, Aug 20, 2023 at 03:32:27PM -0400, Abdel Alkuor wrote:
-> +static struct i2c_driver tps25750_i2c_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "tps25750",
-> +		.pm =3D pm_ptr(&tps25750_pm_ops),
-> +		.of_match_table =3D tps25750_of_match,
-> +	},
-> +	.probe_new =3D tps25750_probe,
-> +	.remove =3D tps25750_remove,
-> +	.id_table =3D tps25750_id,
-> +};
-
-Please use .probe instead of .probe_new. Apart from just dropping "_new"
-here, nothing is needed. .probe_new will go away soon.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---4ldix2bjvvef5wne
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmTsc58ACgkQj4D7WH0S
-/k7o/Af+KKw3hKCLlbrEDlAeAh1Suk/4QvHSJqLu2du9hkk9iyRTNKovFvAiqZgL
-50Pf1b5nO18x77tL9e26dd7jxe0HFVlYGwqvKYaUhogN4qPq1r4xqbublpJJplif
-n85SKJcQSmq6F/j8mpD86Bl8VEnWDPQzwgBOq04N1VQYaIaoX5Ti/CYT6pK5djiC
-ZG16vSjF6Ds6GJI8oRmwb9It7XUJxUXlR/gkXUlO80bjBkQHp3LsMIXHL5F+SdmT
-YiezN92mmpMfvVlBPKm+Pn6R0w7L4xRW11W4OzB08+LRKLg8TbpQRif2GOAUh5kz
-L+NxVgu9UHVNFaZfyV4E9rs2i7UcTA==
-=lKsM
------END PGP SIGNATURE-----
-
---4ldix2bjvvef5wne--
+Konrad
