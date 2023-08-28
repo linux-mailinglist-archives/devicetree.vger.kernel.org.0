@@ -2,120 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2984A78B4C2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DC7A78B4D3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:52:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231767AbjH1PuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 11:50:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41312 "EHLO
+        id S232413AbjH1PwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 11:52:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229637AbjH1Ptl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:49:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A38DC5;
-        Mon, 28 Aug 2023 08:49:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 29A56649C0;
-        Mon, 28 Aug 2023 15:49:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D026FC433C8;
-        Mon, 28 Aug 2023 15:49:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693237778;
-        bh=EgwduPs67qveoZgcdAkipZLwkc8aT5xezge3BHjTvRg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LlHuE3se73qPb2ExjwJVhFAaLuJPJhhHepDASnBShkjs/So6Ed7mjchD/xdu4grrM
-         SCae18W1kHPOR4kOXzBdBPA1gII459kX5CiDcpahkhnUIl/uIsd57ILzWHlbo0K8cz
-         7iD3NYL3Nsj5/6b71I5YK49LQOvyMlau7denTSxBz7lglvvZ3J3xz2Fh3ehC+8KSz/
-         2Wlk04sB1/XtxwL20d6Sgr2ZN3dvF6etkDtxrzSzd/2TvWkAeS7heG++MMDSQWjeTk
-         6PfemCtrxGuGQMOJxUySc+Wi/hQsvhK6XBiA9qW+wIHHhvYrqvigh1ISAUj8ocjQlp
-         TqMbiXidClShg==
-Date:   Mon, 28 Aug 2023 16:49:33 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S232634AbjH1PwB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:52:01 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 670B9102;
+        Mon, 28 Aug 2023 08:51:55 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bc63e0d8cdso49771031fa.2;
+        Mon, 28 Aug 2023 08:51:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693237913; x=1693842713;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=B0Xz3WZebS/wvt47ASnAX+cx3LpJDfQJgrj01eUj9Aw=;
+        b=LoUmZsrBrhdLXul+MyKhiug6e+IU93kUVAYIV6wYrBXK55lDznI3Ard62QcL9bxgov
+         Pp5EXI6ZXGUanY7sxJwdIfAnATolNLTpS2gvE7XgKzI+jFWwWwymjdOIrVT1a2hkra8X
+         0lR51CLfxgVmEIordgak1XqkdGfl45oB+jmv7PmQgIZKqar847Ff+tjMmsF9cV/9BOsE
+         NtsIHrC/ao+kmIIqTrd4OiNjHcSX79ldD89yERA2UMkNUhNoNtHs8HdRnjSS4stNu98t
+         Lb2DVfoC7ZLJwdIkqVcEul9XdZLo2nXl+LzSgr9BV+i3cRMaQZtLidOWZ3hSFsaHTwDV
+         +ZPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693237913; x=1693842713;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B0Xz3WZebS/wvt47ASnAX+cx3LpJDfQJgrj01eUj9Aw=;
+        b=VYUPgKiE/SQGL9ftuKN1JOyeD76CHQfvydrVrKP9WrN0/hOuXV3Y99Q9JiMC6Dz85L
+         7B96ZhKNlAvsL7HRV0seQyoPsEL9yemPE5A6/DHan/P+ABL1OFxn5xTuom6ZFq9E+W7k
+         5vfpzMTQyh7lUwx6t1KLCv5oFShecZiu9SlAUDwI6JcXIH9hYQrWxRZTWi0RWg7tdIND
+         Phgt0+3C7o6O7xXBAPri77n0/rdabEEWRuerD8fXxe9gTCLxJuiCcTwHDBEgjAt7gjTE
+         Va+cC8GuKB/MvXF4ifZnqnpAwA3ZQoQgyDpuwmmG5A2XtiXE+EVeV+kLX+AFlpg8ArEo
+         izFg==
+X-Gm-Message-State: AOJu0YxgHxv5MfnjKC/m5ZkSCb4RquJxMkYtuAkMX+DHfhhLyWfm12y2
+        Ndhu1xPxzCZqM+QCU8t1lL7ji5gzjZU46w==
+X-Google-Smtp-Source: AGHT+IGESVAn33u8cHgk2LFaFrWwav4zBU3fETTCbT3G6GJWd4vMRsBEFMW0OZS2hECrKF9bJ7YR0Q==
+X-Received: by 2002:ac2:504c:0:b0:500:aa41:9d69 with SMTP id a12-20020ac2504c000000b00500aa419d69mr6179093lfm.66.1693237913366;
+        Mon, 28 Aug 2023 08:51:53 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id a6-20020ac25206000000b004fb74dbbd98sm1639159lfl.246.2023.08.28.08.51.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Aug 2023 08:51:52 -0700 (PDT)
+Date:   Mon, 28 Aug 2023 18:51:49 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev
-Subject: Re: [PATCH 2/5] dt-bindings: soc: loongson,ls2k-pmc: Add missing
- compatible for Loongson-2K2000
-Message-ID: <20230828-shrewdly-payee-c5eb091a0417@spud>
-References: <cover.1693218539.git.zhoubinbin@loongson.cn>
- <54ee114c08f35ab8b5dc584fd76135ac9076f5a7.1693218539.git.zhoubinbin@loongson.cn>
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>, Maxime@web.codeaurora.org,
+        Coquelin@web.codeaurora.org,
+        Simon Horman <simon.horman@corigine.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH net-next v2 2/3] dt-bindings: net: add T-HEAD dwmac
+ support
+Message-ID: <pbh7gh7fkfis7zqqmmug5wtosq3xsx7z3ktsfg3jy6jthm6qva@a3wy7knv2vcr>
+References: <20230827091710.1483-1-jszhang@kernel.org>
+ <20230827091710.1483-3-jszhang@kernel.org>
+ <qc2nyqmuouig6qww2q7orlwzvcprjyruyeuyr5dqdpxysajjpv@6fzsgjgokry7>
+ <ZOy6kLGZ1lR0I2sC@xhacker>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="EHhPijYPZzBKwGBx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <54ee114c08f35ab8b5dc584fd76135ac9076f5a7.1693218539.git.zhoubinbin@loongson.cn>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <ZOy6kLGZ1lR0I2sC@xhacker>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 28, 2023 at 11:17:36PM +0800, Jisheng Zhang wrote:
+> On Mon, Aug 28, 2023 at 04:13:00PM +0300, Serge Semin wrote:
+> > On Sun, Aug 27, 2023 at 05:17:09PM +0800, Jisheng Zhang wrote:
+> > > Add documentation to describe T-HEAD dwmac.
+> > > 
+> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > > ---
+> > >  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
+> > >  .../devicetree/bindings/net/thead,dwmac.yaml  | 77 +++++++++++++++++++
+> > >  2 files changed, 78 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/net/thead,dwmac.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > index b196c5de2061..73821f86a609 100644
+> > > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> > > @@ -96,6 +96,7 @@ properties:
+> > >          - snps,dwxgmac
+> > >          - snps,dwxgmac-2.10
+> > >          - starfive,jh7110-dwmac
+> > > +        - thead,th1520-dwmac
+> > >  
+> > >    reg:
+> > >      minItems: 1
+> > > diff --git a/Documentation/devicetree/bindings/net/thead,dwmac.yaml b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
+> > > new file mode 100644
+> > > index 000000000000..bf8ec8ca2753
+> > > --- /dev/null
+> > 
+> > > +++ b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
+> > 
+> > see further regarding using dwmac in the names here.
+> > 
+> > > @@ -0,0 +1,77 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > 
+> > > +title: T-HEAD DWMAC Ethernet controller
+> > 
+> > Additionally would be nice to have a brief controller "description:"
+> > having the next info: the SoCs the controllers can be found on, the DW
+> > (G)MAC IP-core version the ethernet controller is based on and some
+> > data about the synthesize parameters: SMA (MDIO-bus), Tx/Rx COE, DMA
+> > FIFOs size, perfect and hash MAC-filters size, L3L4 frame filters
+> > availability, VLAN hash filter, SA/VLAN-tag insertion, ARP offload
+> > engine, PHY interfaces (MII, RMII, RGMII, etc), EEE support, IEEE
+> > 1588(-2008) Timestamping support, PMT and Wake-up frame support, MAC
+> > Management counters (MMC). In addition to that for DW QoS
+> > ETH/XGMAC/XLGMAC the next info would be useful: number of MTL Queues
+> > and DMA channels, MTL queues capabilities (QoS-related), TSO
+> > availability, SPO availability.
+> > 
 
---EHhPijYPZzBKwGBx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > Note DMA FIFO sizes can be also constrained in the properties
+> > "rx-fifo-depth" and "tx-fifo-depth"; perfect and hash MAC-filter sizes -
+> > in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
 
-On Mon, Aug 28, 2023 at 08:38:32PM +0800, Binbin Zhou wrote:
-> Document the Power Management Unit system controller compatible for
-> Loongson-2K2000.
->=20
-> This is a missing compatible, now we add it.
->=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml      | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k=
--pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pm=
-c.yaml
-> index da2dcfeebf12..7473c5659929 100644
-> --- a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.ya=
-ml
-> @@ -15,6 +15,7 @@ properties:
->        - enum:
->            - loongson,ls2k0500-pmc
->            - loongson,ls2k1000-pmc
-> +          - loongson,ls2k2000-pmc
+BTW plus to this you may wish to add the "rx-internal-delay-ps" and
+"tx-internal-delay-ps" properties constraints seeing they device
+supports internal Tx/Rx delays.
 
-Same thing here as the driver patch, the pmc on this newly added SoC
-appears to use the same codepaths as the existing ones. Does it share a
-programming model & should there be a fallback compatible here?
+> 
+> Hi Serge,
+> 
 
->        - const: syscon
-> =20
->    reg:
-> --=20
-> 2.39.3
->=20
+> Thank you for your code review. I have different views here: If we
+> only support the gmac controller in one specific SoC, these detailed
+> information is nice to have, but what about if the driver/dt-binding
+> supports the gmac controller in different SoCs? These detailed
+> information will be outdated.
 
---EHhPijYPZzBKwGBx
-Content-Type: application/pgp-signature; name="signature.asc"
+First they won't. Second then you can either add more info to the
+description for instance in a separate paragraph or create a dedicated
+DT-bindings. Such information would be very much useful for the
+generic STMMAC driver code maintenance.
 
------BEGIN PGP SIGNATURE-----
+> 
+> what's more, I think the purpose of dt-binding is different from
+> the one of documentation.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZOzCDQAKCRB4tDGHoIJi
-0mJnAQC5PFTL8cQQxmV3Bs310RTUDpQiffTEZlPNe1A93VY/EAD5AXMuAU9VmRtZ
-K/Mv7mHKDQ7h+pNz0M2jzI1i9iLyvA4=
-=LQ8S
------END PGP SIGNATURE-----
+The purpose of the DT-bindings is a hardware "description". The info I
+listed describes your hardware.
 
---EHhPijYPZzBKwGBx--
+> 
+> So I prefer to put these GMAC IP related detailed information into
+> the SoC's dtsi commit msg rather than polluting the dt-binding.
+> > 
+> > > +
+> > > +maintainers:
+> > > +  - Jisheng Zhang <jszhang@kernel.org>
+> > > +
+> > > +select:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        enum:
+> > 
+> > > +          - thead,th1520-dwmac
+> > 
+> > Referring to the DW IP-core in the compatible string isn't very
+> > much useful especially seeing you have a generic fallback compatible.
+> > Name like "thead,th1520-gmac" looks more informative indicating its
+> > speed capability.
+> 
+
+> This is just to follow the common style as those dwmac-* does.
+> I'm not sure which is better, but personally, I'd like to keep current
+> common style.
+
+It's not that common. Half the compatible strings use the notation
+suggested by me and it has more sense then a dwmac suffix. It's ok to
+use the suffix in the STMMAC driver-related things because the glue
+code is supposed to work with the DW *MAC generic code. Using it in
+the compatible string especially together with the generic fallback
+compatible just useless.
+
+-Serge(y)
+
