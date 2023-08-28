@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BA1D78B15E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 15:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DF978B169
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 15:13:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjH1NKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 09:10:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49474 "EHLO
+        id S231314AbjH1NNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 09:13:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231596AbjH1NK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 09:10:29 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 209EDCC;
-        Mon, 28 Aug 2023 06:10:25 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-50091b91a83so4832530e87.3;
-        Mon, 28 Aug 2023 06:10:25 -0700 (PDT)
+        with ESMTP id S231128AbjH1NNR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 09:13:17 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE62011C;
+        Mon, 28 Aug 2023 06:13:10 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so4900437e87.1;
+        Mon, 28 Aug 2023 06:13:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693228223; x=1693833023;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wpqvqS+fYSjFHYGuyg+gEAZd0FugNzJBjVPZjXEWq4E=;
-        b=r7UAA6kgupMZUSPR5e5uaaI8wzVG6TpQLS+7eu5AxXVYQgI5bAzu8g6QqWP3sUTZUj
-         U0OorX63BEt+ozzEBLLJT71oaTVNEz8/ilQYad9qdpkXBVkX2guhiTITN/7roFDYrO1X
-         58bF5x5oVfO0Y4FkCWxqwd2g8H95U59VeGmUYbWgN0cCzGori1haVrITTlL+uX8hGNKr
-         ZuLb77b/0cSSniyn8nvl0fl93qFB3dirrBcuQBoK5zoOVeSjY1aU+vz4uYdDQA62fE/g
-         96ks6ZMUADQq66oXGLXd98lvGL3hO03cjBBkQENaBh/ebF/jW46Xt/hkkGQfMOIYDXMX
-         gigA==
+        d=gmail.com; s=20221208; t=1693228389; x=1693833189;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vPcs0sktiib0CVnQrsGDXOLxOsYaOoyJrgrvneL+iRI=;
+        b=EEnmV2sMju/dqKLAuQnHnueTheowYjzwfKRXRixXky7c7ImDccINdT0pTl+/2ge+j+
+         W1pQXboC6Ty5KaPQZKmUab5cR3/E3SPwFn9K5eeYl/qmeBKaQa0ZNEv0Ddn8XiMFJqQu
+         qD/Z4VBRm4rRaM4vVz88+OFysYVXVgVRKBzET7RGwE1kO4apkcxPBMqGD+JJw6ak5oyb
+         cbRNV3fTTE0nex1r7M5S7x16TkQYwiy8j7DXsPDziOQbK2rK4EsaWc8IHmA34JmackPg
+         2L1uMD91hM5K9qVgvueZ9hdPljPNiLj8bD9B18OaT2HrcTATN4QQajG50QkT5f9Qkpyl
+         2zCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693228223; x=1693833023;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wpqvqS+fYSjFHYGuyg+gEAZd0FugNzJBjVPZjXEWq4E=;
-        b=duQXnRyqLYXTF3ZyhlJoIU7uesM8xJY2HTPoGR1kRF5UM7/4BDH6shJmE/mc0rac/I
-         WSn9Gpl0HtnzJFUMkVJjOfPDFPZPxeSfczjNruUMMPTUyo6sPhA4l2U38a0qs5I3P+B8
-         5hBErL3KmhNBwtA7P9oK51SDwGn9SyA8OwQWiKlZK4nuhu2MohvXvN/kP8gsKOltW1ws
-         wVV7Qo/lMSmW6gQbNE4YfP5F863Ab5rveYBGl/eB+hgg28VkGBTGwRoT6MZ7yAVkbd3j
-         29G7n30dqH3A52ZCQKFX36degW7oy7yjSaFXUE41ZneO2y5vWgEAUz1MlGnE769YAAI7
-         CNtw==
-X-Gm-Message-State: AOJu0YyAWrw0+XXy9OPPTEUW+7AA9IaMpSPsLDu9KyM7RBmqZrTZuYN6
-        5AwfmF8ha5ZkfOT6lxbx3YTfof6IYUvwXiUlSs8=
-X-Google-Smtp-Source: AGHT+IGTdT+RlfQq1iFceMWgVEykC3GfUKhMxWYC8+y/6ChxgTlYLs9wDHB7KESy6dP8u5oxa14gzSK/dSOOww78HWA=
-X-Received: by 2002:a05:6512:1cd:b0:4ff:af45:1ef7 with SMTP id
- f13-20020a05651201cd00b004ffaf451ef7mr15536129lfp.6.1693228222939; Mon, 28
- Aug 2023 06:10:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
- <20230824125012.1040288-3-keguang.zhang@gmail.com> <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
-In-Reply-To: <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Mon, 28 Aug 2023 21:09:46 +0800
-Message-ID: <CAJhJPsXEzqbwxBzwHqSG2_PxWPONofNycdTADZ3j=86J5CnMfQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] dt-bindings: net: Add Loongson-1 Ethernet Controller
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
+        d=1e100.net; s=20221208; t=1693228389; x=1693833189;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vPcs0sktiib0CVnQrsGDXOLxOsYaOoyJrgrvneL+iRI=;
+        b=Mjod15cTPj1Qn7CYK650wj/1lKdh4L5AFMfFoirHxojvpFdWRf2aU4wZR5FIOxUik5
+         BPBTDpQk6kzD2XF6iqA4dG8ImHn4WRmfUmTIY8AzfAwOUe1h9BIQ7gCKy2Ub6WqoeqGH
+         QccvEvTiFSXseLREnERCge0sla7ho5ypdIvOcyFmgNB1hLNEooD8dSFHfOV7IrWjIUiF
+         P2UnDSFqLQgTeOjG7tkpUDTnIj3azlO6gtMUj3dErMjxhsV3PMBfnYy9JRxpulNsH5Gl
+         LD0N0nc0vSfd+az+7yGUCKttb58cmt7MYUTZ+oVoO1ANSrD5s14nPg6Ock2WCwXRCgk3
+         fr7g==
+X-Gm-Message-State: AOJu0YzGCYtev2oWLfmsXTmpI5mnivOoH00thKc3rwlqRRC2lKtGRV3P
+        MDdEewkCV8sUkbB8mNwB74s=
+X-Google-Smtp-Source: AGHT+IEm2nDKmysz9bZqzY/IjgJcyF6bL+NRMaFzEewPti0bqJYqOQn+cfpgmS2KGCGOxCmnPQWspQ==
+X-Received: by 2002:a2e:99c4:0:b0:2bc:e856:6208 with SMTP id l4-20020a2e99c4000000b002bce8566208mr8664753ljj.33.1693228388708;
+        Mon, 28 Aug 2023 06:13:08 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id n23-20020a2e86d7000000b002b9e5fe86dasm1727253ljj.81.2023.08.28.06.13.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Aug 2023 06:13:08 -0700 (PDT)
+Date:   Mon, 28 Aug 2023 16:13:00 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Jisheng Zhang <jszhang@kernel.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Giuseppe Cavallaro <peppe.cavallaro@st.com>,
         Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Jose Abreu <joabreu@synopsys.com>, Maxime@web.codeaurora.org,
+        Coquelin@web.codeaurora.org,
+        Simon Horman <simon.horman@corigine.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH net-next v2 2/3] dt-bindings: net: add T-HEAD dwmac
+ support
+Message-ID: <qc2nyqmuouig6qww2q7orlwzvcprjyruyeuyr5dqdpxysajjpv@6fzsgjgokry7>
+References: <20230827091710.1483-1-jszhang@kernel.org>
+ <20230827091710.1483-3-jszhang@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230827091710.1483-3-jszhang@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -82,355 +87,148 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 27, 2023 at 5:04=E2=80=AFAM Serge Semin <fancer.lancer@gmail.co=
-m> wrote:
->
-> On Thu, Aug 24, 2023 at 08:50:10PM +0800, Keguang Zhang wrote:
-> > Add devicetree binding document for Loongson-1 Ethernet controller.
-> >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> > V2 -> V3: Split the DT-schema file into loongson,ls1b-gmac.yaml
-> >           and loongson,ls1c-emac.yaml (suggested by Serge Semin)
-> >           Change the compatibles to loongson,ls1b-gmac and loongson,ls1=
-c-emac
-> >           Rename loongson,dwmac-syscon to loongson,ls1-syscon
-> >           Amend the title
-> >           Add description
-> >           Add Reviewed-by tag from Krzysztof Kozlowski(Sorry! I'm not s=
-ure)
-> > V1 -> V2: Fix "clock-names" and "interrupt-names" property
-> >           Rename the syscon property to "loongson,dwmac-syscon"
-> >           Drop "phy-handle" and "phy-mode" requirement
-> >           Revert adding loongson,ls1b-dwmac/loongson,ls1c-dwmac
-> >           to snps,dwmac.yaml
-> >
-> >  .../bindings/net/loongson,ls1b-gmac.yaml      | 115 ++++++++++++++++++
-> >  .../bindings/net/loongson,ls1c-emac.yaml      | 114 +++++++++++++++++
-> >  2 files changed, 229 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1b=
--gmac.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/net/loongson,ls1c=
--emac.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/loongson,ls1b-gmac.y=
-aml b/Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
-> > new file mode 100644
-> > index 000000000000..f661d5b86649
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/loongson,ls1b-gmac.yaml
-> > @@ -0,0 +1,115 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/loongson,ls1b-gmac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson-1B Gigabit Ethernet MAC Controller
-> > +
-> > +maintainers:
-> > +  - Keguang Zhang <keguang.zhang@gmail.com>
-> > +
->
-> > +description:
->
-> Use "|" to keep the text formatting.
->   description: |
->
-Will do.
+On Sun, Aug 27, 2023 at 05:17:09PM +0800, Jisheng Zhang wrote:
+> Add documentation to describe T-HEAD dwmac.
+> 
+> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> ---
+>  .../devicetree/bindings/net/snps,dwmac.yaml   |  1 +
+>  .../devicetree/bindings/net/thead,dwmac.yaml  | 77 +++++++++++++++++++
+>  2 files changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/thead,dwmac.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> index b196c5de2061..73821f86a609 100644
+> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
+> @@ -96,6 +96,7 @@ properties:
+>          - snps,dwxgmac
+>          - snps,dwxgmac-2.10
+>          - starfive,jh7110-dwmac
+> +        - thead,th1520-dwmac
+>  
+>    reg:
+>      minItems: 1
+> diff --git a/Documentation/devicetree/bindings/net/thead,dwmac.yaml b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
+> new file mode 100644
+> index 000000000000..bf8ec8ca2753
+> --- /dev/null
 
-> > +  Loongson-1B Gigabit Ethernet MAC Controller is based on
-> > +  Synopsys DesignWare MAC (version 3.50a).
-> > +
->
-> > +  Main features
-> > +  - Dual 10/100/1000Mbps GMAC controllers
-> > +  - Full-duplex operation (IEEE 802.3x flow control automatic transmis=
-sion)
-> > +  - Half-duplex operation (CSMA/CD Protocol and back-pressure support)
-> > +  - RX Checksum Offload
-> > +  - TX Checksum insertion
-> > +  - MII interface
-> > +  - RGMII interface
->
-> If only all the DW *MAC-based devices have such info in the
-> bindings the life would have been much easier...
->
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - loongson,ls1b-gmac
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - loongson,ls1b-gmac
-> > +      - const: snps,dwmac-3.50a
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
->
-> > +  clock-names:
-> > +    items:
-> > +      - const: stmmaceth
->
-> since there is a single clock then just:
->   clock-names:
->     const: stmmaceth
->
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
->
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: macirq
->
-> ditto. just
->   interrupt-names:
->     const: macirq
->
-> > +
-> > +  loongson,ls1-syscon:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the syscon containing some extra configurations
-> > +      including PHY interface mode.
-> > +
->
-> > +  phy-mode:
-> > +    items:
-> > +      - enum:
-> > +          - mii
-> > +          - rgmii-id
->
-> it's a single string then just:
->   phy-mode:
->     enum: ...
->
-Will do.
+> +++ b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - loongson,ls1-syscon
-> > +
-> > +allOf:
-> > +  - $ref: snps,dwmac.yaml#
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    gmac0: ethernet@1fe10000 {
-> > +        compatible =3D "loongson,ls1b-gmac", "snps,dwmac-3.50a";
-> > +        reg =3D <0x1fe10000 0x10000>;
-> > +
-> > +        clocks =3D <&clkc LS1X_CLKID_AHB>;
-> > +        clock-names =3D "stmmaceth";
-> > +
-> > +        interrupt-parent =3D <&intc1>;
-> > +        interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names =3D "macirq";
-> > +
-> > +        loongson,ls1-syscon =3D <&syscon>;
-> > +
-> > +        phy-handle =3D <&phy0>;
-> > +        phy-mode =3D "mii";
-> > +        snps,pbl =3D <1>;
-> > +
-> > +        mdio {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +            compatible =3D "snps,dwmac-mdio";
-> > +
-> > +            phy0: ethernet-phy@0 {
-> > +                reg =3D <0x0>;
-> > +            };
-> > +        };
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/net/loongson,ls1c-emac.y=
-aml b/Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
-> > new file mode 100644
-> > index 000000000000..1ffad41941bf
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/loongson,ls1c-emac.yaml
-> > @@ -0,0 +1,114 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/net/loongson,ls1c-emac.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Loongson-1C Ethernet MAC Controller
-> > +
-> > +maintainers:
-> > +  - Keguang Zhang <keguang.zhang@gmail.com>
-> > +
->
-> > +description:
->
-> the same comment about the "|" modifier.
->
-Will do.
+see further regarding using dwmac in the names here.
 
-> > +  Loongson-1C Ethernet MAC Controller is based on
-> > +  Synopsys DesignWare MAC (version 3.50a).
-> > +
->
-> > +  Main features
-> > +  - 10/100Mbps
-> > +  - Full-duplex operation (IEEE 802.3x flow control automatic transmis=
-sion)
-> > +  - Half-duplex operation (CSMA/CD Protocol and back-pressure support)
-> > +  - IEEE 802.1Q VLAN tag detection for reception frames
-> > +  - MII interface
-> > +  - RMII interface
->
-> Based on the plat_stmmacenet_data data defined for the LS1C MAC it
-> also support support Tx COE. Isn't it? What about Rx COE?
->
-> > +
-> > +select:
-> > +  properties:
-> > +    compatible:
-> > +      contains:
-> > +        enum:
-> > +          - loongson,ls1c-emac
-> > +  required:
-> > +    - compatible
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - loongson,ls1c-emac
-> > +      - const: snps,dwmac-3.50a
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
->
-> > +  clock-names:
-> > +    items:
-> > +      - const: stmmaceth
->
->   clock-names:
->     const: stmmaceth
-> ?
->
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
->
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: macirq
->
->   interrupt-names:
->     const: macirq
-> ?
->
-> > +
-> > +  loongson,ls1-syscon:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description:
-> > +      Phandle to the syscon containing some extra configurations
-> > +      including PHY interface mode.
-> > +
->
-> > +  phy-mode:
-> > +    items:
-> > +      - enum:
-> > +          - mii
-> > +          - rmii
->
->   phy-mode:
->     enum: ...
-> ?
-Will do.
->
-> -Serge(y)
->
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - loongson,ls1-syscon
-> > +
-> > +allOf:
-> > +  - $ref: snps,dwmac.yaml#
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/loongson,ls1x-clk.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    emac: ethernet@1fe10000 {
-> > +        compatible =3D "loongson,ls1c-emac", "snps,dwmac-3.50a";
-> > +        reg =3D <0x1fe10000 0x10000>;
-> > +
-> > +        clocks =3D <&clkc LS1X_CLKID_AHB>;
-> > +        clock-names =3D "stmmaceth";
-> > +
-> > +        interrupt-parent =3D <&intc1>;
-> > +        interrupts =3D <2 IRQ_TYPE_LEVEL_HIGH>;
-> > +        interrupt-names =3D "macirq";
-> > +
-> > +        loongson,ls1-syscon =3D <&syscon>;
-> > +
-> > +        phy-handle =3D <&phy0>;
-> > +        phy-mode =3D "mii";
-> > +        snps,pbl =3D <1>;
-> > +
-> > +        mdio {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +            compatible =3D "snps,dwmac-mdio";
-> > +
-> > +            phy0: ethernet-phy@13 {
-> > +                reg =3D <0x13>;
-> > +            };
-> > +        };
-> > +    };
-> > --
-> > 2.39.2
-> >
-> >
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
 
+> +title: T-HEAD DWMAC Ethernet controller
 
+Additionally would be nice to have a brief controller "description:"
+having the next info: the SoCs the controllers can be found on, the DW
+(G)MAC IP-core version the ethernet controller is based on and some
+data about the synthesize parameters: SMA (MDIO-bus), Tx/Rx COE, DMA
+FIFOs size, perfect and hash MAC-filters size, L3L4 frame filters
+availability, VLAN hash filter, SA/VLAN-tag insertion, ARP offload
+engine, PHY interfaces (MII, RMII, RGMII, etc), EEE support, IEEE
+1588(-2008) Timestamping support, PMT and Wake-up frame support, MAC
+Management counters (MMC). In addition to that for DW QoS
+ETH/XGMAC/XLGMAC the next info would be useful: number of MTL Queues
+and DMA channels, MTL queues capabilities (QoS-related), TSO
+availability, SPO availability.
 
---=20
-Best regards,
+Note DMA FIFO sizes can be also constrained in the properties
+"rx-fifo-depth" and "tx-fifo-depth"; perfect and hash MAC-filter sizes -
+in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
 
-Keguang Zhang
+> +
+> +maintainers:
+> +  - Jisheng Zhang <jszhang@kernel.org>
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+
+> +          - thead,th1520-dwmac
+
+Referring to the DW IP-core in the compatible string isn't very
+much useful especially seeing you have a generic fallback compatible.
+Name like "thead,th1520-gmac" looks more informative indicating its
+speed capability.
+
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+
+> +          - thead,th1520-dwmac
+
+ditto.
+
+-Serge(y)
+
+> +      - const: snps,dwmac-3.70a
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  thead,gmacapb:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      The phandle to the syscon node that control ethernet
+> +      interface and timing delay.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - interrupts
+> +  - interrupt-names
+> +  - phy-mode
+> +  - thead,gmacapb
+> +
+> +allOf:
+> +  - $ref: snps,dwmac.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    gmac0: ethernet@e7070000 {
+> +        compatible = "thead,th1520-dwmac", "snps,dwmac-3.70a";
+> +        reg = <0xe7070000 0x2000>;
+> +        clocks = <&clk 1>, <&clk 2>;
+> +        clock-names = "stmmaceth", "pclk";
+> +        interrupts = <66>;
+> +        interrupt-names = "macirq";
+> +        phy-mode = "rgmii-id";
+> +        snps,fixed-burst;
+> +        snps,axi-config = <&stmmac_axi_setup>;
+> +        snps,pbl = <32>;
+> +        thead,gmacapb = <&gmacapb_syscon>;
+> +        phy-handle = <&phy0>;
+> +
+> +        mdio {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            compatible = "snps,dwmac-mdio";
+> +
+> +            phy0: ethernet-phy@0 {
+> +                reg = <0>;
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.40.1
+> 
+> 
