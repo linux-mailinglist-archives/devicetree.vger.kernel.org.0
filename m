@@ -2,134 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A91C478B9FB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 23:12:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDF978BA0B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 23:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233225AbjH1VLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 17:11:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
+        id S232599AbjH1VOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 17:14:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233492AbjH1VL1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 17:11:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B81B6C3;
-        Mon, 28 Aug 2023 14:11:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S233581AbjH1VOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 17:14:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A2FC3;
+        Mon, 28 Aug 2023 14:14:30 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 53F06631D9;
-        Mon, 28 Aug 2023 21:11:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ACDFC433C7;
-        Mon, 28 Aug 2023 21:11:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693257083;
-        bh=CuIPNQ07mUdRKNEEdCDCs1DaOYgbGMZeHU/QMDCau2c=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=SNbYvyr/S6MofsbcLWGC/v8Q/z6fsngz+tQFU6IQ4pDrWQTsO3aJasZ5yND6SX0/P
-         upbhNWzYyc00nO6x7oWjOcINTy9R4eZCpgbz4FHdizLdHvzYZiPWnyELPbicb4ymZY
-         2YGkfPfn9VQr0V+hCKcCktaQiI5MSAocDZVbDEMG19hk3bmCeFUzXzEFxTpNCiDPEF
-         sXXQms3QoUSvWqJd11MTNu6IFGPBe1tm2dQIfTjr3CQmwbrFIWRUWLTiAdIPDoZA6n
-         6N6QzWzZdMP/rdhTHgn1eTxRzOQxu5iy1uA6pIvGSDQuKnUyLg4cKDznAQYEvmMdwk
-         gCS4z/cVezlUQ==
-Date:   Mon, 28 Aug 2023 16:11:21 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
-Cc:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
-Subject: Re: [PATCH v6 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
-Message-ID: <20230828211121.GA745436@bhelgaas>
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 973B6660087A;
+        Mon, 28 Aug 2023 22:14:27 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1693257269;
+        bh=kMWLY6tuvILGJ3usJxrB0TPO3XiaNxG6Cf6+Lo6rdrg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RMNPZO/Vg4Y6R4vwYhpxQUY1VAdEKCTsmFKQPKgOcbOtPRYThJQEHvXlQ9gAGH+WE
+         LYbU7idaQDV1eWwELh4Gg6uAY76d9fHg5o2clXfcQc6rgc3oeB2CGWPTV580aZBHY6
+         rqUP5JU99WeKQL3Dls4/thGN11p/BvD6gPj0aIl1IOz+3Sy8zzvfibq7PHS43pbyy9
+         7SoGu5ir4DRtMq2YKYRLx8EmlSgUa2oACKOqkONTCAHW9A+n3n+T+JmbgxmqgHu0LR
+         x+EipqMVAq2OARILiP/Rxzjj0CETuU6qYc8MtK6geZ3V3PWd97+QSN73Jba8rR+tyB
+         YSJdcmIKCcVhA==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Shuah Khan <shuah@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, kernelci@lists.linux.dev,
+        kernel@collabora.com, Guenter Roeck <groeck@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org
+Subject: [PATCH v3 0/3] Add a test to catch unprobed Devicetree devices
+Date:   Mon, 28 Aug 2023 17:13:09 -0400
+Message-ID: <20230828211424.2964562-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.42.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <SN7PR12MB7201459AEFB6DFF600E753928BE0A@SN7PR12MB7201.namprd12.prod.outlook.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 12:01:52PM +0000, Havalige, Thippeswamy wrote:
-> > > On Fri, Aug 18, 2023 at 03:05:07PM +0530, Thippeswamy Havalige wrote:
-> > > > ...
 
-> > > > +static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus,
-> > > > +					    unsigned int devfn)
-> > > > +{
-> > > > +	struct pl_dma_pcie *port = bus->sysdata;
-> > > > +
-> > > > +	/* Check if link is up when trying to access downstream ports */
-> > > > +	if (!pci_is_root_bus(bus)) {
-> > > > +		/*
-> > > > +		 * Checking whether link is up here is a last line of defence,
-> > > > +		 * if the link goes down after we check for link-up, we have a
-> > > > +		 * problem: if a PIO request is initiated while link-down, the
-> > > > +		 * whole controller hangs, and even after link comes up again,
-> > > > +		 * previous PIO requests won't work, and a reset of the whole
-> > > > +		 * PCIe controller is needed. Henceforth we need link-up
-> > > check
-> > > > +		 * here to avoid sending PIO request when link is down. This
-> > > > +		 * check is racy by definition and does not make controller
-> > > hang
-> > > > +		 * if the link goes down after this check is performed.
-> > >
-> > > This comment doesn't make sense to me.  "If PIO request initiated
-> > > while link- down, controller hangs ... This check is racy and does not
-> > > make controller hang if link goes down."  Which is it?
-> - Here checking link up treats device as invalid.
-> 
-> Please find comment that I ll update in next patch and 
-> Please letme know if any changes are needed.
-> 
->   /*
->                  * Checking whether the link is up. Here is the last line of
->                  * defence. If the link goes down after we check for link-up,
->                  * we have a problem. If a PIO request is initiated while link
->                  * is down, the whole controller hangs. Even after link comes up
->                  * again, previous PIO requests won't work, and a reset of the
->                  * whole PCIe controller is needed. Henceforth we need link-up
->                  * check here to treat device as invalid and avoid sending PIO
->                  * request when link is down and this check is inherently racy
->                  * by definition.
-> */
-> > >
-> > > My *guess* is that this check narrows the window but doesn't close it,
-> > > so if
-> > > xilinx_pl_dma_pcie_link_up() finds the link up, but the link goes down
-> > > before
-> > > pci_generic_config_read() initiates the PIO request, the controller
-> > > hangs, and a reset is required.
+Regressions that cause a device to no longer be probed by a driver can
+have a big impact on the platform's functionality, and despite being
+relatively common there isn't currently any generic test to detect them.
+As an example, bootrr [1] does test for device probe, but it requires
+defining the expected probed devices for each platform.
 
-Sorry, I dragged this out by not giving you a more useful suggestion
-to begin with.  Since advk_pcie_valid_device() has the same issue,
-copying its comment was a great place to start.
+Given that the Devicetree already provides a static description of
+devices on the system, it is a good basis for building such a test on
+top.
 
-But I think advk_pcie_valid_device(), altera_pcie_valid_device(),
-nwl_pcie_valid_device(), xilinx_pcie_valid_device(), and now
-xilinx_pl_dma_pcie_valid_device() all have the same race, but none of
-them really address it in the comment.
+This series introduces a test to catch regressions that prevent devices
+from probing.
 
-I'm looking for explicit acknowledgement that we can't reliably
-prevent this unrecoverable error, e.g., something like this:
+Patches 1 and 2 extend the existing dt-extract-compatibles to be able to
+output only the compatibles that can be expected to match a Devicetree
+node to a driver. Patch 2 adds a kselftest that walks over the
+Devicetree nodes on the current platform and compares the compatibles to
+the ones on the list, and on an ignore list, to point out devices that
+failed to be probed.
 
-  Sending a PIO request to a downstream device when the link is down
-  causes an unrecoverable error, and a reset of the entire PCIe
-  controller will be needed.  We can reduce the likelihood of that
-  unrecoverable error by checking whether the link is up, but can't
-  completely prevent it because the link may go down between the
-  link-up check and the PIO request.
+A compatible list is needed because not all compatibles that can show up
+in a Devicetree node can be used to match to a driver, for example the
+code for that compatible might use "OF_DECLARE" type macros and avoid
+the driver framework, or the node might be controlled by a driver that
+was bound to a different node.
 
-Bjorn
+An ignore list is needed for the few cases where it's common for a
+driver to match a device but not probe, like for the "simple-mfd"
+compatible, where the driver only probes if that compatible is the
+node's first compatible.
+
+The reason for parsing the kernel source instead of relying on
+information exposed by the kernel at runtime (say, looking at modaliases
+or introducing some other mechanism), is to be able to catch issues
+where a config was renamed or a driver moved across configs, and the
+.config used by the kernel not updated accordingly. We need to parse the
+source to find all compatibles present in the kernel independent of the
+current config being run.
+
+[1] https://github.com/kernelci/bootrr
+
+Changes in v3:
+- Added DT selftest path to MAINTAINERS
+- Enabled device probe test for nodes with 'status = "ok"'
+- Added pass/fail/skip totals to end of test output
+
+Changes in v2:
+- Extended dt-extract-compatibles script to be able to extract driver
+  matching compatibles, instead of adding a new one in Coccinelle
+- Made kselftest output in the KTAP format
+
+Nícolas F. R. A. Prado (3):
+  dt: dt-extract-compatibles: Handle cfile arguments in generator
+    function
+  dt: dt-extract-compatibles: Add flag for driver matching compatibles
+  kselftest: Add new test for detecting unprobed Devicetree devices
+
+ MAINTAINERS                                   |  1 +
+ scripts/dtc/dt-extract-compatibles            | 74 +++++++++++++----
+ tools/testing/selftests/Makefile              |  1 +
+ tools/testing/selftests/dt/.gitignore         |  1 +
+ tools/testing/selftests/dt/Makefile           | 21 +++++
+ .../selftests/dt/compatible_ignore_list       |  1 +
+ tools/testing/selftests/dt/ktap_helpers.sh    | 70 ++++++++++++++++
+ .../selftests/dt/test_unprobed_devices.sh     | 83 +++++++++++++++++++
+ 8 files changed, 236 insertions(+), 16 deletions(-)
+ create mode 100644 tools/testing/selftests/dt/.gitignore
+ create mode 100644 tools/testing/selftests/dt/Makefile
+ create mode 100644 tools/testing/selftests/dt/compatible_ignore_list
+ create mode 100644 tools/testing/selftests/dt/ktap_helpers.sh
+ create mode 100755 tools/testing/selftests/dt/test_unprobed_devices.sh
+
+-- 
+2.42.0
+
