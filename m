@@ -2,59 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 623F578B887
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:40:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C47C78B894
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232866AbjH1Tjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 15:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57216 "EHLO
+        id S231583AbjH1Tlt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 15:41:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233414AbjH1TjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:39:23 -0400
+        with ESMTP id S233087AbjH1TlZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:41:25 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B2C12F;
-        Mon, 28 Aug 2023 12:39:20 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 123D6BD;
+        Mon, 28 Aug 2023 12:41:23 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8154D6475E;
-        Mon, 28 Aug 2023 19:39:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A1FDC433C8;
-        Mon, 28 Aug 2023 19:39:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9BA58646DC;
+        Mon, 28 Aug 2023 19:41:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71876C433C8;
+        Mon, 28 Aug 2023 19:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693251560;
-        bh=zuRblMquL75h66BAHp2HzufNQ+pbQGVcWUOzMVV/uVU=;
+        s=k20201202; t=1693251682;
+        bh=5fcdEJYr0tuaLwmg8LrJDpk5WjyT7tChNwaLtJl0EjA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qer4oeWvqVuAXXmGE3r0+p62B+xJcj23lHhzq0+ym3nKcS5maLgpFmoU0epY/FrLq
-         xgVlp/URtzJ1aXBVTPwfcRxplGetqo+QkSnNyjaUVZUzzNNEysJnTURkgxzBGgDB6R
-         M9HIi6OmFTo+pWKQhKAocJZl0hToRoAqOa5EKxml/k+IaIv5H47W1bAmpY3s0liyk9
-         evkW0Fe3PSGDG6LmRp3UtwLSbvSwH2RJdLFKBqb0y4nxCGoiDzP1SHPJQ1eYl6QEex
-         pcKwrfyscFxlXylo3mbINlGn9zyj6o3513Ve29J3to0rLqOfXp7BXxiA8qLAcLP2EK
-         hbC3NKLXfZOzg==
-Date:   Mon, 28 Aug 2023 20:39:16 +0100
+        b=oUGKFwThSSgaRGElIYnOuDUUMA5z60TZfL+K6nMPId0ngzpt1zVG8M54zAjS2boe7
+         6/aZbfm1q5E1Ln++O8oVSIcnLE/UQJuyQIAJH8cdKpFdtWze+Wvj0Eu3IeHYGMc1Fz
+         WNO9MMS+4YV6h2ectkU42s4rzr/h9/kzmwGPTQtN6Q9/UpGgufcm+fWtcSz1k31mc3
+         xWEAk6SeLpB6mkyV3RLgu/4WglWGwUVyDD9El+sA1vZHx8LpuyUDlBxtFZBTHBRBbc
+         nSe1h82YfUw+/KNnfsvnMJPTHD2qWxKP2KIeQ85cM7quvobqHliltSgrKlIa5HnX7D
+         O9gl4IrXh/Owg==
+Date:   Mon, 28 Aug 2023 20:41:18 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-Cc:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        RicardoRivera-Matosricardo.rivera-matos@cirrus.com
-Subject: Re: [PATCH 4/7] ASoC: cs35l45: Analog PCM Volume and Amplifier Mode
- controls
-Message-ID: <ZOz35ABAsLYROJ4c@finisterre.sirena.org.uk>
-References: <20230828170525.335671-1-vkarpovi@opensource.cirrus.com>
- <20230828170525.335671-4-vkarpovi@opensource.cirrus.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+        Kees Cook <keescook@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        quic_pkondeti@quicinc.com, linux-kernel@vger.kernel.org,
+        kernel@quicinc.com, workflows@vger.kernel.org,
+        tools@linux.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
+Message-ID: <ZOz4XtX3DFRQpvQY@finisterre.sirena.org.uk>
+References: <cover.1693037031.git.quic_gurus@quicinc.com>
+ <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
+ <2efba6b3-2399-9deb-d0ce-78f7b5e12f30@linaro.org>
+ <20230828175629.GC23466@quicinc.com>
+ <78aa33f9-ead8-b128-2a7a-40530a1a3ed0@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="RuSj6/CZAu0X82sy"
+        protocol="application/pgp-signature"; boundary="hRZyai99SdOpZcQJ"
 Content-Disposition: inline
-In-Reply-To: <20230828170525.335671-4-vkarpovi@opensource.cirrus.com>
+In-Reply-To: <78aa33f9-ead8-b128-2a7a-40530a1a3ed0@linaro.org>
 X-Cookie: Give him an evasive answer.
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
@@ -67,42 +73,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---RuSj6/CZAu0X82sy
+--hRZyai99SdOpZcQJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Aug 28, 2023 at 12:05:22PM -0500, Vlad Karpovich wrote:
+On Mon, Aug 28, 2023 at 07:59:54PM +0200, Krzysztof Kozlowski wrote:
+> On 28/08/2023 19:56, Guru Das Srinagesh wrote:
 
-> +static int cs35l45_amplifier_mode_put(struct snd_kcontrol *kcontrol,
-> +				      struct snd_ctl_elem_value *ucontrol)
-> +{
+> > Your function adds mailing lists also in "To:" which is not ideal, in my view.
+> > You've mentioned before that To or Cc doesn't matter [1] which I disagree
+> > with: it doesn't matter, why does Cc exist as a concept at all?
 
-> +	snd_soc_component_enable_pin_unlocked(component, "SPK");
-> +	snd_soc_dapm_sync_unlocked(dapm);
-> +	snd_soc_dapm_mutex_unlock(dapm);
+> To/Cc does not matter when sending new patch, because maintainers know
+> they are maintainers of which parts. I know what I handle.
 
-> +	cs35l45->amplifier_mode = ucontrol->value.integer.value[0];
+That might be true for you (and also is for me) but I know there are
+people who pay attention to if they're in the To: for various reasons, I
+gather it's mostly about triaging their emails and is especially likely
+in cases where trees have overlaps in the code they cover.
 
-> +	return 0;
-> +}
-
-This should return 1 on change (I did see that there's some code which
-generates notifications but it would still be better to flag changes
-here, it makes review a lot easier).
-
---RuSj6/CZAu0X82sy
+--hRZyai99SdOpZcQJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTs9+EACgkQJNaLcl1U
-h9DzuwgAgwy2vcETGFOVFw/Ki8yb/HOhnBIy0TJB3UqAL1L+6WcQq+HwdayDRocu
-wvKE+uqIfK8bgEhXkDMDCnoKucYrNI5CDY/UMjeihYPIKFLOKtTTh31X09OHbStd
-O+h9NeP4pyIBvZV6NyrJVH54MMT/dF+XwAOQOhGllbexeZlMi5h9qA736o7ob0bl
-YD9eVCVjAQdazTLbLxUwK2fNl/WH+jDch5MH1U2kZwxZ3BYRgZUolgWjUv2y3rgm
-fMqUcmmouWcc/WEjvyhUqExQI/6Jy8r8qdskx3mAr5iih8hq9vEwRR7c41eRyEvE
-yCE07xjrRi7XESt5SVu1JqWzODjDUQ==
-=QHEm
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTs+F0ACgkQJNaLcl1U
+h9CeTQf/e9/5RbNg+te42f6gn239bsr10S3eOcOyxTwWayhAg4zAexwks3p016ip
+ZnpfeGr64L9nun8+geqVq6KRC51zTmJPuFST7WbKFxSmYlpH8U8ZtQsC7DCWadLC
+5TfZCHGWyTKvAyrG8q02Z2Pv6kb9Pc19v/1SIfLc/LHBN7s3DIp575SmtCGvT2pe
+uaH3Gor59lyaohr6CPGAhywhJG99zsROT0HXAnPnzmGL2h4hfGOvh4cbrGjfy/Z9
+2Kst0IWghvAAT8AETR9ZNAhSIssP89fa/O7p6uo6TvXQN3YcMDg8iqaYdi03gu6w
+gqn0TzRZXrL/jOLMYvHKGg0uDIfCnQ==
+=8k7s
 -----END PGP SIGNATURE-----
 
---RuSj6/CZAu0X82sy--
+--hRZyai99SdOpZcQJ--
