@@ -2,98 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C3DFB78A4FA
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 06:41:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D29578A507
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 07:00:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229516AbjH1El2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 00:41:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39796 "EHLO
+        id S229550AbjH1E6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 00:58:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229461AbjH1ElA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 00:41:00 -0400
-Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.154.54.12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 445A8124
-        for <devicetree@vger.kernel.org>; Sun, 27 Aug 2023 21:40:55 -0700 (PDT)
-X-QQ-mid: bizesmtp78t1693197620tdj5elbh
-Received: from wangjiexun-virtual-machine.loca ( [120.225.34.249])
-        by bizesmtp.qq.com (ESMTP) with 
-        id ; Mon, 28 Aug 2023 12:40:17 +0800 (CST)
-X-QQ-SSF: 01200000000000001000000A0000000
-X-QQ-FEAT: znfcQSa1hKYDxmkXgnl9lrc8jm7ncjAYCvItBCS+bXKY++nEN9itQfpOM0KLH
-        Oqr4Gg/mQj1qE4+umRvFwq6/LH8K3ysz5/vuSYTxFWjafMILTFvoP1vMsKqTSUJwY++Z9fI
-        V+nQTh5qrHw2E2qIqik81duYSAF6Y46S4o/S4lb+ubZ34C56RBuIW6f9yY3paBw37SBvM2d
-        MPas2/XycMRbK0qKwVULKjTSl0Xvl0x4qM6jvU04Vye23X9pBkqpy4LHTTSQwcA3ibY4b8d
-        JgcuIAbF1pwh80gFwTPzkwDwK3VH07fUtjFz4u0NQ/FiKx+tc6Di2ylR1K8u+GIaqh53atJ
-        LybILy8fHzRNHZgcbvCjB0yg9r2fxClx3ebmEh+
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 1038203160215464499
-From:   Jiexun Wang <wangjiexun@tinylab.org>
-To:     dfustini@baylibre.com
-Cc:     adrian.hunter@intel.com, aou@eecs.berkeley.edu,
-        conor+dt@kernel.org, conor@kernel.org, devicetree@vger.kernel.org,
-        guoren@kernel.org, jkridner@beagleboard.org, jszhang@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-riscv@lists.infradead.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com,
-        robertcnelson@beagleboard.org, robh+dt@kernel.org,
-        ulf.hansson@linaro.org, wefu@redhat.com
-Subject: Re: [PATCH RFC v2 0/4] RISC-V: Add basic eMMC support for BeagleV Ahead
-Date:   Mon, 28 Aug 2023 12:40:16 +0800
-Message-Id: <20230828044016.109515-1-wangjiexun@tinylab.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com>
-References: <20230724-th1520-emmc-v2-0-132ed2e2171e@baylibre.com>
+        with ESMTP id S229493AbjH1E6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 00:58:16 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0798127;
+        Sun, 27 Aug 2023 21:58:13 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37S4eG2n009203;
+        Mon, 28 Aug 2023 04:58:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=nteOutDuYilmeryWePqbESc1chx6OQv9mLNHCnnxr/c=;
+ b=KCmSqMkZKIStWkmZBzcHY8pBMbAcVQ+AIjlFLZWPZsIdB6YVuJZCdFBt3pkpVmQGsa61
+ 3ridLry0hUyANLgNWlpM8IKxbomay7PJTlgYbSyQdlA4ZhU1NAhQOAfC8u44bT72Hk25
+ 6Jbr/4SXWf07sGfkg5vDe+W93LA9LqTQ/SVuhzJ4hPgI4SCewoMnQur9+glPDozDN8hc
+ h7bxeKw51LvHnjXOcSQoyFxILMHxELJEacntg7Q2jZKIR9FbgPTt+W8Ez5cCX0iy2zd1
+ gcCS/u5+0g9nCmXw9na34wZdACYLuWvFEgOLS3S9YGKwxkK6PbMuIUYQ4EOHy31kUgew yA== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sq907jjjc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Aug 2023 04:58:04 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37S4w3g9027833
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 28 Aug 2023 04:58:03 GMT
+Received: from [10.216.31.112] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Sun, 27 Aug
+ 2023 21:57:57 -0700
+Message-ID: <5b722eb1-4515-4f21-805f-8823b9030132@quicinc.com>
+Date:   Mon, 28 Aug 2023 10:27:52 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:tinylab.org:qybglogicsvrgz:qybglogicsvrgz5a-0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/7] dt-bindings: crypto: qcom,prng: document that RNG
+ on SM8450 is a TRNG
+Content-Language: en-US
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
+ <20230824-topic-sm8550-rng-v2-3-dfcafbb16a3e@linaro.org>
+From:   Om Prakash Singh <quic_omprsing@quicinc.com>
+In-Reply-To: <20230824-topic-sm8550-rng-v2-3-dfcafbb16a3e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: K2oBQPvHbstnnEIm8z0fbUKrKmxBDN5r
+X-Proofpoint-ORIG-GUID: K2oBQPvHbstnnEIm8z0fbUKrKmxBDN5r
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-28_01,2023-08-25_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
+ mlxlogscore=672 bulkscore=0 phishscore=0 adultscore=0 spamscore=0
+ mlxscore=0 impostorscore=0 priorityscore=1501 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308280043
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,=0D
-I tested the patch on my LicheePi 4A board.=0D
-It can successfully boot with eMMC, but when I use the eMMC more frequently=
- - for instance:=0D
-=0D
-$ while true; do /bin/dd if=3D/dev/zero of=3Dbigfile bs=3D1024000 count=3D1=
-024; done &=0D
-=0D
-I encounter the following error:=0D
-=0D
-sbi_trap_error: hart1: illegal instruction handler failed (error -2)=0D
-sbi_trap_error: hart1: mcause=3D0x0000000000000002 mtval=3D0x0000000060e2de=
-4f=0D
-sbi_trap_error: hart1: mepc=3D0x000000000001897c mstatus=3D0x0000000a000018=
-20=0D
-sbi_trap_error: hart1: ra=3D0x00000000000170f8 sp=3D0x000000000004adc8=0D
-sbi_trap_error: hart1: gp=3D0xffffffff8136ea90 tp=3D0xffffffd900228000=0D
-sbi_trap_error: hart1: s0=3D0x0000000000000000 s1=3D0x000000000004ae08=0D
-sbi_trap_error: hart1: a0=3D0x000000003f9aa9bc a1=3D0x0000000000000004=0D
-sbi_trap_error: hart1: a2=3D0x0000000000000000 a3=3D0x0000000000000000=0D
-sbi_trap_error: hart1: a4=3D0x0000000000042248 a5=3D0x00000000000170e5=0D
-sbi_trap_error: hart1: a6=3D0x0000000000000000 a7=3D0x0000000054494d45=0D
-sbi_trap_error: hart1: s2=3D0x000000000004aee8 s3=3D0x0000000000000000=0D
-sbi_trap_error: hart1: s4=3D0x000000000004ae08 s5=3D0x0000000000000000=0D
-sbi_trap_error: hart1: s6=3D0xffffffff813aa240 s7=3D0x0000000000000080=0D
-sbi_trap_error: hart1: s8=3D0xffffffff80a1b5f0 s9=3D0x0000000000000000=0D
-sbi_trap_error: hart1: s10=3D0xffffffd9fef5d380 s11=3D0xffffffff81290a80=0D
-sbi_trap_error: hart1: t0=3D0x0000000a00000820 t1=3D0x0000000000000000=0D
-sbi_trap_error: hart1: t2=3D0xffffffff80c00318 t3=3D0x0000000000000001=0D
-sbi_trap_error: hart1: t4=3D0x0000000000000330 t5=3D0x0000000000000001=0D
-sbi_trap_error: hart1: t6=3D0x0000000000040000=0D
-=0D
-My kernel version is v6.5-rc3.=0D
-My OpenSBI version is 1.3.=0D
-I tried to use other versions of OpenSBI, yet the problem persists. =0D
-Is there a possibility of any underlying bug? Your insights into this would=
- be greatly appreciated.=0D
-=0D
-Thanks,=0D
-Jiexun Wang=0D
-=0D
+
+On 8/24/2023 5:03 PM, Neil Armstrong wrote:
+> It has been reported at [1] the RNG HW on SM8450 is in fact a True Random
+> Number Generator and no more Pseudo, document this by adding
+> a new qcom,trng and the corresponding SoC specific sm8450 compatible.
+> 
+> [1] https://lore.kernel.org/all/20230818161720.3644424-1-quic_omprsing@quicinc.com/
+> 
+> Suggested-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+Reviewed-by: Om Prakash Singh <quic_omprsing@quicinc.com>
