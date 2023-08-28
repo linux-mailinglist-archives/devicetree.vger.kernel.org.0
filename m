@@ -2,77 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E32A478B839
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84AB078B899
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 21:42:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231673AbjH1TZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 15:25:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51816 "EHLO
+        id S229512AbjH1TmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 15:42:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233357AbjH1TZm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:25:42 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2822E129
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:25:37 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so4770200a12.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:25:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693250735; x=1693855535;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=p/61/Jtw3sjcBqjmdxX+cX6l07WobkcJLL3KuqjFb6A=;
-        b=cm1BP+wtxglWb0HG8Jh2xdEv8ViqJCxfnghG/SjVY+6Tc3SJJdcqL/pgwzymLG0jee
-         Kh9I7URgNJfNk3cawlWuGzI1JY3cwFK3QIUzKDkGfQDJ1Nfbvm7La9Wj/rmCAQzidoQD
-         jghFGZTfYoYSSKUUTsXIWNkSMD44i61l4Z80gTxOeZH0pxwMNciDvSYzcmmerjpjWexr
-         KLjLxOh2cElLOf67UHaS4CbaGfEHLmjmJYb1fn6tlTaBfFJx+3AGzeMzxqWj5S4zUQOi
-         qQGY1z/c5c9nBI65/7xsU5kUqMP9JVpoD1I38kV9oc1D886PvashY2UM0vMkzL9g1xbC
-         8gmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693250735; x=1693855535;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=p/61/Jtw3sjcBqjmdxX+cX6l07WobkcJLL3KuqjFb6A=;
-        b=eHX1RNKcFzf11jzVC0F8ZJ9cxaXAirp7oQKSlPXbV3bhr72YcQe9fw6MSYcP/oKUWX
-         Z7Sez6SVF4lfwConWArUldkO0f+MfF6/bu7WSQQKNTHZ04O7rmJy6JGD1WhL0APLM2kV
-         Ie3kOHwfH4RipHhbWhzebFjwuTKUPZrD4ehG8LSkMMmMr4NX/Dm6O7vzx52C2EjIpG5H
-         edDwzHyhnQ7jb9lDzh2ynluwObdG6a1c1RY/Na7d1Jhy5rHjic1E/O4VsbPLCzETWVy7
-         rSYPMRqh4oW0l37MtTZMPxJeEz5gFT0pYP8sFQAH18QT51hR99zJuTg6nBHr7VxsC6pR
-         iMwg==
-X-Gm-Message-State: AOJu0YwrD+/4t/cjU3/+brmWtrV3nyfBUmUa9oyh3m8STg2bc/xYl0iy
-        BsDMhLEP1osNWSxGX0peQjL8eD4n5hV7J3I3z4g=
-X-Google-Smtp-Source: AGHT+IGNQJPQLYu2+RCR07QMDcIwBhyAxdTt4ESNCHTrEpvOxyMlIhtB9ugix76vBJP5nyP7/ToHGA==
-X-Received: by 2002:a17:907:2712:b0:9a1:c659:7c5c with SMTP id w18-20020a170907271200b009a1c6597c5cmr13137298ejk.18.1693250735538;
-        Mon, 28 Aug 2023 12:25:35 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id uz16-20020a170907119000b0099b6becb107sm5044308ejb.95.2023.08.28.12.25.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 12:25:35 -0700 (PDT)
-Message-ID: <75ca0f84-3aa7-aead-fc99-d72e46c6b711@linaro.org>
-Date:   Mon, 28 Aug 2023 21:25:33 +0200
+        with ESMTP id S233251AbjH1Tlu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 15:41:50 -0400
+Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F87122
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 12:41:48 -0700 (PDT)
+Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
+        by finn.localdomain with esmtp (Exim 4.93)
+        (envelope-from <tharvey@gateworks.com>)
+        id 1qahsQ-008Oxv-SS; Mon, 28 Aug 2023 19:26:18 +0000
+From:   Tim Harvey <tharvey@gateworks.com>
+To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Vladimir Oltean <vladimir.oltean@nxp.com>
+Subject: [PATCH v2] ARM: dts: imx6qdl-gw5904: add internal mdio nodes
+Date:   Mon, 28 Aug 2023 12:26:15 -0700
+Message-Id: <20230828192615.1202078-1-tharvey@gateworks.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: ipq5018: Add tsens node
-Content-Language: en-US
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <1693250307-8910-1-git-send-email-quic_srichara@quicinc.com>
- <1693250307-8910-7-git-send-email-quic_srichara@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1693250307-8910-7-git-send-email-quic_srichara@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,44 +45,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 21:18, Sricharan Ramabadhran wrote:
-> IPQ5018 has tsens V1.0 IP with 4 sensors.
-> There is no RPM, so tsens has to manually enabled.
-> Adding the tsens and nvmem node.
-> 
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> index 9f13d2dcdfd5..277b3cfc7f72 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
-> @@ -93,6 +93,29 @@ soc: soc@0 {
->  		#size-cells = <1>;
->  		ranges = <0 0 0 0xffffffff>;
->  
-> +		qfprom_nvmem: qfprom_nvmem@a0000 {
+Complete the switch definition by adding the internal mdio nodes.
 
-Nope. Come on, where do you see such node naming. Please do not send
-code from downstream, but work on upstream sources. Open other most
-recent DTS, take a look how it is done and try to do something similar.
+This does not change behavior on Linux but is required if the dt is used
+for U-Boot which requires the internal PHY ports to be defined for
+DSA.
 
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
+Signed-off-by: Tim Harvey <tharvey@gateworks.com>
+Reviewed-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+v2: rebase and update commit log
+---
+ arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi | 29 +++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-compatible is always the first property. Then reg.
-
-> +			compatible = "qcom,ipq5018-qfprom", "qcom,qfprom";
-> +			reg = <0xa0000 0x1000>;
-> +
-> +			tsens_calib: calib@248 {
-> +				reg = <0x248 0x10>;
-> +			};
-> +		};
-> +
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi
+index 9594bc5745ed..3375b3fd8d4c 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-gw5904.dtsi
+@@ -212,6 +212,27 @@ switch@0 {
+ 			compatible = "marvell,mv88e6085";
+ 			reg = <0>;
+ 
++			mdio {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				sw_phy0: ethernet-phy@0 {
++					reg = <0x0>;
++				};
++
++				sw_phy1: ethernet-phy@1 {
++					reg = <0x1>;
++				};
++
++				sw_phy2: ethernet-phy@2 {
++					reg = <0x2>;
++				};
++
++				sw_phy3: ethernet-phy@3 {
++					reg = <0x3>;
++				};
++			};
++
+ 			ports {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+@@ -219,21 +240,29 @@ ports {
+ 				port@0 {
+ 					reg = <0>;
+ 					label = "lan4";
++					phy-handle = <&sw_phy0>;
++					phy-mode = "internal";
+ 				};
+ 
+ 				port@1 {
+ 					reg = <1>;
+ 					label = "lan3";
++					phy-handle = <&sw_phy1>;
++					phy-mode = "internal";
+ 				};
+ 
+ 				port@2 {
+ 					reg = <2>;
+ 					label = "lan2";
++					phy-handle = <&sw_phy2>;
++					phy-mode = "internal";
+ 				};
+ 
+ 				port@3 {
+ 					reg = <3>;
+ 					label = "lan1";
++					phy-handle = <&sw_phy3>;
++					phy-mode = "internal";
+ 				};
+ 
+ 				port@5 {
+-- 
+2.25.1
 
