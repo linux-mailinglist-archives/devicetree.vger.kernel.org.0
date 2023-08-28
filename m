@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 592C178B607
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 19:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 329B578B61F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 19:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbjH1RJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 13:09:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48362 "EHLO
+        id S231540AbjH1RLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 13:11:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjH1RJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 13:09:19 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C33195
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 10:08:33 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bcd7a207f7so51064631fa.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 10:08:33 -0700 (PDT)
+        with ESMTP id S232861AbjH1RLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 13:11:34 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CE34194
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 10:11:02 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so449005966b.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 10:11:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693242491; x=1693847291;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1693242659; x=1693847459;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OJ0nWzzimdg838fa/lzoTVDxFGZxON94cAcpz1zfgRE=;
-        b=DLCWu4qssYAxO6MpNH7v985v2dDP3T9gYeek8LCjZThUXgz5fxyKzreeWppQjmloxL
-         71ehSFk3Hr/A7WDYapYYHueXbu4tSPYY886yeYVzTxTa1SphD4ep2Im/ogxE2vEDGoGT
-         JcfRZKDU0squBVCwHKAlNqKDUD5D3ZhmI56R+pXe3dgk0leNcAx82Leww8t7ux03hoa+
-         aHhwj5vijuts4QOYB+uwsmueid58WCJo/K+yxrEiH+VfruxWeTdqyVONEASnAs7vkmqY
-         0Cs0v/ah6AT/lcH+fuH8+nTJQSVJuG3wehIzywwc4U5X6gHdWXLEkTqXO9MA/m6PMZ7H
-         o9hQ==
+        bh=EVpQ/sEJMXX+kJm+GyyE29h4etZD3k3PLHQlncbkWnk=;
+        b=D/SW53fhf8VrQ5lJnCNZHsrzDZhnWFsD7p4TMODQSe7JwQAQoMmTB10liIcUSKtNAg
+         LwR5IWMxY9AWo634sxr3hChqpsatMtfxPjYqf4iorTYlJoFJdhBCsAyUC2TwZY+yMNxn
+         cmdxZwmeInzaFFH86SkB7c+7ieKk/UJazgBCNaZaRpuNqbfssGeNINELVW6sf3KW6BZq
+         zRigVEdKWcvVHgHVhPU0nQljCjmjyJDGt8Z7NimYFE6L0w8lxHaQXwCjUtNTkJ5KV43m
+         XdWEXR4syi0jJy5bASr3qqAMOaQitQArClBczQB43zxJzWQZDlA0Lr6mh52qZjk7ydKq
+         iftg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693242491; x=1693847291;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1693242659; x=1693847459;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OJ0nWzzimdg838fa/lzoTVDxFGZxON94cAcpz1zfgRE=;
-        b=grhanLMI55b5L/AGTuEyii6mvM35fXL2Ohz4afbHoHUs6v/C5RGK9vm2T3yzaX/mCT
-         Tpxm/xyRNMwMJEno1lVKQizPysK4FV1d4bQKK8nh/znwLS8RGG4cAS5BMrUiGUqutP6V
-         Aeeq87TgD2ObbC+Au7G1Xy08IKGFQhQ7u70occNI5mPFzDWqz23w/XAvnCHIBBjFkjoD
-         kPMKEO85PSR0zZIsKpT8XFIJoqZI+VuVAsgM2SJ5F6tyoDuuBXttQwoyaQEu/g5Cpn3H
-         XGBZSvs74eegSiqHLTYFzAJbcq6IGUV3n7Pdy5qErAUfSYFGc3MpxHgid09nuyKstOH3
-         sxGQ==
-X-Gm-Message-State: AOJu0Yw3eX3lfB6wsR0GdOGbTQdd0AunkYbRmEc2y1YfbJtFY5saZH36
-        cv55HNZXe654QjOSjgnUwkZvPw==
-X-Google-Smtp-Source: AGHT+IEcPUROefoidY84rNmIPDcccxjgx8VyhG+jU810O5raCTKXVm4HvVuhMFOnJHbYLVNBvJkswA==
-X-Received: by 2002:a05:651c:2045:b0:2bc:fb79:d165 with SMTP id t5-20020a05651c204500b002bcfb79d165mr5073014ljo.39.1693242491588;
-        Mon, 28 Aug 2023 10:08:11 -0700 (PDT)
+        bh=EVpQ/sEJMXX+kJm+GyyE29h4etZD3k3PLHQlncbkWnk=;
+        b=bWkZTjQAVXXnea0oGhvQgzRCbWafbotIH8GnwpM0cuin8bW8WKEv8+QaBl+TQ+oJEZ
+         6oidqLWG9Ol6IbkLE1IpCtpwmid8a2GfhD5bzxcRrvOWmV+Hdmn0n5LEIwZkmbPWu+bX
+         KNH+U10Ir5h6CKOIRpj2NrOl6blFvOLjGvHPX2P42+O44IRhzJrohO/WFoHv2sBbphbS
+         5RMzzpexxIzzoik1VVFsUwrKMnHf3d4OURCQ5wWLUAvprTh8vwUkxzzxUbjGLj+X7t3S
+         Bk6L1P8c/jJC+WvFyce+LyceiKo/RvzfgV3BuRhoCRuL+GI0SPAFGFRqTjrQcs4sxK7q
+         1YAQ==
+X-Gm-Message-State: AOJu0YzWWVcZuBE7HrNSRMhtw6b7YuHN2birxV8JpdfLlG9Nc3IKKWn2
+        uiWpSdyvOqBYfnS3fE56iRuwzQ==
+X-Google-Smtp-Source: AGHT+IHi4xv34woK1nBgfW2VEtCq1AYYhJy6Oirt48MbuAkrveaTIuZx3KwuZGABpegca5nmsDb1cw==
+X-Received: by 2002:a17:907:60c7:b0:9a2:2635:daab with SMTP id hv7-20020a17090760c700b009a22635daabmr9198583ejc.47.1693242658873;
+        Mon, 28 Aug 2023 10:10:58 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id rs25-20020a170907037900b0099bd1a78ef5sm4826212ejb.74.2023.08.28.10.08.10
+        by smtp.gmail.com with ESMTPSA id sy22-20020a1709076f1600b00992d0de8762sm4795624ejc.216.2023.08.28.10.10.57
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 10:08:11 -0700 (PDT)
-Message-ID: <3f26449e-4208-f1a2-dd3c-3ecc095f4ea0@linaro.org>
-Date:   Mon, 28 Aug 2023 19:08:09 +0200
+        Mon, 28 Aug 2023 10:10:58 -0700 (PDT)
+Message-ID: <51fe3126-16ba-ade6-b106-e3683f96ad26@linaro.org>
+Date:   Mon, 28 Aug 2023 19:10:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/2] misc: bm92txx: Add driver for the ROHM BM92Txx
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
-Cc:     azkali <a.ffcc7@gmail.com>, Adam Jiang <chaoj@nvidia.com>,
-        CTCaer <ctcaer@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+To:     Shenwei Wang <shenwei.wang@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic <dragan.cvetic@amd.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230824153059.212244-1-linkmauve@linkmauve.fr>
- <20230824153059.212244-3-linkmauve@linkmauve.fr>
- <f79087c0-cc44-4fb6-fa2e-b43db5dfd6d4@linaro.org> <ZOy33RB8aj3455ZQ@desktop>
- <faf53a03-341c-994e-e66f-46cf88aeaa8e@linaro.org>
-In-Reply-To: <faf53a03-341c-994e-e66f-46cf88aeaa8e@linaro.org>
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+ <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
+ <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
+ <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
+ <PAXPR04MB9185957B729588D3E7CA3A5089E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <PAXPR04MB9185957B729588D3E7CA3A5089E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,36 +88,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 19:05, Krzysztof Kozlowski wrote:
-> On 28/08/2023 17:06, Emmanuel Gil Peyrot wrote:
->> Hi,
->>
->> On Thu, Aug 24, 2023 at 06:28:07PM +0200, Krzysztof Kozlowski wrote:
->>> On 24/08/2023 17:30, Emmanuel Gil Peyrot wrote:
->>>> From: azkali <a.ffcc7@gmail.com>
->>>>
->>>> This is used as the USB-C Power Delivery controller of the Nintendo
->>>> Switch.
->>>>
->>>> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
->>>> Signed-off-by: azkali <a.ffcc7@gmail.com>
->>>> Signed-off-by: Adam Jiang <chaoj@nvidia.com>
->>>> Signed-off-by: CTCaer <ctcaer@gmail.com>
->>>
->>> These do not look like real identities. In this and previous patchset
->>> your author emails bounces, so I propose to drop all stale addresses and
->>> all anonymous entries.
->>
->> I and the authors find that policy inacceptable, our work should be
->> credited and our copyright should hold despite our choice of name.
-> 
-> Which authors? The ones who do not want to give real, working email? Or
-> the ones who do not want to provide known identity, which is required by
-> our submission process?
-> 
+On 28/08/2023 16:04, Shenwei Wang wrote:
 
-BTW, you mistake copyrights with DCO... DCO does not automatically give
-any of the intermediate people copyrights.
+>>> Are you suggesting to move the regulator-pd to the imx directory and
+>>> add a company prefix to the compatible string?
+>>
+>> There is no such part of iMX processor as such regulator-power-domain, so I
+>> don't recommend that approach. DTS nodes represent hardware, not your SW
+>> layers.
+>>
+> 
+> That's not always the case, as we do sometimes need a virtual device. 
+> As an example, the "regulator-fixed" acts as a software abstraction layer to create virtual regulator 
+> devices by interfacing with the underlying GPIO drivers.
+
+Not true. This is a real regulator device. Real hardware on the board.
+You can even see and touch it.
+
+> Similarly, "regulator-pd" provides a software abstraction layer for virtual PD devices built on 
+> top of existing regulator drivers.
+
+This is not related to regulator-fixed at all.
+
+> When looking at the conceptual purpose, regulator-fixed and regulator-pd are comparable in 
+> that they both offer software abstraction layers for virtual devices."
+
+No. regulator-fixed is a real device. Yours is not.
+
 
 Best regards,
 Krzysztof
