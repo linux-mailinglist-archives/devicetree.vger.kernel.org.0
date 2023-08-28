@@ -2,84 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CCD78B795
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 20:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4057178B79B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 20:55:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230103AbjH1Swt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 14:52:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
+        id S233187AbjH1SzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 14:55:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233294AbjH1Swg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 14:52:36 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 823C0C1
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 11:52:33 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4bdso154315a12.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 11:52:33 -0700 (PDT)
+        with ESMTP id S233194AbjH1Syo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 14:54:44 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC98BF
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 11:54:41 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2bcbfb3705dso54314221fa.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 11:54:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693248752; x=1693853552;
+        d=linaro.org; s=google; t=1693248880; x=1693853680;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=msgoo0EGmKZT8iEDbAnkmxIQCbH4ZJi+yNmYHn/RV8k=;
-        b=moL27IuVCTH2AG4+6tuUvP+GeGteJW5VZhN4gXHv5C1Dn/mx1zXOgP1nH65N7Nx1g+
-         MaUl0ZgYI6SkiN0EP9UQtHdmbIjUl1rIrLJiPB4g9VO8MDk3M3oH8uQ1ewQZpQ5a9JFD
-         zI71vOKS5GyReJz4Xc5DPLOktnjtK5y66GdSwQ3HtCrJEnleo3ZZfGoC/twyPrzJt3YM
-         oCtdk5iVqv2/2bLqCLuHy+Zyt+qcTLquGp67KdqV4YrblGSVMyKSRg1NUZIiqNRf3aFH
-         6TZeaPRu6lcQ749niSZImXLUjT77k2p6NPvfV5b1A/GwEwiogYV55j4RFi3LzBdEblum
-         PcZg==
+        bh=n75AuQ1+XXOD3zRSya7hqWKtPwvBzQFzBMHo+oSrVnM=;
+        b=GDjjWxs4vTgsdPvM38gEzc2QRSwws9jX7j/ptAST0txDWk3zz9T/9OWdlArUSLKzh5
+         7lRZCoG7yr5dOLx8/711cb5ntV3Atdwfxn9sMh3Ki+xw+jksJMrdgunciMdVrp6zNX/2
+         Xzb3jthyVUXF9yolG6nrIVoow8JOcrguLFpdQTAWMozkALzE0yK9w2lut+DN5Wo8tPZu
+         g6KYd85I2w4H1SHB2hLhZR209TVTpW83mnMMv5mk+iBlGhBNlj/dwFzjut54nFtoBVHD
+         mJTbm6Z3K7IKL3oUapdj66gsDIrUvdpbRSdNlfHj+5Dfa/fTSWO9BI8/cgr7prQRywSY
+         UB6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693248752; x=1693853552;
+        d=1e100.net; s=20221208; t=1693248880; x=1693853680;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=msgoo0EGmKZT8iEDbAnkmxIQCbH4ZJi+yNmYHn/RV8k=;
-        b=jBKIFbR+18t6No6IpIK0i/Zxql0sk3ChEYt2yg1cUCMA4V8osk0GWBRovQ2Ql1iIxK
-         yTu3aBaTlQM5ctppCKFVrfvEjKEpcFJb0ZwG4hLKmNrFZlj4gik0qsOzd8Qg52PElfQK
-         t+5QQEhrMLapBxejAUNpdJtU2XDQupRDGJlPZCp4gbWkxs9oMFSAiMLT7kAWB8NofN2f
-         VHS3Bo5zxRAfUvA+ClxXNLjhqB3sydbRsCwMrq6j6jDdEl1MbzpLDonrHanNFHCZKi1j
-         De8S1KpF8LVy6F2TITe3x4j0x8yJ2JjLVh4TBF+zyXCDn+t1G0VpDk90uzil8sZXu3YK
-         bNqQ==
-X-Gm-Message-State: AOJu0YzJHtLgPOsOYHpNUyfZlPon13ZGdNQ4u4+poVJR/NnOQ7qWM1gy
-        Gwok7Y4Q+c11zNg2TypJaRWMyA==
-X-Google-Smtp-Source: AGHT+IFJhhHTUDFg9dK6RUh/03jqVt7lmO39ivTXreeW8kAHxJp0tKCaq6azeuowmPdxM526mWbB8w==
-X-Received: by 2002:a17:906:300c:b0:9a1:6252:16a0 with SMTP id 12-20020a170906300c00b009a1625216a0mr19361228ejz.46.1693248751894;
-        Mon, 28 Aug 2023 11:52:31 -0700 (PDT)
+        bh=n75AuQ1+XXOD3zRSya7hqWKtPwvBzQFzBMHo+oSrVnM=;
+        b=Wyl8M5oLO0rU4TCq4+OvFVzsxPEh/PalLAc1hvsPwXtiYln3GWzBt/okF43d5TnPQo
+         /2z+/gVK6x5FmCt88ElL/LH6sqXbNOvTrjcXpQ+2lgc+LXQytQdyMtB6gOuHwAKnSj0k
+         d0lJUgXxHtWpB+838AsG2BpbpG5VFOWROcSeqatMjBsFwhrFlCDthQeS1xsnY65XX+Wy
+         hWtLcNwB6FldkCRdolXZkNv6KEyb4Nx/gEeN+UjH/FeP6fZGoaqSxtJPHKO2IZuEE/hd
+         XtJE0uBroWXcFjPyFh82slL+PBH8PRCjGKvWquSq1nnASt9DMyz0Qcfy5CjRngZ+6Kh4
+         6wqg==
+X-Gm-Message-State: AOJu0YwLdTMJEIaaUWIm4VjC85LSkQr1VgUbNpUss5I3nVjOcgAdd6Oi
+        L15FxRoAQnAtm0MedZ7XdhZnyA==
+X-Google-Smtp-Source: AGHT+IFpEHopqd9Bhudfxj4r8NkGa3yaMFscXfe9H3NWQaE6WxDnY14WSWtSm/oRZD0D/8ZrHLgJiQ==
+X-Received: by 2002:a2e:87d5:0:b0:2bc:f28f:9147 with SMTP id v21-20020a2e87d5000000b002bcf28f9147mr7768688ljj.48.1693248879940;
+        Mon, 28 Aug 2023 11:54:39 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id v19-20020a170906339300b009932337747esm4932604eja.86.2023.08.28.11.52.30
+        by smtp.gmail.com with ESMTPSA id v17-20020a17090606d100b0098669cc16b2sm4912262ejb.83.2023.08.28.11.54.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 11:52:31 -0700 (PDT)
-Message-ID: <f3e89479-14ab-d1d0-ad87-6f457f313c39@linaro.org>
-Date:   Mon, 28 Aug 2023 20:52:30 +0200
+        Mon, 28 Aug 2023 11:54:39 -0700 (PDT)
+Message-ID: <d56cbf95-22b4-391f-dcb0-12a225d3e084@linaro.org>
+Date:   Mon, 28 Aug 2023 20:54:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
+Subject: Re: [PATCH v2 1/3] dt-bindings: thermal-zones: Document
+ critical-action
 Content-Language: en-US
-To:     Shenwei Wang <shenwei.wang@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
- <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
- <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
- <PAXPR04MB9185957B729588D3E7CA3A5089E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <51fe3126-16ba-ade6-b106-e3683f96ad26@linaro.org>
- <PAXPR04MB9185DC79721E78E631F9889589E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <154b36de-652b-3931-96e6-04e99253a09f@linaro.org>
- <PAXPR04MB91852AD4E5242306B57A910B89E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+To:     Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org
+Cc:     rafael@kernel.org, amitk@kernel.org, rui.zhang@intel.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20230828141341.1583591-1-festevam@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <PAXPR04MB91852AD4E5242306B57A910B89E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+In-Reply-To: <20230828141341.1583591-1-festevam@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -92,71 +77,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 20:50, Shenwei Wang wrote:
+On 28/08/2023 16:13, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
 > 
+> Document the critical-action property to describe the thermal
+> action that will be taken after the critical temperature is reached.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: Monday, August 28, 2023 1:42 PM
->> To: Shenwei Wang <shenwei.wang@nxp.com>; Ulf Hansson
->> <ulf.hansson@linaro.org>
->> Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
->> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
->> Liam Girdwood <lgirdwood@gmail.com>; Mark Brown <broonie@kernel.org>;
->> imx@lists.linux.dev; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->> dl-linux-imx <linux-imx@nxp.com>
->> Subject: [EXT] Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
->>>>>>> Are you suggesting to move the regulator-pd to the imx directory
->>>>>>> and add a company prefix to the compatible string?
->>>>>>
->>>>>> There is no such part of iMX processor as such
->>>>>> regulator-power-domain, so I don't recommend that approach. DTS
->>>>>> nodes represent hardware, not your SW layers.
->>>>>>
->>>>>
->>>>> That's not always the case, as we do sometimes need a virtual device.
->>>>> As an example, the "regulator-fixed" acts as a software abstraction
->>>>> layer to create virtual regulator devices by interfacing with the
->>>>> underlying
->>>> GPIO drivers.
->>>>
->>>> Not true. This is a real regulator device. Real hardware on the board.
->>>> You can even see and touch it.
->>>>
->>>
->>> The physical hardware component is the GPIO pin, which is what you can only
->> touch.
->>
->> No. The regulator is the chip.
->>
+> The possible values are "shutdown" and "reboot".
 > 
-> In the definition of dts node below, where is the chip? The real hardware is just a GPIO Pin.
->     reg1: regulator-1 {
->     	compatible = "regulator-fixed";
->     	regulator-name = "REG1";
->     	regulator-min-microvolt = <3000000>;
->     	regulator-max-microvolt = <3000000>;
->     	gpio = <&lsio_gpio4 19 GPIO_ACTIVE_HIGH>;
->     	enable-active-high;
->     };
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v1:
+> - Make 'critical-action' to be of string type.
+> 
+>  .../devicetree/bindings/thermal/thermal-zones.yaml     | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> index 4f3acdc4dec0..a01456356d9f 100644
+> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> @@ -75,6 +75,16 @@ patternProperties:
+>            framework and assumes that the thermal sensors in this zone
+>            support interrupts.
+>  
+> +      critical-action:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          The action that happens after the critical temperature is reached.
 
-There is a chip. This is the chip. If you have there only GPIO pin, then
-your DTS is just wrong. Drop it. If you learn from wrong DTS, then sure,
-power-domain-regulator seems like great idea...
+How some action can happen? Don't you mean that OS should perform this
+action on critical temperature?
 
-> 
->>> The regulator functions virtually through software layer above of the
->>> GPIO driver. While we may call it a "regulator" or whatever else, this
->>> cannot obscure the fact that the underlying hardware is just a GPIO pin being
->> used in a specialized way.
->>
->> The regulator is some tiny little box, you can touch and called
->> ti,tps51632 or similar.
->>
-> 
-> We are talking about the specific "regulator-fixed" driver, why did you bring up "ti,tps51632" here?
+> +          Possible values are "shutdown" and "reboot".
 
-Just an example. Can be TPS123098.
+Don't repeat constraints in free form text.
+
+> +
+> +        enum:
+> +          - shutdown    # Trigger a shutdown after the critical temperature is reached
+> +          - reboot      # Trigger a reboot after the critical temperature is reached
+
+The comments are copying the description and enum value. Not really helpful.
+
 
 Best regards,
 Krzysztof
