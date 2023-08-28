@@ -2,172 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D92578B286
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 16:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5436F78B2A3
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 16:10:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231233AbjH1OEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 10:04:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57972 "EHLO
+        id S231446AbjH1OJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 10:09:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231657AbjH1OEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 10:04:06 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2055.outbound.protection.outlook.com [40.107.247.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63947F7;
-        Mon, 28 Aug 2023 07:04:03 -0700 (PDT)
+        with ESMTP id S231179AbjH1OJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 10:09:11 -0400
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2043.outbound.protection.outlook.com [40.107.117.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7BCF7;
+        Mon, 28 Aug 2023 07:08:56 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e06dof+l8/0pNYkqsXm79d0vZKTJNy2Vi8zQdgU1L3pZ20r7GVTr4iwJrd3bu+PtpIUx+wzQH4IcL8EFmzfW0v99sB7T91/0uNku2lYxKl6WZuyoSczlZ95iHeO7G90HynVRnNxdF+nr5F+sGVyTo/TVQd9etXxE3RbjN13VdUAP2sP2AOXN1RKrPQoXkP8wxmQ6pLHyTIo5cEEXOC5WoCViL4exliTsBF5YrUILaK0yEq4uwWA2Vvfd3hHdXfvLxxGkAmEtBOR8N5dzH2g+BAdrhBNawXDPuARWUaF4oIgOeOeRrUSx3Y67wmTdMg7FHzgSPLkOfv6CIoVTNk+c8A==
+ b=e2LvREfZ6X5Jz/PVOPO/kYn6hNuqbtmAh3gmwtLFYO1Pys+5VWjYgjb5eQn1wO+BUpaFws5czk/iBzOnztvbpvJn6WxRjIJINeH3UxZI47NhRob30I/zUrROPhVba9l9afYUSsyz/2aRvYKJ1Ikr7JxqcLpgEcWCfzdsB0KzCDzi7yqiASyMkCj5or6n5nh/HI6Gp/PQPkO9cnGRioFRKUZUEfR7lIC67YKT45AZfx7ShfhaG1kX8mIC9DucEET8aug1D9j7dQiCHuKLHNvFyug+I25mXAj9GWoqf1SxLRA+Aui6wJkL8uWcHFjfwZPZtdTBQDq7T0S235dMSbBoQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=771jezG8Ax40XSah3pcavh6sj4w74tj3QV6/ndcqjyo=;
- b=gkRJuVoJMasqwKSVaf63rcV/+EqllBMbq3eUmaCaGgs7WZNX+l7Svn2EiiiJFszI7aAc3RfgkynNAyLX1sSGyk4yJtPM96W2lDiVHC8R8aXH2Uri89GXaW2pnZRqyPBJRidBsoqvuAMC89/rHxI5Lu9XkKh3WfCvyUQjexErPHm0vwy6rT+rwBFpNh0ai/RrFa/HnOiSLZ+ymdCJNcuscSYJC1XL7CWc4/SEo4BQAhEgpZFFrpUTTmDRDa7aGaWTLOghYz6vUw9emjbF5b347sBUhqn8KbNFgc6OxCRo0bL8vYNOmatm6AkftntsJDQgfPDmJKhEGcank7O/zIMVWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=N+IuwEJOC7QKEsaNcOJu+abqp01EpX7y2Z4pc8PQqn0=;
+ b=cyVtich58LZanWev014gT1+TGG6nA6pa367gTGGCamytAYkDAy8+w5NPgm1BqcQeVJa3ZSEpDaZw2suPuq1U7Bm0jXpTVcF37lhv44S4WxCY8NeDGtcUCVMdp2qvlxHk1sWPtySkvoDpQ6POKa30yzSesPSQ7BI6FBPFGdLAZwR3wniXUxPTSpzOQntjVIgzlMwRdzj2cc8eig/dERUCmixuvZuylbnAQdNjyjxerjHeJGbuXiJCbEuzOVGc6DlrRLO1hzVqf34flNcBWrGDy3T8ZLMjS+I1lvJi6/c8HhBqCyOI9DZlNs+3gfSD5wSBNw9bIFrPR6NuQmOKxGXY8Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 211.75.126.7) smtp.rcpttodomain=gmail.com smtp.mailfrom=nuvoton.com;
+ dmarc=fail (p=none sp=quarantine pct=100) action=none header.from=gmail.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=771jezG8Ax40XSah3pcavh6sj4w74tj3QV6/ndcqjyo=;
- b=l8xHRUwZvD7/dd2PUNGn9nfMRkqqLtPxuYeQFESDjHcvm5anLxJz5nnQNcJhX3BKRlJcwefdfQWppz8lnuUvzAjfMZ9Ao9/5FZWr/qhp1ibJw7kI3a3FgsQjh7hNKHq6oGDQR7twOJkbsbq7f+lm3jnUCwG89Tc4g/fSf0SqLIg=
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by AS8PR04MB7686.eurprd04.prod.outlook.com (2603:10a6:20b:290::24) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=N+IuwEJOC7QKEsaNcOJu+abqp01EpX7y2Z4pc8PQqn0=;
+ b=Gah493vcWxXB+H75cG9CW++7r4Y+DGERRktHcRamv/hpQ+ZYfTelEEvHEsBJL7dMM+nyrYBZQZkstRU0ajXcYoETIqKxrFqET6lUaOTUMG12s3kFgf9lthgBNFw2dbAM4fTArVLu6IpI5ZaUUFnxTxYZLiM660wvtz8fOjG1aBA=
+Received: from PS2PR01CA0014.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:2d::26) by SEZPR03MB6958.apcprd03.prod.outlook.com
+ (2603:1096:101:9f::12) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
- 2023 14:04:00 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::d4ee:8daa:92f4:9671%3]) with mapi id 15.20.6699.034; Mon, 28 Aug 2023
- 14:04:00 +0000
-From:   Shenwei Wang <shenwei.wang@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Thread-Topic: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
-Thread-Index: AQHZ2bh+vGBIZcBauEmrH5FKU4sboA==
-Date:   Mon, 28 Aug 2023 14:04:00 +0000
-Message-ID: <PAXPR04MB9185957B729588D3E7CA3A5089E0A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
- <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
- <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
- <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
- <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
-In-Reply-To: <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|AS8PR04MB7686:EE_
-x-ms-office365-filtering-correlation-id: bd298967-ed7f-46c9-8dd0-08dba7cfa108
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: n9LIN97U5i1jgbZvKSlEWHWod6cSjynB5zNkwx0C8CLn3HUFUbeJxAoSdgvbXxpdk0pAGJ9i7UJxwdellQo9efb6cPf93I/qgfsIuzxQng8hg2+tqfqYuDpyVhuHOqhUY9/GaIRFaZuv9c2k/PUm1L/5UgUhbaiuYX/XcW/Zdp6MJQMjUFXnMPbW4cNlZb1PWUdO1xvhvhtmcqX5mE1fwuGvEa1IrXJx/dqz2bFHZ7+jl2kS7f6uYiMSSeR0Imdd45MfVB8L+EoYDIiudnlJFzIEK5Fi3wcIogw5ospIaW8DBHoJ5NUYoL/+K2K6/khCogZlzVVJIfJWxnORVqxDa8kTiy2IX5Iflhhfi9OmUYHstyKfzhcmbu19g5q/bM2UckvQjlPOTI5kBbqqzVsv2Dgxn+rzggUS5oN9ikgv77th1kAzla/+hg2Pxfb7EDCYQOzVoxkuqZIaG2LvCWqoZPBrYRpMVGZnKoxHMLCZ0MpEYBLNwrqPtt4ekzWqBr7mcdfWgv6jQ0rPzBQ6ccNjPRgX/4SqrUOa3IKyLXFHInwmR1eH3QdSDVVR4Twj7m9nHZQyVNMpR4+IRBXeWMnBwrby6t7zQiUzWJYAnoRR4iQ45xwOTgTq5u1K8QuVzyZ4
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(136003)(366004)(376002)(39860400002)(346002)(186009)(1800799009)(451199024)(41300700001)(66899024)(7416002)(26005)(122000001)(38100700002)(86362001)(478600001)(38070700005)(71200400001)(83380400001)(9686003)(55236004)(6506007)(7696005)(53546011)(55016003)(76116006)(66476007)(54906003)(66556008)(110136005)(64756008)(2906002)(33656002)(66446008)(66946007)(316002)(5660300002)(8676002)(8936002)(4326008)(52536014)(44832011);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?emVscjZoRzh6T0k2a3RLU0lTN3d6S2NpVlVFQmt2RHd5WTMzYjhIaHVYSG5S?=
- =?utf-8?B?a0pyUWoveUdQVlB0Q1hvUzNUVlNBM0dxdU5xTExpRGhlbkpEaXBFUFFxNzlF?=
- =?utf-8?B?VVhWTzJzNnpraXdrK3JabWlEZlgwVUd6Yi9iZ254MkFyeC9QdXlOcXpzZVZp?=
- =?utf-8?B?dUx3MFZPanphRmt5Y0Q4SVZuR01vUG1rOE1id0I0RFRQL1NxR0tWWTBOSnlY?=
- =?utf-8?B?cnNLOExUanl0Ni8rUU51dzAzQmR1bldMNHpuOEcra1hsUHcxRlZmMGlDbi9T?=
- =?utf-8?B?ekNvOEE0eUh5b2loTm51YkU1NTRQS0JRYkxVS0VmbW1HbVl0U0Q0T1Y1TVhI?=
- =?utf-8?B?dUgyeGh3clQ1VTJHV2c0Nlo5Rmg1ZzJYRU9HYlpWUVBIcEF0WTN4NDVtNjNy?=
- =?utf-8?B?bHlBVlNENlJOclZHYVpqenZtY01hdWhkSStMbUttcXBqNjVSZEhvd2dYWXhj?=
- =?utf-8?B?VWo2L3RzMjgxYkc2d0k1dzdIZDRYdjBvVkdrZXNFUzRQNnJhVVpLeGNXcldn?=
- =?utf-8?B?b2JHaHZiM1czR0lVM0RJWEVTMERxYXJBWlNDQng4Qk55Zjdtc3dvRHN4WUNX?=
- =?utf-8?B?QlZtdlMvV3E4MUdQZTNZV3Vrd1YvblZXWUd4Y3hmdVk0a0M3V3E2d29oZkIv?=
- =?utf-8?B?YTBpeUhXbDA5ditRRTA4VVhVcjREVk1lWGJJUlpxSmhLUzRUZkl4Yi9rQnN2?=
- =?utf-8?B?TFgvT2UvZEVBNFpGcFBEYU53Mlp6bWpaOTRBRmtsSWJXUS9Bd0hYL2pmdWpr?=
- =?utf-8?B?b0hCR0lmMXNJMHNtOFZmQVQwZ2swcXhKUjRkMVdScGJxaEpwdHQwUTlpY2ZN?=
- =?utf-8?B?RjNyRyswVExETVp4VndIK21HWThreE1Ha1M4b1ZRckVXTTJhT0E5UVlVMWkx?=
- =?utf-8?B?M1crb3h1eGUyM0JaR0orVm1VV3hTT291ZjMvN3E1ejI5RXpjOXVHNk15NkRh?=
- =?utf-8?B?R2ZNL2Q2aUR5Qm1JN0x3MUpKdlZlcjJjd0pnWVZpdDlmSDJBdC9VMUZsMEp1?=
- =?utf-8?B?MjUyQ3hWc2xqVVV6ZWIrRDBuUWE1MnZuQm5Mb0praWRqaXQ3Mlp3ZGhNUkwz?=
- =?utf-8?B?VEI4b2NVaUNFQnc5Qzc3OUF0dmVEWmtQeGYvdDRPeVpDZXlaVnJNS2xJbzNa?=
- =?utf-8?B?ZGRSKzB6VGh4NVBWdk9ReWtzMm1IMkNyL2xidXU4R1gxYnZwQWJqeWh6em9P?=
- =?utf-8?B?d3NmYVZXajNVblpOZFZTOVpZZVZxSkppZitUN05zNjk5Rzc5NGlETkdkYWhl?=
- =?utf-8?B?R0hxazhqNDRVWXQ4NHJJV2lZbG15NElxZVlES2VjKzl1WjdKYUwydURnaFRr?=
- =?utf-8?B?ZWRTeFRpcVVTQlBua0J6cmkrTk9lcjdzaitlY21Ld2wyRVJsazBJTzhpL3Y0?=
- =?utf-8?B?NEI5cjBkQnMxU29ZQ2Z0WGFiVDN0b1NqamVHU2J1MStjNEtUSnRUTEVScFU3?=
- =?utf-8?B?ZFV5ZVBhWkRvNGpPcG1UaUJGaU5DOHgrV1NzdVY4MDVwY2EvalJvdkVkSWpz?=
- =?utf-8?B?NlhlZG5DQzM2MFpXcWRKVjBwWmNnOEprWkpSRUoxaUVOcU9aSVY3ZzgxTWJN?=
- =?utf-8?B?eTU1bHM0d0M3R3p6RmxBcllaWUdOTFZIYVJRSGlITFYzSDdkWGZZWmJjSkFL?=
- =?utf-8?B?b09vTzJvS3I1b2FjMHlMSTd5cndwZmE1endMRlhmamR1Z2VGQnFFZXJ1djln?=
- =?utf-8?B?OERUaTBkM0NmK0J5TFdrV1FEd0NGUmhweEd2d3RvdFRGRTlOdktGdlNQSDMr?=
- =?utf-8?B?ME1GLzB5Y2U2d3J3QjJmL3RiczhxdnNKQmUzejBVeTUrUU9sZU1LL3FwbUtR?=
- =?utf-8?B?TVozdi84MVFiditlNEgwTU13TlR4Sk1KN0VkOFM2R2RLWGp6WmJmQmJHc295?=
- =?utf-8?B?UktvMk1vSEVmRTRaWXA1RG9mcmIrRUdGd25CVGpQeURMQlE5UStrQ09zbHdD?=
- =?utf-8?B?RjBlYWVLR2kvcW0zZzRwbG44c0JYSUQvSEt0OEJhQWdmZnBtWTBJT2FXNjMw?=
- =?utf-8?B?UEptZHdCNGtaSEN4cDlkY2VuNXVKekdwTGJ1SGhGSFNZVDdsM3lyc3AwN21n?=
- =?utf-8?B?R1FaYlZ6RE51N2tXRTdXN3hBdmFIOEZIaGJ3a1I5L2NmRzdKWDFBRE41OXRi?=
- =?utf-8?Q?OOpcDoIdjm/2EYnAu0d9AveOC?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ 2023 14:08:52 +0000
+Received: from HK3PEPF0000021E.apcprd03.prod.outlook.com
+ (2603:1096:300:2d:cafe::1a) by PS2PR01CA0014.outlook.office365.com
+ (2603:1096:300:2d::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34 via Frontend
+ Transport; Mon, 28 Aug 2023 14:08:52 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 211.75.126.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=gmail.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 211.75.126.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.75.126.7; helo=NTHCCAS01.nuvoton.com; pr=C
+Received: from NTHCCAS01.nuvoton.com (211.75.126.7) by
+ HK3PEPF0000021E.mail.protection.outlook.com (10.167.8.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6745.17 via Frontend Transport; Mon, 28 Aug 2023 14:08:52 +0000
+Received: from NTHCML01B.nuvoton.com (10.1.8.178) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.34; Mon, 28 Aug
+ 2023 22:08:52 +0800
+Received: from NTHCCAS01.nuvoton.com (10.1.8.28) by NTHCML01B.nuvoton.com
+ (10.1.8.178) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2176.14; Mon, 28 Aug
+ 2023 22:08:51 +0800
+Received: from taln60.nuvoton.co.il (10.191.1.180) by NTHCCAS01.nuvoton.com
+ (10.1.8.28) with Microsoft SMTP Server id 15.1.2375.34 via Frontend
+ Transport; Mon, 28 Aug 2023 22:08:51 +0800
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id B069764740; Mon, 28 Aug 2023 17:08:50 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <avifishman70@gmail.com>, <tali.perry1@gmail.com>,
+        <joel@jms.id.au>, <venture@google.com>, <yuenn@google.com>,
+        <benjaminfair@google.com>, <j.neuschaefer@gmx.net>
+CC:     <openbmc@lists.ozlabs.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v7 0/2] pinctrl: nuvoton: add pinmux and GPIO driver for NPCM8XX
+Date:   Mon, 28 Aug 2023 17:08:47 +0300
+Message-ID: <20230828140849.21724-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd298967-ed7f-46c9-8dd0-08dba7cfa108
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2023 14:04:00.4372
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF0000021E:EE_|SEZPR03MB6958:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2aeb844b-5e64-4a47-2ad6-08dba7d04f14
+X-MS-Exchange-SenderADCheck: 0
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bk4zV25TMVlvdHNpWHZYVjY5ampMTTY4ZTg2UldHajV2SkVpdklQK21pVytX?=
+ =?utf-8?B?QUF2elFJemZwUUxCRlhUNWpMMTFZWDRJWHVFV2RPMHpoSGpxalJZek9PSmpz?=
+ =?utf-8?B?V1dBMWMwcTRKTWdnblJVNUJKUjhoMDdSamkrSU5jYXNQcEdwenFLLzFZbnF4?=
+ =?utf-8?B?clZLM3dPUW9MMVg1eWs2Q1RzNnFRYVNVRlJ2Wmh3UDVWTWpsUlZLendRRjNx?=
+ =?utf-8?B?bUZGY1BhVXpud2pHemRiUDBZNTh5T0U5YjFBYVc4bVplS1lzOHBVOTNCblht?=
+ =?utf-8?B?OW5lb1hlTG9nSmpROHdMMkV2U1BHYUJKRkNKeXI2bHI2S2lGN3RKNzhha2g0?=
+ =?utf-8?B?ZFJOV2d3T2ZkN25pQVJPTzdYZjZ2akRGT2tWNE1FN2tLQ2VZdWxHeDQ4UHE2?=
+ =?utf-8?B?Ykt2WE9NSzIxenQrZ1hHRGludnY4YytFRmxOMXloUnluTHFBMmY3WENvd05l?=
+ =?utf-8?B?alZkbkxnYitGQWJMWUtwY1g0MWNtQ2luWEJqbThUWE5Xby9TTlZ5VWlNY0JH?=
+ =?utf-8?B?UnVGUmQ1L2V0Y3NsK0h4TUp5VTA1bmd1TjRReUNlZGN4M0xMUGdLOEdxTm1Z?=
+ =?utf-8?B?bytJNXkvbWNMOEdHQmZYQVRENk1FQXJUQUdKUktGU3JiU1Z6dUdoRmRKQzNa?=
+ =?utf-8?B?RlJ5M2RSSlk1L05McnluQlNwajd3bUNWT1g0L0ozTlh5TS9URWJoNzFycjBB?=
+ =?utf-8?B?cFJaWjIyTDhLTkhNQ1Y2UEZQa2JXbmI4cUFYTzhoK0NLYWF0cjd2cW5jNUpw?=
+ =?utf-8?B?VHlZWFM2dldEcnY4ejZFZjFwWmlwYjNKVEhDZ2hJZWlEd0FidU5ndTVkKzZx?=
+ =?utf-8?B?WGlLMkZCck5RaEdqdytaT1NtR2F4dGMyNy9ScS9vZWVrckJiMlE1bnZMQTJo?=
+ =?utf-8?B?YVNlNmZ6YTRMNThrdzBxOERPcXNYQkZKeUJyMC8xNG1YMWlaOElhWTgyT1hO?=
+ =?utf-8?B?bndSRTNJdXFwZTBteTE3dy9aV3R3bHlhYmhKTGRjeDcyTUsrRDlWYlBaTy9q?=
+ =?utf-8?B?WlRDTGtmZXlvM1luUWpjaHA4LzRQeXBGYmNVM2cwMWRoNDNKOFduekR1bnVZ?=
+ =?utf-8?B?WlNIdzc0RW9USWRSdlhRUnVOT1k3R2xkeWd2WjlVM0tObk4vU0RZUTdzam85?=
+ =?utf-8?B?ckowTWN1eGx6VmoxRkJLMHVRT1BsRnVubmxxSXJCUmhGTVlndjF3eXUwczY4?=
+ =?utf-8?B?UnpjbklEMnBURERQY2FGMEMzNjQxZlJaQ1VuWm9laTZhN2p4aWdxVTZkNk84?=
+ =?utf-8?B?S0t4T1krZXdSMTlNRFV2VWl0NWx2TkVMMVJ2ZHRhUkJicXJPT1R3b2ZwWi9z?=
+ =?utf-8?Q?JshZvGwx3r1uw=3D?=
+X-Forefront-Antispam-Report: CIP:211.75.126.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS01.nuvoton.com;PTR:211-75-126-7.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(4636009)(136003)(346002)(39860400002)(396003)(376002)(48200799006)(61400799006)(82310400011)(186009)(451199024)(36840700001)(40470700004)(46966006)(6666004)(966005)(73392003)(478600001)(2906002)(1076003)(2616005)(83380400001)(6266002)(336012)(26005)(82202003)(7416002)(54906003)(4326008)(41300700001)(42186006)(316002)(110136005)(8936002)(70206006)(76482006)(70586007)(8676002)(5660300002)(36756003)(40460700003)(40480700001)(55446002)(82740400003)(36860700001)(47076005)(42882007)(921005)(81166007)(356005)(12101799020)(83170400001)(45356006)(32563001)(35450700002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2023 14:08:52.4346
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hvvaGvf46Brfn7aiLqVXabuzuYUHUvP65BF9CRu4aF71ExBFwSVEjPVKM/OfTsrXQtlVM2B2CNjphMBOfZ9M5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7686
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2aeb844b-5e64-4a47-2ad6-08dba7d04f14
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[211.75.126.7];Helo=[NTHCCAS01.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource: HK3PEPF0000021E.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6958
+X-Spam-Status: No, score=0.5 required=5.0 tests=BAYES_00,DKIM_ADSP_CUSTOM_MED,
+        DKIM_SIGNED,DKIM_VALID,FORGED_GMAIL_RCVD,FREEMAIL_FORGED_FROMDOMAIN,
+        FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,NML_ADSP_CUSTOM_MED,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnPg0KPiBTZW50OiBTYXR1cmRheSwg
-QXVndXN0IDI2LCAyMDIzIDEyOjMyIFBNDQo+IFRvOiBTaGVud2VpIFdhbmcgPHNoZW53ZWkud2Fu
-Z0BueHAuY29tPjsgVWxmIEhhbnNzb24NCj4gPHVsZi5oYW5zc29uQGxpbmFyby5vcmc+DQo+IENj
-OiBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mIEtvemxvd3NraQ0K
-PiA8a3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPjsgQ29ub3IgRG9vbGV5IDxjb25v
-citkdEBrZXJuZWwub3JnPjsNCj4gTGlhbSBHaXJkd29vZCA8bGdpcmR3b29kQGdtYWlsLmNvbT47
-IE1hcmsgQnJvd24gPGJyb29uaWVAa2VybmVsLm9yZz47DQo+IGlteEBsaXN0cy5saW51eC5kZXY7
-IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3Jn
-Ow0KPiBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPg0KPiBTdWJqZWN0OiBbRVhUXSBS
-ZTogW1BBVENIIDEvMl0gZHQtYmluZGluZ3M6IHBvd2VyOiBBZGQgcmVndWxhdG9yLXBkIHlhbWwg
-ZmlsZQ0KPiA+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgID4NCj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICA+ICAgICAgICAgcmVndWxhdG9yLW51bWJlciA9IDwyPjsN
-Cj4gPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICA+ICAgICAgICAgcmVndWxhdG9yLTAtc3VwcGx5ID0gPCZyZWcxPjsNCj4gPiAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA+
-ICAgICAgICAgcmVndWxhdG9yLTEtc3VwcGx5ID0gPCZyZWcyPjsNCj4gPiAgICAgfTsgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIH07DQo+ID4NCj4gPiBBcmUgeW91IHN1Z2dlc3RpbmcgdG8gbW92ZSB0aGUgcmVndWxhdG9y
-LXBkIHRvIHRoZSBpbXggZGlyZWN0b3J5IGFuZA0KPiA+IGFkZCBhIGNvbXBhbnkgcHJlZml4IHRv
-IHRoZSBjb21wYXRpYmxlIHN0cmluZz8NCj4gDQo+IFRoZXJlIGlzIG5vIHN1Y2ggcGFydCBvZiBp
-TVggcHJvY2Vzc29yIGFzIHN1Y2ggcmVndWxhdG9yLXBvd2VyLWRvbWFpbiwgc28gSQ0KPiBkb24n
-dCByZWNvbW1lbmQgdGhhdCBhcHByb2FjaC4gRFRTIG5vZGVzIHJlcHJlc2VudCBoYXJkd2FyZSwg
-bm90IHlvdXIgU1cNCj4gbGF5ZXJzLg0KPiANCg0KVGhhdCdzIG5vdCBhbHdheXMgdGhlIGNhc2Us
-IGFzIHdlIGRvIHNvbWV0aW1lcyBuZWVkIGEgdmlydHVhbCBkZXZpY2UuIA0KQXMgYW4gZXhhbXBs
-ZSwgdGhlICJyZWd1bGF0b3ItZml4ZWQiIGFjdHMgYXMgYSBzb2Z0d2FyZSBhYnN0cmFjdGlvbiBs
-YXllciB0byBjcmVhdGUgdmlydHVhbCByZWd1bGF0b3IgDQpkZXZpY2VzIGJ5IGludGVyZmFjaW5n
-IHdpdGggdGhlIHVuZGVybHlpbmcgR1BJTyBkcml2ZXJzLg0KU2ltaWxhcmx5LCAicmVndWxhdG9y
-LXBkIiBwcm92aWRlcyBhIHNvZnR3YXJlIGFic3RyYWN0aW9uIGxheWVyIGZvciB2aXJ0dWFsIFBE
-IGRldmljZXMgYnVpbHQgb24gDQp0b3Agb2YgZXhpc3RpbmcgcmVndWxhdG9yIGRyaXZlcnMuDQpX
-aGVuIGxvb2tpbmcgYXQgdGhlIGNvbmNlcHR1YWwgcHVycG9zZSwgcmVndWxhdG9yLWZpeGVkIGFu
-ZCByZWd1bGF0b3ItcGQgYXJlIGNvbXBhcmFibGUgaW4gDQp0aGF0IHRoZXkgYm90aCBvZmZlciBz
-b2Z0d2FyZSBhYnN0cmFjdGlvbiBsYXllcnMgZm9yIHZpcnR1YWwgZGV2aWNlcy4iDQoNClRoYW5r
-cywNClNoZW53ZWkNCg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
+This patch set adds pinmux and GPIO controller for the Arbel NPCM8XX 
+Baseboard Management Controller (BMC).
+
+Arbel BMC NPCM8XX pinctrl driver based on Poleg NPCM7XX, except the
+pin mux mapping difference the NPCM8XX GPIO supports adjust debounce
+period time.
+
+Arbel BMC NPCM8XX Pinmux functions accessible only for pin groups 
+and pin configuration parameters available only for individual pins.
+
+Arbel BMC NPCM8XX has eight identical GPIO modules,
+each module has 32 GPIO ports.
+
+Most of the GPIO ports are multiplexed with other system functions.
+
+The NPCM8XX pinctrl and GPIO driver were tested on NPCM845 evaluation board.
+
+Addressed comments from:
+ - Krzysztof Kozlowski: https://lore.kernel.org/lkml/eccc6a7a-b30f-8c77-77cb-5deef47a1954@linaro.org/
+						https://lore.kernel.org/lkml/3a00066b-ec4e-bfdd-91bf-9f35edd72da1@linaro.org/
+
+Changes since version 6:
+- Pin controller driver
+	- Remove blank line.
+
+- Pin controller dt-binding
+	- Modify pinctrl address.
+	- Modify to lowercase hex.
+	- Add pin naming.
+
+Changes since version 5:
+- Pin controller dt-binding
+	- Modify gpio unit-address.
+	- Remove blank line at EOF.
+
+Changes since version 4:
+- Pin controller driver
+	- Modify DS definition.
+
+- Pin controller dt-binding
+	- Modify -mux pattern.
+	- Remove tabs.
+
+Changes since version 3:
+- Pin controller driver
+	- Remove unused line in Kconfig.
+	- Add GPIO 183-189 GPIO support.
+	- Add SPI1 CS pins.
+	- Modify SMB23b pin list.
+	- Remove unused module pins.
+	- Fix PIN-CONFIG_OUTPUT setting.
+
+- Pin controller dt-binding
+        - Modify pin and function items.
+        - Use consistent quotes.
+        - drop unneseccary quote.
+        - pincrtl node name modify to pinctrl@f0800260 since
+          the pin controller handling was done in 0xf0800260 
+          offset.
+
+Changes since version 2:
+- Pin controller driver
+        - Modify kernel configuration.
+        - Adding and removing include files.
+        - Using the same register format size.
+        - Reducing lines by command combination.
+        - Remove unnecessary parentheses use.
+        - Use GENMASK and BIT macros.
+        - Using traditional patterns.
+
+ - Pin controller dt-binding
+        - Modify GPIO description.
+        - pintcrtl node name, Sorry, I know we have a long discussion about it.
+          Still, I think the best header pinctrl node name is pinctrl@f0800000. 
+          because the pin mux is handled through the GCR.
+	  BTW, same pinctrl header name is used in the NPCM7XX pinctrl version.
+	  https://elixir.bootlin.com/linux/v6.0-rc6/source/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi#L560
+
+Changes since version 1:
+ - Pin controller driver
+	- Remove unnecessary debug prints and comments.
+	- Use fwnode functions.
+	- Remove Redundant 'else'.
+	- Use switch case instead of else if.
+	- Use GENMASK and BIT macros.
+	- Use dev_err_probe in probe error.
+	- Use callback GPIO range.
+	- Add GCR phandle property.
+	- Parameter order in reversed xmas
+
+ - Pin controller dt-binding
+	- Modify name from pin to mux.
+	- Add phandle property.
+
+Tomer Maimon (2):
+  dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO documentation
+  pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO driver
+
+ .../pinctrl/nuvoton,npcm845-pinctrl.yaml      |  216 ++
+ drivers/pinctrl/nuvoton/Kconfig               |   14 +
+ drivers/pinctrl/nuvoton/Makefile              |    1 +
+ drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c     | 2491 +++++++++++++++++
+ 4 files changed, 2722 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/nuvoton,npcm845-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/nuvoton/pinctrl-npcm8xx.c
+
+-- 
+2.33.0
+
