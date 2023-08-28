@@ -2,41 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C62E578B93D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 22:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C626878B9C4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 22:51:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232086AbjH1UME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 16:12:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
+        id S229914AbjH1UvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 16:51:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233494AbjH1ULz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 16:11:55 -0400
-Received: from finn.localdomain (finn.gateworks.com [108.161.129.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E14F188;
-        Mon, 28 Aug 2023 13:11:51 -0700 (PDT)
-Received: from 068-189-091-139.biz.spectrum.com ([68.189.91.139] helo=tharvey.pdc.gateworks.com)
-        by finn.localdomain with esmtp (Exim 4.93)
-        (envelope-from <tharvey@gateworks.com>)
-        id 1qahtn-008OyK-33; Mon, 28 Aug 2023 19:27:43 +0000
-From:   Tim Harvey <tharvey@gateworks.com>
-To:     Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH] arm64: dts: freescale: imx8m*-venice: remove label = "cpu" from DSA dt-binding
-Date:   Mon, 28 Aug 2023 12:27:41 -0700
-Message-Id: <20230828192741.1202218-1-tharvey@gateworks.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S230447AbjH1UvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 16:51:05 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6A210E;
+        Mon, 28 Aug 2023 13:51:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=1VGN/7kaT0gr2v5iLutL5Ek3yl9HftUWq6xZh8Ol+A8=; b=dRPFd5R5dVR+XM6pQ80caayH0S
+        ZATYz4D36SUQTvDeGGScSp0homXaxxyKUjcrn/kx+nkgY3RrawnvbdCgIyiwlysAb9gmlb7DTVqfP
+        xbB8+RJL5Q7VQQfmfxPV6mp1MEjgaXIWIFgMLwFtVYCrc8/VS2yHThj5V//V26t13upeTMD69ichj
+        zW/Gf9sySlZ7hr7FFOiFXRdrV55K91jWAZmzaoDO7FBRLr7oalfAAMxkvep7Kst8Z+6GZMjWzdJEo
+        E55/bntNwunvlhc6C0ZwJujgNllxdmXbR8hKLcOUsWe9mxISNTpNVY7E0Yy8+uMLVY4RlOfa32Kqz
+        rIP/CM8A==;
+Received: from [2601:1c2:980:9ec0::2764]
+        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+        id 1qajCI-00AGCg-14;
+        Mon, 28 Aug 2023 20:50:54 +0000
+Message-ID: <f510eafd-7561-89d2-5d5c-ae98901c2250@infradead.org>
+Date:   Mon, 28 Aug 2023 13:50:52 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/5] soc: loongson: loongson_pm2: add dependency for INPUT
+Content-Language: en-US
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev
+References: <cover.1693218539.git.zhoubinbin@loongson.cn>
+ <08447374271c7df6d1543abce69195f1ae09f59c.1693218539.git.zhoubinbin@loongson.cn>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <08447374271c7df6d1543abce69195f1ae09f59c.1693218539.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -44,38 +63,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is not used by the DSA dt-binding, so remove it from the devicetrees.
+Hi--
 
-Signed-off-by: Tim Harvey <tharvey@gateworks.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts | 1 -
- arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts | 1 -
- 2 files changed, 2 deletions(-)
+On 8/28/23 05:38, Binbin Zhou wrote:
+> Since commit 67694c076bd7 ("soc: loongson2_pm: add power management
+> support"), the Loongson-2K PM driver was added, but it didn't update the
+> Kconfig entry for the INPUT dependency, leading to build errors, so
+> update the Kconfig entry to depend on INPUT.
+> 
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `loongson2_power_button_init':
+> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:101:(.text+0x350): undefined reference to `input_allocate_device'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:109:(.text+0x3dc): undefined reference to `input_set_capability'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:111:(.text+0x3e4): undefined reference to `input_register_device'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:125:(.text+0x3fc): undefined reference to `input_free_device'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_report_key':
+> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:425:(.text+0x58c): undefined reference to `input_event'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_sync':
+> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:450:(.text+0x5a0): undefined reference to `input_event'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_report_key':
+> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:425:(.text+0x5b4): undefined reference to `input_event'
+> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_sync':
+> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:450:(.text+0x5c8): undefined reference to `input_event'
+> 
+> Reported-by: Randy Dunlap <rdunlap@infradead.org>
+> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> ---
+>  drivers/soc/loongson/Kconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
+> index 314e13bb3e01..1b57af1e5529 100644
+> --- a/drivers/soc/loongson/Kconfig
+> +++ b/drivers/soc/loongson/Kconfig
+> @@ -20,6 +20,7 @@ config LOONGSON2_GUTS
+>  config LOONGSON2_PM
+>  	bool "Loongson-2 SoC Power Management Controller Driver"
+>  	depends on LOONGARCH && OF
+> +	depends on INPUT
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-index 21d7b16d6f84..b4a6d66e0ab6 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-venice-gw7901.dts
-@@ -678,7 +678,6 @@ lan4: port@3 {
- 
- 			port@5 {
- 				reg = <5>;
--				label = "cpu";
- 				ethernet = <&fec1>;
- 				phy-mode = "rgmii-id";
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-index 3473423ac939..baa92f98c79a 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-venice-gw74xx.dts
-@@ -512,7 +512,6 @@ lan5: port@4 {
- 
- 			port@5 {
- 				reg = <5>;
--				label = "cpu";
- 				ethernet = <&fec>;
- 				phy-mode = "rgmii-id";
- 
+In the failing .config file, CONFIG_INPUT=m.
+This bool kconfig item is still set/enabled after this patch and the build still fails.
+
+You could use
+	depends on INPUT=y
+
+if that is appropriate. I dunno.
+
+>  	help
+>  	  The Loongson-2's power management controller was ACPI, supports ACPI
+>  	  S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
+
 -- 
-2.25.1
-
+~Randy
