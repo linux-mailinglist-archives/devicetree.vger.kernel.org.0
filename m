@@ -2,65 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDA378B0B4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 14:40:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 001C878B0C6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 14:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230393AbjH1Mj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 08:39:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58172 "EHLO
+        id S229698AbjH1MmJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 08:42:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231253AbjH1MjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 08:39:08 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 74CF0F0;
-        Mon, 28 Aug 2023 05:39:05 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.109.102])
-        by gateway (Coremail) with SMTP id _____8DxVuhnlexkN4EcAA--.22671S3;
-        Mon, 28 Aug 2023 20:39:03 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.102])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8Ax98xllexkQrJlAA--.29412S3;
-        Mon, 28 Aug 2023 20:39:03 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
+        with ESMTP id S229636AbjH1Mln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 08:41:43 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38C3E5;
+        Mon, 28 Aug 2023 05:41:39 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-50098cc8967so5021419e87.1;
+        Mon, 28 Aug 2023 05:41:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693226498; x=1693831298;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=35Zvmo59YN6o3oPAuxnrM8DnmGEhpgbLp58kB3g9lGU=;
+        b=KSxh1ke+AfqK9ORplGlqm3Eit0KfK+YhWYLVMtxDY4buQMStb0+QJsms3Ku6pCvCbC
+         GLw0DNyl5PcYzZzILkUqyYmoblod2u44FftEatXPsjyxp0rKRN3KJN3cvmQSMslbQoSl
+         xJUNbaidTzygQRF1ChfqgNP/kPG/TQ8O8sPo7rU38PTY3JQLH8+DCsAjl+x1p871cbZm
+         feRtMbwgiApiSCfvZ3axD0O4iG4b1vAfy6vSB83CuXdDp9121EI+OoTFcYDHyiQNgM83
+         qBom01b8lnIiexli8boD9pmqBjvpE/XFzvJx/gomDD0p/BKeIvJ9DxzdmBpR1jxbUK47
+         VS9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693226498; x=1693831298;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=35Zvmo59YN6o3oPAuxnrM8DnmGEhpgbLp58kB3g9lGU=;
+        b=TNNpZnsj8iz5DKcYa7h8ZTdPeSe7N9/1356QnljzEzmfqU4lMmkRZ4eMAkeWzpKBOZ
+         49QkV0woy17bkmzEV8J7dmmRdxIFxxEzzBfroyJ3G/6OjUHy4vyWnpXInrWxPT1b3OZp
+         n+aQI5wMJPMNGG6Pxu2GNiQlTPEAiPiyUizhWzupAVOzzQraoM/DLsZi1k2X6WADQx3p
+         h4TYn5g8IzJ0xrxbn/WNFy6tL22scMNgEchtQziwk6EfSfZF6htnNzl0WshzbLsAs8XQ
+         lIVhiVtkDjjh1gtMaDub9TZMMkaEERVmQkNj6wwKptkWnLJkxxZB5DdBAxnPJ2TxoDXZ
+         6+rw==
+X-Gm-Message-State: AOJu0YwxCOqr/iyRYHjEOpab62CUcSkKi+SSDdGbx0XVFNtvP5nKHVbD
+        1uJGuhVPfdUXNEoOxSZzQeQ=
+X-Google-Smtp-Source: AGHT+IFRlAtGX0zI23L+HPcaLdtS//sAFD2U7kQ3HH8Hea5Ggh0g2kh1a/yBtz8lEpewXjLli0HgGg==
+X-Received: by 2002:a05:6512:2203:b0:4fe:2d93:2b50 with SMTP id h3-20020a056512220300b004fe2d932b50mr22395653lfu.31.1693226497635;
+        Mon, 28 Aug 2023 05:41:37 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id i22-20020ac25236000000b004ff981955cesm1568114lfl.228.2023.08.28.05.41.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Aug 2023 05:41:37 -0700 (PDT)
+Date:   Mon, 28 Aug 2023 15:41:35 +0300
+From:   Serge Semin <fancer.lancer@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lee Jones <lee@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH 5/5] soc: loongson: loongson_pm2: Populate children syscon nodes
-Date:   Mon, 28 Aug 2023 20:39:00 +0800
-Message-Id: <64b7e1b1e88606821cfb4925fb2275bf44077b8e.1693218539.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <cover.1693218539.git.zhoubinbin@loongson.cn>
-References: <cover.1693218539.git.zhoubinbin@loongson.cn>
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Subject: Re: [PATCH v3 2/4] dt-bindings: net: Add Loongson-1 Ethernet
+ Controller
+Message-ID: <mqea2nlysz4x3ff7xhg3fypgiyvrpqz6pwje4kavxoigrdlbtr@k6jw7jqsbkxr>
+References: <20230824125012.1040288-1-keguang.zhang@gmail.com>
+ <20230824125012.1040288-3-keguang.zhang@gmail.com>
+ <dwe4oyunc2uitullflhryg7kmgeklj5wlx6ztrg5hahl64tkuz@koe4tijgj3bp>
+ <c32130ab-27dc-e991-10fd-db0fba25cc97@linaro.org>
+ <q7o7wqodz5epyjdj7vlryaseugr2fjhef2cgsh65trw3r2jorm@5z5a5tyuyq4d>
+ <d6f796aa-c468-037c-3f53-d0c4306c8890@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8Ax98xllexkQrJlAA--.29412S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj9xXoW7XF13WFy3tryUXr43AFy3KFX_yoWkKwc_u3
-        W29r48ur18JrnIy398Z3ZxAr9F9rn5u3WUuF1Dtw1Iqa4Ut3sxtFyUArnrGF17WF4Iyrs8
-        X3y0gw4Ikw1rCosvyTuYvTs0mTUanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvT
-        s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-        cSsGvfJTRUUUbSkYFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-        vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-        w2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
-        WxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v2
-        6F4UJVW0owAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-        Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Wrv_
-        ZF1lYx0Ex4A2jsIE14v26F4j6r4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64
-        vIr41lc7CjxVAaw2AFwI0_JF0_Jw1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_
-        Jr0_Gr1l4IxYO2xFxVAFwI0_GFv_Wrylx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8Gjc
-        xK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0
-        cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6xkF7I0E14v26F4j6r4UJwCI42IY6xAIw2
-        0EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x02
-        67AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU022NJUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d6f796aa-c468-037c-3f53-d0c4306c8890@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,40 +89,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The syscon poweroff and reboot nodes logically belong to the Power
-Management Unit so populate possible children.
+On Mon, Aug 28, 2023 at 09:15:17AM +0200, Krzysztof Kozlowski wrote:
+> On 27/08/2023 23:01, Serge Semin wrote:
+> > Hi Krzysztof
+> > 
+> > On Sun, Aug 27, 2023 at 09:56:06AM +0200, Krzysztof Kozlowski wrote:
+> >> On 26/08/2023 23:04, Serge Semin wrote:
+> >>>> +  clock-names:
+> >>>> +    items:
+> >>>> +      - const: stmmaceth
+> >>>
+> >>>   clock-names:
+> >>>     const: stmmaceth
+> >>> ?
+> >>
+> > 
+> >> The existing syntax is correct. This is a string array.
+> > 
+> > Could you please clarify whether it's a requirement (always specify
+> > items: property for an array) or just an acceptable option (another
+> > one is suggested in my comment)? I am asking because:
+> > 1. In this case the "clock-names" array is supposed to have only one
+> > item. Directly setting "const: stmmaceth" with no items: property
+> > shall simplify it.
+> > 2. There are single-entry "clock-names" property in the DT-bindings
+> > defined as I suggested.
+> > 3. There is a "compatible" property which is also a string array but
+> > it can be defined as I suggested (omitting the items property).
+> > 
+> > so based on all of that using the "items:"-based constraint here seems
+> > redundant. Am I wrong to think like that? If so in what aspect?
+> 
 
-Without it, the reboot/poweroff feature becomes unavailable.
+> Syntax is correct in both cases. However the single list compatible
+> *cannot grow*, while single list clock might, when developer notices
+> that the binding was incomplete. People add binding matching drivers,
+> not the hardware, thus having incomplete list of clocks is happening all
+> the time.
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/soc/loongson/loongson2_pm.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+So it's just a matter of maintainability. Got it. Thanks.
 
-diff --git a/drivers/soc/loongson/loongson2_pm.c b/drivers/soc/loongson/loongson2_pm.c
-index 6d2b3708e947..6e8fb170d454 100644
---- a/drivers/soc/loongson/loongson2_pm.c
-+++ b/drivers/soc/loongson/loongson2_pm.c
-@@ -11,6 +11,7 @@
- #include <linux/input.h>
- #include <linux/suspend.h>
- #include <linux/interrupt.h>
-+#include <linux/of_platform.h>
- #include <linux/pm_wakeirq.h>
- #include <linux/platform_device.h>
- #include <asm/bootinfo.h>
-@@ -192,6 +193,11 @@ static int loongson2_pm_probe(struct platform_device *pdev)
- 	if (loongson_sysconf.suspend_addr)
- 		suspend_set_ops(&loongson2_suspend_ops);
- 
-+	/* Populate children */
-+	retval = devm_of_platform_populate(dev);
-+	if (retval)
-+		dev_err(dev, "Error populating children, reboot and poweroff might not work properly\n");
-+
- 	return 0;
- }
- 
--- 
-2.39.3
+-Serge(y)
 
+> 
+> Best regards,
+> Krzysztof
+> 
