@@ -2,116 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C626878B9C4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 22:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A91C478B9FB
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 23:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjH1UvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 16:51:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42620 "EHLO
+        id S233225AbjH1VLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 17:11:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbjH1UvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 16:51:05 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6A210E;
-        Mon, 28 Aug 2023 13:51:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=1VGN/7kaT0gr2v5iLutL5Ek3yl9HftUWq6xZh8Ol+A8=; b=dRPFd5R5dVR+XM6pQ80caayH0S
-        ZATYz4D36SUQTvDeGGScSp0homXaxxyKUjcrn/kx+nkgY3RrawnvbdCgIyiwlysAb9gmlb7DTVqfP
-        xbB8+RJL5Q7VQQfmfxPV6mp1MEjgaXIWIFgMLwFtVYCrc8/VS2yHThj5V//V26t13upeTMD69ichj
-        zW/Gf9sySlZ7hr7FFOiFXRdrV55K91jWAZmzaoDO7FBRLr7oalfAAMxkvep7Kst8Z+6GZMjWzdJEo
-        E55/bntNwunvlhc6C0ZwJujgNllxdmXbR8hKLcOUsWe9mxISNTpNVY7E0Yy8+uMLVY4RlOfa32Kqz
-        rIP/CM8A==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1qajCI-00AGCg-14;
-        Mon, 28 Aug 2023 20:50:54 +0000
-Message-ID: <f510eafd-7561-89d2-5d5c-ae98901c2250@infradead.org>
-Date:   Mon, 28 Aug 2023 13:50:52 -0700
+        with ESMTP id S233492AbjH1VL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 17:11:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B81B6C3;
+        Mon, 28 Aug 2023 14:11:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 53F06631D9;
+        Mon, 28 Aug 2023 21:11:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6ACDFC433C7;
+        Mon, 28 Aug 2023 21:11:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693257083;
+        bh=CuIPNQ07mUdRKNEEdCDCs1DaOYgbGMZeHU/QMDCau2c=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=SNbYvyr/S6MofsbcLWGC/v8Q/z6fsngz+tQFU6IQ4pDrWQTsO3aJasZ5yND6SX0/P
+         upbhNWzYyc00nO6x7oWjOcINTy9R4eZCpgbz4FHdizLdHvzYZiPWnyELPbicb4ymZY
+         2YGkfPfn9VQr0V+hCKcCktaQiI5MSAocDZVbDEMG19hk3bmCeFUzXzEFxTpNCiDPEF
+         sXXQms3QoUSvWqJd11MTNu6IFGPBe1tm2dQIfTjr3CQmwbrFIWRUWLTiAdIPDoZA6n
+         6N6QzWzZdMP/rdhTHgn1eTxRzOQxu5iy1uA6pIvGSDQuKnUyLg4cKDznAQYEvmMdwk
+         gCS4z/cVezlUQ==
+Date:   Mon, 28 Aug 2023 16:11:21 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
+Cc:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>, "kw@linux.com" <kw@linux.com>,
+        "Simek, Michal" <michal.simek@amd.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
+Subject: Re: [PATCH v6 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
+Message-ID: <20230828211121.GA745436@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/5] soc: loongson: loongson_pm2: add dependency for INPUT
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev
-References: <cover.1693218539.git.zhoubinbin@loongson.cn>
- <08447374271c7df6d1543abce69195f1ae09f59c.1693218539.git.zhoubinbin@loongson.cn>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <08447374271c7df6d1543abce69195f1ae09f59c.1693218539.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SN7PR12MB7201459AEFB6DFF600E753928BE0A@SN7PR12MB7201.namprd12.prod.outlook.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi--
+On Mon, Aug 28, 2023 at 12:01:52PM +0000, Havalige, Thippeswamy wrote:
+> > > On Fri, Aug 18, 2023 at 03:05:07PM +0530, Thippeswamy Havalige wrote:
+> > > > ...
 
-On 8/28/23 05:38, Binbin Zhou wrote:
-> Since commit 67694c076bd7 ("soc: loongson2_pm: add power management
-> support"), the Loongson-2K PM driver was added, but it didn't update the
-> Kconfig entry for the INPUT dependency, leading to build errors, so
-> update the Kconfig entry to depend on INPUT.
+> > > > +static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus,
+> > > > +					    unsigned int devfn)
+> > > > +{
+> > > > +	struct pl_dma_pcie *port = bus->sysdata;
+> > > > +
+> > > > +	/* Check if link is up when trying to access downstream ports */
+> > > > +	if (!pci_is_root_bus(bus)) {
+> > > > +		/*
+> > > > +		 * Checking whether link is up here is a last line of defence,
+> > > > +		 * if the link goes down after we check for link-up, we have a
+> > > > +		 * problem: if a PIO request is initiated while link-down, the
+> > > > +		 * whole controller hangs, and even after link comes up again,
+> > > > +		 * previous PIO requests won't work, and a reset of the whole
+> > > > +		 * PCIe controller is needed. Henceforth we need link-up
+> > > check
+> > > > +		 * here to avoid sending PIO request when link is down. This
+> > > > +		 * check is racy by definition and does not make controller
+> > > hang
+> > > > +		 * if the link goes down after this check is performed.
+> > >
+> > > This comment doesn't make sense to me.  "If PIO request initiated
+> > > while link- down, controller hangs ... This check is racy and does not
+> > > make controller hang if link goes down."  Which is it?
+> - Here checking link up treats device as invalid.
 > 
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `loongson2_power_button_init':
-> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:101:(.text+0x350): undefined reference to `input_allocate_device'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:109:(.text+0x3dc): undefined reference to `input_set_capability'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:111:(.text+0x3e4): undefined reference to `input_register_device'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:125:(.text+0x3fc): undefined reference to `input_free_device'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_report_key':
-> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:425:(.text+0x58c): undefined reference to `input_event'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_sync':
-> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:450:(.text+0x5a0): undefined reference to `input_event'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_report_key':
-> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:425:(.text+0x5b4): undefined reference to `input_event'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_sync':
-> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:450:(.text+0x5c8): undefined reference to `input_event'
+> Please find comment that I ll update in next patch and 
+> Please letme know if any changes are needed.
 > 
-> Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  drivers/soc/loongson/Kconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
-> index 314e13bb3e01..1b57af1e5529 100644
-> --- a/drivers/soc/loongson/Kconfig
-> +++ b/drivers/soc/loongson/Kconfig
-> @@ -20,6 +20,7 @@ config LOONGSON2_GUTS
->  config LOONGSON2_PM
->  	bool "Loongson-2 SoC Power Management Controller Driver"
->  	depends on LOONGARCH && OF
-> +	depends on INPUT
+>   /*
+>                  * Checking whether the link is up. Here is the last line of
+>                  * defence. If the link goes down after we check for link-up,
+>                  * we have a problem. If a PIO request is initiated while link
+>                  * is down, the whole controller hangs. Even after link comes up
+>                  * again, previous PIO requests won't work, and a reset of the
+>                  * whole PCIe controller is needed. Henceforth we need link-up
+>                  * check here to treat device as invalid and avoid sending PIO
+>                  * request when link is down and this check is inherently racy
+>                  * by definition.
+> */
+> > >
+> > > My *guess* is that this check narrows the window but doesn't close it,
+> > > so if
+> > > xilinx_pl_dma_pcie_link_up() finds the link up, but the link goes down
+> > > before
+> > > pci_generic_config_read() initiates the PIO request, the controller
+> > > hangs, and a reset is required.
 
-In the failing .config file, CONFIG_INPUT=m.
-This bool kconfig item is still set/enabled after this patch and the build still fails.
+Sorry, I dragged this out by not giving you a more useful suggestion
+to begin with.  Since advk_pcie_valid_device() has the same issue,
+copying its comment was a great place to start.
 
-You could use
-	depends on INPUT=y
+But I think advk_pcie_valid_device(), altera_pcie_valid_device(),
+nwl_pcie_valid_device(), xilinx_pcie_valid_device(), and now
+xilinx_pl_dma_pcie_valid_device() all have the same race, but none of
+them really address it in the comment.
 
-if that is appropriate. I dunno.
+I'm looking for explicit acknowledgement that we can't reliably
+prevent this unrecoverable error, e.g., something like this:
 
->  	help
->  	  The Loongson-2's power management controller was ACPI, supports ACPI
->  	  S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
+  Sending a PIO request to a downstream device when the link is down
+  causes an unrecoverable error, and a reset of the entire PCIe
+  controller will be needed.  We can reduce the likelihood of that
+  unrecoverable error by checking whether the link is up, but can't
+  completely prevent it because the link may go down between the
+  link-up check and the PIO request.
 
--- 
-~Randy
+Bjorn
