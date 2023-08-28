@@ -2,128 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76D4F78B423
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90C7A78B43A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:18:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231315AbjH1POW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 11:14:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41742 "EHLO
+        id S231221AbjH1PSJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 11:18:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232554AbjH1PON (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:14:13 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD2CC11B;
-        Mon, 28 Aug 2023 08:14:07 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 860961F383;
-        Mon, 28 Aug 2023 15:14:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
-        t=1693235646; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=a7/Km/jKsLvw/NKxCW99seF9lWJLgqSMYTjISiIIMKY=;
-        b=juD3P3pg0IENzHff2mRHsgSANByBQnrGln5C3hvcCzhoqJYhonY1TUGpJLhJZGgf0MvXcP
-        +PtjfZah9cWEzPiDO9+Gvo9S+TGt9hH960NL/IiEVuDEDqEVWDLncPTnHthr0sf4alrAhT
-        fb9+7E0p4jOMihGKndQ3IVBUdJb8VL8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-        s=susede2_ed25519; t=1693235646;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=a7/Km/jKsLvw/NKxCW99seF9lWJLgqSMYTjISiIIMKY=;
-        b=dvUTP6SlcF9q6wm+rNzL0rLC/Km4gFRV9ib+4Lm87cMoll/Oolti2EbwuhB3xhWG+WRWFB
-        7gf3JDwBCteRWTDQ==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3502913A11;
-        Mon, 28 Aug 2023 15:14:06 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id y/UUDL657GTYdgAAMHmgww
-        (envelope-from <vbabka@suse.cz>); Mon, 28 Aug 2023 15:14:06 +0000
-Message-ID: <9aec0740-2482-d3ad-caf2-5e6278a050b3@suse.cz>
-Date:   Mon, 28 Aug 2023 17:14:05 +0200
+        with ESMTP id S230194AbjH1PRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:17:47 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10olkn2082.outbound.protection.outlook.com [40.92.42.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DCCAE8
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 08:17:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TGdwHulSKiawBiXJbdsoTC4DwdOYkgYDXznIcC7h4El7DpwUUWk/ldaEEccFJitTh58e/0zvxE994sXC0S/PnAIP8dNqVmeJ7dJa7i4k63aveccoB+DnCwHcAVEBMGAXWkofkVQSZlmwBfR2dM9Wx0HjvL54nX1kMeOp57uIhyZmfc7G9fdU4do03VlIVNFFlE8Td4cDMc0jX6Qf+tar02frsNG1JknGiJ8SSKaRgvYgxgnoGvCZnNL8Si0s/4JbJ/HsfMBt/g8mbCigcQ0PusGvPWg5AZrDZJTZG4vy9AeVDwenctPTsKQgQdjGTV2IXNWc3zIJwS1/q5aEI+C+QQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=QmfODxk4lbXlExpOIS5sVR3J8iX+waRXmAPMWJqkLvo=;
+ b=NGS9SA1+P6rnkcSNvBUix+ah2VJhxtQ0XVtyC0ZJWXwpYiJkCTe+9hJo/iZgoNRoHpDEkeL5xMWZ0WaYeqxneNvaGWaMvat+yRmMyxq9c5U6bMT8pWtROND10CfpZ4kN6UTh+gc9I7s6sQsVF8kcFacTIfcCn9EkwgW35IVBm1m7HJUXdM+MoYdP9d3HO0bm1wc7BvLQ7v3lrgrrnxnJEoL05eiIj0J081e2e0E4POZPQoHTB5jL2JnJUdXSz4eHwNHMNwFeWPg/nKfT54Jjrr8IncdOg9CJ+/PVQJ1PM0ZBWlaHwfgfP4oL2dT+WXlAMrwJQkJwzIhz619cYDa/Dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=QmfODxk4lbXlExpOIS5sVR3J8iX+waRXmAPMWJqkLvo=;
+ b=Wv9LZSNBdglk29UAF+anT7bbftdUyXmB0OsNr6i0cQrgxyxCSWQf3N+cxoujkBhBLngYcqYVAPo+duJ4QMB5zGzb86LBbyGsRlbtchQYG8KegUVJEy09Se4pcJ710y3qlgLYol31HctyIuJkKOnXbr1QU1r5hQ9N1PvKMrlyDchSQA16wYi7bcy2eXX5Kt6d+QN1rWsojSYURcAOzz1mA5YYese0UBQOh76AtJoW3YrDyQa1GquNNArEpnm0aKwN+TDbKSDMueFAkz+2URD3F69+CrBDCP0k98uqB/RoYx958AUj3xVpHGUcwUw7MexqLYpa8ZLbD6wJc5xanwIrSA==
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
+ by SJ0PR06MB7424.namprd06.prod.outlook.com (2603:10b6:a03:322::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.34; Mon, 28 Aug
+ 2023 15:17:41 +0000
+Received: from SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c]) by SN6PR06MB5342.namprd06.prod.outlook.com
+ ([fe80::c40c:bbc8:b103:459c%2]) with mapi id 15.20.6699.034; Mon, 28 Aug 2023
+ 15:17:41 +0000
+Date:   Mon, 28 Aug 2023 10:17:33 -0500
+From:   Chris Morgan <macromorgan@hotmail.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, mripard@kernel.org, jagan@edgeble.ai,
+        heiko@sntech.de, uwu@icenowy.me, daniel@ffwll.ch,
+        airlied@gmail.com, sam@ravnborg.org, neil.armstrong@linaro.org,
+        noralf@tronnes.org, samuel@sholland.org, jernej.skrabec@gmail.com,
+        wens@csie.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH V3 6/8] ARM: dts: sun8i: v3s: add EHCI and OHCI to v3s dts
+Message-ID: <SN6PR06MB534214EB4F1DC05495373034A5E0A@SN6PR06MB5342.namprd06.prod.outlook.com>
+References: <20230823212554.378403-1-macroalpha82@gmail.com>
+ <20230823212554.378403-7-macroalpha82@gmail.com>
+ <20230824222150.5a0d16e3@slackpad.lan>
+ <SN6PR06MB53420D67BB7E11486388637EA5E3A@SN6PR06MB5342.namprd06.prod.outlook.com>
+ <20230825225326.613d0052@slackpad.lan>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825225326.613d0052@slackpad.lan>
+X-TMN:  [gjwEzx6iX/WqaddH1AnXCny8Zn3SdHtj]
+X-ClientProxiedBy: SA9PR13CA0173.namprd13.prod.outlook.com
+ (2603:10b6:806:28::28) To SN6PR06MB5342.namprd06.prod.outlook.com
+ (2603:10b6:805:f9::31)
+X-Microsoft-Original-Message-ID: <ZOy6jbYcCCR3e50L@wintermute.localhost.fail>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Jani Nikula <jani.nikula@intel.com>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Nicolas Schier <nicolas@fjasle.eu>,
-        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
-        Kees Cook <keescook@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_pkondeti@quicinc.com, linux-kernel@vger.kernel.org,
-        kernel@quicinc.com, workflows@vger.kernel.org,
-        tools@linux.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-References: <cover.1693037031.git.quic_gurus@quicinc.com>
- <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
- <87jztf37ny.fsf@intel.com>
- <20230828133554.GA818859@hu-bjorande-lv.qualcomm.com>
- <CAMuHMdU+3oj+-3=f5WFVTRsKQjqCpU8SnVqKSZGk8XRxhsDcVQ@mail.gmail.com>
-From:   Vlastimil Babka <vbabka@suse.cz>
-In-Reply-To: <CAMuHMdU+3oj+-3=f5WFVTRsKQjqCpU8SnVqKSZGk8XRxhsDcVQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|SJ0PR06MB7424:EE_
+X-MS-Office365-Filtering-Correlation-Id: c8c298a4-2e9c-474e-b27f-08dba7d9eb91
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: bTC+FLlPdKN95hqTdEE35fzo/kWVKl+wfKYQTS+etXD6b5gzepHECqqgAHg8Rte+36s0o1flAUXFyZceFV0lgBco/HaHbjZENgxCQbLTYeR/Y8ExEl1A98/vQO7kAIab1r2OPzGk6VNa+Y1cc5aOTQCiTA9JF0o/45ilaKAv/5rCsdedwW/8QkiU0HFHsr4zB3jCG3vkOVCoQoGrXnomolEBI5TR4jx8ucPEy94EoQJ0Pr0MQaT+zHL6J4JZLvQYh12ROgTbmk4b14rO7nKOt4IR6cj2kjY7PxXRpGkxdZSAsDi7fVppYizW54tQt+BkX/tfo98bPQdFeVsI1LNXGbqo6apwdWN4pvjvMQnzYF35UX1F/IJvFnXQBEohiof8R/yx+indWmBuSYhxNJpLSng9k/cnJnn5cM6prXFeZD06wt6CEisKcD/brM4kNufnPUSpNCzZuxaAn/4EEV2JN9TAYtQ/jIR+KtVU7rXgxrSS6ZSkyW8zgtEz0YzliDm25Z7ZDQeg2gfXi48c/5/9gQR+hRaoB9y/5+uRaiLzF0eP2iRHMhQi5UV72+rdi9AB
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lndK52HmRpkho9YYn6pG0Hr0erAhpNF4EbqvkeBkHn9AggnUEGdiD2oVK9gf?=
+ =?us-ascii?Q?j/stbgXS7ZmIX/Km+sGcA7PQEx9r2F4VAtzcOxStCr3a7fgDbavcgJWdjPlE?=
+ =?us-ascii?Q?1NcW52WJodPpnHG2pTZeOlnYA5WxS/fhjx9UNBjfemjsd5GLQu4DhvVsADR6?=
+ =?us-ascii?Q?F0DmMcoCrUJIzHNPiZHWyJGWnl8ydg6FH9wyVzgVI01VrbUsQsMqrak/Ww1p?=
+ =?us-ascii?Q?2Ohi4eeI8JHfR3laWl2c1xboXCynUcuf+67Mv4buX3PmoBdgFxVN4d75wNe5?=
+ =?us-ascii?Q?1fLFRH51hz/jXAEEN+Nq1Rd80144DOjyllqQKuw9GwELfMwB7NIWbH7UNbmC?=
+ =?us-ascii?Q?1W3Dx4X8OK3gBGS3c9QDiEdCtilQzDMzq82k5NxUrrVEC8kT3wkjS0aUOMN1?=
+ =?us-ascii?Q?ZMI6se2k367/GVmt1eu/DFh2Jvyi9y5BIYGf5HTDLByRMlm0XMOV+tmph1Ob?=
+ =?us-ascii?Q?//JqE7cZMd1iKLQY8czAecVyIRiNZP8FNfceHN9GHH1MQh1QGka5W9ut3rkB?=
+ =?us-ascii?Q?DWw0OPzw5t3QtkZ2iBAWketNzRLgDBKQWAlbLfc9EBOlGNzSYP4z/O86DdyK?=
+ =?us-ascii?Q?aYW+Od2lSejgr0qB/Vx7ks5xSBDU43PCXfxHwF9WfulyOnBU7VFomVKsQJsD?=
+ =?us-ascii?Q?5sh88xqhR14qdNPmTlOjeaBWU8c86BZ/5E1lrMvZ2RqsodGxHSvsaFmJQ8cg?=
+ =?us-ascii?Q?ilY9b47xE9YbIK24evrtkNOR2mmmr9I6GxX2PwgU4jjlCoCDKw8E73JILHCm?=
+ =?us-ascii?Q?L6gwPQ/JYpuX9AJ4gPyjTE+5iXDba+I2re9ChkGGc1aih1ynM4xiPzZhSpeK?=
+ =?us-ascii?Q?jzMElSQzPJo6qZe08pYvhJK1rkImtJsZTcwW32QtXAKyRiToEqgqANVHld+4?=
+ =?us-ascii?Q?DDo37HB3loWGu+HFLHgSori0OHiXzE7G67695/uLJ5mZSuFiW0GlHYvC6QQu?=
+ =?us-ascii?Q?pdo2kGOGqzk55PCLrvr64xX+WwGQ2V03d7AW8RUIvRB7/OzoxzmKI5tVGniR?=
+ =?us-ascii?Q?GwB/N97e1JCY4z9abkCnMLv/FGJ5gnSpj61e8Q/q4qotiyI54OG0yN7GtCy+?=
+ =?us-ascii?Q?tHWDki/JHh7NiYrw05MtYdjn4eA8uy1jfQg5/GSICbW0gBAdJ5cbv1zf/eD/?=
+ =?us-ascii?Q?a8XHKHxex8UoWg5nHg9x1NC5EAb+MuuyKIofuBJiliODOgqYjD+EZyXA4OjJ?=
+ =?us-ascii?Q?H0MGIx7ZebHoy3BgKWSayy0BIVo+hzk6SQeyk7j3mcnTxbtlWxrubjDBFHw?=
+ =?us-ascii?Q?=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: c8c298a4-2e9c-474e-b27f-08dba7d9eb91
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2023 15:17:41.2578
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR06MB7424
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/28/23 15:48, Geert Uytterhoeven wrote:
-> Hi Bjorn,
+On Fri, Aug 25, 2023 at 10:53:26PM +0100, Andre Przywara wrote:
+> On Fri, 25 Aug 2023 10:58:00 -0500
+> Chris Morgan <macromorgan@hotmail.com> wrote:
 > 
-> On Mon, Aug 28, 2023 at 3:37 PM Bjorn Andersson
-> <quic_bjorande@quicinc.com> wrote:
->> On Mon, Aug 28, 2023 at 11:14:41AM +0300, Jani Nikula wrote:
->> > On Sat, 26 Aug 2023, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
->> > > This script runs get_maintainer.py on a given patch file (or multiple
->> > > patch files) and adds its output to the patch file in place with the
->> > > appropriate email headers "To: " or "Cc: " as the case may be. These new
->> > > headers are added after the "From: " line in the patch.
->> >
->> > FWIW, I personally prefer tooling to operate on git branches and commits
->> > than patches. For me, the patches are just an intermediate step in
->> > getting the commits from my git branch to the mailing list. That's not
->> > where I add the Cc's, but rather in the commits in my local branch,
->> > where they're preserved. YMMV.
->> >
->>
->> May I ask how you add/carry the recipients in a commit?
+> Hi Chris,
 > 
-> I guess below a "---" line in the commit description?
-
-Does that do anything special in commit log? I'd expect (and I do it that
-way) it's rather just adding a
-
-Cc: Name <email>
-
-in the tag area where s-o-b, reviewed-by etc are added.
-
-> Gr{oetje,eeting}s,
+> > On Thu, Aug 24, 2023 at 10:21:50PM +0100, Andre Przywara wrote:
+> > > On Wed, 23 Aug 2023 16:25:52 -0500
+> > > Chris Morgan <macroalpha82@gmail.com> wrote:
+> > > 
+> > > Hi Chris,
+> > >   
+> > > > From: Chris Morgan <macromorgan@hotmail.com>
+> > > > 
+> > > > Add the EHCI and OHCI controller to the Allwinner v3s to support using
+> > > > USB in host mode.  
+> > > 
+> > > Alright, so was it really that easy? I was afraid we left out host mode
+> > > for a reason back then ....  
+> > 
+> > Can't speak to that, but it is working for me as both a host and a
+> > gadget.
+> > 
+> > >   
+> > > > 
+> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > > > ---
+> > > >  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 19 +++++++++++++++++++
+> > > >  1 file changed, 19 insertions(+)
+> > > > 
+> > > > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> > > > index c87476ea31e2..eb63dd274305 100644
+> > > > --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> > > > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
+> > > > @@ -319,6 +319,25 @@ usbphy: phy@1c19400 {
+> > > >  			#phy-cells = <1>;
+> > > >  		};
+> > > >  
+> > > > +		ehci: usb@1c1a000 {
+> > > > +			compatible = "allwinner,sun8i-v3s-ehci", "generic-ehci";
+> > > > +			reg = <0x01c1a000 0x100>;
+> > > > +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
+> > > > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;  
+> > > 
+> > > Please add the link the PHY here:
+> > > 			phys = <&usbphy 0>;
+> > > 			phy-names = "usb";  
+> > 
+> > usbphy 0 doesn't work, but if I do phys = <&usbphy 1>; for here and the
+> > OHCI node it does work. Is that expected/acceptable?
 > 
->                         Geert
-> 
+> Well, that means it doesn't work, because the V3s has only one PHY, so
+> "1" is invalid, and will either be ignored or rejected (any hints in
+> dmesg?)
 
+Nothing in dmesg that I can see.
+
+> 
+> > By "doesn't work"
+> > I mean the device is always in HOST mode if I use 0 and switches
+> > correctly (the extcon shows HOST=0 when unplugged or plugged into my
+> > computer, and shows HOST=1 if I plug in a device which I assume is
+> > the desired behavior).
+> 
+> You mean the latter part was with <usbphy 1>, and that's the same
+> behaviour as without the property?
+> That would mean that this part is still broken - I think somewhere in
+> the PHY driver. But this is a generic issue, and not specific to the
+> V3s, and your patch is just revealing it.
+> 
+> I will try to have a look in the next few days, to find the real
+> culprit.
+
+Yep. <usbphy 0> means it stays in host mode; no phy or <usbphy 1> means
+it works in both. For now I'll set it to the proper usbphy 0 and note
+that for the moment otg doesn't work. Unlike the problem with the RTC
+regulator this doesn't really harm the overall experience; and for now
+anyone making custom firmware that relies on OTG can simply delete the
+phy property and it will work.
+
+V4 incoming soon. Thank you.
+Chris
+
+> 
+> Cheers,
+> Andre
+> 
+> > > > +			status = "disabled";
+> > > > +		};
+> > > > +
+> > > > +		ohci: usb@1c1a400 {
+> > > > +			compatible = "allwinner,sun8i-v3s-ohci", "generic-ohci";
+> > > > +			reg = <0x01c1a400 0x100>;
+> > > > +			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
+> > > > +				 <&ccu CLK_USB_OHCI0>;
+> > > > +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;  
+> > > 
+> > > ... and here.
+> > > 
+> > > That would be definitely the right thing to do, but please check
+> > > whether it still works, especially OTG operation.
+> > > 
+> > > The addresses, clocks, resets and interrupts match the manual.
+> > > 
+> > > Cheers,
+> > > Andre.
+> > > 
+> > >   
+> > > > +			status = "disabled";
+> > > > +		};
+> > > > +
+> > > >  		ccu: clock@1c20000 {
+> > > >  			compatible = "allwinner,sun8i-v3s-ccu";
+> > > >  			reg = <0x01c20000 0x400>;  
+> > >   
+> > 
+> > Thank you,
+> > Chris
+> > 
+> 
