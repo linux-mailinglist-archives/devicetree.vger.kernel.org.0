@@ -2,79 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C52578B30B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 16:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15BFB78B338
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 16:36:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230094AbjH1O06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 10:26:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60440 "EHLO
+        id S231410AbjH1Off (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 10:35:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231181AbjH1O0h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 10:26:37 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E047011A;
-        Mon, 28 Aug 2023 07:26:33 -0700 (PDT)
+        with ESMTP id S230458AbjH1OfG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 10:35:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC5C4C9;
+        Mon, 28 Aug 2023 07:35:03 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 73BC66425F;
-        Mon, 28 Aug 2023 14:26:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D771C433C8;
-        Mon, 28 Aug 2023 14:26:31 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 83FB0649C7;
+        Mon, 28 Aug 2023 14:35:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17738C433C8;
+        Mon, 28 Aug 2023 14:34:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693232792;
-        bh=HIrFHgWhQZpe35N9L4BQZ+OnaWUt3RZd9gRbJ86S2mc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gjRE/U1K8ajkhTC4vsPmijhxcf5G8em4eWy7C4aCWu2Z0FIWaXghHJjGEKCOtGA8c
-         Fu+Dat222eWmkuQd/k4q71ws6O32wwY8VTWcqXubU6qLQ3A2ayFFDY2KnpRHXhgv3d
-         +ByKpvFZm9xffEst8puAVXC7rNXGrPl0IhHnRQTIjVHYZ3ku3tkosq0aodIr5TrUD3
-         0Kfm7ifQVy/wjKN6T/bSGBwhTNfCQvuCI3h6C/KN+qCRYf+A41GELe6GgJNWbRB1fk
-         nPNB0vwmKbJ+UBwJVVRofAq/TlbACk8j+MO8fkuTAFvDnyFY3bKBMzd0Z/pZn1o5nt
-         6NO6q1N+xGwLw==
-Received: (nullmailer pid 440513 invoked by uid 1000);
-        Mon, 28 Aug 2023 14:26:30 -0000
-Date:   Mon, 28 Aug 2023 09:26:30 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, kernel test robot <lkp@intel.com>,
-        Lizhi Hou <lizhi.hou@amd.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: unittest: Fix of_unittest_pci_node() kconfig
- dependencies
-Message-ID: <169323269352.438100.1553765681221364058.robh@kernel.org>
-References: <20230824221743.1581707-1-robh@kernel.org>
+        s=k20201202; t=1693233302;
+        bh=xvcD4T141QWQdLnTpjwFsaRzVQbDz33pxGbpyYMH39s=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=nsftVUsYbfugJ2EsSq4/XYJZ4RiwxXGDBsQIyj0SW4IaLjyUIJdvCIoE0qjgnujA/
+         BiWFMgKTVf3TEjJWy1fI4t8H5tDWLyaX9vsE4H/BR4WBSMeuCf7olL7XZ2ZfDK2A7o
+         lTjG8i7jq6+jrrYuzOEGFa3p/YPxFjtxuS75MBCKLBTH4FKQ9006ovnbbRqBcXZK9J
+         BfWh9A0cs1IgJAjC67SvPFk45bp6/40icq/pcEyZPHWrSJUE8arhwK5dvvGyggzCyR
+         VFiN0vJfvtzJjjv/Sy2x0dGtLwzNrp44VTm1rP+WD2kOVTeu/sMFTFJOQ+8MqW3ZIm
+         sQP2IIMl0o0uw==
+Date:   Mon, 28 Aug 2023 15:35:22 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Ana-Maria Cusco <ana-maria.cusco@analog.com>
+Cc:     Michael Hennerich <michael.hennerich@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] iio: amplifiers: hmc425a: Add Support HMC540S 4-bit
+ Attenuator
+Message-ID: <20230828153522.754cb7ff@jic23-huawei>
+In-Reply-To: <20230816110906.144540-1-ana-maria.cusco@analog.com>
+References: <20230816110906.144540-1-ana-maria.cusco@analog.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230824221743.1581707-1-robh@kernel.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 16 Aug 2023 14:09:05 +0300
+Ana-Maria Cusco <ana-maria.cusco@analog.com> wrote:
 
-On Thu, 24 Aug 2023 17:17:34 -0500, Rob Herring wrote:
-> of_unittest_pci_node test depends on both CONFIG_PCI_DYNAMIC_OF_NODES
-> and CONFIG_OF_OVERLAY. Move the test into the existing
-> CONFIG_OF_OVERLAY ifdef and rework the CONFIG_PCI_DYNAMIC_OF_NODES
-> dependency to use IS_ENABLED() instead. This reduces the combinations to
-> build.
+> From: Michael Hennerich <michael.hennerich@analog.com>
 > 
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202308241954.oRNfVqmB-lkp@intel.com/
-> Fixes: 26409dd04589 ("of: unittest: Add pci_dt_testdrv pci driver")
-> Cc: Lizhi Hou <lizhi.hou@amd.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> This adds support for the Analog Devices HMC540s 1 dB LSB
+> Silicon MMIC 4-Bit Digital Positive Control Attenuator, 0.1 - 8 GHz
+> 
+> Signed-off-by: Ana-Maria Cusco <ana-maria.cusco@analog.com>
+
+Hi Ana-Maria
+
+Generally for all but single patch series, I'd prefer a cover letter.
+For new drivers, just put a short description of the device in there.
+There are various reasons, but the simplest one is that it provides
+a place where people can offer Reviewed-by etc for the whole series
+in a form that the b4 tool I (and lots of other maintainers) use can
+pick it up automatically.
+
+Anyhow, actual patches look great to me.
+
+Applied to the togreg branch of iio.git and pushed out as testing for now.
+I will be rebasing on 5.6-rc1 once it's available after which these should
+get picked up by linux-next.
+
+Thanks,
+
+Jonathan
+
 > ---
->  drivers/of/unittest.c | 16 +++++++---------
->  1 file changed, 7 insertions(+), 9 deletions(-)
+>  drivers/iio/amplifiers/hmc425a.c | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
 > 
-
-Applied, thanks!
+> diff --git a/drivers/iio/amplifiers/hmc425a.c b/drivers/iio/amplifiers/hmc425a.c
+> index 108f0f1685ef..e87d35d50a95 100644
+> --- a/drivers/iio/amplifiers/hmc425a.c
+> +++ b/drivers/iio/amplifiers/hmc425a.c
+> @@ -21,6 +21,7 @@
+>  
+>  enum hmc425a_type {
+>  	ID_HMC425A,
+> +	ID_HMC540S,
+>  };
+>  
+>  struct hmc425a_chip_info {
+> @@ -70,6 +71,9 @@ static int hmc425a_read_raw(struct iio_dev *indio_dev,
+>  		case ID_HMC425A:
+>  			gain = ~code * -500;
+>  			break;
+> +		case ID_HMC540S:
+> +			gain = ~code * -1000;
+> +			break;
+>  		}
+>  
+>  		*val = gain / 1000;
+> @@ -106,6 +110,9 @@ static int hmc425a_write_raw(struct iio_dev *indio_dev,
+>  	case ID_HMC425A:
+>  		code = ~((abs(gain) / 500) & 0x3F);
+>  		break;
+> +	case ID_HMC540S:
+> +		code = ~((abs(gain) / 1000) & 0xF);
+> +		break;
+>  	}
+>  
+>  	mutex_lock(&st->lock);
+> @@ -157,6 +164,7 @@ static const struct iio_chan_spec hmc425a_channels[] = {
+>  /* Match table for of_platform binding */
+>  static const struct of_device_id hmc425a_of_match[] = {
+>  	{ .compatible = "adi,hmc425a", .data = (void *)ID_HMC425A },
+> +	{ .compatible = "adi,hmc540s", .data = (void *)ID_HMC540S },
+>  	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, hmc425a_of_match);
+> @@ -171,6 +179,15 @@ static struct hmc425a_chip_info hmc425a_chip_info_tbl[] = {
+>  		.gain_max = 0,
+>  		.default_gain = -0x40, /* set default gain -31.5db*/
+>  	},
+> +	[ID_HMC540S] = {
+> +		.name = "hmc540s",
+> +		.channels = hmc425a_channels,
+> +		.num_channels = ARRAY_SIZE(hmc425a_channels),
+> +		.num_gpios = 4,
+> +		.gain_min = -15000,
+> +		.gain_max = 0,
+> +		.default_gain = -0x10, /* set default gain -15.0db*/
+> +	},
+>  };
+>  
+>  static int hmc425a_probe(struct platform_device *pdev)
 
