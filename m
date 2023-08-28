@@ -2,167 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB99C78AC6B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4831F78AD12
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 12:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231683AbjH1Kj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 06:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37148 "EHLO
+        id S231847AbjH1Kpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 06:45:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbjH1Kjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:39:39 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374D293
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:39:37 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-52a06f5f556so4100477a12.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:39:37 -0700 (PDT)
+        with ESMTP id S232063AbjH1Kpo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 06:45:44 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF11136
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:45:24 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c0cb7285fso402080466b.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 03:45:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693219176; x=1693823976;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=linaro.org; s=google; t=1693219522; x=1693824322;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EbEjmLs3QGz39aRMzKs8Sd0VII9u+eayDuhczUIkBCc=;
-        b=qzH8IW/9bJOId1PwuIVHVWgdvL3q8g/A85mFFHUilHyvwAUo9+ErZ6cykB9dlz6Mo7
-         q1yJUjhQkb2Ze2xoZ7OR58A2OkggDhupqjAP0j1KW/jFzD9GeMd4KybjFdEn4AjeT7o2
-         NznptOyByTzZc5XSSeD8PtT9u5UoSgaJARmwnSGladd00kDAMgitAJaFcb/Tc0YqwnLQ
-         MX3KgwlKqtG0B7DyK4qHoUm+GtbfBMQm2pKgNuAto8AEhYsHI8MRxZ0PxkAaLjIEWpFy
-         TN9lGfbql4Yu+4pumOSKhdd6PQSh+/KSxxK4PPnLektYdkSgpnCLtuOinoj3VnaNe1mq
-         SnWQ==
+        bh=7OanaXXnrMsaEfBjCXrcfdtKi7g9UEMwaAf60pZJsSc=;
+        b=C1oa92btKyiq9BivM1fEjwLmi66V9PA7yJw4LUzkelTctM0ppXJ//6PCvBudrgPQCi
+         nEis/LIE3gfdzxcrDS8lyKyjEPmxAyLdoVQW/z79vVwyZOlcbX0JxAxePNCGQRxl8TvP
+         YaUF8nWONY/lPa/awNeyRtbr64JYs45xfZaQYjTcXKx0pLWS07q+sZkiK3TtfaF5e5c6
+         Rp1Tgl/Vkwo1lXaUSL37MZu6AyX9p2R5TN8S1Ow4OLVaw/fSoPRQ2guC7OF7QRJD17rb
+         jEo6fFDE0Uf52p1ZgJEckdYTJgfmz+1FvVZpC1gSRzJEPyex18gFdedoKdRTWn88Lv8r
+         +bZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693219176; x=1693823976;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+        d=1e100.net; s=20221208; t=1693219522; x=1693824322;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EbEjmLs3QGz39aRMzKs8Sd0VII9u+eayDuhczUIkBCc=;
-        b=B3uKn1ScVCeaVpmLydZAJwIWLhNxkooN/Jb4kTxrBNWzbz3JKoW5BStx7Ii5WMrE6L
-         3YyEYUh+7OTq+DfjOBMsB314IM0xhP8uIBIFAvDS7CHm9eGKghO6XpZ/9iLydhWSYKLe
-         PlCDtV7BqYqyzLKZ67nOJyARpH8AYZ+qCpVeyKlrwlcT0GTujkLJH/bzDTvusd0I9E5h
-         3KQDGH38RLyY6HSIvSA4kBw4vxi5IrXXHKEtXx95IJmMzRWGnuQKhDU/3IRnvl5hHvfY
-         r7kfNxgRTMVqyzUdH8N/N3w3mKshtbW+s8Hfoc6tYwRVp4oeq2O4l3WIExH0J8yQNlZ4
-         aYJg==
-X-Gm-Message-State: AOJu0YyxmyyjrGxhLHl6znVr8TeXVfo1nsa1FFOTPyaVEZC9YdKaXAFn
-        ZHDxCCcPPZGWl7WjYXRPf7Hmdw==
-X-Google-Smtp-Source: AGHT+IER1RoTJpN/WOl8lPgg7vlmqwVHY7D+CYcCIMJfB2n7O3GNWanGpZdgdieT4PyEMRlOc8xOcw==
-X-Received: by 2002:aa7:d058:0:b0:51b:d567:cfed with SMTP id n24-20020aa7d058000000b0051bd567cfedmr21575438edo.5.1693219175747;
-        Mon, 28 Aug 2023 03:39:35 -0700 (PDT)
+        bh=7OanaXXnrMsaEfBjCXrcfdtKi7g9UEMwaAf60pZJsSc=;
+        b=STxuxqgnUJTWRYYpeHiiXuZzydorO9VCAoO3eLpBJbMUiqjWrUm/6J/KULzL8LMLt6
+         G6ad+EzPKzy2xIwyIu/YG5NwcFwYBJenYM/AxzE52NA7btNeZGeuenFimURddqKCYsWR
+         ehigWSkEVZwnLeQRA7yvMNJxAx2iw75GbjmkFiFe5npbb5DkbYyoGzuYIhYflL/uRvdj
+         a90phhn6ii4fGFj9ekyI50hZxJ90PxXqu6tk/N+W1V4QyJAoCVUyBsQ2JvuwLhnOLeh0
+         D/Afk/0xJXNw1GYrs+xOlpsdDfYqSHtsrB5r/gKbOG7OFOUa2rHGQB88GSZVk3C0r23/
+         CW1A==
+X-Gm-Message-State: AOJu0Yy+ZiMDLhv30YW5h3KKNK6g1A+nefzylPb3Dva5ChkRzCUFIm+N
+        a05CzzAC2eC5tSiIJVflVTvNCg==
+X-Google-Smtp-Source: AGHT+IHTA017TesrZlA/sySPLP1brYSSYzfcBNjrMk0jhiVJiNfeXLqU0j3wzbMWlEZaqDpfvcftoQ==
+X-Received: by 2002:a17:906:7392:b0:9a1:d087:e0bd with SMTP id f18-20020a170906739200b009a1d087e0bdmr11535283ejl.6.1693219522129;
+        Mon, 28 Aug 2023 03:45:22 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.225])
-        by smtp.gmail.com with ESMTPSA id y21-20020aa7c255000000b005257da6be23sm4302550edo.75.2023.08.28.03.39.34
+        by smtp.gmail.com with ESMTPSA id cf20-20020a170906b2d400b0098e78ff1a87sm4500818ejb.120.2023.08.28.03.45.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 03:39:35 -0700 (PDT)
-Message-ID: <5c0d985a-0492-778c-46b9-80899e52134c@linaro.org>
-Date:   Mon, 28 Aug 2023 12:39:34 +0200
+        Mon, 28 Aug 2023 03:45:21 -0700 (PDT)
+Message-ID: <8f9f24c7-c93f-4cb8-bbd2-f0a8502d5f1b@linaro.org>
+Date:   Mon, 28 Aug 2023 12:45:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v6 1/2] dt-binding: pinctrl: Add NPCM8XX pinctrl and GPIO
- documentation
+Subject: Re: [PATCH 1/2] dt-bindings: power: Add regulator-pd yaml file
 Content-Language: en-US
+To:     Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Shenwei Wang <shenwei.wang@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "imx@lists.linux.dev" <imx@lists.linux.dev>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+References: <20230818153446.1076027-1-shenwei.wang@nxp.com>
+ <CAPDyKFqsn6kVjPFUdVyRxNDiOaHO9hq=9c+6eAK4N-v-LVWUPw@mail.gmail.com>
+ <PAXPR04MB91858254554272C90822FED1891DA@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <CAPDyKFoV2Z=-WUiF3SgXqhF+K+r5QqsLgz8_hau0WKfZxTzYpg@mail.gmail.com>
+ <PAXPR04MB9185F6AA20B0440B8FAB847789E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <4e2c18e3-b1ed-6361-3998-5de060d2bcf0@linaro.org>
+ <CAPDyKFro6roynXuS1caARpMK08hvARQ7mQfiJcDgCyJXiw=nzw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        avifishman70@gmail.com, tali.perry1@gmail.com, joel@jms.id.au,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        j.neuschaefer@gmx.net, openbmc@lists.ozlabs.org,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-References: <20230827203612.173562-1-tmaimon77@gmail.com>
- <20230827203612.173562-2-tmaimon77@gmail.com>
- <eccc6a7a-b30f-8c77-77cb-5deef47a1954@linaro.org>
- <CAP6Zq1jj0WDbtL1zhr=tVyh2GPRy6-=oHjVURmJzNRm3n0HBNg@mail.gmail.com>
- <c984d558-11b5-d5ea-9819-7641129de584@linaro.org>
-In-Reply-To: <c984d558-11b5-d5ea-9819-7641129de584@linaro.org>
+In-Reply-To: <CAPDyKFro6roynXuS1caARpMK08hvARQ7mQfiJcDgCyJXiw=nzw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 12:36, Krzysztof Kozlowski wrote:
-> On 28/08/2023 12:26, Tomer Maimon wrote:
->> Hi Krzysztof,
+On 28/08/2023 11:59, Ulf Hansson wrote:
+> On Sat, 26 Aug 2023 at 19:31, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Thanks for your comments
->>
->> On Mon, 28 Aug 2023 at 10:10, Krzysztof Kozlowski
->> <krzysztof.kozlowski@linaro.org> wrote:
->>>
->>> On 27/08/2023 22:36, Tomer Maimon wrote:
->>>> Added device tree binding documentation for Nuvoton Arbel BMC NPCM8XX
->>>> pinmux and GPIO controller.
+>> On 25/08/2023 17:44, Shenwei Wang wrote:
 >>>>
->>>> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
->>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>> ---
+>>>> The genpd provider then needs to be a consumer of the resources it needs. In
+>>>> this case a couple of regulators it seems like.
+>>>>
 >>>
+>>> If I understood your reply correctly,  it seems that the current implementation of
+>>> regulator-pd is what you have described. Please correct me if I'm mistaken.
 >>>
->>>> +  '^pin':
->>>> +    $ref: pincfg-node.yaml#
->>>> +
->>>> +    properties:
->>>> +      pins:
->>>> +        description:
->>>> +          A list of pins to configure in certain ways, such as enabling
->>>> +          debouncing
+>>> The following are the diff of scu-pd and this regulator-pd.
 >>>
->>> What pin names are allowed?
->> Do you mean to describe all the allowed pin items?
->> for example:
->>       items:
->>         pattern:
->> 'GPIO0/IOX1_DI/SMB6C_SDA/SMB18_SDA|GPIO1/IOX1_LD/SMB6C_SCL/SMB18_SCL'
->> or
->>       items:
->>         pattern: '^GPIO([0-9]|[0-9][0-9]|[1-2][0-4][0-9]|25[0-6])$'
+>>>     power-controller {                                                    power-controller {
+>>>         compatible = "fsl,imx8qxp-scu-pd", "fsl,scu-pd";      |               compatible = "regulator-power-domain";
+>>>         #power-domain-cells = <1>;                                    #power-domain-cells = <1>;
+>>>                                                             >
+>>>                                                             >         regulator-number = <2>;
+>>>                                                             >         regulator-0-supply = <&reg1>;
+>>>                                                             >         regulator-1-supply = <&reg2>;
+>>>     };                                                                    };
+>>>
+>>> Are you suggesting to move the regulator-pd to the imx directory and add a company prefix
+>>> to the compatible string?
 >>
->> is good enough?
+>> There is no such part of iMX processor as such regulator-power-domain,
+>> so I don't recommend that approach. DTS nodes represent hardware, not
+>> your SW layers.
 > 
-> Something like this. Whichever is correct.
-> 
->>>
->>>> +
->>>> +      bias-disable: true
->>>> +
-> 
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +    #include <dt-bindings/gpio/gpio.h>
->>>> +
->>>> +    soc {
->>>> +      #address-cells = <2>;
->>>> +      #size-cells = <2>;
->>>> +
->>>> +      pinctrl: pinctrl@f0800260 {
->>>
->>> Nothing improved here. Test your DTS. This is being reported - I checked.
->> what do you suggest since the pinctrl doesn't have a reg parameter,
->> maybe pinctrl: pinctrl@0?
-> 
-> It has ranges, so yes @0 looks correct here.
+> I would agree if this was pure SW layers, but I don't think it is. At
+> least, if I have understood the earlier discussions correctly [1],
+> there are certainly one or more power-domains here. The power-domains
+> just happen to be powered through something that can be modelled as a
+> regular regulator(s). No?
 
-Wait, your address according to ranges is 0xf0010000, not 0x0, not
-0xf0800260...
+No. It was for controlling power of multiple devices, supplied by
+multiple different or similar regulators, where Linux drivers for these
+devices (so not even all drivers...) do not have regulator control. The
+bindings for these devices allow power-domains, but not regulator.
 
+There are no multiple power domains in the problem. Even term "power
+domain" is questionable here, because we tend to look power domain as
+part of SoC. Here it is some selected part of the circuitry, like few
+totally independent devices which share purpose and power rails.
 
-> Which leds to second
-> question - how pinctrl could have @0? It's already taken by SoC! So your
-> DTS here - unit address and ranges - are clearly wrong.
-> 
-> 
->> BTW, I have run both dt_binding_check and W=1 dtbs_check, and didn't
->> see an issue related to the pinctrl: pinctrl@f0800260, do I need to
->> add another flag to see the issue?
-> 
-> Did you read my message last time? I said - it's about DTS, not the binding.
+But more important is my first paragraph - this is purely to avoid
+adding regulators to these devices.
 
 Best regards,
 Krzysztof
