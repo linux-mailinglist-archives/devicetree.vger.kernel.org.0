@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27DF978B169
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 15:13:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D27DD78B176
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 15:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231314AbjH1NNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 09:13:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40336 "EHLO
+        id S229925AbjH1NRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 09:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231128AbjH1NNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 09:13:17 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE62011C;
-        Mon, 28 Aug 2023 06:13:10 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so4900437e87.1;
-        Mon, 28 Aug 2023 06:13:10 -0700 (PDT)
+        with ESMTP id S230501AbjH1NQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 09:16:42 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C81E11C;
+        Mon, 28 Aug 2023 06:16:39 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b9f0b7af65so47264261fa.1;
+        Mon, 28 Aug 2023 06:16:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693228389; x=1693833189;
+        d=gmail.com; s=20221208; t=1693228597; x=1693833397;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vPcs0sktiib0CVnQrsGDXOLxOsYaOoyJrgrvneL+iRI=;
-        b=EEnmV2sMju/dqKLAuQnHnueTheowYjzwfKRXRixXky7c7ImDccINdT0pTl+/2ge+j+
-         W1pQXboC6Ty5KaPQZKmUab5cR3/E3SPwFn9K5eeYl/qmeBKaQa0ZNEv0Ddn8XiMFJqQu
-         qD/Z4VBRm4rRaM4vVz88+OFysYVXVgVRKBzET7RGwE1kO4apkcxPBMqGD+JJw6ak5oyb
-         cbRNV3fTTE0nex1r7M5S7x16TkQYwiy8j7DXsPDziOQbK2rK4EsaWc8IHmA34JmackPg
-         2L1uMD91hM5K9qVgvueZ9hdPljPNiLj8bD9B18OaT2HrcTATN4QQajG50QkT5f9Qkpyl
-         2zCg==
+        bh=XFmS+lobOszZw6W/QjUfDnJ5/Wvc31my2B1+5jBa7/A=;
+        b=OQDAjV8mL2PUcye54nJcr6yKcKc1uYXBEejW9G0o+zfSHAPiUae7LS2RRT+CdJav1d
+         j8gXyy7HXBObI85M8fhu1vAyA086jT9dhzVbit+NxLf4dCvQXPbW+Wl8qFRUt13Iquka
+         GLvsON1Oc3cdnxwHgpbYt0cweaWvqknrNFy/CQnp5RcalL0G+xeUzARgt5H4pWJ0sBfF
+         8vpzXWXvpAkLSgOx28M2huZunrNYiRx+mnxzxEyaJbVdlP+aUscSjhVGZfs9lmwFl0B8
+         0+NjXU5YXcuaIrUgPD4s+YKG060zx1NOgmPkMxO8C+oSag77EIejkjB5KsHjdQzw0+Pe
+         46Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693228389; x=1693833189;
+        d=1e100.net; s=20221208; t=1693228597; x=1693833397;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vPcs0sktiib0CVnQrsGDXOLxOsYaOoyJrgrvneL+iRI=;
-        b=Mjod15cTPj1Qn7CYK650wj/1lKdh4L5AFMfFoirHxojvpFdWRf2aU4wZR5FIOxUik5
-         BPBTDpQk6kzD2XF6iqA4dG8ImHn4WRmfUmTIY8AzfAwOUe1h9BIQ7gCKy2Ub6WqoeqGH
-         QccvEvTiFSXseLREnERCge0sla7ho5ypdIvOcyFmgNB1hLNEooD8dSFHfOV7IrWjIUiF
-         P2UnDSFqLQgTeOjG7tkpUDTnIj3azlO6gtMUj3dErMjxhsV3PMBfnYy9JRxpulNsH5Gl
-         LD0N0nc0vSfd+az+7yGUCKttb58cmt7MYUTZ+oVoO1ANSrD5s14nPg6Ock2WCwXRCgk3
-         fr7g==
-X-Gm-Message-State: AOJu0YzGCYtev2oWLfmsXTmpI5mnivOoH00thKc3rwlqRRC2lKtGRV3P
-        MDdEewkCV8sUkbB8mNwB74s=
-X-Google-Smtp-Source: AGHT+IEm2nDKmysz9bZqzY/IjgJcyF6bL+NRMaFzEewPti0bqJYqOQn+cfpgmS2KGCGOxCmnPQWspQ==
-X-Received: by 2002:a2e:99c4:0:b0:2bc:e856:6208 with SMTP id l4-20020a2e99c4000000b002bce8566208mr8664753ljj.33.1693228388708;
-        Mon, 28 Aug 2023 06:13:08 -0700 (PDT)
+        bh=XFmS+lobOszZw6W/QjUfDnJ5/Wvc31my2B1+5jBa7/A=;
+        b=Z3C6TShQfif/BxccEqyr7zskmuApr8VgIXQXxq+HNs8b4WQwHZHsBwfiDvF7wox9r+
+         0ndgpHOctFzjv024C1QBbJzE8Q2SYteVG7ginnATG7JPMs+HXlMFbgw7TCjWFPf304D2
+         nXaWO1UjDWdf4AfBBNd7naMfAjesHUFklG7bDtE7Y+U6G8GiQ6ouDZzKigWohets8eG4
+         05SSwwSFqZCg+gjoTGW2ZF5CZel/m+zUnR0vMZ4KN7scfTFN/ugjEZFTVgGve38Xj9qQ
+         vU9dyV7sXrChtYs6W2UH4CIPFZLiddbCqneBQPGxOcf7C8Hg8KQcJakUxjW1Z30YOHjQ
+         aAjQ==
+X-Gm-Message-State: AOJu0YybkRVNsuusFFPE+Zje1GQCcoIxUaLu/lJahEi3c/R/+oxLMyLi
+        ka6Bho+MIjH8TO4RzXHVuKw=
+X-Google-Smtp-Source: AGHT+IGSl1gon6Mw15MQYmfOY6/9wlPue4ynOnk1kyxKFHnkqnQl6GNsj4QdZfkhjBmEOXhmF7zt6A==
+X-Received: by 2002:a2e:a201:0:b0:2b5:9d78:213e with SMTP id h1-20020a2ea201000000b002b59d78213emr18323279ljm.22.1693228597433;
+        Mon, 28 Aug 2023 06:16:37 -0700 (PDT)
 Received: from mobilestation ([178.176.56.174])
-        by smtp.gmail.com with ESMTPSA id n23-20020a2e86d7000000b002b9e5fe86dasm1727253ljj.81.2023.08.28.06.13.07
+        by smtp.gmail.com with ESMTPSA id l17-20020a2e7011000000b002b9f1214394sm1754206ljc.13.2023.08.28.06.16.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Aug 2023 06:13:08 -0700 (PDT)
-Date:   Mon, 28 Aug 2023 16:13:00 +0300
+        Mon, 28 Aug 2023 06:16:36 -0700 (PDT)
+Date:   Mon, 28 Aug 2023 16:16:34 +0300
 From:   Serge Semin <fancer.lancer@gmail.com>
 To:     Jisheng Zhang <jszhang@kernel.org>
 Cc:     "David S . Miller" <davem@davemloft.net>,
@@ -70,7 +70,7 @@ Cc:     "David S . Miller" <davem@davemloft.net>,
         linux-riscv@lists.infradead.org
 Subject: Re: [PATCH net-next v2 2/3] dt-bindings: net: add T-HEAD dwmac
  support
-Message-ID: <qc2nyqmuouig6qww2q7orlwzvcprjyruyeuyr5dqdpxysajjpv@6fzsgjgokry7>
+Message-ID: <koiz2vlo3juah7kgvefjiyvxkh7k6tu3an3v7uewpmtdurkico@sazvvhpwvzg6>
 References: <20230827091710.1483-1-jszhang@kernel.org>
  <20230827091710.1483-3-jszhang@kernel.org>
 MIME-Version: 1.0
@@ -79,7 +79,7 @@ Content-Disposition: inline
 In-Reply-To: <20230827091710.1483-3-jszhang@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -113,11 +113,7 @@ On Sun, Aug 27, 2023 at 05:17:09PM +0800, Jisheng Zhang wrote:
 > new file mode 100644
 > index 000000000000..bf8ec8ca2753
 > --- /dev/null
-
 > +++ b/Documentation/devicetree/bindings/net/thead,dwmac.yaml
-
-see further regarding using dwmac in the names here.
-
 > @@ -0,0 +1,77 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
@@ -125,26 +121,7 @@ see further regarding using dwmac in the names here.
 > +$id: http://devicetree.org/schemas/net/thead,dwmac.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-
 > +title: T-HEAD DWMAC Ethernet controller
-
-Additionally would be nice to have a brief controller "description:"
-having the next info: the SoCs the controllers can be found on, the DW
-(G)MAC IP-core version the ethernet controller is based on and some
-data about the synthesize parameters: SMA (MDIO-bus), Tx/Rx COE, DMA
-FIFOs size, perfect and hash MAC-filters size, L3L4 frame filters
-availability, VLAN hash filter, SA/VLAN-tag insertion, ARP offload
-engine, PHY interfaces (MII, RMII, RGMII, etc), EEE support, IEEE
-1588(-2008) Timestamping support, PMT and Wake-up frame support, MAC
-Management counters (MMC). In addition to that for DW QoS
-ETH/XGMAC/XLGMAC the next info would be useful: number of MTL Queues
-and DMA channels, MTL queues capabilities (QoS-related), TSO
-availability, SPO availability.
-
-Note DMA FIFO sizes can be also constrained in the properties
-"rx-fifo-depth" and "tx-fifo-depth"; perfect and hash MAC-filter sizes -
-in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
-
 > +
 > +maintainers:
 > +  - Jisheng Zhang <jszhang@kernel.org>
@@ -154,14 +131,7 @@ in "snps,perfect-filter-entries" and "snps,multicast-filter-bins".
 > +    compatible:
 > +      contains:
 > +        enum:
-
 > +          - thead,th1520-dwmac
-
-Referring to the DW IP-core in the compatible string isn't very
-much useful especially seeing you have a generic fallback compatible.
-Name like "thead,th1520-gmac" looks more informative indicating its
-speed capability.
-
 > +  required:
 > +    - compatible
 > +
@@ -169,19 +139,21 @@ speed capability.
 > +  compatible:
 > +    items:
 > +      - enum:
-
 > +          - thead,th1520-dwmac
-
-ditto.
-
--Serge(y)
-
 > +      - const: snps,dwmac-3.70a
 > +
 > +  reg:
 > +    maxItems: 1
 > +
+
 > +  thead,gmacapb:
+
+BTW what is a point in having the "apb" prefix in the name?
+The property name like "thead,gmac-syscon" looks much more suitable
+since it refers to the actual property content.
+
+-Serge(y)
+
 > +    $ref: /schemas/types.yaml#/definitions/phandle
 > +    description:
 > +      The phandle to the syscon node that control ethernet
