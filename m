@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB0478A496
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 04:26:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02E6678A4C4
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 05:23:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbjH1CZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Aug 2023 22:25:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45756 "EHLO
+        id S229998AbjH1DTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Aug 2023 23:19:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229480AbjH1CZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 22:25:25 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EB45D8;
-        Sun, 27 Aug 2023 19:25:23 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-5298e43bb67so5695835a12.1;
-        Sun, 27 Aug 2023 19:25:23 -0700 (PDT)
+        with ESMTP id S229993AbjH1DTX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Aug 2023 23:19:23 -0400
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3235F11D;
+        Sun, 27 Aug 2023 20:19:21 -0700 (PDT)
+Received: by mail-pf1-x42c.google.com with SMTP id d2e1a72fcca58-68a3f1d8be2so2185680b3a.3;
+        Sun, 27 Aug 2023 20:19:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693189521; x=1693794321;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3uCqSe5BtqveCUXWZraiTGYO03+jzgwg7ae/wj5X+p4=;
-        b=Rs3o3lwnQlpCEgSLIhsuXQgDmYUY4nedQrR0H5FZ8oTW0MZRjTIwXBAPZ+XJu3G+TE
-         5KjGSKsVuufTscOJKZYMJ0KS9kzz7Xyep4wKl3+TVKixZzHm9nNNmppNSYgB6pYYp8wo
-         2RELcBP24h5WR7o6jlsDO44dmgK9Rx1V/rHeb5kqpg0aMZd+1c1fYnPO/kg2TIDgRiRO
-         F6FsxT3p+yiDRZpYEihMKhJw4/CBMdGfU1djfnZwE5niVYTe2vjJramAzelc7971T3gV
-         Ybsa3YcfCZr8kK6KmUBRZmdwfO/lSvmWuPcvibJK6pARqe0eHe8I8aasMcaQku+BGBpB
-         lOuQ==
+        d=gmail.com; s=20221208; t=1693192760; x=1693797560;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SxV4l6mlHU3mQ/9fiFdjek9/eZeTL4eJfpQUf2P54nk=;
+        b=crjy+4Ni2Ghud4KSDqZ9Xh49ym3plna27hs3mhYzrf61xlv0dcU7SOMgs51cQk4Wg/
+         vAAG3teXVIX7JuSfkCyFO3JrsvcE0G4JkM9CHUWs2fsYLKftY69rSDEUpao5XVws/I0m
+         ufE5LVbMTav5ILfa/8NhUKDUWTwiqGbzZT5eH8QgN0KWgaC+4Ian1V/ZHSzwYu0wJ6Fs
+         6hGgj+8r0QvrGzJy91lARPsOJkZdmi+NupIhCtry0HekLhGCp90un9Xg9lvSI7WvmShc
+         cqXfESg16tnLeDjEVEqfx0q8RPlWZjLTdsRK74lJ0xCu3YdRgcY3d6X3H+SsmW19wCMf
+         1+tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693189521; x=1693794321;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3uCqSe5BtqveCUXWZraiTGYO03+jzgwg7ae/wj5X+p4=;
-        b=loty176zXbuvP1FUdD2B1stkbLL0mY3Dp6/W4Dax59XfsQIx9KI1fvl9Hd7v+U2zf3
-         P5Fk3eLauCjbOUumb7/uU20oDfsC/Rn0Rf9JljhIGe2W/OiM/omjVV56GHMV6xMmEWKL
-         SV2fNBvmNVUID61rZ+5ruB2P9x5KsYHtRrTSadHXVt6vbAQe8IWkknhgtVgLMtsr38EC
-         5dhc9UBJhfUxJT1qYMEKMcu33YSXJkaqjdPAA57DTpDY96eQe6Y/MYchMKv3pN+LqJHz
-         hdYEJ/dfymUli/75E/ZVZL+JPXNj+ijGCWClZh8Bk5+uVK6+Ukmjr8F6ws2ABrte6NCY
-         p99Q==
-X-Gm-Message-State: AOJu0Yz1xr+hAK7NfWqvF5uvLyHKF8bW4Kp6Mj5Qm694KGyr9FizFjTB
-        gg4tjUhVhK5s+Wt07EC2zMKTt8a74NLbJ1xce98=
-X-Google-Smtp-Source: AGHT+IFjV4c6iPT2oORQcm92nmX2L7ZxJD/Ip41JWUNWiITPNAyX6af0+kocn3phLX4sb40+kQJXCmdDRW8aRdq8dR4=
-X-Received: by 2002:a05:6402:d56:b0:525:4d74:be8c with SMTP id
- ec22-20020a0564020d5600b005254d74be8cmr21355835edb.14.1693189521348; Sun, 27
- Aug 2023 19:25:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230822082750.27633-1-yu.tu@amlogic.com> <70b3ba82-0920-4613-9480-919a3df6833c@linux.com>
-In-Reply-To: <70b3ba82-0920-4613-9480-919a3df6833c@linux.com>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Mon, 28 Aug 2023 10:24:45 +0800
-Message-ID: <CAJhJPsWASjw-QiTocaJZCF5HYHUnF7xVf-o7Ohj0Mgjq0OpsLA@mail.gmail.com>
-Subject: Re: [PATCH V10 0/4] Add S4 SoC PLLs and Peripheral clock
-To:     Lucas Tanure <tanure@linux.com>
-Cc:     Yu Tu <yu.tu@amlogic.com>, linux-clk@vger.kernel.org,
+        d=1e100.net; s=20221208; t=1693192760; x=1693797560;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SxV4l6mlHU3mQ/9fiFdjek9/eZeTL4eJfpQUf2P54nk=;
+        b=Xhpn+NwLDe65L7woP8YDFxaC9ztiI/7TjVT2f1ZHGNjhzIogH1t+3J1IGBWi9wkrEw
+         VUj/G6lweETvWfP7DqKkncjSbMW4on+KMwjhDsFpspuVgUKW4AdXgV2oF4FJ9ts5L24G
+         zpQYOahnl3MR8yifptTWfaPLWw1SPTmODbAjD7HQFBBqpmXA9Tub0+/RGOKFOhZb2tT5
+         aB4tXljPnR8hX3vE4HbAfVFaxYVFCOP3EpeVLiOEc2+9yV50ZjyjcAxAkUbjnFGWyCS8
+         KTfaVs6EXLeDByy36Nfo7LLwmkCTJa04+JCrT5FaLLT1k14D+ou2GnblIYa1GGoKqdYR
+         EpWg==
+X-Gm-Message-State: AOJu0YyPXddLsnqbePX6rusOy9tjlm6DtZM6MC1KuCeH8NmwmX8xtz1X
+        0v7G3duYumZQxzgBTGx+V07qKiJ3i4Is1w==
+X-Google-Smtp-Source: AGHT+IH4xCHiRJskVFoI5Npu1Zt5yppOy1NybY7nXwk0lGL08sZgItveAfmQEBPVj7vF3uyK2fcF+A==
+X-Received: by 2002:a05:6a21:78a3:b0:14b:e604:9f0a with SMTP id bf35-20020a056a2178a300b0014be6049f0amr14214767pzc.20.1693192760545;
+        Sun, 27 Aug 2023 20:19:20 -0700 (PDT)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id c5-20020a170902d90500b001b9df8f14d7sm5967026plz.267.2023.08.27.20.19.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Aug 2023 20:19:19 -0700 (PDT)
+From:   peteryin <peteryin.openbmc@gmail.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        kelvin.zhang@amlogic.com, qi.duan@amlogic.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
+        daniel-hsu@quantatw.com, peteryin <peteryin.openbmc@gmail.com>
+Subject: [PATCH v2] Minerva: Add Meta openBMC Minerva dts file.
+Date:   Mon, 28 Aug 2023 11:17:14 +0800
+Message-Id: <20230828031714.107382-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,90 +71,389 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 1:34=E2=80=AFAM Lucas Tanure <tanure@linux.com> wro=
-te:
->
-> On 22-08-2023 09:27, Yu Tu wrote:
-> > 1. Add S4 SoC PLLs and Peripheral clock controller dt-bindings.
-> > 2. Add PLLs and Peripheral clock controller driver for S4 SOC.
-> >
-> >
-> > Yu Tu (4):
-> >    dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
-> >    dt-bindings: clock: document Amlogic S4 SoC peripherals clock
-> >      controller
-> >    clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
-> >    clk: meson: S4: add support for Amlogic S4 SoC peripheral clock
-> >      controller
-> >
-> > V9 -> V10:
-> > 1. Change the relevant S4 CLK patch based on Neil's recently modified
-> > patch.
-> > 2. Change patch 0003/0004 clocks comment, format and clock flags sugges=
-ted
-> > by Jerome.
-> >
-> > V8 -> V9: Add patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
-> > V7 -> V8:
-> > 1. Change patch 0001/0002 dt-bindings title description, remove "meson"=
-.
-> > Suggested by Dmitry, Neil.
-> > 2. Change patch 0003/0004 clocks comment, format and clock flags sugges=
-ted by
-> > Dmitry, Neil, Jerome.
-> >
-> > V6 -> V7: Change send patch series as well change format and clock flag=
-s
-> > suggested by Jerome. Change dt-bindings suggested by Krzysztof.
-> > V5 -> V6: Change send patch series, as well change format and clock fla=
-gs.
-> > V4 -> V5: change format and clock flags and adjust the patch series
-> > as suggested by Jerome.
-> > V3 -> V4: change format and clock flags.
-> > V2 -> V3: Use two clock controller.
-> > V1 -> V2: Change format as discussed in the email.
-> >
-> > Link:https://lore.kernel.org/linux-amlogic/20230517070215.28463-1-yu.tu=
-@amlogic.com/
-> >
-> >   .../clock/amlogic,s4-peripherals-clkc.yaml    |   96 +
-> >   .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   49 +
-> >   drivers/clk/meson/Kconfig                     |   23 +
-> >   drivers/clk/meson/Makefile                    |    2 +
-> >   drivers/clk/meson/s4-peripherals.c            | 3787 ++++++++++++++++=
+This is for Meta openBMC Minerva dts.
+
+Kernel:dev-6.1
+
+Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
+
+---
+v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
+
+Change log:
+v1:
+    1. Create minerva dts file.
+v2:
+    1.Add facebook,minerva-bmc in aspeed.yaml
+    2.use stdout-path
+    3.Add Makefile
+---
+
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 329 ++++++++++++++++++
+ 3 files changed, 331 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index fb4ce5df2fa0..9d1b26e7ca6b 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -79,6 +79,7 @@ properties:
+               - facebook,elbert-bmc
+               - facebook,fuji-bmc
+               - facebook,greatlakes-bmc
++              - facebook,minerva-bmc
+               - ibm,everest-bmc
+               - ibm,rainier-bmc
+               - ibm,tacoma-bmc
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 6a897ff40ff0..e7c00905a08b 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1603,6 +1603,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-bmc-facebook-wedge400.dtb \
+ 	aspeed-bmc-facebook-yamp.dtb \
+ 	aspeed-bmc-facebook-yosemitev2.dtb \
++	aspeed-bmc-facebook-minerva.dtb \
+ 	aspeed-bmc-ibm-bonnell.dtb \
+ 	aspeed-bmc-ibm-everest.dtb \
+ 	aspeed-bmc-ibm-rainier.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+new file mode 100644
+index 000000000000..fa4a803d68f2
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+@@ -0,0 +1,329 @@
++// SPDX-License-Identifier: GPL-2.0+
++// Copyright (c) 2023 Facebook Inc.
++/dts-v1/;
 +
-> >   drivers/clk/meson/s4-peripherals.h            |   57 +
-> >   drivers/clk/meson/s4-pll.c                    |  867 ++++
-> >   drivers/clk/meson/s4-pll.h                    |   38 +
-> >   .../clock/amlogic,s4-peripherals-clkc.h       |  236 +
-> >   .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   43 +
-> >   10 files changed, 5198 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4=
--peripherals-clkc.yaml
-> >   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4=
--pll-clkc.yaml
-> >   create mode 100644 drivers/clk/meson/s4-peripherals.c
-> >   create mode 100644 drivers/clk/meson/s4-peripherals.h
-> >   create mode 100644 drivers/clk/meson/s4-pll.c
-> >   create mode 100644 drivers/clk/meson/s4-pll.h
-> >   create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-c=
-lkc.h
-> >   create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
-> >
-> >
-> > base-commit: bd0f6c57c2b324b6f92ccfe13a8005ff829287b8
-> How similar is T7 and S4 regarding the clocks?
-> Can S4 clock driver be used by T7 without modifications?
->
-Unfortunately not.
-But don't worry! The T7 clock driver is coming soon.
++#include "aspeed-g6.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++
++/ {
++	model = "Facebook Minerva";
++	compatible = "facebook,minerva-bmc", "aspeed,ast2600";
++
++	aliases {
++		serial0 = &uart1;
++		serial4 = &uart5;
++	};
++
++	chosen {
++		stdout-path = &uart5;
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x80000000>;
++	};
++
++	iio-hwmon {
++		compatible = "iio-hwmon";
++		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
++			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
++			<&adc1 2>;
++	};
++
++};
++
++// HOST BIOS Debug
++&uart1 {
++	status = "okay";
++};
++
++
++// SOL Host Console
++&uart2 {
++	status = "okay";
++	pinctrl-0 = <>;
++
++};
++
++// SOL BMC Console
++&uart4 {
++	status = "okay";
++	pinctrl-0 = <>;
++};
++
++// BMC Debug Console
++&uart5 {
++	status = "okay";
++};
++
++//MTIA
++&uart6 {
++	status = "okay";
++};
++
++&uart_routing {
++	status = "okay";
++};
++
++&vuart1 {
++	status = "okay";
++	virtual;
++	port=<0x3e8>;
++	sirq = <7>;
++	sirq-polarity = <0>;
++	dma-mode;
++	dma-channel = <12>;
++};
++
++&wdt1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdtrst1_default>;
++	aspeed,reset-type = "soc";
++	aspeed,external-signal;
++	aspeed,ext-push-pull;
++	aspeed,ext-active-high;
++	aspeed,ext-pulse-duration = <256>;
++};
++
++
++&mac3 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rmii4_default>;
++	no-hw-checksum;
++	use-ncsi;
++	ncsi-ctrl,start-redo-probe;
++	ncsi-ctrl,no-channel-monitor;
++	mlx,multi-host;
++	ncsi-package = <1>;
++	ncsi-channel = <1>;
++	ncsi-rexmit = <1>;
++	ncsi-timeout = <2>;
++};
++
++&rtc {
++	status = "okay";
++};
++
++&fmc {
++	status = "okay";
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bmc";
++		spi-max-frequency = <50000000>;
++#include "openbmc-flash-layout-128.dtsi"
++	};
++	flash@1 {
++		status = "okay";
++		m25p,fast-read;
++		label = "alt-bmc";
++		spi-max-frequency = <50000000>;
++	};
++};
++
++
++//BIOS Flash
++&spi2 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi2_default>;
++
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "pnor";
++		spi-max-frequency = <12000000>;
++		spi-tx-bus-width = <2>;
++		spi-rx-bus-width = <2>;
++	};
++};
++
++
++&kcs2 {
++	status = "okay";
++	aspeed,lpc-io-reg = <0xca8>;
++};
++
++&kcs3 {
++	status = "okay";
++	aspeed,lpc-io-reg = <0xca2>;
++};
++
++
++&lpc_snoop {
++	status = "okay";
++	snoop-ports = <0x80>;
++};
++
++&peci0 {
++	status = "okay";
++	clock-frequency = <1000000>;
++};
++
++&sgpiom0 {
++	status = "okay";
++	max-ngpios = <128>;
++	ngpios = <128>;
++	bus-frequency = <2000000>;
++	gpio-line-names =
++	/*in - out - in - out */
++	/*A0-A7*/   "","","","","","enable_sensors","","",
++	/*A0-A7*/   "","","","","","","","",
++	/*B0-B7*/   "","","","","","","","",
++	/*B0-B7*/   "","","","","","","","",
++	/*C0-C7*/   "","","","","","","","",
++	/*C0-C7*/   "","","","","","","","",
++	/*D0-D7*/   "","","","","","","","",
++	/*D0-D7*/   "","","","","","","","",
++	/*E0-E7*/   "","","","","","","","",
++	/*E0-E7*/   "","","","","","","","",
++	/*F0-F7*/   "","","","","","","","",
++	/*F0-F7*/   "","","","","","","","",
++	/*G0-G7*/   "","","","","","","","",
++	/*G0-G7*/   "","","","","","","","",
++	/*H0-H7*/   "","","","","","","","",
++	/*H0-H7*/   "","","","","","","","";
++};
++
++&i2c0 {
++	status = "okay";
++};
++
++&i2c1 {
++	status = "okay";
++	tmp75@4B {
++		compatible = "ti,tmp75";
++		reg = <0x4B>;
++	};
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&i2c3 {
++	status = "okay";
++};
++
++&i2c4 {
++	status = "okay";
++};
++
++&i2c5 {
++	status = "okay";
++};
++
++&i2c6 {
++	status = "okay";
++};
++
++&i2c7 {
++	status = "okay";
++};
++
++&i2c8 {
++	status = "okay";
++};
++
++&i2c9 {
++	status = "okay";
++};
++
++&i2c11 {
++	status = "okay";
++};
++
++&i2c12 {
++	status = "okay";
++};
++
++&i2c13 {
++	status = "okay";
++};
++
++// To Debug card
++&i2c14 {
++	status = "okay";
++	multi-master;
++	aspeed,hw-timeout-ms = <1000>;
++};
++
++&i2c15 {
++	status = "okay";
++	// SCM FRU
++	eeprom@50 {
++		compatible = "atmel,24c64";
++		reg = <0x50>;
++	};
++	// BSM FRU
++	eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++	};
++};
++
++&adc0 {
++	ref_voltage = <2500>;
++	status = "okay";
++
++	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
++		&pinctrl_adc2_default &pinctrl_adc3_default
++		&pinctrl_adc4_default &pinctrl_adc5_default
++		&pinctrl_adc6_default &pinctrl_adc7_default>;
++};
++
++&adc1 {
++	ref_voltage = <2500>;
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc10_default>;
++};
++
++&jtag1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_jtagm_default>;
++};
++
++&ehci1 {
++	status = "okay";
++};
++
++&gpio0 {
++	pinctrl-names = "default";
++	gpio-line-names =
++	/*A0-A7*/	"","","","","","","","",
++	/*B0-B7*/	"","","","","","","","",
++	/*C0-C7*/	"","","","","","","","",
++	/*D0-D7*/	"","","SOL_UART_SET","","","","","",
++	/*E0-E7*/	"","","","","","","","",
++	/*F0-F7*/	"","","","","","","","",
++	/*G0-G7*/	"","","","","","","","",
++	/*H0-H7*/	"","","","","","","","",
++	/*I0-I7*/	"","","","","","","","",
++	/*J0-J7*/	"","","","","","","","",
++	/*K0-K7*/	"","","","","","","","",
++	/*L0-L7*/	"","","","","","","","",
++	/*M0-M7*/	"","","","","","","","",
++	/*N0-N7*/	"LED_POSTCODE_0","LED_POSTCODE_1",
++			"LED_POSTCODE_2","LED_POSTCODE_3",
++			"LED_POSTCODE_4","LED_POSTCODE_5",
++			"LED_POSTCODE_6","LED_POSTCODE_7",
++	/*O0-O7*/	"","","","","","","","",
++	/*P0-P7*/	"","","","","","","","",
++	/*Q0-Q7*/	"","","","","","","","",
++	/*R0-R7*/	"","","","","","","","",
++	/*S0-S7*/	"","","","","","","","",
++	/*T0-T7*/	"","","","","","","","",
++	/*U0-U7*/	"","","","","","","","",
++	/*V0-V7*/	"","","","","","","","",
++	/*W0-W7*/	"","","","","","","","",
++	/*X0-X7*/	"","","","","","","","",
++	/*Y0-Y7*/	"","","","","","","","",
++	/*Z0-Z7*/	"","","","","","","","";
++};
++
+-- 
+2.25.1
 
-> Thanks
-> Lucas
-
-
-
---=20
-Best regards,
-
-Keguang Zhang
