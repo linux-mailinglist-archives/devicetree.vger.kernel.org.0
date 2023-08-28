@@ -2,72 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5805F78B40B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:10:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D4F78B423
+	for <lists+devicetree@lfdr.de>; Mon, 28 Aug 2023 17:14:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230469AbjH1PJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 11:09:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57068 "EHLO
+        id S231315AbjH1POW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 11:14:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232307AbjH1PJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:09:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AA6CF4;
-        Mon, 28 Aug 2023 08:09:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S232554AbjH1PON (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 11:14:13 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD2CC11B;
+        Mon, 28 Aug 2023 08:14:07 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2058C64B0A;
-        Mon, 28 Aug 2023 15:09:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAE0BC433C8;
-        Mon, 28 Aug 2023 15:09:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693235345;
-        bh=qPriMxSAV88FlSYV2Hrf0f+uevuvbEuOnhth6VkWAhI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZG2x7KvTVu+TXqpxQ8vkSNUY3CsPxKm9qutibXDS0SG7dIjI688xT4/14YGbhIwU8
-         /fvvBCETif+pYsVpCrk4mrqu7i2LwcqMEBIWanxmQmcHm0GmQZcRNgYxA3MgrWvI29
-         0LDOm4yv+wMhGCoS20nmPb8gKHsuJzpZKeuRihqtHOnFCDtxMoRWFeNtGSJViq+PaA
-         NoZo4Ab7LnvVs2BcwFW5w0ZKeqVei08rILh5S1EljhJMX/3skDb5mEQ8zibQFvpnh8
-         0e4dJTUEpOKDAspNX1Cs3tmfWW5qlbm3aqk/bWPOOWnVojS2vtF27LAki5uDLrHNNN
-         bDhOSkZ4R+vcA==
-Received: (nullmailer pid 539828 invoked by uid 1000);
-        Mon, 28 Aug 2023 15:09:03 -0000
-Date:   Mon, 28 Aug 2023 10:09:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Keguang Zhang <keguang.zhang@gmail.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mips: loongson: Add LS1B demo board
-Message-ID: <20230828150903.GA499616-robh@kernel.org>
-References: <20230825124115.1177577-1-keguang.zhang@gmail.com>
- <2856de1b-36cd-1d56-734a-401def967870@linaro.org>
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 860961F383;
+        Mon, 28 Aug 2023 15:14:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+        t=1693235646; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=a7/Km/jKsLvw/NKxCW99seF9lWJLgqSMYTjISiIIMKY=;
+        b=juD3P3pg0IENzHff2mRHsgSANByBQnrGln5C3hvcCzhoqJYhonY1TUGpJLhJZGgf0MvXcP
+        +PtjfZah9cWEzPiDO9+Gvo9S+TGt9hH960NL/IiEVuDEDqEVWDLncPTnHthr0sf4alrAhT
+        fb9+7E0p4jOMihGKndQ3IVBUdJb8VL8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+        s=susede2_ed25519; t=1693235646;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=a7/Km/jKsLvw/NKxCW99seF9lWJLgqSMYTjISiIIMKY=;
+        b=dvUTP6SlcF9q6wm+rNzL0rLC/Km4gFRV9ib+4Lm87cMoll/Oolti2EbwuhB3xhWG+WRWFB
+        7gf3JDwBCteRWTDQ==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 3502913A11;
+        Mon, 28 Aug 2023 15:14:06 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id y/UUDL657GTYdgAAMHmgww
+        (envelope-from <vbabka@suse.cz>); Mon, 28 Aug 2023 15:14:06 +0000
+Message-ID: <9aec0740-2482-d3ad-caf2-5e6278a050b3@suse.cz>
+Date:   Mon, 28 Aug 2023 17:14:05 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2856de1b-36cd-1d56-734a-401def967870@linaro.org>
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     Jani Nikula <jani.nikula@intel.com>,
+        Guru Das Srinagesh <quic_gurus@quicinc.com>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+        Kees Cook <keescook@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        quic_pkondeti@quicinc.com, linux-kernel@vger.kernel.org,
+        kernel@quicinc.com, workflows@vger.kernel.org,
+        tools@linux.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+References: <cover.1693037031.git.quic_gurus@quicinc.com>
+ <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
+ <87jztf37ny.fsf@intel.com>
+ <20230828133554.GA818859@hu-bjorande-lv.qualcomm.com>
+ <CAMuHMdU+3oj+-3=f5WFVTRsKQjqCpU8SnVqKSZGk8XRxhsDcVQ@mail.gmail.com>
+From:   Vlastimil Babka <vbabka@suse.cz>
+In-Reply-To: <CAMuHMdU+3oj+-3=f5WFVTRsKQjqCpU8SnVqKSZGk8XRxhsDcVQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 25, 2023 at 02:45:41PM +0200, Krzysztof Kozlowski wrote:
-> On 25/08/2023 14:41, Keguang Zhang wrote:
-> > Add compatible for LS1B demo board.
+On 8/28/23 15:48, Geert Uytterhoeven wrote:
+> Hi Bjorn,
 > 
-> Where is the user of this binding? We do not add bindings without users.
+> On Mon, Aug 28, 2023 at 3:37 PM Bjorn Andersson
+> <quic_bjorande@quicinc.com> wrote:
+>> On Mon, Aug 28, 2023 at 11:14:41AM +0300, Jani Nikula wrote:
+>> > On Sat, 26 Aug 2023, Guru Das Srinagesh <quic_gurus@quicinc.com> wrote:
+>> > > This script runs get_maintainer.py on a given patch file (or multiple
+>> > > patch files) and adds its output to the patch file in place with the
+>> > > appropriate email headers "To: " or "Cc: " as the case may be. These new
+>> > > headers are added after the "From: " line in the patch.
+>> >
+>> > FWIW, I personally prefer tooling to operate on git branches and commits
+>> > than patches. For me, the patches are just an intermediate step in
+>> > getting the commits from my git branch to the mailing list. That's not
+>> > where I add the Cc's, but rather in the commits in my local branch,
+>> > where they're preserved. YMMV.
+>> >
+>>
+>> May I ask how you add/carry the recipients in a commit?
+> 
+> I guess below a "---" line in the commit description?
 
-Maybe board compatibles should be an exception? They are rarely/never 
-used by the kernel so the only user will be a board dts. I'm not sure we 
-care about having every board upstream.
+Does that do anything special in commit log? I'd expect (and I do it that
+way) it's rather just adding a
 
-Rob
+Cc: Name <email>
+
+in the tag area where s-o-b, reviewed-by etc are added.
+
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+
