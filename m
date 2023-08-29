@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ECE378CA17
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:03:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39D8678CA24
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237588AbjH2RDC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 13:03:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58358 "EHLO
+        id S237477AbjH2REG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 13:04:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237636AbjH2RC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:02:59 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF55FF
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:02:55 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99357737980so601523366b.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:02:55 -0700 (PDT)
+        with ESMTP id S237623AbjH2RDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:03:55 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FDE1B7
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:03:51 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52a069edca6so6441018a12.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:03:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693328574; x=1693933374;
+        d=linaro.org; s=google; t=1693328630; x=1693933430;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bldnbmVybBud45ZJz7mQ560SdzkuWgXUw7+WaPmzy2M=;
-        b=GNyD1v/mEPcl/zk66goLL/Q+M2OgwzdgDqvu9qw30W3tfUdMS9j3eQhqmYwBIjbnJ8
-         OfAS2nldcpoQCk0rovTP1wfjB53b3uOBf7VX1BsQvC0BXWEtpPfUrehgaQ7er02r6n4I
-         pGsoa0C75NuMY6fMSEuIcapZKE8HkHtajUJkFPdqm7Yrp+PeQgscNcIewTKkeGhD55y0
-         9i8dDPsxC11FQIVTIVeYPu1nOZ6tNev7HhWSyFh/VRHHk1dDGUdyX009svPeqqnh17uz
-         E9TjcgYV4VqQD6Rr/GJkPH4UDFRsa6OMi5/f5JxEKhnajclWlMwwAsMRRFSXfMozrUB3
-         R/sA==
+        bh=tdTmjmuPAurruPWgK9CBCEBZHBscY3L79kIykl4vQps=;
+        b=waubyInGZ/ryHrlP/0kxJ7g8oFoIN9dIfMljCEhusZAyOVUhjKQP5HkJNeKm8inBOA
+         qTQoLBYJmTJcaZZAAVWAvZ1Y8IXutZXDSnA2n/CZn4cneOeGURsa7/RC2zsujeTSBE6v
+         OLRg+ztB+eMktVMqsJC2XJLIN2MWinYuWbe87Hjz47USRHEpkTf4TEwUn6IhWvPjuNt9
+         LXs2NlGPr7eRRnB+aZnfpBi9sksNlnxD3gBtz4QFyCwgfx5JMupSxM1hZm8DqqSvyZG3
+         vtFf1cVd9cllJv058Lsi4tvSruM2T2SSW0wIJLtztvqWV//B6O3g6vvxvFSbr+/CJiaH
+         xitQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693328574; x=1693933374;
+        d=1e100.net; s=20221208; t=1693328630; x=1693933430;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bldnbmVybBud45ZJz7mQ560SdzkuWgXUw7+WaPmzy2M=;
-        b=Ilke+sl+mbJ2VIfq/p7OxQdH5MD0CjDUcHU/L8QdpdpnbLt6Bv11PpbWvcuqVOLZTL
-         3hvMuw9OGVWE6VzE+G/bU/ECDHl1/p74RAa2lwH6y0GrIXTdtNZgsOFu3TWWpJuiJRbk
-         cUIBSJ8HtmUes8ibV39nHM3UjIW8IV+k8A/i5Ktgoz7/2w9/RLDepf0HXJQ6K3jo0od5
-         eg3knNNyI3i3WzuZRCuTvW11XoYeH4fyG1hB5WfQe44l3wOcBsdomUqS8X0R5gM9rL3U
-         wbO60TGMZNOnIwkr/osJKLT9KCIZg6vrB+Vqo+1Rz2bT5hAI0HjTeJFksj0po/wsokIm
-         DbHg==
-X-Gm-Message-State: AOJu0Yy1COkR9mPZQAbSUoox4hAldPZFsbe+GvH3esN/U+uZTlZzhvN/
-        3OJoJYzAgoNF0n/RFbwLvVX7gw==
-X-Google-Smtp-Source: AGHT+IGdvUShBa7B23B4k7U+l3LbZfQpW/c+8tVN/ml3RRu8aWbxm+RtW0v787C778RKVi+bfpmhzQ==
-X-Received: by 2002:a17:906:cc10:b0:9a3:b0c9:8203 with SMTP id ml16-20020a170906cc1000b009a3b0c98203mr10207132ejb.35.1693328573945;
-        Tue, 29 Aug 2023 10:02:53 -0700 (PDT)
+        bh=tdTmjmuPAurruPWgK9CBCEBZHBscY3L79kIykl4vQps=;
+        b=H1zMPgQWcbhlzQT6GTB79y2S5GxnAvfDb01gBWAzWayFfOxJpExFQJhj2EffNPyiFI
+         /dt5CYfbO39Ii30VjAeD1CTbfuliwrCZLFRQhb2AE8Vx8twda698K6R/Pi6YBvTkpHOU
+         /eeF70P1tWiVGzhEwrvaT/3n16BVQFV9C/v+gvA8oXGGriKvqcr5YfxADN0NTB5ctOYy
+         QfLHc/sQvUrDgGRl+Ed3+iQXgfZ3Lxwnlx5g3qf1hJObJFXiAzLV9P/jYXhZfMJPhyhM
+         Z+p3hammWuWj5y8LGu5EvCw41+RFEzfcJr/4IpPW7TZKFJLj5CKnDCZaUqud2OfU3QdV
+         sIgg==
+X-Gm-Message-State: AOJu0YxjOimRjeMx/4+KJ5mgE9StSFnTcksYM/MYL5ubnALkgiqLmfaD
+        Q1Z699r6fY1Quzo7EqGDFMcUBw==
+X-Google-Smtp-Source: AGHT+IGMNbdGZpiJfoKIbglOYT2jBQpjifa66imX4kAlXfQqNLwz78VbLZWuChdAb5e/Wmk2vArrsQ==
+X-Received: by 2002:a05:6402:14d1:b0:524:24dc:c455 with SMTP id f17-20020a05640214d100b0052424dcc455mr18273629edx.42.1693328629888;
+        Tue, 29 Aug 2023 10:03:49 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00999bb1e01dfsm6130049eja.52.2023.08.29.10.02.52
+        by smtp.gmail.com with ESMTPSA id r14-20020aa7d58e000000b0052a1a623267sm5801084edq.62.2023.08.29.10.03.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 10:02:53 -0700 (PDT)
-Message-ID: <1384c4a4-2abc-4534-9dba-5c0da9605b05@linaro.org>
-Date:   Tue, 29 Aug 2023 19:02:51 +0200
+        Tue, 29 Aug 2023 10:03:49 -0700 (PDT)
+Message-ID: <4d2df1ae-cf16-ddaa-ce03-eec520f19ae3@linaro.org>
+Date:   Tue, 29 Aug 2023 19:03:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 6/9] arm64: dts: qcom: ipq5332: Add USB3 related nodes
+Subject: Re: [PATCH 7/9] arm64: dts: qcom: ipq5332: Enable USB SS UNIPHY
 Content-Language: en-US
 To:     Praveenkumar I <quic_ipkumar@quicinc.com>, robert.marko@sartura.hr,
         luka.perkov@sartura.hr, agross@kernel.org, andersson@kernel.org,
@@ -69,9 +69,9 @@ To:     Praveenkumar I <quic_ipkumar@quicinc.com>, robert.marko@sartura.hr,
         linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc:     quic_varada@quicinc.com
 References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
- <20230829135818.2219438-7-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-8-quic_ipkumar@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230829135818.2219438-7-quic_ipkumar@quicinc.com>
+In-Reply-To: <20230829135818.2219438-8-quic_ipkumar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,7 +85,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/08/2023 15:58, Praveenkumar I wrote:
-> Add SS UNIPHY and update controller node for USB3.
+> Enable USB3 SS UNIPHY and update USB node name.
 > 
 > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 > ---
@@ -93,27 +93,31 @@ On 29/08/2023 15:58, Praveenkumar I wrote:
 > IPQ5332
 > https://lore.kernel.org/all/cover.1692699472.git.quic_varada@quicinc.com/
 > 
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi | 39 ++++++++++++++++++++++-----
->  1 file changed, 32 insertions(+), 7 deletions(-)
+>  arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> index e6baf694488c..7fbe6c9f4784 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
-> @@ -158,6 +158,27 @@ usbphy0: phy@7b000 {
->  			status = "disabled";
->  		};
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+> index 53696f4b46fc..c450153cfaac 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+> @@ -95,10 +95,15 @@ &usbphy0 {
+>  	status = "okay";
+>  };
 >  
-> +		ssuniphy0: ssuniphy@4b0000 {
+> +&ssuniphy0 {
+> +	vdd-supply = <&regulator_fixed_5p0>;
+> +	status = "okay";
+> +};
+> +
+>  &usb {
+>  	status = "okay";
+>  };
+>  
+> -&usb2_0_dwc {
+> +&usb3_0_dwc {
 
-From where did you get such pattern of node naming? Downstream, right?
-Please, do not work on downstream but upstream.
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
+This means previous patch was not even built. Sorry, that's bad. Please
+test your commits before sending.
 
 Best regards,
 Krzysztof
