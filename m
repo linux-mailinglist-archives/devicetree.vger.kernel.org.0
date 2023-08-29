@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C40D478BFC4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 10:00:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D84F178BFD4
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 10:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231731AbjH2H7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 03:59:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39924 "EHLO
+        id S233967AbjH2IC0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 04:02:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbjH2H7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:59:11 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF3A124
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:59:07 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b962c226ceso61390401fa.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:59:07 -0700 (PDT)
+        with ESMTP id S233958AbjH2ICP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 04:02:15 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6350D11B
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:02:08 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52a5c0d949eso3358818a12.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:02:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693295946; x=1693900746;
+        d=linaro.org; s=google; t=1693296127; x=1693900927;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0jf6v0PlN8K4+VHfayvhTrk9SlvJxu66Wz5h1U5gN+U=;
-        b=cd8xfWfjkkhYba1/kYyetBH67HS0W0MECg2+Vy3Nljp/upBOU4HLjkNtg499yYWW4W
-         W3U3iy7pfrr/CJbJC1KkRNOYWiT8B+GyErH+6h6Jb19h6aky7n9XffOnxZAGg7wyt8AN
-         ntNQ+UKwoE6Y+LGtbeelgCH7J+5VIgMkXjyf1YdNq7VwbU95NC2cr3i60lZpEbetbN3u
-         xh91FnAAT1JkEP6jLY/cmlOiHHNfqadap16bp2eTwRM1T7v8hL7p//HqPMnsJZx3s8XZ
-         8n7wiNht4v9u3gUIZq3dwbMIlt/HihWr1Dedk96edBnYOC4KvgESHqgdGQwtNe581eMp
-         Dzsw==
+        bh=3ffv5qw/6jxHEizOlIzxqYRFHwCAgzFtDLHEMCrXrHo=;
+        b=BbMLPYtBom3oXw6zYv3nACWBOPYGb6pGAlI/z0dXUofyBMSzlBFQx2AOiVZ0+33whA
+         6C3a9pEQb3as0eF0AmRL8UYKmQF3pewBAZayZ/fkMwBOEEq4qE4Y20ofk9pO1KJsf6k/
+         a/7z+Ah2zYwh3U0mnYMWyMbj+7lsVBdO100oQqxTvzi5GmJ9Mw1yLOFL5LxFMxg3854j
+         AlllGlwipBSrpsfoO4FvR28l8IDscpfRfLScEdNdi3QK0XCJT+N0opd9izN3G1GYz34T
+         3CcjZrzGmfp/oe+TPU/MswLbOqMc8dpCEpqiVpC0EdWm3HyLLoDYRb3PNkNnFvhsGTpo
+         GrQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693295946; x=1693900746;
+        d=1e100.net; s=20221208; t=1693296127; x=1693900927;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0jf6v0PlN8K4+VHfayvhTrk9SlvJxu66Wz5h1U5gN+U=;
-        b=jQcbaI1gtdSMpD3IInh78k56445iv2KmFP1EzR0pwmrWzy1YFggPhlOuGn5iIs3MjM
-         LveILC1/3gvTfQTuVBFmwhlUOJrfzyDD38EPGLdXtFOu7Z23z1mq9p+sL1H6YEfgF3nC
-         xJYFna/atKp3Sdiugts4KHkm/+qE46tYnUemS5BjIuiydn7O5D9P/mrBC/PRx8xfaCTR
-         pAvecp6Emk915MlWvLy3/2wIjyiUkOCPYYDw9sprxXfUrsr+IA3WJ4+8R/iRBY2Ws5wN
-         9SuT7wgLhC9uzlwRWI0SxPu6C3M1Miuw+mfgHAtZwDUMx8abxdZCm969CW1XhGxbDrER
-         u7rw==
-X-Gm-Message-State: AOJu0Yz9iJFX2B6EuJ3rIRe8emxE9na7hSxXXQfqj06SzD3WxUNT8AVY
-        D+9tFHxZRkNsYFbAo+eQNDv3wg==
-X-Google-Smtp-Source: AGHT+IGD3NBFm0dQrv9JfQP1cUMzD8RLzRvv182ZXM5rp4G+qw40YF7KSL9RbgB7Im6bml2LAPfX1Q==
-X-Received: by 2002:a2e:99ce:0:b0:2bc:b27f:4019 with SMTP id l14-20020a2e99ce000000b002bcb27f4019mr17828364ljj.6.1693295945950;
-        Tue, 29 Aug 2023 00:59:05 -0700 (PDT)
+        bh=3ffv5qw/6jxHEizOlIzxqYRFHwCAgzFtDLHEMCrXrHo=;
+        b=I5vainl3xOLNbq13navjXP+ZqTmzgdkMFgH41memiBJiQ3kKYb5jnA9mDwRC0Kb62p
+         qAtmTjNmSfVpCBMP6f+llUcNt2OzQVzhd6TuRxSBeRYML/BcIdPrmkbdTLZ0WKpZ5Gd8
+         M72PGATzxRW9obO/jt6NGubcBxR1oiYFsRT0kDFvjoT1yrQGrjR00wADBTclZiPu64Tg
+         TFjR81gH7WvtV8ssjQxWMmqqoebES7th4OrDQcn8gZs/cB7kgPwtwVc3Dgm6gziJbFv3
+         7tQbtdEysrf5W/CIH7GnOVnmdyXY64fkXtjBS/cKNAdGd2vFstcDUOo6+h+eD7r8utki
+         U6eg==
+X-Gm-Message-State: AOJu0Yw8YHlT8paZw0719uy1vO2cMVn+OVCMBEGZ9JnbcpUO1CFufx5n
+        eukNXkFCMeWYaLvv3zaraPL5gCe3kpkRX2R9f00=
+X-Google-Smtp-Source: AGHT+IFqEpbqllRr9CmppqIvv8zyZ4jAIDeUvqKWTsD0QK0EcQXaJCfzI0u6bX/7CG2STBh5BqFSKg==
+X-Received: by 2002:a17:906:d14d:b0:9a5:8eab:49da with SMTP id br13-20020a170906d14d00b009a58eab49damr6813967ejb.19.1693296126878;
+        Tue, 29 Aug 2023 01:02:06 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id s18-20020a17090699d200b009920a690cd9sm5606794ejn.59.2023.08.29.00.59.04
+        by smtp.gmail.com with ESMTPSA id u4-20020a170906108400b0099d798a6bb5sm5640390eju.67.2023.08.29.01.02.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 00:59:05 -0700 (PDT)
-Message-ID: <cc35c729-df33-087b-2df4-95e8cc174ec6@linaro.org>
-Date:   Tue, 29 Aug 2023 09:59:04 +0200
+        Tue, 29 Aug 2023 01:02:06 -0700 (PDT)
+Message-ID: <9b69a4a6-b011-f0e8-217f-5f91d9a00382@linaro.org>
+Date:   Tue, 29 Aug 2023 10:02:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 03/11] firmware: qcom-scm: atomically assign and read the
- global __scm pointer
+Subject: Re: [PATCH 05/11] dt-bindings: document the Qualcomm TEE Shared
+ Memory Bridge
 Content-Language: en-US
 To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -72,66 +72,91 @@ Cc:     kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-4-bartosz.golaszewski@linaro.org>
+ <20230828192507.117334-6-bartosz.golaszewski@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230828192507.117334-4-bartosz.golaszewski@linaro.org>
+In-Reply-To: <20230828192507.117334-6-bartosz.golaszewski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 21:24, Bartosz Golaszewski wrote:
-> Checking for the availability of SCM bridge can happen from any context.
-> It's only by chance that we haven't run into concurrency issues but with
-> the upcoming SHM Bridge driver that will be initiated at the same
-> initcall level, we need to assure the assignment and readback of the
-> __scm pointer is atomic.
+On 28/08/2023 21:25, Bartosz Golaszewski wrote:
+> Add Device Tree bindings for Qualcomm TEE Shared Memory Brige - a
+> mechanism that allows sharing memory buffers between trustzone and the
+> kernel.
+
+Subject prefix:
+dt-bindings: firmware:
+
+
+
 > 
 > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > ---
->  drivers/firmware/qcom_scm.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  .../bindings/firmware/qcom,shm-bridge.yaml    | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
 > 
-> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-> index 980fcfa20b9f..422de70faff8 100644
-> --- a/drivers/firmware/qcom_scm.c
-> +++ b/drivers/firmware/qcom_scm.c
-> @@ -1331,7 +1331,7 @@ static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
->   */
->  bool qcom_scm_is_available(void)
->  {
-> -	return !!__scm;
-> +	return !!READ_ONCE(__scm);
->  }
->  EXPORT_SYMBOL(qcom_scm_is_available);
->  
-> @@ -1477,8 +1477,8 @@ static int qcom_scm_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	__scm = scm;
-> -	__scm->dev = &pdev->dev;
-> +	scm->dev = &pdev->dev;
-> +	WRITE_ONCE(__scm, scm);
+> diff --git a/Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml b/Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
+> new file mode 100644
+> index 000000000000..f660962b7b86
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
+> @@ -0,0 +1,36 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/firmware/qcom,shm-bridge.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: QCOM Shared Memory Bridge
+> +
+> +description: |
 
-Your re-ordering is not effective here, I think. I don't understand it's
-purpose exactly, but scm->dev assignment is not WRITE_ONCE(), thus it
-can be reordered:
+Do not need '|' unless you need to preserve formatting.
 
-"compiler is also forbidden from reordering successive instances of
-READ_ONCE and WRITE_ONCE" <- so compiler is not forbidden to reorder
-other stuff.
+> +  Qualcomm TEE Shared Memory Bridge allows sharing limited areas of kernel's
+> +  virtual memory with the trustzone in order to avoid mapping the entire RAM.
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
+> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - qcom,shm-bridge-sa8775p
+> +          - qcom,shm-bridge-sm8150
+> +          - qcom,shm-bridge-sm8450
+> +      - const: qcom,shm-bridge
+> +
 
-"Ensuring that the compiler does not fold, spindle, or otherwise
-mutilate accesses that either do not require ordering or that interact"
-<- which means you do not require ordering here.
+Looks quite empty... Why this cannot be part of qcom,scm? IOW, why do
+you need new binding if you do not have any resources here and the block
+is essentially feature of qcom,scm firmware?
+
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    firmware {
+> +         compatible = "qcom,shm-bridge-sa8775p", "qcom,shm-bridge";
+
+Use 4 spaces for example indentation.
+
+> +    };
 
 Best regards,
 Krzysztof
