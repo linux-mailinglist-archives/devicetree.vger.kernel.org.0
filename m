@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4E0278BC97
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 04:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B57F078BCBA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 04:16:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233489AbjH2CGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 22:06:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42774 "EHLO
+        id S232001AbjH2CP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 22:15:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235162AbjH2CGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 22:06:01 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 313CA199;
-        Mon, 28 Aug 2023 19:05:58 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37T1o5BN011932;
-        Tue, 29 Aug 2023 02:05:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=BZcG3tqI0kzEOY8t3aqHftJO1+twcKOp7CgugX3DoGw=;
- b=cXm83m6bxurTD+MgntE9858ufrfV+YhkKBwiMzfkvfm8A5Jy45MkrRHMBQx+zYfuSde/
- dZYeQC/8egD1sXWeYmudKPm04UDP2+iQJr6JN29sFa6rDbOiQONAgbxXRKz3eh+dQuhI
- GlMgsva+HdkCThj7/3cf0IYgShinmhDkmJEkEI4VK7sk6Z9r2s+DYT+0LJqoEhcU6Th7
- WFfY0amwkjbY2xLrOr0ixVjQEoDA2gksIE6Zq/fqmcoDFpgr/CD+1n3bDMjXjKaAJWP0
- I6rqun5Fj2LszSJeSl9hbXmIz22WonjfNxaoV6WX4+XTd6IezpL5YN3oiAx0bezaC48f CQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sq9sdms49-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 02:05:37 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37T25aOh006445
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 02:05:36 GMT
-Received: from [10.110.46.69] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 28 Aug
- 2023 19:05:34 -0700
-Message-ID: <f7bd1ae7-fc38-0f29-546b-9ea4a323f42f@quicinc.com>
-Date:   Mon, 28 Aug 2023 19:05:35 -0700
+        with ESMTP id S235419AbjH2CPv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 22:15:51 -0400
+Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81614110;
+        Mon, 28 Aug 2023 19:15:45 -0700 (PDT)
+Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-58fc4eaa04fso45410467b3.0;
+        Mon, 28 Aug 2023 19:15:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693275344; x=1693880144;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=97srBsNV6oTrIvKBviaQ5sS5qJluzTDai93bJAqC3xc=;
+        b=CjfX2IRlNx5394bDi7rz+7QpV9VWWGB1DtyK+uN95y5wzfJNWfoGL7aq62qjK8P7I6
+         +gS3KzL6HehcW4vSN+OY69pr3NRCiCJCt04Aj8+w5aPSYqm3wX9nbtYoTJAQ82RIus+i
+         C56wU7U3xCmn7iiuGo6bRV5hidabNFptuXT65RwtEZU+12H03ygGf1jWqiQgyzrlK5bq
+         98wYhrK9g1XxlQIroqqDSX+Sygk0Xjgyzxf74Grl1rOWul3BkR4TV0lKJY3MegRDZSzQ
+         Egeeqm8cWEW0sPwlD6qUPDoanqdq8KnOqbz+G7V1Yn1o+rgzJ/oxFlVBUavbSoxp41ZQ
+         jqHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693275344; x=1693880144;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=97srBsNV6oTrIvKBviaQ5sS5qJluzTDai93bJAqC3xc=;
+        b=Xboww10xCQFvNDRTEnKArjoiHH97Hu+GUojtLotEutpAWGRdrqtbgI1P8TyZ6iKhsv
+         wgLskYGfFeWcPfKFK8cvNLCtjhVNMtWhUmJopVhg+8OF87bbs4s04aRNXyEKYjDq6Idj
+         GsCSsvYbBaNZfSCmOfAR9pQQSTET0/k77hHwmPsPZbr1ttGJUMUo02P5kZfc+jEpWBf4
+         jLxcBiK0V6EL07o9ScVKC+Ryn1tcGY42rEqV5nISRrfrn2gPEWAbxB4D1ly0sY1W5co+
+         yk9cSUHFYyDRNrpIgUoL5ixxwe+IWLVkL0U53KcfaP/thKPmpWklR+XhY2jI2Y3HBatC
+         e91Q==
+X-Gm-Message-State: AOJu0YxADt+vH0U2ax1OO/T11PItq16cJAIg6Q/XEKvw9OxB0WbyyzLw
+        qTe+NtThuGtreOxX7BsE3lfVk1HaA9QkzRlsZW4=
+X-Google-Smtp-Source: AGHT+IGKUHiiGwHxPNHo2fHKNZYJMJ1G7S9OpNgtuN5xsv5YUPl+cpDee1drXnh3czmUXCFMI7zeKCYkBj0y43qin3g=
+X-Received: by 2002:a0d:f585:0:b0:589:f7ad:7702 with SMTP id
+ e127-20020a0df585000000b00589f7ad7702mr29701494ywf.36.1693275344686; Mon, 28
+ Aug 2023 19:15:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v3 11/28] dt-bindings: usb: dwc3: Add
- snps,num-hc-interrupters definition
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-CC:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzysztof.kozlowski+dt@linaro.org>, <agross@kernel.org>,
-        <Thinh.Nguyen@synopsys.com>, <bgoswami@quicinc.com>,
-        <andersson@kernel.org>, <gregkh@linuxfoundation.org>,
-        <tiwai@suse.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <quic_jackp@quicinc.com>, <quic_plai@quicinc.com>
-References: <20230308235751.495-1-quic_wcheng@quicinc.com>
- <20230308235751.495-12-quic_wcheng@quicinc.com>
- <20230311134008.GA20831-robh@kernel.org>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <20230311134008.GA20831-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: hIPcrOrnLk6Z93lB_NzAW648eyNkAbAE
-X-Proofpoint-ORIG-GUID: hIPcrOrnLk6Z93lB_NzAW648eyNkAbAE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-28_20,2023-08-28_04,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 adultscore=0 impostorscore=0 spamscore=0
- phishscore=0 clxscore=1011 mlxlogscore=907 mlxscore=0 bulkscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308290016
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+References: <cover.1693218539.git.zhoubinbin@loongson.cn> <2bec39b1001732de60c1521d78e44a45ff94d6b6.1693218539.git.zhoubinbin@loongson.cn>
+ <18b8b8b8-7f42-8e8c-1bfd-36d04eba7c40@linaro.org>
+In-Reply-To: <18b8b8b8-7f42-8e8c-1bfd-36d04eba7c40@linaro.org>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Tue, 29 Aug 2023 10:15:32 +0800
+Message-ID: <CAMpQs4+X+e301CHkrtDQj9A=nTxUFQJPOuqJnPc+ViDcNZBgDQ@mail.gmail.com>
+Subject: Re: [PATCH 4/5] dt-bindings: soc: loongson,ls2k-pmc: Allow
+ syscon-reboot/syscon-poweroff as child
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -88,49 +79,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Krzysztof:
 
-On 3/11/2023 5:40 AM, Rob Herring wrote:
-> On Wed, Mar 08, 2023 at 03:57:34PM -0800, Wesley Cheng wrote:
->> Add a new definition for specifying how many XHCI secondary interrupters
->> can be allocated.  XHCI in general can potentially support up to 1024
->> interrupters, which some uses may want to limit depending on how many
->> users utilize the interrupters.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
->>   .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++++++++
->>   1 file changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> index be36956af53b..4e2417191f93 100644
->> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
->> @@ -359,6 +359,19 @@ properties:
->>       items:
->>         enum: [1, 4, 8, 16, 32, 64, 128, 256]
->>   
->> +  snps,num-hc-interrupters:
->> +    description:
->> +      Defines the maximum number of XHCI host controller interrupters that can
->> +      be supported.  The XHCI host controller has support to allocate multiple
->> +      event rings, which can be assigned to different clients/users.  The DWC3
->> +      controller has a maximum of 8 interrupters.  If this is not defined then
->> +      the value will be defaulted to 1.  This parameter is used only when
->> +      operating in host mode.
-> 
-> Is this an XHCI or DWC3 feature? The former should be added to the XHCI
-> binding.
-> 
+Thanks for your reply.
 
-Sorry for the late response...message got routed to a folder I don't 
-frequently check...
+On Tue, Aug 29, 2023 at 1:17=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/08/2023 14:38, Binbin Zhou wrote:
+> > The reboot and poweroff features are actually part of the Power
+> > Management Unit system controller, thus allow them as its children,
+> > instead of specifying as separate device nodes with syscon phandle.
+> >
+>
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -44,10 +56,25 @@ examples:
+> >    - |
+> >      #include <dt-bindings/interrupt-controller/irq.h>
+> >
+> > -    power-management@1fe27000 {
+> > +    pmc: power-management@1fe27000 {
+>
+> Drop the label.
+OK...
+>
+> >          compatible =3D "loongson,ls2k1000-pmc", "syscon";
+> >          reg =3D <0x1fe27000 0x58>;
+> >          interrupt-parent =3D <&liointc1>;
+> >          interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> >          loongson,suspend-address =3D <0x0 0x1c000500>;
+> > +
+> > +        syscon-reboot {
+> > +            compatible =3D"syscon-reboot";
+> > +            regmap =3D <&pmc>;
+>
+> No, why? It does not make much sense and is deprecated.
 
-This is a XHCI feature, but the DWC3 design is built in a way that DWC3 
-host initializes the XHCI device and populates the properties associated 
-to XHCI dev.
+Oh, sorry, I should have been more careful, I'll delete it.
+>
+> > +            offset =3D <0x30>;
+> > +            mask =3D <0x1>;
+> > +        };
+> > +
+> > +        syscon-poweroff {
+> > +            compatible =3D"syscon-poweroff";
+>
+> Missing space.
+I will fix it.
 
-Will update the XHCI yaml as well for non-DWC3 based SoCs.
-
-Thanks
-Wesley Cheng
+Thanks.
+Binbin
+>
+> Best regards,
+> Krzysztof
+>
