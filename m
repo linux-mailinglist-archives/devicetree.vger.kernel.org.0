@@ -2,119 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E696878C107
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:13:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F14EB78C134
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231723AbjH2JMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 05:12:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53694 "EHLO
+        id S234672AbjH2JY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 05:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231553AbjH2JMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:12:01 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D3397;
-        Tue, 29 Aug 2023 02:11:55 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99c353a395cso532540666b.2;
-        Tue, 29 Aug 2023 02:11:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693300314; x=1693905114;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=uzSuIOJ3sqvXAI3VO2/i5132hzppV1oPr0EHGMgWBHI=;
-        b=Pm3pqOVX/mOZ7WHkGFW6WyTXfRRw2ptaRtfbVrfVoVdFHjicbkavWitLv7DRPoaTej
-         bQ4CcaCgyGB99A4JZcYaxLE6Ns7/U/4TjIuyiAgSfJqlFKERbxIZAZFwXirFM2HWNZen
-         vCnKOJFuv6OrNPhjSC2Sk/OBRgQnyPrjawimAjXTNpirFFNCcoBqJqO5ZYSwTLM9OrZ7
-         NeCondDF18l5m8XZDOmoOFXRR7tOU1nI1e42VprCbhbisrO3bWe9HfAsQNsR1wDVPf4Q
-         FMXdpV5yzLHm3tbv6lMFNuDXZ5gnmUUO9KP0Jpq+X3d30Lfy36t6v7QsyXhRUlQ+r482
-         hYsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693300314; x=1693905114;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uzSuIOJ3sqvXAI3VO2/i5132hzppV1oPr0EHGMgWBHI=;
-        b=go5na+Y760846PH9W4eOGdpMDmRDpJ0g2huqniqgomFr+WSIoz1bzeBHaHOgQZctZu
-         McfpeyKBg3TOJFcmEcOvDjeLN07ZHtz5chjmA0R2xCC2QsaiXNkYnz4X2njMfIXW8RtW
-         blc059hkL+rdO/ysIrGw8oZgyOvHC3YPCCnaSVlu3sdh0xFn6kR/BIiiqrFKBwFAMs8y
-         xgqdw2/9CXQX9Fg+UCi6Lc6kmyOyWg9BGSNYcJCZBXslnMMTHccI6uZe0dMVZgSZhAbn
-         p00saQfOXZ39k7SRW+z63xxJMoSJ2WrhIrLDt0KbvtlELHT8NdsBNN2enhNXGWueBb1+
-         jd9g==
-X-Gm-Message-State: AOJu0Yy3kmh3VllAVA5USCrFwKLNgnDQHqNzfVdZbrDXmqiO2keFyqP+
-        6G1h9THb3qGztewqrctCo0w=
-X-Google-Smtp-Source: AGHT+IHyQe8RnjtzcC0yd6y6svQSSefXBSCX188B5o03d8S1ty9U2ZhHzFiVv8/Gx7MPhSRriaDvGQ==
-X-Received: by 2002:a17:906:ef8c:b0:9a5:cc73:a2a6 with SMTP id ze12-20020a170906ef8c00b009a5cc73a2a6mr778916ejb.14.1693300313749;
-        Tue, 29 Aug 2023 02:11:53 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef34:6000:bd39:43a2:571c:1c76? (p200300f6ef346000bd3943a2571c1c76.dip0.t-ipconnect.de. [2003:f6:ef34:6000:bd39:43a2:571c:1c76])
-        by smtp.gmail.com with ESMTPSA id u22-20020a17090626d600b009a1fd22257fsm5715350ejc.207.2023.08.29.02.11.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Aug 2023 02:11:52 -0700 (PDT)
-Message-ID: <5a31871d0e0322b9704633bd2dca2503c554c358.camel@gmail.com>
-Subject: Re: [PATCH 2/2] iio: adc: ad717x: add AD717X driver
-From:   Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Dumitru Ceclan <mitrutzceclan@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+        with ESMTP id S234760AbjH2JYU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:24:20 -0400
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BD1919F
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:24:07 -0700 (PDT)
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20230829092404euoutp027a43b17080e5ef82e4d87c5dc6f50f89~-0FQHQ0Kf0612506125euoutp020
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:24:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20230829092404euoutp027a43b17080e5ef82e4d87c5dc6f50f89~-0FQHQ0Kf0612506125euoutp020
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1693301044;
+        bh=n03v4YwoYhaEaYsHnGtQUOfGHMiBSqQF5cOtLoFjMKQ=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=u9LAXqasudmzcJJpHhTN3nIBt2YXRCpb+SEtp79qz5wJwxhMOiT8TaOgdlSEstl3n
+         S1BDP+BOkgUMsy+zoLFofKK5zZ2/0VKOOEg2epje+a3qWoIDMkCeTwsWTq8pnYd8r4
+         2efpVCtnPoFs64LAmT58PbU6upRZnQrA1/rrjHLU=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20230829092403eucas1p279c00a8c66918c6f72e9f067ac9ac732~-0FPvKP0D2175521755eucas1p2-;
+        Tue, 29 Aug 2023 09:24:03 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 7A.17.11320.339BDE46; Tue, 29
+        Aug 2023 10:24:03 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20230829092403eucas1p17048226c987315610cf49c7c6eab2148~-0FPVonT41584115841eucas1p16;
+        Tue, 29 Aug 2023 09:24:03 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20230829092403eusmtrp10373b00b6be0c0090dc665198e4a5533~-0FPUyS_t3248032480eusmtrp1N;
+        Tue, 29 Aug 2023 09:24:03 +0000 (GMT)
+X-AuditID: cbfec7f4-993ff70000022c38-e8-64edb9333598
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id D4.D9.10549.339BDE46; Tue, 29
+        Aug 2023 10:24:03 +0100 (BST)
+Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
+        [106.120.51.28]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20230829092402eusmtip2363834dd9fd50ef4e351b456a239a76e~-0FOZFnTA1173411734eusmtip2X;
+        Tue, 29 Aug 2023 09:24:02 +0000 (GMT)
+From:   Mateusz Majewski <m.majewski2@samsung.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Mateusz Majewski <m.majewski2@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Okan Sahin <okan.sahin@analog.com>,
-        Niklas Schnelle <schnelle@linux.ibm.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Lee Jones <lee@kernel.org>, Haibo Chen <haibo.chen@nxp.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Leonard =?ISO-8859-1?Q?G=F6hrs?= <l.goehrs@pengutronix.de>,
-        Ceclan Dumitru <dumitru.ceclan@analog.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Tue, 29 Aug 2023 11:14:31 +0200
-In-Reply-To: <ZNUEBDsMg6UfeOtl@smile.fi.intel.com>
-References: <20230810093322.593259-1-mitrutzceclan@gmail.com>
-         <20230810093322.593259-2-mitrutzceclan@gmail.com>
-         <34f5e2118a4714048231e6ee9a8f244248616bd0.camel@gmail.com>
-         <ZNUEBDsMg6UfeOtl@smile.fi.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH 00/11] Improve Exynos thermal driver
+Date:   Tue, 29 Aug 2023 11:18:38 +0200
+Message-ID: <20230829091853.626011-1-m.majewski2@samsung.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNKsWRmVeSWpSXmKPExsWy7djPc7rGO9+mGGxZpmvxYN42NovD8yss
+        pj58wmbxfct1Jos1e88xWcz7LGsx/8g5Vou+Fw+ZLb5d6WCy2PT4GqvF5V1z2Cw+9x5htJhx
+        fh+TxcRjk5kt1h65y24x98tUZovWvUfYLZ487GNzEPLYOesuu8fiPS+ZPDat6mTzuHNtD5vH
+        5iX1Hn1bVjF6fN4kF8AexWWTkpqTWZZapG+XwJWxaf1KpoIrXBXb3z5nb2B8xNHFyMkhIWAi
+        8bnhHnMXIxeHkMAKRonju7awQThfGCWebZvFBFIlJPCZUaJ7SRBMx/WGN4wQRcsZJV6+XcYE
+        4bQySTy/uZgZpIpNwEDiwZtl7CAJEYHFjBJbd84Cq2IWmMsi0bDyJ0sXIweHMNCsSwcZQRpY
+        BFQl/vY1soPYvAK2EpOnH2CHWCcv8fzWHai4oMTJmU9YQGxmoHjz1tnMEDX/OSTuPiyAsF0k
+        /t25xQJhC0u8Or4Fao6MxOnJPVDxfIkZm9+DnSAhUCFx96AXhGkt8fEMM4jJLKApsX6XPkTU
+        UWL/DR4Ik0/ixltBiPV8EpO2TWeGCPNKdLQJQUxWlTi+ZxLUVdIST1puM0HYHhIvN7awQwIz
+        VuLSg03sExgVZiF5ahaSp2YhnLCAkXkVo3hqaXFuemqxUV5quV5xYm5xaV66XnJ+7iZGYHo7
+        /e/4lx2My1991DvEyMTBeIhRgoNZSYT3kuOrFCHelMTKqtSi/Pii0pzU4kOM0hwsSuK82rYn
+        k4UE0hNLUrNTUwtSi2CyTBycUg1MQXUBEvrSVSItOe5C7it4j2evb/N7G2Ql+N93a+j2MK3j
+        Wj/uf5mVuS3ES+Nz9e/FZzPXuPzpvBVRou+0WbuhvXnf6kJZozkMc6MZ+wI1rk/6vz5soci2
+        DwJFH0VUd3tbfKs7I7s15+h/zdbP81JkOA3NL2hrPdxc1Tv35RrLU0d4js9ZKx3fV7To6tYd
+        FUwnrt3hnM6y5dq/MoVVd1OWbT2x18Fj2sojx8JnFDIozVSxZ/3CrH1G66b6Hll3TcXgUrF1
+        r60XzGbodvTb/7Ly47PD1/Vquizlf6zsqDI77nzKsO6ah+O6/T8dH1/JLDoRcHu+dvTjO/7J
+        MX5vRTTWsiezneZO9WrwWbKvmENbiaU4I9FQi7moOBEA8Vcw3N4DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrGIsWRmVeSWpSXmKPExsVy+t/xe7rGO9+mGOx5LWzxYN42NovD8yss
+        pj58wmbxfct1Jos1e88xWcz7LGsx/8g5Vou+Fw+ZLb5d6WCy2PT4GqvF5V1z2Cw+9x5htJhx
+        fh+TxcRjk5kt1h65y24x98tUZovWvUfYLZ487GNzEPLYOesuu8fiPS+ZPDat6mTzuHNtD5vH
+        5iX1Hn1bVjF6fN4kF8AepWdTlF9akqqQkV9cYqsUbWhhpGdoaaFnZGKpZ2hsHmtlZKqkb2eT
+        kpqTWZZapG+XoJexaf1KpoIrXBXb3z5nb2B8xNHFyMkhIWAicb3hDSOILSSwlFHi3xlRiLi0
+        xOEvU9ghbGGJP9e62LoYuYBqmpkkDrQfAkuwCRhIPHizjB0kISKwnFHi6r3lLCAOs8ByFonn
+        az4wdzFycAgDrbh0EGwDi4CqxN++RrBmXgFbicnTD0BtkJd4fusOVFxQ4uTMJywgNjNQvHnr
+        bOYJjHyzkKRmIUktYGRaxSiSWlqcm55bbKhXnJhbXJqXrpecn7uJERhh24793LyDcd6rj3qH
+        GJk4GA8xSnAwK4nwXnJ8lSLEm5JYWZValB9fVJqTWnyI0RTovonMUqLJ+cAYzyuJNzQzMDU0
+        MbM0MLU0M1YS5/Us6EgUEkhPLEnNTk0tSC2C6WPi4JRqYDqRF9TwsH6dns5cidXdk+RfFX0T
+        qb7HoMpbcUyE88fxY1/vfj1xU/Ovh9XJxQc02PqMDv+5o6bhtXTxjD2Pd96att/LvT1Oi7NB
+        4IZqWJSh2gQzhh02eSLcC86qrJyq/KKM7bCQ8PyQid8ljiwwfFe55Xvz1g/ddx4dKb5RYMoY
+        1aR60ZI708a6eubNGzePWxSJP0iR8Lr4XlfB+RPPiem7LSMOcRtfb99WES04Oeh/xfWSJ/f7
+        rI5cnXb017fMB/tncMtaOXQt8HP/tv70dscTTqrThQUVjhXlp2sfZV64/u+LFvbvuULMAkFx
+        uZNqDtx/yzh/p1xL2Y/zX89uXW+tWv6X80z64j+O1SG5dVOUWIozEg21mIuKEwFO+UzwOQMA
+        AA==
+X-CMS-MailID: 20230829092403eucas1p17048226c987315610cf49c7c6eab2148
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20230829092403eucas1p17048226c987315610cf49c7c6eab2148
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230829092403eucas1p17048226c987315610cf49c7c6eab2148
+References: <CGME20230829092403eucas1p17048226c987315610cf49c7c6eab2148@eucas1p1.samsung.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2023-08-10 at 18:36 +0300, Andy Shevchenko wrote:
-> On Thu, Aug 10, 2023 at 01:57:02PM +0200, Nuno S=C3=A1 wrote:
-> > On Thu, 2023-08-10 at 12:33 +0300, Dumitru Ceclan wrote:
->=20
-> ...
->=20
-> > Is ad717x_gpio_cleanup() being used anywhere? Moreover I would maybe ju=
-st
-> > get rid of
-> > the #ifdef wrapper and just select GPIOLIB. How often will it be disabl=
-ed
-> > anyways?
->=20
-> The agreement is that users are depend on and not selecting GPIOLIB.
-> Any news in these agreement terms?
->=20
+This work improves Exynos thermal driver in various ways. This is
+related to the discussion in
+https://lore.kernel.org/all/97201878-3bb8-eac5-7fac-a690322ac43a@linaro.org/
 
-Hmm no idea about that. If you say so, it's just one new thing I'm learning=
- :)
+The primary issue being fixed is a lockdep warning, which is fixed by
+the thermal: exynos: use set_trips patch. We also handle Exynos 4210 not
+supporting falling temperature thresholds by enabling polling for this
+SoC, and simplify the code in general.
 
-- Nuno S=C3=A1
+Mateusz Majewski (11):
+  ARM: dts: exynos: enable polling in Exynos 4210
+  thermal: exynos: drop id field
+  thermal: exynos: switch from workqueue-driven interrupt handling to
+    threaded interrupts
+  thermal: exynos: remove fine-grained clk management
+  thermal: exynos: simplify sclk (de)initialization
+  thermal: exynos: simplify regulator (de)initialization
+  thermal: exynos: simplify clk_sec (de)initialization
+  thermal: exynos: stop using the threshold mechanism on Exynos 4210
+  thermal: exynos: split initialization of TMU and the thermal zone
+  thermal: exynos: use set_trips
+  ARM: dts: exynos: disable polling in Odroid XU3-related devices
+
+ arch/arm/boot/dts/samsung/exynos4210.dtsi     |  10 +-
+ .../samsung/exynos5422-odroidxu3-common.dtsi  |  16 +-
+ drivers/thermal/samsung/exynos_tmu.c          | 581 ++++++++----------
+ 3 files changed, 284 insertions(+), 323 deletions(-)
+
+-- 
+2.41.0
+
