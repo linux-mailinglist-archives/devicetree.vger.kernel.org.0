@@ -2,87 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75F6878C12D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:23:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1DE578C16C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231829AbjH2JWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 05:22:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43376 "EHLO
+        id S230142AbjH2J2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 05:28:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234830AbjH2JWt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:22:49 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9AB718D;
-        Tue, 29 Aug 2023 02:22:42 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37T9KTn6027056;
-        Tue, 29 Aug 2023 09:22:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=fMY/2ymqna7dQn7FYww8Gj5JYfDHphAYtYnBsivhVlA=;
- b=FP0z6Lm+ld7X/NH1aVpC4pk//+ojK6tgK5XSuqrZEuOqKfw4DNGriRzBb/c1YPBJeYgr
- /pCQV67LK62HsHgiwQzVF20WZG6OLA+sAvUDErEHScW7V59Ru4q05xanVnz//DhoHIMP
- nQz3chllXYswOs5GOOGjqgMCd7aVob7QAafQ9n3+CSo4zb7M793dh0wUhbUdZkB/zIOd
- aRt5UTq5a9WUyGeuH6T61B5Ixi6zmrIBODO4ZLelDiwsWAn2OPmZ30bwhK5QT4vI9F0K
- +BMb/sl6vAP4bBwE4BO3234P5IrFuWFKFAjurp9XFcoKI7KCESD3sVPQiBEp1JNr/i0O Zg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3srvr82a8q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 09:22:34 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37T9MYOS006716
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 09:22:34 GMT
-Received: from [10.218.10.146] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 29 Aug
- 2023 02:22:29 -0700
-Message-ID: <da9f57cc-37b9-ff1b-8176-b27c90290395@quicinc.com>
-Date:   Tue, 29 Aug 2023 14:52:25 +0530
+        with ESMTP id S232528AbjH2J2U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:28:20 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3250CC5
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:27:46 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so5551201a12.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:27:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693301213; x=1693906013;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=o84nuugrdjBVbtNkpIQtkBSqIZbVDqCkc1ruQNscXdk=;
+        b=EV4t8gBk64D0XNbgSsnnQdVfE2sUW1oNrwheARThIRcTxk/vBcAUmXPz7kChSleWq4
+         pYfn5knvM1XECjmUjHb+9yTtTl+MWlK+1vhAnpxxXYBZyoK8FJGYgVHzPRBZhNqwa71Q
+         xx0/s1PyDTsKHDDSKjNYJIARMuP/bqGmqYxQ+8XQ2MAT7D5vEDUD/SGxZhZJTTnK8336
+         5BJCp5xZjEdgNxfaIfx9wEw+n10FmGxP8SnJihiOcii/DdE9QqJV2GMzuN9K6FpycdWA
+         TjdoA88xaL01/BB8bfjSUqwDOSDWQ5vnbl+XKwfddlFO3IsGYeusI7eYWOAG48INynzc
+         dZdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693301213; x=1693906013;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=o84nuugrdjBVbtNkpIQtkBSqIZbVDqCkc1ruQNscXdk=;
+        b=P9IQ2JrvDF5NXF8ZcUejbJgMXLV3nl87aZSBMvz81tzdlZTDwuddmupeHHZsfYDO3e
+         oKztuoZNfBLWbnWqddVAuOZ0DoR+1DVv4svDPf5AqXnlCftgXeH62vC/Fo9wGHLNhZP5
+         rTHZZ3eATfD+6Xpy3EwI35W0fIeI7xUZ6Ho9iEtv9pkgOZzaNsZIjQobBXoGky6XapYj
+         81/8X9cFsp7bZoNYsU2DMca2YVkQhDDSKfgFzQm8Xdh3lkQbDxWK5tGcE3EdAPBYskEm
+         xWwXI69eRvRNTVIm+FlfQyLKxNb8wdVLUDm8soiFKsOhJxOBf+WvpaUm44GZmeNe8kHn
+         SyJQ==
+X-Gm-Message-State: AOJu0Yzph9HC+baQjDSflr5NuE0SC0/MdXIdvu130SgLn+P0p48gjK1g
+        y1YnkhOcvlYN22QLxU883hhhGw==
+X-Google-Smtp-Source: AGHT+IFazeQCGVcL7gfIYS4bIY2nP2zweRigE32CaayM42mlnXhdwIYaRIol4X/Jni8R+DMqmHl70g==
+X-Received: by 2002:aa7:d5ce:0:b0:523:69bf:2bd3 with SMTP id d14-20020aa7d5ce000000b0052369bf2bd3mr20812353eds.13.1693301212891;
+        Tue, 29 Aug 2023 02:26:52 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.196])
+        by smtp.gmail.com with ESMTPSA id r14-20020aa7d58e000000b0052a1a623267sm5403877edq.62.2023.08.29.02.26.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Aug 2023 02:26:52 -0700 (PDT)
+Message-ID: <d42ae161-df43-d4c0-15e5-60ea06d825ce@linaro.org>
+Date:   Tue, 29 Aug 2023 11:26:51 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 4/4] clk: qcom: Add GCC driver support for SM4450
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 01/11] ARM: dts: exynos: enable polling in Exynos 4210
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Mateusz Majewski <m.majewski2@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230824173410.550126-1-quic_ajipan@quicinc.com>
- <20230824173410.550126-5-quic_ajipan@quicinc.com>
- <9d5d0002-e8bb-4b3f-a795-fba62a06fd96@linaro.org>
-From:   Ajit Pandey <quic_ajipan@quicinc.com>
-In-Reply-To: <9d5d0002-e8bb-4b3f-a795-fba62a06fd96@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+References: <20230829091853.626011-1-m.majewski2@samsung.com>
+ <CGME20230829092405eucas1p14543d527d81e8714594ebb999ab5fc02@eucas1p1.samsung.com>
+ <20230829091853.626011-2-m.majewski2@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230829091853.626011-2-m.majewski2@samsung.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TPKuzfSnGXhfWrzAtmD5NOSne8BoKn4u
-X-Proofpoint-ORIG-GUID: TPKuzfSnGXhfWrzAtmD5NOSne8BoKn4u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-29_06,2023-08-28_04,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- priorityscore=1501 mlxlogscore=607 spamscore=0 clxscore=1015
- impostorscore=0 malwarescore=0 lowpriorityscore=0 suspectscore=0
- mlxscore=0 phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2308100000 definitions=main-2308290080
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,20 +89,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 29/08/2023 11:18, Mateusz Majewski wrote:
+> It seems that thermal in Exynos 4210 is broken without this, as it will
+> never decrease cooling after increasing it.
+> 
+> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
+> ---
+>  arch/arm/boot/dts/samsung/exynos4210.dtsi | 10 ++++++++--
+
+Please split unrelated patches for different subsystems into separate
+patchsets.
+
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/samsung/exynos4210.dtsi b/arch/arm/boot/dts/samsung/exynos4210.dtsi
+> index 0e27c3375e2e..aae185b7f91c 100644
+> --- a/arch/arm/boot/dts/samsung/exynos4210.dtsi
+> +++ b/arch/arm/boot/dts/samsung/exynos4210.dtsi
+> @@ -391,8 +391,14 @@ &cpu_alert2 {
+>  };
+>  
+>  &cpu_thermal {
+> -	polling-delay-passive = <0>;
+> -	polling-delay = <0>;
+> +	/* Exynos 4210 supports thermal interrupts, but only for the rising threshold.
+
+Linux coding style comments are:
+
+/*
+ * Foo bar
 
 
-On 8/25/2023 5:19 PM, Konrad Dybcio wrote:
-> On 24.08.2023 19:34, Ajit Pandey wrote:
->> Add Global Clock Controller (GCC) support for SM4450 platform.
->>
->> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
->> ---
-> [...]
-> 
->> +
->> +	/* FORCE_MEM_CORE_ON for ufs phy ice core clocks */
->> +	regmap_update_bits(regmap, gcc_ufs_phy_ice_core_clk.halt_reg, BIT(14), BIT(14));
-> qcom_branch_set_force_mem_core() and remove the comment
-> 
-> Konrad
-Sure, will update this in next series
+Best regards,
+Krzysztof
+
