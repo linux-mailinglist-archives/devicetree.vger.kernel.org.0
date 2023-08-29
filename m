@@ -2,82 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBFAC78BE75
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 08:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55F4D78BE77
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 08:32:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233216AbjH2GaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 02:30:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45284 "EHLO
+        id S231411AbjH2Gbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 02:31:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233715AbjH2G3z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 02:29:55 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697251AD
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 23:29:46 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so520511566b.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 23:29:46 -0700 (PDT)
+        with ESMTP id S231244AbjH2Gbc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 02:31:32 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D785E18D
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 23:31:28 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-986d8332f50so516601666b.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 23:31:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693290585; x=1693895385;
+        d=linaro.org; s=google; t=1693290687; x=1693895487;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=VfulV8l9fAUi9Tsip5/92M0tbm/MGDJ64gWqHZKs5QM=;
-        b=M6U9uxGnbQr/fqYwdYbCqGLGUC5TUD21umeX91HrRYhQ9ru4ZrV22Oc73gfV+qTpfr
-         7xrf8ZFp3iXsdNCL9aJs+1orL7o0WUwiM/7C/U1GpYfzEj2hKL4B3rkscQzmw0hL9kcd
-         F+B0mr/KR0tu8xq/cbfrcyWYEiI8A9+IRlG4YYJjFt1xCFNZ6Xo6XU/LM7n29+9JSb0l
-         jMdltpPxtOW5wPQkWFY5lgUW4HxkuKHrBFA5tsqR1D+J6j5PqiRmomqNTRqLTf0XF39Y
-         QIgxnwhEkEgqQc3jKhkzwSpJ2uuPpfX5ulMqOkbRSriLqBkx67qgLplaaW1+G0Jd9XN6
-         JY/Q==
+        bh=EbTpS2DfO4MuL752ysd/X26Nj6VhGdHkbTx7pRzKQP4=;
+        b=Brtqq9vrvIv6TCQ41miOCtcM2e4xNbsKWLFVR+KMqllSzTv/n2o8omRM6UebQFjTlG
+         PWN9eIH8idZiVoFP1DWuje/qjwPwAQRyc1BygoRTflWC6TjPsahO0pasmPgQmQy0bwho
+         vrMqnL/lpU+RL7tQ8/NomBCjPXlWvTEmfWOknocgV+Xo0NIVZHJlt4KYCFkgLqYcF3Qh
+         rXWT122+hBo2gu1EINYd8rDyhUPFTZCE5YXbhAHrlNRawnNlvIS3cCMZwtk9uFyRaN37
+         JOI5v2Q0XgP33llNEKooRraq6RZw6HF8lzNzpuaTw67/wq868+GffJ2AuO/J2ymGavun
+         Ax9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693290585; x=1693895385;
+        d=1e100.net; s=20221208; t=1693290687; x=1693895487;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VfulV8l9fAUi9Tsip5/92M0tbm/MGDJ64gWqHZKs5QM=;
-        b=mIffs5rFtIty0RGuKFVzuDzKekFlJYhhzdBQnVVqalDWpMQ6xDTbtjQp4ePR4Sdxyg
-         IG+rm69Lh2ANkMMp7tUiILozE5g776yvOhG6CS+q3pB46yX216wX4NP1vinsXgSumvnf
-         2mzCm8nhBmDQ+9aEJ0S8x2cq5mgGLumlCAubiJf5DhR1GJ1SaGU4RhBHaD76wx74q9l/
-         gslFdLXT/6jqTQFZoC6PjIPPKJFbuaPl5qCMMsW2Jkq05PAj0Mhavr1QfCWaUGoFfPhQ
-         P+ReB22AZEtEGEtKLOBQZLQD07QUavOj/eD/Q7kFeArp/buTFYUAZPzHu+y00IUrXzpA
-         FvQg==
-X-Gm-Message-State: AOJu0YwDEw1fU/vHFD5HCtoG8pMy6X+Ws6FErRn81zI6nKP+kPnBr6oj
-        6FbCX6jEj6sEI2tZnfjJD0AuHQ==
-X-Google-Smtp-Source: AGHT+IHmnbiTbRrVI1+kiRm4p8e06XXGWlBZtkv3p5iM1pfrWN1Ql5/ryaWvi4l3r6rYzjx7fJXLvw==
-X-Received: by 2002:a17:906:113:b0:9a2:120a:5779 with SMTP id 19-20020a170906011300b009a2120a5779mr11507129eje.60.1693290584856;
-        Mon, 28 Aug 2023 23:29:44 -0700 (PDT)
+        bh=EbTpS2DfO4MuL752ysd/X26Nj6VhGdHkbTx7pRzKQP4=;
+        b=BV6dDK34TaqZ0jRRUTK+bMctrWu/WkfG0cz+Id5xjC+RHyuhPBmyYB5n8T5fQRc3ZN
+         SvohbPxFYu3AQbIT6Fq3vWk0aWlAFjKjfj131DQWcFZsTwAWU4Wd1Bfo36YJ5mFudDgZ
+         94C1FKrHGz8bo1rFLDOqAk9HIxSzLlWTtSeiTT/erwuIrXEZ/wrXFxO96ugVZ3GUoOf/
+         MCkhLqQozwRC7U7obu9gHs3qHcsDvI5Q1pFp5Mrb0Ss9qLKknZibVdyHGMYDdgW4fx7N
+         gEKMQRweg7wmoj6z63S/5f6lFC2Nhzf9yBSefy96RAfVUL8+2l0k1BMJP4egOPKy46+R
+         BPNQ==
+X-Gm-Message-State: AOJu0YwCwu1ncILutyOYeKWMFL/eIq09THScDsjfMm+329YIyPDOzaDc
+        M2KEmoafkgcKXWHe36O0/C/Rhw==
+X-Google-Smtp-Source: AGHT+IHBIqEartLFtfu65129YrZ7at2izi8lIOD0bLViZXVYyy9xn5D+IclskmbAaHFG/r/VTASyCw==
+X-Received: by 2002:a17:906:5349:b0:9a1:e011:1a62 with SMTP id j9-20020a170906534900b009a1e0111a62mr12417073ejo.38.1693290687299;
+        Mon, 28 Aug 2023 23:31:27 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id k16-20020a170906971000b009a0955a7ad0sm5573160ejx.128.2023.08.28.23.29.43
+        by smtp.gmail.com with ESMTPSA id uz16-20020a170907119000b0099b6becb107sm5598021ejb.95.2023.08.28.23.31.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Aug 2023 23:29:44 -0700 (PDT)
-Message-ID: <3fd27e64-2221-ec38-1320-9ae966f998aa@linaro.org>
-Date:   Tue, 29 Aug 2023 08:29:43 +0200
+        Mon, 28 Aug 2023 23:31:26 -0700 (PDT)
+Message-ID: <3eec4ac6-83a4-1f79-9b3e-569b21765d87@linaro.org>
+Date:   Tue, 29 Aug 2023 08:31:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 2/5] dt-bindings: soc: loongson,ls2k-pmc: Add missing
- compatible for Loongson-2K2000
+Subject: Re: [PATCH v4 13/32] dt-bindings: usb: dwc3: Add
+ snps,num-hc-interrupters definition
 Content-Language: en-US
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev
-References: <cover.1693218539.git.zhoubinbin@loongson.cn>
- <54ee114c08f35ab8b5dc584fd76135ac9076f5a7.1693218539.git.zhoubinbin@loongson.cn>
- <20230828-shrewdly-payee-c5eb091a0417@spud>
- <CAMpQs4Jp0rb8sbrLrPnNziLph4Ym4LxBsFt-00G69ecd8bUHNg@mail.gmail.com>
+To:     Wesley Cheng <quic_wcheng@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, mathias.nyman@intel.com,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+        broonie@kernel.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, bgoswami@quicinc.com,
+        Thinh.Nguyen@synopsys.com
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, alsa-devel@alsa-project.org,
+        quic_jackp@quicinc.com, pierre-louis.bossart@linux.intel.com,
+        oneukum@suse.com, albertccwang@google.com, o-takashi@sakamocchi.jp
+References: <20230725023416.11205-1-quic_wcheng@quicinc.com>
+ <20230725023416.11205-14-quic_wcheng@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMpQs4Jp0rb8sbrLrPnNziLph4Ym4LxBsFt-00G69ecd8bUHNg@mail.gmail.com>
+In-Reply-To: <20230725023416.11205-14-quic_wcheng@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -88,64 +86,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 05:21, Binbin Zhou wrote:
-> HI Conor:
+On 25/07/2023 04:33, Wesley Cheng wrote:
+> Add a new definition for specifying how many XHCI secondary interrupters
+> can be allocated.  XHCI in general can potentially support up to 1024
+> interrupters, which some uses may want to limit depending on how many
+> users utilize the interrupters.
 > 
-> Thanks for your reply.
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> ---
+>  .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
 > 
-> On Mon, Aug 28, 2023 at 11:49 PM Conor Dooley <conor@kernel.org> wrote:
->>
->> On Mon, Aug 28, 2023 at 08:38:32PM +0800, Binbin Zhou wrote:
->>> Document the Power Management Unit system controller compatible for
->>> Loongson-2K2000.
->>>
->>> This is a missing compatible, now we add it.
->>>
->>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->>> ---
->>>  .../devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml      | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
->>> index da2dcfeebf12..7473c5659929 100644
->>> --- a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
->>> @@ -15,6 +15,7 @@ properties:
->>>        - enum:
->>>            - loongson,ls2k0500-pmc
->>>            - loongson,ls2k1000-pmc
->>> +          - loongson,ls2k2000-pmc
->>
->> Same thing here as the driver patch, the pmc on this newly added SoC
->> appears to use the same codepaths as the existing ones. Does it share a
->> programming model & should there be a fallback compatible here?
-> 
-> I noticed the guideline about fallback compatible:
-> 
-> "DO use fallback compatibles when devices are the same as or a subset
-> of prior implementations."
-> 
-> But in fact, ls2k0500/ls2k1000/ls2k2000 are independent, there is no subset.
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 50edc4da780e..cc6012e922e0 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -376,6 +376,19 @@ properties:
+>      items:
+>        enum: [1, 4, 8, 16, 32, 64, 128, 256]
+>  
+> +  snps,num-hc-interrupters:
+> +    description:
+> +      Defines the maximum number of XHCI host controller interrupters that can
+> +      be supported.  The XHCI host controller has support to allocate multiple
+> +      event rings, which can be assigned to different clients/users.  The DWC3
+> +      controller has a maximum of 8 interrupters.  If this is not defined then
+> +      the value will be defaulted to 1.  This parameter is used only when
+> +      operating in host mode.
+> +    $ref: /schemas/types.yaml#/definitions/uint8
 
-We do not consider here ls2k0500/ls2k1000/ls2k2000, but PMC in each of
-them. If they are independent, why would they use the same interface?
-
-> Can we define a "loongson,ls2k-pmc" superset for each ls2k SoC
-> compatible fallback.
-> 
-> Such as:
-> 
->   compatible:
->     oneOf:
->       - enum:
->           - loongson,ls2k0500-pmc
->           - loongson,ls2k1000-pmc
->           - loongson,ls2k2000-pmc
->       - const: loongson,ls2k-pmc
-
-This is discouraged. Use 0500 as fallback.
-
-
+You did not respond to Rob's comments before sending this patch. :(
 
 Best regards,
 Krzysztof
