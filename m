@@ -2,108 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 55F4B78C1E6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 12:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6E6C78C1ED
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 12:05:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231599AbjH2KDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 06:03:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
+        id S231861AbjH2KFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 06:05:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234852AbjH2KCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 06:02:44 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ED2BD
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 03:02:40 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4c0so1522542a12.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 03:02:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693303359; x=1693908159; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xNfc1YCzECSmHdy+J5cr9YqVtcVteK3GsZt2ifwyGH4=;
-        b=P3BpxzUodeNxtHNYzDbhTJ2hrQuMHlwGM139bxjDQIzc5ypgBk9Ib0ZL8ycwytf/sc
-         IrqjeOq/HFUHt7yhB9SL1k08PTb9KV/8R00VZDqcvPnopiGG05RNIAgS2V2BpMcRQnwM
-         XSEUlq5oh9yJa0U7qrgRFhHXx4TtBNm31g+54AXhVAV9vVt+M2WldfFzuCbjaz9Ogv9r
-         WG65py12GrcP6Q8MgIZ3sRMdDZ/ypTFvRUjsXp7DYLsa6owZPacRzBpc4BqSjDHjPFdn
-         6FMEx4RBgdpqN1ygIWtIiTz0Go63Z7W5Iv+aac9GvplK6lhVd1bUc6t2//3ucEl0/okq
-         VUbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693303359; x=1693908159;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xNfc1YCzECSmHdy+J5cr9YqVtcVteK3GsZt2ifwyGH4=;
-        b=HZPpJVifjXsUPX7LgvtcAgIAjtcPXYaFZogfndX5qRO5upj9zF1WGtVxvsmtAI88/R
-         iKb+21R8VRnqii0bEKBQmX5UpZEvQGanwBv8mhk/QJ8MM3PM8rSCM/t4VNsjeXJAxEWA
-         e3AWhtwo7Lw2zpIEyPz52QENLNPjlskEeTQTdqjfSoUdasuBX3MsGZv9sotSirwjDBGf
-         8RWuzdAgvn8RWHEof/tKYO9uX0vNa2rEY/K1pdWr9q18v6l6jjx/kvTF2TaIbGWLkl9S
-         1kJy9crOBPLGRZG/BkNlF/MQYgTPppKI45NiQB23ODs78xfhjdMjwvrjXApXp+Q0NjwO
-         POQA==
-X-Gm-Message-State: AOJu0YxCMwox7yEzIEizK0+wEjWH7795j9cJT0l0rQ7r0rTtRtrku5Mj
-        jOgtkWYZXLh6gOICKlVycRYeBQ==
-X-Google-Smtp-Source: AGHT+IFHNtgUX1U+W+lEJ40ltziK5ZFMd1TqeGtv9haM9ughdurndzqlJlcIDfvWInNeikh9GiEWDw==
-X-Received: by 2002:a05:6402:50ca:b0:522:405f:a7 with SMTP id h10-20020a05640250ca00b00522405f00a7mr2475248edb.16.1693303359021;
-        Tue, 29 Aug 2023 03:02:39 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id y21-20020aa7c255000000b005257da6be23sm5460501edo.75.2023.08.29.03.02.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 03:02:38 -0700 (PDT)
-Message-ID: <674ae250-8256-8ffb-01fd-eb2bd6026808@linaro.org>
-Date:   Tue, 29 Aug 2023 12:02:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 08/11] thermal: exynos: stop using the threshold mechanism
- on Exynos 4210
-Content-Language: en-US
-To:     Mateusz Majewski <m.majewski2@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+        with ESMTP id S230267AbjH2KEw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 06:04:52 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A50F2B4;
+        Tue, 29 Aug 2023 03:04:49 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37TA4RFb031776;
+        Tue, 29 Aug 2023 05:04:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=PODMain02222019; bh=u9hqaXuOFL5v6nc
+        N7D6ugpoWF0WNT2DLXEHoDCgk5S0=; b=awtHp5/DLU5WTv5mFtNucOz205WDqTA
+        Suc1W8ReXRmuHF44NK/ZZNSC0byVQAPgQHUgkUYiS5kYG4CAyyQfNzCYwMhIvllp
+        kLOHJc8KL+rdlgoDUZ7LQDaZmrlIghgejMhSL95eRsIiAoPPsiz/58SgjjFLWNYs
+        MXdQHN4nUqIn7BckWSqUJ2lf6IUHsK4GI99niKGyU6/59bXR+Bck1VEmkDB7dMXy
+        xSEMrwTDihK6o+Be+RKudRKkEAdtOP3T/vO40TiEFNoRQzK0FvBk1pkzwdN2v3Gi
+        6fsTevv2qs7uxzX6A7pK//wUiY2IpdLhySYww2HQ8B/K6iixdEj+bUw==
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3sqdtj2s9u-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Aug 2023 05:04:27 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Tue, 29 Aug
+ 2023 11:04:25 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.37 via Frontend Transport; Tue, 29 Aug 2023 11:04:25 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 71AD415B6;
+        Tue, 29 Aug 2023 10:04:25 +0000 (UTC)
+Date:   Tue, 29 Aug 2023 10:04:25 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Vlad Karpovich <vkarpovi@opensource.cirrus.com>
+CC:     James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-References: <20230829091853.626011-1-m.majewski2@samsung.com>
- <CGME20230829092421eucas1p1970c3fb42ca622129bf92511893500b1@eucas1p1.samsung.com>
- <20230829091853.626011-9-m.majewski2@samsung.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230829091853.626011-9-m.majewski2@samsung.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <RicardoRivera-Matosricardo.rivera-matos@cirrus.com>
+Subject: Re: [PATCH 1/7] ASoC: cs35l45: Add support for Chip ID 0x35A460
+Message-ID: <20230829100425.GP103419@ediswmail.ad.cirrus.com>
+References: <20230828170525.335671-1-vkarpovi@opensource.cirrus.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230828170525.335671-1-vkarpovi@opensource.cirrus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-ORIG-GUID: x7d0QwZ9GEWB7LVPnwW5UviVJFxlrWhQ
+X-Proofpoint-GUID: x7d0QwZ9GEWB7LVPnwW5UviVJFxlrWhQ
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 11:18, Mateusz Majewski wrote:
-> Exynos 4210 supports setting a base threshold value, which is added to
-> all trip points. This might be useful, but is not really necessary in
-> our usecase, so we always set it to 0 to simplify the code a bit.
+On Mon, Aug 28, 2023 at 12:05:19PM -0500, Vlad Karpovich wrote:
+> The 0x35A460 chip is a different variant of the cs35l45.
 > 
-> Additionally, this change makes it so that we convert the value to the
-> calibrated one in a slightly different place. This is more correct
-> morally, though it does not make any change when single-point
+> Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
+> ---
 
-I don't think code placement is an aspect of morality, yet okay:
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-
-Best regards,
-Krzysztof
-
+Thanks,
+Charles
