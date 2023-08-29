@@ -2,131 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 467EF78CE56
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 23:08:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0576B78CEC9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 23:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240896AbjH2VIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 17:08:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
+        id S236153AbjH2Vcx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 17:32:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240651AbjH2VHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 17:07:39 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE95BD;
-        Tue, 29 Aug 2023 14:07:36 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37TCsbQ3005281;
-        Tue, 29 Aug 2023 21:07:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=jt0oIgTyqjbTXFE8R+uBXHTwbnogDehsEUidVF5fLmc=;
- b=D6exVpbsp6DiENE2+cXYO0RMQQkv4BT7zgXBId/Eh8I5rwmpK9dM9yMirMmmy7fIB2iw
- +rGwND1cJqD2olUNCWCDNSy2JP7Cmse6YfeLwFlymYMXuJZ48ZytnEcuVOjVwkt8OZCq
- yhCO6oqFo1Gu/T45bjcHUdtYTGtzGPCSfY2IE2quhKXQ+Gf4LowDDWQgCbyOuY3Cm31w
- v900t7JzhjsFBCK6xwt2pyLeN/EwNc7G4Q9zRWou3NRfnyH9JfaElrf8E00ewgidQJbR
- g1ngVvChbqkrvzYrotikhTc6ZWE524HKcuw4MpZwIlPK2cdKUT8vcvZVhQwA/W0bMmqg +A== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ss2xbaxu8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 21:07:18 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37TL7HCR014496
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 21:07:17 GMT
-Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Tue, 29 Aug 2023 14:07:16 -0700
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-To:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <agross@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
-        <quic_plai@quicinc.com>, Wesley Cheng <quic_wcheng@quicinc.com>
-Subject: [PATCH v5 32/32] sound: soc: soc-usb: Rediscover USB SND devices on USB port add
-Date:   Tue, 29 Aug 2023 14:06:57 -0700
-Message-ID: <20230829210657.9904-33-quic_wcheng@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230829210657.9904-1-quic_wcheng@quicinc.com>
-References: <20230829210657.9904-1-quic_wcheng@quicinc.com>
+        with ESMTP id S238939AbjH2Vco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 17:32:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85D8A8;
+        Tue, 29 Aug 2023 14:32:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 567E5616A0;
+        Tue, 29 Aug 2023 21:32:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC005C433CA;
+        Tue, 29 Aug 2023 21:32:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693344760;
+        bh=5o6ki4h0Ml9jAcSugGPORbFfTrt12s7REMjvXI4xR4Y=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LftEq++9TdpzBCHZL3FrVb5yUmSkFZylY8fpzdVOFPgfdE5Xtn5AMoKk9xgdCv/9N
+         z1w202zDQmICAiMxZroK+nGFu+m+IrZs6RnnKSuUMAv513pVzJIu3aZaMbjZf9UpWG
+         2GKGHABaseufLESGYQhz3VLnJaNHqRB0cRm6SBXdxxuXnVxAECwKxbrH2xF9yguKQT
+         XBtVXkih+i6NgsvXtDmIxTU3JtlyIXwR2+6yFgrCCKrGWGUXqWPHkquHoM3cS84J8u
+         J4lfgn/kfQtV/tH8/qu88KUCx4PqRnEDRkrVcQ/AgiKI1uy8viaFXRugesCVFiffDt
+         oJOv0/0dD2EeA==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-50043cf2e29so7593960e87.2;
+        Tue, 29 Aug 2023 14:32:40 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yznnu5J0REr2OYQIVG9HkaXk6keWa9cy5Nx8zF4ML5VtXlC+Mnx
+        01jseyr0Yv80lPl0ujd/Hu94T210NvUfPUz7FSQ=
+X-Google-Smtp-Source: AGHT+IFG7drW7XtSYzjCVaUWymqykiMN8j8kcQp1tRPjGjuXbW1d4XcdEzil0B8OeqZsoEILEVQdFDqyTELIfS7Pr5w=
+X-Received: by 2002:ac2:5446:0:b0:500:9d6c:913e with SMTP id
+ d6-20020ac25446000000b005009d6c913emr98357lfn.52.1693344758741; Tue, 29 Aug
+ 2023 14:32:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: TYlLdWiodNg4W_7UoDVVyWgKiPuZB0ev
-X-Proofpoint-GUID: TYlLdWiodNg4W_7UoDVVyWgKiPuZB0ev
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-29_15,2023-08-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- mlxscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0 bulkscore=0
- spamscore=0 priorityscore=1501 mlxlogscore=999 adultscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2308290182
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
+ <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com>
+ <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
+ <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com> <CAPnjgZ2kkUt1eOWX8K+EsbjcQZPefNvj5DSaFb9QrvRg0t2h7w@mail.gmail.com>
+In-Reply-To: <CAPnjgZ2kkUt1eOWX8K+EsbjcQZPefNvj5DSaFb9QrvRg0t2h7w@mail.gmail.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Tue, 29 Aug 2023 23:32:27 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXGe84uaJ9j9ic0V4HC43p7QBoKQ5ssTYd5DMBGtZ3++Jw@mail.gmail.com>
+Message-ID: <CAMj1kXGe84uaJ9j9ic0V4HC43p7QBoKQ5ssTYd5DMBGtZ3++Jw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
+To:     Simon Glass <sjg@chromium.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        ron minnich <rminnich@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In case the USB backend device has not been initialized/probed, USB SND
-device connections can still occur.  When the USB backend is eventually
-made available, previous USB SND device connections are not communicated to
-the USB backend.  Call snd_usb_rediscover_devices() to generate the connect
-callbacks for all USB SND devices connected.  This will allow for the USB
-backend to be updated with the current set of devices available.
+On Tue, 29 Aug 2023 at 21:18, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Ard,
+>
+> On Thu, 24 Aug 2023 at 03:10, Ard Biesheuvel <ardb@kernel.org> wrote:
+> >
+> > On Wed, 23 Aug 2023 at 22:04, Simon Glass <sjg@chromium.org> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Wed, 23 Aug 2023 at 08:24, Ard Biesheuvel <ardb@kernel.org> wrote:
+> > > >
+> > > > On Wed, 23 Aug 2023 at 10:59, Mark Rutland <mark.rutland@arm.com> wrote:
+> > > > >
+> > > > > On Tue, Aug 22, 2023 at 02:34:42PM -0600, Simon Glass wrote:
+> > > > > > The Devicetree specification skips over handling of a logical view of
+> > > > > > the memory map, pointing users to the UEFI specification.
+> > > > > >
+> > > > > > It is common to split firmware into 'Platform Init', which does the
+> > > > > > initial hardware setup and a "Payload" which selects the OS to be booted.
+> > > > > > Thus an handover interface is required between these two pieces.
+> > > > > >
+> > > > > > Where UEFI boot-time services are not available, but UEFI firmware is
+> > > > > > present on either side of this interface, information about memory usage
+> > > > > > and attributes must be presented to the "Payload" in some form.
+> > > >
+> > > > Not quite.
+> > > >
+> > > > This seems to be intended for consumption by Linux booting in ACPI
+> > > > mode, but not via UEFI, right?
+> > >
+> > > Actually, this is for consumption by firmware. The goal is to allow
+> > > edk2 to boot into U-Boot and vice versa, i.e. provide some
+> > > interoperability between firmware projects. I will use the "Platform
+> > > Init" and "Payload" terminology here too.
+> > >
+> >
+> > OK. It was the cc to linux-acpi@ and the authors of the
+> > ACPI/SMBIOS-without-UEFI patches that threw me off here.
+> >
+> > If we are talking about an internal interface for firmware components,
+> > I'd be inclined to treat this as an implementation detail, as long as
+> > the OS is not expected to consume these DT nodes.
+> >
+> > However, I struggle to see the point of framing this information as a
+> > 'UEFI memory map'. Neither EDK2 nor u-boot consume this information
+> > natively, and there is already prior art in both projects to consume
+> > nodes following the existing bindings for device_type=memory and the
+> > /reserved-memory node. UEFI runtime memory is generally useless
+> > without UEFI runtime services, and UEFI boot services memory is just
+> > free memory.
+> >
+> > There is also an overlap with the handover between secure and
+> > non-secure firmware on arm64, which is also DT based, and communicates
+> > available memory as well as RAM regions that are reserved for firmware
+> > use.
+> >
+> > In summary, I don't see why a non-UEFI payload would care about UEFI
+> > semantics for pre-existing memory reservations, or vice versa. Note
+> > that EDK2 will manage its own memory map, and expose it via UEFI boot
+> > services and not via DT.
+>
+> Bear in mind that one or both sides of this interface may be UEFI.
+> There is no boot-services link between the two parts that I have
+> outlined.
+>
 
-The chip array entries are all populated and removed while under the
-register_mutex, so going over potential race conditions:
+I don't understand what this means.
 
-Thread#1:
-  q6usb_component_probe()
-    --> snd_soc_usb_add_port()
-      --> snd_usb_rediscover_devices()
-        --> mutex_lock(register_mutex)
+UEFI specifies how one component invokes another, and it is not based
+on a DT binding. If the second component calls UEFI boot or runtime
+services, it should be invoked in this manner. If it doesn't, then it
+doesn't care about these memory reservations (and the OS will not be
+booted via UEFI either)
 
-Thread#2
-  --> usb_audio_disconnect()
-    --> mutex_lock(register_mutex)
+So I feel I am missing something here. Perhaps a practical example
+would be helpful?
 
-So either thread#1 or thread#2 will complete first.  If
 
-Thread#1 completes before thread#2:
-  SOC USB will notify DPCM backend of the device connection.  Shortly
-  after, once thread#2 runs, we will get a disconnect event for the
-  connected device.
+> >
+> > ...
+> > >
+> > > There is no intent to implement the UEFI spec, here. It is simply that
+> > > some payloads (EDK2) are used to having this information.
+> > >
+> > > Imagine splitting EDK2 into two parts, one of which does platform init
+> > > and the other which (the payload) boots the OS. The payload wants
+> > > information from Platform Init and it needs to be in a devicetree,
+> > > since that is what we have chosen for this interface. So to some
+> > > extent this is unrelated to whether you have EFI boot services. We
+> > > just need to be able to pass the information across the interface.
+> > > Note that the user can (without recompilation, etc.) replace the
+> > > second part with U-Boot (for example) and it must still work.
+> > >
+> >
+> > OK, so device tree makes sense for this. This is how I implemented the
+> > EDK2 port that targets QEMU/mach-virt - it consumes the DT to discover
+> > the UART, RTC,, memory, PCI host bridge, etc.
+> >
+> > But I don't see a use case for a UEFI memory map here.
+> >
+> >
+...
+> > >
+> > > Here I believe you are talking about booting the kernel in EFI mode,
+> > > but that is not the intent of this patch. This is all about things
+> > > happening in firmware. Now, if the payload (second) part of the
+> > > firmware decides it wants to offer EFI boot services and boot the
+> > > kernel via the EFI stub, then it may very well pack this information
+> > > (with a few changes) into a system table and make it available to the
+> > > kernel stub. But by then this FDT binding is irrelevant, since it has
+> > > served its purpose (which, to reiterate, is to facilitate information
+> > > passage from platform init to 'payload').
+> > >
+> >
+> > Indeed. As long as this binding is never consumed by the OS, I don't
+> > have any objections to it - I just fail to see the point.
+>
+> OK thanks.
+>
+> The point is that Platform Init and the payload need to agree about
+> where certain things are in memory. It is true that this is coming
+> from an EFI context, but that is just an example. Platform Init
+> doesn't necessarily know whether its payload is EFI, but may set this
+> up for use by the payload, just in case.
+>
 
-Thread#2 completes before thread#1:
-  Then during snd_usb_rediscover_devices() it won't notify of any
-  connection for that particular chip index.
+Platform init can communicate memory reservations to a UEFI payload if
+needed, and there is prior art for this.
 
-Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
----
- sound/soc/soc-usb.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/sound/soc/soc-usb.c b/sound/soc/soc-usb.c
-index 619f9bfd6999..7df7f93cf5a2 100644
---- a/sound/soc/soc-usb.c
-+++ b/sound/soc/soc-usb.c
-@@ -115,6 +115,8 @@ struct snd_soc_usb *snd_soc_usb_add_port(struct device *dev, void *priv,
- 	list_add_tail(&usb->list, &usb_ctx_list);
- 	mutex_unlock(&ctx_mutex);
- 
-+	snd_usb_rediscover_devices();
-+
- 	return usb;
- }
- EXPORT_SYMBOL_GPL(snd_soc_usb_add_port);
+Platform init *cannot* communicate UEFI specific boot or runtime
+reservations in this manner, as this doesn't make sense: either
+Platform Init is UEFI and invokes a UEFI payload, in which case the
+UEFI spec applies. In other cases, the UEFI memory regions either
+don't exist or are irrelevant. The only EFI-agnostic aspect here is
+RAM reservation for use by firmware in general, and this does not have
+these UEFI semantics and does not need to be framed as such.
