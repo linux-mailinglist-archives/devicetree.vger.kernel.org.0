@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39D8678CA24
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:04:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CA5578CA34
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:07:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237477AbjH2REG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 13:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56154 "EHLO
+        id S237615AbjH2RGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 13:06:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237623AbjH2RDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:03:55 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FDE1B7
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:03:51 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52a069edca6so6441018a12.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:03:51 -0700 (PDT)
+        with ESMTP id S237584AbjH2RGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:06:19 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F36FF
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:06:15 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fe1b00fce2so7391296e87.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:06:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693328630; x=1693933430;
+        d=linaro.org; s=google; t=1693328773; x=1693933573;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=tdTmjmuPAurruPWgK9CBCEBZHBscY3L79kIykl4vQps=;
-        b=waubyInGZ/ryHrlP/0kxJ7g8oFoIN9dIfMljCEhusZAyOVUhjKQP5HkJNeKm8inBOA
-         qTQoLBYJmTJcaZZAAVWAvZ1Y8IXutZXDSnA2n/CZn4cneOeGURsa7/RC2zsujeTSBE6v
-         OLRg+ztB+eMktVMqsJC2XJLIN2MWinYuWbe87Hjz47USRHEpkTf4TEwUn6IhWvPjuNt9
-         LXs2NlGPr7eRRnB+aZnfpBi9sksNlnxD3gBtz4QFyCwgfx5JMupSxM1hZm8DqqSvyZG3
-         vtFf1cVd9cllJv058Lsi4tvSruM2T2SSW0wIJLtztvqWV//B6O3g6vvxvFSbr+/CJiaH
-         xitQ==
+        bh=0o7Mr831Nej9FWv2bx2EhMzCwHiFVCqVynGDq67M+Fk=;
+        b=HhPJUBP41PMjhbmDGMzh3+t2f38Bv168mCi/sG5tFsMgRYn5jbtO3BmgiRmgCr9poj
+         IjfWsOtyd3zMFtNkVeRsqaGEtY+CFSI/Vvb20AXVH5zeFqnep2HNA4Jao0zCuPchPMg0
+         ltzWawE6Z0oWD/7KlY7t8WmGZ9qkmeP8JMlWTD+rP40IPC4+e6lDCkRpBJEtecScZciZ
+         uowsfByz5WdSD/aXuFK3Flx6N3IAKFMRH7N6/yLg4z4XLuHCfAmA/+oiFiPXaAZ3fXPs
+         CY4pvMwdVHJ+rp2mQPkL1gEeXYgb72FI+7+RbJm2TOk812Q+w7/N90eBSRb28MealViN
+         Lmwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693328630; x=1693933430;
+        d=1e100.net; s=20221208; t=1693328773; x=1693933573;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tdTmjmuPAurruPWgK9CBCEBZHBscY3L79kIykl4vQps=;
-        b=H1zMPgQWcbhlzQT6GTB79y2S5GxnAvfDb01gBWAzWayFfOxJpExFQJhj2EffNPyiFI
-         /dt5CYfbO39Ii30VjAeD1CTbfuliwrCZLFRQhb2AE8Vx8twda698K6R/Pi6YBvTkpHOU
-         /eeF70P1tWiVGzhEwrvaT/3n16BVQFV9C/v+gvA8oXGGriKvqcr5YfxADN0NTB5ctOYy
-         QfLHc/sQvUrDgGRl+Ed3+iQXgfZ3Lxwnlx5g3qf1hJObJFXiAzLV9P/jYXhZfMJPhyhM
-         Z+p3hammWuWj5y8LGu5EvCw41+RFEzfcJr/4IpPW7TZKFJLj5CKnDCZaUqud2OfU3QdV
-         sIgg==
-X-Gm-Message-State: AOJu0YxjOimRjeMx/4+KJ5mgE9StSFnTcksYM/MYL5ubnALkgiqLmfaD
-        Q1Z699r6fY1Quzo7EqGDFMcUBw==
-X-Google-Smtp-Source: AGHT+IGMNbdGZpiJfoKIbglOYT2jBQpjifa66imX4kAlXfQqNLwz78VbLZWuChdAb5e/Wmk2vArrsQ==
-X-Received: by 2002:a05:6402:14d1:b0:524:24dc:c455 with SMTP id f17-20020a05640214d100b0052424dcc455mr18273629edx.42.1693328629888;
-        Tue, 29 Aug 2023 10:03:49 -0700 (PDT)
+        bh=0o7Mr831Nej9FWv2bx2EhMzCwHiFVCqVynGDq67M+Fk=;
+        b=Iz8a1o9TEblXe5/UzgvEX1AN/zD3s3JWRnT9nFvlxYTIPgDSUSF3u1Biw4mkzkZBk+
+         RbgzQ4v6Jaz3eGHcsnXa0hOcRRKZjYd4xvEFUhBNwVNdjkDlk6/DYkk9rqszld5Itu5I
+         dGeACukj3dD/zJsVvHBpu6rQd099+bBcCawDTE6bKNfDXjH0++bya4j3+zcsoKW9p9H2
+         Ua9bOeX58V+HiTwYIjqOaLxstPoZxwV8CMMdQFfLXBOhHlzciB0rraq76gNaz+bg5G9D
+         nad8TK+sjbUPwsBVmBmKGVLw3cWyMpaZuPiHlTVwme6BMvA4mRjR05yJe6LCCqee7q/2
+         ApFA==
+X-Gm-Message-State: AOJu0Yy2nYB7K3xFugmIXYFgZFqOHeP3kIww725pqUAaRHXXAo6m6F/5
+        L4E02qHzsWfA37BLCz4KMq2onA==
+X-Google-Smtp-Source: AGHT+IHDVaqqoGBbn+2ZIUMx1R/FTnYRpx9OPIJdXNfCDCm9rndnP0L3pxBfF44J7EddVs7LBmG7oQ==
+X-Received: by 2002:ac2:5e7a:0:b0:500:7fc1:414b with SMTP id a26-20020ac25e7a000000b005007fc1414bmr16439268lfr.25.1693328773205;
+        Tue, 29 Aug 2023 10:06:13 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id r14-20020aa7d58e000000b0052a1a623267sm5801084edq.62.2023.08.29.10.03.48
+        by smtp.gmail.com with ESMTPSA id dk24-20020a170906f0d800b0099ddc81903asm6185081ejb.221.2023.08.29.10.06.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 10:03:49 -0700 (PDT)
-Message-ID: <4d2df1ae-cf16-ddaa-ce03-eec520f19ae3@linaro.org>
-Date:   Tue, 29 Aug 2023 19:03:47 +0200
+        Tue, 29 Aug 2023 10:06:12 -0700 (PDT)
+Message-ID: <395d044b-73cd-d790-5fc6-98e8930acf8e@linaro.org>
+Date:   Tue, 29 Aug 2023 19:06:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 7/9] arm64: dts: qcom: ipq5332: Enable USB SS UNIPHY
+Subject: Re: [PATCH 9/9] arm64: defconfig: Enable UNIPHY driver
 Content-Language: en-US
 To:     Praveenkumar I <quic_ipkumar@quicinc.com>, robert.marko@sartura.hr,
         luka.perkov@sartura.hr, agross@kernel.org, andersson@kernel.org,
@@ -69,9 +69,9 @@ To:     Praveenkumar I <quic_ipkumar@quicinc.com>, robert.marko@sartura.hr,
         linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc:     quic_varada@quicinc.com
 References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
- <20230829135818.2219438-8-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-10-quic_ipkumar@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230829135818.2219438-8-quic_ipkumar@quicinc.com>
+In-Reply-To: <20230829135818.2219438-10-quic_ipkumar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,7 +85,12 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/08/2023 15:58, Praveenkumar I wrote:
-> Enable USB3 SS UNIPHY and update USB node name.
+> Enable UNIPHY driver for IPQ5322.
+
+This we see from the diff. You *must* say *why*, not *what*.
+
+Samsung IPQ5322 or NXP IPQ5322? Which boards need it?
+
 > 
 > Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
 > ---
@@ -93,31 +98,9 @@ On 29/08/2023 15:58, Praveenkumar I wrote:
 > IPQ5332
 > https://lore.kernel.org/all/cover.1692699472.git.quic_varada@quicinc.com/
 > 
->  arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> index 53696f4b46fc..c450153cfaac 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
-> @@ -95,10 +95,15 @@ &usbphy0 {
->  	status = "okay";
->  };
->  
-> +&ssuniphy0 {
-> +	vdd-supply = <&regulator_fixed_5p0>;
-> +	status = "okay";
-> +};
-> +
->  &usb {
->  	status = "okay";
->  };
->  
-> -&usb2_0_dwc {
-> +&usb3_0_dwc {
 
-This means previous patch was not even built. Sorry, that's bad. Please
-test your commits before sending.
+How does it depend? Obviously it is part of the series, but what is
+depending here?
 
 Best regards,
 Krzysztof
