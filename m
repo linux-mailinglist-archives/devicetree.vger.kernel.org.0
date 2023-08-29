@@ -2,135 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B35CC78C44A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 14:32:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1DC78C44F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 14:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231657AbjH2McO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 08:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46570 "EHLO
+        id S235426AbjH2Mf7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 08:35:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235529AbjH2McL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 08:32:11 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71DC4A3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 05:32:09 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3a99eeb95aaso3048409b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 05:32:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693312328; x=1693917128;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/eeGQZOZgf/VFrLfirDtZ7jaPLnwry16F2Zl406iUWw=;
-        b=f5nhnLL8+0mo0OICZLWGgBoBmkSgI0vCSvgafFWPOqelteEWNZGk6/ycmZ9V7bRE3S
-         dmQIl955d9ezZqXpqQ6oBftVVy5cxNyMUvCCgEKq00dJ4M/6SPLgnmjdpI20+NnSVHDb
-         y4r5SmEbvhh5m31AGz1Mc0436ar/lz1U6vXaCmLjdieG/tzTn2lQA0uEO5JfOI1EBpXD
-         nbtO3icGy0Piz+32pxN1ndiuk1eUb9M6YkPxz0TxCcV5RF21qBJ7zWFyUk5wC4buI0A/
-         C6b9zjO19Kj++rrzAajWB2pidDGJA2r2L8bq4xS6wbfVwbnYn3AWdMrfJ65Tx2LoPb4l
-         YIfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693312328; x=1693917128;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/eeGQZOZgf/VFrLfirDtZ7jaPLnwry16F2Zl406iUWw=;
-        b=GcLDLm7OCQ1i+hawFFPdGNKPPzmYyKzo7JQX8DRwe7BJV4h9XRfHfN5cylA44rt4oR
-         V+Yb1gK3X74Swp6aj/y58ekIn8V/MAa+K8vOck6pgs0IWFfmox+mIyp2J18wSjEMWdUJ
-         hir5Fbj47Mc7rdi/4pu3XkSfpwNo2/YgUg0PpOlokZaf12yldIof2jfIfBOSHCRrwzEH
-         jtFTgVqvYY6VtCH1cIB8b7D/tF65jEr7Ejh78h64LXev/Xi7lXMMXEDk1P2PPJEwkefT
-         GodUzLwvXJDVPG5wdElJfNPbaLyrFHlPyFWPANVd1T0szVg1vIZxw4LwTHqPN1N2hbhM
-         tPYw==
-X-Gm-Message-State: AOJu0YxxrTFtspiO951BVhA9mOozW4KrzJ4A9TZ1CJWvACsayQqeyrf7
-        q724W0IeW35aSqrbbH4n9ClJt+tdAO6DtnxrGkD07g==
-X-Google-Smtp-Source: AGHT+IEy5HlFBzwFRYUGxsn67gMYLLkQqUgpnkLX4wFSOFgSv18K1jKYMlNfiEOsrveXKrBKr09DzbKLVKHnwrLzYJw=
-X-Received: by 2002:a05:6358:921:b0:13c:dcbc:375c with SMTP id
- r33-20020a056358092100b0013cdcbc375cmr11309549rwi.21.1693312328578; Tue, 29
- Aug 2023 05:32:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-4-bartosz.golaszewski@linaro.org> <cc35c729-df33-087b-2df4-95e8cc174ec6@linaro.org>
-In-Reply-To: <cc35c729-df33-087b-2df4-95e8cc174ec6@linaro.org>
-From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date:   Tue, 29 Aug 2023 14:31:57 +0200
-Message-ID: <CACMJSesDZw6i6jb05kY2iN=Qf3Ln5f6Yz5gdrkoFk86NnNv1Gg@mail.gmail.com>
-Subject: Re: [PATCH 03/11] firmware: qcom-scm: atomically assign and read the
- global __scm pointer
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231454AbjH2Mfv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 08:35:51 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 68A80A3;
+        Tue, 29 Aug 2023 05:35:46 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.201])
+        by gateway (Coremail) with SMTP id _____8Ax1fAf5u1kr8IcAA--.58695S3;
+        Tue, 29 Aug 2023 20:35:43 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.20.42.201])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxHCMb5u1kE3dmAA--.31948S2;
+        Tue, 29 Aug 2023 20:35:43 +0800 (CST)
+From:   Yinbo Zhu <zhuyinbo@loongson.cn>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
+Subject: [PATCH v5 0/2] gpio: loongson: add more gpio chip support
+Date:   Tue, 29 Aug 2023 20:35:22 +0800
+Message-Id: <20230829123524.17291-1-zhuyinbo@loongson.cn>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxHCMb5u1kE3dmAA--.31948S2
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Aug 2023 at 09:59, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 28/08/2023 21:24, Bartosz Golaszewski wrote:
-> > Checking for the availability of SCM bridge can happen from any context.
-> > It's only by chance that we haven't run into concurrency issues but with
-> > the upcoming SHM Bridge driver that will be initiated at the same
-> > initcall level, we need to assure the assignment and readback of the
-> > __scm pointer is atomic.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  drivers/firmware/qcom_scm.c | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-> > index 980fcfa20b9f..422de70faff8 100644
-> > --- a/drivers/firmware/qcom_scm.c
-> > +++ b/drivers/firmware/qcom_scm.c
-> > @@ -1331,7 +1331,7 @@ static int qcom_scm_find_dload_address(struct device *dev, u64 *addr)
-> >   */
-> >  bool qcom_scm_is_available(void)
-> >  {
-> > -     return !!__scm;
-> > +     return !!READ_ONCE(__scm);
-> >  }
-> >  EXPORT_SYMBOL(qcom_scm_is_available);
-> >
-> > @@ -1477,8 +1477,8 @@ static int qcom_scm_probe(struct platform_device *pdev)
-> >       if (ret)
-> >               return ret;
-> >
-> > -     __scm = scm;
-> > -     __scm->dev = &pdev->dev;
-> > +     scm->dev = &pdev->dev;
-> > +     WRITE_ONCE(__scm, scm);
->
-> Your re-ordering is not effective here, I think. I don't understand it's
-> purpose exactly, but scm->dev assignment is not WRITE_ONCE(), thus it
-> can be reordered:
->
-> "compiler is also forbidden from reordering successive instances of
-> READ_ONCE and WRITE_ONCE" <- so compiler is not forbidden to reorder
-> other stuff.
->
-> "Ensuring that the compiler does not fold, spindle, or otherwise
-> mutilate accesses that either do not require ordering or that interact"
-> <- which means you do not require ordering here.
->
+This patch was to add loongson 2k0500, 2k2000 and 3a5000 gpio chip
+driver support.
 
-Hmm, I had the list_add() implementation in mind as well as examples
-from https://www.kernel.org/doc/Documentation/memory-barriers.txt and
-was under the impression that WRITE_ONCE() here is enough. I need to
-double check it.
+Change in v5:
+		1. Use boolean initializer for lgpio->chip.can_sleep.
+		2. Remove the code that about io width gain from ngpios.
+		3. Fixup the ls7a-gpio and ls2k-gpio items in yaml file.
+		4. Add the reviewed-by information for dt-bindings patch.
+		5. Add some comments in loongson_gpio_to_irq.
+Change in v4:
+		1. Reword the title and commit log information.
+		2. Remove the offset parse in DT and add it in of_device_id and
+		   acpi_device_id's data field.
+		3. Add more gpio chip dt-bindings support in yaml file.
+Change in v3:
+		1. Reword the dt-bindings patch commit log information.
+		2. Add "loongson,ls2k1000-gpio" compatible.
+Change in v2:
+		1. Reword the patch commit log information.
+		2. Add some GPIO register offset description in yaml.
 
-Bart
+Yinbo Zhu (2):
+  gpio: dt-bindings: add more loongson gpio chip support
+  gpio: loongson: add more gpio chip support
+
+ .../bindings/gpio/loongson,ls-gpio.yaml       |  21 ++-
+ drivers/gpio/gpio-loongson-64bit.c            | 125 ++++++++++++++++--
+ 2 files changed, 130 insertions(+), 16 deletions(-)
+
+-- 
+2.20.1
+
