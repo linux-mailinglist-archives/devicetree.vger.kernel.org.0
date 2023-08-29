@@ -2,152 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7EEF78C31D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 13:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F98578C328
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 13:17:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbjH2LLD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 07:11:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
+        id S230365AbjH2LRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 07:17:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230219AbjH2LK5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 07:10:57 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C446410A
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 04:10:53 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-500b6456c7eso3593446e87.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 04:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693307452; x=1693912252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0r2GjALbWtOQSWtEI0zRkNY6QzBe9xzJHAY3ewhrC4c=;
-        b=pZ1LoshjGQVaUbh88Ob9zvAlxushJcciivYWBYhFcHdriEAgLklhIcARi0uHyRpDE0
-         99OcSofOZgVnXFlBEv9CTauF+0V9br1FzAmIMSv/NKEpbxGhYjzuBhKB4qd7ZxvPDexm
-         cdoHZSWULazsYv/LA2LqUfqQeTRZN9ORgyZMgVEMIOJrpbugBDQhiAe80r7l6sxFSudc
-         aQXqr1vecodTCeSjBCkXUN9U4NbQOdl5ScuLjRjfjuCyBECwUwW+ZPjNcU7NlLmNzZtY
-         HuWmmEjGt7kZZDDU+9iVkW8p7wSoqqMZK6NbOMVaY44JiJlnDk6rNNO0Grfz40ql3Zow
-         l+Lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693307452; x=1693912252;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0r2GjALbWtOQSWtEI0zRkNY6QzBe9xzJHAY3ewhrC4c=;
-        b=fHANtTYJ2/JUu0AlZZfm1rvL/8TZaDVaC11SYXjGuMISpf3Ie63Lm80zAa+LgiUnEv
-         K3fHhDopiBifsIOtqYK0dy9EWLw1vc8mvAMh7XEPFSZaSwtUHQrX3PHPMthELx4mQqee
-         b2nmcHGFmyo1P+TeHuiQme+HbN/VaiszlLUCPZuEP2z++LbmMV9ktKKl+FG3t1tuPrW5
-         SXNmR/e9P8hkDqsYMMcgplaY3x1fdaM8L1mniSqD32Fj4NL3MSIByAmZQFj+F7b3OlZo
-         lJxLvfEpFg+hnLUjG1N5fJa0K9p7Ikgtg39s8PMnvNZ5FfX3VPFRkk4ps+s37CJlm6pF
-         LOGw==
-X-Gm-Message-State: AOJu0YzcNXJDcYK4/en6o3CpBURa1sGG2oDjcag8Mo2qis3zkKTmKYf5
-        xON2kPilBQQjouWOthy6dPEoeg==
-X-Google-Smtp-Source: AGHT+IER1IFZ7/ug9j7OI1vTIHvLWZqoJWfIPZIKhx7eIjEo3PLnmdqCA57+CNtMw5SZZ9zIk5GY1g==
-X-Received: by 2002:a05:6512:2395:b0:4fb:73ce:8e7d with SMTP id c21-20020a056512239500b004fb73ce8e7dmr25341399lfv.15.1693307451972;
-        Tue, 29 Aug 2023 04:10:51 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id t7-20020aa7d4c7000000b00529fa63ef6fsm5551036edr.57.2023.08.29.04.10.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 04:10:51 -0700 (PDT)
-Message-ID: <0941e2f4-6b58-a4e7-3dda-c1723f5503ac@linaro.org>
-Date:   Tue, 29 Aug 2023 13:10:50 +0200
+        with ESMTP id S229841AbjH2LQs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 07:16:48 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 29D93BC;
+        Tue, 29 Aug 2023 04:16:44 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37TBG7VZ0018637, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37TBG7VZ0018637
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 29 Aug 2023 19:16:07 +0800
+Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Tue, 29 Aug 2023 19:15:50 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Tue, 29 Aug 2023 19:15:49 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Tue, 29 Aug 2023 19:15:49 +0800
+From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
+        <stanley_chang@realtek.com>
+To:     Chanwoo Choi <chanwoo@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>
+CC:     Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
+Thread-Topic: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
+Thread-Index: AQHZ1ONvA6JhKCipAECuqR11IG4J/a/5VrCAgAfQ43A=
+Date:   Tue, 29 Aug 2023 11:15:49 +0000
+Message-ID: <2df3dc449c894e50b126a1b6941eb4d7@realtek.com>
+References: <20230822102846.4683-1-stanley_chang@realtek.com>
+ <af247603-6a8d-7c05-4342-c6f615a7f508@kernel.org>
+In-Reply-To: <af247603-6a8d-7c05-4342-c6f615a7f508@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXMBS05.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq5018: enable the CPUFreq support
-Content-Language: en-US
-To:     Robert Marko <robimarko@gmail.com>,
-        Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20230829095423.760641-1-quic_gokulsri@quicinc.com>
- <20230829095423.760641-4-quic_gokulsri@quicinc.com>
- <f457ee94-81d0-bd28-1432-ba2828dabb79@linaro.org>
- <efe09cb6-7b67-9307-28e7-99e238a3672b@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <efe09cb6-7b67-9307-28e7-99e238a3672b@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 12:56, Robert Marko wrote:
-> 
-> On 29. 08. 2023. 12:12, Krzysztof Kozlowski wrote:
->> On 29/08/2023 11:54, Gokul Sriram Palanisamy wrote:
->>> Add the APCS, A53 PLL, cpu-opp-table nodes to set
->>> the CPU frequency at optimal range.
->>>
->>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 34 +++++++++++++++++++++++++++
->>>   1 file changed, 34 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>> index 9f13d2dcdfd5..05843517312c 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>> @@ -8,6 +8,7 @@
->>>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>   #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
->>>   #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
->>> +#include <dt-bindings/clock/qcom,apss-ipq.h>
->> c is before r.
->>
->>>   
->>>   / {
->>>   	interrupt-parent = <&intc>;
->>> @@ -36,6 +37,8 @@ CPU0: cpu@0 {
->>>   			reg = <0x0>;
->>>   			enable-method = "psci";
->>>   			next-level-cache = <&L2_0>;
->>> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->>> +			operating-points-v2 = <&cpu_opp_table>;
->>>   		};
->>>   
->>>   		CPU1: cpu@1 {
->>> @@ -44,6 +47,8 @@ CPU1: cpu@1 {
->>>   			reg = <0x1>;
->>>   			enable-method = "psci";
->>>   			next-level-cache = <&L2_0>;
->>> +			clocks = <&apcs_glb APCS_ALIAS0_CORE_CLK>;
->>> +			operating-points-v2 = <&cpu_opp_table>;
->>>   		};
->>>   
->>>   		L2_0: l2-cache {
->>> @@ -54,6 +59,17 @@ L2_0: l2-cache {
->>>   		};
->>>   	};
->>>   
->>> +	cpu_opp_table: opp-table-cpu {
->>> +		compatible = "operating-points-v2";
->>> +		opp-shared;
->>> +
->>> +		opp-1008000000 {
->>> +			opp-hz = /bits/ 64 <1008000000>;
->>> +			opp-microvolt = <1100000>;
->>> +			clock-latency-ns = <200000>;
->> And the rest of OPPs?
-> Hi Krzysztof,
-> IPQ5018 only supports running at 1.1GHz, but its running at 800MHz
-> by default from the bootloader so there is only one OPP.
-
-Isn't this contradictory? If it is running at 800 initially, then it
-supports running at 800...
-
-
-Best regards,
-Krzysztof
-
+SGkgQ2hhbndvbywNCg0KPiA+ICtzdGF0aWMgaW50IHJ0ZDEyOXhfc3dpdGNoX3R5cGVfY19wbHVn
+X2NvbmZpZyhzdHJ1Y3QgdHlwZV9jX2RhdGEgKnR5cGVfYywNCj4gPiArICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgaW50IGRyX21vZGUsIGludCBjYykNCj4gPiArew0K
+PiA+ICsgICAgIHZvaWQgX19pb21lbSAqcmVnID0gdHlwZV9jLT5yZWdfYmFzZSArIFVTQl9UWVBF
+Q19DVFJMX0NDMV8wOw0KPiA+ICsgICAgIGludCB2YWxfY2M7DQo+ID4gKw0KPiA+ICsjZGVmaW5l
+IFRZUEVfQ19FTl9TV0lUQ0ggQklUKDI5KQ0KPiA+ICsjZGVmaW5lIFRZUEVfQ19UWFJYX1NFTCAo
+QklUKDI4KSB8IEJJVCgyNykpDQo+ID4gKyNkZWZpbmUgVFlQRV9DX1NXSVRDSF9NQVNLIChUWVBF
+X0NfRU5fU1dJVENIIHwgVFlQRV9DX1RYUlhfU0VMKQ0KPiA+ICsjZGVmaW5lIFRZUEVfQ19FTkFC
+TEVfQ0MxIFRZUEVfQ19FTl9TV0lUQ0gNCj4gPiArI2RlZmluZSBUWVBFX0NfRU5BQkxFX0NDMiAo
+VFlQRV9DX0VOX1NXSVRDSCB8IFRZUEVfQ19UWFJYX1NFTCkNCj4gPiArI2RlZmluZSBUWVBFX0Nf
+RElTQUJMRV9DQyB+VFlQRV9DX1NXSVRDSF9NQVNLDQo+ID4gKw0KPiA+ICsgICAgIHZhbF9jYyA9
+IHJlYWRsKHJlZyk7DQo+IA0KPiBJJ2QgbGlrZSB5b3UgdG8gdXNlIHJlZ21hcCBpbnRlcmZhY2Ug
+dG8gYWNjZXNzIHRoZSByZWdpc3Rlcg0KPiBieSB1c2luZyByZWdtYXBfcmVhZCwgcmVnbWFwX3dy
+aXRlLiBZb3UgY2FuIGNyZWF0ZSB0aGUgcmVnbWFwIGluc3RhbmNlDQo+IHZpYSBkZXZtX3JlZ21h
+cF9pbml0X21taW8oKSBvbiBwcm9iZSBpbnN0ZWFkIG9mIHVzaW5nICd0eXBlX2MtPnJlZ19iYXNl
+Jw0KPiBhdCB0aGUgbXVsdGlwZSBwb2ludC4NCj4gDQo+IEZvciBleGFtcGxlLA0KPiAgICAgICAg
+IHN0cnVjdCByZWdtYXBfY29uZmlnIHJ0a19yZWdtYXBfY29uZmlnID0gew0KPiAgICAgICAgICAg
+ICAgICAgLnJlZ19iaXRzID0gMzIsDQo+ICAgICAgICAgICAgICAgICAudmFsX2JpdHMgPSAzMiwN
+Cj4gICAgICAgICB9Ow0KPiANCj4gICAgICAgICB2b2lkIF9faW9tZW0gKmJhc2U7DQo+IA0KPiAg
+ICAgICAgIGJhc2UgPSBkZXZtX3BsYXRmb3JtX2dldF9hbmRfaW9yZW1hcF9yZXNvdXJjZShwZGV2
+LCAwLCAmcmVzKTsNCj4gICAgICAgICBpZiAoSVNfRVJSKGJhc2UpKQ0KPiAgICAgICAgICAgICAg
+ICAgcmV0dXJuIFBUUl9FUlIoYmFzZSk7DQo+IA0KPiAgICAgICAgIHJlZ21hcCA9IGRldm1fcmVn
+bWFwX2luaXRfbW1pbyhkZXYsIGJhc2UsDQo+ICZydGtfcmVnbWFwX2NvbmZpZyk7DQo+IA0KPiAg
+ICAgICAgIC0tLQ0KPiANCj4gICAgICAgICBBbmQgdGhlbiBqdXN0IGNhbGwgcmVnbWFwX3JlYWQg
+d2l0aG91dCBhbnkgY2FsY3VsYXRpb24gYmV0d2Vlbg0KPiAgICAgICAgIGJhc2UgYWRkcmVzcyBh
+bmQgc3BlY2lmaWMgcmVnaXN0ZXIuDQo+IA0KPiAgICAgICAgIHJlZ21hcF9yZWFkKHJlZ21hcCwg
+VVNCX1RZUEVDX0NUUkxfQ0MxXzApDQo+IA0KDQpJIHN0dWRpZWQgbW1pbydzIHJlZ21hcC4NCg0K
+SXQgb25seSBjaGFuZ2VkIG9uZSBlbmNvZGluZyBtZXRob2QuIEFuZCBzaW1wbGlmaWVzIHRoZSBj
+YWxjdWxhdGlvbiBiZXR3ZWVuIHRoZSBiYXNlIGFkZHJlc3MgYW5kIHRoZSBzcGVjaWZpYyByZWdp
+c3Rlci4NCklmIHRoZSByZWdpc3RlciBpcyAzMi1iaXQgYWxpZ25lZCwgb3RoZXIgb3BlcmF0aW9u
+cyBsb29rIHRoZSBzYW1lIGFzIHJlYWRsL3dyaXRlbC4NCkkgdGhpbmsgcmVnbWFwIGlzIG1vcmUg
+c2ltcGxpZmllZCBpZiB0aGUgcmVhZCByZWdpc3RlcnMgYXJlIG5vdCAzMi1iaXQgYWxpZ25lZCwg
+ZS5nLiBudm1lbSByZWFkL3dyaXRlLg0KDQpTbyBpdCB3b3VsZCBiZSBtb3JlIGludHVpdGl2ZSBm
+b3IgbWUgdG8ga2VlcCB3cml0ZWwvcmVhZGwgaGVyZQ0KDQo+IA0KPiA+ICsgICAgIHZhbF9jYyAm
+PSB+VFlQRV9DX1NXSVRDSF9NQVNLOw0KPiA+ICsNCj4gPiArICAgICBpZiAoY2MgPT0gRElTQUJM
+RV9DQykgew0KPiA+ICsgICAgICAgICAgICAgdmFsX2NjICY9IFRZUEVfQ19ESVNBQkxFX0NDOw0K
+PiA+ICsgICAgIH0gZWxzZSBpZiAoY2MgPT0gRU5BQkxFX0NDMSkgew0KPiA+ICsgICAgICAgICAg
+ICAgdmFsX2NjIHw9IFRZUEVfQ19FTkFCTEVfQ0MxOw0KPiA+ICsgICAgIH0gZWxzZSBpZiAoY2Mg
+PT0gRU5BQkxFX0NDMikgew0KPiA+ICsgICAgICAgICAgICAgdmFsX2NjIHw9IFRZUEVfQ19FTkFC
+TEVfQ0MyOw0KPiA+ICsgICAgIH0gZWxzZSB7DQo+ID4gKyAgICAgICAgICAgICBkZXZfZXJyKHR5
+cGVfYy0+ZGV2LCAiJXM6IEVycm9yIGNjIHNldHRpbmcgY2M9MHgleFxuIiwNCj4gX19mdW5jX18s
+IGNjKTsNCj4gPiArICAgICAgICAgICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICsgICAgIH0NCj4g
+PiArICAgICB3cml0ZWwodmFsX2NjLCByZWcpOw0KPiA+ICsNCg0KVGhhbmtzLA0KU3RhbmxleQ0K
