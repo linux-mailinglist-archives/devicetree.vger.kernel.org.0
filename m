@@ -2,79 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C5378BE3C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 08:06:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 825D678BE6E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 08:29:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbjH2GGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 02:06:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36208 "EHLO
+        id S233199AbjH2G3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 02:29:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229813AbjH2GFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 02:05:40 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B211123;
-        Mon, 28 Aug 2023 23:05:38 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37T3rpOJ016232;
-        Tue, 29 Aug 2023 06:05:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=U8pplH7h/uric7UyNlrI5s/aM+rEmReVzKWvR4nxuCg=;
- b=I19Ohw9UNot9j5/p92pJsXRh9DlKYk0c05+ayWt9OcEqzKdvtFRJa+v2EEqlqVbbkqJk
- q4yL/83MJFhc4MtVDT5cLZPimNr4MznMMerRh8fHx3dDK0kYowoZirbd2o45jaLxoCD3
- VctUM9qWksah1ztRQg4Lgl5ScFX39rYalky9CL3zFi4YMhwkpW4U2Lu203XO51ZDYQge
- wmgZG/OhykEbWfS0X2wUm/vrMefbbQoWxM4F925L05UxjbN00LyEXJBspl8xnMVz24Cb
- QXMk5Mg+JLA3M5EnADP643m6TYvq6NECA/9/tD533CWRGtLPPWWt/BCGRNThpW9gMUXr FA== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sruhnsrax-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 06:05:34 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37T65X9X018369
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 06:05:33 GMT
-Received: from [10.216.63.45] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 28 Aug
- 2023 23:05:28 -0700
-Message-ID: <87991b5f-0b29-872c-95a2-ade1160ebaf4@quicinc.com>
-Date:   Tue, 29 Aug 2023 11:35:25 +0530
+        with ESMTP id S233829AbjH2G24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 02:28:56 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F20CC8
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 23:28:46 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99357737980so510973666b.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Aug 2023 23:28:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693290524; x=1693895324;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Rk5O5cxE3H0kwoH1WMJzLdh2Fpjs5TVwpzODQP6Z++M=;
+        b=QqICDRIUDF1jyEERa8At+Vs3w+GMlzAd48wUa/b79coZ3jsDfVTjDRQmjrGUN5TIsd
+         IxRW0xdPGhE+0BuYHu1AernHobQeJfWYbYarMI2G1lFyyEpz9qDUz01T9nldsCFtLu5A
+         Hw/kY+K8xF4MphaMHmN+eTIbTZDGn6CB6fyizcbrty1sqQKlp4g/P+vZ+C1lz4c0NGsp
+         PfeRNUCy80y18ff2Lk+5rFfly7ACiAFVm6e07u1VAmaWScdQ+dTaKZabgq98xitKrQtu
+         OzOzhaxVJ4KIJZMtercxdY/dckhP+qs5rp4G3Cp7B/XPqn27dKkBSoK0js4RYRMP6U1O
+         R9gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693290524; x=1693895324;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rk5O5cxE3H0kwoH1WMJzLdh2Fpjs5TVwpzODQP6Z++M=;
+        b=SpNUXg/TKxwZ7pj0wALLDOVKejn7nGD9iXbjA+WtW/uk/lTJf1+srPoxi8zYm/NLio
+         KPytFqESpREDiSukFU44DmmYsK5OkwA9L4zv0BT1iQHOCEvbY0d7ccOtb3PoQthS7D6l
+         957zJjA88PQRF9+s/mRlP652ClLtKrtsTzwdgSQlfF8n3Yiov2lB3zNdsaDIMWdXW3/d
+         PyDy5PwkhfBARl82lQmW+mUG+buF87LpINBVPinA51HTMYLQpUuTvF8HE5qXpBnXJzym
+         MfdR56BICouYd9pSr9s4dlDP2vJ9G2cKl8LzIEy/sVX7WJL92hdxHihTkaUoBF4H8hxJ
+         zAxg==
+X-Gm-Message-State: AOJu0Yzu0q4AT443ey16lFnw7lspc6AKRT04lr7rUujy41+YsDgI4kO+
+        blj+WiEBUZoafBLaNNODwMpfiQ==
+X-Google-Smtp-Source: AGHT+IFLXFOGO7lW2CrMpZOyjDWN+69cmgGskpd1u+5hxqW7nLvyH3fWdwwRExeQ8+sQRCgE6jKjdg==
+X-Received: by 2002:a17:907:c20d:b0:9a5:c919:55cb with SMTP id ti13-20020a170907c20d00b009a5c91955cbmr826089ejc.73.1693290524597;
+        Mon, 28 Aug 2023 23:28:44 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.196])
+        by smtp.gmail.com with ESMTPSA id lv12-20020a170906bc8c00b009a19701e7b5sm5563521ejb.96.2023.08.28.23.28.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 23:28:44 -0700 (PDT)
+Message-ID: <256bfc91-31da-c3c8-7b9b-610bb4a73038@linaro.org>
+Date:   Tue, 29 Aug 2023 08:28:42 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: ipq5018: Add thermal zones
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 3/5] soc: loongson: loongson_pm2: Add missing compatible
+ for Loongson-2K2000
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev
+References: <cover.1693218539.git.zhoubinbin@loongson.cn>
+ <8468bdbea87003dc05bd10d15b51e6d27f306a20.1693218539.git.zhoubinbin@loongson.cn>
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <srinivas.kandagatla@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <thara.gopinath@gmail.com>,
-        <rafael@kernel.org>, <daniel.lezcano@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-References: <1693250307-8910-1-git-send-email-quic_srichara@quicinc.com>
- <1693250307-8910-8-git-send-email-quic_srichara@quicinc.com>
- <867ec3f0-1a43-8d1f-1475-363fc660ab60@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <867ec3f0-1a43-8d1f-1475-363fc660ab60@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8468bdbea87003dc05bd10d15b51e6d27f306a20.1693218539.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CZykfbb_Io7yDtycwpFLXSRoGktP9e2L
-X-Proofpoint-ORIG-GUID: CZykfbb_Io7yDtycwpFLXSRoGktP9e2L
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-29_03,2023-08-28_04,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 mlxlogscore=742 suspectscore=0 clxscore=1015 phishscore=0
- impostorscore=0 bulkscore=0 lowpriorityscore=0 adultscore=0 malwarescore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308290051
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -85,19 +85,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/29/2023 1:04 AM, Krzysztof Kozlowski wrote:
-> On 28/08/2023 21:18, Sricharan Ramabadhran wrote:
->> IPQ5018 has 4 thermal sensors (zones). With the
->> critical temperature being 120'C and action is to reboot.
->> Adding all the 4 zones here.
->>
+On 28/08/2023 14:38, Binbin Zhou wrote:
+> Add compatible for Loongson-2K2000, which also has the Loongson2
+> Power Management Unit system controller.
 > 
-> Not much benefit of having it separate patch... You added the
-> thermal-sensor for this purpose.
+> This is a missing compatible, now we add it.
 
-  ok, will squash.
+How is it missing? Was support for it added before but not complete?
 
-Regards,
-  Sricharan
+
+
+Best regards,
+Krzysztof
+
