@@ -2,197 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB9F78C9E0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 18:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D60278C9FB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 18:54:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237510AbjH2Qry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 12:47:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42400 "EHLO
+        id S232440AbjH2QyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 12:54:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237594AbjH2Qrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 12:47:49 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E2F1B3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:47:44 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so6025864a12.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:47:44 -0700 (PDT)
+        with ESMTP id S237559AbjH2Qx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 12:53:58 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392F81BD
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:53:55 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a1132b685so6445798a12.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:53:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693327662; x=1693932462;
+        d=linaro.org; s=google; t=1693328034; x=1693932834;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CoICQnZ+/1yj9HsG6bu1Mx//y76k4Gd6Az5IWEzBVsk=;
-        b=GEMf1a3hbMdzkFCzmgPFzxmDuDy2nBq+Wld2OrIq8yT2i6K6bBpv5XTEFsoJcciz+Q
-         xPNhQRY2Sv6QXeTo/TnBbflcISdgsMb+CEGhAC2zJgx1ADDcncM7o74UBLq4QJxQeTWd
-         eMEzFa0xOj2l7OvPR2A+3KlzrcOu2LV5qTqCS89y4JIBi2fBumornF6eyQ0klERsmt6e
-         8fCo36Tq1m2N3Lq0JsNasrheWt20yG7VHrWLVAA0ERjL0HY2mOapSanDyAkDSLgTHSdg
-         q7B69XhmJy6wabwpyNDNi3qnm63ZcC4IvY08xUxlPemjzh6kxW0SAPAwBIv4nBMCW8R3
-         nAOw==
+        bh=ACmQAc0Os4N98Z3d3R/oIFedpQZZYFrbAteEg6HsG0U=;
+        b=I/a0kp/X+qSLU+PdEBr24kCAVtAqmcmI7BCas6WtO3JCDrAbuQynu6E54l+oTgHKmK
+         c9eA+7wqka6EVKEbwNbG4+Eqrp6RkjNGXq9irM4PWeJLwjx2Dmmu7j5EJj9/FiGvCX+E
+         eJ8UJdQZX7URDGf0zr+99AJigTImTySx0pabeADIk6hAtTjCqlEejLjIJjwl9LnhW+MK
+         6vvbpsTmdKZKkypszJJQ3eLuoGNchTYAOIek7jVanMZN8GCYPKbq7WAsYyadiilTApNg
+         QifliMykN14crqmecnBJeWWOA8mvMzoN7EbyarrOlFh2tM6SUoF1oVtk6FgUd+p7Prv8
+         YC+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693327662; x=1693932462;
+        d=1e100.net; s=20221208; t=1693328034; x=1693932834;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CoICQnZ+/1yj9HsG6bu1Mx//y76k4Gd6Az5IWEzBVsk=;
-        b=BhuCU7oaMLltBL7l4U5RzQCPCW3sou+UOExxunUrW78EUOoy43njJbDbl9DmBjkT0/
-         l5am1Kcf/StF0DL67dUIpoelkbYeziADxVqUOn1KEKXhWzmCi7MiBgNIHWtFKw+QLXQN
-         9KW1RYUTow5Gi86ZWsCp7KOBrPALO2xnQup9bayyf2Cydmg3BHIppp6AaaQG11GV6+/k
-         KGTSTxtiSf2FEo40uByI1QUNbslxKZiCv5Vr6cV7xljMjEUVVRnmI9V2XZt7TrzSIMIm
-         nJ77emlgefI7CF/nPiTSleWJ5I9G5Q/GCITxIqgBj3g9wuW4l9yGVB+Er/w8bAjQ4Q4Q
-         zmYw==
-X-Gm-Message-State: AOJu0YxGxZPnEbjvP8vNupuNX9cLlcF+LpiexPQa9aSeQlyTaIkVZBct
-        yYm8VD34RdGX9yIm7Jjdf/+aDw==
-X-Google-Smtp-Source: AGHT+IEYq4lgF8fnv6SKXO4z5kBvC6yirtahECpFE2Y6m+eLtciH/SLFVGyGqPSQ8n7gRtpWgPXtDg==
-X-Received: by 2002:aa7:ccc9:0:b0:51e:362d:b172 with SMTP id y9-20020aa7ccc9000000b0051e362db172mr21105256edt.32.1693327662667;
-        Tue, 29 Aug 2023 09:47:42 -0700 (PDT)
+        bh=ACmQAc0Os4N98Z3d3R/oIFedpQZZYFrbAteEg6HsG0U=;
+        b=JVCiouaFWyalIzV8l17Dc/HEVXb5MAZP0Jee5YnLHvCzodt8ozzTTnh1hZ//QmuEuc
+         VqLDPcuQIzJ8yYeUVbYdnJcNZDfPSQtcsPhHExTrjZRHfZoQqg/2oKPKMmEjLcDmfprF
+         UqJYAGXRyZ/3mHO7UFvSKdZVuSYl+eju6qEDRNsmc74NuKwbF5hpNYzq1+G1LG72wE3y
+         wjx6mPCNhQc9UUj17eJ+nYvoMak3a3cU8TM5TB+IckYlZVX+A/XrzYb830iUW7ZGD2kk
+         JCpyBKFRvL6avazfjQbaa91MwjcWTJ+uXumtIK5JsZ1AyhfcRtEj7RnL9lBbwtZ2DCpt
+         5yTQ==
+X-Gm-Message-State: AOJu0Ywb27yo9nISB9cpqbv6gcy77eFxn1TCl3HpPZtDm5ohUhs3jiyJ
+        RljCKewkwjdWJbkQko7wJSe0aA==
+X-Google-Smtp-Source: AGHT+IFj6qY9ZGIZ7zhLjscs5t/l6tiV+o0WMRw/Smkie7Au+T0++diSeuW+C9be47Z4c2Gxfc/m6g==
+X-Received: by 2002:aa7:d9cb:0:b0:51e:309:2e11 with SMTP id v11-20020aa7d9cb000000b0051e03092e11mr23265767eds.36.1693328033755;
+        Tue, 29 Aug 2023 09:53:53 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id f15-20020aa7d84f000000b0052228721f84sm5881691eds.77.2023.08.29.09.47.41
+        by smtp.gmail.com with ESMTPSA id bf8-20020a0564021a4800b00529fb5fd3b9sm5830878edb.80.2023.08.29.09.53.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 09:47:42 -0700 (PDT)
-Message-ID: <86bb50fd-72f3-7c76-c4fe-f8e4765e33d5@linaro.org>
-Date:   Tue, 29 Aug 2023 18:47:40 +0200
+        Tue, 29 Aug 2023 09:53:53 -0700 (PDT)
+Message-ID: <ae477c6d-b5a5-929f-0a36-3c0d2484add5@linaro.org>
+Date:   Tue, 29 Aug 2023 18:53:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 06/11] firmware: qcom-shm-bridge: new driver
+Subject: Re: [PATCH 1/9] dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY
+ to UNIPHY
 Content-Language: en-US
-To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+To:     Praveenkumar I <quic_ipkumar@quicinc.com>, robert.marko@sartura.hr,
+        luka.perkov@sartura.hr, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        arnd@arndb.de, geert+renesas@glider.be, nfraprado@collabora.com,
+        rafal@milecki.pl, peng.fan@nxp.com, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-7-bartosz.golaszewski@linaro.org>
- <8b7bada9-3898-1b60-3dea-766a760412f7@linaro.org>
- <CACMJSetObp0k312DmqhTCkw7jsf05OHX1yxbyYj+sVfbtwRcVQ@mail.gmail.com>
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     quic_varada@quicinc.com
+References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-2-quic_ipkumar@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CACMJSetObp0k312DmqhTCkw7jsf05OHX1yxbyYj+sVfbtwRcVQ@mail.gmail.com>
+In-Reply-To: <20230829135818.2219438-2-quic_ipkumar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 15:24, Bartosz Golaszewski wrote:
->>> +phys_addr_t qcom_shm_bridge_to_phys_addr(void *vaddr)
->>> +{
->>> +     struct qcom_shm_bridge_chunk *chunk;
->>> +     struct qcom_shm_bridge_pool *pool;
->>> +
->>> +     guard(spinlock_irqsave)(&qcom_shm_bridge_chunks_lock);
->>> +
->>> +     chunk = radix_tree_lookup(&qcom_shm_bridge_chunks,
->>> +                               (unsigned long)vaddr);
->>> +     if (!chunk)
->>> +             return 0;
->>> +
->>> +     pool = chunk->parent;
->>> +
->>> +     guard(spinlock_irqsave)(&pool->lock);
->>
->> Why both locks are spinlocks? The locks are used quite a lot.
-> 
-> I'm not sure what to answer. The first one protects the global chunk
-> mapping stored in the radix tree. The second one protects a single
-> memory pool from concurrent access. Both can be modified from any
-> context, hence spinlocks.
+On 29/08/2023 15:58, Praveenkumar I wrote:
+> UNIPHY / Combo PHY used on various qualcomm SoC's are very similar to
+> ipq4019 PHY. Hence renaming this dt-binding to uniphy dt-binding and
+> can be used for other qualcomm SoCs which are having similar UNIPHY.
 
-Not much PREEMPT friendly, although indeed protected code is small. At
-least here, I did not check other places.
-
-> 
->>
->>> +
->>> +     return gen_pool_virt_to_phys(pool->genpool, (unsigned long)vaddr);
->>> +}
->>> +EXPORT_SYMBOL_GPL(qcom_shm_bridge_to_phys_addr);
->>> +
->>> +static int qcom_shm_bridge_probe(struct platform_device *pdev)
->>> +{
->>> +     struct qcom_shm_bridge_pool *default_pool;
->>> +     struct device *dev = &pdev->dev;
->>> +     int ret;
->>> +
->>> +     /*
->>> +      * We need to wait for the SCM device to be created and bound to the
->>> +      * SCM driver.
->>> +      */
->>> +     if (!qcom_scm_is_available())
->>> +             return -EPROBE_DEFER;
->>
->> I think we miss here (and in all other drivers) device links to qcm.
->>
-> 
-> Well, SCM, once probed, cannot be unbound. What would device links
-> guarantee above that?
-
-Runtime PM, probe ordering (dependencies) detection.
-
-> 
->>> +
->>> +     ret = qcom_scm_enable_shm_bridge();
->>> +     if (ret)
->>> +             return dev_err_probe(dev, ret,
->>> +                                  "Failed to enable the SHM bridge\n");
->>> +
->>> +     default_pool = qcom_shm_bridge_pool_new_for_dev(
->>> +                             dev, qcom_shm_bridge_default_pool_size);
->>> +     if (IS_ERR(default_pool))
->>> +             return dev_err_probe(dev, PTR_ERR(default_pool),
->>> +                                  "Failed to create the default SHM Bridge pool\n");
->>> +
->>> +     WRITE_ONCE(qcom_shm_bridge_default_pool, default_pool);
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +static const struct of_device_id qcom_shm_bridge_of_match[] = {
->>> +     { .compatible = "qcom,shm-bridge", },
->>> +     { }
->>> +};
->>> +
->>> +static struct platform_driver qcom_shm_bridge_driver = {
->>> +     .driver = {
->>> +             .name = "qcom-shm-bridge",
->>> +             .of_match_table = qcom_shm_bridge_of_match,
->>> +             /*
->>> +              * Once enabled, the SHM Bridge feature cannot be disabled so
->>> +              * there's no reason to ever unbind the driver.
->>> +              */
->>> +             .suppress_bind_attrs = true,
->>> +     },
->>> +     .probe = qcom_shm_bridge_probe,
->>> +};
->>> +
->>> +static int __init qcom_shm_bridge_init(void)
->>> +{
->>> +     return platform_driver_register(&qcom_shm_bridge_driver);
->>> +}
->>> +subsys_initcall(qcom_shm_bridge_init);
->>
->> Why this is part of subsystem? Should be rather device_initcall... or
->> simply module (and a tristate).
->>
-> 
-> We want it to get up as soon as possible (right after SCM, because SCM
-> is the first user).
-
-Then probably should be populated/spawned by SCM.
+That's not the reason to rename it. Keep the old name.
 
 Best regards,
 Krzysztof
