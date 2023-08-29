@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 171CA78C20B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 12:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF2478C213
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 12:12:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235034AbjH2KKK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 06:10:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50574 "EHLO
+        id S234682AbjH2KMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 06:12:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235039AbjH2KJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 06:09:59 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB71F129
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 03:09:55 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so547481266b.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 03:09:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693303794; x=1693908594;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UIPmU7FAJ8IOYvnYbTQNoLyMT4f9tBlJd7cHQ5zQPbM=;
-        b=IEQkjv5pDWvOJODSQFAK9mCfHEz07C78LlPcrvcpqfG6eG87xyftm55IZxV+u0PmCT
-         /ZXeRhYuVOp5WmsfC0t+nV/U3qWN6WOXm+UO3lwIRTvY7GM0b/G0KTXnPehKoKCABD50
-         iP51Gu1vYl/MspxwrxTh6+V/d1hFmpP5THU1UJbmugnKmmHhU36qe2NwCzZAUpEdhw3b
-         vs9R1LAobeQo/wesdONjcq+Sojqk+2l+jz1z/X65bEQT1vuXkB/uuPPMX11eOscows/u
-         Gq34ZhuJxODyZHRRbvT3bV2ocpcr/Q4Kfgz/+6feskVid0vI9jecmulRf4DpA35gChWV
-         R4Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693303794; x=1693908594;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UIPmU7FAJ8IOYvnYbTQNoLyMT4f9tBlJd7cHQ5zQPbM=;
-        b=J068RkFW0Dl1uvZBu1reP5yrTpuKwxVtQm8wesQXnRbODihBMsgZtyEhzgQSosHVPZ
-         6Z4n85be3X1EIAhyRqxA3TcP2sKKYtUZKtQvf9iQqVreI49qPdkkgUbdPeBunRX9iAdt
-         sMkXTA1LbvQH2SWEhn7QfbiiELiJpLAzg35QedFFi5+h1WTCD8ZSJyN01WXuVIqLeJ/L
-         j0/IvrOBhNgilcIMUrCSZ/99RL+r8dxP7LApf8uzSx7JNd8nLcEWkUb+Bs3AFW4+URfu
-         gIXowbiSfc2agr6FoS45lk4qbAAAR4ehXssqu2JFW7UO5x0t3qVDXdMnVCINykDyMROp
-         urQw==
-X-Gm-Message-State: AOJu0Yyuw3rYsSrKnTeTHEeWrBDgSdJUyV1SQVYRWV7AhEZ3CSIak29x
-        wjW6ifsgxE5JGwrb3L7Bx3m9mQ==
-X-Google-Smtp-Source: AGHT+IHsS8rnwwkQciQs8TVFBlZ1ixruc6azZm0xibcbq6NZF/8gVU+AVy4GO39xjkSiyVkUKeiW/A==
-X-Received: by 2002:a17:906:76cc:b0:9a1:f668:dae9 with SMTP id q12-20020a17090676cc00b009a1f668dae9mr11091534ejn.33.1693303794318;
-        Tue, 29 Aug 2023 03:09:54 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id y16-20020a1709064b1000b00992e94bcfabsm5723819eju.167.2023.08.29.03.09.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 03:09:53 -0700 (PDT)
-Message-ID: <3722a8f6-8f63-fe7c-6983-ac96caa18c87@linaro.org>
-Date:   Tue, 29 Aug 2023 12:09:52 +0200
+        with ESMTP id S235036AbjH2KMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 06:12:02 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8BDAB4;
+        Tue, 29 Aug 2023 03:11:58 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37T4t9Wp016954;
+        Tue, 29 Aug 2023 05:11:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=PODMain02222019; bh=ZB+rO7oEFCTt6bN
+        spgD9C+R77UBOPjLJV/xm4f1uBzY=; b=UmvbAADl/3AOUxspneZ89ldZLlzcQYF
+        3UQIuQ7pPmMpeQs5Fz7lG0k/3ot97VmRHFqCXsnDOq93q2zgFkd0v6GxmIcjf1lW
+        9nHnYIFzpeoXq0gwzXemtQam3mKSCf+qJxdXsLOSTTiSg4hPHVgZiXD8zSAzd53E
+        g5aTzFphr1fUxyup107GEwy4lHFoswwbxZJAsDKshjdevcRhOjLKv8tEhQnCxSqm
+        hWfhNb2I4TaV5FakZiRnZUyPQtCIp3gQFwqpv3SbfoJLJLYMGffp7m+9RczigsIk
+        deg//fZL4mLht2vHy/iadOGJyWynu1mi3R6S0UyLXSrGdKlcMRuAklA==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sqesybbu3-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Aug 2023 05:11:41 -0500 (CDT)
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Tue, 29 Aug
+ 2023 11:11:39 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
+ Transport; Tue, 29 Aug 2023 11:11:39 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 4CD4415B6;
+        Tue, 29 Aug 2023 10:11:39 +0000 (UTC)
+Date:   Tue, 29 Aug 2023 10:11:39 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Vlad Karpovich <vkarpovi@opensource.cirrus.com>
+CC:     James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <RicardoRivera-Matosricardo.rivera-matos@cirrus.com>
+Subject: Re: [PATCH 6/7] ASoC: cs35l45: Connect DSP to the monitoring signals
+Message-ID: <20230829101139.GT103419@ediswmail.ad.cirrus.com>
+References: <20230828170525.335671-1-vkarpovi@opensource.cirrus.com>
+ <20230828170525.335671-6-vkarpovi@opensource.cirrus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom,a53pll: add IPQ5018
- compatible
-Content-Language: en-US
-To:     Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jassisinghbrar@gmail.com,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20230829095423.760641-1-quic_gokulsri@quicinc.com>
- <20230829095423.760641-2-quic_gokulsri@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230829095423.760641-2-quic_gokulsri@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230828170525.335671-6-vkarpovi@opensource.cirrus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-ORIG-GUID: BnjPTirhO28GDG1pVHs9sNqQ8F8j-5rX
+X-Proofpoint-GUID: BnjPTirhO28GDG1pVHs9sNqQ8F8j-5rX
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 11:54, Gokul Sriram Palanisamy wrote:
-> Add IPQ5018 compatible to A53 PLL bindings.
+On Mon, Aug 28, 2023 at 12:05:24PM -0500, Vlad Karpovich wrote:
+> Link VMON, IMON, TEMPMON, VDD_BSTMON and VDD_BATTMON
+> to DSP1. The CSPL firmware uses them for the speaker calibration
+> and monitoring.
 > 
-> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
+> ---
 
-Knowing that this patch could not come from downstream (it's some old
-kernel without this file), I really wonder why two people were involved
-in developing trivial one line change.
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Thanks,
+Charles
