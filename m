@@ -2,128 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B8678CC3D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 20:37:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F1F78CC49
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 20:39:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238143AbjH2Sgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 14:36:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54272 "EHLO
+        id S238096AbjH2Si4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 14:38:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238231AbjH2Sgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 14:36:36 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACC8CCD9;
-        Tue, 29 Aug 2023 11:36:28 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5007616b756so7584954e87.3;
-        Tue, 29 Aug 2023 11:36:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693334187; x=1693938987;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d7WlyYzqen5MI4P1iAbKBmvgwbKop0nGPA7AULKnw6o=;
-        b=M7jKN5n3mbxOj6lToXlIBhPfrGvC6yd0H/btRqbTG5GN77QQEHXEnWUgB/u9h37HEM
-         aQ3Yh0h+zDVLmyJK1+FIDzgTteH8rmbZviHp/ff61hTQgrTcyy0nUiodskPcy/wcBh5n
-         NIuaedyS4vgw2lhchhMUJW5L3lUOqkq8ajWK5jlq3m2SAdam1bwzA4e90x5TL4aZpkSM
-         YWobFR2JHrACTFmlppIlFi7ZjN29jj0Mal8JFRUSPqudgAs54EYml17nc/0bF0TlJu6K
-         124Lf8rCO4uKn9XVkhJWCryQagTVCb81ZFN8UFsc7Vzw1IrjJXssjEykqsPrreIM0fBF
-         8CXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693334187; x=1693938987;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d7WlyYzqen5MI4P1iAbKBmvgwbKop0nGPA7AULKnw6o=;
-        b=TpBXUAm6W10bFjIyBTWNd3Wg9Cgb0BhS65WOVB433Epm59dWVJxKuMgh13FQ4ykg3+
-         lprOU7Y2oFJF3ZvaTwMI8xAKq21CfkpoqKhWgcFKL/k4oCn/SIY7CPDGK9fS5Cf7jMM9
-         IKwWqLgNOihk7f1VwC2Ukz3K6YtMTB+xg6Nb1f06HiuIbjGt+4kmH6GsjGrvGAhdO2Cu
-         qcEyBBe8Lp/wOckL/TRg7pKYO961qGttiww78cWYhxiO/b30H7eVC0OxMkrwkhLCoK9M
-         k5e0gyoUgss/qGGbNOYz6XGYude77gWHm77lYyARmf9r2cGgoyXCUXjK8LNrUb+HTbB+
-         1wXg==
-X-Gm-Message-State: AOJu0Yy1EcFvx6p3Q+Qr3u5F5mC2H3Gg4cFjXWNus7pZZV+O0BtrAnUy
-        I5eFaGtEMiy6aqqpuufcUA==
-X-Google-Smtp-Source: AGHT+IEjZeDr07xYkGFW1xI0KR3jmlLbN0sEkoa4/s1YsvQ7klaZ7CTwLESdDc6wxza92JGAV/2Zkg==
-X-Received: by 2002:a05:6512:282c:b0:4ff:8f29:4411 with SMTP id cf44-20020a056512282c00b004ff8f294411mr23976106lfb.9.1693334186618;
-        Tue, 29 Aug 2023 11:36:26 -0700 (PDT)
-Received: from ?IPV6:2001:9e8:b958:3410:8e0c:ed68:cd6c:7cb8? ([2001:9e8:b958:3410:8e0c:ed68:cd6c:7cb8])
-        by smtp.gmail.com with ESMTPSA id p22-20020a05640210d600b00525683f9b2fsm5961948edu.5.2023.08.29.11.36.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 11:36:25 -0700 (PDT)
-Message-ID: <9954d57c-d864-0215-2efc-67440ce86563@gmail.com>
-Date:   Tue, 29 Aug 2023 20:36:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 05/31] clk: rockchip: rk3128: Fix aclk_peri_src parent
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        Lee Jones <lee@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Elaine Zhang <zhangqing@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, alsa-devel@alsa-project.org,
-        linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-        Finley Xiao <finley.xiao@rock-chips.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>
-References: <20230829171647.187787-1-knaerzche@gmail.com>
- <20230829171647.187787-6-knaerzche@gmail.com>
- <dc2f32d3-001c-746f-6dc5-58a2a6a4a8e6@linaro.org>
-From:   Alex Bee <knaerzche@gmail.com>
-In-Reply-To: <dc2f32d3-001c-746f-6dc5-58a2a6a4a8e6@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S238281AbjH2Sim (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 14:38:42 -0400
+Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com [64.147.123.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B935C1A3;
+        Tue, 29 Aug 2023 11:38:39 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.west.internal (Postfix) with ESMTP id C669932005BC;
+        Tue, 29 Aug 2023 14:38:36 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Tue, 29 Aug 2023 14:38:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-transfer-encoding:content-type:content-type:date
+        :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to; s=fm3; t=
+        1693334316; x=1693420716; bh=CAWsIypx0TY0UMQV9vU8AQzRqsAv1DpcyRv
+        Hl2mMQgE=; b=HsjvMByVL1iz7yHe0DjJP45B5iT/tMpAYlpQJW6a4qlguMc1JMg
+        42/dIFNb+bC2vHH8mIIjWqZWS+y7q6NGbTzyEkE+tofqvlTDk1SfK3+xCFuvOD07
+        acYYpQNkv1S8jQAssRO63+1iBXRTVoqZwAebNUPMmAVAArkzs0Z8KA00RzpDxj2I
+        nx3GvZZUFQcRVNjfM/egQR+DOaaVVXx0T4W07W4bBBPC7aw+6RNTslmJtF2QVpM+
+        vjFyPZqzbiAUaI5pcPVck/8p79249lMlWq0xYBIeyDjROfYFEXm5Q5izXlTdXjcc
+        DUQ6cSJ8x85dxxE7W28AWpolXqHyF7vDN9w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:content-type:date:date:feedback-id:feedback-id
+        :from:from:in-reply-to:in-reply-to:message-id:mime-version
+        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+        1693334316; x=1693420716; bh=CAWsIypx0TY0UMQV9vU8AQzRqsAv1DpcyRv
+        Hl2mMQgE=; b=H5xDt7imC/5eWQgMkyYCerYVVivMTwQxYF1FaPcCiYZhCCAu5MP
+        4cb0jBvaPc0ztXQ2eBEeFo3rOc5mTcr6eKwpdmxGrd6f+rn9Rfj0xddR9QVoTmlC
+        AHOaaKOZZ+LsWa2jyFy1Vd8tHidXUrZNShudk0poBXUyCimq1NKmXc7iQjS7BduO
+        DKhli5Yq/nGJMmrxaAOJhvw76R/M4bQ2nQf+oaBDgZXe351yilECye/JkPWgYcmL
+        URAIGVamP8Xorw3cPKaLdmhLrxZufxPkpUj3p5k+21tEXq40QVu4xk+kr8r31yt0
+        2xLsgwBul5/oA2dDMYmgLLDvaVgB4IUwTzw==
+X-ME-Sender: <xms:KjvuZBAc2n1JkRF3fI006C0nLWIYTUK6EudymfjTdNbibfG1RsJ5Iw>
+    <xme:KjvuZPhuypFznPc6tbyvddGSOFzc28jNVIxPJPUrCz42XWCZoAOHh0oiwaS-VkSiX
+    h_Z3cBKknTuf88skrI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedviedrudefiedguddvkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedf
+    tehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrf
+    grthhtvghrnhepgeefjeehvdelvdffieejieejiedvvdfhleeivdelveehjeelteegudek
+    tdfgjeevnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghrnhgusegrrhhnuggsrdguvg
+X-ME-Proxy: <xmx:KjvuZMln5EYF9nh0acOzfRqSLwCq-32Th1V8iifCzcojrRurBSKkqg>
+    <xmx:KjvuZLwyrqQtFlqWcuNkn60Vco0KvG6O64dq2SMcW85A23P2RyiasQ>
+    <xmx:KjvuZGRGVKk9Jc72lTwhiD265leLnnT38LYHEU_NJ6XY7JWF_AAKCQ>
+    <xmx:LDvuZBms-ozOLwx7Q5r8bzpL9zUy5CXMDz6EKu5Be-LGVXTQB6vLwA>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 4108EB60089; Tue, 29 Aug 2023 14:38:34 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-701-g9b2f44d3ee-fm-20230823.001-g9b2f44d3
+Mime-Version: 1.0
+Message-Id: <8e87875b-5be1-4d82-bcbf-bd6c8d36370f@app.fastmail.com>
+In-Reply-To: <ZO3zLKrZNGekV7Co@smile.fi.intel.com>
+References: <20230810093322.593259-1-mitrutzceclan@gmail.com>
+ <20230810093322.593259-2-mitrutzceclan@gmail.com>
+ <34f5e2118a4714048231e6ee9a8f244248616bd0.camel@gmail.com>
+ <ZNUEBDsMg6UfeOtl@smile.fi.intel.com>
+ <5a31871d0e0322b9704633bd2dca2503c554c358.camel@gmail.com>
+ <ZO3zLKrZNGekV7Co@smile.fi.intel.com>
+Date:   Tue, 29 Aug 2023 14:38:03 -0400
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Andy Shevchenko" <andriy.shevchenko@linux.intel.com>,
+        =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Bartosz Golaszewski" <brgl@bgdev.pl>
+Cc:     "Dumitru Ceclan" <mitrutzceclan@gmail.com>,
+        "Lars-Peter Clausen" <lars@metafoo.de>,
+        "Michael Hennerich" <Michael.Hennerich@analog.com>,
+        "Jonathan Cameron" <jic23@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Cosmin Tanislav" <demonsingur@gmail.com>,
+        "Alexander Sverdlin" <alexander.sverdlin@gmail.com>,
+        "Hugo Villeneuve" <hvilleneuve@dimonoff.com>,
+        "Okan Sahin" <okan.sahin@analog.com>,
+        "Niklas Schnelle" <schnelle@linux.ibm.com>,
+        "ChiYuan Huang" <cy_huang@richtek.com>,
+        "Ramona Bolboaca" <ramona.bolboaca@analog.com>,
+        "Ibrahim Tilki" <Ibrahim.Tilki@analog.com>,
+        "ChiaEn Wu" <chiaen_wu@richtek.com>,
+        "William Breathitt Gray" <william.gray@linaro.org>,
+        "Lee Jones" <lee@kernel.org>, "Haibo Chen" <haibo.chen@nxp.com>,
+        "Mike Looijmans" <mike.looijmans@topic.nl>,
+        =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
+        "Ceclan Dumitru" <dumitru.ceclan@analog.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] iio: adc: ad717x: add AD717X driver
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-thanks for your quick feedback.
-
-You're right: This series mixes up too many things. I'll split up and 
-re-send.
-
-(And fix my typos, indeed)
-
-Best Regards,
-
-Alex
-
-Am 29.08.23 um 19:40 schrieb Krzysztof Kozlowski:
-> On 29/08/2023 19:16, Alex Bee wrote:
->> From: Finley Xiao <finley.xiao@rock-chips.com>
->>
->> According to the TRM there are no specific cpll_peri, gpll_div2_peri or
->> gpll_div3_peri gates, but a single clk_peri_src gate and the peri mux
->> directly connects to the plls respectivly the pll divider clocks.
->> Fix this by creating a single gated composite.
->>
->> Also rename all occurrences of "aclk_peri_src*" to clk_peri_src, since it
->> is the parent for both peri aclks and hclks and that also matches the
->> naming in the TRM.
->>
->> Fixes: f6022e88faca ("clk: rockchip: add clock controller for rk3128")
->> Signed-off-by: Finley Xiao <finley.xiao@rock-chips.com>
->> [renamed aclk_peri_src -> clk_peri_src and added commit message]
->> Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> Please send fixes as separate patchset. Don't mix it with other work and
-> definitely it should not be in the middle of the patchset.
+On Tue, Aug 29, 2023, at 09:31, Andy Shevchenko wrote:
+> On Tue, Aug 29, 2023 at 11:14:31AM +0200, Nuno S=C3=A1 wrote:
+>> On Thu, 2023-08-10 at 18:36 +0300, Andy Shevchenko wrote:
+>> > On Thu, Aug 10, 2023 at 01:57:02PM +0200, Nuno S=C3=A1 wrote:
+>> > > On Thu, 2023-08-10 at 12:33 +0300, Dumitru Ceclan wrote:
 >
-> Best regards,
-> Krzysztof
->
+>> > > Is ad717x_gpio_cleanup() being used anywhere? Moreover I would ma=
+ybe just
+>> > > get rid of
+>> > > the #ifdef wrapper and just select GPIOLIB. How often will it be =
+disabled
+>> > > anyways?
+>> >=20
+>> > The agreement is that users are depend on and not selecting GPIOLIB.
+>> > Any news in these agreement terms?
+>>=20
+>> Hmm no idea about that. If you say so, it's just one new thing I'm le=
+arning :)
+>Based outside of the U.S.? Some titles might be unavailable in your cur=
+rent location. Go to amazon.de to see the video catalog available in Ger=
+many.
+> That's the last I know.
+> Cc'ing to GPIOLIB maintainers...
+
+From a Kconfig perspective, any user-visible symbol ideally only uses
+'depends on', while hidden symbols usually use 'select'.
+
+For the GPIOLIB symbol specifically, we have a mix of both, but the
+overall usage is that gpio consumers only use 'depends on',
+while some of the providers use 'select'. This risks causing build
+breakage from a dependency loop when combined with other symbols
+that have the same problem (e.g. I2C), but it tends to work out
+as long as a strong hierarchy is kept. In particular, using 'select'
+from an arch/*/Kconfig platform option is generally harmless as
+long as those don't depend on anything else.
+
+The new driver is a gpio provider and at least ad4130 and
+ad5592r uses 'select' here, but then again ad74115 and
+ad74113 use 'depends on' and ads7950 uses neither.
+
+I think the best way to handle these is to remove both
+the 'select' and the #ifdef in the driver and instead use
+'if (IS_ENABLED(CONFIG_GPIOLIB))' to handle optional gpio
+providers in the code.
+
+       Arnd
