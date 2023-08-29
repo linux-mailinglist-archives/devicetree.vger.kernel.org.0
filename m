@@ -2,78 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF5978BFE0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 10:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9B178C01E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 10:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231837AbjH2IGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 04:06:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
+        id S233256AbjH2ITF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 04:19:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231772AbjH2IGA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 04:06:00 -0400
-X-Greylist: delayed 333 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 29 Aug 2023 01:05:56 PDT
-Received: from mail.pinedalecol.com (mail.pinedalecol.com [217.61.112.125])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD61BE
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:05:56 -0700 (PDT)
-Received: by mail.pinedalecol.com (Postfix, from userid 1002)
-        id CEAC982A42; Tue, 29 Aug 2023 10:00:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=pinedalecol.com;
-        s=mail; t=1693296020;
-        bh=Cc/ZfKTm83NcG4kGgKRamGUr8KEiZk0jPL1SNWTN4V0=;
-        h=Date:From:To:Subject:From;
-        b=UHIaucYQoK0TZQegmySQgFSofqIPtTiHyj7gQezoPEMEIR5QD+6z0TK5p6IDkoXW+
-         PRqyYCJ1yXrrFmr+lt8yhZXNVXUDG+QoBR/oKaVYET+OdxU+T46O2PP/JGJ0UyWQQV
-         J0wG/YLahz8Xt3Ui2ihTyQ/d0s7EsZ8e3Q4Ea31Id7jRhMVO9RS6NfEjAFnT3ajbjM
-         RFWYNCJpEJuaMjhSITCZFGrsE/74m54YDcs6s06pdlK6cf0bMAx2tBEFvmwSY75asN
-         JKci3bvDL7DjDYsoTDk4zlfviZbbIjoKLlXaRcrZKU1954htBI18BLPCVSLiEhyInH
-         FHaTkBLsmkm9w==
-Received: by mail.pinedalecol.com for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 08:00:12 GMT
-Message-ID: <20230829084500-0.1.29.2jse.0.fu2xo9uwr6@pinedalecol.com>
-Date:   Tue, 29 Aug 2023 08:00:12 GMT
-From:   "Karolina Hursowicz" <karolina.hursowicz@pinedalecol.com>
-To:     <devicetree@vger.kernel.org>
-Subject: Pracownik do prostych prac
-X-Mailer: mail.pinedalecol.com
+        with ESMTP id S232533AbjH2ISj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 04:18:39 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 032ECEA
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:18:36 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52a069edca6so5717051a12.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:18:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693297114; x=1693901914;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HAL+QW1Uxu14SX9zM6XGspJb7wIOSyL2pK7dTNh/26U=;
+        b=roc5GwCTf4Wov4tDBI/QnszPHmiYCEvRyWplc/HaO3bkm2vMvbg65394r99uJPFPU3
+         XKQmcppXsNgIQxw2dFesLqHLvd5knr1bTHLd0YPAaNcJo0OA3jW4p2Ke7zENQePy+JV1
+         5tM/icOdhJdlF/hvNsj5PqQ2CtO34lv93epbMPIjLaTt4Bz8FDXR4WL9W6O9TG7D2C/T
+         HLRk/EkCJei99aAX06/oMdpBNrgMBOZDTgFOD6fJVyFSSVLWkEhEobOEEFDzjqD4R75g
+         VOCFYpMmH/91dLEiUte/H/sxPYdWCWD+2HAQ6iFdbZaF+qUAligW7qeFwzs9afZ9z8b8
+         PR6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693297114; x=1693901914;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HAL+QW1Uxu14SX9zM6XGspJb7wIOSyL2pK7dTNh/26U=;
+        b=iTRycQzgo9DpRpV25yuXR3X1gLk92C0HgecRasNAcTUXR1p3i5GVfXena/y7vTHWje
+         XkbgG3ioRBpuAJo8YxGzB1D/DxqOMXtzXCsH9JEwkk8+NcigQSaAFYnN1iQkTvx29ava
+         Uvj28LKWZHMolXo17B/FmSZp59NtleSQ6oX50eGbjJNf7AqVi91T9/8iAuymlULPMVNb
+         6xEKgIkQN/sWKfdHhFQar0eqpRwLHzyWxsW3LRKeRUikYkM93WRWRkOEQ9ftPEv+YwaK
+         eJSVi8XkNPS77io/Cs8PZxmU4Z2tuTpZmQPbPbwpMYrXqdWQ68YrZU+Hhi5tl8qWXNPk
+         7tuQ==
+X-Gm-Message-State: AOJu0Yw4ERGzsynTD1xM+73oQZOs6ftSLORTwfVLHWFuA/IcB1A2+Udd
+        8Zjm8hKRJU+Gx6alqUrHyKnauQ==
+X-Google-Smtp-Source: AGHT+IG2+d5PEh9rBmWoOPU9HPi/XpqQcvKK3PEkc3ZJaZR3D/RfTXVQfgYCM+c+SUI99a4J2q6IlA==
+X-Received: by 2002:aa7:d1cc:0:b0:52a:250e:a052 with SMTP id g12-20020aa7d1cc000000b0052a250ea052mr14348868edp.7.1693297114502;
+        Tue, 29 Aug 2023 01:18:34 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.196])
+        by smtp.gmail.com with ESMTPSA id r9-20020aa7da09000000b005236b47116asm5402296eds.70.2023.08.29.01.18.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Aug 2023 01:18:34 -0700 (PDT)
+Message-ID: <8b7bada9-3898-1b60-3dea-766a760412f7@linaro.org>
+Date:   Tue, 29 Aug 2023 10:18:32 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS,URIBL_CSS_A,URIBL_DBL_SPAM
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: ***
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 06/11] firmware: qcom-shm-bridge: new driver
+Content-Language: en-US
+To:     Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
+ <20230828192507.117334-7-bartosz.golaszewski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230828192507.117334-7-bartosz.golaszewski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
+On 28/08/2023 21:25, Bartosz Golaszewski wrote:
+> This module is a platform driver that also exposes an interface for
+> kernel users to allocate blocks of memory shared with the trustzone.
+> 
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  drivers/firmware/Kconfig                 |   8 +
+>  drivers/firmware/Makefile                |   1 +
+>  drivers/firmware/qcom-shm-bridge.c       | 452 +++++++++++++++++++++++
+>  include/linux/firmware/qcom/shm-bridge.h |  32 ++
+>  4 files changed, 493 insertions(+)
+>  create mode 100644 drivers/firmware/qcom-shm-bridge.c
+>  create mode 100644 include/linux/firmware/qcom/shm-bridge.h
+> 
 
-czy potrzebuj=C4=85 Pa=C5=84stwo dodatkowych pracownik=C3=B3w?
+...
 
-Jako mi=C4=99dzynarodowa agencja rekrutacyjna z 12 letnim do=C5=9Bwiadcze=
-niem, specjalizujemy si=C4=99 w rekrutacji pracownik=C3=B3w z Azji, oferu=
-j=C4=85c kompleksowe us=C5=82ugi w zakresie legalizacji pracy cudzoziemc=C3=
-=B3w, w tym pozyskiwanie kandydat=C3=B3w (angloj=C4=99zycznych) z Nepalu,=
- Indii, Bangladeszu, Filipin do prac sezonowych, produkcyjnych, magazynow=
-ych, przetw=C3=B3rczych, czysto=C5=9Bciowych i naprawczych, a tak=C5=BCe =
-z zakresu hotelarstwa, gastronomii, szycia.
+> +/**
+> + * qcom_shm_bridge_to_phys_addr - Translate address from virtual to physical.
+> + *
+> + * @vaddr: Virtual address to translate.
+> + *
+> + * Return:
+> + * Physical address corresponding to 'vaddr'.
+> + */
+> +phys_addr_t qcom_shm_bridge_to_phys_addr(void *vaddr)
+> +{
+> +	struct qcom_shm_bridge_chunk *chunk;
+> +	struct qcom_shm_bridge_pool *pool;
+> +
+> +	guard(spinlock_irqsave)(&qcom_shm_bridge_chunks_lock);
+> +
+> +	chunk = radix_tree_lookup(&qcom_shm_bridge_chunks,
+> +				  (unsigned long)vaddr);
+> +	if (!chunk)
+> +		return 0;
+> +
+> +	pool = chunk->parent;
+> +
+> +	guard(spinlock_irqsave)(&pool->lock);
 
-Rozliczamy si=C4=99 po odbyciu przez pracownika ustalonego okresu pr=C3=B3=
-bnego, op=C5=82ata jest jednorazowa. Zapewniamy r=C3=B3wnie=C5=BC transpo=
-rt dla pracownik=C3=B3w z Azji do Polski.
-Z naszego wsparcia korzysta niemal 900 firm, z bran=C5=BCy spo=C5=BCywcze=
-j, mi=C4=99snej, produkcyjnej, przetw=C3=B3rczej, rolniczej, transportowe=
-j, budowlanej i wielu innych, kt=C3=B3re dzi=C4=99ki pracownikom z Azji u=
-zupe=C5=82niaj=C4=85 braki kadrowe, tym samym zyskuj=C4=85 wy=C5=BCsz=C4=85=
- produktywno=C5=9B=C4=87 i ci=C4=85g=C5=82o=C5=9B=C4=87 pracy przedsi=C4=99=
-biorstwa. =20
+Why both locks are spinlocks? The locks are used quite a lot.
 
-Je=C5=BCeli chcieliby Pa=C5=84stwo uzupe=C5=82ni=C4=87 sw=C3=B3j zesp=C3=B3=
-=C5=82 o min. 10 dodatkowych pracownik=C3=B3w, prosz=C4=99 o wiadomo=C5=9B=
-=C4=87.
+> +
+> +	return gen_pool_virt_to_phys(pool->genpool, (unsigned long)vaddr);
+> +}
+> +EXPORT_SYMBOL_GPL(qcom_shm_bridge_to_phys_addr);
+> +
+> +static int qcom_shm_bridge_probe(struct platform_device *pdev)
+> +{
+> +	struct qcom_shm_bridge_pool *default_pool;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	/*
+> +	 * We need to wait for the SCM device to be created and bound to the
+> +	 * SCM driver.
+> +	 */
+> +	if (!qcom_scm_is_available())
+> +		return -EPROBE_DEFER;
 
+I think we miss here (and in all other drivers) device links to qcm.
 
-Pozdrawiam
-Karolina Hursowicz
+> +
+> +	ret = qcom_scm_enable_shm_bridge();
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to enable the SHM bridge\n");
+> +
+> +	default_pool = qcom_shm_bridge_pool_new_for_dev(
+> +				dev, qcom_shm_bridge_default_pool_size);
+> +	if (IS_ERR(default_pool))
+> +		return dev_err_probe(dev, PTR_ERR(default_pool),
+> +				     "Failed to create the default SHM Bridge pool\n");
+> +
+> +	WRITE_ONCE(qcom_shm_bridge_default_pool, default_pool);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id qcom_shm_bridge_of_match[] = {
+> +	{ .compatible = "qcom,shm-bridge", },
+> +	{ }
+> +};
+> +
+> +static struct platform_driver qcom_shm_bridge_driver = {
+> +	.driver = {
+> +		.name = "qcom-shm-bridge",
+> +		.of_match_table = qcom_shm_bridge_of_match,
+> +		/*
+> +		 * Once enabled, the SHM Bridge feature cannot be disabled so
+> +		 * there's no reason to ever unbind the driver.
+> +		 */
+> +		.suppress_bind_attrs = true,
+> +	},
+> +	.probe = qcom_shm_bridge_probe,
+> +};
+> +
+> +static int __init qcom_shm_bridge_init(void)
+> +{
+> +	return platform_driver_register(&qcom_shm_bridge_driver);
+> +}
+> +subsys_initcall(qcom_shm_bridge_init);
+
+Why this is part of subsystem? Should be rather device_initcall... or
+simply module (and a tristate).
+
+Best regards,
+Krzysztof
+
