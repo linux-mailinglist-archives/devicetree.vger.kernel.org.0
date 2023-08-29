@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 144DC78C1DD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55F4B78C1E6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 12:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232178AbjH2J5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 05:57:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35766 "EHLO
+        id S231599AbjH2KDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 06:03:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53914 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235062AbjH2J4z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:56:55 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD1FCF3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:56:25 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9936b3d0286so562651066b.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:56:25 -0700 (PDT)
+        with ESMTP id S234852AbjH2KCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 06:02:44 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84ED2BD
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 03:02:40 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4c0so1522542a12.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 03:02:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693302971; x=1693907771;
+        d=linaro.org; s=google; t=1693303359; x=1693908159; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9Jps0qXeyPLdx+b5De4g4xbuY+7aT5vkCHcXrjuUV+Y=;
-        b=OKuqNU9MpyPIJHFWbNDDPELOreMyC3nGbzUQuvwWmKtrIcg8RHDNkDWzmbrmnnFmT6
-         DyQw4klN3ZaAualjzdSAmsWqsbpECq9vKBR7YPoHvvAfuejn7q5T+sd+RsZqBu5ae35Z
-         z8GsJ+WzEPtVzeU++j8rnM4CobDrMKOgRgHaOS1ShOspnbDF9MEZUJ/pgPQxLRgtXEwk
-         88ANIHmf1xT28cdC47Thv18zt1doh1SeJLWtNn6A+f+V7KWzfP3awOAJoIyCfwuDhZVu
-         SB3ME+oDJn9FlwIAJSIeOAmsUoahcY9niLlOaTRdrPk9iUa8DQviJKZqBVQHOBR0X16f
-         ImgA==
+        bh=xNfc1YCzECSmHdy+J5cr9YqVtcVteK3GsZt2ifwyGH4=;
+        b=P3BpxzUodeNxtHNYzDbhTJ2hrQuMHlwGM139bxjDQIzc5ypgBk9Ib0ZL8ycwytf/sc
+         IrqjeOq/HFUHt7yhB9SL1k08PTb9KV/8R00VZDqcvPnopiGG05RNIAgS2V2BpMcRQnwM
+         XSEUlq5oh9yJa0U7qrgRFhHXx4TtBNm31g+54AXhVAV9vVt+M2WldfFzuCbjaz9Ogv9r
+         WG65py12GrcP6Q8MgIZ3sRMdDZ/ypTFvRUjsXp7DYLsa6owZPacRzBpc4BqSjDHjPFdn
+         6FMEx4RBgdpqN1ygIWtIiTz0Go63Z7W5Iv+aac9GvplK6lhVd1bUc6t2//3ucEl0/okq
+         VUbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693302971; x=1693907771;
+        d=1e100.net; s=20221208; t=1693303359; x=1693908159;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9Jps0qXeyPLdx+b5De4g4xbuY+7aT5vkCHcXrjuUV+Y=;
-        b=K6lO50EMtjr8YckuOBxokwVlr9LL/1jTbNAspM9A+UB1hYd1SoKjH8fmuEAEqxH3Gy
-         o6OxiBNTqgOgDdHb+OirT4f7T5aqxZSmaOp8t358PYRIBOHKtKIHQ6Z0ynXaaOZewzPa
-         wk1Z4Zrbs5UR6WI42uKz7iZNivmVdH9apb7E/nlb0pd6eM+mW24xfsynvdRaWyhbLIvt
-         XxVqqtVTlZGJZY1ngd9LTnZqjapzAEXUrqzKojYBpN1BzWwGI6Ap7k7zKNOtBTWZacPo
-         25YywcMkmU/D8TyHA3a1ehby+A9ftl/492go5DijvpohP0PKeQJJ83UfMS+Riuza9BWm
-         A6Mg==
-X-Gm-Message-State: AOJu0Yyed0Oy9+7UCHtmveGDZ+ejCl1G5db4lHH1GxGqujqfGqkqY4vh
-        eZ+eYv8LGR7Ih1iELh04BrHI/g==
-X-Google-Smtp-Source: AGHT+IEjhxFak4PhQe3Tgs47lEQYmobKxofGOlrRmfYW9HU2F55i2HVmIX6rN/v0yjl1q+ycOMRmMw==
-X-Received: by 2002:a17:906:2091:b0:9a2:ecd:d962 with SMTP id 17-20020a170906209100b009a20ecdd962mr9825131ejq.4.1693302970981;
-        Tue, 29 Aug 2023 02:56:10 -0700 (PDT)
+        bh=xNfc1YCzECSmHdy+J5cr9YqVtcVteK3GsZt2ifwyGH4=;
+        b=HZPpJVifjXsUPX7LgvtcAgIAjtcPXYaFZogfndX5qRO5upj9zF1WGtVxvsmtAI88/R
+         iKb+21R8VRnqii0bEKBQmX5UpZEvQGanwBv8mhk/QJ8MM3PM8rSCM/t4VNsjeXJAxEWA
+         e3AWhtwo7Lw2zpIEyPz52QENLNPjlskEeTQTdqjfSoUdasuBX3MsGZv9sotSirwjDBGf
+         8RWuzdAgvn8RWHEof/tKYO9uX0vNa2rEY/K1pdWr9q18v6l6jjx/kvTF2TaIbGWLkl9S
+         1kJy9crOBPLGRZG/BkNlF/MQYgTPppKI45NiQB23ODs78xfhjdMjwvrjXApXp+Q0NjwO
+         POQA==
+X-Gm-Message-State: AOJu0YxCMwox7yEzIEizK0+wEjWH7795j9cJT0l0rQ7r0rTtRtrku5Mj
+        jOgtkWYZXLh6gOICKlVycRYeBQ==
+X-Google-Smtp-Source: AGHT+IFHNtgUX1U+W+lEJ40ltziK5ZFMd1TqeGtv9haM9ughdurndzqlJlcIDfvWInNeikh9GiEWDw==
+X-Received: by 2002:a05:6402:50ca:b0:522:405f:a7 with SMTP id h10-20020a05640250ca00b00522405f00a7mr2475248edb.16.1693303359021;
+        Tue, 29 Aug 2023 03:02:39 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id h25-20020a1709063b5900b0099cc3c7ace2sm5878362ejf.140.2023.08.29.02.56.09
+        by smtp.gmail.com with ESMTPSA id y21-20020aa7c255000000b005257da6be23sm5460501edo.75.2023.08.29.03.02.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 02:56:10 -0700 (PDT)
-Message-ID: <a3b9ff0f-fff9-9439-5ec9-95a4de9bdfaa@linaro.org>
-Date:   Tue, 29 Aug 2023 11:56:09 +0200
+        Tue, 29 Aug 2023 03:02:38 -0700 (PDT)
+Message-ID: <674ae250-8256-8ffb-01fd-eb2bd6026808@linaro.org>
+Date:   Tue, 29 Aug 2023 12:02:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 04/11] thermal: exynos: remove fine-grained clk management
+Subject: Re: [PATCH 08/11] thermal: exynos: stop using the threshold mechanism
+ on Exynos 4210
 Content-Language: en-US
 To:     Mateusz Majewski <m.majewski2@samsung.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -73,15 +74,15 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Brown <broonie@kernel.org>,
         Marek Szyprowski <m.szyprowski@samsung.com>
 References: <20230829091853.626011-1-m.majewski2@samsung.com>
- <CGME20230829092412eucas1p2b79a6f90b9077a3a5486845b7e68bbc6@eucas1p2.samsung.com>
- <20230829091853.626011-5-m.majewski2@samsung.com>
+ <CGME20230829092421eucas1p1970c3fb42ca622129bf92511893500b1@eucas1p1.samsung.com>
+ <20230829091853.626011-9-m.majewski2@samsung.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230829091853.626011-5-m.majewski2@samsung.com>
+In-Reply-To: <20230829091853.626011-9-m.majewski2@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,15 +91,18 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 29/08/2023 11:18, Mateusz Majewski wrote:
-> This clock only controls the register operations. The gain in power
-> efficiency is therefore quite dubious, while there is price of added
-> complexity that is important to get right (as a register operation might
-> outright hang the CPU if the clock is not enabled).
+> Exynos 4210 supports setting a base threshold value, which is added to
+> all trip points. This might be useful, but is not really necessary in
+> our usecase, so we always set it to 0 to simplify the code a bit.
+> 
+> Additionally, this change makes it so that we convert the value to the
+> calibrated one in a slightly different place. This is more correct
+> morally, though it does not make any change when single-point
 
-So once it is done right, this stops being argument. The benefit is to
-keep this clock disabled most of the time, which now we lost.
+I don't think code placement is an aspect of morality, yet okay:
 
-I don't find this patch correct approach.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
