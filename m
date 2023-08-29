@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6859578C057
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 10:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C194278C06A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 10:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234141AbjH2If5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 04:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
+        id S234223AbjH2Iij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 04:38:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230514AbjH2If1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 04:35:27 -0400
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEB9CA4
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:35:24 -0700 (PDT)
-Received: by mail-pl1-x631.google.com with SMTP id d9443c01a7336-1bc63ef9959so31758435ad.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 01:35:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693298124; x=1693902924;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=pXu9S/AlFix/yXovuYXYyWown8pXs4G9/o2rQqvLXEc=;
-        b=xtn+f9n7JkMpbNlw4BvM8/pHcGCB155ZgJFUvAof5g6dcnmc/DSKGPEe6Un/c4vdIP
-         F39yXeIGWaAXk0/DcXkWJhWR+ODo1Ru90pEjpbOMBbf1VpMCUOaJi5iLKjkLGsjgGfnW
-         aavuN1+jhiB/nETrdD61Qvyi1y7eTiyvdwVL4AwrzC7/ah9ae82rqY/4+pr55zvAp0eN
-         kWxBZUq7YbnHgAcpg/Z+P7ToN3dQKrOBfBrss0K1pG8460L9RkuyQJB2+1VGkk0YqoGA
-         MFtKVy3zqLwRZJ0VP5HbdegC0s18xCza7pQD1PE1eilTjeQL4agYg3+ReLDov1lYLaZv
-         SD4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693298124; x=1693902924;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pXu9S/AlFix/yXovuYXYyWown8pXs4G9/o2rQqvLXEc=;
-        b=Mr21uX4nPeZnBP+vGIgAIDNgfHZ9qFEeP2RbjlwwN/dL/yXdztiSNKn3fyDU7wYU3X
-         OHEKP5PPeXUphgVMsUSxhOwmSZGL9tz+tAvZFmf1TOYdX7Bz+hMOvI9ssEVWBKIHGAkD
-         nG/oTeg8yt2PtBDSSoZ/RKMTjUxICKcPiALCfEaYlp8r9+9dRN0ZNs3LglKqGNVByPZ/
-         1UWQ0/J1mwyVzG/u8dGPzmGBIaVLeoPFon27UwgxbWwAroVkGn7CWUKVPUrdkEPIa7qA
-         lzu0yd1WTJLEXvI5oafyYLQ7cXz2EqfBqlYihuLBeGU4VSJRIpfQwVF9A0RfYEFXiNKs
-         tZQw==
-X-Gm-Message-State: AOJu0YyBW49CSPlfvxMtsxUMOLhUbcTNlr5967+MTk4WZ4zI1jLkIcwX
-        +0HLttcBeKS2zi6i2uB78bPdhA==
-X-Google-Smtp-Source: AGHT+IG5T83K0W6KstE98X3Y5HO7B5EQWBAbQkIAQDRtjvXz0qrzINfcG76M1L2nByrIYzfZ1/0sDg==
-X-Received: by 2002:a17:902:e88f:b0:1c0:afdb:1e6c with SMTP id w15-20020a170902e88f00b001c0afdb1e6cmr20688639plg.8.1693298124327;
-        Tue, 29 Aug 2023 01:35:24 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id y1-20020a1709029b8100b001b86492d724sm4331852plp.223.2023.08.29.01.35.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Aug 2023 01:35:23 -0700 (PDT)
-Date:   Tue, 29 Aug 2023 14:05:21 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Chun-Jen Tseng =?utf-8?B?KOabvuS/iuS7gSk=?= 
-        <Chun-Jen.Tseng@mediatek.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "sumitg@nvidia.com" <sumitg@nvidia.com>,
-        "sanjayc@nvidia.com" <sanjayc@nvidia.com>,
-        "rafael.j.wysocki@intel.com" <rafael.j.wysocki@intel.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
+        with ESMTP id S234206AbjH2IiN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 04:38:13 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E7D2139;
+        Tue, 29 Aug 2023 01:38:10 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37T7F96k027676;
+        Tue, 29 Aug 2023 08:37:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=2IOlwG3nZRrWfrFToBPXH1yf1wBr3oMotrbKLVbkpwg=;
+ b=A0x+rpUajEae8wRxWQiMrBLQ8C1OjO7IG4IxY1I/x97fhuzX70SPJlUzlcJMa1gW+cXv
+ DbXZ2u+ku6ZKublEkMrkkXYEmKYIFrsgTq5GXVlf9LrECmdGT+0nrJfvnDwAmR9Ncz4R
+ Hhwy/IyLXGrUSVrd3upy8IOVIQDxm0dFA0Y/XvXstWxJNFYnxxSbN7K6ckn053fO82m0
+ LlURPnTwklAsNZ1jKVAg6/6aIwfOD/71CrugqXAFXGJXeBfPLYhJBXds4SXZXv5+TbWA
+ Xwt0u8e/QicrP0fLrG23FROnl248+Xab6AHfQCYKwS5V1VHphkjHS1mATvkhx4CIX+FX Mg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ss6j88u61-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Aug 2023 08:37:25 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37T8bNNS010841
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Aug 2023 08:37:23 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Tue, 29 Aug 2023 01:37:18 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <arnd@arndb.de>, <geert+renesas@glider.be>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH] cpufreq: mediatek: change transition delay for MT8186
-Message-ID: <20230829083521.trec3rjjmscqp2dw@vireshk-i7>
-References: <20230818020616.4748-1-chun-jen.tseng@mediatek.com>
- <20230828063904.r7huxclehlblkkjx@vireshk-i7>
- <86f49ce84f32941185c961da8a5c671e7aed46b1.camel@mediatek.com>
- <20230829071022.n7wubb2dhbt3ukyk@vireshk-i7>
- <d0745e1cee9fae33252bb8d3db741c2a463983d6.camel@mediatek.com>
- <20230829083154.27ckyuwnqk4zpejs@vireshk-i7>
+        <linux-phy@lists.infradead.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v10 0/4] Enable IPQ5332 USB2
+Date:   Tue, 29 Aug 2023 14:07:06 +0530
+Message-ID: <cover.1693296360.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230829083154.27ckyuwnqk4zpejs@vireshk-i7>
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: cq5EV1Hw-mLovJ52KoVqu4Vd4JcWnA9K
+X-Proofpoint-GUID: cq5EV1Hw-mLovJ52KoVqu4Vd4JcWnA9K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-29_05,2023-08-28_04,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ impostorscore=0 priorityscore=1501 suspectscore=0 mlxlogscore=396
+ lowpriorityscore=0 phishscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308290073
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -89,16 +79,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-08-23, 14:01, Viresh Kumar wrote:
-> Why exactly does the kernel crash here ? Any idea ?
+This patch series adds the relevant phy and controller
+DT configurations for enabling USB2 on IPQ5332
 
-Also note that cpufreq core has enough locking in place to make sure
-two ->target_index() function calls don't run in parallel for the same
-policy.
+v10:
+	Driver: Restore register success print per Dmitry's comment
+	DTS:	usb@8a00000 -> usb@8af8800
+		regulator_s0500 -> regulator-s0500
+v9:
+	Driver: Since the driver code has been picked up for merge,
+		(https://lore.kernel.org/linux-arm-msm/169226613917.81413.1200008047604336868.b4-ty@kernel.org/)
+		adding the coding style fixes alone in this patch.
 
-What may be happening in your case is that you are configuring a
-common entity (CCI) from both the policies and there is no locking in
-place to take care of the races.
+		Fix line break alignment
+		Remove register success print
+	DTS:	usb2@8a00000 -> usb@8a00000
+		regulator_fixed_5p0: s0500 -> regulator_fixed_5p0: regulator
+v8:
+	Driver:-
+		Change commit subject and message per review comments
+		Don't include of_platform.h
+		Change struct initialization coding style
+		GENMASK -> BIT for one of the defines
+v7:
+	Binding:-
+		Move 'compatible' to be the first entry
+		In the example have 'usb-phy' instead of 'usb2-phy'
+		Add 'Reviewed-by: Krzysztof Kozlowski'
+v6:
+	Binding and dts:-
+		Dropped the qcom,dwc3.yaml patch as it has been picked up for linux-next
+		Add const to compatible, vdd-supply
+		Move nodes per register address
+	Driver:-
+		Add vdd-supply
+		Cleanup error paths in probe with dev_err_probe
+v5:
+	Binding and dts:-
+		Fix email id
+		Removed 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+		as had to change bindings file to be able to use generic phy instead of
+		usb-phy
+
+	Driver:-
+		Remove unused definition
+		Use generic phy instead of usb-phy
+v4:
+	Binding and dts:-
+		Change node name (bindings & dts)
+	Driver:-
+		Remove unused enum
+		static const for '.data'
+		Error handling for devm_clk_get
+v3:
+	Fix bindings file based on review comments
+
+v1:
+	Cleanup DTS
+	Combine driver, kconfig and makefile patches
+	Remove unused functions from M31 driver
+	Drop the clock driver changes
+
+Varadarajan Narayanan (4):
+  phy: qcom: m31: Fix indentation issues
+  arm64: dts: qcom: ipq5332: Add USB related nodes
+  arm64: dts: qcom: ipq5332: Enable USB
+  arm64: defconfig: Enable M31 USB phy driver
+
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 23 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 55 +++++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig                |  1 +
+ drivers/phy/qualcomm/phy-qcom-m31.c         |  6 ++--
+ 4 files changed, 82 insertions(+), 3 deletions(-)
 
 -- 
-viresh
+2.7.4
+
