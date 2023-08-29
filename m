@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6022778CA3D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:08:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 827EE78CA45
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:09:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237628AbjH2RHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 13:07:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45710 "EHLO
+        id S236208AbjH2RI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 13:08:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237621AbjH2RH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:07:26 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC2391B3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:07:22 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52a5c0d949eso4062667a12.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:07:22 -0700 (PDT)
+        with ESMTP id S237683AbjH2RIt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:08:49 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24C89CD8
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:08:43 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99bc9e3cbf1so354066b.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:08:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693328841; x=1693933641;
+        d=linaro.org; s=google; t=1693328921; x=1693933721;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cAQIr8pt/5UnnLbqPSKYkJ1Yao70TixJlA2TFwMbYIE=;
-        b=lN8MP7iBdCjY4T9ATE0dC0lRwK8QJmt7oSOACLkIHth1TL5encwNmeLoG1xAcR4vHl
-         0hE2B3yqkWZH54G1iW3NiyFMA3uHhnBBYgaiX95CPDJxKsPYGsCltcbJ6EJ1eOBEA4d7
-         Sus/2Jd9KAz0XouVKpfgOPCqtOWL5sIzTbAwBCvUiIclLfjc166lgm2iksiBz5WBfgpC
-         2/fk+BU0zhiXCO2kKJpekzU/NKBtqMQEOBtlCHvbtmaAbg34tY3ZBllNZkUYYh9yyNYn
-         Y7QJaIhVYd74+BQcu/nagHptI0ENm0pvYhnykykiwuhkj4SqEkGfQ8RNEIr+4kW7sAQs
-         iiUg==
+        bh=4Y6xwhXZeIWCEXZ5vr7dzE9G7VScMJ9tEufwZ22ual4=;
+        b=ozq42sOrus8s+QMO4NSh1vtz+nHirPwWGbxi5qYgBx+XhrDq2ALaEsNKHws7toBrFx
+         jkqYdbMuQXHMTwRshBmPUbmwwQaox0aHmb82gBbDiOavYFrWjKb1l8tZGJTt45LKu6Kw
+         lV0apf1CkpqTzW4D48zIfek/TFTo8yDqjlhUiVUXi7a8Jh50VSx4l0IWac0SViiFPceR
+         ko6j+yPFyPQI9N+Cx/6AL5pV9le7Q5L5F8XvgBtg0XyZ13Zr0VRpOG8kmVMF4U8FW7Jk
+         mRMPHpSawyd+HlFezW+LxUNzo0mwkpL5+sn0PPmEUudjEA82ATFRESR+XB4Wl1nvKhOr
+         qebw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693328841; x=1693933641;
+        d=1e100.net; s=20221208; t=1693328921; x=1693933721;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cAQIr8pt/5UnnLbqPSKYkJ1Yao70TixJlA2TFwMbYIE=;
-        b=Bmjb9WMALWG78trZ2KQqWelOaYuHbgB3Wczh06yBjtAJBirTNMYdiDgV6EQfFQK08S
-         U10FtyHHXj1SRGU62r4mzNtFGOFy+hjH2Vx9ivRDdlZI3ea/+gEW8irvwVEZaFj7ts3U
-         179wdoA4sSh36sQI4DKWJLMbPGT7MmubEsKOZ5lbXCPcjzNgL2NdWcv/FtU8GeaQ5WlZ
-         W9dGBWsOja0b3GmWVFQT57aD1QyLrLw9DsLLCHbbePJnCItUxGdMngbfE7cD8Sl+f/ga
-         VRY1u4Xccdt8mjWrV9Ok2yPqfovYR3XAgpqUDDvcheNMJjNQ3Qg1/vwLjXZ3Xp8aCTvz
-         2bhQ==
-X-Gm-Message-State: AOJu0YziD++evXLr+mdTS5bSuUydSfGKPehPQSe4C2GWkeiZfj99DtQT
-        6BNV7FUhon8L8hFUSJBQ8EgtUQ==
-X-Google-Smtp-Source: AGHT+IGDoj0kamMH4ga2ajkfNsBmDp7XZCgAWROLZ5ozex5foVdSYm9okeIqhwudrf2rECP8fhDKIA==
-X-Received: by 2002:a17:906:10d6:b0:9a5:da6c:6539 with SMTP id v22-20020a17090610d600b009a5da6c6539mr430704ejv.75.1693328841175;
-        Tue, 29 Aug 2023 10:07:21 -0700 (PDT)
+        bh=4Y6xwhXZeIWCEXZ5vr7dzE9G7VScMJ9tEufwZ22ual4=;
+        b=HUkibgV6PyECqQciV5jyCSSlSUDb5C6asOv+vYTF8csVrncigw1rq4DyaaYcpx5d5c
+         385xtEofXCMdvvv3LsQSRVSs9V752mK/1jIDoy+8sLw1A1xGXs83tHImRzIDQHgjmWz7
+         mJHb7KDAx2vpRCBrr3PSgpHK4IMr+AhfhBeTDyHRSzMeJHut2SncivUqzgDhn2tfVTNT
+         XZCNHosIvQV6sqHB4GhNrVRSfxEpQ86SYrSg+8b/3tuJRsFVDg4+VQVlrBJ28U3j3b3x
+         4raSuAj2tKFyE4dPG4BJ+hP6dFL7QcxMl8FoVFRAsIhTzwczIszu1vwpW9PppafkU33Z
+         I5+g==
+X-Gm-Message-State: AOJu0YzgEAdzwBh5zLWlQJsiH2RiUMrFKft1X6e9NbUYgwm/1EG3lwJ1
+        l9nY5oCZ/BUWzM8ayKIIuZHjBA==
+X-Google-Smtp-Source: AGHT+IGR+OgfkxR/pvgIU4IfhbqLmZPUFloowFJ2WgFHwAD/wIDoUIxefynrgHh9HHoOQH0l6a8GqQ==
+X-Received: by 2002:a17:907:9051:b0:9a2:474:4aa1 with SMTP id az17-20020a170907905100b009a204744aa1mr3352763ejc.10.1693328921676;
+        Tue, 29 Aug 2023 10:08:41 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id w24-20020a17090649d800b009930308425csm6152018ejv.31.2023.08.29.10.07.19
+        by smtp.gmail.com with ESMTPSA id x8-20020a170906710800b0099c971ba285sm6143766ejj.5.2023.08.29.10.08.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 10:07:20 -0700 (PDT)
-Message-ID: <92d97b12-48ba-13c9-de9e-70b6eb330904@linaro.org>
-Date:   Tue, 29 Aug 2023 19:07:18 +0200
+        Tue, 29 Aug 2023 10:08:41 -0700 (PDT)
+Message-ID: <17e2413b-6d06-a113-e35b-30cc078a6e83@linaro.org>
+Date:   Tue, 29 Aug 2023 19:08:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH 0/9] Enable USB3 for IPQ5332
+Subject: Re: [PATCH 4/9] dt-bindings: phy: qcom,uniphy: Add ipq5332 USB3 SS
+ UNIPHY
 Content-Language: en-US
-To:     Praveenkumar I <quic_ipkumar@quicinc.com>, robert.marko@sartura.hr,
-        luka.perkov@sartura.hr, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, vkoul@kernel.org, kishon@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, gregkh@linuxfoundation.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        arnd@arndb.de, geert+renesas@glider.be, nfraprado@collabora.com,
-        rafal@milecki.pl, peng.fan@nxp.com, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     quic_varada@quicinc.com
+To:     Rob Herring <robh@kernel.org>,
+        Praveenkumar I <quic_ipkumar@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kishon@kernel.org, robert.marko@sartura.hr, robh+dt@kernel.org,
+        geert+renesas@glider.be, peng.fan@nxp.com,
+        konrad.dybcio@linaro.org, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org, will@kernel.org,
+        conor+dt@kernel.org, p.zabel@pengutronix.de,
+        quic_varada@quicinc.com, vkoul@kernel.org, nfraprado@collabora.com,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, quic_wcheng@quicinc.com,
+        rafal@milecki.pl, gregkh@linuxfoundation.org,
+        luka.perkov@sartura.hr, andersson@kernel.org, arnd@arndb.de,
+        linux-usb@vger.kernel.org, agross@kernel.org,
+        catalin.marinas@arm.com
 References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-5-quic_ipkumar@quicinc.com>
+ <169331975886.2142011.7345682428392154402.robh@kernel.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+In-Reply-To: <169331975886.2142011.7345682428392154402.robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,26 +89,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 15:58, Praveenkumar I wrote:
-> IPQ5332 has UNIPHY for USB and PCIe which is similar to the UNIPHY
-> present in IPQ4019. Few extra settings like clock, reset delay, mux
-> selection and voltage regulator are required for IPQ5332. Hence
-> repurposed the IPQ4019 PHY driver for IPQ5332 UNIPHY. Few more Qualcomm
-> SoCs are also having the UNIPHY which can use the same driver for both
-> USB and PCIe PHY.
+On 29/08/2023 16:35, Rob Herring wrote:
 > 
-> Praveenkumar I (9):
->   dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY to UNIPHY
->   phy: qcom: uniphy: Rename ipq4019 USB phy driver to UNIPHY driver
->   phy: qcom: uniphy: Update UNIPHY driver to be a common driver
->   dt-bindings: phy: qcom,uniphy: Add ipq5332 USB3 SS UNIPHY
->   dt-bindings: usb: dwc3: Update IPQ5332 compatible
->   arm64: dts: qcom: ipq5332: Add USB3 related nodes
->   arm64: dts: qcom: ipq5332: Enable USB SS UNIPHY
+> On Tue, 29 Aug 2023 19:28:13 +0530, Praveenkumar I wrote:
+>> Add ipq5332 USB3 SS UNIPHY support.
+>>
+>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>> ---
+>>  .../devicetree/bindings/phy/qcom,uniphy.yaml  | 117 +++++++++++++++++-
+>>  1 file changed, 114 insertions(+), 3 deletions(-)
+>>
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> In file included from Documentation/devicetree/bindings/phy/qcom,uniphy.example.dts:45:
+> ./scripts/dtc/include-prefixes/dt-bindings/clock/qcom,ipq5332-gcc.h:19: warning: "GCC_BLSP1_AHB_CLK" redefined
+>    19 | #define GCC_BLSP1_AHB_CLK                               10
+>       | 
 
-DTS does not go before drivers. DTS should be sent separately or as the
-last patches. If you stuff it in the middle, means your patchset has
-dependencies which it cannot have. Thus it is broken.
+So the only patch which actually needed dependency information did not
+have it. All other patches have something, even defconfig (!). Confusing.
 
 Best regards,
 Krzysztof
