@@ -2,99 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF3F78C174
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:29:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4477B78C175
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:29:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230170AbjH2J3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233212AbjH2J3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 29 Aug 2023 05:29:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60098 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235026AbjH2J3R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:29:17 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12399E1;
-        Tue, 29 Aug 2023 02:29:12 -0700 (PDT)
+        with ESMTP id S234986AbjH2J3P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:29:15 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AA96CCA
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:29:06 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9a1de3417acso1072433466b.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:29:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1693301353; x=1724837353;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=LgXW93cNR0No3c3s9Vctvqlqw/7SVjO9Zt3lCI5tOIE=;
-  b=X7l3nz2i4qQ7O+u7PmQEhwgXM01Q+8y3zYgwVQdmac79goSXHbAPElPW
-   TO2MUNHsWyEh5hu+1qdB0B8AEW17BAoEV3ye0N4EBH5KK5G9GL/tpTxD1
-   Khrfa2OtHthUmw+V3BRPP2mB7dlQlwDOBYCuV4Xj1tnA/7opVWrjj2hId
-   MegGAoHYo8trudawG6ofQaZ4XpZFH6l3hMv6RcdzAIEb/Xh2YYGe+07tC
-   5FJf6ibbXLGPlinulNRpHMVssyseb/enJcCX18x2sgoyrkWAL+BauDkUT
-   kkbj0CiwK8s/ImEnuTZy7hq7PLrX7j730s8ez59E6UqQ5Vl2gv0e5YqPE
-   g==;
-X-IronPort-AV: E=Sophos;i="6.02,210,1688421600"; 
-   d="scan'208";a="32672408"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 29 Aug 2023 11:27:25 +0200
-Received: from [127.0.1.1] (herburgerg-w2.tq-net.de [10.122.52.145])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 1BB7628008A;
-        Tue, 29 Aug 2023 11:27:25 +0200 (CEST)
-From:   Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Date:   Tue, 29 Aug 2023 11:27:02 +0200
-Subject: [PATCH v2 6/6] MAINTAINERS: add tqml device trees to TQ-Systems
- entry
+        d=linaro.org; s=google; t=1693301344; x=1693906144; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Xmxh5octwGqeO5RGQIVnznkuvhvJoPZ2ZBKJzYLzMwQ=;
+        b=Ow4UpjWpu48P7TCcU81IiJy5FVlfi1uJ0H0dJfOD231rq/mWyx9Yp/2yuM1MqT3aqX
+         ySKV7pHLwWR/0vMnV7ALxE+bD6v5RkzGBr6EmsA0sAwjug5/NWsSjAifUPxRUaSelnpL
+         DwD/xyespKULdivBqVojLMi8s9fW34IoPNDvDBpTLNimmVTrAO1yGmS+S5WBb+5b7tte
+         sqAqgLpQVBZ20hU2dRAiakDXc38I7THgy8Q1j+CdeFsobh7DjWsnmox39csDYmOjTR/j
+         zayc5Kua53AG2Fss2wB9HkP/Zse4kA5Uy3CLlUaZC0lx98XkMWGWq+lxYN340B9nVfHM
+         leKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693301344; x=1693906144;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xmxh5octwGqeO5RGQIVnznkuvhvJoPZ2ZBKJzYLzMwQ=;
+        b=Wh40MmN7Qo0MeysuWDRwmJGWSt386xKI2T2TxC+NWLRGnrAM1e4dObX5k13OlLbUNA
+         oMirred/pdpOi7FZ/0hbyT1JcRy4t3yQepp19OGKmDSVQ57svfA2x3sqrsoYUf60vP2V
+         4ti5Tr+Rf36qVaKX1xqJPpWasMiVKFgyzAqYLH2vYXZArmE+KjsKJY2NCbE09Pz7W6oS
+         1Yka9xWobNNOUXoqVnLwhyQ4v1uUVemHw1MqgB6NKpxSK0M9J2QRHN+uj5NwCHA869/E
+         qtNsRK5H+UnhDTRzP+M0rnan+/LCKT1cr1Lsn5FW0Gb2aSicXhl/40VTgzfrCVIKzRaX
+         cYTQ==
+X-Gm-Message-State: AOJu0Yz2LNrBL3fuOZTdGYGxl6hcfQr8N1BQjn6RFmj05/weuosnQyeW
+        +CRB60/JNDy21Y0gM63RU7taJg==
+X-Google-Smtp-Source: AGHT+IHU9KGZGnusU1XYnVHMUzw0uSM+XCIW4t/d5NRt/s1Ewwm94+tSs0D06k+JkxAOvHIM8pTZLQ==
+X-Received: by 2002:a17:907:60cf:b0:9a5:aa43:1c7c with SMTP id hv15-20020a17090760cf00b009a5aa431c7cmr2921621ejc.26.1693301344594;
+        Tue, 29 Aug 2023 02:29:04 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.196])
+        by smtp.gmail.com with ESMTPSA id vw7-20020a170907058700b0099b921de301sm5742798ejb.159.2023.08.29.02.29.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Aug 2023 02:29:04 -0700 (PDT)
+Message-ID: <14e903fd-c1ee-9e75-4477-0d621329fb46@linaro.org>
+Date:   Tue, 29 Aug 2023 11:29:02 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230829-for-ml-tqmls10xxa-v2-test-v2-6-b1da63785b25@ew.tq-group.com>
-References: <20230829-for-ml-tqmls10xxa-v2-test-v2-0-b1da63785b25@ew.tq-group.com>
-In-Reply-To: <20230829-for-ml-tqmls10xxa-v2-test-v2-0-b1da63785b25@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 02/11] thermal: exynos: drop id field
+Content-Language: en-US
+To:     Mateusz Majewski <m.majewski2@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux@ew.tq-group.com,
-        gregor.herburger@ew.tq-group.com
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1693301244; l=843;
- i=gregor.herburger@ew.tq-group.com; s=20230829; h=from:subject:message-id;
- bh=hyzk0VJaY5oa0kF7IJm92NXpVzkmk+SifWkq//cYZEQ=;
- b=8DpA1nuYZoXWADDDqSoe6csCBf/CvRKbnMuLl+tChdWJVOL2zlx/lEpe2WP2gf/silV8Cgu0F
- HbQsbVghevYCYBFawOjEi/7RjzIyHeWnoYaD9A13LIWftN4WsW+ZPFZ
-X-Developer-Key: i=gregor.herburger@ew.tq-group.com; a=ed25519;
- pk=+eRxwX7ikXwazcRjlOjj2/tbDmfVZdDLoW+xLZbQ4h4=
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+References: <20230829091853.626011-1-m.majewski2@samsung.com>
+ <CGME20230829092408eucas1p24901bbd192db03b69d774f2c5936f5b3@eucas1p2.samsung.com>
+ <20230829091853.626011-3-m.majewski2@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230829091853.626011-3-m.majewski2@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update file entries for TQ-Systems Layerscape modules.
+On 29/08/2023 11:18, Mateusz Majewski wrote:
+> This field is not used in code, and seems to not have any meaning; in my
+> tests, the value was always 0.
+> 
+> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
+> ---
 
-Signed-off-by: Gregor Herburger <gregor.herburger@ew.tq-group.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Please drop also remaining alias from DTS.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 38ea23fa1b00..c1e9a5415d30 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21788,9 +21788,11 @@ W:	https://www.tq-group.com/en/products/tq-embedded/
- F:	arch/arm/boot/dts/imx*mba*.dts*
- F:	arch/arm/boot/dts/imx*tqma*.dts*
- F:	arch/arm/boot/dts/mba*.dtsi
-+F:	arch/arm64/boot/dts/freescale/fsl-*tqml*.dts*
- F:	arch/arm64/boot/dts/freescale/imx*mba*.dts*
- F:	arch/arm64/boot/dts/freescale/imx*tqma*.dts*
- F:	arch/arm64/boot/dts/freescale/mba*.dtsi
-+F:	arch/arm64/boot/dts/freescale/tqml*.dts*
- F:	drivers/gpio/gpio-tqmx86.c
- F:	drivers/mfd/tqmx86.c
- F:	drivers/watchdog/tqmx86_wdt.c
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--- 
-2.34.1
+Best regards,
+Krzysztof
 
