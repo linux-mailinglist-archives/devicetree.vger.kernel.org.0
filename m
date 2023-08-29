@@ -2,80 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7665B78BF56
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 09:41:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D48E478BF6E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 09:43:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231931AbjH2Hkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 03:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
+        id S230494AbjH2HnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 03:43:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233744AbjH2Hkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:40:39 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD86D19F
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:40:35 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99c353a395cso521327966b.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:40:35 -0700 (PDT)
+        with ESMTP id S233728AbjH2Hmd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:42:33 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994E7184
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:42:30 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so527155766b.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:42:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693294834; x=1693899634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693294949; x=1693899749;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=85oIlwOjnmhaZMSJhN62Phro7f83cmUVna4DEevhvGQ=;
-        b=FmVoBL3BK/odNCW/bZ/ThcyfHTQKAHmQYTAdJw8yuTRur1gd9XcWu/sO432SR9x+zj
-         IuhxR0pWgQRO9iIsmXYHje1KRMLauX55VdQX7XuhQSiv1yI3BY097g9B0O0NTBfIHJU2
-         3imWPhb1TK0airY7UjhLRdjIK9KJAMrhJUvH9VAxUWvZuYK9oca5TuW4LMk5Qfvqw9ON
-         nsPCbRA3gHQn5bQlQOxBI3xqxmGT690uVFL/Ji7RYIiRKZDRT/we1+lz3AzNtFydzxfW
-         +Ri0zAOwKNVs6aUTpwdGztU5TA9FogrTQCDwiimVNEGvxhYHwk2cR9kzEKMo/qvbw743
-         lhgA==
+        bh=fZidkGWNPi5BjyVLjLVMFpv4YzU60iSJ/Ecori1AkQ0=;
+        b=i5va1TsUR/sivxWYmTNw0ts25LKsB6R7S9P3dyzzTC+Fh7W68bccjTByx/vLozPCD7
+         It7sG2Ds7/CWT2/M7z8KA6r0Zx5v+Lqj0ks1AHc2YuE2LIFYmOyqdNSFemEYsWB6gd6v
+         dzAoiFpNymOG7WMSmamobMgoHU7JfXgdMmHXuDqKieR1cFTu6Fg4SonCIH6An8oTxsnQ
+         RqIL6KjiHnVgEEK3qiD/20g2v2VcSQkg25MLPb/ioLLr5TcP1rqanOpbrBeaRmA8PbAV
+         IQDFriKYp3OMel93CxJxtaaOwpESEjrNGmC0bs45BksGbVMWvgsiZEWgFeZHhTkn6X8R
+         eIHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693294834; x=1693899634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693294949; x=1693899749;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=85oIlwOjnmhaZMSJhN62Phro7f83cmUVna4DEevhvGQ=;
-        b=Wzf8vBnRGfoQDkEhcBHGGdir7Z2a21xNW7Cs8/BF3wQ3YJ1w955jUnBZPdhkvSstLl
-         OV6IammCtrSMoza+LY8KBNtdUoNSAg7MuWksr7e3Xs6tdDE4Exqy+D1tgm4k0PgvS67W
-         X3ne3fXoXYpqen5AyYE0isHAMSMNFow8ta5vbjjTzXQl9zMfvXlq8Xo1o712ix6nalJ4
-         3JLaId4YGoh5T9mc8Tc4g23INIGZFfvt0CACedcJDhG0PgSwuOHzCcL27yYWWABepv9f
-         SctcDVhwEpU3UBSHSaSS25IhyMbFnIgvUJPcueP9vU+knHOqJ9WMoUv4IcyVT+Kn3LN7
-         30hw==
-X-Gm-Message-State: AOJu0YwaBOxzLmGI/UAOEdAoBa0Rb1Y5c9n0ErYwv6/bbPcZ3cHROCmF
-        9OKPwhfVeLcFNj+zyxaGFynDKA==
-X-Google-Smtp-Source: AGHT+IHRrDeqEvG2xyfCqaM+EsruiD5GnJ6fqMycCsb0Aps55szv5dZpjTBxUGTr3a9TO9VF/93oIg==
-X-Received: by 2002:a17:907:d40d:b0:9a5:b8c1:8bfa with SMTP id vi13-20020a170907d40d00b009a5b8c18bfamr2542110ejc.28.1693294833734;
-        Tue, 29 Aug 2023 00:40:33 -0700 (PDT)
+        bh=fZidkGWNPi5BjyVLjLVMFpv4YzU60iSJ/Ecori1AkQ0=;
+        b=YKsJLHlaGsXcMuEFV+ov82XGFwMZhFT1YsJe2upYXZoRHrwEq8fIGJOpR+t0fEudeF
+         1NrvAiOqzy2SK2+O6HDxnKcIsDBGUhDMYkxjHZAr+owMzLfI3Q/dw8qQ7vLqwWaIpt8d
+         E/w0H4F68//bXW09jdnaMHq+TDGkCTPt/l0xXEj0t8+xuI+/LEgJ/LpLJkUcqOsjcfHq
+         f3E9Wsb+1kKqiNS2HeddmeGTzI+kYZ9QZCeTPk/pActRB3igniSzRmVK1Fe4qhomAq28
+         05hFXxxzof5oL+IeVpbwQwD+MvEkA0S9zqQvUksepEx8IV/LAS9CBiqY0KK+yt5WDnvS
+         6bxQ==
+X-Gm-Message-State: AOJu0YwnWtH/BY9euxhkUnURShTWFy5g7WOQkf6mUtodCmGVAGvXfV/A
+        vVbkiXd4IadIpR5Ub6bDDOIMPQ==
+X-Google-Smtp-Source: AGHT+IEWQr3QZ34jpK/5hL3ExGpvkPxLMtK2asR6mbFflpZ3LI8Ub6Apso9Cl+apOGcp3MwFMSZd6g==
+X-Received: by 2002:a17:906:2243:b0:9a1:8a39:c62d with SMTP id 3-20020a170906224300b009a18a39c62dmr20024316ejr.38.1693294948996;
+        Tue, 29 Aug 2023 00:42:28 -0700 (PDT)
 Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id a3-20020a17090680c300b009888aa1da11sm5627217ejx.188.2023.08.29.00.40.32
+        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00992bea2e9d2sm5615023eja.62.2023.08.29.00.42.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 00:40:33 -0700 (PDT)
-Message-ID: <9e22cc04-a153-4aff-2783-2e6cbc7cc9c1@linaro.org>
-Date:   Tue, 29 Aug 2023 09:40:32 +0200
+        Tue, 29 Aug 2023 00:42:28 -0700 (PDT)
+Message-ID: <e2b2f268-182a-5ba4-2541-f0a401eda1c8@linaro.org>
+Date:   Tue, 29 Aug 2023 09:42:27 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 5/7] dt-bindings: pinctrl: realtek: add RTD1315E
- pinctrl binding
-To:     =?UTF-8?B?VFlfQ2hhbmdb5by15a2Q6YC4XQ==?= <tychang@realtek.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230824105703.19612-1-tychang@realtek.com>
- <20230824105703.19612-6-tychang@realtek.com>
- <20230824211121.GA1388146-robh@kernel.org>
- <14b8a56d55af4b689cf06f9ff0fab30b@realtek.com>
+Subject: Re: [PATCH v3 11/28] dt-bindings: usb: dwc3: Add
+ snps,num-hc-interrupters definition
 Content-Language: en-US
+To:     Wesley Cheng <quic_wcheng@quicinc.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
+        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
+        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
+        andersson@kernel.org, gregkh@linuxfoundation.org, tiwai@suse.com,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
+        quic_plai@quicinc.com
+References: <20230308235751.495-1-quic_wcheng@quicinc.com>
+ <20230308235751.495-12-quic_wcheng@quicinc.com>
+ <20230311134008.GA20831-robh@kernel.org>
+ <f7bd1ae7-fc38-0f29-546b-9ea4a323f42f@quicinc.com>
+ <73655c17-5246-2c96-d415-6a30497966c3@linaro.org>
+ <9d31db9c-4e58-767a-15c5-65f7c04bd989@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <14b8a56d55af4b689cf06f9ff0fab30b@realtek.com>
+In-Reply-To: <9d31db9c-4e58-767a-15c5-65f7c04bd989@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,28 +88,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 09:22, TY_Chang[張子逸] wrote:
-
-...
-
->>> +
->>> +         i2c-0-pins {
->>> +             pins = "gpio_12",
->>> +                    "gpio_13";
->>> +             function = "i2c0";
->>> +             drive-strength = <4>;
->>> +         };
->>> +     };
->>> --
->>> 2.41.0
+On 29/08/2023 09:19, Wesley Cheng wrote:
 >>>
+>>> This is a XHCI feature, but the DWC3 design is built in a way that DWC3
+>>> host initializes the XHCI device and populates the properties associated
+>>> to XHCI dev.
+>>
+>> You speak about driver now, not bindings. If driver has limitations,
+>> change it. Not really problem of bindings.
+>>
 > 
-> Thanks,
-> Tzuyi Chang
-> 
+> Its the limitation of the HW.  Depending on how the SNPS DWC3 controller 
+> was implemented the vendor it can support less than the value mentioned 
+> in the Synopsys databook.
 
-Trim unrelevant parts of the quote, so we do not need to scroll entire
-message to find that you did not want to say anything more.
+Then what is "XHCI dev"? A Linux device? Then a driver topic. What is
+"populates the properties" - what or whose properties? Of Linux device?
+Then a driver topic...
 
 Best regards,
 Krzysztof
