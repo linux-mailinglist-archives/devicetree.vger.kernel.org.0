@@ -2,110 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C19078C996
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 18:24:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32CD578C9A5
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 18:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237515AbjH2QXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 12:23:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40330 "EHLO
+        id S236933AbjH2Q23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 12:28:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237457AbjH2QXN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 12:23:13 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 922AED2;
-        Tue, 29 Aug 2023 09:23:10 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37TB7M6Z016651;
-        Tue, 29 Aug 2023 11:22:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=PODMain02222019; bh=ptBbO/ikbUCOzPa
-        qVepOxQ9ReSRotYR0A66tqyou2FU=; b=I+L5I4qBF50L9rYiRIaQlhWB4sV3RnQ
-        OGVpQwlf2Xo0digGObeI2dtMsDZQlKuuYeFjmholLLT/vDN1GOwElY7Bzp12+RuU
-        luWeMHYFh2i0VAca2nNK6nrJBwRnu+U/lUTjOGQuNY75kUBNMlUFfOxfaMpTu8cW
-        gdGSyaxRmHjPaj86fsoMAo94ERa9drjuBnqQfnTGnN/FCxCaYdLMG4Lz3gSaX5P0
-        sjxgZ09gT61sk1+pMBbkRgIaul55VXjyqt+prHO6UZKxD67CCLeYiE+bC1pOJelC
-        d6QWuSffHuwrW2Q2MwrCL9AUBJ+S8y+uKrzGsd5zUs71CWljNEq22SA==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3sqdtj360r-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 29 Aug 2023 11:22:45 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Tue, 29 Aug
- 2023 17:22:43 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.37 via Frontend Transport; Tue, 29 Aug 2023 17:22:43 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 93CA615B6;
-        Tue, 29 Aug 2023 16:22:43 +0000 (UTC)
-Date:   Tue, 29 Aug 2023 16:22:43 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     <broonie@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <vkoul@kernel.org>,
-        <lgirdwood@gmail.com>, <yung-chuan.liao@linux.intel.com>,
-        <sanyog.r.kale@intel.com>, <pierre-louis.bossart@linux.intel.com>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v7 3/6] mfd: cs42l43: Add support for cs42l43 core driver
-Message-ID: <20230829162243.GV103419@ediswmail.ad.cirrus.com>
-References: <20230804104602.395892-1-ckeepax@opensource.cirrus.com>
- <20230804104602.395892-4-ckeepax@opensource.cirrus.com>
- <b122a788-acee-4747-be6d-a7456ee110dc@roeck-us.net>
+        with ESMTP id S237511AbjH2Q21 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 12:28:27 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24F28CC9
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:28:18 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-40061928e5aso43211825e9.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:28:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693326496; x=1693931296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rpqa6ldHA7+s03xx4g9dxalk6uI6N/wZjkRdFsn+Mzw=;
+        b=KnmcT3f4tVKSrqfCvp4riPVv63u5NlCU3AyN1khUxhpySjV3IVDDE8W8eXge76a1Pm
+         6VXcNXVjPqGvzFLXTz4QGSyIEDIxaoFhfQnu4PI3ARFdL/0WRG0jhFZFmBJMLPQ2vSjr
+         LQCWdLnf6nwhPF+of9zRRtocUu0UFOxOvGuXEH7OBbyeySBhlt5UHHL2KtjVzJAO3a2d
+         yJF7/gCM+5/wsTGoLIJpXiLKLd3cWEKGizMSL/lHcTQNPp3IPRSb84ov3vojrJtscU7p
+         gIUKBC0l79dwzNOcRYsvkdkJ4/0Afkni/8BwNud1r1hZdVVotmJuz96XZya/IfZ/9m7F
+         Scfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693326496; x=1693931296;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rpqa6ldHA7+s03xx4g9dxalk6uI6N/wZjkRdFsn+Mzw=;
+        b=XfFFb7BNgDw3MAeWC6G52gLNetQLqtIpbfekvDFQuLI1cgH8BDVCc26MuwKkbkffjX
+         5rdRRmsP1gLNKrM5dU//7e9D4ty8ThNrVI+R1a6VuvcfJNbt2W7HdC0Gclnwj3AVH8in
+         vbFvc221aqe8RbxeNbLOdR4AUFpsHj5YyDp++OK4h8NSEoZLm/qOypFvX7t8GXQMqKwa
+         Yz7h2i8KWuLIE9FQ4aHVn+ugIpgA/ebucr4D8JWvkj5cbP6FWGjw+gJiorWE7ZzQAdOH
+         zXupTWA0Nm5y7UEzc2qjiX5md0gDzD4KuUzVQDioteUapZ5+Jkt4D76OI14VGRHQglPi
+         OUCQ==
+X-Gm-Message-State: AOJu0Yxw6mVHw/ZRfIJM1v/ptol2/IvetsDlZV5k2gbuQNmAgl3mkdpg
+        CywlBiORQPIGhe5IcFnSWvewPA==
+X-Google-Smtp-Source: AGHT+IEfJSUBL42nyBdyLW7ZL/n8wPUN1nrSlKl/LyAkDJ2R2cEWy2EjLFUTZblF2ciDwd/UsdyPjQ==
+X-Received: by 2002:a7b:cbcd:0:b0:3fe:25b3:951d with SMTP id n13-20020a7bcbcd000000b003fe25b3951dmr21965260wmi.5.1693326496479;
+        Tue, 29 Aug 2023 09:28:16 -0700 (PDT)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id k8-20020a7bc408000000b003fe23b10fdfsm17577866wmi.36.2023.08.29.09.28.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Aug 2023 09:28:16 -0700 (PDT)
+Date:   Tue, 29 Aug 2023 17:28:14 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Flavio Suligoi <f.suligoi@asem.it>
+Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+        Helge Deller <deller@gmx.de>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] backlight: mp3309c: Add support for MPS MP3309C
+Message-ID: <20230829162814.GA56339@aspen.lan>
+References: <20230829101546.483189-1-f.suligoi@asem.it>
+ <20230829101546.483189-2-f.suligoi@asem.it>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b122a788-acee-4747-be6d-a7456ee110dc@roeck-us.net>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: mADtkyurD_gKlPgW1ZYY9RFipjVdnnX5
-X-Proofpoint-GUID: mADtkyurD_gKlPgW1ZYY9RFipjVdnnX5
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230829101546.483189-2-f.suligoi@asem.it>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 29, 2023 at 07:06:28AM -0700, Guenter Roeck wrote:
-> On Fri, Aug 04, 2023 at 11:45:59AM +0100, Charles Keepax wrote:
-> > The CS42L43 is an audio CODEC with integrated MIPI SoundWire interface
-> > (Version 1.2.1 compliant), I2C, SPI, and I2S/TDM interfaces designed
-> > for portable applications. It provides a high dynamic range, stereo
-> > DAC for headphone output, two integrated Class D amplifiers for
-> > loudspeakers, and two ADCs for wired headset microphone input or
-> > stereo line input. PDM inputs are provided for digital microphones.
-> > 
-> > The MFD component registers and initialises the device and provides
-> > PM/system power management.
-> > 
-> Unfortunately, on systems without pm support:
-> 
-> Building s390:allmodconfig ... failed
-> --------------
-> Error log:
-> drivers/mfd/cs42l43.c:1138:12: error: 'cs42l43_runtime_resume' defined but not used [-Werror=unused-function]
->  1138 | static int cs42l43_runtime_resume(struct device *dev)
->       |            ^~~~~~~~~~~~~~~~~~~~~~
-> drivers/mfd/cs42l43.c:1124:12: error: 'cs42l43_runtime_suspend' defined but not used [-Werror=unused-function]
->  1124 | static int cs42l43_runtime_suspend(struct device *dev)
->       |            ^~~~~~~~~~~~~~~~~~~~~~~
-> drivers/mfd/cs42l43.c:1106:12: error: 'cs42l43_resume' defined but not used [-Werror=unused-function]
->  1106 | static int cs42l43_resume(struct device *dev)
->       |            ^~~~~~~~~~~~~~
-> drivers/mfd/cs42l43.c:1076:12: error: 'cs42l43_suspend' defined but not used [-Werror=unused-function]
->  1076 | static int cs42l43_suspend(struct device *dev)
-> 
+On Tue, Aug 29, 2023 at 12:15:46PM +0200, Flavio Suligoi wrote:
+> The Monolithic Power (MPS) MP3309C is a WLED step-up converter, featuring a
+> programmable switching frequency to optimize efficiency.
+> The brightness can be controlled either by I2C commands (called "analog"
+> mode) or by a PWM input signal (PWM mode).
+> This driver supports both modes.
+>
+> For DT configuration details, please refer to:
+> - Documentation/devicetree/bindings/leds/backlight/mps,mp3309c.yaml
+>
+> The datasheet is available at:
+> - https://www.monolithicpower.com/en/mp3309c.html
+>
+> Signed-off-by: Flavio Suligoi <f.suligoi@asem.it>
 
-Apologies for this one, a fix is already awaiting review here:
+> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+> index 51387b1ef012..65d0ac9f611d 100644
+> --- a/drivers/video/backlight/Kconfig
+> +++ b/drivers/video/backlight/Kconfig
+> @@ -389,6 +389,19 @@ config BACKLIGHT_LM3639
+>  	help
+>  	  This supports TI LM3639 Backlight + 1.5A Flash LED Driver
+>
+> +config BACKLIGHT_MP3309C
+> +	tristate "Backlight Driver for MPS MP3309C"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	select NEW_LEDS
+> +	select LEDS_CLASS
 
-https://lore.kernel.org/lkml/20230822114914.340359-1-ckeepax@opensource.cirrus.com/
+This doesn't seem right.
 
-Thanks,
-Charles
+Shouldn't PWM and GPIOLIB be listed here? Why are NEW_LEDS and
+LEDS_CLASS needed?
+
+> +	help
+> +	  This supports MPS MP3309C backlight WLED Driver in both PWM and
+> +	  analog/I2C dimming modes.
+> +
+> +	  To compile this driver as a module, choose M here: the module will
+> +	  be called mp3309c_bl.
+> +
+>  config BACKLIGHT_LP855X
+>  	tristate "Backlight driver for TI LP855X"
+>  	depends on I2C && PWM
+
+> +static int mp3309c_bl_update_status(struct backlight_device *bl)
+> +{
+> +	struct mp3309c_chip *chip = bl_get_data(bl);
+> +	int brightness = backlight_get_brightness(bl);
+> +	struct pwm_state pwmstate;
+> +	unsigned int analog_val, bits_val;
+> +	int i, ret;
+> +
+> +	if (chip->pdata->dimming_mode == DIMMING_PWM) {
+> +		/*
+> +		 * PWM dimming mode
+> +		 */
+> +		pwm_init_state(chip->pwmd, &pwmstate);
+> +		pwm_set_relative_duty_cycle(&pwmstate, brightness,
+> +					    chip->pdata->max_brightness);
+> +		pwmstate.enabled = true;
+> +		ret = pwm_apply_state(chip->pwmd, &pwmstate);
+> +		if (ret)
+> +			return ret;
+> +	} else {
+> +		/*
+> +		 * Analog dimming mode by I2C commands
+> +		 *
+> +		 * The 5 bits of the dimming analog value D4..D0 is allocated
+> +		 * in the I2C register #0, in the following way:
+> +		 *
+> +		 *     +--+--+--+--+--+--+--+--+
+> +		 *     |EN|D0|D1|D2|D3|D4|XX|XX|
+> +		 *     +--+--+--+--+--+--+--+--+
+> +		 */
+> +		analog_val = DIV_ROUND_UP(ANALOG_MAX_VAL * brightness,
+> +					  chip->pdata->max_brightness);
+> +		bits_val = 0;
+> +		for (i = 0; i <= 5; i++)
+> +			bits_val += ((analog_val >> i) & 0x01) << (6 - i);
+> +		ret = regmap_update_bits(chip->regmap, REG_I2C_0,
+> +					 ANALOG_REG_MASK, bits_val);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	if (brightness > 0) {
+> +		switch (chip->pdata->status) {
+> +		case FIRST_POWER_ON:
+> +			/*
+> +			 * Only for the first time, wait for the optional
+> +			 * switch-on delay and then enable the device.
+> +			 * Otherwise enable the backlight immediately.
+> +			 */
+> +			schedule_delayed_work(&chip->enable_work,
+> +					      msecs_to_jiffies(chip->pdata->switch_on_delay_ms));
+
+Delaying this work makes no sense to me, especially when it is only
+going to happen at initial power on.
+
+If you are (ab)using this property to try and sequence the backlight
+power-on with display initialization then this is not the way to do it.
+Normally backlight drivers that support sequencing versus the panel
+work by having a backlight property set on the panel linking it to the
+backlight. When the panel is ready this power status of the backlight
+will be updated accordingly.
+
+All the backlight driver need do is make sure that is the initial
+power status is "powerdown" on systems when the link is present (e.g.
+leave the backlight off and wait to be told the display has settled).
+
+
+> +			/*
+> +			 * Optional external device GPIO reset, with
+> +			 * delay pulse length
+> +			 */
+> +			if (chip->pdata->reset_pulse_enable)
+> +				schedule_delayed_work(&chip->reset_gpio_work,
+> +						      msecs_to_jiffies(chip->pdata->reset_on_delay_ms));
+
+Similarly I don't understand what this property is for. A backlight is
+directly perceivable by the user. There is nothing downstream of a
+light that needs to be reset!
+
+What is this used for?
+
+
+Daniel.
