@@ -2,220 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3191278C943
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 18:02:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20ABF78C97B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 18:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237356AbjH2QBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 12:01:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39864 "EHLO
+        id S236476AbjH2QRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 12:17:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237380AbjH2QBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 12:01:24 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8AA12D
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:01:20 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-50079d148aeso7095283e87.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 09:01:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1693324879; x=1693929679;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0tc7Oq+vVun/0F0TYkBBZcQLVrPo7QJsVygXG4Fbb5A=;
-        b=C75zormY29ZXEnMS0HuILcr+i3vv2IYTT61Gg+FzedECiPJ47OqKP0XncRxpBSyPJh
-         kyg18zl15b6H+Hbk1qSXudMfOYAJ/AXHDLvkpwkucR9ZQokJ6sLW9HUmcuTMsr0Jlqu+
-         vXstnR2fntcJfSznfJVwvnjJDqqPjXF97eeoE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693324879; x=1693929679;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0tc7Oq+vVun/0F0TYkBBZcQLVrPo7QJsVygXG4Fbb5A=;
-        b=OOTFhYXrauqPEQcuEzJgLo5Ibnk+Thdo+HAuPX0LpEQusE8pxTSUZ1v5Hw5pHSZ1+z
-         lxHN8s9YtxMC2doqGzft6eVmRoL2/XDoV6d+Xu1CiMYo4OP4c1WfML4RbcdxvLpT4COd
-         qzV6ugWc+F7PUzpvmiAa5wdF0gWd4CniWFCOOMGNT9IzjDjDpJ50tjSkusOp2ARvAiCp
-         cOJD74O4iYvzP2PXSZFR8TMNXyn4h2nUCyTVfSp9c5VoiIWT2BLYwyC2y5yH7xiz9aPm
-         hvS4N++y14bdCqbsk079jQFkKa/JaSjTjm+JoEHa69nbUkTmxsByrEFroXheUgnAl88X
-         mRwA==
-X-Gm-Message-State: AOJu0Yy+KMG+DtRqmJWOV/Wh5fO9/tAwMiHvvncNFVfYX0fTszO2CpEI
-        M2WlXT9822uifkQ9b8fQI5DvjOxk+gI+aq4yLgPiFHlmXBNqZ6ARDKc=
-X-Google-Smtp-Source: AGHT+IE/RX9iizoSgqT2x/ebB3X+QfUbrpdl+J3+w25nxLY20nEDHwjRri4n6/cHqS87tJVCVdhQHRPnPZQMtqcKUuM=
-X-Received: by 2002:a05:6512:250e:b0:4f9:54f0:b6db with SMTP id
- be14-20020a056512250e00b004f954f0b6dbmr22767776lfb.13.1693324878784; Tue, 29
- Aug 2023 09:01:18 -0700 (PDT)
+        with ESMTP id S229908AbjH2QQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 12:16:45 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B596D1AD;
+        Tue, 29 Aug 2023 09:16:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5373661CE1;
+        Tue, 29 Aug 2023 16:16:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FE50C433C7;
+        Tue, 29 Aug 2023 16:16:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693325801;
+        bh=qAojA2STHyfw0Fv9cHDM+ZJ3rFLmT5D9fyY8FeUxJ08=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=I1no0gQjl1B6jZ4lW88cFiYSW4ij6Dfpt7EoNo/2wnPIFmGfD7Dr4i7QabpuL5JE2
+         HK1QMHfJCe+tR/aNwLCvlUj/EW4+ogvseulBGIKJx0sycNBoonYXNDZBkNA6RfVL68
+         DwvcokkvKG2Wqbq1Z5gtW+MhfRRJ7GPM5wdiSe+2ufbebdJ4u7nXGR4GyYrEogNpTD
+         UKNaRsuiUZBTSoqupAKGxoYn0i0pa0A8nMPOWP9IJV9sm3hXTKqA2lTx2zH7l8wStP
+         PSjO670jTsszBrqiVS46aerX+RK1umsfFU/KZOms/RaGw1OSbenZbboetJ4lF1WvKh
+         dtuoBI/xAo4jw==
+Received: (nullmailer pid 2279862 invoked by uid 1000);
+        Tue, 29 Aug 2023 16:16:38 -0000
+Date:   Tue, 29 Aug 2023 11:16:38 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Praveenkumar I <quic_ipkumar@quicinc.com>
+Cc:     robert.marko@sartura.hr, luka.perkov@sartura.hr, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        arnd@arndb.de, geert+renesas@glider.be, nfraprado@collabora.com,
+        rafal@milecki.pl, peng.fan@nxp.com, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_varada@quicinc.com
+Subject: Re: [PATCH 4/9] dt-bindings: phy: qcom,uniphy: Add ipq5332 USB3 SS
+ UNIPHY
+Message-ID: <20230829161638.GA2274047-robh@kernel.org>
+References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-5-quic_ipkumar@quicinc.com>
 MIME-Version: 1.0
-References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
- <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com>
- <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com> <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
-In-Reply-To: <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Tue, 29 Aug 2023 10:01:06 -0600
-Message-ID: <CAPnjgZ3aczy3sTJvppVBoM5_aB9zdML6muwwvuvwCn8n3Mpzyg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>,
-        "Dong, Guo" <guo.dong@intel.com>,
-        "dhaval@rivosinc.com" <dhaval@rivosinc.com>,
-        maximilian.brune@9elements.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230829135818.2219438-5-quic_ipkumar@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(Adding a few more, will respond soon)
+On Tue, Aug 29, 2023 at 07:28:13PM +0530, Praveenkumar I wrote:
+> Add ipq5332 USB3 SS UNIPHY support.
+> 
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> ---
+>  .../devicetree/bindings/phy/qcom,uniphy.yaml  | 117 +++++++++++++++++-
+>  1 file changed, 114 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+> index cbe2cc820009..17ba661b3d9b 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+> @@ -19,21 +19,53 @@ properties:
+>      enum:
+>        - qcom,usb-ss-ipq4019-phy
+>        - qcom,usb-hs-ipq4019-phy
+> +      - qcom,ipq5332-usb-ssphy
+>  
+>    reg:
+>      maxItems: 1
+>  
+> +  reg-names:
+> +    items:
+> +      - const: phy_base
+> +
+> +  clocks:
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    maxItems: 3
+> +
+> +  "#clock-cells":
+> +    const: 0
+> +
+>    resets:
+> +    minItems: 1
+>      maxItems: 2
+>  
+>    reset-names:
+> -    items:
+> -      - const: por_rst
+> -      - const: srif_rst
 
-- Simon
+No need to remove this and duplicate the names multiple times. Just add 
+'minItems: 1' here and then the if/then schemas only need either 
+minItems or maxItems.
 
-On Thu, 24 Aug 2023 at 03:10, Ard Biesheuvel <ardb@kernel.org> wrote:
->
-> On Wed, 23 Aug 2023 at 22:04, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Wed, 23 Aug 2023 at 08:24, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > >
-> > > On Wed, 23 Aug 2023 at 10:59, Mark Rutland <mark.rutland@arm.com> wrote:
-> > > >
-> > > > On Tue, Aug 22, 2023 at 02:34:42PM -0600, Simon Glass wrote:
-> > > > > The Devicetree specification skips over handling of a logical view of
-> > > > > the memory map, pointing users to the UEFI specification.
-> > > > >
-> > > > > It is common to split firmware into 'Platform Init', which does the
-> > > > > initial hardware setup and a "Payload" which selects the OS to be booted.
-> > > > > Thus an handover interface is required between these two pieces.
-> > > > >
-> > > > > Where UEFI boot-time services are not available, but UEFI firmware is
-> > > > > present on either side of this interface, information about memory usage
-> > > > > and attributes must be presented to the "Payload" in some form.
-> > >
-> > > Not quite.
-> > >
-> > > This seems to be intended for consumption by Linux booting in ACPI
-> > > mode, but not via UEFI, right?
-> >
-> > Actually, this is for consumption by firmware. The goal is to allow
-> > edk2 to boot into U-Boot and vice versa, i.e. provide some
-> > interoperability between firmware projects. I will use the "Platform
-> > Init" and "Payload" terminology here too.
-> >
->
-> OK. It was the cc to linux-acpi@ and the authors of the
-> ACPI/SMBIOS-without-UEFI patches that threw me off here.
->
-> If we are talking about an internal interface for firmware components,
-> I'd be inclined to treat this as an implementation detail, as long as
-> the OS is not expected to consume these DT nodes.
->
-> However, I struggle to see the point of framing this information as a
-> 'UEFI memory map'. Neither EDK2 nor u-boot consume this information
-> natively, and there is already prior art in both projects to consume
-> nodes following the existing bindings for device_type=memory and the
-> /reserved-memory node. UEFI runtime memory is generally useless
-> without UEFI runtime services, and UEFI boot services memory is just
-> free memory.
->
-> There is also an overlap with the handover between secure and
-> non-secure firmware on arm64, which is also DT based, and communicates
-> available memory as well as RAM regions that are reserved for firmware
-> use.
->
-> In summary, I don't see why a non-UEFI payload would care about UEFI
-> semantics for pre-existing memory reservations, or vice versa. Note
-> that EDK2 will manage its own memory map, and expose it via UEFI boot
-> services and not via DT.
->
-> ...
-> >
-> > There is no intent to implement the UEFI spec, here. It is simply that
-> > some payloads (EDK2) are used to having this information.
-> >
-> > Imagine splitting EDK2 into two parts, one of which does platform init
-> > and the other which (the payload) boots the OS. The payload wants
-> > information from Platform Init and it needs to be in a devicetree,
-> > since that is what we have chosen for this interface. So to some
-> > extent this is unrelated to whether you have EFI boot services. We
-> > just need to be able to pass the information across the interface.
-> > Note that the user can (without recompilation, etc.) replace the
-> > second part with U-Boot (for example) and it must still work.
-> >
->
-> OK, so device tree makes sense for this. This is how I implemented the
-> EDK2 port that targets QEMU/mach-virt - it consumes the DT to discover
-> the UART, RTC,, memory, PCI host bridge, etc.
->
-> But I don't see a use case for a UEFI memory map here.
->
->
-> > >
-> > > >
-> > > > Today Linux does that by passing:
-> > > >
-> > > >   /chosen/linux,uefi-mmap-start
-> > > >   /chosen/linux,uefi-mmap-size
-> > > >   /chosen/linux,uefi-mmap-desc-size
-> > > >   /chosen/linux,uefi-mmap-desc-ver
-> > > >
-> > > > ... or /chosen/xen,* variants of those.
-> > > >
-> > > > Can't we document / genericise that?
-> >
-> > That seems to me to be the fields from the EFI memory-map call, but
-> > where is the actual content? I looked in the kernel but it seems to be
-> > an internal interface (between the stub and the kernel)?
-> >
-> > > >
-> > >
-> > > Given the ACPI angle, promoting this to external ABI would introduce a
-> > > DT dependency to ACPI boot. So we'll at least have to be very clear
-> > > about which takes precedence, or maybe disregard everything except the
-> > > /chosen node when doing ACPI boot?
-> > >
-> > > This also argues for not creating an ordinary binding for this (i.e.,
-> > > describing it as part of the platform topology), but putting it under
-> > > /chosen as a Linux-only boot tweak.
-> > >
-> > > > Pointing to that rather than re-encoding it in DT means that it stays in-sync
-> > > > with the EFI spec and we won't back ourselves into a corner where we cannot
-> > > > encode something due to a structural difference. I don't think it's a good idea
-> > > > to try to re-encode it, or we're just setting ourselves up for futher pain.
-> > > >
-> > >
-> > > What I would prefer is to formalize pseudo-EFI boot and define the
-> > > bare required minimum (system table + memory map + config tables) in
-> > > an arch-agnostic manner. That way, the only thing that needs to be
-> > > passed via DT/boot_params/etc is the (pseudo-)EFI system table
-> > > address, and everything else (SMBIOS, ACPI as well as the EFI memory
-> > > map and even the initrd) can be passed via config tables as usual, all
-> > > of which is already supported in (mostly) generic kernel code.
-> > >
->
-> <snip some lines>
->
-> >
-> > Here I believe you are talking about booting the kernel in EFI mode,
-> > but that is not the intent of this patch. This is all about things
-> > happening in firmware. Now, if the payload (second) part of the
-> > firmware decides it wants to offer EFI boot services and boot the
-> > kernel via the EFI stub, then it may very well pack this information
-> > (with a few changes) into a system table and make it available to the
-> > kernel stub. But by then this FDT binding is irrelevant, since it has
-> > served its purpose (which, to reiterate, is to facilitate information
-> > passage from platform init to 'payload').
-> >
->
-> Indeed. As long as this binding is never consumed by the OS, I don't
-> have any objections to it - I just fail to see the point.
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-output-names:
+> +    maxItems: 1
+>  
+>    "#phy-cells":
+>      const: 0
+>  
+> +  qcom,phy-mux-sel:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      PHY Mux Selection for used to select which interface is going to use the
+> +      combo PHY.
+> +    items:
+> +      - items:
+> +          - description: phandle to TCSR syscon region
+> +          - description: offset to the PHY Mux selection register
+> +          - description: value to write on the PHY Mux selection register
+> +
+> +  vdd-supply:
+> +    description:
+> +      Phandle to 5V regulator supply to PHY digital circuit.
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -41,6 +73,68 @@ required:
+>    - reset-names
+>    - "#phy-cells"
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,ipq5332-usb-ssphy
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 3
+> +        clock-names:
+> +          items:
+> +            - const: pipe
+> +            - const: phy_cfg_ahb
+> +            - const: phy_ahb
+
+How do the other variants work without any clocks? Magic?
+
+Define the names in the top level and then just set the number of items 
+or disallow the property in the if/then schemas.
+
+> +
+> +        "#clock-cells":
+> +          const: 0
+> +
+> +        clock-output-names:
+> +          maxItems: 1
+> +
+> +        resets:
+> +          maxItems: 1
+> +        reset-names:
+> +          items:
+> +            - const: por_rst
+> +
+> +        vdda-supply:
+> +          description:
+> +            Phandle to 5V regulator supply to PHY digital circuit.
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,usb-ss-ipq4019-phy
+> +    then:
+> +      properties:
+> +        resets:
+> +          maxItems: 1
+> +        reset-names:
+> +          items:
+> +            - const: por_rst
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,usb-hs-ipq4019-phy
+> +    then:
+> +      properties:
+> +        resets:
+> +          maxItems: 2
+> +        reset-names:
+> +          items:
+> +            - const: por_rst
+> +            - const: srif_rst
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -55,3 +149,20 @@ examples:
+>                 <&gcc USB2_HSPHY_S_ARES>;
+>        reset-names = "por_rst", "srif_rst";
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/clock/qcom,ipq5332-gcc.h>
+> +
+> +    ssuniphy@4b0000 {
+> +      #phy-cells = <0>;
+> +      #clock-cells = <0>;
+> +      compatible = "qcom,ipq5332-usb-ssphy";
+> +      reg = <0x4b0000 0x800>;
+> +      clocks = <&gcc GCC_USB0_PIPE_CLK>,
+> +               <&gcc GCC_USB0_PHY_CFG_AHB_CLK>,
+> +               <&gcc GCC_PCIE3X1_PHY_AHB_CLK>;
+> +      clock-names = "pipe", "phy_cfg_ahb", "phy_ahb";
+> +
+> +      resets = <&gcc GCC_USB0_PHY_BCR>;
+> +      reset-names = "por_rst";
+> +    };
+> -- 
+> 2.34.1
+> 
