@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 921C378CAA1
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:18:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7D1778CAE6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235383AbjH2RSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 13:18:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52272 "EHLO
+        id S237925AbjH2RSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 13:18:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237713AbjH2RRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:17:34 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 430F4AD
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:17:08 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52a069edca6so6458997a12.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:17:08 -0700 (PDT)
+        with ESMTP id S237851AbjH2RSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:18:24 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC1F11B;
+        Tue, 29 Aug 2023 10:18:03 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99357737980so603872766b.2;
+        Tue, 29 Aug 2023 10:18:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693329400; x=1693934200;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TE6REv5FDMxXuFkdl9dtqRlOhG+PJjdbb94kPR4V9ZM=;
-        b=q0oZlYNMgzrk7CKnGWIvUUk5pF0dAJ+oX1ToFAH4s4d2O7mxE+xbe8EjuOB0itTgrV
-         pSLLnIzj5MiD33Ya+RTv9C6bKPjpzCRjm3lmomzrC4Ldr07F7bUJJxjF0dZ/6HtYoK5s
-         GyhlNlo0yM9eASb/ZlGLzi2io3qgv0YgVM2oLEUr5YGANFCFAT4sWj8s79lJw+GL4A5K
-         ELv+hSD7qPx2ngzm/JrjR8I5qKnljmLCNPMLLY82m4bsDhP4KuzdVmjksESvz6chUSMM
-         4jxKATwXN+WDIh6w+2N0EylnYiksNVKrmHPgY1gfcqGcKdBFjOjGatumtEwvA1yD4HAx
-         3S2Q==
+        d=gmail.com; s=20221208; t=1693329467; x=1693934267;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uBecglGDcBm3dfaewAdojWnpNSqkK3k2Gii0sDddaoQ=;
+        b=XP1yHF+4eAQ1aY3Irua4+dW2toI3nREqhZP00I5y08G3PeXlSneut2EIbz1iiUyWwX
+         oqwl0IrVqJlXw8D0vWuGDTyrdoLSF6KHTXDXSs31wyV9VuGK6z67UVY/eFMScIvbDQhk
+         AWxkHAD+loWSGgfx1VWlfktCTr45eNKchRHG+KW3rJqfn2ABiuXlixsNlfqJH4K8907B
+         2EKNWSQDvdUzlI8QOIrwc6gk5do/f2EOzTJFotT0gsVS0O39epzp1vuRXvDvXKa1YeTT
+         AMG/Z1T/jQeGfabrDe574rkIXRPRYAaILQZRsmYVFod1hp4cHLYzNWJinQ2hS/f29LhS
+         XOyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693329400; x=1693934200;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TE6REv5FDMxXuFkdl9dtqRlOhG+PJjdbb94kPR4V9ZM=;
-        b=ER6EtJ1Q7lLxOTOEVYh7r+mzFZ9LwR8y2bUpSUY+7Qm7MQz+9lvya2l/zpdBDIrfyx
-         mUYN9/maSOgdieRcdE716yPVafXefz7uSTQqlbQvWlvIX1fa8KaurlfDH1GS+42HLFcE
-         xGLKFYbZWkM5VuHQdkol+QuzDdej16VLbcz9vhG8oHlN17RnDZibFQyZNexTjYFg6Vuz
-         9n+MbWsNUyLjDdZ/Rk0rnFnWvJ9uzejdc1LxUoCFcL4AszQ8BdMFLcaOW/SsLvmiuWEM
-         TXRRDmo25SxLsMmaywr4QiIEY+eMEIFz1VAv/28vSe/7sZMlq0V1Vc7+ha7+gTsDFHVX
-         015A==
-X-Gm-Message-State: AOJu0Yxo72j56OK6wDAgcAOWXQGVBAh6iPTsOYXqB1EFX1B8KUlzpzDM
-        8ZJu2JFHbX5jYYVeH3od9q6ZAw==
-X-Google-Smtp-Source: AGHT+IGnNDXZwwkJpyoypMuFWa907nIL1OBbnA2tbYmZfgtQnAyfBbRhrdhpCAfMIdlPdIobMjUBVQ==
-X-Received: by 2002:a05:6402:1614:b0:522:1e2f:fa36 with SMTP id f20-20020a056402161400b005221e2ffa36mr20848714edv.28.1693329400031;
-        Tue, 29 Aug 2023 10:16:40 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id m12-20020a056402050c00b0051bed21a635sm5878688edv.74.2023.08.29.10.16.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 10:16:39 -0700 (PDT)
-Message-ID: <0b5dbcf1-fd5e-0052-9f08-bae067ceb463@linaro.org>
-Date:   Tue, 29 Aug 2023 19:16:38 +0200
+        d=1e100.net; s=20221208; t=1693329467; x=1693934267;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uBecglGDcBm3dfaewAdojWnpNSqkK3k2Gii0sDddaoQ=;
+        b=EZz5aVdEPjERFTapA27Oh1e4RcpS0We+fAoyIocRTxrvilr7PfYlwsYicFISqq+l3S
+         fhXcTRQ/z+S4UTauGMIFmWWWsSLVWAczDtANSkqmRfA7UZDuaOyx67YEWEVM7MgTJ+1h
+         VX3k6Mf1MKTUuiycGgV9DRxY+CUpNR9DVs5Xof7W5ftBUUF3rK+m/pm87uuXmjtYZxJG
+         0fDKGeMZvJ1s+YGxPxyhS+NGyVuScziby8yid/AMFwJDNkSRUksMge8RgEt9+3T4hp4D
+         cgXp4fQD9WCIy5Ih1hGfLr/xlaufK30EDJqq5hfd8lT0wMJDK41nGj0kkfdVbHb7KxEG
+         giNg==
+X-Gm-Message-State: AOJu0YxFV3zCyT910i3WF25EBP13AVtZb76zNp2F4FCWraJf+O3c2Boo
+        zPIZPQeYyXe4sQYZsN1jh4TTRIda5g==
+X-Google-Smtp-Source: AGHT+IGQSIHfyxWScSSaGtZgRmVAcjAeSYpIMFw2Pk7BPF5NMwiuJMreccIL2u+G9vwApRBvVAVtXw==
+X-Received: by 2002:a17:906:31d8:b0:9a5:da6c:6518 with SMTP id f24-20020a17090631d800b009a5da6c6518mr497191ejf.37.1693329467128;
+        Tue, 29 Aug 2023 10:17:47 -0700 (PDT)
+Received: from U4.lan ([2001:9e8:b958:3410:8e0c:ed68:cd6c:7cb8])
+        by smtp.gmail.com with ESMTPSA id a21-20020a1709062b1500b00993cc1242d4sm6115834ejg.151.2023.08.29.10.17.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Aug 2023 10:17:46 -0700 (PDT)
+From:   Alex Bee <knaerzche@gmail.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Lee Jones <lee@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>
+Cc:     Elaine Zhang <zhangqing@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, alsa-devel@alsa-project.org,
+        linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
+        Alex Bee <knaerzche@gmail.com>
+Subject: [PATCH 23/31] ARM: dts: rockchip: Add 2-channel I2S for RK312x
+Date:   Tue, 29 Aug 2023 19:16:39 +0200
+Message-ID: <20230829171647.187787-24-knaerzche@gmail.com>
+X-Mailer: git-send-email 2.42.0
+In-Reply-To: <20230829171647.187787-1-knaerzche@gmail.com>
+References: <20230829171647.187787-1-knaerzche@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V2 1/4] dt-bindings: hwmon: ina3221: Convert to
- json-schema
-Content-Language: en-US
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Ninad Malwade <nmalwade@nvidia.com>, jdelvare@suse.com,
-        linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        thierry.reding@gmail.com, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-Cc:     Thierry Reding <treding@nvidia.com>
-References: <20230825164249.22860-1-nmalwade@nvidia.com>
- <20230825164249.22860-2-nmalwade@nvidia.com>
- <05c115cc-ce7a-747a-2f91-045bb87db706@linaro.org>
- <c9a3f145-67e5-4ff5-19aa-809528586d9e@nvidia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c9a3f145-67e5-4ff5-19aa-809528586d9e@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,26 +85,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 14:46, Jon Hunter wrote:
-> it a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
->>> new file mode 100644
->>> index 000000000000..0c6d41423d8c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
->>> @@ -0,0 +1,109 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>
->> I assume you do not use standard license because of copying the description?
-> 
-> 
-> Probably just an oversight. I assume we can just update to be dual licensed?
+Both RK3126 and RK3128 have a 2-channel I2S IP block.
+Add the respective node for it.
 
-checkpatch would complain, which means it was not run?
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
+---
+ arch/arm/boot/dts/rockchip/rk312x.dtsi | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-Dual license, please, as asked by checkpatch.
-
-
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/rockchip/rk312x.dtsi b/arch/arm/boot/dts/rockchip/rk312x.dtsi
+index 024d801a9792..ce3f03c3532e 100644
+--- a/arch/arm/boot/dts/rockchip/rk312x.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk312x.dtsi
+@@ -351,6 +351,22 @@ emmc: mmc@1021c000 {
+ 		status = "disabled";
+ 	};
+ 
++	i2s_2ch: i2s@10220000 {
++		compatible = "rockchip,rk3128-i2s", "rockchip,rk3066-i2s";
++		reg = <0x10220000 0x1000>;
++		interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru SCLK_I2S1>, <&cru HCLK_I2S_2CH>;
++		clock-names = "i2s_clk", "i2s_hclk";
++		dmas = <&pdma 0>, <&pdma 1>;
++		dma-names = "tx", "rx";
++		pinctrl-names = "default";
++		pinctrl-0 = <&i2s_bus>;
++		rockchip,playback-channels = <2>;
++		rockchip,capture-channels = <2>;
++		#sound-dai-cells = <0>;
++		status = "disabled";
++	};
++
+ 	nfc: nand-controller@10500000 {
+ 		compatible = "rockchip,rk3128-nfc", "rockchip,rk2928-nfc";
+ 		reg = <0x10500000 0x4000>;
+-- 
+2.42.0
 
