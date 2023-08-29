@@ -2,110 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D48E478BF6E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 09:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EEC578BF78
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 09:45:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230494AbjH2HnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 03:43:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35942 "EHLO
+        id S231533AbjH2HpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 03:45:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60206 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233728AbjH2Hmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:42:33 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 994E7184
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:42:30 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99bf8e5ab39so527155766b.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 00:42:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693294949; x=1693899749;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fZidkGWNPi5BjyVLjLVMFpv4YzU60iSJ/Ecori1AkQ0=;
-        b=i5va1TsUR/sivxWYmTNw0ts25LKsB6R7S9P3dyzzTC+Fh7W68bccjTByx/vLozPCD7
-         It7sG2Ds7/CWT2/M7z8KA6r0Zx5v+Lqj0ks1AHc2YuE2LIFYmOyqdNSFemEYsWB6gd6v
-         dzAoiFpNymOG7WMSmamobMgoHU7JfXgdMmHXuDqKieR1cFTu6Fg4SonCIH6An8oTxsnQ
-         RqIL6KjiHnVgEEK3qiD/20g2v2VcSQkg25MLPb/ioLLr5TcP1rqanOpbrBeaRmA8PbAV
-         IQDFriKYp3OMel93CxJxtaaOwpESEjrNGmC0bs45BksGbVMWvgsiZEWgFeZHhTkn6X8R
-         eIHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693294949; x=1693899749;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fZidkGWNPi5BjyVLjLVMFpv4YzU60iSJ/Ecori1AkQ0=;
-        b=YKsJLHlaGsXcMuEFV+ov82XGFwMZhFT1YsJe2upYXZoRHrwEq8fIGJOpR+t0fEudeF
-         1NrvAiOqzy2SK2+O6HDxnKcIsDBGUhDMYkxjHZAr+owMzLfI3Q/dw8qQ7vLqwWaIpt8d
-         E/w0H4F68//bXW09jdnaMHq+TDGkCTPt/l0xXEj0t8+xuI+/LEgJ/LpLJkUcqOsjcfHq
-         f3E9Wsb+1kKqiNS2HeddmeGTzI+kYZ9QZCeTPk/pActRB3igniSzRmVK1Fe4qhomAq28
-         05hFXxxzof5oL+IeVpbwQwD+MvEkA0S9zqQvUksepEx8IV/LAS9CBiqY0KK+yt5WDnvS
-         6bxQ==
-X-Gm-Message-State: AOJu0YwnWtH/BY9euxhkUnURShTWFy5g7WOQkf6mUtodCmGVAGvXfV/A
-        vVbkiXd4IadIpR5Ub6bDDOIMPQ==
-X-Google-Smtp-Source: AGHT+IEWQr3QZ34jpK/5hL3ExGpvkPxLMtK2asR6mbFflpZ3LI8Ub6Apso9Cl+apOGcp3MwFMSZd6g==
-X-Received: by 2002:a17:906:2243:b0:9a1:8a39:c62d with SMTP id 3-20020a170906224300b009a18a39c62dmr20024316ejr.38.1693294948996;
-        Tue, 29 Aug 2023 00:42:28 -0700 (PDT)
-Received: from [192.168.0.22] ([77.252.47.196])
-        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00992bea2e9d2sm5615023eja.62.2023.08.29.00.42.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 00:42:28 -0700 (PDT)
-Message-ID: <e2b2f268-182a-5ba4-2541-f0a401eda1c8@linaro.org>
-Date:   Tue, 29 Aug 2023 09:42:27 +0200
+        with ESMTP id S233789AbjH2Hox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:44:53 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA897132;
+        Tue, 29 Aug 2023 00:44:49 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id BAA887FC9;
+        Tue, 29 Aug 2023 15:44:42 +0800 (CST)
+Received: from EXMBX072.cuchost.com (172.16.6.82) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 29 Aug
+ 2023 15:44:42 +0800
+Received: from [192.168.125.72] (113.72.145.245) by EXMBX072.cuchost.com
+ (172.16.6.82) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 29 Aug
+ 2023 15:44:41 +0800
+Message-ID: <ddb9fe8e-4d64-4a7a-284f-e8b7dfc03966@starfivetech.com>
+Date:   Tue, 29 Aug 2023 15:44:40 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 11/28] dt-bindings: usb: dwc3: Add
- snps,num-hc-interrupters definition
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.3.2
+Subject: Re: [RFC v4 4/4] riscv: dts: starfive: jh7100: Add PWM node and pins
+ configuration
 Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, broonie@kernel.org, lgirdwood@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, agross@kernel.org,
-        Thinh.Nguyen@synopsys.com, bgoswami@quicinc.com,
-        andersson@kernel.org, gregkh@linuxfoundation.org, tiwai@suse.com,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230308235751.495-1-quic_wcheng@quicinc.com>
- <20230308235751.495-12-quic_wcheng@quicinc.com>
- <20230311134008.GA20831-robh@kernel.org>
- <f7bd1ae7-fc38-0f29-546b-9ea4a323f42f@quicinc.com>
- <73655c17-5246-2c96-d415-6a30497966c3@linaro.org>
- <9d31db9c-4e58-767a-15c5-65f7c04bd989@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <9d31db9c-4e58-767a-15c5-65f7c04bd989@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     William Qiu <william.qiu@starfivetech.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>
+CC:     Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+References: <20230825081328.204442-1-william.qiu@starfivetech.com>
+ <20230825081328.204442-5-william.qiu@starfivetech.com>
+From:   Hal Feng <hal.feng@starfivetech.com>
+In-Reply-To: <20230825081328.204442-5-william.qiu@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [113.72.145.245]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX072.cuchost.com
+ (172.16.6.82)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2023 09:19, Wesley Cheng wrote:
->>>
->>> This is a XHCI feature, but the DWC3 design is built in a way that DWC3
->>> host initializes the XHCI device and populates the properties associated
->>> to XHCI dev.
->>
->> You speak about driver now, not bindings. If driver has limitations,
->> change it. Not really problem of bindings.
->>
+On Fri, 25 Aug 2023 16:13:28 +0800, William Qiu wrote:
+> Add StarFive JH7100 PWM controller node and add PWM pins configuration
+> on VisionFive 2 board.
 > 
-> Its the limitation of the HW.  Depending on how the SNPS DWC3 controller 
-> was implemented the vendor it can support less than the value mentioned 
-> in the Synopsys databook.
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 
-Then what is "XHCI dev"? A Linux device? Then a driver topic. What is
-"populates the properties" - what or whose properties? Of Linux device?
-Then a driver topic...
-
-Best regards,
-Krzysztof
+Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 
