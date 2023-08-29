@@ -2,157 +2,696 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80F2778BF4F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 09:39:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52EE578BF54
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 09:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233156AbjH2Hir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 03:38:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42594 "EHLO
+        id S233006AbjH2Hjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 03:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233725AbjH2HiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:38:20 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2D2C132;
-        Tue, 29 Aug 2023 00:38:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1693294697; x=1724830697;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version:content-transfer-encoding;
-  bh=7xbIuAVv6BRYk1f4b+LCb+VtGRsblUZaWwZkr0s2oa0=;
-  b=liawHG+5vekYu4rkUywU+qoo4MNKKB01hy6wZ7oY7gUJGc7yX9u9h2YX
-   mHdTCI+ft7gJSFj0qHK2Bvx4TKBAh0m42hR+vzOKcH9pdHbhtEAgSHMlj
-   5b2JWM/A6Yybk2VHZWQRwQJfP5QWzEQp9jOtzYDJ6kO+zxzHD0wA2EpYU
-   CI53mz5WScBeqCkb7gNVJc75n/oz/SVpdDoo0TaTe1yHfOz5LPjTt2xIM
-   KA5xuBU6KBnpq7ZlQY3MnR5HXVvM8T0O3qJIAuzdeps1/SxJwwRbMA4GT
-   laI0ogFEQC/o+IH1FDclLyAtJQtFFSfEmRx21oXsnGacyjel71QAQeO0Z
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="375263854"
-X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; 
-   d="scan'208";a="375263854"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2023 00:38:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="853178928"
-X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; 
-   d="scan'208";a="853178928"
-Received: from mnefedov-mobl1.ger.corp.intel.com (HELO localhost) ([10.252.32.206])
-  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2023 00:38:11 -0700
-From:   Jani Nikula <jani.nikula@intel.com>
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Vlastimil Babka <vbabka@suse.cz>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Guru Das Srinagesh <quic_gurus@quicinc.com>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Nicolas Schier <nicolas@fjasle.eu>,
-        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
-        Kees Cook <keescook@chromium.org>,
-        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        quic_pkondeti@quicinc.com, linux-kernel@vger.kernel.org,
-        kernel@quicinc.com, workflows@vger.kernel.org,
-        tools@linux.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
-In-Reply-To: <20230828165038.GB818859@hu-bjorande-lv.qualcomm.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <cover.1693037031.git.quic_gurus@quicinc.com>
- <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
- <87jztf37ny.fsf@intel.com>
- <20230828133554.GA818859@hu-bjorande-lv.qualcomm.com>
- <CAMuHMdU+3oj+-3=f5WFVTRsKQjqCpU8SnVqKSZGk8XRxhsDcVQ@mail.gmail.com>
- <9aec0740-2482-d3ad-caf2-5e6278a050b3@suse.cz>
- <89c73602-43f1-30a4-ad58-637aadacd653@linaro.org>
- <20230828165038.GB818859@hu-bjorande-lv.qualcomm.com>
-Date:   Tue, 29 Aug 2023 10:38:08 +0300
-Message-ID: <87cyz62t9b.fsf@intel.com>
+        with ESMTP id S233860AbjH2Hjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 03:39:48 -0400
+Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDA331A4;
+        Tue, 29 Aug 2023 00:39:42 -0700 (PDT)
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id D29221000A1; Tue, 29 Aug 2023 08:39:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+        t=1693294780; bh=Rp/vBLCW0YVSjh0Y5FCyKAU+y+xbqkvQLuHKpEeitIk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UOAVThGUXmd4xsueovQ2URBWRavFvzeck3wA2TtJVTcUdnQ9PZq3BsN6SN3OqNuMe
+         zLywwbNSpfxQKInruk+yJDGuJPWYoh6vykqGgpPaftFU3wHfMKSRJAThmVWEhnhOC+
+         W2zW7tUu5KVsdvts+1/J8ZCxKrVOwoZdwIUcF9K/0tSF0exejc5CsURIyuu+xCpA1o
+         +kSGYDnXGltJauuX2WV6BaMaQuar0oMaACrOQyi9MIYFlGf7LI00Umrv28b01yDKXg
+         Qf2idAoc94ezBKSyYIUl7JmDDC7APR7qhkKiwI9NXMixzwZc7Ykdu8Ug/fbymhtsIB
+         mm7UHzWinHj6Q==
+Date:   Tue, 29 Aug 2023 08:39:40 +0100
+From:   Sean Young <sean@mess.org>
+To:     zelong dong <zelong.dong@amlogic.com>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
+        kelvin.zhang@amlogic.com
+Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
+ RC_DRIVER_SCANCODE
+Message-ID: <ZO2gvMl2IS70ve3T@gofer.mess.org>
+References: <20230825115310.39993-1-zelong.dong@amlogic.com>
+ <20230825115310.39993-2-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825115310.39993-2-zelong.dong@amlogic.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Aug 2023, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
-> On Mon, Aug 28, 2023 at 05:23:58PM +0200, Krzysztof Kozlowski wrote:
->> On 28/08/2023 17:14, Vlastimil Babka wrote:
->> > On 8/28/23 15:48, Geert Uytterhoeven wrote:
->> >> Hi Bjorn,
->> >>
->> >> On Mon, Aug 28, 2023 at 3:37=E2=80=AFPM Bjorn Andersson
->> >> <quic_bjorande@quicinc.com> wrote:
->> >>> On Mon, Aug 28, 2023 at 11:14:41AM +0300, Jani Nikula wrote:
->> >>>> On Sat, 26 Aug 2023, Guru Das Srinagesh <quic_gurus@quicinc.com> wr=
-ote:
->> >>>>> This script runs get_maintainer.py on a given patch file (or multi=
-ple
->> >>>>> patch files) and adds its output to the patch file in place with t=
-he
->> >>>>> appropriate email headers "To: " or "Cc: " as the case may be. The=
-se new
->> >>>>> headers are added after the "From: " line in the patch.
->> >>>>
->> >>>> FWIW, I personally prefer tooling to operate on git branches and co=
-mmits
->> >>>> than patches. For me, the patches are just an intermediate step in
->> >>>> getting the commits from my git branch to the mailing list. That's =
-not
->> >>>> where I add the Cc's, but rather in the commits in my local branch,
->> >>>> where they're preserved. YMMV.
->> >>>>
->> >>>
->> >>> May I ask how you add/carry the recipients in a commit?
->> >>
->> >> I guess below a "---" line in the commit description?
->> >=20
->> > Does that do anything special in commit log? I'd expect (and I do it t=
-hat
->> > way) it's rather just adding a
->>=20
->> It does. It goes away.
->
-> Afaict, it's verbatim copied into the .patch, which would mean that it
-> goes away when the patch is applied on the other side.
->
-> But it's still going to be in the email (followed by another ---), so
-> unless there's another step later in the process that cleans this up I
-> it looks ugly, and not very useful - unless I'm missing something.
->
->> >=20
->> > Cc: Name <email>
->> >=20
->> > in the tag area where s-o-b, reviewed-by etc are added.
->>=20
->> Why storing autogenerated scripts/get_maintainer.pl CC-entries in commit
->> msg? The non-maintainer-output but the automated output? There is no
->> single need to store automated output of get_maintainers.pl in the git
->> log. It can be easily re-created at any given time, thus its presence in
->> the git history is redundant and obfuscates the log.
->>=20
->
-> Fully agree to this. In particular if the patch is going to be sent as
-> part of a series the recipients list won't be accurate for any patch.
->
-> The case I was looking for was the case where I want to make sure to
-> include a specific person, beyond the get_maintainers output. So pretty
-> much the usual Cc: tag in the commit message, but I don't necessarily
-> want to write this fact into the git history.
+On Fri, Aug 25, 2023 at 07:53:08PM +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
+> 
+> Meson IR Controller supports hardware decoder in Meson-S4 and later
+> SoC. So far, protocol NEC could be decoded by hardware decoder.
 
-The point is, I *never* use get_maintainer.pl output as-is.
+On Meson-S4, only the hardware decoder for NEC can be used using this
+driver. Does the Meson-S4 hardware support software decoding? If
+software decoding could be used, then any protocol could be supported,
+not just NEC.
 
-BR,
-Jani.
+Also, out of interest, is there are documentation available for this
+hardware?
 
+Thanks,
 
---=20
-Jani Nikula, Intel Open Source Graphics Center
+Sean
+
+> 
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>  drivers/media/rc/meson-ir.c | 522 +++++++++++++++++++++++++++++++-----
+>  1 file changed, 451 insertions(+), 71 deletions(-)
+> 
+> diff --git a/drivers/media/rc/meson-ir.c b/drivers/media/rc/meson-ir.c
+> index 70322fab34ac..5303e6da5809 100644
+> --- a/drivers/media/rc/meson-ir.c
+> +++ b/drivers/media/rc/meson-ir.c
+> @@ -20,48 +20,196 @@
+>  
+>  #define DRIVER_NAME		"meson-ir"
+>  
+> -#define IR_DEC_LDR_ACTIVE	0x00
+> -#define IR_DEC_LDR_IDLE		0x04
+> -#define IR_DEC_LDR_REPEAT	0x08
+> -#define IR_DEC_BIT_0		0x0c
+> -#define IR_DEC_REG0		0x10
+> -#define IR_DEC_REG0_BASE_TIME	GENMASK(11, 0)
+> -#define IR_DEC_FRAME		0x14
+> -#define IR_DEC_STATUS		0x18
+> -#define IR_DEC_STATUS_PULSE	BIT(8)
+> -#define IR_DEC_REG1		0x1c
+> -#define IR_DEC_REG1_TIME_IV	GENMASK(28, 16)
+> -#define IR_DEC_REG1_ENABLE	BIT(15)
+> -#define IR_DEC_REG1_MODE	GENMASK(8, 7)
+> -#define IR_DEC_REG1_IRQSEL	GENMASK(3, 2)
+> -#define IR_DEC_REG1_RESET	BIT(0)
+> -/* The following regs are only available on Meson 8b and newer */
+> -#define IR_DEC_REG2		0x20
+> -#define IR_DEC_REG2_MODE	GENMASK(3, 0)
+> -
+> -#define DEC_MODE_NEC		0x0
+> -#define DEC_MODE_RAW		0x2
+> -
+> -#define IRQSEL_NEC_MODE		0
+> -#define IRQSEL_RISE_FALL	1
+> -#define IRQSEL_FALL		2
+> -#define IRQSEL_RISE		3
+> -
+> -#define MESON_RAW_TRATE		10	/* us */
+> -#define MESON_HW_TRATE		20	/* us */
+> +#define IR_DEC_LDR_ACTIVE			0x00
+> +#define IR_DEC_LDR_ACTIVE_MAX			GENMASK(28, 16)
+> +#define IR_DEC_LDR_ACTIVE_MIN			GENMASK(12, 0)
+> +#define IR_DEC_LDR_IDLE				0x04
+> +#define IR_DEC_LDR_IDLE_MAX			GENMASK(28, 16)
+> +#define IR_DEC_LDR_IDLE_MIN			GENMASK(12, 0)
+> +#define IR_DEC_LDR_REPEAT			0x08
+> +#define IR_DEC_LDR_REPEAT_MAX			GENMASK(25, 16)
+> +#define IR_DEC_LDR_REPEAT_MIN			GENMASK(9, 0)
+> +#define IR_DEC_BIT_0				0x0c
+> +#define IR_DEC_BIT_0_MAX			GENMASK(25, 16)
+> +#define IR_DEC_BIT_0_MIN			GENMASK(9, 0)
+> +#define IR_DEC_REG0				0x10
+> +#define IR_DEC_REG0_FILTER			GENMASK(30, 28)
+> +#define IR_DEC_REG0_FRAME_TIME_MAX		GENMASK(24, 12)
+> +#define IR_DEC_REG0_BASE_TIME			GENMASK(11, 0)
+> +#define IR_DEC_FRAME				0x14
+> +#define IR_DEC_STATUS				0x18
+> +#define IR_DEC_STATUS_BIT_1_ENABLE		BIT(30)
+> +#define IR_DEC_STATUS_BIT_1_MAX			GENMASK(29, 20)
+> +#define IR_DEC_STATUS_BIT_1_MIN			GENMASK(19, 10)
+> +#define IR_DEC_STATUS_PULSE			BIT(8)
+> +#define IR_DEC_STATUS_BUSY			BIT(7)
+> +#define IR_DEC_STATUS_FRAME_STATUS		GENMASK(3, 0)
+> +#define IR_DEC_REG1				0x1c
+> +#define IR_DEC_REG1_TIME_IV			GENMASK(28, 16)
+> +#define IR_DEC_REG1_FRAME_LEN			GENMASK(13, 8)
+> +#define IR_DEC_REG1_ENABLE			BIT(15)
+> +#define IR_DEC_REG1_HOLD_CODE			BIT(6)
+> +#define IR_DEC_REG1_IRQSEL			GENMASK(3, 2)
+> +#define IR_DEC_REG1_RESET			BIT(0)
+> +/* Meson 6b uses REG1 to configure IR mode */
+> +#define IR_DEC_REG1_MODE			GENMASK(8, 7)
+> +
+> +/* The following registers are only available on Meson 8b and newer */
+> +#define IR_DEC_REG2				0x20
+> +#define IR_DEC_REG2_TICK_MODE			BIT(15)
+> +#define IR_DEC_REG2_REPEAT_COUNTER		BIT(13)
+> +#define IR_DEC_REG2_REPEAT_TIME			BIT(12)
+> +#define IR_DEC_REG2_COMPARE_FRAME		BIT(11)
+> +#define IR_DEC_REG2_BIT_ORDER			BIT(8)
+> +/* Meson 8b / GXBB use REG2 to configure IR mode */
+> +#define IR_DEC_REG2_MODE			GENMASK(3, 0)
+> +#define IR_DEC_DURATN2				0x24
+> +#define IR_DEC_DURATN2_MAX			GENMASK(25, 16)
+> +#define IR_DEC_DURATN2_MIN			GENMASK(9, 0)
+> +#define IR_DEC_DURATN3				0x28
+> +#define IR_DEC_DURATN3_MAX			GENMASK(25, 16)
+> +#define IR_DEC_DURATN3_MIN			GENMASK(9, 0)
+> +#define IR_DEC_FRAME1				0x2c
+> +
+> +#define FRAME_MSB_FIRST				true
+> +#define FRAME_LSB_FIRST				false
+> +
+> +#define DEC_MODE_NEC				0x0
+> +#define DEC_MODE_RAW				0x2
+> +#define DEC_MODE_RC6				0x9
+> +#define DEC_MODE_XMP				0xE
+> +#define DEC_MODE_UNKNOW				0xFF
+> +
+> +#define DEC_STATUS_VALID			BIT(3)
+> +#define DEC_STATUS_DATA_CODE_ERR		BIT(2)
+> +#define DEC_STATUS_CUSTOM_CODE_ERR		BIT(1)
+> +#define DEC_STATUS_REPEAT			BIT(0)
+> +
+> +#define IRQSEL_DEC_MODE				0
+> +#define IRQSEL_RISE_FALL			1
+> +#define IRQSEL_FALL				2
+> +#define IRQSEL_RISE				3
+> +
+> +#define MESON_RAW_TRATE				10	/* us */
+> +#define MESON_HW_TRATE				20	/* us */
+> +
+> +/**
+> + * struct meson_ir_protocol - describe IR Protocol parameter
+> + *
+> + * @hw_protocol: select IR Protocol from IR Controller
+> + * @repeat_counter_enable: enable frame-to-frame time counter, it should work
+> + *                         with @repeat_compare_enable to detect the repeat frame
+> + * @repeat_check_enable: enable repeat time check for repeat detection
+> + * @repeat_compare_enable: enable to compare frame for repeat frame detection.
+> + *                         Some IR Protocol send the same data as repeat frame.
+> + *                         In this case, it should work with
+> + *                         @repeat_counter_enable to detect the repeat frame.
+> + * @bit_order: bit order, LSB or MSB
+> + * @bit1_match_enable: enable to check bit 1
+> + * @hold_code_enable: hold frame code in register IR_DEC_FRAME1, the new one
+> + *                    frame code will not be store in IR_DEC_FRAME1.
+> + *                    until IR_DEC_FRAME1 has been read
+> + * @count_tick_mode: increasing time unit of frame-to-frame time counter.
+> + *                   0 = 100us, 1 = 10us
+> + * @code_length: length (N-1) of data frame
+> + * @frame_time_max: max time for whole frame. Unit: MESON_HW_TRATE
+> + * @leader_active_max: max time for NEC/RC6 leader active part. Unit: MESON_HW_TRATE
+> + * @leader_active_min: min time for NEC/RC6 leader active part. Unit: MESON_HW_TRATE
+> + * @leader_idle_max: max time for NEC/RC6 leader idle part. Unit: MESON_HW_TRATE
+> + * @leader_idle_min: min time for NEC/RC6 leader idle part. Unit: MESON_HW_TRATE
+> + * @repeat_leader_max: max time for NEC repeat leader idle part. Unit: MESON_HW_TRATE
+> + * @repeat_leader_min: min time for NEC repeat leader idle part. Unit: MESON_HW_TRATE
+> + * @bit0_max: max time for NEC Logic '0', half of RC6 trailer bit, XMP Logic '00'
+> + * @bit0_min: min time for NEC Logic '0', half of RC6 trailer bit, XMP Logic '00'
+> + * @bit1_max: max time for NEC Logic '1', whole of RC6 trailer bit, XMP Logic '01'
+> + * @bit1_min: min time for NEC Logic '1', whole of RC6 trailer bit, XMP Logic '01'
+> + * @duration2_max: max time for half of RC6 normal bit, XMP Logic '10'
+> + * @duration2_min: min time for half of RC6 normal bit, XMP Logic '10'
+> + * @duration3_max: max time for whole of RC6 normal bit, XMP Logic '11'
+> + * @duration3_min: min time for whole of RC6 normal bit, XMP Logic '11'
+> + */
+> +
+> +struct meson_ir_protocol {
+> +	u8 hw_protocol;
+> +	bool repeat_counter_enable;
+> +	bool repeat_check_enable;
+> +	bool repeat_compare_enable;
+> +	bool bit_order;
+> +	bool bit1_match_enable;
+> +	bool hold_code_enable;
+> +	bool count_tick_mode;
+> +	u8 code_length;
+> +	u16 frame_time_max;
+> +	u16 leader_active_max;
+> +	u16 leader_active_min;
+> +	u16 leader_idle_max;
+> +	u16 leader_idle_min;
+> +	u16 repeat_leader_max;
+> +	u16 repeat_leader_min;
+> +	u16 bit0_max;
+> +	u16 bit0_min;
+> +	u16 bit1_max;
+> +	u16 bit1_min;
+> +	u16 duration2_max;
+> +	u16 duration2_min;
+> +	u16 duration3_max;
+> +	u16 duration3_min;
+> +};
+> +
+> +struct meson_ir_param {
+> +	bool support_hw_decoder;
+> +	unsigned int max_register;
+> +};
+>  
+>  struct meson_ir {
+> +	const struct meson_ir_param *param;
+>  	struct regmap	*reg;
+>  	struct rc_dev	*rc;
+>  	spinlock_t	lock;
+>  };
+>  
+> -static const struct regmap_config meson_ir_regmap_config = {
+> +static struct regmap_config meson_ir_regmap_config = {
+>  	.reg_bits = 32,
+>  	.val_bits = 32,
+>  	.reg_stride = 4,
+>  };
+>  
+> +static const struct meson_ir_protocol protocol_timings[] = {
+> +	/* protocol, repeat counter, repeat check, repeat compare, order */
+> +	{DEC_MODE_NEC, false, false, false, FRAME_LSB_FIRST,
+> +	/* bit 1 match, hold code, count tick, len, frame time */
+> +	true, false, false, 32, 4000,
+> +	/* leader active max/min, leader idle max/min, repeat leader max/min */
+> +	500, 400, 300, 200, 150, 80,
+> +	/* bit0 max/min, bit1 max/min, duration2 max/min, duration3 max/min */
+> +	72, 40, 134, 90, 0, 0, 0, 0}
+> +};
+> +
+> +static void meson_ir_nec_handler(struct meson_ir *ir)
+> +{
+> +	u32 code = 0;
+> +	u32 status = 0;
+> +	enum rc_proto proto;
+> +
+> +	regmap_read(ir->reg, IR_DEC_STATUS, &status);
+> +
+> +	if (status & DEC_STATUS_REPEAT) {
+> +		rc_repeat(ir->rc);
+> +	} else {
+> +		regmap_read(ir->reg, IR_DEC_FRAME, &code);
+> +
+> +		code = ir_nec_bytes_to_scancode(code, code >> 8,
+> +						code >> 16, code >> 24, &proto);
+> +		rc_keydown(ir->rc, proto, code, 0);
+> +	}
+> +}
+> +
+> +static void meson_ir_hw_handler(struct meson_ir *ir)
+> +{
+> +	if (ir->rc->enabled_protocols & RC_PROTO_BIT_NEC)
+> +		meson_ir_nec_handler(ir);
+> +}
+> +
+>  static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
+>  {
+>  	struct meson_ir *ir = dev_id;
+> @@ -70,22 +218,232 @@ static irqreturn_t meson_ir_irq(int irqno, void *dev_id)
+>  
+>  	spin_lock(&ir->lock);
+>  
+> -	regmap_read(ir->reg, IR_DEC_REG1, &duration);
+> -	duration = FIELD_GET(IR_DEC_REG1_TIME_IV, duration);
+> -	rawir.duration = duration * MESON_RAW_TRATE;
+> -
+>  	regmap_read(ir->reg, IR_DEC_STATUS, &status);
+> -	rawir.pulse = !!(status & IR_DEC_STATUS_PULSE);
+>  
+> -	ir_raw_event_store_with_timeout(ir->rc, &rawir);
+> +	if (ir->rc->driver_type == RC_DRIVER_IR_RAW) {
+> +		rawir.pulse = !!(status & IR_DEC_STATUS_PULSE);
+> +
+> +		regmap_read(ir->reg, IR_DEC_REG1, &duration);
+> +		duration = FIELD_GET(IR_DEC_REG1_TIME_IV, duration);
+> +		rawir.duration = duration * MESON_RAW_TRATE;
+> +
+> +		ir_raw_event_store_with_timeout(ir->rc, &rawir);
+> +	} else if (ir->rc->driver_type == RC_DRIVER_SCANCODE) {
+> +		if (status & DEC_STATUS_VALID)
+> +			meson_ir_hw_handler(ir);
+> +	}
+>  
+>  	spin_unlock(&ir->lock);
+>  
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +static int meson_ir_hw_decoder_init(struct rc_dev *dev, u64 *rc_type)
+> +{
+> +	u8 protocol;
+> +	u32 regval;
+> +	int i;
+> +	unsigned long flags;
+> +	const struct meson_ir_protocol *timings;
+> +	struct meson_ir *ir = dev->priv;
+> +
+> +	if (*rc_type & RC_PROTO_BIT_NEC)
+> +		protocol = DEC_MODE_NEC;
+> +	else
+> +		return 0;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(protocol_timings); i++)
+> +		if (protocol_timings[i].hw_protocol == protocol)
+> +			break;
+> +
+> +	if (i == ARRAY_SIZE(protocol_timings)) {
+> +		dev_err(&dev->dev, "hw protocol isn't supported: %d\n",
+> +			protocol);
+> +		return -EINVAL;
+> +	}
+> +	timings = &protocol_timings[i];
+> +
+> +	spin_lock_irqsave(&ir->lock, flags);
+> +
+> +	/* Clear controller status */
+> +	regmap_read(ir->reg, IR_DEC_STATUS, &regval);
+> +	regmap_read(ir->reg, IR_DEC_FRAME, &regval);
+> +
+> +	/* Reset ir decoder and disable decoder */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE, 0);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET,
+> +			   IR_DEC_REG1_RESET);
+> +
+> +	/* Base time resolution, (19+1)*1us=20us */
+> +	regval = FIELD_PREP(IR_DEC_REG0_BASE_TIME, MESON_HW_TRATE - 1);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME, regval);
+> +
+> +	/* Monitor timing for input filter */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_FILTER,
+> +			   FIELD_PREP(IR_DEC_REG0_FILTER, 7));
+> +
+> +	/* HW protocol */
+> +	regval = FIELD_PREP(IR_DEC_REG2_MODE, timings->hw_protocol);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_MODE, regval);
+> +
+> +	/* Hold frame data until register was read */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_HOLD_CODE,
+> +			   timings->hold_code_enable ?
+> +			   IR_DEC_REG1_HOLD_CODE : 0);
+> +
+> +	/* Bit order */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_BIT_ORDER,
+> +			   timings->bit_order ? IR_DEC_REG2_BIT_ORDER : 0);
+> +
+> +	/* Select tick mode */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_TICK_MODE,
+> +			   timings->count_tick_mode ?
+> +			   IR_DEC_REG2_TICK_MODE : 0);
+> +
+> +	/*
+> +	 * Some protocols transmit the same data frame as repeat frame
+> +	 * when the key is pressing. In this case, it could be detected as
+> +	 * repeat frame if the repeat checker was enabled.
+> +	 */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_REPEAT_COUNTER,
+> +			   timings->repeat_counter_enable ?
+> +			   IR_DEC_REG2_REPEAT_COUNTER : 0);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_REPEAT_TIME,
+> +			   timings->repeat_check_enable ?
+> +			   IR_DEC_REG2_REPEAT_TIME : 0);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_COMPARE_FRAME,
+> +			   timings->repeat_compare_enable ?
+> +			   IR_DEC_REG2_COMPARE_FRAME : 0);
+> +
+> +	/*
+> +	 * FRAME_TIME_MAX should be larger than the time between
+> +	 * data frame and repeat frame
+> +	 */
+> +	regval = FIELD_PREP(IR_DEC_REG0_FRAME_TIME_MAX,
+> +			    timings->frame_time_max);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_FRAME_TIME_MAX,
+> +			   regval);
+> +
+> +	/* Length(N-1) of data frame */
+> +	regval = FIELD_PREP(IR_DEC_REG1_FRAME_LEN, timings->code_length - 1);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_FRAME_LEN, regval);
+> +
+> +	/* Time for leader active part */
+> +	regval = FIELD_PREP(IR_DEC_LDR_ACTIVE_MAX,
+> +			    timings->leader_active_max) |
+> +		 FIELD_PREP(IR_DEC_LDR_ACTIVE_MIN,
+> +			    timings->leader_active_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_LDR_ACTIVE, IR_DEC_LDR_ACTIVE_MAX |
+> +			   IR_DEC_LDR_ACTIVE_MIN, regval);
+> +
+> +	/* Time for leader idle part */
+> +	regval = FIELD_PREP(IR_DEC_LDR_IDLE_MAX, timings->leader_idle_max) |
+> +		 FIELD_PREP(IR_DEC_LDR_IDLE_MIN, timings->leader_idle_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_LDR_IDLE,
+> +			   IR_DEC_LDR_IDLE_MAX | IR_DEC_LDR_IDLE_MIN, regval);
+> +
+> +	/* Time for repeat leader idle part */
+> +	regval = FIELD_PREP(IR_DEC_LDR_REPEAT_MAX, timings->repeat_leader_max) |
+> +		 FIELD_PREP(IR_DEC_LDR_REPEAT_MIN, timings->repeat_leader_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_LDR_REPEAT, IR_DEC_LDR_REPEAT_MAX |
+> +			   IR_DEC_LDR_REPEAT_MIN, regval);
+> +
+> +	/*
+> +	 * NEC: Time for logic '0'
+> +	 * RC6: Time for half of trailer bit
+> +	 */
+> +	regval = FIELD_PREP(IR_DEC_BIT_0_MAX, timings->bit0_max) |
+> +		 FIELD_PREP(IR_DEC_BIT_0_MIN, timings->bit0_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_BIT_0,
+> +			   IR_DEC_BIT_0_MAX | IR_DEC_BIT_0_MIN, regval);
+> +
+> +	/*
+> +	 * NEC: Time for logic '1'
+> +	 * RC6: Time for whole of trailer bit
+> +	 */
+> +	regval = FIELD_PREP(IR_DEC_STATUS_BIT_1_MAX, timings->bit1_max) |
+> +		 FIELD_PREP(IR_DEC_STATUS_BIT_1_MIN, timings->bit1_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_STATUS, IR_DEC_STATUS_BIT_1_MAX |
+> +			   IR_DEC_STATUS_BIT_1_MIN, regval);
+> +
+> +	/* Enable to match logic '1' */
+> +	regmap_update_bits(ir->reg, IR_DEC_STATUS, IR_DEC_STATUS_BIT_1_ENABLE,
+> +			   timings->bit1_match_enable ?
+> +			   IR_DEC_STATUS_BIT_1_ENABLE : 0);
+> +
+> +	/*
+> +	 * NEC: Unused
+> +	 * RC6: Time for halt of logic 0/1
+> +	 */
+> +	regval = FIELD_PREP(IR_DEC_DURATN2_MAX, timings->duration2_max) |
+> +		 FIELD_PREP(IR_DEC_DURATN2_MIN, timings->duration2_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_DURATN2,
+> +			   IR_DEC_DURATN2_MAX | IR_DEC_DURATN2_MIN, regval);
+> +
+> +	/*
+> +	 * NEC: Unused
+> +	 * RC6: Time for whole logic 0/1
+> +	 */
+> +	regval = FIELD_PREP(IR_DEC_DURATN3_MAX, timings->duration3_max) |
+> +		 FIELD_PREP(IR_DEC_DURATN3_MIN, timings->duration3_min);
+> +	regmap_update_bits(ir->reg, IR_DEC_DURATN3,
+> +			   IR_DEC_DURATN3_MAX | IR_DEC_DURATN3_MIN, regval);
+> +
+> +	/* Reset ir decoder and enable decode */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET,
+> +			   IR_DEC_REG1_RESET);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
+> +			   IR_DEC_REG1_ENABLE);
+> +
+> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +
+> +	dev_info(&dev->dev, "hw decoder init, protocol: %d\n", protocol);
+> +
+> +	return 0;
+> +}
+> +
+> +static void meson_ir_sw_decoder_init(struct rc_dev *dev)
+> +{
+> +	unsigned long flags;
+> +	struct meson_ir *ir = dev->priv;
+> +
+> +	spin_lock_irqsave(&ir->lock, flags);
+> +
+> +	/* Reset the decoder */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET,
+> +			   IR_DEC_REG1_RESET);
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
+> +
+> +	/* Set general operation mode (= raw/software decoding) */
+> +	if (of_device_is_compatible(dev->dev.of_node, "amlogic,meson6-ir"))
+> +		regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_MODE,
+> +				   FIELD_PREP(IR_DEC_REG1_MODE,
+> +					      DEC_MODE_RAW));
+> +	else
+> +		regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_MODE,
+> +				   FIELD_PREP(IR_DEC_REG2_MODE,
+> +					      DEC_MODE_RAW));
+> +
+> +	/* Set rate */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
+> +			   FIELD_PREP(IR_DEC_REG0_BASE_TIME,
+> +				      MESON_RAW_TRATE - 1));
+> +	/* IRQ on rising and falling edges */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_IRQSEL,
+> +			   FIELD_PREP(IR_DEC_REG1_IRQSEL, IRQSEL_RISE_FALL));
+> +	/* Enable the decoder */
+> +	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
+> +			   IR_DEC_REG1_ENABLE);
+> +
+> +	spin_unlock_irqrestore(&ir->lock, flags);
+> +
+> +	dev_info(&dev->dev, "sw decoder init\n");
+> +}
+> +
+>  static int meson_ir_probe(struct platform_device *pdev)
+>  {
+> +	const struct meson_ir_param *match_data;
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *node = dev->of_node;
+>  	void __iomem *res_start;
+> @@ -97,10 +455,17 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  	if (!ir)
+>  		return -ENOMEM;
+>  
+> +	match_data = of_device_get_match_data(dev);
+> +	if (!match_data)
+> +		return dev_err_probe(dev, -ENODEV, "failed to get match data\n");
+> +
+> +	ir->param = match_data;
+> +
+>  	res_start = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(res_start))
+>  		return PTR_ERR(res_start);
+>  
+> +	meson_ir_regmap_config.max_register = ir->param->max_register;
+>  	ir->reg = devm_regmap_init_mmio(&pdev->dev, res_start,
+>  					&meson_ir_regmap_config);
+>  	if (IS_ERR(ir->reg))
+> @@ -110,23 +475,34 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  	if (irq < 0)
+>  		return irq;
+>  
+> -	ir->rc = devm_rc_allocate_device(dev, RC_DRIVER_IR_RAW);
+> +	if (ir->param->support_hw_decoder)
+> +		ir->rc = devm_rc_allocate_device(&pdev->dev,
+> +						 RC_DRIVER_SCANCODE);
+> +	else
+> +		ir->rc = devm_rc_allocate_device(&pdev->dev, RC_DRIVER_IR_RAW);
+> +
+>  	if (!ir->rc) {
+>  		dev_err(dev, "failed to allocate rc device\n");
+>  		return -ENOMEM;
+>  	}
+>  
+> +	if (ir->rc->driver_type == RC_DRIVER_IR_RAW) {
+> +		ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
+> +		ir->rc->rx_resolution = MESON_RAW_TRATE;
+> +		ir->rc->min_timeout = 1;
+> +		ir->rc->timeout = IR_DEFAULT_TIMEOUT;
+> +		ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
+> +	} else if (ir->rc->driver_type == RC_DRIVER_SCANCODE) {
+> +		ir->rc->allowed_protocols = RC_PROTO_BIT_NEC;
+> +		ir->rc->change_protocol = meson_ir_hw_decoder_init;
+> +	}
+> +
+>  	ir->rc->priv = ir;
+>  	ir->rc->device_name = DRIVER_NAME;
+>  	ir->rc->input_phys = DRIVER_NAME "/input0";
+>  	ir->rc->input_id.bustype = BUS_HOST;
+>  	map_name = of_get_property(node, "linux,rc-map-name", NULL);
+>  	ir->rc->map_name = map_name ? map_name : RC_MAP_EMPTY;
+> -	ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
+> -	ir->rc->rx_resolution = MESON_RAW_TRATE;
+> -	ir->rc->min_timeout = 1;
+> -	ir->rc->timeout = IR_DEFAULT_TIMEOUT;
+> -	ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
+>  	ir->rc->driver_name = DRIVER_NAME;
+>  
+>  	spin_lock_init(&ir->lock);
+> @@ -138,36 +514,15 @@ static int meson_ir_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> -	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, NULL, ir);
+> +	if (ir->rc->driver_type == RC_DRIVER_IR_RAW)
+> +		meson_ir_sw_decoder_init(ir->rc);
+> +
+> +	ret = devm_request_irq(dev, irq, meson_ir_irq, 0, "meson_ir", ir);
+>  	if (ret) {
+>  		dev_err(dev, "failed to request irq\n");
+>  		return ret;
+>  	}
+>  
+> -	/* Reset the decoder */
+> -	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET,
+> -			   IR_DEC_REG1_RESET);
+> -	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_RESET, 0);
+> -
+> -	/* Set general operation mode (= raw/software decoding) */
+> -	if (of_device_is_compatible(node, "amlogic,meson6-ir"))
+> -		regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_MODE,
+> -				   FIELD_PREP(IR_DEC_REG1_MODE, DEC_MODE_RAW));
+> -	else
+> -		regmap_update_bits(ir->reg, IR_DEC_REG2, IR_DEC_REG2_MODE,
+> -				   FIELD_PREP(IR_DEC_REG2_MODE, DEC_MODE_RAW));
+> -
+> -	/* Set rate */
+> -	regmap_update_bits(ir->reg, IR_DEC_REG0, IR_DEC_REG0_BASE_TIME,
+> -			   FIELD_PREP(IR_DEC_REG0_BASE_TIME,
+> -				      MESON_RAW_TRATE - 1));
+> -	/* IRQ on rising and falling edges */
+> -	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_IRQSEL,
+> -			   FIELD_PREP(IR_DEC_REG1_IRQSEL, IRQSEL_RISE_FALL));
+> -	/* Enable the decoder */
+> -	regmap_update_bits(ir->reg, IR_DEC_REG1, IR_DEC_REG1_ENABLE,
+> -			   IR_DEC_REG1_ENABLE);
+> -
+>  	dev_info(dev, "receiver initialized\n");
+>  
+>  	return 0;
+> @@ -212,11 +567,36 @@ static void meson_ir_shutdown(struct platform_device *pdev)
+>  	spin_unlock_irqrestore(&ir->lock, flags);
+>  }
+>  
+> +static const struct meson_ir_param meson6_ir_param = {
+> +	.support_hw_decoder = false,
+> +	.max_register = IR_DEC_REG1,
+> +};
+> +
+> +static const struct meson_ir_param meson8b_ir_param = {
+> +	.support_hw_decoder = false,
+> +	.max_register = IR_DEC_REG2,
+> +};
+> +
+> +static const struct meson_ir_param meson_s4_ir_param = {
+> +	.support_hw_decoder = true,
+> +	.max_register = IR_DEC_FRAME1,
+> +};
+> +
+>  static const struct of_device_id meson_ir_match[] = {
+> -	{ .compatible = "amlogic,meson6-ir" },
+> -	{ .compatible = "amlogic,meson8b-ir" },
+> -	{ .compatible = "amlogic,meson-gxbb-ir" },
+> -	{ },
+> +	{
+> +		.compatible = "amlogic,meson6-ir",
+> +		.data = &meson6_ir_param,
+> +	}, {
+> +		.compatible = "amlogic,meson8b-ir",
+> +		.data = &meson8b_ir_param,
+> +	}, {
+> +		.compatible = "amlogic,meson-gxbb-ir",
+> +		.data = &meson8b_ir_param,
+> +	}, {
+> +		.compatible = "amlogic,meson-s4-ir",
+> +		.data = &meson_s4_ir_param,
+> +	},
+> +	{},
+>  };
+>  MODULE_DEVICE_TABLE(of, meson_ir_match);
+>  
+> -- 
+> 2.35.1
