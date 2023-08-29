@@ -2,62 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3843978C82E
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 17:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE22378C868
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 17:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235215AbjH2PAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 11:00:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33950 "EHLO
+        id S236271AbjH2PPj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 11:15:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235029AbjH2PAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 11:00:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5E18BC;
-        Tue, 29 Aug 2023 08:00:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 59AEA65BC6;
-        Tue, 29 Aug 2023 15:00:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D445DC433C7;
-        Tue, 29 Aug 2023 15:00:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693321211;
-        bh=ceUTSllSKCAPQG+RRuLHM1ghYUnZrUeBrxRMcn6jQVU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BnJuG9hGO3t+yTmYVTEOiDWcrnoG5yz0vpGjMLpq1FojJ2LDvg4/YjKzaeGx2Pxry
-         rWWdNhHGtYL7n/sd6zSawDGN48gL0Y61pAHLeG4s7/m547dFSi86k0TRkBeMNUkrw1
-         iZS+f3GsXrCFalgAkqllwUu4+P9LsxmRjz6OT2nL+t1pnMUZbUA76Ubf1h4IubCsUe
-         p4NAdGt1n7ip10vck2eA/j8fKSpyaoocWgTrblqHtAkPRZkJT/95mVOTPYnSOESWN+
-         szDMOgx9wlMjQOpUKhWauy/qPxkTaEqjlDOG8Rq4T+x23cOGIKUUS4ZruosT4KrsSO
-         v87qltN0F+0jA==
-Date:   Tue, 29 Aug 2023 16:00:06 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Alain Volmat <alain.volmat@foss.st.com>
-Cc:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237194AbjH2PPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 11:15:35 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B2B71B6;
+        Tue, 29 Aug 2023 08:15:33 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37T9pPL3001900;
+        Tue, 29 Aug 2023 15:15:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=n+qoRzSouWfIAkfU1nrJqei5rteFOw/ClcLeMDhq9zA=;
+ b=DKGXfH2I8YbFRNliBkDBOtQ2yxjPMS1ZbkUGvhntWwjZbUf5uSD9HtVdf7Be0LhXNQz5
+ 4Q6FWjwCG8EJ41obzCcmGId0tvTP4Ai5LAmQ9M7B5KTAZObSg/gBjv0l+6vjH+aTiGZ5
+ PGWnRofvC4F50uLxm1GSfmepLy9D/+JInI18zU0uY+vIG8MWPHcXoYCX9iyJN0kzgK4I
+ gQv8WXk+EHgbKmMzLgPEM8P3bGbVBR12NEgRfWpv9OuvQL0ASSPkrUCn1/59FUsuag3Y
+ dhOSXyjXtak1sTOJj+RZD0eZKXAJEKjNHSbsdcHDC6uALzjqdOT2wjP/tIwPYbiOP+c+ XA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ss2xba5u7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Aug 2023 15:15:12 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37TFFBj7011980
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 29 Aug 2023 15:15:11 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 29 Aug 2023 08:15:10 -0700
+Date:   Tue, 29 Aug 2023 08:15:09 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Andy Gross" <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Dan Scally <dan.scally@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] dt-bindings: media: add bindings for dcmipp driver
-Message-ID: <20230829-juror-decathlon-f7b252a330bf@spud>
-References: <20230829132357.192535-1-alain.volmat@foss.st.com>
- <20230829132357.192535-2-alain.volmat@foss.st.com>
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v14 4/9] soc: qcom: cpr: Move common functions to new file
+Message-ID: <20230829151509.GN818859@hu-bjorande-lv.qualcomm.com>
+References: <20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org>
+ <20230217-topic-cpr3h-v14-4-9fd23241493d@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qG2kGaJAeSU28rCp"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230829132357.192535-2-alain.volmat@foss.st.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230217-topic-cpr3h-v14-4-9fd23241493d@linaro.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: JDMi5WBolj903Ew5F17GyyKJeqvNO907
+X-Proofpoint-GUID: JDMi5WBolj903Ew5F17GyyKJeqvNO907
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-29_11,2023-08-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
+ mlxscore=0 clxscore=1011 impostorscore=0 lowpriorityscore=0 bulkscore=0
+ spamscore=0 priorityscore=1501 mlxlogscore=999 adultscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2308290133
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,156 +94,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 28, 2023 at 01:42:16PM +0200, Konrad Dybcio wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> 
 
---qG2kGaJAeSU28rCp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It seems reasonable to update the subject prefix, now that things have
+moved to the genpd subsystem.
 
-Hey,
-
-On Tue, Aug 29, 2023 at 03:23:45PM +0200, Alain Volmat wrote:
-> Add the yaml binding for the DCMIPP driver.
-
-Please drop all mentions of drivers, bindings are for hardware.
-
->=20
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> In preparation for implementing a new driver that will be handling
+> CPRv3, CPRv4 and CPR-Hardened, format out common functions to a new
+> file.
+> 
+> Update cpr_get_fuses in preparation for CPR3 implementation, change
+> parameters where necessary to not take cpr.c private data structures.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> [Konrad: rebase, apply review comments, improve msg, split]
+> Tested-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  .../bindings/media/st,stm32-dcmipp.yaml       | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/st,stm32-dcmi=
-pp.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml=
- b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-> new file mode 100644
-> index 000000000000..63f03a1c42b6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
-> @@ -0,0 +1,95 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/st,stm32-dcmipp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 DCMIPP Digital Camera Memory Interface P=
-ixel Processor binding
+>  drivers/genpd/qcom/Makefile     |   2 +-
+>  drivers/genpd/qcom/cpr-common.c | 350 ++++++++++++++++++++++++++++++++++++
+>  drivers/genpd/qcom/cpr-common.h | 103 +++++++++++
+>  drivers/genpd/qcom/cpr.c        | 384 +++-------------------------------------
+>  4 files changed, 475 insertions(+), 364 deletions(-)
+> 
+> diff --git a/drivers/genpd/qcom/Makefile b/drivers/genpd/qcom/Makefile
+> index 403dfc5af095..b28c8d9128c4 100644
+> --- a/drivers/genpd/qcom/Makefile
+> +++ b/drivers/genpd/qcom/Makefile
+> @@ -1,4 +1,4 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> -obj-$(CONFIG_QCOM_CPR)		+= cpr.o
+> +obj-$(CONFIG_QCOM_CPR)		+= cpr-common.o cpr.o
 
-s/binding// to appease the bot.
+Is there a reason for this to be split in two drivers? Would it make
+sense to rewrite this such that the result ends up as a single .ko?
 
-> +
-> +maintainers:
-> +  - Hugues Fruchet <hugues.fruchet@foss.st.com>
-> +  - Alain Volmat <alain.volmat@foss.st.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp13-dcmipp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: kclk
+Then you shouldn't need to EXPORT_SYMBOL between the two parts of the
+same "driver".
 
-Can drop the items: here since you only have one. The name is also
-pretty pointless when you only have one...
-
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    unevaluatedProperties: false
-> +    description:
-> +      DCMIPP supports a single port node with parallel bus.
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          bus-type:
-> +            enum: [5, 6]
-> +            default: 5
-> +
-> +          bus-width:
-> +            enum: [8, 10, 12, 14]
-> +            default: 8
-> +
-> +          pclk-sample: true
-> +          hsync-active: true
-> +          vsync-active: true
-> +
-> +        required:
-> +          - pclk-sample
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/stm32mp13-clks.h>
-> +    #include <dt-bindings/reset/stm32mp13-resets.h>
-> +    dcmipp: dcmipp@5a000000 {
-
-Neither of the labels here are used AFAICT, please remove them.
-
-Thanks,
-Conor.
-
-> +        compatible =3D "st,stm32mp13-dcmipp";
-> +        reg =3D <0x5a000000 0x400>;
-> +        interrupts =3D <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-> +        resets =3D <&rcc DCMIPP_R>;
-> +        clocks =3D <&rcc DCMIPP_K>;
-> +        clock-names =3D "kclk";
-> +
-> +        port {
-> +             dcmipp_0: endpoint {
-> +                   remote-endpoint =3D <&mipid02_2>;
-> +                   bus-width =3D <8>;
-> +                   hsync-active =3D <0>;
-> +                   vsync-active =3D <0>;
-> +                   pclk-sample =3D <0>;
-> +             };
-> +        };
-> +    };
-> +
-> +...
-> --=20
-> 2.25.1
->=20
-
---qG2kGaJAeSU28rCp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZO4H9gAKCRB4tDGHoIJi
-0k1GAP9lydVZqmkBXhnoBL4BwByU5Brn+WCt7/lNlnhMjoZjLwEAz9Li2WbAIuFZ
-FJmcvAGQQsR170zfmTSMHhYOcIbPVAw=
-=rxYo
------END PGP SIGNATURE-----
-
---qG2kGaJAeSU28rCp--
+Regards,
+Bjorn
