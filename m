@@ -2,162 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E638678C1AB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:42:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D6478C1C1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 11:52:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230118AbjH2Jlj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 29 Aug 2023 05:41:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42158 "EHLO
+        id S231840AbjH2Jwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 05:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235001AbjH2Jlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:41:31 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBA2E1;
-        Tue, 29 Aug 2023 02:41:25 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 0CC2124E250;
-        Tue, 29 Aug 2023 17:41:23 +0800 (CST)
-Received: from EXMBX168.cuchost.com (172.16.6.78) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 29 Aug
- 2023 17:41:23 +0800
-Received: from [192.168.120.76] (171.223.208.138) by EXMBX168.cuchost.com
- (172.16.6.78) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 29 Aug
- 2023 17:41:21 +0800
-Message-ID: <503bbb09-2886-9dbb-808a-65422bab712c@starfivetech.com>
-Date:   Tue, 29 Aug 2023 17:41:21 +0800
+        with ESMTP id S234945AbjH2Jv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 05:51:56 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D740C10E
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:51:51 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a19bf6ab66so544564066b.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 02:51:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693302710; x=1693907510;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mpZOvmtn/uBflk6UybG+LvnSX9jdUkyMKQebc/rvrZU=;
+        b=k8Jpl+T/nVE735bxJtvutdmgAHlJzhxATj53E0fbQBJzzqiwTEJT/5XdSfpU15UDBd
+         NwTzq0gRFx7x83pnPe1NaEglOkzxXuZSzOI9E/G33syssQok6GKFaghyaWHWAAC4tkTs
+         o/r9q8MnybrwrIpTox/ign049K0ThTIJwOgLSuMDFryT5DulQ48DEO6YA7zbsRJfoba+
+         0E9aOqG7fSp8auH9xK1M97yl6NJb4EB60YleWTQ0UJY2PRVCT6cqZAQHTeQK7M0ZG0zJ
+         kkOJ70ZTBd3q+umTLG3LG1RSa8MOBNwasd2/i/tJrH6e6v9P4YsAbtC+Z1mEflaVMgQB
+         dz3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693302710; x=1693907510;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mpZOvmtn/uBflk6UybG+LvnSX9jdUkyMKQebc/rvrZU=;
+        b=JuY7D3qf68I1Cr6HiMCR92+k5Da6oMGhtESPOORS+TGmvFZxRd2dD6hkAhU+c8KEd3
+         1I9JGlTXOvmNehjPsV+2jPKmlhifWB/UThK9y6jXracN5NVOecT0UgPK4dKYbooCaFt+
+         eMOip7NQ8W+vJmZrlGxAlaF71wAJxsOWZ0AP/WEhdiTiIyLmvbntOW7rTpkRl7fgeiY9
+         X/GvKV3KBfRxecQ9pfVNClXuVQ2PM0iNH8BUdOH/1GLLLqk4+IrmOwn8+Jt9UDMh9Ojv
+         o3SJkP/VG/wfAclN0b7EhOA1ei9t+JmbV9znjleiVCEhRi6s7l8QbEtSGD1vJM2BUH3W
+         9mfg==
+X-Gm-Message-State: AOJu0YzCN7nnpiOngh026uuHvneGLcaRlutStJSYB4p2E0k4g5osJp6m
+        pLMzBuBkD13sSXMu66w1lY2Lvw==
+X-Google-Smtp-Source: AGHT+IFUiV8p/ANbFTNC9RIN/3r4iqb4l6G/ZsoMzvfM4AkWJBdPw90kH5yF7d7rR4Roq+3CcYVclg==
+X-Received: by 2002:a17:906:530c:b0:9a5:8155:6de with SMTP id h12-20020a170906530c00b009a5815506demr7288568ejo.45.1693302709860;
+        Tue, 29 Aug 2023 02:51:49 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.196])
+        by smtp.gmail.com with ESMTPSA id d16-20020a1709061f5000b009931a3adf64sm5857775ejk.17.2023.08.29.02.51.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Aug 2023 02:51:49 -0700 (PDT)
+Message-ID: <0cb5fbd9-083f-8db7-e850-fcda9817bd23@linaro.org>
+Date:   Tue, 29 Aug 2023 11:51:47 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [RFC v4 4/4] riscv: dts: starfive: jh7100: Add PWM node and pins
- configuration
-To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pwm@vger.kernel.org>,
-        "Emil Renner Berthing" <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        "Palmer Dabbelt" <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>
-References: <20230825081328.204442-1-william.qiu@starfivetech.com>
- <20230825081328.204442-5-william.qiu@starfivetech.com>
- <CAJM55Z-Ab1DAQyQC9TRFFBidus6wCRns9RQjx-iyYyNK1e-e6A@mail.gmail.com>
+Subject: Re: [PATCH 03/11] thermal: exynos: switch from workqueue-driven
+ interrupt handling to threaded interrupts
 Content-Language: en-US
-From:   William Qiu <william.qiu@starfivetech.com>
-In-Reply-To: <CAJM55Z-Ab1DAQyQC9TRFFBidus6wCRns9RQjx-iyYyNK1e-e6A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX168.cuchost.com
- (172.16.6.78)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+To:     Mateusz Majewski <m.majewski2@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+References: <20230829091853.626011-1-m.majewski2@samsung.com>
+ <CGME20230829092410eucas1p243a88662e8e64f0c406685931d9a80a3@eucas1p2.samsung.com>
+ <20230829091853.626011-4-m.majewski2@samsung.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230829091853.626011-4-m.majewski2@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 29/08/2023 11:18, Mateusz Majewski wrote:
+> The workqueue boilerplate is mostly one-to-one what the threaded
+> interrupts do.
+> 
+> Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
 
 
-On 2023/8/29 17:38, Emil Renner Berthing wrote:
-> On Fri, 25 Aug 2023 at 10:16, William Qiu <william.qiu@starfivetech.com> wrote:
->> Add StarFive JH7100 PWM controller node and add PWM pins configuration
->> on VisionFive 2 board.
-> 
-> Hi William,
-> 
-> This is the VisionFive V1 board right?
-> 
-> /Emil
-> 
-Hi Emil,
+>  	data->clk = devm_clk_get(&pdev->dev, "tmu_apbif");
+>  	if (IS_ERR(data->clk)) {
+>  		dev_err(&pdev->dev, "Failed to get clock\n");
+> @@ -1094,8 +1080,10 @@ static int exynos_tmu_probe(struct platform_device *pdev)
+>  		goto err_sclk;
+>  	}
+>  
+> -	ret = devm_request_irq(&pdev->dev, data->irq, exynos_tmu_irq,
+> -		IRQF_TRIGGER_RISING | IRQF_SHARED, dev_name(&pdev->dev), data);
+> +	ret = devm_request_threaded_irq(
+> +		&pdev->dev, data->irq, NULL, exynos_tmu_threaded_irq,
 
-Yes， it's VisionFive V1, I wrote it wrong.
+This does not look properly aligned.
 
-B.R.
-William
->> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->> ---
->>  .../boot/dts/starfive/jh7100-common.dtsi      | 24 +++++++++++++++++++
->>  arch/riscv/boot/dts/starfive/jh7100.dtsi      |  9 +++++++
->>  2 files changed, 33 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->> index b93ce351a90f..746867b882b0 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7100-common.dtsi
->> @@ -84,6 +84,24 @@ GPO_I2C2_PAD_SDA_OEN,
->>                 };
->>         };
->>
->> +       pwm_pins: pwm-0 {
->> +               pwm-pins {
->> +                       pinmux = <GPIOMUX(7,
->> +                                 GPO_PWM_PAD_OUT_BIT0,
->> +                                 GPO_PWM_PAD_OE_N_BIT0,
->> +                                 GPI_NONE)>,
->> +                                <GPIOMUX(5,
->> +                                 GPO_PWM_PAD_OUT_BIT1,
->> +                                 GPO_PWM_PAD_OE_N_BIT1,
->> +                                 GPI_NONE)>;
->> +                       bias-disable;
->> +                       drive-strength = <35>;
->> +                       input-disable;
->> +                       input-schmitt-disable;
->> +                       slew-rate = <0>;
->> +               };
->> +       };
->> +
->>         uart3_pins: uart3-0 {
->>                 rx-pins {
->>                         pinmux = <GPIOMUX(13, GPO_LOW, GPO_DISABLE,
->> @@ -154,6 +172,12 @@ &osc_aud {
->>         clock-frequency = <27000000>;
->>  };
->>
->> +&ptc {
->> +       pinctrl-names = "default";
->> +       pinctrl-0 = <&pwm_pins>;
->> +       status = "okay";
->> +};
->> +
->>  &uart3 {
->>         pinctrl-names = "default";
->>         pinctrl-0 = <&uart3_pins>;
->> diff --git a/arch/riscv/boot/dts/starfive/jh7100.dtsi b/arch/riscv/boot/dts/starfive/jh7100.dtsi
->> index 4218621ea3b9..7f5bb19e636e 100644
->> --- a/arch/riscv/boot/dts/starfive/jh7100.dtsi
->> +++ b/arch/riscv/boot/dts/starfive/jh7100.dtsi
->> @@ -248,5 +248,14 @@ watchdog@12480000 {
->>                         resets = <&rstgen JH7100_RSTN_WDTIMER_APB>,
->>                                  <&rstgen JH7100_RSTN_WDT>;
->>                 };
->> +
->> +               ptc: pwm@12490000 {
->> +                       compatible = "starfive,jh7100-pwm";
->> +                       reg = <0x0 0x12490000 0x0 0x10000>;
->> +                       clocks = <&clkgen JH7100_CLK_PWM_APB>;
->> +                       resets = <&rstgen JH7100_RSTN_PWM_APB>;
->> +                       #pwm-cells = <3>;
->> +                       status = "disabled";
->> +               };
->>         };
->>  };
->> --
->> 2.34.1
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Best regards,
+Krzysztof
+
