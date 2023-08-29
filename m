@@ -2,208 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CE6B78C52B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 15:25:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACD7F78C54A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 15:28:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229476AbjH2NZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 09:25:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34400 "EHLO
+        id S235971AbjH2N2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 09:28:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236048AbjH2NYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 09:24:36 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23BAE6B
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 06:24:20 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-d77f614243aso4133175276.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 06:24:20 -0700 (PDT)
+        with ESMTP id S236136AbjH2N17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 09:27:59 -0400
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61EEE1BB;
+        Tue, 29 Aug 2023 06:27:56 -0700 (PDT)
+Received: by mail-pl1-x629.google.com with SMTP id d9443c01a7336-1bf6ea270b2so26878315ad.0;
+        Tue, 29 Aug 2023 06:27:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693315459; x=1693920259;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=QQGcrjC3KtXL/WdFtDZEft3OUinDXOscuAhMHuzeiG0=;
-        b=MRRc3FrpPp6z8OWaDouOk4Mv0t8kEKCeV3hlFg4S1OX8fFXm2Gc2I/gSPjEXpWm+2d
-         woaAzzTC2Xz753IcYVfjcMXvwmMg9Duzim6HpodfR3F52c/LJLGlooCeCFoB0t7Fuqrr
-         e1Vv0pZK9jvgBRP0kVvQCzIunQ7UVmqvwsR0klCR2iyzjIGd8T8yg7AxJJ1dmk5JyJ0Z
-         I6C1HO+Uot+CbNsNFW/wFUjri74/K+Cfojf+aOPBC0Mfiv8L3QigzLC6CCQ/YQoZvV9W
-         vn95jm90vQ7GcZUKQ5Z1gO7pA7ZygzmSpWjCukGmfdUKv8DkiePPRVAEJ7JkL3zKcHB7
-         IT6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693315459; x=1693920259;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20221208; t=1693315676; x=1693920476;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QQGcrjC3KtXL/WdFtDZEft3OUinDXOscuAhMHuzeiG0=;
-        b=RV7H4TQVklu5Glu1toEiE6qmqEOlozTxivJsURq/U2ijX6pM+7WUMz+tf70RmHUYwg
-         R/UhJ3GYMDonqV6eKhvOwemLS2gra7QBbwe5NP/nC24h1PbydadyhwkJctBT9rMduWnU
-         sw0386dPv0cnZO+F66bU+StYCKDU6F+zHCZAGkQe0FCCIwd/j31ZF+SL2GM/UlfI/YH8
-         /zkcQvdKpYjEugPiKXpJnnLD5G08IQzSC5Gonf5f2HHnP5S/+35ixBbVCz19dkg6XdEQ
-         pN+QN1Dn311iqmsQkwP9iwuCp3cTeLR7yGVByZ7WUDQNEebs2Vr2gp9xQP2reY+SyCDH
-         5f5A==
-X-Gm-Message-State: AOJu0YxHOBbQ/sHl9t4L570ZhqaMezKUBehYRrltLJA7o50R4/xWtGQs
-        qRl1OJsODXuUBXNpGvW5Ks0uqXVGkRaWgDh/D+RL/A==
-X-Google-Smtp-Source: AGHT+IE8owYc6+9kqyx/gI4M2g1vQve6zIM5p0WJ9SO8njujPD7jZlPj2/YwIdTXyS/qP/5rwINWbpRO+JF/REs12PE=
-X-Received: by 2002:a5b:dc3:0:b0:d62:bc43:426e with SMTP id
- t3-20020a5b0dc3000000b00d62bc43426emr27235931ybr.43.1693315458586; Tue, 29
- Aug 2023 06:24:18 -0700 (PDT)
+        bh=KZdC0qkZ5z6tjDALZF8Uye7Xemxb62imgRWO87UTMUk=;
+        b=ssZZUzKZL9fdA5DErd5YFknCsswcvJz6I5/0w5BD3TnAc06bmreosNaj92J+aHMWW3
+         BFO0uz4pmu2NSjHW7TKYaF8QLD7hf/mefNKDMtgJqRU/w33552jqAWxeSlC8/HGaUUCX
+         B1eaHogYioTPsaW3IkDUl/mpP0RXv69ySuToPE6Kgw4tTh4Z2ciaEfJGyseEJyPS1ybl
+         DAZMt7wi6nQTmKsDlOpq+X3Z4qmQtB6a9gbixxH35O+/2Q1McHPorKtJqRUgZ/G5OqG+
+         iHD3/TjX5GjElxoU6GgzDsS05nx1UgXNTVldl5cWhPhIet/x1LYeQ4lOEg5xPTqskXNP
+         GUqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693315676; x=1693920476;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KZdC0qkZ5z6tjDALZF8Uye7Xemxb62imgRWO87UTMUk=;
+        b=g/Mdr36UcL32+TSHgy5FpK1iVE5P1RO2FsgQYq/3v9Vb48H0y2X+BpQVEF546MOev3
+         oC9UtGfSY/AGJJr3wnVVxJyJEMZyz7f/LadsdzgHvhEJwenrJDfy/eiAAyCc4H+4bBMO
+         h449TtKBVNrBrsY9fV/evgD3LvnHDZBfumoxucHpOvLahOkIRX3e0VjlC3i2DKw2GQdG
+         VeSI4gun4fzOvdtJM/XgPB3NsKPWAvpOaCprv0W3bhQX+RmNTTuSW0MiFV+YH4RZ+CZ5
+         pA6AhaFFFnneFDwb2lYjW4V/mat4vZGFdtKp91qnCpgwmALHFAc+FATgTVd9fZl4lSZk
+         4JPA==
+X-Gm-Message-State: AOJu0YyIhf8iN/fsk5n6cMyj9akQ3A9AtampqjGB4R5Nt40f1Bph4Ko8
+        DGyKWZM3vuIwoJV2EttgX58=
+X-Google-Smtp-Source: AGHT+IGSw9CjWFGZ/PIdZRDXukv7MXzSaqzYnrVZbhrW3L010Op/nnF9OhcpBvdyuVos3xn8N0ZoJQ==
+X-Received: by 2002:a17:903:11cc:b0:1bf:3c10:1d72 with SMTP id q12-20020a17090311cc00b001bf3c101d72mr28313286plh.66.1693315675608;
+        Tue, 29 Aug 2023 06:27:55 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id ix5-20020a170902f80500b001bde65894d5sm9301145plb.109.2023.08.29.06.27.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Aug 2023 06:27:54 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Tue, 29 Aug 2023 06:27:53 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Ninad Malwade <nmalwade@nvidia.com>
+Cc:     jdelvare@suse.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org,
+        Rajkumar Kasirajan <rkasirajan@nvidia.com>
+Subject: Re: [PATCH V2 3/4] hwmon: ina3221: add support for summation channel
+ control
+Message-ID: <035044de-be6f-45c9-911f-44799ddf2fff@roeck-us.net>
+References: <20230825164249.22860-1-nmalwade@nvidia.com>
+ <20230825164249.22860-4-nmalwade@nvidia.com>
 MIME-Version: 1.0
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-7-bartosz.golaszewski@linaro.org> <8b7bada9-3898-1b60-3dea-766a760412f7@linaro.org>
-In-Reply-To: <8b7bada9-3898-1b60-3dea-766a760412f7@linaro.org>
-From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date:   Tue, 29 Aug 2023 15:24:07 +0200
-Message-ID: <CACMJSetObp0k312DmqhTCkw7jsf05OHX1yxbyYj+sVfbtwRcVQ@mail.gmail.com>
-Subject: Re: [PATCH 06/11] firmware: qcom-shm-bridge: new driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825164249.22860-4-nmalwade@nvidia.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Aug 2023 at 10:18, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 28/08/2023 21:25, Bartosz Golaszewski wrote:
-> > This module is a platform driver that also exposes an interface for
-> > kernel users to allocate blocks of memory shared with the trustzone.
-> >
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> >  drivers/firmware/Kconfig                 |   8 +
-> >  drivers/firmware/Makefile                |   1 +
-> >  drivers/firmware/qcom-shm-bridge.c       | 452 +++++++++++++++++++++++
-> >  include/linux/firmware/qcom/shm-bridge.h |  32 ++
-> >  4 files changed, 493 insertions(+)
-> >  create mode 100644 drivers/firmware/qcom-shm-bridge.c
-> >  create mode 100644 include/linux/firmware/qcom/shm-bridge.h
-> >
->
-> ...
->
-> > +/**
-> > + * qcom_shm_bridge_to_phys_addr - Translate address from virtual to physical.
-> > + *
-> > + * @vaddr: Virtual address to translate.
-> > + *
-> > + * Return:
-> > + * Physical address corresponding to 'vaddr'.
-> > + */
-> > +phys_addr_t qcom_shm_bridge_to_phys_addr(void *vaddr)
-> > +{
-> > +     struct qcom_shm_bridge_chunk *chunk;
-> > +     struct qcom_shm_bridge_pool *pool;
-> > +
-> > +     guard(spinlock_irqsave)(&qcom_shm_bridge_chunks_lock);
-> > +
-> > +     chunk = radix_tree_lookup(&qcom_shm_bridge_chunks,
-> > +                               (unsigned long)vaddr);
-> > +     if (!chunk)
-> > +             return 0;
-> > +
-> > +     pool = chunk->parent;
-> > +
-> > +     guard(spinlock_irqsave)(&pool->lock);
->
-> Why both locks are spinlocks? The locks are used quite a lot.
+On Sat, Aug 26, 2023 at 12:42:48AM +0800, Ninad Malwade wrote:
+> The INA3221 allows the Critical alert pin to be controlled
+> by the summation control function. This function adds the
+> single shunt-voltage conversions for the desired channels
+> in order to compare the combined sum to the programmed limit.
+> The Shunt-Voltage Sum Limit register contains the programmed
+> value that is compared to the value in the Shunt-Voltage Sum
+> register in order to determine if the total summed limit is
+> exceeded. If the shunt-voltage sum limit value is exceeded,
+> the Critical alert pin pulls low.
+> 
+> For the summation limit to have a meaningful value,
+> we have to use the same shunt-resistor value on all included
+> channels. Unless equal shunt-resistor values are used for
+> each channel, we can't use summation control function to add
+> the individual conversion values directly together in the
+> Shunt-Voltage Sum register to report the total current.
+> 
+> To address this we add support to BYPASS channels
+> via kernel device tree property "summation-bypass".
+> 
+> The channel which has this property would be excluded from
+> the calculation of summation control function, so we can easily
+> exclude the one which uses different shunt-resistor value or
+> bus voltage.
+> 
+> For example, summation control function calculates
+> Shunt-Voltage Sum like
+> - input_shunt_voltage_summaion = input_shunt_voltage_channel1
 
-I'm not sure what to answer. The first one protects the global chunk
-mapping stored in the radix tree. The second one protects a single
-memory pool from concurrent access. Both can be modified from any
-context, hence spinlocks.
+summation
 
->
-> > +
-> > +     return gen_pool_virt_to_phys(pool->genpool, (unsigned long)vaddr);
-> > +}
-> > +EXPORT_SYMBOL_GPL(qcom_shm_bridge_to_phys_addr);
-> > +
-> > +static int qcom_shm_bridge_probe(struct platform_device *pdev)
-> > +{
-> > +     struct qcom_shm_bridge_pool *default_pool;
-> > +     struct device *dev = &pdev->dev;
-> > +     int ret;
-> > +
-> > +     /*
-> > +      * We need to wait for the SCM device to be created and bound to the
-> > +      * SCM driver.
-> > +      */
-> > +     if (!qcom_scm_is_available())
-> > +             return -EPROBE_DEFER;
->
-> I think we miss here (and in all other drivers) device links to qcm.
->
+>                                + input_shunt_voltage_channel2
+>                                + input_shunt_voltage_channel3
+> 
+> But if we want the summation to consider only channel1
+> and channel3, we can add 'summation-bypass' property
+> in device tree node of channel2.
+> 
+> Then the calculation will skip channel2.
+> - input_shunt_voltage_summaion = input_shunt_voltage_channel1
+>                                + input_shunt_voltage_channel3
+> 
+summation
 
-Well, SCM, once probed, cannot be unbound. What would device links
-guarantee above that?
+> Please note that we only want the channel to be skipped
+> for summation control function rather than completely disabled.
+> Therefore, even if we add the device tree node, the functionality
+> of the single channel would still be retained.
+> 
+> The below sysfs nodes are added to check if the channel is included
+> or excluded from the summation control function.
+> 
+> in*_sum_bypass = 0 --> channel voltage is included for sum of
+>                        shunt voltages.
+> 
+> in*_sum_bypass = 1 --> channel voltage is excluded for sum
+>                        of shunt voltages.
+> 
+This is not an acceptable sysfs attribute. Use debugfs.
 
-> > +
-> > +     ret = qcom_scm_enable_shm_bridge();
-> > +     if (ret)
-> > +             return dev_err_probe(dev, ret,
-> > +                                  "Failed to enable the SHM bridge\n");
-> > +
-> > +     default_pool = qcom_shm_bridge_pool_new_for_dev(
-> > +                             dev, qcom_shm_bridge_default_pool_size);
-> > +     if (IS_ERR(default_pool))
-> > +             return dev_err_probe(dev, PTR_ERR(default_pool),
-> > +                                  "Failed to create the default SHM Bridge pool\n");
-> > +
-> > +     WRITE_ONCE(qcom_shm_bridge_default_pool, default_pool);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct of_device_id qcom_shm_bridge_of_match[] = {
-> > +     { .compatible = "qcom,shm-bridge", },
-> > +     { }
-> > +};
-> > +
-> > +static struct platform_driver qcom_shm_bridge_driver = {
-> > +     .driver = {
-> > +             .name = "qcom-shm-bridge",
-> > +             .of_match_table = qcom_shm_bridge_of_match,
-> > +             /*
-> > +              * Once enabled, the SHM Bridge feature cannot be disabled so
-> > +              * there's no reason to ever unbind the driver.
-> > +              */
-> > +             .suppress_bind_attrs = true,
-> > +     },
-> > +     .probe = qcom_shm_bridge_probe,
-> > +};
-> > +
-> > +static int __init qcom_shm_bridge_init(void)
-> > +{
-> > +     return platform_driver_register(&qcom_shm_bridge_driver);
-> > +}
-> > +subsys_initcall(qcom_shm_bridge_init);
->
-> Why this is part of subsystem? Should be rather device_initcall... or
-> simply module (and a tristate).
->
+> Signed-off-by: Rajkumar Kasirajan <rkasirajan@nvidia.com>
+> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+> ---
+>  drivers/hwmon/ina3221.c | 39 ++++++++++++++++++++++++++++++++++-----
+>  1 file changed, 34 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/hwmon/ina3221.c b/drivers/hwmon/ina3221.c
+> index 5ab944056ec0..093ebf9f1f8d 100644
+> --- a/drivers/hwmon/ina3221.c
+> +++ b/drivers/hwmon/ina3221.c
+> @@ -104,6 +104,7 @@ struct ina3221_input {
+>  	const char *label;
+>  	int shunt_resistor;
+>  	bool disconnected;
+> +	bool summation_bypass;
+>  };
+>  
+>  /**
+> @@ -125,6 +126,7 @@ struct ina3221_data {
+>  	struct mutex lock;
+>  	u32 reg_config;
+>  	int summation_shunt_resistor;
+> +	u32 summation_channel_control;
+>  
+>  	bool single_shot;
+>  };
+> @@ -154,7 +156,8 @@ static inline int ina3221_summation_shunt_resistor(struct ina3221_data *ina)
+>  	int i, shunt_resistor = 0;
+>  
+>  	for (i = 0; i < INA3221_NUM_CHANNELS; i++) {
+> -		if (input[i].disconnected || !input[i].shunt_resistor)
+> +		if (input[i].disconnected || !input[i].shunt_resistor ||
+> +		    input[i].summation_bypass)
+>  			continue;
+>  		if (!shunt_resistor) {
+>  			/* Found the reference shunt resistor value */
+> @@ -731,10 +734,29 @@ static SENSOR_DEVICE_ATTR_RW(shunt1_resistor, ina3221_shunt, INA3221_CHANNEL1);
+>  static SENSOR_DEVICE_ATTR_RW(shunt2_resistor, ina3221_shunt, INA3221_CHANNEL2);
+>  static SENSOR_DEVICE_ATTR_RW(shunt3_resistor, ina3221_shunt, INA3221_CHANNEL3);
+>  
+> +static ssize_t ina3221_summation_bypass_show(struct device *dev,
+> +		struct device_attribute *attr, char *buf)
+> +{
+> +	struct sensor_device_attribute *sd_attr = to_sensor_dev_attr(attr);
+> +	struct ina3221_data *ina = dev_get_drvdata(dev);
+> +	unsigned int channel = sd_attr->index;
+> +	struct ina3221_input *input = &ina->inputs[channel];
+> +
+> +	return sysfs_emit(buf, "%d\n", input->summation_bypass);
+> +}
+> +
+> +/* summation bypass */
+> +static SENSOR_DEVICE_ATTR_RO(in1_sum_bypass, ina3221_summation_bypass, INA3221_CHANNEL1);
+> +static SENSOR_DEVICE_ATTR_RO(in2_sum_bypass, ina3221_summation_bypass, INA3221_CHANNEL2);
+> +static SENSOR_DEVICE_ATTR_RO(in3_sum_bypass, ina3221_summation_bypass, INA3221_CHANNEL3);
+> +
 
-We want it to get up as soon as possible (right after SCM, because SCM
-is the first user).
+As mentioned, use debugfs to display this information.
 
-Bartosz
+>  static struct attribute *ina3221_attrs[] = {
+>  	&sensor_dev_attr_shunt1_resistor.dev_attr.attr,
+>  	&sensor_dev_attr_shunt2_resistor.dev_attr.attr,
+>  	&sensor_dev_attr_shunt3_resistor.dev_attr.attr,
+> +	&sensor_dev_attr_in1_sum_bypass.dev_attr.attr,
+> +	&sensor_dev_attr_in2_sum_bypass.dev_attr.attr,
+> +	&sensor_dev_attr_in3_sum_bypass.dev_attr.attr,
+>  	NULL,
+>  };
+>  ATTRIBUTE_GROUPS(ina3221);
+> @@ -786,6 +808,9 @@ static int ina3221_probe_child_from_dt(struct device *dev,
+>  	/* Save the connected input label if available */
+>  	of_property_read_string(child, "label", &input->label);
+>  
+> +	/* summation channel control */
+> +	input->summation_bypass = of_property_read_bool(child, "summation-bypass");
+> +
+>  	/* Overwrite default shunt resistor value optionally */
+>  	if (!of_property_read_u32(child, "shunt-resistor-micro-ohms", &val)) {
+>  		if (val < 1 || val > INT_MAX) {
+> @@ -873,6 +898,10 @@ static int ina3221_probe(struct i2c_client *client)
+>  
+>  	/* Initialize summation_shunt_resistor for summation channel control */
+>  	ina->summation_shunt_resistor = ina3221_summation_shunt_resistor(ina);
+> +	for (i = 0; i < INA3221_NUM_CHANNELS; i++) {
+> +		if (!ina->inputs[i].summation_bypass)
+> +			ina->summation_channel_control |= (BIT(14 - i));
 
-> Best regards,
-> Krzysztof
->
+Unnecessary ( ) around BIT().
+
+> +	}
+>  
+>  	ina->pm_dev = dev;
+>  	mutex_init(&ina->lock);
+> @@ -978,13 +1007,13 @@ static int ina3221_resume(struct device *dev)
+>  	/* Initialize summation channel control */
+>  	if (ina->summation_shunt_resistor) {
+>  		/*
+> -		 * Take all three channels into summation by default
+> -		 * Shunt measurements of disconnected channels should
+> -		 * be 0, so it does not matter for summation.
+> +		 * Sum only channels that are not 'bypassed' for summation
+> +		 * by default. Shunt measurements of disconnected channels
+
+Drop "by default".
+
+> +		 * should be 0, so it does not matter for summation.
+>  		 */
+>  		ret = regmap_update_bits(ina->regmap, INA3221_MASK_ENABLE,
+>  					 INA3221_MASK_ENABLE_SCC_MASK,
+> -					 INA3221_MASK_ENABLE_SCC_MASK);
+> +					 ina->summation_channel_control);
+>  		if (ret) {
+>  			dev_err(dev, "Unable to control summation channel\n");
+>  			return ret;
+> -- 
+> 2.17.1
+> 
