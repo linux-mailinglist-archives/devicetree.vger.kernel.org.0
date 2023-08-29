@@ -2,73 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B57F078BCBA
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 04:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E2B378BCBD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 04:17:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232001AbjH2CP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 22:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
+        id S233897AbjH2CQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 22:16:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235419AbjH2CPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 22:15:51 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81614110;
-        Mon, 28 Aug 2023 19:15:45 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-58fc4eaa04fso45410467b3.0;
-        Mon, 28 Aug 2023 19:15:45 -0700 (PDT)
+        with ESMTP id S235349AbjH2CQZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 22:16:25 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1C6110;
+        Mon, 28 Aug 2023 19:16:21 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id d75a77b69052e-4108f57db7fso18564871cf.1;
+        Mon, 28 Aug 2023 19:16:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693275344; x=1693880144;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=97srBsNV6oTrIvKBviaQ5sS5qJluzTDai93bJAqC3xc=;
-        b=CjfX2IRlNx5394bDi7rz+7QpV9VWWGB1DtyK+uN95y5wzfJNWfoGL7aq62qjK8P7I6
-         +gS3KzL6HehcW4vSN+OY69pr3NRCiCJCt04Aj8+w5aPSYqm3wX9nbtYoTJAQ82RIus+i
-         C56wU7U3xCmn7iiuGo6bRV5hidabNFptuXT65RwtEZU+12H03ygGf1jWqiQgyzrlK5bq
-         98wYhrK9g1XxlQIroqqDSX+Sygk0Xjgyzxf74Grl1rOWul3BkR4TV0lKJY3MegRDZSzQ
-         Egeeqm8cWEW0sPwlD6qUPDoanqdq8KnOqbz+G7V1Yn1o+rgzJ/oxFlVBUavbSoxp41ZQ
-         jqHQ==
+        d=gmail.com; s=20221208; t=1693275381; x=1693880181;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+YAPuJcY2DCOE8Ee6dDajrQEg62hDEwsvqOlAM/4eYE=;
+        b=LhvO3ZPqVKVWNZ5BIVvygS8CMVf+vi6SZCTyLqduK3JjXrFmaZ3RC9ocjps3Lzh52o
+         koX/tw8uH7XRklfcsZ5wisZdoZ/G4TSj31cj+5cA/qHyAqGZAWg5PqR3AjB3i2bpm6OF
+         OarZ5tjz0+9F6gC5TAoU+Zmn7wPfMcKDawB4BbBqHzgg8Z7PRTb//1ihTMSTeMo8Rn0k
+         fpdTFlhU+hGh8l3h6PEUmhmK0SW06zKa+buKoiLnPQBD1ucMygggYMKPgDgqM26Rz73u
+         HLweDiFOpyBXtB0G/w+pFDmw74jSyIuluruaEZe0KzSNuii3jP/YvsuE0ZtAKDXAo4mB
+         WerQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693275344; x=1693880144;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=97srBsNV6oTrIvKBviaQ5sS5qJluzTDai93bJAqC3xc=;
-        b=Xboww10xCQFvNDRTEnKArjoiHH97Hu+GUojtLotEutpAWGRdrqtbgI1P8TyZ6iKhsv
-         wgLskYGfFeWcPfKFK8cvNLCtjhVNMtWhUmJopVhg+8OF87bbs4s04aRNXyEKYjDq6Idj
-         GsCSsvYbBaNZfSCmOfAR9pQQSTET0/k77hHwmPsPZbr1ttGJUMUo02P5kZfc+jEpWBf4
-         jLxcBiK0V6EL07o9ScVKC+Ryn1tcGY42rEqV5nISRrfrn2gPEWAbxB4D1ly0sY1W5co+
-         yk9cSUHFYyDRNrpIgUoL5ixxwe+IWLVkL0U53KcfaP/thKPmpWklR+XhY2jI2Y3HBatC
-         e91Q==
-X-Gm-Message-State: AOJu0YxADt+vH0U2ax1OO/T11PItq16cJAIg6Q/XEKvw9OxB0WbyyzLw
-        qTe+NtThuGtreOxX7BsE3lfVk1HaA9QkzRlsZW4=
-X-Google-Smtp-Source: AGHT+IGKUHiiGwHxPNHo2fHKNZYJMJ1G7S9OpNgtuN5xsv5YUPl+cpDee1drXnh3czmUXCFMI7zeKCYkBj0y43qin3g=
-X-Received: by 2002:a0d:f585:0:b0:589:f7ad:7702 with SMTP id
- e127-20020a0df585000000b00589f7ad7702mr29701494ywf.36.1693275344686; Mon, 28
- Aug 2023 19:15:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1693218539.git.zhoubinbin@loongson.cn> <2bec39b1001732de60c1521d78e44a45ff94d6b6.1693218539.git.zhoubinbin@loongson.cn>
- <18b8b8b8-7f42-8e8c-1bfd-36d04eba7c40@linaro.org>
-In-Reply-To: <18b8b8b8-7f42-8e8c-1bfd-36d04eba7c40@linaro.org>
-From:   Binbin Zhou <zhoubb.aaron@gmail.com>
-Date:   Tue, 29 Aug 2023 10:15:32 +0800
-Message-ID: <CAMpQs4+X+e301CHkrtDQj9A=nTxUFQJPOuqJnPc+ViDcNZBgDQ@mail.gmail.com>
-Subject: Re: [PATCH 4/5] dt-bindings: soc: loongson,ls2k-pmc: Allow
- syscon-reboot/syscon-poweroff as child
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
+        d=1e100.net; s=20221208; t=1693275381; x=1693880181;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+YAPuJcY2DCOE8Ee6dDajrQEg62hDEwsvqOlAM/4eYE=;
+        b=N5I21/twx8jYcUKyOm42BrXG6Nel5p3CQsEHyQx46O6msGj6x2NcOsVbKuWbjTGsmH
+         1QCmnJ4dSDTgHk8uMxl87s12cCG3ymZPgDmwTY4U4ZoLSmAGsYn2P+GqrOeRreCyhcCp
+         v0sHFSenna6a4V+Z1fzjIH/mNxPA52tSsgG2oJ3lIEIOgZMsZ6+r54RocKqLiwQPfE2V
+         lWZvcL8rJk3QNf+3rRU2VwWFifuuhO3kEv0vfznT91ZGVcoACNLC9Ic/26PY/BSBDVsD
+         dI8TKt+7U5rQd3L8EuTsACPYzdShpTTfUCTjY0cnREaY7DmPFq42qtL08/AeZ4jAX9ua
+         QjUA==
+X-Gm-Message-State: AOJu0YzW/B/ZF5viUBZJpVfihrsKylxTE6Z8LNIzAaiuRP0rVoZjBChF
+        pu/6w3mac/PW4EMQRAF+A6Hl3BbS1GcLp6b3
+X-Google-Smtp-Source: AGHT+IFt2qKgvTcxytrVwW9DJ1FgTW3xOFZjWLsN9eoDOrkhgNK4/KVdevnCKsyZkvtuzHz/FRmIUQ==
+X-Received: by 2002:a05:622a:50f:b0:405:4f9a:5737 with SMTP id l15-20020a05622a050f00b004054f9a5737mr30623709qtx.61.1693275380814;
+        Mon, 28 Aug 2023 19:16:20 -0700 (PDT)
+Received: from shaak (modemcable063.135-226-192.mc.videotron.ca. [192.226.135.63])
+        by smtp.gmail.com with ESMTPSA id k4-20020ac86044000000b00411fcc18cc1sm2705731qtm.64.2023.08.28.19.16.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Aug 2023 19:16:19 -0700 (PDT)
+Date:   Mon, 28 Aug 2023 22:16:17 -0400
+From:   Liam Beguin <liambeguin@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: add ltc2309 support
+Message-ID: <20230829021617.GA657648@shaak>
+References: <20230825-ltc2309-v2-0-6d75f2b3fb50@gmail.com>
+ <20230825-ltc2309-v2-2-6d75f2b3fb50@gmail.com>
+ <20230827184542.23a56402@jic23-huawei>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230827184542.23a56402@jic23-huawei>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -79,59 +78,402 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof:
+On Sun, Aug 27, 2023 at 06:45:42PM +0100, Jonathan Cameron wrote:
+> On Fri, 25 Aug 2023 14:20:59 -0400
+> Liam Beguin <liambeguin@gmail.com> wrote:
+> 
+> > The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
+> > 
+> > This implements support for all single-ended and differential channels,
+> > in unipolar mode only.
+> > 
+> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
+> Hi Liam,
+> 
+> Some comments inline.
+> 
+> Thanks,
+> 
+> Jonathan
 
-Thanks for your reply.
+Hi Jonathan,
 
-On Tue, Aug 29, 2023 at 1:17=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 28/08/2023 14:38, Binbin Zhou wrote:
-> > The reboot and poweroff features are actually part of the Power
-> > Management Unit system controller, thus allow them as its children,
-> > instead of specifying as separate device nodes with syscon phandle.
-> >
->
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -44,10 +56,25 @@ examples:
-> >    - |
-> >      #include <dt-bindings/interrupt-controller/irq.h>
-> >
-> > -    power-management@1fe27000 {
-> > +    pmc: power-management@1fe27000 {
->
-> Drop the label.
-OK...
->
-> >          compatible =3D "loongson,ls2k1000-pmc", "syscon";
-> >          reg =3D <0x1fe27000 0x58>;
-> >          interrupt-parent =3D <&liointc1>;
-> >          interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
-> >          loongson,suspend-address =3D <0x0 0x1c000500>;
+Thanks for reviewing, I'll address your comments and resend shortly.
+
+Liam
+
+> > ---
+> >  drivers/iio/adc/Kconfig   |  10 ++
+> >  drivers/iio/adc/Makefile  |   1 +
+> >  drivers/iio/adc/ltc2309.c | 248 ++++++++++++++++++++++++++++++++++++++++++++++
+> >  3 files changed, 259 insertions(+)
+> > 
+> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> > index dc14bde31ac1..6ec18e02faf9 100644
+> > --- a/drivers/iio/adc/Kconfig
+> > +++ b/drivers/iio/adc/Kconfig
+> > @@ -607,6 +607,16 @@ config LPC32XX_ADC
+> >  	  activate only one via device tree selection.  Provides direct access
+> >  	  via sysfs.
+> >  
+> > +config LTC2309
+> > +	tristate "Linear Technology LTC2309 ADC driver"
+> > +	depends on I2C
+> > +	help
+> > +	  Say yes here to build support for Linear Technology LTC2309, a low
+> > +	  noise, low power, 8-channel, 12-bit SAR ADC
 > > +
-> > +        syscon-reboot {
-> > +            compatible =3D"syscon-reboot";
-> > +            regmap =3D <&pmc>;
->
-> No, why? It does not make much sense and is deprecated.
-
-Oh, sorry, I should have been more careful, I'll delete it.
->
-> > +            offset =3D <0x30>;
-> > +            mask =3D <0x1>;
-> > +        };
+> > +	  This driver can also be built as a module. If so, the module will
+> > +	  be called ltc2309.
 > > +
-> > +        syscon-poweroff {
-> > +            compatible =3D"syscon-poweroff";
->
-> Missing space.
-I will fix it.
-
-Thanks.
-Binbin
->
-> Best regards,
-> Krzysztof
->
+> >  config LTC2471
+> >  	tristate "Linear Technology LTC2471 and LTC2473 ADC driver"
+> >  	depends on I2C
+> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
+> > index eb6e891790fb..fbd86184ec94 100644
+> > --- a/drivers/iio/adc/Makefile
+> > +++ b/drivers/iio/adc/Makefile
+> > @@ -56,6 +56,7 @@ obj-$(CONFIG_INTEL_MRFLD_ADC) += intel_mrfld_adc.o
+> >  obj-$(CONFIG_LP8788_ADC) += lp8788_adc.o
+> >  obj-$(CONFIG_LPC18XX_ADC) += lpc18xx_adc.o
+> >  obj-$(CONFIG_LPC32XX_ADC) += lpc32xx_adc.o
+> > +obj-$(CONFIG_LTC2309) += ltc2309.o
+> >  obj-$(CONFIG_LTC2471) += ltc2471.o
+> >  obj-$(CONFIG_LTC2485) += ltc2485.o
+> >  obj-$(CONFIG_LTC2496) += ltc2496.o ltc2497-core.o
+> > diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
+> > new file mode 100644
+> > index 000000000000..145f3c63d157
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/ltc2309.c
+> > @@ -0,0 +1,248 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
+> > + *
+> > + * Datasheet:
+> > + * https://www.analog.com/media/en/technical-documentation/data-sheets/2309fd.pdf
+> > + *
+> > + * Copyright (c) 2023, Liam Beguin <liambeguin@gmail.com>
+> 
+> Blank line here doesn't add anything useful. I'll drop it if not much else
+> comes up.
+> 
+> > + *
+> > + */
+> > +#include <linux/bitfield.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/kernel.h>
+> > +#include <linux/module.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#define DRIVER_NAME		"ltc2309"
+> I'd rather see this string directly in line within the code.
+> In general the places you used it could have different strings, so it's
+> much nicer just to see the string itself where it is used.
+> 
+> > +#define LTC2309_ADC_RESOLUTION	12
+> > +
+> > +#define LTC2309_DIN_CH_MASK	GENMASK(7, 4)
+> > +#define LTC2309_DIN_SDN		BIT(7)
+> > +#define LTC2309_DIN_OSN		BIT(6)
+> > +#define LTC2309_DIN_S1		BIT(5)
+> > +#define LTC2309_DIN_S0		BIT(4)
+> > +#define LTC2309_DIN_UNI		BIT(3)
+> > +#define LTC2309_DIN_SLEEP	BIT(2)
+> > +
+> > +/* struct ltc2309 - internal device data structure
+>   /*
+>    * struct ltc2039
+> 
+> 
+> for comments in IIO.
+> 
+> Also, this is kernel doc so should be
+>   /**
+>    * struct ...
+> 
+> > + *
+> > + * @dev:	Device reference
+> > + * @client:	I2C reference
+> > + * @vref:	External reference source
+> > + * @lock:	Lock to serialize data access
+> > + * @vref_mv	Internal voltage reference
+> > + */
+> > +struct ltc2309 {
+> > +	struct device		*dev;
+> > +	struct i2c_client	*client;
+> > +	struct regulator	*vref;
+> > +	struct mutex		lock; /* serialize data access */
+> > +	int			vref_mv;
+> > +};
+> > +
+> > +/* Order matches expected channel address, See datasheet Table 1. */
+> > +enum ltc2309_channels {
+> > +	LTC2309_CH0_CH1 = 0,
+> > +	LTC2309_CH2_CH3,
+> > +	LTC2309_CH4_CH5,
+> > +	LTC2309_CH6_CH7,
+> > +	LTC2309_CH1_CH0,
+> > +	LTC2309_CH3_CH2,
+> > +	LTC2309_CH5_CH4,
+> > +	LTC2309_CH7_CH6,
+> > +	LTC2309_CH0,
+> > +	LTC2309_CH2,
+> > +	LTC2309_CH4,
+> > +	LTC2309_CH6,
+> > +	LTC2309_CH1,
+> > +	LTC2309_CH3,
+> > +	LTC2309_CH5,
+> > +	LTC2309_CH7,
+> > +};
+> > +
+> > +#define LTC2309_CHAN(_chan, _addr) {				\
+> > +	.type = IIO_VOLTAGE,					\
+> > +	.indexed = 1,						\
+> > +	.address = _addr,					\
+> > +	.channel = _chan,					\
+> > +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+> > +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+> > +	.datasheet_name = "CH" #_chan,				\
+> 
+> I'd not bother providing a datasheet name it it's so directly related
+> to the channel index which is readily available. It just adds
+> ABI that is fairly pointless as it isn't conveying any information.
+> 
+> > +}
+> > +
+> > +#define LTC2309_DIFF_CHAN(_chan, _chan2, _addr) {		\
+> > +	.type = IIO_VOLTAGE,					\
+> > +	.differential = 1,					\
+> > +	.indexed = 1,						\
+> > +	.address = _addr,					\
+> > +	.channel = _chan,					\
+> > +	.channel2 = _chan2,					\
+> > +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
+> > +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
+> > +	.datasheet_name = "CH" #_chan "-CH" #_chan2,		\
+> 
+> As above - this is obvious anyway, I'd drop the datasheet_name.
+> It's optional so just don't provide it ;)
+> 
+> > +}
+> > +
+> > +static const struct iio_chan_spec ltc2309_channels[] = {
+> > +	LTC2309_CHAN(0, LTC2309_CH0),
+> > +	LTC2309_CHAN(1, LTC2309_CH1),
+> > +	LTC2309_CHAN(2, LTC2309_CH2),
+> > +	LTC2309_CHAN(3, LTC2309_CH3),
+> > +	LTC2309_CHAN(4, LTC2309_CH4),
+> > +	LTC2309_CHAN(5, LTC2309_CH5),
+> > +	LTC2309_CHAN(6, LTC2309_CH6),
+> > +	LTC2309_CHAN(7, LTC2309_CH7),
+> > +	LTC2309_DIFF_CHAN(0, 1, LTC2309_CH0_CH1),
+> > +	LTC2309_DIFF_CHAN(2, 3, LTC2309_CH2_CH3),
+> > +	LTC2309_DIFF_CHAN(4, 5, LTC2309_CH4_CH5),
+> > +	LTC2309_DIFF_CHAN(6, 7, LTC2309_CH6_CH7),
+> > +	LTC2309_DIFF_CHAN(1, 0, LTC2309_CH1_CH0),
+> > +	LTC2309_DIFF_CHAN(3, 2, LTC2309_CH3_CH2),
+> > +	LTC2309_DIFF_CHAN(5, 4, LTC2309_CH5_CH4),
+> > +	LTC2309_DIFF_CHAN(7, 6, LTC2309_CH7_CH6),
+> > +};
+> > +
+> > +static int ltc2309_read_raw(struct iio_dev *indio_dev,
+> > +			    struct iio_chan_spec const *chan, int *val,
+> > +			    int *val2, long mask)
+> > +{
+> > +	struct ltc2309 *ltc2309 = iio_priv(indio_dev);
+> > +	u16 buf;
+> > +	int ret;
+> > +	u8 din;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_RAW:
+> > +		din = FIELD_PREP(LTC2309_DIN_CH_MASK, chan->address & 0x0f) |
+> > +			FIELD_PREP(LTC2309_DIN_UNI, 1) |
+> > +			FIELD_PREP(LTC2309_DIN_SLEEP, 0);
+> > +
+> > +		mutex_lock(&ltc2309->lock);
+> > +		ret = i2c_smbus_write_byte(ltc2309->client, din);
+> > +		if (ret < 0) {
+> > +			dev_err(ltc2309->dev, "i2c command failed: %pe\n",
+> > +				ERR_PTR(ret));
+> > +			goto out;
+> 
+> This sort of messy mutex handling for error paths is a strong signal
+> that the code would be better with a little utility function around which
+> you take the locks.  
+> 
+> 		mutex_lock(&ltc2309->lock);
+> 		ret = ltc2309_read_raw(...);  // move the field prep in there as well even though it expands the scope a tiny bit
+> 		mutex_unlock()
+> 		if (ret)
+> 			...
+> 
+> 		carry on.
+> 
+> > +		}
+> > +
+> > +		ret = i2c_master_recv(ltc2309->client, (char *)&buf, 2);
+> > +		if (ret < 0) {
+> > +			dev_err(ltc2309->dev, "i2c read failed: %pe\n",
+> > +				ERR_PTR(ret));
+> > +			goto out;
+> > +		}
+> > +
+> > +		*val = be16_to_cpu(buf) >> 4;
+> This doesn't really need to be under the lock, but if it makes sense to
+> do it in the utility function I suggest above then that's fine.
+> 
+> > +		mutex_unlock(&ltc2309->lock);
+> > +
+> > +		ret = IIO_VAL_INT;
+> 
+> 		return IIO_VAL_INT;
+> 
+> > +		break;
+> > +	case IIO_CHAN_INFO_SCALE:
+> > +		*val = ltc2309->vref_mv;
+> > +		*val2 = LTC2309_ADC_RESOLUTION;
+> > +		ret = IIO_VAL_FRACTIONAL_LOG2;
+> return IIO_VAL_FRACTIONAL_LOG2 and get rid of the rbeadk.
+> > +		break;
+> > +	default:
+> > +		ret = -EINVAL;
+> return -EINVAL;
+> > +		break;
+> > +	}
+> > +
+> > +	return ret;
+> > +
+> > +out:
+> > +	mutex_unlock(&ltc2309->lock);
+> > +	return ret;
+> > +}
+> > +
+> > +static const struct iio_info ltc2309_info = {
+> > +	.read_raw = ltc2309_read_raw,
+> > +};
+> > +
+> > +void ltc2309_regulator_disable(void *regulator)
+> > +{
+> > +	struct regulator *r = (struct regulator *)regulator;
+> > +
+> > +	regulator_disable(r);
+> > +}
+> > +
+> > +static int ltc2309_probe(struct i2c_client *client)
+> > +{
+> > +	struct iio_dev *indio_dev;
+> > +	struct ltc2309 *ltc2309;
+> > +	int ret = 0;
+> 
+> Always set in paths where it is used so don't set it here.
+> 
+> 
+> > +
+> > +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*ltc2309));
+> > +	if (!indio_dev)
+> > +		return -ENOMEM;
+> > +
+> > +	i2c_set_clientdata(client, indio_dev);
+> 
+> Is this used?
+> 
+> > +
+> > +	ltc2309 = iio_priv(indio_dev);
+> > +	ltc2309->dev = &indio_dev->dev;
+> > +	ltc2309->client = client;
+> > +	ltc2309->vref_mv = 4096; /* Default to the internal ref */
+> > +
+> > +	indio_dev->name = DRIVER_NAME;
+> > +	indio_dev->dev.parent = &client->dev;
+> 
+> That's not been needed for quite a long time as devm_iio_device_alloc()
+> sets it. Ultimately it's here:
+> https://elixir.bootlin.com/linux/latest/source/drivers/iio/industrialio-core.c#L1645
+> 
+> 
+> > +	indio_dev->modes = INDIO_DIRECT_MODE;
+> > +	indio_dev->channels = ltc2309_channels;
+> > +	indio_dev->num_channels = ARRAY_SIZE(ltc2309_channels);
+> > +	indio_dev->info = &ltc2309_info;
+> > +
+> > +	ltc2309->vref = devm_regulator_get_optional(&client->dev, "vref");
+> > +	if (!IS_ERR_OR_NULL(ltc2309->vref)) {
+> 
+> What if you get a request to defer?  To use devm_regulator_get_optional()
+> and detect the cases where the regulator is not provided separately from
+> errors during the probe.  IIRC check for PTR_ERR(-ENODEV) as meaning 
+> one wasn't supplied.  However do check I have that right.
+> 
+> > +		ret = regulator_enable(ltc2309->vref);
+> > +		if (ret) {
+> > +			dev_err(ltc2309->dev, "failed to enable vref\n");
+> > +			return ret;
+> 
+> dev_err_probe() for all error messages in a probe function. 
+> 
+> > +		}
+> > +
+> > +		ret = devm_add_action_or_reset(ltc2309->dev,
+> > +					       ltc2309_regulator_disable,
+> > +					       ltc2309->vref);
+> > +		if (ret) {
+> > +			dev_err(ltc2309->dev,
+> > +				"failed to add regulator_disable action: %d\n",
+> > +				ret);
+> return dev_err_probe()
+> 
+> > +			return ret;
+> > +		}
+> > +
+> > +		ret = regulator_get_voltage(ltc2309->vref);
+> > +		if (ret < 0)
+> > +			return ret;
+> > +
+> > +		ltc2309->vref_mv = ret / 1000;
+> > +	}
+> > +
+> > +	mutex_init(&ltc2309->lock);
+> > +
+> > +	return devm_iio_device_register(&client->dev, indio_dev);
+> > +}
+> > +
+> > +static const struct of_device_id ltc2309_of_match[] = {
+> > +	{ .compatible = "lltc,ltc2309" },
+> > +	{ }
+> > +};
+> > +MODULE_DEVICE_TABLE(of, ltc2309_of_match);
+> > +
+> > +static const struct i2c_device_id ltc2309_id[] = {
+> > +	{"ltc2309", 0},
+> 
+> Don't provide data unless it's doing anything useful.
+> Also, consistency on spacing after { and before }
+> 
+> > +	{},
+> 
+> No comma on a list terminator like this one as nothing can come
+> after it that isn't a bug.
+> 
+> > +};
+> > +MODULE_DEVICE_TABLE(i2c, ltc2309_id);
+> > +
+> > +static struct i2c_driver ltc2309_driver = {
+> > +	.driver = {
+> > +		.name = DRIVER_NAME,
+> > +		.of_match_table = ltc2309_of_match,
+> > +	},
+> > +	.probe		= ltc2309_probe,
+> > +	.id_table	= ltc2309_id,
+> > +};
+> > +module_i2c_driver(ltc2309_driver);
+> > +
+> > +MODULE_AUTHOR("Liam Beguin <liambeguin@gmail.com>");
+> > +MODULE_DESCRIPTION("Linear Technology LTC2309 ADC");
+> > +MODULE_LICENSE("GPL v2");
+> > 
+> 
