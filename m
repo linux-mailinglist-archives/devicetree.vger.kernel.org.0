@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E2B378BCBD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 04:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2510E78BCCD
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 04:29:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233897AbjH2CQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Aug 2023 22:16:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41262 "EHLO
+        id S235224AbjH2C2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Aug 2023 22:28:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235349AbjH2CQZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 22:16:25 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1C6110;
-        Mon, 28 Aug 2023 19:16:21 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id d75a77b69052e-4108f57db7fso18564871cf.1;
-        Mon, 28 Aug 2023 19:16:21 -0700 (PDT)
+        with ESMTP id S234795AbjH2C2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Aug 2023 22:28:24 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3764E132;
+        Mon, 28 Aug 2023 19:28:20 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-68bed2c786eso2663018b3a.0;
+        Mon, 28 Aug 2023 19:28:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693275381; x=1693880181;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+YAPuJcY2DCOE8Ee6dDajrQEg62hDEwsvqOlAM/4eYE=;
-        b=LhvO3ZPqVKVWNZ5BIVvygS8CMVf+vi6SZCTyLqduK3JjXrFmaZ3RC9ocjps3Lzh52o
-         koX/tw8uH7XRklfcsZ5wisZdoZ/G4TSj31cj+5cA/qHyAqGZAWg5PqR3AjB3i2bpm6OF
-         OarZ5tjz0+9F6gC5TAoU+Zmn7wPfMcKDawB4BbBqHzgg8Z7PRTb//1ihTMSTeMo8Rn0k
-         fpdTFlhU+hGh8l3h6PEUmhmK0SW06zKa+buKoiLnPQBD1ucMygggYMKPgDgqM26Rz73u
-         HLweDiFOpyBXtB0G/w+pFDmw74jSyIuluruaEZe0KzSNuii3jP/YvsuE0ZtAKDXAo4mB
-         WerQ==
+        d=gmail.com; s=20221208; t=1693276099; x=1693880899;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JA4cpfaHmT8u9xNZWexlvZyZ7XHtY1c4ovJkk58pMB8=;
+        b=Q8Nbi2skLSnJxOJAdT2w/yWtuOYT+7u/MxS5EkZdiqxD0JrV5HSwAs36UJk8gBk/08
+         gkGccQW+aKBSY6BchKISPiIoYUn6OGDOKs90FGhVlSVqDcW/Ae9drmBmPbGAZWCzYCbE
+         Sp4/WVOIlm6xJhkgkbqLnBD3heoKIQfi6WDlw6FGtL7qx41KIjT9KgF2z/FULipteKqd
+         Ux8tftISAk9pLR4tUsI1KLnYJwSWlNpdYRxjBZEDseSMS8qTYBG4NrCRdycYMzIF6Pv+
+         E8WfbkEroWu193xNMLit4xzeYZAa7F4WDPR5KIZm58Q+oMdqevJPB4MY8hnGIuYf0P8+
+         kPKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693275381; x=1693880181;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+YAPuJcY2DCOE8Ee6dDajrQEg62hDEwsvqOlAM/4eYE=;
-        b=N5I21/twx8jYcUKyOm42BrXG6Nel5p3CQsEHyQx46O6msGj6x2NcOsVbKuWbjTGsmH
-         1QCmnJ4dSDTgHk8uMxl87s12cCG3ymZPgDmwTY4U4ZoLSmAGsYn2P+GqrOeRreCyhcCp
-         v0sHFSenna6a4V+Z1fzjIH/mNxPA52tSsgG2oJ3lIEIOgZMsZ6+r54RocKqLiwQPfE2V
-         lWZvcL8rJk3QNf+3rRU2VwWFifuuhO3kEv0vfznT91ZGVcoACNLC9Ic/26PY/BSBDVsD
-         dI8TKt+7U5rQd3L8EuTsACPYzdShpTTfUCTjY0cnREaY7DmPFq42qtL08/AeZ4jAX9ua
-         QjUA==
-X-Gm-Message-State: AOJu0YzW/B/ZF5viUBZJpVfihrsKylxTE6Z8LNIzAaiuRP0rVoZjBChF
-        pu/6w3mac/PW4EMQRAF+A6Hl3BbS1GcLp6b3
-X-Google-Smtp-Source: AGHT+IFt2qKgvTcxytrVwW9DJ1FgTW3xOFZjWLsN9eoDOrkhgNK4/KVdevnCKsyZkvtuzHz/FRmIUQ==
-X-Received: by 2002:a05:622a:50f:b0:405:4f9a:5737 with SMTP id l15-20020a05622a050f00b004054f9a5737mr30623709qtx.61.1693275380814;
-        Mon, 28 Aug 2023 19:16:20 -0700 (PDT)
-Received: from shaak (modemcable063.135-226-192.mc.videotron.ca. [192.226.135.63])
-        by smtp.gmail.com with ESMTPSA id k4-20020ac86044000000b00411fcc18cc1sm2705731qtm.64.2023.08.28.19.16.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Aug 2023 19:16:19 -0700 (PDT)
-Date:   Mon, 28 Aug 2023 22:16:17 -0400
-From:   Liam Beguin <liambeguin@gmail.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+        d=1e100.net; s=20221208; t=1693276099; x=1693880899;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:sender
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JA4cpfaHmT8u9xNZWexlvZyZ7XHtY1c4ovJkk58pMB8=;
+        b=b3o6GIu92R5viy+FR2FvMW6PtrW3AgTdBKmVBJS8dxQZRzVkkXAgMBpZl10Hv2ZyFV
+         8Q/9X9r0vCe2N4xYc+/QAg0Pvj+vBT5az8a3aOyZE3JgB5Gow7T3mV239ohcg9SVtbjw
+         DCUKqr48Nb/OZwdRWPxkQebnGDI0qMwzBZZGbYfcs3WH34rmGcNXVkpEwqZsNObXFaE0
+         G0CiSmSNghuh4oZOrgqYDxTTNCG/Yzw6/5j4cEZ9cjc8F+QUEjGa83sXaZxvHHaX2c4+
+         CSoMS92UR+9Faa9Awgd5N/Gz5DmIv+GIAcQOIgtKBeA0gVUX/gKbPgVaA3apqol81GO2
+         QOnA==
+X-Gm-Message-State: AOJu0YxBXlpzUMDK9vbjDf/2Km6xrCUtgG+NJWNxADMfKP+MLodJCsOp
+        h0hGbtRe+kVpBpBEEq5LVB8=
+X-Google-Smtp-Source: AGHT+IGSNQuKEVNoNjw9fCi1x9b1GAoRuZ6w5bpqsAJySOrW1c2UzfOqoW/u4tfEEGtOsIFwNQd0xQ==
+X-Received: by 2002:a05:6a00:1495:b0:68a:5d25:7fea with SMTP id v21-20020a056a00149500b0068a5d257feamr21504922pfu.6.1693276099293;
+        Mon, 28 Aug 2023 19:28:19 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 22-20020aa79156000000b00666b012baedsm7358319pfi.158.2023.08.28.19.28.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Aug 2023 19:28:18 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <e2345957-aeee-5b8f-5b8c-006a9121886d@roeck-us.net>
+Date:   Mon, 28 Aug 2023 19:28:17 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To:     =?UTF-8?Q?Carsten_Spie=c3=9f?= <mail@carsten-spiess.de>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] iio: adc: add ltc2309 support
-Message-ID: <20230829021617.GA657648@shaak>
-References: <20230825-ltc2309-v2-0-6d75f2b3fb50@gmail.com>
- <20230825-ltc2309-v2-2-6d75f2b3fb50@gmail.com>
- <20230827184542.23a56402@jic23-huawei>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230827184542.23a56402@jic23-huawei>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Jonathan Corbet <corbet@lwn.net>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+References: <cover.1692623638.git.mail@carsten-spiess.de>
+ <d510d6f7f65c95d5cff1b8e8a4dcd5675bd100fd.1692623638.git.mail@carsten-spiess.de>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v5 1/2] hwmon: (isl28022) new driver for ISL28022 power
+ monitor
+In-Reply-To: <d510d6f7f65c95d5cff1b8e8a4dcd5675bd100fd.1692623638.git.mail@carsten-spiess.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,402 +86,679 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 27, 2023 at 06:45:42PM +0100, Jonathan Cameron wrote:
-> On Fri, 25 Aug 2023 14:20:59 -0400
-> Liam Beguin <liambeguin@gmail.com> wrote:
+On 8/21/23 09:40, Carsten Spieß wrote:
+> Driver for Renesas ISL28022 power monitor with I2C interface.
+> The device monitors voltage, current via shunt resistor
+> and calculated power.
 > 
-> > The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
-> > 
-> > This implements support for all single-ended and differential channels,
-> > in unipolar mode only.
-> > 
-> > Signed-off-by: Liam Beguin <liambeguin@gmail.com>
-> Hi Liam,
+> Signed-off-by: Carsten Spieß <mail@carsten-spiess.de>
+> ---
+> v5:
+> - #include cleaned and reordered
+> - missing switch default added
+> - device_property_read error handling fixed
+> - debugfs_init improved
+> - average-samples bit test fixed
+> - #ifdef CONFIG_DEBUG_FS removed
+> v4:
+> - no changes
+> v3:
+> - changelog added
+> v2/v3:
+> - hwmon input shunt voltage removed
+> - debugfs for shunt voltage read access added
+> - missing error handling added
+> - shunt resistor minimum and default value added
+> - properties reworked
+> - device_property_* instead of_property fixed
+> - possible overflows fixed
+> - MAINTAINERS order fixed
+> - documentation updated
+> ---
+>   Documentation/hwmon/index.rst    |   1 +
+>   Documentation/hwmon/isl28022.rst |  63 +++++
+>   MAINTAINERS                      |   7 +
+>   drivers/hwmon/Kconfig            |  11 +
+>   drivers/hwmon/Makefile           |   1 +
+>   drivers/hwmon/isl28022.c         | 471 +++++++++++++++++++++++++++++++
+>   6 files changed, 554 insertions(+)
+>   create mode 100644 Documentation/hwmon/isl28022.rst
+>   create mode 100644 drivers/hwmon/isl28022.c
 > 
-> Some comments inline.
-> 
-> Thanks,
-> 
-> Jonathan
+> diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+> index d11924667f76..c9548fc5c40e 100644
+> --- a/Documentation/hwmon/index.rst
+> +++ b/Documentation/hwmon/index.rst
+> @@ -90,6 +90,7 @@ Hardware Monitoring Kernel Drivers
+>      ir35221
+>      ir38064
+>      ir36021
+> +   isl28022
+>      isl68137
+>      it87
+>      jc42
+> diff --git a/Documentation/hwmon/isl28022.rst b/Documentation/hwmon/isl28022.rst
+> new file mode 100644
+> index 000000000000..8d4422a2dacd
+> --- /dev/null
+> +++ b/Documentation/hwmon/isl28022.rst
+> @@ -0,0 +1,63 @@
+> +.. SPDX-License-Identifier: GPL-2.0-or-later
+> +
+> +Kernel driver isl28022
+> +======================
+> +
+> +Supported chips:
+> +
+> +  * Renesas ISL28022
+> +
+> +    Prefix: 'isl28022'
+> +
+> +    Addresses scanned: none
+> +
+> +    Datasheet: Publicly available at the Renesas website
+> +
+> +	       https://www.renesas.com/us/en/www/doc/datasheet/isl28022.pdf
+> +
+> +Author:
+> +    Carsten Spieß <mail@carsten-spiess.de>
+> +
+> +Description
+> +-----------
+> +
+> +The ISL28022 is a power monitor with I2C interface. The device monitors
+> +voltage, current via shunt resistor and calculated power.
+> +
+> +Usage Notes
+> +-----------
+> +
+> +This driver does not auto-detect devices. You will have to instantiate the
+> +device explicitly. Please see Documentation/i2c/instantiating-devices.rst for
+> +details.
+> +
+> +The shunt value in micro-ohms, shunt voltage range and averaging can be set
+> +with device properties.
+> +Please refer to the Documentation/devicetree/bindings/hwmon/isl,isl28022.yaml
+> +for bindings if the device tree is used.
+> +
+> +The driver supports only shunt and bus continuous ADC mode at 15bit resolution.
+> +Averaging can be set from 1 to 128 samples (power of 2) on both channels.
+> +Shunt voltage range of 40, 80, 160 or 320mV is allowed
+> +The bus voltage range is 60V fixed.
+> +
+> +Sysfs entries
+> +-------------
+> +
+> +The following attributes are supported. All attributes are read-only.
+> +
+> +======================= =======================================================
+> +in0_input		bus voltage (milli Volt)
+> +
+> +curr1_input		current (milli Ampere)
+> +power1_input		power (micro Watt)
+> +======================= =======================================================
+> +
+> +Debugfs entries
+> +---------------
+> +
+> +The following attributes are supported. All attributes are read-only.
+> +
+> +======================= =======================================================
+> +shunt_voltage		shunt voltage (micro Volt)
+> +======================= =======================================================
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7abb5710e1bb..b02e3b991676 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11065,6 +11065,13 @@ F:	drivers/isdn/Makefile
+>   F:	drivers/isdn/hardware/
+>   F:	drivers/isdn/mISDN/
+>   
+> +ISL28022 HARDWARE MONITORING DRIVER
+> +M:	Carsten Spieß <mail@carsten-spiess.de>
+> +L:	linux-hwmon@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/hwmon/isl28022.rst
+> +F:	drivers/hwmon/isl28022.c
+> +
+>   ISOFS FILESYSTEM
+>   M:	Jan Kara <jack@suse.cz>
+>   L:	linux-fsdevel@vger.kernel.org
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 2913299c2c9e..3049c519e6ac 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -800,6 +800,17 @@ config SENSORS_CORETEMP
+>   	  sensor inside your CPU. Most of the family 6 CPUs
+>   	  are supported. Check Documentation/hwmon/coretemp.rst for details.
+>   
+> +config SENSORS_ISL28022
+> +	tristate "Renesas ISL28022"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  If you say yes here you get support for ISL28022 power monitor.
+> +	  Check Documentation/hwmon/isl28022.rst for details.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called isl28022.
+> +
+>   config SENSORS_IT87
+>   	tristate "ITE IT87xx and compatibles"
+>   	depends on !PPC
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index ff6bfd109c72..4046fed7f48d 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -98,6 +98,7 @@ obj-$(CONFIG_SENSORS_INA2XX)	+= ina2xx.o
+>   obj-$(CONFIG_SENSORS_INA238)	+= ina238.o
+>   obj-$(CONFIG_SENSORS_INA3221)	+= ina3221.o
+>   obj-$(CONFIG_SENSORS_INTEL_M10_BMC_HWMON) += intel-m10-bmc-hwmon.o
+> +obj-$(CONFIG_SENSORS_ISL28022)	+= isl28022.o
+>   obj-$(CONFIG_SENSORS_IT87)	+= it87.o
+>   obj-$(CONFIG_SENSORS_JC42)	+= jc42.o
+>   obj-$(CONFIG_SENSORS_K8TEMP)	+= k8temp.o
+> diff --git a/drivers/hwmon/isl28022.c b/drivers/hwmon/isl28022.c
+> new file mode 100644
+> index 000000000000..f0494c3bd483
+> --- /dev/null
+> +++ b/drivers/hwmon/isl28022.c
+> @@ -0,0 +1,471 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * isl28022.c - driver for Renesas ISL28022 power monitor chip monitoring
+> + *
+> + * Copyright (c) 2023 Carsten Spieß <mail@carsten-spiess.de>
+> + */
+> +
+> +#include <linux/debugfs.h>
+> +#include <linux/err.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
+> +
+> +/* ISL28022 registers */
+> +#define ISL28022_REG_CONFIG	0x00
+> +#define ISL28022_REG_SHUNT	0x01
+> +#define ISL28022_REG_BUS	0x02
+> +#define ISL28022_REG_POWER	0x03
+> +#define ISL28022_REG_CURRENT	0x04
+> +#define ISL28022_REG_CALIB	0x05
+> +#define ISL28022_REG_SHUNT_THR	0x06
+> +#define ISL28022_REG_BUS_THR	0x07
+> +#define ISL28022_REG_INT	0x08
+> +#define ISL28022_REG_AUX	0x09
+> +#define ISL28022_REG_MAX	ISL28022_REG_AUX
+> +
+> +/* ISL28022 config flags */
+> +/* mode flags */
+> +#define ISL28022_MODE_SHIFT	0
+> +#define ISL28022_MODE_MASK	0x0007
+> +
+> +#define ISL28022_MODE_PWR_DOWN	0x0
+> +#define ISL28022_MODE_TRG_S	0x1
+> +#define ISL28022_MODE_TRG_B	0x2
+> +#define ISL28022_MODE_TRG_SB	0x3
+> +#define ISL28022_MODE_ADC_OFF	0x4
+> +#define ISL28022_MODE_CONT_S	0x5
+> +#define ISL28022_MODE_CONT_B	0x6
+> +#define ISL28022_MODE_CONT_SB	0x7
+> +
+> +/* shunt ADC settings */
+> +#define ISL28022_SADC_SHIFT	3
+> +#define ISL28022_SADC_MASK	0x0078
+> +
+> +#define ISL28022_BADC_SHIFT	7
+> +#define ISL28022_BADC_MASK	0x0780
+> +
+> +#define ISL28022_ADC_12		0x0	/* 12 bit ADC */
+> +#define ISL28022_ADC_13		0x1	/* 13 bit ADC */
+> +#define ISL28022_ADC_14		0x2	/* 14 bit ADC */
+> +#define ISL28022_ADC_15		0x3	/* 15 bit ADC */
+> +#define ISL28022_ADC_15_1	0x8	/* 15 bit ADC, 1 sample */
+> +#define ISL28022_ADC_15_2	0x9	/* 15 bit ADC, 2 samples */
+> +#define ISL28022_ADC_15_4	0xA	/* 15 bit ADC, 4 samples */
+> +#define ISL28022_ADC_15_8	0xB	/* 15 bit ADC, 8 samples */
+> +#define ISL28022_ADC_15_16	0xC	/* 15 bit ADC, 16 samples */
+> +#define ISL28022_ADC_15_32	0xD	/* 15 bit ADC, 32 samples */
+> +#define ISL28022_ADC_15_64	0xE	/* 15 bit ADC, 64 samples */
+> +#define ISL28022_ADC_15_128	0xF	/* 15 bit ADC, 128 samples */
+> +
+> +/* shunt voltage range */
+> +#define ISL28022_PG_SHIFT	11
+> +#define ISL28022_PG_MASK	0x1800
+> +
+> +#define ISL28022_PG_40		0x0	/* +/-40 mV */
+> +#define ISL28022_PG_80		0x1	/* +/-80 mV */
+> +#define ISL28022_PG_160		0x2	/* +/-160 mV */
+> +#define ISL28022_PG_320		0x3	/* +/-3200 mV */
+> +
+> +/* bus voltage range */
+> +#define ISL28022_BRNG_SHIFT	13
+> +#define ISL28022_BRNG_MASK	0x6000
+> +
+> +#define ISL28022_BRNG_16	0x0	/* 16 V */
+> +#define ISL28022_BRNG_32	0x1	/* 32 V */
+> +#define ISL28022_BRNG_60	0x3	/* 60 V */
+> +
+> +/* reset */
+> +#define ISL28022_RESET		0x8000
+> +
+> +struct isl28022_data {
+> +	struct regmap		*regmap;
+> +	u32			shunt;
+> +	u32			gain;
+> +	u32			average;
+> +	u16			config;
+> +	u16			calib;
+> +};
+> +
+> +static int isl28022_read(struct device *dev, enum hwmon_sensor_types type,
+> +			 u32 attr, int channel, long *val)
+> +{
+> +	struct isl28022_data *data = dev_get_drvdata(dev);
+> +	unsigned int regval;
+> +	int err;
+> +
+> +	switch (type) {
+> +	case hwmon_in:
+> +		switch (attr) {
+> +		case hwmon_in_input:
+> +			err = regmap_read(data->regmap,
+> +					  ISL28022_REG_BUS, &regval);
+> +			if (err < 0)
+> +				return err;
+> +			/* driver supports only 60V mode (BRNG 11) */
+> +			*val = (long)(((u16)regval) & 0xFFFC);
+> +			break;
+> +		default:
+> +			return -EINVAL;
 
-Hi Jonathan,
+Please make those return -EOPNOTSUPP.
 
-Thanks for reviewing, I'll address your comments and resend shortly.
+> +		}
+> +		break;
+> +	case hwmon_curr:
+> +		switch (attr) {
+> +		case hwmon_curr_input:
+> +			err = regmap_read(data->regmap,
+> +					  ISL28022_REG_CURRENT, &regval);
+> +			if (err < 0)
+> +				return err;
+> +			*val = ((long)regval * 1250L * (long)data->gain) /
+> +				(long)data->shunt;
 
-Liam
+FWIW, I think those type casts are unnecessary.
 
-> > ---
-> >  drivers/iio/adc/Kconfig   |  10 ++
-> >  drivers/iio/adc/Makefile  |   1 +
-> >  drivers/iio/adc/ltc2309.c | 248 ++++++++++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 259 insertions(+)
-> > 
-> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > index dc14bde31ac1..6ec18e02faf9 100644
-> > --- a/drivers/iio/adc/Kconfig
-> > +++ b/drivers/iio/adc/Kconfig
-> > @@ -607,6 +607,16 @@ config LPC32XX_ADC
-> >  	  activate only one via device tree selection.  Provides direct access
-> >  	  via sysfs.
-> >  
-> > +config LTC2309
-> > +	tristate "Linear Technology LTC2309 ADC driver"
-> > +	depends on I2C
-> > +	help
-> > +	  Say yes here to build support for Linear Technology LTC2309, a low
-> > +	  noise, low power, 8-channel, 12-bit SAR ADC
-> > +
-> > +	  This driver can also be built as a module. If so, the module will
-> > +	  be called ltc2309.
-> > +
-> >  config LTC2471
-> >  	tristate "Linear Technology LTC2471 and LTC2473 ADC driver"
-> >  	depends on I2C
-> > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> > index eb6e891790fb..fbd86184ec94 100644
-> > --- a/drivers/iio/adc/Makefile
-> > +++ b/drivers/iio/adc/Makefile
-> > @@ -56,6 +56,7 @@ obj-$(CONFIG_INTEL_MRFLD_ADC) += intel_mrfld_adc.o
-> >  obj-$(CONFIG_LP8788_ADC) += lp8788_adc.o
-> >  obj-$(CONFIG_LPC18XX_ADC) += lpc18xx_adc.o
-> >  obj-$(CONFIG_LPC32XX_ADC) += lpc32xx_adc.o
-> > +obj-$(CONFIG_LTC2309) += ltc2309.o
-> >  obj-$(CONFIG_LTC2471) += ltc2471.o
-> >  obj-$(CONFIG_LTC2485) += ltc2485.o
-> >  obj-$(CONFIG_LTC2496) += ltc2496.o ltc2497-core.o
-> > diff --git a/drivers/iio/adc/ltc2309.c b/drivers/iio/adc/ltc2309.c
-> > new file mode 100644
-> > index 000000000000..145f3c63d157
-> > --- /dev/null
-> > +++ b/drivers/iio/adc/ltc2309.c
-> > @@ -0,0 +1,248 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
-> > + *
-> > + * Datasheet:
-> > + * https://www.analog.com/media/en/technical-documentation/data-sheets/2309fd.pdf
-> > + *
-> > + * Copyright (c) 2023, Liam Beguin <liambeguin@gmail.com>
-> 
-> Blank line here doesn't add anything useful. I'll drop it if not much else
-> comes up.
-> 
-> > + *
-> > + */
-> > +#include <linux/bitfield.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/regulator/consumer.h>
-> > +
-> > +#define DRIVER_NAME		"ltc2309"
-> I'd rather see this string directly in line within the code.
-> In general the places you used it could have different strings, so it's
-> much nicer just to see the string itself where it is used.
-> 
-> > +#define LTC2309_ADC_RESOLUTION	12
-> > +
-> > +#define LTC2309_DIN_CH_MASK	GENMASK(7, 4)
-> > +#define LTC2309_DIN_SDN		BIT(7)
-> > +#define LTC2309_DIN_OSN		BIT(6)
-> > +#define LTC2309_DIN_S1		BIT(5)
-> > +#define LTC2309_DIN_S0		BIT(4)
-> > +#define LTC2309_DIN_UNI		BIT(3)
-> > +#define LTC2309_DIN_SLEEP	BIT(2)
-> > +
-> > +/* struct ltc2309 - internal device data structure
->   /*
->    * struct ltc2039
-> 
-> 
-> for comments in IIO.
-> 
-> Also, this is kernel doc so should be
->   /**
->    * struct ...
-> 
-> > + *
-> > + * @dev:	Device reference
-> > + * @client:	I2C reference
-> > + * @vref:	External reference source
-> > + * @lock:	Lock to serialize data access
-> > + * @vref_mv	Internal voltage reference
-> > + */
-> > +struct ltc2309 {
-> > +	struct device		*dev;
-> > +	struct i2c_client	*client;
-> > +	struct regulator	*vref;
-> > +	struct mutex		lock; /* serialize data access */
-> > +	int			vref_mv;
-> > +};
-> > +
-> > +/* Order matches expected channel address, See datasheet Table 1. */
-> > +enum ltc2309_channels {
-> > +	LTC2309_CH0_CH1 = 0,
-> > +	LTC2309_CH2_CH3,
-> > +	LTC2309_CH4_CH5,
-> > +	LTC2309_CH6_CH7,
-> > +	LTC2309_CH1_CH0,
-> > +	LTC2309_CH3_CH2,
-> > +	LTC2309_CH5_CH4,
-> > +	LTC2309_CH7_CH6,
-> > +	LTC2309_CH0,
-> > +	LTC2309_CH2,
-> > +	LTC2309_CH4,
-> > +	LTC2309_CH6,
-> > +	LTC2309_CH1,
-> > +	LTC2309_CH3,
-> > +	LTC2309_CH5,
-> > +	LTC2309_CH7,
-> > +};
-> > +
-> > +#define LTC2309_CHAN(_chan, _addr) {				\
-> > +	.type = IIO_VOLTAGE,					\
-> > +	.indexed = 1,						\
-> > +	.address = _addr,					\
-> > +	.channel = _chan,					\
-> > +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> > +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> > +	.datasheet_name = "CH" #_chan,				\
-> 
-> I'd not bother providing a datasheet name it it's so directly related
-> to the channel index which is readily available. It just adds
-> ABI that is fairly pointless as it isn't conveying any information.
-> 
-> > +}
-> > +
-> > +#define LTC2309_DIFF_CHAN(_chan, _chan2, _addr) {		\
-> > +	.type = IIO_VOLTAGE,					\
-> > +	.differential = 1,					\
-> > +	.indexed = 1,						\
-> > +	.address = _addr,					\
-> > +	.channel = _chan,					\
-> > +	.channel2 = _chan2,					\
-> > +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),		\
-> > +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),	\
-> > +	.datasheet_name = "CH" #_chan "-CH" #_chan2,		\
-> 
-> As above - this is obvious anyway, I'd drop the datasheet_name.
-> It's optional so just don't provide it ;)
-> 
-> > +}
-> > +
-> > +static const struct iio_chan_spec ltc2309_channels[] = {
-> > +	LTC2309_CHAN(0, LTC2309_CH0),
-> > +	LTC2309_CHAN(1, LTC2309_CH1),
-> > +	LTC2309_CHAN(2, LTC2309_CH2),
-> > +	LTC2309_CHAN(3, LTC2309_CH3),
-> > +	LTC2309_CHAN(4, LTC2309_CH4),
-> > +	LTC2309_CHAN(5, LTC2309_CH5),
-> > +	LTC2309_CHAN(6, LTC2309_CH6),
-> > +	LTC2309_CHAN(7, LTC2309_CH7),
-> > +	LTC2309_DIFF_CHAN(0, 1, LTC2309_CH0_CH1),
-> > +	LTC2309_DIFF_CHAN(2, 3, LTC2309_CH2_CH3),
-> > +	LTC2309_DIFF_CHAN(4, 5, LTC2309_CH4_CH5),
-> > +	LTC2309_DIFF_CHAN(6, 7, LTC2309_CH6_CH7),
-> > +	LTC2309_DIFF_CHAN(1, 0, LTC2309_CH1_CH0),
-> > +	LTC2309_DIFF_CHAN(3, 2, LTC2309_CH3_CH2),
-> > +	LTC2309_DIFF_CHAN(5, 4, LTC2309_CH5_CH4),
-> > +	LTC2309_DIFF_CHAN(7, 6, LTC2309_CH7_CH6),
-> > +};
-> > +
-> > +static int ltc2309_read_raw(struct iio_dev *indio_dev,
-> > +			    struct iio_chan_spec const *chan, int *val,
-> > +			    int *val2, long mask)
-> > +{
-> > +	struct ltc2309 *ltc2309 = iio_priv(indio_dev);
-> > +	u16 buf;
-> > +	int ret;
-> > +	u8 din;
-> > +
-> > +	switch (mask) {
-> > +	case IIO_CHAN_INFO_RAW:
-> > +		din = FIELD_PREP(LTC2309_DIN_CH_MASK, chan->address & 0x0f) |
-> > +			FIELD_PREP(LTC2309_DIN_UNI, 1) |
-> > +			FIELD_PREP(LTC2309_DIN_SLEEP, 0);
-> > +
-> > +		mutex_lock(&ltc2309->lock);
-> > +		ret = i2c_smbus_write_byte(ltc2309->client, din);
-> > +		if (ret < 0) {
-> > +			dev_err(ltc2309->dev, "i2c command failed: %pe\n",
-> > +				ERR_PTR(ret));
-> > +			goto out;
-> 
-> This sort of messy mutex handling for error paths is a strong signal
-> that the code would be better with a little utility function around which
-> you take the locks.  
-> 
-> 		mutex_lock(&ltc2309->lock);
-> 		ret = ltc2309_read_raw(...);  // move the field prep in there as well even though it expands the scope a tiny bit
-> 		mutex_unlock()
-> 		if (ret)
-> 			...
-> 
-> 		carry on.
-> 
-> > +		}
-> > +
-> > +		ret = i2c_master_recv(ltc2309->client, (char *)&buf, 2);
-> > +		if (ret < 0) {
-> > +			dev_err(ltc2309->dev, "i2c read failed: %pe\n",
-> > +				ERR_PTR(ret));
-> > +			goto out;
-> > +		}
-> > +
-> > +		*val = be16_to_cpu(buf) >> 4;
-> This doesn't really need to be under the lock, but if it makes sense to
-> do it in the utility function I suggest above then that's fine.
-> 
-> > +		mutex_unlock(&ltc2309->lock);
-> > +
-> > +		ret = IIO_VAL_INT;
-> 
-> 		return IIO_VAL_INT;
-> 
-> > +		break;
-> > +	case IIO_CHAN_INFO_SCALE:
-> > +		*val = ltc2309->vref_mv;
-> > +		*val2 = LTC2309_ADC_RESOLUTION;
-> > +		ret = IIO_VAL_FRACTIONAL_LOG2;
-> return IIO_VAL_FRACTIONAL_LOG2 and get rid of the rbeadk.
-> > +		break;
-> > +	default:
-> > +		ret = -EINVAL;
-> return -EINVAL;
-> > +		break;
-> > +	}
-> > +
-> > +	return ret;
-> > +
-> > +out:
-> > +	mutex_unlock(&ltc2309->lock);
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct iio_info ltc2309_info = {
-> > +	.read_raw = ltc2309_read_raw,
-> > +};
-> > +
-> > +void ltc2309_regulator_disable(void *regulator)
-> > +{
-> > +	struct regulator *r = (struct regulator *)regulator;
-> > +
-> > +	regulator_disable(r);
-> > +}
-> > +
-> > +static int ltc2309_probe(struct i2c_client *client)
-> > +{
-> > +	struct iio_dev *indio_dev;
-> > +	struct ltc2309 *ltc2309;
-> > +	int ret = 0;
-> 
-> Always set in paths where it is used so don't set it here.
-> 
-> 
-> > +
-> > +	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*ltc2309));
-> > +	if (!indio_dev)
-> > +		return -ENOMEM;
-> > +
-> > +	i2c_set_clientdata(client, indio_dev);
-> 
-> Is this used?
-> 
-> > +
-> > +	ltc2309 = iio_priv(indio_dev);
-> > +	ltc2309->dev = &indio_dev->dev;
-> > +	ltc2309->client = client;
-> > +	ltc2309->vref_mv = 4096; /* Default to the internal ref */
-> > +
-> > +	indio_dev->name = DRIVER_NAME;
-> > +	indio_dev->dev.parent = &client->dev;
-> 
-> That's not been needed for quite a long time as devm_iio_device_alloc()
-> sets it. Ultimately it's here:
-> https://elixir.bootlin.com/linux/latest/source/drivers/iio/industrialio-core.c#L1645
-> 
-> 
-> > +	indio_dev->modes = INDIO_DIRECT_MODE;
-> > +	indio_dev->channels = ltc2309_channels;
-> > +	indio_dev->num_channels = ARRAY_SIZE(ltc2309_channels);
-> > +	indio_dev->info = &ltc2309_info;
-> > +
-> > +	ltc2309->vref = devm_regulator_get_optional(&client->dev, "vref");
-> > +	if (!IS_ERR_OR_NULL(ltc2309->vref)) {
-> 
-> What if you get a request to defer?  To use devm_regulator_get_optional()
-> and detect the cases where the regulator is not provided separately from
-> errors during the probe.  IIRC check for PTR_ERR(-ENODEV) as meaning 
-> one wasn't supplied.  However do check I have that right.
-> 
-> > +		ret = regulator_enable(ltc2309->vref);
-> > +		if (ret) {
-> > +			dev_err(ltc2309->dev, "failed to enable vref\n");
-> > +			return ret;
-> 
-> dev_err_probe() for all error messages in a probe function. 
-> 
-> > +		}
-> > +
-> > +		ret = devm_add_action_or_reset(ltc2309->dev,
-> > +					       ltc2309_regulator_disable,
-> > +					       ltc2309->vref);
-> > +		if (ret) {
-> > +			dev_err(ltc2309->dev,
-> > +				"failed to add regulator_disable action: %d\n",
-> > +				ret);
-> return dev_err_probe()
-> 
-> > +			return ret;
-> > +		}
-> > +
-> > +		ret = regulator_get_voltage(ltc2309->vref);
-> > +		if (ret < 0)
-> > +			return ret;
-> > +
-> > +		ltc2309->vref_mv = ret / 1000;
-> > +	}
-> > +
-> > +	mutex_init(&ltc2309->lock);
-> > +
-> > +	return devm_iio_device_register(&client->dev, indio_dev);
-> > +}
-> > +
-> > +static const struct of_device_id ltc2309_of_match[] = {
-> > +	{ .compatible = "lltc,ltc2309" },
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, ltc2309_of_match);
-> > +
-> > +static const struct i2c_device_id ltc2309_id[] = {
-> > +	{"ltc2309", 0},
-> 
-> Don't provide data unless it's doing anything useful.
-> Also, consistency on spacing after { and before }
-> 
-> > +	{},
-> 
-> No comma on a list terminator like this one as nothing can come
-> after it that isn't a bug.
-> 
-> > +};
-> > +MODULE_DEVICE_TABLE(i2c, ltc2309_id);
-> > +
-> > +static struct i2c_driver ltc2309_driver = {
-> > +	.driver = {
-> > +		.name = DRIVER_NAME,
-> > +		.of_match_table = ltc2309_of_match,
-> > +	},
-> > +	.probe		= ltc2309_probe,
-> > +	.id_table	= ltc2309_id,
-> > +};
-> > +module_i2c_driver(ltc2309_driver);
-> > +
-> > +MODULE_AUTHOR("Liam Beguin <liambeguin@gmail.com>");
-> > +MODULE_DESCRIPTION("Linear Technology LTC2309 ADC");
-> > +MODULE_LICENSE("GPL v2");
-> > 
-> 
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	case hwmon_power:
+> +		switch (attr) {
+> +		case hwmon_power_input:
+> +			err = regmap_read(data->regmap,
+> +					  ISL28022_REG_POWER, &regval);
+> +			if (err < 0)
+> +				return err;
+> +			*val = ((51200000L * ((long)data->gain)) /
+> +				(long)data->shunt) * (long)regval;
+
+Same here.
+
+> +			break;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static umode_t isl28022_is_visible(const void *data, enum hwmon_sensor_types type,
+> +				   u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_in:
+> +		switch (attr) {
+> +		case hwmon_in_input:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_curr:
+> +		switch (attr) {
+> +		case hwmon_curr_input:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	case hwmon_power:
+> +		switch (attr) {
+> +		case hwmon_power_input:
+> +			return 0444;
+> +		default:
+> +			break;
+> +		}
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +	return 0;
+> +}
+> +
+> +static const struct hwmon_channel_info *isl28022_info[] = {
+> +	HWMON_CHANNEL_INFO(in,
+> +			   HWMON_I_INPUT),	/* channel 0: bus voltage (mV) */
+> +	HWMON_CHANNEL_INFO(curr,
+> +			   HWMON_C_INPUT),	/* channel 1: current (mA) */
+> +	HWMON_CHANNEL_INFO(power,
+> +			   HWMON_P_INPUT),	/* channel 1: power (µW) */
+> +	NULL
+> +};
+> +
+> +static const struct hwmon_ops isl28022_hwmon_ops = {
+> +	.is_visible = isl28022_is_visible,
+> +	.read = isl28022_read,
+> +};
+> +
+> +static const struct hwmon_chip_info isl28022_chip_info = {
+> +	.ops = &isl28022_hwmon_ops,
+> +	.info = isl28022_info,
+> +};
+> +
+> +static bool isl28022_is_writeable_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case ISL28022_REG_CONFIG:
+> +	case ISL28022_REG_CALIB:
+> +	case ISL28022_REG_SHUNT_THR:
+> +	case ISL28022_REG_BUS_THR:
+> +	case ISL28022_REG_INT:
+> +	case ISL28022_REG_AUX:
+> +		return true;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static bool isl28022_is_volatile_reg(struct device *dev, unsigned int reg)
+> +{
+> +	switch (reg) {
+> +	case ISL28022_REG_CONFIG:
+> +	case ISL28022_REG_SHUNT:
+> +	case ISL28022_REG_BUS:
+> +	case ISL28022_REG_POWER:
+> +	case ISL28022_REG_CURRENT:
+> +	case ISL28022_REG_INT:
+> +	case ISL28022_REG_AUX:
+> +		return true;
+> +	}
+> +	return true;
+> +}
+> +
+> +static const struct regmap_config isl28022_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 16,
+> +	.max_register = ISL28022_REG_MAX,
+> +	.writeable_reg = isl28022_is_writeable_reg,
+> +	.volatile_reg = isl28022_is_volatile_reg,
+> +	.val_format_endian = REGMAP_ENDIAN_BIG,
+> +	.cache_type = REGCACHE_RBTREE,
+> +	.use_single_read = true,
+> +	.use_single_write = true,
+> +};
+> +
+> +static const struct i2c_device_id isl28022_ids[] = {
+> +	{ "isl28022", 0},
+> +	{ /* LIST END */ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, isl28022_ids);
+> +
+> +static int shunt_voltage_show(struct seq_file *seqf, void *unused)
+> +{
+> +	struct isl28022_data *data = seqf->private;
+> +	unsigned int regval;
+> +	int err;
+> +
+> +	err = regmap_read(data->regmap,
+> +			  ISL28022_REG_SHUNT, &regval);
+> +	if (err)
+> +		return err;
+> +
+> +	/* print shunt voltage in micro volt  */
+> +	seq_printf(seqf, "%d\n", regval * 10);
+> +
+> +	return 0;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(shunt_voltage);
+> +
+> +static struct dentry *isl28022_debugfs_root;
+> +
+> +static void isl28022_debugfs_remove(void *res)
+> +{
+> +	debugfs_remove_recursive(res);
+> +}
+> +
+> +static void isl28022_debugfs_init(struct i2c_client *client, struct isl28022_data *data)
+> +{
+> +	char name[16];
+> +	struct dentry *debugfs;
+> +
+> +	scnprintf(name, sizeof(name), "%d-%04hx", client->adapter->nr, client->addr);
+> +
+> +	debugfs = debugfs_create_dir(name, isl28022_debugfs_root);
+> +	debugfs_create_file("shunt_voltage", 0444, debugfs, data, &shunt_voltage_fops);
+> +
+> +	devm_add_action_or_reset(&client->dev, isl28022_debugfs_remove, debugfs);
+> +}
+> +
+> +/*
+> + * read property values and make consistency checks.
+> + *
+> + * following values for shunt range and resistor are allowed:
+> + *   40 mV -> gain 1, shunt min.  800 micro ohms
+> + *   80 mV -> gain 2, shunt min. 1600 micro ohms
+> + *  160 mV -> gain 4, shunt min. 3200 micro ohms
+> + *  320 mV -> gain 8, shunt min. 6400 micro ohms
+> + */
+> +static int isl28022_read_properties(struct device *dev, struct isl28022_data *data)
+> +{
+> +	u32 val;
+> +	int err;
+> +
+> +	err = device_property_read_u32(dev, "shunt-resistor-micro-ohms", &val);
+> +	if (err == -EINVAL)
+> +		val = 10000;
+> +	else if (err < 0)
+> +		return err;
+> +	data->shunt = val;
+> +
+> +	err = device_property_read_u32(dev, "renesas,shunt-range-microvolt", &val);
+> +	if (err == -EINVAL)
+> +		val = 320000;
+> +	else if (err < 0)
+> +		return err;
+> +
+> +	switch (val) {
+> +	case 40000:
+> +		data->gain = 1;
+> +		if (data->shunt < 800)
+> +			goto shunt_invalid;
+> +		break;
+> +	case 80000:
+> +		data->gain = 2;
+> +		if (data->shunt < 1600)
+> +			goto shunt_invalid;
+> +		break;
+> +	case 160000:
+> +		data->gain = 4;
+> +		if (data->shunt < 3200)
+> +			goto shunt_invalid;
+> +		break;
+> +	case 320000:
+> +		data->gain = 8;
+> +		if (data->shunt < 6400)
+> +			goto shunt_invalid;
+> +		break;
+> +	default:
+> +		dev_err(dev, "renesas,shunt-range-microvolt invalid value %d\n", val);
+> +		return -EINVAL;
+> +	}
+> +
+> +	err = device_property_read_u32(dev, "renesas,average-samples", &val);
+> +	if (err == -EINVAL)
+> +		val = 1;
+> +	else if (err < 0)
+> +		return err;
+> +	if (val > 128 || hweight32(val) != 1) {
+> +		dev_err(dev, "renesas,average-samples invalid value %d\n", val);
+> +		return -EINVAL;
+> +	}
+> +	data->average = val;
+> +
+> +	return 0;
+> +
+> +shunt_invalid:
+> +	dev_err(dev, "renesas,shunt-resistor-microvolt invalid value %d\n", data->shunt);
+> +	return -EINVAL;
+> +}
+> +
+> +/*
+> + * write configuration and calibration registers
+> + *
+> + * The driver supports only shunt and bus continuous ADC mode at 15bit resolution
+> + * with averaging from 1 to 128 samples (pow of 2) on both channels.
+> + * Shunt voltage gain 1,2,4 or 8 is allowed.
+> + * The bus voltage range is 60V fixed.
+> + */
+> +static int isl28022_config(struct isl28022_data *data)
+> +{
+> +	int err;
+> +
+> +	data->config = (ISL28022_MODE_CONT_SB << ISL28022_MODE_SHIFT) |
+> +			(ISL28022_BRNG_60 << ISL28022_BRNG_SHIFT) |
+> +			(__ffs(data->gain) << ISL28022_PG_SHIFT) |
+> +			((ISL28022_ADC_15_1 + __ffs(data->average)) << ISL28022_SADC_SHIFT) |
+> +			((ISL28022_ADC_15_1 + __ffs(data->average)) << ISL28022_BADC_SHIFT);
+> +
+> +	data->calib = data->shunt ? 0x8000 / data->gain : 0;
+
+data->shunt must not be 0 because otherwise there would be various
+divide-by-0 errors, so the conditional is unnecessary.
+
+data->calib and data->config are not used outside this function, so storing
+the values in struct isl28022_data is pointless.
+
+> +
+> +	err = regmap_write(data->regmap, ISL28022_REG_CONFIG, data->config);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	err = regmap_write(data->regmap, ISL28022_REG_CALIB, data->calib);
+> +	if (err < 0)
+> +		return err;
+> +
+> +	return 0;
+
+Simplify to
+	return regmap_write(data->regmap, ISL28022_REG_CALIB, data->calib);
+
+because regmap_write() either returns an error code or 0, so duplicating it
+has no value.
+
+> +}
+> +
+> +static int isl28022_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct device *hwmon_dev;
+> +	struct isl28022_data *data;
+> +	int err;
+> +
+> +	if (!i2c_check_functionality(client->adapter,
+> +				     I2C_FUNC_SMBUS_BYTE_DATA |
+> +				     I2C_FUNC_SMBUS_WORD_DATA))
+> +		return -ENODEV;
+> +
+> +	data = devm_kzalloc(dev, sizeof(struct isl28022_data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	err = isl28022_read_properties(dev, data);
+> +	if (err)
+> +		return err;
+> +
+> +	data->regmap = devm_regmap_init_i2c(client, &isl28022_regmap_config);
+> +	if (IS_ERR(data->regmap))
+> +		return PTR_ERR(data->regmap);
+> +
+> +	err = isl28022_config(data);
+> +	if (err)
+> +		return err;
+> +
+> +	isl28022_debugfs_init(client, data);
+> +
+> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, "isl28022_hwmon",
+> +							 data, &isl28022_chip_info, NULL);
+> +	if (IS_ERR(hwmon_dev))
+> +		return PTR_ERR(hwmon_dev);
+> +
+> +	dev_info(dev, "%s: sensor '%s'\n", dev_name(hwmon_dev), client->name);
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id __maybe_unused isl28022_of_match[] = {
+> +	{ .compatible = "renesas,isl28022"},
+> +	{ /* LIST END */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, isl28022_of_match);
+> +
+> +static struct i2c_driver isl28022_driver = {
+> +	.class		= I2C_CLASS_HWMON,
+> +	.driver = {
+> +		.name	= "isl28022",
+> +	},
+> +	.probe_new	= isl28022_probe,
+
+.probe as suggested by Uwe.
+
+> +	.id_table	= isl28022_ids,
+> +};
+> +
+> +static int __init
+> +isl28022_init(void)
+> +{
+> +	int err;
+> +
+> +	isl28022_debugfs_root = debugfs_create_dir("isl28022", NULL);
+> +	err = i2c_add_driver(&isl28022_driver);
+> +	if (!err)
+> +		return 0;
+> +
+> +	debugfs_remove_recursive(isl28022_debugfs_root);
+> +	return err;
+> +}
+> +
+> +static void __exit
+> +isl28022_exit(void)
+> +{
+> +	i2c_del_driver(&isl28022_driver);
+> +	debugfs_remove_recursive(isl28022_debugfs_root);
+> +}
+> +
+> +module_init(isl28022_init);
+> +module_exit(isl28022_exit);
+> +
+> +MODULE_AUTHOR("Carsten Spieß <mail@carsten-spiess.de>");
+> +MODULE_DESCRIPTION("ISL28022 driver");
+> +MODULE_LICENSE("GPL");
+
