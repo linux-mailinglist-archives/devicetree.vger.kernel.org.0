@@ -2,563 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3377378CB00
-	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CA9178CB10
+	for <lists+devicetree@lfdr.de>; Tue, 29 Aug 2023 19:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238088AbjH2RTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 13:19:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40188 "EHLO
+        id S229535AbjH2RUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 13:20:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237711AbjH2RSf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:18:35 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 135F1CF3;
-        Tue, 29 Aug 2023 10:18:14 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-977e0fbd742so599069966b.2;
-        Tue, 29 Aug 2023 10:18:13 -0700 (PDT)
+        with ESMTP id S237800AbjH2RUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 13:20:22 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B62172B
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:19:32 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-98377c5d53eso602629366b.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 10:19:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693329476; x=1693934276;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9dgLUHwMy8Op6Q955RlBIJYZNEpbxIwHtFF9Axp5TBc=;
-        b=rVocglGgRvpy+hgqv358C8NtQBIl+vNJ9cAF/wVlRixvPboXyjdw4vtXaI1sOyXcek
-         Jsyq/4NNhXpliV2UmTHOR95bZzPPaOdsrz6beMnEaO7NC9pmJygJfdEgXIblbEUDYoVQ
-         w1Aow4ihAO0S263Z3BxXFi+Za75AfB9GWduekvLTlLfAn0JCEnBRf2oTZ/tFPSFC4BPJ
-         o21DKAiEh0uKjHHd/H2tX2hu2QACHNMsooBUvbIJ9N9kS2ZPR6gnm2VGSrcbT/OCeRwy
-         cByHzv+q/ysAd8dyiNLiQppVdsrjyT4XsRpp7eia1Nb7Tq1mTfAKidgwcooLEulq4Z9Z
-         YBVw==
+        d=linaro.org; s=google; t=1693329563; x=1693934363;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=juVcysWXiJ/IJ4XG8a/dh2JBDDWgv7UxtX06Nd3Bu5o=;
+        b=vIB7/WjV13mXf8IEdBSj7q429vNlf5MbILTti/7wVSghbI8W3XKjf9LrUTsqv67Z50
+         UN9MjQ/TefegBGrPsT/FgQIX/Jtt+vvdhoSU/K9P5kNth9xWmVqYSg7CGtxz8QgPz/cb
+         mtTzsWg427ETPl3Q3LwNQEk956u8zgUq4/ifiHGWVKb5QIwRepZ6Bw7bYYXAzEuUrQZ4
+         MhsOn7ocGGn9P/wS4a82P5dKNboarB8LVyNBlpzDuCcd9IQGQHUMWp2JfaKUl6fg8REJ
+         Gl3qEKB+qdqFl0xVhrnPgHzUdEdFrmXG3LGj5snpfj0kECRxDtSiVQJV7O52dJ6/4pNX
+         OD+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693329476; x=1693934276;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9dgLUHwMy8Op6Q955RlBIJYZNEpbxIwHtFF9Axp5TBc=;
-        b=AwkfyfGV8+ZgFatkjy51V3PNUvzFy5dfocEdBM/SU0FxIGLg4koXQstKpPQYYuhDcS
-         Z42EnAGwfktH7q48cjexXrYzZFCyIDZcg97J1irLYnF+0LdaP11tV1WmguDFob7GrqPV
-         mUh8L0KpHxQeIZcikq+RkGmEs0yD+izCRNG9bZluhg8GpxJoHvhwuTjXROQSKtxsw8hv
-         kKtoWdJG+LCUeHiJn/s7AVBLixy/BXtJ8dBrkHIfbMpkKlTxzuHKAD5CKnY4/lbLMRcb
-         Ubpf433/7+DCnn6vfovPADIQkHHjtAdGtDmHwQSZam5thirNucw4uWNsfbmmfMz4zU7Y
-         PLgw==
-X-Gm-Message-State: AOJu0YxK4VIM44VV1yXrXUTBu9veWnoB3y/jbJRxn52s75+AGv/JyStY
-        oyee17al3R+J6Bh4gqRxxg==
-X-Google-Smtp-Source: AGHT+IEAHEpea0my2awNoKKTjwFIoo2aOA5dRzNaAYj8ArUp4igUchYtsYpX/tLmQOBb/TDR6xtBKA==
-X-Received: by 2002:a17:906:5a45:b0:9a1:cdf1:ba6 with SMTP id my5-20020a1709065a4500b009a1cdf10ba6mr14633357ejc.12.1693329475384;
-        Tue, 29 Aug 2023 10:17:55 -0700 (PDT)
-Received: from U4.lan ([2001:9e8:b958:3410:8e0c:ed68:cd6c:7cb8])
-        by smtp.gmail.com with ESMTPSA id a21-20020a1709062b1500b00993cc1242d4sm6115834ejg.151.2023.08.29.10.17.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Aug 2023 10:17:55 -0700 (PDT)
-From:   Alex Bee <knaerzche@gmail.com>
-To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Lee Jones <lee@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>
-Cc:     Elaine Zhang <zhangqing@rock-chips.com>,
-        Johan Jonker <jbx6244@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, alsa-devel@alsa-project.org,
-        linux-clk@vger.kernel.org, linux-phy@lists.infradead.org,
-        Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH 31/31] ARM: dts: Add Geniatech XPI-3128 RK3128 board
-Date:   Tue, 29 Aug 2023 19:16:47 +0200
-Message-ID: <20230829171647.187787-32-knaerzche@gmail.com>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20230829171647.187787-1-knaerzche@gmail.com>
-References: <20230829171647.187787-1-knaerzche@gmail.com>
+        d=1e100.net; s=20221208; t=1693329563; x=1693934363;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=juVcysWXiJ/IJ4XG8a/dh2JBDDWgv7UxtX06Nd3Bu5o=;
+        b=FXfh8N0gxTWRD0D72rmeOHhIMMQKxxG8LYk8NlrJcWpoMVC0AZ7cYJJ0qVgJ/puGbJ
+         pWJtUTTD2pm2zH6WL3A/Y86kU809/9kZfaUEe/IJ/czFSlcRD06Zryre52NfbPp1Lt4r
+         7NtlxufC+5eiHFG1nb2WQ6lJfarHL+OapFK9M6rBV3kEdGPlkBXRzoYh68vSZWroDyCy
+         2h1pKkR4Xh7asVPjTs+2Eaonz5dq8r2oJ0bQgSDp1aitMCC/v5dvPSTRva/GCO8kDqAu
+         b8RzJwOG0S/jT076bAVBGjW9dPmNZ7tiSWqgMBgCIwM/F/PQevEoO2SXrqsw+Ofx41HM
+         PbIQ==
+X-Gm-Message-State: AOJu0YzJzm9ewzOF/6lVbeh+h/pGxViN7LiijVN6lAj+4UeGOcf5wRRT
+        urvDjnELGcb+RtYVG7NmB2HuUeylFqVE6Kt9ND8=
+X-Google-Smtp-Source: AGHT+IG99CKE3yBiVqT98dSbvGV23AfrwdP7P4Als9sQJYd8EfGlKW/+udUM12v8mOqkUEYSZHlsXw==
+X-Received: by 2002:a17:906:3094:b0:9a1:fda6:2e26 with SMTP id 20-20020a170906309400b009a1fda62e26mr13591155ejv.55.1693329562869;
+        Tue, 29 Aug 2023 10:19:22 -0700 (PDT)
+Received: from [192.168.0.22] ([77.252.47.196])
+        by smtp.gmail.com with ESMTPSA id j16-20020a170906051000b0099cc402d3ddsm6145756eja.202.2023.08.29.10.19.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Aug 2023 10:19:22 -0700 (PDT)
+Message-ID: <3aa9067e-8341-5e72-ccee-1c474692fbb2@linaro.org>
+Date:   Tue, 29 Aug 2023 19:19:20 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH V2 2/4] dt-bindings: hwmon: ina3221: Add summation-bypass
+Content-Language: en-US
+To:     Jon Hunter <jonathanh@nvidia.com>,
+        Ninad Malwade <nmalwade@nvidia.com>, jdelvare@suse.com,
+        linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        thierry.reding@gmail.com, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+References: <20230825164249.22860-1-nmalwade@nvidia.com>
+ <20230825164249.22860-3-nmalwade@nvidia.com>
+ <7595f0d3-7a59-9837-ef6b-627be3688667@linaro.org>
+ <ef17206a-aaab-5a13-fdc1-7a8d9d04c6dd@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <ef17206a-aaab-5a13-fdc1-7a8d9d04c6dd@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-XPI-3128 is RK3128 based SBC form Geniatec in RPi form factor
+On 29/08/2023 14:48, Jon Hunter wrote:
+> 
+> 
+> On 26/08/2023 09:56, Krzysztof Kozlowski wrote:
+>> On 25/08/2023 18:42, Ninad Malwade wrote:
+>>> The INA3221 has a critical alert pin that can be controlled by the
+>>> summation control function. This function adds the single
+>>> shunt-voltage conversions for the desired channels in order to
+>>> compare the combined sum to the programmed limit. The Shunt-Voltage
+>>> Sum Limit register contains the programmed value that is compared
+>>> to the value in the Shunt-Voltage Sum register in order to
+>>> determine if the total summed limit is exceeded. If the
+>>> shunt-voltage sum limit value is exceeded, the critical alert pin
+>>> pulls low.
+>>>
+>>> For the summation limit to have a meaningful value, it is necessary
+>>> to use the same shunt-resistor value on all included channels. Add a
+>>> new property, 'summation-bypass', to allow specific channels to be
+>>> excluded from the summation control function if the shunt resistor
+>>> is different to other channels.
+>>>
+>>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>>> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+>>> ---
+>>>   .../devicetree/bindings/hwmon/ti,ina3221.yaml  | 18 ++++++++++++++++++
+>>>   1 file changed, 18 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+>>> index 0c6d41423d8c..20c23febf575 100644
+>>> --- a/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+>>> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina3221.yaml
+>>> @@ -55,6 +55,24 @@ patternProperties:
+>>>         shunt-resistor-micro-ohms:
+>>>           description: shunt resistor value in micro-Ohm
+>>>   
+>>> +      summation-bypass:
+>>
+>> What is the type? There is no vendor prefix here, so you added it as a
+>> generic property. Which other devices use or can use it?
+>>
+>>> +        description: |
+>>> +          The INA3221 has a critical alert pin that can be controlled by the
+>>> +          summation control function. This function adds the single
+>>> +          shunt-voltage conversions for the desired channels in order to
+>>> +          compare the combined sum to the programmed limit. The Shunt-Voltage
+>>> +          Sum Limit register contains the programmed value that is compared
+>>> +          to the value in the Shunt-Voltage Sum register in order to
+>>> +          determine if the total summed limit is exceeded. If the
+>>> +          shunt-voltage sum limit value is exceeded, the critical alert pin
+>>> +          pulls low.
+>>> +
+>>> +          For the summation limit to have a meaningful value, it is necessary
+>>> +          to use the same shunt-resistor value on all included channels. If
+>>> +          this is not the case for specific channels, then the
+>>> +          'summation-bypass' can be populated for a specific channel to
 
-Specs:
-- Rockchip RK3128
-- 1 GB DDR3 DRAM
-- 8/16 GB eMMC
-- TF card slot
-- 100 MBit ethernet / RJ45
-- optional Marvell 88W8897 (USB version)
-- 3 x USB host (onboard GL852G hub connected to SoC ehci host)
-- 1 x USB otg
-- 1 x Type-C (solely for powering the board)
-- HDMI 1.4 out
-- 1 ADC button
-- IR receiver
-- Artasie AM1805 RTC
-- 40 pin header
+"populated" is confusing here. I guess you wanted "can be used"?
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
----
- arch/arm/boot/dts/rockchip/Makefile           |   1 +
- .../arm/boot/dts/rockchip/rk3128-xpi-3128.dts | 431 ++++++++++++++++++
- 2 files changed, 432 insertions(+)
- create mode 100644 arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
+>>> +          exclude from the summation control function.
+>>
+>> I don't understand what this property does. You described feature in the
+>> device, that's good, but how does it map to the property? Bypass means
+>> disable?
+> 
+> 
+> Yes it means 'disable'. I kept as 'bypass' to align with the original 
+> patch [0], but if it is clearer, we could change this to be 
+> 'summation-disable'.
 
-diff --git a/arch/arm/boot/dts/rockchip/Makefile b/arch/arm/boot/dts/rockchip/Makefile
-index 0f46e18fe275..58868cf0510b 100644
---- a/arch/arm/boot/dts/rockchip/Makefile
-+++ b/arch/arm/boot/dts/rockchip/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rk3066a-mk808.dtb \
- 	rk3066a-rayeager.dtb \
- 	rk3128-evb.dtb \
-+	rk3128-xpi-3128.dtb \
- 	rk3188-bqedison2qc.dtb \
- 	rk3188-px3-evb.dtb \
- 	rk3188-radxarock.dtb \
-diff --git a/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts b/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-new file mode 100644
-index 000000000000..842b5f20d98a
---- /dev/null
-+++ b/arch/arm/boot/dts/rockchip/rk3128-xpi-3128.dts
-@@ -0,0 +1,431 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include "rk3128.dtsi"
-+
-+/ {
-+	model = "Geniatech XPI-3128";
-+	compatible = "geniatech,xpi-3128", "rockchip,rk3128";
-+
-+	aliases {
-+		ethernet0 = &gmac;
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio1;
-+		gpio2 = &gpio2;
-+		gpio3 = &gpio3;
-+		mmc0 = &emmc;
-+		mmc1 = &sdmmc;
-+		serial0 = &uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 1>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <3300000>;
-+
-+		button-recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <0>;
-+		};
-+	};
-+
-+	dc_5v: dc-5v-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "DC_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/*
-+	 * This is a vbus-supply, which also supplies the GL852G usb hub,
-+	 * thus has to be always-on
-+	 */
-+	host_pwr_5v: host-pwr-5v-regulator {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <1500>;
-+		regulator-name = "HOST_PWR_5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_5v>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&host_drv>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	ir-receiver {
-+		compatible = "gpio-ir-receiver";
-+		gpios = <&gpio3 RK_PD2 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&ir_int>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-power {
-+			gpios = <&gpio0 RK_PD2 GPIO_ACTIVE_HIGH>;
-+			function = LED_FUNCTION_POWER;
-+			color = <LED_COLOR_ID_BLUE>;
-+			default-state = "on";
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&power_led>;
-+		};
-+
-+		led-spd {
-+			gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
-+			function = LED_FUNCTION_LAN;
-+			color = <LED_COLOR_ID_GREEN>;
-+			/*
-+			 * currently not allowed to be set as per
-+			 * https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/common.yaml
-+			 * and has to set in userspace
-+			 *
-+			 * linux,default-trigger = "netdev";
-+			 */
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&spd_led>;
-+		};
-+	};
-+
-+	mcu3v3: mcu3v3-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "MCU3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_ddr: vcc-ddr-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_DDR";
-+		regulator-min-microvolt = <1500000>;
-+		regulator-max-microvolt = <1500000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_io: vcc-io-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_IO";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_lan: vcc-lan-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_LAN";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc_sd: vcc-sd-regulator {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
-+		startup-delay-us = <500>;
-+		regulator-name = "VCC_SD";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&sdmmc_pwren>;
-+	};
-+
-+	vcc_sys: vcc-sys-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC_SYS";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_5v>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcc33_hdmi: vcc33-hdmi-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCC33_HDMI";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcca_33>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vcca_33: vcca-33-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VCCA_33";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_11: vdd-11-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD_11";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vcc_sys>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd11_hdmi: vdd11-hdmi-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "VDD11_HDMI";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		vin-supply = <&vdd_11>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	vdd_arm: vdd-arm-regulator {
-+		compatible = "pwm-regulator";
-+		regulator-name = "VDD_ARM";
-+		pwms = <&pwm1 0 25000 1>;
-+		pwm-supply = <&vcc_sys>;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <1400000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	/*
-+	 * As per schematics vdd_log is minimum 900 mV, maximum 1400 mV.
-+	 * Since there are HW blocks in PD_LOGIC which are all driven by
-+	 * this supply, which either do not have a driver at all or the
-+	 * driver does not have regulator support, but are required for
-+	 * the board to run we have to make sure here, that the voltage
-+	 * never drops below 1050 mV.
-+	 */
-+	vdd_log: vdd-log-regulator {
-+		compatible = "pwm-regulator";
-+		regulator-name = "VDD_LOG";
-+		pwms = <&pwm2 0 25000 1>;
-+		pwm-dutycycle-range = <30 100>;
-+		pwm-supply = <&vcc_sys>;
-+		regulator-min-microvolt = <1050000>;
-+		regulator-max-microvolt = <1400000>;
-+		regulator-ramp-delay = <4000>;
-+		regulator-always-on;
-+		regulator-boot-on;
-+	};
-+
-+	memory@60000000 {
-+		device_type = "memory";
-+		reg = <0x60000000 0x40000000>;
-+	};
-+
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&emmc {
-+	bus-width = <8>;
-+	vmmc-supply = <&vcc_io>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
-+	cap-mmc-highspeed;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&gmac {
-+	clock_in_out = "output";
-+	phy-supply = <&vcc_lan>;
-+	phy-mode = "rmii";
-+	phy-handle = <&phy0>;
-+	assigned-clocks = <&cru SCLK_MAC_SRC>;
-+	assigned-clock-rates= <50000000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&rmii_pins>;
-+	status = "okay";
-+};
-+
-+/*
-+ * Add labels for each pin which is exposed at the 40-pin header
-+ */
-+&gpio0 {
-+	gpio-line-names = /* GPIO0 A0-A7 */
-+			  "", "", "HEADER_5", "HEADER_3",
-+			  "", "", "", "",
-+			  /* GPIO0 B0-B7 */
-+			  "HEADER_22", "HEADER_23", "", "HEADER_19",
-+			  "HEADER_26", "HEADER_21", "HEADER_24", "",
-+			  /* GPIO0 C0-C7 */
-+			  "", "HEADER_18", "", "",
-+			  "", "", "", "",
-+			  /* GPIO0 D0-D7 */
-+			  "HEADER_36", "", "", "",
-+			  "", "", "HEADER_13", "";
-+};
-+
-+&gpio1 {
-+	gpio-line-names = /* GPIO1 A0-A7 */
-+			  "HEADER_7", "HEADER_35", "HEADER_33", "HEADER_37",
-+			  "HEADER_40", "HEADER_38", "", "",
-+			  /* GPIO1 B0-B7 */
-+			  "HEADER_11", "", "", "HEADER_29",
-+			  "HEADER_31", "", "", "",
-+			  /* GPIO1 C0-C7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO1 D0-D7 */
-+			  "", "", "", "",
-+			  "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = /* GPIO2 A0-A7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO2 B0-B7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO2 C0-C7 */
-+			  "", "", "", "",
-+			  "HEADER_27", "", "", "",
-+			  /* GPIO2 D0-D7 */
-+			  "", "", "HEADER_8", "HEADER_10",
-+			  "", "", "", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = /* GPIO3 A0-A7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO3 B0-B7 */
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  /* GPIO3 C0-C7 */
-+			  "", "HEADER_32", "", "",
-+			  "", "", "", "HEADER_12",
-+			  /* GPIO3 D0-D7 */
-+			  "", "", "", "HEADER_15",
-+			  "", "", "", "";
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_log>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	phy0: ethernet-phy@1 {
-+		/* DP83848C interrupt is not connected */
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+		max-speed = <100>;
-+		reset-assert-us = <15000>;
-+		reset-deassert-us = <80000>;
-+		reset-gpios = <&gpio2 RK_PD0 GPIO_ACTIVE_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&dp83848c_rst>;
-+	};
-+};
-+
-+&pinctrl {
-+	dp83848c {
-+		dp83848c_rst: dp83848c-rst {
-+			rockchip,pins = <2 RK_PD0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	ir-receiver {
-+		ir_int: ir-int {
-+			rockchip,pins = <3 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	leds {
-+		power_led: power-led {
-+			rockchip,pins = <0 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		spd_led: spd-led {
-+			rockchip,pins = <3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	usb2 {
-+		host_drv: host-drv {
-+			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
-+
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcc_io>;
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	vmmc-supply = <&vcc_sd>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc_bus4 &sdmmc_clk &sdmmc_cmd &sdmmc_det>;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb_host_ehci {
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	vusb_a-supply = <&vcc_io>;
-+	vusb_d-supply = <&vdd_11>;
-+	status = "okay";
-+};
-+
-+&usb2phy {
-+	status = "okay";
-+};
-+
-+&usb2phy_host {
-+	status = "okay";
-+};
-+
-+&usb2phy_otg {
-+	status = "okay";
-+};
--- 
-2.42.0
+Sounds better, but the description could also start with it, e.g.
+"Disable the summation on specific channel. .... "
+
+Best regards,
+Krzysztof
 
