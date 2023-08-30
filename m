@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60F6A78D996
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A02578DA3C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230266AbjH3Sde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:33:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
+        id S231468AbjH3Sfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:35:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244382AbjH3NHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:07:07 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC7C193
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:07:02 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c1c66876aso719424866b.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:07:01 -0700 (PDT)
+        with ESMTP id S244393AbjH3NJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:09:25 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C34AB193
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:09:22 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d7d50ba994eso271007276.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:09:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693400820; x=1694005620; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hDC9ESUef36Mte2IBID4F1U1QCc8COjSUPt3loc3xqg=;
-        b=c5cymgYTEbaJ6XaRn4Cx18yAW2AnOYtaQXhcTkPWtZUs1LCpJM/sHTO349WcCAxQbJ
-         Oz6MofGG6ypJI/c7J5GYdtb3sbHC/S8KVFAusUg8lgxChD98pvD/pXHWsdIdfj624J9h
-         BpzFJzoDYQFBUM0uFKXrsjBLwzPw6r7Xm7hFkxz48I8bpCfGGZUxs9j25RD+e7qTz0U9
-         o0PdWco7TXZ7Ci92/6X0YQLq9R/2R8c0BQJ4l/YkN1n1Sc1EfBP5GEyS1+GuWHbTaaGI
-         nhAQqSJ/Pwg8Q5AcMtVvpS5S35evclxZECmnAzBA4A84/B4j4lOAbyoedFQsv3ynb6x4
-         aCeA==
+        d=linaro.org; s=google; t=1693400962; x=1694005762; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=DwGoXvc98B29/NZ2z5FtlBwDc8c/5Vn6sQFUBsFMehM=;
+        b=jEmWvMQfYFnlzffDbxw5mXgyneUOyH70keUaWNiIHj4/9Q58xqaMaqHuj8xInc9GT/
+         txcoWC41ahEz+MPy7pLi0CoV3OKBMsGxItXcWKHMzDXhCmhk4FHOThVWONJYrADxxa3u
+         2VriFRu+2Yd5xs4StT6q7CzF+Wxe+nqaWIPbGL9hRl004uZPBHoM4f9tCoM73869oJNS
+         +wmh9dQy0rWd64mvmOUSOWN46YevkHhCD+L46mOMH7DeFDGabY5xGyV8tVeA23IM6vs3
+         UTJxmaoowxc2SxCW8nqng78RKBgi7P4IAqK2+W4uUExWA4gj7K+gcIncJqool447XREa
+         Vf/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693400820; x=1694005620;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hDC9ESUef36Mte2IBID4F1U1QCc8COjSUPt3loc3xqg=;
-        b=QSJ8/j/ss98O07KmScsj0bi1IO3nyg2KU0G4k1X1UXOO2dWLe6rO5x9x81LF23e02K
-         AwbxWTST8S2hSxv3W8Dikk2B+l/SdvJk3WiG09Gg8MUBYnc3ia238mn87mQRBtCGJvGo
-         +bWAVcOciEp90zeV296OboAnrHJuBvt/vc9c1mytcMsC+n6PkZ0+D0TatjEsp9T/8UtG
-         0oZew3cduuI9kfYK8Q1I5kL9FhY04wT+KYUaeJoPi+/uq52hESXscoNkZulcS+bOva5m
-         KKkSqfAtMCVTA1e/6wKc0h7GSvJUzaGYa6fi0zw9dOCV5vNUwbXF3FiYdATtBzk20rlx
-         AMRA==
-X-Gm-Message-State: AOJu0YyWfhtJVReRdgl6TRj22YGX83d3lMSY2xQI3oyCN/1VPQ4F23S8
-        +2slcnSMYeT7x9800uvFnycFlw==
-X-Google-Smtp-Source: AGHT+IFYKkGvGmx/eCPeJ7zhxeO+D0prvW6xzkjQM9iAjR6tCDe1nTyr22bqGnmByYCAcaZcchFmrA==
-X-Received: by 2002:a17:907:270c:b0:9a1:cb2c:b55f with SMTP id w12-20020a170907270c00b009a1cb2cb55fmr1453302ejk.53.1693400820483;
-        Wed, 30 Aug 2023 06:07:00 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id 17-20020a170906059100b0098963eb0c3dsm7147506ejn.26.2023.08.30.06.06.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 06:07:00 -0700 (PDT)
-Message-ID: <c5d72559-4a97-c865-e51e-855d2bc1edee@linaro.org>
-Date:   Wed, 30 Aug 2023 15:06:58 +0200
+        d=1e100.net; s=20221208; t=1693400962; x=1694005762;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DwGoXvc98B29/NZ2z5FtlBwDc8c/5Vn6sQFUBsFMehM=;
+        b=azT8OjiB5nkC21bISNDwPuneF2/Pu7orQ24+vJ0y11MSYNbET5n7k+zRTqErDtAfrj
+         IOKs/4dtoa0dWjKz1y2hhmSWz9mZv21wiqDPyfm/KAP4yXzNLNa3VrtMY9gx3tUmKiv0
+         62girdN4ugzhUPQzC5uDGfTTLnoJtGz3dMuQo8MvYKPzvaTjt7blrH/ZPW1xPrLyd4gC
+         U3uowDEVn6lR0KcQaj7khAP32a4XAjmoozqvG9otRZjVQWY10XttfW8FC0Rz5P4sGlGl
+         ZHD6DSc0PQ5gyyH0OwQ4fggb/U6pkmrKjujjdI2YfzxBCumo/aky/Xm/o4+iJk1twmrV
+         aHOg==
+X-Gm-Message-State: AOJu0YyBNEfTAqQ7kFxhapQYfPZv6lezS2boQ0u7zase55qmfb9EqylH
+        bfiWM9PrIOs+qHF4N9QBRnxhOtFiHheQ7q5TFwQSVg==
+X-Google-Smtp-Source: AGHT+IGm+kjClWgL76JeczMmO+h3IT4TxeT/7KWlbDA9G2smzM8OdYQu3wjRGDyP5zdSFFunQHUHMzAcTQEhKJc2RH4=
+X-Received: by 2002:a25:3201:0:b0:d11:205f:c55 with SMTP id
+ y1-20020a253201000000b00d11205f0c55mr2070828yby.4.1693400961971; Wed, 30 Aug
+ 2023 06:09:21 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v5 1/3] dt-bindings: thermal-zones: Document
- critical-action
-Content-Language: en-US
-To:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
-        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20230829194200.1901988-1-festevam@gmail.com>
- <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
+ <20230828192507.117334-7-bartosz.golaszewski@linaro.org> <8b7bada9-3898-1b60-3dea-766a760412f7@linaro.org>
+ <CACMJSetObp0k312DmqhTCkw7jsf05OHX1yxbyYj+sVfbtwRcVQ@mail.gmail.com> <86bb50fd-72f3-7c76-c4fe-f8e4765e33d5@linaro.org>
+In-Reply-To: <86bb50fd-72f3-7c76-c4fe-f8e4765e33d5@linaro.org>
+From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Date:   Wed, 30 Aug 2023 15:09:10 +0200
+Message-ID: <CACMJSes9Lwgh+xSDQo4KQhOHdcLigYgi=scFTeCtiqKFt1QNnw@mail.gmail.com>
+Subject: Re: [PATCH 06/11] firmware: qcom-shm-bridge: new driver
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Alex Elder <elder@linaro.org>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,74 +78,125 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2023 13:37, Rafael J. Wysocki wrote:
-> On Tue, Aug 29, 2023 at 9:42 PM Fabio Estevam <festevam@gmail.com> wrote:
->>
->> From: Fabio Estevam <festevam@denx.de>
->>
->> Document the critical-action property to describe the thermal action
->> the OS should perform after the critical temperature is reached.
->>
->> The possible values are "shutdown" and "reboot".
->>
->> The motivation for introducing the critical-action property is that
->> different systems may need different thermal actions when the critical
->> temperature is reached.
->>
->> For example, a desktop PC may want the OS to trigger a shutdown
->> when the critical temperature is reached.
->>
->> However, in some embedded cases, such behavior does not suit well,
->> as the board may be unattended in the field and rebooting may be a
->> better approach.
->>
->> The bootloader may also benefit from this new property as it can check
->> the SoC temperature and in case the temperature is above the critical
->> point, it can trigger a shutdown or reboot accordingly.
->>
->> Signed-off-by: Fabio Estevam <festevam@denx.de>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->> Changes since v4:
->> - None.
->>
->>  .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
->>  1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> index 4f3acdc4dec0..c2e4d28f885b 100644
->> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> @@ -75,6 +75,15 @@ patternProperties:
->>            framework and assumes that the thermal sensors in this zone
->>            support interrupts.
->>
->> +      critical-action:
->> +        $ref: /schemas/types.yaml#/definitions/string
->> +        description:
->> +          The action the OS should perform after the critical temperature is reached.
->> +
->> +        enum:
->> +          - shutdown
->> +          - reboot
->> +
->>        thermal-sensors:
->>          $ref: /schemas/types.yaml#/definitions/phandle-array
->>          maxItems: 1
->> --
-> 
-> I'm wondering if this should be a bool property called
-> "critical-reboot", say, which when present would mean to carry out a
-> reboot instead of a shutdown in an emergency.
-> 
-> As defined above, the "shutdown" value is simply redundant, because
-> the code will effectively convert any other value to "shutdown"
-> anyway.
+On Tue, 29 Aug 2023 at 18:47, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 29/08/2023 15:24, Bartosz Golaszewski wrote:
+> >>> +phys_addr_t qcom_shm_bridge_to_phys_addr(void *vaddr)
+> >>> +{
+> >>> +     struct qcom_shm_bridge_chunk *chunk;
+> >>> +     struct qcom_shm_bridge_pool *pool;
+> >>> +
+> >>> +     guard(spinlock_irqsave)(&qcom_shm_bridge_chunks_lock);
+> >>> +
+> >>> +     chunk = radix_tree_lookup(&qcom_shm_bridge_chunks,
+> >>> +                               (unsigned long)vaddr);
+> >>> +     if (!chunk)
+> >>> +             return 0;
+> >>> +
+> >>> +     pool = chunk->parent;
+> >>> +
+> >>> +     guard(spinlock_irqsave)(&pool->lock);
+> >>
+> >> Why both locks are spinlocks? The locks are used quite a lot.
+> >
+> > I'm not sure what to answer. The first one protects the global chunk
+> > mapping stored in the radix tree. The second one protects a single
+> > memory pool from concurrent access. Both can be modified from any
+> > context, hence spinlocks.
+>
+> Not much PREEMPT friendly, although indeed protected code is small. At
+> least here, I did not check other places.
+>
+> >
+> >>
+> >>> +
+> >>> +     return gen_pool_virt_to_phys(pool->genpool, (unsigned long)vaddr);
+> >>> +}
+> >>> +EXPORT_SYMBOL_GPL(qcom_shm_bridge_to_phys_addr);
+> >>> +
+> >>> +static int qcom_shm_bridge_probe(struct platform_device *pdev)
+> >>> +{
+> >>> +     struct qcom_shm_bridge_pool *default_pool;
+> >>> +     struct device *dev = &pdev->dev;
+> >>> +     int ret;
+> >>> +
+> >>> +     /*
+> >>> +      * We need to wait for the SCM device to be created and bound to the
+> >>> +      * SCM driver.
+> >>> +      */
+> >>> +     if (!qcom_scm_is_available())
+> >>> +             return -EPROBE_DEFER;
+> >>
+> >> I think we miss here (and in all other drivers) device links to qcm.
+> >>
+> >
+> > Well, SCM, once probed, cannot be unbound. What would device links
+> > guarantee above that?
+>
+> Runtime PM, probe ordering (dependencies) detection.
+>
 
-We covered this at v1. Bool does not allow this property to change in
-the future, e.g. for a third mode. And how would you change the action
-to shutdown if default action in the system was reboot?
+Shouldn't we cross that bridge when we get there? SCM has no support
+for runtime PM. Probe ordering is quite well handled with a simple
+probe deferral. This is also not a parent-child relationship. SHM
+Bridge calls into the trustzone using SCM, but SCM is also a user of
+SHM Bridge.
 
-Best regards,
-Krzysztof
+> >
+> >>> +
+> >>> +     ret = qcom_scm_enable_shm_bridge();
+> >>> +     if (ret)
+> >>> +             return dev_err_probe(dev, ret,
+> >>> +                                  "Failed to enable the SHM bridge\n");
+> >>> +
+> >>> +     default_pool = qcom_shm_bridge_pool_new_for_dev(
+> >>> +                             dev, qcom_shm_bridge_default_pool_size);
+> >>> +     if (IS_ERR(default_pool))
+> >>> +             return dev_err_probe(dev, PTR_ERR(default_pool),
+> >>> +                                  "Failed to create the default SHM Bridge pool\n");
+> >>> +
+> >>> +     WRITE_ONCE(qcom_shm_bridge_default_pool, default_pool);
+> >>> +
+> >>> +     return 0;
+> >>> +}
+> >>> +
+> >>> +static const struct of_device_id qcom_shm_bridge_of_match[] = {
+> >>> +     { .compatible = "qcom,shm-bridge", },
+> >>> +     { }
+> >>> +};
+> >>> +
+> >>> +static struct platform_driver qcom_shm_bridge_driver = {
+> >>> +     .driver = {
+> >>> +             .name = "qcom-shm-bridge",
+> >>> +             .of_match_table = qcom_shm_bridge_of_match,
+> >>> +             /*
+> >>> +              * Once enabled, the SHM Bridge feature cannot be disabled so
+> >>> +              * there's no reason to ever unbind the driver.
+> >>> +              */
+> >>> +             .suppress_bind_attrs = true,
+> >>> +     },
+> >>> +     .probe = qcom_shm_bridge_probe,
+> >>> +};
+> >>> +
+> >>> +static int __init qcom_shm_bridge_init(void)
+> >>> +{
+> >>> +     return platform_driver_register(&qcom_shm_bridge_driver);
+> >>> +}
+> >>> +subsys_initcall(qcom_shm_bridge_init);
+> >>
+> >> Why this is part of subsystem? Should be rather device_initcall... or
+> >> simply module (and a tristate).
+> >>
+> >
+> > We want it to get up as soon as possible (right after SCM, because SCM
+> > is the first user).
+>
+> Then probably should be populated/spawned by SCM.
+>
 
+I really prefer probe deferral over one platform driver creating
+platform devices for another. The device is on the DT, let's let OF
+populate it as it should.
+
+Bart
