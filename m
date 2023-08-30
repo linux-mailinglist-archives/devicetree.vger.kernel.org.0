@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CE5178E390
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 01:58:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E9C378E32F
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 01:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344567AbjH3X62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 19:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54414 "EHLO
+        id S1344467AbjH3XZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 19:25:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229935AbjH3X61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 19:58:27 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D601B0;
-        Wed, 30 Aug 2023 16:58:24 -0700 (PDT)
+        with ESMTP id S1344439AbjH3XZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 19:25:14 -0400
+X-Greylist: delayed 4130 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 30 Aug 2023 16:25:02 PDT
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF22C5;
+        Wed, 30 Aug 2023 16:25:02 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id DC515B8208F;
-        Wed, 30 Aug 2023 20:30:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 89475C433C8;
-        Wed, 30 Aug 2023 20:30:28 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 30863CE1F31;
+        Wed, 30 Aug 2023 21:00:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89589C433C9;
+        Wed, 30 Aug 2023 20:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693427428;
-        bh=eaCfLnmA3JpQc8qy3IH4/JNwVM/ECKPd09zxvvRnje4=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=r51f7mGIpgqDbBddHpKMqNotvCSAJsKBMa7QJPxcbOGiQvbKxAWe7Rj3T13B3mR4b
-         a8Gkzgru/hUJJgRQzw2ZKbWjTseJ3EJiBf/Lh1/R44DOkLSXVXyjyTZAqfqZfs7Bwg
-         ybM6vRUHMljQNkPbejOGv+qBKM5PaBnDHlON6F3mJ30Ttb85R53vVLcSX5B1E1e9Wq
-         t+oxO7qygLjXyqrW2cqqLpQLjfBEwCYsd2L1iFkleihOFw0YsCOrhifMJPWycRexWh
-         aChSNgRxV1CARDxi7v+P1Do35l1v8gdU5JT6Rnsni9HQRhJimmFgkLRKXxekQ9Pg8S
-         6q5J/QMo6TS/w==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 6D7A7E26D49;
-        Wed, 30 Aug 2023 20:30:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        s=k20201202; t=1693429198;
+        bh=oZMG6qL+Cu510IHDOLGg0aYCjrQvUEyoDQ865p6UfDY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OB4uqQ962pARB6pbatc4FmftlW6tKKcmCeBxCx6Eq1S4NhQOhXxEcsEN8JIiNjeOF
+         7pkba2CcWngAGDN8v9sorAjxwbmroDYlgeKSu8c+yg0BKHc4kdx7bK8bsEJQe6uSd2
+         LLKqTQya6xEYJUtRIM4iagEb0+KGvavUM7aYTLnFSMTD9++E3LYc9u1lH8tVqDKEiV
+         5jooumYpngLMAYBd/I+tixLEqrjnpUza/V264FcShy13PyEhVqKhhSba6+DyEhWmLt
+         IsXoDLS4r/bP4d+ev3W6YRdW76fxwJJK1eoqN54ucGt1at+BQPSW54TnQxnDXRwI0B
+         08F1buRuVzu5g==
+Date:   Wed, 30 Aug 2023 21:59:52 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Vlad Karpovich <vkarpovi@opensource.cirrus.com>
+Cc:     James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>
+Subject: Re: [PATCH v2 1/4] ASoC: cs35l45: Checks index of cs35l45_irqs[]
+Message-ID: <737c4114-5b54-444c-8a6a-de4e98566513@sirena.org.uk>
+References: <20230830195536.448884-1-vkarpovi@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v12 0/6] Add non-coherent DMA support for AX45MP
-From:   patchwork-bot+linux-riscv@kernel.org
-Message-Id: <169342742844.1913.17058276691232129949.git-patchwork-notify@kernel.org>
-Date:   Wed, 30 Aug 2023 20:30:28 +0000
-References: <20230818135723.80612-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20230818135723.80612-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-To:     Prabhakar <prabhakar.csengg@gmail.com>
-Cc:     linux-riscv@lists.infradead.org, arnd@arndb.de,
-        conor.dooley@microchip.com, geert+renesas@glider.be,
-        guoren@kernel.org, ajones@ventanamicro.com,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, samuel@sholland.org, hch@infradead.org,
-        emil.renner.berthing@canonical.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        biju.das.jz@bp.renesas.com, prabhakar.mahadev-lad.rj@bp.renesas.com
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="AUDHTcx1/kKY0ynM"
+Content-Disposition: inline
+In-Reply-To: <20230830195536.448884-1-vkarpovi@opensource.cirrus.com>
+X-Cookie: Immanuel doesn't pun, he Kant.
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
 
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+--AUDHTcx1/kKY0ynM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 18 Aug 2023 14:57:17 +0100 you wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> Hi All,
-> 
-> non-coherent DMA support for AX45MP
-> ====================================
-> 
-> [...]
+On Wed, Aug 30, 2023 at 02:55:33PM -0500, Vlad Karpovich wrote:
+> Checks the index computed by the virq offset before printing the
+> error condition in cs35l45_spk_safe_err() handler.
+>=20
+> Signed-off-by: Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>
+> Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
 
-Here is the summary with links:
-  - [v12,1/6] riscv: asm: vendorid_list: Add Andes Technology to the vendors list
-    https://git.kernel.org/riscv/c/93e0e2419b65
-  - [v12,2/6] riscv: errata: Add Andes alternative ports
-    https://git.kernel.org/riscv/c/f2863f30d1b0
-  - [v12,3/6] riscv: mm: dma-noncoherent: nonstandard cache operations support
-    https://git.kernel.org/riscv/c/30bc090f40f8
-  - [v12,4/6] dt-bindings: cache: andestech,ax45mp-cache: Add DT binding documentation for L2 cache controller
-    https://git.kernel.org/riscv/c/555dd72bc06e
-  - [v12,5/6] cache: Add L2 cache management for Andes AX45MP RISC-V core
-    https://git.kernel.org/riscv/c/f508b0175578
-  - [v12,6/6] soc: renesas: Kconfig: Select the required configs for RZ/Five SoC
-    https://git.kernel.org/riscv/c/ed1a8872ff83
+Who actually wrote this patch?
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+--AUDHTcx1/kKY0ynM
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTvrccACgkQJNaLcl1U
+h9Bcpgf+NYLkQOJ3teKC3UN/Bwy5w9yMYjIu3JvSBXR1ejzGVt3epy7Dbb09yaU0
+eASqB/UndJgt2v2lasHruMx/WXZlwFRkjhGwFb9KlkUclsn1cSlwo7fEim/ZDorq
+p71rxw7E5Eg25KnSshbR3JHnsyr7IiQ3fzp+Fl/Lkl2Nf5JCM0X+iAfCmhUhjF0n
+sf60aQvyfST6HJrhxh6+opioyPvwDSJtKcYicJpYNjsbphj1Sew2zN9meoR8SBBv
+IuZGEXSRkuUGB5phFR7T/crx2SXZoNAAWoe+0vEl8bNaeCIZo3PXUcydNgJeJmWk
+jcT+DHEnQhtac3PYlhxuQ39wI3g5qw==
+=mocu
+-----END PGP SIGNATURE-----
+
+--AUDHTcx1/kKY0ynM--
