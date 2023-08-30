@@ -2,138 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A6178D955
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C975D78D8CA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232378AbjH3Scw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:32:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56614 "EHLO
+        id S235052AbjH3SbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:31:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54168 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245188AbjH3OoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 10:44:02 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50E251A6
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:43:57 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-500cfb168c6so376966e87.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:43:57 -0700 (PDT)
+        with ESMTP id S245204AbjH3OqR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 10:46:17 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98C53D1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:46:13 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bc9e3cbf1so209628866b.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:46:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1693406635; x=1694011435; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7y1PTlMIpI19ndr06GdGR/gezHXVIuarLmJLhteMMeY=;
-        b=LYzzjbHgvGqKeGAc0j1Jmdyyz6FO1+DODQ4KJ9WUt6w2aRG++2plKYtoEyWxDiX8en
-         lHIkhRnCXgg9AJdb2BHPr5i1HXPeYojczAsnVzbWKiQgsSqlkT6VcV6QoT3xyGm92WGP
-         n5LhkCdaqb9m5AK9vgcTV1mWYC1HQy9F1DxjIkiF3zrEE8d5yy1jNscF8ER54RpbOkRb
-         hqD0Hsu/kkelpidCNm5Zpe4GU/tK9JrNiInNtl16JLxRkvwcU2PSzwkn7bE/57iOKCWA
-         J4Js6VPp5/baHjwIzrLzIsNWRTdMhRSG/CMSeVqmUfApjrXFRNKqQzx+TZcwj9qEUWec
-         N5/g==
+        d=linaro.org; s=google; t=1693406772; x=1694011572; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5pBWaiAxt3c7UKiYBVmzRQWXUVgNPi+xoAwOSlkZgSg=;
+        b=kcVQUuKkxP0F+OLs8erkthnGot2to+j+oP753j1esqtt6NZuqECeJaGiOlj0PmpEuC
+         fprZg65jFt/ETMPc5ruZPFwhCLNHTVLFHoD+H8J9dv1LPdxIUdAKLszDC8EU+8Ev4IUy
+         HE8qAJpbbshp+h144E9oLxqn3tZxyBF1R1+IpaNy2n84Q2kq0qFckOOfXfjzDlDzDYx6
+         F8UxLEtSMC4cOYAOM1ODOD7fENfmnUyeLTpXeoYOEU7+NmKSp/FJZI/LUNbi6oe3hNju
+         R2y4OeKUoSja3zyy2rSKyOPVZukNu0oeHDWyzF4zBISb3SYSML3Y1N4WCV+4ywrlDny0
+         VNsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693406635; x=1694011435;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=7y1PTlMIpI19ndr06GdGR/gezHXVIuarLmJLhteMMeY=;
-        b=QYoOBVbTxM3xllyTzw//8ftJKnlJ0cOb7kzUzr92coiMCidvj9+o1MjpCmBqjXpnjf
-         1JT54EFdovHw/pi6uRjv3hgQaMRiYaEPP9lWyGyYaDptQPv7/G6F8pzUsJ0rzk7fRUfH
-         dUdM4dw1XZfdu3JtJwj7V+tosQmVoVsnVmgqPtKINBgpBCISHVqJSJ1UXHikyRtQplv4
-         i6lLLAwxqEvka6c9BgEBRIfchAyTXhzD4QY2cEr30IdN3Knw+jNmqeTH6p7Cyzev2K31
-         8xOAgca5xhCVuIH+D0IVLianJIjpll95sJ8x31VJcLmYz81/o39s/FTcEchbrp7GFcZx
-         uX1w==
-X-Gm-Message-State: AOJu0YzH4m7jlxqy6oXO7prCFvDdUsfrBOj+mbMe1yGT/rPRBn9p8+rZ
-        uJ78Axy2n0SntouemdU5OMVNYA==
-X-Google-Smtp-Source: AGHT+IHeygykVFMcBkeCr9Jim8Aiw37Bu4dqw61S/Zwn8g9GABuB2bPsegjI40haOVmM0BZ3MWr+/Q==
-X-Received: by 2002:a19:5e18:0:b0:500:95f7:c416 with SMTP id s24-20020a195e18000000b0050095f7c416mr1823828lfb.7.1693406634763;
-        Wed, 30 Aug 2023 07:43:54 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id l15-20020aa7d94f000000b0052568bf9411sm6787493eds.68.2023.08.30.07.43.53
+        d=1e100.net; s=20221208; t=1693406772; x=1694011572;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5pBWaiAxt3c7UKiYBVmzRQWXUVgNPi+xoAwOSlkZgSg=;
+        b=XTODde2akptuPt/8vEJo4FS7TLTUdNfAk/OxXe1cEuMolACO0wxVSsm1NmGHkzlrOT
+         AkDFCpDJdzSTspK3GyDTzL8ja0gtRh6/0oLKzq/pQhVeGAe1QA1UcTmwoSVVLcaN3bBt
+         9ArjT+YObeccBBmTLoVqadGApw+eVy5xgNCfKIF69safUNyMQvwF/r0/+RmzGizZ9nfS
+         1jiriQ/3Qfx2bMogWwlD5upqLRzdtWvGo/BmGGmxmPlOV8cSym7cEyljPJxJhNGdMDl6
+         0UxDpMAdPnOasbLp4P3gsLZ+AqiVhOagoHhsKfSC3R3uHNpMui3EQe9OJ/VO+rfAxWHd
+         sGYQ==
+X-Gm-Message-State: AOJu0YxAmQq8067ubmlPQz0h4S9U9WNPiQCnTb+H8VvgxofE00zT+byc
+        +Neq6E8dydqje6KG53gz5J7Y7A==
+X-Google-Smtp-Source: AGHT+IECBfom6bQT2ajlFb2yXCA1KjL8rdq1f4FAA8HWcZ+VnqFs+cy5NHaCNPbc9rBQ2bDMqwdkSA==
+X-Received: by 2002:a17:907:c004:b0:99b:4210:cc76 with SMTP id ss4-20020a170907c00400b0099b4210cc76mr2530744ejc.28.1693406772113;
+        Wed, 30 Aug 2023 07:46:12 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00999bb1e01dfsm7239237eja.52.2023.08.30.07.46.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 07:43:54 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Wed, 30 Aug 2023 07:46:10 -0700 (PDT)
+Message-ID: <25b44b0d-e958-ada3-3900-589224c1e37f@linaro.org>
+Date:   Wed, 30 Aug 2023 16:46:09 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add compatible for
+ AM64x in ICSSG
+Content-Language: en-US
+To:     MD Danish Anwar <danishanwar@ti.com>, Andrew Lunn <andrew@lunn.ch>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Simon Horman <horms@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
+References: <20230830113724.1228624-1-danishanwar@ti.com>
+ <20230830113724.1228624-2-danishanwar@ti.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230830113724.1228624-2-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 30 Aug 2023 16:43:53 +0200
-Message-Id: <CV5YJVXIL8OT.1ZWW3KVCHPTA5@otso>
-Cc:     <cros-qcom-dts-watchers@chromium.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Viresh Kumar" <viresh.kumar@linaro.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 02/11] nvmem: qfprom: Mark core clk as optional
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Doug Anderson" <dianders@chromium.org>
-X-Mailer: aerc 0.15.2
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-2-5a954519bbad@fairphone.com>
- <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
-In-Reply-To: <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed Aug 30, 2023 at 4:30 PM CEST, Doug Anderson wrote:
-> Hi,
->
-> On Wed, Aug 30, 2023 at 2:58=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.=
-com> wrote:
-> >
-> > On some platforms like sc7280 on non-ChromeOS devices the core clock
-> > cannot be touched by Linux so we cannot provide it. Mark it as optional
-> > as accessing qfprom works without it.
-> >
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  drivers/nvmem/qfprom.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> Are you actually testing burning fuses from the OS, or are you just
-> using the nvmem in "read-only" mode? From comments in the bindings, if
-> you're trying to burn the fuses then the clock is required. If things
-> are in read-only mode then the clock isn't required.
+On 30/08/2023 13:37, MD Danish Anwar wrote:
+> Add compatible for AM64x in icssg-prueth dt bindings. AM64x supports
+> ICSSG similar to AM65x SR2.0.
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> index 311c570165f9..13371159515a 100644
+> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> @@ -20,6 +20,7 @@ properties:
+>    compatible:
+>      enum:
+>        - ti,am654-icssg-prueth  # for AM65x SoC family
+> +      - ti,am642-icssg-prueth  # for AM64x SoC family
 
-Hi Doug,
+Keep the list ordered, probably alphanumerically.
 
-I definitely don't plan on burning any fuses on this phone. Not even
-sure that's allowed by the TZ / boot stack.
 
->
-> When I compare to the driver, it seems like the driver assumes that if
-> more than one memory region is provided then you must be supporting
-> burning fuses. The bindings agree that having 4 memory regions
-> specified means that the nvmem supports burning and 1 memory region
-> specified means read-only. The extra 3 memory regions in the nvmem are
-> all about fuse burning, I believe.
->
-> So maybe the right fix here is to just change your dts to specify one
-> memory region?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I got feedback from Konrad that this here would be the preferred
-approach compared to having a different dts for ChromeOS vs non-ChromeOS
-devices. I don't feel strongly to either, for me it's also okay to
-remove the extra memory regions and only have the main one used on
-regular qcom devices.
-
-Let me know what you think.
-
-Regards
-Luca
-
->
-> -Doug
+Best regards,
+Krzysztof
 
