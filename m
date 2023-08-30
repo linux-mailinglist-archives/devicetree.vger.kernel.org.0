@@ -2,84 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5ED78D9D8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD9A78D911
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237579AbjH3SeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57090 "EHLO
+        id S233286AbjH3ScN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:32:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245417AbjH3PMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 11:12:02 -0400
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00B4E8
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 08:11:59 -0700 (PDT)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6c13:6b1b:7366:87c0])
-        by michel.telenet-ops.be with bizsmtp
-        id frBy2A0043874jb06rByNY; Wed, 30 Aug 2023 17:11:58 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtp (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qbMrC-0023oY-5R;
-        Wed, 30 Aug 2023 17:11:58 +0200
-Received: from geert by rox.of.borg with local (Exim 4.95)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1qbMrO-005Lst-1O;
-        Wed, 30 Aug 2023 17:11:58 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Paul Cercueil <paul@crapouillou.net>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc:     linux-mips@vger.kernel.org, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] mips: dts: ingenic: Remove unneeded probe-type properties
-Date:   Wed, 30 Aug 2023 17:11:55 +0200
-Message-Id: <75d57f5e6dd25d5e8eff1260d289e905bb5cfad2.1693408196.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S245427AbjH3POj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 11:14:39 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0F9BE8;
+        Wed, 30 Aug 2023 08:14:34 -0700 (PDT)
+Received: from mail.denx.de (unknown [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: festevam@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 16C8E863DD;
+        Wed, 30 Aug 2023 17:14:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1693408473;
+        bh=v2cAEiv6fXMr0+QRThhisPn328qsks5KhTTSdjVXwKs=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=uO1rCZZ/dIi3yn15jPe+VG36GXlnP4rCCNAeqtDHYSoOfwyk9v8gkeewDyUNnu7oy
+         SC0ow90yBXOo6OkGoSBrsrWZlQO1PiaLnqz4r1CBqg06ykGZfFn/Y+kI4ZJ6OmE8RV
+         0osjBnCETdHdc4sdUQoOI7hMrnEhd6c4PZICrW32CMSPhpes2wVEyb+GeeVwvybK9w
+         4YlVDsGqgfg5uihIPq1sPGGzvsXguwkJWDk89OvChN5URAYj8qMPd471yM36WpJDQj
+         WP5PFcKepenDvvseQBy59ySu+8aKlYiQs9bjeaCXO6tIRqTsXRgoTNv9PaOD+R6Flm
+         awPlMWO/Kh6aw==
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 30 Aug 2023 12:14:33 -0300
+From:   Fabio Estevam <festevam@denx.de>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org,
+        amitk@kernel.org, rui.zhang@intel.com, linux-pm@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: thermal-zones: Document
+ critical-action
+In-Reply-To: <CAJZ5v0gexPEV2M5kfgCEUti=EE+_oR+wUjRboo0Rh=fPfNeDew@mail.gmail.com>
+References: <20230829194200.1901988-1-festevam@gmail.com>
+ <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
+ <c5d72559-4a97-c865-e51e-855d2bc1edee@linaro.org>
+ <CAJZ5v0gexPEV2M5kfgCEUti=EE+_oR+wUjRboo0Rh=fPfNeDew@mail.gmail.com>
+Message-ID: <edd2bc8ea364959e89ed4c3d2cc11a1e@denx.de>
+X-Sender: festevam@denx.de
+User-Agent: Roundcube Webmail/1.3.6
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "probe-type" property was only needed when used with the
-(long obsolete) "direct-mapped" compatible value.
+Hi Rafael,
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- arch/mips/boot/dts/ingenic/jz4725b.dtsi | 1 -
- arch/mips/boot/dts/ingenic/jz4770.dtsi  | 1 -
- 2 files changed, 2 deletions(-)
+On 30/08/2023 10:54, Rafael J. Wysocki wrote:
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4725b.dtsi b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-index acbbe8c4664c110e..c5c5a094c37d2e08 100644
---- a/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
-@@ -366,7 +366,6 @@ bch: ecc-controller@130d0000 {
- 
- 	rom: memory@1fc00000 {
- 		compatible = "mtd-rom";
--		probe-type = "map_rom";
- 		reg = <0x1fc00000 0x2000>;
- 
- 		bank-width = <4>;
-diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-index 9c0099919db7aba9..504e895e916e57bf 100644
---- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
-@@ -461,7 +461,6 @@ usb_otg: usb@13440000 {
- 
- 	rom: memory@1fc00000 {
- 		compatible = "mtd-rom";
--		probe-type = "map_rom";
- 		reg = <0x1fc00000 0x2000>;
- 
- 		bank-width = <4>;
--- 
-2.34.1
+> Well, as a matter of fact, it isn't, so I'm not sure where this is 
+> going.
+> 
+> Bool definitely allows the property to be not present, which means
+> that the default behavior is intended and this is all about overriding
+> a known default behavior.
 
+This devicetree property can be used on non-Linux environments, such as 
+bootloaders.
+
+Bootloaders may have different default behavior than Linux, so 
+explicitly listing
+"shutdown" or "reboot" make it clearer, independent of the OS.
+
+Thanks
