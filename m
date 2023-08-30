@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69A5F78E068
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5A5578E084
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:22:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234073AbjH3UQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 16:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44712 "EHLO
+        id S232851AbjH3UWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 16:22:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232953AbjH3UQo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:16:44 -0400
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BC935694
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 13:16:14 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d77c5414433so5817415276.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 13:16:14 -0700 (PDT)
+        with ESMTP id S233773AbjH3UWS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:22:18 -0400
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B0CE60
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 13:21:43 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-d77ad095e5cso6040561276.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 13:21:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693426432; x=1694031232; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693426517; x=1694031317; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uXbqOlh8r0k+tg/OMYYC/pnzYsMBRXOUkdntBwOPi+I=;
-        b=lffIwwSf1TW3+i7PdG3HmuJMTxe8sSK0ojlmCeg7qMGG2Fx0W1fDXMgBSTgDyCzae4
-         sUUB7jl/aIURR5IPYtnfsae0yjKgX3AFjlqjbl1XS25WkrtYlk7eB8N1Qjjuqa2USWsa
-         eTwrMznW1dVEFtEbCFvl2m8FEPVWOuoNcVbAJjp/WFOWVxW5kd9aLmCPqaYesnNoxxJj
-         uv+DwgZvqu9jr0juK6fEvvQLaVc8i1q9XVZySl5spBcV4c2aWNW/rw6k5UC+N6YZaerW
-         H/xEshnpRA3GySCbYVHyhfzKCY9jaWBey37G9tSnH9DPSvEtMV6xyNKe+Y5G+2l2hgL0
-         qAWA==
+        bh=O8kGGZ+yYzic7Nawq3DNrmlWB29Qsh1OZYatVeF7GGM=;
+        b=mcsi/u0cGWxkvpG1v+kjxcdu6dtNfhqGy+TSzJNih2Y5t8Balaqz+1fWrtv3sKqCZt
+         G2xfNjpHijn5OhfMn8QCdnD7c4ef32t0CISj5LaIW3IlPF9qvgat3OEkq90sRrU2GJP1
+         VVGkLH3rydfrhltt3k7yuJB1qx/M+xVXOfCVTfeUzPHYzzNHVmU5BcDeXvwJ1+hjaC2Y
+         HVOiYF0yh6h1ZCSO895oGKvdF8kMJplP2Cvrs4kbNGtpYIjiY0kMIaEbXsoTV1zyr3ts
+         AJzO9MoVQNkiBEOvea1HtwRE+M/yl0/PPsrT4A8LEljR3AdwcPwMBHtv3nxAd1xduZBS
+         k+9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693426432; x=1694031232;
+        d=1e100.net; s=20221208; t=1693426517; x=1694031317;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=uXbqOlh8r0k+tg/OMYYC/pnzYsMBRXOUkdntBwOPi+I=;
-        b=CfmHA3va9O9/cVAtf20A7hH4SJt3KM0S9uxk1O3hrlk85AqyPg8E5dt1IeZr0/VgYx
-         iDXwimnIeFVM25pv7UfDB3LWdpjH3O9o+MGFf+wuHPUljujfJSfzTHq7tDJYKjjjItRJ
-         sossjkcgxlgtijhVoo3SaMlt2l9RQY2VA8Em4x6WOd1wS0e0H1dPFIQbqu8CshnXhuI3
-         N92UeGcx2BvgDk+ueRPmaJwlH7Y636fqJV5egq206BvGL9OZMmOv/3xTzpqP3ynXp8R3
-         4iHNI52ga5xF20SIzcZa2q+XBMtMJlCKGPM76bbPoJH7p2sVhRuyoBU6SVAfvjlAQzv9
-         7N2w==
-X-Gm-Message-State: AOJu0YzVvk2EEtvPSuM+7IdfVfDzW0JifpEN5nbt31g4m/dUHB8tYBqV
-        7mhUbbBP8YuWitltTqBPXsnRX9xjoyu+MsXkcjXKspebZmGcV5sj
-X-Google-Smtp-Source: AGHT+IG1yr729IfyggfMaOGuobww8IAVL5gyF4x4lEuRUAz8feYviF2R4vEKFUgp2ZVYBHxBGUymjHngjSlEj9VOTDM=
-X-Received: by 2002:a25:6a88:0:b0:d7b:1f20:293c with SMTP id
- f130-20020a256a88000000b00d7b1f20293cmr3255375ybc.1.1693426431915; Wed, 30
- Aug 2023 13:13:51 -0700 (PDT)
+        bh=O8kGGZ+yYzic7Nawq3DNrmlWB29Qsh1OZYatVeF7GGM=;
+        b=E68oZ81BqaddrWqOFGHWS/kPEv7CXFyN/o2Tl6xeRoT7qg/2qIAgyEuCFavP70MO+H
+         UIoxr3B/QY2zDhGUJ/Q8Ctwwsk9bdQrvEcNXSPVjTrNHSY8SSv7pDab4moZg+3wHGTRF
+         eBCp5JKt3tPv/599PQzphcCmb01h1dRNM5GXKCG/x+hsLyg+8Ki8+/ZHtCaAnaV1z10l
+         mf2l1FezLVwGB9Hsm6sAv+9TmgELsaVZn/8VYtLXXH8Y/rjdYNCw1ehwtD7/T1ofLKih
+         cW1cZ+VxRa48x05zSjkn2KDYIQrYLKXQ2vtKUbfZWWVfkJb8r2Mm6/VHfKAx9m5+GEeT
+         UFdg==
+X-Gm-Message-State: AOJu0YwvcTbeuK3HTpc8VAiBun0Gd0UVL+Figqhs8PlLNU/0o5Npwai+
+        y8Zhbj6go9pEQ18PupfSKdUkCqs4J7G68VK9N8bY7g==
+X-Google-Smtp-Source: AGHT+IHUnyWfOFAYID1o0vf2VVLGaIROgv5s/xgle655lK1ZczFXhZacdesCf6ewIfvbJsm//wQo+EaiCbHfEE/5a8w=
+X-Received: by 2002:a25:6b07:0:b0:d78:3047:62c6 with SMTP id
+ g7-20020a256b07000000b00d78304762c6mr3414264ybc.21.1693426517530; Wed, 30 Aug
+ 2023 13:15:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org> <20230830-topic-8550_dmac2-v1-3-49bb25239fb1@linaro.org>
-In-Reply-To: <20230830-topic-8550_dmac2-v1-3-49bb25239fb1@linaro.org>
+References: <20230825093531.7399-1-quic_nsekar@quicinc.com> <20230825093531.7399-5-quic_nsekar@quicinc.com>
+In-Reply-To: <20230825093531.7399-5-quic_nsekar@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 30 Aug 2023 23:13:40 +0300
-Message-ID: <CAA8EJpp7bxq4=i1CMPYvz99ZuKLz+th6zSFhhRhFMjDwGB5Z8Q@mail.gmail.com>
-Subject: Re: [PATCH 3/7] arm64: dts: qcom: sm8550: Fix up CPU idle states
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
+Date:   Wed, 30 Aug 2023 23:15:06 +0300
+Message-ID: <CAA8EJprLwi3QKgTksTeSWkjmhFL69PO8Zmc=j3VMfAr_UpXJ=g@mail.gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: ipq5018: Add USB related nodes
+To:     Nitheesh Sekar <quic_nsekar@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, quic_srichara@quicinc.com,
+        quic_varada@quicinc.com, quic_wcheng@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org,
+        Amandeep Singh <quic_amansing@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,95 +73,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Aug 2023 at 22:04, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+On Fri, 25 Aug 2023 at 12:37, Nitheesh Sekar <quic_nsekar@quicinc.com> wrote:
 >
-> The idle residency times are largely too low according to the vendor
-> kernel (maybe they came from an earlier release or something), especially
-> for the prime X2 core. Fix them.
+> Add USB phy and controller nodes.
 >
-> Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Co-developed-by: Amandeep Singh <quic_amansing@quicinc.com>
+> Signed-off-by: Amandeep Singh <quic_amansing@quicinc.com>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > ---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 32 +++++++++++++++++++++-----------
->  1 file changed, 21 insertions(+), 11 deletions(-)
+>  arch/arm64/boot/dts/qcom/ipq5018.dtsi | 54 +++++++++++++++++++++++++++
+>  1 file changed, 54 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index d115960bdeec..c21ba6afa752 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -283,9 +283,9 @@ LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
->                                 compatible = "arm,idle-state";
->                                 idle-state-name = "silver-rail-power-collapse";
->                                 arm,psci-suspend-param = <0x40000004>;
-> -                               entry-latency-us = <800>;
-> +                               entry-latency-us = <550>;
->                                 exit-latency-us = <750>;
-> -                               min-residency-us = <4090>;
-> +                               min-residency-us = <6700>;
->                                 local-timer-stop;
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 9f13d2dcdfd5..ff477923a823 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -238,6 +238,60 @@
+>                                 status = "disabled";
 >                         };
->
-> @@ -294,8 +294,18 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->                                 idle-state-name = "gold-rail-power-collapse";
->                                 arm,psci-suspend-param = <0x40000004>;
->                                 entry-latency-us = <600>;
-> -                               exit-latency-us = <1550>;
-> -                               min-residency-us = <4791>;
-> +                               exit-latency-us = <1300>;
-> +                               min-residency-us = <8136>;
-> +                               local-timer-stop;
-> +                       };
+>                 };
 > +
-> +                       PRIME_CPU_SLEEP_0: cpu-sleep-2-0 {
-> +                               compatible = "arm,idle-state";
-> +                               idle-state-name = "gold-plus-rail-power-collapse";
-> +                               arm,psci-suspend-param = <0x40000004>;
-> +                               entry-latency-us = <500>;
-> +                               exit-latency-us = <1350>;
-> +                               min-residency-us = <7480>;
->                                 local-timer-stop;
+> +               usbphy0: phy@5b000 {
+> +                       compatible = "qcom,ipq5018-usb-hsphy";
+> +                       reg = <0x0005b000 0x120>;
+> +
+> +                       clocks = <&gcc GCC_USB0_PHY_CFG_AHB_CLK>;
+> +
+> +                       resets = <&gcc GCC_QUSB2_0_PHY_BCR>;
+> +
+> +                       #phy-cells = <0>;
+> +
+> +                       status = "disabled";
+> +               };
+> +
+> +               usb: usb2@8a00000 {
+> +                       compatible = "qcom,ipq5018-dwc3", "qcom,dwc3";
+> +                       reg = <0x08af8800 0x400>;
+> +
+> +                       interrupts = <GIC_SPI 62 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names = "hs_phy_irq";
+> +
+> +                       clocks = <&gcc GCC_USB0_MASTER_CLK>,
+> +                                <&gcc GCC_SYS_NOC_USB0_AXI_CLK>,
+> +                                <&gcc GCC_USB0_SLEEP_CLK>,
+> +                                <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +                       clock-names = "core",
+> +                                     "iface",
+> +                                     "sleep",
+> +                                     "mock_utmi";
+> +
+> +                       resets = <&gcc GCC_USB0_BCR>;
+> +
+> +                       qcom,select-utmi-as-pipe-clk;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       ranges;
+> +
+> +                       status = "disabled";
+> +
+> +                       usb2_0_dwc: usb@8a00000 {
 
-This isn't only fixing the time properties, but also adds the whole
-new sleep state!
+Could you please remove the `2_0' part of the label?
 
->                         };
->                 };
-> @@ -304,17 +314,17 @@ domain-idle-states {
->                         CLUSTER_SLEEP_0: cluster-sleep-0 {
->                                 compatible = "domain-idle-state";
->                                 arm,psci-suspend-param = <0x41000044>;
-> -                               entry-latency-us = <1050>;
-> -                               exit-latency-us = <2500>;
-> -                               min-residency-us = <5309>;
-> +                               entry-latency-us = <750>;
-> +                               exit-latency-us = <2350>;
-> +                               min-residency-us = <9144>;
->                         };
->
->                         CLUSTER_SLEEP_1: cluster-sleep-1 {
->                                 compatible = "domain-idle-state";
->                                 arm,psci-suspend-param = <0x4100c344>;
-> -                               entry-latency-us = <2700>;
-> -                               exit-latency-us = <3500>;
-> -                               min-residency-us = <13959>;
-> +                               entry-latency-us = <2800>;
-> +                               exit-latency-us = <4400>;
-> +                               min-residency-us = <10150>;
->                         };
->                 };
+> +                               compatible = "snps,dwc3";
+> +                               reg = <0x08a00000 0xe000>;
+> +                               clocks = <&gcc GCC_USB0_MOCK_UTMI_CLK>;
+> +                               clock-names = "ref";
+> +                               interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +                               phy-names = "usb2-phy";
+> +                               phys = <&usbphy0>;
+> +                               tx-fifo-resize;
+> +                               snps,is-utmi-l1-suspend;
+> +                               snps,hird-threshold = /bits/ 8 <0x0>;
+> +                               snps,dis_u2_susphy_quirk;
+> +                               snps,dis_u3_susphy_quirk;
+> +                       };
+> +               };
 >         };
-> @@ -398,7 +408,7 @@ CPU_PD6: power-domain-cpu6 {
->                 CPU_PD7: power-domain-cpu7 {
->                         #power-domain-cells = <0>;
->                         power-domains = <&CLUSTER_PD>;
-> -                       domain-idle-states = <&BIG_CPU_SLEEP_0>;
-> +                       domain-idle-states = <&PRIME_CPU_SLEEP_0>;
->                 };
 >
->                 CLUSTER_PD: power-domain-cluster {
->
+>         timer {
 > --
-> 2.42.0
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
 >
 
 
