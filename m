@@ -2,72 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F64778E177
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:30:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B1678E152
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241419AbjH3Vaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 17:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50418 "EHLO
+        id S241092AbjH3VUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 17:20:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230286AbjH3Vap (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:30:45 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E155CC;
-        Wed, 30 Aug 2023 14:30:15 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id A00CC86529;
-        Wed, 30 Aug 2023 21:10:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1693422618;
-        bh=kwozhpbyt9j7/u9kKaoszAizSgLmV78Xsxd3v36CqvU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=kHyJPc8WHZlvDAmlFFW1oKG/JNi4AQMyNTJO/uS3anIXcCAA0QMppFBJOQxs+m/Jk
-         utRKASNFBqXFvJuwmJS7JI5RNqi9PrOvOfcWhbaSzd3vYoPA7AS1+tcKoanFRen8W2
-         1pUbn09qSjzf9OHs9vBM8mhp+k1oeH23VsEetfh95odpabDUe4Lu9VVtHky9zldELw
-         RC8MOeztZuAB3QNGy6Kw1UhGyVP7YvbVq2p8YfTXSs/5KE8qcSk0q0u8AC4ErG6Qqe
-         N+JFtQVm/niwRqWzOzMikSUI2ARpBJPDhiVAbMpOOJJnpSGgWpJcn/l8Gg3eYfvgi2
-         w1zdbNlCCFhMQ==
-Message-ID: <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de>
-Date:   Wed, 30 Aug 2023 21:10:17 +0200
+        with ESMTP id S241091AbjH3VUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:20:14 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19EB9CE6
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:19:41 -0700 (PDT)
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-76ef8b91a72so8346385a.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:19:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1693430257; x=1694035057; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=J6hWfbIynnUP5BUpdi9sNEghPSzuJ8hcWhPiubhMdyQ=;
+        b=bS9VaBfJEiU5UdQbtVM6PX+7MIPilo/3i+eumctdJ4rK5MioGFNbKsCTx2gduQVJan
+         A4KcM2feXVhVTd/7gKMI2taimqxoeM7ZHRw/nBVOfru6ATYaFdIf7Xqd7a70RiTGe34m
+         n9fKzGShHQ0zF1fEle7eivQWvXxEtstCzFQoX3GJQ/5VaA+s1NnyfrCGnMqSOBDsBFbC
+         /2m1n5ARD8K8/xqFdltoURmF3pidP3gr5ZNnENHAKQKGX8v6RFbHkdeWNVPv8D48X+bO
+         vL0L6iiWCOoEL5OHJ8X7wBfwX6oqYcPBdoACYafkRU+tEJlrS2fXD2iMJLBHFoCvaSK3
+         ZaQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693430257; x=1694035057;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=J6hWfbIynnUP5BUpdi9sNEghPSzuJ8hcWhPiubhMdyQ=;
+        b=Ume+hUF9eZfiaWUX9rQd18AmI0cPaNEZN3Eq8QGAU2scPjrQPSZ9X9HvVIVDEYxjlp
+         4rXXI4H0iZko2yZ5N2A+QClxzT0Q6t8A3nEskL86tyacu1ySSN+1E9ppFe24h0L02AYr
+         XK/Q4ZAnhKiq6g47hSHrcfbmNKfNctv5X/0mjKU4wBbzMSaGBd8CkUTfD6BoOY6S50Xx
+         sfqJhQbH8OB+F9h7kOid1iyrntrf61H9GlErh7xFZde/w1Tyi2ImRKs/WWZb9/pu8Q2y
+         Szsxhu/Ya4niL8p0cZ9f7rkfnjw6VuZw9+HunBQcTlviZigIrsrcfeJ+Zi6uCGj/FxNw
+         BykQ==
+X-Gm-Message-State: AOJu0YxZfpVlhYeXiF6DP5VVUF3xaWnCwoU6daNClvZy6CjNYOfwlKEc
+        2cnrONmbwxjWNlnhQ9UvAkDFiakIwWggHk6yZci9lVjkydHXbaLtcBg=
+X-Google-Smtp-Source: AGHT+IFJ1DxDSDn+rxq1FvriBdkBpWWLRYcjePAYy/X7OVYKimW7wLrpeqNTC6UptcyifchQtbuSRLu3srnYZpvyNiE=
+X-Received: by 2002:a17:90b:38c3:b0:26d:49c8:78aa with SMTP id
+ nn3-20020a17090b38c300b0026d49c878aamr3089232pjb.32.1693423182647; Wed, 30
+ Aug 2023 12:19:42 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-Content-Language: en-US
-To:     Adam Ford <aford173@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+References: <20230830103620.3611761-1-Naresh.Solanki@9elements.com> <20230830-waving-stinky-d510fefbbf82@spud>
+In-Reply-To: <20230830-waving-stinky-d510fefbbf82@spud>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+Date:   Thu, 31 Aug 2023 00:49:32 +0530
+Message-ID: <CABqG17hvSYbsnYYGOQxVsiXsqLXFnovXvkhgc=pYR9osgF0-1g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-References: <20230508114236.8444-1-marex@denx.de>
- <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,106 +73,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/23 04:44, Adam Ford wrote:
+Hi
 
-Hi,
-
-> I have a question about the clocking for eASRC and PDM.
-> 
->> +
->> +                       audio_blk_ctrl: clock-controller@30e20000 {
->> +                               compatible = "fsl,imx8mp-audio-blk-ctrl";
->> +                               reg = <0x30e20000 0x10000>;
->> +                               #clock-cells = <1>;
->> +                               clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
->> +                                        <&clk IMX8MP_CLK_SAI1>,
->> +                                        <&clk IMX8MP_CLK_SAI2>,
->> +                                        <&clk IMX8MP_CLK_SAI3>,
->> +                                        <&clk IMX8MP_CLK_SAI5>,
->> +                                        <&clk IMX8MP_CLK_SAI6>,
->> +                                        <&clk IMX8MP_CLK_SAI7>;
->> +                               clock-names = "ahb",
->> +                                             "sai1", "sai2", "sai3",
->> +                                             "sai5", "sai6", "sai7";
->> +                               power-domains = <&pgc_audio>;
->> +                       };
->> +               };
->> +
-> 
-> I am trying to plumb in the micfil driver with a PDM microphone on a
-> Plus.  I have SAI3 and SAI5 audio working, but if I try to use the
-> micfil, the PDM clock doesn't get turned on, and the micfil doesn't
-> appear to see anything coming in.  I was curious why the
-> audio_blk_ctrl has clock entries for IMX8MP_CLK_SAIx, but there isn't
-> one for the PDM nor the ASRC clocks.
-
-I only ever needed SAI, so that was what was tested on the EVK .
-
-> I added the MICFIL noted to the
-> 8mp in a previous patch [1], and I am trying to customize the MICFIL
-> node as follows:
-> 
-> &micfil {
-> #sound-dai-cells = <0>;
-> pinctrl-names = "default";
-> pinctrl-0 = <&pinctrl_pdm>;
-> assigned-clocks = <&clk IMX8MP_CLK_PDM>;
-> assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
-> assigned-clock-rates = <196608000>;
-> status = "okay";
-> };
-> 
-> I also noticed in the down-stream kernel, the pdm_ipg_clk and
-> pdm_root_clk are shared gates with separate parents.
-> 
-> The PDM tree of the down-stream kernel looks like this:
->   audio_pll1_ref_sel                0        0        0    24000000
->       0     0  50000         Y
->         audio_pll1                     0        0        0   393216000
->          0     0  50000         Y
->            audio_pll1_bypass           0        0        0   393216000
->          0     0  50000         Y
->               audio_pll1_out           0        0        0   393216000
->          0     0  50000         N
->                  pdm                   0        0        0   196608000
->          0     0  50000         N
->                     pdm_root           0        0        0   196608000
->          0     0  50000         N
->                        pdm_sel         0        0        0   196608000
->          0     0  50000         Y
->                           pdm_root_clk       0        0        0
-> 196608000          0     0  50000         N
-> 
-> The PDM tree of the mainline looks like this:
-> 
->     audio_pll1_ref_sel                0        0        0    24000000
->         0     0  50000         Y
->         audio_pll1                     0        0        0   393216000
->          0     0  50000         Y
->            audio_pll1_bypass           0        0        0   393216000
->          0     0  50000         Y
->               audio_pll1_out           0        0        0   393216000
->          0     0  50000         N
->                  pdm                   0        0        0   196608000
->          0     0  50000         N
->                     pdm_root           0        0        0   196608000
->          0     0  50000         N
->                        pdm_sel         0        0        0   196608000
->          0     0  50000         Y
-> 
-> It seems like the "pdm_root_clk" generated by the shared audo-blk
-> down-sream driver is missing from the mainline.  I looked up the clock
-> I referenced when I attempted to enable the miffil, but
-> 'IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't appear to be configured in
-> either clk-imx8mp.c or clk-imx8mp-audiomix.c.  Maybe it's obscured by
-> the macros, but it seems like the pdm_sel should somehow have an
-> additional variable for the shared clock and an additional clock like
-> pdm_root_clk assigned with it.
-> 
-> I have similar configurations for Mini and Nano, and both of them are
-> able to record audio, so I think there might be a clock issue
-> somewhere related to the audiomix driver, and not a misconfiguration
-> of the sound-card or the micfil itself.
-
-Shouldn't the micfil be somehow a consumer of the pdm_sel clock , and 
-enable those clock in the driver ?
+On Wed, 30 Aug 2023 at 21:02, Conor Dooley <conor@kernel.org> wrote:
+>
+> Hey,
+>
+> On Wed, Aug 30, 2023 at 12:36:16PM +0200, Naresh Solanki wrote:
+> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> >
+> > Add the DT property 'infineon,en-pin-fixed-level' to
+> > indicated that the chip ENABLE pin is at fixed level
+> > or left unconnected(has internal pull-down).
+> >
+> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> > ----
+> > Changes in V4:
+> > - Update property name & description.
+> > - Update commit message.
+> > ---
+> >  .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+> >  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+> >  2 files changed, 50 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> > new file mode 100644
+> > index 000000000000..1df40ee7454a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +
+> > +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
+> > +
+> > +maintainers:
+> > +  - Naresh Solanki <naresh.solanki@9elements.com>
+> > +
+> > +description: |
+> > +  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
+> > +  Regulator with SVID and I2C designed for Industrial use.
+> > +
+> > +  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - infineon,tda38640
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  infineon,en-pin-fixed-level:
+> > +    description: |
+>
+> The | isn't needed when there is no formatting requiring preservation.
+Sure will remove.
+>
+> > +      Indicates that the chip ENABLE pin is at fixed level or left
+> > +      unconnected(has internal pull-down).
+>
+> Maybe you've already been over this, but if the pin is called "enable"
+> why not use the same wording in the property?
+EN & ENABLE is used interchangeably in the datasheet.
+Just to keep property name short I use EN.
+>
+> > +    type: boolean
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        tda38640@40 {
+>
+> Use a generic node name please.
+>
+> Thanks,
+> Conor.
+>
+> > +            compatible = "infineon,tda38640";
+> > +            reg = <0x40>;
+> > +        };
+> > +    };
+> > +
+> > diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > index 40bc475ee7e1..86c7d34f63bf 100644
+> > --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> > +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> > @@ -151,8 +151,6 @@ properties:
+> >            - infineon,slb9645tt
+> >              # Infineon SLB9673 I2C TPM 2.0
+> >            - infineon,slb9673
+> > -            # Infineon TDA38640 Voltage Regulator
+> > -          - infineon,tda38640
+> >              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+> >            - infineon,tlv493d-a1b6
+> >              # Infineon Multi-phase Digital VR Controller xdpe11280
+> >
+> > base-commit: 919a83d020a8dfa1411c1dc1cff23a833f0f5268
+> > --
+> > 2.41.0
+> >
