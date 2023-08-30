@@ -2,119 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01EB678D2A5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 06:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B93578D2C5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 06:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231265AbjH3EAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 00:00:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48454 "EHLO
+        id S233885AbjH3EcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 00:32:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242164AbjH3D7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 23:59:48 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2426CEA;
-        Tue, 29 Aug 2023 20:59:43 -0700 (PDT)
-Authenticated-By: 
-X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 37U3x6xrD032293, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 37U3x6xrD032293
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 30 Aug 2023 11:59:07 +0800
-Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Wed, 30 Aug 2023 11:59:31 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.34; Wed, 30 Aug 2023 11:59:32 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
- RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
- 15.01.2375.007; Wed, 30 Aug 2023 11:59:31 +0800
-From:   =?utf-8?B?U3RhbmxleSBDaGFuZ1vmmIzogrLlvrdd?= 
-        <stanley_chang@realtek.com>
-To:     Chanwoo Choi <chanwoo@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>
-CC:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
-Thread-Topic: [PATCH v1 1/2] extcon: add Realtek DHC RTD SoC Type-C driver
-Thread-Index: AQHZ1ONvA6JhKCipAECuqR11IG4J/a/5VrCAgAfQ43CAAAOYAIABEHdg
-Date:   Wed, 30 Aug 2023 03:59:31 +0000
-Message-ID: <249af57804f3405f80f28879e31637b3@realtek.com>
-References: <20230822102846.4683-1-stanley_chang@realtek.com>
- <af247603-6a8d-7c05-4342-c6f615a7f508@kernel.org>
- <2df3dc449c894e50b126a1b6941eb4d7@realtek.com>
- <c70c08b4-be67-14da-be25-5473ffd0ca7d@kernel.org>
-In-Reply-To: <c70c08b4-be67-14da-be25-5473ffd0ca7d@kernel.org>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS05.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S241941AbjH3Eby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 00:31:54 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 415741A3;
+        Tue, 29 Aug 2023 21:31:52 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37U3MFL6019945;
+        Wed, 30 Aug 2023 04:31:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=GG+8rS5o/dkMg3A1S4Xqd2avN1fZPIm69Ii7YyiRhH4=;
+ b=UAKB1eDrrdU23EGylsTqpbQnoQZxXr6PGXYWxzCSwWpcWFivm5AQXH/ukQ80FyIDn4JY
+ NSWOKrev1hNkxM90ttoMlUWkNVb2NHxlgTumq0RzDEz2idJlCJN74z9TF7C+y62zwKo7
+ m9lVPHY9HJ7SpGZu0B1equZl0RgWHm3gWpk1gDqbEOCuqPbUlsyDhfsTnEIVjC2rfQJ5
+ IH1HGYEHgz9EzceMinUlCbYGUxLo9Cr+S2AD6M0n7M0joe5lQkO/XfLNnx0pZjftr2Cu
+ cNo/QZtM/eU1+vzDLIE5FKC7Y/rZuIU8sP5vuxSGEWynFebdRsR/suMelCUi9rr5CtV2 Bg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ss3fr3hfj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 30 Aug 2023 04:31:43 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37U4VgFu025885
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 30 Aug 2023 04:31:42 GMT
+Received: from [10.110.49.169] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 29 Aug
+ 2023 21:31:41 -0700
+Message-ID: <d30a8d6a-236a-b6eb-76d7-115cc9950ce1@quicinc.com>
+Date:   Tue, 29 Aug 2023 21:31:41 -0700
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 2/3] dt-bindings: usb: snps,dwc3: Add
+ runtime-suspend-on-usb-suspend property
+Content-Language: en-US
+To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+References: <20230814185043.9252-3-quic_eserrao@quicinc.com>
+ <a77403f5-8b99-3012-3843-1999ee8d12ce@linaro.org>
+ <6b27cd55-4e44-7a26-30ff-9692344cae4c@quicinc.com>
+ <31fa930a-51fb-6a7f-300d-e71f6b399eb1@linaro.org>
+ <a0a6c561-6319-00ba-c6db-f1dec9f0f0aa@quicinc.com>
+ <5dfae814-7233-eb1f-cae7-f335e54ce1b6@linaro.org>
+ <cf0227c8-cd02-81b6-9e13-2e7fe6f505f2@kernel.org>
+ <20230826015257.mbogiefsbz5474ft@synopsys.com>
+ <afd4843b-427a-8535-78e2-f81879378371@linaro.org>
+ <969988f6-f01f-0e31-6a98-7d02c5a3a4ad@quicinc.com>
+ <20230830013739.srnh2uyhly66yvu2@synopsys.com>
+From:   Elson Serrao <quic_eserrao@quicinc.com>
+In-Reply-To: <20230830013739.srnh2uyhly66yvu2@synopsys.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qzqKFfHXJD-tRXbkZY4dDpgzkLlz0gPc
+X-Proofpoint-ORIG-GUID: qzqKFfHXJD-tRXbkZY4dDpgzkLlz0gPc
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-29_16,2023-08-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ adultscore=0 spamscore=0 phishscore=0 bulkscore=0 mlxlogscore=999
+ impostorscore=0 suspectscore=0 lowpriorityscore=0 malwarescore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308300041
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQ2hhbndvbywNCg0KPiA+Pj4gKyNkZWZpbmUgVFlQRV9DX0VOX1NXSVRDSCBCSVQoMjkpDQo+
-ID4+PiArI2RlZmluZSBUWVBFX0NfVFhSWF9TRUwgKEJJVCgyOCkgfCBCSVQoMjcpKSAjZGVmaW5l
-DQo+ID4+PiArVFlQRV9DX1NXSVRDSF9NQVNLIChUWVBFX0NfRU5fU1dJVENIIHwgVFlQRV9DX1RY
-UlhfU0VMKQ0KPiAjZGVmaW5lDQo+ID4+PiArVFlQRV9DX0VOQUJMRV9DQzEgVFlQRV9DX0VOX1NX
-SVRDSCAjZGVmaW5lDQo+IFRZUEVfQ19FTkFCTEVfQ0MyDQo+ID4+PiArKFRZUEVfQ19FTl9TV0lU
-Q0ggfCBUWVBFX0NfVFhSWF9TRUwpICNkZWZpbmUgVFlQRV9DX0RJU0FCTEVfQ0MNCj4gPj4+ICt+
-VFlQRV9DX1NXSVRDSF9NQVNLDQo+ID4+PiArDQo+ID4+PiArICAgICB2YWxfY2MgPSByZWFkbChy
-ZWcpOw0KPiA+Pg0KPiA+PiBJJ2QgbGlrZSB5b3UgdG8gdXNlIHJlZ21hcCBpbnRlcmZhY2UgdG8g
-YWNjZXNzIHRoZSByZWdpc3RlciBieSB1c2luZw0KPiA+PiByZWdtYXBfcmVhZCwgcmVnbWFwX3dy
-aXRlLiBZb3UgY2FuIGNyZWF0ZSB0aGUgcmVnbWFwIGluc3RhbmNlIHZpYQ0KPiA+PiBkZXZtX3Jl
-Z21hcF9pbml0X21taW8oKSBvbiBwcm9iZSBpbnN0ZWFkIG9mIHVzaW5nICd0eXBlX2MtPnJlZ19i
-YXNlJw0KPiA+PiBhdCB0aGUgbXVsdGlwZSBwb2ludC4NCj4gPj4NCj4gPj4gRm9yIGV4YW1wbGUs
-DQo+ID4+ICAgICAgICAgc3RydWN0IHJlZ21hcF9jb25maWcgcnRrX3JlZ21hcF9jb25maWcgPSB7
-DQo+ID4+ICAgICAgICAgICAgICAgICAucmVnX2JpdHMgPSAzMiwNCj4gPj4gICAgICAgICAgICAg
-ICAgIC52YWxfYml0cyA9IDMyLA0KPiA+PiAgICAgICAgIH07DQo+ID4+DQo+ID4+ICAgICAgICAg
-dm9pZCBfX2lvbWVtICpiYXNlOw0KPiA+Pg0KPiA+PiAgICAgICAgIGJhc2UgPSBkZXZtX3BsYXRm
-b3JtX2dldF9hbmRfaW9yZW1hcF9yZXNvdXJjZShwZGV2LCAwLA0KPiAmcmVzKTsNCj4gPj4gICAg
-ICAgICBpZiAoSVNfRVJSKGJhc2UpKQ0KPiA+PiAgICAgICAgICAgICAgICAgcmV0dXJuIFBUUl9F
-UlIoYmFzZSk7DQo+ID4+DQo+ID4+ICAgICAgICAgcmVnbWFwID0gZGV2bV9yZWdtYXBfaW5pdF9t
-bWlvKGRldiwgYmFzZSwNCj4gPj4gJnJ0a19yZWdtYXBfY29uZmlnKTsNCj4gPj4NCj4gPj4gICAg
-ICAgICAtLS0NCj4gPj4NCj4gPj4gICAgICAgICBBbmQgdGhlbiBqdXN0IGNhbGwgcmVnbWFwX3Jl
-YWQgd2l0aG91dCBhbnkgY2FsY3VsYXRpb24gYmV0d2Vlbg0KPiA+PiAgICAgICAgIGJhc2UgYWRk
-cmVzcyBhbmQgc3BlY2lmaWMgcmVnaXN0ZXIuDQo+ID4+DQo+ID4+ICAgICAgICAgcmVnbWFwX3Jl
-YWQocmVnbWFwLCBVU0JfVFlQRUNfQ1RSTF9DQzFfMCkNCj4gPj4NCj4gPg0KPiA+IEkgc3R1ZGll
-ZCBtbWlvJ3MgcmVnbWFwLg0KPiA+DQo+ID4gSXQgb25seSBjaGFuZ2VkIG9uZSBlbmNvZGluZyBt
-ZXRob2QuIEFuZCBzaW1wbGlmaWVzIHRoZSBjYWxjdWxhdGlvbg0KPiBiZXR3ZWVuIHRoZSBiYXNl
-IGFkZHJlc3MgYW5kIHRoZSBzcGVjaWZpYyByZWdpc3Rlci4NCj4gDQo+IFRoZSByZWdtYXAgcHJv
-dmlkZXMgdGhlIGNvbnNpc3RlbnQgaW50ZXJmYWNlIHRvIGFjY2VzcyByZWdpc3RlciByZWdhcmRs
-ZXNzIG9mDQo+IG1taW8vaTJjL3NwaSBhbmQgc28gb24uIEl0IGlzIHRoZSBhZHZhbnRhZ2Ugb2Yg
-cmVnbWFwLg0KPiANCj4gQW5kIHJlZ21hcCBwcm92aWRlcyB0aGUgbGlrZSByZWdpc3RlciBkdW1w
-IHZpYSBkZWJ1Z2ZzLCBpcyBhYmxlIHRvIHNwZWNpZnkgdGhlDQo+IGtpbmQgb2YgcmVnaXN0ZXIg
-bGlrZSB3cml0YWJsZSwgcmVhZGFibGUsIHZvbGF0aWxlIHR5cGUuDQo+IEl0IGlzIHBvc3NpYmxl
-IHRvIHNwZWNpZnkgdGhlIG1vcmUgZGV0YWlsZWQgcmVnaXN0ZXIgaW5mb3JtYXRpb24gaW4gZGV2
-aWNlIGRyaXZlcg0KPiBpbiBvcmRlciB0byBpbXByb3ZlIHRoZSByZWFkYWJpbGl0eS4gSXQgYWxs
-b3dzIHlvdSB0byBleHByZXNzIG1vcmUgZGV0YWlsIG9mIHRoaXMNCj4gZGV2aWNlIHRoYW4ganVz
-dCB3b3JraW5nLg0KDQpUaGVzZSBhcmUgYWxsIGFkdmFudGFnZXMgb2YgcmVnbWFwLCBJIGFncmVl
-Lg0KSSBoYXZlbid0IGRlbHZlZCBpbnRvIHJlZ21hcCB5ZXQuDQoNCj4gDQo+ID4gSWYgdGhlIHJl
-Z2lzdGVyIGlzIDMyLWJpdCBhbGlnbmVkLCBvdGhlciBvcGVyYXRpb25zIGxvb2sgdGhlIHNhbWUg
-YXMNCj4gcmVhZGwvd3JpdGVsLg0KPiA+IEkgdGhpbmsgcmVnbWFwIGlzIG1vcmUgc2ltcGxpZmll
-ZCBpZiB0aGUgcmVhZCByZWdpc3RlcnMgYXJlIG5vdCAzMi1iaXQgYWxpZ25lZCwNCj4gZS5nLiBu
-dm1lbSByZWFkL3dyaXRlLg0KPiANCj4gSSdtIHNvcnJ5LiBJIGRvbid0IHVuZGVyc3RhbmQgb2Yg
-d2hhdCBpcyBhY2N1cmF0ZSBtZWFuaW5nLg0KPiBDb3VsZCB5b3UgcGxlYXNlIGV4cGxhaW4geW91
-ciBvcGluaW9uIG1vcmUgZGV0YWlsZWQgd2l0aCBleGFtcGxlIG9mIHRoaXMNCj4gcGF0Y2g/DQoN
-ClNvcnJ5LCBJIG1pc3VuZGVyc3Rvb2QgcmVnbWFwLCBJIHRob3VnaHQgaGUgY291bGQgcmVhZCBy
-ZWdpc3RlciBsaWtlIHJlYWQgb3RwIHRhYmxlcyBieSBudm1lbSByZWdhcmRsZXNzIG9mIGhpcyBi
-aXRuZXNzIGFuZCBzaXplLg0KU28gbXkgYW5zd2VyIHNob3VsZCBiZSBpbmNvcnJlY3QuDQoNClRo
-YW5rLA0KU3RhbmxleQ0K
+
+
+On 8/29/2023 6:37 PM, Thinh Nguyen wrote:
+> Just want to clarify, there are dwc3 properties and there are dt binding
+> properties. Often the case that dt binding matches 1-to-1 with dwc3
+> driver property. Now, we need to enhance the checkers so that the dwc3
+> driver property to match cases where it is platform specific and through
+> compatible string.
+> 
+
+Thank you for the clarification Thinh.
+To confirm, we would need to modify the driver to parse a new compatible 
+string (say "snps,dwc3-ext-wakeup") and add .data field so that the 
+driver is aware that this particular platform supports external wakeup 
+detection.Right ?
+
+Regards
+Elson
+
