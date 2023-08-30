@@ -2,248 +2,523 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D383D78D233
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 04:45:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D01E678D239
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 04:54:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241766AbjH3Coq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Aug 2023 22:44:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52342 "EHLO
+        id S239513AbjH3CyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Aug 2023 22:54:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241822AbjH3Coc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 22:44:32 -0400
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61887CEC;
-        Tue, 29 Aug 2023 19:44:27 -0700 (PDT)
-Received: by mail-pj1-x102b.google.com with SMTP id 98e67ed59e1d1-27183f4ccc1so1651651a91.2;
-        Tue, 29 Aug 2023 19:44:27 -0700 (PDT)
+        with ESMTP id S239186AbjH3CyA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Aug 2023 22:54:00 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DEE0FF;
+        Tue, 29 Aug 2023 19:53:57 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id d9443c01a7336-1bc63ef9959so39095985ad.2;
+        Tue, 29 Aug 2023 19:53:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693363467; x=1693968267; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+6IkO9heiK/3IppRrCoBo6SsCuPvqZof4XLqWQAV+Q8=;
-        b=ABxTBNo2tyY7r4+ley7Kisk8NxLEstun66RkqZ/LeH0bGMmI82aeYQxhmSt2oPF8Dt
-         SDCt94/qmbgZOvNMcZ2e6f18OGaH614wTFvON1ooA1r1j/j45xkAzLr/aup+GbQMWR5R
-         HCWzTlMkkv084OfntWm8/daCUL1+NnRrzY1ICQ/kglnm0/2oiLgLglZQMGIpFExY93m4
-         u7kgkhJllzGDD849T+2EDufHumDKWzsUpCaaNWRhLcXQ7Pgc2oZHeXwTImlLlnpYSf/h
-         hzj02WcKuhl2FUUNbyiQX7138qQ6gdHHiGdyPmXtVMkte7irkTfhJd24CS3rjKQW7YvP
-         As1A==
+        d=gmail.com; s=20221208; t=1693364037; x=1693968837; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4pJXKNzBeijUiGaE6CFV2qyqmjzFsKiLdlEMIvfBcCA=;
+        b=andwTkvGHvw2fQliamFslJ6kc9f8Kf4bFdY7ULseLYNDmYzL3KGkNjX5Q054nfY1tw
+         dIt2rdrWmvJKJPho2xW0B9hRBi6Yqi9U0BKyfOTs7s8VOQGwdJ2Qa3RDpCkNk2cqHqKB
+         T/Yso/IPRzI1wwTQ/YMbRQGgBdCjjZ9TIGHCdo4XbfwaIQ2S14yJyzhm6YX2SXw1aHXS
+         1WGLcMCqXJ+qCQUEkpCHPdD90mnKdmF2yL3lCNXbIbL1vz5i5xw2USz0Q32kb3sW4MKF
+         YJcqVexlEIgcocpDORhEqWQ0NrzROpFsY+m+jMg79e2Wgl1cFbLaaBFNF725x1DrvbGI
+         l89g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693363467; x=1693968267;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+6IkO9heiK/3IppRrCoBo6SsCuPvqZof4XLqWQAV+Q8=;
-        b=AaY3EC+y8QWRBDWpbCdt90fp397fUGV4hiZ2lCEU1cXwJ+K8KggtykjBgZQALnrbG3
-         sHnPF5/rmQt+ZYGnZdIxOtMd8c9pWOwR8OGLP6Oyy+UeGnMPqWmp/LbmKkhOM9UVu2yg
-         gxNAwUn8W1aUsFryOcLTTdBmTeaRzEo2glgCTlJz5vw5KOqz+2EvimDT3xohTLaxlKVh
-         FnwpKVY/KbYUH4NVgZ36XvCmYwGBAgJpbzdaCuy1zSaKAEqCPrN2lVVGcA2uAJI4As6L
-         el+QsgJb8Xp8+t1UhajXHz+GtteYXbMND7gyl8VqByesXgY75uyxyAJD2hzICOIXMvaG
-         /upg==
-X-Gm-Message-State: AOJu0Yw09iRc4GGtab6Pd2NLATnsx4VEyjpR+BKIHe873zPx3hjn+w7M
-        w7ehHlHoHuT54nLnJFezTDCjVbRxHkJjgwwVlew=
-X-Google-Smtp-Source: AGHT+IHW1NRWoZCkWByi29KVq1k53JC9RJfQnl7Eqd75V3byZ0BdpIUy44crH1CYTSwuOASSIO+BhHp00zpbMluuCeA=
-X-Received: by 2002:a17:90a:f182:b0:271:addf:3c96 with SMTP id
- bv2-20020a17090af18200b00271addf3c96mr928363pjb.46.1693363466465; Tue, 29 Aug
- 2023 19:44:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230508114236.8444-1-marex@denx.de>
-In-Reply-To: <20230508114236.8444-1-marex@denx.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Tue, 29 Aug 2023 21:44:15 -0500
-Message-ID: <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        d=1e100.net; s=20221208; t=1693364037; x=1693968837;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4pJXKNzBeijUiGaE6CFV2qyqmjzFsKiLdlEMIvfBcCA=;
+        b=aMQ8Dk34pjh2tnMLLfCFeb54lRNnJEs4+SZtRnVYwnZLjzU4JAnEUhNy6oV1TeG/ls
+         UBDHdO/7tU71r/nNCdvYAftSFfQy8eXdVTr8AVPuM8K44mlfL121ZYrmty5Fj7v8BXSO
+         rPWqAWWLTh6ndZTeKn16NP1ZRFZ6g/jPZBqiU+8q4yP2xO3yN64bryud8ov7PnSL6PX/
+         ylKRiisgm1JCJCIoeLt3XQaV41mLueGtDPe7OxvvikwC8ERvZC0VWcEt5oZ48Lq/mWoz
+         OJ0/nVOePKbuW4sWcc1GVn1rzdHEoyEYJoljQiu8DTlNUqK++nJBRgfom1ku8paI/P4Y
+         4y7A==
+X-Gm-Message-State: AOJu0YyuWuPhzPbcquv9VIkNO1ghnMmH8vrTNBhKUWaOweIGxfdw4JeI
+        zS9L1e0vMsjy0ILdu7r/l+Q=
+X-Google-Smtp-Source: AGHT+IEhsIa09QoBjpvV689mws1UolfY8a4C0GIdtnMfTq6BK3TASyvCbXEHYWRBD/H79hoaSj09TA==
+X-Received: by 2002:a17:902:efd1:b0:1c0:e014:90c1 with SMTP id ja17-20020a170902efd100b001c0e01490c1mr835558plb.48.1693364036618;
+        Tue, 29 Aug 2023 19:53:56 -0700 (PDT)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id p21-20020a170902a41500b001c1f4edfb87sm3867090plq.92.2023.08.29.19.53.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Aug 2023 19:53:55 -0700 (PDT)
+From:   peteryin <peteryin.openbmc@gmail.com>
+To:     patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
+        daniel-hsu@quantatw.com, peteryin <peteryin.openbmc@gmail.com>
+Subject: [PATCH v3 1/1] ARM: dts: aspeed: Minerva: Add Facebook Minerva (AST2600) BMC
+Date:   Wed, 30 Aug 2023 10:51:33 +0800
+Message-Id: <20230830025133.3756506-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, May 8, 2023 at 6:42=E2=80=AFAM Marek Vasut <marex@denx.de> wrote:
->
-> Add all SAI nodes, SDMA2 and SDMA3 nodes, and AudioMIX node. This is
-> needed to get audio operational on i.MX8MP .
->
-> Acked-by: Peng Fan <peng.fan@nxp.com>
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-> Tested-by: Adam Ford <aford173@gmail.com> #imx8mp-beacon-kit
-> Tested-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Tested-by: Richard Leitner <richard.leitner@skidata.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> ---
-> Cc: Abel Vesa <abelvesa@kernel.org>
-> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-> Cc: Fabio Estevam <festevam@gmail.com>
-> Cc: Jacky Bai <ping.bai@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Marco Felsch <m.felsch@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: Richard Cochran <richardcochran@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-arm-kernel@lists.infradead.org
-> Cc: linux-clk@vger.kernel.org
-> ---
-> V2: - Add AUDIO_AXI clock to audio gpc
->     - Use IMX8MP_CLK_AUDIOMIX_SDMA2_ROOT for SDMA2 IPG clock
-> V3: Rename audio_ahb to plain ahb
-> V4: - Add RB/TB from Luca
->     - Rebase on next 20230223
-> V5: - Add TB from Adam and Alexander
->     - Replace blk-ctrl@ with clock-controller@
->     - Specify sound-dai-cells in sai nodes
-> V6: - Add RB from Fabio
->     - Drop power-domain-names from audiomix block/clock controller
->     - Move reg below compatible property
->     - Move sound-dai-cells below reg property
->     - Sort DT properties: compatible, regs, #cells, properties, status
-> V7: - Move #clock-cells below reg property
->     - Add AB from Peng
->     - Add RB from Marco, sort the tags
-> V8: Add TB from Richard
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 158 ++++++++++++++++++++++
->  1 file changed, 158 insertions(+)
->
-<snip>
-Marek,
+Add linux device tree entry related to
+Minerva specific devices connected to BMC SoC.
 
-I have a question about the clocking for eASRC and PDM.
+Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
+---
+v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
+v2 link : https://lore.kernel.org/lkml/9f499fe5-db59-f4c8-6a50-93725b7287fd@linaro.org/
 
-> +
-> +                       audio_blk_ctrl: clock-controller@30e20000 {
-> +                               compatible =3D "fsl,imx8mp-audio-blk-ctrl=
-";
-> +                               reg =3D <0x30e20000 0x10000>;
-> +                               #clock-cells =3D <1>;
-> +                               clocks =3D <&clk IMX8MP_CLK_AUDIO_ROOT>,
-> +                                        <&clk IMX8MP_CLK_SAI1>,
-> +                                        <&clk IMX8MP_CLK_SAI2>,
-> +                                        <&clk IMX8MP_CLK_SAI3>,
-> +                                        <&clk IMX8MP_CLK_SAI5>,
-> +                                        <&clk IMX8MP_CLK_SAI6>,
-> +                                        <&clk IMX8MP_CLK_SAI7>;
-> +                               clock-names =3D "ahb",
-> +                                             "sai1", "sai2", "sai3",
-> +                                             "sai5", "sai6", "sai7";
-> +                               power-domains =3D <&pgc_audio>;
-> +                       };
-> +               };
-> +
+Change log:
 
-I am trying to plumb in the micfil driver with a PDM microphone on a
-Plus.  I have SAI3 and SAI5 audio working, but if I try to use the
-micfil, the PDM clock doesn't get turned on, and the micfil doesn't
-appear to see anything coming in.  I was curious why the
-audio_blk_ctrl has clock entries for IMX8MP_CLK_SAIx, but there isn't
-one for the PDM nor the ASRC clocks.  I added the MICFIL noted to the
-8mp in a previous patch [1], and I am trying to customize the MICFIL
-node as follows:
+v3:
+    1.Fixed commit description.
+    2.Add sgpio line name to sgpioP.
+    3.Add ipmb debug card bus.
 
-&micfil {
-#sound-dai-cells =3D <0>;
-pinctrl-names =3D "default";
-pinctrl-0 =3D <&pinctrl_pdm>;
-assigned-clocks =3D <&clk IMX8MP_CLK_PDM>;
-assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
-assigned-clock-rates =3D <196608000>;
-status =3D "okay";
-};
+v2:
+    1.Add facebook,minerva-bmc in aspeed.yaml
+    2.Use stdout-path
+    3.Add Makefile
 
-I also noticed in the down-stream kernel, the pdm_ipg_clk and
-pdm_root_clk are shared gates with separate parents.
+v1:
+    1. Create minerva dts file.
 
-The PDM tree of the down-stream kernel looks like this:
- audio_pll1_ref_sel                0        0        0    24000000
-     0     0  50000         Y
-       audio_pll1                     0        0        0   393216000
-        0     0  50000         Y
-          audio_pll1_bypass           0        0        0   393216000
-        0     0  50000         Y
-             audio_pll1_out           0        0        0   393216000
-        0     0  50000         N
-                pdm                   0        0        0   196608000
-        0     0  50000         N
-                   pdm_root           0        0        0   196608000
-        0     0  50000         N
-                      pdm_sel         0        0        0   196608000
-        0     0  50000         Y
-                         pdm_root_clk       0        0        0
-196608000          0     0  50000         N
+---
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 384 ++++++++++++++++++
+ 3 files changed, 386 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
 
-The PDM tree of the mainline looks like this:
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index fb4ce5df2fa0..9d1b26e7ca6b 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -79,6 +79,7 @@ properties:
+               - facebook,elbert-bmc
+               - facebook,fuji-bmc
+               - facebook,greatlakes-bmc
++              - facebook,minerva-bmc
+               - ibm,everest-bmc
+               - ibm,rainier-bmc
+               - ibm,tacoma-bmc
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 6a897ff40ff0..e7c00905a08b 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -1603,6 +1603,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-bmc-facebook-wedge400.dtb \
+ 	aspeed-bmc-facebook-yamp.dtb \
+ 	aspeed-bmc-facebook-yosemitev2.dtb \
++	aspeed-bmc-facebook-minerva.dtb \
+ 	aspeed-bmc-ibm-bonnell.dtb \
+ 	aspeed-bmc-ibm-everest.dtb \
+ 	aspeed-bmc-ibm-rainier.dtb \
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+new file mode 100644
+index 000000000000..2798ba02abd2
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+@@ -0,0 +1,384 @@
++// SPDX-License-Identifier: GPL-2.0+
++// Copyright (c) 2023 Facebook Inc.
++/dts-v1/;
++
++#include "aspeed-g6.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++
++/ {
++	model = "Facebook Minerva";
++	compatible = "facebook,minerva-bmc", "aspeed,ast2600";
++
++	aliases {
++		serial0 = &uart1;
++		serial4 = &uart5;
++	};
++
++	chosen {
++		stdout-path = &uart5;
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x80000000>;
++	};
++
++	iio-hwmon {
++		compatible = "iio-hwmon";
++		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
++			<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
++			<&adc1 2>;
++	};
++
++};
++
++// HOST BIOS Debug
++&uart1 {
++	status = "okay";
++};
++
++
++// SOL Host Console
++&uart2 {
++	status = "okay";
++	pinctrl-0 = <>;
++
++};
++
++// SOL BMC Console
++&uart4 {
++	status = "okay";
++	pinctrl-0 = <>;
++};
++
++// BMC Debug Console
++&uart5 {
++	status = "okay";
++};
++
++//MTIA
++&uart6 {
++	status = "okay";
++};
++
++&uart_routing {
++	status = "okay";
++};
++
++&vuart1 {
++	status = "okay";
++	virtual;
++	port=<0x3e8>;
++	sirq = <7>;
++	sirq-polarity = <0>;
++	dma-mode;
++	dma-channel = <12>;
++};
++
++&wdt1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_wdtrst1_default>;
++	aspeed,reset-type = "soc";
++	aspeed,external-signal;
++	aspeed,ext-push-pull;
++	aspeed,ext-active-high;
++	aspeed,ext-pulse-duration = <256>;
++};
++
++
++&mac3 {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rmii4_default>;
++	no-hw-checksum;
++	use-ncsi;
++	ncsi-ctrl,start-redo-probe;
++	ncsi-ctrl,no-channel-monitor;
++	mlx,multi-host;
++	ncsi-package = <1>;
++	ncsi-channel = <1>;
++	ncsi-rexmit = <1>;
++	ncsi-timeout = <2>;
++};
++
++&rtc {
++	status = "okay";
++};
++
++&fmc {
++	status = "okay";
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "bmc";
++		spi-max-frequency = <50000000>;
++#include "openbmc-flash-layout-128.dtsi"
++	};
++	flash@1 {
++		status = "okay";
++		m25p,fast-read;
++		label = "alt-bmc";
++		spi-max-frequency = <50000000>;
++	};
++};
++
++
++//BIOS Flash
++&spi2 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_spi2_default>;
++
++	flash@0 {
++		status = "okay";
++		m25p,fast-read;
++		label = "pnor";
++		spi-max-frequency = <12000000>;
++		spi-tx-bus-width = <2>;
++		spi-rx-bus-width = <2>;
++	};
++};
++
++
++&kcs2 {
++	status = "okay";
++	aspeed,lpc-io-reg = <0xca8>;
++};
++
++&kcs3 {
++	status = "okay";
++	aspeed,lpc-io-reg = <0xca2>;
++};
++
++
++&lpc_snoop {
++	status = "okay";
++	snoop-ports = <0x80>;
++};
++
++&peci0 {
++	status = "okay";
++	clock-frequency = <1000000>;
++};
++
++
++&i2c0 {
++	status = "okay";
++};
++
++&i2c1 {
++	status = "okay";
++	tmp75@4B {
++		compatible = "ti,tmp75";
++		reg = <0x4B>;
++	};
++};
++
++&i2c2 {
++	status = "okay";
++};
++
++&i2c3 {
++	status = "okay";
++};
++
++&i2c4 {
++	status = "okay";
++};
++
++&i2c5 {
++	status = "okay";
++};
++
++&i2c6 {
++	status = "okay";
++};
++
++&i2c7 {
++	status = "okay";
++};
++
++&i2c8 {
++	status = "okay";
++};
++
++&i2c9 {
++	status = "okay";
++};
++
++&i2c11 {
++	status = "okay";
++};
++
++&i2c12 {
++	status = "okay";
++};
++
++&i2c13 {
++	status = "okay";
++};
++
++// To Debug card
++&i2c14 {
++	status = "okay";
++	multi-master;
++
++	ipmb@10 {
++		compatible = "ipmb-dev";
++		reg = <(0x10 | I2C_OWN_SLAVE_ADDRESS)>;
++		i2c-protocol;
++	};
++};
++
++&i2c15 {
++	status = "okay";
++	// SCM FRU
++	eeprom@50 {
++		compatible = "atmel,24c64";
++		reg = <0x50>;
++	};
++	// BSM FRU
++	eeprom@56 {
++		compatible = "atmel,24c64";
++		reg = <0x56>;
++	};
++};
++
++&adc0 {
++	ref_voltage = <2500>;
++	status = "okay";
++
++	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
++		&pinctrl_adc2_default &pinctrl_adc3_default
++		&pinctrl_adc4_default &pinctrl_adc5_default
++		&pinctrl_adc6_default &pinctrl_adc7_default>;
++};
++
++&adc1 {
++	ref_voltage = <2500>;
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_adc10_default>;
++};
++
++&jtag1 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_jtagm_default>;
++};
++
++&ehci1 {
++	status = "okay";
++};
++
++&gpio0 {
++	pinctrl-names = "default";
++	gpio-line-names =
++	/*A0-A7*/	"","","","","","","","",
++	/*B0-B7*/	"","","","","","FM_ID_LED_N","","",
++	/*C0-C7*/	"","","","","","","","",
++	/*D0-D7*/	"","","SOL_UART_SET","","","","","",
++	/*E0-E7*/	"","","","","","","","",
++	/*F0-F7*/	"","","","","","","","",
++	/*G0-G7*/	"","","","","","","","",
++	/*H0-H7*/	"","","","","","","","",
++	/*I0-I7*/	"","","","","","","","",
++	/*J0-J7*/	"","","","","","","","",
++	/*K0-K7*/	"","","","","","","","",
++	/*L0-L7*/	"","","","","","","","",
++	/*M0-M7*/	"","","","","","","","",
++	/*N0-N7*/	"LED_POSTCODE_0","LED_POSTCODE_1",
++			"LED_POSTCODE_2","LED_POSTCODE_3",
++			"LED_POSTCODE_4","LED_POSTCODE_5",
++			"LED_POSTCODE_6","LED_POSTCODE_7",
++	/*O0-O7*/	"","","","","","","","",
++	/*P0-P7*/	"FP_SYS_PWRBTN_IN_N","BMC_SYS_PWRBTN_OUT_N",
++			"FP_RST_BTN_IN_N","","","","","",
++	/*Q0-Q7*/	"","","","","","","","",
++	/*R0-R7*/	"","","","","","","","",
++	/*S0-S7*/	"","","","","","","","",
++	/*T0-T7*/	"","","","","","","","",
++	/*U0-U7*/	"","","","","","","","",
++	/*V0-V7*/	"","","","","","","","",
++	/*W0-W7*/	"","","","","","","","",
++	/*X0-X7*/	"","","","","","","","",
++	/*Y0-Y7*/	"","","","","","","","",
++	/*Z0-Z7*/	"","","","","","","","";
++};
++
++&sgpiom0 {
++	status = "okay";
++	max-ngpios = <128>;
++	ngpios = <128>;
++	bus-frequency = <2000000>;
++	gpio-line-names =
++	/*in - out - in - out */
++	/*A0-A3 line 0-7*/
++	"","","","","","ENABLE_SENSORS","","",
++	/*A4-A7 line 8-15*/
++	"","","","","","","","",
++	/*B0-B3 line 16-23*/
++	"","","","","","BMC_RST_BTN_OUT_N","","",
++	/*B4-B7 line 24-31*/
++	"","","","","","","","",
++	/*C0-C3 line 32-39*/
++	"","","","","","","","",
++	/*C4-C7 line 40-47*/
++	"","","","","","","","",
++	/*D0-D3 line 48-55*/
++	"","","","","","","","",
++	/*D4-D7 line 56-63*/
++	"","","","","","","","",
++	/*E0-E3 line 64-71*/
++	"","","","","","","","",
++	/*E4-E7 line 72-79*/
++	"","","","","","","","",
++	/*F0-F3 line 80-87*/
++	"","","","","","","","",
++	/*F4-F7 line 88-95*/
++	"","","","","","","","",
++	/*G0-G3 line 96-103*/
++	"","","","","","","","",
++	/*G4-G7 line 104-111*/
++	"","","","","","","","",
++	/*H0-H3 line 112-119*/
++	"","","","","PLD_SYS_POWER_GOOD","","","",
++	/*H4-H7 line 120-127*/
++	"","","","","","","","",
++	/*I0-I3 line 128-135*/
++	"","","","","","","","",
++	/*I4-I7 line 136-143*/
++	"","","","","","","","",
++	/*J0-J3 line 144-151*/
++	"","","PLD_BIOS_POST_CMPLT_N","","","","","",
++	/*J4-J7 line 152-159*/
++	"","","","","","","","",
++	/*K0-K3 line 160-167*/
++	"","","","","","","","",
++	/*K4-K7 line 168-175*/
++	"","","","","","","","",
++	/*L0-L3 line 176-183*/
++	"","","","","","","","",
++	/*L4-L7 line 184-191*/
++	"","","","","","","","",
++	/*M0-M3 line 192-199*/
++	"","","","","","","","",
++	/*M4-M7 line 200-207*/
++	"","","","","","","","",
++	/*N0-N3 line 208-215*/
++	"","","","","","","","",
++	/*N4-N7 line 216-223*/
++	"","","","","","","","",
++	/*O0-O3 line 224-231*/
++	"","","","","","","","",
++	/*O4-O7 line 232-239*/
++	"","","","","","","","",
++	/*P0-P3 line 240-247*/
++	"","","","","","","","",
++	/*P4-P7 line 248-255*/
++	"","","","","","","","";
++};
++
+-- 
+2.25.1
 
-   audio_pll1_ref_sel                0        0        0    24000000
-       0     0  50000         Y
-       audio_pll1                     0        0        0   393216000
-        0     0  50000         Y
-          audio_pll1_bypass           0        0        0   393216000
-        0     0  50000         Y
-             audio_pll1_out           0        0        0   393216000
-        0     0  50000         N
-                pdm                   0        0        0   196608000
-        0     0  50000         N
-                   pdm_root           0        0        0   196608000
-        0     0  50000         N
-                      pdm_sel         0        0        0   196608000
-        0     0  50000         Y
-
-It seems like the "pdm_root_clk" generated by the shared audo-blk
-down-sream driver is missing from the mainline.  I looked up the clock
-I referenced when I attempted to enable the miffil, but
-'IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't appear to be configured in
-either clk-imx8mp.c or clk-imx8mp-audiomix.c.  Maybe it's obscured by
-the macros, but it seems like the pdm_sel should somehow have an
-additional variable for the shared clock and an additional clock like
-pdm_root_clk assigned with it.
-
-I have similar configurations for Mini and Nano, and both of them are
-able to record audio, so I think there might be a clock issue
-somewhere related to the audiomix driver, and not a misconfiguration
-of the sound-card or the micfil itself.
-
-thanks for any suggestions,
-
-adam
-
-
-[1] - https://patchwork.kernel.org/project/linux-arm-kernel/patch/202308270=
-23155.467807-3-aford173@gmail.com/
