@@ -2,189 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FB7578D9E3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D322278DA5C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:37:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231852AbjH3Se0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45250 "EHLO
+        id S235743AbjH3SgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:36:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243425AbjH3K55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:57:57 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5B31A1;
-        Wed, 30 Aug 2023 03:57:54 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37U9WmNe001030;
-        Wed, 30 Aug 2023 10:57:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=m3Czc64DGWLVCqvYMHHFouVPqVO46F5Pn6ZIHh4mCVc=;
- b=j5drKJsEaRgSc/HmuFZky1jDGZd2LOCFIjfxDPFOO2EMxethmNVPjNKL63CNve6/upkK
- ISQji25285mKzVsnAE+Q2gFllsQZNQ3bXGQX91Nr++796EGWP+rSaz7RDf2G6LBztiWG
- 49Bm17VEkVd/rQQJUc9fCQb17SV6bVyhJycz1e9dY+zC1OAo0W1GulzRgesESLypjk0V
- hXI3Bazlot1TEnmKynhbmBw/+N8qpcYxTCiBMf8IvkxHij+8T6o5jvHr6HauRCIKoItJ
- FIvz8hCtzRUYbTESDUHbIZUge2X8cwK4CTdzyjjbdlvbFMFFTox8rXFsjJILNedXn7Hs ag== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ssy5q0fv9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 30 Aug 2023 10:57:51 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37UAvoK3030622
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 30 Aug 2023 10:57:50 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+        with ESMTP id S243480AbjH3LLM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:11:12 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 674F8CCF;
+        Wed, 30 Aug 2023 04:11:04 -0700 (PDT)
+X-UUID: e396f308472511eeb20a276fd37b9834-20230830
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=YhRvmurAP7YRVh7QRW6C3C4TvfzSRDnjtU87KinxIB8=;
+        b=UFczTh9IxDNU/JIkAFMnxp4dm2/4uhugfMdt9KAcVbL4bS2Pf/c3QRe2Kf+3M7LODISSnkySnHbD5sNE+nVvAgzHnERBxZ6tPaXEuJEwExSH38u34YgfXzRmgaoxhbhsZJnch9vyP8yaCS8le8uRkIIpXLG6WC1NfLUFw27sYf4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:b1bc7dac-7385-42ea-bb1b-873065067df2,IP:0,U
+        RL:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:25
+X-CID-META: VersionHash:0ad78a4,CLOUDID:638272c2-1e57-4345-9d31-31ad9818b39f,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: e396f308472511eeb20a276fd37b9834-20230830
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 42832874; Wed, 30 Aug 2023 19:10:55 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Wed, 30 Aug 2023 03:57:46 -0700
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <srinivas.kandagatla@linaro.org>, <bryan.odonoghue@linaro.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH v8 6/6] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC support
-Date:   Wed, 30 Aug 2023 16:26:54 +0530
-Message-ID: <20230830105654.28057-7-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230830105654.28057-1-quic_kbajaj@quicinc.com>
-References: <20230830105654.28057-1-quic_kbajaj@quicinc.com>
+ 15.2.1118.26; Wed, 30 Aug 2023 19:10:52 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 30 Aug 2023 19:10:51 +0800
+Message-ID: <bfff8dc1-5f1c-1da8-488c-58e83cb1e651@mediatek.com>
+Date:   Wed, 30 Aug 2023 19:10:48 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 3/4] arm64: dts: mediatek: mt6360: add PMIC MT6360 related
+ nodes
+Content-Language: en-US
+To:     Chen-Yu Tsai <wenst@chromium.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>
+References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
+ <20230825114623.16884-3-macpaul.lin@mediatek.com>
+ <CAGXv+5FTuY=ZHB3-2Woit5amRZ=RxByGMq=LQp-es8tWEhAQUA@mail.gmail.com>
+ <986d8056-3708-ed3d-1896-0fbc034ca53c@mediatek.com>
+ <CAGXv+5E2kOOz59AMCvQv_as6SesDkt15b9uDOSZ_iJMytgf1gA@mail.gmail.com>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <CAGXv+5E2kOOz59AMCvQv_as6SesDkt15b9uDOSZ_iJMytgf1gA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PnScoIuvc0s0QIXtCw72maEKeN2qhe2y
-X-Proofpoint-GUID: PnScoIuvc0s0QIXtCw72maEKeN2qhe2y
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-29_16,2023-08-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
- suspectscore=0 priorityscore=1501 malwarescore=0 phishscore=0
- clxscore=1015 adultscore=0 lowpriorityscore=0 mlxlogscore=999 mlxscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308300102
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- drivers/soc/qcom/llcc-qcom.c | 67 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
 
-diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
-index 3bd841e67eba..feb21637ac20 100644
---- a/drivers/soc/qcom/llcc-qcom.c
-+++ b/drivers/soc/qcom/llcc-qcom.c
-@@ -362,6 +362,36 @@ static const struct llcc_slice_config sm8550_data[] =  {
- 	{LLCC_VIDVSP,   28,  256, 4, 1, 0xFFFFFF, 0x0,   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
- };
+On 8/28/23 18:51, Chen-Yu Tsai wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On Mon, Aug 28, 2023 at 5:59 PM Macpaul Lin <macpaul.lin@mediatek.com> wrote:
+>>
+>>
+>> On 8/28/23 12:36, Chen-Yu Tsai wrote:
+>> >
+>> >
+>> > External email : Please do not click links or open attachments until you
+>> > have verified the sender or the content.
+>> >
+>> > On Fri, Aug 25, 2023 at 7:46 PM Macpaul Lin <macpaul.lin@mediatek.com> wrote:
+>> >>
+>> >> MT6360 is the secondary PMIC for MT8195.
+>> >> It supports USB Type-C and PD functions.
+>> >> Add MT6360 related common nodes which is used for MT8195 platform, includes
+>> >>  - charger
+>> >>  - ADC
+>> >>  - LED
+>> >>  - regulators
+>> >>
+>> >> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>> >> ---
+>> >>  arch/arm64/boot/dts/mediatek/mt6360.dtsi | 112 +++++++++++++++++++++++
+>>
+>> [snip..]
+>>
+>> >> +       regulator {
+>> >> +               compatible = "mediatek,mt6360-regulator";
+>> >> +               LDO_VIN3-supply = <&mt6360_buck2>;
+>> >> +
+>> >> +               mt6360_buck1: buck1 {
+>> >> +                       regulator-compatible = "BUCK1";
+>> >> +                       regulator-name = "mt6360,buck1";
+>> >
+>> > Normally there's no need to provide a default name. Any used regulator
+>> > should have been named to match the power rail name from the board's
+>> > schematics.
+>> >
+>>
+>> I have 2 schematics on hand. One is mt8195-demo board and the other is
+>> genio-1200-evk board. There are 2 PMIC used on these board
+>> with "the same" sub power rail name for "BUCK1~BUCK4". One is mt6315,
+>> and the other is mt6360.
+> 
+> This is more of an board level integration thing. Regulator names are
+> expected to be named after the actual power rail names. For example,
+> take a look at Rock Pi 4 schematics [1], the power rail from BUCK1 of
+> the RK808 PMIC is named "VDD_CENTER". And in the dts file [1] we can
+> see the regulator is named that as well (albeit with some style changes).
+> 
+> Now if a project really chooses meaningless names like BUCKx or LDOy
+> for their power rails, then so be it. However those are board level
+> decisions. The names are there to help with integration debugging, so
+> it makes sense to have names that match the power rail names in the
+> schematics. Default names rarely make sense.
+> 
+> [1]https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi4_v13_sch_20181112.pdf  <https://urldefense.com/v3/__https://dl.radxa.com/rockpi4/docs/hw/rockpi4/rockpi4_v13_sch_20181112.pdf__;!!CTRNKA9wMg0ARbw!g4T6kWfnETA38Kc_yc6dx6gYi7zzW2m6YU0ybNN5vbTWjK5SfapEQEQMrtxg8E9xRNdpJm678Rj3uLrWHeM$>
+> [2]https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi#L267  <https://urldefense.com/v3/__https://elixir.bootlin.com/linux/latest/source/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi*L267__;Iw!!CTRNKA9wMg0ARbw!g4T6kWfnETA38Kc_yc6dx6gYi7zzW2m6YU0ybNN5vbTWjK5SfapEQEQMrtxg8E9xRNdpJm678Rj3hdwm0VA$>
+> 
+>> I've also inspected other dtsi of the regulators, such as mt6357 and
+>> mt6359. They have regulator nodes with named for their purpose. For the
+>> schematics of mt8195-demo and genio-1200-evk boards, there are no
+>> explicit usage for "BUCK1~BUCK4" for both mt6135 and mt6360. In order to
+>> specify the sub power rail for mt6360, MediaTek chooses name like
+>> "mt6360,buck1" instead of simple name "buck1" for distinguish with
+>> "buck1" of mt6351.
+>>
+>> >> +                       regulator-min-microvolt = <300000>;
+>> >> +                       regulator-max-microvolt = <1300000>;
+>> >
+>> > These values correspond to the regulator's range. They make no sense as
+>> > regulator constraints. The min/max values are supposed to be the most
+>> > restrictive set of voltages of the regulator consumers. If what is fed
+>> > by this regulator can only take 0.7V ~ 1.1V, then it should save 0.7V
+>> > and 1.1V here. If the regulator is unused, then there are no constraints,
+>> > and these can be left out.
+>> >
+>> > Just leave them out of the file.
+>> >Alexandre Mergnat <amergnat@baylibre.com>
+>> > Both comments apply to all the regulators.
+>> >
+>> > ChenYu
+>>
+>> There are some common circuit design for these regulators like mt6359,
+>> mt6360 and mt6315 used on many products. MediaTek put the most common
+>> and expected default values in their dtsi. However, some changes still
+>> need to be applied to derivative boards according to product's
+>> requirements. The actual value be used will be applied in board's dts
+>> file to override the default settings in dtsi.
+> 
+> The values here are definitely not some product's expected values.
+> They are the full range of output voltages supported, as seen in the
+> driver.
+> 
+> The regulator binding says:
+> 
+>      regulator-min-microvolt:
+>        description: smallest voltage consumers may set
+> 
+>      regulator-max-microvolt:
+>        description: largest voltage consumers may set
+> 
+> The constraints given in the regulator node are those of the consumers,
+> not the PMIC regulator itself. As you mentioned, a board may need to
+> adjust the range based on its design, i.e. what the board has connected
+> to the regulator.
+> 
+> So either something is connected, and the consumer's constraints are set
+> by overriding the default in the board .dts file; or, nothing is connected
+> and the constraints don't matter, as nothing is going to set the voltage
+> or enable the regulator. So there's no reason to give a default. For
+> unused regulator outputs, their device nodes don't even have to exist.
+> 
+> I'm trying to get people to _not_ write default values, as they don't
+> make any sense. The full voltage range is already implied by the
+> compatible string.
+> 
+> ChenYu
 
-+static const struct llcc_slice_config qdu1000_data_2ch[] = {
-+	{ LLCC_MDMHPGRW, 7, 512, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MODHW,    9, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MDMPNG,  21, 256, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_ECC,     26, 512, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_MODPE,   29, 256, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_APTCM,   30, 256, 3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_WRCACHE, 31, 128, 1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config qdu1000_data_4ch[] = {
-+	{ LLCC_MDMHPGRW, 7, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MODHW,    9, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MDMPNG,  21, 512,  0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_ECC,     26, 1024, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_MODPE,   29, 512,  1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_APTCM,   30, 512,  3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_WRCACHE, 31, 256,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
-+static const struct llcc_slice_config qdu1000_data_8ch[] = {
-+	{ LLCC_MDMHPGRW, 7, 2048, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MODHW,    9, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_MDMPNG,  21, 1024, 0, 1, 0x3,   0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_ECC,     26, 2048, 3, 1, 0xffc, 0x0, 0, 0, 0, 0, 1, 0, 0 },
-+	{ LLCC_MODPE,   29, 1024, 1, 1, 0xfff, 0x0, 0, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_APTCM,   30, 1024, 3, 1, 0x0,   0xc, 1, 0, 0, 1, 0, 0, 0 },
-+	{ LLCC_WRCACHE, 31, 512,  1, 1, 0x3,   0x0, 0, 0, 0, 0, 1, 0, 0 },
-+};
-+
- static const struct llcc_edac_reg_offset llcc_v1_edac_reg_offset = {
- 	.trp_ecc_error_status0 = 0x20344,
- 	.trp_ecc_error_status1 = 0x20348,
-@@ -428,6 +458,37 @@ static const u32 llcc_v2_1_reg_offset[] = {
- 	[LLCC_COMMON_STATUS0]	= 0x0003400c,
- };
+Thanks for the explanation in detail.
+I'll update the patch v2 for these modification.
 
-+static const struct qcom_llcc_config qdu1000_cfg[] = {
-+	{
-+		.sct_data       = qdu1000_data_8ch,
-+		.size		= ARRAY_SIZE(qdu1000_data_8ch),
-+		.need_llcc_cfg	= true,
-+		.reg_offset	= llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_4ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_4ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_4ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+	{
-+		.sct_data       = qdu1000_data_2ch,
-+		.size           = ARRAY_SIZE(qdu1000_data_2ch),
-+		.need_llcc_cfg  = true,
-+		.reg_offset     = llcc_v2_1_reg_offset,
-+		.edac_reg_offset = &llcc_v2_1_edac_reg_offset,
-+	},
-+};
-+
- static const struct qcom_llcc_config sc7180_cfg[] = {
- 	{
- 		.sct_data	= sc7180_data,
-@@ -549,6 +610,11 @@ static const struct qcom_llcc_config sm8550_cfg[] = {
- 	},
- };
-
-+static const struct qcom_sct_config qdu1000_cfgs = {
-+	.llcc_config	= qdu1000_cfg,
-+	.num_config	= ARRAY_SIZE(qdu1000_cfg),
-+};
-+
- static const struct qcom_sct_config sc7180_cfgs = {
- 	.llcc_config	= sc7180_cfg,
- 	.num_config	= ARRAY_SIZE(sc7180_cfg),
-@@ -1168,6 +1234,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
- }
-
- static const struct of_device_id qcom_llcc_of_match[] = {
-+	{ .compatible = "qcom,qdu1000-llcc", .data = &qdu1000_cfgs},
- 	{ .compatible = "qcom,sc7180-llcc", .data = &sc7180_cfgs },
- 	{ .compatible = "qcom,sc7280-llcc", .data = &sc7280_cfgs },
- 	{ .compatible = "qcom,sc8180x-llcc", .data = &sc8180x_cfgs },
---
-2.41.0
-
+Best regards,
+Macpaul Lin
