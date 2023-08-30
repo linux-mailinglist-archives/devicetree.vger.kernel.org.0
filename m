@@ -2,209 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDB578DED0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:13:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB0078DF72
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:14:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234007AbjH3UJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 16:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
+        id S233228AbjH3ULt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 16:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241966AbjH3UJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:09:33 -0400
+        with ESMTP id S234353AbjH3ULc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:11:32 -0400
 Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498472D27F;
-        Wed, 30 Aug 2023 13:00:13 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d7485d37283so5782139276.1;
-        Wed, 30 Aug 2023 13:00:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B149229F1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 13:06:02 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d7b79a4899bso1882288276.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 13:06:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693425552; x=1694030352; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YvBB5LcsItPGIg0EWgsOLnwri4Ho2gDJRdAN+y6MWmg=;
-        b=ESvMtuiaUP814KG4tIB+lvnlhFzkG+FSk8KrmDgt7krHucqCsUO7P6E/K1rJcCchgy
-         FIAoZgpZG+D9CSwoP64p0z0Vh4njj/89jF8PN0Csrpg9fO/7hh3e+3ItJrqSQZ81hO5j
-         pKJBEgkUz8gi7Pvvs6wx7RTMlJ4D9+UM5599cZ4EkVskiDOqSrmFYPHV8u3pPi7PZfT3
-         My0cl71FO+4zo6UWoCSBLMzUHWHITtVGSNxdTecq3oZpQilTnpER3la+J6aAnyxhjSyY
-         hfF3MBpF/pI2Lk1tdSBcI+hEBwCHAkfXEf7VIl+lFsQZ5U+bGf0kqKHfG70MIDOyn9aD
-         f8tw==
+        d=linaro.org; s=google; t=1693425868; x=1694030668; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZSyK+dHkjDMQS0UZZd2TV/HXC5yoOWbGzZSM7TZhYog=;
+        b=Zxvxa2+cZLTNk1km6/vhj4O1X5VKW6S11csQuWW42jvzmzhT/mJ0foDDbDMTvug5Fx
+         Rme5peHCGTrLr/XBRUqjQlQ34RTHjgFTRULWC/Tz2eX5ql+r2Dt0e+j/1cAPXflfbc1m
+         WH9pT3rGoYuO7f0bNCSOQgr3F9MuKezzrN+2KEFiwE1gvW1xCy3IsDMegWU7vtV31ead
+         Wbckz7c9aGsHv2u1jvHZN6hrZVHiBVmDoDloUxBmOy/BMW02sPcAXoL4DXIVjMkiUB6s
+         HYXTeRLrfIoejq9w4fdtLnz1TczeVW8zi2EDtiDScr7vrH3j3iI8XDZgqezQPcHN0oCo
+         s/VA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693425552; x=1694030352;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YvBB5LcsItPGIg0EWgsOLnwri4Ho2gDJRdAN+y6MWmg=;
-        b=Mh3io1x42ZZTn7y25T0a4fPxdFLWWHDebjrg7DSTzokXDCCXWkOZf3DJitZiuJbooI
-         JJcOfW/CWLsziE26fZFkiOFPk8IR08ld3+VQudVbpI+iXrOEY70qocr9Dn2UGk0LAXMe
-         4WmQ379OeS7B8+cC7MkGmUdBLOwIiAan2d2SFkkdgoCF8YLajlc7J/e2EerFc57Pxfh+
-         d84NIa1h21yTTt+CUOo4uxbZJ2B04uYwpI7mxqXjPeHL7Wj3GersiI/BoNse1ijfjC9S
-         RBIxESOQDyeGaClduXv+KWOZmVou6UYFvESu6cANVCIg2Bg6XYH9Kzhp822DJhsWU3/1
-         PbcQ==
-X-Gm-Message-State: AOJu0YwvzDHMBCP9+dMAyG1viHX1zg3up8kr8Rao4LhE9xtlXY5Q+isF
-        WMQ8wnaaU94u1W2vgBHI142eApU4cphD1MVlpV0=
-X-Google-Smtp-Source: AGHT+IG5m6A9UTfw4f3ZPN7qJ+0GBiRuVHh3vlhGF1hn8wHOvQrL8tG4URzkQibpiAY4OhUKEdYoE4Sv/QadmpRS+dU=
-X-Received: by 2002:a25:c589:0:b0:d77:ec2f:63b with SMTP id
- v131-20020a25c589000000b00d77ec2f063bmr3376340ybe.5.1693425552314; Wed, 30
- Aug 2023 12:59:12 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693425868; x=1694030668;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZSyK+dHkjDMQS0UZZd2TV/HXC5yoOWbGzZSM7TZhYog=;
+        b=Uh3MPNQUVowGCGcF3231gbt3jYQY1SJk/QE22FUfl4tu2oCIYRGKcT5ocDQ0CJOpSC
+         sGdztT9LzpRAUQwkdO3GS5syajmTjKWU2Arm1iOKj2L4GKMYHdveVAiPWrEtCQYL2KQG
+         30kIoXDTrEzqmwhs71kpO4tZNcM+F/SNXSjguQQLO0XHbgPoCHHiexYjSk8Eer+soW1P
+         v+6/v4OEJBK3IuE7mIMZMzyCYvSEpEpiEKt6UX14LlsJSJ2sRSoBSdHq34JJdn7/Qo2k
+         XXbFBxsIEF1l3T6wl29/UAzVl1cUxsEPsmlr06b0oGgH4bEcJ85FEN2jEAG8mkDsMsTS
+         eJhQ==
+X-Gm-Message-State: AOJu0Yywk3fIzrUS0tNlwvWSZIiW6XbFC/C7cTO5GCWPRBeg0v+vu0C6
+        dH7r8bDWlyPObjj7A7ZAl7l1UGphjZGFDTam9rMmcQ==
+X-Google-Smtp-Source: AGHT+IF3BC4QjQc9khz8UvoRWdeIpu1q8Bvmo2laKSOuKZOvmEKB3zwHspagVqx73Iha2+2P48AjcTOvasTtYpuNrM8=
+X-Received: by 2002:a25:547:0:b0:d0f:846c:ef7b with SMTP id
+ 68-20020a250547000000b00d0f846cef7bmr3216161ybf.17.1693425868564; Wed, 30 Aug
+ 2023 13:04:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230508114236.8444-1-marex@denx.de> <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
- <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de>
-In-Reply-To: <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Wed, 30 Aug 2023 14:59:00 -0500
-Message-ID: <CAHCN7xKGowhQbBDdnOKgcBptsM1VzD7YJB=ZAbL1Oge4rgnLUg@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Richard Cochran <richardcochran@gmail.com>,
+References: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org> <20230830-topic-8550_dmac2-v1-5-49bb25239fb1@linaro.org>
+In-Reply-To: <20230830-topic-8550_dmac2-v1-5-49bb25239fb1@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 30 Aug 2023 23:04:17 +0300
+Message-ID: <CAA8EJpp2UbiknJ876ccCiSV2hDYdiGVRiQBdAEMM7e9z5OqK3A@mail.gmail.com>
+Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8550: Mark APPS SMMU as dma-coherent
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 2:10=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+On Wed, 30 Aug 2023 at 21:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> On 8/30/23 04:44, Adam Ford wrote:
->
-> Hi,
->
-> > I have a question about the clocking for eASRC and PDM.
-> >
-> >> +
-> >> +                       audio_blk_ctrl: clock-controller@30e20000 {
-> >> +                               compatible =3D "fsl,imx8mp-audio-blk-c=
-trl";
-> >> +                               reg =3D <0x30e20000 0x10000>;
-> >> +                               #clock-cells =3D <1>;
-> >> +                               clocks =3D <&clk IMX8MP_CLK_AUDIO_ROOT=
->,
-> >> +                                        <&clk IMX8MP_CLK_SAI1>,
-> >> +                                        <&clk IMX8MP_CLK_SAI2>,
-> >> +                                        <&clk IMX8MP_CLK_SAI3>,
-> >> +                                        <&clk IMX8MP_CLK_SAI5>,
-> >> +                                        <&clk IMX8MP_CLK_SAI6>,
-> >> +                                        <&clk IMX8MP_CLK_SAI7>;
-> >> +                               clock-names =3D "ahb",
-> >> +                                             "sai1", "sai2", "sai3",
-> >> +                                             "sai5", "sai6", "sai7";
-> >> +                               power-domains =3D <&pgc_audio>;
-> >> +                       };
-> >> +               };
-> >> +
-> >
-> > I am trying to plumb in the micfil driver with a PDM microphone on a
-> > Plus.  I have SAI3 and SAI5 audio working, but if I try to use the
-> > micfil, the PDM clock doesn't get turned on, and the micfil doesn't
-> > appear to see anything coming in.  I was curious why the
-> > audio_blk_ctrl has clock entries for IMX8MP_CLK_SAIx, but there isn't
-> > one for the PDM nor the ASRC clocks.
->
-> I only ever needed SAI, so that was what was tested on the EVK .
+> Like on earlier flagship Qualcomm SoCs, the SMMU is dma-coherent.
+> Mark it as such.
 
-That makes sense.
+On earlier SoCs we marked Adreno SMMU as dma-coherent, not the apps
+one. Only on sm8250 you've added dma-coherent to the apps smmu.
 
 >
-> > I added the MICFIL noted to the
-> > 8mp in a previous patch [1], and I am trying to customize the MICFIL
-> > node as follows:
-> >
-> > &micfil {
-> > #sound-dai-cells =3D <0>;
-> > pinctrl-names =3D "default";
-> > pinctrl-0 =3D <&pinctrl_pdm>;
-> > assigned-clocks =3D <&clk IMX8MP_CLK_PDM>;
-> > assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
-> > assigned-clock-rates =3D <196608000>;
-> > status =3D "okay";
-> > };
-> >
-> > I also noticed in the down-stream kernel, the pdm_ipg_clk and
-> > pdm_root_clk are shared gates with separate parents.
-> >
-> > The PDM tree of the down-stream kernel looks like this:
-> >   audio_pll1_ref_sel                0        0        0    24000000
-> >       0     0  50000         Y
-> >         audio_pll1                     0        0        0   393216000
-> >          0     0  50000         Y
-> >            audio_pll1_bypass           0        0        0   393216000
-> >          0     0  50000         Y
-> >               audio_pll1_out           0        0        0   393216000
-> >          0     0  50000         N
-> >                  pdm                   0        0        0   196608000
-> >          0     0  50000         N
-> >                     pdm_root           0        0        0   196608000
-> >          0     0  50000         N
-> >                        pdm_sel         0        0        0   196608000
-> >          0     0  50000         Y
-> >                           pdm_root_clk       0        0        0
-> > 196608000          0     0  50000         N
-> >
-> > The PDM tree of the mainline looks like this:
-> >
-> >     audio_pll1_ref_sel                0        0        0    24000000
-> >         0     0  50000         Y
-> >         audio_pll1                     0        0        0   393216000
-> >          0     0  50000         Y
-> >            audio_pll1_bypass           0        0        0   393216000
-> >          0     0  50000         Y
-> >               audio_pll1_out           0        0        0   393216000
-> >          0     0  50000         N
-> >                  pdm                   0        0        0   196608000
-> >          0     0  50000         N
-> >                     pdm_root           0        0        0   196608000
-> >          0     0  50000         N
-> >                        pdm_sel         0        0        0   196608000
-> >          0     0  50000         Y
-> >
-> > It seems like the "pdm_root_clk" generated by the shared audo-blk
-> > down-sream driver is missing from the mainline.  I looked up the clock
-> > I referenced when I attempted to enable the miffil, but
-> > 'IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't appear to be configured in
-> > either clk-imx8mp.c or clk-imx8mp-audiomix.c.  Maybe it's obscured by
-> > the macros, but it seems like the pdm_sel should somehow have an
-> > additional variable for the shared clock and an additional clock like
-> > pdm_root_clk assigned with it.
-> >
-> > I have similar configurations for Mini and Nano, and both of them are
-> > able to record audio, so I think there might be a clock issue
-> > somewhere related to the audiomix driver, and not a misconfiguration
-> > of the sound-card or the micfil itself.
->
-> Shouldn't the micfil be somehow a consumer of the pdm_sel clock , and
-> enable those clock in the driver ?
+> Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 
-Micfil references IMX8MP_CLK_AUDIOMIX_PDM_IPG, and
-IMX8MP_CLK_AUDIOMIX_PDM_ROOT.  I am not convinced the
-IMX8MP_CLK_AUDIOMIX_PDM_ROOT exists beyond a #define in an include
-directory.  I tried making it use pdm_sel, but it threw an error.  I
-am not near my system, so I'm sorry I don't have more details.
-
-In the downstream kernel IMX8MP_CLK_AUDIOMIX_PDM_ROOT was a child of
-pdm_sel, but I am not certain as to what the difference between them
-was since they appeared to be shared.
-
-adam
+-- 
+With best wishes
+Dmitry
