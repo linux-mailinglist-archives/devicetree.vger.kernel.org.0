@@ -2,111 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB83A78D8E7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7745278D944
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236078AbjH3Sbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:31:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59106 "EHLO
+        id S236506AbjH3Scm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:32:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242210AbjH3H1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 03:27:23 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 128C61BB;
-        Wed, 30 Aug 2023 00:27:21 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37U7R9uA085018;
-        Wed, 30 Aug 2023 02:27:09 -0500
+        with ESMTP id S242206AbjH3H1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 03:27:22 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0F821BB;
+        Wed, 30 Aug 2023 00:27:18 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37U7RBxt101392;
+        Wed, 30 Aug 2023 02:27:11 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1693380429;
-        bh=niKbTQJGclEsvx1DPokUG6j47jvcqy01MpWXxzZcfrQ=;
+        s=ti-com-17Q1; t=1693380431;
+        bh=JDV7hwJorAaS1Pski8ahjflI/LaeYSxfC+FzqAmF6YI=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Ws7uDHDqVtYtKNFEkIaY24gdgWfm8NDx1VAQzsWpCgaZMtlBuO/smuTn/DQcAxsu4
-         /1ga7gd6QCRRODbwuWa7B2Qb+ZwGFbPXmOpsfPCKQ6AtXUZ7eKhr4XqYzQg2xxHrD/
-         G5KiltMGSRvtWYlXeW7QBWkIAd2GKcjkslCSTnUE=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37U7R9Gn103873
+        b=euSeSwGiy9sVATk/cpud+Vunx7BZdRK+TR03IWrBC4/Iarlq99aOUdlUbMBQNyN01
+         pczAcxLNQHj/T+1QQFycfYb2sAxn21QgTVlSZnuZJpZRohIB+FJbMbytz1oEooGcnE
+         0N/StAIz7HbPArPN2upnNgCFzv1AFD6AXUMIi5xU=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37U7RBjZ102037
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 30 Aug 2023 02:27:09 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 30 Aug 2023 02:27:11 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
- Aug 2023 02:27:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2023 02:27:11 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 30 Aug 2023 02:27:07 -0500
+ Frontend Transport; Wed, 30 Aug 2023 02:27:11 -0500
 Received: from localhost.localdomain (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37U7QuLJ125116;
-        Wed, 30 Aug 2023 02:27:04 -0500
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37U7QuLK125116;
+        Wed, 30 Aug 2023 02:27:08 -0500
 From:   Keerthy <j-keerthy@ti.com>
 To:     <vigneshr@ti.com>, <nm@ti.com>, <robh+dt@kernel.org>,
         <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
         <kristo@kernel.org>
 CC:     <j-keerthy@ti.com>, <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/5] arm64: dts: ti: k3-j784s4: Add ESM instances
-Date:   Wed, 30 Aug 2023 12:56:19 +0530
-Message-ID: <20230830072622.19539-3-j-keerthy@ti.com>
+Subject: [PATCH 3/5] arm64: dts: ti: k3-j7200: Add MCU domain ESM instance
+Date:   Wed, 30 Aug 2023 12:56:20 +0530
+Message-ID: <20230830072622.19539-4-j-keerthy@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20230830072622.19539-1-j-keerthy@ti.com>
 References: <20230830072622.19539-1-j-keerthy@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Patch adds the ESM instances for j784s4. It has 3 instances.
-One in the main domain and two in the mcu-wakeup domian.
+Patch adds the ESM instances for MCU domian of j7200.
 
 Signed-off-by: Keerthy <j-keerthy@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi       |  6 ++++++
- arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 12 ++++++++++++
- 2 files changed, 18 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index 2ea0adae6832..34ceb50b2051 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -1537,4 +1537,10 @@
- 		resets = <&k3_reset 40 1>;
- 		firmware-name = "j784s4-c71_3-fw";
- 	};
-+
-+	main_esm: esm@700000 {
-+		compatible = "ti,j721e-esm";
-+		reg = <0x0 0x700000 0x0 0x1000>;
-+		ti,esm-pins = <688>, <689>;
-+	};
- };
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index 657fb1d72512..8492b7e2c0ba 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -690,4 +690,16 @@
- 			status = "disabled";
- 		};
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index c5e4c41effd1..a57e82b6b0c4 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -632,4 +632,10 @@
+ 		power-domains = <&k3_pds 154 TI_SCI_PD_EXCLUSIVE>;
+ 		#thermal-sensor-cells = <1>;
  	};
 +
 +	mcu_esm: esm@40800000 {
 +		compatible = "ti,j721e-esm";
 +		reg = <0x0 0x40800000 0x0 0x1000>;
 +		ti,esm-pins = <95>;
-+	};
-+
-+	wkup_esm: esm@42080000 {
-+		compatible = "ti,j721e-esm";
-+		reg = <0x0 0x42080000 0x0 0x1000>;
-+		ti,esm-pins = <63>;
 +	};
  };
 -- 
