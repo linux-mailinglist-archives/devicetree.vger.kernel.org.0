@@ -2,134 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 515E278E1B0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE68178E123
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243318AbjH3Vzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 17:55:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40994 "EHLO
+        id S236689AbjH3VFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 17:05:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243276AbjH3Vzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:55:36 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220DBCF0
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:55:14 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31c65820134so37773f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:55:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693432421; x=1694037221; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y3GFJJ1bfzLehaaeYWZmxq+4HqJybFC3hIxDo2a5s3w=;
-        b=rg7H40KLuYcYUXaVOGSYq4sWGCITLGpDcX9H9khV4G+s7BDHNZl+7c/8UptToA4ASq
-         y2ee53kEwmFedERphxcw0LyxTMwwcOvTJCF/5CMO9E5D2ly4baqe+e+8+78Y4P5VzF1w
-         pUQLgVEgKOF/mJelWeApOqm+WCrOAlvyzb/ay+xbdEiR7abO3i1brbXPaVym/YkjatRo
-         jn1kBoC1C44HAvXLW0Kjngf8RZ58DH77vIqgNPHaqiABDMXLr54m77i98cpAz4SwyexQ
-         GZbfnZK5s6ncNe7aATL8GyMTQ1TQAmR7lj/WHJpuA0AA86PoCEbEtT3a0NxcKQx4jlG3
-         BIiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693432421; x=1694037221;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y3GFJJ1bfzLehaaeYWZmxq+4HqJybFC3hIxDo2a5s3w=;
-        b=igIIx1xlBv6RufGpxg61MXM2PuqxdrVa6eW5Ag4L6FXJP2dYsCRsHYFMwYh1BbVVu/
-         l5CLBxsPTV7O1j5FuO4rgY1pp+NpB+XZVIYpQtyD3eBj4XIy9j6snCZEFin+S0siTHlS
-         3yTZR6X9yujC70c4BchYT9OnZma+pNnhUNXX2jvkWDa2cH+hqvLWP2MYzRnFrTH+pl8T
-         psZ1+FUc0nFocr/Wl2pWhzn8SJQ7huN1jSQylK4u7TgKSu6nz8vd9DxT5NcHDRHvuxzq
-         /nZId30jZc8pAXUqd4Qqi6/W/tt2+JyEliU5H/4RC15hKd7ey3qGLAjnp4p1xTGaqFLN
-         /bOQ==
-X-Gm-Message-State: AOJu0YwYJzDoWvxOv4PJqkedstvSxCloYXDpk7z7NTdkHxg8iOYqth8V
-        8TuY3EHeUsi4NbCGNqUKrJbbyyCUjz/+0E6Y6kWxiQ==
-X-Google-Smtp-Source: AGHT+IH4Z7UrMwAyZU+QqUGLEJoZhWtcSAx2hm7E8zMd7lpC2rhpEwQnFlI4FNEiuWAKjw6WBo1OoA==
-X-Received: by 2002:a2e:95d8:0:b0:2b9:e24d:21f6 with SMTP id y24-20020a2e95d8000000b002b9e24d21f6mr2624039ljh.20.1693427809203;
-        Wed, 30 Aug 2023 13:36:49 -0700 (PDT)
-Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id w8-20020a2e9988000000b002b9f4841913sm2742873lji.1.2023.08.30.13.36.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 13:36:48 -0700 (PDT)
-Message-ID: <672c7e89-1514-4b7a-a8b7-47f318ec188a@linaro.org>
-Date:   Wed, 30 Aug 2023 22:36:47 +0200
+        with ESMTP id S232038AbjH3VFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:05:36 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F194E4C;
+        Wed, 30 Aug 2023 14:04:58 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 3C1E886525;
+        Wed, 30 Aug 2023 22:50:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1693428656;
+        bh=2p0CMOKxrn6HMb26cXOoHvIBu1HYjHP227pgulO8l6c=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=A3xXBjipinT+UdxSesjsqKogjtUBBMnU3RqOBIEv9yB240sduKg4695ZdYoIfFl1M
+         ejcPp2SiVOnJZjzA0wxotdmP2qTZkRXsptW8hFya2iYDNMXdoxN7CDATDzRunOKUVJ
+         S0zk11GdA+SoKMBeb1+OKhqzNoXRN3qVg/gL/qCNWXqdWAn/cbCIVzDuUitb+ZdlUo
+         e8GgCoJc7+UjEgdCf54eVTrqwRTRsRDO7AjFuBQu9bDJfVhxIdFkKtcGK09UrG0gOa
+         MAKVj+ucG/2247vFM/UWbZUotVW2b8Fd8mvTvZ5wwvJbv/nMf6IlRBt3oGfRBjz5+z
+         RQLwx0NK9aupA==
+Message-ID: <c8ab4eaa-20de-a586-0074-64cfe588a746@denx.de>
+Date:   Wed, 30 Aug 2023 22:50:54 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8550: Mark APPS SMMU as
- dma-coherent
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
-References: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org>
- <20230830-topic-8550_dmac2-v1-5-49bb25239fb1@linaro.org>
- <CAA8EJpp2UbiknJ876ccCiSV2hDYdiGVRiQBdAEMM7e9z5OqK3A@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <CAA8EJpp2UbiknJ876ccCiSV2hDYdiGVRiQBdAEMM7e9z5OqK3A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+References: <20230508114236.8444-1-marex@denx.de>
+ <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
+ <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de>
+ <CAHCN7xKGowhQbBDdnOKgcBptsM1VzD7YJB=ZAbL1Oge4rgnLUg@mail.gmail.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAHCN7xKGowhQbBDdnOKgcBptsM1VzD7YJB=ZAbL1Oge4rgnLUg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2023 22:04, Dmitry Baryshkov wrote:
-> On Wed, 30 Aug 2023 at 21:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+On 8/30/23 21:59, Adam Ford wrote:
+> On Wed, Aug 30, 2023 at 2:10 PM Marek Vasut <marex@denx.de> wrote:
 >>
->> Like on earlier flagship Qualcomm SoCs, the SMMU is dma-coherent.
->> Mark it as such.
+>> On 8/30/23 04:44, Adam Ford wrote:
+>>
+>> Hi,
+>>
+>>> I have a question about the clocking for eASRC and PDM.
+>>>
+>>>> +
+>>>> +                       audio_blk_ctrl: clock-controller@30e20000 {
+>>>> +                               compatible = "fsl,imx8mp-audio-blk-ctrl";
+>>>> +                               reg = <0x30e20000 0x10000>;
+>>>> +                               #clock-cells = <1>;
+>>>> +                               clocks = <&clk IMX8MP_CLK_AUDIO_ROOT>,
+>>>> +                                        <&clk IMX8MP_CLK_SAI1>,
+>>>> +                                        <&clk IMX8MP_CLK_SAI2>,
+>>>> +                                        <&clk IMX8MP_CLK_SAI3>,
+>>>> +                                        <&clk IMX8MP_CLK_SAI5>,
+>>>> +                                        <&clk IMX8MP_CLK_SAI6>,
+>>>> +                                        <&clk IMX8MP_CLK_SAI7>;
+>>>> +                               clock-names = "ahb",
+>>>> +                                             "sai1", "sai2", "sai3",
+>>>> +                                             "sai5", "sai6", "sai7";
+>>>> +                               power-domains = <&pgc_audio>;
+>>>> +                       };
+>>>> +               };
+>>>> +
+>>>
+>>> I am trying to plumb in the micfil driver with a PDM microphone on a
+>>> Plus.  I have SAI3 and SAI5 audio working, but if I try to use the
+>>> micfil, the PDM clock doesn't get turned on, and the micfil doesn't
+>>> appear to see anything coming in.  I was curious why the
+>>> audio_blk_ctrl has clock entries for IMX8MP_CLK_SAIx, but there isn't
+>>> one for the PDM nor the ASRC clocks.
+>>
+>> I only ever needed SAI, so that was what was tested on the EVK .
 > 
-> On earlier SoCs we marked Adreno SMMU as dma-coherent, not the apps
-> one. Only on sm8250 you've added dma-coherent to the apps smmu.
-Also applies to 83450, perhaps I just haven't sent them yet or
-it's not been merged, don't remember
+> That makes sense.
+> 
+>>
+>>> I added the MICFIL noted to the
+>>> 8mp in a previous patch [1], and I am trying to customize the MICFIL
+>>> node as follows:
+>>>
+>>> &micfil {
+>>> #sound-dai-cells = <0>;
+>>> pinctrl-names = "default";
+>>> pinctrl-0 = <&pinctrl_pdm>;
+>>> assigned-clocks = <&clk IMX8MP_CLK_PDM>;
+>>> assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
+>>> assigned-clock-rates = <196608000>;
+>>> status = "okay";
+>>> };
+>>>
+>>> I also noticed in the down-stream kernel, the pdm_ipg_clk and
+>>> pdm_root_clk are shared gates with separate parents.
+>>>
+>>> The PDM tree of the down-stream kernel looks like this:
+>>>    audio_pll1_ref_sel                0        0        0    24000000
+>>>        0     0  50000         Y
+>>>          audio_pll1                     0        0        0   393216000
+>>>           0     0  50000         Y
+>>>             audio_pll1_bypass           0        0        0   393216000
+>>>           0     0  50000         Y
+>>>                audio_pll1_out           0        0        0   393216000
+>>>           0     0  50000         N
+>>>                   pdm                   0        0        0   196608000
+>>>           0     0  50000         N
+>>>                      pdm_root           0        0        0   196608000
+>>>           0     0  50000         N
+>>>                         pdm_sel         0        0        0   196608000
+>>>           0     0  50000         Y
+>>>                            pdm_root_clk       0        0        0
+>>> 196608000          0     0  50000         N
+>>>
+>>> The PDM tree of the mainline looks like this:
+>>>
+>>>      audio_pll1_ref_sel                0        0        0    24000000
+>>>          0     0  50000         Y
+>>>          audio_pll1                     0        0        0   393216000
+>>>           0     0  50000         Y
+>>>             audio_pll1_bypass           0        0        0   393216000
+>>>           0     0  50000         Y
+>>>                audio_pll1_out           0        0        0   393216000
+>>>           0     0  50000         N
+>>>                   pdm                   0        0        0   196608000
+>>>           0     0  50000         N
+>>>                      pdm_root           0        0        0   196608000
+>>>           0     0  50000         N
+>>>                         pdm_sel         0        0        0   196608000
+>>>           0     0  50000         Y
+>>>
+>>> It seems like the "pdm_root_clk" generated by the shared audo-blk
+>>> down-sream driver is missing from the mainline.  I looked up the clock
+>>> I referenced when I attempted to enable the miffil, but
+>>> 'IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't appear to be configured in
+>>> either clk-imx8mp.c or clk-imx8mp-audiomix.c.  Maybe it's obscured by
+>>> the macros, but it seems like the pdm_sel should somehow have an
+>>> additional variable for the shared clock and an additional clock like
+>>> pdm_root_clk assigned with it.
+>>>
+>>> I have similar configurations for Mini and Nano, and both of them are
+>>> able to record audio, so I think there might be a clock issue
+>>> somewhere related to the audiomix driver, and not a misconfiguration
+>>> of the sound-card or the micfil itself.
+>>
+>> Shouldn't the micfil be somehow a consumer of the pdm_sel clock , and
+>> enable those clock in the driver ?
+> 
+> Micfil references IMX8MP_CLK_AUDIOMIX_PDM_IPG, and
+> IMX8MP_CLK_AUDIOMIX_PDM_ROOT.  I am not convinced the
+> IMX8MP_CLK_AUDIOMIX_PDM_ROOT exists beyond a #define in an include
+> directory.  I tried making it use pdm_sel, but it threw an error.  I
+> am not near my system, so I'm sorry I don't have more details.
+> 
+> In the downstream kernel IMX8MP_CLK_AUDIOMIX_PDM_ROOT was a child of
+> pdm_sel, but I am not certain as to what the difference between them
+> was since they appeared to be shared.
 
-Konrad
+The pdm_sel is definitely a mux . Is there a follow-up gate after the mux ?
