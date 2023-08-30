@@ -2,49 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3AE78D361
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 08:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DD8678D9C1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233525AbjH3GcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 02:32:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46482 "EHLO
+        id S237273AbjH3SeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:34:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235924AbjH3Gbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 02:31:43 -0400
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF520CC;
-        Tue, 29 Aug 2023 23:31:39 -0700 (PDT)
-Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.55])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4RbDrT356SzLp7H;
-        Wed, 30 Aug 2023 14:28:25 +0800 (CST)
-Received: from [10.174.178.156] (10.174.178.156) by
- kwepemm600013.china.huawei.com (7.193.23.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Wed, 30 Aug 2023 14:31:36 +0800
-Message-ID: <40832b5f-4e34-21cc-bca2-110477fc7317@huawei.com>
-Date:   Wed, 30 Aug 2023 14:31:35 +0800
+        with ESMTP id S240016AbjH3GiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 02:38:18 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA3C132;
+        Tue, 29 Aug 2023 23:38:16 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37U3cuL8005120;
+        Wed, 30 Aug 2023 06:38:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=J/bu3cR5Lai9kz2WZOz2YJs1uiSGdZiEfU+DHeo/xns=;
+ b=kjtZUXIkHxzt9nUPkz5YGpElHhZWARY3k0R3sbHsVRbceO0qiNoJuHnjvyGEyTDtSG2o
+ A1i+yE/Ceb7CxRIzvFTjLkxYRo+Krn4sB3IwLiTXg0KwK/rS0mLUfNQlu/alnouyzb6g
+ SA0DN1cHmH5/IV97Gd7X6YHwTpledNsjR7LqJFykLsHLKfGl4dTUN1LtOtohzEsqvx1J
+ pZl4RjhnO2a29AAZHDZQE5f1LuoLEoKNRC4DQeP/h858zhznj4PPn0fuYuGTQ0tmcKji
+ 8DKazn8J5YDz14AFGW2ZA+RhL4yUlGPQrJKURTYHJmLfTTohbV999BEmnxoXUjjo2n4+ sw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3ssjvb1qx5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 30 Aug 2023 06:38:02 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37U6c0sG010184
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 30 Aug 2023 06:38:01 GMT
+Received: from [10.201.2.48] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 29 Aug
+ 2023 23:37:56 -0700
+Message-ID: <967fad8b-7b20-765e-217c-c1c19de7b40e@quicinc.com>
+Date:   Wed, 30 Aug 2023 12:07:47 +0530
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3 2/2] dt-bindings: dma: hisi: Add bindings for Hisi
- Ascend sdma
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <vkoul@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC:     <xuqiang36@huawei.com>, <chenweilong@huawei.com>
-References: <20230824040007.1476-1-guomengqi3@huawei.com>
- <20230824040007.1476-3-guomengqi3@huawei.com>
- <b3a6c920-9de5-2788-61ff-beaa60a7a942@linaro.org>
-From:   "guomengqi (A)" <guomengqi3@huawei.com>
-In-Reply-To: <b3a6c920-9de5-2788-61ff-beaa60a7a942@linaro.org>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH 2/3] clk: qcom: apss-ipq-pll: add support for IPQ5018
+Content-Language: en-US
+To:     Stephen Boyd <sboyd@kernel.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <jassisinghbrar@gmail.com>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <mturquette@baylibre.com>,
+        <robh+dt@kernel.org>
+CC:     <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
+References: <20230829095423.760641-1-quic_gokulsri@quicinc.com>
+ <20230829095423.760641-3-quic_gokulsri@quicinc.com>
+ <9e3fec3f3bf11ec0722f6277593d96ff.sboyd@kernel.org>
+From:   Gokul Sriram P <quic_gokulsri@quicinc.com>
+In-Reply-To: <9e3fec3f3bf11ec0722f6277593d96ff.sboyd@kernel.org>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.156]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemm600013.china.huawei.com (7.193.23.68)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: INu1U2tnqpSYoDemlB4HUhpUP6_tm1fR
+X-Proofpoint-GUID: INu1U2tnqpSYoDemlB4HUhpUP6_tm1fR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-29_16,2023-08-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ spamscore=0 lowpriorityscore=0 mlxscore=0 adultscore=0 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 clxscore=1015 phishscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308300060
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -54,86 +86,100 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-在 2023/8/24 15:15, Krzysztof Kozlowski 写道:
-> On 24/08/2023 06:00, Guo Mengqi wrote:
->> Add device-tree binding documentation for the Hisi Ascend sdma
->> controller.
->>
->> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
->> ---
->>   .../bindings/dma/hisi,ascend-sdma.yaml        | 75 +++++++++++++++++++
->>   1 file changed, 75 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
-> Filename matching compatible, so hisilicon,ascend-sdma.yaml. hisi, is a
-> deprecated prefix, so don't use it.
-OK, will change it in next patch.
->
->> diff --git a/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
->> new file mode 100644
->> index 000000000000..87b6132c1b4b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
->> @@ -0,0 +1,75 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/hisi,ascend-sdma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+On 8/30/2023 4:04 AM, Stephen Boyd wrote:
+> Quoting Gokul Sriram Palanisamy (2023-08-29 02:54:22)
+>> diff --git a/drivers/clk/qcom/apss-ipq-pll.c b/drivers/clk/qcom/apss-ipq-pll.c
+>> index e170331858cc..bbc25d5eb70d 100644
+>> --- a/drivers/clk/qcom/apss-ipq-pll.c
+>> +++ b/drivers/clk/qcom/apss-ipq-pll.c
+>> @@ -24,6 +24,17 @@ static const u8 ipq_pll_offsets[][PLL_OFF_MAX_REGS] = {
+>>                  [PLL_OFF_TEST_CTL] = 0x30,
+>>                  [PLL_OFF_TEST_CTL_U] = 0x34,
+>>          },
+>> +       [CLK_ALPHA_PLL_TYPE_STROMER] = {
+>> +               [PLL_OFF_L_VAL] = 0x08,
+>> +               [PLL_OFF_ALPHA_VAL] = 0x10,
+>> +               [PLL_OFF_ALPHA_VAL_U] = 0x14,
+>> +               [PLL_OFF_USER_CTL] = 0x18,
+>> +               [PLL_OFF_USER_CTL_U] = 0x1c,
+>> +               [PLL_OFF_CONFIG_CTL] = 0x20,
+>> +               [PLL_OFF_STATUS] = 0x28,
+>> +               [PLL_OFF_TEST_CTL] = 0x30,
+>> +               [PLL_OFF_TEST_CTL_U] = 0x34,
+>> +       },
+> Is anything different from STROMER_PLUS?
+  No, here both both STROMER and STROMER  PLUS has the same offsets.
+   Will update to reuse STORMER PLUS config.
+>>          [CLK_ALPHA_PLL_TYPE_STROMER_PLUS] = {
+>>                  [PLL_OFF_L_VAL] = 0x08,
+>>                  [PLL_OFF_ALPHA_VAL] = 0x10,
+>> @@ -73,6 +84,38 @@ static struct clk_alpha_pll ipq_pll_stromer_plus = {
+>>          },
+>>   };
+>>   
+>> +static struct clk_alpha_pll ipq_pll_stromer = {
+>> +       .offset = 0x0,
+>> +       .regs = clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_STROMER],
+>> +       .flags = SUPPORTS_DYNAMIC_UPDATE,
+>> +       .clkr = {
+>> +               .enable_reg = 0x0,
+>> +               .enable_mask = BIT(0),
+>> +               .hw.init = &(struct clk_init_data){
+> const?
+  sure, will update.
+>> +                       .name = "a53pll",
+>> +                       .parent_data = &(const struct clk_parent_data) {
+>> +                               .fw_name = "xo",
+>> +                       },
+>> +                       .num_parents = 1,
+>> +                       .ops = &clk_alpha_pll_stromer_ops,
+>> +               },
+>> +       },
+>> +};
 >> +
->> +title: HISI Ascend System DMA (SDMA) controller
-> What is HISI? HiSilicon?
-Yes, It is short for HiSilicon.
+>> +static const struct alpha_pll_config ipq5018_pll_config = {
+>> +       .l = 0x32,
+>> +       .config_ctl_val = 0x4001075b,
+>> +       .config_ctl_hi_val = 0x304,
+>> +       .main_output_mask = BIT(0),
+>> +       .aux_output_mask = BIT(1),
+>> +       .early_output_mask = BIT(3),
+>> +       .alpha_en_mask = BIT(24),
+>> +       .status_val = 0x3,
+>> +       .status_mask = GENMASK(10, 8),
+>> +       .lock_det = BIT(2),
+>> +       .test_ctl_hi_val = 0x00400003,
+>> +};
 >> +
->> +description: |
->> +  The Ascend SDMA controller is used for transferring data
->> +  in system memory. It utilizes IOMMU SVA feature and accepts
->> +  virtual address from user process.
+>>   static const struct alpha_pll_config ipq5332_pll_config = {
+>>          .l = 0x3e,
+>>          .config_ctl_val = 0x4001075b,
+>> @@ -129,6 +172,12 @@ struct apss_pll_data {
+>>          const struct alpha_pll_config *pll_config;
+>>   };
+>>   
+>> +static struct apss_pll_data ipq5018_pll_data = {
+> const?
+  sure, will update.
+>> +       .pll_type = CLK_ALPHA_PLL_TYPE_STROMER,
+>> +       .pll = &ipq_pll_stromer,
+>> +       .pll_config = &ipq5018_pll_config,
+>> +};
 >> +
->> +maintainers:
->> +  - Guo Mengqi <guomengqi3@huawei.com>
->> +
->> +allOf:
->> +  - $ref: dma-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - hisilicon,ascend310-sdma
->> +      - hisilicon,ascend910-sdma
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#dma-cells':
->> +    const: 1
->> +    description:
->> +      Clients specify a single cell with channel number.
->> +
->> +  hisilicon,ascend-sdma-channel-map:
->> +    description: |
->> +      bitmap, each bit stands for a channel that is allowed to
->> +      use by this system. Maximum 64 bits.
->> +    $ref: /schemas/types.yaml#/definitions/uint64
-> Why some channels would not be allowed to be used on some board with
-> ascend310? Who decides on this?
-This is because the SoC runs more than one operating system. So from the 
-perspective of any user OS, dma hardware is a shared resource.
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  pasid-num-bits:
->> +    description: |
->> +      sdma utilizes iommu sva feature to transfer user space data.
->> +      It acts as a basic dma controller if not bound to user space.
->> +    const: 0x10
->
-> Best regards,
-> Krzysztof
->
-> .
+>>   static struct apss_pll_data ipq5332_pll_data = {
+>>          .pll_type = CLK_ALPHA_PLL_TYPE_STROMER_PLUS,
+>>          .pll = &ipq_pll_stromer_plus,
+>> @@ -183,7 +232,7 @@ static int apss_ipq_pll_probe(struct platform_device *pdev)
+>>   
+>>          if (data->pll_type == CLK_ALPHA_PLL_TYPE_HUAYRA)
+>>                  clk_alpha_pll_configure(data->pll, regmap, data->pll_config);
+>> -       else if (data->pll_type == CLK_ALPHA_PLL_TYPE_STROMER_PLUS)
+>> +       else
+> Just add both STROMER and STROMER_PLUS. Or make STROMER the same as
+> STROMER_PLUS locally in this file?
 
-Best regards,
+sure, with the first comment addressed, this change will not be needed.
 
-Guo Mengqi
+Regards,
+Gokul
 
