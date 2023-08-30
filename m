@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B18E78D8EA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7183778D90D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236114AbjH3Sbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:31:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33008 "EHLO
+        id S229572AbjH3ScL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:32:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244648AbjH3Nis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:38:48 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 815741B1;
-        Wed, 30 Aug 2023 06:38:44 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-401b393df02so55079695e9.1;
-        Wed, 30 Aug 2023 06:38:44 -0700 (PDT)
+        with ESMTP id S244649AbjH3Ni6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:38:58 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4ADA1B0;
+        Wed, 30 Aug 2023 06:38:55 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-401d80f4ef8so17034245e9.1;
+        Wed, 30 Aug 2023 06:38:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693402723; x=1694007523; darn=vger.kernel.org;
+        d=gmail.com; s=20221208; t=1693402734; x=1694007534; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=MBe21p78bEGeinGOeEZ5dbYwb28pfpjkSo3Y7gdPnoA=;
-        b=S97wPEASr2Xy94umC548KggN8JMp/Wx8RBV2dCr552Ic4zvqT2/4+Ia5o8cNtLaIsF
-         X+3YSlUx8QCLt0ThrAqxPYlemxx+lY4TQHPL9yIgNqQvwtJkPPeMnO7/tbbgMKo2PDIW
-         +hjjGxNdA4cQD4j1m4eaZVDSfobL1TUKVJ06e8FiuG4W8Xryf4xiq6PjLv/dQcOLtXIy
-         /kbYLUQv4g9ZQSBbMgbuxeEA8uOa/haUIDmtoZ95akymILgp5hc6fih1cIo/QQxQej1u
-         k1RPvOLBaX8sdoZn681KxMmTB8WDFpFn49eCNAiVF6ZkJUbuTf7egRpBQMYNP6yGLRzN
-         0uVw==
+        bh=keE4f6mexSCLXM3y1/CVIDHktCoAT49bvVYyDIq2rlk=;
+        b=lcBYyHO36eHVvlPS7rreWF9KHs4XhmDbZZVqpuPnDBnj+QkjJtA1jq0TIAfYH0+WG/
+         0lW4vnCqngd4l/d8D6kjXTNccTo0N52jdJNJfKddO1GEv0br2hCOBnzdLu3R76xf9y/X
+         zsqkevGnt+U2fh++S/KUYBb+IVTxsjizjvB+DqJ/cMHoAGr+71oaYQyOrN1Rl1A/1qrp
+         vHsoccjtA5zAp7GLIRfZKK5UH5eEGvcxgUEllmaisFUFGWuzvMhac010B9eqO2vqEL3a
+         /Ba9n9WB1iU7a4kb2REDNPgnWqwt7RQRiFe11/kPyUl0A/UeVnAxp3zPATQn3iY6nFfX
+         Cx9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693402723; x=1694007523;
+        d=1e100.net; s=20221208; t=1693402734; x=1694007534;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=MBe21p78bEGeinGOeEZ5dbYwb28pfpjkSo3Y7gdPnoA=;
-        b=JXZmO6Hq8/3GzLsFioqr9FYJ6MRzizTEOqTDWwqrJ7WGiAN5Bv+n0OoOZeosNPmSWl
-         xBr8YmWZa2Mu1RhE3fYjwa/3FhGDWcWteGWcMKPxwsRTrAeqU2CFQDN8d3Tq03UP/YaV
-         rhxXaatBHOsg20+qj50AVv1Ik36h87QluDHH7r9MjMH4EyVKclAX84n70Dyw75cQcdn1
-         D06DFnfIguOIrWSUymEd7LmbHZih9XTMr1NDiHLgoGtYPRR8pf2BulxOLzCzLhlioGIr
-         O4OqPUBRy8enQj+k83ytLNXIUQpVL2XQ2fEGpJCA5bC52NA0cVr/5EfY1Tqv54IX1QcE
-         mQlQ==
-X-Gm-Message-State: AOJu0Ywu7dHn8Y6QKl/khyfudk+vo20vpi0vSxXHsKB7oEVxlum+DIeW
-        zdgY1qOX20KsI3C0ZI0V6A==
-X-Google-Smtp-Source: AGHT+IEpDe6p2bk26/qpet9gXv/RWnuOE+JScc/Osk+9IK0/HLUMMbVMFqo56cM5drEZGpVyQ+6BZQ==
-X-Received: by 2002:a05:600c:21c5:b0:3f8:f382:8e1f with SMTP id x5-20020a05600c21c500b003f8f3828e1fmr2026172wmj.24.1693402722599;
-        Wed, 30 Aug 2023 06:38:42 -0700 (PDT)
+        bh=keE4f6mexSCLXM3y1/CVIDHktCoAT49bvVYyDIq2rlk=;
+        b=e3VA5wxvvuwdqxYqj+lAwv/jQW6l5dpxa8pvxaCfutzPGRUF9XA9+iDIBlegbpV4RP
+         mlIDLmaWJXijihPgv2la5aZE5bQRSqB1qW63cuvWQkwHvwq8AOAouiDN6loF18uUQRIa
+         ZCvSY4olHSxrQ+OClldfla2W9kzjGqMiJ7+gXfBaQn0K2DmFwvj4dHgE6DZimKToubE+
+         atXDPlg2EJVinCD8Sxkro+2S9PgMTOBb4jh7j8XcnjZDRi8UO2p6NWcUWBMnE8qUp1mW
+         N+oKqSPN2LJhcE4dv0lcy/BRiZ7H/uysB8hBkX7gQTez1/KuKD+u7RfyioXN391iyVo6
+         N2pg==
+X-Gm-Message-State: AOJu0YwAILQ8Gn6Q989FxxiE1fNQfUIBz6d01lu9brXzfLw/v7qTxpJd
+        A5oc8NJw9tkuKHpQ98x5xw==
+X-Google-Smtp-Source: AGHT+IG+zDL2Fad/PcYWzK8AWbmBY6SajXktKNR9JFgpXu9PXUdpkMssQC419M+Fo44nVjAKZAIyug==
+X-Received: by 2002:a05:600c:446:b0:401:bbeb:97c4 with SMTP id s6-20020a05600c044600b00401bbeb97c4mr2026162wmb.37.1693402733905;
+        Wed, 30 Aug 2023 06:38:53 -0700 (PDT)
 Received: from U4.lan ([2001:9e8:b963:7410:17bb:6f65:50d0:b82b])
-        by smtp.gmail.com with ESMTPSA id x14-20020a05600c2a4e00b003fed70fb09dsm2326343wme.26.2023.08.30.06.38.41
+        by smtp.gmail.com with ESMTPSA id x14-20020a05600c2a4e00b003fed70fb09dsm2326343wme.26.2023.08.30.06.38.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 06:38:42 -0700 (PDT)
+        Wed, 30 Aug 2023 06:38:53 -0700 (PDT)
 From:   Alex Bee <knaerzche@gmail.com>
 To:     Kishon Vijay Abraham I <kishon@kernel.org>,
         Vinod Koul <vkoul@kernel.org>,
@@ -60,9 +60,9 @@ Cc:     linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v2 2/5] phy: phy-rockchip-inno-usb2: Add RK3128 support
-Date:   Wed, 30 Aug 2023 15:36:23 +0200
-Message-ID: <20230830133623.83075-6-knaerzche@gmail.com>
+Subject: [PATCH v2 3/5] ARM: dts: rockchip: Add USB host clocks for RK3128
+Date:   Wed, 30 Aug 2023 15:36:25 +0200
+Message-ID: <20230830133623.83075-8-knaerzche@gmail.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20230830133623.83075-2-knaerzche@gmail.com>
 References: <20230830133623.83075-2-knaerzche@gmail.com>
@@ -78,79 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add registers to support the 2-port usb2 phy found in RK312x SoC familiy.
+Add the required AHB clocks for both the ehci and ohci controller.
 
 Signed-off-by: Alex Bee <knaerzche@gmail.com>
 ---
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ arch/arm/boot/dts/rockchip/rk3128.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index a4a1716e67bd..9ea08be533cc 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -1374,6 +1374,53 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
- 	return ret;
- }
- 
-+static const struct rockchip_usb2phy_cfg rk3128_phy_cfgs[] = {
-+	{
-+		.reg = 0x17c,
-+		.num_ports	= 2,
-+		.clkout_ctl	= { 0x0190, 15, 15, 1, 0 },
-+		.port_cfgs	= {
-+			[USB2PHY_PORT_OTG] = {
-+				.phy_sus	= { 0x017c, 8, 0, 0, 0x1d1 },
-+				.bvalid_det_en	= { 0x017c, 14, 14, 0, 1 },
-+				.bvalid_det_st	= { 0x017c, 15, 15, 0, 1 },
-+				.bvalid_det_clr	= { 0x017c, 15, 15, 0, 1 },
-+				.idfall_det_en  = { 0x01a0, 2, 2, 0, 1 },
-+				.idfall_det_st  = { 0x01a0, 3, 3, 0, 1 },
-+				.idfall_det_clr = { 0x01a0, 3, 3, 0, 1 },
-+				.idrise_det_en  = { 0x01a0, 0, 0, 0, 1 },
-+				.idrise_det_st  = { 0x01a0, 1, 1, 0, 1 },
-+				.idrise_det_clr = { 0x01a0, 1, 1, 0, 1 },
-+				.ls_det_en	= { 0x017c, 12, 12, 0, 1 },
-+				.ls_det_st	= { 0x017c, 13, 13, 0, 1 },
-+				.ls_det_clr	= { 0x017c, 13, 13, 0, 1 },
-+				.utmi_bvalid	= { 0x014c, 5, 5, 0, 1 },
-+				.utmi_id	= { 0x014c, 8, 8, 0, 1 },
-+				.utmi_ls	= { 0x014c, 7, 6, 0, 1 },
-+			},
-+			[USB2PHY_PORT_HOST] = {
-+				.phy_sus	= { 0x0194, 8, 0, 0, 0x1d1 },
-+				.ls_det_en	= { 0x0194, 14, 14, 0, 1 },
-+				.ls_det_st	= { 0x0194, 15, 15, 0, 1 },
-+				.ls_det_clr	= { 0x0194, 15, 15, 0, 1 }
-+			}
-+		},
-+		.chg_det = {
-+			.opmode		= { 0x017c, 3, 0, 5, 1 },
-+			.cp_det		= { 0x02c0, 6, 6, 0, 1 },
-+			.dcp_det	= { 0x02c0, 5, 5, 0, 1 },
-+			.dp_det		= { 0x02c0, 7, 7, 0, 1 },
-+			.idm_sink_en	= { 0x0184, 8, 8, 0, 1 },
-+			.idp_sink_en	= { 0x0184, 7, 7, 0, 1 },
-+			.idp_src_en	= { 0x0184, 9, 9, 0, 1 },
-+			.rdm_pdwn_en	= { 0x0184, 10, 10, 0, 1 },
-+			.vdm_src_en	= { 0x0184, 12, 12, 0, 1 },
-+			.vdp_src_en	= { 0x0184, 11, 11, 0, 1 },
-+		},
-+	},
-+	{ /* sentinel */ }
-+};
-+
- static const struct rockchip_usb2phy_cfg rk3228_phy_cfgs[] = {
- 	{
- 		.reg = 0x760,
-@@ -1749,6 +1796,7 @@ static const struct rockchip_usb2phy_cfg rv1108_phy_cfgs[] = {
- 
- static const struct of_device_id rockchip_usb2phy_dt_match[] = {
- 	{ .compatible = "rockchip,px30-usb2phy", .data = &rk3328_phy_cfgs },
-+	{ .compatible = "rockchip,rk3128-usb2phy", .data = &rk3128_phy_cfgs },
- 	{ .compatible = "rockchip,rk3228-usb2phy", .data = &rk3228_phy_cfgs },
- 	{ .compatible = "rockchip,rk3308-usb2phy", .data = &rk3308_phy_cfgs },
- 	{ .compatible = "rockchip,rk3328-usb2phy", .data = &rk3328_phy_cfgs },
+diff --git a/arch/arm/boot/dts/rockchip/rk3128.dtsi b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+index b63bd4ad3143..ffe99db0eeb7 100644
+--- a/arch/arm/boot/dts/rockchip/rk3128.dtsi
++++ b/arch/arm/boot/dts/rockchip/rk3128.dtsi
+@@ -109,6 +109,7 @@ usb_host_ehci: usb@101c0000 {
+ 		compatible = "generic-ehci";
+ 		reg = <0x101c0000 0x20000>;
+ 		interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_HOST2>;
+ 		phys = <&usb2phy_host>;
+ 		phy-names = "usb";
+ 		status = "disabled";
+@@ -118,6 +119,7 @@ usb_host_ohci: usb@101e0000 {
+ 		compatible = "generic-ohci";
+ 		reg = <0x101e0000 0x20000>;
+ 		interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_HOST2>;
+ 		phys = <&usb2phy_host>;
+ 		phy-names = "usb";
+ 		status = "disabled";
 -- 
 2.42.0
 
