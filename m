@@ -2,86 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EBA78D989
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F77C78D8D6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230413AbjH3SdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:33:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48386 "EHLO
+        id S235724AbjH3SbX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:31:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243643AbjH3LUc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:20:32 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1539E1BB
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 04:20:30 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99c93638322so160099466b.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 04:20:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693394428; x=1693999228; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2edGeLLjwmBS5v07/x8wBG8ynN8bGWmxjzGyhRyL4R4=;
-        b=tBbXUCpYIsf4uI6RHC8V2cNr0SWyOAQb86/HvZfzbbmAD1OQ6j3NqkCn68yVpsunYn
-         lgVrnSUDibNlEW+il/3FMWuQnFZcRNkpdoWSgetbZtFu2oCHkYwIlmcXhKigPcW7UMnh
-         UZMiGETooME6v+LNR9+ldiyAm5/14YLdC2NWGncLz8uW1fe5f1fmZNQXndjvlECA9F4o
-         6u+yPzgH46YwH9V4yi08z/sqPflGE1JJQ45bJ5GixTVxPcm5CtYMaeuF05UFgzvGT8vo
-         0H833vCXMqsnYcbmeyeHeZnFuOpdB8+s4NBYI4DS61nDXEDib/QOKJIwzD8HZlkdczdi
-         Qt2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693394428; x=1693999228;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2edGeLLjwmBS5v07/x8wBG8ynN8bGWmxjzGyhRyL4R4=;
-        b=fBaR00E2ngixYGOpfwmp21jK9qIWq7lfEsL+oTMBZOdbyikIF0b1WvWV9xWItrI2Ld
-         nv4mt2c0c1CcDhkx2As+440+RhOKxButXHvDGWp0bJGAqlD/uNbSJACfNxLamHWCslag
-         yLKWDQLjI9UZ/1L8syvgUASJLeV4zteRfvdrD56+Dg7KHqAf6dkKZBXzMQFiNYkAYvct
-         2FtKmaxgam3VeA/esZ/wlEajNn5G46Th2flLMxbYmZ2tqb2BG4K1t33DmVD2yf0i9bR/
-         CFD8TVTMGuf1+Hb/9YQYH5TMyueGmRHQkejiyvl5bGfx1YrM0oPp/ePkHDH9d4r56POd
-         8v0g==
-X-Gm-Message-State: AOJu0Yz/sfPY6PJ4bYPOtHXzT8iSPvQwhFmJhHy9n+WPOhhhr7jfFmZE
-        rLpDEii0iEYcTD/XZ6c2CGGvTw==
-X-Google-Smtp-Source: AGHT+IGWmLI8SNyABERgpk/JQhn4b2kn6YcGVWoqyPZlcujUm5Gv0Gjrq5MgGtIM1CvqGV3TUZIN6w==
-X-Received: by 2002:a17:906:6a19:b0:9a1:bb8f:17d5 with SMTP id qw25-20020a1709066a1900b009a1bb8f17d5mr2988524ejc.30.1693394428553;
-        Wed, 30 Aug 2023 04:20:28 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id c11-20020a170906924b00b0099297c99314sm7126710ejx.113.2023.08.30.04.20.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 04:20:27 -0700 (PDT)
-Message-ID: <7cba182f-2b35-84e5-16c7-770a6aff5062@linaro.org>
-Date:   Wed, 30 Aug 2023 13:20:26 +0200
+        with ESMTP id S243655AbjH3LW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:22:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D071BB;
+        Wed, 30 Aug 2023 04:22:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3E833629AF;
+        Wed, 30 Aug 2023 11:22:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86231C433C8;
+        Wed, 30 Aug 2023 11:22:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693394544;
+        bh=sbXwoUnfsg75aRpsvrKxd95gOG3cQb50vpy8i5omPNQ=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=pvfhaesJC1Ch/HgOSY0OQ8bedM9JZ68lhIsl8FYsnC2ytRKuMmed7a2oHHzOopY9s
+         tMoMd6fBunXVbAUK1gFrBaslHfjLDS0+tpP5ecEcescsKram5CGN2S/weShHNMP4yh
+         QPDKcFdWaLcuEfC6mwvxqI/CKedUwNWDAvxyRf1X5VUlKBgIfiWUvdaGzovEG+yamw
+         dgIkB9c2kDIaT2Fhc3m6Ztk0BhXTxbaDJGAYJzedpy1Ph1NPilM5mBVFj9WT2dek/k
+         2zTVHtvHzKFcUS5Z2cnYFvpd0BPZUY5IPxWxF4E8pyQejcy7eZuf2mBDQqkvo9ka0f
+         KxK/+pPnT+QDw==
+Date:   Wed, 30 Aug 2023 12:22:17 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Konstantin Ryabitsev <konstantin@linuxfoundation.org>,
+        Kees Cook <keescook@chromium.org>,
+        Bjorn Andersson <andersson@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, Will Deacon <will@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        quic_pkondeti@quicinc.com, linux-kernel@vger.kernel.org,
+        kernel@quicinc.com, workflows@vger.kernel.org,
+        tools@linux.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 1/1] scripts: Add add-maintainer.py
+Message-ID: <0f7b32e1-1b26-4543-bfec-471641a67416@sirena.org.uk>
+References: <cover.1693037031.git.quic_gurus@quicinc.com>
+ <141b9fcab2208ace3001df4fc10e3dfd42b9f5d9.1693037031.git.quic_gurus@quicinc.com>
+ <2efba6b3-2399-9deb-d0ce-78f7b5e12f30@linaro.org>
+ <20230828175629.GC23466@quicinc.com>
+ <78aa33f9-ead8-b128-2a7a-40530a1a3ed0@linaro.org>
+ <ZOz4XtX3DFRQpvQY@finisterre.sirena.org.uk>
+ <670a87e9-2f0c-ec9e-ebb4-9041c8972ace@linaro.org>
+ <20230829231638.GA27843@quicinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v2 3/4] arm64: dts: mediatek: mt6360: add PMIC MT6360
- related nodes
-Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
- <20230830111532.9048-1-macpaul.lin@mediatek.com>
- <20230830111532.9048-3-macpaul.lin@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230830111532.9048-3-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="KnzHrTA7gjifxdYo"
+Content-Disposition: inline
+In-Reply-To: <20230829231638.GA27843@quicinc.com>
+X-Cookie: Immanuel doesn't pun, he Kant.
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,24 +75,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2023 13:15, Macpaul Lin wrote:
-> +
-> +	led {
-> +		compatible = "mediatek,mt6360-led";
-> +	};
-> +
-> +	regulator {
-> +		compatible = "mediatek,mt6360-regulator";
-> +		LDO_VIN3-supply = <&mt6360_emi_vddq_buck2_reg>;
-> +
-> +		mt6360_emi_vdd2_buck1_reg: buck1-emi-vdd2 {
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
+--KnzHrTA7gjifxdYo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Best regards,
-Krzysztof
+On Tue, Aug 29, 2023 at 04:16:39PM -0700, Guru Das Srinagesh wrote:
 
+> If this script is accepted and gains adoption, maintainers like yourself will
+> only be To-ed in patches that touch files that you're a direct "Maintainer" or
+> "Reviewer" of. For all other patches in the series you'll be in "Cc:". I
+> imagine that this can be very useful regardless of the specifics of your
+> workflow.
+
+Given that b4 solves a lot more problems and is getting quite widely
+adopted it's probably going to be more effective to look at trying to
+get this implemented there.  That might still mean a separate script
+that b4 can hook into, but it's probably important that whatever you do
+can be used easily with b4.
+
+--KnzHrTA7gjifxdYo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTvJmgACgkQJNaLcl1U
+h9BZnQgAhN2il0SqqFg6f1KBrYU6LppQ69MeOtRhzem5cewfBS2Z/bSCt7QkoduX
+428E2n4I/LxLzJ0yR4WzJRSfPCp4yTZtxwBLTt1X0fWdT9+LN5UcFIEXwp7Bk+uW
+XsBPJiS3GhZ5UQZUQp9niH74hsRnGg+x8NrgirLi6MdAKoIJ/xYP3fY9b3TIBikS
+Cgtm6GOjHI7g0u9KgajygrbAHFRyYnttp3pFLtV3K0f7O4rSfgvo4Zs0DqOM7xLg
+0RjTSNaoLE+Si2RAAw5QHH6tH6+LW+HWGSsW+mWbhrOQm17LPniGsqN1WJNvZ1/j
+3wrUxQZzpHq+9xNZK9StKaqbFDB71A==
+=gR69
+-----END PGP SIGNATURE-----
+
+--KnzHrTA7gjifxdYo--
