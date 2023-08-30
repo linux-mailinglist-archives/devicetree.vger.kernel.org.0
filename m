@@ -2,60 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F29E378DA69
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC46978D8DF
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237318AbjH3SgQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:36:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59450 "EHLO
+        id S235919AbjH3Sb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242804AbjH3JpF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 05:45:05 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 403801A4
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 02:45:02 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-52a4b62c2f5so6986946a12.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 02:45:02 -0700 (PDT)
+        with ESMTP id S242806AbjH3Jpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 05:45:35 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA9641A4
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 02:45:31 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99de884ad25so723989066b.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 02:45:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693388700; x=1693993500; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693388730; x=1693993530; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GinLhIkYK1eux6i+cjheW/SanM1hfGzP7zFFV4Pq7CI=;
-        b=FJgx5T2mvEQ9S2G1/fVHLtuSDiGBknSUWu2FGlEV2agXp5QBa6/cjbYmUbPK0OoIa4
-         jcVlz1KjeX5KKTrGtj4LT5V/tRzSEWCnGrjHuV/A7f/zqkyB1zA3EYEb8pJdB4cIIPcJ
-         QmoZQ06e5h15/m0El6jA3h+WRcxKiRsjSpImJh7no3ZmBDDU/uxfVpFax7sa03I2w62J
-         6fn4SBmhjGdkKJONvul6Ylc2FCawehGoDtWDbRgtxrPggl5tiWgkO6cYTqT8qhWc63mF
-         AdCUYL2Gu0vF+eebe/3SPXq+fuRGIaUJepR9KDlwgRcfJFHj/fhMgKM+9xgEsj1lfSRi
-         FADQ==
+        bh=suKY6OufGdFjOXeITy2SI/gqtW5sC+Q15RnB0RhvKmQ=;
+        b=zgg+hP8+5RbKE+9C/OljN/XYSwKfsRkAj6TBuk/ypTZFbdtSDWwnYCXbVrOyK6gTRI
+         gTVWQpC3EXgIZ9XfUTAP/HdePubMG3xS+zPhefaJ1y+g+hwxRbP/ckaHpT0OUI1Tdm2S
+         kFcP7rwkDazuoPrjLilxBk2W5q5gVbxc7Wmn8uao7rOBzwqzPihGJR+madM2DYl3qZGm
+         Wn2QcygdXb8cfPaTFFA4wPdmTdMk7zJomeZVibhPe2lP7LRDyPZP05uUl8VJhwgKyneK
+         /Zx86VIpR+VIqsPXrWNaFtjTf9f4XwaOcYIqoFs6YWLQwSkfTSzRz6BqjVvInYgg1pPl
+         4wEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693388700; x=1693993500;
+        d=1e100.net; s=20221208; t=1693388730; x=1693993530;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GinLhIkYK1eux6i+cjheW/SanM1hfGzP7zFFV4Pq7CI=;
-        b=gsaQXjVWF9qIS533+CmHZqNKNJSaOPgwY7SgqFuQGUll1i/UgwoTIvRJ9Lr6kGTjl6
-         m+DnUMrYw8MT6DJpX6C7NlvdwzMyvvcWf0ah7iVlAvHP8pwvDb4HeX1ysv7i5GoUp7aL
-         1vnL/ZAl3m9H6YsaCBVQB7UWxiBBAFiymReVeQl7uI5hiA/K2M4C6r/PUJaTDbc+rBy8
-         zXr0qkf3emvuuxuQPJpfnF20xtkkhyFYzYXS0EJBFbtY8kEX4D7bXKGnIeapJb2IT8zx
-         1hsUSlMQhI9CYtXr9IoEqF7Y4SAd9MeBE9ue1pcHNfz5so1W4LZCKGV79zAuLFoMEkPe
-         slrA==
-X-Gm-Message-State: AOJu0Yz08jckLIIMsskrjz+eybjjAjZZkuRnnCoMMjb2TtpH8suyekbg
-        8l3QSEchCe3HU8ms4D79XoIVBg==
-X-Google-Smtp-Source: AGHT+IErP0xuXzSAW/p+xjsBaBQUM/72RL+nvycu+pslby5SCw0FQTJk9JH2ZdMQgx3+rxaEkK5Myw==
-X-Received: by 2002:a17:906:3152:b0:9a5:874a:9745 with SMTP id e18-20020a170906315200b009a5874a9745mr1129087eje.26.1693388700643;
-        Wed, 30 Aug 2023 02:45:00 -0700 (PDT)
+        bh=suKY6OufGdFjOXeITy2SI/gqtW5sC+Q15RnB0RhvKmQ=;
+        b=kU7ehMCeZMlNADyZCTVqdWA22hyMzfw6tSUqmLNv1G6ljPROFfqJ3j3sPjhWuUdEMV
+         XZPm5n25fjhlXcRK6vdskQusDMu8/MlbU14GABdPf+vAvHKw90nAfY6PYl+pCzgottRR
+         vobsp0Z9DTRBC7Im9IrGyFrM0IFt7m1dfxsKRL5xEf2MgeO2EJzXH8zuwlX+osSO3FAW
+         8EL9kZqqvRs8hlUV67W8NDOkj5mWQ7yLCJ6AEX3RtbdNEydPk9oGzWzs1/FCjedCN92m
+         ipxxs4uxiXntAQE3qXrp/MSO7GOeV26oUnlTlYF2gqerMrU0ftIHETRWt3H9JCuQv3yp
+         vOvw==
+X-Gm-Message-State: AOJu0YyFl/n1juUp6uDHgs0p0d9xQzKAECPNkpxuU1df8t6WJRI6jCju
+        e+wTGZK4fPdYm4FDFKwN66aNxQ==
+X-Google-Smtp-Source: AGHT+IEJc1E1Orxis2sVRcoNfH2DjYDXEvgRu8kKboCKIIWJBA0TxFoly1iyx8MPZDRkDacSyA528g==
+X-Received: by 2002:a17:906:3d22:b0:9a1:bb8f:17de with SMTP id l2-20020a1709063d2200b009a1bb8f17demr1526973ejf.35.1693388730278;
+        Wed, 30 Aug 2023 02:45:30 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id a8-20020a1709066d4800b0098e422d6758sm6930455ejt.219.2023.08.30.02.44.58
+        by smtp.gmail.com with ESMTPSA id w24-20020a17090649d800b009930308425csm6973974ejv.31.2023.08.30.02.45.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 02:44:59 -0700 (PDT)
-Message-ID: <b9cbe9be-b03e-6c7a-d06c-b75b012b5b25@linaro.org>
-Date:   Wed, 30 Aug 2023 11:44:57 +0200
+        Wed, 30 Aug 2023 02:45:29 -0700 (PDT)
+Message-ID: <1d531692-5455-fbfd-0775-50856bf0fbc7@linaro.org>
+Date:   Wed, 30 Aug 2023 11:45:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v4 1/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva
- (AST2600) BMC
+Subject: Re: [PATCH v4 2/2] dt-bindings: arm: aspeed: add Meta Minerva board
 Content-Language: en-US
 To:     peteryin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
         Rob Herring <robh+dt@kernel.org>,
@@ -69,15 +68,15 @@ To:     peteryin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
 Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
         daniel-hsu@quantatw.com
 References: <20230830090212.3880559-1-peteryin.openbmc@gmail.com>
- <20230830090212.3880559-2-peteryin.openbmc@gmail.com>
+ <20230830090212.3880559-3-peteryin.openbmc@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230830090212.3880559-2-peteryin.openbmc@gmail.com>
+In-Reply-To: <20230830090212.3880559-3-peteryin.openbmc@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,WEIRD_QUOTING
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -85,58 +84,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30/08/2023 11:02, peteryin wrote:
-> Add linux device tree entry related to
-> Minerva specific devices connected to BMC SoC.
+> Document the new compatibles used on Meta Minerva.
 > 
 > Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
-
-To clarify: your full name or known identity is "peteryin"?
-
 > ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 385 ++++++++++++++++++
->  2 files changed, 386 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 9e1d7bf3cff6..edb0b2105333 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -1604,6 +1604,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->  	aspeed-bmc-facebook-wedge400.dtb \
->  	aspeed-bmc-facebook-yamp.dtb \
->  	aspeed-bmc-facebook-yosemitev2.dtb \
-> +	aspeed-bmc-facebook-minerva.dtb \
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index 6b0a6683ccae..b681bbf960d1 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -80,6 +80,7 @@ properties:
+>                - facebook,fuji-bmc
+>                - facebook,greatlakes-bmc
+>                - facebook,yosemite4-bmc
+> +              - facebook,minerva-bmc
 
-Nothing improved here.
-
->  	aspeed-bmc-ibm-bonnell.dtb \
->  	aspeed-bmc-ibm-everest.dtb \
->  	aspeed-bmc-ibm-rainier.dtb \
-
-
-> +	"","","","","","","","",
-> +	/*O0-O3 line 224-231*/
-> +	"","","","","","","","",
-> +	/*O4-O7 line 232-239*/
-> +	"","","","","","","","",
-> +	/*P0-P3 line 240-247*/
-> +	"","","","","","","","",
-> +	/*P4-P7 line 248-255*/
-> +	"","","","","","","","";
-> +};
-> +
-
-Nor here.
-
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
+m is not after y. Keep things sorted, I already wrote this in your v2.
 
 Best regards,
 Krzysztof
