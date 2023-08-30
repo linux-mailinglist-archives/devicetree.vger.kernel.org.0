@@ -2,94 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A85F878DA1F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF99878D9A0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229830AbjH3Sfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:35:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51974 "EHLO
+        id S231370AbjH3Sdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243815AbjH3Lrk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:47:40 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 686C4CC9
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 04:47:37 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-58caaedb20bso61960637b3.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 04:47:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693396056; x=1694000856; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E6qY7mr1if4mjzl6N/X/QNgn05V4Hq/iGd+Okpb2gPA=;
-        b=dsEnzXEJxuqidSDS1+aIt0UnyaZ+/EWIFdvkiJhxfISwuVGlAcWx3VrTIeZPKeB5LW
-         yW5/4H3QF+tl2/s6NcJ8R99D339/D0MhsH9gXKPZ9VuRXV+0QHTQVUxSFGVU7sePaQwZ
-         PQ/Fp2NtoM8SsfSlJYqVNwXUWCBwPn9ZEd8+elAXRWJ42cmgd5/n0qhQuB9rYpvL6X1P
-         7DXS3vn91YZBZbzxhu+sMfhW3ouH687I7Xr6ql0DYsPOM7svNo6Axdt7o9V+V0qhxFVj
-         o8v5qq0SUPVXyNoBG+azlRArycP0T+ArxuqvsWLEmA26t3stwcJpBytTr7PCRd/zqhfw
-         4jlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693396056; x=1694000856;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E6qY7mr1if4mjzl6N/X/QNgn05V4Hq/iGd+Okpb2gPA=;
-        b=kN6cSlaV2TCdYqoeq2fHRX2yO2LyvEIabkoGjGPrkugcyZA5IGbZA6KqcUaln2i5hH
-         Yc28URdDLSBh2S1ZMj8fc0JSrhiXfb33AyeEvjtdTvVxO5aZtlDFPDkGXisSJ8ZjmK4b
-         3NEEYmJYDpGC6m65xsK7cC9H67MSQZBjbXF/hdcukBNBrM4q2ChCti5VPECMaMyufhMY
-         +Rw+0XodX+zvzqgHvLLlBcV15WnNwMbS0rS2yeeUvnxpL9LREN2Q11PIwWumJTAWPurA
-         434wHKhS0hvcNgR8Bg4QkWtcEkZ6uIEx6/uGXmi6o8ZK91/unsmh1n7QyoNtkF32jQP1
-         4elw==
-X-Gm-Message-State: AOJu0YyROkj6cT/yHBda5JKzYZczU+9/G91oMPI7vZNeNqCjPXKEp2HY
-        6Kj3ATaY7CMi3e8qj6cl+cn3msqRg+VeXf57ylWwFA==
-X-Google-Smtp-Source: AGHT+IG+cDfVhvedCJoh1MydyK7VKRA/KVbr4a7x5p2hLIqH/Y7y+yfFDrrjPE8FE1bGRWGIDiLivpaB3dJHFKPBchA=
-X-Received: by 2002:a5b:889:0:b0:d32:cd49:2469 with SMTP id
- e9-20020a5b0889000000b00d32cd492469mr2006211ybq.24.1693396056658; Wed, 30 Aug
- 2023 04:47:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com> <20230830-fp5-initial-v1-6-5a954519bbad@fairphone.com>
-In-Reply-To: <20230830-fp5-initial-v1-6-5a954519bbad@fairphone.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 30 Aug 2023 13:47:25 +0200
-Message-ID: <CACRpkdarpxAS21is7mOeSjqh0_teQcNYf2-WPd5BuLQSjFVF8g@mail.gmail.com>
-Subject: Re: [PATCH 06/11] dt-bindings: pinctrl: qcom,sc7280: Allow gpio-reserved-ranges
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S243839AbjH3Lv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:51:57 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F9D91BB;
+        Wed, 30 Aug 2023 04:51:54 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37UBpTFM070701;
+        Wed, 30 Aug 2023 06:51:29 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1693396289;
+        bh=gMOLJwOXNOhAvc5RONqLHk+5pNmuIPJLrheBybFhFIM=;
+        h=From:To:CC:Subject:In-Reply-To:References:Date;
+        b=iZqM6Avd9IBWZ1sRwAwnWV7xvEp6l2RFaarlcGUGTGoUuD2R8oD8W1qWYspEBT/8o
+         UMo1JNGZBYTuKp4LTxK/cSBoU+w8HQQNiqvGnjsiZWI9NGrE9owat7bpjmvT/zRSxQ
+         u4eKafROn3/BP2QFwvW6kCqFHJmSQyxdjHqJmYqw=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37UBpTkf050947
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Aug 2023 06:51:29 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
+ Aug 2023 06:51:28 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 30 Aug 2023 06:51:29 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37UBpS8Q000383;
+        Wed, 30 Aug 2023 06:51:28 -0500
+From:   Kamlesh Gurudasani <kamlesh@ti.com>
+To:     Eric Biggers <ebiggers@kernel.org>
+CC:     Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v2 0/6] Add support for
+ Texas Instruments MCRC64 engine
+In-Reply-To: <20230822051710.GC1661@sol.localdomain>
+References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
+ <20230812030116.GF971@sol.localdomain>
+ <87h6owen39.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+ <20230822051710.GC1661@sol.localdomain>
+Date:   Wed, 30 Aug 2023 17:21:27 +0530
+Message-ID: <87zg28d9z4.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 11:58=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.c=
-om> wrote:
+Eric Biggers <ebiggers@kernel.org> writes:
 
-> Allow the gpio-reserved-ranges property on SC7280 TLMM.
+> On Fri, Aug 18, 2023 at 02:36:34PM +0530, Kamlesh Gurudasani wrote:
+>> Hi Eric,
+>> 
+>> We are more interested in offload than performance, with splice system
+>> call and DMA mode in driver(will be implemented after this series gets
+>> merged), good amount of cpu cycles will be saved.
 >
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> So it's for power usage, then?  Or freeing up CPU for other tasks?
+It is for freeing CPU for other tasks
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+>
+>> There is one more mode(auto mode) in mcrc64 which helps to verify crc64
+>> values against pre calculated crc64, saving the efforts of comparing in
+>> userspace.
+>
+> Is there any path forward to actually support this?
+>
+>> 
+>> Current generic implementation of crc64-iso(part of this series)
+>> gives 173 Mb/s of speed as opposed to mcrc64 which gives speed of 812
+>> Mb/s when tested with tcrypt.
+>
+> This doesn't answer my question, which to reiterate was:
+>
+>     How does performance compare to a properly optimized software CRC
+>     implementation on your platform, i.e. an implementation using carryless
+>     multiplication instructions (e.g. ARMv8 CE) if available on your platform,
+>     otherwise an implementation using the slice-by-8 or slice-by-16 method?
+>
+> The implementation you tested was slice-by-1.  Compared to that, it's common for
+> slice-by-8 to speed up CRCs by about 4 times and for folding with carryless
+> multiplication to speed up CRCs by 10-30 times, sometimes limited only by memory
+> bandwidth.  I don't know what specific results you would get on your specific
+> CPU and for this specific CRC, and you could certainly see something different
+> if you e.g. have some low-end embedded CPU.  But those are the typical results
+> I've seen for other CRCs on different CPUs.  So, a software implementation may
+> be more attractive than you realize.  It could very well be the case that a
+> PMULL based CRC implementation actually ends up with less CPU load than your
+> "hardware offload", when taking into syscall, algif_hash, and driver overhead...
+>
+> - Eric
+Hi Eric, thanks for your detailed and valuable inputs.
 
-I assume this will be merged with the rest of the patches, poke me
-after v6.6-rc1 if you want me to apply it to the pinctrl tree.
+As per your suggestion, we did some profiling. 
 
-Yours,
-Linus Walleij
+Use case is to calculate crc32/crc64 for file input from user space.
+
+Instead of directly implementing PMULL based CRC64, we made first comparison between 
+Case 1.
+CRC32 (splice() + kernel space SW driver) 
+https://gist.github.com/ti-kamlesh/5be75dbde292e122135ddf795fad9f21
+
+Case 2.
+CRC32(mmap() + userspace armv8 crc32 instruction implementation)
+(tried read() as well to get contents of file, but that lost to mmap() so not mentioning number here)
+https://gist.github.com/ti-kamlesh/002df094dd522422c6cb62069e15c40d
+
+Case 3.
+CRC64 (splice() + MCRC64 HW)
+https://gist.github.com/ti-kamlesh/98b1fc36c9a7c3defcc2dced4136b8a0
+
+
+Overall, overhead of userspace + af_alg + driver in (Case 1) and
+( Case 3) is ~0.025s, which is constant for any file size.
+This is calculated using real time to calculate crc  -
+driver time (time spend inside init() + update() +final()) = overhead ~0.025s    
+
+
+
++-------------------+-----------------------------+-----------------------+------------------------+------------------------+
+|                   |                             |                       |                        |                        |
+| File size         | 120mb(ideal size for us)    | 20mb                  | 15mb                   | 5mb                    |
++===================+=============================+=======================+========================+========================+
+|                   |                             |                       |                        |                        |
+| CRC32 (Case 1)    | Driver time 0.155s          | Driver time 0.0325s   | Driver time 0.019s     | Driver time 0.0062s    |
+|                   |    real time 0.18s          |    real time 0.06s    |    real time 0.04s     |    real time 0.03s     |
+|                   |    overhead 0.025s          |    overhead 0.025s    |    overhead 0.021s     |    overhead ~0.023s    |
++-------------------+-----------------------------+-----------------------+------------------------+------------------------+
+|                   |                             |                       |                        |                        |
+| CRC32 (Case 2)    | Real time 0.30s             | Real time 0.05s       | Real time 0.04s        | Real time 0.02s        |
++-------------------+-----------------------------+-----------------------+------------------------+------------------------+
+|                   |                             |                       |                        |                        |
+| CRC64 (Case 3)    | Driver time   0.385s        | Driver time 0.0665s   | Driver time 0.0515s    | Driver time 0.019s     |
+|                   |    real time 0.41s          |    real time 0.09s    |    real time 0.08s     |    real time 0.04s     |
+|                   |    overhead 0.025s          |    overhead 0.025s    |    overhead ~0.025s    |    overhead ~0.021s    |
++-------------------+-----------------------------+-----------------------+------------------------+------------------------+
+
+Here, if we consider similar numbers for crc64 PMULL implementation as
+crc32 (case 2) , we save good number of cpu cycles using mcrc64
+in case of files bigger than 5-10mb as most of the time is being spent in HW offload.
+
+Regards,
+Kamlesh
