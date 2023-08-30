@@ -2,81 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9174578DA23
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4D3078D960
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236815AbjH3Sfd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:35:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
+        id S236889AbjH3SdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243261AbjH3KfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:35:15 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13E871B3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:35:12 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99c1c66876aso698801466b.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:35:12 -0700 (PDT)
+        with ESMTP id S243283AbjH3Kge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:36:34 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBC31BB
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:36:30 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so7094052a12.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:36:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1693391710; x=1693996510; darn=vger.kernel.org;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PakJOWM3f2X2lU1WdNU5BXfvb8MoSegIjT2fCvwDw80=;
-        b=GixEsPqB2Th8dNC6y1A9NmVJ8DU68tCEFs3pbkeUL4NK6rr9DIqgUYW7J2xdZAeMD5
-         n2GLwwRWMo+pBNZDev8GBEq1BVhRmHssjQ86kPyVIsifDM24qP2hQooWK0Db2yXkkCWE
-         Uu8tCeqeOwFA0aW0j7DcTUHfpsqmZWg4zeLR7Rq/QUnw/Mv2hAcguwBpltqNt/ciknKd
-         6mB94S6VsuyKyzdkYwGIxW66fqxcnALruf20ueO/+n47nuepdTKY3gPg3QjNUlPKdrAi
-         ei1Aoab16YdrNxSuo0lNGAagk9+tx38EAPAcuL8yb/fewoei36LhKqorJqB5LJXyeqcB
-         GzvA==
+        d=9elements.com; s=google; t=1693391788; x=1693996588; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HZcO54s6dPOvHTKozhAJ9zybhhO9IlHmOjEttCcJ4Fc=;
+        b=C0prIXeHgKDHDYl3xGT74jVJ+7LpPwuKQ9ApXGCbHlvskrYIbeES4cXYboTamDKCMC
+         bA7mmoX1Kk/fzujWZ5VfqofnorAHCPB7/qciijCBZNFGrynvnbAinPacxkx2c+MUsXYW
+         sV1L0KkqQVRBjvSbnDymg/GHfIDTgp/9G69zhzrR2S0xOIvtu+x41dDbllwytpKJ4Lee
+         7VCplc89rhLJHm2LohAl5Wpc04xGDlLEj57VNmaxInvKaQK7xxUv61LMGyrTODCmXO7C
+         nZhHHSpt10QEoAmMCcFuscT20FcRqjNaurGZsof454w3eSxx5nohOlU2TSv6Qvd41vH4
+         lcTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693391710; x=1693996510;
-        h=in-reply-to:references:from:subject:cc:to:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=PakJOWM3f2X2lU1WdNU5BXfvb8MoSegIjT2fCvwDw80=;
-        b=l+GY0SBB9NOlpc06ahXMH5SWCIt88Jkkzfctqf+bKhH41dJsyzOVgbErvLq1SlG8wS
-         3rckU5YR+ECkMf9xBZtNroPctYP2/cLUptkghwIePPetOkO86oPCG9VpG4qIp1+5QLs+
-         Gta4ZkVOIx+PXiZefR+2CCMmCjpga+rDZhXac2rruP3tnARU+RemizOn/UDPLQwG2zSK
-         iQCVE7heMUlb5E9/agFQYhY4JaK1xzt63akdKy7wdzqHz6LvLfGBZjKcUCIpT3533BFr
-         ISsHiTEbo1UQaCRcZIX55Ugu4AjHMvFwe0HaLvz1jHzbsuaOGdGNVJp6yJ+XXwnv9RHp
-         hNDw==
-X-Gm-Message-State: AOJu0Yxomccrk20/x01tJkiWpULzFsMlVMRm9aeoaBxwu8xTkscYIaPX
-        THsl0HQeebKQEF8PBNfyLRlDYfXgHObgvaSQKPRH3A==
-X-Google-Smtp-Source: AGHT+IGXWivNh1ZlN/nqyhwxsykDuhrosQf2fDYTztx4ftyPi0mkO+YgqlM65aT3mHmdxazJFxUSiQ==
-X-Received: by 2002:a17:906:3152:b0:994:1844:c7d1 with SMTP id e18-20020a170906315200b009941844c7d1mr1175949eje.13.1693391710514;
-        Wed, 30 Aug 2023 03:35:10 -0700 (PDT)
-Received: from localhost (5073ED84.static.ziggozakelijk.nl. [80.115.237.132])
-        by smtp.gmail.com with ESMTPSA id gy25-20020a170906f25900b00985ed2f1584sm7066888ejb.187.2023.08.30.03.35.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 03:35:10 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 30 Aug 2023 12:35:09 +0200
-Message-Id: <CV5T9FXMWOAT.2ZXS0CZ8S0EUM@otso>
-To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Viresh Kumar" <viresh.kumar@linaro.org>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 01/11] arm64: dts: qcom: sc7280: Mark some nodes as
- 'reserved'
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-X-Mailer: aerc 0.15.2
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-1-5a954519bbad@fairphone.com>
- <160d6151-914b-4f2f-9f7c-d14cbb901619@linaro.org>
-In-Reply-To: <160d6151-914b-4f2f-9f7c-d14cbb901619@linaro.org>
+        d=1e100.net; s=20221208; t=1693391788; x=1693996588;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HZcO54s6dPOvHTKozhAJ9zybhhO9IlHmOjEttCcJ4Fc=;
+        b=Ibjl5cK7u6HGn7hWw/+HZ/XZjg7qoU293W72ZHaCEK2xo/h7HgCi8kqnow1jsa5Cv+
+         6lDRaoIpFC0jCOqLSiR5xlaJ1UdFjSFrnfMobI+ArJlEktIu4cUxCN3TZPl2JwE0r5UP
+         7Y3qWCvoOUsggKcpgj2LvDLUUAMSUdLhSQXy8tfcfpwwJhb40qs9ASw4C89Lv/DyRGQW
+         wca9R9NX+lmSp4ftZ6Ev538g6QmwTQwfWC0PzfFP/J+cR/9dG5Zh+SbrSp2536OACkg+
+         QUoLRh8tRdXykzJiniTRcqCXyN0yezw/FLOZjQdh3JLT4O3MtyBqp8s6SY9q1lMiZQFW
+         7wlA==
+X-Gm-Message-State: AOJu0YwjmzpjpUBcEMBi7NvcPFW0urh3UbqSBz08Ja66wPo+dMPmXaVJ
+        5J3GkWSpdqK98QQANmylBThBBQ==
+X-Google-Smtp-Source: AGHT+IGiBHH+VCjnIyveBq5dLYGOcHJ2s6Xflu3d/0Pw3YF2Fpdun5D9Au3Dso27zqC14dGTODLPfQ==
+X-Received: by 2002:a17:907:60c7:b0:9a5:8eab:49de with SMTP id hv7-20020a17090760c700b009a58eab49demr1376125ejc.17.1693391788390;
+        Wed, 30 Aug 2023 03:36:28 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00992bea2e9d2sm7027620eja.62.2023.08.30.03.36.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Aug 2023 03:36:27 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Date:   Wed, 30 Aug 2023 12:36:16 +0200
+Message-ID: <20230830103620.3611761-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -87,26 +77,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed Aug 30, 2023 at 12:08 PM CEST, Konrad Dybcio wrote:
-> On 30.08.2023 11:58, Luca Weiss wrote:
-> > With the standard Qualcomm TrustZone setup, components such as lpasscc,
-> > pdc_reset and watchdog shouldn't be touched by Linux. Mark them with
-> > the status 'reserved' and reeable them in the chrome-common dtsi.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> Could probably use /* Owned by ADSP firmware */ or /* Owned by Gunyah hyp=
- */
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-Do you know which one is more fitting for these nodes? I don't really
-have a reference to if the ADSP or Gunyah (is this even used here?) owns
-this.
+Add the DT property 'infineon,en-pin-fixed-level' to
+indicated that the chip ENABLE pin is at fixed level
+or left unconnected(has internal pull-down).
 
-Regards
-Luca
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+----
+Changes in V4:
+- Update property name & description.
+- Update commit message.
+---
+ .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 2 files changed, 50 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
 
->
-> the change lgtm though
->
-> Konrad
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+new file mode 100644
+index 000000000000..1df40ee7454a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
++
++maintainers:
++  - Naresh Solanki <naresh.solanki@9elements.com>
++
++description: |
++  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
++  Regulator with SVID and I2C designed for Industrial use.
++
++  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
++
++properties:
++  compatible:
++    enum:
++      - infineon,tda38640
++
++  reg:
++    maxItems: 1
++
++  infineon,en-pin-fixed-level:
++    description: |
++      Indicates that the chip ENABLE pin is at fixed level or left
++      unconnected(has internal pull-down).
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tda38640@40 {
++            compatible = "infineon,tda38640";
++            reg = <0x40>;
++        };
++    };
++
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 40bc475ee7e1..86c7d34f63bf 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -151,8 +151,6 @@ properties:
+           - infineon,slb9645tt
+             # Infineon SLB9673 I2C TPM 2.0
+           - infineon,slb9673
+-            # Infineon TDA38640 Voltage Regulator
+-          - infineon,tda38640
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
+             # Infineon Multi-phase Digital VR Controller xdpe11280
+
+base-commit: 919a83d020a8dfa1411c1dc1cff23a833f0f5268
+-- 
+2.41.0
 
