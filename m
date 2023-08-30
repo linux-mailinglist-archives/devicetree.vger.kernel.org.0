@@ -2,116 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EA0178E25E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 00:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF5C978E277
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 00:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343830AbjH3Wf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 18:35:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44798 "EHLO
+        id S232172AbjH3WmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 18:42:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237283AbjH3WfZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 18:35:25 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 501D71A3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 15:35:06 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99df431d4bfso14618466b.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 15:35:06 -0700 (PDT)
+        with ESMTP id S229663AbjH3WmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 18:42:19 -0400
+Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E706BCEE;
+        Wed, 30 Aug 2023 15:41:47 -0700 (PDT)
+Received: by mail-oi1-x22d.google.com with SMTP id 5614622812f47-3a76d882052so98057b6e.0;
+        Wed, 30 Aug 2023 15:41:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693434904; x=1694039704; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lUJsE/IbwViG0qWxyMqWmvpU5f67FtToTgIAN58/gnQ=;
-        b=faifw6qS1JY+TC3xJRF1uAkRxOqg+2Us4+O2j6Wl35MTvPLCvx1HNg3EGlN8g4giGI
-         GjeZ+f0g6SlcBIWhonw9deuKKQKYjGTCE2xsGa4RTVDv/kqq3hG0zAncZ/kdc754zYPj
-         4FpCpgewLF0QdT7n/yBAU7HiwPfziUe0artqWdnK6+PeSkb4ou6bsPDgJoFdhW1JLDUk
-         sCEHJHtTqFhOaeLeb3MWCR1NzkiDxipRlKm+3QS0AWOkhmxqGMDs1CatBW00hbJ4nT4p
-         QNKYiKIubASLh5PCVpQlvFtOuPfczjQMc8EPVWFnUu+A3tmgQNDE3yONvZRufzukvida
-         8MZw==
+        d=gmail.com; s=20221208; t=1693435303; x=1694040103; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RMOv6qvYP7lBaNx84hgmzC8pacn6S2d4a2n9nMkFP+I=;
+        b=YnwTPB0RD4pj0eFxq16Iu9jhWSz0QaRP+BI1by0qDZQFllLe6NRaTodNewf/DuESHN
+         RfvHpvB3hWd9O4JyiyRroJwBhxxqbqYQtMBwMzA36hiZ6M4m9+aTAjJR7ghI54e3wh42
+         8x0QN/3PHOpAVJWxnJ97wdSHK5WWM7Q4rXZU8dbFBQCC0Yfy6IwWcDPv4xvPa1ei4SKf
+         nKAqwMztagKcyG7WetX9hTgRJSxLXwlL3c7dbBaV6eyBR1+fKFr26pXGwlLLjTqTITjq
+         uwgTAfYj+gCohRsb5JOz3lLSYHnGSLLv7p/qI2HZBXMB5+W6M1CmZkk4nwEvg4MrwUGr
+         Hlyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693434904; x=1694039704;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1693435303; x=1694040103;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lUJsE/IbwViG0qWxyMqWmvpU5f67FtToTgIAN58/gnQ=;
-        b=gzqnPqY0T0bjw3UIzXJzuqvJUcwG5yTjtWuAKETNiMa9EAiXBpJdJXN943U4h7zaZI
-         yZDcJHnv0nEq3BsxZyl+dijjGVFiV8oQP31tO9JQHjm2K4+uAC6mxx3+7lns69uGjBRl
-         D0YyX73uuSepv/V5vZFpuoJm+33oQ65/9h8jCSXDsMEQrEZkA/Nx2of72odj4HLY6rbC
-         eUC5fk2l4im6UR5cbRKGddksyis2uZ2Bk8EbmoC4WCsSashr53MTW3ncmZpT58h768UQ
-         seM5TPXmx182+7gEU5LoaYPzvOh0cLmo86xE9ZCnJTz9Nye0k0DVTKvj1mkTm+4+EYn3
-         tDNw==
-X-Gm-Message-State: AOJu0YwXcBSnV6VZfNPq48K2Ah6NeRqvkjo6GJIropERpTCXBX12gujc
-        rJ7EELKQgMusxNCf7nJIqzx3rN0N3T2IhwjtSTeZ5A==
-X-Google-Smtp-Source: AGHT+IFuvtSZyC/ZyAVYMYRqzuHbaGDwuwbCQZ6x1uKvm1iYzoVAGQXN7HtASDV8xE7fWPnZS3n/IA==
-X-Received: by 2002:a19:e04a:0:b0:500:8f66:5941 with SMTP id g10-20020a19e04a000000b005008f665941mr2475516lfj.50.1693430036872;
-        Wed, 30 Aug 2023 14:13:56 -0700 (PDT)
-Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id b3-20020ac25623000000b004f37bd02a89sm2516351lff.287.2023.08.30.14.13.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 14:13:56 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 30 Aug 2023 23:13:52 +0200
-Subject: [PATCH 2/2] phy: qcom-snps-femto-v2: Add REFGEN supply
+        bh=RMOv6qvYP7lBaNx84hgmzC8pacn6S2d4a2n9nMkFP+I=;
+        b=UR//XrCaYqXVvYhDGTLrxv/iH3DUhniN9Jv6wbEqADtP/d/zc3yGFcL63G+qbXBoYI
+         O2CUkej6k9pMjfHPCpesnlF1Ewfoee4HLUwg3Ms9VratsOAIi8GFltF7fT3ivDfg2LfJ
+         PC+iseJ8vR9dqNgi18S4LBV0miWPNkeG28W2v16BsQ0auDhKkhjAajnp5tnG/nYz/cy5
+         lGcXoEKtC3EZqqKpVoue9XSHxxXBaMwS/SdpDm9iFlx/gXUJxsqQT3scHK9gJcFSbUYX
+         /DYO0XYNXVznQ4Z6329K82/9hJA+OD3j3Ef3IpX/WyGNibGPc0EuNeGzY9qIPvzazcnl
+         nRGw==
+X-Gm-Message-State: AOJu0YzX5mrXdza+fNPetVyChfQ4DJzaIiRa4HaUIhftfzftw7Dafute
+        8MFWIJb0TUJUgFCrdFkGisWQS1BmlhOIzmory+KPapQiQBc=
+X-Google-Smtp-Source: AGHT+IGC6113P61pMKmFK6kYqPE5Y00Uskr76w1E9mrq1hQd/Tb1Z/aUESY4i5L3LDKXGG16v8KuHO1GK9P5jaE0Xhs=
+X-Received: by 2002:a05:6358:6383:b0:132:ce36:ee31 with SMTP id
+ k3-20020a056358638300b00132ce36ee31mr3510119rwh.6.1693435303155; Wed, 30 Aug
+ 2023 15:41:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230830-topic-refgenphy-v1-2-892db196a1c0@linaro.org>
-References: <20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org>
-In-Reply-To: <20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+References: <20230827023155.467807-1-aford173@gmail.com> <20230827023155.467807-3-aford173@gmail.com>
+In-Reply-To: <20230827023155.467807-3-aford173@gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 30 Aug 2023 17:41:31 -0500
+Message-ID: <CAHCN7xK9TKuQshtdzY8-zFL-Ho5oGDjOQYo2gjsvTC3ooPvx9Q@mail.gmail.com>
+Subject: Re: [PATCH V2 3/3] arm64: dts: imx8mp: Add micfil node
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1693430032; l=869;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=rkGvm/uP3o+BPrXZ9OASaeUpr1X+J5fisqT1wJhd350=;
- b=nSuP6yC0wDbMiE97URjPi35b+qJ0KBMSeb/782bW8hUoixfduLz+NGIGXGWm0pI28AQBW/tWH
- CKJTBw7V3RlBkF1jGQOQXgGAKe5MgezRkaYRhIKsZrClHrTorwABIaa
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Shengjiu Wang <shengjiu.wang@nxp.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HSPHY is (or at least can be) one of the users of the reference
-voltage generating regulator.
+On Sat, Aug 26, 2023 at 9:32=E2=80=AFPM Adam Ford <aford173@gmail.com> wrot=
+e:
+>
+> The i.MX8MP has a micfil controller which is used for interfacing
+> with a pulse density microphone. Add the node and mark it as
+> disabled by default.
+>
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+> ---
 
-Add it to the regulator bulk data.
+Nak.  I guess I'll Nak myself.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> V2:  No Change
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/=
+dts/freescale/imx8mp.dtsi
+> index 79cdd4c066c8..b44851a2f579 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -1473,6 +1473,27 @@ easrc: easrc@30c90000 {
+>                                         fsl,asrc-format =3D <2>;
+>                                         status =3D "disabled";
+>                                 };
+> +
+> +                               micfil: audio-controller@30ca0000 {
+> +                                       compatible =3D "fsl,imx8mp-micfil=
+";
+> +                                       reg =3D <0x30ca0000 0x10000>;
+> +                                       #sound-dai-cells =3D <0>;
+> +                                       interrupts =3D <GIC_SPI 109 IRQ_T=
+YPE_LEVEL_HIGH>,
+> +                                                    <GIC_SPI 110 IRQ_TYP=
+E_LEVEL_HIGH>,
+> +                                                    <GIC_SPI 44 IRQ_TYPE=
+_LEVEL_HIGH>,
+> +                                                    <GIC_SPI 45 IRQ_TYPE=
+_LEVEL_HIGH>;
+> +                                       clocks =3D <&audio_blk_ctrl IMX8M=
+P_CLK_AUDIOMIX_PDM_IPG>,
+> +                                                <&audio_blk_ctrl IMX8MP_=
+CLK_AUDIOMIX_PDM_ROOT>,
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-index eb0b0f61d98e..2bc9aeef26f9 100644
---- a/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-+++ b/drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c
-@@ -79,7 +79,7 @@
- #define LS_FS_OUTPUT_IMPEDANCE_MASK		GENMASK(3, 0)
- 
- static const char * const qcom_snps_hsphy_vreg_names[] = {
--	"vdda-pll", "vdda33", "vdda18",
-+	"vdda-pll", "vdda33", "vdda18", "refgen",
- };
- 
- #define SNPS_HS_NUM_VREGS		ARRAY_SIZE(qcom_snps_hsphy_vreg_names)
+After a bunch of attempts to get this working on real hardware, it
+turns out that IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't really exist.  Its
+real name is IMX8MP_CLK_AUDIOMIX_PDM_SEL.  I'll submit a patch to
+remove this from imx8mp-clock.h and and a V3 of this series to update
+the clock reference in this node.
 
--- 
-2.42.0
-
+> +                                                <&clk IMX8MP_AUDIO_PLL1_=
+OUT>,
+> +                                                <&clk IMX8MP_AUDIO_PLL2_=
+OUT>,
+> +                                                <&clk IMX8MP_CLK_EXT3>;
+> +                                       clock-names =3D "ipg_clk", "ipg_c=
+lk_app",
+> +                                                     "pll8k", "pll11k", =
+"clkext3";
+> +                                       dmas =3D <&sdma2 24 25 0x80000000=
+>;
+> +                                       dma-names =3D "rx";
+> +                                       status =3D "disabled";
+> +                               };
+> +
+>                         };
+>
+>                         sdma3: dma-controller@30e00000 {
+> --
+> 2.39.2
+>
