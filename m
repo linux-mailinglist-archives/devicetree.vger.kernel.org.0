@@ -2,127 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FBF078D92A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6368E78D9E9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233715AbjH3Scb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:32:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47442 "EHLO
+        id S231140AbjH3Sea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:34:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243858AbjH3L61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:58:27 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCA1ACC9
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 04:58:24 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-529fb2c6583so7079089a12.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 04:58:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693396703; x=1694001503; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xraLT5LJsBHpcTpLojfKH2C0VbKrtJqn2idXpO3Q7k4=;
-        b=fKbvTNAcYIqvUBvyQCGYCQZn7YLtQKydWCHBlKKCw+z0TYo8PbPLOk2L5DsvqTrOuu
-         hw/2Z4J58tcFB0Klb0u1IrtkMEQ6gt//damfvOWX2AZf/XFVlpkYFEPBpNavkexNxeD+
-         Aw9n3WSp5bI2zLjnpLjmXzXg6/taXmrE/6gpLtMVmoXKOVLZfSO7f6q1tmVbt88JOzkB
-         gB+I+Ff6ImldVV3XzKX+NIQktDDzJEU5LhrdrZmcPDWKs538vDUeurVwCiVWTVE5JiyZ
-         dq6tVYfNfXpHINrflzM1b+l9SPwOuwUEJ7E1B5THa5aNGPf4dYn/Y63NNv0sfamAB8S+
-         +32Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693396703; x=1694001503;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xraLT5LJsBHpcTpLojfKH2C0VbKrtJqn2idXpO3Q7k4=;
-        b=NMb3/3UbMlZSeWABMqwGfF51wVzIzNm6nBKQmGG5CY6Hdt1ofg51HztfQxtuTMshZD
-         mCz6TgPKdJjuqNGGW22GjWu9amtsdP4Xbc4EeJVvCH52lSV9Rk2UhN2JQJwamysgYn2q
-         c3StkAkX2SzjLfbc3cPO3byD/Qx2iE5xPB3wxx83Et019WAirtGuAt6vl+ugS36M3jsI
-         v+ZcGZkX/FNWPmc/jh+V/YYTBST6uq/ycM3MOk4TyOriis6hHZB2Vfj5zAx3SMRiZvNx
-         OksNcr1H2Q60G2J1z2kCDnX5RCxZBqFHAyjqwgDwNflCmgrG1emVvcvjwk5Yi6+WowaI
-         VvOg==
-X-Gm-Message-State: AOJu0Yz+LwAl4NWvIoC/f+jRe2PoySqwMg4GHUSJh4jbG7+72ibisOd7
-        hz10+xuR7QdgQ98r7cLRVEPlySGWL8YfZUREuv3r+A==
-X-Google-Smtp-Source: AGHT+IHvDPZ/6vvBEBfGlIX7oJAvbPEoFEmwc2hCyzNLDGBhuPPNYL7+Ecr9I/J2Mc1Sq/3iq7xFGw==
-X-Received: by 2002:a05:6402:1206:b0:525:7da7:af10 with SMTP id c6-20020a056402120600b005257da7af10mr1907238edw.23.1693396703233;
-        Wed, 30 Aug 2023 04:58:23 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id u8-20020aa7d888000000b00527e7087d5dsm6681571edq.15.2023.08.30.04.58.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 04:58:22 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/2] dt-binding: Add custom property for MAX7357
-Date:   Wed, 30 Aug 2023 13:57:42 +0200
-Message-ID: <20230830115744.4102929-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S244083AbjH3McM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:32:12 -0400
+Received: from TWMBX03.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57148CCF;
+        Wed, 30 Aug 2023 05:32:07 -0700 (PDT)
+Received: from TWMBX02.aspeed.com (192.168.0.24) by TWMBX03.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 30 Aug
+ 2023 20:32:06 +0800
+Received: from twmbx02.aspeed.com (192.168.10.10) by TWMBX02.aspeed.com
+ (192.168.0.24) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 30 Aug 2023 20:32:06 +0800
+From:   Billy Tsai <billy_tsai@aspeedtech.com>
+To:     <jdelvare@suse.com>, <linux@roeck-us.net>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <joel@jms.id.au>,
+        <andrew@aj.id.au>, <corbet@lwn.net>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <p.zabel@pengutronix.de>,
+        <billy_tsai@aspeedtech.com>, <naresh.solanki@9elements.com>,
+        <linux-hwmon@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <BMC-SW@aspeedtech.com>, <patrick@stwcx.xyz>
+Subject: [PATCH v8 0/3] Support pwm/tach driver for aspeed ast26xx
+Date:   Wed, 30 Aug 2023 20:31:59 +0800
+Message-ID: <20230830123202.3408318-1-billy_tsai@aspeedtech.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_FAIL,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Unlike the old design that the register setting of the TACH should based
+on the configure of the PWM. In ast26xx, the dependency between pwm and
+tach controller is eliminated and becomes a separate hardware block. One
+is used to provide pwm output and another is used to monitor the frequency
+of the input. This driver implements them by exposing two kernel
+subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
+existing drivers for controlling elements such as fans (pwm-fan.c),
+beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
+provides sysfs interfaces for fan.
 
-Add a custom property "maxim,bus-lockup-fix" to enable proprietary
-features on MAX7357. The driver configures MAX7357 to isolate the
-failing channel and trigger a flush-out sequence for bus lock-up
-resolution.
+Changes since v7:
+Cherry-pick the fan-common.yaml and add the following properties:
+- min-rpm
+- div
+- mode
+- tach-ch
+Fix the warning which is reported by the kernel test robot.
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
- .../devicetree/bindings/i2c/i2c-mux-pca954x.yaml  | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+Changes since v6:
+Consolidate the PWM and TACH functionalities into a unified driver.
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 2d7bb998b0e9..984d4614a270 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -71,6 +71,11 @@ properties:
-     description: A voltage regulator supplying power to the chip. On PCA9846
-       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
- 
-+  maxim,bus-lockup-fix:
-+    type: boolean
-+    description: Isolates only the stuck channel and generates a flush-out sequence
-+      to attempt to clear the bus lock-up.
-+
- required:
-   - compatible
-   - reg
-@@ -95,6 +100,16 @@ allOf:
-         "#interrupt-cells": false
-         interrupt-controller: false
- 
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: maxim,max7357
-+    then:
-+      properties:
-+        maxim,bus-lockup-fix: false
-+
- unevaluatedProperties: false
- 
- examples:
+Changes since v5:
+- pwm/tach:
+  - Remove the utilization of common resources from the parent node.
+  - Change the concept to 16 PWM/TACH controllers, each with one channel,
+  instead of 1 PWM/TACH controller with 16 channels.
+- dt-binding:
+  - Eliminate the usage of simple-mfd.
 
-base-commit: f9ea75e087b81081f33e34c4e1ba8b4abe841d9f
+Changes since v4:
+- pwm:
+  - Fix the return type of get_status function.
+- tach:
+  - read clk source once and re-use it
+  - Remove the constants variables
+  - Allocate tach_channel as array
+  - Use dev->parent
+- dt-binding:
+  - Fix the order of the patches
+  - Add example and description for tach child node
+  - Remove pwm extension property
+
+Changes since v3:
+- pwm:
+  - Remove unnecessary include header
+  - Fix warning Prefer "GPL" over "GPL v2"
+- tach:
+  - Remove the paremeter min_rpm and max_rpm and return the tach value 
+  directly without any polling or delay.
+  - Fix warning Prefer "GPL" over "GPL v2"
+- dt-binding:
+  - Replace underscore in node names with dashes
+  - Split per subsystem
+
+Changes since v2:
+- pwm:
+  - Use devm_* api to simplify the error cleanup
+  - Fix the multi-line alignment problem
+- tach:
+  - Add tach-aspeed-ast2600 to index.rst
+  - Fix the multi-line alignment problem
+  - Remove the tach enable/disable when read the rpm
+  - Fix some coding format issue
+
+Changes since v1:
+- tach:
+  - Add the document tach-aspeed-ast2600.rst
+  - Use devm_* api to simplify the error cleanup.
+  - Change hwmon register api to devm_hwmon_device_register_with_info
+
+Billy Tsai (2):
+  dt-bindings: hwmon: Support Aspeed g6 PWM TACH Control
+  hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED g6 PWM/Fan tach
+
+Naresh Solanki (1):
+  dt-bindings: hwmon: fan: Add fan binding to schema
+
+ .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    |  67 +++
+ .../devicetree/bindings/hwmon/fan-common.yaml |  63 +++
+ Documentation/hwmon/aspeed-g6-pwm-tach.rst    |  26 +
+ Documentation/hwmon/index.rst                 |   1 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/aspeed-g6-pwm-tach.c            | 528 ++++++++++++++++++
+ 7 files changed, 697 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+ create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.yaml
+ create mode 100644 Documentation/hwmon/aspeed-g6-pwm-tach.rst
+ create mode 100644 drivers/hwmon/aspeed-g6-pwm-tach.c
+
 -- 
-2.41.0
+2.25.1
 
