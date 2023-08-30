@@ -2,175 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AB0F78D9CF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98BE878D97F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237497AbjH3SeN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53392 "EHLO
+        id S235698AbjH3SdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242269AbjH3Hpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 03:45:40 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2076.outbound.protection.outlook.com [40.107.243.76])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB957CDA;
-        Wed, 30 Aug 2023 00:45:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q+nZMZPy8XGFT1iw15F1tCjfiohEMsiQpnTkLm90I400JBuja3Ci1oz68nQrKN94b0CARXJ/WsZqhxUi4MptPDqiJj6oKJ9UWzG1iy2drl65w/ILuiNLZsO7sPDPrkAU+4C6dyIaAB5kTpgiUVBnZ3g5QhsF2F6SLWm353axBjhnzZujnYYgdfXavxFdHEIhD/4assoPC3z6xDxLjmcxOb7b7Q8Yo/uMViV0gKFCw+NwMiRn2eoPCjDA8BMsgVEWPHRcfCQmN6DE3TtSm1FnZIMQ8DQH28LBI52eXQp2xYg6JpYBCiACP39bKIEPwnfWut8xJorTxuW4Jjxnk1tKDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y6C3fiLE6YqDLo1WZTbyJZk90MSomQLVnYX1rRk3rbQ=;
- b=TKzOgtK4ITP+aTCzh0jqG4HzJhKFcoWp5vSD+wyLxHA9iG5W0QcaAAWo+nO1oOiUWwIdvfoOUgHFJMt9H9GV9wNT8QOFajII/X1toEi4vEcSsA1WQPY1+tbN72RfMx340dMMCiHK4x/TNBQhJ3RE0oVjJaaQT+TESOVp9ALdnAGdF1OAjUIx0R+ANEyn6STIe6qo2lJ+6Adlf5JXDJuqB6HaPkHMefQ+M/I5juH3KL44lF5WGlm8BBrR2YFqtim0HPtsg+wpWpd51my4jkG2OTy8t7tU9g6hSomE65UTRGCpUY5c99v5mhVqh+EVcg4W8tl4oD+gB8xqxbv3V+mRwA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y6C3fiLE6YqDLo1WZTbyJZk90MSomQLVnYX1rRk3rbQ=;
- b=Ewn11E5hVfMvL2BvHRiDOPA8ceOOchLLZkQj5dCOFRzDZRw+6NCPfHZKRtgsrMkwB7vqgleAiijS/b0o+yl6OSnlng/8iZ46eaPdE/MGH17noLx+DFDbZM318BEFsITIpWrPYGXGvh4RWJDF0P7VqAc1TevHqAnZXbWPN2j+Kws=
-Received: from PH8PR12MB6675.namprd12.prod.outlook.com (2603:10b6:510:1c2::15)
- by PH0PR12MB7485.namprd12.prod.outlook.com (2603:10b6:510:1e9::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.35; Wed, 30 Aug
- 2023 07:45:33 +0000
-Received: from PH8PR12MB6675.namprd12.prod.outlook.com
- ([fe80::3a16:8b71:150d:5e82]) by PH8PR12MB6675.namprd12.prod.outlook.com
- ([fe80::3a16:8b71:150d:5e82%4]) with mapi id 15.20.6745.020; Wed, 30 Aug 2023
- 07:45:32 +0000
-From:   "Goud, Srinivas" <srinivas.goud@amd.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-CC:     "wg@grandegger.com" <wg@grandegger.com>,
-        "mkl@pengutronix.de" <mkl@pengutronix.de>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "git (AMD-Xilinx)" <git@amd.com>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "appana.durga.rao@xilinx.com" <appana.durga.rao@xilinx.com>,
-        "naga.sureshkumar.relli@xilinx.com" 
-        <naga.sureshkumar.relli@xilinx.com>
-Subject: RE: [PATCH v3 1/3] dt-bindings: can: xilinx_can: Add ECC property
- 'xlnx,has-ecc'
-Thread-Topic: [PATCH v3 1/3] dt-bindings: can: xilinx_can: Add ECC property
- 'xlnx,has-ecc'
-Thread-Index: AQHZ2cBiFgY83WJUzUyA4MeJwK/v66//2S+AgAKA3ECAABVFAIAABFdQ
-Date:   Wed, 30 Aug 2023 07:45:32 +0000
-Message-ID: <PH8PR12MB6675D7CE487C584529A4F0EBE1E6A@PH8PR12MB6675.namprd12.prod.outlook.com>
-References: <1693234725-3615719-1-git-send-email-srinivas.goud@amd.com>
- <1693234725-3615719-2-git-send-email-srinivas.goud@amd.com>
- <20230828154309.GA604444-robh@kernel.org>
- <PH8PR12MB6675C31C6D1DCD3281FE8A10E1E6A@PH8PR12MB6675.namprd12.prod.outlook.com>
- <12a0f531-851f-cd09-3d56-828e2aeccae3@linaro.org>
-In-Reply-To: <12a0f531-851f-cd09-3d56-828e2aeccae3@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH8PR12MB6675:EE_|PH0PR12MB7485:EE_
-x-ms-office365-filtering-correlation-id: 4451030d-31e0-4a24-7942-08dba92d16e3
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iJ4PyFeR5xe6wuMgCVnSXrv6aFa+dF8SUz7rssBRGBll9DNOOGtQTMfComhWOC5aPBQjF8ZkEK5zX2h7SzP00Y0CLHtlOMx5eMNr4+N2ebPGcC7xFgIlX8z0JMWVsQh3zC7VV/1kEygH6l6sfgTo/6k7dkYXUnQpIPkenT+QfVRKgiFpTVWctXoxbSC+AG9AFBjn1I5qV265z2TtzR6XbfIo3H9h+O/QTV8VhksWnbrtISjBu11jXS2P6tKAgLi6DPnYCG3wlICeV4EFtUZpwuFHpqRVJM1GpV/nx3fxfcOWgbLRB7lSQ9OKeasjo7sxq8zB/4GxeoR35hFovySuMulJ0UY4W9Vttl9erE4hdBAh94xYeEwTI/b1n2TyEiYT/o+3BE+xm/c/Tci/0lRQeK3/yCrXS8212ILYbKl9mC0X107FZ7vqQR/3yrPZ0nWas5C1xjYAQxnQdRyiKLXuI0dXEXDBxHusX7t3OcmiVUa40kZegdZpTIneTzPXiJrcVJ/156/pMLO5nm41HCQGDfSA5Lv/HimFn8XC7n39feWSsBl1TW2FqDVhcMhwMVrk0DA+AKX1w4FBUeS6EF72m7yetBNB8uP5q4iqYRxGUv61ZnRmFKsndo+ySQenbMJX
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH8PR12MB6675.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(366004)(376002)(396003)(39860400002)(1800799009)(186009)(451199024)(8936002)(110136005)(478600001)(76116006)(122000001)(7696005)(66556008)(6506007)(66946007)(71200400001)(66476007)(64756008)(54906003)(66446008)(38070700005)(316002)(38100700002)(41300700001)(9686003)(26005)(5660300002)(8676002)(83380400001)(2906002)(55016003)(86362001)(52536014)(7416002)(33656002)(4326008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?TzdyZXhWcWRGVC9IRUtzTHpBTElDZDMwbm9kdjZ6V2c1dHRQbnljVjlibEFY?=
- =?utf-8?B?VEhUWVF3azhmZ2x1aFl4M0hXSlJxWTJTQTY0T21rVnRzVFd0azlYZWthdi96?=
- =?utf-8?B?dThTNkIzTGFtWXBEeXREQ09mdThiakZ4R0FIeS9DWW4yNmU2RUcxakw3SG40?=
- =?utf-8?B?b3RUdFdUNlBMU0Iwc1BBbGltT0d6TGtyaWVQdTFEVXcyc0JsL0VQY25Yek1q?=
- =?utf-8?B?cFBtZS9LM3c4eHdGL2pVM2VhRVl6SGRvZFZnT3VZdTEra0JPTU93UHdCTVZt?=
- =?utf-8?B?bVlmMDNEcmk5YVBLWjgvdDFJbVhzUUYxOEpHdldqUzVDN3RUa0lRQWlaRmtt?=
- =?utf-8?B?ZU9TRU9xTlg3b05laW15YmhXMHNsclJSMVVlSitVSERxTk9FYk9JV1pZRi9X?=
- =?utf-8?B?TllKUFRxbm5ZNnZIVjBBVXVZNVBwUngyTnQxK3hCK2FLbkQvelU0Y21zdGJu?=
- =?utf-8?B?VnYvcjI4WTg1S3poVWhFeUJLTUVlRmVOTTZaQ0M0RmNaK0dZSmRwMU1naUtE?=
- =?utf-8?B?dGl0L0RLNnlwd0RMd3Q2RXQ4Vk5GeE42NnFpK3B5L2V4VEFqRkVTbDdPRGVR?=
- =?utf-8?B?UUJKWlRCYWJuaWtVYXhoRko5LzJHcGpNdURycWMwVUlna2FXNlVMQnM5Y0tC?=
- =?utf-8?B?QTkza1BMY1BjdnU4VGVkUGpRUFFtN1R1VU8vODNuYVdROVRLQnVyR1h2blU2?=
- =?utf-8?B?Vm1XYXc2Y25GZlZiZVM2WC80QlBBbWFyd2lsN0pqdXhnWU1abUYvbjNuYmpO?=
- =?utf-8?B?VDZzVlVSbzJkb3k3TTFGeE4zcmlOVFBGL3N6akV6cWFJK3o3UlNwT1VXMlhN?=
- =?utf-8?B?dFRnMXJIVG5mdVZvMGFZMWJVWTZSL01ydHpBVlZ4bzdZMURKWTRYcFpuK2My?=
- =?utf-8?B?T2ZrNnZGNGw3TmhOeGNlZUx6SGlhb3FtWUFIYjVESzREb3laN2MxelJjeHVp?=
- =?utf-8?B?TGxSSmJwdjZURnBUeGNPMzZWSG43RzB5dXhUWFd4WDhZektJL3ZUd2g2YWJv?=
- =?utf-8?B?Z3JBbXJUNjQyWXcvQ1dOR0dMWExUYTZVak8xYTVTQzlTblg1eXVQU1p6OTBx?=
- =?utf-8?B?TmYxUUlxZEVxYVhJbmxISmlGdFNTaDZCZlc5SmNvWHVueFo0dmZXbEJFYk1l?=
- =?utf-8?B?Zk1FQ2hpdjlGZkRJVWNrN1dROE50bEdUZXltSERqVVdES1UyMGJhd0pjVXFJ?=
- =?utf-8?B?RHpSdkErN1RTNXc1cGRhYm9Fd0k5S3V0eFpMTis5K0dNYklVcndqZVcrYUhD?=
- =?utf-8?B?YTM1RmVCeFBoV3hULytVclg5V1I0d2laajJNQVA3MGxrM3lWdzFqSVdqWlE2?=
- =?utf-8?B?UnlJK3ViM2NMVXMyb1o0Slppc3RZNXJLbGJ5RVVsU014SjZTYzViUTZOZUt1?=
- =?utf-8?B?SXJaL1h4RUgxWkdXZkYwVVA4MFBRMm4vZDEyS05OUEhhMXhrQklySUhqOUdu?=
- =?utf-8?B?dktCR1EyOCtBeXlWN3FzSTFiemxEMC9VMVlFSHovbHhTZ2RUQnJYR2QweHh2?=
- =?utf-8?B?akRHdlpUcDRRSFNLTlVMdHFJMDE1dy9VVU5ybDRlT0pIVDZzeFJBYTVyUHpz?=
- =?utf-8?B?NnJaYXhWSEs5eDhHaURsNWo3NzhxQ3ZtZHZ3b3k1cDFPYjFxVzNheXdMazE4?=
- =?utf-8?B?VkkrRlYwaVppNk1GTUVHTWpWV3JUT3Zuc1ltN2g2L25sOHpnUENmQkxhODFt?=
- =?utf-8?B?UnhXMzZEb2RXVytvalFmRWd1cDVpOGRnZi9DOXBJd0R1YkdaTlpBNHdic2VO?=
- =?utf-8?B?QUhwRFlMYmM1M0RzenpPcWtUN1lqS1JURWVKenJwU0dhNnpndEtWeDhPMFNz?=
- =?utf-8?B?ZzNGTzlYWWtacmJIQUVrYjNYUCtEZ3k1MDZncjdKMG0zclAxQTVEV0RPQTYy?=
- =?utf-8?B?N3N3TlpaMHozc2hvVHJJMnR0eTZHN2FyZmhCNW9IaDkwTkFDZFFhT2FCcU15?=
- =?utf-8?B?NzNMWDRIRnF1ZXFEcVdveTNzdEsxNlgrcGRNZzNmLzg2YWFmL05CMHRHS0oy?=
- =?utf-8?B?TnBLOU1LU1lNdUtWbk50VDJqc0RXTTkvQnhFZzFGR042T1VJcUJ2N1lLSTBW?=
- =?utf-8?B?MnY4Z050U09kZFVjZVJSZVB3M3ZMN0xoWlJZMVpOQWw2ZGNzRzlwdHRhazlV?=
- =?utf-8?Q?CVQI=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S242384AbjH3IU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 04:20:58 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EEA7113;
+        Wed, 30 Aug 2023 01:20:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1693383654; x=1724919654;
+  h=date:from:to:subject:message-id:references:mime-version:
+   in-reply-to;
+  bh=qCGMFtQfgwR1F9QTDNMJxmJP2VuKJ61eRyS0eGjsPSY=;
+  b=Jt0rTajMwlMmJH8d4HWDdR/d1zwoT2NqXmJqgpj8sCsAGvkdcgc+TGVM
+   5HEcRnPd9JtwPlAzNzOTXQch24dAWLl75Swh3eumjqqpkYKGaV0zvLWLp
+   KjRtYWKz2ttVlChh8mA05Ip44aC78ze8Rn895sha6jQZkPM31Ect3WfNG
+   CtD3vUdULV55jQ6dO9YTLgR75hJ8x+gMtXmCaLxTqwcEqtNDH/2Ztk98D
+   3zPwyRzIt9ghDelUhTho6syKSaVS0rNY0emfh8UVbrexC+YO1u0C9Olq7
+   AHVeyWtx+dM6718jljVRDVk2+ewLM2DbjRUE7vvYG2fw8bbCBVDTfVmkj
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="374488114"
+X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; 
+   d="scan'208";a="374488114"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2023 01:20:43 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="853643153"
+X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; 
+   d="scan'208";a="853643153"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2023 01:20:40 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+        by kekkonen.fi.intel.com (Postfix) with SMTP id 4CA1111FAB1;
+        Wed, 30 Aug 2023 11:20:37 +0300 (EEST)
+Date:   Wed, 30 Aug 2023 08:20:37 +0000
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Philippe CORNU <philippe.cornu@foss.st.com>
+Subject: Re: [PATCH v1 3/5] media: stm32-dcmipp: STM32 DCMIPP camera
+ interface driver
+Message-ID: <ZO771VvxPREnoyOY@kekkonen.localdomain>
+References: <20220910144010.34272-1-hugues.fruchet@foss.st.com>
+ <20220910144010.34272-4-hugues.fruchet@foss.st.com>
+ <ZNC5k3PynnEWL/ou@kekkonen.localdomain>
+ <20230825110903.GA30381@gnbcxd0016.gnb.st.com>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB6675.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4451030d-31e0-4a24-7942-08dba92d16e3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2023 07:45:32.5441
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d3d0I5wOk9QhjPGfOp1ddy5Rwc9bT6gawVt7ZjD4UmOWR+y0heXIFO83VGFCfk49
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7485
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230825110903.GA30381@gnbcxd0016.gnb.st.com>
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgS3J6eXN6dG9mLA0KDQo+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj5Gcm9tOiBLcnp5
-c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+U2VudDog
-V2VkbmVzZGF5LCBBdWd1c3QgMzAsIDIwMjMgMTI6NDMgUE0NCj5UbzogR291ZCwgU3Jpbml2YXMg
-PHNyaW5pdmFzLmdvdWRAYW1kLmNvbT47IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+
-Q2M6IHdnQGdyYW5kZWdnZXIuY29tOyBta2xAcGVuZ3V0cm9uaXguZGU7IGRhdmVtQGRhdmVtbG9m
-dC5uZXQ7DQo+ZWR1bWF6ZXRAZ29vZ2xlLmNvbTsga3ViYUBrZXJuZWwub3JnOyBwYWJlbmlAcmVk
-aGF0LmNvbTsNCj5rcnp5c3p0b2Yua296bG93c2tpK2R0QGxpbmFyby5vcmc7IGNvbm9yK2R0QGtl
-cm5lbC5vcmc7DQo+cC56YWJlbEBwZW5ndXRyb25peC5kZTsgZ2l0IChBTUQtWGlsaW54KSA8Z2l0
-QGFtZC5jb20+OyBTaW1laywgTWljaGFsDQo+PG1pY2hhbC5zaW1la0BhbWQuY29tPjsgbGludXgt
-Y2FuQHZnZXIua2VybmVsLm9yZzsgbGludXgtYXJtLQ0KPmtlcm5lbEBsaXN0cy5pbmZyYWRlYWQu
-b3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPm5ldGRldkB2Z2VyLmtlcm5lbC5v
-cmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPmFwcGFuYS5kdXJnYS5yYW9AeGlsaW54
-LmNvbTsgbmFnYS5zdXJlc2hrdW1hci5yZWxsaUB4aWxpbnguY29tDQo+U3ViamVjdDogUmU6IFtQ
-QVRDSCB2MyAxLzNdIGR0LWJpbmRpbmdzOiBjYW46IHhpbGlueF9jYW46IEFkZCBFQ0MgcHJvcGVy
-dHkNCj4neGxueCxoYXMtZWNjJw0KPg0KPk9uIDMwLzA4LzIwMjMgMDg6MDYsIEdvdWQsIFNyaW5p
-dmFzIHdyb3RlOg0KPj4+PiArDQo+Pj4+ICByZXF1aXJlZDoNCj4+Pj4gICAgLSBjb21wYXRpYmxl
-DQo+Pj4+ICAgIC0gcmVnDQo+Pj4+IEBAIC0xMzcsNiArMTQxLDcgQEAgZXhhbXBsZXM6DQo+Pj4+
-ICAgICAgICAgIGludGVycnVwdHMgPSA8R0lDX1NQSSA1OSBJUlFfVFlQRV9FREdFX1JJU0lORz47
-DQo+Pj4+ICAgICAgICAgIHR4LWZpZm8tZGVwdGggPSA8MHg0MD47DQo+Pj4+ICAgICAgICAgIHJ4
-LWZpZm8tZGVwdGggPSA8MHg0MD47DQo+Pj4+ICsgICAgICAgIHhsbngsaGFzLWVjYw0KPj4+DQo+
-Pj4gT2J2aW91c2x5IG5vdCB0ZXN0ZWQuDQo+PiBXaWxsIGZpeCBpdC4NCj4+DQo+DQo+Rml4IGl0
-IGJ5IGZpeGluZyBlcnJvciBvciBieSB0ZXN0aW5nPyBDYW4geW91IGRvIGJvdGg/DQpUZXN0ZWQg
-d2l0aCB2MSBhbmQgbWlzc2VkIGluIHYyIGR1ZSB0byBjb3B5IHBhc3RlLCB3aWxsIHRlc3QgYW5k
-IHNlbmQgbmV4dCB2ZXJzaW9uLg0KDQpUaGFua3MuDQpTcmluaXZhcw0KDQo=
+Hi Alain,
+
+On Fri, Aug 25, 2023 at 01:09:03PM +0200, Alain Volmat wrote:
+...
+> > > +static int dcmipp_pipeline_s_stream(struct dcmipp_bytecap_device *vcap,
+> > > +				    int state)
+> > > +{
+> > > +	struct media_entity *entity = &vcap->vdev.entity;
+> > > +	struct v4l2_subdev *subdev;
+> > > +	struct media_pad *pad;
+> > > +	int ret;
+> > > +
+> > > +	/* Start/stop all entities within pipeline */
+> > > +	while (1) {
+> > > +		pad = &entity->pads[0];
+> > > +		if (!(pad->flags & MEDIA_PAD_FL_SINK))
+> > > +			break;
+> > > +
+> > > +		pad = media_pad_remote_pad_first(pad);
+> > > +		if (!pad || !is_media_entity_v4l2_subdev(pad->entity))
+> > > +			break;
+> > > +
+> > > +		entity = pad->entity;
+> > > +		subdev = media_entity_to_v4l2_subdev(entity);
+> > > +
+> > > +		ret = v4l2_subdev_call(subdev, video, s_stream, state);
+> > 
+> > Does this driver handle multiple sub-devices in the same pipeline?
+> > 
+> > If not, then you don't need a loop here.
+> 
+> The idea was to enable one after the other each subdevs part of the
+> pipeline (aka: sensor -> bridge -> parallel -> byteproc -> bytecap)
+> however following a discussion with Laurent in Prague I changed that
+> so that each subdev call each other in cascade, quite like I already did
+> the following patch for the dcmi driver:
+
+Ack!
+
+> 
+> commit 525011d84a3f547d0643c10bbfc01d32e26a9963
+> Author: Alain Volmat <alain.volmat@foss.st.com>
+> Date:   Fri Jul 21 14:03:15 2023 +0200
+> 
+>     media: stm32: dcmi: only call s_stream on the source subdev
+> 
+>     Avoid calling s_stream on each subdev until reaching the sensor and
+>     instead call s_stream on the source subdev only (which will in turn
+>     do whatever needed to start the stream).
+> 
+>     Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+>     Reviewed-by: Hugues FRUCHET <hugues.fruchet@foss.st.com>
+>     Signed-off-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+
+...
+
+> > > +#define STOP_TIMEOUT_US 1000
+> > > +#define POLL_INTERVAL_US  50
+> > > +static int dcmipp_byteproc_s_stream(struct v4l2_subdev *sd, int enable)
+> > > +{
+> > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
+> > > +	int ret = 0;
+> > > +
+> > > +	mutex_lock(&byteproc->lock);
+> > > +	if (enable) {
+> > > +		dcmipp_byteproc_configure_framerate(byteproc);
+> > > +
+> > > +		ret = dcmipp_byteproc_configure_scale_crop(byteproc);
+> > > +		if (ret)
+> > > +			goto err;
+> > 
+> > This does nothing.
+> 
+> Not sure to understand your point here.  The s_stream callback of this
+> subdev is used to configure the registers (here the ones controlling
+> decimation and cropping) of the byteproc subdev.
+
+I was referring to the last two lines --- you're jumping to essentially the
+same location here.
+
+> 
+> > 
+> > > +	}
+> > > +
+> > > +err:
+> > > +	mutex_unlock(&byteproc->lock);
+> > > +
+> > > +	return ret;
+> > > +}
+
+...
+
+> > > diff --git a/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> > > new file mode 100644
+> > > index 000000000000..aa7ae9a5b1a8
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> > > @@ -0,0 +1,682 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Driver for STM32 Digital Camera Memory Interface Pixel Processor
+> > > + *
+> > > + * Copyright (C) STMicroelectronics SA 2022
+> > > + * Authors: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> > > + *          Alain Volmat <alain.volmat@foss.st.com>
+> > > + *          for STMicroelectronics.
+> > > + */
+> > > +
+> > > +#include <linux/clk.h>
+> > > +#include <linux/component.h>
+> > > +#include <linux/delay.h>
+> > > +#include <linux/init.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_device.h>
+> > > +#include <linux/of_graph.h>
+> > 
+> > #include <linux/property.h> instead of these three.
+> 
+> Added linux/property.h however kept of_graph.h which is still necessary.
+> 
+
+You should switch to fwnode graph API as you're already using fwnodes in
+the driver --- due to V4L2 fwnode.
+
+...
+
+> > > +static int dcmipp_graph_notify_bound(struct v4l2_async_notifier *notifier,
+> > > +				     struct v4l2_subdev *subdev,
+> > > +				     struct v4l2_async_subdev *asd)
+> > > +{
+> > > +	struct dcmipp_device *dcmipp = notifier_to_dcmipp(notifier);
+> > > +	unsigned int ret;
+> > > +	int src_pad;
+> > > +	struct dcmipp_ent_device *sink;
+> > > +	struct device_node *np = dcmipp->dev->of_node;
+> > > +	struct v4l2_fwnode_endpoint ep = { .bus_type = 0 };
+> > 
+> > Please set bus_type explicitly (DPHY)?
+> 
+> My understanding is that I cannot set the bus_type here to have the
+> framework check for me since we support both V4L2_MBUS_PARALLEL and
+> V4L2_MBUS_BT656.
+
+Ah, I missed this was using a parallel bus.
+
+As you have a default in bindings, then you'll need to parse this assuming
+that bus-type first. I.e. set the bus type to the default and if parsing
+fails, try the other one.
+
+-- 
+Kind regards,
+
+Sakari Ailus
