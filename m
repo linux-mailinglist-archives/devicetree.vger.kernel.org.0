@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5F078D93A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5127478DA03
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230463AbjH3ScN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:32:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55746 "EHLO
+        id S235988AbjH3SfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:35:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244261AbjH3Ms6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:48:58 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE641132
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:48:55 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bbbda48904so83420161fa.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:48:55 -0700 (PDT)
+        with ESMTP id S244267AbjH3MtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:49:00 -0400
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 239FC185
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:48:57 -0700 (PDT)
+Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bccda76fb1so84716881fa.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:48:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693399734; x=1694004534; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693399735; x=1694004535; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=sgmwfxTnMmpefIt4Jxsh17oZItSNIKysBY26cGht8Zc=;
-        b=KPonl6BB6Sgvtd/A5gRcEInNCvl0X7QckMMn3kbCck3rUAJf7SkV/t7nMHJAHYQtus
-         Fx0+evm6NMe+BKpX5vQ3c6ZlF9cMaba/9gQnxL6uNUnj+Uv/spztI/kCt81y7wDs29VE
-         14ZDD+rcxdZU6uYINAiB3r8XVc9ZmXYU/TlJ/T3IOsvfldx9XxAeOrkaW3Z8gM6dk5vu
-         yzQ5cNWI56ok/4vFWb0RXoZSo305n/dbofpWxfjzTFARzd8Y+dEubfa7UA0SYO0GrWDc
-         nJw/BXW98uLBfAgWlArFXSnKKShYPb9lbp1ZSyB+9ID7YYgoYn6RBBaq9X5IhsIFSXOx
-         2tuQ==
+        bh=qcnhbfxFM27/YYGpjtvsx/QJ64Wrwp+MNdL+XQ3gmi0=;
+        b=mao3j/LfnX3WA+olYxDSiF9ldkCv8iqzX1KMZG/3CPoUxWJebGkwK+hq6eeOX+fot6
+         lg/J4FXhT5CYP8eMhTaL7lIAqWNu37pkDl/Jw829kLoGvtMOpzImXWtddNTaS/3cpRiC
+         vi0avOs/nZXXaF58nO6ycumDgkB0v/ycYZK4FAVuegWrQjjrSUen/r3L5JEeP0ruoSsx
+         HLuqdWI+9NC1K1oSI9PpH4wQC1BjxqiNyspJ0MNU8835iPMzJdb+B1yL7kAuPvWxnNGN
+         6uJ8uilLZjLYv3sCGxUi5VGXhClf1/hwAGqqrxvu0s7IUB7i1vkUj1NPlfpr9uRbJ5JE
+         afqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693399734; x=1694004534;
+        d=1e100.net; s=20221208; t=1693399735; x=1694004535;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sgmwfxTnMmpefIt4Jxsh17oZItSNIKysBY26cGht8Zc=;
-        b=XhWoYyy/ub3XDzeSNGwa9oKAA9wFEkN0gMrtT86DkFUWFgZbF5NgJWtXDn+T5XlRoL
-         cK1RoHZXAyNwi5JuJIB6fvbSkwa2v/ar1iWjhckTjhRg8XTNW13BOzVW5kDgqXrN+TZ3
-         yA98vzfpMciL0hkPQAdNqLV/dk10Cg2Pkad2Uqi2TJnSouEEQSlTk2sg44Jjf9IR5TPY
-         reHKYfRBvjmqqRi/x9OX3JkDcko7VpAmargyN7oItIGKZo0snOTWJP6HCluGdP9qBi0i
-         NMml+VaQ/8x9V/OW4xjEL5qFg/lhPRqYOWfrysqaymBn9lReLZ7iUF1U/NgBKBFOui1j
-         Z4+Q==
-X-Gm-Message-State: AOJu0Yz0GjLREJU4PzHYUOy/GhtA3TlytQj0aqR9rcPOVHlR88IpzvaJ
-        LqLCYae/1fc1hOtdJpSGIAwj4PpsWOG9ItCIp5UCVw==
-X-Google-Smtp-Source: AGHT+IFxmlJWMrKdeEvbrVkC3wj6G7ZOc6vn7oa01VC/C/O4ks01gO0BjEXMjtPOcBmVH0jhNGL3KA==
-X-Received: by 2002:a2e:83d0:0:b0:2b9:3883:a765 with SMTP id s16-20020a2e83d0000000b002b93883a765mr1884741ljh.31.1693399734253;
-        Wed, 30 Aug 2023 05:48:54 -0700 (PDT)
+        bh=qcnhbfxFM27/YYGpjtvsx/QJ64Wrwp+MNdL+XQ3gmi0=;
+        b=EOn64SaWynyX3zr6EvZlhVxv1bz/ZzG0nCfP/wKfaIAiPT1jmXCC9PP+o1V3xXDTBF
+         IsvIKRrF+w7iCZ6lzWyste/YfnyuQabF0ySZvrCTRPAZ+MtMrJMFTpguILn04E0mOB1K
+         L1z2x62HsHP8cA1EUTjwmy1qnqGDb5iKHq8jGVevVqdjrMcM2jKJUQvJ/vHksBQObxZD
+         OnTRmW3R9VkIE1/P6m30ydT0Se/IE3YmMyEZXEOvnA3/gFbhyTssA6QXLB4nKolOVjFZ
+         v2h5BC74Pc9fSc60QRizoZhhcBZIoqs8sGNsufbMS3z/1sx3zs2e/MYwFWrU23u8VQHY
+         a6OQ==
+X-Gm-Message-State: AOJu0YxIzk+6dtx7orlgdYN5VNHlkzQRGJ69alNejkwvUP+d36tYIBBp
+        QXPGoPetk98fC7GfdzalkfkzSA==
+X-Google-Smtp-Source: AGHT+IGuEf/6YYmry7qMXTc0R82etA6M+I8h4gEU9tlVVfSLYuGUNUbYuHBtbqImj5xG1Rsfod5A9g==
+X-Received: by 2002:a2e:9097:0:b0:2bc:df55:eec7 with SMTP id l23-20020a2e9097000000b002bcdf55eec7mr1471279ljg.40.1693399735467;
+        Wed, 30 Aug 2023 05:48:55 -0700 (PDT)
 Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id y23-20020a2e7d17000000b002b94b355527sm2602662ljc.32.2023.08.30.05.48.53
+        by smtp.gmail.com with ESMTPSA id y23-20020a2e7d17000000b002b94b355527sm2602662ljc.32.2023.08.30.05.48.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 05:48:53 -0700 (PDT)
+        Wed, 30 Aug 2023 05:48:55 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 30 Aug 2023 14:48:45 +0200
-Subject: [PATCH 6/7] arm64: dts: qcom: sm8550: Add missing DWC3 quirks
+Date:   Wed, 30 Aug 2023 14:48:46 +0200
+Subject: [PATCH 7/7] arm64: dts: qcom: sm8550: Mark DWC3 as dma-coherent
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230830-topic-8550_dmac2-v1-6-49bb25239fb1@linaro.org>
+Message-Id: <20230830-topic-8550_dmac2-v1-7-49bb25239fb1@linaro.org>
 References: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org>
 In-Reply-To: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -72,56 +72,41 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1693399725; l=1404;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1693399725; l=756;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=jj9VVwygDZqQ39oRSM4g+RTt+SnGK4NeCXuTCm1OBo8=;
- b=Kcv2F6CZvKpkJBpMmgtDhALkq3Ni5KrCdIjwfcSr8Jl4ayer/gFPHk2spEc/Ew3HDGr3yhRBV
- /T9CqVnJJFTD81Nh28WTF2b6aYfnTB4sBVQAVujc8L/jMy92Ua9r9Az
+ bh=dnJcWN3O+4dW4BpW8WVC+TsWF2Kag9dSFf6u/P+2HPs=;
+ b=KDPX0N5yhosxV7DxLW8v3QII3Iz3liG/NKaGK/vHLOmuih4YpdWfTsqd/ayF91PW+S56K/H4K
+ XCytdh3vAcxBOt/+OrH8x6tmK7ntcZZOgz6Vk1YDjK8MpoyRm3PcN65
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As expected, Qualcomm DWC3 implementation come with a sizable number
-of quirks. Make sure to account for all of them.
+In a fairly new development, Qualcomm somehow made the DWC3 block
+cache-coherent. Annotate that.
 
 Fixes: 7f7e5c1b037f ("arm64: dts: qcom: sm8550: Add USB PHYs and controller nodes")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index 944b4b8c95f5..8ee61c9383ec 100644
+index 8ee61c9383ec..95ba9a9ac78e 100644
 --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -2930,12 +2930,20 @@ usb_1_dwc3: usb@a600000 {
- 				reg = <0x0 0x0a600000 0x0 0xcd00>;
- 				interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
- 				iommus = <&apps_smmu 0x40 0x0>;
--				snps,dis_u2_susphy_quirk;
--				snps,dis_enblslpm_quirk;
--				snps,usb3_lpm_capable;
- 				phys = <&usb_1_hsphy>,
- 				       <&usb_dp_qmpphy QMP_USB43DP_USB3_PHY>;
- 				phy-names = "usb2-phy", "usb3-phy";
-+				snps,hird-threshold = /bits/ 8 <0x0>;
-+				snps,usb2-gadget-lpm-disable;
-+				snps,dis_u2_susphy_quirk;
-+				snps,dis_enblslpm_quirk;
-+				snps,dis-u1-entry-quirk;
-+				snps,dis-u2-entry-quirk;
-+				snps,is-utmi-l1-suspend;
-+				snps,usb3_lpm_capable;
-+				snps,usb2-lpm-disable;
-+				snps,has-lpm-erratum;
-+				tx-fifo-resize;
+@@ -2944,6 +2944,7 @@ usb_1_dwc3: usb@a600000 {
+ 				snps,usb2-lpm-disable;
+ 				snps,has-lpm-erratum;
+ 				tx-fifo-resize;
++				dma-coherent;
  
  				ports {
  					#address-cells = <1>;
