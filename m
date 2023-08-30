@@ -2,102 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BBF78D9DF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8108A78D9B5
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbjH3SeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39094 "EHLO
+        id S233382AbjH3Sdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245107AbjH3Oa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 10:30:28 -0400
-Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CF79193
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:30:25 -0700 (PDT)
-Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-563f8e8a53dso2892029a12.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:30:25 -0700 (PDT)
+        with ESMTP id S245123AbjH3ObB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 10:31:01 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C324193
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:30:58 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2bcc846fed0so86194561fa.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:30:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693405825; x=1694010625; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LTBF5RZjge1RM0OTnXY7rRonWIcAk181t3jjXQW2nOI=;
-        b=PMTbwLrVCbjhHVQAjyHW0N7G4PLvRA5jQ5dqY1OOd00CcjhicM9ZkGDlM8kJ/s+RLH
-         541xb8Dq9uIBPGmlMnYiEevR26t/arGpjizSZNlfdItzBtT53YiOzdPUNGLi5PaiCuDt
-         AgK8xhwKy1ww5GSVLZqRK8tpliif9yjrr6e6ruhvC0aERadEBALKOrOS2svE8UEeEnzF
-         yRv7KmaDRUljwlChFnJGmiHDhsTejRMG8Ul6gTb4TICZgzYzPuo2ybPmjOStqXlUoN5a
-         NndqiGRu+cZpJtxDFGq9gZQrgeYPGnEObZScmthaqPGfO/bWfu7svhYncnI7jx7pV4eE
-         i9sg==
+        d=chromium.org; s=google; t=1693405855; x=1694010655; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5Z1Z9G4G/KVFZhr9R3sGbutXUCNsEgKocPQNRqGJxWY=;
+        b=CQdKIkaLl/QEMaQQAghV3Eo0qUT1QT2VAmg6iQ1K2utQxi5eQjCnlJMWqFVdNIuIrm
+         8bGLH87ZwUX/N/Fz5jJlqnz5Kv/mYuAD85ek2Zs/jB9zVi2KgLMY+a+CCfm5TVeP45xo
+         SjfC43jpee9/0x6uehLKJobGo6in5iB5oOe0E=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693405825; x=1694010625;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LTBF5RZjge1RM0OTnXY7rRonWIcAk181t3jjXQW2nOI=;
-        b=D5hzOQ1+XtX9mIDOIskipqeEsvek+ACANgvR+J12H+j6HvlzHhOgiZuQT779N6LDf0
-         mca6U1Q1QMGFl4KtpAe+hkJarteIAYvbHSh+nQlA1Ar6g/yf78Ikj1gGfNqxcPoSUvjj
-         0dWqfmhDF9eEajxahDGqZ3EWKhxjU6Vo18oKk6NepUFjgitEXDrqIRoyQfs/6tcLnqNG
-         mEo53oWZZYolZWd5BK3o9xH+PgzxAvq6XCrkVdahUtVzL/ctReKvlt4+6Ggr1BWkgFLO
-         6EVfHSzRciZZzJ0srAsbbf4ZUDmN0TV2kbKnW+BpwC85AFQiqGigzABbR5I6M9vuzeqW
-         jwcg==
-X-Gm-Message-State: AOJu0Yzlql7v1XcCD2dFR3ul2T9rhnJTBqbtHjQS6iELKZj+XUjQd7BK
-        /PGw7Zr48TQ57CAUTAIbD9wF2UoCHWp9j+su7s0=
-X-Google-Smtp-Source: AGHT+IFwl4tlt03Cw/dP5WiUwCM0dpOdbmqnWRTX3UBBvi7P78wJTiQTlZj48ujsq28DHFgGL3hbwkWbbUCOVCMuPjc=
-X-Received: by 2002:a17:90a:5216:b0:268:5558:de4c with SMTP id
- v22-20020a17090a521600b002685558de4cmr2256076pjh.38.1693405824745; Wed, 30
- Aug 2023 07:30:24 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693405855; x=1694010655;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5Z1Z9G4G/KVFZhr9R3sGbutXUCNsEgKocPQNRqGJxWY=;
+        b=HsABU7myb1oIqfDqYws94sT9SJENGDdphszGtnegTt3voNkWvuD+d314RwOiPUOerV
+         sPC5X5bYf7UdhXefrO6wLLrAhlwkJ1+cqnoGQkyQEy8/ajevHXFjZO5y6FFXKUd941Jk
+         oqfeiUtJpTBZnG10CdIJzSToRvhHEu9KcnsY+Yvhm81nVlWqLeahY7TsJw3Qbuo4zdTR
+         WYVFB4l+BXRLYwGEpKFTnl5C2ZfQaluN8PGTX6F8WMP1Vv44h5/xPAlapASkKDLTpjit
+         oDoaTurkqmjxpWxWZPe/z0Iorc89+3xPnymnDaDli4S/dVGr95STr9fUas02lyDcFwyt
+         dKxA==
+X-Gm-Message-State: AOJu0YzwIbxJwuL3fZxzYBi2eEEUSgko+vpNUebucXl/71x77PREgTMb
+        RSF7/n5oBfwhyakF6CnpEboDFrEFgsAclrUd4JTgg03t
+X-Google-Smtp-Source: AGHT+IG+TL/rRbtFqF326bl/nxDCdN6gPUNsq3S0DNtMv6Gx3tGxouYusnwWdH3qU9Ddhr5y0TpUpw==
+X-Received: by 2002:a2e:9207:0:b0:2bc:db70:b563 with SMTP id k7-20020a2e9207000000b002bcdb70b563mr2036511ljg.32.1693405854666;
+        Wed, 30 Aug 2023 07:30:54 -0700 (PDT)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
+        by smtp.gmail.com with ESMTPSA id x18-20020a170906805200b0097073f1ed84sm7247353ejw.4.2023.08.30.07.30.53
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Aug 2023 07:30:53 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-3fe2d620d17so97065e9.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 07:30:53 -0700 (PDT)
+X-Received: by 2002:a05:600c:4f93:b0:3f4:fb7:48d4 with SMTP id
+ n19-20020a05600c4f9300b003f40fb748d4mr325936wmq.3.1693405853267; Wed, 30 Aug
+ 2023 07:30:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230830114335.106344-1-eagle.alexander923@gmail.com>
- <e2dc91a9-d027-dc69-14bf-3a1184045254@linaro.org> <f40497d1-3547-9434-459f-050f592937ca@linaro.org>
- <CAP1tNvTvd5mZ1eWiMeck14b5KGyyXBNrEE=of0OKesbNKE_jqQ@mail.gmail.com> <38cd46c1-d0e2-e27d-f872-87bfee9058bb@linaro.org>
-In-Reply-To: <38cd46c1-d0e2-e27d-f872-87bfee9058bb@linaro.org>
-From:   Alexander Shiyan <eagle.alexander923@gmail.com>
-Date:   Wed, 30 Aug 2023 17:30:13 +0300
-Message-ID: <CAP1tNvT5_iZdxHiqxdnyBFoCp3jQTMoJk+iUF9D2JJk54CNPLQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: stm32: Add MyirTech MYD-YA15XC-T development
- board support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com> <20230830-fp5-initial-v1-2-5a954519bbad@fairphone.com>
+In-Reply-To: <20230830-fp5-initial-v1-2-5a954519bbad@fairphone.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 30 Aug 2023 07:30:41 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
+Message-ID: <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
+Subject: Re: [PATCH 02/11] nvmem: qfprom: Mark core clk as optional
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As far as I understand, the CPU type is an option when ordering.
-Here's what it says on the manufacturer's website:
-CPU: STMicroelectronics STM32MP151AAC3 microprocessor
-(STM32MP153AAC3 and STM32MP157AAC3 are compatible and can be customized).
-It's not a problem for me to make one type of CPU in the bindings,
-I just wanted the bindings file to be more flexible.
-#include "stm32mp151.dtsi" in this case we can transfer to MYD,
-as we don't really need MYC to be compiled separately.
+Hi,
 
-> On 30/08/2023 15:42, Alexander Shiyan wrote:
-> > The initial thought in the file name was that the modules could be
-> > equipped with a CPU
-> > other than STM32MP151, i.e. 153 or 157. The development board, as far
-> > i understand,
-> > equipped with a STM32MP151 only, so can we leave the current name for
-> > the module (15x)
-> > as is and change it only in the file name (and in compatible property)
-> > for the development
-> > board only?
+On Wed, Aug 30, 2023 at 2:58=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.co=
+m> wrote:
 >
-> Depends. I do not see SoM here. You called it "MYIR MYC-YA15XC-T", so it
-> looks like end product for me. Can the same product have different SoC
-> module? How would your DTSI look like? You include there 151.dtsi, so it
-> could not have...
+> On some platforms like sc7280 on non-ChromeOS devices the core clock
+> cannot be touched by Linux so we cannot provide it. Mark it as optional
+> as accessing qfprom works without it.
 >
-> Yes, you also need to adjust compatibles to reflect real names, not
-> wildcards.
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  drivers/nvmem/qfprom.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+
+Are you actually testing burning fuses from the OS, or are you just
+using the nvmem in "read-only" mode? From comments in the bindings, if
+you're trying to burn the fuses then the clock is required. If things
+are in read-only mode then the clock isn't required.
+
+When I compare to the driver, it seems like the driver assumes that if
+more than one memory region is provided then you must be supporting
+burning fuses. The bindings agree that having 4 memory regions
+specified means that the nvmem supports burning and 1 memory region
+specified means read-only. The extra 3 memory regions in the nvmem are
+all about fuse burning, I believe.
+
+So maybe the right fix here is to just change your dts to specify one
+memory region?
+
+-Doug
