@@ -2,290 +2,568 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88E7F78D98A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49FDF78D97E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236810AbjH3SdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:33:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55818 "EHLO
+        id S230016AbjH3SdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244281AbjH3MvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:51:08 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C228D132;
-        Wed, 30 Aug 2023 05:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1693399864; x=1724935864;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=RSyj81n43sFmtQjzuHfNNauGPkAW6fiLijQd+FzizcA=;
-  b=iKtgWQVKbZGOI6SoRQWdACyuHirlarsbd0gH85UJJ3pFkn2wJZXVXcCP
-   JwsaxRsKfg8VmKLOPUZHEW/Y4heWbhvR1KKWi9qFQ3KdRNMeEaG23W175
-   X4nV5kvNmjGhxvTnXWPxucd1dnp/E7dGAPKQTJfleRg8AG8iKNcEHaiFF
-   mD2xWqlW7XOI+0quOAiKzsL9keBuedhLRYFs+fiN36z3AJA2rVrnEfjVB
-   15YyOTdRlTJoVMl9lIt+JHNeThJyYfNE5w9mJOm1gH+S9I8aeCJAhu7Jp
-   0anQCmwfI3m1gPbCh7HqkTOx198glpDDXFPuLiskZWAyLRKQERt9Z6guu
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="365839418"
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; 
-   d="scan'208";a="365839418"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2023 05:51:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="739082012"
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; 
-   d="scan'208";a="739082012"
-Received: from aslawinx-mobl.ger.corp.intel.com (HELO [10.94.0.91]) ([10.94.0.91])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2023 05:50:58 -0700
-Message-ID: <5a5eb3a8-1379-116b-ca17-eac573207c57@linux.intel.com>
-Date:   Wed, 30 Aug 2023 14:50:57 +0200
+        with ESMTP id S244282AbjH3Mva (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:51:30 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3321B132
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:51:26 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99cdb0fd093so731670866b.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:51:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693399884; x=1694004684; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HTek1JDo93XROD/lSZ/9cXAC6x0L5iWTFM9OoCcAjWQ=;
+        b=NJbNzkjdfgtqg33aYcshOWPHKWXAJUAAHKWQP2Qfdk9NU799Z/OqE5UrRIzaW/J+/f
+         jOT0Q0Yq82Z4cBm3UKKECdZskzUk65F6QKR6qo74+0i0yWjqIx44pKEej6ECRypsXSv/
+         RI8J3qrtgo7sTx+gMQeI8hn820bxUg1akKHqbybAwVax1drF509k6z5ULPi3RR+UV28W
+         nrZQ+vdj1zOWHlQOlWaH59GrxZsblaESJf3+9sZY2BRijwfU0yqhRlZtwrNhx4Egr8fA
+         FZPN/SuWsnBBM+kVI9chFVN8lRefWrJ+4qzSwXt72Fnv7T7mUGbAtPNORM3COuxakdPI
+         ltoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693399884; x=1694004684;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HTek1JDo93XROD/lSZ/9cXAC6x0L5iWTFM9OoCcAjWQ=;
+        b=K6wzpfGZfN4ozD4cQ6nDorn5ZbytNuDkE2vUw2SxxkSn3mWwbbnGp7bKtRVSjDewrn
+         HFfPyzIg4ZuxoPK2kvrVtsHLhEktOjKaziJLIN0QQZHHB0Gdb9WCFxMm3AsBfpW4XFdO
+         uMt3TH/R+Rp6xFVIAD62y+MZj8J18EAfO99anuij3BuSzkc0QI9Fjp162DCsP/VkJ43f
+         jLm0SpykL4Kce8w8/2CRz8ZZg6TnFpWpQpAugVMhPGevja7xZx3qowuCoNPFdk9gZ7JQ
+         vnYFIMVw53MfuzEZz754aVcA60tAhAea9yYYJRB3E/sNyiT2c++sfB5CGtZ2wFz5pg46
+         HVSQ==
+X-Gm-Message-State: AOJu0Yz/DlmM8tfozIRL1mcm1+FHTLvd3XIKeUuh5ojkS7kFBZuqoatZ
+        eXf1Nbh9Z13y2GuAgC4HjhKhyQ==
+X-Google-Smtp-Source: AGHT+IHHmGgRahFDSXkoM+UuzB/MFE/rq4kXZQkhhozAtSuTpyvbKFVKIaL8DHV8lVX+gGudzueOqA==
+X-Received: by 2002:a17:906:10d2:b0:9a1:ab86:5f22 with SMTP id v18-20020a17090610d200b009a1ab865f22mr1446501ejv.56.1693399884638;
+        Wed, 30 Aug 2023 05:51:24 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id d7-20020a1709064c4700b0099bd453357esm7096196ejw.41.2023.08.30.05.51.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Aug 2023 05:51:24 -0700 (PDT)
+Message-ID: <e2dc91a9-d027-dc69-14bf-3a1184045254@linaro.org>
+Date:   Wed, 30 Aug 2023 14:51:23 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v5 12/32] sound: usb: Export USB SND APIs for modules
+Subject: Re: [PATCH] ARM: dts: stm32: Add MyirTech MYD-YA15XC-T development
+ board support
 Content-Language: en-US
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        srinivas.kandagatla@linaro.org, mathias.nyman@intel.com,
-        perex@perex.cz, lgirdwood@gmail.com, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org,
-        Thinh.Nguyen@synopsys.com, broonie@kernel.org,
-        bgoswami@quicinc.com, tiwai@suse.com, robh+dt@kernel.org,
-        agross@kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, quic_jackp@quicinc.com,
-        quic_plai@quicinc.com
-References: <20230829210657.9904-1-quic_wcheng@quicinc.com>
- <20230829210657.9904-13-quic_wcheng@quicinc.com>
-From:   =?UTF-8?Q?Amadeusz_S=c5=82awi=c5=84ski?= 
-        <amadeuszx.slawinski@linux.intel.com>
-In-Reply-To: <20230829210657.9904-13-quic_wcheng@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Alexander Shiyan <eagle.alexander923@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     linux-stm32@st-md-mailman.stormreply.com,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+References: <20230830114335.106344-1-eagle.alexander923@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230830114335.106344-1-eagle.alexander923@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/29/2023 11:06 PM, Wesley Cheng wrote:
-> Some vendor modules will utilize useful parsing and endpoint management
-> APIs to start audio playback/capture.
+On 30/08/2023 13:43, Alexander Shiyan wrote:
+> Add support for the MyirTech MYD-YA15XC-T development board.
 > 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> General features:
+>  - STM32MP151
+>  - 256MB RAM
+>  - 2xUSB HOST
+>  - USB-C OTG
+>  - Gigabit ethernet
+>  - UART
+>  - Boot from NAND, eMMC, SD
+> 
+> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
 > ---
->   sound/usb/card.c     |  4 +++
->   sound/usb/endpoint.c |  1 +
->   sound/usb/helper.c   |  1 +
->   sound/usb/pcm.c      | 67 +++++++++++++++++++++++++++++++++-----------
->   sound/usb/pcm.h      | 11 ++++++++
->   5 files changed, 67 insertions(+), 17 deletions(-)
+>  arch/arm/boot/dts/st/Makefile                 |   3 +-
+>  .../boot/dts/st/stm32mp15x-myirtech-myc.dtsi  | 351 ++++++++++++++
+>  .../boot/dts/st/stm32mp15x-myirtech-myd.dts   | 457 ++++++++++++++++++
+>  3 files changed, 810 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp15x-myirtech-myc.dtsi
+>  create mode 100644 arch/arm/boot/dts/st/stm32mp15x-myirtech-myd.dts
 > 
-> diff --git a/sound/usb/card.c b/sound/usb/card.c
-> index 067a1e82f4bf..b45b6daee7b7 100644
-> --- a/sound/usb/card.c
-> +++ b/sound/usb/card.c
-> @@ -1053,6 +1053,7 @@ int snd_usb_lock_shutdown(struct snd_usb_audio *chip)
->   		wake_up(&chip->shutdown_wait);
->   	return err;
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_lock_shutdown);
->   
->   /* autosuspend and unlock the shutdown */
->   void snd_usb_unlock_shutdown(struct snd_usb_audio *chip)
-> @@ -1061,6 +1062,7 @@ void snd_usb_unlock_shutdown(struct snd_usb_audio *chip)
->   	if (atomic_dec_and_test(&chip->usage_count))
->   		wake_up(&chip->shutdown_wait);
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_unlock_shutdown);
->   
->   int snd_usb_autoresume(struct snd_usb_audio *chip)
->   {
-> @@ -1083,6 +1085,7 @@ int snd_usb_autoresume(struct snd_usb_audio *chip)
->   	}
->   	return 0;
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_autoresume);
->   
->   void snd_usb_autosuspend(struct snd_usb_audio *chip)
->   {
-> @@ -1096,6 +1099,7 @@ void snd_usb_autosuspend(struct snd_usb_audio *chip)
->   	for (i = 0; i < chip->num_interfaces; i++)
->   		usb_autopm_put_interface(chip->intf[i]);
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_autosuspend);
->   
->   static int usb_audio_suspend(struct usb_interface *intf, pm_message_t message)
->   {
-> diff --git a/sound/usb/endpoint.c b/sound/usb/endpoint.c
-> index a385e85c4650..aac92e0b8aa2 100644
-> --- a/sound/usb/endpoint.c
-> +++ b/sound/usb/endpoint.c
-> @@ -1503,6 +1503,7 @@ int snd_usb_endpoint_prepare(struct snd_usb_audio *chip,
->   	mutex_unlock(&chip->mutex);
->   	return err;
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_endpoint_prepare);
->   
->   /* get the current rate set to the given clock by any endpoint */
->   int snd_usb_endpoint_get_clock_rate(struct snd_usb_audio *chip, int clock)
-> diff --git a/sound/usb/helper.c b/sound/usb/helper.c
-> index bf80e55d013a..4322ae3738e6 100644
-> --- a/sound/usb/helper.c
-> +++ b/sound/usb/helper.c
-> @@ -62,6 +62,7 @@ void *snd_usb_find_csint_desc(void *buffer, int buflen, void *after, u8 dsubtype
->   	}
->   	return NULL;
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_find_csint_desc);
->   
->   /*
->    * Wrapper for usb_control_msg().
-> diff --git a/sound/usb/pcm.c b/sound/usb/pcm.c
-> index 08bf535ed163..999f66080649 100644
-> --- a/sound/usb/pcm.c
-> +++ b/sound/usb/pcm.c
-> @@ -148,6 +148,16 @@ find_format(struct list_head *fmt_list_head, snd_pcm_format_t format,
->   	return found;
->   }
->   
-> +const struct audioformat *
-> +snd_usb_find_format(struct list_head *fmt_list_head, snd_pcm_format_t format,
-> +	    unsigned int rate, unsigned int channels, bool strict_match,
-> +	    struct snd_usb_substream *subs)
-> +{
-> +	return find_format(fmt_list_head, format, rate, channels, strict_match,
-> +			subs);
-> +}
-> +EXPORT_SYMBOL_GPL(snd_usb_find_format);
+> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
+> index b3e9d29390e3..5b18767bbd4f 100644
+> --- a/arch/arm/boot/dts/st/Makefile
+> +++ b/arch/arm/boot/dts/st/Makefile
+> @@ -57,7 +57,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
+>  	stm32mp157c-ev1-scmi.dtb \
+>  	stm32mp157c-lxa-mc1.dtb \
+>  	stm32mp157c-odyssey.dtb \
+> -	stm32mp157c-phycore-stm32mp1-3.dtb
+> +	stm32mp157c-phycore-stm32mp1-3.dtb \
+> +	stm32mp15x-myirtech-myd.dtb
+>  dtb-$(CONFIG_ARCH_U8500) += \
+>  	ste-snowball.dtb \
+>  	ste-hrefprev60-stuib.dtb \
+> diff --git a/arch/arm/boot/dts/st/stm32mp15x-myirtech-myc.dtsi b/arch/arm/boot/dts/st/stm32mp15x-myirtech-myc.dtsi
+> new file mode 100644
+> index 000000000000..7fe858c9622f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/st/stm32mp15x-myirtech-myc.dtsi
+> @@ -0,0 +1,351 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/* SPDX-FileCopyrightText: Alexander Shiyan, <shc_work@mail.ru> */
 > +
->   static const struct audioformat *
->   find_substream_format(struct snd_usb_substream *subs,
->   		      const struct snd_pcm_hw_params *params)
-> @@ -157,6 +167,14 @@ find_substream_format(struct snd_usb_substream *subs,
->   			   true, subs);
->   }
->   
-> +const struct audioformat *
-> +snd_usb_find_substream_format(struct snd_usb_substream *subs,
-> +		      const struct snd_pcm_hw_params *params)
-> +{
-> +	return find_substream_format(subs, params);
-> +}
-> +EXPORT_SYMBOL_GPL(snd_usb_find_substream_format);
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/mfd/st,stpmic1.h>
 > +
->   bool snd_usb_pcm_has_fixed_rate(struct snd_usb_substream *subs)
->   {
->   	const struct audioformat *fp;
-> @@ -461,20 +479,9 @@ static void close_endpoints(struct snd_usb_audio *chip,
->   	}
->   }
->   
-> -/*
-> - * hw_params callback
-> - *
-> - * allocate a buffer and set the given audio format.
-> - *
-> - * so far we use a physically linear buffer although packetize transfer
-> - * doesn't need a continuous area.
-> - * if sg buffer is supported on the later version of alsa, we'll follow
-> - * that.
-> - */
-> -static int snd_usb_hw_params(struct snd_pcm_substream *substream,
-> -			     struct snd_pcm_hw_params *hw_params)
-> +int snd_usb_attach_endpoints(struct snd_usb_substream *subs,
-> +				struct snd_pcm_hw_params *hw_params)
->   {
-> -	struct snd_usb_substream *subs = substream->runtime->private_data;
->   	struct snd_usb_audio *chip = subs->stream->chip;
->   	const struct audioformat *fmt;
->   	const struct audioformat *sync_fmt;
-> @@ -499,7 +506,7 @@ static int snd_usb_hw_params(struct snd_pcm_substream *substream,
->   	if (fmt->implicit_fb) {
->   		sync_fmt = snd_usb_find_implicit_fb_sync_format(chip, fmt,
->   								hw_params,
-> -								!substream->stream,
-> +								!subs->direction,
->   								&sync_fixed_rate);
->   		if (!sync_fmt) {
->   			usb_audio_dbg(chip,
-> @@ -579,15 +586,28 @@ static int snd_usb_hw_params(struct snd_pcm_substream *substream,
->   
->   	return ret;
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_attach_endpoints);
->   
->   /*
-> - * hw_free callback
-> + * hw_params callback
->    *
-> - * reset the audio format and release the buffer
-> + * allocate a buffer and set the given audio format.
-> + *
-> + * so far we use a physically linear buffer although packetize transfer
-> + * doesn't need a continuous area.
-> + * if sg buffer is supported on the later version of alsa, we'll follow
-> + * that.
->    */
-> -static int snd_usb_hw_free(struct snd_pcm_substream *substream)
-> +static int snd_usb_hw_params(struct snd_pcm_substream *substream,
-> +			     struct snd_pcm_hw_params *hw_params)
->   {
->   	struct snd_usb_substream *subs = substream->runtime->private_data;
+> +#include "stm32mp151.dtsi"
+> +#include "stm32mp15-pinctrl.dtsi"
+> +#include "stm32mp15xxac-pinctrl.dtsi"
 > +
-> +	return snd_usb_attach_endpoints(subs, hw_params);
-> +}
-> +
-> +int snd_usb_detach_endpoint(struct snd_usb_substream *subs)
-> +{
->   	struct snd_usb_audio *chip = subs->stream->chip;
->   
->   	snd_media_stop_pipeline(subs);
-> @@ -603,6 +623,19 @@ static int snd_usb_hw_free(struct snd_pcm_substream *substream)
->   
->   	return 0;
->   }
-> +EXPORT_SYMBOL_GPL(snd_usb_detach_endpoint);
-> +
-> +/*
-> + * hw_free callback
-> + *
-> + * reset the audio format and release the buffer
-> + */
-> +static int snd_usb_hw_free(struct snd_pcm_substream *substream)
-> +{
-> +	struct snd_usb_substream *subs = substream->runtime->private_data;
-> +
-> +	return snd_usb_detach_endpoint(subs);
-> +}
->   
->   /* free-wheeling mode? (e.g. dmix) */
->   static int in_free_wheeling_mode(struct snd_pcm_runtime *runtime)
-> diff --git a/sound/usb/pcm.h b/sound/usb/pcm.h
-> index 388fe2ba346d..e36df3611a05 100644
-> --- a/sound/usb/pcm.h
-> +++ b/sound/usb/pcm.h
-> @@ -15,4 +15,15 @@ void snd_usb_preallocate_buffer(struct snd_usb_substream *subs);
->   int snd_usb_audioformat_set_sync_ep(struct snd_usb_audio *chip,
->   				    struct audioformat *fmt);
->   
-> +const struct audioformat *
-> +snd_usb_find_format(struct list_head *fmt_list_head, snd_pcm_format_t format,
-> +	    unsigned int rate, unsigned int channels, bool strict_match,
-> +	    struct snd_usb_substream *subs);
-> +const struct audioformat *
-> +snd_usb_find_substream_format(struct snd_usb_substream *subs,
-> +		      const struct snd_pcm_hw_params *params);
-> +
-> +int snd_usb_attach_endpoints(struct snd_usb_substream *subs,
-> +				struct snd_pcm_hw_params *hw_params);
-> +int snd_usb_detach_endpoint(struct snd_usb_substream *subs);
->   #endif /* __USBAUDIO_PCM_H */
+> +/ {
+> +	model = "MYIR MYC-YA15XC-T";
+> +	compatible = "myir,myc-stm32mp15x", "st,stm32mp151";
 
-Why is it multiple "endpoints" when attaching, but only one "endpoint" 
-when detaching? Both seem to be getting similar arguments.
+Undocumented compatible.
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+> +
+> +	aliases {
+> +		i2c0 = &i2c1;
+> +		i2c1 = &i2c2;
+> +		i2c2 = &i2c3;
+> +		i2c3 = &i2c4;
+> +		i2c4 = &i2c5;
+> +		i2c5 = &i2c6;
+> +	};
+> +
+> +	memory@c0000000 {
+> +		device_type = "memory";
+> +		reg = <0xc0000000 0x10000000>;
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges;
+> +
+> +		mcuram2: mcuram2@10000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring0: vdev0vring0@10040000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10040000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0vring1: vdev0vring1@10041000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10041000 0x1000>;
+> +			no-map;
+> +		};
+> +
+> +		vdev0buffer: vdev0buffer@10042000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x10042000 0x4000>;
+> +			no-map;
+> +		};
+> +
+> +		mcuram: mcuram@30000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x30000000 0x40000>;
+> +			no-map;
+> +		};
+> +
+> +		retram: retram@38000000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x38000000 0x10000>;
+> +			no-map;
+> +		};
+> +
+> +		optee: optee@de000000 {
+> +			reg = <0xde000000 0x02000000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	vin_som: vin_som {
+
+No underscores in node names. Generic prefix or suffix (regulator).
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vin_som";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	leds: leds {
+> +		compatible = "gpio-leds";
+> +
+> +		led_cpu: led_cpu {
+
+No underscores in node names.
+
+It does not look like you tested the DTS against bindings (at least at
+first glance). Please run `make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			label = "som:cpu";
+> +			color = <LED_COLOR_ID_BLUE>;
+> +			default-state = "off";
+> +			function = LED_FUNCTION_CPU;
+> +			gpios = <&gpioa 13 (GPIO_ACTIVE_LOW | GPIO_PUSH_PULL)>;
+> +			linux,default-trigger = LED_FUNCTION_CPU;
+> +		};
+> +	};
+> +};
+> +
+> +&bsec {
+> +	board_id: board_id@ec {
+
+Underscores...
+
+...
+
+> +	pmic: stpmic@33 {
+
+Generic node names, so "pmic"
+
+> +		compatible = "st,stpmic1";
+> +		reg = <0x33>;
+> +		interrupts-extended = <&gpioa 0 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +
+> +		regulators {
+> +			compatible = "st,stpmic1-regulators";
+> +			buck1-supply = <&vin_som>;
+> +			buck2-supply = <&vin_som>;
+> +			buck3-supply = <&vin_som>;
+> +			buck4-supply = <&vin_som>;
+> +			ldo1-supply = <&v3v3>;
+> +			ldo4-supply = <&vin_som>;
+> +			vref_ddr-supply = <&vin_som>;
+> +			boost-supply = <&vin_som>;
+> +			pwr_sw1-supply = <&bst_out>;
+> +			pwr_sw2-supply = <&bst_out>;
+> +
+> +			vddcore: buck1 {
+> +				regulator-name = "vddcore";
+> +				regulator-min-microvolt = <1200000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-always-on;
+> +				regulator-initial-mode = <0>;
+> +				regulator-over-current-protection;
+> +			};
+> +
+> +			vdd_ddr: buck2 {
+> +				regulator-name = "vdd_ddr";
+> +				regulator-min-microvolt = <1350000>;
+> +				regulator-max-microvolt = <1350000>;
+> +				regulator-always-on;
+> +				regulator-initial-mode = <0>;
+> +				regulator-over-current-protection;
+> +			};
+> +
+> +			vdd: buck3 {
+> +				regulator-name = "vdd";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +				st,mask-reset;
+> +				regulator-initial-mode = <0>;
+> +				regulator-over-current-protection;
+> +			};
+> +
+> +			v3v3: buck4 {
+> +				regulator-name = "v3v3";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +				regulator-over-current-protection;
+> +				regulator-initial-mode = <0>;
+> +			};
+> +
+> +			vdda: ldo1 {
+> +				regulator-name = "vdda";
+> +				regulator-min-microvolt = <1700000>;
+> +				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+> +			};
+> +
+> +			vtt_ddr: ldo3 {
+> +				regulator-name = "vtt_ddr";
+> +				regulator-always-on;
+> +			};
+> +
+> +			vdd_usb: ldo4 {
+> +				regulator-name = "vdd_usb";
+> +				regulator-min-microvolt = <3300000>;
+> +				regulator-max-microvolt = <3300000>;
+> +			};
+> +
+> +			vref_ddr: vref_ddr {
+> +				regulator-name = "vref_ddr";
+> +				regulator-always-on;
+> +				regulator-over-current-protection;
+> +			};
+> +
+> +			bst_out: boost {
+> +				regulator-name = "bst_out";
+> +			};
+> +
+> +			vbus_otg: pwr_sw1 {
+> +				regulator-name = "vbus_otg";
+> +				regulator-active-discharge;
+> +			};
+> +
+> +			vbus_sw: pwr_sw2 {
+> +				regulator-name = "vbus_sw";
+> +				regulator-active-discharge;
+> +			};
+> +		};
+> +
+> +		onkey: onkey {
+> +			compatible = "st,stpmic1-onkey";
+> +			interrupts = <IT_PONKEY_F 0>, <IT_PONKEY_R 0>;
+> +			interrupt-names = "onkey-falling", "onkey-rising";
+> +			power-off-time-sec = <10>;
+> +		};
+> +	};
+> +
+> +	eeprom: eeprom@50 {
+> +		compatible = "atmel,24c32";
+> +		reg = <0x50>;
+> +		pagesize = <32>;
+> +		num-addresses = <8>;
+> +		wp-gpios = <&gpioa 14 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+> +	};
+> +};
+> +
+> +&ipcc {
+> +	status = "okay";
+> +};
+> +
+> +&iwdg2 {
+> +	timeout-sec = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&m4_rproc {
+> +	memory-region = <&retram>, <&mcuram>, <&mcuram2>, <&vdev0vring0>,
+> +			<&vdev0vring1>, <&vdev0buffer>;
+> +	mboxes = <&ipcc 0>, <&ipcc 1>, <&ipcc 2>, <&ipcc 3>;
+> +	mbox-names = "vq0", "vq1", "shutdown", "detach";
+> +	interrupt-parent = <&exti>;
+> +	interrupts = <68 IRQ_TYPE_EDGE_RISING>;
+> +	status = "okay";
+> +};
+> +
+> +&pwr_regulators {
+> +	vdd-supply = <&vdd>;
+> +	vdd_3v3_usbfs-supply = <&vdd_usb>;
+> +};
+> +
+> +&rng1 {
+> +	status = "okay";
+> +};
+> +
+> +&rtc {
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc2 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_a>;
+> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a &sdmmc2_d47_pins_a>;
+> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_a>;
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +	st,neg-edge;
+> +	bus-width = <8>;
+> +	vmmc-supply = <&v3v3>;
+> +	vqmmc-supply = <&vdd>;
+> +	mmc-ddr-3_3v;
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm/boot/dts/st/stm32mp15x-myirtech-myd.dts b/arch/arm/boot/dts/st/stm32mp15x-myirtech-myd.dts
+> new file mode 100644
+> index 000000000000..ad8dd9ee085c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/st/stm32mp15x-myirtech-myd.dts
+> @@ -0,0 +1,457 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/* SPDX-FileCopyrightText: Alexander Shiyan, <shc_work@mail.ru> */
+> +
+> +/dts-v1/;
+> +
+> +#include "stm32mp15x-myirtech-myc.dtsi"
+> +
+> +#include <dt-bindings/net/qca-ar803x.h>
+> +
+> +/ {
+> +	model = "MYIR MYD-YA15XC-T";
+> +	compatible = "myir,myd-stm32mp15x", "myir,myc-stm32mp15x", "st,stm32mp151";
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+> +
+> +	aliases {
+> +		ethernet0 = &ethernet0;
+> +		serial0 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm2 0 100000 0>;
+> +		brightness-levels = <0 255>;
+> +		num-interpolated-steps = <256>;
+> +		default-brightness-level = <255>;
+> +	};
+> +
+> +	panel: panel {
+> +		compatible = "panel-lvds";
+> +		backlight = <&backlight>;
+> +		data-mapping = "vesa-24";
+> +		enable-gpios = <&gpioi 3 (GPIO_ACTIVE_HIGH | GPIO_PUSH_PULL)>;
+> +		power-supply = <&vdd_3v3>;
+> +		height-mm = <0>;
+> +		width-mm = <0>;
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&ltdc_out>;
+> +			};
+> +		};
+> +	};
+> +
+> +	vin: vin {
+
+Same comments as before.
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vin";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vdd_3v3: vdd_3v3 {
+
+Same comments as before.
+
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vdd_3v3";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-always-on;
+> +		vin-supply = <&v3v3>;
+> +	};
+> +};
+> +
+> +&leds {
+> +	led_live: led_live {
+
+Same comments as before.
+
+> +		label = "board:live";
+> +		color = <LED_COLOR_ID_BLUE>;
+> +		default-state = "off";
+> +		function = LED_FUNCTION_HEARTBEAT;
+> +		gpios = <&extgpio 4 GPIO_ACTIVE_LOW>;
+> +		linux,default-trigger = LED_FUNCTION_HEARTBEAT;
+> +		panic-indicator;
+> +	};
+> +};
+> +
+> +&vin_som {
+> +	vin-supply = <&vin>;
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2c2_pins &i2c2_pins_z>;
+> +	pinctrl-1 = <&i2c2_sleep_pins &i2c2_sleep_pins_z>;
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +
+> +	extgpio: pcf8575@20 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		compatible = "nxp,pcf8575";
+> +		reg = <0x20>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +	};
+> +
+> +	typec: stusb1600@28 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&stusb1600_pins>;
+> +		compatible = "st,stusb1600";
+> +		reg = <0x28>;
+> +		interrupt-parent = <&gpioa>;
+> +		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
+> +		vdd-supply = <&vin>;
+> +
+> +		connector {
+> +			compatible = "usb-c-connector";
+> +			label = "USB-C";
+> +			power-role = "dual";
+> +			power-opmode = "default";
+> +
+> +			port {
+> +				con_usbotg_hs_ep: endpoint {
+> +					remote-endpoint = <&usbotg_hs_ep>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	rx8025: rtc@32 {
+> +		compatible = "epson,rx8025";
+> +		reg = <0x32>;
+> +	};
+> +};
+> +
+
+
+Best regards,
+Krzysztof
+
