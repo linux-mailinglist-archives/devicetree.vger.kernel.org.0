@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C00078DA57
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:37:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B18E78D8EA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233445AbjH3SgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:36:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60160 "EHLO
+        id S236114AbjH3Sbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:31:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244647AbjH3Nid (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:38:33 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FA2E1B0;
-        Wed, 30 Aug 2023 06:38:29 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-401ceda85cdso27415555e9.1;
-        Wed, 30 Aug 2023 06:38:29 -0700 (PDT)
+        with ESMTP id S244648AbjH3Nis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:38:48 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 815741B1;
+        Wed, 30 Aug 2023 06:38:44 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-401b393df02so55079695e9.1;
+        Wed, 30 Aug 2023 06:38:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693402708; x=1694007508; darn=vger.kernel.org;
+        d=gmail.com; s=20221208; t=1693402723; x=1694007523; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=G5g221ge6JqMTWTGX03yPTFswnlhrFAyzkz/jRpc4xU=;
-        b=UvSnINdAFhtS4PyTeeYYHb1/X2XFuX7W2Nu7la80pK4Pgv3EiyfP9x6fFO32XjqnSO
-         +Qh08ewAhaSJ4xosYS7xTN7/9+Xo5CFmUzfHRZHIgts/QvQfUoU3RDg8MsxD6KukeGJZ
-         zqOPNoreGq4MHX64MeHWcrTIaqeB94eF+ytl2wbhTQagA9LpnczMXUPf75hwaZ4Lz/gY
-         TNgyIUi4v+/TPpYyXW6wimvuU8DWQISvYjRKJzmwv1wUEQ+7kANx7RHul1iUloXWO3mZ
-         qHdKDdOxIeN1W1Bp3q2yRudPnwb/ne5SgiUh79uQsYPWS4wSOUYluiXY5q3H83xLv6AD
-         DqSw==
+        bh=MBe21p78bEGeinGOeEZ5dbYwb28pfpjkSo3Y7gdPnoA=;
+        b=S97wPEASr2Xy94umC548KggN8JMp/Wx8RBV2dCr552Ic4zvqT2/4+Ia5o8cNtLaIsF
+         X+3YSlUx8QCLt0ThrAqxPYlemxx+lY4TQHPL9yIgNqQvwtJkPPeMnO7/tbbgMKo2PDIW
+         +hjjGxNdA4cQD4j1m4eaZVDSfobL1TUKVJ06e8FiuG4W8Xryf4xiq6PjLv/dQcOLtXIy
+         /kbYLUQv4g9ZQSBbMgbuxeEA8uOa/haUIDmtoZ95akymILgp5hc6fih1cIo/QQxQej1u
+         k1RPvOLBaX8sdoZn681KxMmTB8WDFpFn49eCNAiVF6ZkJUbuTf7egRpBQMYNP6yGLRzN
+         0uVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693402708; x=1694007508;
+        d=1e100.net; s=20221208; t=1693402723; x=1694007523;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=G5g221ge6JqMTWTGX03yPTFswnlhrFAyzkz/jRpc4xU=;
-        b=IaSq+BnKsWCaIob+A/pF1RbKPqyIO/PBfaJ+f7juYUvlb2y9jSBbjWjEOjOhr43D9D
-         kPxvHryIdRv2oc03ru3ZnXl8xaIwnUIR8i3b3wU8N40T6EoeSczJuwllU0XIUMq6wOs6
-         vEb/TGwwUtww3MXUxT8sG3nmCe9TO9OcGdEa26Rg145GlJ4Eg59HYfZmNH0U7CPhM2Hs
-         RirfSMhim2qohgLXwCCl6iTaCzN/e3zXJCcfDRCcEl31/2rKaDLsbzrEE+nnbFRgEbm0
-         wC9nN/4lNa9bbLTXnvrT/jJeOZ9foDpiNsZR8cOaZBYD4IywPZxqJ+1Jpyb4QdVIWOiZ
-         rgNA==
-X-Gm-Message-State: AOJu0YzQEX1Rpc6jBqlinRvfYTLoPERQEoegPFSJbztv8gNw+oVAh2wY
-        X5XN+zlfoD2LtCQHJyALTw==
-X-Google-Smtp-Source: AGHT+IEz+WHucNwiMNPJ9Xjok1GP87HrpJlu0CzCUEiQhDrNO2Zdq1zsySrNspwd/7GvBifanEnygw==
-X-Received: by 2002:a05:600c:2041:b0:401:d803:6250 with SMTP id p1-20020a05600c204100b00401d8036250mr1753064wmg.5.1693402707395;
-        Wed, 30 Aug 2023 06:38:27 -0700 (PDT)
+        bh=MBe21p78bEGeinGOeEZ5dbYwb28pfpjkSo3Y7gdPnoA=;
+        b=JXZmO6Hq8/3GzLsFioqr9FYJ6MRzizTEOqTDWwqrJ7WGiAN5Bv+n0OoOZeosNPmSWl
+         xBr8YmWZa2Mu1RhE3fYjwa/3FhGDWcWteGWcMKPxwsRTrAeqU2CFQDN8d3Tq03UP/YaV
+         rhxXaatBHOsg20+qj50AVv1Ik36h87QluDHH7r9MjMH4EyVKclAX84n70Dyw75cQcdn1
+         D06DFnfIguOIrWSUymEd7LmbHZih9XTMr1NDiHLgoGtYPRR8pf2BulxOLzCzLhlioGIr
+         O4OqPUBRy8enQj+k83ytLNXIUQpVL2XQ2fEGpJCA5bC52NA0cVr/5EfY1Tqv54IX1QcE
+         mQlQ==
+X-Gm-Message-State: AOJu0Ywu7dHn8Y6QKl/khyfudk+vo20vpi0vSxXHsKB7oEVxlum+DIeW
+        zdgY1qOX20KsI3C0ZI0V6A==
+X-Google-Smtp-Source: AGHT+IEpDe6p2bk26/qpet9gXv/RWnuOE+JScc/Osk+9IK0/HLUMMbVMFqo56cM5drEZGpVyQ+6BZQ==
+X-Received: by 2002:a05:600c:21c5:b0:3f8:f382:8e1f with SMTP id x5-20020a05600c21c500b003f8f3828e1fmr2026172wmj.24.1693402722599;
+        Wed, 30 Aug 2023 06:38:42 -0700 (PDT)
 Received: from U4.lan ([2001:9e8:b963:7410:17bb:6f65:50d0:b82b])
-        by smtp.gmail.com with ESMTPSA id x14-20020a05600c2a4e00b003fed70fb09dsm2326343wme.26.2023.08.30.06.38.26
+        by smtp.gmail.com with ESMTPSA id x14-20020a05600c2a4e00b003fed70fb09dsm2326343wme.26.2023.08.30.06.38.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 06:38:27 -0700 (PDT)
+        Wed, 30 Aug 2023 06:38:42 -0700 (PDT)
 From:   Alex Bee <knaerzche@gmail.com>
 To:     Kishon Vijay Abraham I <kishon@kernel.org>,
         Vinod Koul <vkoul@kernel.org>,
@@ -60,9 +60,9 @@ Cc:     linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v2 1/5] phy: rockchip-inno-usb2: Split ID interrupt phy registers
-Date:   Wed, 30 Aug 2023 15:36:21 +0200
-Message-ID: <20230830133623.83075-4-knaerzche@gmail.com>
+Subject: [PATCH v2 2/5] phy: phy-rockchip-inno-usb2: Add RK3128 support
+Date:   Wed, 30 Aug 2023 15:36:23 +0200
+Message-ID: <20230830133623.83075-6-knaerzche@gmail.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20230830133623.83075-2-knaerzche@gmail.com>
 References: <20230830133623.83075-2-knaerzche@gmail.com>
@@ -78,207 +78,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 51a9b2c03dd3 ("phy: rockchip-inno-usb2: Handle ID IRQ") added ID
-detection interrupt registers. However the current implementation assumes
-that falling and rising edge interrupt are always enabled in registers
-spanning over subsequent bits.
-That is not the case for RK3128's version of the phy and this
-implementation can't be used as-is, since there are bits with different
-purpose in between.
-
-This splits up the register definitions for id_det_en, id_det_en and
-id_det_clr registers in rising and falling edge variants.
-It's required as preparation to support RK3128's Innosilicon usb2 phy as
-well in this driver and matches pretty much to what the vendor does, so I'm
-not expecting issues for other SoCs with that change.
+Add registers to support the 2-port usb2 phy found in RK312x SoC familiy.
 
 Signed-off-by: Alex Bee <knaerzche@gmail.com>
 ---
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 99 +++++++++++++------
- 1 file changed, 70 insertions(+), 29 deletions(-)
+ drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index a0bc10aa7961..a4a1716e67bd 100644
+index a4a1716e67bd..9ea08be533cc 100644
 --- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
 +++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -116,9 +116,12 @@ struct rockchip_chg_det_reg {
-  * @bvalid_det_en: vbus valid rise detection enable register.
-  * @bvalid_det_st: vbus valid rise detection status register.
-  * @bvalid_det_clr: vbus valid rise detection clear register.
-- * @id_det_en: id detection enable register.
-- * @id_det_st: id detection state register.
-- * @id_det_clr: id detection clear register.
-+ * @idfall_det_en: id detection enable register, falling edge
-+ * @idfall_det_st: id detection state register, falling edge
-+ * @idfall_det_clr: id detection clear register, falling edge
-+ * @idrise_det_en: id detection enable register, rising edge
-+ * @idrise_det_st: id detection state register, rising edge
-+ * @idrise_det_clr: id detection clear register, rising edge
-  * @ls_det_en: linestate detection enable register.
-  * @ls_det_st: linestate detection state register.
-  * @ls_det_clr: linestate detection clear register.
-@@ -133,9 +136,12 @@ struct rockchip_usb2phy_port_cfg {
- 	struct usb2phy_reg	bvalid_det_en;
- 	struct usb2phy_reg	bvalid_det_st;
- 	struct usb2phy_reg	bvalid_det_clr;
--	struct usb2phy_reg	id_det_en;
--	struct usb2phy_reg	id_det_st;
--	struct usb2phy_reg	id_det_clr;
-+	struct usb2phy_reg	idfall_det_en;
-+	struct usb2phy_reg	idfall_det_st;
-+	struct usb2phy_reg	idfall_det_clr;
-+	struct usb2phy_reg	idrise_det_en;
-+	struct usb2phy_reg	idrise_det_st;
-+	struct usb2phy_reg	idrise_det_clr;
- 	struct usb2phy_reg	ls_det_en;
- 	struct usb2phy_reg	ls_det_st;
- 	struct usb2phy_reg	ls_det_clr;
-@@ -429,15 +435,27 @@ static int rockchip_usb2phy_init(struct phy *phy)
- 			if (ret)
- 				goto out;
+@@ -1374,6 +1374,53 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
+ 	return ret;
+ }
  
--			/* clear id status and enable id detect irq */
-+			/* clear id status and enable id detect irqs */
- 			ret = property_enable(rphy->grf,
--					      &rport->port_cfg->id_det_clr,
-+					      &rport->port_cfg->idfall_det_clr,
- 					      true);
- 			if (ret)
- 				goto out;
- 
- 			ret = property_enable(rphy->grf,
--					      &rport->port_cfg->id_det_en,
-+					      &rport->port_cfg->idrise_det_clr,
-+					      true);
-+			if (ret)
-+				goto out;
++static const struct rockchip_usb2phy_cfg rk3128_phy_cfgs[] = {
++	{
++		.reg = 0x17c,
++		.num_ports	= 2,
++		.clkout_ctl	= { 0x0190, 15, 15, 1, 0 },
++		.port_cfgs	= {
++			[USB2PHY_PORT_OTG] = {
++				.phy_sus	= { 0x017c, 8, 0, 0, 0x1d1 },
++				.bvalid_det_en	= { 0x017c, 14, 14, 0, 1 },
++				.bvalid_det_st	= { 0x017c, 15, 15, 0, 1 },
++				.bvalid_det_clr	= { 0x017c, 15, 15, 0, 1 },
++				.idfall_det_en  = { 0x01a0, 2, 2, 0, 1 },
++				.idfall_det_st  = { 0x01a0, 3, 3, 0, 1 },
++				.idfall_det_clr = { 0x01a0, 3, 3, 0, 1 },
++				.idrise_det_en  = { 0x01a0, 0, 0, 0, 1 },
++				.idrise_det_st  = { 0x01a0, 1, 1, 0, 1 },
++				.idrise_det_clr = { 0x01a0, 1, 1, 0, 1 },
++				.ls_det_en	= { 0x017c, 12, 12, 0, 1 },
++				.ls_det_st	= { 0x017c, 13, 13, 0, 1 },
++				.ls_det_clr	= { 0x017c, 13, 13, 0, 1 },
++				.utmi_bvalid	= { 0x014c, 5, 5, 0, 1 },
++				.utmi_id	= { 0x014c, 8, 8, 0, 1 },
++				.utmi_ls	= { 0x014c, 7, 6, 0, 1 },
++			},
++			[USB2PHY_PORT_HOST] = {
++				.phy_sus	= { 0x0194, 8, 0, 0, 0x1d1 },
++				.ls_det_en	= { 0x0194, 14, 14, 0, 1 },
++				.ls_det_st	= { 0x0194, 15, 15, 0, 1 },
++				.ls_det_clr	= { 0x0194, 15, 15, 0, 1 }
++			}
++		},
++		.chg_det = {
++			.opmode		= { 0x017c, 3, 0, 5, 1 },
++			.cp_det		= { 0x02c0, 6, 6, 0, 1 },
++			.dcp_det	= { 0x02c0, 5, 5, 0, 1 },
++			.dp_det		= { 0x02c0, 7, 7, 0, 1 },
++			.idm_sink_en	= { 0x0184, 8, 8, 0, 1 },
++			.idp_sink_en	= { 0x0184, 7, 7, 0, 1 },
++			.idp_src_en	= { 0x0184, 9, 9, 0, 1 },
++			.rdm_pdwn_en	= { 0x0184, 10, 10, 0, 1 },
++			.vdm_src_en	= { 0x0184, 12, 12, 0, 1 },
++			.vdp_src_en	= { 0x0184, 11, 11, 0, 1 },
++		},
++	},
++	{ /* sentinel */ }
++};
 +
-+			ret = property_enable(rphy->grf,
-+					      &rport->port_cfg->idfall_det_en,
-+					      true);
-+			if (ret)
-+				goto out;
-+
-+			ret = property_enable(rphy->grf,
-+					      &rport->port_cfg->idrise_det_en,
- 					      true);
- 			if (ret)
- 				goto out;
-@@ -944,11 +962,16 @@ static irqreturn_t rockchip_usb2phy_id_irq(int irq, void *data)
- 	struct rockchip_usb2phy *rphy = dev_get_drvdata(rport->phy->dev.parent);
- 	bool id;
+ static const struct rockchip_usb2phy_cfg rk3228_phy_cfgs[] = {
+ 	{
+ 		.reg = 0x760,
+@@ -1749,6 +1796,7 @@ static const struct rockchip_usb2phy_cfg rv1108_phy_cfgs[] = {
  
--	if (!property_enabled(rphy->grf, &rport->port_cfg->id_det_st))
-+	if (!property_enabled(rphy->grf, &rport->port_cfg->idfall_det_st) &&
-+	    !property_enabled(rphy->grf, &rport->port_cfg->idrise_det_st))
- 		return IRQ_NONE;
- 
- 	/* clear id detect irq pending status */
--	property_enable(rphy->grf, &rport->port_cfg->id_det_clr, true);
-+	if (property_enabled(rphy->grf, &rport->port_cfg->idfall_det_st))
-+		property_enable(rphy->grf, &rport->port_cfg->idfall_det_clr, true);
-+
-+	if (property_enabled(rphy->grf, &rport->port_cfg->idrise_det_st))
-+		property_enable(rphy->grf, &rport->port_cfg->idrise_det_clr, true);
- 
- 	id = property_enabled(rphy->grf, &rport->port_cfg->utmi_id);
- 	extcon_set_state_sync(rphy->edev, EXTCON_USB_HOST, !id);
-@@ -1362,9 +1385,12 @@ static const struct rockchip_usb2phy_cfg rk3228_phy_cfgs[] = {
- 				.bvalid_det_en	= { 0x0680, 3, 3, 0, 1 },
- 				.bvalid_det_st	= { 0x0690, 3, 3, 0, 1 },
- 				.bvalid_det_clr	= { 0x06a0, 3, 3, 0, 1 },
--				.id_det_en	= { 0x0680, 6, 5, 0, 3 },
--				.id_det_st	= { 0x0690, 6, 5, 0, 3 },
--				.id_det_clr	= { 0x06a0, 6, 5, 0, 3 },
-+				.idfall_det_en	= { 0x0680, 6, 6, 0, 1 },
-+				.idfall_det_st	= { 0x0690, 6, 6, 0, 1 },
-+				.idfall_det_clr	= { 0x06a0, 6, 6, 0, 1 },
-+				.idrise_det_en	= { 0x0680, 5, 5, 0, 1 },
-+				.idrise_det_st	= { 0x0690, 5, 5, 0, 1 },
-+				.idrise_det_clr	= { 0x06a0, 5, 5, 0, 1 },
- 				.ls_det_en	= { 0x0680, 2, 2, 0, 1 },
- 				.ls_det_st	= { 0x0690, 2, 2, 0, 1 },
- 				.ls_det_clr	= { 0x06a0, 2, 2, 0, 1 },
-@@ -1425,9 +1451,12 @@ static const struct rockchip_usb2phy_cfg rk3308_phy_cfgs[] = {
- 				.bvalid_det_en	= { 0x3020, 3, 2, 0, 3 },
- 				.bvalid_det_st	= { 0x3024, 3, 2, 0, 3 },
- 				.bvalid_det_clr = { 0x3028, 3, 2, 0, 3 },
--				.id_det_en	= { 0x3020, 5, 4, 0, 3 },
--				.id_det_st	= { 0x3024, 5, 4, 0, 3 },
--				.id_det_clr	= { 0x3028, 5, 4, 0, 3 },
-+				.idfall_det_en	= { 0x3020, 5, 5, 0, 1 },
-+				.idfall_det_st	= { 0x3024, 5, 5, 0, 1 },
-+				.idfall_det_clr = { 0x3028, 5, 5, 0, 1 },
-+				.idrise_det_en	= { 0x3020, 4, 4, 0, 1 },
-+				.idrise_det_st	= { 0x3024, 4, 4, 0, 1 },
-+				.idrise_det_clr = { 0x3028, 4, 4, 0, 1 },
- 				.ls_det_en	= { 0x3020, 0, 0, 0, 1 },
- 				.ls_det_st	= { 0x3024, 0, 0, 0, 1 },
- 				.ls_det_clr	= { 0x3028, 0, 0, 0, 1 },
-@@ -1472,9 +1501,12 @@ static const struct rockchip_usb2phy_cfg rk3328_phy_cfgs[] = {
- 				.bvalid_det_en	= { 0x0110, 3, 2, 0, 3 },
- 				.bvalid_det_st	= { 0x0114, 3, 2, 0, 3 },
- 				.bvalid_det_clr = { 0x0118, 3, 2, 0, 3 },
--				.id_det_en	= { 0x0110, 5, 4, 0, 3 },
--				.id_det_st	= { 0x0114, 5, 4, 0, 3 },
--				.id_det_clr	= { 0x0118, 5, 4, 0, 3 },
-+				.idfall_det_en	= { 0x0110, 5, 5, 0, 1 },
-+				.idfall_det_st	= { 0x0114, 5, 5, 0, 1 },
-+				.idfall_det_clr = { 0x0118, 5, 5, 0, 1 },
-+				.idrise_det_en	= { 0x0110, 4, 4, 0, 1 },
-+				.idrise_det_st	= { 0x0114, 4, 4, 0, 1 },
-+				.idrise_det_clr = { 0x0118, 4, 4, 0, 1 },
- 				.ls_det_en	= { 0x0110, 0, 0, 0, 1 },
- 				.ls_det_st	= { 0x0114, 0, 0, 0, 1 },
- 				.ls_det_clr	= { 0x0118, 0, 0, 0, 1 },
-@@ -1538,9 +1570,12 @@ static const struct rockchip_usb2phy_cfg rk3399_phy_cfgs[] = {
- 				.bvalid_det_en	= { 0xe3c0, 3, 3, 0, 1 },
- 				.bvalid_det_st	= { 0xe3e0, 3, 3, 0, 1 },
- 				.bvalid_det_clr	= { 0xe3d0, 3, 3, 0, 1 },
--				.id_det_en	= { 0xe3c0, 5, 4, 0, 3 },
--				.id_det_st	= { 0xe3e0, 5, 4, 0, 3 },
--				.id_det_clr	= { 0xe3d0, 5, 4, 0, 3 },
-+				.idfall_det_en	= { 0xe3c0, 5, 5, 0, 1 },
-+				.idfall_det_st	= { 0xe3e0, 5, 5, 0, 1 },
-+				.idfall_det_clr	= { 0xe3d0, 5, 5, 0, 1 },
-+				.idrise_det_en	= { 0xe3c0, 4, 4, 0, 1 },
-+				.idrise_det_st	= { 0xe3e0, 4, 4, 0, 1 },
-+				.idrise_det_clr	= { 0xe3d0, 4, 4, 0, 1 },
- 				.utmi_avalid	= { 0xe2ac, 7, 7, 0, 1 },
- 				.utmi_bvalid	= { 0xe2ac, 12, 12, 0, 1 },
- 				.utmi_id	= { 0xe2ac, 8, 8, 0, 1 },
-@@ -1577,9 +1612,12 @@ static const struct rockchip_usb2phy_cfg rk3399_phy_cfgs[] = {
- 				.bvalid_det_en  = { 0xe3c0, 8, 8, 0, 1 },
- 				.bvalid_det_st  = { 0xe3e0, 8, 8, 0, 1 },
- 				.bvalid_det_clr = { 0xe3d0, 8, 8, 0, 1 },
--				.id_det_en	= { 0xe3c0, 10, 9, 0, 3 },
--				.id_det_st	= { 0xe3e0, 10, 9, 0, 3 },
--				.id_det_clr	= { 0xe3d0, 10, 9, 0, 3 },
-+				.idfall_det_en	= { 0xe3c0, 10, 10, 0, 1 },
-+				.idfall_det_st	= { 0xe3e0, 10, 10, 0, 1 },
-+				.idfall_det_clr	= { 0xe3d0, 10, 10, 0, 1 },
-+				.idrise_det_en	= { 0xe3c0, 9, 9, 0, 1 },
-+				.idrise_det_st	= { 0xe3e0, 9, 9, 0, 1 },
-+				.idrise_det_clr	= { 0xe3d0, 9, 9, 0, 1 },
- 				.utmi_avalid	= { 0xe2ac, 10, 10, 0, 1 },
- 				.utmi_bvalid    = { 0xe2ac, 16, 16, 0, 1 },
- 				.utmi_id	= { 0xe2ac, 11, 11, 0, 1 },
-@@ -1608,9 +1646,12 @@ static const struct rockchip_usb2phy_cfg rk3568_phy_cfgs[] = {
- 				.bvalid_det_en	= { 0x0080, 3, 2, 0, 3 },
- 				.bvalid_det_st	= { 0x0084, 3, 2, 0, 3 },
- 				.bvalid_det_clr = { 0x0088, 3, 2, 0, 3 },
--				.id_det_en	= { 0x0080, 5, 4, 0, 3 },
--				.id_det_st	= { 0x0084, 5, 4, 0, 3 },
--				.id_det_clr	= { 0x0088, 5, 4, 0, 3 },
-+				.idfall_det_en	= { 0x0080, 5, 5, 0, 1 },
-+				.idfall_det_st	= { 0x0084, 5, 5, 0, 1 },
-+				.idfall_det_clr	= { 0x0088, 5, 5, 0, 1 },
-+				.idrise_det_en	= { 0x0080, 4, 4, 0, 1 },
-+				.idrise_det_st	= { 0x0084, 4, 4, 0, 1 },
-+				.idrise_det_clr	= { 0x0088, 4, 4, 0, 1 },
- 				.utmi_avalid	= { 0x00c0, 10, 10, 0, 1 },
- 				.utmi_bvalid	= { 0x00c0, 9, 9, 0, 1 },
- 				.utmi_id	= { 0x00c0, 6, 6, 0, 1 },
+ static const struct of_device_id rockchip_usb2phy_dt_match[] = {
+ 	{ .compatible = "rockchip,px30-usb2phy", .data = &rk3328_phy_cfgs },
++	{ .compatible = "rockchip,rk3128-usb2phy", .data = &rk3128_phy_cfgs },
+ 	{ .compatible = "rockchip,rk3228-usb2phy", .data = &rk3228_phy_cfgs },
+ 	{ .compatible = "rockchip,rk3308-usb2phy", .data = &rk3308_phy_cfgs },
+ 	{ .compatible = "rockchip,rk3328-usb2phy", .data = &rk3328_phy_cfgs },
 -- 
 2.42.0
 
