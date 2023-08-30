@@ -2,168 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EE4B78D9E8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D26ED78D9BB
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233795AbjH3Se2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41746 "EHLO
+        id S233105AbjH3SeA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Aug 2023 14:34:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244722AbjH3NtZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:49:25 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08A9E8;
-        Wed, 30 Aug 2023 06:49:18 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37UDmsSH069738;
-        Wed, 30 Aug 2023 08:48:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1693403334;
-        bh=k3G+QCd0qq+SmUmXwQ1w+6uf1+2cGUO++sEcK3YjTPM=;
-        h=From:To:CC:Subject:In-Reply-To:References:Date;
-        b=iz8aBw26EMlFJ3f4qOvXvi5WCcONePsIYPOQ75mdUaRjlqzKVcBpjiB17nxzgktvq
-         0+sKBr1nJV3xEyNPx43OCQyCcum61cZeOIvnRjplbzQVdDRgJkLOQI6bKDwFr7n7HU
-         8ojsmayw0NReO5596uAOaoeVnn+vpuX/mtnrIxDg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37UDmssS019352
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 30 Aug 2023 08:48:54 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
- Aug 2023 08:48:54 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 30 Aug 2023 08:48:54 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37UDmrha038381;
-        Wed, 30 Aug 2023 08:48:54 -0500
-From:   Kamlesh Gurudasani <kamlesh@ti.com>
-To:     Eric Biggers <ebiggers@kernel.org>
-CC:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>, <kamlesh@ti.com>
-Subject: Re: [EXTERNAL] Re: [EXTERNAL] Re: [PATCH v2 0/6] Add support for
- Texas Instruments MCRC64 engine
-In-Reply-To: <20230822051710.GC1661@sol.localdomain>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230812030116.GF971@sol.localdomain>
- <87h6owen39.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
- <20230822051710.GC1661@sol.localdomain>
-Date:   Wed, 30 Aug 2023 19:18:53 +0530
-Message-ID: <87v8cwd4je.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+        with ESMTP id S244761AbjH3NzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:55:13 -0400
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97F8E8;
+        Wed, 30 Aug 2023 06:55:10 -0700 (PDT)
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5711d5dac14so1321236eaf.0;
+        Wed, 30 Aug 2023 06:55:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693403710; x=1694008510;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XZv8/1ddCjCFIB4WUHiW7nPhVXBzPUUn+j0xqd454kk=;
+        b=Vtna5FpTuYaCEuzZVcNgHMaezQwHUcFOvevAmukX0h5fkZWKHmIfPFlD5jDcYi1NIF
+         LSLVbgqyI5/LPMRqhgzUu6uRhrpuyo4SxqDgTRUAQDYeJpWT3qf0Tx0wSB1d51NrlUVP
+         TUD+GA9SzE7x7pFAoPYHCgG+blkJHAzy9EWQVyANplDav3S2xpfMZZDFPt7/1wdizfeP
+         VRd0kk8QdXrnL7CI7GKxr6/X3NcUQNAk48vukK5vbzsi1BJu62cI/pLjnonnYwjqhYkp
+         XOY+TCLsTlbuPW4Hgk3rrVsyCq+k2g0VeqqQlhfvDRtaEQ5v6V/GJUZcQC40xIWrhpKH
+         WJMQ==
+X-Gm-Message-State: AOJu0YwUwJ8xGOrl/Anoqj9EGLjuK5Fm1HNCIOS2gCxdq2R0GvKODjtq
+        lTnzCSiROxrud2HNJZiuQ0f6qe+qOxzlliaqVX8=
+X-Google-Smtp-Source: AGHT+IFkOfV/Y+byHhRZ0TCeaZuJhHV1eq6BIDMnfnES1FFM8rzU+/3+pvEiV76Mpklm3B0fccCb50WWmh1nPBGK3xk=
+X-Received: by 2002:a4a:bd8f:0:b0:573:2a32:6567 with SMTP id
+ k15-20020a4abd8f000000b005732a326567mr2133213oop.0.1693403710232; Wed, 30 Aug
+ 2023 06:55:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230829194200.1901988-1-festevam@gmail.com> <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
+ <c5d72559-4a97-c865-e51e-855d2bc1edee@linaro.org>
+In-Reply-To: <c5d72559-4a97-c865-e51e-855d2bc1edee@linaro.org>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Wed, 30 Aug 2023 15:54:58 +0200
+Message-ID: <CAJZ5v0gexPEV2M5kfgCEUti=EE+_oR+wUjRboo0Rh=fPfNeDew@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: thermal-zones: Document critical-action
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org,
+        amitk@kernel.org, rui.zhang@intel.com, linux-pm@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Eric Biggers <ebiggers@kernel.org> writes:
-
-> On Fri, Aug 18, 2023 at 02:36:34PM +0530, Kamlesh Gurudasani wrote:
->> Hi Eric,
->> 
->> We are more interested in offload than performance, with splice system
->> call and DMA mode in driver(will be implemented after this series gets
->> merged), good amount of cpu cycles will be saved.
+On Wed, Aug 30, 2023 at 3:07 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> So it's for power usage, then?  Or freeing up CPU for other tasks?
+> On 30/08/2023 13:37, Rafael J. Wysocki wrote:
+> > On Tue, Aug 29, 2023 at 9:42 PM Fabio Estevam <festevam@gmail.com> wrote:
+> >>
+> >> From: Fabio Estevam <festevam@denx.de>
+> >>
+> >> Document the critical-action property to describe the thermal action
+> >> the OS should perform after the critical temperature is reached.
+> >>
+> >> The possible values are "shutdown" and "reboot".
+> >>
+> >> The motivation for introducing the critical-action property is that
+> >> different systems may need different thermal actions when the critical
+> >> temperature is reached.
+> >>
+> >> For example, a desktop PC may want the OS to trigger a shutdown
+> >> when the critical temperature is reached.
+> >>
+> >> However, in some embedded cases, such behavior does not suit well,
+> >> as the board may be unattended in the field and rebooting may be a
+> >> better approach.
+> >>
+> >> The bootloader may also benefit from this new property as it can check
+> >> the SoC temperature and in case the temperature is above the critical
+> >> point, it can trigger a shutdown or reboot accordingly.
+> >>
+> >> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> >> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >> ---
+> >> Changes since v4:
+> >> - None.
+> >>
+> >>  .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
+> >>  1 file changed, 9 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> >> index 4f3acdc4dec0..c2e4d28f885b 100644
+> >> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> >> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> >> @@ -75,6 +75,15 @@ patternProperties:
+> >>            framework and assumes that the thermal sensors in this zone
+> >>            support interrupts.
+> >>
+> >> +      critical-action:
+> >> +        $ref: /schemas/types.yaml#/definitions/string
+> >> +        description:
+> >> +          The action the OS should perform after the critical temperature is reached.
+> >> +
+> >> +        enum:
+> >> +          - shutdown
+> >> +          - reboot
+> >> +
+> >>        thermal-sensors:
+> >>          $ref: /schemas/types.yaml#/definitions/phandle-array
+> >>          maxItems: 1
+> >> --
+> >
+> > I'm wondering if this should be a bool property called
+> > "critical-reboot", say, which when present would mean to carry out a
+> > reboot instead of a shutdown in an emergency.
+> >
+> > As defined above, the "shutdown" value is simply redundant, because
+> > the code will effectively convert any other value to "shutdown"
+> > anyway.
 >
+> We covered this at v1. Bool does not allow this property to change in
+> the future, e.g. for a third mode. And how would you change the action
+> to shutdown if default action in the system was reboot?
 
-It's for freeing up CPU for other tasks
+Well, as a matter of fact, it isn't, so I'm not sure where this is going.
 
->> There is one more mode(auto mode) in mcrc64 which helps to verify crc64
->> values against pre calculated crc64, saving the efforts of comparing in
->> userspace.
->
-> Is there any path forward to actually support this?
->
->> 
->> Current generic implementation of crc64-iso(part of this series)
->> gives 173 Mb/s of speed as opposed to mcrc64 which gives speed of 812
->> Mb/s when tested with tcrypt.
->
-> This doesn't answer my question, which to reiterate was:
->
->     How does performance compare to a properly optimized software CRC
->     implementation on your platform, i.e. an implementation using carryless
->     multiplication instructions (e.g. ARMv8 CE) if available on your platform,
->     otherwise an implementation using the slice-by-8 or slice-by-16 method?
->
-> The implementation you tested was slice-by-1.  Compared to that, it's common for
-> slice-by-8 to speed up CRCs by about 4 times and for folding with carryless
-> multiplication to speed up CRCs by 10-30 times, sometimes limited only by memory
-> bandwidth.  I don't know what specific results you would get on your specific
-> CPU and for this specific CRC, and you could certainly see something different
-> if you e.g. have some low-end embedded CPU.  But those are the typical results
-> I've seen for other CRCs on different CPUs.  So, a software implementation may
-> be more attractive than you realize.  It could very well be the case that a
-> PMULL based CRC implementation actually ends up with less CPU load than your
-> "hardware offload", when taking into syscall, algif_hash, and driver overhead...
->
-> - Eric
+Bool definitely allows the property to be not present, which means
+that the default behavior is intended and this is all about overriding
+a known default behavior.
 
-Hi Eric, thanks for your detailed and valuable inputs.
-
-As per your suggestion, we did some profiling. 
-
-Use case is to calculate crc32/crc64 for file input from user space.
-
-Instead of directly implementing PMULL based CRC64, we made first comparison between 
-Case 1.
-CRC32 (splice() + kernel space SW driver) 
-https://gist.github.com/ti-kamlesh/5be75dbde292e122135ddf795fad9f21
-
-Case 2.
-CRC32(mmap() + userspace armv8 crc32 instruction implementation)
-(tried read() as well to get contents of file, but that lost to mmap() so not mentioning number here)
-https://gist.github.com/ti-kamlesh/002df094dd522422c6cb62069e15c40d
-
-Case 3.
-CRC64 (splice() + MCRC64 HW)
-https://gist.github.com/ti-kamlesh/98b1fc36c9a7c3defcc2dced4136b8a0
-
-
-Overall, overhead of userspace + af_alg + driver in (Case 1) and ( Case 3) is ~0.025s, which is constant for any file size.
-This is calculated using real time to calculate crc  - driver time (time spend inside init() + update() +final()) = overhead ~0.025s    
-
-Here, if we consider similar numbers for crc64 PMULL implementation as crc32 (case 2) , we save good number of cpu cycles using mcrc64
-in case of files bigger than 5-10mb as most of the time is being spent in HW offload.
-
-+-------------------+-----------------------------+-----------------------+------------------------+------------------------+
-|                   |                             |                       |                        |                        |
-| File size         | 120mb(ideal size for us)    | 20mb                  | 15mb                   | 5mb                    |
-+===================+=============================+=======================+========================+========================+
-|                   |                             |                       |                        |                        |
-| CRC32 (Case 1)    | Driver time 0.155s          | Driver time 0.0325s   | Driver time 0.019s     | Driver time 0.0062s    |
-|                   |    real time 0.18s          |    real time 0.06s    |    real time 0.04s     |    real time 0.03s     |
-|                   |    overhead 0.025s          |    overhead 0.025s    |    overhead 0.021s     |    overhead ~0.023s    |
-+-------------------+-----------------------------+-----------------------+------------------------+------------------------+
-|                   |                             |                       |                        |                        |
-| CRC32 (Case 2)    | Real time 0.30s             | Real time 0.05s       | Real time 0.04s        | Real time 0.02s        |
-+-------------------+-----------------------------+-----------------------+------------------------+------------------------+
-|                   |                             |                       |                        |                        |
-| CRC64 (Case 3)    | Driver time   0.385s        | Driver time 0.0665s   | Driver time 0.0515s    | Driver time 0.019s     |
-|                   |    real time 0.41s          |    real time 0.09s    |    real time 0.08s     |    real time 0.04s     |
-|                   |    overhead 0.025s          |    overhead 0.025s    |    overhead ~0.025s    |    overhead ~0.021s    |
-+-------------------+-----------------------------+-----------------------+------------------------+------------------------+
+Anyway, if the maintainers of DT bindings are fine with the current
+definition, I'm not going to block this.  I just wanted to make a note
+that it wasn't looking particularly straightforward to me.
