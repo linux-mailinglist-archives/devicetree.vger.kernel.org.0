@@ -2,75 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97F6078D9FB
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3943A78D9B0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232396AbjH3Sey (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
+        id S236243AbjH3Sdu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241540AbjH3G4v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 02:56:51 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F52219A
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 23:56:45 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-500913779f5so8374845e87.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Aug 2023 23:56:45 -0700 (PDT)
+        with ESMTP id S241708AbjH3HFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 03:05:41 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 942F3CC2
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 00:05:36 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so1183356a12.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 00:05:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693378604; x=1693983404; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693379135; x=1693983935; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FKNC/Ecmczb+pprJRVI/jNOGGup4YFMq8hyWzf6I3EM=;
-        b=WIZ3OTUSveMvOL3e8mB9fiGf40833DgAgSns8ITCk1NuhavzY113ObI2EtVdVLKZwW
-         KJ5Znhbc5YhmbaPQsbM/ynXrLP4jiU68w5mmnJuogg4XdlnIdfzlbMcCVGJuOQG7qEu9
-         f8UPlpchyx5p2pIb2bK7YuqloVQTuj+tQ1UGGjygSDq6UYPOUIZkY+rNH1pXgH0NJO2C
-         d8AySKR2JOXlWe45qmqmspOXqE1USwlKd341A85AcqnSvrbnVu774/ToRcW6/yrhGzmP
-         VZVm5EgHhKNCDBrNoQh0gACbhxSEHNv4U3FSQc1ToeabwFOQLK6UELU7XoL2y5DESWa2
-         unrw==
+        bh=BvAK6jjE3YzRP6mlz2y2Vxt0E/0zHEbo4pXAcUmbFmY=;
+        b=xR3+tphzOq4LAh31HwDyHeEOvhg6YSPDvVC97ovXTOBm+I7dZ6lTGAxsE44dDn+g3l
+         LpQLgURqvPgZw8VBkh2F+WtCUBVIMC9cV+YJH8qKp54WCrGG0ItiZSyIqx9vTIFwUGXl
+         0g8Gvxwtyxvje8eYog3qDthpOIlrRdbZjKIfg12W4MPxrfO/wz/1Yaq1BejhE4gDAYUJ
+         qBGAYAFcQA8hMFWucDkddXau/GoREtJAw74ffqacNubcF0xgOaw/657/M/oJgeIHVSJ9
+         +yoaom1Dlug0k9rIdJ3tGhrJ9wGoQ4ZH2JNeEtD9Ppap9mj0dXzY3hv8+g5EcWVDcdzu
+         ctMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693378604; x=1693983404;
+        d=1e100.net; s=20221208; t=1693379135; x=1693983935;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FKNC/Ecmczb+pprJRVI/jNOGGup4YFMq8hyWzf6I3EM=;
-        b=gZCwacVd+v5ud3sBZ1fR9/e87GN30+gp6aSao+geWXgEq+GdXmttp9z6qETijpDkCS
-         bLEycQpM8BREGR7Bgo+AeFCXUtWBjp0HrPwNOdb/o4Bh+mbV5pQ364562/sIxnL1vi7T
-         dXOF/4rtGOrmlFnmQdqXzOIENBNrt01XtpFwEzOfmccwrl/mVXIri+OXr6fgTFKZSy1s
-         dUz6lyxijVLIEq3UXQ39udg7ZByJkLEcD/6fwrd0x/CFLOmP079bEz1+QaT9JsYZEHNb
-         u5f6B/AXOo/BB2lg34i1+6H6N+96snNt5dWGhBfDo2uLzOgcPBBWloRPTAprXqF8/DOI
-         nDFA==
-X-Gm-Message-State: AOJu0Yzf28jQ5zwDCkdBCXiJZykq1f7O5devKxsaauTO3mZUiBjgRXse
-        zLcvVZUOT957lmyz4DmYBxU9lQ==
-X-Google-Smtp-Source: AGHT+IEkicIQuRpUPzDVnA0JHWBk+8C+LPUAUHJor3ONxVqWsbLcrf8WjtNGb6UOKF8JDaWBm8ZWqA==
-X-Received: by 2002:a2e:8619:0:b0:2bd:10d3:214 with SMTP id a25-20020a2e8619000000b002bd10d30214mr1105105lji.11.1693378603617;
-        Tue, 29 Aug 2023 23:56:43 -0700 (PDT)
+        bh=BvAK6jjE3YzRP6mlz2y2Vxt0E/0zHEbo4pXAcUmbFmY=;
+        b=i+5V1P/bVj1IrTVrXPvEvopm7myDLWEu7sjYM238wWTNk5isc6zh5TZVmr+79LBxHK
+         fHC8CO6dxXXVTu5m+Fk4QKwG1Ev++R6NbK2GJa+8b9sDbW06q+qmHKYeAWDQm4gwRdC7
+         V25RhCTvwosjn9uTMEfmYqHtQ+CxPTF7ikQBaLnd4zEQIp4+CzSe4FAJIX/yZeiqAheN
+         JabP3A1T0CkvzcUyvv7BMraOxipLnWa/k9fWCXR+VhN4onnlUkdFoQ2PBmzfiSZACp/f
+         CVbn/v6wZgNnlvpJB6qK/AavivlJpU2FIFPPRGoyHqG9m72gjKFpYqsM4txJYZp7Riq7
+         7pzw==
+X-Gm-Message-State: AOJu0Yz83+Qw90oY2OK2kSue7ph0TpuIs8DtNmGZRzq9I8fNh5cnSbtY
+        tuAHAUijrgtbAMQB8ik5HNKk7FYxTLwwtWcCk3o=
+X-Google-Smtp-Source: AGHT+IGs9RuawEvgzuln7v19oDV9TpEAvyCRWM8dqn7lFgSkk+mtqzbjb3PtujKk1zwiA5AOyeD2tQ==
+X-Received: by 2002:a17:906:518a:b0:9a2:295a:9bbc with SMTP id y10-20020a170906518a00b009a2295a9bbcmr1415763ejk.37.1693379135039;
+        Wed, 30 Aug 2023 00:05:35 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id fx19-20020a1709069e9300b0098e0a937a6asm6796450ejc.69.2023.08.29.23.56.42
+        by smtp.gmail.com with ESMTPSA id s21-20020a170906355500b0098d2d219649sm6936092eja.174.2023.08.30.00.05.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Aug 2023 23:56:43 -0700 (PDT)
-Message-ID: <03729949-1994-6ce1-253b-886a254ac0af@linaro.org>
-Date:   Wed, 30 Aug 2023 08:56:41 +0200
+        Wed, 30 Aug 2023 00:05:34 -0700 (PDT)
+Message-ID: <6f70a710-c409-23c0-890b-370ccd23e088@linaro.org>
+Date:   Wed, 30 Aug 2023 09:05:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/1] ARM: dts: aspeed: Minerva: Add Facebook Minerva
- (AST2600) BMC
+Subject: Re: [PATCH v4 2/3] dt-bindings: usb: snps,dwc3: Add
+ runtime-suspend-on-usb-suspend property
 Content-Language: en-US
-To:     peteryin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
-        daniel-hsu@quantatw.com
-References: <20230830025133.3756506-1-peteryin.openbmc@gmail.com>
+To:     Elson Serrao <quic_eserrao@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc:     Roger Quadros <rogerq@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+References: <20230814185043.9252-3-quic_eserrao@quicinc.com>
+ <a77403f5-8b99-3012-3843-1999ee8d12ce@linaro.org>
+ <6b27cd55-4e44-7a26-30ff-9692344cae4c@quicinc.com>
+ <31fa930a-51fb-6a7f-300d-e71f6b399eb1@linaro.org>
+ <a0a6c561-6319-00ba-c6db-f1dec9f0f0aa@quicinc.com>
+ <5dfae814-7233-eb1f-cae7-f335e54ce1b6@linaro.org>
+ <cf0227c8-cd02-81b6-9e13-2e7fe6f505f2@kernel.org>
+ <20230826015257.mbogiefsbz5474ft@synopsys.com>
+ <afd4843b-427a-8535-78e2-f81879378371@linaro.org>
+ <969988f6-f01f-0e31-6a98-7d02c5a3a4ad@quicinc.com>
+ <20230830013739.srnh2uyhly66yvu2@synopsys.com>
+ <d30a8d6a-236a-b6eb-76d7-115cc9950ce1@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230830025133.3756506-1-peteryin.openbmc@gmail.com>
+In-Reply-To: <d30a8d6a-236a-b6eb-76d7-115cc9950ce1@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,54 +94,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2023 04:51, peteryin wrote:
-> Add linux device tree entry related to
-> Minerva specific devices connected to BMC SoC.
+On 30/08/2023 06:31, Elson Serrao wrote:
 > 
-> Signed-off-by: peteryin <peteryin.openbmc@gmail.com>
-> ---
-> v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
-> v2 link : https://lore.kernel.org/lkml/9f499fe5-db59-f4c8-6a50-93725b7287fd@linaro.org/
 > 
-> Change log:
+> On 8/29/2023 6:37 PM, Thinh Nguyen wrote:
+>> Just want to clarify, there are dwc3 properties and there are dt binding
+>> properties. Often the case that dt binding matches 1-to-1 with dwc3
+>> driver property. Now, we need to enhance the checkers so that the dwc3
+>> driver property to match cases where it is platform specific and through
+>> compatible string.
+>>
 > 
-> v3:
->     1.Fixed commit description.
->     2.Add sgpio line name to sgpioP.
->     3.Add ipmb debug card bus.
-> 
-> v2:
->     1.Add facebook,minerva-bmc in aspeed.yaml
->     2.Use stdout-path
->     3.Add Makefile
-> 
-> v1:
->     1. Create minerva dts file.
-> 
-> ---
->  .../bindings/arm/aspeed/aspeed.yaml           |   1 +
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 384 ++++++++++++++++++
->  3 files changed, 386 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index fb4ce5df2fa0..9d1b26e7ca6b 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -79,6 +79,7 @@ properties:
->                - facebook,elbert-bmc
->                - facebook,fuji-bmc
->                - facebook,greatlakes-bmc
-> +              - facebook,minerva-bmc
->                - ibm,everest-bmc
->                - ibm,rainier-bmc
->                - ibm,tacoma-bmc
+> Thank you for the clarification Thinh.
+> To confirm, we would need to modify the driver to parse a new compatible 
+> string (say "snps,dwc3-ext-wakeup") and add .data field so that the 
+> driver is aware that this particular platform supports external wakeup 
+> detection.Right ?
 
-Nothing improved here. Checkpatch still complains. Bindings are always
-separate patches.
-
-Also, this patch does not apply to any tree.
+No, it's not then platform specific. You said it depends on each
+platform. Platform is Qualcomm SM8450 for example.
 
 Best regards,
 Krzysztof
