@@ -2,45 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 155A978DA28
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5ED78D9D8
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236871AbjH3Sff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:35:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49142 "EHLO
+        id S237579AbjH3SeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:34:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245284AbjH3PDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 11:03:13 -0400
+        with ESMTP id S245417AbjH3PMC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 11:12:02 -0400
 Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62C361A2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 08:03:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F00B4E8
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 08:11:59 -0700 (PDT)
 Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6c13:6b1b:7366:87c0])
         by michel.telenet-ops.be with bizsmtp
-        id fr352A00s3874jb06r35SN; Wed, 30 Aug 2023 17:03:08 +0200
+        id frBy2A0043874jb06rByNY; Wed, 30 Aug 2023 17:11:58 +0200
 Received: from rox.of.borg ([192.168.97.57])
         by ramsan.of.borg with esmtp (Exim 4.95)
         (envelope-from <geert@linux-m68k.org>)
-        id 1qbMib-0023nS-HN;
-        Wed, 30 Aug 2023 17:03:05 +0200
+        id 1qbMrC-0023oY-5R;
+        Wed, 30 Aug 2023 17:11:58 +0200
 Received: from geert by rox.of.borg with local (Exim 4.95)
         (envelope-from <geert@linux-m68k.org>)
-        id 1qbMin-005LpJ-Dx;
-        Wed, 30 Aug 2023 17:03:05 +0200
+        id 1qbMrO-005Lst-1O;
+        Wed, 30 Aug 2023 17:11:58 +0200
 From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Ricardo Ribalda <ribalda@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+To:     Paul Cercueil <paul@crapouillou.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc:     linux-mips@vger.kernel.org, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] ARM: dts: arm: realview: Fix development chip ROM compatible value
-Date:   Wed, 30 Aug 2023 17:03:04 +0200
-Message-Id: <946079fe606d18b97578db42dd57a31acf38b26a.1693407641.git.geert+renesas@glider.be>
+Subject: [PATCH] mips: dts: ingenic: Remove unneeded probe-type properties
+Date:   Wed, 30 Aug 2023 17:11:55 +0200
+Message-Id: <75d57f5e6dd25d5e8eff1260d289e905bb5cfad2.1693408196.git.geert+renesas@glider.be>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -53,37 +47,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When the development chip ROM was added, the "direct-mapped" compatible
-value was already obsolete.  In addition, the device node lacked the
-accompanying "probe-type" property, causing the old physmap_of_core
-driver to fall back to trying all available probe types.
-Unfortunately this fallback was lost when the DT and pdata cases were
-merged.
+The "probe-type" property was only needed when used with the
+(long obsolete) "direct-mapped" compatible value.
 
-Fix this by using the modern "mtd-rom" compatible value instead.
-
-Fixes: 5c3f5edbe0a1dff3 ("ARM: realview: add flash devices to the PB1176 DTS")
-Fixes: 642b1e8dbed7bbbf ("mtd: maps: Merge physmap_of.c into physmap-core.c")
 Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
-Untested due to lack of hardware.
----
- arch/arm/boot/dts/arm/arm-realview-pb1176.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/mips/boot/dts/ingenic/jz4725b.dtsi | 1 -
+ arch/mips/boot/dts/ingenic/jz4770.dtsi  | 1 -
+ 2 files changed, 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/arm/arm-realview-pb1176.dts b/arch/arm/boot/dts/arm/arm-realview-pb1176.dts
-index efed325af88d206f..d99bac02232b3703 100644
---- a/arch/arm/boot/dts/arm/arm-realview-pb1176.dts
-+++ b/arch/arm/boot/dts/arm/arm-realview-pb1176.dts
-@@ -451,7 +451,7 @@ pb1176_serial3: serial@1010f000 {
+diff --git a/arch/mips/boot/dts/ingenic/jz4725b.dtsi b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
+index acbbe8c4664c110e..c5c5a094c37d2e08 100644
+--- a/arch/mips/boot/dts/ingenic/jz4725b.dtsi
++++ b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
+@@ -366,7 +366,6 @@ bch: ecc-controller@130d0000 {
  
- 		/* Direct-mapped development chip ROM */
- 		pb1176_rom@10200000 {
--			compatible = "direct-mapped";
-+			compatible = "mtd-rom";
- 			reg = <0x10200000 0x4000>;
- 			bank-width = <1>;
- 		};
+ 	rom: memory@1fc00000 {
+ 		compatible = "mtd-rom";
+-		probe-type = "map_rom";
+ 		reg = <0x1fc00000 0x2000>;
+ 
+ 		bank-width = <4>;
+diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi b/arch/mips/boot/dts/ingenic/jz4770.dtsi
+index 9c0099919db7aba9..504e895e916e57bf 100644
+--- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
++++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
+@@ -461,7 +461,6 @@ usb_otg: usb@13440000 {
+ 
+ 	rom: memory@1fc00000 {
+ 		compatible = "mtd-rom";
+-		probe-type = "map_rom";
+ 		reg = <0x1fc00000 0x2000>;
+ 
+ 		bank-width = <4>;
 -- 
 2.34.1
 
