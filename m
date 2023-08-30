@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CDF478E15A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 515E278E1B0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240081AbjH3VXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 17:23:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35014 "EHLO
+        id S243318AbjH3Vzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 17:55:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235160AbjH3VXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:23:10 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BF6EEE
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:22:34 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-4020b88bd03so1098395e9.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:22:33 -0700 (PDT)
+        with ESMTP id S243276AbjH3Vzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:55:36 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 220DBCF0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:55:14 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31c65820134so37773f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:55:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693430485; x=1694035285; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693432421; x=1694037221; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=sqhS2buf3q5lKZs0QgnHq/NuMUrTYmV//7wpqK/hL6c=;
-        b=tUmjC3McsNvT+EFQ5jCHT+veIhheorw2HsZKdV4qlwHxkacr4vomjgU6a2B9aLFDhk
-         Hyz3BlQ7T9bAZ0Cc9n2oj4LK6jy7o+uCiPMPz9lsyls6Egq8SOj2MfZdk/qqpwDl7jrq
-         0yRCAb/kQnVsg517MZYZ8EF59QI7sH/8k28RR59BV2NAi9YdnVUihYz+AXF8fNp5luAB
-         HMDRyvsGsuOO5O+MAXWAL1hmr6lo3Sev+kSme/y0sNPsC/Cpqijh1sVFo+y6NIbRaIho
-         AJW+1SA4zaruRF87+LUQf5XWeitc9ZDElHZK81rJ2Q370WM14p6dx7RizDsuFUAKZR3B
-         wBNA==
+        bh=Y3GFJJ1bfzLehaaeYWZmxq+4HqJybFC3hIxDo2a5s3w=;
+        b=rg7H40KLuYcYUXaVOGSYq4sWGCITLGpDcX9H9khV4G+s7BDHNZl+7c/8UptToA4ASq
+         y2ee53kEwmFedERphxcw0LyxTMwwcOvTJCF/5CMO9E5D2ly4baqe+e+8+78Y4P5VzF1w
+         pUQLgVEgKOF/mJelWeApOqm+WCrOAlvyzb/ay+xbdEiR7abO3i1brbXPaVym/YkjatRo
+         jn1kBoC1C44HAvXLW0Kjngf8RZ58DH77vIqgNPHaqiABDMXLr54m77i98cpAz4SwyexQ
+         GZbfnZK5s6ncNe7aATL8GyMTQ1TQAmR7lj/WHJpuA0AA86PoCEbEtT3a0NxcKQx4jlG3
+         BIiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693430485; x=1694035285;
+        d=1e100.net; s=20221208; t=1693432421; x=1694037221;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sqhS2buf3q5lKZs0QgnHq/NuMUrTYmV//7wpqK/hL6c=;
-        b=GvlwmKV/LfG7FrVcaqh93nPIgJjaH80mhUZ914OR1L4zJ9cVVvcF7WkXZaau0tRyHT
-         C+BhcA22S6LuGKvVQ/ryGlmLuB/U0fMWeuhXXFh9i8wB0XF5czBvYRVdQwxGXoufTWDr
-         y4LVOozO3PbeWJcfpPKmzbtATb3fAY+eP2M+Qe/AmdJtRmfYeJor/Ox6ReVgw+zlM6rX
-         FXZjYSjRHUKHYXRqusyXSOy4qcQ7AwcUUEsEIaysifY0lwDCgqliP09PFIrIigd9YNoa
-         LdbxlxNtSag67Z9cSu0Ne30ScHLOaERqbEykSCJKFqCxBwSLgJLZXCaRtpcize3dWFBu
-         /N2g==
-X-Gm-Message-State: AOJu0YybeuErCHK+LWnPlS0HA6bTrnWOPp/6VflJa9ZkpQvho5Il5UgY
-        Irs3MfFNrlKQjcCfQGxdQsM7QieaE9ESxujtf2TmDw==
-X-Google-Smtp-Source: AGHT+IFYtYpox7ihArAxMld7ZB3Yd1sKfUj50x1GV1gb0SRJFFM1XHVFrLZ2pomZaP6+3hhHlGaWiQ==
-X-Received: by 2002:a2e:9990:0:b0:2bc:dab2:c7dc with SMTP id w16-20020a2e9990000000b002bcdab2c7dcmr2411638lji.47.1693427732218;
-        Wed, 30 Aug 2023 13:35:32 -0700 (PDT)
+        bh=Y3GFJJ1bfzLehaaeYWZmxq+4HqJybFC3hIxDo2a5s3w=;
+        b=igIIx1xlBv6RufGpxg61MXM2PuqxdrVa6eW5Ag4L6FXJP2dYsCRsHYFMwYh1BbVVu/
+         l5CLBxsPTV7O1j5FuO4rgY1pp+NpB+XZVIYpQtyD3eBj4XIy9j6snCZEFin+S0siTHlS
+         3yTZR6X9yujC70c4BchYT9OnZma+pNnhUNXX2jvkWDa2cH+hqvLWP2MYzRnFrTH+pl8T
+         psZ1+FUc0nFocr/Wl2pWhzn8SJQ7huN1jSQylK4u7TgKSu6nz8vd9DxT5NcHDRHvuxzq
+         /nZId30jZc8pAXUqd4Qqi6/W/tt2+JyEliU5H/4RC15hKd7ey3qGLAjnp4p1xTGaqFLN
+         /bOQ==
+X-Gm-Message-State: AOJu0YwYJzDoWvxOv4PJqkedstvSxCloYXDpk7z7NTdkHxg8iOYqth8V
+        8TuY3EHeUsi4NbCGNqUKrJbbyyCUjz/+0E6Y6kWxiQ==
+X-Google-Smtp-Source: AGHT+IH4Z7UrMwAyZU+QqUGLEJoZhWtcSAx2hm7E8zMd7lpC2rhpEwQnFlI4FNEiuWAKjw6WBo1OoA==
+X-Received: by 2002:a2e:95d8:0:b0:2b9:e24d:21f6 with SMTP id y24-20020a2e95d8000000b002b9e24d21f6mr2624039ljh.20.1693427809203;
+        Wed, 30 Aug 2023 13:36:49 -0700 (PDT)
 Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id w8-20020a2e9988000000b002b9f4841913sm2742873lji.1.2023.08.30.13.35.30
+        by smtp.gmail.com with ESMTPSA id w8-20020a2e9988000000b002b9f4841913sm2742873lji.1.2023.08.30.13.36.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 13:35:31 -0700 (PDT)
-Message-ID: <6bcb460b-6deb-4918-9058-67536e0af0ad@linaro.org>
-Date:   Wed, 30 Aug 2023 22:35:29 +0200
+        Wed, 30 Aug 2023 13:36:48 -0700 (PDT)
+Message-ID: <672c7e89-1514-4b7a-a8b7-47f318ec188a@linaro.org>
+Date:   Wed, 30 Aug 2023 22:36:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/7] arm64: dts: qcom: sm8550: Fix up CPU idle states
+Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8550: Mark APPS SMMU as
+ dma-coherent
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -69,8 +70,8 @@ Cc:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org
 References: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org>
- <20230830-topic-8550_dmac2-v1-3-49bb25239fb1@linaro.org>
- <CAA8EJpp7bxq4=i1CMPYvz99ZuKLz+th6zSFhhRhFMjDwGB5Z8Q@mail.gmail.com>
+ <20230830-topic-8550_dmac2-v1-5-49bb25239fb1@linaro.org>
+ <CAA8EJpp2UbiknJ876ccCiSV2hDYdiGVRiQBdAEMM7e9z5OqK3A@mail.gmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -107,11 +108,11 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <CAA8EJpp7bxq4=i1CMPYvz99ZuKLz+th6zSFhhRhFMjDwGB5Z8Q@mail.gmail.com>
+In-Reply-To: <CAA8EJpp2UbiknJ876ccCiSV2hDYdiGVRiQBdAEMM7e9z5OqK3A@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -120,59 +121,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2023 22:13, Dmitry Baryshkov wrote:
-> On Wed, 30 Aug 2023 at 22:04, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+On 30.08.2023 22:04, Dmitry Baryshkov wrote:
+> On Wed, 30 Aug 2023 at 21:32, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >>
->> The idle residency times are largely too low according to the vendor
->> kernel (maybe they came from an earlier release or something), especially
->> for the prime X2 core. Fix them.
->>
->> Fixes: ffc50b2d3828 ("arm64: dts: qcom: Add base SM8550 dtsi")
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8550.dtsi | 32 +++++++++++++++++++++-----------
->>  1 file changed, 21 insertions(+), 11 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> index d115960bdeec..c21ba6afa752 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -283,9 +283,9 @@ LITTLE_CPU_SLEEP_0: cpu-sleep-0-0 {
->>                                 compatible = "arm,idle-state";
->>                                 idle-state-name = "silver-rail-power-collapse";
->>                                 arm,psci-suspend-param = <0x40000004>;
->> -                               entry-latency-us = <800>;
->> +                               entry-latency-us = <550>;
->>                                 exit-latency-us = <750>;
->> -                               min-residency-us = <4090>;
->> +                               min-residency-us = <6700>;
->>                                 local-timer-stop;
->>                         };
->>
->> @@ -294,8 +294,18 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->>                                 idle-state-name = "gold-rail-power-collapse";
->>                                 arm,psci-suspend-param = <0x40000004>;
->>                                 entry-latency-us = <600>;
->> -                               exit-latency-us = <1550>;
->> -                               min-residency-us = <4791>;
->> +                               exit-latency-us = <1300>;
->> +                               min-residency-us = <8136>;
->> +                               local-timer-stop;
->> +                       };
->> +
->> +                       PRIME_CPU_SLEEP_0: cpu-sleep-2-0 {
->> +                               compatible = "arm,idle-state";
->> +                               idle-state-name = "gold-plus-rail-power-collapse";
->> +                               arm,psci-suspend-param = <0x40000004>;
->> +                               entry-latency-us = <500>;
->> +                               exit-latency-us = <1350>;
->> +                               min-residency-us = <7480>;
->>                                 local-timer-stop;
+>> Like on earlier flagship Qualcomm SoCs, the SMMU is dma-coherent.
+>> Mark it as such.
 > 
-> This isn't only fixing the time properties, but also adds the whole
-> new sleep state!
-It does add a "new" sleep state with the exact same parameters,
-the only thing being that it's exclusive to the prime core and
-the only thing that differs is the residencies.
+> On earlier SoCs we marked Adreno SMMU as dma-coherent, not the apps
+> one. Only on sm8250 you've added dma-coherent to the apps smmu.
+Also applies to 83450, perhaps I just haven't sent them yet or
+it's not been merged, don't remember
 
 Konrad
