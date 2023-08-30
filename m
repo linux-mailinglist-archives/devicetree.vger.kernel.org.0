@@ -2,166 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 864BD78DA44
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DCE278DA00
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237137AbjH3Sf5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Aug 2023 14:35:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47466 "EHLO
+        id S235681AbjH3SfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:35:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245590AbjH3Pip (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 11:38:45 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7568B185;
-        Wed, 30 Aug 2023 08:38:41 -0700 (PDT)
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-6bf106fb6a0so988763a34.0;
-        Wed, 30 Aug 2023 08:38:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693409921; x=1694014721;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rhMs9V81K6FB1BimkjzkWIito0Rxj1AsF45fFqPpSDY=;
-        b=VYE0uhUqyPTZphfymf+g8rW9Wg46GN8v8ec4XhEaf8fD9oaN/eaVRmCy5IvrLNUGUu
-         7GprQBbSdqaRCDrT3dfTcUlhnJlENMAYp9+1T6ZIiA04ioxUdCwMAxNL2cRWE/xIQ9wx
-         XkzTQANAmAojQa8amlFiM1FkH/EMV1ImSLRw6aifbaK9Ib6jPG7THjktMiJnRq4WmTJ2
-         S++5Y/Qbsu6NrZ8Ed2Qej/aI1rYdGivTcaFC4wxCkIaAG/VRF2YjNrs5721C7R1U3Erg
-         k5TS8d1rsV2+RUmrFiBo+pZ/B9da3I0SQSpFgi2dMgUUk+DkPr+N8/bQSctE9xKF/y8Z
-         2IgA==
-X-Gm-Message-State: AOJu0YxfN+twBcqUrGV2uA+r0REiozJ0MdzjSJU599Zwv0b4rTEpXhby
-        Rg4m4jl29qsJG6mNMhYSAgCsDg0S25sPCJw8n80=
-X-Google-Smtp-Source: AGHT+IGEievzo3k6W+ScbVtsgWJb9qlrVRVYWsPxxuprgk/UCICWIhG0InifTM3bKHfQPZVb7OFmVgA5k1Ia+lB+YNI=
-X-Received: by 2002:a4a:ca87:0:b0:573:4a72:6ec with SMTP id
- x7-20020a4aca87000000b005734a7206ecmr2478140ooq.1.1693409920640; Wed, 30 Aug
- 2023 08:38:40 -0700 (PDT)
+        with ESMTP id S245710AbjH3P4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 11:56:24 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27645193;
+        Wed, 30 Aug 2023 08:56:22 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37U6pHfg024626;
+        Wed, 30 Aug 2023 10:55:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
+        message-id:date:mime-version:subject:to:cc:references:from
+        :in-reply-to:content-type:content-transfer-encoding; s=
+        PODMain02222019; bh=3dzD33JpTIb1IXTJYjGhku5OWoUY4QPiqST5/HxVc5E=; b=
+        A5P3fCv344ZfEcILzif6wwUNn+lfKIwYlJoH5t2jPJ2XQhLSK5Bw+/Pbn8lzNqsk
+        JlFCvN/YlcUOyMeerHoq7gkZ3YbJUERSYxTFgPbMz7y9Cx92xEeWECrdLG8tOndD
+        dIeZ4kW+FZ8j/dJxTY+IbKBXRo95w2H2p5ZxULjmeOttVk2AhSi0ud28bUcjKrQP
+        yM4wexvPspQvHaUKC7+D7BPmi7CNhuaudWbInhcb+zEdWI/5ZdVRiFtiXUmPyT+l
+        x6oB3bhmv20As4mWjo5Odj7kQQhfUSXg2uFTRltlHhnJjuYQtHM4Pnlyd+pD4TRz
+        sf0gwLwkwbkHec2pgbOShw==
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sqesyd5yy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 30 Aug 2023 10:55:56 -0500 (CDT)
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Wed, 30 Aug
+ 2023 16:55:54 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.37 via Frontend Transport; Wed, 30 Aug 2023 16:55:54 +0100
+Received: from [141.131.145.49] (vkarpovich-ThinkStation-P620.ad.cirrus.com [141.131.145.49])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 8BB6B3561;
+        Wed, 30 Aug 2023 15:55:52 +0000 (UTC)
+Message-ID: <d1ed5bf6-24e7-53d7-512b-ceab9e0a7e3d@opensource.cirrus.com>
+Date:   Wed, 30 Aug 2023 10:55:51 -0500
 MIME-Version: 1.0
-References: <20230829194200.1901988-1-festevam@gmail.com> <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
- <c5d72559-4a97-c865-e51e-855d2bc1edee@linaro.org> <CAJZ5v0gexPEV2M5kfgCEUti=EE+_oR+wUjRboo0Rh=fPfNeDew@mail.gmail.com>
- <88f29c9a-3faf-1470-6865-27f88b135f87@linaro.org>
-In-Reply-To: <88f29c9a-3faf-1470-6865-27f88b135f87@linaro.org>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Wed, 30 Aug 2023 17:38:29 +0200
-Message-ID: <CAJZ5v0hY16=sMUkq=PaX1fVj4beiZv=dG0xaEzvzGkWqRdHZ6g@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: thermal-zones: Document critical-action
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Rafael J. Wysocki" <rafael@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>, daniel.lezcano@linaro.org,
-        amitk@kernel.org, rui.zhang@intel.com, linux-pm@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 4/7] ASoC: cs35l45: Analog PCM Volume and Amplifier Mode
+ controls
+To:     Mark Brown <broonie@kernel.org>
+CC:     James Schulman <james.schulman@cirrus.com>,
+        David Rhodes <david.rhodes@cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230828170525.335671-1-vkarpovi@opensource.cirrus.com>
+ <20230828170525.335671-4-vkarpovi@opensource.cirrus.com>
+ <ZOz35ABAsLYROJ4c@finisterre.sirena.org.uk>
+Content-Language: en-US
+From:   Vlad Karpovich <vkarpovi@opensource.cirrus.com>
+In-Reply-To: <ZOz35ABAsLYROJ4c@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: e2iMeLiTaODRK9vNMFprx6UEquKePOdE
+X-Proofpoint-GUID: e2iMeLiTaODRK9vNMFprx6UEquKePOdE
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-3.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 5:33 PM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+
+On 8/28/23 14:39, Mark Brown wrote:
+> On Mon, Aug 28, 2023 at 12:05:22PM -0500, Vlad Karpovich wrote:
 >
-> On 30/08/2023 15:54, Rafael J. Wysocki wrote:
-> > On Wed, Aug 30, 2023 at 3:07 PM Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/08/2023 13:37, Rafael J. Wysocki wrote:
-> >>> On Tue, Aug 29, 2023 at 9:42 PM Fabio Estevam <festevam@gmail.com> wrote:
-> >>>>
-> >>>> From: Fabio Estevam <festevam@denx.de>
-> >>>>
-> >>>> Document the critical-action property to describe the thermal action
-> >>>> the OS should perform after the critical temperature is reached.
-> >>>>
-> >>>> The possible values are "shutdown" and "reboot".
-> >>>>
-> >>>> The motivation for introducing the critical-action property is that
-> >>>> different systems may need different thermal actions when the critical
-> >>>> temperature is reached.
-> >>>>
-> >>>> For example, a desktop PC may want the OS to trigger a shutdown
-> >>>> when the critical temperature is reached.
-> >>>>
-> >>>> However, in some embedded cases, such behavior does not suit well,
-> >>>> as the board may be unattended in the field and rebooting may be a
-> >>>> better approach.
-> >>>>
-> >>>> The bootloader may also benefit from this new property as it can check
-> >>>> the SoC temperature and in case the temperature is above the critical
-> >>>> point, it can trigger a shutdown or reboot accordingly.
-> >>>>
-> >>>> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> >>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >>>> ---
-> >>>> Changes since v4:
-> >>>> - None.
-> >>>>
-> >>>>  .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
-> >>>>  1 file changed, 9 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> >>>> index 4f3acdc4dec0..c2e4d28f885b 100644
-> >>>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> >>>> @@ -75,6 +75,15 @@ patternProperties:
-> >>>>            framework and assumes that the thermal sensors in this zone
-> >>>>            support interrupts.
-> >>>>
-> >>>> +      critical-action:
-> >>>> +        $ref: /schemas/types.yaml#/definitions/string
-> >>>> +        description:
-> >>>> +          The action the OS should perform after the critical temperature is reached.
-> >>>> +
-> >>>> +        enum:
-> >>>> +          - shutdown
-> >>>> +          - reboot
-> >>>> +
-> >>>>        thermal-sensors:
-> >>>>          $ref: /schemas/types.yaml#/definitions/phandle-array
-> >>>>          maxItems: 1
-> >>>> --
-> >>>
-> >>> I'm wondering if this should be a bool property called
-> >>> "critical-reboot", say, which when present would mean to carry out a
-> >>> reboot instead of a shutdown in an emergency.
-> >>>
-> >>> As defined above, the "shutdown" value is simply redundant, because
-> >>> the code will effectively convert any other value to "shutdown"
-> >>> anyway.
-> >>
-> >> We covered this at v1. Bool does not allow this property to change in
-> >> the future, e.g. for a third mode. And how would you change the action
-> >> to shutdown if default action in the system was reboot?
-> >
-> > Well, as a matter of fact, it isn't, so I'm not sure where this is going.
->
-> It isn't in which system and firmware?
-
-There is a specific default behavior present in the Linux kernel
-today.  The addition of this property isn't going to change it AFAICS.
-
-> Maybe most, but how can you know
-> for sure. Bindings are independent of given OS implementation, thus
-> relying on default OS choice is shortsighted.
-
-So can you point me to any project other than the Linux kernel that
-will support this property once it gets to the DT bindings
-documentation in the kernel source?
-
-> >
-> > Bool definitely allows the property to be not present, which means
-> > that the default behavior is intended and this is all about overriding
-> > a known default behavior.
-> >
-> > Anyway, if the maintainers of DT bindings are fine with the current
-> > definition, I'm not going to block this.  I just wanted to make a note
-> > that it wasn't looking particularly straightforward to me.
->
-> Sure. It has one DT's maintainer Ack (mine) and maybe also Rob will
-> comment on it.
-
-OK
+>> +static int cs35l45_amplifier_mode_put(struct snd_kcontrol *kcontrol,
+>> +				      struct snd_ctl_elem_value *ucontrol)
+>> +{
+>> +	snd_soc_component_enable_pin_unlocked(component, "SPK");
+>> +	snd_soc_dapm_sync_unlocked(dapm);
+>> +	snd_soc_dapm_mutex_unlock(dapm);
+>> +	cs35l45->amplifier_mode = ucontrol->value.integer.value[0];
+>> +	return 0;
+>> +}
+> This should return 1 on change (I did see that there's some code which
+> generates notifications but it would still be better to flag changes
+> here, it makes review a lot easier).
+Thanks. I will update patch.
