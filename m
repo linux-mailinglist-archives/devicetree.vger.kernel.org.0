@@ -2,165 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E49978E08A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DDB578DED0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:13:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238739AbjH3UX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 16:23:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47356 "EHLO
+        id S234007AbjH3UJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 16:09:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238803AbjH3UXP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:23:15 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FB19309F5;
-        Wed, 30 Aug 2023 12:57:31 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37UHsJ26024471;
-        Wed, 30 Aug 2023 14:56:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding:content-type; s=
-        PODMain02222019; bh=cRP2OU2xJab9AmweoY8xGNRQBx+HUUOK+XTV2yweFFU=; b=
-        QbjP289QJcu4jrg/SvBQP8gidbvXfixpDvcUZDveL5DK4/5vrJguURTszwp+mdvC
-        RLThdp+Ue8jS197XrD2eZjNKIvbHaUr2dMcs2u/9pKowPW/VrPIcmJpQ9/nKvaEk
-        hW+36jw7fP2kbg0YwvXPlpuROYULbaL3Hxr3xBWVb5jYsbZFQ5TcyJ0m4C+BPo4b
-        eyOaRve0rX1OP0csyUFz0/paZ/h7HyhGsVFhb3ioGFKgaxcBhlZHo4t6eh1HvZ0L
-        v+4N5ihsi5R/xEkqjtXpm0AGroT5kbYooYXHucRT7vAjxWvSqIdTSonish741REH
-        wra3Fq+ruMQOD8tMPmv07A==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sqesydet9-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 30 Aug 2023 14:56:05 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Wed, 30 Aug
- 2023 20:56:05 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.37 via Frontend Transport; Wed, 30 Aug 2023 20:56:05 +0100
-Received: from vkarpovich-ThinkStation-P620.crystal.cirrus.com (vkarpovich-ThinkStation-P620.ad.cirrus.com [141.131.145.49])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1A71911D4;
-        Wed, 30 Aug 2023 19:56:02 +0000 (UTC)
-From:   Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-To:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-Subject: [PATCH v2 3/4] ASoC: cs35l45: Connect DSP to the monitoring signals
-Date:   Wed, 30 Aug 2023 14:55:35 -0500
-Message-ID: <20230830195536.448884-3-vkarpovi@opensource.cirrus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230830195536.448884-1-vkarpovi@opensource.cirrus.com>
-References: <20230830195536.448884-1-vkarpovi@opensource.cirrus.com>
+        with ESMTP id S241966AbjH3UJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:09:33 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498472D27F;
+        Wed, 30 Aug 2023 13:00:13 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d7485d37283so5782139276.1;
+        Wed, 30 Aug 2023 13:00:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693425552; x=1694030352; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YvBB5LcsItPGIg0EWgsOLnwri4Ho2gDJRdAN+y6MWmg=;
+        b=ESvMtuiaUP814KG4tIB+lvnlhFzkG+FSk8KrmDgt7krHucqCsUO7P6E/K1rJcCchgy
+         FIAoZgpZG+D9CSwoP64p0z0Vh4njj/89jF8PN0Csrpg9fO/7hh3e+3ItJrqSQZ81hO5j
+         pKJBEgkUz8gi7Pvvs6wx7RTMlJ4D9+UM5599cZ4EkVskiDOqSrmFYPHV8u3pPi7PZfT3
+         My0cl71FO+4zo6UWoCSBLMzUHWHITtVGSNxdTecq3oZpQilTnpER3la+J6aAnyxhjSyY
+         hfF3MBpF/pI2Lk1tdSBcI+hEBwCHAkfXEf7VIl+lFsQZ5U+bGf0kqKHfG70MIDOyn9aD
+         f8tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693425552; x=1694030352;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YvBB5LcsItPGIg0EWgsOLnwri4Ho2gDJRdAN+y6MWmg=;
+        b=Mh3io1x42ZZTn7y25T0a4fPxdFLWWHDebjrg7DSTzokXDCCXWkOZf3DJitZiuJbooI
+         JJcOfW/CWLsziE26fZFkiOFPk8IR08ld3+VQudVbpI+iXrOEY70qocr9Dn2UGk0LAXMe
+         4WmQ379OeS7B8+cC7MkGmUdBLOwIiAan2d2SFkkdgoCF8YLajlc7J/e2EerFc57Pxfh+
+         d84NIa1h21yTTt+CUOo4uxbZJ2B04uYwpI7mxqXjPeHL7Wj3GersiI/BoNse1ijfjC9S
+         RBIxESOQDyeGaClduXv+KWOZmVou6UYFvESu6cANVCIg2Bg6XYH9Kzhp822DJhsWU3/1
+         PbcQ==
+X-Gm-Message-State: AOJu0YwvzDHMBCP9+dMAyG1viHX1zg3up8kr8Rao4LhE9xtlXY5Q+isF
+        WMQ8wnaaU94u1W2vgBHI142eApU4cphD1MVlpV0=
+X-Google-Smtp-Source: AGHT+IG5m6A9UTfw4f3ZPN7qJ+0GBiRuVHh3vlhGF1hn8wHOvQrL8tG4URzkQibpiAY4OhUKEdYoE4Sv/QadmpRS+dU=
+X-Received: by 2002:a25:c589:0:b0:d77:ec2f:63b with SMTP id
+ v131-20020a25c589000000b00d77ec2f063bmr3376340ybe.5.1693425552314; Wed, 30
+ Aug 2023 12:59:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: bAlNDHx0cvkKQAhQB-Z6n5JfNcVmyrpq
-X-Proofpoint-GUID: bAlNDHx0cvkKQAhQB-Z6n5JfNcVmyrpq
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        UPPERCASE_50_75 autolearn=no autolearn_force=no version=3.4.6
+References: <20230508114236.8444-1-marex@denx.de> <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
+ <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de>
+In-Reply-To: <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 30 Aug 2023 14:59:00 -0500
+Message-ID: <CAHCN7xKGowhQbBDdnOKgcBptsM1VzD7YJB=ZAbL1Oge4rgnLUg@mail.gmail.com>
+Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Richard Leitner <richard.leitner@skidata.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Link VMON, IMON, TEMPMON, VDD_BSTMON and VDD_BATTMON
-to DSP1. The CSPL firmware uses them for the speaker calibration
-and monitoring.
+On Wed, Aug 30, 2023 at 2:10=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+>
+> On 8/30/23 04:44, Adam Ford wrote:
+>
+> Hi,
+>
+> > I have a question about the clocking for eASRC and PDM.
+> >
+> >> +
+> >> +                       audio_blk_ctrl: clock-controller@30e20000 {
+> >> +                               compatible =3D "fsl,imx8mp-audio-blk-c=
+trl";
+> >> +                               reg =3D <0x30e20000 0x10000>;
+> >> +                               #clock-cells =3D <1>;
+> >> +                               clocks =3D <&clk IMX8MP_CLK_AUDIO_ROOT=
+>,
+> >> +                                        <&clk IMX8MP_CLK_SAI1>,
+> >> +                                        <&clk IMX8MP_CLK_SAI2>,
+> >> +                                        <&clk IMX8MP_CLK_SAI3>,
+> >> +                                        <&clk IMX8MP_CLK_SAI5>,
+> >> +                                        <&clk IMX8MP_CLK_SAI6>,
+> >> +                                        <&clk IMX8MP_CLK_SAI7>;
+> >> +                               clock-names =3D "ahb",
+> >> +                                             "sai1", "sai2", "sai3",
+> >> +                                             "sai5", "sai6", "sai7";
+> >> +                               power-domains =3D <&pgc_audio>;
+> >> +                       };
+> >> +               };
+> >> +
+> >
+> > I am trying to plumb in the micfil driver with a PDM microphone on a
+> > Plus.  I have SAI3 and SAI5 audio working, but if I try to use the
+> > micfil, the PDM clock doesn't get turned on, and the micfil doesn't
+> > appear to see anything coming in.  I was curious why the
+> > audio_blk_ctrl has clock entries for IMX8MP_CLK_SAIx, but there isn't
+> > one for the PDM nor the ASRC clocks.
+>
+> I only ever needed SAI, so that was what was tested on the EVK .
 
-Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
----
- sound/soc/codecs/cs35l45.c | 33 +++++++++++++++++++++++++++------
- sound/soc/codecs/cs35l45.h |  1 +
- 2 files changed, 28 insertions(+), 6 deletions(-)
+That makes sense.
 
-diff --git a/sound/soc/codecs/cs35l45.c b/sound/soc/codecs/cs35l45.c
-index 18e656e72cb3..4abc922ef210 100644
---- a/sound/soc/codecs/cs35l45.c
-+++ b/sound/soc/codecs/cs35l45.c
-@@ -433,17 +433,25 @@ static const struct snd_soc_dapm_widget cs35l45_dapm_widgets[] = {
- 
- 	SND_SOC_DAPM_SIGGEN("VMON_SRC"),
- 	SND_SOC_DAPM_SIGGEN("IMON_SRC"),
-+	SND_SOC_DAPM_SIGGEN("TEMPMON_SRC"),
- 	SND_SOC_DAPM_SIGGEN("VDD_BATTMON_SRC"),
- 	SND_SOC_DAPM_SIGGEN("VDD_BSTMON_SRC"),
- 	SND_SOC_DAPM_SIGGEN("ERR_VOL"),
- 	SND_SOC_DAPM_SIGGEN("AMP_INTP"),
- 	SND_SOC_DAPM_SIGGEN("IL_TARGET"),
--	SND_SOC_DAPM_ADC("VMON", NULL, CS35L45_BLOCK_ENABLES, CS35L45_VMON_EN_SHIFT, 0),
--	SND_SOC_DAPM_ADC("IMON", NULL, CS35L45_BLOCK_ENABLES, CS35L45_IMON_EN_SHIFT, 0),
--	SND_SOC_DAPM_ADC("VDD_BATTMON", NULL, CS35L45_BLOCK_ENABLES,
--			 CS35L45_VDD_BATTMON_EN_SHIFT, 0),
--	SND_SOC_DAPM_ADC("VDD_BSTMON", NULL, CS35L45_BLOCK_ENABLES,
--			 CS35L45_VDD_BSTMON_EN_SHIFT, 0),
-+
-+	SND_SOC_DAPM_SUPPLY("VMON_EN", CS35L45_BLOCK_ENABLES, CS35L45_VMON_EN_SHIFT, 0, NULL, 0),
-+	SND_SOC_DAPM_SUPPLY("IMON_EN", CS35L45_BLOCK_ENABLES, CS35L45_IMON_EN_SHIFT, 0, NULL, 0),
-+	SND_SOC_DAPM_SUPPLY("TEMPMON_EN", CS35L45_BLOCK_ENABLES, CS35L45_TEMPMON_EN_SHIFT, 0, NULL, 0),
-+	SND_SOC_DAPM_SUPPLY("VDD_BATTMON_EN", CS35L45_BLOCK_ENABLES, CS35L45_VDD_BATTMON_EN_SHIFT, 0, NULL, 0),
-+	SND_SOC_DAPM_SUPPLY("VDD_BSTMON_EN", CS35L45_BLOCK_ENABLES, CS35L45_VDD_BSTMON_EN_SHIFT, 0, NULL, 0),
-+
-+	SND_SOC_DAPM_ADC("VMON", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_ADC("IMON", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_ADC("TEMPMON", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_ADC("VDD_BATTMON", NULL, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_ADC("VDD_BSTMON", NULL, SND_SOC_NOPM, 0, 0),
-+
- 
- 	SND_SOC_DAPM_AIF_IN("ASP_RX1", NULL, 0, CS35L45_ASP_ENABLES1, CS35L45_ASP_RX1_EN_SHIFT, 0),
- 	SND_SOC_DAPM_AIF_IN("ASP_RX2", NULL, 1, CS35L45_ASP_ENABLES1, CS35L45_ASP_RX2_EN_SHIFT, 0),
-@@ -503,9 +511,16 @@ static const struct snd_soc_dapm_route cs35l45_dapm_routes[] = {
- 	/* Feedback */
- 	{ "VMON", NULL, "VMON_SRC" },
- 	{ "IMON", NULL, "IMON_SRC" },
-+	{ "TEMPMON", NULL, "TEMPMON_SRC" },
- 	{ "VDD_BATTMON", NULL, "VDD_BATTMON_SRC" },
- 	{ "VDD_BSTMON", NULL, "VDD_BSTMON_SRC" },
- 
-+	{ "VMON", NULL, "VMON_EN" },
-+	{ "IMON", NULL, "IMON_EN" },
-+	{ "TEMPMON", NULL, "TEMPMON_EN" },
-+	{ "VDD_BATTMON", NULL, "VDD_BATTMON_EN" },
-+	{ "VDD_BSTMON", NULL, "VDD_BSTMON_EN" },
-+
- 	{ "Capture", NULL, "ASP_TX1"},
- 	{ "Capture", NULL, "ASP_TX2"},
- 	{ "Capture", NULL, "ASP_TX3"},
-@@ -560,6 +575,12 @@ static const struct snd_soc_dapm_route cs35l45_dapm_routes[] = {
- 	{"DSP1", NULL, "DSP_RX7 Source"},
- 	{"DSP1", NULL, "DSP_RX8 Source"},
- 
-+	{"DSP1", NULL, "VMON_EN"},
-+	{"DSP1", NULL, "IMON_EN"},
-+	{"DSP1", NULL, "VDD_BATTMON_EN"},
-+	{"DSP1", NULL, "VDD_BSTMON_EN"},
-+	{"DSP1", NULL, "TEMPMON_EN"},
-+
- 	{"DSP1 Preload", NULL, "DSP1 Preloader"},
- 	{"DSP1", NULL, "DSP1 Preloader"},
- 
-diff --git a/sound/soc/codecs/cs35l45.h b/sound/soc/codecs/cs35l45.h
-index 16857321d945..e2ebcf58d7e0 100644
---- a/sound/soc/codecs/cs35l45.h
-+++ b/sound/soc/codecs/cs35l45.h
-@@ -165,6 +165,7 @@
- /* BLOCK_ENABLES */
- #define CS35L45_IMON_EN_SHIFT			13
- #define CS35L45_VMON_EN_SHIFT			12
-+#define CS35L45_TEMPMON_EN_SHIFT		10
- #define CS35L45_VDD_BSTMON_EN_SHIFT		9
- #define CS35L45_VDD_BATTMON_EN_SHIFT		8
- #define CS35L45_BST_EN_SHIFT			4
--- 
-2.25.1
+>
+> > I added the MICFIL noted to the
+> > 8mp in a previous patch [1], and I am trying to customize the MICFIL
+> > node as follows:
+> >
+> > &micfil {
+> > #sound-dai-cells =3D <0>;
+> > pinctrl-names =3D "default";
+> > pinctrl-0 =3D <&pinctrl_pdm>;
+> > assigned-clocks =3D <&clk IMX8MP_CLK_PDM>;
+> > assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> > assigned-clock-rates =3D <196608000>;
+> > status =3D "okay";
+> > };
+> >
+> > I also noticed in the down-stream kernel, the pdm_ipg_clk and
+> > pdm_root_clk are shared gates with separate parents.
+> >
+> > The PDM tree of the down-stream kernel looks like this:
+> >   audio_pll1_ref_sel                0        0        0    24000000
+> >       0     0  50000         Y
+> >         audio_pll1                     0        0        0   393216000
+> >          0     0  50000         Y
+> >            audio_pll1_bypass           0        0        0   393216000
+> >          0     0  50000         Y
+> >               audio_pll1_out           0        0        0   393216000
+> >          0     0  50000         N
+> >                  pdm                   0        0        0   196608000
+> >          0     0  50000         N
+> >                     pdm_root           0        0        0   196608000
+> >          0     0  50000         N
+> >                        pdm_sel         0        0        0   196608000
+> >          0     0  50000         Y
+> >                           pdm_root_clk       0        0        0
+> > 196608000          0     0  50000         N
+> >
+> > The PDM tree of the mainline looks like this:
+> >
+> >     audio_pll1_ref_sel                0        0        0    24000000
+> >         0     0  50000         Y
+> >         audio_pll1                     0        0        0   393216000
+> >          0     0  50000         Y
+> >            audio_pll1_bypass           0        0        0   393216000
+> >          0     0  50000         Y
+> >               audio_pll1_out           0        0        0   393216000
+> >          0     0  50000         N
+> >                  pdm                   0        0        0   196608000
+> >          0     0  50000         N
+> >                     pdm_root           0        0        0   196608000
+> >          0     0  50000         N
+> >                        pdm_sel         0        0        0   196608000
+> >          0     0  50000         Y
+> >
+> > It seems like the "pdm_root_clk" generated by the shared audo-blk
+> > down-sream driver is missing from the mainline.  I looked up the clock
+> > I referenced when I attempted to enable the miffil, but
+> > 'IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't appear to be configured in
+> > either clk-imx8mp.c or clk-imx8mp-audiomix.c.  Maybe it's obscured by
+> > the macros, but it seems like the pdm_sel should somehow have an
+> > additional variable for the shared clock and an additional clock like
+> > pdm_root_clk assigned with it.
+> >
+> > I have similar configurations for Mini and Nano, and both of them are
+> > able to record audio, so I think there might be a clock issue
+> > somewhere related to the audiomix driver, and not a misconfiguration
+> > of the sound-card or the micfil itself.
+>
+> Shouldn't the micfil be somehow a consumer of the pdm_sel clock , and
+> enable those clock in the driver ?
 
+Micfil references IMX8MP_CLK_AUDIOMIX_PDM_IPG, and
+IMX8MP_CLK_AUDIOMIX_PDM_ROOT.  I am not convinced the
+IMX8MP_CLK_AUDIOMIX_PDM_ROOT exists beyond a #define in an include
+directory.  I tried making it use pdm_sel, but it threw an error.  I
+am not near my system, so I'm sorry I don't have more details.
+
+In the downstream kernel IMX8MP_CLK_AUDIOMIX_PDM_ROOT was a child of
+pdm_sel, but I am not certain as to what the difference between them
+was since they appeared to be shared.
+
+adam
