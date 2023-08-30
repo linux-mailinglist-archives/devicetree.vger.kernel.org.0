@@ -2,123 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B5EF78DA39
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23E3978D8BC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236207AbjH3Sfu convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Aug 2023 14:35:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55310 "EHLO
+        id S235466AbjH3SbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:31:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243729AbjH3Lha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:37:30 -0400
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45AB0132;
-        Wed, 30 Aug 2023 04:37:27 -0700 (PDT)
-Received: by mail-oo1-f46.google.com with SMTP id 006d021491bc7-56e280cc606so1017378eaf.1;
-        Wed, 30 Aug 2023 04:37:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693395446; x=1694000246;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rTUTk3Lpl4gCYLJGqC5JIdp0R+/wUxfLNRvC3Bl9Oyk=;
-        b=jhSZsFHE1kFOc0j1/toHudDJb6A7vxAO3UejrRlgnexvSWNyXc5CbsOR6B5BAwggWP
-         2467VSyHgHfre3dHGAJ3TDQ2LEOZ+GURza/oF/7dGF/9dEtzyfjD8wAYWUBdJWhD3Ch1
-         z0FGTJOd7tt4GtbEMDMtPR/6FFS/PoNP4QAESV7rZPncaKTuBGgm+pqb+pCqAQ9jvC4/
-         tZlmv0GYRF+pauAl8A4ejl64tieRxn7cf3g203c444OS+OvSQaxuHsnlSfHznitEyfde
-         btHfZk7pD1MR6Xwt1SJR+Sa0z/8vCiA6eSLtDI/RMDJom/YJf9eBnTjiTK2rEvjLJskT
-         DIwg==
-X-Gm-Message-State: AOJu0Yxia1ABGbxpB8ayzaj45wclJYC3cc2MCrulsm+wf1JQajpIvV5f
-        +6OGfE9ixRCgjsY7YRFBq0knawv9T9otPMuf5Ec=
-X-Google-Smtp-Source: AGHT+IHlZDA3G7SJoNMRKYpaeAV/6Lb95d8hTyk9qyO1+USsAQrDYFoAiH1VHloRlIw4UEENBIq6t9KXXKo2c8zhXcU=
-X-Received: by 2002:a4a:a302:0:b0:573:764b:3b8d with SMTP id
- q2-20020a4aa302000000b00573764b3b8dmr1759783ool.0.1693395446528; Wed, 30 Aug
- 2023 04:37:26 -0700 (PDT)
+        with ESMTP id S243732AbjH3Lhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:37:43 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D0E2D2;
+        Wed, 30 Aug 2023 04:37:41 -0700 (PDT)
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37UBbVXX068241;
+        Wed, 30 Aug 2023 06:37:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1693395451;
+        bh=AyNAgQCLIMrc74RIuimykU88eCLuawiFiAk5AvdbM+M=;
+        h=From:To:CC:Subject:Date;
+        b=RkMzR+4YEgpPOvIDzJ8Y4/Aq769iDs3VPRG7o27PYHov3Mvwgsry/59jXsSWVmUi3
+         OsR3m/cdY1kTzfUR0/3vrscL28aezhiPLg54OOJxqMskXLFTnxnFk991iXtP0r2R+g
+         RShTglLCbx1ewah2CoY8zSuFQbi1QbRpAo5kuCzg=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37UBbVAw041765
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Aug 2023 06:37:31 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 30
+ Aug 2023 06:37:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 30 Aug 2023 06:37:30 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37UBbV3i051449;
+        Wed, 30 Aug 2023 06:37:31 -0500
+Received: from localhost (uda0501179.dhcp.ti.com [172.24.227.35])
+        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 37UBbUB5010808;
+        Wed, 30 Aug 2023 06:37:30 -0500
+From:   MD Danish Anwar <danishanwar@ti.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Simon Horman <horms@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+Subject: [RFC PATCH net-next 0/2] Add support for ICSSG on AM64x EVM
+Date:   Wed, 30 Aug 2023 17:07:22 +0530
+Message-ID: <20230830113724.1228624-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230829194200.1901988-1-festevam@gmail.com>
-In-Reply-To: <20230829194200.1901988-1-festevam@gmail.com>
-From:   "Rafael J. Wysocki" <rafael@kernel.org>
-Date:   Wed, 30 Aug 2023 13:37:15 +0200
-Message-ID: <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: thermal-zones: Document critical-action
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
-        rui.zhang@intel.com, linux-pm@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 29, 2023 at 9:42 PM Fabio Estevam <festevam@gmail.com> wrote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> Document the critical-action property to describe the thermal action
-> the OS should perform after the critical temperature is reached.
->
-> The possible values are "shutdown" and "reboot".
->
-> The motivation for introducing the critical-action property is that
-> different systems may need different thermal actions when the critical
-> temperature is reached.
->
-> For example, a desktop PC may want the OS to trigger a shutdown
-> when the critical temperature is reached.
->
-> However, in some embedded cases, such behavior does not suit well,
-> as the board may be unattended in the field and rebooting may be a
-> better approach.
->
-> The bootloader may also benefit from this new property as it can check
-> the SoC temperature and in case the temperature is above the critical
-> point, it can trigger a shutdown or reboot accordingly.
->
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-> Changes since v4:
-> - None.
->
->  .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> index 4f3acdc4dec0..c2e4d28f885b 100644
-> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> @@ -75,6 +75,15 @@ patternProperties:
->            framework and assumes that the thermal sensors in this zone
->            support interrupts.
->
-> +      critical-action:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description:
-> +          The action the OS should perform after the critical temperature is reached.
-> +
-> +        enum:
-> +          - shutdown
-> +          - reboot
-> +
->        thermal-sensors:
->          $ref: /schemas/types.yaml#/definitions/phandle-array
->          maxItems: 1
-> --
+This series adds support for ICSSG driver on AM64x EVM.
 
-I'm wondering if this should be a bool property called
-"critical-reboot", say, which when present would mean to carry out a
-reboot instead of a shutdown in an emergency.
+First patch of the series adds compatible for AM64x EVM in icssg-prueth
+dt binding. Second patch adds support for AM64x compatible in the ICSSG 
+driver.
 
-As defined above, the "shutdown" value is simply redundant, because
-the code will effectively convert any other value to "shutdown"
-anyway.
+This series depends on [1] which is posted as RFC.
+
+[1] https://lore.kernel.org/all/20230830110847.1219515-1-danishanwar@ti.com/
+
+Thanks and Regards,
+Md Danish Anwar
+
+MD Danish Anwar (2):
+  dt-bindings: net: Add compatible for AM64x in ICSSG
+  net: ti: icssg-prueth: Add AM64x icssg support
+
+ Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 1 +
+ drivers/net/ethernet/ti/icssg/icssg_prueth.c               | 5 +++++
+ 2 files changed, 6 insertions(+)
+
+-- 
+2.34.1
+
