@@ -2,319 +2,386 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A919978D8C3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE64078DA12
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235489AbjH3SbN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:31:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48736 "EHLO
+        id S236577AbjH3SfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:35:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243240AbjH3K2c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:28:32 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEEB61B3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:28:27 -0700 (PDT)
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+        with ESMTP id S243248AbjH3KaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:30:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09FFC0;
+        Wed, 30 Aug 2023 03:30:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3F9BA3F660
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 10:28:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1693391306;
-        bh=0x71Jiks4crbLYMF8B7w24UzcWpOCQauPfqR/sxZV0g=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=O2moxJlEmlGdpqFC9Dg3y88GoKiJJYZgseQfhsQs+bR34UCx2sqB4Uv+bV3KurGXG
-         5EED7y/QJbsEF15ym09VC4HxPDsfeLygZU/9tgqqKqf3JGauaUlNDR6+DAmI0elmcB
-         ZCVAgHTT4B1sfY00vdwuJUj2k6ZCqTDteUZjAGHMWlxxjWwCyA2/9+qjkA8f6HqMQl
-         qKsSxfMrK33V8j5aA1idlgGz3DFyqYMRve/TOyYsu6pFhJ8cQ4TcDWr/8rJbIOv3Ot
-         O9agkUZYpGCeklJ62RaKeA3QvWLLZBXTYc49vPVnF8EmizNvcghQy8DadTY8aw3GiG
-         UcPjomT+lRCag==
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-411fc812914so59270711cf.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:28:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693391305; x=1693996105;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0x71Jiks4crbLYMF8B7w24UzcWpOCQauPfqR/sxZV0g=;
-        b=KwgBk93dAhNiNsaYzepRcDQp5UNRM934TOVASeXZsLpmakJbgNGXhL/IaIvV2/GWxH
-         onROhgVM2uw7/W0bMK3GgEF0VQJpqB6OpNBGGFcK7WBM6d31iBR6zv0yElzdUi6Ee0Mr
-         2ZSxtYa2JxYnrjaaZRbrsFaSEIvhPdnbCxhCj6LhVvVgq55IScsrm+MbtOCW9wvEatE3
-         AACiwrxoqxPnepX0Tx5341Cg1kedSdMsxhOUO83UqwRZA9SlHlevzEOmDx1VTZt9UkpK
-         uHLgVs1xiikHbTV0MaK6xF9jpvEsbUkrzUZ3aUsfB2Ag9n7SGS52e9TZNzkS0Zy85PWb
-         YknA==
-X-Gm-Message-State: AOJu0YxHK9qYCQe8LQr/A2mHe6VfZw+demZoa9dQjlvJBb1gwQ/abBt1
-        N/c+kmCfyt0jnx8W6/FvJZ991jJZSVYmCEIZdBcndwjnUF8/yGH05aqLSdhKjm0QDADMGQphQ/Q
-        n77CA2dcRdygu1513Ly7bRo1SJXo92gWDQqCLXI1tA0v+lFnf111tMOQ=
-X-Received: by 2002:ac8:4e89:0:b0:403:e958:b456 with SMTP id 9-20020ac84e89000000b00403e958b456mr2057147qtp.19.1693391305194;
-        Wed, 30 Aug 2023 03:28:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHUywKtZ9QBvF7SXkZ/+FtfBV0akTc4+5p56GkjMS3vEHZ1SMFeY9wEQ5cijc1CJI92RxPk+2KWSd+Z7E9kvN8=
-X-Received: by 2002:ac8:4e89:0:b0:403:e958:b456 with SMTP id
- 9-20020ac84e89000000b00403e958b456mr2057124qtp.19.1693391304908; Wed, 30 Aug
- 2023 03:28:24 -0700 (PDT)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 483126236B;
+        Wed, 30 Aug 2023 10:30:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 835A5C433C8;
+        Wed, 30 Aug 2023 10:30:14 +0000 (UTC)
+Message-ID: <393ee19f-22a3-d309-11ba-51710015b518@xs4all.nl>
+Date:   Wed, 30 Aug 2023 12:30:13 +0200
 MIME-Version: 1.0
-References: <20230830031846.127957-1-william.qiu@starfivetech.com> <20230830031846.127957-3-william.qiu@starfivetech.com>
-In-Reply-To: <20230830031846.127957-3-william.qiu@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Wed, 30 Aug 2023 12:28:08 +0200
-Message-ID: <CAJM55Z9CL8DN+uEhRoR7ZUuwtVudTUzA1+Q4Hn_rukCfT+SXeQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/3] mmc: starfive: Change tuning implementation
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org,
-        Emil Renner Berthing <kernel@esmil.dk>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v8 0/8] Add StarFive Camera Subsystem driver
+Content-Language: en-US, nl
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+        changhuang.liang@starfivetech.com
+References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230824080109.89613-1-jack.zhu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Aug 2023 at 05:21, William Qiu <william.qiu@starfivetech.com> wrote:
->
-> Before, we used syscon to achieve tuning, but the actual measurement
-> showed little effect, so the tuning implementation was modified here,
-> and it was realized by reading and writing the UHS_REG_EXT register.
->
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> ---
->  drivers/mmc/host/dw_mmc-starfive.c | 131 ++++++++---------------------
->  1 file changed, 37 insertions(+), 94 deletions(-)
->
-> diff --git a/drivers/mmc/host/dw_mmc-starfive.c b/drivers/mmc/host/dw_mmc-starfive.c
-> index fd05a648a8bb..593c995e49f5 100644
-> --- a/drivers/mmc/host/dw_mmc-starfive.c
-> +++ b/drivers/mmc/host/dw_mmc-starfive.c
-> @@ -20,14 +20,6 @@
->  #define ALL_INT_CLR            0x1ffff
->  #define MAX_DELAY_CHAIN                32
->
-> -struct starfive_priv {
-> -       struct device *dev;
-> -       struct regmap *reg_syscon;
-> -       u32 syscon_offset;
-> -       u32 syscon_shift;
-> -       u32 syscon_mask;
-> -};
-> -
->  static void dw_mci_starfive_set_ios(struct dw_mci *host, struct mmc_ios *ios)
->  {
->         int ret;
-> @@ -44,117 +36,68 @@ static void dw_mci_starfive_set_ios(struct dw_mci *host, struct mmc_ios *ios)
->         }
->  }
->
-> +static void dw_mci_starfive_hs_set_bits(struct dw_mci *host, u32 smpl_phase)
+Hi Jack,
 
-"set bits" is very generic. Maybe dw_mci_starfive_set_sample_phase()
-or something more descriptive.
+On 24/08/2023 10:01, Jack Zhu wrote:
+> Hi,
+> 
+> This series is the v8 series that attempts to support the Camera Subsystem
+> found on StarFive JH7110 SoC.
+> 
+> The following are the media graph for the device and the v4l2-compliance
+> output.
 
-> +{
-> +       /* change driver phase and sample phase */
-> +       u32 mask = 0x1f;
-> +       u32 reg_value;
-> +
-> +       reg_value = mci_readl(host, UHS_REG_EXT);
-> +
-> +       /* In UHS_REG_EXT, only 5 bits valid in DRV_PHASE and SMPL_PHASE */
-> +       reg_value &= ~(mask << 16);
-> +       reg_value |= (smpl_phase << 16);
-> +       mci_writel(host, UHS_REG_EXT, reg_value);
-> +
-> +       /* We should delay 1ms wait for timing setting finished. */
-> +       mdelay(1);
-> +}
+Please note that this driver no longer compiles after v4l2-async changes were
+merged to our media_stage tree.
 
-This implementation could use some cleanup. Eg. why do we need the
-mask variable?
-How about something like this:
+Make sure you base your v9 on top of the master branch of
+https://git.linuxtv.org/media_stage.git/
 
-#define STARFIVE_SMPL_PHASE     GENMASK(20, 16)
+Regards,
 
-u32 reg_value = mci_read(host, UHS_REG_EXT);
-reg_value &= ~STARFIVE_SMPL_PHASE;
-reg_value |= FIELD_PREP(STARFIVE_SMPL_PHASE, smpl_phase);
-mci_writel(host, UHS_REG_EXT, reg_value);
-...
+	Hans
 
->  static int dw_mci_starfive_execute_tuning(struct dw_mci_slot *slot,
->                                              u32 opcode)
->  {
->         static const int grade  = MAX_DELAY_CHAIN;
->         struct dw_mci *host = slot->host;
-> -       struct starfive_priv *priv = host->priv;
-> -       int rise_point = -1, fall_point = -1;
-> -       int err, prev_err = 0;
-> +       int err = -1;
+> 
+> ===========================================================================
+> [the media graph]:
+> 
+> digraph board {
+> 	rankdir=TB
+> 	n00000001 [label="{{<port0> 0} | stf_isp\n/dev/v4l-subdev0 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+> 	n00000001:port1 -> n00000008 [style=dashed]
+> 	n00000004 [label="capture_raw\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
+> 	n00000008 [label="capture_yuv\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
+> 	n0000000e [label="{{<port0> 0} | cdns_csi2rx.19800000.csi-bridge\n | {<port1> 1 | <port2> 2 | <port3> 3 | <port4> 4}}", shape=Mrecord, style=filled, fillcolor=green]
+> 	n0000000e:port1 -> n00000001:port0 [style=dashed]
+> 	n0000000e:port1 -> n00000004 [style=dashed]
+> 	n00000018 [label="{{} | imx219 6-0010\n/dev/v4l-subdev1 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+> 	n00000018:port0 -> n0000000e:port0 [style=bold]
+> }
+> 
+> [the device topology]:
+> 
+> Media controller API version 6.5.0
+> 
+> Media device information
+> ------------------------
+> driver          starfive-camss
+> model           Starfive Camera Subsystem
+> serial          
+> bus info        platform:19840000.camss
+> hw revision     0x0
+> driver version  6.5.0
+> 
+> Device topology
+> - entity 1: stf_isp (2 pads, 2 links)
+>             type V4L2 subdev subtype Unknown flags 0
+>             device node name /dev/v4l-subdev0
+> 	pad0: Sink
+> 		[fmt:SRGGB10_1X10/1920x1080 field:none colorspace:srgb
+> 		 crop.bounds:(0,0)/1920x1080
+> 		 crop:(0,0)/1920x1080]
+> 		<- "cdns_csi2rx.19800000.csi-bridge":1 []
+> 	pad1: Source
+> 		[fmt:YUYV8_1_5X8/1920x1080 field:none colorspace:srgb
+> 		 crop.bounds:(0,0)/1920x1080
+> 		 crop:(0,0)/1920x1080]
+> 		-> "capture_yuv":0 []
+> 
+> - entity 4: capture_raw (1 pad, 1 link)
+>             type Node subtype V4L flags 0
+>             device node name /dev/video0
+> 	pad0: Sink
+> 		<- "cdns_csi2rx.19800000.csi-bridge":1 []
+> 
+> - entity 8: capture_yuv (1 pad, 1 link)
+>             type Node subtype V4L flags 0
+>             device node name /dev/video1
+> 	pad0: Sink
+> 		<- "stf_isp":1 []
+> 
+> - entity 14: cdns_csi2rx.19800000.csi-bridge (5 pads, 3 links)
+>              type V4L2 subdev subtype Unknown flags 0
+> 	pad0: Sink
+> 		<- "imx219 6-0010":0 [ENABLED,IMMUTABLE]
+> 	pad1: Source
+> 		-> "stf_isp":0 []
+> 		-> "capture_raw":0 []
+> 	pad2: Source
+> 	pad3: Source
+> 	pad4: Source
+> 
+> - entity 24: imx219 6-0010 (1 pad, 1 link)
+>              type V4L2 subdev subtype Sensor flags 0
+>              device node name /dev/v4l-subdev1
+> 	pad0: Source
+> 		[fmt:SRGGB10_1X10/3280x2464 field:none colorspace:srgb xfer:srgb ycbcr:601 quantization:full-range
+> 		 crop.bounds:(8,8)/3280x2464
+> 		 crop:(8,8)/3280x2464]
+> 		-> "cdns_csi2rx.19800000.csi-bridge":0 [ENABLED,IMMUTABLE]
+> 
+> ===========================================================================
+> [the v4l2-compliance output]:
+> 
+> v4l2-compliance 1.24.1, 64 bits, 64-bit time_t
+> 
+> Compliance test for stf camss device /dev/video1:
+> 
+> Driver Info:
+> 	Driver name      : stf camss
+> 	Card type        : Starfive Camera Subsystem
+> 	Bus info         : platform:19840000.camss
+> 	Driver version   : 6.5.0
+> 	Capabilities     : 0x84200001
+> 		Video Capture
+> 		Streaming
+> 		Extended Pix Format
+> 		Device Capabilities
+> 	Device Caps      : 0x04200001
+> 		Video Capture
+> 		Streaming
+> 		Extended Pix Format
+> Media Driver Info:
+> 	Driver name      : starfive-camss
+> 	Model            : Starfive Camera Subsystem
+> 	Serial           : 
+> 	Bus info         : platform:19840000.camss
+> 	Media version    : 6.5.0
+> 	Hardware revision: 0x00000000 (0)
+> 	Driver version   : 6.5.0
+> Interface Info:
+> 	ID               : 0x0300000a
+> 	Type             : V4L Video
+> Entity Info:
+> 	ID               : 0x00000008 (8)
+> 	Name             : capture_yuv
+> 	Function         : V4L2 I/O
+> 	Pad 0x01000009   : 0: Sink
+> 	  Link 0x0200000c: from remote pad 0x1000003 of entity 'stf_isp' (Unknown Function (00004009)): Data, Enabled
+> 
+> Required ioctls:
+> 	test MC information (see 'Media Driver Info' above): OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+> 	test second /dev/video1 open: OK
+> 	test VIDIOC_QUERYCAP: OK
+> 	test VIDIOC_G/S_PRIORITY: OK
+> 	test for unlimited opens: OK
+> 
+> Debug ioctls:
+> 	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+> 	test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+> 	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+> 	Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+> 	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+> 	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+> 	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+> 	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+> 	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+> 	Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+> 	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+> 	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+> 	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+> 	test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+> 	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+> 	test VIDIOC_QUERYCTRL: OK (Not Supported)
+> 	test VIDIOC_G/S_CTRL: OK (Not Supported)
+> 	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+> 	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+> 	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+> 	Standard Controls: 0 Private Controls: 0
+> 
+> Format ioctls:
+> 	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+> 	test VIDIOC_G/S_PARM: OK (Not Supported)
+> 	test VIDIOC_G_FBUF: OK (Not Supported)
+> 	test VIDIOC_G_FMT: OK
+> 	test VIDIOC_TRY_FMT: OK
+> 	test VIDIOC_S_FMT: OK
+> 	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+> 	test Cropping: OK (Not Supported)
+> 	test Composing: OK (Not Supported)
+> 	test Scaling: OK
+> 
+> Codec ioctls:
+> 	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+> 	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+> 	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+> 	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+> 	test VIDIOC_EXPBUF: OK
+> 	test Requests: OK (Not Supported)
+> 
+> Test input 0:
+> 
+> Streaming ioctls:
+> 	test read/write: OK (Not Supported)
+> 	test blocking wait: OK
+> 	test MMAP (no poll): OK                           
+> 	test MMAP (select): OK                            
+> 	test MMAP (epoll): OK                             
+> 	test USERPTR (no poll): OK (Not Supported)
+> 	test USERPTR (select): OK (Not Supported)
+> 	test DMABUF: Cannot test, specify --expbuf-device
+> 
+> Total for stf camss device /dev/video1: 53, Succeeded: 53, Failed: 0, Warnings: 0
+> 
+> ===========================================================================
+> 
+> Changes in v8:
+> - Rebased on v6.5-rc7.
+> - Dropped VIN subdev.
+> - Created two new video devices: capture_raw and capture_yuv, to replace
+>   the previous video devices.
+> - Dropped VB2_READ io methods.
+> - Recursively called .s_stream() on subdevs.
+> 
+> v7 link: https://lore.kernel.org/all/20230619112838.19797-1-jack.zhu@starfivetech.com/
+> 
+> Changes in v7:
+> - HAS_DMA is used instead of DMA_CMA in Kconfig.
+> - Dropped some non-essential member variables.
+> - Used v4l2_async_nf_add_fwnode_remote() to simplify the relevant code.
+> - Modified some Local variable types in the function.
+> - Used v4l2_create_fwnode_links_to_pad() to simplify the relevant code.
+> - Added error handling for clk_prepare_enable().
+> - Simplified stfcamss_format_info struct and modified the relevant code.
+> - Dropped enum_input, g_input and s_input.
+> - Unified v4l2_ioctl_ops struct.
+> - Used v4l2_fh_open()/vb2_fop_release to replace deprecated APIs.
+> - Added a camss directory under the starfive directory and modified the
+>   patch title.
+> 
+> v6 link: https://lore.kernel.org/all/20230525083202.67933-1-jack.zhu@starfivetech.com/
+> 
+> Changes in v6:
+> - Added 'bus-type' in bindings example.
+> - Corrected spelling errors.
+> - As reviewed by Bryan, used 'nclks' and 'nrsts' variables.
+> - Added lccf config for ISP.
+> 
+> v5 link: https://lore.kernel.org/all/20230512102844.51084-1-jack.zhu@starfivetech.com/
+> 
+> Changes in v5:
+> - Rebased on v6.4-rc1.
+> - Added new patch.
+> - Modified ISP driver.
+> 
+> v4 link: https://lore.kernel.org/all/20230413035541.62129-1-jack.zhu@starfivetech.com/
+> 
+> Previous cover letter from v4:
+> 
+> This patch series adds support for the StarFive Camera Subsystem
+> found on StarFive JH7110 SoC.
+> 
+> The driver implements V4L2, Media controller and V4L2 subdev interfaces.
+> Camera sensor using V4L2 subdev interface in the kernel is supported.
+> 
+> The driver is tested on VisionFive V2 board with IMX219 camera sensor.
+> GStreamer 1.18.5 with v4l2src plugin is supported.
+> 
+> Previous version link, missing v1 version:
+> 
+>   v3: https://lore.kernel.org/all/20230331121826.96973-1-jack.zhu@starfivetech.com/
+>   v2: https://lore.kernel.org/all/20230310120553.60586-1-jack.zhu@starfivetech.com/
+> 
+> Jack Zhu (8):
+>   media: dt-bindings: Add JH7110 Camera Subsystem
+>   media: admin-guide: Add starfive_camss.rst for Starfive Camera
+>     Subsystem
+>   media: staging: media: starfive: camss: Add core driver
+>   media: staging: media: starfive: camss: Add video driver
+>   media: staging: media: starfive: camss: Add ISP driver
+>   media: staging: media: starfive: camss: Add capture driver
+>   media: staging: media: starfive: camss: Add interrupt handling
+>   media: staging: media: starfive: camss: Register devices
+> 
+>  .../admin-guide/media/starfive_camss.rst      |  72 +++
+>  .../media/starfive_camss_graph.dot            |  12 +
+>  .../admin-guide/media/v4l-drivers.rst         |   1 +
+>  .../bindings/media/starfive,jh7110-camss.yaml | 180 ++++++
+>  MAINTAINERS                                   |   9 +
+>  drivers/staging/media/Kconfig                 |   2 +
+>  drivers/staging/media/Makefile                |   1 +
+>  drivers/staging/media/starfive/Kconfig        |   5 +
+>  drivers/staging/media/starfive/Makefile       |   2 +
+>  drivers/staging/media/starfive/camss/Kconfig  |  17 +
+>  drivers/staging/media/starfive/camss/Makefile |  13 +
+>  .../staging/media/starfive/camss/stf_camss.c  | 432 +++++++++++++
+>  .../staging/media/starfive/camss/stf_camss.h  | 134 ++++
+>  .../media/starfive/camss/stf_capture.c        | 603 ++++++++++++++++++
+>  .../media/starfive/camss/stf_capture.h        |  87 +++
+>  .../staging/media/starfive/camss/stf_isp.c    | 407 ++++++++++++
+>  .../staging/media/starfive/camss/stf_isp.h    | 428 +++++++++++++
+>  .../media/starfive/camss/stf_isp_hw_ops.c     | 445 +++++++++++++
+>  .../staging/media/starfive/camss/stf_video.c  | 557 ++++++++++++++++
+>  .../staging/media/starfive/camss/stf_video.h  | 100 +++
+>  20 files changed, 3507 insertions(+)
+>  create mode 100644 Documentation/admin-guide/media/starfive_camss.rst
+>  create mode 100644 Documentation/admin-guide/media/starfive_camss_graph.dot
+>  create mode 100644 Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+>  create mode 100644 drivers/staging/media/starfive/Kconfig
+>  create mode 100644 drivers/staging/media/starfive/Makefile
+>  create mode 100644 drivers/staging/media/starfive/camss/Kconfig
+>  create mode 100644 drivers/staging/media/starfive/camss/Makefile
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_camss.c
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_camss.h
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_capture.c
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_capture.h
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_isp.c
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_isp.h
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_isp_hw_ops.c
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_video.c
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_video.h
+> 
 
-This variable is always set later so doesn't need initialization and
-is better called 'ret' as it's the return value of the function, and
-not necessarily an error.
-
-> +       int smpl_phase, smpl_raise = -1, smpl_fall = -1;
->         int i;
-> -       bool found = 0;
-> -       u32 regval;
-> -
-> -       /*
-> -        * Use grade as the max delay chain, and use the rise_point and
-> -        * fall_point to ensure the best sampling point of a data input
-> -        * signals.
-> -        */
-> +
->         for (i = 0; i < grade; i++) {
-> -               regval = i << priv->syscon_shift;
-> -               err = regmap_update_bits(priv->reg_syscon, priv->syscon_offset,
-> -                                               priv->syscon_mask, regval);
-> -               if (err)
-> -                       return err;
-> +               smpl_phase = i;
-
-This can now be written
-
-for (sampl_phase = 0; sampl_phase < grade; sampl_phase++)
-
-> +               dw_mci_starfive_hs_set_bits(host, smpl_phase);
->                 mci_writel(host, RINTSTS, ALL_INT_CLR);
->
->                 err = mmc_send_tuning(slot->mmc, opcode, NULL);
-> -               if (!err)
-> -                       found = 1;
-> -
-> -               if (i > 0) {
-> -                       if (err && !prev_err)
-> -                               fall_point = i - 1;
-> -                       if (!err && prev_err)
-> -                               rise_point = i;
-> -               }
->
-> -               if (rise_point != -1 && fall_point != -1)
-> -                       goto tuning_out;
-> -
-> -               prev_err = err;
-> -               err = 0;
-> -       }
-> -
-> -tuning_out:
-> -       if (found) {
-> -               if (rise_point == -1)
-> -                       rise_point = 0;
-> -               if (fall_point == -1)
-> -                       fall_point = grade - 1;
-> -               if (fall_point < rise_point) {
-> -                       if ((rise_point + fall_point) >
-> -                           (grade - 1))
-> -                               i = fall_point / 2;
-> -                       else
-> -                               i = (rise_point + grade - 1) / 2;
-> -               } else {
-> -                       i = (rise_point + fall_point) / 2;
-> +               if (!err && smpl_raise < 0) {
-> +                       smpl_raise = i;
-> +               } else if (err && smpl_raise >= 0) {
-> +                       smpl_fall = i - 1;
-> +                       break;
->                 }
-> +       }
->
-> -               regval = i << priv->syscon_shift;
-> -               err = regmap_update_bits(priv->reg_syscon, priv->syscon_offset,
-> -                                               priv->syscon_mask, regval);
-> -               if (err)
-> -                       return err;
-> -               mci_writel(host, RINTSTS, ALL_INT_CLR);
-> +       if (i >= grade && smpl_raise >= 0)
-> +               smpl_fall = grade - 1;
->
-> -               dev_info(host->dev, "Found valid delay chain! use it [delay=%d]\n", i);
-> -       } else {
-> +       if (smpl_raise < 0) {
->                 dev_err(host->dev, "No valid delay chain! use default\n");
-> +               dw_mci_starfive_hs_set_bits(host, 0);
->                 err = -EINVAL;
-> +       } else {
-> +               smpl_phase = (smpl_raise + smpl_fall) / 2;
-> +               dw_mci_starfive_hs_set_bits(host, smpl_phase);
-> +               dev_dbg(host->dev, "Found valid delay chain! use it [delay=%d]\n", smpl_phase);
-> +               err = 0;
->         }
-
-Maybe something like:
-
-  if (smpl_raise < 0) {
-    smpl_phase = 0;
-    dev_err(host->dev, "No valid delay chain, using default\n");
-    ret = -EINVAL;
-    goto out;
-  }
-
-  smpl_phase = (smpl_raise + smpl_fall) / 2;
-  dev_dbg(...);
-  ret = 0;
-
-out:
-  dw_mci_starfive_hs_set_bits(host, smpl_phase);
-  mci_writel(host, RINTSTS, ALL_INT_CLR);
-  return ret;
->  }
->
-> -static int dw_mci_starfive_parse_dt(struct dw_mci *host)
-> -{
-> -       struct of_phandle_args args;
-> -       struct starfive_priv *priv;
-> -       int ret;
-> -
-> -       priv = devm_kzalloc(host->dev, sizeof(*priv), GFP_KERNEL);
-> -       if (!priv)
-> -               return -ENOMEM;
-> -
-> -       ret = of_parse_phandle_with_fixed_args(host->dev->of_node,
-> -                                               "starfive,sysreg", 3, 0, &args);
-> -       if (ret) {
-> -               dev_err(host->dev, "Failed to parse starfive,sysreg\n");
-> -               return -EINVAL;
-> -       }
-> -
-> -       priv->reg_syscon = syscon_node_to_regmap(args.np);
-> -       of_node_put(args.np);
-> -       if (IS_ERR(priv->reg_syscon))
-> -               return PTR_ERR(priv->reg_syscon);
-> -
-> -       priv->syscon_offset = args.args[0];
-> -       priv->syscon_shift  = args.args[1];
-> -       priv->syscon_mask   = args.args[2];
-> -
-> -       host->priv = priv;
-> -
-> -       return 0;
-> -}
-> -
->  static const struct dw_mci_drv_data starfive_data = {
->         .common_caps            = MMC_CAP_CMD23,
->         .set_ios                = dw_mci_starfive_set_ios,
-> -       .parse_dt               = dw_mci_starfive_parse_dt,
->         .execute_tuning         = dw_mci_starfive_execute_tuning,
->  };
->
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
