@@ -2,68 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BD9778D904
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CC0078D91F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231738AbjH3ScG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:32:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56164 "EHLO
+        id S235772AbjH3ScX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:32:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244114AbjH3MfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:35:13 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F6721B2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:35:10 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-500c63c9625so2493829e87.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:35:10 -0700 (PDT)
+        with ESMTP id S244155AbjH3Mhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:37:31 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923CFCC5
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:37:28 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-500c6ff99acso979535e87.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:37:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693398909; x=1694003709; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693399047; x=1694003847; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SAG+i5ZXFa59k8HflHYAPNmxFtGPfSD7NXS9CWIEhSY=;
-        b=xydck9XNKDelsMEtPNwvSRxcqjz++Rd219GreT5P3jy5Ystip0aT8vGXTUSYbLuywS
-         BBkfbCbs/DcZSfrvpDtTYKcxCYfN+7WDrQyKzrENmxQzZNIvut4Vw8cQnZozd1q7IMSp
-         4O5sxAWZ9BpwTWkyFH5yXIpu564+GDf2f4u2kWV/3SUq6V+nj69l9L9cFM80geDNRI+P
-         Imrq8T6JQZA5r5F2Rdflb9CqrFl2QzP6wNRBQs4Q++KeDNtwMjmJPsdle6k9fAhP9uHD
-         D0RJTeUym93zHYA4XSF3aqaHehGRyJ3pZJ3zKQ6hXsDslIJf+qQ+iMNWTQS5Jjlh22D6
-         4Y7w==
+        bh=I58sq5xTxwCx/GyljuH0Q6KBHvrDLZQ7PUXbI0PsH2Y=;
+        b=m0AqtxQcGi5qN6h8Sj3jcNUWNMiue+wxcwP2SvncfVRcsuPCfGF1DA/LRJ8IIL2BYD
+         H0qY4bPC4EH39m+uNbcItKxHjDEG2zBUZnI0eO9J1J4KlwC6zXXAtnhp2RFrn1FsrldP
+         yZaA4XWIY4W1QOiW1kyBF0+6EY/dlHBNBGrwGVrf/0kTrBIAY+vfrAkMQ+Rgc3yyvcwH
+         Zz+tydSkQuNy6jJH8l/KbdvW6i4wPHcxgJoEo8jk9AxjmjNPYRrGziPRUJw2UCuTPRwL
+         GvsJav18ThdEJxON7teKubSDW7f0NO3CjS720EYA+iPFcQnKp1DvDy4qLe0KfEUCrMrv
+         e2vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693398909; x=1694003709;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693399047; x=1694003847;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SAG+i5ZXFa59k8HflHYAPNmxFtGPfSD7NXS9CWIEhSY=;
-        b=TQgjEhcTWwHGTyQZU4MW8sgQibbPx4VUQoEtmSVnJF+SmcjqOMOYgwHPhJCYDVCca8
-         IdzaZaKloL1DxQZTsqepXiKZOfBSl9/eS+4GPXKTj2o71lV4ITIUks22QfMtcJE54Oe4
-         OGhVK01z/yKDPDLB4r5LuF89vzAoxD6wHH+4ocu7L7BToJWvhP65gwV9on4DK1SvrJO7
-         qmrVfVgET6hzqZViotS2JrwQh/UrIQXx18M5kg4py154+BVjdQtLGMIHuo3Un0p2KZrn
-         wdwH3045B80iQ1FJQ4NX6x+TtC++xMrCaLnTtPIASlZ+vHGtON//6ykmxAcfRDCEPywE
-         20yA==
-X-Gm-Message-State: AOJu0YxfxOHIuVnLcWDsT4J1GaHDE3/q5IlkYl3sgwbuHOC2ziFygHwn
-        e/4JjGS/SZFQ8s8c8Pgkb2BRbw==
-X-Google-Smtp-Source: AGHT+IHBX3y+vsmG6PmdwN7XUxLV48CGXQgfBVG1U2kHtgK4cjT2jZdXmX2WnCjNpM8qwvuAj+kaKw==
-X-Received: by 2002:ac2:5f52:0:b0:4fe:21f2:a04a with SMTP id 18-20020ac25f52000000b004fe21f2a04amr1360273lfz.8.1693398908492;
-        Wed, 30 Aug 2023 05:35:08 -0700 (PDT)
+        bh=I58sq5xTxwCx/GyljuH0Q6KBHvrDLZQ7PUXbI0PsH2Y=;
+        b=lYTdnI9UZqmN2ZrBy4ZdBTn8aNsNamRzZO9aXldyvsDNBrq3Q12vBYtv4vvM8Rmtcn
+         pyYdMdMjlo7wqUCbnw/sR02hbyVVPL3uICiu3o8Xfjia7oLEo8S81BuUSwl+dp5GmCIG
+         wpfldG8Vx1yG1NrPmP/oS3T+Je1JdT21bVsVKKpdUn4fONZBV0h6G037lugG50Vn1Ntc
+         Y8o2uicKRm2mPD6j+9svEtbqycfwsulsARO0JSx0jLAiki76SilL4TU9vcoEt8Zp+7Bp
+         RO6N8QlLeC4HelDhZlElqFbIKtozr+ddlJLSr/TdsM55hwIkmGLLNnjKLEZW3Qyif7d5
+         iI1w==
+X-Gm-Message-State: AOJu0YynXEdfJDpwh7UYgMZdOMVRpEeNo3wL+s1B4oTDZ0AIWRkf0uz2
+        H+rLemfWv01Oq941B0R+sZREOA==
+X-Google-Smtp-Source: AGHT+IEp+gLK73xWw+QqO6fWJI74gXK+me05R7lOQ0QCXV4Bjz00bLArMSjq6XgfqF7mOJb8+dQrzQ==
+X-Received: by 2002:a05:6512:402a:b0:4fb:7624:85a5 with SMTP id br42-20020a056512402a00b004fb762485a5mr872461lfb.0.1693399046844;
+        Wed, 30 Aug 2023 05:37:26 -0700 (PDT)
 Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id v20-20020ac25614000000b004fbc82dd1a5sm2366788lfd.13.2023.08.30.05.35.07
+        by smtp.gmail.com with ESMTPSA id cf5-20020a056512280500b00500b3157ec8sm1772351lfb.163.2023.08.30.05.37.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 05:35:08 -0700 (PDT)
-Message-ID: <3a9238c2-d105-4c1f-92da-e1314d8ff053@linaro.org>
-Date:   Wed, 30 Aug 2023 14:35:07 +0200
+        Wed, 30 Aug 2023 05:37:26 -0700 (PDT)
+Message-ID: <49310ff8-80ea-447d-a63e-a181afade189@linaro.org>
+Date:   Wed, 30 Aug 2023 14:37:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/6] soc: qcom: llcc: Refactor llcc driver to support
- multiple configuration
+Subject: Re: [PATCH V2 2/4] phy: qcom-m31: Add compatible, phy init sequence
+ for IPQ5018
 Content-Language: en-US
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        srinivas.kandagatla@linaro.org, bryan.odonoghue@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230830105654.28057-1-quic_kbajaj@quicinc.com>
- <20230830105654.28057-3-quic_kbajaj@quicinc.com>
+To:     Nitheesh Sekar <quic_nsekar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, vkoul@kernel.org, kishon@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org,
+        quic_srichara@quicinc.com, quic_varada@quicinc.com,
+        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230830111722.19380-1-quic_nsekar@quicinc.com>
+ <20230830111722.19380-3-quic_nsekar@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -100,7 +102,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230830105654.28057-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <20230830111722.19380-3-quic_nsekar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -113,11 +115,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2023 12:56, Komal Bajaj wrote:
-> Refactor driver to support multiple configuration for llcc on a target.
+On 30.08.2023 13:17, Nitheesh Sekar wrote:
+> Add phy init sequence and compatible string for IPQ5018
+> chipset.
 > 
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> V2:
+> 	Updated the commit message.
+> ---
+>  drivers/phy/qualcomm/phy-qcom-m31.c | 60 +++++++++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-m31.c b/drivers/phy/qualcomm/phy-qcom-m31.c
+> index ed08072ca032..81b72ebde305 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-m31.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-m31.c
+> @@ -82,6 +82,59 @@ struct m31_priv_data {
+>  	unsigned int			nregs;
+>  };
+>  
+> +struct m31_phy_regs m31_ipq5018_regs[] = {
+static const?
 
 Konrad
