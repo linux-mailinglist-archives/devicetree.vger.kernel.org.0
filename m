@@ -2,75 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED8E78D92F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60F6A78D996
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236594AbjH3Scb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:32:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
+        id S230266AbjH3Sde (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244365AbjH3NFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:05:13 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51814185
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:05:10 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-522dd6b6438so7330365a12.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:05:10 -0700 (PDT)
+        with ESMTP id S244382AbjH3NHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:07:07 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CC7C193
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:07:02 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99c1c66876aso719424866b.2
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:07:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693400709; x=1694005509; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HEKRlFZUS3dyupZ+kK+mkGNYk/gW0Ty72y8W+FwpGBU=;
-        b=TsEfs7qIFDVpFHZA9bZLzHrJO/o5Tjxonxx1V5tXmlX20EeuddICu/yZ+zxQnGgowX
-         5I7S+D8LMLMCxwv5TCywzCTskZHNBsxIwW3Q/sLNPp5hoXrEEdCjW4OkQhsI1VBNvtM6
-         /j6lMW+mVsgBcyO5v8FGNfOh+S9GLjw1Nvs/jmnoCXw1LFEpR9Hnt6kxuWHonqJQ//tT
-         diwBVrQRTCwyUbQZ4HrgdjMQJKAQlPwGWzwDM2ZYwj+/Sm7mJp+5MgQnAgwQ6YRwQWxL
-         b8S2yMpTfRMLCLCvsZcsCJdwDAua3epm22vpxc4z3NFTkJtRAhGYUYznKOMEBTadrSIA
-         MhEw==
+        d=linaro.org; s=google; t=1693400820; x=1694005620; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hDC9ESUef36Mte2IBID4F1U1QCc8COjSUPt3loc3xqg=;
+        b=c5cymgYTEbaJ6XaRn4Cx18yAW2AnOYtaQXhcTkPWtZUs1LCpJM/sHTO349WcCAxQbJ
+         Oz6MofGG6ypJI/c7J5GYdtb3sbHC/S8KVFAusUg8lgxChD98pvD/pXHWsdIdfj624J9h
+         BpzFJzoDYQFBUM0uFKXrsjBLwzPw6r7Xm7hFkxz48I8bpCfGGZUxs9j25RD+e7qTz0U9
+         o0PdWco7TXZ7Ci92/6X0YQLq9R/2R8c0BQJ4l/YkN1n1Sc1EfBP5GEyS1+GuWHbTaaGI
+         nhAQqSJ/Pwg8Q5AcMtVvpS5S35evclxZECmnAzBA4A84/B4j4lOAbyoedFQsv3ynb6x4
+         aCeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693400709; x=1694005509;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693400820; x=1694005620;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HEKRlFZUS3dyupZ+kK+mkGNYk/gW0Ty72y8W+FwpGBU=;
-        b=WvhhzWKHbDyjqEALE+1qOcPOT2bGYG0wxNuP5IL8TKEJZoYPsNHbKOl313qNVaj1XN
-         uUXFIxYsho9jcwZYLZPo7NRvLwa1cQDr60dMMJrgvsYlLm1b2Kw6lbkCp5mSBrnaw+vT
-         Xa85VxhNKStr/YfMjuG3puwZ3eHGNEX506RbpH9TrvYu3/MR0lFYQ3NdwX4oflGsFbOi
-         euhLm9zzuapHDxa2kjXjxCp6/ZTshcFCIbYh13c1n48BENMxL3JlEm5UCmOwFTkAa5d6
-         i7kx+5VA6cZBXEeYfwTMHyR116TSumEsfH0LoQ3KT+2341Nl/25xQ1SHKbABRqPKYXnN
-         Pfyg==
-X-Gm-Message-State: AOJu0YyeiUiB/oPNt6FPOpS9h2kUFDxNrVp+A4QOcthhxBCGzJmQZ60X
-        b32LOJUmfklB0ub2dHqr1tUWMw==
-X-Google-Smtp-Source: AGHT+IG6tuWBogY1getqOWrJLQDobdIhDHQe+O6MXdBwyeWVbJP1FM/i5KkUVahXRdHtVbpn5qnMfg==
-X-Received: by 2002:aa7:d311:0:b0:523:bfec:4912 with SMTP id p17-20020aa7d311000000b00523bfec4912mr1838174edq.11.1693400708725;
-        Wed, 30 Aug 2023 06:05:08 -0700 (PDT)
+        bh=hDC9ESUef36Mte2IBID4F1U1QCc8COjSUPt3loc3xqg=;
+        b=QSJ8/j/ss98O07KmScsj0bi1IO3nyg2KU0G4k1X1UXOO2dWLe6rO5x9x81LF23e02K
+         AwbxWTST8S2hSxv3W8Dikk2B+l/SdvJk3WiG09Gg8MUBYnc3ia238mn87mQRBtCGJvGo
+         +bWAVcOciEp90zeV296OboAnrHJuBvt/vc9c1mytcMsC+n6PkZ0+D0TatjEsp9T/8UtG
+         0oZew3cduuI9kfYK8Q1I5kL9FhY04wT+KYUaeJoPi+/uq52hESXscoNkZulcS+bOva5m
+         KKkSqfAtMCVTA1e/6wKc0h7GSvJUzaGYa6fi0zw9dOCV5vNUwbXF3FiYdATtBzk20rlx
+         AMRA==
+X-Gm-Message-State: AOJu0YyWfhtJVReRdgl6TRj22YGX83d3lMSY2xQI3oyCN/1VPQ4F23S8
+        +2slcnSMYeT7x9800uvFnycFlw==
+X-Google-Smtp-Source: AGHT+IFYKkGvGmx/eCPeJ7zhxeO+D0prvW6xzkjQM9iAjR6tCDe1nTyr22bqGnmByYCAcaZcchFmrA==
+X-Received: by 2002:a17:907:270c:b0:9a1:cb2c:b55f with SMTP id w12-20020a170907270c00b009a1cb2cb55fmr1453302ejk.53.1693400820483;
+        Wed, 30 Aug 2023 06:07:00 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id c6-20020a056402120600b005232c051605sm6740478edw.19.2023.08.30.06.05.07
+        by smtp.gmail.com with ESMTPSA id 17-20020a170906059100b0098963eb0c3dsm7147506ejn.26.2023.08.30.06.06.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 06:05:08 -0700 (PDT)
-Message-ID: <f40497d1-3547-9434-459f-050f592937ca@linaro.org>
-Date:   Wed, 30 Aug 2023 15:05:06 +0200
+        Wed, 30 Aug 2023 06:07:00 -0700 (PDT)
+Message-ID: <c5d72559-4a97-c865-e51e-855d2bc1edee@linaro.org>
+Date:   Wed, 30 Aug 2023 15:06:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH] ARM: dts: stm32: Add MyirTech MYD-YA15XC-T development
- board support
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alexander Shiyan <eagle.alexander923@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     linux-stm32@st-md-mailman.stormreply.com,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-References: <20230830114335.106344-1-eagle.alexander923@gmail.com>
- <e2dc91a9-d027-dc69-14bf-3a1184045254@linaro.org>
+Subject: Re: [PATCH v5 1/3] dt-bindings: thermal-zones: Document
+ critical-action
 Content-Language: en-US
-In-Reply-To: <e2dc91a9-d027-dc69-14bf-3a1184045254@linaro.org>
+To:     "Rafael J. Wysocki" <rafael@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>
+Cc:     daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+References: <20230829194200.1901988-1-festevam@gmail.com>
+ <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAJZ5v0hZR3WD+wMA6c-Gt86hM5oCRZDcSsYF4SrYTvT2HtQ=fQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -80,26 +78,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2023 14:51, Krzysztof Kozlowski wrote:
-> On 30/08/2023 13:43, Alexander Shiyan wrote:
->> Add support for the MyirTech MYD-YA15XC-T development board.
+On 30/08/2023 13:37, Rafael J. Wysocki wrote:
+> On Tue, Aug 29, 2023 at 9:42 PM Fabio Estevam <festevam@gmail.com> wrote:
 >>
->> General features:
->>  - STM32MP151
->>  - 256MB RAM
->>  - 2xUSB HOST
->>  - USB-C OTG
->>  - Gigabit ethernet
->>  - UART
->>  - Boot from NAND, eMMC, SD
+>> From: Fabio Estevam <festevam@denx.de>
 >>
->> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
+>> Document the critical-action property to describe the thermal action
+>> the OS should perform after the critical temperature is reached.
+>>
+>> The possible values are "shutdown" and "reboot".
+>>
+>> The motivation for introducing the critical-action property is that
+>> different systems may need different thermal actions when the critical
+>> temperature is reached.
+>>
+>> For example, a desktop PC may want the OS to trigger a shutdown
+>> when the critical temperature is reached.
+>>
+>> However, in some embedded cases, such behavior does not suit well,
+>> as the board may be unattended in the field and rebooting may be a
+>> better approach.
+>>
+>> The bootloader may also benefit from this new property as it can check
+>> the SoC temperature and in case the temperature is above the critical
+>> point, it can trigger a shutdown or reboot accordingly.
+>>
+>> Signed-off-by: Fabio Estevam <festevam@denx.de>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >> ---
->>  arch/arm/boot/dts/st/Makefile                 |   3 +-
->>  .../boot/dts/st/stm32mp15x-myirtech-myc.dtsi  | 351 ++++++++++++++
->>  .../boot/dts/st/stm32mp15x-myirtech-myd.dts   | 457 ++++++++++++++++++
+>> Changes since v4:
+>> - None.
+>>
+>>  .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
+>>  1 file changed, 9 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>> index 4f3acdc4dec0..c2e4d28f885b 100644
+>> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+>> @@ -75,6 +75,15 @@ patternProperties:
+>>            framework and assumes that the thermal sensors in this zone
+>>            support interrupts.
+>>
+>> +      critical-action:
+>> +        $ref: /schemas/types.yaml#/definitions/string
+>> +        description:
+>> +          The action the OS should perform after the critical temperature is reached.
+>> +
+>> +        enum:
+>> +          - shutdown
+>> +          - reboot
+>> +
+>>        thermal-sensors:
+>>          $ref: /schemas/types.yaml#/definitions/phandle-array
+>>          maxItems: 1
+>> --
+> 
+> I'm wondering if this should be a bool property called
+> "critical-reboot", say, which when present would mean to carry out a
+> reboot instead of a shutdown in an emergency.
+> 
+> As defined above, the "shutdown" value is simply redundant, because
+> the code will effectively convert any other value to "shutdown"
+> anyway.
 
-Also naming looks wrong. This is stm32mp151, not 15x.
+We covered this at v1. Bool does not allow this property to change in
+the future, e.g. for a third mode. And how would you change the action
+to shutdown if default action in the system was reboot?
 
 Best regards,
 Krzysztof
