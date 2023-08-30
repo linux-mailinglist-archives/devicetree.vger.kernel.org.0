@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39B3878E181
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 23:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BD0B78DF9C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 22:15:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241532AbjH3Vd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 17:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57102 "EHLO
+        id S239272AbjH3UDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 16:03:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241571AbjH3Vd1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 17:33:27 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1CEBD1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:32:53 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so2867020a12.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 14:32:53 -0700 (PDT)
+        with ESMTP id S239816AbjH3UD0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 16:03:26 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55ACF1D917
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 12:42:50 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-5007616b756so307823e87.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 12:42:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693431076; x=1694035876; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693424513; x=1694029313; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+EWxGsOLnd1S0YI2fSd+NkLhQt9gXvMSC02V+aZzkUY=;
-        b=AGq5O2g/JE0OQxzVTXXQXtX/j3NVfONWFINYm6mB0klH0tdrOjjUILP9t0by+J7ASS
-         dAKF/bDpyHNsvQRhTt6g/rn8AzvFfBwxj/Uu59eLDs+Ylz5d45pNa9Rr7A0S1whF0MQ2
-         bOA5mJp0ig5OyEWOaW26om2vbProPlqtTRHn62Z/0yZDOdHun5Xid2ybxLJQWGwcZZK7
-         I16nYfiRFkhUcz+SCui5WXWmibvB7VNkLb6vAzPz3yveQQFZwTHbh4AGiFrqpUYX3F+Q
-         0dp46YkO88Wy05kvj6XU5YWjjSO0sLz7BfFz2/Ypc9gp3TFYh4dN8GLpc3BdmO8/SVYJ
-         1hQw==
+        bh=msHyshj90vSnmjfMS+CD0pnHPjuRl2jy7F4rESiCNlg=;
+        b=Y0azvOX8UtzjHBNV8LoNEeL0PZ4GV6aaHBx18WUT8HhwJYIM4/unfM7g4LdadjOP3n
+         HSSbIOJHnYwsAgC77YQXD75fnLpKPemzT9OSn0V1md2zYbJaMiiu3DEnNIinvPBMKnJC
+         VRafYXUKKAkTOGLKlbSzZE1ZNSWzlRjquGlbaaSEpKf8uyKTTZjUzcayEcf49o767DUS
+         F37Eosut8hechb7isfi9+UPDeWqbSViM73DeGKh5MnvlicJaSS//PkDA7CfIpI3wzQpF
+         LJ7woyzpXXkAeEFQx9tHglblOpqhThwy0AeI3BUNd+WSXQ5c4dGW4B0odvboKTz3X8m6
+         wCBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693431076; x=1694035876;
+        d=1e100.net; s=20221208; t=1693424513; x=1694029313;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+EWxGsOLnd1S0YI2fSd+NkLhQt9gXvMSC02V+aZzkUY=;
-        b=dxcJ56idWbyp/5yC6ZoaWfVovJAcFjMLvKCgwrFhsmpUUNngX2l01NxMK9a1agfiBn
-         i9hyOUE8aYs1IvS43Y902k2UIOrZTI8aLGGYHtP+VDsGZMr3afPabNShthq5GrFEJnB4
-         P7GRsU7gNwZ5XvheuHFqnjd5QMqDPsxAKYSw1K3NUKsG2ldTbIRm+bW4rZkchgWhK9n/
-         nZJkezCFhiKrMmCX3eium5Sf8uq5qvDMEyR/gm2pg6wXstVznuWXsltmVAkYEzbAdW2X
-         OTSqobknOksTjuH1ADlI4EcZ3T9vMTJvPnZG7jHpVhexxoC90mlKDHSQe4UjdT2d4r6i
-         +nAg==
-X-Gm-Message-State: AOJu0Yx4Kt55GFy6OPQh1VmiMhwi/xIMn0Ie70RjPRHeeu4E7vOBDYIW
-        i2VM41bm4jmFr8PGmpvtQuhtljO/ZHOJzRacnPt41g==
-X-Google-Smtp-Source: AGHT+IGfR18dSZBXSqYXGSzoHrNRgDwKf6Nb+DOKZeJcaMS5RT7sCIo9zfZ5tbBrSkGgdK4RGB/CLg==
-X-Received: by 2002:a05:6512:159c:b0:4ff:8f76:678c with SMTP id bp28-20020a056512159c00b004ff8f76678cmr165497lfb.1.1693420454740;
-        Wed, 30 Aug 2023 11:34:14 -0700 (PDT)
+        bh=msHyshj90vSnmjfMS+CD0pnHPjuRl2jy7F4rESiCNlg=;
+        b=JY29ekH1xz+KWF/DTh5RPKd8jcuH4wZPuK3mNb/ZGlwIYvd1kY1cr4w57f9FGPFMaZ
+         5CrXjJmw1BIGw+KG/3et6Zt7W+YXZapw4J4yEfCW+hpjohlryFknZSjbK3XsWgMtVcMP
+         fLHTxIShA0RjxXjtcF1m9mn0GImpXfK1WyNEdRw2+HzVU1EXnmCS+g4Cu55Dh7z4A86e
+         hr8ALnSuYn4umJmS0JCRMD1X1Fk50DUez0tHTf41A7wjahFN6Q1e8mhqRD9p7ruQYcmR
+         g9PT2EeAjvkAp2g0AUE8HOuQGhmGbL98PnmGh5r1hhNia6U2NiUqsVzbrk5yCLuzk9Fd
+         sPfQ==
+X-Gm-Message-State: AOJu0Yw6qzXbPnEAVkejgWn9q/53JRNq2lFYKk3B/Vbly5Dh1RpiBSGN
+        om+JiIQq8/FoMAvOuQULcreRiUXSKMBrFxB9iknu/A==
+X-Google-Smtp-Source: AGHT+IFZN0XFLmTMVpli86I9XELxCx+opSVmKto0P8fKRgp/dvzpFqZUwlf4S3Ov+q1yxFaX3RGzDQ==
+X-Received: by 2002:a05:6512:3da6:b0:500:b2c9:7da9 with SMTP id k38-20020a0565123da600b00500b2c97da9mr2444317lfv.45.1693420497376;
+        Wed, 30 Aug 2023 11:34:57 -0700 (PDT)
 Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id l12-20020ac24a8c000000b004fe633bfcc7sm2473562lfp.17.2023.08.30.11.34.12
+        by smtp.gmail.com with ESMTPSA id l12-20020ac24a8c000000b004fe633bfcc7sm2473562lfp.17.2023.08.30.11.34.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 11:34:14 -0700 (PDT)
-Message-ID: <3b6f6285-ec3b-4e12-aa65-d5f61937de6f@linaro.org>
-Date:   Wed, 30 Aug 2023 20:34:10 +0200
+        Wed, 30 Aug 2023 11:34:57 -0700 (PDT)
+Message-ID: <951a2f24-931a-4a25-a3b7-c3009e135d7d@linaro.org>
+Date:   Wed, 30 Aug 2023 20:34:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] leds: rgb: leds-qcom-lpg: Add support for PPG
- through single SDAM
+Subject: Re: [PATCH v4 5/7] leds: rgb: leds-qcom-lpg: Update PMI632 lpg_data
+ to support PPG
 Content-Language: en-US
 To:     Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
         lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
@@ -66,7 +66,7 @@ Cc:     luca.weiss@fairphone.com, u.kleine-koenig@pengutronix.de,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-pwm@vger.kernel.org, kernel@quicinc.com
 References: <20230830180600.1865-2-quic_amelende@quicinc.com>
- <20230830180600.1865-7-quic_amelende@quicinc.com>
+ <20230830180600.1865-8-quic_amelende@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -103,287 +103,39 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230830180600.1865-7-quic_amelende@quicinc.com>
+In-Reply-To: <20230830180600.1865-8-quic_amelende@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2023 20:05, Anjelique Melendez wrote:
-> In some PMICs like pmi632, the pattern look up table (LUT) and LPG
-> configuration can be stored in a single SDAM module instead of LUT
-> peripheral. This feature is called PPG. PPG uses Qualcomm Programmable
-> Boot Sequencer (PBS) inorder to trigger pattern sequences for PMICs.
-I still fail to understand what benefit this brings.
-
-Is this a "can be used", or "should be used", or maybe "must be used"?
-
-Are there any distinct advantages to using one over the other?
-I see some limitations in the code below, but that's not being made
-obvious.
-
-This all should be in the commit message, the current one includes
-a lot of cryptic names that mean nothing to most people.
-
-[...]
-
+On 30.08.2023 20:06, Anjelique Melendez wrote:
+> Update the pmi632 lpg_data struct so that pmi632 devices use PPG
+> for LUT pattern.
+> 
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> ---
+>  drivers/leds/rgb/leds-qcom-lpg.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
+> index 90dc27d5eb7c..0b37d3b539f8 100644
+> --- a/drivers/leds/rgb/leds-qcom-lpg.c
+> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
+> @@ -1672,11 +1672,14 @@ static const struct lpg_data pm8994_lpg_data = {
+>  static const struct lpg_data pmi632_lpg_data = {
+>  	.triled_base = 0xd000,
 >  
-> +static int lpg_sdam_write(struct lpg *lpg, u16 addr, u8 val)
-Again, looks like excessive helpers for r/w accessors.
+> +	.lut_size = 64,
+> +	.lut_sdam_base = 0x80,
+Is that a predefined space for use with LPG?
 
-> +{
-> +	int rc;
-> +
-> +	rc = nvmem_device_write(lpg->lpg_chan_nvmem, addr, 1, &val);
-> +	if (rc < 0) {
-> +		dev_err(lpg->dev, "writing %u to SDAM addr %#x failed, rc=%d\n",
-> +			val, addr, rc);
-> +		return rc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +#define PBS_SW_TRIG_BIT		BIT(0)
-> +
-> +static int lpg_clear_pbs_trigger(struct lpg_channel *chan)
-> +{
-> +	int rc;
-> +
-> +	clear_bit(chan->lpg_idx, &chan->lpg->pbs_en_bitmap);
-> +	if (!chan->lpg->pbs_en_bitmap) {
-> +		rc = lpg_sdam_write(chan->lpg, SDAM_REG_PBS_SEQ_EN, 0);
-> +		if (rc < 0)
-> +			return rc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int lpg_set_pbs_trigger(struct lpg_channel *chan)
-> +{
-> +	int rc;
-> +
-> +	if (!chan->lpg->pbs_en_bitmap) {
-> +		rc = lpg_sdam_write(chan->lpg, SDAM_REG_PBS_SEQ_EN, PBS_SW_TRIG_BIT);
-> +		if (rc < 0)
-> +			return rc;
-> +
-> +		rc = qcom_pbs_trigger_event(chan->lpg->pbs_dev, PBS_SW_TRIG_BIT);
-> +		if (rc < 0)
-> +			return rc;
-> +	}
-> +	set_bit(chan->lpg_idx, &chan->lpg->pbs_en_bitmap);
-> +
-> +	return 0;
-> +}
-> +
-> +static int lpg_sdam_configure_triggers(struct lpg_channel *chan, bool set_trig)
-> +{
-> +	int rc;
-> +
-> +	if (chan->lpg->lut_base)
-> +		return 0;
-> +
-> +	if (set_trig) {
-> +		rc = lpg_sdam_write(chan->lpg, SDAM_LUT_EN_OFFSET + chan->sdam_offset, 1);
-> +		if (rc < 0)
-> +			return rc;
-> +
-> +		rc = lpg_set_pbs_trigger(chan);
-> +		if (rc < 0)
-> +			return rc;
-> +		chan->pattern_set = false;
-> +	} else {
-> +		rc = lpg_sdam_write(chan->lpg, SDAM_LUT_EN_OFFSET + chan->sdam_offset, 0);
-> +		if (rc < 0)
-> +			return rc;
-> +
-> +		rc = lpg_clear_pbs_trigger(chan);
-> +		if (rc < 0)
-> +			return rc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int triled_set(struct lpg *lpg, unsigned int mask, unsigned int enable)
->  {
->  	/* Skip if we don't have a triled block */
-> @@ -217,6 +333,41 @@ static int triled_set(struct lpg *lpg, unsigned int mask, unsigned int enable)
->  				  mask, enable);
->  }
->  
-> +static int lpg_lut_store_sdam(struct lpg *lpg, struct led_pattern *pattern,
-> +			 size_t len, unsigned int *lo_idx, unsigned int *hi_idx)
-> +{
-> +	u8 brightness;
-> +	u16 addr;
-> +	unsigned int idx;
-> +	int i, rc;
-Reverse-Christmas-tree?
-
-> +
-> +	if (len > SDAM_LUT_COUNT_MAX) {
-> +		dev_err(lpg->dev, "Pattern length (%zu) exceeds maximum pattern length (%d)\n",
-> +			len, SDAM_LUT_COUNT_MAX);
-> +		return -EINVAL;
-> +	}
-> +
-> +	idx = bitmap_find_next_zero_area(lpg->lut_bitmap, lpg->lut_size,
-> +					 0, len, 0);
-> +	if (idx >= lpg->lut_size)
-> +		return -ENOSPC;
-> +
-> +	for (i = 0; i < len; i++) {
-> +		brightness = pattern[i].brightness;
-> +		addr = lpg->lut_sdam_base + i + idx;
-> +		rc = lpg_sdam_write(lpg, addr, brightness);
-> +		if (rc < 0)
-> +			return rc;
-> +	}
-> +
-> +	bitmap_set(lpg->lut_bitmap, idx, len);
-> +
-> +	*lo_idx = idx;
-> +	*hi_idx = idx + len - 1;
-> +
-> +	return 0;
-> +}
-> +
->  static int lpg_lut_store(struct lpg *lpg, struct led_pattern *pattern,
->  			 size_t len, unsigned int *lo_idx, unsigned int *hi_idx)
->  {
-> @@ -463,6 +614,26 @@ static void lpg_apply_pwm_value(struct lpg_channel *chan)
->  #define LPG_PATTERN_CONFIG_PAUSE_HI	BIT(1)
->  #define LPG_PATTERN_CONFIG_PAUSE_LO	BIT(0)
->  
-> +static void lpg_sdam_apply_lut_control(struct lpg_channel *chan)
-> +{
-> +	u8 val, conf = 0;
-> +	struct lpg *lpg = chan->lpg;
-Reverse-Christmas-tree?
-
-> +
-> +	if (!chan->ramp_oneshot)
-> +		conf |= LPG_PATTERN_CONFIG_REPEAT;
-> +
-> +	lpg_sdam_write(lpg, SDAM_PBS_SCRATCH_LUT_COUNTER_OFFSET + chan->sdam_offset, 0);
-> +	lpg_sdam_write(lpg, SDAM_PATTERN_CONFIG_OFFSET + chan->sdam_offset, conf);
-> +
-> +	lpg_sdam_write(lpg, SDAM_END_INDEX_OFFSET + chan->sdam_offset, chan->pattern_hi_idx);
-> +	lpg_sdam_write(lpg, SDAM_START_INDEX_OFFSET + chan->sdam_offset, chan->pattern_lo_idx);
-> +
-> +	val = RAMP_STEP_DURATION(chan->ramp_tick_ms);
-> +	if (val > 0)
-> +		val--;
-????
-
-that sounds very cryptic.. almost like some sort of a bad fixup
-maybe the RAMP_STEP_DURATION should contain that "-1"?
-
-not only that, but val is an unsigned value, so it's always > 0
-
-[...]
-
-> @@ -775,7 +952,7 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
->  	unsigned int lo_idx;
->  	unsigned int hi_idx;
->  	unsigned int i;
-> -	bool ping_pong = true;
-> +	bool ping_pong = false;
-Why?
-
-This change combined with assigning true below for LUT mode
-is a NOP
-
->  	int ret = -EINVAL;
->  
->  	/* Hardware only support oneshot or indefinite loops */
-> @@ -824,7 +1001,7 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
->  	 * used to stretch the first delay of the pattern and a "high pause"
->  	 * the last one.
->  	 *
-> -	 * In order to save space the pattern can be played in "ping pong"
-> +	 * In order to save space for the pattern can be played in "ping pong"
->  	 * mode, in which the pattern is first played forward, then "high
->  	 * pause" is applied, then the pattern is played backwards and finally
->  	 * the "low pause" is applied.
-> @@ -837,16 +1014,22 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
->  	 * If the specified pattern is a palindrome the ping pong mode is
->  	 * enabled. In this scenario the delta_t of the middle entry (i.e. the
->  	 * last in the programmed pattern) determines the "high pause".
-> +	 *
-> +	 * NVMEM devices supporting LUT do not support "low pause", "high pause"
-> +	 * or "ping pong"
->  	 */
->  
->  	/* Detect palindromes and use "ping pong" to reduce LUT usage */
-> -	for (i = 0; i < len / 2; i++) {
-> -		brightness_a = pattern[i].brightness;
-> -		brightness_b = pattern[len - i - 1].brightness;
-> -
-> -		if (brightness_a != brightness_b) {
-> -			ping_pong = false;
-> -			break;
-> +	if (lpg->lut_base) {
-> +		ping_pong = true;
-> +		for (i = 0; i < len / 2; i++) {
-> +			brightness_a = pattern[i].brightness;
-> +			brightness_b = pattern[len - i - 1].brightness;
-> +
-> +			if (brightness_a != brightness_b) {
-> +				ping_pong = false;
-> +				break;
-> +			}
->  		}
->  	}
->  
-> @@ -860,14 +1043,21 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
->  	 * Validate that all delta_t in the pattern are the same, with the
->  	 * exception of the middle element in case of ping_pong.
->  	 */
-> -	delta_t = pattern[1].delta_t;
-> -	for (i = 2; i < len; i++) {
-> +	if (lpg->lpg_chan_nvmem) {
-> +		i = 1;
-> +		delta_t = pattern[0].delta_t;
-> +	} else {
-> +		i = 2;
-> +		delta_t = pattern[1].delta_t;
-> +	}
-Why?
-
-What's the rationale behind this change?
-
-> +
-> +	for (; i < len; i++) {
->  		if (pattern[i].delta_t != delta_t) {
->  			/*
->  			 * Allow last entry in the full or shortened pattern to
->  			 * specify hi pause. Reject other variations.
->  			 */
-> -			if (i != actual_len - 1)
-> +			if (i != actual_len - 1 || lpg->lpg_chan_nvmem)
->  				goto out_free_pattern;
->  		}
->  	}
-> @@ -876,12 +1066,19 @@ static int lpg_pattern_set(struct lpg_led *led, struct led_pattern *led_pattern,
->  	if (delta_t >= BIT(9))
->  		goto out_free_pattern;
->  
-> -	/* Find "low pause" and "high pause" in the pattern */
-> -	lo_pause = pattern[0].delta_t;
-> -	hi_pause = pattern[actual_len - 1].delta_t;
-> +	/* Find "low pause" and "high pause" in the pattern if not an NVMEM device*/
-missing a space before '*/'
-"if not an NVMEM device" -> "in the LUT case"?
+Or can it be reclaimed for something else?
 
 Konrad
