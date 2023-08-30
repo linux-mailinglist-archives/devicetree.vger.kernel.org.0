@@ -2,185 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FF4D78D9C9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A06B78DA04
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235838AbjH3SeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57894 "EHLO
+        id S236379AbjH3SfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:35:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343631AbjH3QVQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 12:21:16 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74FE51A1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 09:21:12 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-d7bae413275so967878276.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 09:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693412471; x=1694017271; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y8t4NDTL8tjTNmKGj5DrXXHbIkAEVgr7Yc4doGgChuU=;
-        b=drmBViYSTTEHfFy5rVYTYp4cLAFqXojVKEtju53SnphOmLxtywlJGLHmRpaGCxznOS
-         InFC5sc+empVNZc7bXSyKzEu2zon6gI0gGc5d3a5npfGya5bQ7xk9VMPM8YZB68afugv
-         nLc0hrKUBxLU1apXx8WRVv4spfwuGVxYKVLdenQW/HGi7iSUZz+Rc9ObMqLS2hMft8bw
-         i3ufywJx802XmFQactWuHEVTz/O/zyt1fzDLN9Z0+gpzM1nE1UB0cKLMNqmP2bHPoIZ8
-         l5GemUbqUH5xlbsiZS/JhwEqlpPcfhQCxPwyijzkIk1/6+eqsehjDxcPqOMHc4vjl9o0
-         nMeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693412471; x=1694017271;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Y8t4NDTL8tjTNmKGj5DrXXHbIkAEVgr7Yc4doGgChuU=;
-        b=jxHL2H3puP5XYxuIBZtKnzKe8p+ur+i+CIOuM5VnUC3fNnFWFcw6xO9KpHJKl/KyVw
-         7a9pDKmOc/d10f89dneIu7AnGfA+HdKmakh8FRFOdCgxx9nnt/GzlzgDdr/XtY2kh0xP
-         kgPoTz99plebWLzfRAg9S1mxEnbMnGOaKgQiRaoMGiT7jrMnxGhBZLIy+WooNIzCcyEN
-         21adqeWKVhnyO/NM5nfbu1FlvjvuTpX+M5wqv11FqmnOE4wiuM2ZhWByLA73Rs41upv6
-         7AH/GhF+JDFEBVW21VQ6wlfNjMYltDkOJ0Bz+7I/MgGpzqhYe3iEnbmJokEv+aaamXDi
-         0rrg==
-X-Gm-Message-State: AOJu0Yzk3dxAcl0xMk1HbJO5ZUh/5WnIb+s3Lk2fn1PR6uQMnNDCjPAF
-        DL+kFAIf58y6WWvH6+mKk8vI3q3N5yaBfD5sXw4/ww==
-X-Google-Smtp-Source: AGHT+IElJAZT45ZG8CrP6h+DhojxGT+TpXkDTDNtFAlAw1u6QBD9r2uZ6vsEXIMTYsx11GQX6HZIq3oHVK5tY1mxZ9o=
-X-Received: by 2002:a25:ad9e:0:b0:d7b:b700:5d with SMTP id z30-20020a25ad9e000000b00d7bb700005dmr104054ybi.13.1693412471594;
- Wed, 30 Aug 2023 09:21:11 -0700 (PDT)
+        with ESMTP id S1343768AbjH3QuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 12:50:13 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B5C2A19A
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 09:50:09 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E34FD2F4;
+        Wed, 30 Aug 2023 09:50:48 -0700 (PDT)
+Received: from [10.57.4.99] (unknown [10.57.4.99])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 46F773F64C;
+        Wed, 30 Aug 2023 09:50:08 -0700 (PDT)
+Message-ID: <b6ca79f6-cefc-938f-c960-ba08e328f5c0@arm.com>
+Date:   Wed, 30 Aug 2023 17:50:00 +0100
 MIME-Version: 1.0
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-6-bartosz.golaszewski@linaro.org> <9b69a4a6-b011-f0e8-217f-5f91d9a00382@linaro.org>
- <48feda07-525d-4319-ba09-14928ab1fd29@linaro.org> <CACMJSeuOigO38_jgjNLz6AiWK1BoLN+shDQHrubS5s-dkDFG7A@mail.gmail.com>
- <3f7f6427-51eb-a251-f8dd-f7922b9fcfd7@linaro.org> <CACMJSevO7sGZ5Yj_wBrs6kV+eo7iW_aLwBj68zjbU3dS7tJ-sA@mail.gmail.com>
- <72af9e51-3fc5-c2a8-b81b-7a7cbd0c9311@linaro.org>
-In-Reply-To: <72af9e51-3fc5-c2a8-b81b-7a7cbd0c9311@linaro.org>
-From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date:   Wed, 30 Aug 2023 18:21:00 +0200
-Message-ID: <CACMJSeu_wuz5eNS8z3WEtrsfSw7JpCiKUfeoXsp+rFjZW_r5Kg@mail.gmail.com>
-Subject: Re: [PATCH 05/11] dt-bindings: document the Qualcomm TEE Shared
- Memory Bridge
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH] dt-bindings: arm: realview: Spelling s/Cortex
+ A-/Cortex-A/
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <af8722c60c35d869732a638e3d8eef9d4f8cd0bf.1693407125.git.geert+renesas@glider.be>
+ <240d4c8f-1938-f812-1bd5-81620f3e42fc@linaro.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <240d4c8f-1938-f812-1bd5-81620f3e42fc@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Aug 2023 at 16:58, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 30/08/2023 16:39, Bartosz Golaszewski wrote:
-> > On Wed, 30 Aug 2023 at 16:31, Krzysztof Kozlowski
-> > <krzysztof.kozlowski@linaro.org> wrote:
-> >>
-> >> On 30/08/2023 15:48, Bartosz Golaszewski wrote:
-> >>> On Tue, 29 Aug 2023 at 11:30, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>>>
-> >>>> On 29.08.2023 10:02, Krzysztof Kozlowski wrote:
-> >>>>> On 28/08/2023 21:25, Bartosz Golaszewski wrote:
-> >>>>>> Add Device Tree bindings for Qualcomm TEE Shared Memory Brige - a
-> >>>>>> mechanism that allows sharing memory buffers between trustzone and the
-> >>>>>> kernel.
-> >>>>>
-> >>>>> Subject prefix:
-> >>>>> dt-bindings: firmware:
-> >>>>>
-> >>>>>
-> >>>>>
-> >>>>>>
-> >>>>>> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >>>>>> ---
-> >>>>>>  .../bindings/firmware/qcom,shm-bridge.yaml    | 36 +++++++++++++++++++
-> >>>>>>  1 file changed, 36 insertions(+)
-> >>>>>>  create mode 100644 Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
-> >>>>>>
-> >>>>>> diff --git a/Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml b/Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
-> >>>>>> new file mode 100644
-> >>>>>> index 000000000000..f660962b7b86
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/Documentation/devicetree/bindings/firmware/qcom,shm-bridge.yaml
-> >>>>>> @@ -0,0 +1,36 @@
-> >>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>>> +%YAML 1.2
-> >>>>>> +---
-> >>>>>> +$id: http://devicetree.org/schemas/firmware/qcom,shm-bridge.yaml#
-> >>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>>> +
-> >>>>>> +title: QCOM Shared Memory Bridge
-> >>>>>> +
-> >>>>>> +description: |
-> >>>>>
-> >>>>> Do not need '|' unless you need to preserve formatting.
-> >>>>>
-> >>>>>> +  Qualcomm TEE Shared Memory Bridge allows sharing limited areas of kernel's
-> >>>>>> +  virtual memory with the trustzone in order to avoid mapping the entire RAM.
-> >>>>>> +
-> >>>>>> +maintainers:
-> >>>>>> +  - Bjorn Andersson <andersson@kernel.org>
-> >>>>>> +  - Konrad Dybcio <konrad.dybcio@linaro.org>
-> >>>>>> +  - Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >>>>>> +
-> >>>>>> +properties:
-> >>>>>> +  compatible:
-> >>>>>> +    items:
-> >>>>>> +      - enum:
-> >>>>>> +          - qcom,shm-bridge-sa8775p
-> >>>>>> +          - qcom,shm-bridge-sm8150
-> >>>>>> +          - qcom,shm-bridge-sm8450
-> >>>>>> +      - const: qcom,shm-bridge
-> >>>>>> +
-> >>>>>
-> >>>>> Looks quite empty... Why this cannot be part of qcom,scm? IOW, why do
-> >>>>> you need new binding if you do not have any resources here and the block
-> >>>>> is essentially feature of qcom,scm firmware?
-> >>>> Since it's "discoverable" (via retval of an scm call), I'd second the
-> >>>> idea of probing this from within the SCM driver.
-> >>>>
-> >>>> Konrad
-> >>>
-> >>> Downstream has a bunch of DT switches that we don't support for now
-> >>> upstream. I disagree about shoehorning this into the SCM driver. It
-> >>> really is a layer on top of SCM but also SCM is a user of this
-> >>> interface.
-> >>
-> >> Sure, for the driver makes sense, but it does not really explain why DT
-> >> node is needed. It is not separate hardware. I doubt it is even separate
-> >> firmware, but part of SCM.
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >>
-> >
-> > Because not all platforms support it and it's the simplest way of
->
-> Platforms like SoCs or boards?
->
-> > marking the ones that do. Both SHM and SCM nodes sit on the firmware
-> > node anyway. What do you recommend? A property of the SCM node? Like
-> > 'qcom,shm-bridge` or something?
->
-> If the first - you talk about SoCs - then you have everything needed
-> already: SCM compatibles. This defines it fully.
->
-> If it varies by boards with one SoC, would be different case, but I
-> really doubt it.
->
+On 2023-08-30 15:59, Krzysztof Kozlowski wrote:
+> On 30/08/2023 16:53, Geert Uytterhoeven wrote:
+>> Fix misspellings of "Cortex-A8" and "Cortex-A9".
+>>
+>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> ---
+>>   Documentation/devicetree/bindings/arm/arm,realview.yaml | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/arm,realview.yaml b/Documentation/devicetree/bindings/arm/arm,realview.yaml
+>> index 8d3ed2e4ed315ca5..c4e9b500e02f122f 100644
+>> --- a/Documentation/devicetree/bindings/arm/arm,realview.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/arm,realview.yaml
+>> @@ -11,7 +11,7 @@ maintainers:
+>>   
+>>   description: |+
+>>     The ARM RealView series of reference designs were built to explore the ARM
+>> -  11, Cortex A-8 and Cortex A-9 CPUs. This included new features compared to
+>> +  11, Cortex-A8 and Cortex-A9 CPUs. This included new features compared to
+> 
+> Probably "ARM" should be moved here to have "ARM 11" in one line,
 
-Ok, makes sense. Thanks.
+Indeed, if we're getting product names right then it's "ARM11" (or 
+"Arm11" these days...)
 
-Bartosz
+Cheers,
+Robin.
+
+> but
+> anyway:
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
