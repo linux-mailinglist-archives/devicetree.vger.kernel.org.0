@@ -2,122 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C530078D9F9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E183F78D91B
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233306AbjH3Seu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:34:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42246 "EHLO
+        id S233918AbjH3ScW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Aug 2023 14:32:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243634AbjH3LSV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:18:21 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621A2122;
-        Wed, 30 Aug 2023 04:18:19 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37U9uCw1011135;
-        Wed, 30 Aug 2023 11:18:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=e7z5YtFaGNibUWif2AGBJC31Qg774tsEpc9J6mO2uiA=;
- b=nIvkcErb6+k8PNSC4Eocsy40/DEXXF1JzOV23wHlrB8cJvZ38WBzXrfL7SB7luUCm7gO
- YotqX4NqC9j70kxr/2kan9RKluaWRxkigndRUdXna/FKXlyZTVbAY1zXeYThaVXM4ekj
- MVDJjGzT3GgrMbL8JRdUnXXiuSuNe/XWEhybX+FMYXLyk2tQ1IheMPSxvP22/uRAUJ2I
- PFeYtndrCNFlxfOP5ylOeTA58aJJIEEWGfv2KYtoUvNvQLInu5tiDuTSwSkIUToRtlLl
- dll5spOytHIxfmwJVrJ0FfKUGX5LEFIiP2lzIy857V1JUW0WQ0nFYZ8Z/aluIc98t5GY 9w== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3st0tare55-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 30 Aug 2023 11:18:11 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37UBI9qL006894
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 30 Aug 2023 11:18:09 GMT
-Received: from nsekar-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Wed, 30 Aug 2023 04:18:03 -0700
-From:   Nitheesh Sekar <quic_nsekar@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-CC:     Nitheesh Sekar <quic_nsekar@quicinc.com>,
-        Amandeep Singh <quic_amansing@quicinc.com>
-Subject: [PATCH V2 4/4] arm64: dts: qcom: ipq5018: Enable USB
-Date:   Wed, 30 Aug 2023 16:47:22 +0530
-Message-ID: <20230830111722.19380-5-quic_nsekar@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230830111722.19380-1-quic_nsekar@quicinc.com>
-References: <20230830111722.19380-1-quic_nsekar@quicinc.com>
+        with ESMTP id S243635AbjH3LSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 07:18:35 -0400
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2245F122;
+        Wed, 30 Aug 2023 04:18:33 -0700 (PDT)
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-573128cd77dso791411eaf.0;
+        Wed, 30 Aug 2023 04:18:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693394312; x=1693999112;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=949eSJ97UUP4EMRebkVt9sELnd9wzsIRRXBTrdPP/Vg=;
+        b=CmQ2Ea+0hvOBla48vcHUJ9P/yZXtJEIkC54+3sE+s+G1FVQp53jQ909oZpxxZINkja
+         SVDTE+hvcs0NLJRJMVLDk70GDDQBDFuBgcb3rzzQcDL+3Tu9zOnmb5Qfj0rIANoxGyT2
+         LnYrB4UC1UBqDazmaWn8DYCwBJ2Ja7a59eaQkvoLOso+9zZk/9laQJWeoKsXUVMR3vw4
+         eTQDAoV7g+ddcFjkCERZnw96ANPpAHz2d18UdF3AXiQdJrQre7fwE33YDR5Bq6dIMQ/p
+         Fna5p/xWuVsnSPsBPnAba0xF4pmRKHosZQzNzFXOuit+ixH8B5jWg0nu8aPRs7kLnHWR
+         cvKg==
+X-Gm-Message-State: AOJu0Yxu0Hhr/KnsTeoD/rkzZrTUzW+qi6Mpj+1ZXlxlOhKje1yMULlf
+        svUDY+F3u/1B7llu8y5AETf2EpUkvDz5fc6TuJo=
+X-Google-Smtp-Source: AGHT+IGjUB4/qLkUwQwSco0OrxTfj8TU6YnCPhpd7Ezyb2ZaEHPMJ8PMYVYYEhDbnkv8MkkTf++Cgn9x/3KVHXzh8b4=
+X-Received: by 2002:a05:6820:1b18:b0:56e:94ed:c098 with SMTP id
+ bv24-20020a0568201b1800b0056e94edc098mr1937909oob.0.1693394312326; Wed, 30
+ Aug 2023 04:18:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JuMAQh-x4OJPlcYYs15NdbZwhq6GBX5H
-X-Proofpoint-ORIG-GUID: JuMAQh-x4OJPlcYYs15NdbZwhq6GBX5H
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-29_16,2023-08-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- spamscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
- lowpriorityscore=0 impostorscore=0 malwarescore=0 mlxlogscore=538
- adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308300105
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230829194200.1901988-1-festevam@gmail.com> <20230829194200.1901988-3-festevam@gmail.com>
+In-Reply-To: <20230829194200.1901988-3-festevam@gmail.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Wed, 30 Aug 2023 13:18:19 +0200
+Message-ID: <CAJZ5v0jEmCnxGC5NXnxKo27k4QHib5-JoGnySE_QegRODg2=Rg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] thermal: thermal_core: Allow rebooting after
+ critical temp
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     daniel.lezcano@linaro.org, rafael@kernel.org, amitk@kernel.org,
+        rui.zhang@intel.com, linux-pm@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB2 in host mode.
+On Tue, Aug 29, 2023 at 9:42 PM Fabio Estevam <festevam@gmail.com> wrote:
+>
+> From: Fabio Estevam <festevam@denx.de>
+>
+> Currently, the default mechanism is to trigger a shutdown after the
+> critical temperature is reached.
+>
+> In some embedded cases, such behavior does not suit well, as the board may
+> be unattended in the field and rebooting may be a better approach.
+>
+> The bootloader may also check the temperature and only allow the boot to
+> proceed when the temperature is below a certain threshold.
+>
+> Introduce support for allowing a reboot to be triggered after the
+> critical temperature is reached.
+>
+> If the "critical-action" devicetree property is not found, fall back to
+> the shutdown action to preserve the existing default behavior.
+>
+> Tested on a i.MX8MM board with the following devicetree changes:
+>
+>         thermal-zones {
+>                 cpu-thermal {
+>                         critical-action = "reboot";
+>                 };
+>         };
+>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+> Changes since v4:
+> - Simplify the logic inside thermal_zone_device_critical(). (Rafael)
+> - Declare THERMAL_CRITICAL_ACTION_SHUTDOWN = 0 so it is clear what happens
+> on non-DT platforms. (Rafael)
+>
+>  drivers/thermal/thermal_core.c |  6 +++++-
+>  drivers/thermal/thermal_of.c   | 27 +++++++++++++++++++++++++++
+>  include/linux/thermal.h        |  6 ++++++
+>  3 files changed, 38 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/thermal/thermal_core.c b/drivers/thermal/thermal_core.c
+> index a59700593d32..062114608667 100644
+> --- a/drivers/thermal/thermal_core.c
+> +++ b/drivers/thermal/thermal_core.c
+> @@ -320,11 +320,15 @@ void thermal_zone_device_critical(struct thermal_zone_device *tz)
+>          * Its a must for forced_emergency_poweroff_work to be scheduled.
+>          */
+>         int poweroff_delay_ms = CONFIG_THERMAL_EMERGENCY_POWEROFF_DELAY_MS;
+> +       static const char *msg = "Temperature too high";
+>
+>         dev_emerg(&tz->device, "%s: critical temperature reached, "
+>                   "shutting down\n", tz->type);
+>
+> -       hw_protection_shutdown("Temperature too high", poweroff_delay_ms);
+> +       if (tz->action == THERMAL_CRITICAL_ACTION_REBOOT)
+> +               hw_protection_reboot(msg, poweroff_delay_ms);
+> +       else
+> +               hw_protection_shutdown(msg, poweroff_delay_ms);
+>  }
+>  EXPORT_SYMBOL(thermal_zone_device_critical);
+>
+> diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.c
+> index 4ca905723429..8bc28cba7406 100644
+> --- a/drivers/thermal/thermal_of.c
+> +++ b/drivers/thermal/thermal_of.c
+> @@ -218,6 +218,31 @@ static struct device_node *of_thermal_zone_find(struct device_node *sensor, int
+>         return tz;
+>  }
+>
+> +static const char * const critical_actions[] = {
+> +       [THERMAL_CRITICAL_ACTION_SHUTDOWN]      = "shutdown",
+> +       [THERMAL_CRITICAL_ACTION_REBOOT]        = "reboot",
+> +};
+> +
+> +static void thermal_of_get_critical_action(struct device_node *np,
+> +                                          enum thermal_action *action)
+> +{
+> +       const char *action_string;
+> +       int i, ret;
+> +
+> +       ret = of_property_read_string(np, "critical-action", &action_string);
+> +       if (ret < 0)
+> +               goto out_default_action;
+> +
+> +       for (i = 0; i < ARRAY_SIZE(critical_actions); i++)
+> +               if (!strcasecmp(action_string, critical_actions[i])) {
+> +                       *action = i;
+> +                       return;
+> +               }
 
-Co-developed-by: Amandeep Singh <quic_amansing@quicinc.com>
-Signed-off-by: Amandeep Singh <quic_amansing@quicinc.com>
-Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
----
-V2:
-	Sort and reorder USB related nodes.
----
- arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+This looks somewhat artificial and is a bit questionable (the index
+variable should arguably start at THERMAL_CRITICAL_ACTION_SHUTDOWN,
+for instance, and the "shutdown" item is redundant).
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-index e636a1cb9b77..3eb3a98e3e12 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-@@ -67,6 +67,18 @@
- 	};
- };
- 
-+&usbphy0 {
-+	status = "okay";
-+};
-+
-+&usb {
-+	status = "okay";
-+};
-+
-+&usb2_0_dwc {
-+	dr_mode = "host";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <24000000>;
- };
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+There are only two values and you want to carry out an emergency
+shutdown anyway if the value is not "reboot".
 
+I would just do
+
+    if (!strcasecmp(action_string, "reboot")) {
+            *action = THERMAL_CRITICAL_ACTION_REBOOT;
+            return;
+    }
+
+> +
+> +out_default_action:
+> +       *action = THERMAL_CRITICAL_ACTION_SHUTDOWN;
+> +}
+> +
+>  static int thermal_of_monitor_init(struct device_node *np, int *delay, int *pdelay)
+>  {
+>         int ret;
+> @@ -516,6 +541,8 @@ static struct thermal_zone_device *thermal_of_zone_register(struct device_node *
+>                 goto out_kfree_trips;
+>         }
+>
+> +       thermal_of_get_critical_action(np, &tz->action);
+> +
+>         ret = thermal_zone_device_enable(tz);
+>         if (ret) {
+>                 pr_err("Failed to enabled thermal zone '%s', id=%d: %d\n",
+> diff --git a/include/linux/thermal.h b/include/linux/thermal.h
+> index b449a46766f5..b68e5734823d 100644
+> --- a/include/linux/thermal.h
+> +++ b/include/linux/thermal.h
+> @@ -34,6 +34,11 @@ struct thermal_cooling_device;
+>  struct thermal_instance;
+>  struct thermal_attr;
+>
+> +enum thermal_action {
+> +       THERMAL_CRITICAL_ACTION_SHUTDOWN = 0, /* shutdown when crit temperature is reached */
+> +       THERMAL_CRITICAL_ACTION_REBOOT, /* reboot when crit temperature is reached */
+> +};
+> +
+>  enum thermal_trend {
+>         THERMAL_TREND_STABLE, /* temperature is stable */
+>         THERMAL_TREND_RAISING, /* temperature is raising */
+> @@ -187,6 +192,7 @@ struct thermal_zone_device {
+>         struct list_head node;
+>         struct delayed_work poll_queue;
+>         enum thermal_notify_event notify_event;
+> +       enum thermal_action action;
+>  };
+>
+>  /**
+> --
