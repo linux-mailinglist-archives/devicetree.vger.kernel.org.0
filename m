@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A02578DA3C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C1C78D8B1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:31:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231468AbjH3Sfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:35:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44232 "EHLO
+        id S235439AbjH3SbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:31:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244393AbjH3NJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:09:25 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C34AB193
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:09:22 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d7d50ba994eso271007276.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 06:09:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693400962; x=1694005762; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=DwGoXvc98B29/NZ2z5FtlBwDc8c/5Vn6sQFUBsFMehM=;
-        b=jEmWvMQfYFnlzffDbxw5mXgyneUOyH70keUaWNiIHj4/9Q58xqaMaqHuj8xInc9GT/
-         txcoWC41ahEz+MPy7pLi0CoV3OKBMsGxItXcWKHMzDXhCmhk4FHOThVWONJYrADxxa3u
-         2VriFRu+2Yd5xs4StT6q7CzF+Wxe+nqaWIPbGL9hRl004uZPBHoM4f9tCoM73869oJNS
-         +wmh9dQy0rWd64mvmOUSOWN46YevkHhCD+L46mOMH7DeFDGabY5xGyV8tVeA23IM6vs3
-         UTJxmaoowxc2SxCW8nqng78RKBgi7P4IAqK2+W4uUExWA4gj7K+gcIncJqool447XREa
-         Vf/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693400962; x=1694005762;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DwGoXvc98B29/NZ2z5FtlBwDc8c/5Vn6sQFUBsFMehM=;
-        b=azT8OjiB5nkC21bISNDwPuneF2/Pu7orQ24+vJ0y11MSYNbET5n7k+zRTqErDtAfrj
-         IOKs/4dtoa0dWjKz1y2hhmSWz9mZv21wiqDPyfm/KAP4yXzNLNa3VrtMY9gx3tUmKiv0
-         62girdN4ugzhUPQzC5uDGfTTLnoJtGz3dMuQo8MvYKPzvaTjt7blrH/ZPW1xPrLyd4gC
-         U3uowDEVn6lR0KcQaj7khAP32a4XAjmoozqvG9otRZjVQWY10XttfW8FC0Rz5P4sGlGl
-         ZHD6DSc0PQ5gyyH0OwQ4fggb/U6pkmrKjujjdI2YfzxBCumo/aky/Xm/o4+iJk1twmrV
-         aHOg==
-X-Gm-Message-State: AOJu0YyBNEfTAqQ7kFxhapQYfPZv6lezS2boQ0u7zase55qmfb9EqylH
-        bfiWM9PrIOs+qHF4N9QBRnxhOtFiHheQ7q5TFwQSVg==
-X-Google-Smtp-Source: AGHT+IGm+kjClWgL76JeczMmO+h3IT4TxeT/7KWlbDA9G2smzM8OdYQu3wjRGDyP5zdSFFunQHUHMzAcTQEhKJc2RH4=
-X-Received: by 2002:a25:3201:0:b0:d11:205f:c55 with SMTP id
- y1-20020a253201000000b00d11205f0c55mr2070828yby.4.1693400961971; Wed, 30 Aug
- 2023 06:09:21 -0700 (PDT)
+        with ESMTP id S244623AbjH3NdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 09:33:00 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F13A1B0;
+        Wed, 30 Aug 2023 06:32:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 184646239C;
+        Wed, 30 Aug 2023 13:32:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7D5CC433C8;
+        Wed, 30 Aug 2023 13:32:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693402376;
+        bh=bQhUUIZpx6QwTEhjZlfwsBCnaPFOUKTf69cRORtGYYk=;
+        h=Date:From:To:Cc:Subject:From;
+        b=oRF1w04uEtjeGHIeTQFcALFdnuYKRsY0cug/nrVM5Gtq7Iu+JvcqHwAH8jdExuLns
+         NngfwIWm7cnLEBo1nucvpD3E2oNV+b5i/hC2jaavBjdHZ8Hx/OpRo+F/tN1H4RBROZ
+         097DeXMBJZPxOYngC569L+5Mhx8ocqOR5WTgGGOXr1MrLX68mpdLuzPxRyaHLckK6o
+         MjhxJjDfc58TVBgd2kGOw2JfL1+zhfWe0s9H72aPUWuRggYAln7N+lmFNtC46YtX40
+         kpxOoVvYrtpMz5VWcwvO5NUnPLSiyuLNSv3txLduuUyTPmXHUA9Gu46UAtm4UPtHMt
+         AB9eBCqOQzSSg==
+Received: (nullmailer pid 117351 invoked by uid 1000);
+        Wed, 30 Aug 2023 13:32:53 -0000
+Date:   Wed, 30 Aug 2023 08:32:53 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "David S. Miller" <davem@davemloft.net>,
+        Corey Minyard <minyard@acm.org>,
+        Peter Huewe <peterhuewe@gmx.de>,
+        Jarkko Sakkinen <jarkko@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Borislav Petkov <bp@alien8.de>,
+        Tony Luck <tony.luck@intel.com>,
+        Dipen Patel <dipenp@nvidia.com>, Peter Rosin <peda@axentia.se>,
+        Sudip Mukherjee <sudipm.mukherjee@gmail.com>
+Subject: [GIT PULL] Devicetree include cleanups for v6.6
+Message-ID: <20230830133253.GA112890-robh@kernel.org>
 MIME-Version: 1.0
-References: <20230828192507.117334-1-bartosz.golaszewski@linaro.org>
- <20230828192507.117334-7-bartosz.golaszewski@linaro.org> <8b7bada9-3898-1b60-3dea-766a760412f7@linaro.org>
- <CACMJSetObp0k312DmqhTCkw7jsf05OHX1yxbyYj+sVfbtwRcVQ@mail.gmail.com> <86bb50fd-72f3-7c76-c4fe-f8e4765e33d5@linaro.org>
-In-Reply-To: <86bb50fd-72f3-7c76-c4fe-f8e4765e33d5@linaro.org>
-From:   Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Date:   Wed, 30 Aug 2023 15:09:10 +0200
-Message-ID: <CACMJSes9Lwgh+xSDQo4KQhOHdcLigYgi=scFTeCtiqKFt1QNnw@mail.gmail.com>
-Subject: Re: [PATCH 06/11] firmware: qcom-shm-bridge: new driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Alex Elder <elder@linaro.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,125 +66,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Aug 2023 at 18:47, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 29/08/2023 15:24, Bartosz Golaszewski wrote:
-> >>> +phys_addr_t qcom_shm_bridge_to_phys_addr(void *vaddr)
-> >>> +{
-> >>> +     struct qcom_shm_bridge_chunk *chunk;
-> >>> +     struct qcom_shm_bridge_pool *pool;
-> >>> +
-> >>> +     guard(spinlock_irqsave)(&qcom_shm_bridge_chunks_lock);
-> >>> +
-> >>> +     chunk = radix_tree_lookup(&qcom_shm_bridge_chunks,
-> >>> +                               (unsigned long)vaddr);
-> >>> +     if (!chunk)
-> >>> +             return 0;
-> >>> +
-> >>> +     pool = chunk->parent;
-> >>> +
-> >>> +     guard(spinlock_irqsave)(&pool->lock);
-> >>
-> >> Why both locks are spinlocks? The locks are used quite a lot.
-> >
-> > I'm not sure what to answer. The first one protects the global chunk
-> > mapping stored in the radix tree. The second one protects a single
-> > memory pool from concurrent access. Both can be modified from any
-> > context, hence spinlocks.
->
-> Not much PREEMPT friendly, although indeed protected code is small. At
-> least here, I did not check other places.
->
-> >
-> >>
-> >>> +
-> >>> +     return gen_pool_virt_to_phys(pool->genpool, (unsigned long)vaddr);
-> >>> +}
-> >>> +EXPORT_SYMBOL_GPL(qcom_shm_bridge_to_phys_addr);
-> >>> +
-> >>> +static int qcom_shm_bridge_probe(struct platform_device *pdev)
-> >>> +{
-> >>> +     struct qcom_shm_bridge_pool *default_pool;
-> >>> +     struct device *dev = &pdev->dev;
-> >>> +     int ret;
-> >>> +
-> >>> +     /*
-> >>> +      * We need to wait for the SCM device to be created and bound to the
-> >>> +      * SCM driver.
-> >>> +      */
-> >>> +     if (!qcom_scm_is_available())
-> >>> +             return -EPROBE_DEFER;
-> >>
-> >> I think we miss here (and in all other drivers) device links to qcm.
-> >>
-> >
-> > Well, SCM, once probed, cannot be unbound. What would device links
-> > guarantee above that?
->
-> Runtime PM, probe ordering (dependencies) detection.
->
+Linus,
 
-Shouldn't we cross that bridge when we get there? SCM has no support
-for runtime PM. Probe ordering is quite well handled with a simple
-probe deferral. This is also not a parent-child relationship. SHM
-Bridge calls into the trustzone using SCM, but SCM is also a user of
-SHM Bridge.
+Please pull. Most of these changes are queued up in the subsystems. 
+These are what's left which I didn't get a response on (well, hte was 
+acked but not applied).
 
-> >
-> >>> +
-> >>> +     ret = qcom_scm_enable_shm_bridge();
-> >>> +     if (ret)
-> >>> +             return dev_err_probe(dev, ret,
-> >>> +                                  "Failed to enable the SHM bridge\n");
-> >>> +
-> >>> +     default_pool = qcom_shm_bridge_pool_new_for_dev(
-> >>> +                             dev, qcom_shm_bridge_default_pool_size);
-> >>> +     if (IS_ERR(default_pool))
-> >>> +             return dev_err_probe(dev, PTR_ERR(default_pool),
-> >>> +                                  "Failed to create the default SHM Bridge pool\n");
-> >>> +
-> >>> +     WRITE_ONCE(qcom_shm_bridge_default_pool, default_pool);
-> >>> +
-> >>> +     return 0;
-> >>> +}
-> >>> +
-> >>> +static const struct of_device_id qcom_shm_bridge_of_match[] = {
-> >>> +     { .compatible = "qcom,shm-bridge", },
-> >>> +     { }
-> >>> +};
-> >>> +
-> >>> +static struct platform_driver qcom_shm_bridge_driver = {
-> >>> +     .driver = {
-> >>> +             .name = "qcom-shm-bridge",
-> >>> +             .of_match_table = qcom_shm_bridge_of_match,
-> >>> +             /*
-> >>> +              * Once enabled, the SHM Bridge feature cannot be disabled so
-> >>> +              * there's no reason to ever unbind the driver.
-> >>> +              */
-> >>> +             .suppress_bind_attrs = true,
-> >>> +     },
-> >>> +     .probe = qcom_shm_bridge_probe,
-> >>> +};
-> >>> +
-> >>> +static int __init qcom_shm_bridge_init(void)
-> >>> +{
-> >>> +     return platform_driver_register(&qcom_shm_bridge_driver);
-> >>> +}
-> >>> +subsys_initcall(qcom_shm_bridge_init);
-> >>
-> >> Why this is part of subsystem? Should be rather device_initcall... or
-> >> simply module (and a tristate).
-> >>
-> >
-> > We want it to get up as soon as possible (right after SCM, because SCM
-> > is the first user).
->
-> Then probably should be populated/spawned by SCM.
->
+Rob
 
-I really prefer probe deferral over one platform driver creating
-platform devices for another. The device is on the DT, let's let OF
-populate it as it should.
+The following changes since commit 06c2afb862f9da8dc5efa4b6076a0e48c3fbaaa5:
 
-Bart
+  Linux 6.5-rc1 (2023-07-09 13:53:13 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-header-cleanups-for-6.6
+
+for you to fetch changes up to 86cdae14a58a877ee1ec79d39b1331bc98dace58:
+
+  ipmi: Explicitly include correct DT includes (2023-08-28 13:36:24 -0500)
+
+----------------------------------------------------------------
+Devicetree include cleanups for v6.6:
+
+These are the remaining few clean-ups of DT related includes which
+didn't get applied to subsystem trees.
+
+----------------------------------------------------------------
+Rob Herring (12):
+      riscv: Explicitly include correct DT includes
+      sparc: Explicitly include correct DT includes
+      clocksource: Explicitly include correct DT includes
+      EDAC: Explicitly include correct DT includes
+      hte: Explicitly include correct DT includes
+      macintosh: Explicitly include correct DT includes
+      mux: Explicitly include correct DT includes
+      sbus: Explicitly include correct DT includes
+      parport: Explicitly include correct DT includes
+      lib/genalloc: Explicitly include correct DT includes
+      tpm: Explicitly include correct DT includes
+      ipmi: Explicitly include correct DT includes
+
+ arch/riscv/kernel/cpufeature.c            | 1 -
+ arch/sparc/crypto/crop_devid.c            | 2 +-
+ arch/sparc/include/asm/floppy_32.h        | 2 +-
+ arch/sparc/include/asm/floppy_64.h        | 2 +-
+ arch/sparc/include/asm/parport.h          | 3 ++-
+ arch/sparc/kernel/apc.c                   | 2 +-
+ arch/sparc/kernel/auxio_32.c              | 1 -
+ arch/sparc/kernel/auxio_64.c              | 3 ++-
+ arch/sparc/kernel/central.c               | 2 +-
+ arch/sparc/kernel/chmc.c                  | 3 ++-
+ arch/sparc/kernel/ioport.c                | 2 +-
+ arch/sparc/kernel/leon_kernel.c           | 2 --
+ arch/sparc/kernel/leon_pci.c              | 3 ++-
+ arch/sparc/kernel/leon_pci_grpci1.c       | 3 ++-
+ arch/sparc/kernel/leon_pci_grpci2.c       | 4 +++-
+ arch/sparc/kernel/of_device_32.c          | 2 +-
+ arch/sparc/kernel/of_device_64.c          | 4 ++--
+ arch/sparc/kernel/of_device_common.c      | 4 ++--
+ arch/sparc/kernel/pci.c                   | 3 ++-
+ arch/sparc/kernel/pci_common.c            | 3 ++-
+ arch/sparc/kernel/pci_fire.c              | 3 ++-
+ arch/sparc/kernel/pci_impl.h              | 1 -
+ arch/sparc/kernel/pci_msi.c               | 2 ++
+ arch/sparc/kernel/pci_psycho.c            | 4 +++-
+ arch/sparc/kernel/pci_sun4v.c             | 3 ++-
+ arch/sparc/kernel/pmc.c                   | 2 +-
+ arch/sparc/kernel/power.c                 | 3 ++-
+ arch/sparc/kernel/prom_irqtrans.c         | 1 +
+ arch/sparc/kernel/psycho_common.c         | 1 +
+ arch/sparc/kernel/sbus.c                  | 3 ++-
+ arch/sparc/kernel/time_32.c               | 1 -
+ arch/sparc/mm/io-unit.c                   | 3 ++-
+ arch/sparc/mm/iommu.c                     | 5 +++--
+ drivers/char/ipmi/kcs_bmc_aspeed.c        | 1 -
+ drivers/char/tpm/tpm_ftpm_tee.c           | 1 -
+ drivers/char/tpm/tpm_tis.c                | 1 -
+ drivers/char/tpm/tpm_tis_spi_main.c       | 2 +-
+ drivers/char/tpm/tpm_tis_synquacer.c      | 1 -
+ drivers/clocksource/bcm2835_timer.c       | 2 +-
+ drivers/clocksource/nomadik-mtu.c         | 2 +-
+ drivers/clocksource/sh_cmt.c              | 1 -
+ drivers/clocksource/timer-cadence-ttc.c   | 1 +
+ drivers/clocksource/timer-gxp.c           | 1 +
+ drivers/clocksource/timer-integrator-ap.c | 2 +-
+ drivers/clocksource/timer-tegra186.c      | 1 -
+ drivers/clocksource/timer-ti-dm.c         | 1 -
+ drivers/edac/fsl_ddr_edac.c               | 3 +--
+ drivers/edac/highbank_l2_edac.c           | 3 ++-
+ drivers/edac/highbank_mc_edac.c           | 3 ++-
+ drivers/edac/mpc85xx_edac.c               | 3 +--
+ drivers/edac/npcm_edac.c                  | 3 ++-
+ drivers/edac/synopsys_edac.c              | 1 -
+ drivers/hte/hte-tegra194.c                | 1 -
+ drivers/hte/hte.c                         | 2 +-
+ drivers/macintosh/ams/ams.h               | 1 -
+ drivers/macintosh/macio_asic.c            | 1 +
+ drivers/macintosh/smu.c                   | 1 +
+ drivers/macintosh/therm_adt746x.c         | 2 ++
+ drivers/macintosh/therm_windtunnel.c      | 2 ++
+ drivers/macintosh/windfarm_lm75_sensor.c  | 2 +-
+ drivers/mux/core.c                        | 1 -
+ drivers/mux/mmio.c                        | 2 +-
+ drivers/parport/parport_sunbpp.c          | 2 +-
+ drivers/sbus/char/bbc_envctrl.c           | 2 +-
+ drivers/sbus/char/bbc_i2c.c               | 3 ++-
+ drivers/sbus/char/bbc_i2c.h               | 1 -
+ drivers/sbus/char/display7seg.c           | 2 +-
+ drivers/sbus/char/envctrl.c               | 2 +-
+ drivers/sbus/char/flash.c                 | 2 +-
+ drivers/sbus/char/uctrl.c                 | 2 +-
+ lib/genalloc.c                            | 4 +++-
+ 71 files changed, 83 insertions(+), 68 deletions(-)
