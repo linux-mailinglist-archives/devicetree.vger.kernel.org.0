@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B46878D9A6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D465578D964
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231519AbjH3Sdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:33:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58930 "EHLO
+        id S237029AbjH3SdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244101AbjH3MdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:33:13 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7D64CD2
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:33:10 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so8665022e87.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:33:10 -0700 (PDT)
+        with ESMTP id S244111AbjH3Md5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 08:33:57 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDAE8CCF
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:33:52 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-500aed06ffcso7076932e87.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 05:33:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693398789; x=1694003589; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=oAFVjZYKZNRPwsay3rIoLdzOEL0KLN9k47XMSZxKLB8=;
-        b=Fk41yDB8NbKWSvM/2IPbAm82r+RcSFuLkUxAbooic2ots2mZ7HYqJh8XWhBFTDDltF
-         qln6x9PHBn9XrYpf9cfXvGndOOj8h92SdvJ6ZIkrYczSBV1YMpB+f3ayP6kQ9AoGHX+g
-         FubI5Snqm/40lh6YfMiJ70zZkKgxGXrl4+VjEkHPdE4W0TR+I6a99ibiC02yzBqK46Fd
-         F8doSoiTNOtNDjLwA/0JnIlkSW+zdrqXj7Rd2mYO1BWj42I12KELaqSyABsFVxUjADp+
-         xGuT/BTbL+ABBgfGRjAWedmnIoW2Ajewjluzb6DWce1vsUUpdI9kLXqEkTM7GrOrTyXC
-         hBlQ==
+        d=linaro.org; s=google; t=1693398831; x=1694003631; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fM4zw4Y+PK+kDtc4jBjk6NL6skbssVLcd1v72Ge00js=;
+        b=X7nYDQLF0wFvXT30dBNZAeqF2LvHrTy6dlWiC4x3WR3H/UJIju6bVU37jpqZFFxGeN
+         Ga6ij/ATSJqm9+JVHlRwWX51RTtaOGVyNq1Lv+cQGIp1AX/JMDLNw5zmw5/9YkVO5oYR
+         5uJA/YBpQVMBFBfEOVGqZyo//GnMB6KHGdOnQgVqqG7jP+KjWwKJzKGvJHjkase52aEK
+         TiLYpilNLH0ksuuSrenBL1LS35FpND+h5Ehmn6h/Kq36E8bTKibLjsDWG0iSOyYwg3At
+         kNO12oH/LZsrege+OTvkA5iU92/kdMhhmBLSWdG6eSmUs8+9IW9ojd03WCsCrz7hMz4b
+         0iWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693398789; x=1694003589;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=oAFVjZYKZNRPwsay3rIoLdzOEL0KLN9k47XMSZxKLB8=;
-        b=aUlivKAnnS0kCCpvnUqrs9TD3hI1laVfGptep78AagSaGGNbwVRcmAB59yvf80xkM/
-         pZ1JfMh6mHuTN0u7y7yujd8HsqbhAduci4aAbAXc8WRr/+kphVozPt5WmdpO85jLU8X4
-         rpcPMMyhAABbin2yFdYe9LoYOPmRINT2K7lWzx9Ff9/5A5gWK7zEa/eNsUPgHNaqNN5M
-         lMOuPBzhtNvt//EL0FtivBNUlYj0ujBa1VogXUWprgU2lOXWSP2b+Q7+i0Z1Dk55FGiT
-         cKLzgGDPKeqvI3Bl1BC4gPpbuqiVONTxQPPdekZpYbBzRjUWywHbtd82R26WCnnaMr4C
-         5Azw==
-X-Gm-Message-State: AOJu0YwcL7RnPKAthRQE/jUlZE1WJM7Rx0ve6ZNa361Q7+y7eEZwheDe
-        fVEI/NbyhzPmBddcHO64Weo4GQ==
-X-Google-Smtp-Source: AGHT+IFB55m00NU6ptvOtwfZRKP4sKIyzJ8HQbx/wwgnu4WlbSbWPmVlUbC7tXKDNTT0fOZpMN29BQ==
-X-Received: by 2002:a19:4f15:0:b0:4ff:7f7f:22e7 with SMTP id d21-20020a194f15000000b004ff7f7f22e7mr1476266lfb.17.1693398789255;
-        Wed, 30 Aug 2023 05:33:09 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693398831; x=1694003631;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fM4zw4Y+PK+kDtc4jBjk6NL6skbssVLcd1v72Ge00js=;
+        b=TdULRwHwRbnYYR+466wBMmWpTmECLVMZjliBNw3R6yLxvQWcWp9wGGiq7qy0kXztoB
+         6VDyXspA7K3abANfL+lHLzuWzGSFtSC7/8t8+PBgR5B4xBqh4fr81vMgILj6v4Cz3cSJ
+         xsWV5TwTckap0dMm9wK6lnMNZ7v4jDyYp7m4ixROucaHqP7fbimOyo4Q/6ShXlZfmqpM
+         MfMdbwlmJyuGrVx1MlD7LNqcytrVmykfokRz6uIvT8D7oS8GKdAlK7DF+aR0IlEWuiVP
+         BOGEO4jO2xp7FoBPOOcPFgrVngb3Fkx7Cg0+Ee8gceJSf175yEhKpsaN4iXl+rorQmQ4
+         c0Hg==
+X-Gm-Message-State: AOJu0YxYmFHPmTT4KRHaf11Cp+FWO/SvvAgG8R2/HREg5WvoiOOB3caU
+        0iJIaswMBij6yIJuVutjwXOWBw==
+X-Google-Smtp-Source: AGHT+IFpqssqEsHhAwNvihCZkw7n1mwA0QNrfLqECCAChW0G5SoTD/pQ543VMI/Adriu2HixMMMZ6Q==
+X-Received: by 2002:a05:6512:3d16:b0:500:91ac:c0b5 with SMTP id d22-20020a0565123d1600b0050091acc0b5mr2045801lfv.30.1693398831224;
+        Wed, 30 Aug 2023 05:33:51 -0700 (PDT)
 Received: from [192.168.1.101] (abyl195.neoplus.adsl.tpnet.pl. [83.9.31.195])
-        by smtp.gmail.com with ESMTPSA id v20-20020ac25614000000b004fbc82dd1a5sm2366788lfd.13.2023.08.30.05.33.08
+        by smtp.gmail.com with ESMTPSA id v20-20020ac25614000000b004fbc82dd1a5sm2366788lfd.13.2023.08.30.05.33.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Aug 2023 05:33:08 -0700 (PDT)
-Message-ID: <50c2777f-de2e-4f57-9a94-ae25c8ee759a@linaro.org>
-Date:   Wed, 30 Aug 2023 14:33:08 +0200
+        Wed, 30 Aug 2023 05:33:50 -0700 (PDT)
+Message-ID: <ec06ac10-e042-49dc-a1b2-5995132de887@linaro.org>
+Date:   Wed, 30 Aug 2023 14:33:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 4/6] soc: qcom: Add LLCC support for multi channel DDR
+Subject: Re: [PATCH v8 6/6] soc: qcom: llcc: Add QDU1000 and QRU1000 LLCC
+ support
 Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
@@ -64,8 +63,8 @@ To:     Komal Bajaj <quic_kbajaj@quicinc.com>, agross@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230830105654.28057-1-quic_kbajaj@quicinc.com>
- <20230830105654.28057-5-quic_kbajaj@quicinc.com>
- <cec9318c-9a70-4392-89b7-048d30b7b790@linaro.org>
+ <20230830105654.28057-7-quic_kbajaj@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
  BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
@@ -101,46 +100,23 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <cec9318c-9a70-4392-89b7-048d30b7b790@linaro.org>
+In-Reply-To: <20230830105654.28057-7-quic_kbajaj@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2023 14:32, Konrad Dybcio wrote:
-> On 30.08.2023 12:56, Komal Bajaj wrote:
->> Add LLCC support for multi channel DDR configuration
->> based on a feature register.
->>
->> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
->> ---
-> [...]
+On 30.08.2023 12:56, Komal Bajaj wrote:
+> Add LLCC configuration data for QDU1000 and QRU1000 SoCs.
 > 
-> global pointer to a error code to avoid referencing it */
->> @@ -1031,6 +1050,7 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->>  	const struct qcom_llcc_config *cfg;
->>  	const struct llcc_slice_config *llcc_cfg;
->>  	u32 sz;
->> +	u8 cfg_index;
->>  	u32 version;
->>  	struct regmap *regmap;
->>
->> @@ -1052,7 +1072,10 @@ static int qcom_llcc_probe(struct platform_device *pdev)
->>  		ret = -EINVAL;
->>  		goto err;
->>  	}
->> -	cfg = &cfgs->llcc_config[0];
-> This is unnecessary, get_cfg_index returns 0 when no nvmem cell is
-> present.
-Sorry this is a minus and not a plus
-
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
 Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
