@@ -2,120 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0839878D8F0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:32:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3F8F78DA3E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236434AbjH3Sbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:31:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42714 "EHLO
+        id S237088AbjH3Sfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242454AbjH3Ifc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 04:35:32 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D23F1AE;
-        Wed, 30 Aug 2023 01:35:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1693384528; x=1724920528;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1rr15Edf/mJdMl4aJdngCeF31+Nb5/f0kCNlVbqGRGc=;
-  b=rVXoFatN+nhu2iJqnRLaeWPV1cdY4pd3cpuiBepSIiEf+WiXpDi7ouzN
-   ztv1MilIMdiPV/qkq0FPxUFAmb5/vAtRHvulLCzDv4oMnnzLYuv9v6QmB
-   OH/dIh/tgLNWycgy7uzxt7ZV1GiQ38euBzN4cIwyTdANaMq1DPkOr9wTi
-   pyjDGVUJsh6Wq5Ec+HgY1mOPN/YaQjQw/M2wE3EpZe0GvEp3XO921L9LD
-   VZurzOwAlo3EJPVF/IyQsRJLeRVaTS7Pgcwez6NVH7Ud8naJjqAtfrYoc
-   rFjOCbiaMx1VFyWDsNUe5omuqJLdYdFmldvk/0/ehO8dGhYCg9pPcgyif
-   A==;
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; 
-   d="asc'?scan'208";a="169026622"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Aug 2023 01:35:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Wed, 30 Aug 2023 01:34:51 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Wed, 30 Aug 2023 01:34:48 -0700
-Date:   Wed, 30 Aug 2023 09:34:06 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-CC:     William Qiu <william.qiu@starfivetech.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-mmc@vger.kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S242572AbjH3JE0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 05:04:26 -0400
+Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F382CCB;
+        Wed, 30 Aug 2023 02:04:23 -0700 (PDT)
+Received: by mail-vk1-xa29.google.com with SMTP id 71dfb90a1353d-48cfdfa7893so2328604e0c.0;
+        Wed, 30 Aug 2023 02:04:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693386262; x=1693991062; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zRFnOrEZvLN5kMlEOUmKO68YNnlEwR47/rOgrclL5cI=;
+        b=jlvC6N8qhEBBIJ8dSaDVs8838JK5R71fBpQhWBEEYdTPuWOSIL3s/QQXIobgtzTt6a
+         kmmv2y8Gn+VHdQ3NVDYe//IwA4mcL/Dp6RKqkyMTlSwL7H++kt44MT9sEx1BF59plD4E
+         /HzjWDqysaZ2TJTDdhG2IuAqbTn5ltoBgJ9gKe8I/g1Ze8gUTRf/nDJpv2wmWT4j+hlj
+         mxK50NsIsoPn3H5nK6otbtsru3dVWlFMhoK9rS6XdNNR1zAmKgmIrnHeCiyVPs0D+x73
+         EbEQig+E7KqokEZqu84ucpqE2/QxJUnDPOecyMENXpXwqyXHfPs/G11915Qg+C2DfubD
+         gdxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693386262; x=1693991062;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zRFnOrEZvLN5kMlEOUmKO68YNnlEwR47/rOgrclL5cI=;
+        b=kj0/lKMzeIzuFk7qJIC8wa1IRjTO1MsFivffQn+Ty5rQJpXtDLmQMEB/1xu8Dj4oCu
+         kn/sOKL+IbgNvPGLOeV0e9XUpYVplDX3YNJ6k35VkkvPQNf4GbNrNJMIU3zK/v6US6nr
+         xtlAhmcQ7a7RkKWTRvZ7L7YasNPeC7AswhkUX1yurR+Hq0VFwZFJVW/cQU8kCmRIeD4T
+         27vgc12why9l2KuFI1MNbm/fV2ZZ4Zfj8ITzfOJpYg2m0aaKrxSJbQ+qj7144sZdBZS4
+         FDyEze3StOpoXxfP01PQWt3NXoZwqUZ/PZD6H6AcinjVCrmWkq4mtzm47UA5D5xwIStM
+         JO2g==
+X-Gm-Message-State: AOJu0Yw6yBzYji++4FgNFu8aBQsZ4afL5NDT/kfaF+yox2JWsbi44lqb
+        OIUqvUysj0ZlIaooUom/brU=
+X-Google-Smtp-Source: AGHT+IFRF/QDUiw8HkrwOVzahLlEG5guebup/jA0oCLgscvJyaeOR/MUVQPM2c8W1nVG0Tzyudffzw==
+X-Received: by 2002:a1f:4a02:0:b0:48d:4b:66df with SMTP id x2-20020a1f4a02000000b0048d004b66dfmr1520456vka.0.1693386262097;
+        Wed, 30 Aug 2023 02:04:22 -0700 (PDT)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id x4-20020a656aa4000000b00553dcfc2179sm9263226pgu.52.2023.08.30.02.04.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Aug 2023 02:04:21 -0700 (PDT)
+From:   peteryin <peteryin.openbmc@gmail.com>
+To:     patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
-Message-ID: <20230830-procedure-frostbite-56c751f7c276@wendy>
-References: <20230830031846.127957-1-william.qiu@starfivetech.com>
- <20230830031846.127957-2-william.qiu@starfivetech.com>
- <20230830-commence-trickery-40eaa193cb15@wendy>
- <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
+        daniel-hsu@quantatw.com, peteryin <peteryin.openbmc@gmail.com>
+Subject: [PATCH v4 0/2] ARM: dts: aspeed:Minerva:
+Date:   Wed, 30 Aug 2023 17:02:09 +0800
+Message-Id: <20230830090212.3880559-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="h1favm8wo5hVWnmt"
-Content-Disposition: inline
-In-Reply-To: <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_PASS,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---h1favm8wo5hVWnmt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
+v2 link : https://lore.kernel.org/lkml/9f499fe5-db59-f4c8-6a50-93725b7287fd@linaro.org/
+v3 line : https://lore.kernel.org/lkml/20230830025133.3756506-1-peteryin.openbmc@gmail.com/
 
-On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski wrote:
-> On 30/08/2023 08:50, Conor Dooley wrote:
-> > On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
-> >> Due to the change of tuning implementation, it's no longer necessary to
-> >> use the "starfive,sysreg" property in dts, so drop the relevant
-> >> description in dt-bindings here.
-> >=20
-> > How does changing your software implantation invalidate a description of
-> > the hardware?
-> >=20
->=20
-> Which is kind of proof that this syscon was just to substitute
-> incomplete hardware description (e.g. missing clocks and phys). We
-> should have rejected it. Just like we should reject them in the future.
+Change log:
 
-:s I dunno what to do with this... I'm inclined to say not to remove it
-=66rom the binding or dts at all & only change the software.
+v4:
+    1.seprate dts document.
 
-> There are just few cases where syscon is reasonable. All others is just
-> laziness. It's not only starfivetech, of course. Several other
-> contributors do the same.
+v3:
+    1.Fixed commit description.
+    2.Add sgpio line name to sgpioP.
+    3.Add ipmb debug card bus.
 
-I'm not sure if laziness is fair, lack of understanding is usually more
-likely.
+v2:
+    1.Add facebook,minerva-bmc in aspeed.yaml
+    2.Use stdout-path
+    3.Add Makefile
 
---h1favm8wo5hVWnmt
-Content-Type: application/pgp-signature; name="signature.asc"
+v1:
+    1. Create minerva dts file.
 
------BEGIN PGP SIGNATURE-----
+*** BLURB HERE ***
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZO7++gAKCRB4tDGHoIJi
-0u4KAP0Vf98t3HptgWUDxzyfGqUIFcjfe/j2Dbq8eR0D637TbAEA0mpYQNoVYT5e
-3uimUjgIT7U4Gkf664SMkKGV+ED1Zgs=
-=cvPO
------END PGP SIGNATURE-----
+peteryin (2):
+  ARM: dts: aspeed: Minerva: Add Facebook Minerva (AST2600) BMC
+  dt-bindings: arm: aspeed: add Meta Minerva board
 
---h1favm8wo5hVWnmt--
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 385 ++++++++++++++++++
+ 3 files changed, 387 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+
+-- 
+2.25.1
+
