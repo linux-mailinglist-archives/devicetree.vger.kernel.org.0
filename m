@@ -2,170 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4D3078D960
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:33:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27D7378D9FA
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:35:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236889AbjH3SdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:33:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56924 "EHLO
+        id S234833AbjH3Sew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:34:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243283AbjH3Kge (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:36:34 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBC31BB
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:36:30 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-529fb04a234so7094052a12.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 03:36:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693391788; x=1693996588; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HZcO54s6dPOvHTKozhAJ9zybhhO9IlHmOjEttCcJ4Fc=;
-        b=C0prIXeHgKDHDYl3xGT74jVJ+7LpPwuKQ9ApXGCbHlvskrYIbeES4cXYboTamDKCMC
-         bA7mmoX1Kk/fzujWZ5VfqofnorAHCPB7/qciijCBZNFGrynvnbAinPacxkx2c+MUsXYW
-         sV1L0KkqQVRBjvSbnDymg/GHfIDTgp/9G69zhzrR2S0xOIvtu+x41dDbllwytpKJ4Lee
-         7VCplc89rhLJHm2LohAl5Wpc04xGDlLEj57VNmaxInvKaQK7xxUv61LMGyrTODCmXO7C
-         nZhHHSpt10QEoAmMCcFuscT20FcRqjNaurGZsof454w3eSxx5nohOlU2TSv6Qvd41vH4
-         lcTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693391788; x=1693996588;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HZcO54s6dPOvHTKozhAJ9zybhhO9IlHmOjEttCcJ4Fc=;
-        b=Ibjl5cK7u6HGn7hWw/+HZ/XZjg7qoU293W72ZHaCEK2xo/h7HgCi8kqnow1jsa5Cv+
-         6lDRaoIpFC0jCOqLSiR5xlaJ1UdFjSFrnfMobI+ArJlEktIu4cUxCN3TZPl2JwE0r5UP
-         7Y3qWCvoOUsggKcpgj2LvDLUUAMSUdLhSQXy8tfcfpwwJhb40qs9ASw4C89Lv/DyRGQW
-         wca9R9NX+lmSp4ftZ6Ev538g6QmwTQwfWC0PzfFP/J+cR/9dG5Zh+SbrSp2536OACkg+
-         QUoLRh8tRdXykzJiniTRcqCXyN0yezw/FLOZjQdh3JLT4O3MtyBqp8s6SY9q1lMiZQFW
-         7wlA==
-X-Gm-Message-State: AOJu0YwjmzpjpUBcEMBi7NvcPFW0urh3UbqSBz08Ja66wPo+dMPmXaVJ
-        5J3GkWSpdqK98QQANmylBThBBQ==
-X-Google-Smtp-Source: AGHT+IGiBHH+VCjnIyveBq5dLYGOcHJ2s6Xflu3d/0Pw3YF2Fpdun5D9Au3Dso27zqC14dGTODLPfQ==
-X-Received: by 2002:a17:907:60c7:b0:9a5:8eab:49de with SMTP id hv7-20020a17090760c700b009a58eab49demr1376125ejc.17.1693391788390;
-        Wed, 30 Aug 2023 03:36:28 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id s11-20020a170906354b00b00992bea2e9d2sm7027620eja.62.2023.08.30.03.36.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 03:36:27 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Date:   Wed, 30 Aug 2023 12:36:16 +0200
-Message-ID: <20230830103620.3611761-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S243323AbjH3Kli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 06:41:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C70721B3;
+        Wed, 30 Aug 2023 03:41:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CEB760F83;
+        Wed, 30 Aug 2023 10:41:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFFD6C433C8;
+        Wed, 30 Aug 2023 10:41:31 +0000 (UTC)
+Message-ID: <29f7f201-13eb-0150-91e9-ab68b2bba13a@xs4all.nl>
+Date:   Wed, 30 Aug 2023 12:41:30 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v8 3/8] media: staging: media: starfive: camss: Add core
+ driver
+Content-Language: en-US, nl
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-staging@lists.linux.dev,
+        changhuang.liang@starfivetech.com
+References: <20230824080109.89613-1-jack.zhu@starfivetech.com>
+ <20230824080109.89613-4-jack.zhu@starfivetech.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230824080109.89613-4-jack.zhu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On 24/08/2023 10:01, Jack Zhu wrote:
+> Add core driver for StarFive Camera Subsystem. The code parses
+> the device platform resources and registers related devices.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> ---
+>  MAINTAINERS                                   |   1 +
+>  drivers/staging/media/Kconfig                 |   2 +
+>  drivers/staging/media/Makefile                |   1 +
+>  drivers/staging/media/starfive/Kconfig        |   5 +
+>  drivers/staging/media/starfive/Makefile       |   2 +
+>  drivers/staging/media/starfive/camss/Kconfig  |  17 +
+>  drivers/staging/media/starfive/camss/Makefile |   9 +
+>  .../staging/media/starfive/camss/stf_camss.c  | 316 ++++++++++++++++++
+>  .../staging/media/starfive/camss/stf_camss.h  | 129 +++++++
+>  9 files changed, 482 insertions(+)
+>  create mode 100644 drivers/staging/media/starfive/Kconfig
+>  create mode 100644 drivers/staging/media/starfive/Makefile
+>  create mode 100644 drivers/staging/media/starfive/camss/Kconfig
+>  create mode 100644 drivers/staging/media/starfive/camss/Makefile
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_camss.c
+>  create mode 100644 drivers/staging/media/starfive/camss/stf_camss.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4c63c0a85301..97d3054416ed 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -20258,6 +20258,7 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/admin-guide/media/starfive_camss.rst
+>  F:	Documentation/devicetree/bindings/media/starfive,jh7110-camss.yaml
+> +F:	drivers/staging/media/starfive/camss
+>  
+>  STARFIVE CRYPTO DRIVER
+>  M:	Jia Jie Ho <jiajie.ho@starfivetech.com>
+> diff --git a/drivers/staging/media/Kconfig b/drivers/staging/media/Kconfig
+> index bc6c7b248f86..554c2e475ce3 100644
+> --- a/drivers/staging/media/Kconfig
+> +++ b/drivers/staging/media/Kconfig
+> @@ -36,6 +36,8 @@ source "drivers/staging/media/omap4iss/Kconfig"
+>  
+>  source "drivers/staging/media/rkvdec/Kconfig"
+>  
+> +source "drivers/staging/media/starfive/Kconfig"
+> +
+>  source "drivers/staging/media/sunxi/Kconfig"
+>  
+>  source "drivers/staging/media/tegra-video/Kconfig"
+> diff --git a/drivers/staging/media/Makefile b/drivers/staging/media/Makefile
+> index 1a4c3a062e3d..dcaeeca0ee6d 100644
+> --- a/drivers/staging/media/Makefile
+> +++ b/drivers/staging/media/Makefile
+> @@ -6,6 +6,7 @@ obj-$(CONFIG_VIDEO_MAX96712)	+= max96712/
+>  obj-$(CONFIG_VIDEO_MESON_VDEC)	+= meson/vdec/
+>  obj-$(CONFIG_VIDEO_OMAP4)	+= omap4iss/
+>  obj-$(CONFIG_VIDEO_ROCKCHIP_VDEC)	+= rkvdec/
+> +obj-$(CONFIG_VIDEO_STARFIVE_CAMSS)	+= starfive/
+>  obj-$(CONFIG_VIDEO_SUNXI)	+= sunxi/
+>  obj-$(CONFIG_VIDEO_TEGRA)	+= tegra-video/
+>  obj-$(CONFIG_VIDEO_IPU3_IMGU)	+= ipu3/
+> diff --git a/drivers/staging/media/starfive/Kconfig b/drivers/staging/media/starfive/Kconfig
+> new file mode 100644
+> index 000000000000..34727cf56072
+> --- /dev/null
+> +++ b/drivers/staging/media/starfive/Kconfig
+> @@ -0,0 +1,5 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +
+> +comment "StarFive media platform drivers"
+> +
+> +source "drivers/staging/media/starfive/camss/Kconfig"
+> diff --git a/drivers/staging/media/starfive/Makefile b/drivers/staging/media/starfive/Makefile
+> new file mode 100644
+> index 000000000000..4639fa1bca32
+> --- /dev/null
+> +++ b/drivers/staging/media/starfive/Makefile
+> @@ -0,0 +1,2 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-y += camss/
+> diff --git a/drivers/staging/media/starfive/camss/Kconfig b/drivers/staging/media/starfive/camss/Kconfig
+> new file mode 100644
+> index 000000000000..8d20e2bd2559
+> --- /dev/null
+> +++ b/drivers/staging/media/starfive/camss/Kconfig
+> @@ -0,0 +1,17 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +config VIDEO_STARFIVE_CAMSS
+> +	tristate "Starfive Camera Subsystem driver"
+> +	depends on V4L_PLATFORM_DRIVERS
+> +	depends on VIDEO_DEV && OF
+> +	depends on HAS_DMA
+> +	depends on PM
+> +	select MEDIA_CONTROLLER
+> +	select VIDEO_V4L2_SUBDEV_API
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select V4L2_FWNODE
+> +	help
+> +	   Enable this to support for the Starfive Camera subsystem
+> +	   found on Starfive JH7110 SoC.
+> +
+> +	   To compile this driver as a module, choose M here: the
+> +	   module will be called stf-camss.
 
-Add the DT property 'infineon,en-pin-fixed-level' to
-indicated that the chip ENABLE pin is at fixed level
-or left unconnected(has internal pull-down).
+Erm, isn't it called starfive-camss.ko?
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-----
-Changes in V4:
-- Update property name & description.
-- Update commit message.
----
- .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- 2 files changed, 50 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+Regards,
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-new file mode 100644
-index 000000000000..1df40ee7454a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
-+
-+maintainers:
-+  - Naresh Solanki <naresh.solanki@9elements.com>
-+
-+description: |
-+  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
-+  Regulator with SVID and I2C designed for Industrial use.
-+
-+  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
-+
-+properties:
-+  compatible:
-+    enum:
-+      - infineon,tda38640
-+
-+  reg:
-+    maxItems: 1
-+
-+  infineon,en-pin-fixed-level:
-+    description: |
-+      Indicates that the chip ENABLE pin is at fixed level or left
-+      unconnected(has internal pull-down).
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tda38640@40 {
-+            compatible = "infineon,tda38640";
-+            reg = <0x40>;
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 40bc475ee7e1..86c7d34f63bf 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -151,8 +151,6 @@ properties:
-           - infineon,slb9645tt
-             # Infineon SLB9673 I2C TPM 2.0
-           - infineon,slb9673
--            # Infineon TDA38640 Voltage Regulator
--          - infineon,tda38640
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-             # Infineon Multi-phase Digital VR Controller xdpe11280
-
-base-commit: 919a83d020a8dfa1411c1dc1cff23a833f0f5268
--- 
-2.41.0
-
+	Hans
