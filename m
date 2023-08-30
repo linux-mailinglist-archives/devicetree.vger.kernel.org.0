@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CB5278DA1B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:36:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED94478D98C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Aug 2023 20:34:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233738AbjH3Sf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Aug 2023 14:35:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42270 "EHLO
+        id S231243AbjH3SdZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Aug 2023 14:33:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242772AbjH3Jd6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 05:33:58 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2015EBE;
-        Wed, 30 Aug 2023 02:33:55 -0700 (PDT)
-Received: from kwepemm600013.china.huawei.com (unknown [172.30.72.54])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4RbJwY2FvqzrS4S;
-        Wed, 30 Aug 2023 17:32:13 +0800 (CST)
-Received: from [10.174.178.156] (10.174.178.156) by
- kwepemm600013.china.huawei.com (7.193.23.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Wed, 30 Aug 2023 17:33:51 +0800
-Message-ID: <6906870e-cafa-9a5e-f981-38561576455c@huawei.com>
-Date:   Wed, 30 Aug 2023 17:33:50 +0800
+        with ESMTP id S242799AbjH3Jme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Aug 2023 05:42:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7597E137;
+        Wed, 30 Aug 2023 02:42:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 05E0A62877;
+        Wed, 30 Aug 2023 09:42:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3490FC433C8;
+        Wed, 30 Aug 2023 09:42:26 +0000 (UTC)
+Message-ID: <0c91f68d-d172-bd14-9115-b6977ad2d01f@xs4all.nl>
+Date:   Wed, 30 Aug 2023 11:42:24 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH v3 2/2] dt-bindings: dma: hisi: Add bindings for Hisi
- Ascend sdma
-To:     Rob Herring <robh@kernel.org>
-CC:     <vkoul@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <dmaengine@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <xuqiang36@huawei.com>,
-        <chenweilong@huawei.com>
-References: <20230824040007.1476-1-guomengqi3@huawei.com>
- <20230824040007.1476-3-guomengqi3@huawei.com>
- <20230824194324.GA1342234-robh@kernel.org>
-From:   "guomengqi (A)" <guomengqi3@huawei.com>
-In-Reply-To: <20230824194324.GA1342234-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.174.178.156]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- kwepemm600013.china.huawei.com (7.193.23.68)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v14 7/7] media: nuvoton: Add driver for NPCM video capture
+ and encode engine
+Content-Language: en-US, nl
+To:     Marvin Lin <milkfafa@gmail.com>, mchehab@kernel.org,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrzej.p@collabora.com
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+References: <20230828091859.3889817-1-milkfafa@gmail.com>
+ <20230828091859.3889817-8-milkfafa@gmail.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+In-Reply-To: <20230828091859.3889817-8-milkfafa@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,105 +53,340 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marvin,
 
-在 2023/8/25 3:43, Rob Herring 写道:
-> On Thu, Aug 24, 2023 at 12:00:07PM +0800, Guo Mengqi wrote:
->> Add device-tree binding documentation for the Hisi Ascend sdma
->> controller.
->>
->> Signed-off-by: Guo Mengqi <guomengqi3@huawei.com>
->> ---
->>   .../bindings/dma/hisi,ascend-sdma.yaml        | 75 +++++++++++++++++++
->>   1 file changed, 75 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
->> new file mode 100644
->> index 000000000000..87b6132c1b4b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/hisi,ascend-sdma.yaml
->> @@ -0,0 +1,75 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/hisi,ascend-sdma.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: HISI Ascend System DMA (SDMA) controller
->> +
->> +description: |
->> +  The Ascend SDMA controller is used for transferring data
->> +  in system memory. It utilizes IOMMU SVA feature and accepts
->> +  virtual address from user process.
->> +
->> +maintainers:
->> +  - Guo Mengqi <guomengqi3@huawei.com>
->> +
->> +allOf:
->> +  - $ref: dma-controller.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - hisilicon,ascend310-sdma
->> +      - hisilicon,ascend910-sdma
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#dma-cells':
->> +    const: 1
->> +    description:
->> +      Clients specify a single cell with channel number.
->> +
->> +  hisilicon,ascend-sdma-channel-map:
->> +    description: |
->> +      bitmap, each bit stands for a channel that is allowed to
->> +      use by this system. Maximum 64 bits.
->> +    $ref: /schemas/types.yaml#/definitions/uint64
-> Sounds like the common property dma-channel-mask. Use that.
-It does seem to be the one I'm looking for. Will use it in next patch.
->> +
->> +  iommus:
->> +    maxItems: 1
->> +
->> +  pasid-num-bits:
-> Needs a vendor prefix.
-This can be found in iommu optional properties. Although nobody use it 
-for now.
->> +    description: |
->> +      sdma utilizes iommu sva feature to transfer user space data.
-> Isn't shared VA mostly a s/w concept?
+A few minor change requests, and a question w.r.t. the V4L2_CID_NPCM_RECT_COUNT
+control:
 
-Well, sdma controller has built-in mechanism to support shared VA 
-translation.
+On 28/08/2023 11:18, Marvin Lin wrote:
+> Add driver for Video Capture/Differentiation Engine (VCD) and Encoding
+> Compression Engine (ECE) present on Nuvoton NPCM SoCs. As described in
+> the datasheet NPCM750D_DS_Rev_1.0, the VCD can capture a frame from
+> digital video input and compare two frames in memory, and then the ECE
+> can compress the frame data into HEXTILE format. This driver implements
+> V4L2 interfaces and provides user controls to support KVM feature, also
+> tested with VNC Viewer ver.6.22.826 and openbmc/obmc-ikvm.
+> 
+> Signed-off-by: Marvin Lin <milkfafa@gmail.com>
+> ---
+>  MAINTAINERS                                 |   12 +
+>  drivers/media/platform/Kconfig              |    1 +
+>  drivers/media/platform/Makefile             |    1 +
+>  drivers/media/platform/nuvoton/Kconfig      |   15 +
+>  drivers/media/platform/nuvoton/Makefile     |    2 +
+>  drivers/media/platform/nuvoton/npcm-regs.h  |  152 ++
+>  drivers/media/platform/nuvoton/npcm-video.c | 1840 +++++++++++++++++++
+>  7 files changed, 2023 insertions(+)
+>  create mode 100644 drivers/media/platform/nuvoton/Kconfig
+>  create mode 100644 drivers/media/platform/nuvoton/Makefile
+>  create mode 100644 drivers/media/platform/nuvoton/npcm-regs.h
+>  create mode 100644 drivers/media/platform/nuvoton/npcm-video.c
+> 
 
-I add this to explain purpose of property.
+<snip>
 
->> +      It acts as a basic dma controller if not bound to user space.
-> I don't understand what this means.
+> +static int npcm_video_querycap(struct file *file, void *fh,
+> +			       struct v4l2_capability *cap)
+> +{
+> +	strscpy(cap->driver, DEVICE_NAME, sizeof(cap->driver));
+> +	strscpy(cap->card, "NPCM Video Engine", sizeof(cap->card));
+> +	snprintf(cap->bus_info, sizeof(cap->bus_info), "platform:%s", DEVICE_NAME);
 
-By "basic" I mean iommu bypass mode, which is supported in hardware design.
+You can drop this last line, it is already filled in by the V4L2 core for
+platform devices.
 
-So if the transfer is all in physical address, it seems quite... basic?
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_enum_format(struct file *file, void *fh,
+> +				  struct v4l2_fmtdesc *f)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +	const struct npcm_fmt *fmt;
+> +
+> +	if (f->index >= NUM_FORMATS)
+> +		return -EINVAL;
+> +
+> +	fmt = &npcm_fmt_list[f->index];
+> +	if (fmt->fourcc == V4L2_PIX_FMT_HEXTILE && !video->ece.enable)
+> +		return -EINVAL;
+> +
+> +	f->pixelformat = fmt->fourcc;
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_try_format(struct file *file, void *fh,
+> +				 struct v4l2_format *f)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +	const struct npcm_fmt *fmt;
+> +
+> +	fmt = npcm_video_find_format(f);
+> +
+> +	/* If format not found or HEXTILE not supported, use RGB565 as default */
+> +	if (!fmt || (fmt->fourcc == V4L2_PIX_FMT_HEXTILE && !video->ece.enable))
+> +		f->fmt.pix.pixelformat = npcm_fmt_list[0].fourcc;
+> +
+> +	f->fmt.pix.field = V4L2_FIELD_NONE;
+> +	f->fmt.pix.colorspace = V4L2_COLORSPACE_SRGB;
+> +	f->fmt.pix.quantization = V4L2_QUANTIZATION_FULL_RANGE;
+> +	f->fmt.pix.width = video->pix_fmt.width;
+> +	f->fmt.pix.height = video->pix_fmt.height;
+> +	f->fmt.pix.bytesperline = video->bytesperline;
+> +	f->fmt.pix.sizeimage = video->pix_fmt.sizeimage;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_get_format(struct file *file, void *fh,
+> +				 struct v4l2_format *f)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +
+> +	f->fmt.pix = video->pix_fmt;
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_set_format(struct file *file, void *fh,
+> +				 struct v4l2_format *f)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +	int ret;
+> +
+> +	ret = npcm_video_try_format(file, fh, f);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (vb2_is_busy(&video->queue)) {
+> +		dev_err(video->dev, "%s device busy\n", __func__);
+> +		return -EBUSY;
+> +	}
+> +
+> +	video->pix_fmt.pixelformat = f->fmt.pix.pixelformat;
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_enum_input(struct file *file, void *fh,
+> +				 struct v4l2_input *inp)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +
+> +	if (inp->index)
+> +		return -EINVAL;
+> +
+> +	strscpy(inp->name, "Host VGA capture", sizeof(inp->name));
+> +	inp->type = V4L2_INPUT_TYPE_CAMERA;
+> +	inp->capabilities = V4L2_IN_CAP_DV_TIMINGS;
+> +	inp->status = video->v4l2_input_status;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_get_input(struct file *file, void *fh, unsigned int *i)
+> +{
+> +	*i = 0;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_set_input(struct file *file, void *fh, unsigned int i)
+> +{
+> +	if (i)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_set_dv_timings(struct file *file, void *fh,
+> +				     struct v4l2_dv_timings *timings)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +	int rc;
+> +
+> +	if (timings->bt.width == video->active_timings.width &&
+> +	    timings->bt.height == video->active_timings.height)
+> +		return 0;
+> +
+> +	if (vb2_is_busy(&video->queue)) {
+> +		dev_err(video->dev, "%s device busy\n", __func__);
+> +		return -EBUSY;
+> +	}
+> +
+> +	rc = npcm_video_set_resolution(video, &timings->bt);
+> +	if (rc)
+> +		return rc;
+> +
+> +	timings->type = V4L2_DV_BT_656_1120;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_get_dv_timings(struct file *file, void *fh,
+> +				     struct v4l2_dv_timings *timings)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +
+> +	timings->type = V4L2_DV_BT_656_1120;
+> +	timings->bt = video->active_timings;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_query_dv_timings(struct file *file, void *fh,
+> +				       struct v4l2_dv_timings *timings)
+> +{
+> +	struct npcm_video *video = video_drvdata(file);
+> +
+> +	npcm_video_detect_resolution(video);
+> +	timings->type = V4L2_DV_BT_656_1120;
+> +	timings->bt = video->detected_timings;
+> +
+> +	return video->v4l2_input_status ? -ENOLINK : 0;
+> +}
+> +
+> +static int npcm_video_enum_dv_timings(struct file *file, void *fh,
+> +				      struct v4l2_enum_dv_timings *timings)
+> +{
+> +	return v4l2_enum_dv_timings_cap(timings, &npcm_video_timings_cap,
+> +					NULL, NULL);
+> +}
+> +
+> +static int npcm_video_dv_timings_cap(struct file *file, void *fh,
+> +				     struct v4l2_dv_timings_cap *cap)
+> +{
+> +	*cap = npcm_video_timings_cap;
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_sub_event(struct v4l2_fh *fh,
+> +				const struct v4l2_event_subscription *sub)
+> +{
+> +	switch (sub->type) {
+> +	case V4L2_EVENT_SOURCE_CHANGE:
+> +		return v4l2_src_change_event_subscribe(fh, sub);
+> +	}
+> +
+> +	return v4l2_ctrl_subscribe_event(fh, sub);
+> +}
+> +
+> +static const struct v4l2_ioctl_ops npcm_video_ioctls = {
+> +	.vidioc_querycap = npcm_video_querycap,
+> +
+> +	.vidioc_enum_fmt_vid_cap = npcm_video_enum_format,
+> +	.vidioc_g_fmt_vid_cap = npcm_video_get_format,
+> +	.vidioc_s_fmt_vid_cap = npcm_video_set_format,
+> +	.vidioc_try_fmt_vid_cap = npcm_video_try_format,
+> +
+> +	.vidioc_reqbufs = vb2_ioctl_reqbufs,
+> +	.vidioc_querybuf = vb2_ioctl_querybuf,
+> +	.vidioc_qbuf = vb2_ioctl_qbuf,
+> +	.vidioc_expbuf = vb2_ioctl_expbuf,
+> +	.vidioc_dqbuf = vb2_ioctl_dqbuf,
+> +	.vidioc_create_bufs = vb2_ioctl_create_bufs,
+> +	.vidioc_prepare_buf = vb2_ioctl_prepare_buf,
+> +	.vidioc_streamon = vb2_ioctl_streamon,
+> +	.vidioc_streamoff = vb2_ioctl_streamoff,
+> +
+> +	.vidioc_enum_input = npcm_video_enum_input,
+> +	.vidioc_g_input = npcm_video_get_input,
+> +	.vidioc_s_input = npcm_video_set_input,
+> +
+> +	.vidioc_s_dv_timings = npcm_video_set_dv_timings,
+> +	.vidioc_g_dv_timings = npcm_video_get_dv_timings,
+> +	.vidioc_query_dv_timings = npcm_video_query_dv_timings,
+> +	.vidioc_enum_dv_timings = npcm_video_enum_dv_timings,
+> +	.vidioc_dv_timings_cap = npcm_video_dv_timings_cap,
+> +
+> +	.vidioc_subscribe_event = npcm_video_sub_event,
+> +	.vidioc_unsubscribe_event = v4l2_event_unsubscribe,
+> +};
+> +
+> +static int npcm_video_set_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct npcm_video *video = container_of(ctrl->handler, struct npcm_video,
+> +						ctrl_handler);
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_NPCM_CAPTURE_MODE:
+> +		if (ctrl->val == V4L2_NPCM_CAPTURE_MODE_COMPLETE)
+> +			video->ctrl_cmd = VCD_CMD_OPERATION_CAPTURE;
+> +		else if (ctrl->val == V4L2_NPCM_CAPTURE_MODE_DIFF)
+> +			video->ctrl_cmd = VCD_CMD_OPERATION_COMPARE;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int npcm_video_get_volatile_ctrl(struct v4l2_ctrl *ctrl)
+> +{
+> +	struct npcm_video *video = container_of(ctrl->handler, struct npcm_video,
+> +						ctrl_handler);
+> +
+> +	switch (ctrl->id) {
+> +	case V4L2_CID_NPCM_RECT_COUNT:
+> +		ctrl->val = video->rect[video->vb_index];
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_ctrl_ops npcm_video_ctrl_ops = {
+> +	.s_ctrl = npcm_video_set_ctrl,
+> +	.g_volatile_ctrl = npcm_video_get_volatile_ctrl,
+> +};
+> +
+> +static const char * const npcm_ctrl_capture_mode_menu[] = {
+> +	"COMPLETE mode",
+> +	"DIFF mode",
 
+Hmm, I would drop the 'mode' bit, since it is already obvious that
+these are the modes.
 
-However, shared VA is main usage scenario. Driver only implements shared 
-VA. So I guess I can remove this line.
+> +	NULL,
+> +};
+> +
+> +static const struct v4l2_ctrl_config npcm_ctrl_capture_mode = {
+> +	.ops = &npcm_video_ctrl_ops,
+> +	.id = V4L2_CID_NPCM_CAPTURE_MODE,
+> +	.name = "NPCM Video Capture Mode",
+> +	.type = V4L2_CTRL_TYPE_MENU,
+> +	.min = 0,
+> +	.max = V4L2_NPCM_CAPTURE_MODE_DIFF,
+> +	.def = 0,
+> +	.qmenu = npcm_ctrl_capture_mode_menu,
+> +};
+> +
+> +static const struct v4l2_ctrl_config npcm_ctrl_rect_count = {
+> +	.ops = &npcm_video_ctrl_ops,
+> +	.id = V4L2_CID_NPCM_RECT_COUNT,
+> +	.name = "NPCM Compressed Hextile Rectangle Count",
+> +	.type = V4L2_CTRL_TYPE_INTEGER,
+> +	.flags = V4L2_CTRL_FLAG_VOLATILE,
+> +	.min = 0,
+> +	.max = (MAX_WIDTH / RECT_W) * (MAX_HEIGHT / RECT_H),
+> +	.step = 1,
+> +	.def = 0,
+> +};
 
->> +    const: 0x10
-> If only 1 value is allowed, what is the point of this property.
+Just to confirm: you decided against using an integer array control?
 
-It seems that the property should be declared here, to tell iommu it 
-supports PASID (see 2e981b9468e670b76bd1048fa939ad1f9653bd79 mainline).
+There is a real danger that if userspace isn't reading this control
+quickly enough (i.e. before the next frame arrives at the driver), then
+the control's value is that of that next frame instead of the current
+frame.
 
-I think it could be adjust to other values. I will check out if there is 
-a specific range.
+It doesn't feel robust to me.
 
-> Rob
-> .
+<snip>
 
-Best regards,
+Regards,
 
-Guo Mengqi
-
+	Hans
