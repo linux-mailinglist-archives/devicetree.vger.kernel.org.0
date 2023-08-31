@@ -2,111 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D4F778F275
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F4078F286
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:25:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346951AbjHaSUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 14:20:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55012 "EHLO
+        id S240612AbjHaSZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 14:25:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346957AbjHaSUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:20:52 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9310710DA
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 11:20:38 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        with ESMTP id S230427AbjHaSZM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:25:12 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65F41E5F;
+        Thu, 31 Aug 2023 11:25:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D412C865A5;
-        Thu, 31 Aug 2023 20:20:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1693506037;
-        bh=Cfe9oOv/aXwc1jh9u8be+fZ6sdxtu/GHzcGUlajhs+o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=xWtreuPOvr6wxiBzi0gjrgpPmiznxV2czPmoKG6x1IAU4Qq04tgjeLFYxe4Wd1l6a
-         BMZPOK63gFFdFtXOwT7qF8JAwARBR0uNglnrWR1sM7rVyaSeMchlXIHsMSwya5JGWq
-         3hNhrnv0UTf6wXC7CfDmGQXPDVJAS7u+vVkKFhPfOhM445hPBLwKWHoD7V6KxSbDBk
-         KOMORIgcHJsK2GGGeanOiZtP5YZIDIz8sIoqc3tn9j8fL2T5uR4qQ6rNKHru2Vf8jm
-         bS5PXgkvnZfUzvdZ4No02Lepfb2IwAKeYIUj4TY9SWs9+STwiRiacg14GLahTwz+Dh
-         2QAAAPWPmB7dA==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1C548B82352;
+        Thu, 31 Aug 2023 18:25:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A1FAC433C7;
+        Thu, 31 Aug 2023 18:25:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693506307;
+        bh=mpdm3+Uw/AcG84Tn6S3nN0xqw5NePOf+tIacyG1BBEw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=V/pgqpJ8Wyt/2JlLhmOrz9U04wwmoSheFQU6IIMCv/7Yxc6HOIKZWpVzGvdKAOq0Y
+         TReVg2jxaC2MwRseCBKkno2WJ/yioMg+onzeYNBrogkHRJ1c+O7fjABxa1gRTQuC2T
+         UJAHY1q32Ya0vPriQL1eNRJXMFul/TFNzn8QjGtw9fubVKUetOOYi3zURzbnSB9qPj
+         ajBV1qmRKEyuwLGy5AOopaozZxO+fhkvTYLe0OFJCD9cFqQAE220lyd/f4p/c1Uag3
+         vdIgwvuOoYtNRxZ3JaJqULZwlSYOGkMHBwuu+nTentgtJF4bj1VIR4UST7qVP/H78Q
+         9L/gJJiERwVtw==
+Received: (nullmailer pid 2547623 invoked by uid 1000);
+        Thu, 31 Aug 2023 18:25:05 -0000
+Date:   Thu, 31 Aug 2023 13:25:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 4/4] arm64: dts: imx8mp: Add UART1 and RTC wake up source on DH i.MX8M Plus DHCOM SoM
-Date:   Thu, 31 Aug 2023 20:20:20 +0200
-Message-Id: <20230831182020.154863-4-marex@denx.de>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230831182020.154863-1-marex@denx.de>
-References: <20230831182020.154863-1-marex@denx.de>
+        Conor Dooley <conor+dt@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,usb-snps-femto-v2: Add REFGEN
+ regulator
+Message-ID: <20230831182505.GA2541736-robh@kernel.org>
+References: <20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org>
+ <20230830-topic-refgenphy-v1-1-892db196a1c0@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230830-topic-refgenphy-v1-1-892db196a1c0@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Turn Console UART1 and dedicated RTC into wake up sources, to make
-it possible to wake on UART and RTC alarm.
+On Wed, Aug 30, 2023 at 11:13:51PM +0200, Konrad Dybcio wrote:
+> The HSPHY is (or at least can be) one of the users of the reference
+> voltage generating regulator. Ensure that dependency is described
+> properly.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> index 0f200e3f97a9..e895b6c4ee49 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> @@ -53,6 +53,9 @@ properties:
+>      items:
+>        - description: PHY core reset
+>  
+> +  refgen-supply:
+> +    description: phandle to the REFGEN regulator node
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Marek Vasut <marex@denx.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Supply names are local to the device (sink name), but this seems to be 
+named based on the supply source. Maybe hard to do if all internal 
+stuff. What is this supplying and what's the source if not REFGEN?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-index df43741d04bb9..4582a0bbe3726 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-@@ -414,6 +414,7 @@ rv3032: rtc@51 {
- 		interrupts-extended = <&gpio5 5 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_rtc>;
-+		wakeup-source;
- 	};
- 
- 	eeprom1: eeprom@53 {	/* EEPROM with FEC MAC address */
-@@ -470,6 +471,7 @@ &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
- 	status = "okay";
-+	wakeup-source;
- };
- 
- &uart2 {
--- 
-2.40.1
 
+> +
+>    vdda-pll-supply:
+>      description: phandle to the regulator VDD supply node.
+>  
+> 
+> -- 
+> 2.42.0
+> 
