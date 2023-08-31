@@ -2,132 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E4FD78EB45
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 13:02:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 613A378EBF6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 13:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231375AbjHaLCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 07:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37886 "EHLO
+        id S245512AbjHaL2J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 07:28:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234932AbjHaLCI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 07:02:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F08CFA;
-        Thu, 31 Aug 2023 04:02:05 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a1de3417acso404897166b.0;
-        Thu, 31 Aug 2023 04:02:05 -0700 (PDT)
+        with ESMTP id S242955AbjHaL2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 07:28:08 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55AEFCFC
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 04:28:04 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso79073766b.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 04:28:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693479724; x=1694084524; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=fairphone.com; s=fair; t=1693481283; x=1694086083; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oTXl8mKJCoSXKQpNwtK+OO0amUPSdiia5crdcPt8muI=;
-        b=E+oqK58T2xDwEFt28ap15LWJt4vmTlg+bnDCandK7A7O8dNb1mv5LaTHniKEOeccoO
-         SHM0+lHqPtLGBxU9/4Fy6r15+TReFKndNTY5qERIYKG+Af3FfXcO1rAtJoQruF4SihUn
-         lfOe+v/F/AsbofieYDEHOCxV71GT9C6JM+ZFE25hoWsaihelCnrOOZ7I7+R3gijJ9Y/d
-         L4RbR4KTDtRZ/P7Hv9luhmCkTwWVPIvU9SoAMC87QRjJ10rTByvXTDVUIuTJSOkl3tkJ
-         2FOTGOS1O+5Uv7vGKMGM6KSQgqV/lKKkk4YfHP1UOA+z+JzL+Q501lmTUFIDtrUo8oKO
-         HhtQ==
+        bh=9yvHyjPG7qUuINUCRplJZoEcbwB6qImIpL5RY/TwBK8=;
+        b=gJPowC5T5XnE2dRfmE1HYdTrXIJUiGjy10McutUK/lhG2Hl2hrLyYC2sp5NqioJr4v
+         aF5VY/zgu882zOxp2UY6NEGyBiVPXUXRa3rP+ZWNtKWn+e+b+hFtOgzziUNE4AG5wOTx
+         Qvw9OP58Y5qNHW39HdGvLzNBtzDrKh9xWVUtiv1tsKe45f8yIqrFPns17Cer45bskcwo
+         4xcWiy7Z6lz8OfaGc+inoTw34CxFSYyweK2WUKp1lI0qy8GPpbCiG4xFEsyuU5eAOn2C
+         LKJDMxe4ZdLjwoTvAQLXPDz6fgOLR+DLe4eJ4zjPc9+2VyexjSJuSHwj4qQgPdt3XNPe
+         dfew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693479724; x=1694084524;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oTXl8mKJCoSXKQpNwtK+OO0amUPSdiia5crdcPt8muI=;
-        b=QjJomj4LvMGns58nrlekzKu8bEV3eCfc6luFpLzoVlPwuS/CzQojY33hhlpr6JC7zR
-         KQwq0798MNmkG4p7WyF6+lVPy4LP+ve5INCQc0gYvCZaUljAsdpwQ7eGxOL8qcjJ2cPv
-         L5U+H8txcibNqFCzQAor5kYuQDXQHEDqkoMAJGZ7cUSSBmPbRPMVxnhD5EmOOdyzucjY
-         f4S97m7F20WVSnq7aP6JcRDzM/6KqMx4yDhDzlYc/aFtj9xt8OjHncB/Y9PhSAwahK+b
-         FCNgLEjxCL5AI+mwvh8DN1MeDaank/XgvDpK2dynQTXtrjQpeLNcd3d7FIpFdEd7EWnz
-         52Tw==
-X-Gm-Message-State: AOJu0Yy9poTVX7d5jWWldKrZh7D3TtOlA4QugbJpks+4BLov33VRTu3i
-        DGbSxqoU3km5WA40rQAJDe8z+1SJqY+4hYfunwd0inVK/3rGgA==
-X-Google-Smtp-Source: AGHT+IFq6TiAayoEpOcVY3q+kTFxUlMOEDYcxgXQPawqzmVsOEzqNB3KNO4GhQ+DoCSP8vjisiE6mD7ms+6bcSzzPmM=
-X-Received: by 2002:a17:906:7311:b0:9a5:b66a:436d with SMTP id
- di17-20020a170906731100b009a5b66a436dmr2847772ejc.14.1693479723591; Thu, 31
- Aug 2023 04:02:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230830134241.506464-1-keguang.zhang@gmail.com>
- <20230830134241.506464-5-keguang.zhang@gmail.com> <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
-In-Reply-To: <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
-From:   Keguang Zhang <keguang.zhang@gmail.com>
-Date:   Thu, 31 Aug 2023 19:01:27 +0800
-Message-ID: <CAJhJPsVj1836-DoKTokxMd664FPX70vtSv96x4DfHzBFRZ_9Tg@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
-To:     =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <philmd@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Content-Type: text/plain; charset="UTF-8"
+        d=1e100.net; s=20221208; t=1693481283; x=1694086083;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=9yvHyjPG7qUuINUCRplJZoEcbwB6qImIpL5RY/TwBK8=;
+        b=Kj2a+2GWjVUiiT5BiCSMxNbvMN/ZiO9ddXLPMiujh6MpPzShjD2mgIwngr1RTibf3w
+         95W4ZPFrgboUUfwnFKYI6ajGzkUmIBGU6J6Fi1hg8n+jqNiUCeEujQKnFhVlRl9n1ph6
+         zRBhAZTdpcRdD0oMccDcxnSicPccbA6E7feOyg+3w4shKie2h/MDbBBxx8BJhywJLvI4
+         IP/ozMkBxDxOaZGg+0Yu9XTd9HlLaTojPFz4Zytx4bD2YZH0nBt8htHX9V1HKwu7jVpp
+         r63NqbxWFpcfkygZbBpTBa2gNwNiN10sliFq7CVzD0lkZ2Fdvf99gGfiwmK1LhN766Tj
+         cdyQ==
+X-Gm-Message-State: AOJu0YzEtAph/FQYBUf9AFX5v4CgtClaYMf6XPItH3tJH9+I+PH6OZ40
+        Sf0zRWDcqZ5sDrrHY9mpOZlL5A==
+X-Google-Smtp-Source: AGHT+IG/hpDsEDtftxv8WRfScAb1QpBlf4Zc8+8cS6j6PB4BK2HHNwPv823nbljA1+JmHjuosy8iUw==
+X-Received: by 2002:a17:906:3195:b0:9a5:c49e:7145 with SMTP id 21-20020a170906319500b009a5c49e7145mr3734010ejy.69.1693481282782;
+        Thu, 31 Aug 2023 04:28:02 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id r10-20020a170906c28a00b0099297782aa9sm655606ejz.49.2023.08.31.04.28.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Aug 2023 04:28:02 -0700 (PDT)
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 31 Aug 2023 13:28:01 +0200
+Message-Id: <CV6P0GSF8HWI.1I9L17HVQA7CJ@otso>
+Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH 03/11] arm64: dts: qcom: sc7280: Move qfprom clock to
+ chrome-common
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        <cros-qcom-dts-watchers@chromium.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "Viresh Kumar" <viresh.kumar@linaro.org>
+X-Mailer: aerc 0.15.2
+References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
+ <20230830-fp5-initial-v1-3-5a954519bbad@fairphone.com>
+ <0ab29903-9861-4736-b827-5dd45b504baa@linaro.org>
+In-Reply-To: <0ab29903-9861-4736-b827-5dd45b504baa@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 31, 2023 at 4:40=E2=80=AFPM Philippe Mathieu-Daud=C3=A9
-<philmd@linaro.org> wrote:
->
-> Hi,
->
-> On 30/8/23 15:42, Keguang Zhang wrote:
-> > Add two new F: entries for Loongson1 Ethernet driver
-> > and dt-binding document.
-> > Add a new F: entry for the rest Loongson-1 dt-binding documents.
-> >
-> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+On Wed Aug 30, 2023 at 12:09 PM CEST, Konrad Dybcio wrote:
+> On 30.08.2023 11:58, Luca Weiss wrote:
+> > On non-ChromeOS boards the clock cannot be touched, so move it in the
+> > chrome-common dtsi which is the only place where it's needed.
+> >=20
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > > ---
-> > V3 -> V4: Update the dt-binding document entry of Loongson1 Ethernet
-> > V2 -> V3: Update the entries and the commit message
-> > V1 -> V2: Improve the commit message
-> >
-> >   MAINTAINERS | 3 +++
-> >   1 file changed, 3 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index ff1f273b4f36..2519d06b5aab 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
-> >   M:  Keguang Zhang <keguang.zhang@gmail.com>
-> >   L:  linux-mips@vger.kernel.org
-> >   S:  Maintained
-> > +F:   Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
-> > +F:   Documentation/devicetree/bindings/net/loongson,ls1*.yaml
->
-> Why not simply squash in patch 2
->
-> >   F:  arch/mips/include/asm/mach-loongson32/
-> >   F:  arch/mips/loongson32/
-> >   F:  drivers/*/*loongson1*
-> > +F:   drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
->
-> and 3 of this series?
+> If that clock is not registered (e.g. it's in protected-clocks =3D <>,
+> would the _optional handler not handle it just fine?
 
-Do you mean squashing patch 2 and patch 4 into one patch?
+Right, that appears to work!
+
+~ # ls -d /sys/bus/platform/drivers/qcom,qfprom/*.efuse
+/sys/bus/platform/drivers/qcom,qfprom/784000.efuse
+~ # cat /sys/firmware/devicetree/base/soc@0/efuse@784000/clock-names; echo
+core
+~ # hexdump -C /sys/firmware/devicetree/base/soc@0/efuse@784000/clocks
+00000000  00 00 00 03 00 00 00 b8                           |........|
+00000008
+
+Never tested this case before, but since it appears to work with the
+patched qfprom driver (other patch in this series) I think we can drop
+this patch.
+Will also have to adjust some other patches in my local tree then that
+do similar things ;)
+
+Regards
+Luca
+
 >
-> >   MIPS/LOONGSON2EF ARCHITECTURE
-> >   M:  Jiaxun Yang <jiaxun.yang@flygoat.com>
->
+> Konrad
 
-
---=20
-Best regards,
-
-Keguang Zhang
