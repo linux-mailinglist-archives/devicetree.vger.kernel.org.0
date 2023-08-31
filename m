@@ -2,83 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D025178E9F7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 12:13:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3223678E9FF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 12:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244673AbjHaKNN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 06:13:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36364 "EHLO
+        id S1344052AbjHaKPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 06:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232040AbjHaKNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 06:13:12 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45504E6A
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 03:13:01 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so786481a12.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 03:13:01 -0700 (PDT)
+        with ESMTP id S243175AbjHaKPV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 06:15:21 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB59CFC
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 03:15:17 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99df431d4bfso69364266b.1
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 03:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1693476780; x=1694081580; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e7v4YEHKe+eCw/TeGULI02ezKGrSX/6FZe8vszhKShU=;
-        b=GDZ07FpT+CNej/aZSh1Np170rhrgZlJvNr7rN2UfCQCEFdE+x0XoodqDWDnbK7AEaR
-         7vbJCYHNV9WoepvB26K4Na02Ai3SiwGPSONp7aPVTvCuko0DKAZxhGb5333X2dYucEco
-         3tgh+LSaeYPjOsC121NFuJAvWmdasM2Sw3YWwA76BOBV+bFDE1h7kssMqZDaX6hJ5zZh
-         t0Z85r0ZfgrBcxWXBsu5UcgVM4e4BLR0UjnTdMF6inOqmHqIBMsxmL1i7t4aBrirlRBv
-         LGa02fBEJxENZ575c6mrk1xDPeDNNdHwHp2FmxkwrLGheY6OAKxMI2I3Q63/eCX/f6mr
-         VRvw==
+        d=9elements.com; s=google; t=1693476916; x=1694081716; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=H/QBPbcdBIUaDmEdJvoBEfz2mE+9ATt7Z3dvvW3W+XM=;
+        b=D/83I3LUXCsZrb2APzMxQs1EUOarA9A37v0QZ5Th/A1QfUv9Ba6mNjMUFzck6TCSOs
+         tsoT2fMlnImN/d24DKJ4cE6K+77LdwNYaBWWhJbQtKbkXt+XkRsN9gkVsG1e3Mpn/qVV
+         HatyYwZu8nvsvu19FcnUbAGyMbVGm8MIcvVqFZEGiWa4dLt7IS0vdgBdRX24jJ6rgZkF
+         74laAtR4otK517WelO50NF8RSBBgFxqfC6MHhQK0bt97MF/Xe73cZJH1S3ofyXGskv1Z
+         8Iy2JkwxJYUt+etXjWbiI5qH+VH+8zeCMXUBDqU3VU4t5hIbwgvgQjAMFvwbMwX0czHZ
+         qfTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693476780; x=1694081580;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=e7v4YEHKe+eCw/TeGULI02ezKGrSX/6FZe8vszhKShU=;
-        b=Z4juHhoaMOJxXMSZqbgLpYt9uPw0BrErXtIgLlwvdTNnNDrs1A42otpufF7r1nJLiT
-         RfDeYkYaqLXwBuwC51a3ejwyi4kdkzVY518PqQ7JkkMN0ll3oce/W6U53w14ryQjs2Ji
-         boz+GlDUVYWXH1BFpPOIO3e/hAT2eCAksb+OpdaCAkcexTZ4+pPf0qYR30TQgdic27v5
-         Ebh2kyAcOJ1zaZg45+tUQ8G9iBlQqtkVhsaxXgfiTalHIpzBZ0j/GELPeJ+o7KRslLzv
-         jwgSf5mvoBMvDapZd7b+J56I+Iy7ZtWMIxX0pjayv5uyWznKhRLo4e/hsmd6PBvqiPyb
-         pr/g==
-X-Gm-Message-State: AOJu0YyXrKKzkHMkIVtEa9LLIZ/sRkSPagx4HfZsEJugSgkwigdZYugL
-        XlvSzUhHRzsUyzeDkAnxzSSGJQ==
-X-Google-Smtp-Source: AGHT+IEuYVCopo/jdrk+kN9i1QSXZe6VfZ6G0pxlPUpl/QjLI2c9L+8wfjA/Ey3Yg4SWpToT5CAN9w==
-X-Received: by 2002:a50:fc05:0:b0:525:680a:6b89 with SMTP id i5-20020a50fc05000000b00525680a6b89mr3661319edr.12.1693476779584;
-        Thu, 31 Aug 2023 03:12:59 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id x18-20020aa7d6d2000000b0052718577668sm608976edr.11.2023.08.31.03.12.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 03:12:59 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 31 Aug 2023 12:12:58 +0200
-Message-Id: <CV6NF0466658.20DGU7QKF2UBR@otso>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 04/11] arm64: dts: qcom: pm7250b: make SID configurable
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Viresh Kumar" <viresh.kumar@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-4-5a954519bbad@fairphone.com>
- <b82f4683-e8b5-b424-8f7a-6d2ba1cab61f@linaro.org>
-In-Reply-To: <b82f4683-e8b5-b424-8f7a-6d2ba1cab61f@linaro.org>
+        d=1e100.net; s=20221208; t=1693476916; x=1694081716;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=H/QBPbcdBIUaDmEdJvoBEfz2mE+9ATt7Z3dvvW3W+XM=;
+        b=NxWmtOGPDJUQoMMU5j6pNGWd3+7pelBKksph0ohzmfOVfOdldcqr4OrknfVyKzStaa
+         9C61J4shvHEgwJLDD0ZvZx2gvCqNUVt7VFojzrUh/zWS7s6bTvvvAJWbG3L1bSUFLcM+
+         /pR/DhT0hjzQrdFeU3/0anY5DGYp3I+lHkBlJ8uqNzzpCKdf8csm1YZJ59YmveVBrHS0
+         96RNYnLWUMkkMWnhtF/mh52P6yTcygxtexGyTMGPW9gbrb8FHsZ6P9qwX17do6urmlJ6
+         P8wYNq2GnFlXGFi0hanMh9PWu46adne83VSM++mzKngleGp0ghf0+jMc8UJtlauGFguS
+         qFFA==
+X-Gm-Message-State: AOJu0YxQyXrqjnepU1516+HHZiOnN7yHBTLmGHv1iuXLbnYmlCp1kvEo
+        OhkL1Nru9vpeCFuB5vcyo+Yt8g==
+X-Google-Smtp-Source: AGHT+IFieRs3jKu+tDRFvH+FgeMgEnwkMxzDYii31CjCN37+X6VKTZjqXup8FZU8u0Hccxr1RrpNHQ==
+X-Received: by 2002:a17:907:77d3:b0:99e:1581:6437 with SMTP id kz19-20020a17090777d300b0099e15816437mr3483828ejc.46.1693476916352;
+        Thu, 31 Aug 2023 03:15:16 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id h5-20020a1709062dc500b009a2235ed496sm604388eji.141.2023.08.31.03.15.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Aug 2023 03:15:15 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: i2c: Add custom properties for MAX7357/MAX7358
+Date:   Thu, 31 Aug 2023 12:15:11 +0200
+Message-ID: <20230831101513.2042773-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,54 +75,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed Aug 30, 2023 at 12:06 PM CEST, Krzysztof Kozlowski wrote:
-> On 30/08/2023 11:58, Luca Weiss wrote:
-> > Like other Qualcomm PMICs the PM7250B can be used on different addresse=
-s
-> > on the SPMI bus. Use similar defines like the PMK8350 to make this
-> > possible.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
-> >  1 file changed, 16 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dt=
-s/qcom/pm7250b.dtsi
-> > index e8540c36bd99..3514de536baa 100644
-> > --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > @@ -7,6 +7,15 @@
-> >  #include <dt-bindings/interrupt-controller/irq.h>
-> >  #include <dt-bindings/spmi/spmi.h>
-> > =20
-> > +/* This PMIC can be configured to be at different SIDs */
-> > +#ifndef PM7250B_SID
-> > +	#define PM7250B_SID 2
-> > +#endif
->
-> Why do you send the same patch as v1, without any reference to previous
-> discussions?
->
-> You got here feedback already.
->
-> https://lore.kernel.org/linux-arm-msm/f52524da-719b-790f-ad2c-0c3f313d9fe=
-9@linaro.org/
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-Hi Krzysztof,
+Both chips have a configuration register to enable additional
+features. These features aren't enabled by default & its up to
+board designer to enable the same.
 
-I did mention that original patch in the cover letter of this series.
-I'm definitely aware of the discussion earlier this year there but also
-tried to get an update lately if there's any update with no response.
+Add booleans for:
+ - maxim,isolate-stuck-channel
+ - maxim,send-flush-out-sequence
+ - maxim,preconnection-wiggle-test-enable
 
-If you want to block this patch, I'll have to remove pm7250b from the
-device dts, so we'll lose some functionality. Not sure what other
-approaches there could be.
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+---
+Changes in V2:
+- Update properties.
+---
+ .../bindings/i2c/i2c-mux-pca954x.yaml         | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-Regards
-Luca
+diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+index 2d7bb998b0e9..fa73eadfdf7b 100644
+--- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
++++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+@@ -71,6 +71,23 @@ properties:
+     description: A voltage regulator supplying power to the chip. On PCA9846
+       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
+ 
++  maxim,isolate-stuck-channel:
++    type: boolean
++    description: Allows to use non faulty channels while a stuck channel is
++      isolated from the upstream bus. If not set all channels are isolated from
++      the upstream bus until the fault is cleared.
++
++  maxim,send-flush-out-sequence:
++    type: boolean
++    description: Send a flush-out sequence to stuck auxiliary buses
++      automatically after a stuck channel is being detected.
++
++  maxim,preconnection-wiggle-test-enable:
++    type: boolean
++    description: Send a STOP condition to the auxiliary buses when the switch
++      register activates a channel to detect a stuck high fault. On fault the
++      channel is isolated from the upstream bus.
++
+ required:
+   - compatible
+   - reg
+@@ -95,6 +112,20 @@ allOf:
+         "#interrupt-cells": false
+         interrupt-controller: false
+ 
++  - if:
++      not:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - maxim,max7357
++                - maxim,max7358
++    then:
++      properties:
++        maxim,isolate-stuck-channel: false
++        maxim,send-flush-out-sequence: false
++        maxim,preconnection-wiggle-test-enable: false
++
+ unevaluatedProperties: false
+ 
+ examples:
 
->
-> Best regards,
-> Krzysztof
+base-commit: f9ea75e087b81081f33e34c4e1ba8b4abe841d9f
+-- 
+2.41.0
 
