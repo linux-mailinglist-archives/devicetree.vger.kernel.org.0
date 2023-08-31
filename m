@@ -2,190 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F1FD78F305
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 21:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A19EA78F30E
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 21:07:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347107AbjHaTD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 15:03:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50322 "EHLO
+        id S1347120AbjHaTHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 15:07:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238354AbjHaTD1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 15:03:27 -0400
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 849EFE66
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:03:24 -0700 (PDT)
-Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-bcb6dbc477eso905156276.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:03:24 -0700 (PDT)
+        with ESMTP id S1347117AbjHaTHk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 15:07:40 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE785E67
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:07:35 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31ad779e6b3so1003884f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:07:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1693508604; x=1694113404; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0mQPB8XxUb5OP/KXE1oeSlmWSBTEOE9Ge4MhauaXzcU=;
-        b=X8tpNHEyhugJur8VoEnXX15d6uACX4Fc6QPRIYjSFXAq9Cy/XbpWerbBC7YsgolaWx
-         V7hk4soqAqKQAU5Q8etE+CNPV6OhBdFrDsc519KVmWhPXaCgpeDfwJlNZ9v2L4NiONsQ
-         MQl8t33m52L6uT7G50UfanvYa7QgIzpqAqSXc=
+        d=9elements.com; s=google; t=1693508854; x=1694113654; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FYcBf9zwOXM34XkHVSj+a44vhkm5AHZw6edl4HRxYQk=;
+        b=LpMrgSec2TLxuFrlheY4P9u/7Tf7/MbQ7EaqIxQZvy+e1oW9x+9NYBI6fr8rW6Uccn
+         YTub1ldB1rXKuNQRf0C25UDQdSXgP7xypZYPZ8hT7RzJuBsh/IXHQ2+Kco5O/9SmFEFK
+         BMzKP5LdQGavGmGDnTPsvUgf2CTS+by2Y1X4JEnKBPJHGY5lX28cf546+5zD89QiWV+v
+         lQ3YIY3z3U0JbwJOthowLeSCBraqmAMZWl6zjHUI0im4BevPkez5o6bdv8LH0cbiyFSB
+         3ZJqJ9B2iH1UyiZs0FeTzO5yKCQ8Wyse1laC3pTRQ1FpYyvkSdLRk8iw3B1C+CbsbIRh
+         l9+A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693508604; x=1694113404;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1693508854; x=1694113654;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=0mQPB8XxUb5OP/KXE1oeSlmWSBTEOE9Ge4MhauaXzcU=;
-        b=Zkv1Np1ziq/az9YGLb18TNGzOeoV2t8BkDls/AbMg/7HJ+vwobxfGW1+J3SFhhBBCc
-         DzKelMWP3vpVMY80a8ECcYalZE884jNMYyF/WvM8Qode2nvdLJEjjZAMaMYke5t76bRx
-         KV8/+PQy7tmG202166zQDbT6qtVT6gdZ5TEe9qYksOCfzdjKvaomNXqsHa8U0WTRWsVc
-         a70QCjitfwTJ/OZJO7duw3Vku7zwKtp+Q86EFfzhj6XNJtsh+P1+GfOCajm5H+XnO7Ko
-         4W+wCHCJo+7c0by/4CWZ/Ps5KuASLJHax+thzvrGuYQjTfzO6TLbWRkKD6ucY0aOFATb
-         mE4g==
-X-Gm-Message-State: AOJu0YxEs6jwBeploeK9N320Kp6NX6XPs8DMNj497cz6wy+a8cKiGJf6
-        PfC3+tZb5EOWvDUVKkU/z0L4199eLVfbE3j96bgPWn7LgLqqRTUfUIs=
-X-Google-Smtp-Source: AGHT+IFgK3CYg/SLq61wmdqsP6GkeNlwlUUqSxXvTpLJ9zbWqnbqaeeme9BcbxPZX+EdxGR7aKxWcikWGBuh/0Fvn1M=
-X-Received: by 2002:a25:cf12:0:b0:d7e:3db3:da2c with SMTP id
- f18-20020a25cf12000000b00d7e3db3da2cmr611334ybg.43.1693508603480; Thu, 31 Aug
- 2023 12:03:23 -0700 (PDT)
+        bh=FYcBf9zwOXM34XkHVSj+a44vhkm5AHZw6edl4HRxYQk=;
+        b=L/akYX52Lf+hGBCwoRRTlO+jM8W5lTiE8d49EAsfXQKBafDsS4uwjbZRd3ZuhMZWNK
+         MZ+XkuXnZWS/E+E8JjX34aIZEh2r/hLFUF19vtEOoJHgysJDcqvR8iymnv+Anq/9HMmE
+         vWM5CaAIchKttrQVl1TZFRtFf02FCAk9ki2+V9opyhX8vfCc4tYrYtJH9PY1Hx4Od6tG
+         qsAl3bhY3WMV7jRLy5SLbYCG8OoTMuzJQGcql3HWR0RiunBYMqYbe+DU4CQIlZVgi8Z0
+         KGlHwibrarogakMhuaoYEEMTb91lcUgd9KXhm5Tjodo+ZJiiwIpqhIr6ci2WYrybci8q
+         AS2A==
+X-Gm-Message-State: AOJu0YxG+VnHCLnZXWnQiHb2R9S3nrsL4wn+0h5i1i93SbBnc+2mARyz
+        LGkUXp7yQHb3i9qmDYgC4+DaAQ==
+X-Google-Smtp-Source: AGHT+IFUuWSxKgFiBa3LWAugIwI6zKreITHvXpuh2+aVPok62U+1tFXhBO7QKPQ6CuKZBnglh+uI2w==
+X-Received: by 2002:a5d:550b:0:b0:317:51ff:c249 with SMTP id b11-20020a5d550b000000b0031751ffc249mr342579wrv.13.1693508854433;
+        Thu, 31 Aug 2023 12:07:34 -0700 (PDT)
+Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
+        by smtp.gmail.com with ESMTPSA id x9-20020adfdd89000000b003196b1bb528sm3058627wrl.64.2023.08.31.12.07.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Aug 2023 12:07:34 -0700 (PDT)
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Naresh Solanki <Naresh.Solanki@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v5 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Date:   Thu, 31 Aug 2023 21:07:27 +0200
+Message-ID: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
- <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com>
- <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
- <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
- <CAPnjgZ2kkUt1eOWX8K+EsbjcQZPefNvj5DSaFb9QrvRg0t2h7w@mail.gmail.com>
- <CAMj1kXGe84uaJ9j9ic0V4HC43p7QBoKQ5ssTYd5DMBGtZ3++Jw@mail.gmail.com>
- <CAPnjgZ3L-jGxoXNHnsXY0MXU=jTAN66KNAxSLHPVeHinHMjzkQ@mail.gmail.com> <CAMj1kXGw6DGK=gVF3bMH5dp=LL89V9n1V1LMGKDn0CZWGHh8qg@mail.gmail.com>
-In-Reply-To: <CAMj1kXGw6DGK=gVF3bMH5dp=LL89V9n1V1LMGKDn0CZWGHh8qg@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Thu, 31 Aug 2023 13:02:05 -0600
-Message-ID: <CAPnjgZ1fjee3rf91onPbuLpgqTHe3dZgz0WBSzoiKAabO+ETkQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ard,
+From: Patrick Rudolph <patrick.rudolph@9elements.com>
 
-On Thu, 31 Aug 2023 at 06:28, Ard Biesheuvel <ardb@kernel.org> wrote:
->
-> On Wed, 30 Aug 2023 at 23:11, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Ard,
-> >
-> > On Tue, 29 Aug 2023 at 15:32, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > >
-> > > On Tue, 29 Aug 2023 at 21:18, Simon Glass <sjg@chromium.org> wrote:
-> > > >
-> > > > Hi Ard,
-> > > >
-> > > > On Thu, 24 Aug 2023 at 03:10, Ard Biesheuvel <ardb@kernel.org> wrote:
-> ...
-> > > > > In summary, I don't see why a non-UEFI payload would care about UEFI
-> > > > > semantics for pre-existing memory reservations, or vice versa. Note
-> > > > > that EDK2 will manage its own memory map, and expose it via UEFI boot
-> > > > > services and not via DT.
-> > > >
-> > > > Bear in mind that one or both sides of this interface may be UEFI.
-> > > > There is no boot-services link between the two parts that I have
-> > > > outlined.
-> > > >
-> > >
-> > > I don't understand what this means.
-> > >
-> > > UEFI specifies how one component invokes another, and it is not based
-> > > on a DT binding. If the second component calls UEFI boot or runtime
-> > > services, it should be invoked in this manner. If it doesn't, then it
-> > > doesn't care about these memory reservations (and the OS will not be
-> > > booted via UEFI either)
-> > >
-> > > So I feel I am missing something here. Perhaps a practical example
-> > > would be helpful?
-> >
-> > Let's say we want to support these combinations:
-> >
-> > Platform Init -> Payload
-> > --------------------------------
-> > U-Boot -> Tianocore
-> > coreboot -> U-Boot
-> > Tianocore -> U-Boot
-> > Tianocore -> Tianocore
-> > U-Boot -> U-Boot
-> >
-> > Some of the above things have UEFI interfaces, some don't. But in the
-> > case of Tianocore -> Tianocore we want things to work as if it were
-> > Tianocore -> (its own handoff mechanism) Tiancore.
-> >
->
-> If Tianocore is the payload, it is either implemented as a EFI app, in
-> which case it has access to EFI services, or it is not, in which case
-> it doesn't care about UEFI semantics of the existing reserved regions,
-> and it only needs to know which regions exist and which of those are
-> reserved.
->
-> And I think the same applies to all other rows in your table: either
-> the existence of UEFI needs to be carried forward, which needs to be
-> done via EFI services, or it doesn't, in which case the UEFI specific
-> reservations can be dropped, and only reserved and available memory is
-> relevant.
->
-> > Some Platform Init may create runtime code which needs to accessible later.
-> >
->
-> But not UEFI runtime code, right? If the payload is not UEFI based,
-> the OS would never be able to call that runtime code unless it is
-> described in a different, non-UEFI way. This is fine, but it is not
-> UEFI so we shouldn't call it UEFI runtime memory.
->
-> > The way I think of it is that we need to generalise the memory map a
-> > bit. Saying that you must use UEFI boot services to discover it is too
-> > UEFI-specific.
-> >
->
-> What I am questioning is why a memory map with UEFI semantics is even
-> relevant when those boot services do not exist.
->
-> Could you be more specific about why a payload would have to be aware
-> of the existence of UEFI boot/runtime service regions if it does not
-> consume the UEFI interfaces of the platform init? And if the payload
-> exposes UEFI services to the OS, why would it consume a memory map
-> with UEFI semantics rather than a simple list of memblocks and memory
-> reservations?
+Add the DT property 'infineon,en-pin-fixed-level' to
+indicated that the chip EN pin is at fixed level
+or left unconnected(has internal pull-down).
 
-It seems like you are thinking of the Payload as grub, or something
-like that? This is not about grub. If there are EFI boot services to
-be provided, they are provided by the Payload, not Platform Init. I am
-not that familiar with Tianocore, but if you are, perhaps think of it
-as splitting Tianocore into two pieces, one of which inits the silicon
-and the other which provides the EFI boot services.
+Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+----
+Changes in V5:
+- Update pin name to align with datasheet
+Changes in V4:
+- Update property name & description.
+- Update commit message.
+---
+ .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 2 files changed, 50 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
 
-Again, if you are familiar with Tianocore, it can be built either as a
-monolithic whole, or as a coreboot Payload. The Payload part of the
-code is (roughly) the same in each case. But the Platform Init is
-different[1]
+diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+new file mode 100644
+index 000000000000..9eecfae5dfcf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++
++$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
++
++maintainers:
++  - Naresh Solanki <naresh.solanki@9elements.com>
++
++description: |
++  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
++  Regulator with SVID and I2C designed for Industrial use.
++
++  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
++
++properties:
++  compatible:
++    enum:
++      - infineon,tda38640
++
++  reg:
++    maxItems: 1
++
++  infineon,en-pin-fixed-level:
++    description:
++      Indicates that the chip EN pin is at fixed level or left
++      unconnected(has internal pull-down).
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        tda38640@40 {
++            compatible = "infineon,tda38640";
++            reg = <0x40>;
++        };
++    };
++
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 40bc475ee7e1..86c7d34f63bf 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -151,8 +151,6 @@ properties:
+           - infineon,slb9645tt
+             # Infineon SLB9673 I2C TPM 2.0
+           - infineon,slb9673
+-            # Infineon TDA38640 Voltage Regulator
+-          - infineon,tda38640
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
+             # Infineon Multi-phase Digital VR Controller xdpe11280
 
->
-> Again, I am inclined to treat this as a firmware implementation
-> detail, and the OS must never consume this binding. But I am still
-> puzzled about what exact purpose it is expected to serve.
+base-commit: 919a83d020a8dfa1411c1dc1cff23a833f0f5268
+-- 
+2.41.0
 
-It really is purely so we can mix and match Platform Init (perhaps
-silicon init is a more familiar term?) and the Payload.
-
-Regards,
-Simon
-
-[1] Of course, coreboot uses blobs which are chunks of UEFI, but that
-is a separate issue
