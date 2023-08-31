@@ -2,177 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECE8478F3B2
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 21:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBA8A78F3DA
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 22:20:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242872AbjHaTz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 15:55:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59336 "EHLO
+        id S238922AbjHaUUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 16:20:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238630AbjHaTz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 15:55:27 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEC8AE72
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:55:22 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 8DE6E86519;
-        Thu, 31 Aug 2023 21:55:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1693511721;
-        bh=EodmTQitUjpIfdmoqpgmoJiqjNshx8b9GgR+krLe03Y=;
-        h=From:To:Cc:Subject:Date:From;
-        b=PCgWk0Gz6paJVAfpK5yG0fw6BEaltsI/7zrD/qiIog18Zvesfi6mj12B4wXHeY9w/
-         OQE5er/vhkrAip/6TTLT5DQ3CYPfVTUFxlW0qDFOphXU4YrFgfR+VILy60BKwd2qn3
-         icNnEPwzQKB384e+6aI9O3B5511oFZObDcnpZFEdY7ZVV78s8rELcTobCKRc+lYqK+
-         kWrLvl74DIi6PIq0g/qG3/22usgTSqszgKqeJ4YQIYrhbxBWUtvC0ebQJ5WtCI172z
-         tzvdoh9KswvvfNutSIaGM3dokYDebzjT3vYvEAa1pb8noe4dSB42kM1ZZpS+P6uWJH
-         qf+N1ld9rQ+mg==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp: Simplify USB C on DH i.MX8M Plus DHCOM PDK3
-Date:   Thu, 31 Aug 2023 21:55:09 +0200
-Message-Id: <20230831195509.196883-1-marex@denx.de>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S236896AbjHaUUG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 16:20:06 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09456E72
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 13:19:58 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-401d67434daso12802595e9.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 13:19:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nexus-software-ie.20230601.gappssmtp.com; s=20230601; t=1693513196; x=1694117996; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TbAGwjrbP3wJw/XyfuKcVfBZuXKE+qWablDMlIo3xlA=;
+        b=TsgjcYbLYR8FFqMJA7901+qQ46KWqhJeLb5QfIaSVvvVC2S4olJqRKerJwaSs5ycnv
+         lleNrn6OJ0DdwF8WAGXusHzKUxx0KXmZq+AUUgkfXeZariMaf0kJL5mTgJJokPNNY05r
+         uAIG/vt0+6MrUAgWCpMGt48j6+zLb5QFrLcBHg9Ln4k5LbyJNSXEels0PoPGP0SpueGx
+         i5yiKZ5XJcjrEvCgK6O/JRLqMdze2PpPof75lM9GZTg1PtHAnTUchtm64+PUH8CFFENS
+         wYxgeoKfWPOBKzv36XSbfMJj+VfDSoIp3JzUcitpiME069lgdaZ22tVYmhaVyn1YxLXx
+         kMsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693513196; x=1694117996;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TbAGwjrbP3wJw/XyfuKcVfBZuXKE+qWablDMlIo3xlA=;
+        b=H4+PXv9p9KC49lBsvXlTwhAenxkmc8FUM8P6iKfKpQ60VTHdNU9bcgWmA4h8ZWmu11
+         v/4HOOwIdmD/ilNTanT6bDi5uOfeGTmkWRjd1ZvJ7BZ0EHaQ1zGYenigVeyjMUm7Sza8
+         j1Xt0r5a/9HIUGyiRnHnk8P/TODCXoSwvvVQI1AxW3lCPYbAo+kYrpxhWTgcSJmBbR4D
+         6I/erxHgJnPF6xkruA8SG7mSTXT8YgbNvFHgATiWAcm8zkrB1Hn64ITMJUJSNso5lZNs
+         712Yb6f5sRB6LAZq6oc+SrH1T5p2N6CFjWk/mXFhXKxjNIqUO7mOptNGIJEs9+EnNdSc
+         lZhQ==
+X-Gm-Message-State: AOJu0Yx+KkAspDKGuqgbN30CsDBTZF0cbc+fUrVp6EJQ3nBlcrcqAFB3
+        vDQpDXF25btSHYTc3WIN/+xcWg==
+X-Google-Smtp-Source: AGHT+IGRWtQXXQ/4Fa+JT3KC4UtOZDnaGKakyrrx7kEF0AAlUNk//9L8FLqoiWeVYYAlLLZqTMtkoQ==
+X-Received: by 2002:a7b:cc85:0:b0:3ff:28b8:c53d with SMTP id p5-20020a7bcc85000000b003ff28b8c53dmr299774wma.33.1693513196321;
+        Thu, 31 Aug 2023 13:19:56 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id s5-20020a7bc385000000b003fe61c33df5sm6102993wmj.3.2023.08.31.13.19.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Aug 2023 13:19:55 -0700 (PDT)
+Message-ID: <49fbae87-ce09-23af-6bcd-459b5646e680@nexus-software.ie>
+Date:   Thu, 31 Aug 2023 21:19:54 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2] arm64: dts: ipq5018: Correct uart1_pins pinconf
+Content-Language: en-US
+To:     Ziyang Huang <hzyitc@outlook.com>, agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        quic_gokulsri@quicinc.com, quic_srichara@quicinc.com,
+        quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <TYZPR01MB5556F902BF64AF857C3ABD44C9E5A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+From:   Bryan O'Donoghue <pure.logic@nexus-software.ie>
+In-Reply-To: <TYZPR01MB5556F902BF64AF857C3ABD44C9E5A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the connector as well as all the links and only connect the
-PTN5150 with xHCI controller. This is sufficient to implement the
-role switching.
+On 31/08/2023 17:34, Ziyang Huang wrote:
+> In pinctrl, the pinconfigs for uart are named "blspX_uartY".
+>    X is the UART ID. Starts from 1.
+>      1-6 are in BLSP Block 1.
+>      7-12 are in BLSP Block 2.
+>    Y is the index of mux config. Starts from 0.
+> 
+> In dts, the serials are also named "blspX_uartY", but with different logic.
+>    X is the BLSP Block ID. Starts from 1.
+>    Y is the uart id inside block.
+>      In "ipq6018.dtsi" and "ipq8074.dtsi", it starts from 1.
+>      But in "ipq5332.dtsi" and "ipq9574.dtsi", it starts from 0.
+> 
+> +-----------------+-----------------+-------------+-----------------+
+> |     Block ID    | ID inside Block |  dts name   | pinconfig name  |
+> | (Starts from 1) | (Starts from 1) |             |                 |
+> +-----------------+-----------------+-------------+-----------------+
+> |        1        |        1        | blsp1_uart1 |   blsp0_uartY   |
+> |        1        |        2        | blsp1_uart2 |   blsp1_uartY   |
+> |        1        |        6        | blsp1_uart6 |   blsp5_uartY   |
+> |        2        |        1        | blsp2_uart1 |   blsp6_uartY   |
+> |        2        |        6        | blsp2_uart6 |   blsp12_uartY  |
+> +-----------------+-----------------+-------------+-----------------+
+> 
+> In "ipq5018.dts", "blsp1_uart1" (dts name) is the first serial (confimed
+> by the address), So its pinconfig should be "blsp0_uart0" (pinconfig name,
+> use GPIO 20 and 21) or "blsp0_uart1" (pinconfig name, use GPIO 28 and 29).
+> 
+> Fixes: 570006756a16 ("arm64: dts: Add ipq5018 SoC and rdp432-c2 board support")
+> Signed-off-by: Ziyang Huang <hzyitc@outlook.com>
+> ---
+> Changes since v1
+> - Use corrent name in From
+> 
+>   arch/arm64/boot/dts/qcom/ipq5018.dtsi | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> index 9f13d2dcdfd5..91b98020e1c6 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> @@ -104,10 +104,10 @@ tlmm: pinctrl@1000000 {
+>   			#interrupt-cells = <2>;
+>   
+>   			uart1_pins: uart1-state {
+> -				pins = "gpio31", "gpio32", "gpio33", "gpio34";
+> -				function = "blsp1_uart1";
+> +				pins = "gpio28", "gpio29";
+> +				function = "blsp0_uart1";
+>   				drive-strength = <8>;
+> -				bias-pull-down;
+> +				bias-disabled;
+>   			};
+>   		};
+>   
 
-Furthermore, this makes resume work without hanging. Without this
-patch, the platform would hang on resume of 'connector'.
+So this change will have the effect of changing the console on 
+ipq5018-rdp432 from gpio31-gpio34 to gpio28, gpio29.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
+Have you verified that change on hardware or the schematic ?
+
+https://forum.openwrt.org/t/add-support-for-xiaomi-redmi-ax5400-white-version/140879/22?page=2
+
+This has the wrong UART pinout ?
+
+Is this change something that should be expressed for a particular board ?
+
 ---
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Marek Vasut <marex@denx.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
----
- .../boot/dts/freescale/imx8mp-dhcom-pdk3.dts  | 58 ++-----------------
- 1 file changed, 4 insertions(+), 54 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-index a5d74b06f732d..b749e28e5ede5 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-pdk3.dts
-@@ -35,33 +35,6 @@ clk_xtal25: clock-xtal25 {
- 		clock-frequency = <25000000>;
- 	};
- 
--	connector {
--		compatible = "usb-c-connector";
--		label = "USB-C";
--		data-role = "dual";
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--
--				usb_c_0_hs_ep: endpoint {
--					remote-endpoint = <&dwc3_0_hs_ep>;
--				};
--			};
--
--			port@1 {
--				reg = <1>;
--
--				usb_c_0_ss_ep: endpoint {
--					remote-endpoint = <&ptn5150_in_ep>;
--				};
--			};
--		};
--	};
--
- 	gpio-keys {
- 		compatible = "gpio-keys";
- 
-@@ -202,24 +175,10 @@ typec@3d {
- 				pinctrl-names = "default";
- 				pinctrl-0 = <&pinctrl_ptn5150>;
- 
--				ports {
--					#address-cells = <1>;
--					#size-cells = <0>;
--
--					port@0 {
--						reg = <0>;
--
--						ptn5150_in_ep: endpoint {
--							remote-endpoint = <&usb_c_0_ss_ep>;
--						};
--					};
--
--					port@1 {
--						reg = <1>;
-+				port {
- 
--						ptn5150_out_ep: endpoint {
--							remote-endpoint = <&dwc3_0_ss_ep>;
--						};
-+					ptn5150_out_ep: endpoint {
-+						remote-endpoint = <&dwc3_0_ep>;
- 					};
- 				};
- 			};
-@@ -306,16 +265,7 @@ &usb_dwc3_0 {
- 	usb-role-switch;
- 
- 	port {
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		dwc3_0_hs_ep: endpoint@0 {
--			reg = <0>;
--			remote-endpoint = <&usb_c_0_hs_ep>;
--		};
--
--		dwc3_0_ss_ep: endpoint@1 {
--			reg = <1>;
-+		dwc3_0_ep: endpoint {
- 			remote-endpoint = <&ptn5150_out_ep>;
- 		};
- 	};
--- 
-2.40.1
-
+bod
