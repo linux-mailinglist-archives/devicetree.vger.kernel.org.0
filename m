@@ -2,159 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 395FB78E952
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B8178E995
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:36:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230316AbjHaJYQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 05:24:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
+        id S245456AbjHaJgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 05:36:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243020AbjHaJYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:24:15 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13179CDD
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:24:12 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31aeee69de0so412404f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:24:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693473850; x=1694078650; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=F8P8h3nZuVSVyj4+1oLgR8uo687zytcW2n1CdZ9Cvp4=;
-        b=TzOS8IBd2J56oEfVayhPtvr1JGzuq9OUroy8+EORqNAouRkdr3NFTEd7nwYnG7Bl5w
-         uRk0SPudcPtLf+kIiWdz4Hxd/OPybwW0qpY/oIxEYDYVKKxuwHpSCKTNcqxS2NgwdA5F
-         tuErHp0Jt50ynEdSsY9QtiSgG5UTMDO4LY1XC240My8uVQAg8Uz+dZsd80VhbPc0lsNZ
-         wxMasNcaIT8X7s7RsL506GVa+xTgc24uWXcKa8/fzbndzIWliEA4E9k765I2No8AaSeG
-         4WfGGikaPKqLIoZXwTgfBDIJmKp/WsptiQaK9accvFawYibnhnQ7lhYn64r7O/ya1WDZ
-         pdzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693473850; x=1694078650;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F8P8h3nZuVSVyj4+1oLgR8uo687zytcW2n1CdZ9Cvp4=;
-        b=LaJjoliqhQ59A5u/eGo2uVHPz4mBLUetiKH6G5/v7OvLCT9MkD9eVwjKz0Z+P8JMV/
-         1SefK0Jd8DbZMqpKBFZnd3uasN7tvr5ldSiTsLnuswQlDLNc0R0gBQGpL8tveWX6zPnz
-         uonp3R3gvFSwTOhixK0U41l/wf2xkZtyKHUUHxOxUF/zbukVxBBJaQRMPRj1TqoUsob9
-         dJJPdLxnm2TTPMhvf0+Ml0jhzKTch72COOkDv2f9zGACEdWkqOd+aHYYTtZTE/6jmVD/
-         NaFk/ndo0oQUdjEJoAkAHZqA3l47BdAd5FhEtiRlRML/wp8FQHN+YxMH60LHB0jwlj82
-         NYoQ==
-X-Gm-Message-State: AOJu0Yx5T8QSgQDzUGvvsm0A9F8dPv7z53XLhLvPxnSDSw2GJW1xrQ9M
-        +fd37JnYvrj0NeIoLdLUOhbnUg==
-X-Google-Smtp-Source: AGHT+IH7ObeRVFhFJdpy5O9nY3wvqVAm51zIRe7xmRby2EvT1s+llgUlr9wqHrQeCjJAwA5u/HjDjg==
-X-Received: by 2002:a05:6000:1373:b0:319:8444:939f with SMTP id q19-20020a056000137300b003198444939fmr3877031wrz.32.1693473850533;
-        Thu, 31 Aug 2023 02:24:10 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id y3-20020adfe6c3000000b00317909f9985sm1548873wrm.113.2023.08.31.02.24.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Aug 2023 02:24:09 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>
-Cc:     Marcello Sylvester Bauer <sylv@sylv.io>,
-        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RESEND PATCH v4] dt-bindings: hwmon: Add MAX6639
-Date:   Thu, 31 Aug 2023 11:24:03 +0200
-Message-ID: <20230831092403.1929317-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S243816AbjHaJgB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:36:01 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D18ACEB;
+        Thu, 31 Aug 2023 02:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1693474558; x=1725010558;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=D3KjoyegWgCFqbsvoAhvULbaH+lWNnUj86eE942AVgc=;
+  b=WxbpgxIBX4arNrs0N0yAhGKl0ob17ZUcchqxH6ermJa/JDxBQuW1/0II
+   ZtxYABxepBzKYAORe0Cst8TBVYCQjvFssQyTbz9ybTaI6+1fj82KpiAWx
+   955yecPR6qW6OHWY3bD/c7Gld1Wrg2IonT7v7uf3P6iMEy8UMvxGcJqt0
+   u3fnMhVPjy5ouE015doKy+P7nIdKsuuh9+434NhAU4OEJstZz5ow0cT3E
+   FU/YElhz4c1lby6jNGucmcdZkqlA8U8WAimvfIHLg77IcoHjKYFatT0Wq
+   8WllsIxxGZs1P4pCINP4Q8zDPnpQ/6gGbf/jlmrIDgILex98VtPJ/xF2b
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="360871343"
+X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; 
+   d="scan'208";a="360871343"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2023 02:35:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="986145667"
+X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; 
+   d="scan'208";a="986145667"
+Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
+  by fmsmga006.fm.intel.com with ESMTP; 31 Aug 2023 02:35:54 -0700
+Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qbe5Y-000BBn-2G;
+        Thu, 31 Aug 2023 09:35:50 +0000
+Date:   Thu, 31 Aug 2023 17:35:36 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Fabio Estevam <festevam@gmail.com>, rafael@kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH v6 3/3] thermal: thermal_core: Allow rebooting after
+ critical temp
+Message-ID: <202308311705.C7t4Vtwu-lkp@intel.com>
+References: <20230830151908.2149847-3-festevam@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230830151908.2149847-3-festevam@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcello Sylvester Bauer <sylv@sylv.io>
+Hi Fabio,
 
-Add binding documentation for Maxim MAX6639 fan-speed controller.
+kernel test robot noticed the following build warnings:
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
-Changes in V4:
-- Drop property pulses-per-revolution
-Changes in V3:
-- Update title
-- Add pulses-per-revolution, supplies & interrupts
-Changes in V2:
-- Update subject
-- Drop blank lines
----
- .../bindings/hwmon/maxim,max6639.yaml         | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
+[auto build test WARNING on rafael-pm/thermal]
+[also build test WARNING on linus/master v6.5 next-20230831]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-new file mode 100644
-index 000000000000..9c06a61d57c9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/maxim,max6639.yaml
-@@ -0,0 +1,52 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/hwmon/maxim,max6639.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim MAX6639 Fan Controller
-+
-+maintainers:
-+  - Naresh Solanki <Naresh.Solanki@9elements.com>
-+
-+description: |
-+  The MAX6639 is a 2-channel temperature monitor with dual, automatic, PWM
-+  fan-speed controller.  It monitors its own temperature and one external
-+  diode-connected transistor or the temperatures of two external diode-connected
-+  transistors, typically available in CPUs, FPGAs, or GPUs.
-+
-+  Datasheets:
-+    https://datasheets.maximintegrated.com/en/ds/MAX6639-MAX6639F.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max6639
-+
-+  reg:
-+    maxItems: 1
-+
-+  fan-supply:
-+    description: Phandle to the regulator that provides power to the fan.
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      fan-controller@10 {
-+        compatible = "maxim,max6639";
-+        reg = <0x10>;
-+      };
-+    };
-+...
+url:    https://github.com/intel-lab-lkp/linux/commits/Fabio-Estevam/reboot-Introduce-hw_protection_reboot/20230831-034226
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
+patch link:    https://lore.kernel.org/r/20230830151908.2149847-3-festevam%40gmail.com
+patch subject: [PATCH v6 3/3] thermal: thermal_core: Allow rebooting after critical temp
+config: s390-randconfig-r025-20230831 (https://download.01.org/0day-ci/archive/20230831/202308311705.C7t4Vtwu-lkp@intel.com/config)
+compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project.git 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230831/202308311705.C7t4Vtwu-lkp@intel.com/reproduce)
 
-base-commit: cb7022b8976e3c4d12cea2e7bb820a2944e2fd7b
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202308311705.C7t4Vtwu-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/thermal/thermal_of.c:221:27: warning: unused variable 'critical_actions' [-Wunused-const-variable]
+   static const char * const critical_actions[] = {
+                             ^
+   1 warning generated.
+
+
+vim +/critical_actions +221 drivers/thermal/thermal_of.c
+
+   220	
+ > 221	static const char * const critical_actions[] = {
+   222		[THERMAL_CRITICAL_ACTION_SHUTDOWN]	= "shutdown",
+   223		[THERMAL_CRITICAL_ACTION_REBOOT]	= "reboot",
+   224	};
+   225	
+
 -- 
-2.41.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
