@@ -2,105 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD53878ED54
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDD878ED76
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:42:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240874AbjHaMiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:38:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46100 "EHLO
+        id S242286AbjHaMm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:42:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235789AbjHaMiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:38:08 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B15841A4
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:38:05 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99bed101b70so83680666b.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:38:05 -0700 (PDT)
+        with ESMTP id S239553AbjHaMmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:42:54 -0400
+Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8795D1A4;
+        Thu, 31 Aug 2023 05:42:48 -0700 (PDT)
+Received: by mail-vk1-xa35.google.com with SMTP id 71dfb90a1353d-48cfdfa7893so314405e0c.0;
+        Thu, 31 Aug 2023 05:42:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693485484; x=1694090284; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oi/kPn02IZFct2zYJEPtTAuOz/cjkMO9segcjaWjsPU=;
-        b=qLr7k9vcAqD3LkPYNIKH3puBmyALxykYSKwZ8HcsymVyD4EilFCKpOMo1HtmIgK5ux
-         /r7Lw5PAsMmvuzPzVkDiuI3CN/nENPR8n4PZpsM2IRUprfA4lcFRmd/Wpd6PJGp/JO3u
-         5ima2spF01FMHHqQLYYhVoHUue1UqrA+SDhKW62V5rP4PLWARWx4EUHV54na5YEns//M
-         6rGutiqeQkng6b1w7ZHfrXCQmffvo8DH0X4TI4PZLQ9SoCIr3Ik3t4131CoESCf5wgv0
-         K8W5FL2hApLn1wMjJM+eneZCdYZRJwWD+Kjcr2QOVEBOiLYvHOHP549YhM0rNObyl7aX
-         rOqQ==
+        d=gmail.com; s=20221208; t=1693485767; x=1694090567; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=a1xOciFEJ8HjM2SzGUTsUdShfH1iAQ0wqaSrJGRWK40=;
+        b=mE1QwtBSQ1WQFDY4nQpw7W1W8yn5v+Ed8WFK2RbeAfAbAnB2TJPWsWFzt/RJUEYdmn
+         q46qHkaKvCJQy8NIZodtkt7X8Lzkzjs3COhYEdMVCD9HjDJUjaF6Lx3Y/7ilM9j0gCS1
+         fdr4LqWZyTVf4985UFDlNhxy0RAf5mXA1pj9+uBz6NEBHplXH6A1jS4DEqRnyu431DrA
+         Zfov427vofUUOmWVbXMBRk1hF4v3kNu1v847RuozufaYJFGsL2S9xRPbb3ZL8SHOYRF5
+         ZTu8tCY2spPA//Fw9hzzfUkGXmhZ0dMvoLsE0wcAOwOXgPKabVhs8TT2Ud9FWM6VsYOe
+         c29w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693485484; x=1694090284;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oi/kPn02IZFct2zYJEPtTAuOz/cjkMO9segcjaWjsPU=;
-        b=Q0CJFPI+/zp3k3bNDPBjRDxMKw/br0eJ281DDzHMOsCKvXUJgKA2dkApGxmkGZ/BQv
-         iUH5yMgDhEyR5dzNvr5qeFqfun4VUmZ+6LCqMyHDTW7RnTYkXazo+57Kumuj6mC8CU+r
-         yk9Roe+Erx0NufZOSXQqTEeXsMCE1y8rN0r2H7fPBtelvq54EZv5K0jmgwJtXHH9FeTC
-         xrHcAx8oaX0NxZqd/z1wVp0c3b/JoQICf+D2KByE3vYs1N6ZBb6oQ1TFiEO98UcsPSW/
-         M801Z3dKxwTpMOQMVXmZeJOsaGXpCa9lQD2eXhV4hhyUjlQYtnHUg9raZJLCcQpjKsCY
-         Ahmw==
-X-Gm-Message-State: AOJu0YxEEkMh1QBS99RiNOG0q4oR7hlDbXZqkMRMCt0IoNm4PMY2kAcN
-        BkN8ifjqMaNzXI0a1Ps93HYjXw==
-X-Google-Smtp-Source: AGHT+IG66AMgUP5PIYRzzikgOWnqFE+4vnEiMaeZV40mxCPYbDRmK8oHkefsRLF75BkzCPNNJnRbmw==
-X-Received: by 2002:a17:906:2d9:b0:9a1:d79a:4193 with SMTP id 25-20020a17090602d900b009a1d79a4193mr4105717ejk.23.1693485484212;
-        Thu, 31 Aug 2023 05:38:04 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id p27-20020a17090635db00b009a168ab6ee2sm701844ejb.164.2023.08.31.05.38.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 05:38:03 -0700 (PDT)
-Message-ID: <7b241edd-4775-afbc-e5a1-63f5ecfce331@linaro.org>
-Date:   Thu, 31 Aug 2023 14:38:02 +0200
+        d=1e100.net; s=20221208; t=1693485767; x=1694090567;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a1xOciFEJ8HjM2SzGUTsUdShfH1iAQ0wqaSrJGRWK40=;
+        b=YshPyGHqMakygFz8yGoVUZ7X2nYLTwPlNDKEJ0aFd5JA4fiIjd5YUWT2T4SnC+vpu/
+         uWyNJuAQqW8dtleF/OsvvtlXupQc6D0U1xPQ8y9Pgu7b/um+OR8n441R4eVOPJrzFB0h
+         da6vVEQZPDS5E526fLclFCYVlYuO3oD0zKEHbk3C2YLzmMbd3YERuy/HCvf0GcoNEvAT
+         aCCy6in7pQ9uOFf4EsxckzIwcsCTNKCEvdS9V0UtllgXDsRA2aVkJRHIQeH4h26AE2Dv
+         ZdGYGh8EAQ9C6bvZhnxSeDREyPX9yyGvcRbuOJ4mVYUZZ6GcUXR89R4ldZPzsEiITp7h
+         ibeg==
+X-Gm-Message-State: AOJu0YxSWQ50iacODfeBi06HqyKCEhNUgNWOWEne5RnweS4NCGF+2lwC
+        tQVg3jKNeLYLwJpCc+bNwYxKAnWN1Q///stAGjw=
+X-Google-Smtp-Source: AGHT+IG+ZUnkpRdPLlTVk21k4SpEvZwMjipenH8jcSc0l7Lhd+kc0DKaqOWOz4BxF4hDJ9YB1nhCciRqrK+QcApXhIw=
+X-Received: by 2002:a1f:ac54:0:b0:490:a0fb:e08f with SMTP id
+ v81-20020a1fac54000000b00490a0fbe08fmr4010195vke.1.1693485767538; Thu, 31 Aug
+ 2023 05:42:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v7 2/2] dt-bindings: arm: aspeed: add Meta Minerva board
-Content-Language: en-US
-To:     Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230831082819.4000425-1-peteryin.openbmc@gmail.com>
- <20230831082819.4000425-3-peteryin.openbmc@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230831082819.4000425-3-peteryin.openbmc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230828091859.3889817-1-milkfafa@gmail.com> <20230828091859.3889817-8-milkfafa@gmail.com>
+ <0c91f68d-d172-bd14-9115-b6977ad2d01f@xs4all.nl>
+In-Reply-To: <0c91f68d-d172-bd14-9115-b6977ad2d01f@xs4all.nl>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Thu, 31 Aug 2023 20:42:38 +0800
+Message-ID: <CADnNmFqVbRWs5Uf_tJdrM0AopF_CmSHYwBK8-+1go_K6Hefkcw@mail.gmail.com>
+Subject: Re: [PATCH v14 7/7] media: nuvoton: Add driver for NPCM video capture
+ and encode engine
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     mchehab@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2023 10:28, Peter Yin wrote:
-> Document the new compatibles used on Meta Minerva.
-> 
-> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+Hi Hans,
 
-This is a friendly reminder during the review process.
+Thanks for the review.
 
-It looks like you received a tag and forgot to add it.
+> > +     snprintf(cap->bus_info, sizeof(cap->bus_info), "platform:%s", DEVICE_NAME);
+>
+> You can drop this last line, it is already filled in by the V4L2 core for
+> platform devices.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+> > +static const char * const npcm_ctrl_capture_mode_menu[] = {
+> > +     "COMPLETE mode",
+> > +     "DIFF mode",
+>
+> Hmm, I would drop the 'mode' bit, since it is already obvious that
+> these are the modes.
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+OK. Will drop them in the next version.
 
-If a tag was not added on purpose, please state why and what changed.
+> > +static const struct v4l2_ctrl_config npcm_ctrl_rect_count = {
+> > +     .ops = &npcm_video_ctrl_ops,
+> > +     .id = V4L2_CID_NPCM_RECT_COUNT,
+> > +     .name = "NPCM Compressed Hextile Rectangle Count",
+> > +     .type = V4L2_CTRL_TYPE_INTEGER,
+> > +     .flags = V4L2_CTRL_FLAG_VOLATILE,
+> > +     .min = 0,
+> > +     .max = (MAX_WIDTH / RECT_W) * (MAX_HEIGHT / RECT_H),
+> > +     .step = 1,
+> > +     .def = 0,
+> > +};
+>
+> Just to confirm: you decided against using an integer array control?
+>
+> There is a real danger that if userspace isn't reading this control
+> quickly enough (i.e. before the next frame arrives at the driver), then
+> the control's value is that of that next frame instead of the current
+> frame.
+>
+> It doesn't feel robust to me.
 
-Best regards,
-Krzysztof
+Actually the driver will store the frames and counts for each buffer
+index till userspace dequeues them.
 
+Ex. assume that driver has captured 3 frames:
+- 1st capture (buffer index = 0):
+     video->list[0] => store the list of HEXTILE rects for the 1st frame
+     video->rect[0] => store the rect count of video->list[0]
+- 2nd capture (buffer index = 1):
+     video->list[1] => store the list of HEXTILE rects for the 2nd frame
+     video->rect[1] => store the rect count of video->list[1]
+- 3rd capture (buffer index = 2):
+     video->list[2] => store the list of HEXTILE rects for the 3rd frame
+     video->rect[2] => store the rect count of video->list[2]
+
+When userspace dequeues the 1st buffer (video->list[0]), it needs to
+know the count of HEXTILE rectangles in the buffer,
+so after dequeuing the buffer it will call this control to get the
+rect count (video->rect[0]). And when a buffer is dequeued,
+npcm_video_buf_finish() will be called, in which the buffer index (in
+this example, buffer index = 0) will be stored to video->vb_index.
+Then when userspace calls this control, npcm_video_get_volatile_ctrl()
+will return the rect count of vb_index = 0.
+In this way, I think userspace is always reading the correct control's
+value even if userspace is slow.
+Does it make sense to you or is there anything I missed?
+
+Regards,
+Marvin
