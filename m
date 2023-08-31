@@ -2,115 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90AD778F436
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 22:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BA3978F4CF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 23:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344295AbjHaUks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 16:40:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35412 "EHLO
+        id S1347614AbjHaVs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 17:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232533AbjHaUkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 16:40:47 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CD411B0
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 13:40:44 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-500b6456c7eso2414962e87.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 13:40:44 -0700 (PDT)
+        with ESMTP id S1347611AbjHaVsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 17:48:21 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC9B1BF
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 14:48:18 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-d7225259f52so1023076276.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 14:48:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693514443; x=1694119243; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=jmh9FExlycgbmfRymrwXGINB5p9AMhlFKblzDNqy3Qk=;
-        b=JuhebmW0QQiDIH/L7C5RxJikxIjRPg8Idt1kpr2HwTQ82O/7Cl7NUoKqMsIcJpbXBE
-         ZTIIGNP1Or+1USixtPa6jjGi8/A3fa3n3QfUu06ag5lLnOSFWURlZhxAj18njKHUFnA7
-         4EWf1XW3cSGOrCX/3BKVmy9es8rq6Zr7kkK/wUX2+ctb//Px8lR8vbmg1BOXUzB+bb4W
-         U407XBlhy0gjF4vpQ6FSmKrjJXTaNtu8qXEsUmqrR4NZF5DdEtUNv0vlRWAfffIBjrW6
-         eA1uanDYqg165cB3P0i1FoX8/U+01IQd3kbVWSadkv3waQAoEhe+fEFKAi+IVzq+vvXb
-         vUIw==
+        d=linaro.org; s=google; t=1693518498; x=1694123298; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=vYQm3HLTVW0PLSRJWbeaTbNjeFSBbaECmMIm+40Gbmk=;
+        b=yd/40IO2G+j0u0NQqPr0r5ze685Tm8YwWkrpW3hhdJ2pGzVxwAmB1isM0N74o3bB5x
+         WwbaCYOL/x1y2pcBYBhRJd6TqC2RPP2683Mq41sUamjSfroUelKphqBthsNN5YC9arFn
+         vHRjSWiCIRxA8fBXsDfk4nExZTt5u7l5Ug3dRc4MnWkpzMWjY7qVZp4xc2D1jtrfmTaj
+         XJouyoVcUzAN0nIooeE57yn5XYLMMWnRdv4M2Kd1OPV86vSSUwJypNojoNFnLsjc610l
+         PWr5KIpljhyf/6EN3C2PsRGeaOp6TE7643CJc/FxwJBZ6/e+9+Xb2Y27PCsKEdnxwvta
+         HADA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693514443; x=1694119243;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jmh9FExlycgbmfRymrwXGINB5p9AMhlFKblzDNqy3Qk=;
-        b=U7KUV7nezSkM7FrUacqb7UWWm6sz2TBjqUJjU0I6rWSdcHxAJ93Ej2Eb9cMjF1uxwI
-         ipZMO2FUxQVrOKrTuyBTbeKrEWu70q/4TvLwKA2rQ95RbIjzmKHOi3AXj9mqGPXx5p/0
-         YyC/Heurs/trV/5EW319xhyB1uDDLXl/6cczZoL8PtaKFsGLHm84jsZEX8Y7mQB/EAoJ
-         fvbWUHNIysE0drYgnkkk2NTbRC/zakNJO/CGfBJoNWvlUEmzgmJTp8b/Abs3mDMZb75p
-         WNafXSzZTq1yhDJcgAdn58fInNDvOS4WVGPYrFOr2I/clA7XhgtFwtAdqfjgQZtK8J3S
-         ijcA==
-X-Gm-Message-State: AOJu0YyB3wOtkcS3hpaVfYc3fYebzcMXLnMtd2uj2Pfqcs2Sab+WtpTD
-        OwxhQnc/LhF3NWg5Q6UC2RJOzQ==
-X-Google-Smtp-Source: AGHT+IHvucSDAeT+xVwHkfOaHi/9UEs2qNN5mdDevojByrsF5+OU84HysdBunzySgfm2pK3iRiW+yw==
-X-Received: by 2002:a19:5e0b:0:b0:500:8fc1:8aba with SMTP id s11-20020a195e0b000000b005008fc18abamr218772lfb.26.1693514442333;
-        Thu, 31 Aug 2023 13:40:42 -0700 (PDT)
-Received: from [192.168.1.101] (abxj164.neoplus.adsl.tpnet.pl. [83.9.3.164])
-        by smtp.gmail.com with ESMTPSA id g23-20020ac25397000000b004ff884e9936sm409207lfh.12.2023.08.31.13.40.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 13:40:41 -0700 (PDT)
-Message-ID: <9de94c43-5274-4eb3-96b3-a77db2822b92@linaro.org>
-Date:   Thu, 31 Aug 2023 22:40:39 +0200
+        d=1e100.net; s=20221208; t=1693518498; x=1694123298;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vYQm3HLTVW0PLSRJWbeaTbNjeFSBbaECmMIm+40Gbmk=;
+        b=B+yw1UEiFuVcNM13R4sfDH1e/Zq6Xgd+QEwDOW7p6KloM3rtx4UNqy1DmPbVDzdYyX
+         Guzjb7y/TpsjZ3aMypgARX41N+BaNeLMrp+2dOfGp3sgxX4kzB1Qxltuy8iTaVmWT+fq
+         akwZV70M8gSLWJFRqanA3p9mQ/bRhoCvLAKoJjinV3OUYTIFnxfKaDVP2zpStTEVDAZx
+         8j+Mm1e+VNG5AvjLLIE+XcF+SavyMKGVWhpyMvLm1pBXIsRupXV+1FZ71dv/S/1fIrwl
+         +L7cJW6S1bQ6ObAaGARB88/5aPM84b/PfGLFnfj531oD4GqnIQLrqYktBoAHZitS6P5a
+         QI4Q==
+X-Gm-Message-State: AOJu0Yzj2UejJ1q5De6OcIITQfGt7pNOgGv+D3W6/y6ehCoyc/PqO5SE
+        FWset+fRF4S7nwlAKdquUMMuZUcU/u2hn2oW5W+nnQ==
+X-Google-Smtp-Source: AGHT+IGUdiOKQp2YoszPk/mqnRyLATy++xSQZaMCP71grCQFvhU122vT3LwQYefcUXv4RXe/FHdk3jTendYgMlkPz/o=
+X-Received: by 2002:a25:e082:0:b0:d7b:9f03:20c9 with SMTP id
+ x124-20020a25e082000000b00d7b9f0320c9mr1026573ybg.10.1693518498053; Thu, 31
+ Aug 2023 14:48:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,usb-snps-femto-v2: Add REFGEN
- regulator
+References: <20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org>
+ <20230217-topic-cpr3h-v14-3-9fd23241493d@linaro.org> <CAPDyKFrXT+2NEMUzVv-kWjXAhLinXq99GKq4_Ge2VjthtYxtaA@mail.gmail.com>
+ <20230831162835.GA2390385-robh@kernel.org>
+In-Reply-To: <20230831162835.GA2390385-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 31 Aug 2023 23:47:40 +0200
+Message-ID: <CAPDyKFrpumkD0fPwgu_0xr1q3XM3t+U5rT9nj0Cg78tF9CGZ0w@mail.gmail.com>
+Subject: Re: [PATCH v14 3/9] dt-bindings: soc: qcom: cpr3: Add bindings for
+ CPR3 driver
 To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
         Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org>
- <20230830-topic-refgenphy-v1-1-892db196a1c0@linaro.org>
- <20230831182505.GA2541736-robh@kernel.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230831182505.GA2541736-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -120,35 +87,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31.08.2023 20:25, Rob Herring wrote:
-> On Wed, Aug 30, 2023 at 11:13:51PM +0200, Konrad Dybcio wrote:
->> The HSPHY is (or at least can be) one of the users of the reference
->> voltage generating regulator. Ensure that dependency is described
->> properly.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 3 +++
->>  1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->> index 0f200e3f97a9..e895b6c4ee49 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->> @@ -53,6 +53,9 @@ properties:
->>      items:
->>        - description: PHY core reset
->>  
->> +  refgen-supply:
->> +    description: phandle to the REFGEN regulator node
-> 
-> Supply names are local to the device (sink name), but this seems to be 
-> named based on the supply source. Maybe hard to do if all internal 
-> stuff. What is this supplying and what's the source if not REFGEN?
-I don't think I have anything that would answer this question..
-Though I would not at all be surprised if Qualcomm also called the
-input "refgen"..
+On Thu, 31 Aug 2023 at 18:28, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Aug 29, 2023 at 01:01:44PM +0200, Ulf Hansson wrote:
+> > On Mon, 28 Aug 2023 at 13:42, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> > >
+> > > From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> > >
+> > > Add the bindings for the CPR3 driver to the documentation.
+> > >
+> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> > > [Konrad: Make binding check pass; update AGdR's email]
+> > > Tested-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+> > > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    | 286 +++++++++++++++++++++
+> > >  1 file changed, 286 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
+> > > new file mode 100644
+> > > index 000000000000..acf2e294866b
+> >
+> > [...]
+> >
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/qcom,gcc-msm8998.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    cpus {
+> > > +        #address-cells = <2>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        cpu@0 {
+> > > +            compatible = "qcom,kryo280";
+> > > +            device_type = "cpu";
+> > > +            reg = <0x0 0x0>;
+> > > +            operating-points-v2 = <&cpu0_opp_table>;
+> > > +            power-domains = <&apc_cprh 0>;
+> > > +            power-domain-names = "cprh";
+> >
+> > Rather than using a Qcom specific power-domain-name, perhaps a common
+> > power-domain-name for cpus, that can be used for "the performance
+> > domain" would be a good idea here?
+> >
+> > I have suggested using "perf" for the SCMI performance domain [1],
+> > perhaps that description should be extended to cover this and other
+> > performance domains too?
+>
+> Better yet, nothing. There's no value to -names when there is only 1
+> entry.
 
-Maybe Bjorn or Dmitry would know.
+The above is just an example of a consumer node for a cpu. The
+bindings for cpus are in
+Documentation/devicetree/bindings/arm/cpus.yaml.
 
-Konrad
+Please have a look there. We don't even have a maxItems specified for it.
+
+Kind regards
+Uffe
