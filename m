@@ -2,163 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E8778ED34
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A50F78ED37
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:34:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236784AbjHaMeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:34:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45432 "EHLO
+        id S238234AbjHaMe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346272AbjHaMeV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:34:21 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B90CFE
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:34:17 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-d7bbaa8efa7so550714276.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:34:17 -0700 (PDT)
+        with ESMTP id S235225AbjHaMe6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:34:58 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B501E53;
+        Thu, 31 Aug 2023 05:34:52 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id 41be03b00d2f7-56a8794b5adso615181a12.2;
+        Thu, 31 Aug 2023 05:34:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693485256; x=1694090056; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=C40f3DUoPo3gJsTKxhxSJrYNVhaMXcBmegCE2EfQH5A=;
-        b=dSXwBMO5YtC6q8FeuXteOzHn2MSoycarwDrWgsUtWD4nwtfTJX/wuzlLkaBLRKlrAW
-         WbbofUrzSPUFRQrbiMHxS+ERRuVTGpddZv1uXtrt+PX8MCJowcgKma3rIAAbQIy8oS0x
-         Q25K7ZTLmiZJYduE6ewDlJJivESY5dsDijHwndI0rpofmLnKhgATo5ortqGZjIHbF8qc
-         6ag4cXIFstXHNfFdHcg5yJSZi8FW8oOtjR21Xo6EmsWnSl246xqURn+fDy/fhZZr0xdz
-         JB99oL6vNj0PC9V/2F02OFfcY3gQJxwwoUmZdbhYcSzRwmU+pKu/99tlchKb3v1vasim
-         eueA==
+        d=gmail.com; s=20221208; t=1693485291; x=1694090091; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T8qtfSYPASZsR2rv+sOsRKO0t16oVqa7LJBcF2xhXPs=;
+        b=oII/cxjy/YLqXU3R5/zi4XqcTLWcSDIZK42tdwK/0bbjuse/+0chUFK2IuPlPB/yXn
+         NpjNhujcGumO2EZ1ZwZjtq/FbIJmyDhASpiBsyigmcuXimcs/vglDJ8UPQMoVWjBv6Xq
+         fbzSD9NpY/owdETtvAyTztGqB5Aj9JhixMFtvYlJg+MsLICUJ47EX4S4dmBfN56dR7JV
+         whwiQdtHshlqLKHL/zbekw05ZFkeehTqmX0TCgDXi9ehcXWW5WkoiCZX6z3NrAg464JJ
+         PUECt0RQxnYbu5SizlMKqOQk+I/y/vFfAHXneGbgqe+olZCJdpT4SWjlryJAG8KkwYqU
+         at9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693485256; x=1694090056;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=C40f3DUoPo3gJsTKxhxSJrYNVhaMXcBmegCE2EfQH5A=;
-        b=eEGyh10gGmKY6ZRxsDb//x5auBquTpzOlms8nacXoU+2ZhHDvTsVCkh7D4sWfFhPY0
-         OCK1HnuBd+iy0uzMK/aciFpV1G2oYCz2IVVTk/5nkIFF0Qv6pVNaxUXQe7QKrwGoBaV/
-         2OweRn0IyVWinegMQxv2fGwrmWBpEWd1BLGZa2KtDsrtHQs5ELsLG8cQ3JyJAze2W5fv
-         zmRrGL5QRCNMP8HawGSkffpw5W6Wf2guMhCWQUayTWPqvJXlvKn/x5w+OXqPIQoVYt3I
-         uKYkvNIc3SQfMBCPlODfK5JIYnevcHKsHfcsFb8P7r+rd9y1JaLfpUBpQ8YjAXDQQnQF
-         +o7g==
-X-Gm-Message-State: AOJu0YxrYAg+xtj//L8QnbWb4ERP2dceQ38tudXRlhoh8TtGRQ/R52D3
-        pDEwVWoEquE33ZO+yCPiyK1cBWm2DO11XSlItQNGoQ==
-X-Google-Smtp-Source: AGHT+IGNzttzOCm+rkPjq+eGj1cyifmZPjni+dDxUsvO/jegctR83ayV/AWgvekHFloDQPa7nhRiUyF46+koWaPL9UM=
-X-Received: by 2002:a25:b323:0:b0:d7a:d716:233c with SMTP id
- l35-20020a25b323000000b00d7ad716233cmr5124847ybj.41.1693485256548; Thu, 31
- Aug 2023 05:34:16 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693485291; x=1694090091;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=T8qtfSYPASZsR2rv+sOsRKO0t16oVqa7LJBcF2xhXPs=;
+        b=RrUeFk/0M2WG5APZzm429T/Mvjh95GXT1tiRTSvcKGKDggg0PVqQtb2WErUSjJDEbb
+         pnhQZci7mG7OArQi6ZC4G/CI6Eewj1QFKNk+9a5aYGoW7cyqEHG+pkwHK5US3ICcSKK+
+         K+vwX67846MsKaymjvpoGYUfHCX06YNC+JneEBLVIagJIxvj0HOBqrjWkvlH0pPGyh72
+         DCW0+2+UvisyfJCcLFTWrHJ6GuBeROg9wIadrZcH067DkRD9XZ2iqK9uIMpRE2yKILJe
+         wF3av3kx6efTkdbGHAPTWWzbIW9dFLYNDAGf3M/FDxs6wj5EHiv/d/8tGFAxEOZI3QfG
+         TDgA==
+X-Gm-Message-State: AOJu0YyGOaTFnG0/KqkAiGEwWEZ3iBFpOj7MR7n0INh8a5d+eTJbZEQa
+        PDJNjF0dsakB68VjgxppX/MxIm8eMs8n8Y5ieAE=
+X-Google-Smtp-Source: AGHT+IE9JEp2n1DYTHTgritm96XaJMShBw83vd2pIVn7QmnoMMXDocvWrdhklQkBFjK0CoIm9lrUxAcm3VTMQBtubHI=
+X-Received: by 2002:a17:90a:4982:b0:26c:f9a5:4493 with SMTP id
+ d2-20020a17090a498200b0026cf9a54493mr4896454pjh.5.1693485291299; Thu, 31 Aug
+ 2023 05:34:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
- <20230829135818.2219438-2-quic_ipkumar@quicinc.com> <CAA8EJpqA-poJ9=XKJa2s=yZUGbBbgOqgiDC-q9skJzBqLux84g@mail.gmail.com>
- <73879012-581d-47fb-b741-577c90b31dfb@quicinc.com> <CAA8EJpr3PJtvyYKRPqT=hO4sUd4oOjTvOjD3kOqffbjzHdByAw@mail.gmail.com>
- <4e9a43c5-43ec-4a07-9053-366a517f5c54@quicinc.com>
-In-Reply-To: <4e9a43c5-43ec-4a07-9053-366a517f5c54@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 31 Aug 2023 15:34:05 +0300
-Message-ID: <CAA8EJpofAM4deqg1H_WSh2uJavTEXQC5x=26P1FLAUgJcT7yOg@mail.gmail.com>
-Subject: Re: [PATCH 1/9] dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY
- to UNIPHY
-To:     Praveenkumar I <quic_ipkumar@quicinc.com>
-Cc:     robert.marko@sartura.hr, luka.perkov@sartura.hr, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
-        geert+renesas@glider.be, nfraprado@collabora.com, rafal@milecki.pl,
-        peng.fan@nxp.com, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_varada@quicinc.com
+References: <20230831115128.254226-1-aford173@gmail.com> <20230831115128.254226-4-aford173@gmail.com>
+In-Reply-To: <20230831115128.254226-4-aford173@gmail.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Thu, 31 Aug 2023 07:34:39 -0500
+Message-ID: <CAHCN7xKDT-2GJMWwUtOQqHE4R24BOLWvsQy99gw0VP8zULtK+A@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: imx8mp-beacon: Add DMIC support
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     aford@beaconembedded.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Aug 2023 at 15:30, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+On Thu, Aug 31, 2023 at 6:51=E2=80=AFAM Adam Ford <aford173@gmail.com> wrot=
+e:
 >
+> The baseboard has a connector for a pulse density microphone.
+> This is connected via the micfil interface and uses the DMIC
+> audio codec with the simple-audio-card.
 >
-> On 8/31/2023 5:47 PM, Dmitry Baryshkov wrote:
-> > On Thu, 31 Aug 2023 at 14:54, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
-> >>
-> >> On 8/29/2023 7:49 PM, Dmitry Baryshkov wrote:
-> >>> On Tue, 29 Aug 2023 at 16:59, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
-> >>>> UNIPHY / Combo PHY used on various qualcomm SoC's are very similar to
-> >>>> ipq4019 PHY. Hence renaming this dt-binding to uniphy dt-binding and
-> >>>> can be used for other qualcomm SoCs which are having similar UNIPHY.
-> >>>>
-> >>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> >>>> ---
-> >>>>    .../phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml}  | 9 +++++++--
-> >>>>    1 file changed, 7 insertions(+), 2 deletions(-)
-> >>>>    rename Documentation/devicetree/bindings/phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml} (78%)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
-> >>>> similarity index 78%
-> >>>> rename from Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
-> >>>> rename to Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
-> >>>> index 09c614952fea..cbe2cc820009 100644
-> >>>> --- a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
-> >>>> @@ -1,13 +1,18 @@
-> >>>>    # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>>>    %YAML 1.2
-> >>>>    ---
-> >>>> -$id: http://devicetree.org/schemas/phy/qcom-usb-ipq4019-phy.yaml#
-> >>>> +$id: http://devicetree.org/schemas/phy/qcom,uniphy.yaml#
-> >>>>    $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>
-> >>>> -title: Qualcom IPQ40xx Dakota HS/SS USB PHY
-> >>>> +title: Qualcomm UNIPHY
-> >>> We know that UNIPHY was a common design / IP block used for APQ8064
-> >>> SATA and MSM8974 DSI and HDMI PHYs. Is this the same design, or was
-> >>> the name reused by the Qualcomm for some other PHYs?
-> >>> Several latest generations have USB QMP PHYs which are called 'uni-phy'.
-> >> This PHY is build on top of QCA Uniphy 22ull. A combo PHY used between
-> >> USB Gen3 / PCIe Gen3 controller.
-> >> It is different from USB QMP PHYs.
-> > So we have now three different items called Qualcomm uniphy. Could you
-> > please add some distinctive name?
-> There is one more target called IPQ5018 which is also having similar USB
-> PHY built on top of
-> Uniphy 28nm LP. That also can leverage this upcoming IPQ5332 USB PHY
-> driver. Considering that,
-> given a common name 'uniphy'.
-
-Just to verify, do we mean the same thing, when speaking about the
-28nm LP UNIPHY?
-I was referencing the apq8064 SATA and msm8974 HDMI / DSI PHYs. See [1] and [2].
-
-[1] https://patchwork.freedesktop.org/patch/544131/?series=118210&rev=2
-[2] https://patchwork.freedesktop.org/patch/544125/?series=118210&rev=2
-
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 >
-> - Praveenkumar
-> >
-> >> - Praveenkumar
-> >>>>    maintainers:
-> >>>>      - Robert Marko <robert.marko@sartura.hr>
-> >>>> +  - Praveenkumar I <quic_ipkumar@quicinc.com>
-> >>>> +
-> >>>> +description:
-> >>>> +  UNIPHY / COMBO PHY supports physical layer functionality for USB and PCIe on
-> >>>> +  Qualcomm chipsets.
-> >>>>
-> >>>>    properties:
-> >>>>      compatible:
-> >>>> --
-> >>>> 2.34.1
-> >>>>
-> >
-> >
 
+Shawn,
 
+I forgot to mention that this patch depends on a different patch that is fo=
+und:
 
--- 
-With best wishes
-Dmitry
+https://patchwork.kernel.org/project/linux-arm-kernel/patch/20230831044431.=
+250338-2-aford173@gmail.com/
+
+Sorry about that.
+
+adam
+
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/a=
+rm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> index acd265d8b58e..ee64c6ffb551 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> @@ -49,6 +49,12 @@ ss_ep: endpoint {
+>                 };
+>         };
+>
+> +       dmic_codec: dmic-codec {
+> +               compatible =3D "dmic-codec";
+> +               num-channels =3D <1>;
+> +               #sound-dai-cells =3D <0>;
+> +       };
+> +
+>         gpio-keys {
+>                 compatible =3D "gpio-keys";
+>                 autorepeat;
+> @@ -147,6 +153,22 @@ reg_usb1_host_vbus: regulator-usb1-vbus {
+>                 enable-active-high;
+>         };
+>
+> +       sound-dmic {
+> +               compatible =3D "simple-audio-card";
+> +               simple-audio-card,name =3D "sound-pdm";
+> +               simple-audio-card,format =3D "i2s";
+> +               simple-audio-card,bitclock-master =3D <&dailink_master>;
+> +               simple-audio-card,frame-master =3D <&dailink_master>;
+> +
+> +               dailink_master: simple-audio-card,cpu {
+> +                       sound-dai =3D <&micfil>;
+> +               };
+> +
+> +               simple-audio-card,codec {
+> +                       sound-dai =3D <&dmic_codec>;
+> +               };
+> +       };
+> +
+>         sound-wm8962 {
+>                 compatible =3D "simple-audio-card";
+>                 simple-audio-card,name =3D "wm8962";
+> @@ -174,6 +196,11 @@ simple-audio-card,codec {
+>         };
+>  };
+>
+> +&audio_blk_ctrl {
+> +       assigned-clocks =3D <&clk IMX8MP_AUDIO_PLL1>, <&clk IMX8MP_AUDIO_=
+PLL2>;
+> +       assigned-clock-rates =3D <393216000>, <135475200>;
+> +};
+> +
+>  &ecspi2 {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&pinctrl_ecspi2>;
+> @@ -364,6 +391,15 @@ hd3ss3220_out_ep: endpoint {
+>         };
+>  };
+>
+> +&micfil {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_pdm>;
+> +       assigned-clocks =3D <&clk IMX8MP_CLK_PDM>;
+> +       assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> +       assigned-clock-rates =3D <49152000>;
+> +       status =3D "okay";
+> +};
+> +
+>  &pcie {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&pinctrl_pcie>;
+> @@ -545,6 +581,13 @@ MX8MP_IOMUXC_SAI2_RXFS__GPIO4_IO21 0x10    /* PCIe_n=
+RST */
+>                 >;
+>         };
+>
+> +       pinctrl_pdm: pdmgrp {
+> +               fsl,pins =3D <
+> +                       MX8MP_IOMUXC_SAI5_RXC__AUDIOMIX_PDM_CLK         0=
+xd6
+> +                       MX8MP_IOMUXC_SAI5_RXD0__AUDIOMIX_PDM_BIT_STREAM00=
+       0xd6
+> +               >;
+> +       };
+> +
+>         pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
+>                 fsl,pins =3D <
+>                         MX8MP_IOMUXC_SD2_RESET_B__GPIO2_IO19    0x40
+> --
+> 2.39.2
+>
