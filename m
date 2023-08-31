@@ -2,88 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F26D78F200
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 19:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE2D78F259
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244491AbjHaRdX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 31 Aug 2023 13:33:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51404 "EHLO
+        id S1345265AbjHaSQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 14:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36370 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346694AbjHaRdW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 13:33:22 -0400
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6176010D3;
-        Thu, 31 Aug 2023 10:33:08 -0700 (PDT)
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5717f7b932aso675133eaf.0;
-        Thu, 31 Aug 2023 10:33:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693503187; x=1694107987;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=euRoGwF/bHtDRN49l+2MpHP1k9U7h0kuDLoOSY2LpqY=;
-        b=jPX9qeaiwqz/O2sdCaZqeBiSfXAI/caeZt3Le1XfMzPgmtKQCs7td9Qi+8iJH1ywS7
-         nTn2rfcpb7SUf3dMrcDs0PvnCCohs1+QYr/1yTUWPV153QnGTBgd3rsbXbMjqtG2WZJv
-         nqYmhgPt6akDDEHjHwq7XrMctv3+2qho5tK+I5WhvoDSZ1Eu7ThTxyddS7tC1wJqxIa3
-         ErWnFQPD5Gz4EB+4rGttYs12lIbWohjQEHQgYHENRyQnQUcTWXNGn/wSNuA972ZWhcj/
-         mmEg3rnpN/jGiR4HeHt8oJEuSWvJs8wT610cYnnzC89rjR9RSv5ix74cTqbbTYU4RwxK
-         isdQ==
-X-Gm-Message-State: AOJu0YwkEj93IZ9563GyytZblYaOLsGASDrUpPdoOrrkLkOM+EOiR5Ty
-        h00hxiyX3sDaomIgfBBOnVVgSSdltkA9jQ==
-X-Google-Smtp-Source: AGHT+IGIJTLstwbjvZv8rHMdDeQusjtWWwEneeNXddELe25COIsJnU0/rFbyj8aE1+UGeq3XhpY8ZQ==
-X-Received: by 2002:a05:6358:5293:b0:13a:6748:9312 with SMTP id g19-20020a056358529300b0013a67489312mr7651757rwa.19.1693503187493;
-        Thu, 31 Aug 2023 10:33:07 -0700 (PDT)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id v1-20020a25ab81000000b00d749a394c87sm438662ybi.16.2023.08.31.10.33.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 10:33:06 -0700 (PDT)
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-d7ba4c5f581so844498276.0;
-        Thu, 31 Aug 2023 10:33:06 -0700 (PDT)
-X-Received: by 2002:a25:8206:0:b0:d78:21e0:c06d with SMTP id
- q6-20020a258206000000b00d7821e0c06dmr315801ybk.64.1693503186636; Thu, 31 Aug
- 2023 10:33:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230831063635.2816-1-biju.das.jz@bp.renesas.com> <20230831063635.2816-4-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230831063635.2816-4-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 31 Aug 2023 19:32:55 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUk56UX_Wd_997Rr3xZsKNcZZtiEY2Rmr5+=1Y3-Ky0Zw@mail.gmail.com>
-Message-ID: <CAMuHMdUk56UX_Wd_997Rr3xZsKNcZZtiEY2Rmr5+=1Y3-Ky0Zw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: renesas: rzg2lc-smarc-som: Enable
- 4-bit tx support
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S1344964AbjHaSQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:16:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4166E61;
+        Thu, 31 Aug 2023 11:16:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45A1C6198B;
+        Thu, 31 Aug 2023 18:16:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF99C433C8;
+        Thu, 31 Aug 2023 18:16:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693505798;
+        bh=XeZVeiYpBVcPEbHL4neQaU/M5IGVLY/U/Mj6DQ6GalA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MqnDV9Oczcpv+5UwkALr3OsvzNOZZJhiZzRapdSmN3ePWjI0ztjUyQ42UFFLib/UI
+         mnpfFfAVYbqLCExTU39BH0HKS4ALEnhyq5tGWxqQxAmFLZtA3vzoVti6K1QqwyYB//
+         Pwv2zsXslmdJX6pHVfqoHYfF5hsBoDvReiJQyfn0IdGFWBB3HOnIAxIPP2JBghJF/O
+         x1dKf/cX/wjJBiHcv+4oBfmmvWENJt4n/0fhQbS3tWCYvrelh8BhvvEEs30hNM7lCh
+         janYTlSKR3mvk32K+yv0d2eUVYpi2khOzMYNat+rUkg4ayABGmCQAgnjRrj+djCFMv
+         mtTYeyjqjDIDA==
+Received: (nullmailer pid 2536101 invoked by uid 1000);
+        Thu, 31 Aug 2023 18:16:36 -0000
+Date:   Thu, 31 Aug 2023 13:16:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Simon Horman <horms@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
+Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add documentation for
+ Half duplex support.
+Message-ID: <20230831181636.GA2484338-robh@kernel.org>
+References: <20230830113134.1226970-1-danishanwar@ti.com>
+ <20230830113134.1226970-2-danishanwar@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230830113134.1226970-2-danishanwar@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 31, 2023 at 8:36 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable 4-bit tx support for sbc node.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Wed, Aug 30, 2023 at 05:01:33PM +0530, MD Danish Anwar wrote:
+> In order to support half-duplex operation at 10M and 100M link speeds, the
+> PHY collision detection signal (COL) should be routed to ICSSG
+> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
+> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
+> property, "ti,half-duplex-capable" is introduced for this purpose. If
+> board has PHY COL pin conencted to PRGx_PRU1_GPIO10, this DT property can
+> be added to eth node of ICSSG, MII port to support half duplex operation at
+> that port.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I take it the GPIO here is not visble to the OS and that's why it's not 
+described in DT?
+ 
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> ---
+>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> index 13371159515a..59da9aeaee7e 100644
+> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+> @@ -107,6 +107,13 @@ properties:
+>                phandle to system controller node and register offset
+>                to ICSSG control register for RGMII transmit delay
+>  
+> +          ti,half-duplex-capable:
 
-Gr{oetje,eeting}s,
+capable or...
 
-                        Geert
+> +            type: boolean
+> +            description:
+> +              Enable half duplex operation on ICSSG MII port. This requires
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+enable the mode?
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Maybe too late if it's already been assumed not supported, but shouldn't 
+supporting half duplex be the default? I guess half duplex isn't too 
+common any more.
+
+Rob
