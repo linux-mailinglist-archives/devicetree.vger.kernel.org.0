@@ -2,141 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADDD878ED76
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:42:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C030D78EDA3
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242286AbjHaMm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54580 "EHLO
+        id S1345046AbjHaMv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:51:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239553AbjHaMmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:42:54 -0400
-Received: from mail-vk1-xa35.google.com (mail-vk1-xa35.google.com [IPv6:2607:f8b0:4864:20::a35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8795D1A4;
-        Thu, 31 Aug 2023 05:42:48 -0700 (PDT)
-Received: by mail-vk1-xa35.google.com with SMTP id 71dfb90a1353d-48cfdfa7893so314405e0c.0;
-        Thu, 31 Aug 2023 05:42:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693485767; x=1694090567; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a1xOciFEJ8HjM2SzGUTsUdShfH1iAQ0wqaSrJGRWK40=;
-        b=mE1QwtBSQ1WQFDY4nQpw7W1W8yn5v+Ed8WFK2RbeAfAbAnB2TJPWsWFzt/RJUEYdmn
-         q46qHkaKvCJQy8NIZodtkt7X8Lzkzjs3COhYEdMVCD9HjDJUjaF6Lx3Y/7ilM9j0gCS1
-         fdr4LqWZyTVf4985UFDlNhxy0RAf5mXA1pj9+uBz6NEBHplXH6A1jS4DEqRnyu431DrA
-         Zfov427vofUUOmWVbXMBRk1hF4v3kNu1v847RuozufaYJFGsL2S9xRPbb3ZL8SHOYRF5
-         ZTu8tCY2spPA//Fw9hzzfUkGXmhZ0dMvoLsE0wcAOwOXgPKabVhs8TT2Ud9FWM6VsYOe
-         c29w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693485767; x=1694090567;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a1xOciFEJ8HjM2SzGUTsUdShfH1iAQ0wqaSrJGRWK40=;
-        b=YshPyGHqMakygFz8yGoVUZ7X2nYLTwPlNDKEJ0aFd5JA4fiIjd5YUWT2T4SnC+vpu/
-         uWyNJuAQqW8dtleF/OsvvtlXupQc6D0U1xPQ8y9Pgu7b/um+OR8n441R4eVOPJrzFB0h
-         da6vVEQZPDS5E526fLclFCYVlYuO3oD0zKEHbk3C2YLzmMbd3YERuy/HCvf0GcoNEvAT
-         aCCy6in7pQ9uOFf4EsxckzIwcsCTNKCEvdS9V0UtllgXDsRA2aVkJRHIQeH4h26AE2Dv
-         ZdGYGh8EAQ9C6bvZhnxSeDREyPX9yyGvcRbuOJ4mVYUZZ6GcUXR89R4ldZPzsEiITp7h
-         ibeg==
-X-Gm-Message-State: AOJu0YxSWQ50iacODfeBi06HqyKCEhNUgNWOWEne5RnweS4NCGF+2lwC
-        tQVg3jKNeLYLwJpCc+bNwYxKAnWN1Q///stAGjw=
-X-Google-Smtp-Source: AGHT+IG+ZUnkpRdPLlTVk21k4SpEvZwMjipenH8jcSc0l7Lhd+kc0DKaqOWOz4BxF4hDJ9YB1nhCciRqrK+QcApXhIw=
-X-Received: by 2002:a1f:ac54:0:b0:490:a0fb:e08f with SMTP id
- v81-20020a1fac54000000b00490a0fbe08fmr4010195vke.1.1693485767538; Thu, 31 Aug
- 2023 05:42:47 -0700 (PDT)
+        with ESMTP id S1344929AbjHaMvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:51:54 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DAE2CED;
+        Thu, 31 Aug 2023 05:51:51 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37VAuBrw002980;
+        Thu, 31 Aug 2023 12:50:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=CyDKngw7AJLG5s8qNp7PT2cES7mIUxD9uyDeFb/Prwg=;
+ b=TOCmCnljmv6wQmfnlZtAFKYxXxwhX6NQSqbdTT0Xdcdie7+tEwpNBRVi6qyAz9C6Odx1
+ RALuE2LWon4e5jsJBBagfTmGj+oNmuSsv0Nv2UCdxhBh4MJyDlKuujBDCIIIXU6ORv3T
+ BquKy9T0NCLiW+Fnei4J3a54Iff6lhf9Cws0k3qsI+PpLcDaP2LU9x8iad8SGVGx7VfX
+ o5ffDrZRpHo9hWInNkCw4GqTTpSkWgVvP9huVfPis1OD4wKU/FHeOIGe18rt3XkE5eS3
+ c+245i+sR+5DFs82qvEm58hZGNngHfunBWQ6tAAUjrJKMMNubGOJAWuCkvr5xIK8BTcL jg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stku28um6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 12:50:58 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VCouVH025260
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 12:50:56 GMT
+Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 31 Aug
+ 2023 05:50:47 -0700
+Message-ID: <da4d6f20-650b-44e0-a319-2a1c8db65a2f@quicinc.com>
+Date:   Thu, 31 Aug 2023 18:20:44 +0530
 MIME-Version: 1.0
-References: <20230828091859.3889817-1-milkfafa@gmail.com> <20230828091859.3889817-8-milkfafa@gmail.com>
- <0c91f68d-d172-bd14-9115-b6977ad2d01f@xs4all.nl>
-In-Reply-To: <0c91f68d-d172-bd14-9115-b6977ad2d01f@xs4all.nl>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Thu, 31 Aug 2023 20:42:38 +0800
-Message-ID: <CADnNmFqVbRWs5Uf_tJdrM0AopF_CmSHYwBK8-+1go_K6Hefkcw@mail.gmail.com>
-Subject: Re: [PATCH v14 7/7] media: nuvoton: Add driver for NPCM video capture
- and encode engine
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     mchehab@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        kwliu@nuvoton.com, kflin@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY
+ to UNIPHY
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     <robert.marko@sartura.hr>, <luka.perkov@sartura.hr>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
+        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
+        <rafal@milecki.pl>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>
+References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-2-quic_ipkumar@quicinc.com>
+ <CAA8EJpqA-poJ9=XKJa2s=yZUGbBbgOqgiDC-q9skJzBqLux84g@mail.gmail.com>
+ <73879012-581d-47fb-b741-577c90b31dfb@quicinc.com>
+ <CAA8EJpr3PJtvyYKRPqT=hO4sUd4oOjTvOjD3kOqffbjzHdByAw@mail.gmail.com>
+ <4e9a43c5-43ec-4a07-9053-366a517f5c54@quicinc.com>
+ <CAA8EJpofAM4deqg1H_WSh2uJavTEXQC5x=26P1FLAUgJcT7yOg@mail.gmail.com>
+From:   Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <CAA8EJpofAM4deqg1H_WSh2uJavTEXQC5x=26P1FLAUgJcT7yOg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qLGZKs3xMkP265zERQ66jxIxoB6pX4Ze
+X-Proofpoint-ORIG-GUID: qLGZKs3xMkP265zERQ66jxIxoB6pX4Ze
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_11,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
+ lowpriorityscore=0 mlxscore=0 malwarescore=0 spamscore=0 phishscore=0
+ bulkscore=0 priorityscore=1501 adultscore=0 suspectscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2308310114
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
 
-Thanks for the review.
-
-> > +     snprintf(cap->bus_info, sizeof(cap->bus_info), "platform:%s", DEVICE_NAME);
+On 8/31/2023 6:04 PM, Dmitry Baryshkov wrote:
+> On Thu, 31 Aug 2023 at 15:30, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>>
+>> On 8/31/2023 5:47 PM, Dmitry Baryshkov wrote:
+>>> On Thu, 31 Aug 2023 at 14:54, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>>>> On 8/29/2023 7:49 PM, Dmitry Baryshkov wrote:
+>>>>> On Tue, 29 Aug 2023 at 16:59, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>>>>>> UNIPHY / Combo PHY used on various qualcomm SoC's are very similar to
+>>>>>> ipq4019 PHY. Hence renaming this dt-binding to uniphy dt-binding and
+>>>>>> can be used for other qualcomm SoCs which are having similar UNIPHY.
+>>>>>>
+>>>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>>>> ---
+>>>>>>     .../phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml}  | 9 +++++++--
+>>>>>>     1 file changed, 7 insertions(+), 2 deletions(-)
+>>>>>>     rename Documentation/devicetree/bindings/phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml} (78%)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+>>>>>> similarity index 78%
+>>>>>> rename from Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
+>>>>>> rename to Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+>>>>>> index 09c614952fea..cbe2cc820009 100644
+>>>>>> --- a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+>>>>>> @@ -1,13 +1,18 @@
+>>>>>>     # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>>>     %YAML 1.2
+>>>>>>     ---
+>>>>>> -$id: http://devicetree.org/schemas/phy/qcom-usb-ipq4019-phy.yaml#
+>>>>>> +$id: http://devicetree.org/schemas/phy/qcom,uniphy.yaml#
+>>>>>>     $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>
+>>>>>> -title: Qualcom IPQ40xx Dakota HS/SS USB PHY
+>>>>>> +title: Qualcomm UNIPHY
+>>>>> We know that UNIPHY was a common design / IP block used for APQ8064
+>>>>> SATA and MSM8974 DSI and HDMI PHYs. Is this the same design, or was
+>>>>> the name reused by the Qualcomm for some other PHYs?
+>>>>> Several latest generations have USB QMP PHYs which are called 'uni-phy'.
+>>>> This PHY is build on top of QCA Uniphy 22ull. A combo PHY used between
+>>>> USB Gen3 / PCIe Gen3 controller.
+>>>> It is different from USB QMP PHYs.
+>>> So we have now three different items called Qualcomm uniphy. Could you
+>>> please add some distinctive name?
+>> There is one more target called IPQ5018 which is also having similar USB
+>> PHY built on top of
+>> Uniphy 28nm LP. That also can leverage this upcoming IPQ5332 USB PHY
+>> driver. Considering that,
+>> given a common name 'uniphy'.
+> Just to verify, do we mean the same thing, when speaking about the
+> 28nm LP UNIPHY?
+> I was referencing the apq8064 SATA and msm8974 HDMI / DSI PHYs. See [1] and [2].
 >
-> You can drop this last line, it is already filled in by the V4L2 core for
-> platform devices.
-
-> > +static const char * const npcm_ctrl_capture_mode_menu[] = {
-> > +     "COMPLETE mode",
-> > +     "DIFF mode",
+> [1] https://patchwork.freedesktop.org/patch/544131/?series=118210&rev=2
+> [2] https://patchwork.freedesktop.org/patch/544125/?series=118210&rev=2
+No, this seems different from the PHY used on IPQ5018 / IPQ5332. PHY in 
+QualcommIPQ
+targets requires minimal SW configuration for the bring up.
+>> - Praveenkumar
+>>>> - Praveenkumar
+>>>>>>     maintainers:
+>>>>>>       - Robert Marko <robert.marko@sartura.hr>
+>>>>>> +  - Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>>>> +
+>>>>>> +description:
+>>>>>> +  UNIPHY / COMBO PHY supports physical layer functionality for USB and PCIe on
+>>>>>> +  Qualcomm chipsets.
+>>>>>>
+>>>>>>     properties:
+>>>>>>       compatible:
+>>>>>> --
+>>>>>> 2.34.1
+>>>>>>
+>>>
 >
-> Hmm, I would drop the 'mode' bit, since it is already obvious that
-> these are the modes.
-
-OK. Will drop them in the next version.
-
-> > +static const struct v4l2_ctrl_config npcm_ctrl_rect_count = {
-> > +     .ops = &npcm_video_ctrl_ops,
-> > +     .id = V4L2_CID_NPCM_RECT_COUNT,
-> > +     .name = "NPCM Compressed Hextile Rectangle Count",
-> > +     .type = V4L2_CTRL_TYPE_INTEGER,
-> > +     .flags = V4L2_CTRL_FLAG_VOLATILE,
-> > +     .min = 0,
-> > +     .max = (MAX_WIDTH / RECT_W) * (MAX_HEIGHT / RECT_H),
-> > +     .step = 1,
-> > +     .def = 0,
-> > +};
 >
-> Just to confirm: you decided against using an integer array control?
->
-> There is a real danger that if userspace isn't reading this control
-> quickly enough (i.e. before the next frame arrives at the driver), then
-> the control's value is that of that next frame instead of the current
-> frame.
->
-> It doesn't feel robust to me.
-
-Actually the driver will store the frames and counts for each buffer
-index till userspace dequeues them.
-
-Ex. assume that driver has captured 3 frames:
-- 1st capture (buffer index = 0):
-     video->list[0] => store the list of HEXTILE rects for the 1st frame
-     video->rect[0] => store the rect count of video->list[0]
-- 2nd capture (buffer index = 1):
-     video->list[1] => store the list of HEXTILE rects for the 2nd frame
-     video->rect[1] => store the rect count of video->list[1]
-- 3rd capture (buffer index = 2):
-     video->list[2] => store the list of HEXTILE rects for the 3rd frame
-     video->rect[2] => store the rect count of video->list[2]
-
-When userspace dequeues the 1st buffer (video->list[0]), it needs to
-know the count of HEXTILE rectangles in the buffer,
-so after dequeuing the buffer it will call this control to get the
-rect count (video->rect[0]). And when a buffer is dequeued,
-npcm_video_buf_finish() will be called, in which the buffer index (in
-this example, buffer index = 0) will be stored to video->vb_index.
-Then when userspace calls this control, npcm_video_get_volatile_ctrl()
-will return the rect count of vb_index = 0.
-In this way, I think userspace is always reading the correct control's
-value even if userspace is slow.
-Does it make sense to you or is there anything I missed?
-
-Regards,
-Marvin
