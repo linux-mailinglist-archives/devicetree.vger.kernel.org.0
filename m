@@ -2,110 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C03A78E58E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 07:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51DE178E5B7
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 07:32:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241131AbjHaFBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 01:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44978 "EHLO
+        id S245087AbjHaFcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 01:32:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbjHaFBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 01:01:16 -0400
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9151AE8
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 22:01:12 -0700 (PDT)
-Received: by mail-pl1-x636.google.com with SMTP id d9443c01a7336-1bdb7b0c8afso2669355ad.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 22:01:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693458072; x=1694062872; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=LG57Ipqd8qnPkHXmEM2qU3rXEf7cPd3YjyUXTm2SJUY=;
-        b=ZW7uzyAA3Mj4dWvC2R0TadSaGLhea/1SJyIyxX1ek9CNtwKfUFk1/EVyLrKPT1pAr3
-         y5J0UEF8eSaWE+KjtBFWZ8hjCARAFpy7phcCrj/HG//iXJX3TJ+/lx88DvOnsaY42rXd
-         cq0EzWV3FvR8Z/0wtPxW256BQXfFoCNSByabYVlQOIpAU3UfkQW7LGvGpCHw53p1UraX
-         gcZEtgEkbkaY591Jd7nVKwKVRC8jyWh9/y79UMHhzX9eSjWLwTmjcXAfYhKLqSynZRyw
-         O31PiLfPEWxOJp7j+uy1Xp30ytdc+hhvZQwmGTTrS36vkgoPZtqTzqo3PL/ozt4B8RbV
-         GMtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693458072; x=1694062872;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LG57Ipqd8qnPkHXmEM2qU3rXEf7cPd3YjyUXTm2SJUY=;
-        b=d7T04dpJBk8qQoJsl/WBdMnV6cFlYVJfpnGcqDTPstae73UcdpSMdz4Pzvvt62PF6K
-         9bmEQoN2uSEgPdk/8dP4vpEPpvnfwrSiuBhdCMcG5+4v5w7GgswUYOaFyHGvuPms2RKD
-         qKsViwo15zNZGkCgC3fYkeN3Bm1fMGMRdP/MNHYRnMCuQhz+v0ykigsnUf8LR32XLLFM
-         Cx15nhUAGaXT/gSfZ7LK/qLodYAlUYywJpsmHi5PjyulLdFW9V0lkc1Yv0seiG5/OfjX
-         7gyJBmGbUtOTWxIoCEHwEcnsYQgV5QEVRkJqdpHvAxNwL7LtsdoHGHc6ScQ1KkGvO7mN
-         JNGw==
-X-Gm-Message-State: AOJu0YzkC9FPC7yMs0ZrulCEvYdxUEFTPLB0upEozX+/x9wTUjKcVqoR
-        CRI8YvusS8V7gXv3YA8UZOn+ZA==
-X-Google-Smtp-Source: AGHT+IFQZQgyo7Kbxxv4n+DzGhsaV/YCZE33tGBr+rqZ2mBEdrv8HmDOp79McCilJd8OH8ltr0xGIg==
-X-Received: by 2002:a17:902:c409:b0:1bc:6266:d0e4 with SMTP id k9-20020a170902c40900b001bc6266d0e4mr5133728plk.69.1693458072003;
-        Wed, 30 Aug 2023 22:01:12 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id i2-20020a170902eb4200b001bf2dcfe352sm370068pli.234.2023.08.30.22.01.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Aug 2023 22:01:11 -0700 (PDT)
-Date:   Thu, 31 Aug 2023 10:31:08 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S1343909AbjHaFcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 01:32:24 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93532CD8;
+        Wed, 30 Aug 2023 22:32:15 -0700 (PDT)
+X-UUID: bb32912047bf11eeb20a276fd37b9834-20230831
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=KIe7sbzhr8pclxwbNUsUe49QcjNI1ozgaMNN0nDCuPo=;
+        b=A91S28/WjW2FJ3wfdi5SmOKt8er1oh/JyCxWPTBgijxqZPgkqleibKznw8lJp8Mq/ZLwyQVvF7GyqSnrCwBzME4Ey68WP1X71ZrH+Vdm/MQjSpWRIB82cIC0HAV4n04l9A828a+h+nwsPseLa+Ir/r+5+Wrofxz0R8WCNKiwAQE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:37e88b3c-2346-458f-b55c-3a2cb111c316,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:d0826313-4929-4845-9571-38c601e9c3c9,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: bb32912047bf11eeb20a276fd37b9834-20230831
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 248086274; Thu, 31 Aug 2023 13:32:10 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 31 Aug 2023 13:32:08 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Thu, 31 Aug 2023 13:32:08 +0800
+Message-ID: <39c24e4b-6ef7-6891-3292-b73fada9f252@mediatek.com>
+Date:   Thu, 31 Aug 2023 13:32:05 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 3/4] arm64: dts: mediatek: mt6360: add PMIC MT6360
+ related nodes
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH 09/11] cpufreq: Add QCM6490 to cpufreq-dt-platdev
- blocklist
-Message-ID: <20230831050108.yt7obgdqmcz73brn@vireshk-i7>
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-9-5a954519bbad@fairphone.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230830-fp5-initial-v1-9-5a954519bbad@fairphone.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
+ <20230830111532.9048-1-macpaul.lin@mediatek.com>
+ <20230830111532.9048-3-macpaul.lin@mediatek.com>
+ <7cba182f-2b35-84e5-16c7-770a6aff5062@linaro.org>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <7cba182f-2b35-84e5-16c7-770a6aff5062@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30-08-23, 11:58, Luca Weiss wrote:
-> The Qualcomm QCM6490 platform uses the qcom-cpufreq-hw driver, so add it
-> to the cpufreq-dt-platdev driver's blocklist.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
-> index fb2875ce1fdd..02ec58a8603b 100644
-> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> @@ -145,6 +145,7 @@ static const struct of_device_id blocklist[] __initconst = {
->  	{ .compatible = "qcom,msm8996", },
->  	{ .compatible = "qcom,msm8998", },
->  	{ .compatible = "qcom,qcm2290", },
-> +	{ .compatible = "qcom,qcm6490", },
->  	{ .compatible = "qcom,qcs404", },
->  	{ .compatible = "qcom,qdu1000", },
->  	{ .compatible = "qcom,sa8155p" },
 
-Applied. Thanks.
 
--- 
-viresh
+On 8/30/23 19:20, Krzysztof Kozlowski wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On 30/08/2023 13:15, Macpaul Lin wrote:
+>> +
+>> +led {
+>> +compatible = "mediatek,mt6360-led";
+>> +};
+>> +
+>> +regulator {
+>> +compatible = "mediatek,mt6360-regulator";
+>> +LDO_VIN3-supply = <&mt6360_emi_vddq_buck2_reg>;
+>> +
+>> +mt6360_emi_vdd2_buck1_reg: buck1-emi-vdd2 {
+> 
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/  <https://urldefense.com/v3/__https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/__;!!CTRNKA9wMg0ARbw!nP-6nVffZXG2NCdjcl06my5g9HAohnT-GF-EIGrMWpegsBvwmqgOjfVQba5Ub13z_AWAJwGOlsQ3DSIWGo0ojHlPvDZ74WE$>
+> for instructions).
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+
+Thanks for the review.
+Since next patch 4/4 of the patch set to modify mt6360 nodes in
+mt8195-demo.dts is no longer required, please drop this patch, too.
+
+Thanks
+Macpaul Lin
