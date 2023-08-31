@@ -2,84 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA3978F4CF
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 23:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB64478F4CB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 23:48:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347614AbjHaVs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 17:48:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39096 "EHLO
+        id S1347598AbjHaVsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 17:48:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347611AbjHaVsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 17:48:21 -0400
-Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAC9B1BF
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 14:48:18 -0700 (PDT)
-Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-d7225259f52so1023076276.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 14:48:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693518498; x=1694123298; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vYQm3HLTVW0PLSRJWbeaTbNjeFSBbaECmMIm+40Gbmk=;
-        b=yd/40IO2G+j0u0NQqPr0r5ze685Tm8YwWkrpW3hhdJ2pGzVxwAmB1isM0N74o3bB5x
-         WwbaCYOL/x1y2pcBYBhRJd6TqC2RPP2683Mq41sUamjSfroUelKphqBthsNN5YC9arFn
-         vHRjSWiCIRxA8fBXsDfk4nExZTt5u7l5Ug3dRc4MnWkpzMWjY7qVZp4xc2D1jtrfmTaj
-         XJouyoVcUzAN0nIooeE57yn5XYLMMWnRdv4M2Kd1OPV86vSSUwJypNojoNFnLsjc610l
-         PWr5KIpljhyf/6EN3C2PsRGeaOp6TE7643CJc/FxwJBZ6/e+9+Xb2Y27PCsKEdnxwvta
-         HADA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693518498; x=1694123298;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vYQm3HLTVW0PLSRJWbeaTbNjeFSBbaECmMIm+40Gbmk=;
-        b=B+yw1UEiFuVcNM13R4sfDH1e/Zq6Xgd+QEwDOW7p6KloM3rtx4UNqy1DmPbVDzdYyX
-         Guzjb7y/TpsjZ3aMypgARX41N+BaNeLMrp+2dOfGp3sgxX4kzB1Qxltuy8iTaVmWT+fq
-         akwZV70M8gSLWJFRqanA3p9mQ/bRhoCvLAKoJjinV3OUYTIFnxfKaDVP2zpStTEVDAZx
-         8j+Mm1e+VNG5AvjLLIE+XcF+SavyMKGVWhpyMvLm1pBXIsRupXV+1FZ71dv/S/1fIrwl
-         +L7cJW6S1bQ6ObAaGARB88/5aPM84b/PfGLFnfj531oD4GqnIQLrqYktBoAHZitS6P5a
-         QI4Q==
-X-Gm-Message-State: AOJu0Yzj2UejJ1q5De6OcIITQfGt7pNOgGv+D3W6/y6ehCoyc/PqO5SE
-        FWset+fRF4S7nwlAKdquUMMuZUcU/u2hn2oW5W+nnQ==
-X-Google-Smtp-Source: AGHT+IGUdiOKQp2YoszPk/mqnRyLATy++xSQZaMCP71grCQFvhU122vT3LwQYefcUXv4RXe/FHdk3jTendYgMlkPz/o=
-X-Received: by 2002:a25:e082:0:b0:d7b:9f03:20c9 with SMTP id
- x124-20020a25e082000000b00d7b9f0320c9mr1026573ybg.10.1693518498053; Thu, 31
- Aug 2023 14:48:18 -0700 (PDT)
+        with ESMTP id S1345373AbjHaVsP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 17:48:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A214B8;
+        Thu, 31 Aug 2023 14:48:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DE793B8231D;
+        Thu, 31 Aug 2023 21:48:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88C43C433C8;
+        Thu, 31 Aug 2023 21:48:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693518488;
+        bh=KeVVWWTD17B/6hwPR+f3bpOs1cN39GfXUiKSj9N9f2s=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gmoZePOqZQarBaPe2JGo/Num1p7EFrZ+ZGt4ZlR+8hKWNTsnjHtMNN2mOpmuXgvTp
+         C0yr0MU2gGCxi0kTwZMlncQH3STiRjXrN0FbHUSQ+WICgcTEyz9kghGFlWkbFJ1SZS
+         LXhh4zrQRJ5rYt3BaloFLMu1gkmJr1xXfnUGg2+qxJQ7feKykMpObxoubeTHuKU/+a
+         S7Y9PEIv1A3X0KLKJaacW//FfT1dq4LUfpiwbAo9rmMnqItWsdqQhyil+LsnMb2G3B
+         edhVAnPalUih/adMWIGWNJdOe+B8v7U1yRg6YlEAKq3+ArzGj0ze02OpUnmMN1bg+k
+         wxWyrslBQVcng==
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-500bdef7167so3049721e87.0;
+        Thu, 31 Aug 2023 14:48:08 -0700 (PDT)
+X-Gm-Message-State: AOJu0YylTlZctAirWPrG4P0Rnz19ZiHwYdKYOYmYApmoSrypuSPElRIq
+        pTiwhC3LHXRdHaLghBV1aiOsbrxk2A7lL3osWH8=
+X-Google-Smtp-Source: AGHT+IHR5q2pesvi36NMoSEfYqkRp/yXUcWlo+ZqPpYi3Vv2mu8r0vmM7L+9kZSDNHjoNC8BFybZ4l8k23PxI8qLHyY=
+X-Received: by 2002:a05:6512:3d08:b0:4fe:27a0:68bc with SMTP id
+ d8-20020a0565123d0800b004fe27a068bcmr1423708lfv.27.1693518486520; Thu, 31 Aug
+ 2023 14:48:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230217-topic-cpr3h-v14-0-9fd23241493d@linaro.org>
- <20230217-topic-cpr3h-v14-3-9fd23241493d@linaro.org> <CAPDyKFrXT+2NEMUzVv-kWjXAhLinXq99GKq4_Ge2VjthtYxtaA@mail.gmail.com>
- <20230831162835.GA2390385-robh@kernel.org>
-In-Reply-To: <20230831162835.GA2390385-robh@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 31 Aug 2023 23:47:40 +0200
-Message-ID: <CAPDyKFrpumkD0fPwgu_0xr1q3XM3t+U5rT9nj0Cg78tF9CGZ0w@mail.gmail.com>
-Subject: Re: [PATCH v14 3/9] dt-bindings: soc: qcom: cpr3: Add bindings for
- CPR3 driver
-To:     Rob Herring <robh@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Robert Marko <robimarko@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
+References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
+ <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com>
+ <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
+ <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
+ <CAPnjgZ2kkUt1eOWX8K+EsbjcQZPefNvj5DSaFb9QrvRg0t2h7w@mail.gmail.com>
+ <CAMj1kXGe84uaJ9j9ic0V4HC43p7QBoKQ5ssTYd5DMBGtZ3++Jw@mail.gmail.com>
+ <CAPnjgZ3L-jGxoXNHnsXY0MXU=jTAN66KNAxSLHPVeHinHMjzkQ@mail.gmail.com>
+ <CAMj1kXGw6DGK=gVF3bMH5dp=LL89V9n1V1LMGKDn0CZWGHh8qg@mail.gmail.com> <CAPnjgZ1fjee3rf91onPbuLpgqTHe3dZgz0WBSzoiKAabO+ETkQ@mail.gmail.com>
+In-Reply-To: <CAPnjgZ1fjee3rf91onPbuLpgqTHe3dZgz0WBSzoiKAabO+ETkQ@mail.gmail.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Thu, 31 Aug 2023 23:47:55 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXFvLGeXXmyK1wSXLk5yq42f2G3GvBGoN40JF=y4bvCo=Q@mail.gmail.com>
+Message-ID: <CAMj1kXFvLGeXXmyK1wSXLk5yq42f2G3GvBGoN40JF=y4bvCo=Q@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
+To:     Simon Glass <sjg@chromium.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        ron minnich <rminnich@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,63 +76,148 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Aug 2023 at 18:28, Rob Herring <robh@kernel.org> wrote:
+On Thu, 31 Aug 2023 at 21:03, Simon Glass <sjg@chromium.org> wrote:
 >
-> On Tue, Aug 29, 2023 at 01:01:44PM +0200, Ulf Hansson wrote:
-> > On Mon, 28 Aug 2023 at 13:42, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > >
-> > > From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > >
-> > > Add the bindings for the CPR3 driver to the documentation.
-> > >
-> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> > > [Konrad: Make binding check pass; update AGdR's email]
-> > > Tested-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
-> > > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    | 286 +++++++++++++++++++++
-> > >  1 file changed, 286 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,cpr3.yaml
-> > > new file mode 100644
-> > > index 000000000000..acf2e294866b
-> >
-> > [...]
-> >
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/qcom,gcc-msm8998.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +
-> > > +    cpus {
-> > > +        #address-cells = <2>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        cpu@0 {
-> > > +            compatible = "qcom,kryo280";
-> > > +            device_type = "cpu";
-> > > +            reg = <0x0 0x0>;
-> > > +            operating-points-v2 = <&cpu0_opp_table>;
-> > > +            power-domains = <&apc_cprh 0>;
-> > > +            power-domain-names = "cprh";
-> >
-> > Rather than using a Qcom specific power-domain-name, perhaps a common
-> > power-domain-name for cpus, that can be used for "the performance
-> > domain" would be a good idea here?
-> >
-> > I have suggested using "perf" for the SCMI performance domain [1],
-> > perhaps that description should be extended to cover this and other
-> > performance domains too?
+> Hi Ard,
 >
-> Better yet, nothing. There's no value to -names when there is only 1
-> entry.
+> On Thu, 31 Aug 2023 at 06:28, Ard Biesheuvel <ardb@kernel.org> wrote:
+> >
+> > On Wed, 30 Aug 2023 at 23:11, Simon Glass <sjg@chromium.org> wrote:
+> > >
+> > > Hi Ard,
+> > >
+> > > On Tue, 29 Aug 2023 at 15:32, Ard Biesheuvel <ardb@kernel.org> wrote:
+> > > >
+> > > > On Tue, 29 Aug 2023 at 21:18, Simon Glass <sjg@chromium.org> wrote:
+> > > > >
+> > > > > Hi Ard,
+> > > > >
+> > > > > On Thu, 24 Aug 2023 at 03:10, Ard Biesheuvel <ardb@kernel.org> wrote:
+> > ...
+> > > > > > In summary, I don't see why a non-UEFI payload would care about UEFI
+> > > > > > semantics for pre-existing memory reservations, or vice versa. Note
+> > > > > > that EDK2 will manage its own memory map, and expose it via UEFI boot
+> > > > > > services and not via DT.
+> > > > >
+> > > > > Bear in mind that one or both sides of this interface may be UEFI.
+> > > > > There is no boot-services link between the two parts that I have
+> > > > > outlined.
+> > > > >
+> > > >
+> > > > I don't understand what this means.
+> > > >
+> > > > UEFI specifies how one component invokes another, and it is not based
+> > > > on a DT binding. If the second component calls UEFI boot or runtime
+> > > > services, it should be invoked in this manner. If it doesn't, then it
+> > > > doesn't care about these memory reservations (and the OS will not be
+> > > > booted via UEFI either)
+> > > >
+> > > > So I feel I am missing something here. Perhaps a practical example
+> > > > would be helpful?
+> > >
+> > > Let's say we want to support these combinations:
+> > >
+> > > Platform Init -> Payload
+> > > --------------------------------
+> > > U-Boot -> Tianocore
+> > > coreboot -> U-Boot
+> > > Tianocore -> U-Boot
+> > > Tianocore -> Tianocore
+> > > U-Boot -> U-Boot
+> > >
+> > > Some of the above things have UEFI interfaces, some don't. But in the
+> > > case of Tianocore -> Tianocore we want things to work as if it were
+> > > Tianocore -> (its own handoff mechanism) Tiancore.
+> > >
+> >
+> > If Tianocore is the payload, it is either implemented as a EFI app, in
+> > which case it has access to EFI services, or it is not, in which case
+> > it doesn't care about UEFI semantics of the existing reserved regions,
+> > and it only needs to know which regions exist and which of those are
+> > reserved.
+> >
+> > And I think the same applies to all other rows in your table: either
+> > the existence of UEFI needs to be carried forward, which needs to be
+> > done via EFI services, or it doesn't, in which case the UEFI specific
+> > reservations can be dropped, and only reserved and available memory is
+> > relevant.
+> >
+> > > Some Platform Init may create runtime code which needs to accessible later.
+> > >
+> >
+> > But not UEFI runtime code, right? If the payload is not UEFI based,
+> > the OS would never be able to call that runtime code unless it is
+> > described in a different, non-UEFI way. This is fine, but it is not
+> > UEFI so we shouldn't call it UEFI runtime memory.
+> >
+> > > The way I think of it is that we need to generalise the memory map a
+> > > bit. Saying that you must use UEFI boot services to discover it is too
+> > > UEFI-specific.
+> > >
+> >
+> > What I am questioning is why a memory map with UEFI semantics is even
+> > relevant when those boot services do not exist.
+> >
+> > Could you be more specific about why a payload would have to be aware
+> > of the existence of UEFI boot/runtime service regions if it does not
+> > consume the UEFI interfaces of the platform init? And if the payload
+> > exposes UEFI services to the OS, why would it consume a memory map
+> > with UEFI semantics rather than a simple list of memblocks and memory
+> > reservations?
+>
+> It seems like you are thinking of the Payload as grub, or something
+> like that? This is not about grub. If there are EFI boot services to
+> be provided, they are provided by the Payload, not Platform Init. I am
+> not that familiar with Tianocore, but if you are, perhaps think of it
+> as splitting Tianocore into two pieces, one of which inits the silicon
+> and the other which provides the EFI boot services.
+>
+> Again, if you are familiar with Tianocore, it can be built either as a
+> monolithic whole, or as a coreboot Payload. The Payload part of the
+> code is (roughly) the same in each case. But the Platform Init is
+> different[1]
+>
 
-The above is just an example of a consumer node for a cpu. The
-bindings for cpus are in
-Documentation/devicetree/bindings/arm/cpus.yaml.
+I co-maintain OVMF [including the ARM port that I created from
+scratch] as well as the ARM architecture support in Tianocore, along
+with a couple of platform ports for ARM boards, some of which could by
+now be characterized as 'historical' (AMD Seattle, Socionext SynQuacer
+and Raspberry Pi 3/4). So I think I have a pretty good handle on how
+Tianocore based firmware is put together.
 
-Please have a look there. We don't even have a maxItems specified for it.
+Tianocore as a payload will expose boot services to the OS, and will
+provide the OS with a memory map using the UEFI APIs. But you still
+haven't explained why the memory description this Tianocore inherits
+from the Platform Init would include any UEFI boot or runtime service
+regions, or any of the other memory regions with UEFI semantics.
+TIanocore just needs to know a) where memory lives b) which parts of
+it are already in use (as far as the memory map is concerned), and the
+existing bindings suffice for this purpose.
 
-Kind regards
-Uffe
+In short, the memory regions with UEFI semantics are created by the
+boot phase that actually exposes UEFI to the OS, in which case the
+boot services can be used to obtain the memory map. If the consumer is
+not UEFI based, there is no reason to bother it with descriptions of
+memory regions that have no significance to it.
+
+> >
+> > Again, I am inclined to treat this as a firmware implementation
+> > detail, and the OS must never consume this binding. But I am still
+> > puzzled about what exact purpose it is expected to serve.
+>
+> It really is purely so we can mix and match Platform Init (perhaps
+> silicon init is a more familiar term?) and the Payload.
+>
+
+That part is clear to me.
+
+> [1] Of course, coreboot uses blobs which are chunks of UEFI, but that
+> is a separate issue
+
+I suppose you are referring to the proprietary FSP components? Those
+are mostly made up of PEIMs (in Tianocore/EDK2 speak) for DDR training
+and chipset initialization, and don't really take part in the
+implementation of the UEFI APIs. Strictly, they are not 'chunks of
+UEFI' but 'chunks of PI' (but even Tianocore itself, being the
+reference implementation of both UEFI and PI, does a terrible job at
+distinguishing between the two)
