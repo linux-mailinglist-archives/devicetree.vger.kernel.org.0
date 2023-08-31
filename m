@@ -2,166 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E77378E7D4
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6386778E7EB
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230028AbjHaIYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 04:24:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53988 "EHLO
+        id S240248AbjHaI0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 04:26:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238429AbjHaIYU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:24:20 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36AEA19A
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 01:24:16 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52a0856b4fdso628895a12.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 01:24:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693470254; x=1694075054; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kmpo1/ErAHRRqxKFhgv6iSgqtQSjZz+OJOiOrDM7OvQ=;
-        b=YUK8IYF+CYJf+HyE3ZrsBW47/IGXq7aQ01KoaR0Ol9h7f48lEHcQBsp8leuyi/Jcbg
-         Z2oiCKD8rHgWcE5RFQaqF7P8S93duxDI8IyG3nhAEVa/UoVccpxJ10Y+MhxxonrMZZ/B
-         uwKOQBvDIqz7FsRPKyjtLu9+EA5WD9yjZJgdTXMwVu/+kWaEl+Gq4FkegEtZs8IRWzr7
-         5VUFABLSBO6MDcQKq8+49Y31O1uZm1NBQJziTNo/Ifg0NJmS8lZGygzmsyjcthra2COS
-         MWkIXkldxbFF2t4Nc2m0AOI5yBtkCRy5aj/F+C6RCkZLBbzjNBUVSjzL4J3zo/QSfrSG
-         GP1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693470254; x=1694075054;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kmpo1/ErAHRRqxKFhgv6iSgqtQSjZz+OJOiOrDM7OvQ=;
-        b=iQytUtlPxn5SeOR9sUt8hW42auGZdmyqCmYhn+KQ5OiX3S19Q1s0woc3FXleVEkz08
-         vbrnZVCQqai1V1BvYbE/LhdqlOWu5ZqcmRX9vUyvpmWI+a3YlEkVTMisQZi7vh6DcsyD
-         4KSJfDlSY8oRkHpAx6Be88pJWHVmPsSJ5hTrGxb3ZPYLmznJ8qb7BpDrNF05Y7qvsy/r
-         0B7CVUL6zTzVWtFyLYaQlP18g5+dtfe3KicCVCoomIc6/rMr53+hL1c6jxx+YltxMiL2
-         hbaAdSryKTTTl1lwh7eMWg8OfHIC0NyAHkODvBm37Wru58rhvP3NyoyjnETSNykyIiSs
-         yQKw==
-X-Gm-Message-State: AOJu0Yytzq+U0sjiuNbn6m2XHx7ZZIYNERV3wnic+XBlUZ5KY5WjHZQK
-        csUcYeXvvjNr3laN7dXjTEKsJw==
-X-Google-Smtp-Source: AGHT+IFC6xfxPRgUfLtGedyZXqC05BG1xy/YxKr4UUXAaDLlICsPHcoybdw/EPDQJJEMqrpv7WMyCQ==
-X-Received: by 2002:a05:6402:38e:b0:523:4b9d:a80f with SMTP id o14-20020a056402038e00b005234b9da80fmr3182758edv.15.1693470254683;
-        Thu, 31 Aug 2023 01:24:14 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id d4-20020a50ea84000000b00521d2f7459fsm509736edo.49.2023.08.31.01.24.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 01:24:13 -0700 (PDT)
-Message-ID: <8fa0874a-1a4e-3e4b-cb14-fae67f757401@linaro.org>
-Date:   Thu, 31 Aug 2023 10:24:12 +0200
+        with ESMTP id S242250AbjHaI0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:26:36 -0400
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2314E47;
+        Thu, 31 Aug 2023 01:26:24 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37V8QAQ5079893;
+        Thu, 31 Aug 2023 03:26:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1693470370;
+        bh=BpAQV6wM+o+2MShaJlsa19Hy9LkX3eiX1Pj9x74n76U=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=Qj9/utkFlU15CyJ5mc2zOMfH3tsBtEzUwVD43F8rcFo0q21RUuRKwP+IrbFuuPQM0
+         ZmpUuZS3utT+1TArJkQDG+Vxa+tkYiSeK9AALqxfR3FkG1by2tRpLW00n+iFYnIIp9
+         OOfjd1Uc/4PbDx3oxkKXNcZ7eFaBBVN4hOvx0wfk=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37V8QAJm098384
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 31 Aug 2023 03:26:10 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 31
+ Aug 2023 03:26:09 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 31 Aug 2023 03:26:09 -0500
+Received: from [172.24.227.35] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37V8Q3kZ104652;
+        Thu, 31 Aug 2023 03:26:04 -0500
+Message-ID: <1b384a76-9c7d-29b9-8723-258324e4ec8e@ti.com>
+Date:   Thu, 31 Aug 2023 13:56:02 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH V6 0/5] Add camera clock controller support for SM8550
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230707035744.22245-1-quic_jkona@quicinc.com>
- <484fad11-b44a-0383-c34b-5ae30cd24bb9@quicinc.com>
+ Thunderbird/102.13.0
+Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add compatible for
+ AM64x in ICSSG
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <484fad11-b44a-0383-c34b-5ae30cd24bb9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        MD Danish Anwar <danishanwar@ti.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Simon Horman <horms@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
+References: <20230830113724.1228624-1-danishanwar@ti.com>
+ <20230830113724.1228624-2-danishanwar@ti.com>
+ <25b44b0d-e958-ada3-3900-589224c1e37f@linaro.org>
+From:   Md Danish Anwar <a0501179@ti.com>
+Organization: Texas Instruments
+In-Reply-To: <25b44b0d-e958-ada3-3900-589224c1e37f@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/08/2023 10:20, Jagadeesh Kona wrote:
+On 30/08/23 8:16 pm, Krzysztof Kozlowski wrote:
+> On 30/08/2023 13:37, MD Danish Anwar wrote:
+>> Add compatible for AM64x in icssg-prueth dt bindings. AM64x supports
+>> ICSSG similar to AM65x SR2.0.
+>>
+>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> index 311c570165f9..13371159515a 100644
+>> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>> @@ -20,6 +20,7 @@ properties:
+>>    compatible:
+>>      enum:
+>>        - ti,am654-icssg-prueth  # for AM65x SoC family
+>> +      - ti,am642-icssg-prueth  # for AM64x SoC family
 > 
+> Keep the list ordered, probably alphanumerically.
 > 
-> On 7/7/2023 9:27 AM, Jagadeesh Kona wrote:
->> Add bindings, driver and devicetree node for camera clock controller on
->> SM8550.
->>
->> Changes in v6:
->>   - Updated parent map and frequency table of cam_cc_xo_clk_src to use
->>     active only source P_BI_TCXO_AO instead of P_BI_TCXO
->>
->> Changes in v5:
->>   - Added clk_lucid_ole_pll_configure() to configure lucid ole PLL's
->>   - Used module_platform_driver() instead of subsys_initcall()
->>   - Fixed overloading .l config with CAL_L and RINGOSC_CAL_L fields
->>
->> Changes in v4:
->>   - Dropped the extra patches added in v2, since the review comments on
->>     v3 recommended an alternate solution
->>
->> Changes in v3:
->>   - Squashed 2 extra patches added in v2 into single patch as per review
->>     comments
->>
->> Changes in v2:
->>   - Took care of review comments from v1
->>       + Removed new YAML file and reused SM8450 CAMCC YAML file for SM8550
->>       + Sorted the PLL names in proper order
->>       + Updated all PLL configurations to lower case hex
->>       + Reused evo ops instead of adding new ops for ole pll
->>       + Moved few clocks to separate patch to fix patch too long error
->>       + Padded non-zero address part to 8 hex digits in DT change
->>   - Added 2 extra patches updating .l config value across chipsets to
->>     include CAL_L and RINGOSC_CAL_L fields and removed setting CAL_L
->>     field explicitly in clk_lucid_evo_pll_configure().
->>
->> v1:
->>    - Initial CAMCC changes for SM8550
->>
->> Previous series:
->> v5 - https://patchwork.kernel.org/project/linux-clk/list/?series=759863
->> v4 - https://patchwork.kernel.org/project/linux-clk/list/?series=755683
->> v3 - https://patchwork.kernel.org/project/linux-clk/list/?series=753150
->> v2 - https://patchwork.kernel.org/project/linux-clk/list/?series=751058
->> v1 - https://patchwork.kernel.org/project/linux-clk/list/?series=749294
->>
->> Jagadeesh Kona (5):
->>    dt-bindings: clock: qcom: Add SM8550 camera clock controller
->>    clk: qcom: clk-alpha-pll: Add support for lucid ole pll configure
->>    clk: qcom: camcc-sm8550: Add camera clock controller driver for SM8550
->>    clk: qcom: camcc-sm8550: Add support for qdss, sleep and xo clocks
->>    arm64: dts: qcom: sm8550: Add camera clock controller
->>
->>   .../bindings/clock/qcom,sm8450-camcc.yaml     |    8 +-
->>   arch/arm64/boot/dts/qcom/sm8550.dtsi          |   15 +
->>   drivers/clk/qcom/Kconfig                      |    7 +
->>   drivers/clk/qcom/Makefile                     |    1 +
->>   drivers/clk/qcom/camcc-sm8550.c               | 3564 +++++++++++++++++
->>   drivers/clk/qcom/clk-alpha-pll.c              |   29 +
->>   drivers/clk/qcom/clk-alpha-pll.h              |    2 +
->>   include/dt-bindings/clock/qcom,sm8550-camcc.h |  187 +
->>   8 files changed, 3811 insertions(+), 2 deletions(-)
->>   create mode 100644 drivers/clk/qcom/camcc-sm8550.c
->>   create mode 100644 include/dt-bindings/clock/qcom,sm8550-camcc.h
->>
-> 
-> Hi Bjorn,
-> 
-> All patches in this series are in reviewed state, could you please help 
-> to pick this series in the next release? Thanks!
 
-We are in merge window, so please refrain from simple pings for
-patchsets which are not fixes.
+Sure. I will change the order to alphanumeric when I drop the RFC and post it
+as PATCH.
 
-Best regards,
-Krzysztof
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 
+Thanks for the ack.
+
+> Best regards,
+> Krzysztof
+> 
+
+-- 
+Thanks and Regards,
+Danish.
