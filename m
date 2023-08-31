@@ -2,142 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EADE178EC16
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 13:33:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9835578EC56
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 13:43:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239436AbjHaLdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 07:33:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48516 "EHLO
+        id S236430AbjHaLnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 07:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237581AbjHaLdz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 07:33:55 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB0CCF3
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 04:33:52 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-59234aaca15so8691567b3.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 04:33:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693481631; x=1694086431; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ibzG3mVx4GFurVxbkoUFG27FCbRg5ZUj4tD8lzqeKtg=;
-        b=C4xhoFvG4nLN7VivM88cB7ikaRDgW++/+abHV4+cUxfpoloOBfF1B+T89Cn28V3Q3I
-         4t7EYiuW8hwfNZDv3AWIkk+/uxv9ezg3dc8s0dXl0ZUbp7zp0iknhnrhJcPfrZmwQ1Lp
-         RBikaZAUGrUuDWy6ZdcFjLKkbRdcGHPAl45Kmdr4SJyjKuphggz7zS/0hyy8u4BIxAH6
-         lXCpz7uqrY8D1uT3BeyeP/U28UIWqaODMbccSz1c76Y/EyxqLKAbspt7Y7a+X5xpcXsU
-         pxi2ky5piudDNwclyg3JNU5VQVxQv7vzas+BjamDc/VByzds9mKI+xs28isIU0RzoZsZ
-         Jk4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693481631; x=1694086431;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ibzG3mVx4GFurVxbkoUFG27FCbRg5ZUj4tD8lzqeKtg=;
-        b=d9urBZKdio3WnjA920hXXCz8Cpnc6MGVh7N62VuPYAH2FiCVE3opCtN1/izE/gUwT8
-         t1/8uEqnTQmAADhtfkXokAbm9dNeoRIEvDtWr/d/azeQHdUS/dNRn1J9LZ8I5S+cl1c6
-         sQLpUEpQICCIpKqMtc4jc29CG1m+LswJZWmKlqrF1CQOV8zjp3wH0HZZkvZZxgz2F3Uq
-         Cyoqszpmt2AcSBNWmYo0k7a/DZMTgX1FEGQ0CSoEIRFKKqPmmzkvVfCJj+LCMQLuUyTH
-         K857oW4nF1YL6XvhIKyaAcjFUP2zDtcw1cKovHzpWxOaWJSKOA7yOzHq6BI2Rq4F4XaT
-         bd+g==
-X-Gm-Message-State: AOJu0YyX/uNUEEzL1i/a5WeYxV1gZWXr1oyhcEitGj95PzVBkKmqLF4p
-        lWyToBc7nVDSD2uCZtZUcK4lArMDW2r+bas3Y5ntG6zvIV7RltOg
-X-Google-Smtp-Source: AGHT+IHeKlJ2Cnt3SKF3aIUgqGGMgbJPVvaV8pDIkWX0azrFs3oQc15jhGlTDqlAxq2mojbE2e8cDhdUFN1nTd6fj8U=
-X-Received: by 2002:a25:b116:0:b0:d78:538:8017 with SMTP id
- g22-20020a25b116000000b00d7805388017mr4779117ybj.61.1693481631542; Thu, 31
- Aug 2023 04:33:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-4-5a954519bbad@fairphone.com> <b82f4683-e8b5-b424-8f7a-6d2ba1cab61f@linaro.org>
- <CV6NF0466658.20DGU7QKF2UBR@otso>
-In-Reply-To: <CV6NF0466658.20DGU7QKF2UBR@otso>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 31 Aug 2023 14:33:39 +0300
-Message-ID: <CAA8EJpr1+W3f08X-FpiiVrJ98kg52HaMwbbKn=fG15Whm4C8aQ@mail.gmail.com>
-Subject: Re: [PATCH 04/11] arm64: dts: qcom: pm7250b: make SID configurable
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S231860AbjHaLnZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 07:43:25 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 67324C5;
+        Thu, 31 Aug 2023 04:43:20 -0700 (PDT)
+Received: from loongson.cn (unknown [112.20.109.102])
+        by gateway (Coremail) with SMTP id _____8BxNujWfPBkGG8dAA--.6830S3;
+        Thu, 31 Aug 2023 19:43:18 +0800 (CST)
+Received: from localhost.localdomain (unknown [112.20.109.102])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxniPTfPBkVxJoAA--.14619S2;
+        Thu, 31 Aug 2023 19:43:16 +0800 (CST)
+From:   Binbin Zhou <zhoubinbin@loongson.cn>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v2 0/5] soc: loongson: Fix some issues about loongson_pm2
+Date:   Thu, 31 Aug 2023 19:43:10 +0800
+Message-Id: <cover.1693474728.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.39.3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxniPTfPBkVxJoAA--.14619S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7Kr1DXrWDZFWxWF4rCF15GFX_yoW8Xw4UpF
+        9xC3s8Gr45Zry7ArnxJFW8GFWrXrZ5AF9rJF4xJw17CryDXw1jvrWrtFWjvrZxAFyfXwsI
+        vr1xGrW8WFnrurcCm3ZEXasCq-sJn29KB7ZKAUJUUUU7529EdanIXcx71UUUUU7KY7ZEXa
+        sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+        0xBIdaVrnRJUUU90b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+        IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+        e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+        0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
+        xVWxJr0_GcWln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
+        xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+        6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64
+        vIr41l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_
+        Jrv_JF1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1V
+        AY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAI
+        cVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42
+        IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UYxBIdaVFxhVj
+        vjDU0xZFpf9x07j5xhLUUUUU=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Aug 2023 at 13:13, Luca Weiss <luca.weiss@fairphone.com> wrote:
->
-> On Wed Aug 30, 2023 at 12:06 PM CEST, Krzysztof Kozlowski wrote:
-> > On 30/08/2023 11:58, Luca Weiss wrote:
-> > > Like other Qualcomm PMICs the PM7250B can be used on different addresses
-> > > on the SPMI bus. Use similar defines like the PMK8350 to make this
-> > > possible.
-> > >
-> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
-> > >  1 file changed, 16 insertions(+), 7 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > > index e8540c36bd99..3514de536baa 100644
-> > > --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
-> > > @@ -7,6 +7,15 @@
-> > >  #include <dt-bindings/interrupt-controller/irq.h>
-> > >  #include <dt-bindings/spmi/spmi.h>
-> > >
-> > > +/* This PMIC can be configured to be at different SIDs */
-> > > +#ifndef PM7250B_SID
-> > > +   #define PM7250B_SID 2
-> > > +#endif
-> >
-> > Why do you send the same patch as v1, without any reference to previous
-> > discussions?
-> >
-> > You got here feedback already.
-> >
-> > https://lore.kernel.org/linux-arm-msm/f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org/
->
-> Hi Krzysztof,
->
-> I did mention that original patch in the cover letter of this series.
-> I'm definitely aware of the discussion earlier this year there but also
-> tried to get an update lately if there's any update with no response.
+Hi all:
 
-I think the overall consensus was that my proposal is too complicated
-for the DT files.
+Since commit 67694c076bd7 ("soc: loongson2_pm: add power management support"),
+the Loongson-2K PM driver was added, some issues have been found and
+this patchset is planned to fix these issues.
 
->
-> If you want to block this patch, I'll have to remove pm7250b from the
-> device dts, so we'll lose some functionality. Not sure what other
-> approaches there could be.
->
-> Regards
-> Luca
->
-> >
-> > Best regards,
-> > Krzysztof
->
+Specific:
+Patch 1: Compilation error found by Randy;
+Patch 2/3: Rewriting the ls2k-pmc compatible attribute with fallback
+compatible;
+Patch 4/5: Add Loongson-2K SoC reboot/shutdown support as part of power
+management.
 
+Thanks.
+
+-----
+V2:
+patch 1:
+ - Change "depends on INPUT" to "depends on INPUT=y", because the
+   compilation error still exists when "INPUT=m".
+patch 2:
+  - Use ls2k0500 as the fallback compatible;
+  - Add ls2k2000 compatible.
+patch 3:
+ - Drop ls2k1000 compatible, for ls2k0500 is used as the fallback
+   compatible.
+patch 4:
+  - Drop label;
+  - Drop regmap property in syscon-reboot, for it's deprecated;
+  - Add missing space.
+
+Link to V1:
+https://lore.kernel.org/all/cover.1693218539.git.zhoubinbin@loongson.cn/
+
+Binbin Zhou (5):
+  soc: loongson: loongson_pm2: Add dependency for INPUT
+  dt-bindings: soc: loongson,ls2k-pmc: Use fallbacks for ls2k-pmc
+    compatible
+  soc: loongson: loongson_pm2: Drop useless of_device_id compatible
+  dt-bindings: soc: loongson,ls2k-pmc: Allow
+    syscon-reboot/syscon-poweroff as child
+  soc: loongson: loongson_pm2: Populate children syscon nodes
+
+ .../soc/loongson/loongson,ls2k-pmc.yaml       | 43 ++++++++++++++++---
+ drivers/soc/loongson/Kconfig                  |  1 +
+ drivers/soc/loongson/loongson2_pm.c           |  7 ++-
+ 3 files changed, 44 insertions(+), 7 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.39.3
+
