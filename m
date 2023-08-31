@@ -2,97 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B031478F009
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:16:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03BED78F040
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:26:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233337AbjHaPQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 11:16:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48838 "EHLO
+        id S245074AbjHaP0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 11:26:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233056AbjHaPQB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:16:01 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75BE0E53;
-        Thu, 31 Aug 2023 08:15:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=dZ+CYy+NiImbraQzZFb/jEDAIlzMlTzLoJNY/bcsZII=; b=MAtcvuir2tPTWB75BVsumuwLNf
-        3SooZiTyRkl4NwwpAYGOymwio5PIxPeO7goMfZuC6v6azsGwn6ZG6xFHPdq1rjRfhDhmDfcYaHQRW
-        9zJs0RzRqdtAUyxGgrxmSHXaBy4/NKQWQUCDlJrcrBRMd3MLEtFzpb5MbH5zYrKmSQOwmHnSKTLm9
-        VGga4lf1vf4k8gDv7/BffS+yWM9S7qd+lUcP0n0V9+Oiik8gm6t1+0bvEhmNQldVY04Mx4j5HwxyJ
-        XkVeUjYjkHOqa4DpkWTitDU5CzYOhznQLNyuCQXxOw8TOm+d3Ep4S8sFi4ECuBwjIBvqXp6APdICj
-        ikW0w1ag==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1qbjOg-00FUAa-1n;
-        Thu, 31 Aug 2023 15:15:50 +0000
-Message-ID: <478ac7ec-a89c-32ae-6b0b-e6f5c3f8e151@infradead.org>
-Date:   Thu, 31 Aug 2023 08:15:47 -0700
+        with ESMTP id S240196AbjHaPZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:25:59 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE87E50
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:25:56 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31c4d5bd69cso771565f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:25:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693495555; x=1694100355; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d6znyQKCV8DafBmq+P0iqvg8LkmCAkhxHacNwGIHAdE=;
+        b=pVwKLqqiaSAFqang4Gtl2lH+IrGStVepPDktHzErhLw7EaJ+vAxRFFEnB60XaWxoqY
+         Ni+GMpr6obfFyfReCy+cJ/EwfqVwa8exsnKJoZvRgJ/nkVBbefhB8UlywaVMZhvfKiG/
+         9pEshq5yryYF5ToQpIv6aSI1rNgFIJursguh8DX6FKTz4TVugtNMdKOV6gxwY4fAsPvl
+         U/BHMhOgbvpk7S79oEWbgIm90CsNFl5y/95rRAP0Hqn6xvEoIjqOJriD/kQrHqHU9136
+         cCRbux8LS1EPPSA4nIXO+DCH/f3L+tk8g9rnVzSRNXmPp1+wGBG1YlPwBPj4nQF1bShf
+         juCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693495555; x=1694100355;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d6znyQKCV8DafBmq+P0iqvg8LkmCAkhxHacNwGIHAdE=;
+        b=i9Mkh8zE/fR2E/wMy6UPhctYQYFJ/Ws6adRefP2BBMtpslR27pm21jmARnA9WmO5EB
+         j45+t8Y7yhFRx0Kvxr4zAMCGtCmJwVye34jvFK8nGRtLMJrQoU/3rafc7ntmsv3XeXVA
+         nts3BIVmT94l2t5NeLKRVgH/Ui24INP/qmalEWdr1bT47G4cF90j3qp/LGuihLFXv3w1
+         E0AiNly1Q60hcw9bORTCQKnjUzDQKZGe7OJTd5OQN1B+935Z8iTKwx/c7Kx/9sKlJokJ
+         14LQyz2Nn3V7N4kvDvrgJLTbxYjgT59N8o9wDplDD3orTXIHUSkd+PaXtGeSDPi6Cvt3
+         QBYg==
+X-Gm-Message-State: AOJu0YxnUu5Oy0DBj/PQPumJLASwLMDet9lHdRlrBqhvE47O334y8/rp
+        0WUYH/qGc2GlDGe8c3YJEWtCRw==
+X-Google-Smtp-Source: AGHT+IGqi6Zhg7O/e3nNg0h/YAXgrMhFBgTWmCrq5DFYHS6y7lj1ivdYRiX1hWZH0S5ZMRcWpnLT8w==
+X-Received: by 2002:a5d:44c5:0:b0:319:6b6c:dd01 with SMTP id z5-20020a5d44c5000000b003196b6cdd01mr4202339wrr.17.1693495554816;
+        Thu, 31 Aug 2023 08:25:54 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id o4-20020a5d4084000000b00317b0155502sm2546410wrp.8.2023.08.31.08.25.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Aug 2023 08:25:54 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Thu, 31 Aug 2023 17:25:49 +0200
+Subject: [PATCH] arm64: dts: qcom: split pmr735d into 2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH] macintosh: Explicitly include correct DT includes
-Content-Language: en-US
-To:     Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>
-Cc:     Colin Leroy <colin@colino.net>, devicetree@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20230714174654.4058898-1-robh@kernel.org>
- <6df12112-0849-4d7b-8f99-d2a7a3560a97@roeck-us.net>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <6df12112-0849-4d7b-8f99-d2a7a3560a97@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+Message-Id: <20230831-topic-sm8550-upstream-pmr735d-split-v1-1-98e632636415@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAPyw8GQC/x3NwQrCMAyA4VcZORvIVqqbryIeShc1YLeQdCKMv
+ bvF43f5/x2cTdjh2u1g/BGXdWnoTx3kV1qejDI3w0BDoDH0WFeVjF7GGAk39WqcCmqxS4gzur6
+ l4jTFTER8TpygldT4Id//5XY/jh9Y6I88dQAAAA==
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4777;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=9fw5Mg+Da85nnJhVVEO1GAnxk4nSA+fneKHtZag2yj4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk8LEB2EbaTJ09Te/feC97tbyfSwS3tA6XVDNYmkAh
+ z8J+H2SJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZPCxAQAKCRB33NvayMhJ0UTgD/
+ 9pWE+/6Hjn/x0eUcC2yelmeWou5gRf/8Rp5garpQI4Cajod9jvC5wIYafGVSnBYuRzhIke0fwcv/a2
+ /R4Lv0m4eZaU/LkYRcTJ5iz5PJSse6oQtq09F87SSteAe+3OA+v1p28jYC1v+FN7/IbNA5FHDNB1u9
+ TafL2XLqgTs1zhRt/padMxVQl5G3eTxpn69DhYjzZDWFONH3XR++GEvH93wlpse+IEryuXB/YSZOYU
+ RZb3j7X9RGTB4DwgPK7MvOqrVWXv8spn9r6fMWtlcnd9q+Alk/rRP1GvrYBI20kOcLvwWLTmzGmYgO
+ PAW9sSmu5HHELHzcnZLe4kV7+z2EvLBQM6y6fevMR32OIaSMC+f8Yhj1sktcfdD2tJ5JokE/Ec7sRO
+ 6wqgvrZpyM/vEbVT0WfTCMWzxhRMqV/x9SI054+uY9BvKICy15nI+dDNj0k9HaafP8yxGy9B8k3ycy
+ iajF7y9hfwXKgWrS8nY4Z5dzZs0qhWfu6nUEZwTvEyBeA1D8SjcW38kHUnSKyPZzy7lq6DoI+602rD
+ JU/8oejz73uLiJ2M8d+ee9h8jy9fGHtc6rA7FyVyZBilvXMC+EUsSRAtVnFFRsI+8HUldZ9SVkh+o8
+ cHOpnYbyZq5NYWPS1MYrEBNiX++HZNixf/H9YRwJcTKnVzgccxgQEM50vmig==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The second PMR735D PMIC is not always presend on SM8550 based devices,
+split the pmr735d.dtsi file in two so boards files can only include the
+ones present on the platform.
 
+Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ .../boot/dts/qcom/{pmr735d.dtsi => pmr735d_a.dtsi} | 45 -----------------
+ arch/arm64/boot/dts/qcom/pmr735d_b.dtsi            | 59 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8550-mtp.dts            |  3 +-
+ arch/arm64/boot/dts/qcom/sm8550-qrd.dts            |  3 +-
+ 4 files changed, 63 insertions(+), 47 deletions(-)
 
-On 8/31/23 07:04, Guenter Roeck wrote:
-> On Fri, Jul 14, 2023 at 11:46:54AM -0600, Rob Herring wrote:
->> The DT of_device.h and of_platform.h date back to the separate
->> of_platform_bus_type before it as merged into the regular platform bus.
->> As part of that merge prepping Arm DT support 13 years ago, they
->> "temporarily" include each other. They also include platform_device.h
->> and of.h. As a result, there's a pretty much random mix of those include
->> files used throughout the tree. In order to detangle these headers and
->> replace the implicit includes with struct declarations, users need to
->> explicitly include the correct includes.
->>
->> Signed-off-by: Rob Herring <robh@kernel.org>
-> 
-> This patch results in the following build error.
-> 
-> Building powerpc:ppc32_allmodconfig ... failed
-> --------------
-> Error log:
-> drivers/macintosh/ams/ams-input.c: In function 'ams_input_enable':
-> drivers/macintosh/ams/ams-input.c:68:45: error: invalid use of undefined type 'struct platform_device'
->    68 |         input->dev.parent = &ams_info.of_dev->dev;
->       |                                             ^~
-> drivers/macintosh/ams/ams-input.c: In function 'ams_input_init':
-> drivers/macintosh/ams/ams-input.c:146:51: error: invalid use of undefined type 'struct platform_device'
->   146 |         return device_create_file(&ams_info.of_dev->dev, &dev_attr_joystick);
->       |                                                   ^~
-> drivers/macintosh/ams/ams-input.c: In function 'ams_input_exit':
-> drivers/macintosh/ams/ams-input.c:151:44: error: invalid use of undefined type 'struct platform_device'
->   151 |         device_remove_file(&ams_info.of_dev->dev, &dev_attr_joystick);
->       |                                            ^~
-> drivers/macintosh/ams/ams-input.c: In function 'ams_input_init':
-> drivers/macintosh/ams/ams-input.c:147:1: error: control reaches end of non-void function 
-> 
-> Bisect log attached.
+diff --git a/arch/arm64/boot/dts/qcom/pmr735d.dtsi b/arch/arm64/boot/dts/qcom/pmr735d_a.dtsi
+similarity index 55%
+rename from arch/arm64/boot/dts/qcom/pmr735d.dtsi
+rename to arch/arm64/boot/dts/qcom/pmr735d_a.dtsi
+index 41fb664a10b3..37daaefe3431 100644
+--- a/arch/arm64/boot/dts/qcom/pmr735d.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmr735d_a.dtsi
+@@ -28,27 +28,6 @@ trip1 {
+ 				};
+ 			};
+ 		};
+-
+-		pmr735d-l-thermal {
+-			polling-delay-passive = <100>;
+-			polling-delay = <0>;
+-
+-			thermal-sensors = <&pmr735d_l_temp_alarm>;
+-
+-			trips {
+-				trip0 {
+-					temperature = <95000>;
+-					hysteresis = <0>;
+-					type = "passive";
+-				};
+-
+-				trip1 {
+-					temperature = <115000>;
+-					hysteresis = <0>;
+-					type = "hot";
+-				};
+-			};
+-		};
+ 	};
+ };
+ 
+@@ -77,28 +56,4 @@ pmr735d_k_gpios: gpio@8800 {
+ 			#interrupt-cells = <2>;
+ 		};
+ 	};
+-
+-	pmr735d_l: pmic@b {
+-		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
+-		reg = <0xb SPMI_USID>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pmr735d_l_temp_alarm: temp-alarm@a00 {
+-			compatible = "qcom,spmi-temp-alarm";
+-			reg = <0xa00>;
+-			interrupts = <0xb 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+-			#thermal-sensor-cells = <0>;
+-		};
+-
+-		pmr735d_l_gpios: gpio@8800 {
+-			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
+-			reg = <0x8800>;
+-			gpio-controller;
+-			gpio-ranges = <&pmr735d_l_gpios 0 0 2>;
+-			#gpio-cells = <2>;
+-			interrupt-controller;
+-			#interrupt-cells = <2>;
+-		};
+-	};
+ };
+diff --git a/arch/arm64/boot/dts/qcom/pmr735d_b.dtsi b/arch/arm64/boot/dts/qcom/pmr735d_b.dtsi
+new file mode 100644
+index 000000000000..3b470f6ac46f
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/pmr735d_b.dtsi
+@@ -0,0 +1,59 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2022, Linaro Limited
++ */
++
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/spmi/spmi.h>
++
++/ {
++	thermal-zones {
++		pmr735d-l-thermal {
++			polling-delay-passive = <100>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&pmr735d_l_temp_alarm>;
++
++			trips {
++				trip0 {
++					temperature = <95000>;
++					hysteresis = <0>;
++					type = "passive";
++				};
++
++				trip1 {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "hot";
++				};
++			};
++		};
++	};
++};
++
++
++&spmi_bus {
++	pmr735d_l: pmic@b {
++		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
++		reg = <0xb SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmr735d_l_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0xb 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmr735d_l_gpios: gpio@8800 {
++			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmr735d_l_gpios 0 0 2>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+index f29cce5186ac..a0d7d6eba0c6 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
+@@ -13,7 +13,8 @@
+ #include "pm8550ve.dtsi"
+ #include "pm8550vs.dtsi"
+ #include "pmk8550.dtsi"
+-#include "pmr735d.dtsi"
++#include "pmr735d_a.dtsi"
++#include "pmr735d_b.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. SM8550 MTP";
+diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+index 2c09ce8aeafd..afee755c075a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
+@@ -14,7 +14,8 @@
+ #include "pm8550ve.dtsi"
+ #include "pm8550vs.dtsi"
+ #include "pmk8550.dtsi"
+-#include "pmr735d.dtsi"
++#include "pmr735d_a.dtsi"
++#include "pmr735d_b.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. SM8550 QRD";
 
-Hi Guenter,
-I posted a patch for this 2 days ago and Michael Ellerman just did a pull request
-to Linus with the fix.
+---
+base-commit: a47fc304d2b678db1a5d760a7d644dac9b067752
+change-id: 20230831-topic-sm8550-upstream-pmr735d-split-995c000e6aea
 
+Best regards,
 -- 
-~Randy
+Neil Armstrong <neil.armstrong@linaro.org>
+
