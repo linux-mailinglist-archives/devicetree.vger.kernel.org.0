@@ -2,98 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B70E378EF32
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 16:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBC6078EF36
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 16:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344623AbjHaOEc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 10:04:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56850 "EHLO
+        id S1345012AbjHaOFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 10:05:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344764AbjHaOEb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 10:04:31 -0400
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 005CEC3;
-        Thu, 31 Aug 2023 07:04:28 -0700 (PDT)
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-68a4bcf8a97so586164b3a.1;
-        Thu, 31 Aug 2023 07:04:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693490668; x=1694095468;
+        with ESMTP id S1345081AbjHaOFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 10:05:05 -0400
+Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D44E0;
+        Thu, 31 Aug 2023 07:05:02 -0700 (PDT)
+Received: by mail-io1-xd36.google.com with SMTP id ca18e2360f4ac-792975085b2so33453739f.1;
+        Thu, 31 Aug 2023 07:05:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693490702; x=1694095502; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O8XXEK9RmQdx4SObXPw7grPK1RuzChzezZcq/KGPIaU=;
-        b=iL7NjubHWbW4NNqDJV6AqjlT/s6fwEe1Y2a/khyio81FrDCRpYNx5uXeuOIPHtQjKa
-         T4RXG7j4AzOUeT1W09l2SHjc68aL+6wg2mtF7nGDK18RVJUKA9p2Wa6IXJFFT2o9mGNA
-         9Tv3PtPPfbiT6oVW3GyocgUSG2f4Jabf4cEf2QNCFfn70CLvhSLH0qVwn/juACkeWhcS
-         XbAvwpc3KjNH5YFFTfM7wGpObOkpPVEVsFv7YSDumGldqZfYS/mq7ScEudncnyBehc4E
-         YLv7L9CMLDbF6LMBgEcbiPnkywDVqnlneZjBhooNORs9aCyCaAo9gmCZY+wa4KQkDOWo
-         cjrg==
-X-Gm-Message-State: AOJu0YyjmQ0Byw3Cx1Ud6MUkS2wKWo4f4TP9gzBIRDRX3xZzejtn/qv6
-        QoD/nKfcaHuJN5d8uGzOdv/yI5VUbCWSNxXZ
-X-Google-Smtp-Source: AGHT+IFrImfvhxUlwlYWoYEXfUl82NOevalyTknYYsbnfWjTdX7MBH8dWwUiibVajT9Jt0Zu2u9UiQ==
-X-Received: by 2002:a05:6a00:1a8f:b0:68b:dbbc:dcea with SMTP id e15-20020a056a001a8f00b0068bdbbcdceamr5046916pfv.9.1693490668247;
-        Thu, 31 Aug 2023 07:04:28 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id n12-20020aa7904c000000b0068a0b5df6b2sm1355474pfo.196.2023.08.31.07.04.27
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SDYwl4eIi6h/gyUKt1OoObJst40opzW/aVju8PiClbw=;
+        b=S2Pg1Wd1xPHm3XaOpGrSJp/ZoyAuR6dP17rVIRc2t12WVbKztNrWv7uBaByvfMeuTp
+         acB3A6Wj9CST5uxxZemiOHzGHyS1eE+kVjlj92PSPEcvG1BYGwx+UgktiCth6qyvDyzJ
+         vr1Zchz7XUcB+5AKTIbC/NDiDygRecgd5ch+G6pzXRTPtI7RpPpr6uOSHtYkMfFfD5Sz
+         g/vYo9Q5ExLufYeijO+jsdOf/MxBQXvgBHx/LTuXL1wHc2Nha76F/akzti45FCR95weA
+         Ep1LLxXeDsP+g7cduicpBFsFwNp2RfIQGTrhg1ZXBbCX/lSM+VnM2Dc2VQa9anbobQzZ
+         tU7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693490702; x=1694095502;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SDYwl4eIi6h/gyUKt1OoObJst40opzW/aVju8PiClbw=;
+        b=LHRmtAgpXN2Prub8n3Up6C/O5PXsUZMKmpQXWZDDTFy+YdiH8b/ogW1tJbjN/2Aedt
+         5jWzxz8zGc/DSg3vPjVWmCbERmmL8VNmJGwDnRAUkZm4rNMXbmxIgKheJ3DjuMbdexLX
+         tu5QxypVwdQWgHceMCB70Hn9HUBh/M7KDI2wYqvDaJMlbP20JNYA7p2ThIZry7YNEgsz
+         rGFHU8NYjXhe1U953AG592cmwFCkRk3IBG0zkbYmQUoKP/GK7pJXgjLlkkhsm3v0rz3d
+         x5bI0ngPTBInSPW6eBFboJjyFlRSl61sRbeZndg+Ss//A53KWbEaOgj9T4VO1I7YVYOc
+         qkAQ==
+X-Gm-Message-State: AOJu0YyvTQlZeXnwA9JuVmSquRsV6wqJVl1fAMHPZXLudoGKGjqAr+C5
+        5kPG1ZY9vXMQC0soiOr1jcQvSkSaihY=
+X-Google-Smtp-Source: AGHT+IGJDvgnNN8eBDD5q/ZjqmhQeL+FjVbIQhi6XfcgsC0OOVkrKsw/bTxjp3ge/N2ardqbC8tOrQ==
+X-Received: by 2002:a6b:dc03:0:b0:792:8230:c175 with SMTP id s3-20020a6bdc03000000b007928230c175mr5367301ioc.6.1693490701753;
+        Thu, 31 Aug 2023 07:05:01 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t8-20020a02c488000000b0042b1061c6a8sm417875jam.84.2023.08.31.07.04.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Aug 2023 07:04:27 -0700 (PDT)
-Date:   Thu, 31 Aug 2023 23:04:26 +0900
-From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "manivannan.sadhasivam@linaro.org" <manivannan.sadhasivam@linaro.org>,
-        "kishon@kernel.org" <kishon@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "marek.vasut+renesas@gmail.com" <marek.vasut+renesas@gmail.com>,
-        "fancer.lancer@gmail.com" <fancer.lancer@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v20 00/19] PCI: rcar-gen4: Add R-Car Gen4 PCIe support
-Message-ID: <20230831140426.GA255922@rocinante>
-References: <20230825093219.2685912-1-yoshihiro.shimoda.uh@renesas.com>
- <20230827162721.GA2932694@rocinante>
- <TYBPR01MB5341A56DBA3E4335FE8A35F0D8E5A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+        Thu, 31 Aug 2023 07:04:59 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 31 Aug 2023 07:04:56 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Colin Leroy <colin@colino.net>, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] macintosh: Explicitly include correct DT includes
+Message-ID: <6df12112-0849-4d7b-8f99-d2a7a3560a97@roeck-us.net>
+References: <20230714174654.4058898-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <TYBPR01MB5341A56DBA3E4335FE8A35F0D8E5A@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+In-Reply-To: <20230714174654.4058898-1-robh@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-[...]
-> > Applied to controller/rcar, thank you!
+On Fri, Jul 14, 2023 at 11:46:54AM -0600, Rob Herring wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
-> I should have asked you before, but is it possible to merge this for Linux v6.6?
-> Today I realized that "[GIT PULL] PCI changes for v6.6" [1] didn't have the controller/rcar...
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-Bjorn chosen not to include the series as the scope of the changes also
-spans across the DWC code base, not only adding a new driver, and he wanted
-for it to remain a little bit longer on the -next, so that if there are
-issues, we can catch things...
+This patch results in the following build error.
 
-... like the dt-bindings issues that Geert is asking about.
+Building powerpc:ppc32_allmodconfig ... failed
+--------------
+Error log:
+drivers/macintosh/ams/ams-input.c: In function 'ams_input_enable':
+drivers/macintosh/ams/ams-input.c:68:45: error: invalid use of undefined type 'struct platform_device'
+   68 |         input->dev.parent = &ams_info.of_dev->dev;
+      |                                             ^~
+drivers/macintosh/ams/ams-input.c: In function 'ams_input_init':
+drivers/macintosh/ams/ams-input.c:146:51: error: invalid use of undefined type 'struct platform_device'
+  146 |         return device_create_file(&ams_info.of_dev->dev, &dev_attr_joystick);
+      |                                                   ^~
+drivers/macintosh/ams/ams-input.c: In function 'ams_input_exit':
+drivers/macintosh/ams/ams-input.c:151:44: error: invalid use of undefined type 'struct platform_device'
+  151 |         device_remove_file(&ams_info.of_dev->dev, &dev_attr_joystick);
+      |                                            ^~
+drivers/macintosh/ams/ams-input.c: In function 'ams_input_init':
+drivers/macintosh/ams/ams-input.c:147:1: error: control reaches end of non-void function 
 
-That said, there will be no need to send an entire series again, if you
-have anything to fix there in the dt-bindings or the dts patches, and just
-send a new patches for these - I will pull and squash everything later.
+Bisect log attached.
 
-We are getting there. :)
+Guenter
 
-	Krzysztof
+---
+# bad: [b97d64c722598ffed42ece814a2cb791336c6679] Merge tag '6.6-rc-smb3-client-fixes-part1' of git://git.samba.org/sfrench/cifs-2.6
+# good: [1c59d383390f970b891b503b7f79b63a02db2ec5] Merge tag 'linux-kselftest-nolibc-6.6-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/shuah/linux-kselftest
+git bisect start 'HEAD' '1c59d383390f'
+# good: [53ea7f624fb91074c2f9458832ed74975ee5d64c] Merge tag 'xfs-6.6-merge-1' of git://git.kernel.org/pub/scm/fs/xfs/xfs-linux
+git bisect good 53ea7f624fb91074c2f9458832ed74975ee5d64c
+# good: [4fb0dacb78c6a041bbd38ddd998df806af5c2c69] Merge tag 'sound-6.6-rc1' of git://git.kernel.org/pub/scm/linux/kernel/git/tiwai/sound
+git bisect good 4fb0dacb78c6a041bbd38ddd998df806af5c2c69
+# good: [05c618f39089d977b0c3dc1105cb6cd5fc53cd01] arm64: dts: use capital "OR" for multiple licenses in SPDX
+git bisect good 05c618f39089d977b0c3dc1105cb6cd5fc53cd01
+# bad: [4a3b1007eeb26b2bb7ae4d734cc8577463325165] Merge tag 'pinctrl-v6.6-1' of git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl
+git bisect bad 4a3b1007eeb26b2bb7ae4d734cc8577463325165
+# good: [47ca50600efcf994adb62a9a4e75c77d91bd0781] Merge tag 'soc-defconfig-6.6' of git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc
+git bisect good 47ca50600efcf994adb62a9a4e75c77d91bd0781
+# good: [8f447694c23a432b2e9cfe67fb2651f8f6655bfd] Merge tag 'devicetree-for-6.6' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect good 8f447694c23a432b2e9cfe67fb2651f8f6655bfd
+# good: [cd40a1ffddc963e69884a713d8704edd98035861] Merge tag 'qcom-pinctrl-6.6' of https://git.kernel.org/pub/scm/linux/kernel/git/krzk/linux-dt into devel
+git bisect good cd40a1ffddc963e69884a713d8704edd98035861
+# good: [82a65f0844852cec6a70ac05c7d8edb0586c851c] Merge tag 'intel-pinctrl-v6.6-1' of git://git.kernel.org/pub/scm/linux/kernel/git/pinctrl/intel into devel
+git bisect good 82a65f0844852cec6a70ac05c7d8edb0586c851c
+# bad: [ef2a0b7cdbc5b84f7b3f6573b7687e72bede0964] Merge tag 'devicetree-header-cleanups-for-6.6' of git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux
+git bisect bad ef2a0b7cdbc5b84f7b3f6573b7687e72bede0964
+# bad: [233d687d1b78080ee79f67356327e0e0e50ef6f5] macintosh: Explicitly include correct DT includes
+git bisect bad 233d687d1b78080ee79f67356327e0e0e50ef6f5
+# good: [6303d0693f7d6c44bb6eb0b29c906ee28156dd28] clocksource: Explicitly include correct DT includes
+git bisect good 6303d0693f7d6c44bb6eb0b29c906ee28156dd28
+# good: [32bc7297d855608fcb13af62a95739a079b4f8e2] hte: Explicitly include correct DT includes
+git bisect good 32bc7297d855608fcb13af62a95739a079b4f8e2
+# first bad commit: [233d687d1b78080ee79f67356327e0e0e50ef6f5] macintosh: Explicitly include correct DT includes
