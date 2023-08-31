@@ -2,125 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE5CD78ECFC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:24:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04DE778ED0A
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244059AbjHaMY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:24:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58672 "EHLO
+        id S230265AbjHaM1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:27:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230171AbjHaMY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:24:56 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEEA1A4;
-        Thu, 31 Aug 2023 05:24:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id A1C2ACE20DB;
-        Thu, 31 Aug 2023 12:24:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF801C433C9;
-        Thu, 31 Aug 2023 12:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693484689;
-        bh=nXWcobST5xvZcG1UeeKu5sV7yE2+CygPSMmrLOFEf0M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fs4kR/bSqpjFjNJTJAWL64045RYFRG42iIS580k8R3taCUkllCPBectpxgvkgmDrq
-         q+kNnLogNk65FY+JkDL79buGJga9h42YQdq8IVF/43x2EWQvKsz31BzE++C2+/xZAP
-         zHkASNL3KxS7VJR7XIkcBalnDuCnq8A+qKLP1hh67KTc0B6iImTFPz8dBReoseG2Eg
-         h6v2M96nxJiAuxEpWn3KC5k1cDU26W+ncF+3VI+DN6VlCjMfokCXRkcEDjTCuBe8aS
-         SdATOOW67qPqB25TY8LlKww7ld60C+dOXtW+oBW3opY9/NA2gF5CxVhWkIsn/HqFfz
-         4MJAM/teGorxg==
-Date:   Thu, 31 Aug 2023 13:24:44 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     John Watts <contact@jookia.org>
-Cc:     alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        with ESMTP id S236997AbjHaM1q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:27:46 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D6BACFF
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:27:43 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id 3f1490d57ef6-d77ad095e5cso565189276.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693484862; x=1694089662; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=+euXE6DJl0h9x0YnFOgiELlDo48jOrMwbdikCRJ89TQ=;
+        b=Auhdeh+7vNBWdS24IBIixZblq2QXnziTT7UGO/pVNc/2efCo4QgX639kbvLAs2c7gq
+         f//JH/gEVgPt9a324HKyauA0HRluGppHBPuwXX9WNMTD0STwDYBqBbjwvV+rI8P2KLIH
+         YrI4JQZGyLwyfKEK2tkoW6+o9BO723Tpb6L7e28v6QbffYltJj1jwIVYEcAOBDHSbWK/
+         Vg0Ls6/nMUqZOR7AL17C9jTNP+ubPVLN2G5afY23SyyPE4qSUPmGy32nYXpAsUkzBK/S
+         ClA6JWI9k3rPJTVJBOEt+uugCjv+wcCEW46xvFDhP2iWE4UnE/rKTX3kQurt70OW7c3b
+         LEaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693484862; x=1694089662;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+euXE6DJl0h9x0YnFOgiELlDo48jOrMwbdikCRJ89TQ=;
+        b=VwC35PuoPeWNGK3mv9VeemO8CFkgFEp4XvuLijjRrgqsCWh8u25ScsWWj4mcbYYuMf
+         N8+IoQzB9iasGYWPHv8WuzukdU34h8aR10/caZV1n3enRee2NEOK1M4/UVSNkvRGCC8U
+         U5xMTnanAAaxX/K/1fWBLygnY8H9/b6hZecjFuQIOBB8H0qjWdwCYdisnTM8Ygm5Ro2b
+         DCIxRAzvu6hxbcuH4S63bbx5cyc8t9uaKxQ0WYW92KBD8JA7ovOeu1ll7YePu0X+RUau
+         PE68TJy/eKFIRtFJoBoppYCUAwB2YAmy3LADf2nEjviK6FM/HeSBLowmncGVi3x7QiCr
+         /O8A==
+X-Gm-Message-State: AOJu0YzRn43pMl/pfaALOhFQc8pYQZk992MmMMpVMxP3a4pQm57rSfCa
+        jZFpHihtxPNtdNI8JVZVKQ3bVKbLChqDKdvtjJEXbg==
+X-Google-Smtp-Source: AGHT+IFN/QPkD2DDoLhunzmKqMmQHmEKpyhIngn/fH7LLN0iTKE6YtivqDw4n3VbuF85fjove4wN7PQ7fW1hf85rbDI=
+X-Received: by 2002:a25:b291:0:b0:d7b:957e:e476 with SMTP id
+ k17-20020a25b291000000b00d7b957ee476mr4588754ybj.45.1693484862378; Thu, 31
+ Aug 2023 05:27:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
+ <20230830-fp5-initial-v1-4-5a954519bbad@fairphone.com> <b82f4683-e8b5-b424-8f7a-6d2ba1cab61f@linaro.org>
+ <CV6NF0466658.20DGU7QKF2UBR@otso> <CAA8EJpr1+W3f08X-FpiiVrJ98kg52HaMwbbKn=fG15Whm4C8aQ@mail.gmail.com>
+ <728003b9-db27-fdc0-e761-197a02a38c24@linaro.org>
+In-Reply-To: <728003b9-db27-fdc0-e761-197a02a38c24@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 31 Aug 2023 15:27:31 +0300
+Message-ID: <CAA8EJpoXreHpxZQ2G10n0OiQzUX4ffk=gvo87dAU4-r+Svqpeg@mail.gmail.com>
+Subject: Re: [PATCH 04/11] arm64: dts: qcom: pm7250b: make SID configurable
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Luca Weiss <luca.weiss@fairphone.com>,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 0/7] sun4i-i2s: Support channel remapping
-Message-ID: <ZPCGjA9g8hVdr2Pm@finisterre.sirena.org.uk>
-References: <20230811201406.4096210-1-contact@jookia.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DeugAER/HXv/4y4M"
-Content-Disposition: inline
-In-Reply-To: <20230811201406.4096210-1-contact@jookia.org>
-X-Cookie: Give him an evasive answer.
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 31 Aug 2023 at 14:54, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 31/08/2023 13:33, Dmitry Baryshkov wrote:
+> > On Thu, 31 Aug 2023 at 13:13, Luca Weiss <luca.weiss@fairphone.com> wrote:
+> >>
+> >> On Wed Aug 30, 2023 at 12:06 PM CEST, Krzysztof Kozlowski wrote:
+> >>> On 30/08/2023 11:58, Luca Weiss wrote:
+> >>>> Like other Qualcomm PMICs the PM7250B can be used on different addresses
+> >>>> on the SPMI bus. Use similar defines like the PMK8350 to make this
+> >>>> possible.
+> >>>>
+> >>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/qcom/pm7250b.dtsi | 23 ++++++++++++++++-------
+> >>>>  1 file changed, 16 insertions(+), 7 deletions(-)
+> >>>>
+> >>>> diff --git a/arch/arm64/boot/dts/qcom/pm7250b.dtsi b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> >>>> index e8540c36bd99..3514de536baa 100644
+> >>>> --- a/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/qcom/pm7250b.dtsi
+> >>>> @@ -7,6 +7,15 @@
+> >>>>  #include <dt-bindings/interrupt-controller/irq.h>
+> >>>>  #include <dt-bindings/spmi/spmi.h>
+> >>>>
+> >>>> +/* This PMIC can be configured to be at different SIDs */
+> >>>> +#ifndef PM7250B_SID
+> >>>> +   #define PM7250B_SID 2
+> >>>> +#endif
+> >>>
+> >>> Why do you send the same patch as v1, without any reference to previous
+> >>> discussions?
+> >>>
+> >>> You got here feedback already.
+> >>>
+> >>> https://lore.kernel.org/linux-arm-msm/f52524da-719b-790f-ad2c-0c3f313d9fe9@linaro.org/
+> >>
+> >> Hi Krzysztof,
+> >>
+> >> I did mention that original patch in the cover letter of this series.
+> >> I'm definitely aware of the discussion earlier this year there but also
+> >> tried to get an update lately if there's any update with no response.
+> >
+> > I think the overall consensus was that my proposal is too complicated
+> > for the DT files.
+>
+> I proposed to duplicate the entries. Do you keep QUP nodes in DTSI and
+> customize per address? No.
 
---DeugAER/HXv/4y4M
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+At the same time, we do keep SoC files separate from the board files.
+Yes, I'm slightly exaggerating here.
 
-On Sat, Aug 12, 2023 at 06:13:59AM +1000, John Watts wrote:
+I think that for PMIC files it makes sense to extract common parts if
+that eases reuse of the common parts.
 
-> First, I split up channel-dins and channel-slots. This is mainly
-> because I implemented one first but both of them only make sense
-> together. The registers themselves use a format of a byte per
-> channel with the upper nibble being the din and the lower being
-> the slot. Perhaps this is a better format to copy?
+>
+> I definitely do not agree to these ifndef->define. Maybe using just
+> define would work (so drop ifndef->define), because this makes it
+> obvious and fail-safe if included in wrong place... except that it is
+> still not the define we expect. This is not the coding style present in
+> other DTSes.
+>
+> The true problem how these SPMI bindings were created. Requiring SID
+> address in every child is clearly redundant and I think we do not follow
+> such approach anywhere else.
+>
+> Best regards,
+> Krzysztof
+>
 
-I think this is fine.
 
-> Third, channel-slots is available on all sun4i-i2s controllers,
-> but I only have it implemented on the R329 variant for now when
-> there are multiple din pins.
-> I could add support for this on older controllers but there's not
-> really a use case for manual configuration as there's no DIN
-> and I don't have hardware to test it on.
-
-It's fine to leave this for someone who cares about that hardware to
-implement, might be nice to add a warning if the properties are set but
-not supported but it's not essential.
-
-> Fourth, I don't limit the readable channels to the channels
-> listed. Reading more channels than you have currently results in
-> the controller assuming you want to use TDM, but that's not the
-> case here and you can have strange duplicate channels show up.
-
-It would be better to have constraints which prevent userspace doing the
-wrong thing here.
-
-> Fifth, it might be a good idea to increase the maximum channels
-> from 8 to 16, especially if people are going to be running
-> multiple TDM streams on one controller.
-
-If there's no reason not to...
-
---DeugAER/HXv/4y4M
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTwhowACgkQJNaLcl1U
-h9CjTAf9Eb9zBoEzAuUZtcuChIs4gYOvUP+KJHWZQvgZ7KMKd9UsThI0n7CTASTY
-yvJjmMWvrFRTRoW1aGyk4Vc+bBYNX+fVBlmwxcqrQtNda7MSGKlIpf/FNpGOOZEz
-h5OjmgfIsLqH0KWJKkWrdQK581QDxGXtVGaJ/gzKtKmhsKyVyGsVHYRe4mc1kn47
-dabSfrqQV1S1B3U6HhtVsZ4eF3kvxfiGkaGgyjr1Kwij5xkoAYW+HrYJf3N/lO5P
-kCl1OMYD/9HGpIZneXwp+765K5ja28fM/nXtlbwrBIyN7BlNuFXoKo1rVqWXmpQc
-9x/1s+zCXiDfKj9iX3gpEt4IrHmg1Q==
-=CYGX
------END PGP SIGNATURE-----
-
---DeugAER/HXv/4y4M--
+-- 
+With best wishes
+Dmitry
