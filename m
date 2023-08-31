@@ -2,76 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCAB578F0E7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 18:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF8478F0EC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 18:09:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344247AbjHaQIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 12:08:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48930 "EHLO
+        id S1345063AbjHaQJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 12:09:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242070AbjHaQIZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 12:08:25 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06671A3;
-        Thu, 31 Aug 2023 09:08:22 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37VF9loi009908;
-        Thu, 31 Aug 2023 11:08:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-        message-id:date:mime-version:subject:to:cc:references:from
-        :in-reply-to:content-type:content-transfer-encoding; s=
-        PODMain02222019; bh=bz3V/EyLgfL23DZaVfKZ/qv6E7Au5iTDNPzKtvGcP/g=; b=
-        K9n+ai4Ijb2tPM6j4UmzEAb//C0l49yHS23KoHHMspuWYaz07g0Fqm2Es8EIjBCP
-        A5clXWWFgidz25jbG5ph4mBibKwSW1JPIUSMvs79tuUy7j7iDEeOG+K5OkRmE8PW
-        WJtVhh9nl7s1DdqHh7wRQsXMDU9pF2DKlXHOKTAgZxsCsX+gqKfbCJGjcdEVFtj8
-        Uk1hTtJzfWOtIHpGIZQ0pxdEHr1ySMLMzZuvJ1Tix/UaP4LxThjqjAIE4ceqKup8
-        O0CFp6nDWBG7lWw5Z/oRrfp2Bm65EjwINyd5Ad05VM2EdCW7yjyLLZm9BRHadF72
-        iiHzPmMvXh9Cj53bHmPrpQ==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sqesyen1q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 11:08:04 -0500 (CDT)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 31 Aug
- 2023 17:08:02 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
- Transport; Thu, 31 Aug 2023 17:08:02 +0100
-Received: from [141.131.145.49] (vkarpovich-ThinkStation-P620.ad.cirrus.com [141.131.145.49])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id CE36511D4;
-        Thu, 31 Aug 2023 16:08:00 +0000 (UTC)
-Message-ID: <f3514c7b-ad99-b77b-fc61-87fdce7e414b@opensource.cirrus.com>
-Date:   Thu, 31 Aug 2023 11:08:00 -0500
+        with ESMTP id S1346725AbjHaQJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 12:09:01 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B72151BF;
+        Thu, 31 Aug 2023 09:08:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 55D23628FE;
+        Thu, 31 Aug 2023 16:08:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C508C433C8;
+        Thu, 31 Aug 2023 16:08:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693498136;
+        bh=VwM7qmZwL0LfwTXvw6CcC/Oxp23S2JlM/KwU31Hzoew=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=iBCnyJlQgDulXcpJ0ntNjLsU7W1O/3K0x4maauJR3MfubxUdi1RrWHl5v5juEiIKd
+         6j3syWmx7rqEQw64hx9myG2r2t1Kl2AA4gpvlLAGHCw6jQoojbU3nXgZ7FNdGX5ntY
+         8pOaVksk9XgEQGCjOhlVamswSuVixvRVpDv0D+8CktfjjNnOChGuJVIwp90DhdG+LP
+         dNpUHybVy03S6+oPWXblgF7fzMYx1l3dGhgb+cwuOoaedgg+2Bsysyan+KsCDKgd/5
+         LdGeLOjhNbovOTJitMzvd+ztJvrHNrBC2hVMsHOcKZuoe5tVTYricWeCSkUL9i9tCk
+         5MFUtL59dp2yg==
+Date:   Thu, 31 Aug 2023 17:08:51 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH v3 0/5] Add RZ/G2UL MTU3a support
+Message-ID: <20230831-iphone-muscular-7442cda2c39e@spud>
+References: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v2 1/4] ASoC: cs35l45: Checks index of cs35l45_irqs[]
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>
-CC:     "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>,
-        James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        "Takashi Iwai" <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20230830195536.448884-1-vkarpovi@opensource.cirrus.com>
- <737c4114-5b54-444c-8a6a-de4e98566513@sirena.org.uk>
- <5B0EB2A2-2048-4A71-A4A9-D5167C7AB5EC@opensource.cirrus.com>
- <d97094c6-1534-05ad-0452-c627d7c45802@opensource.cirrus.com>
- <def16e52-3ba9-475d-9d8f-63513c47a392@sirena.org.uk>
-From:   Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-In-Reply-To: <def16e52-3ba9-475d-9d8f-63513c47a392@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: qOpifSmRjr64Zloc_0OawHLTEoqigudO
-X-Proofpoint-GUID: qOpifSmRjr64Zloc_0OawHLTEoqigudO
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hDUORSrU7M6o6mlp"
+Content-Disposition: inline
+In-Reply-To: <20230727081848.100834-1-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,12 +63,52 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 8/31/23 11:05, Mark Brown wrote:
-> On Thu, Aug 31, 2023 at 04:22:52PM +0100, Richard Fitzgerald wrote:
->
->> I think Mark's comment is that the Signed-off-by chain doesn't match
->> the patch author. The s-o-b order implies that Ricardo wrote it and
->> Vlad is upstreaming it - but in that case this email should start with
->> a From: line to say that the author is Ricardo.
-> Yes, that's what I'm querying.
-Ok. I will update the author
+--hDUORSrU7M6o6mlp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jul 27, 2023 at 09:18:43AM +0100, Biju Das wrote:
+> This patch series aims to add MTU3a support for RZ/G2UL SMARC EVK.
+> Also it fixes overflow/underflow interrupt names.
+>=20
+> v2->v3:
+>  * Dropped patch#4, as it accepted for 6.5 fixes.
+>  * Moved patch#2 to patch#1 as it is fixes patch.
+>  * Added Rb tag from Geert for patch#1 and patch#3.
+>  * Updated the link to lore for Closes tag for patch#2.
+>  * Documented RZ/Five SoC as the same IP used in RZ/G2UL SoC.
+>=20
+> v1->v2:
+>  * Added Ack tags from Conor Dooley for binding patches
+>  * Updated commit description RZ/G2UL->RZ/{G2UL,Five} for patch#5.
+>  * Fixed build error reported by kernel test robot by replacing
+>    GIC_SPI x ->SOC_PERIPHERAL_IRQ(x) for patch#5.
+>=20
+> Biju Das (5):
+>   dt-bindings: timer: renesas,rz-mtu3: Fix overflow/underflow interrupt
+>     names
+>   dt-bindings: timer: renesas,rz-mtu3: Improve documentation
+>   dt-bindings: timer: renesas,rz-mtu3: Document RZ/{G2UL,Five} SoCs
+>   arm64: dts: renesas: r9a07g043: Add MTU3a node
+>   arm64: dts: renesas: rzg2ul-smarc: Add support for enabling MTU3
+
+I'm seeing dtbs_check issues in next & Linus' tree as the binding
+patches for this don't seem to have landed.
+What's the craic with getting them applied?
+
+Thanks,
+Conor.
+
+--hDUORSrU7M6o6mlp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPC7EwAKCRB4tDGHoIJi
+0vG2AQDOw1T5mt+KLqizXOrufBVI8DrfzfsP+8hF8JSCGpfslwEAuBks5VYsqIlM
+/pPHCvPcGg+EEYLeiQlkP8EXk93RiQ4=
+=mtLw
+-----END PGP SIGNATURE-----
+
+--hDUORSrU7M6o6mlp--
