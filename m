@@ -2,80 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB4A78F26E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:20:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FE0978F272
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346883AbjHaSUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 14:20:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42252 "EHLO
+        id S1346952AbjHaSUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 14:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346889AbjHaSUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:20:24 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B836EE64;
-        Thu, 31 Aug 2023 11:20:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S1346941AbjHaSUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:20:48 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B361E10D2
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 11:20:36 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 249E1B82347;
-        Thu, 31 Aug 2023 18:20:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DA0BC433C7;
-        Thu, 31 Aug 2023 18:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693506018;
-        bh=VMnBjyrMJOvmmAgU2WXJPR+bylx7hdXAwRuW/89n7us=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DuDRQpPJLpUetJX+eu1xAKM5tG6Nw3ZT2OB//CZahw4n25KWDRhYSpQW8Ko2pmTsM
-         f0H+bZKp8Ibnbs+cLX2bMC7p8tuNw8hXUkqeDhOxJexaMIbvWGpQ9+TdE09B4clgc/
-         9MNzk2bdlT6hBgPEbSSRsdQZOYDaluoErXaBRpQB7lldEiUasU629p4ufwq+QPM/ov
-         wcfJDuUdbF7YymifoaQchIBwu1ZGH9MLLxEOyjiQ7AWbpUvh6ZUslE7b5U2ZpOgmCw
-         crOol2oqxAkzCxIJ0d3hPqMDDj7GTjkkop1Vss5/jqqxus4GI3AEbJY7OjCxmvOcxr
-         Oxl2L0rOjoxEQ==
-Received: (nullmailer pid 2541286 invoked by uid 1000);
-        Thu, 31 Aug 2023 18:20:16 -0000
-Date:   Thu, 31 Aug 2023 13:20:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Vinod Koul <vkoul@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id F1E488657F;
+        Thu, 31 Aug 2023 20:20:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1693506035;
+        bh=DYM8np6O/uKKJDX7Sj7Ayqz8ikDeC7WdKgss4i9XgXM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IFb1QE0Xky9f9azWNFuE0iPH/QmKACrfsskADcQ8ZfyyAol2xfws5CNqvcmukhWcA
+         82J7RP1O75y+kUD26vlrULcDhHQ+52RG4ebwfR+9wzFfXUtE3o9mdubklMBpg/nWEP
+         D4yqaLV76St+bMI4UAJE89l+CeE9e/6vDcZqtCWWrGuuWZbSERguwYbhjAtNqunJiJ
+         tCYZ9/bi6NX+US6DkyKukerb41WvBhqQqMW6EemnY3VSbIjTyHPFxRdvcEc9qJIJC0
+         r1xtLuIPQpekeN1lunghNVRqzC40sbRkZgOmrIBye7f3E58qluQkzdYBmDhfDuEmdz
+         GnY+ruBCMljjw==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        dmaengine@vger.kernel.org,
-        Sai Prakash Ranjan <quic_saipraka@quicinc.com>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/7] dt-bindings: qcom: geni-se: Allow dma-coherent
-Message-ID: <169350601590.2541228.13173749815664428921.robh@kernel.org>
-References: <20230830-topic-8550_dmac2-v1-0-49bb25239fb1@linaro.org>
- <20230830-topic-8550_dmac2-v1-2-49bb25239fb1@linaro.org>
+        Magnus Damm <magnus.damm@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH 1/4] arm64: dts: imx8mp: Describe VDD_ARM run and standby voltage for DH i.MX8M Plus DHCOM SoM
+Date:   Thu, 31 Aug 2023 20:20:17 +0200
+Message-Id: <20230831182020.154863-1-marex@denx.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230830-topic-8550_dmac2-v1-2-49bb25239fb1@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Describe VDD_ARM (BUCK2) run and standby voltage in DT.
 
-On Wed, 30 Aug 2023 14:48:41 +0200, Konrad Dybcio wrote:
-> On SM8550, the QUP controller is coherent with the CPU.
-> Allow specifying that.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Marek Vasut <marex@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Acked-by: Rob Herring <robh@kernel.org>
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+index cb1953d14aa90..1644b56c3953d 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+@@ -293,6 +293,8 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
+ 			};
+ 
+ 			buck2: BUCK2 {	/* VDD_ARM */
++				nxp,dvs-run-voltage = <950000>;
++				nxp,dvs-standby-voltage = <850000>;
+ 				regulator-min-microvolt = <850000>;
+ 				regulator-max-microvolt = <1000000>;
+ 				regulator-ramp-delay = <3125>;
+-- 
+2.40.1
 
