@@ -2,273 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03BED78F040
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6FA78F062
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245074AbjHaP0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 11:26:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40780 "EHLO
+        id S1346622AbjHaPc7 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 31 Aug 2023 11:32:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240196AbjHaPZ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:25:59 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7EE87E50
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:25:56 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31c4d5bd69cso771565f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:25:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693495555; x=1694100355; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=d6znyQKCV8DafBmq+P0iqvg8LkmCAkhxHacNwGIHAdE=;
-        b=pVwKLqqiaSAFqang4Gtl2lH+IrGStVepPDktHzErhLw7EaJ+vAxRFFEnB60XaWxoqY
-         Ni+GMpr6obfFyfReCy+cJ/EwfqVwa8exsnKJoZvRgJ/nkVBbefhB8UlywaVMZhvfKiG/
-         9pEshq5yryYF5ToQpIv6aSI1rNgFIJursguh8DX6FKTz4TVugtNMdKOV6gxwY4fAsPvl
-         U/BHMhOgbvpk7S79oEWbgIm90CsNFl5y/95rRAP0Hqn6xvEoIjqOJriD/kQrHqHU9136
-         cCRbux8LS1EPPSA4nIXO+DCH/f3L+tk8g9rnVzSRNXmPp1+wGBG1YlPwBPj4nQF1bShf
-         juCQ==
+        with ESMTP id S1345989AbjHaPc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:32:59 -0400
+Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C40AE53;
+        Thu, 31 Aug 2023 08:32:56 -0700 (PDT)
+Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1ccb58b0099so538338fac.0;
+        Thu, 31 Aug 2023 08:32:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693495555; x=1694100355;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=d6znyQKCV8DafBmq+P0iqvg8LkmCAkhxHacNwGIHAdE=;
-        b=i9Mkh8zE/fR2E/wMy6UPhctYQYFJ/Ws6adRefP2BBMtpslR27pm21jmARnA9WmO5EB
-         j45+t8Y7yhFRx0Kvxr4zAMCGtCmJwVye34jvFK8nGRtLMJrQoU/3rafc7ntmsv3XeXVA
-         nts3BIVmT94l2t5NeLKRVgH/Ui24INP/qmalEWdr1bT47G4cF90j3qp/LGuihLFXv3w1
-         E0AiNly1Q60hcw9bORTCQKnjUzDQKZGe7OJTd5OQN1B+935Z8iTKwx/c7Kx/9sKlJokJ
-         14LQyz2Nn3V7N4kvDvrgJLTbxYjgT59N8o9wDplDD3orTXIHUSkd+PaXtGeSDPi6Cvt3
-         QBYg==
-X-Gm-Message-State: AOJu0YxnUu5Oy0DBj/PQPumJLASwLMDet9lHdRlrBqhvE47O334y8/rp
-        0WUYH/qGc2GlDGe8c3YJEWtCRw==
-X-Google-Smtp-Source: AGHT+IGqi6Zhg7O/e3nNg0h/YAXgrMhFBgTWmCrq5DFYHS6y7lj1ivdYRiX1hWZH0S5ZMRcWpnLT8w==
-X-Received: by 2002:a5d:44c5:0:b0:319:6b6c:dd01 with SMTP id z5-20020a5d44c5000000b003196b6cdd01mr4202339wrr.17.1693495554816;
-        Thu, 31 Aug 2023 08:25:54 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id o4-20020a5d4084000000b00317b0155502sm2546410wrp.8.2023.08.31.08.25.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Aug 2023 08:25:54 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 31 Aug 2023 17:25:49 +0200
-Subject: [PATCH] arm64: dts: qcom: split pmr735d into 2
+        d=1e100.net; s=20221208; t=1693495975; x=1694100775;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6hcrnB2F8lyWwzX7mYsHECAXPLOtvdjL4oOKYMjzocU=;
+        b=MRqM9Iee4AC9EJyRR8INNPgfUBbNBa7L/DUnGrPoNn7CfVSKk+dIh67hoCZueTIOkD
+         JG6Gq5O3SXjglN/h7r0xunzhRUndm1LXU/78xWK62txNfKO3f8pQV2+twTE+11KSaEAI
+         IpEzq+kTJoFoOkRmZUk2CClft8tI6SYzn61cdF02T2QpcZt6RfqBACxDP9mJUapog53f
+         FHct4POLGgbdoiSMOXG/u+3jOt7cfFc0GwvALifbUPJC1003Xi9pU7uq/brrWiG+ddOU
+         /BuWX2VWsSFQKmM/kGuFdz4v7Pe2p56Ntt2iBDHxj1ifq0SOB2oWv1itIL40qjNknTvk
+         izNg==
+X-Gm-Message-State: AOJu0Yz05b+cP9JpAvWNJd5rjIkg0BRAfUW8vW1oZcq3cEG1qC6h3x14
+        o9ha+5tNeVgXPXJ8wj0HtKYtqlugVdr8QQ==
+X-Google-Smtp-Source: AGHT+IFG8t8vslsXXzOxK4XZnMgpYmNNFSDISZkI96uF+tHXZ932RZ6N/kxPKYkv+dxy0j3XEfRnMg==
+X-Received: by 2002:a05:6870:1606:b0:1bf:a95:7a3f with SMTP id b6-20020a056870160600b001bf0a957a3fmr7354077oae.54.1693495975059;
+        Thu, 31 Aug 2023 08:32:55 -0700 (PDT)
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com. [209.85.161.52])
+        by smtp.gmail.com with ESMTPSA id s3-20020a4a5103000000b0056d361ca33fsm822979ooa.16.2023.08.31.08.32.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Aug 2023 08:32:54 -0700 (PDT)
+Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5738cb00eebso580399eaf.2;
+        Thu, 31 Aug 2023 08:32:54 -0700 (PDT)
+X-Received: by 2002:a05:6358:61c5:b0:139:c7cb:77b8 with SMTP id
+ x5-20020a05635861c500b00139c7cb77b8mr6505385rwx.20.1693495974703; Thu, 31 Aug
+ 2023 08:32:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230831-topic-sm8550-upstream-pmr735d-split-v1-1-98e632636415@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAPyw8GQC/x3NwQrCMAyA4VcZORvIVqqbryIeShc1YLeQdCKMv
- bvF43f5/x2cTdjh2u1g/BGXdWnoTx3kV1qejDI3w0BDoDH0WFeVjF7GGAk39WqcCmqxS4gzur6
- l4jTFTER8TpygldT4Id//5XY/jh9Y6I88dQAAAA==
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230825090518.87394-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230825090518.87394-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 31 Aug 2023 17:32:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVEBREj_Y-wQ=fRQu9mnYyCF6Ut7ZhvRkM0N6eWFXp0Qw@mail.gmail.com>
+Message-ID: <CAMuHMdVEBREj_Y-wQ=fRQu9mnYyCF6Ut7ZhvRkM0N6eWFXp0Qw@mail.gmail.com>
+Subject: Re: [PATCH v4] arm64: dts: renesas: rz-smarc-common: Use versa3 clk
+ for audio mclk
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4777;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=9fw5Mg+Da85nnJhVVEO1GAnxk4nSA+fneKHtZag2yj4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk8LEB2EbaTJ09Te/feC97tbyfSwS3tA6XVDNYmkAh
- z8J+H2SJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZPCxAQAKCRB33NvayMhJ0UTgD/
- 9pWE+/6Hjn/x0eUcC2yelmeWou5gRf/8Rp5garpQI4Cajod9jvC5wIYafGVSnBYuRzhIke0fwcv/a2
- /R4Lv0m4eZaU/LkYRcTJ5iz5PJSse6oQtq09F87SSteAe+3OA+v1p28jYC1v+FN7/IbNA5FHDNB1u9
- TafL2XLqgTs1zhRt/padMxVQl5G3eTxpn69DhYjzZDWFONH3XR++GEvH93wlpse+IEryuXB/YSZOYU
- RZb3j7X9RGTB4DwgPK7MvOqrVWXv8spn9r6fMWtlcnd9q+Alk/rRP1GvrYBI20kOcLvwWLTmzGmYgO
- PAW9sSmu5HHELHzcnZLe4kV7+z2EvLBQM6y6fevMR32OIaSMC+f8Yhj1sktcfdD2tJ5JokE/Ec7sRO
- 6wqgvrZpyM/vEbVT0WfTCMWzxhRMqV/x9SI054+uY9BvKICy15nI+dDNj0k9HaafP8yxGy9B8k3ycy
- iajF7y9hfwXKgWrS8nY4Z5dzZs0qhWfu6nUEZwTvEyBeA1D8SjcW38kHUnSKyPZzy7lq6DoI+602rD
- JU/8oejz73uLiJ2M8d+ee9h8jy9fGHtc6rA7FyVyZBilvXMC+EUsSRAtVnFFRsI+8HUldZ9SVkh+o8
- cHOpnYbyZq5NYWPS1MYrEBNiX++HZNixf/H9YRwJcTKnVzgccxgQEM50vmig==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The second PMR735D PMIC is not always presend on SM8550 based devices,
-split the pmr735d.dtsi file in two so boards files can only include the
-ones present on the platform.
+Hi Biju,
 
-Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../boot/dts/qcom/{pmr735d.dtsi => pmr735d_a.dtsi} | 45 -----------------
- arch/arm64/boot/dts/qcom/pmr735d_b.dtsi            | 59 ++++++++++++++++++++++
- arch/arm64/boot/dts/qcom/sm8550-mtp.dts            |  3 +-
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts            |  3 +-
- 4 files changed, 63 insertions(+), 47 deletions(-)
+On Fri, Aug 25, 2023 at 11:05 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Currently audio mclk uses a fixed clk of 11.2896MHz (multiple of 44.1kHz).
+> Replace this fixed clk with the programmable versa3 clk that can provide
+> the clocking to support both 44.1kHz (with a clock of 11.2896MHz) and
+> 48kHz (with a clock of 12.2880MHz), based on audio sampling rate for
+> playback and record.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v3->v4:
+>  * Dropped clock-output-names from dtsi files.
+>  * Updated example with dropping clock-output-names.
 
-diff --git a/arch/arm64/boot/dts/qcom/pmr735d.dtsi b/arch/arm64/boot/dts/qcom/pmr735d_a.dtsi
-similarity index 55%
-rename from arch/arm64/boot/dts/qcom/pmr735d.dtsi
-rename to arch/arm64/boot/dts/qcom/pmr735d_a.dtsi
-index 41fb664a10b3..37daaefe3431 100644
---- a/arch/arm64/boot/dts/qcom/pmr735d.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmr735d_a.dtsi
-@@ -28,27 +28,6 @@ trip1 {
- 				};
- 			};
- 		};
--
--		pmr735d-l-thermal {
--			polling-delay-passive = <100>;
--			polling-delay = <0>;
--
--			thermal-sensors = <&pmr735d_l_temp_alarm>;
--
--			trips {
--				trip0 {
--					temperature = <95000>;
--					hysteresis = <0>;
--					type = "passive";
--				};
--
--				trip1 {
--					temperature = <115000>;
--					hysteresis = <0>;
--					type = "hot";
--				};
--			};
--		};
- 	};
- };
- 
-@@ -77,28 +56,4 @@ pmr735d_k_gpios: gpio@8800 {
- 			#interrupt-cells = <2>;
- 		};
- 	};
--
--	pmr735d_l: pmic@b {
--		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
--		reg = <0xb SPMI_USID>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		pmr735d_l_temp_alarm: temp-alarm@a00 {
--			compatible = "qcom,spmi-temp-alarm";
--			reg = <0xa00>;
--			interrupts = <0xb 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
--			#thermal-sensor-cells = <0>;
--		};
--
--		pmr735d_l_gpios: gpio@8800 {
--			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
--			reg = <0x8800>;
--			gpio-controller;
--			gpio-ranges = <&pmr735d_l_gpios 0 0 2>;
--			#gpio-cells = <2>;
--			interrupt-controller;
--			#interrupt-cells = <2>;
--		};
--	};
- };
-diff --git a/arch/arm64/boot/dts/qcom/pmr735d_b.dtsi b/arch/arm64/boot/dts/qcom/pmr735d_b.dtsi
-new file mode 100644
-index 000000000000..3b470f6ac46f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmr735d_b.dtsi
-@@ -0,0 +1,59 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2022, Linaro Limited
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+/ {
-+	thermal-zones {
-+		pmr735d-l-thermal {
-+			polling-delay-passive = <100>;
-+			polling-delay = <0>;
-+
-+			thermal-sensors = <&pmr735d_l_temp_alarm>;
-+
-+			trips {
-+				trip0 {
-+					temperature = <95000>;
-+					hysteresis = <0>;
-+					type = "passive";
-+				};
-+
-+				trip1 {
-+					temperature = <115000>;
-+					hysteresis = <0>;
-+					type = "hot";
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+
-+&spmi_bus {
-+	pmr735d_l: pmic@b {
-+		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
-+		reg = <0xb SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		pmr735d_l_temp_alarm: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <0xb 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pmr735d_l_gpios: gpio@8800 {
-+			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmr735d_l_gpios 0 0 2>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-index f29cce5186ac..a0d7d6eba0c6 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-mtp.dts
-@@ -13,7 +13,8 @@
- #include "pm8550ve.dtsi"
- #include "pm8550vs.dtsi"
- #include "pmk8550.dtsi"
--#include "pmr735d.dtsi"
-+#include "pmr735d_a.dtsi"
-+#include "pmr735d_b.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. SM8550 MTP";
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index 2c09ce8aeafd..afee755c075a 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -14,7 +14,8 @@
- #include "pm8550ve.dtsi"
- #include "pm8550vs.dtsi"
- #include "pmk8550.dtsi"
--#include "pmr735d.dtsi"
-+#include "pmr735d_a.dtsi"
-+#include "pmr735d_b.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. SM8550 QRD";
+Thanks for the update!
 
----
-base-commit: a47fc304d2b678db1a5d760a7d644dac9b067752
-change-id: 20230831-topic-sm8550-upstream-pmr735d-split-995c000e6aea
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> @@ -105,6 +105,26 @@ &i2c3 {
+>
+>         status = "okay";
+>
+> +       versa3: versa3@68 {
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+clock-generator@ (everywhere)
 
+> +               compatible = "renesas,5p35023";
+> +               reg = <0x68>;
+> +               #clock-cells = <1>;
+> +               clocks = <&x1>;
+> +
+> +               renesas,settings = [
+> +                       80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
+> +                       00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
+> +                       80 b0 45 c4 95
+> +               ];
+> +
+> +               assigned-clocks = <&versa3 0>, <&versa3 1>,
+> +                                 <&versa3 2>, <&versa3 3>,
+> +                                 <&versa3 4>, <&versa3 5>;
+> +               assigned-clock-rates = <24000000>, <11289600>,
+> +                                      <11289600>, <12000000>,
+> +                                      <25000000>, <12288000>;
+> +       };
+
+Please move this node down, to preserve sort order (by unit-address).
+
+Same comments arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+
+Unless we're gonna need a new iteration for some other reason (the
+corresponding fixes for the clock index order are not yet in linux-next),
+I can fix the above while applying...
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
