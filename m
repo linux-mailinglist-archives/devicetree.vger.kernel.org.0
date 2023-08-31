@@ -2,209 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE1D78E543
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 06:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AFC478E570
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 06:33:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234915AbjHaEGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 00:06:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43436 "EHLO
+        id S234138AbjHaEdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 00:33:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233848AbjHaEGf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 00:06:35 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 992CFA1;
-        Wed, 30 Aug 2023 21:06:32 -0700 (PDT)
-X-UUID: c13e8eae47b311ee9cb5633481061a41-20230831
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=Hac1eOr0HMqvjUkNqmT/hwInrwdrbDUqtSKUfCEWDkk=;
-        b=K8/+j9y0HlkqJLI+dKBUy77VXuKbbAAeqYleE1aDlfpqFgcVFOx9duBZS/Lhn7PCamCOPM7YSc1GMPweIf6V1gezfqhhYi7cYb52ugwszdqbv5vPWlN06bsIBregxFW8Q6h8Yy+SFrHNBiDB3CLfLgzZr1+SsQqmetTy41wypZo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:fc58b336-9926-46f5-8033-7a266f63a0aa,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:2469f21f-33fd-4aaa-bb43-d3fd68d9d5ae,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: c13e8eae47b311ee9cb5633481061a41-20230831
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 765949934; Thu, 31 Aug 2023 12:06:26 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 31 Aug 2023 12:06:25 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Thu, 31 Aug 2023 12:06:24 +0800
-Message-ID: <3fb9999c-9bdb-d81a-73cc-3f15749521c8@mediatek.com>
-Date:   Thu, 31 Aug 2023 12:06:21 +0800
+        with ESMTP id S231208AbjHaEdF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 00:33:05 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA697C0;
+        Wed, 30 Aug 2023 21:33:02 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id 98e67ed59e1d1-26b41112708so313113a91.3;
+        Wed, 30 Aug 2023 21:33:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693456382; x=1694061182; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9WmUrUqdBQLctGxnIomaEYA9Qf5elBgZRtmHeFAg/fw=;
+        b=IeUxpCYVp9NF8MR2AojVLjOAAqJIbPogUaWLrwdEl9SdNlg6rkVrFxRQaMUrWMyzCd
+         ZaH+nwDn0303wLR5Y9eENiWhENUwAN65X1Lg6f5vWj6dVN6/3bQIRCxes4iLniY3BI/7
+         +4QM93SlL6kzefDyFuYr9vp9NalVQb20cb6EqIRnKejYL3AkN5ePUxl+dLCS6PQC0Est
+         cUVGEpbpYohbF+Gv9m04LuEv86U85ioMNOh9eJ3oGq85gCjdJY0LbSpQQaTZOJh7c2n2
+         ZAZOWi9lXkvFWMa5Vki+dMyHOak/+HZ45vEXukK5H0KWNpYNVlz75Ydb65JV2swLGpLe
+         sPqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693456382; x=1694061182;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9WmUrUqdBQLctGxnIomaEYA9Qf5elBgZRtmHeFAg/fw=;
+        b=DETe27HhhBpfz7V8JGikuf+KQXfUSRQwKP94vmhc5q2YZF4MZu6hbQ//+LZmhDzg6z
+         fzE3hSr12lIjRNnyoWI8E7k+ia+ciOBIm2n+mS8TXht7qxFuLMVXdo5A10ythDhFrtpT
+         9sJvtQKF2rT4u6Gc+U6sDCyQ5njj1KYEBpevrnoiF82C15UUEAOcmEr3tAju64XA4Ox8
+         8Cf8Sg+4ZoCzOOQknlqu517knJwJr/Mo+mHmrt4exqajBwVWtPqKt+OGblMOovG2W0Un
+         bvRQtXMQoluoiIx621of/5OnqDEgwPZYMvN9KRwEb+B6YRbe43oW5iiPb75qYTRCbtKD
+         331g==
+X-Gm-Message-State: AOJu0Yz9xQFEtZgVQ2EqbS5rlvL+y/7KGTmDbcWlZdOYU9TIJOdDO4+p
+        oid5BgqzPwnUbkcPP18j5cC4+sXuICpEgoDk91O7OX/a3q7W/A==
+X-Google-Smtp-Source: AGHT+IFyU5b7WMPdNa3waS6j7IAdUPn2DL26wcw0UMhQyEpUPB8ZOZx8GgRUXNTqeyxE/ztbhev6r1BWZs3ERh2Z4Fo=
+X-Received: by 2002:a17:90b:1647:b0:268:14d7:bc34 with SMTP id
+ il7-20020a17090b164700b0026814d7bc34mr4153557pjb.20.1693456381992; Wed, 30
+ Aug 2023 21:33:01 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 4/4] arm64: dts: mediatek: mt8195-demo: simplify mt6360
- nodes
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
+References: <20230508114236.8444-1-marex@denx.de> <CAHCN7xJGMkf3MZWK5NqtUxnSTRaZdL-8f3ngUsOUKEdOmdUvXw@mail.gmail.com>
+ <d99a1da1-1486-a4e6-c377-87effd3fd1bc@denx.de> <CAHCN7xKGowhQbBDdnOKgcBptsM1VzD7YJB=ZAbL1Oge4rgnLUg@mail.gmail.com>
+ <c8ab4eaa-20de-a586-0074-64cfe588a746@denx.de>
+In-Reply-To: <c8ab4eaa-20de-a586-0074-64cfe588a746@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Wed, 30 Aug 2023 23:32:49 -0500
+Message-ID: <CAHCN7xJ2Pxz4jB1EQbhA-tOMFheVWcWyXB53dW7sRvj0D2xi=Q@mail.gmail.com>
+Subject: Re: [PATCH v8 1/2] arm64: dts: imx8mp: Add SAI, SDMA, AudioMIX
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org, Peng Fan <peng.fan@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Abel Vesa <abelvesa@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Richard Cochran <richardcochran@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "Fabien Parent" <fparent@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
- <20230830111532.9048-1-macpaul.lin@mediatek.com>
- <20230830111532.9048-4-macpaul.lin@mediatek.com>
- <657fcef0-8e15-0bdd-b91c-9a172e2ad391@linaro.org>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <657fcef0-8e15-0bdd-b91c-9a172e2ad391@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/23 19:30, Krzysztof Kozlowski wrote:
-> 	
-> 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
-> 
-> On 30/08/2023 13:15, Macpaul Lin wrote:
->> The dts file for the MediaTek MT8195 demo board has been refactored
->> to improve the configuration of the MT6360 multi-function PMIC.
->> 
->> The changes include:
->>  - Addition of the mt6360.dtsi include file, which contains the common
->>    configuration of the MT6360 for all mt8195 boards.
->>  - Removal of the direct inclusion of the mt6360-regulator.h file.
->>  - Removal of the common configuration of the MT6360 PMIC since
->>    the included mt6360.dtsi is used.
->>  - Add names according to the schematic of mt8195-demo board for
->>    mt6360 nodes.
->> 
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>  arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 173 ++++++++-----------
->>  1 file changed, 74 insertions(+), 99 deletions(-)
->> 
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->> index 8aea6f5d72b3..d082d679dbbe 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
->> @@ -11,7 +11,6 @@
->>  #include <dt-bindings/gpio/gpio.h>
->>  #include <dt-bindings/input/input.h>
->>  #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
->> -#include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
->>  
->>  / {
->>  model = "MediaTek MT8195 demo board";
->> @@ -130,103 +129,9 @@
->>  mt6360: pmic@34 {
->>  compatible = "mediatek,mt6360";
->>  reg = <0x34>;
->> -interrupt-controller;
->> +pinctrl-0 = <&mt6360_pins>;
->> +pinctrl-names = "default";
->>  interrupts-extended = <&pio 101 IRQ_TYPE_EDGE_FALLING>;
->> -interrupt-names = "IRQB";
->> -
->> -charger {
->> -compatible = "mediatek,mt6360-chg";
->> -richtek,vinovp-microvolt = <14500000>;
->> -
->> -otg_vbus_regulator: usb-otg-vbus-regulator {
->> -regulator-compatible = "usb-otg-vbus";
->> -regulator-name = "usb-otg-vbus";
->> -regulator-min-microvolt = <4425000>;
->> -regulator-max-microvolt = <5825000>;
->> -};
->> -};
->> -
->> -regulator {
->> -compatible = "mediatek,mt6360-regulator";
->> -LDO_VIN3-supply = <&mt6360_buck2>;
->> -
->> -mt6360_buck1: buck1 {
-> 
-> Your patchset does not look bisectable. Does not look tested, either...
-> Why having duplicated regulators (?) and then removing correct
-> regulators and keeping wrong ones?
-> 
->> -regulator-compatible = "BUCK1";
->> -regulator-name = "mt6360,buck1";
->> -regulator-min-microvolt = <300000>;
->> -regulator-max-microvolt = <1300000>;
->> -regulator-allowed-modes = <MT6360_OPMODE_NORMAL
->> -   MT6360_OPMODE_LP
->> -   MT6360_OPMODE_ULP>;
->> -regulator-always-on;
->> -};
-> 
-> ...
-> 
->>  };
->>  };
->>  
->> @@ -259,8 +164,8 @@
->>  cap-sd-highspeed;
->>  sd-uhs-sdr50;
->>  sd-uhs-sdr104;
->> -vmmc-supply = <&mt6360_ldo5>;
->> -vqmmc-supply = <&mt6360_ldo3>;
->> +vmmc-supply = <&mt6360_vmch_pmu_ldo5_reg>;
->> +vqmmc-supply = <&mt6360_vmc_pmu_ldo3_reg>;
->>  status = "okay";
->>  };
->>  
->> @@ -300,6 +205,67 @@
->>  regulator-always-on;
->>  };
->>  
->> +#include "mt6360.dtsi"
-> 
-> Includes are in the top part of the DTS. Sometimes bottom, but never in
-> the middle.
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+On Wed, Aug 30, 2023 at 3:50=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+>
+> On 8/30/23 21:59, Adam Ford wrote:
+> > On Wed, Aug 30, 2023 at 2:10=E2=80=AFPM Marek Vasut <marex@denx.de> wro=
+te:
+> >>
+> >> On 8/30/23 04:44, Adam Ford wrote:
+> >>
+> >> Hi,
+> >>
+> >>> I have a question about the clocking for eASRC and PDM.
+> >>>
+> >>>> +
+> >>>> +                       audio_blk_ctrl: clock-controller@30e20000 {
+> >>>> +                               compatible =3D "fsl,imx8mp-audio-blk=
+-ctrl";
+> >>>> +                               reg =3D <0x30e20000 0x10000>;
+> >>>> +                               #clock-cells =3D <1>;
+> >>>> +                               clocks =3D <&clk IMX8MP_CLK_AUDIO_RO=
+OT>,
+> >>>> +                                        <&clk IMX8MP_CLK_SAI1>,
+> >>>> +                                        <&clk IMX8MP_CLK_SAI2>,
+> >>>> +                                        <&clk IMX8MP_CLK_SAI3>,
+> >>>> +                                        <&clk IMX8MP_CLK_SAI5>,
+> >>>> +                                        <&clk IMX8MP_CLK_SAI6>,
+> >>>> +                                        <&clk IMX8MP_CLK_SAI7>;
+> >>>> +                               clock-names =3D "ahb",
+> >>>> +                                             "sai1", "sai2", "sai3"=
+,
+> >>>> +                                             "sai5", "sai6", "sai7"=
+;
+> >>>> +                               power-domains =3D <&pgc_audio>;
+> >>>> +                       };
+> >>>> +               };
+> >>>> +
+> >>>
+> >>> I am trying to plumb in the micfil driver with a PDM microphone on a
+> >>> Plus.  I have SAI3 and SAI5 audio working, but if I try to use the
+> >>> micfil, the PDM clock doesn't get turned on, and the micfil doesn't
+> >>> appear to see anything coming in.  I was curious why the
+> >>> audio_blk_ctrl has clock entries for IMX8MP_CLK_SAIx, but there isn't
+> >>> one for the PDM nor the ASRC clocks.
+> >>
+> >> I only ever needed SAI, so that was what was tested on the EVK .
+> >
+> > That makes sense.
+> >
+> >>
+> >>> I added the MICFIL noted to the
+> >>> 8mp in a previous patch [1], and I am trying to customize the MICFIL
+> >>> node as follows:
+> >>>
+> >>> &micfil {
+> >>> #sound-dai-cells =3D <0>;
+> >>> pinctrl-names =3D "default";
+> >>> pinctrl-0 =3D <&pinctrl_pdm>;
+> >>> assigned-clocks =3D <&clk IMX8MP_CLK_PDM>;
+> >>> assigned-clock-parents =3D <&clk IMX8MP_AUDIO_PLL1_OUT>;
+> >>> assigned-clock-rates =3D <196608000>;
+> >>> status =3D "okay";
+> >>> };
+> >>>
+> >>> I also noticed in the down-stream kernel, the pdm_ipg_clk and
+> >>> pdm_root_clk are shared gates with separate parents.
+> >>>
+> >>> The PDM tree of the down-stream kernel looks like this:
+> >>>    audio_pll1_ref_sel                0        0        0    24000000
+> >>>        0     0  50000         Y
+> >>>          audio_pll1                     0        0        0   3932160=
+00
+> >>>           0     0  50000         Y
+> >>>             audio_pll1_bypass           0        0        0   3932160=
+00
+> >>>           0     0  50000         Y
+> >>>                audio_pll1_out           0        0        0   3932160=
+00
+> >>>           0     0  50000         N
+> >>>                   pdm                   0        0        0   1966080=
+00
+> >>>           0     0  50000         N
+> >>>                      pdm_root           0        0        0   1966080=
+00
+> >>>           0     0  50000         N
+> >>>                         pdm_sel         0        0        0   1966080=
+00
+> >>>           0     0  50000         Y
+> >>>                            pdm_root_clk       0        0        0
+> >>> 196608000          0     0  50000         N
+> >>>
+> >>> The PDM tree of the mainline looks like this:
+> >>>
+> >>>      audio_pll1_ref_sel                0        0        0    2400000=
+0
+> >>>          0     0  50000         Y
+> >>>          audio_pll1                     0        0        0   3932160=
+00
+> >>>           0     0  50000         Y
+> >>>             audio_pll1_bypass           0        0        0   3932160=
+00
+> >>>           0     0  50000         Y
+> >>>                audio_pll1_out           0        0        0   3932160=
+00
+> >>>           0     0  50000         N
+> >>>                   pdm                   0        0        0   1966080=
+00
+> >>>           0     0  50000         N
+> >>>                      pdm_root           0        0        0   1966080=
+00
+> >>>           0     0  50000         N
+> >>>                         pdm_sel         0        0        0   1966080=
+00
+> >>>           0     0  50000         Y
+> >>>
+> >>> It seems like the "pdm_root_clk" generated by the shared audo-blk
+> >>> down-sream driver is missing from the mainline.  I looked up the cloc=
+k
+> >>> I referenced when I attempted to enable the miffil, but
+> >>> 'IMX8MP_CLK_AUDIOMIX_PDM_ROOT doesn't appear to be configured in
+> >>> either clk-imx8mp.c or clk-imx8mp-audiomix.c.  Maybe it's obscured by
+> >>> the macros, but it seems like the pdm_sel should somehow have an
+> >>> additional variable for the shared clock and an additional clock like
+> >>> pdm_root_clk assigned with it.
+> >>>
+> >>> I have similar configurations for Mini and Nano, and both of them are
+> >>> able to record audio, so I think there might be a clock issue
+> >>> somewhere related to the audiomix driver, and not a misconfiguration
+> >>> of the sound-card or the micfil itself.
+> >>
+> >> Shouldn't the micfil be somehow a consumer of the pdm_sel clock , and
+> >> enable those clock in the driver ?
+> >
+> > Micfil references IMX8MP_CLK_AUDIOMIX_PDM_IPG, and
+> > IMX8MP_CLK_AUDIOMIX_PDM_ROOT.  I am not convinced the
+> > IMX8MP_CLK_AUDIOMIX_PDM_ROOT exists beyond a #define in an include
+> > directory.  I tried making it use pdm_sel, but it threw an error.  I
+> > am not near my system, so I'm sorry I don't have more details.
+> >
+> > In the downstream kernel IMX8MP_CLK_AUDIOMIX_PDM_ROOT was a child of
+> > pdm_sel, but I am not certain as to what the difference between them
+> > was since they appeared to be shared.
+>
+> The pdm_sel is definitely a mux . Is there a follow-up gate after the mux=
+ ?
 
-MT6360 is an external component controlled by I2C.
-On some mt8195 boards, it is connected to I2C6.
-But on some smart phone boards, they are connected to I2C5.
-I agree to put the includes in the top or in the bottom,
-but it to include I2C node together in mt6360.dtsi will be necessary
-to avoid build error. It might introduce mt6360-i2c5.dtsi
-or mt6360-i2c6.dtsi in the future.
+Not that I could see.  I think I was just overthinking it.  I saw the
+IMX8MP_CLK_AUDIOMIX_PDM_ROOT in mx8mp-clock.h which matched the
+reference in the downstream kernel, so I was expecting that to be the
+same clock name.  When it didn't work, I thought I was missing
+something because I only saw the pdm_sel mux and no direct reason or
+reference to IMX8MP_CLK_AUDIOMIX_PDM_ROOT.  I have it working now.
+Sorry for the noise.  I'll get my series cleaned up and push another
+revision to add micfil node to the 8mp, and I'll probably remove the
+IMX8MP_CLK_AUDIOMIX_PDM_ROOT imx8mp-clock.h so it doesn't throw
+someone else off.
 
-I think the better approach is to expand the common nodes in the board's 
-dts, rather than organizing them into dtsi.
+I appreciate your input.
 
-Please drop these 2 patches for adding mt6360.dtsi and modification for 
-mt8195-demo.dts (patch 3/4 and 4/4) for the patch set.
-
-Thanks for the review. :)
-Macpaul Lin
-
+adam
