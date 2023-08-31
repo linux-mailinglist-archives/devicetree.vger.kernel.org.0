@@ -2,112 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE2D78F259
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E2CF78F264
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 20:19:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345265AbjHaSQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 14:16:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36370 "EHLO
+        id S1346150AbjHaSTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 14:19:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344964AbjHaSQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:16:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4166E61;
-        Thu, 31 Aug 2023 11:16:39 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S1345837AbjHaSTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 14:19:08 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1A5E5F
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 11:19:05 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 45A1C6198B;
-        Thu, 31 Aug 2023 18:16:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EF99C433C8;
-        Thu, 31 Aug 2023 18:16:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693505798;
-        bh=XeZVeiYpBVcPEbHL4neQaU/M5IGVLY/U/Mj6DQ6GalA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=MqnDV9Oczcpv+5UwkALr3OsvzNOZZJhiZzRapdSmN3ePWjI0ztjUyQ42UFFLib/UI
-         mnpfFfAVYbqLCExTU39BH0HKS4ALEnhyq5tGWxqQxAmFLZtA3vzoVti6K1QqwyYB//
-         Pwv2zsXslmdJX6pHVfqoHYfF5hsBoDvReiJQyfn0IdGFWBB3HOnIAxIPP2JBghJF/O
-         x1dKf/cX/wjJBiHcv+4oBfmmvWENJt4n/0fhQbS3tWCYvrelh8BhvvEEs30hNM7lCh
-         janYTlSKR3mvk32K+yv0d2eUVYpi2khOzMYNat+rUkg4ayABGmCQAgnjRrj+djCFMv
-         mtTYeyjqjDIDA==
-Received: (nullmailer pid 2536101 invoked by uid 1000);
-        Thu, 31 Aug 2023 18:16:36 -0000
-Date:   Thu, 31 Aug 2023 13:16:36 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     MD Danish Anwar <danishanwar@ti.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Simon Horman <horms@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 045B28657F;
+        Thu, 31 Aug 2023 20:19:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1693505944;
+        bh=0vq7U9ahQbn5++0JCoB6Yven74OnzmzEp+meMbnxNII=;
+        h=From:To:Cc:Subject:Date:From;
+        b=al15NfXKeJxJdrGieyLqID+FW6XJiFCVzDSzo4d34AhOAswUSz/037ZNRwI+pE2sJ
+         +V0kkWEyKzzc6151pr+nHgMZIjiEC0lYalXvxMQsIY768AtnkPAVtSnu+t3tB4OXVJ
+         w+VbPK+gVMuMzIxjDlN6PFZgVuX8erO9sYvysg2PH2QDXEeSxQ2doez6ILsgrdgaAb
+         Xs8vvNixLBUAY9vDx+wGZ0ghnr+1PTQHjvxmoN2uL+9CD3Zap7aYfIFZKAsPGaJmPg
+         7jE/xmEdGxaNxDTrT74vfzZB/dfM3c3WBjpusoy/Be+oNGWHvY5jossKR/uiVR5XEV
+         JutchkhPlAaaA==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     Marek Vasut <marex@denx.de>, Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
-Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add documentation for
- Half duplex support.
-Message-ID: <20230831181636.GA2484338-robh@kernel.org>
-References: <20230830113134.1226970-1-danishanwar@ti.com>
- <20230830113134.1226970-2-danishanwar@ti.com>
+        Magnus Damm <magnus.damm@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mp: Describe VDD_ARM run and standby voltage for Data Modul i.MX8M Plus eDM SBC
+Date:   Thu, 31 Aug 2023 20:18:50 +0200
+Message-Id: <20230831181850.154813-1-marex@denx.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230830113134.1226970-2-danishanwar@ti.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 05:01:33PM +0530, MD Danish Anwar wrote:
-> In order to support half-duplex operation at 10M and 100M link speeds, the
-> PHY collision detection signal (COL) should be routed to ICSSG
-> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
-> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
-> property, "ti,half-duplex-capable" is introduced for this purpose. If
-> board has PHY COL pin conencted to PRGx_PRU1_GPIO10, this DT property can
-> be added to eth node of ICSSG, MII port to support half duplex operation at
-> that port.
+Describe VDD_ARM (BUCK2) run and standby voltage in DT.
 
-I take it the GPIO here is not visble to the OS and that's why it's not 
-described in DT?
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Marek Vasut <marex@denx.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
+index 13674dc64be9d..d98a040860a48 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-data-modul-edm-sbc.dts
+@@ -362,6 +362,8 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
+ 			};
  
-> 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
-> ---
->  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> index 13371159515a..59da9aeaee7e 100644
-> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
-> @@ -107,6 +107,13 @@ properties:
->                phandle to system controller node and register offset
->                to ICSSG control register for RGMII transmit delay
->  
-> +          ti,half-duplex-capable:
+ 			buck2: BUCK2 {	/* VDD_ARM */
++				nxp,dvs-run-voltage = <950000>;
++				nxp,dvs-standby-voltage = <850000>;
+ 				regulator-min-microvolt = <850000>;
+ 				regulator-max-microvolt = <1000000>;
+ 				regulator-ramp-delay = <3125>;
+-- 
+2.40.1
 
-capable or...
-
-> +            type: boolean
-> +            description:
-> +              Enable half duplex operation on ICSSG MII port. This requires
-
-enable the mode?
-
-Maybe too late if it's already been assumed not supported, but shouldn't 
-supporting half duplex be the default? I guess half duplex isn't too 
-common any more.
-
-Rob
