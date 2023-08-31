@@ -2,171 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C030D78EDA3
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F8E878EE01
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 15:02:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345046AbjHaMv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:51:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46438 "EHLO
+        id S243277AbjHaNC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 09:02:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344929AbjHaMvy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:51:54 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DAE2CED;
-        Thu, 31 Aug 2023 05:51:51 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37VAuBrw002980;
-        Thu, 31 Aug 2023 12:50:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=CyDKngw7AJLG5s8qNp7PT2cES7mIUxD9uyDeFb/Prwg=;
- b=TOCmCnljmv6wQmfnlZtAFKYxXxwhX6NQSqbdTT0Xdcdie7+tEwpNBRVi6qyAz9C6Odx1
- RALuE2LWon4e5jsJBBagfTmGj+oNmuSsv0Nv2UCdxhBh4MJyDlKuujBDCIIIXU6ORv3T
- BquKy9T0NCLiW+Fnei4J3a54Iff6lhf9Cws0k3qsI+PpLcDaP2LU9x8iad8SGVGx7VfX
- o5ffDrZRpHo9hWInNkCw4GqTTpSkWgVvP9huVfPis1OD4wKU/FHeOIGe18rt3XkE5eS3
- c+245i+sR+5DFs82qvEm58hZGNngHfunBWQ6tAAUjrJKMMNubGOJAWuCkvr5xIK8BTcL jg== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stku28um6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 12:50:58 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VCouVH025260
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 12:50:56 GMT
-Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 31 Aug
- 2023 05:50:47 -0700
-Message-ID: <da4d6f20-650b-44e0-a319-2a1c8db65a2f@quicinc.com>
-Date:   Thu, 31 Aug 2023 18:20:44 +0530
+        with ESMTP id S229716AbjHaNC5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 09:02:57 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B857E54;
+        Thu, 31 Aug 2023 06:02:52 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1cc69d1f9b1so149498fac.1;
+        Thu, 31 Aug 2023 06:02:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693486971; x=1694091771; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=omTIcvMAzt4T+uKQ/8Elpf5Oymi8x72R/c1fzEu2FxU=;
+        b=sKJtxX0KZ8WU7YKFqTH53PdA8ZyU/uuMuIyrOWGhoFR+EFHDAU2K+sqKsW9fEY0slX
+         cPHfgX/+HbitChEdeix4iAjZitU2vBWhYrcETNcdqo/UqWwa6eRItpEjELLo3yZqKuBB
+         cW2fF6b1FOJ9NhATmil1mZERsl2wBGd0cZkStQ3U1WKk/4EsAFfxbTGXU0ZvjEWtrvRs
+         LHkopSCoJjs3sBvZA5/EWYXMQXYtNFAPCVeowGKLlLCM8bT7Z49tx/KbOA5258teO9PC
+         2A5XmB5QUhi+AUoDJF4o+W49NxIIT7vhQ7EEeRIwSWrBWPBtE8plmxcoIk5Hal0Lh44N
+         9P4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693486971; x=1694091771;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=omTIcvMAzt4T+uKQ/8Elpf5Oymi8x72R/c1fzEu2FxU=;
+        b=NgRu8xPS82H+IQIJBDumDz3SJowwkHTsyboBQ79FnLqFbIB0ILyEqr/8c6csNKRI3k
+         +9ueuAoS0Eh3JhSHBv3Iv6qz8h8S/iN11a3Am9Bud5AE6FdwrZ0tBF+ncChbhMXABfNS
+         0FJQO/++y4exaQ+Ese9lxbWyWHgYttzNybEe7RMknFAKoi4C6N6S0queXiTq4gC5PCUs
+         Ih1DCnyhwTkVlbP8/amY0/2VzHqsS2Vj5iftF3H9kYTlXaTQq1QNRvvBwbCWRGzWKigU
+         I3lmNPD2jorCsCUw7C9Rlz3nQOW4byYdOhAiAqWzNE7nrwcIOjbUszVByuwzrkX0136V
+         1+TQ==
+X-Gm-Message-State: AOJu0Yy4xK1sX5k/F/3SQ6LJs1us88QcchFYfQUkdwvIy6LWTXhH72jq
+        RVpvrp0b7o9UEKir2fZIMGI=
+X-Google-Smtp-Source: AGHT+IEF5yOFMNIe9c1prdEEOUCGWI9g+SkAzt464rq1BAKEX+giD1VS3xPJoM/RXcdBn7rqcVF4mg==
+X-Received: by 2002:a05:6870:2381:b0:1c8:d305:5fac with SMTP id e1-20020a056870238100b001c8d3055facmr5563638oap.4.1693486971545;
+        Thu, 31 Aug 2023 06:02:51 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:583a:68ca:f232:6448])
+        by smtp.gmail.com with ESMTPSA id zh26-20020a0568716b9a00b001bfd65998aesm802155oab.58.2023.08.31.06.02.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Aug 2023 06:02:50 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     rafael@kernel.org
+Cc:     daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
+        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v7 1/3] dt-bindings: thermal-zones: Document critical-action
+Date:   Thu, 31 Aug 2023 10:02:40 -0300
+Message-Id: <20230831130242.2290502-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY
- to UNIPHY
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     <robert.marko@sartura.hr>, <luka.perkov@sartura.hr>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
-        <rafal@milecki.pl>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>
-References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
- <20230829135818.2219438-2-quic_ipkumar@quicinc.com>
- <CAA8EJpqA-poJ9=XKJa2s=yZUGbBbgOqgiDC-q9skJzBqLux84g@mail.gmail.com>
- <73879012-581d-47fb-b741-577c90b31dfb@quicinc.com>
- <CAA8EJpr3PJtvyYKRPqT=hO4sUd4oOjTvOjD3kOqffbjzHdByAw@mail.gmail.com>
- <4e9a43c5-43ec-4a07-9053-366a517f5c54@quicinc.com>
- <CAA8EJpofAM4deqg1H_WSh2uJavTEXQC5x=26P1FLAUgJcT7yOg@mail.gmail.com>
-From:   Praveenkumar I <quic_ipkumar@quicinc.com>
-In-Reply-To: <CAA8EJpofAM4deqg1H_WSh2uJavTEXQC5x=26P1FLAUgJcT7yOg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: qLGZKs3xMkP265zERQ66jxIxoB6pX4Ze
-X-Proofpoint-ORIG-GUID: qLGZKs3xMkP265zERQ66jxIxoB6pX4Ze
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-31_11,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- lowpriorityscore=0 mlxscore=0 malwarescore=0 spamscore=0 phishscore=0
- bulkscore=0 priorityscore=1501 adultscore=0 suspectscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2308310114
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Fabio Estevam <festevam@denx.de>
 
-On 8/31/2023 6:04 PM, Dmitry Baryshkov wrote:
-> On Thu, 31 Aug 2023 at 15:30, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->>
->> On 8/31/2023 5:47 PM, Dmitry Baryshkov wrote:
->>> On Thu, 31 Aug 2023 at 14:54, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->>>> On 8/29/2023 7:49 PM, Dmitry Baryshkov wrote:
->>>>> On Tue, 29 Aug 2023 at 16:59, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->>>>>> UNIPHY / Combo PHY used on various qualcomm SoC's are very similar to
->>>>>> ipq4019 PHY. Hence renaming this dt-binding to uniphy dt-binding and
->>>>>> can be used for other qualcomm SoCs which are having similar UNIPHY.
->>>>>>
->>>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->>>>>> ---
->>>>>>     .../phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml}  | 9 +++++++--
->>>>>>     1 file changed, 7 insertions(+), 2 deletions(-)
->>>>>>     rename Documentation/devicetree/bindings/phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml} (78%)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
->>>>>> similarity index 78%
->>>>>> rename from Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
->>>>>> rename to Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
->>>>>> index 09c614952fea..cbe2cc820009 100644
->>>>>> --- a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
->>>>>> @@ -1,13 +1,18 @@
->>>>>>     # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>>>     %YAML 1.2
->>>>>>     ---
->>>>>> -$id: http://devicetree.org/schemas/phy/qcom-usb-ipq4019-phy.yaml#
->>>>>> +$id: http://devicetree.org/schemas/phy/qcom,uniphy.yaml#
->>>>>>     $schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>>
->>>>>> -title: Qualcom IPQ40xx Dakota HS/SS USB PHY
->>>>>> +title: Qualcomm UNIPHY
->>>>> We know that UNIPHY was a common design / IP block used for APQ8064
->>>>> SATA and MSM8974 DSI and HDMI PHYs. Is this the same design, or was
->>>>> the name reused by the Qualcomm for some other PHYs?
->>>>> Several latest generations have USB QMP PHYs which are called 'uni-phy'.
->>>> This PHY is build on top of QCA Uniphy 22ull. A combo PHY used between
->>>> USB Gen3 / PCIe Gen3 controller.
->>>> It is different from USB QMP PHYs.
->>> So we have now three different items called Qualcomm uniphy. Could you
->>> please add some distinctive name?
->> There is one more target called IPQ5018 which is also having similar USB
->> PHY built on top of
->> Uniphy 28nm LP. That also can leverage this upcoming IPQ5332 USB PHY
->> driver. Considering that,
->> given a common name 'uniphy'.
-> Just to verify, do we mean the same thing, when speaking about the
-> 28nm LP UNIPHY?
-> I was referencing the apq8064 SATA and msm8974 HDMI / DSI PHYs. See [1] and [2].
->
-> [1] https://patchwork.freedesktop.org/patch/544131/?series=118210&rev=2
-> [2] https://patchwork.freedesktop.org/patch/544125/?series=118210&rev=2
-No, this seems different from the PHY used on IPQ5018 / IPQ5332. PHY in 
-QualcommIPQ
-targets requires minimal SW configuration for the bring up.
->> - Praveenkumar
->>>> - Praveenkumar
->>>>>>     maintainers:
->>>>>>       - Robert Marko <robert.marko@sartura.hr>
->>>>>> +  - Praveenkumar I <quic_ipkumar@quicinc.com>
->>>>>> +
->>>>>> +description:
->>>>>> +  UNIPHY / COMBO PHY supports physical layer functionality for USB and PCIe on
->>>>>> +  Qualcomm chipsets.
->>>>>>
->>>>>>     properties:
->>>>>>       compatible:
->>>>>> --
->>>>>> 2.34.1
->>>>>>
->>>
->
->
+Document the critical-action property to describe the thermal action
+the OS should perform after the critical temperature is reached.
+
+The possible values are "shutdown" and "reboot".
+
+The motivation for introducing the critical-action property is that
+different systems may need different thermal actions when the critical
+temperature is reached.
+
+For example, a desktop PC may want the OS to trigger a shutdown
+when the critical temperature is reached.
+
+However, in some embedded cases, such behavior does not suit well,
+as the board may be unattended in the field and rebooting may be a
+better approach.
+
+The bootloader may also benefit from this new property as it can check
+the SoC temperature and in case the temperature is above the critical
+point, it can trigger a shutdown or reboot accordingly.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v6:
+- None.
+
+ .../devicetree/bindings/thermal/thermal-zones.yaml       | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 4f3acdc4dec0..c2e4d28f885b 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -75,6 +75,15 @@ patternProperties:
+           framework and assumes that the thermal sensors in this zone
+           support interrupts.
+ 
++      critical-action:
++        $ref: /schemas/types.yaml#/definitions/string
++        description:
++          The action the OS should perform after the critical temperature is reached.
++
++        enum:
++          - shutdown
++          - reboot
++
+       thermal-sensors:
+         $ref: /schemas/types.yaml#/definitions/phandle-array
+         maxItems: 1
+-- 
+2.34.1
+
