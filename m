@@ -2,172 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A19EA78F30E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 21:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E040578F34B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 21:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347120AbjHaTHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 15:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33140 "EHLO
+        id S230137AbjHaT06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 15:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347117AbjHaTHk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 15:07:40 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE785E67
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:07:35 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-31ad779e6b3so1003884f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 12:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693508854; x=1694113654; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FYcBf9zwOXM34XkHVSj+a44vhkm5AHZw6edl4HRxYQk=;
-        b=LpMrgSec2TLxuFrlheY4P9u/7Tf7/MbQ7EaqIxQZvy+e1oW9x+9NYBI6fr8rW6Uccn
-         YTub1ldB1rXKuNQRf0C25UDQdSXgP7xypZYPZ8hT7RzJuBsh/IXHQ2+Kco5O/9SmFEFK
-         BMzKP5LdQGavGmGDnTPsvUgf2CTS+by2Y1X4JEnKBPJHGY5lX28cf546+5zD89QiWV+v
-         lQ3YIY3z3U0JbwJOthowLeSCBraqmAMZWl6zjHUI0im4BevPkez5o6bdv8LH0cbiyFSB
-         3ZJqJ9B2iH1UyiZs0FeTzO5yKCQ8Wyse1laC3pTRQ1FpYyvkSdLRk8iw3B1C+CbsbIRh
-         l9+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693508854; x=1694113654;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FYcBf9zwOXM34XkHVSj+a44vhkm5AHZw6edl4HRxYQk=;
-        b=L/akYX52Lf+hGBCwoRRTlO+jM8W5lTiE8d49EAsfXQKBafDsS4uwjbZRd3ZuhMZWNK
-         MZ+XkuXnZWS/E+E8JjX34aIZEh2r/hLFUF19vtEOoJHgysJDcqvR8iymnv+Anq/9HMmE
-         vWM5CaAIchKttrQVl1TZFRtFf02FCAk9ki2+V9opyhX8vfCc4tYrYtJH9PY1Hx4Od6tG
-         qsAl3bhY3WMV7jRLy5SLbYCG8OoTMuzJQGcql3HWR0RiunBYMqYbe+DU4CQIlZVgi8Z0
-         KGlHwibrarogakMhuaoYEEMTb91lcUgd9KXhm5Tjodo+ZJiiwIpqhIr6ci2WYrybci8q
-         AS2A==
-X-Gm-Message-State: AOJu0YxG+VnHCLnZXWnQiHb2R9S3nrsL4wn+0h5i1i93SbBnc+2mARyz
-        LGkUXp7yQHb3i9qmDYgC4+DaAQ==
-X-Google-Smtp-Source: AGHT+IFUuWSxKgFiBa3LWAugIwI6zKreITHvXpuh2+aVPok62U+1tFXhBO7QKPQ6CuKZBnglh+uI2w==
-X-Received: by 2002:a5d:550b:0:b0:317:51ff:c249 with SMTP id b11-20020a5d550b000000b0031751ffc249mr342579wrv.13.1693508854433;
-        Thu, 31 Aug 2023 12:07:34 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id x9-20020adfdd89000000b003196b1bb528sm3058627wrl.64.2023.08.31.12.07.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Aug 2023 12:07:34 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Date:   Thu, 31 Aug 2023 21:07:27 +0200
-Message-ID: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S238398AbjHaT06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 15:26:58 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B47DDE6E;
+        Thu, 31 Aug 2023 12:26:51 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37VIxiHZ014585;
+        Thu, 31 Aug 2023 19:26:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=KJZIA2tDsMsYLt1Yscsua7zldn6z73pHDwRWVxjgHmc=;
+ b=mn7YO8v0nrhdcdmbKi55yIIXX6+92O5wKUBtIT1vpx4bksh1YASD7WLyLvf2OYgLBgcr
+ UQyQ57JacTnu49UX2Tkqk8bALmWAer4NvlRL6NzW77aUZPeJJi4Xb5is5ORDF/Sj4aL6
+ lQWGXYN/jWTRJsVqsqSw1nvnsnuYZ1eG7zyFhr5pejYdMv+EG5RvYPMjhWQhgwXdDBIA
+ X0VbLhTJybLKWb9hyCyKmnR7ziFTn/plQPIKkIdw3aRS342/5sv3jhAI5uxLBvm0dTkm
+ bFTy2w1DzgcKLex9gvaqSemSSsTtiLczwCDiwNJS2hxHrykoVhLxyFWQwL7hjG3NOVaO Pg== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stv5n94hd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 19:26:03 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VJQ3SJ015310
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 19:26:03 GMT
+Received: from [10.71.114.68] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 31 Aug
+ 2023 12:26:02 -0700
+Message-ID: <67e199a9-0e65-a142-f1bf-03d3d91ef46a@quicinc.com>
+Date:   Thu, 31 Aug 2023 12:25:58 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v5 13/32] dt-bindings: usb: dwc3: Add
+ snps,num-hc-interrupters definition
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <agross@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <quic_jackp@quicinc.com>,
+        <quic_plai@quicinc.com>
+References: <20230829210657.9904-1-quic_wcheng@quicinc.com>
+ <20230829210657.9904-14-quic_wcheng@quicinc.com>
+ <20230831172413.GB2460067-robh@kernel.org>
+From:   Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <20230831172413.GB2460067-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0IPdhZSVNG7HtNWwVNUglvEcjBj6LYXN
+X-Proofpoint-ORIG-GUID: 0IPdhZSVNG7HtNWwVNUglvEcjBj6LYXN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_17,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 mlxlogscore=999 spamscore=0 adultscore=0
+ lowpriorityscore=0 phishscore=0 malwarescore=0 bulkscore=0 impostorscore=0
+ mlxscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308310173
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hi Rob,
 
-Add the DT property 'infineon,en-pin-fixed-level' to
-indicated that the chip EN pin is at fixed level
-or left unconnected(has internal pull-down).
+On 8/31/2023 10:24 AM, Rob Herring wrote:
+> On Tue, Aug 29, 2023 at 02:06:38PM -0700, Wesley Cheng wrote:
+>> Add a new definition for specifying how many XHCI secondary interrupters
+>> can be allocated.  XHCI in general can potentially support up to 1024
+>> interrupters, which some uses may want to limit depending on how many
+>> users utilize the interrupters.
+>>
+>> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+>> ---
+>>   .../devicetree/bindings/usb/snps,dwc3.yaml          | 13 +++++++++++++
+>>   1 file changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> index a696f23730d3..596762ef9b9f 100644
+>> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+>> @@ -376,6 +376,19 @@ properties:
+>>       items:
+>>         enum: [1, 4, 8, 16, 32, 64, 128, 256]
+>>   
+>> +  snps,num-hc-interrupters:
+> 
+> Why do you still have this when you defined a common property?
+> 
+> If you want to limit it here, just do:
+> 
+> num-hc-interrupters:
+>    maximum: 8
+> 
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-----
-Changes in V5:
-- Update pin name to align with datasheet
-Changes in V4:
-- Update property name & description.
-- Update commit message.
----
- .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |  2 -
- 2 files changed, 50 insertions(+), 2 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+Thanks for the review, and apologies for missing your response in the 
+previous revision.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-new file mode 100644
-index 000000000000..9eecfae5dfcf
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
-@@ -0,0 +1,50 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
-+
-+maintainers:
-+  - Naresh Solanki <naresh.solanki@9elements.com>
-+
-+description: |
-+  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
-+  Regulator with SVID and I2C designed for Industrial use.
-+
-+  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSheet-v02_04-EN.pdf?fileId=8ac78c8c80027ecd018042f2337f00c9
-+
-+properties:
-+  compatible:
-+    enum:
-+      - infineon,tda38640
-+
-+  reg:
-+    maxItems: 1
-+
-+  infineon,en-pin-fixed-level:
-+    description:
-+      Indicates that the chip EN pin is at fixed level or left
-+      unconnected(has internal pull-down).
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        tda38640@40 {
-+            compatible = "infineon,tda38640";
-+            reg = <0x40>;
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 40bc475ee7e1..86c7d34f63bf 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -151,8 +151,6 @@ properties:
-           - infineon,slb9645tt
-             # Infineon SLB9673 I2C TPM 2.0
-           - infineon,slb9673
--            # Infineon TDA38640 Voltage Regulator
--          - infineon,tda38640
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-             # Infineon Multi-phase Digital VR Controller xdpe11280
+Currently, the DWC3 driver creates and populates the XHCI platform 
+device properties from the DWC3 host driver.  Properties need to be 
+propagated from DWC3 --> XHCI plat, and is currently done this way for
+"snps,usb3_lpm_capable"
+"snps,usb2-lpm-disable"
 
-base-commit: 919a83d020a8dfa1411c1dc1cff23a833f0f5268
--- 
-2.41.0
+XHCI plat can be used for other non-DWC3 implementations as well, which 
+would have their own way of creating the XHCI plat platform device. 
+This is the reason we'd need to have these two definitions.
 
+Thanks
+Wesley Cheng
