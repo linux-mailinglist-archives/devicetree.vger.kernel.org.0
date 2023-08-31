@@ -2,171 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ECEA78EFD5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 16:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D195578EFF5
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244415AbjHaO4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 10:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48874 "EHLO
+        id S243727AbjHaPLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 11:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjHaO4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 10:56:42 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B6D9CC5;
-        Thu, 31 Aug 2023 07:56:38 -0700 (PDT)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37VElhBp024174;
-        Thu, 31 Aug 2023 09:56:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-        content-type:mime-version:subject:from:in-reply-to:date:cc
-        :content-transfer-encoding:message-id:references:to; s=
-        PODMain02222019; bh=tL1M2KqPZ1Gruoc257MClXbv1zWRmnPUhuIWXHhN8pc=; b=
-        PpG4EXUCbqlRyrE13oUzznOXr1zcy1uoPi/ggamaQjlPYdUTtF7TDIvPtkm6C2c4
-        5HWlflZH9pc4VVSqaWc+tZtNMO9H7WYLxaM0XjVFBgiOAigL8XxyXtEV64+7oTny
-        IkJV5+x61m6/CEbdo6yGfrCMJczegjtjW5kEOtJzXxibPxjfnjB3FRbtrKQo4/hX
-        XKzEbRRfkzVheCdc/INAIUSxZNIxC242r3t865HoQID99KGr1jd5DPH7ibBdE1O1
-        +ojAoYj3PN2Kl3OpvlTUz9Jz8S5WUYpRkAkETS8Rq5E35/TIHv9tcuoM8CwroDwB
-        RtGb7bE/m66O4ry0xRCaHw==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3sqdtj5grc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 09:56:20 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 31 Aug
- 2023 15:56:18 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.37 via Frontend Transport; Thu, 31 Aug 2023 15:56:18 +0100
-Received: from smtpclient.apple (macC02FN0GLMD6T.ad.cirrus.com [141.131.156.196])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id ABAA311D4;
-        Thu, 31 Aug 2023 14:56:16 +0000 (UTC)
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0 (Mac OS X Mail 16.0 \(3731.700.6\))
-Subject: Re: [PATCH v2 1/4] ASoC: cs35l45: Checks index of cs35l45_irqs[]
-From:   "Rivera-Matos, Ricardo" <rriveram@opensource.cirrus.com>
-In-Reply-To: <737c4114-5b54-444c-8a6a-de4e98566513@sirena.org.uk>
-Date:   Thu, 31 Aug 2023 09:56:05 -0500
-CC:     Vlad Karpovich <vkarpovi@opensource.cirrus.com>,
-        James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        "Richard Fitzgerald" <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
+        with ESMTP id S237536AbjHaPLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:11:13 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A669E4A
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:11:09 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bcfdadd149so18240541fa.0
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:11:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693494668; x=1694099468; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OOFcgWJvykU3ufqPjMeqWWJXmE/XqPoeHSC5WspwBo8=;
+        b=sTbdHp2zDtjcLXvz+flCdxxtgBkfcYgwV4O45gYt3bGT9Tzhm6ObfsjJUqYNuz5xbh
+         1zzyLqWk3bnyTfOeZj+m0ejb+8Ij2mEfZop6SgMiMlNYYFALrSOM/ZG/UzhGvTxv9CUv
+         I6mkuUDKIGjrGVOni5LteaoRUCX/3jArWgxbcfG8+J50yVrds6WgGgdqieleHt58EGI5
+         R5Phygxi27e06MTTyYLnYwyoCPyD4fPF1MrhiwLBN2XRk9ELDacxeiJ501MmiaHLobql
+         1T+14S2W8ZHO9hxxg2bCjaS+0JuUBYq1jT6I+uS6EiWZq/7xbOtyKekdIZsD73iC95DQ
+         wq3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693494668; x=1694099468;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OOFcgWJvykU3ufqPjMeqWWJXmE/XqPoeHSC5WspwBo8=;
+        b=InOUqIwaUv9m3GVEyKpjX45dzjdUrMqUxVhJdr05p0YlSnrDbFmZTnIctJnY3grPlX
+         F77BBN9xSLh5EPOm5MMnGGWigPKQj3OKmJAQw3gpDpYwsdUx4LLieO/eyT5UoGJRmR6B
+         p77dTiadOQQ3UP5l+tICIgV2AsaAQHryCmX7PD4rs/B4UnZzmzxpjx/IjHi1xmS9ZZi2
+         NrjCW0PzYH/75VGUTpJyloUsDM6vtOjFEPzKnzCGW6bDh6SHdOJGdxW/2Z3NCT7y1eEj
+         JT5XLQGT9u9eOG5zQiuOle2+Q8ZIkLRGUh+6A+/pZqHVqicUK+MSTGrpREedbJI24CZ9
+         x/MA==
+X-Gm-Message-State: AOJu0YwM3XfKaqanw4kvt4K199/1PORThiCb1aLe+VJhFU+7kWLBrQ0M
+        gvf+zRxYR/jHS/gIeHE1p/pZug==
+X-Google-Smtp-Source: AGHT+IG3/w4gj2xbUPTCxyRSzFHoeJLeFZiW2uiiFnMe/1mHL0wORIqiK41cZCBiiOqL4QB/7ON/5A==
+X-Received: by 2002:a2e:3515:0:b0:2b9:f2e8:363 with SMTP id z21-20020a2e3515000000b002b9f2e80363mr4195887ljz.51.1693494667500;
+        Thu, 31 Aug 2023 08:11:07 -0700 (PDT)
+Received: from [192.168.1.101] (abxh58.neoplus.adsl.tpnet.pl. [83.9.1.58])
+        by smtp.gmail.com with ESMTPSA id r11-20020a2eb60b000000b002b9cc2f5c39sm356202ljn.37.2023.08.31.08.11.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Aug 2023 08:11:07 -0700 (PDT)
+Message-ID: <4c6877c9-97ad-4092-86a3-f9b314f131ef@linaro.org>
+Date:   Thu, 31 Aug 2023 17:11:05 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] phy: qualcomm: phy-qcom-eusb2-repeater: Zero out
+ untouched tuning regs
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-ID: <5B0EB2A2-2048-4A71-A4A9-D5167C7AB5EC@opensource.cirrus.com>
-References: <20230830195536.448884-1-vkarpovi@opensource.cirrus.com>
- <737c4114-5b54-444c-8a6a-de4e98566513@sirena.org.uk>
-To:     Mark Brown <broonie@kernel.org>
-X-Mailer: Apple Mail (2.3731.700.6)
-X-Proofpoint-ORIG-GUID: HoQ4lxce8WazZ5vUB_uGKhNFVcYgS3mH
-X-Proofpoint-GUID: HoQ4lxce8WazZ5vUB_uGKhNFVcYgS3mH
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230830-topic-eusb2_override-v1-0-ab23825385a8@linaro.org>
+ <20230830-topic-eusb2_override-v1-3-ab23825385a8@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230830-topic-eusb2_override-v1-3-ab23825385a8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Mark,
+On 30.08.2023 04:40, Konrad Dybcio wrote:
+> The vendor kernel zeroes out all tuning data outside the init sequence
+> as part of initialization. Follow suit to avoid UB.
+This patch doesn't do what it says. It passes 0x0 as val and mask
+to regmap_update_bits resulting in a NOP, still..
 
-> On Aug 30, 2023, at 3:59 PM, Mark Brown <broonie@kernel.org> wrote:
->=20
-> On Wed, Aug 30, 2023 at 02:55:33PM -0500, Vlad Karpovich wrote:
->> Checks the index computed by the virq offset before printing the
->> error condition in cs35l45_spk_safe_err() handler.
->>=20
->> Signed-off-by: Ricardo Rivera-Matos <rriveram@opensource.cirrus.com>
->> Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
->=20
-> Who actually wrote this patch?
-
-I am the original author, allow me to clarify how and why this is =
-supposed to work.
-
-How:
-
-static const struct cs35l45_irq cs35l45_irqs[] =3D {
-	CS35L45_IRQ(AMP_SHORT_ERR, "Amplifier short error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(UVLO_VDDBATT_ERR, "VDDBATT undervoltage error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(BST_SHORT_ERR, "Boost inductor error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(BST_UVP_ERR, "Boost undervoltage error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(TEMP_ERR, "Overtemperature error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(AMP_CAL_ERR, "Amplifier calibration error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(UVLO_VDDLV_ERR, "LV threshold detector error", =
-cs35l45_spk_safe_err),
-	CS35L45_IRQ(GLOBAL_ERROR, "Global error", cs35l45_global_err),
-	CS35L45_IRQ(DSP_WDT_EXPIRE, "DSP Watchdog Timer", =
-cs35l45_dsp_wdt_expire),
-	CS35L45_IRQ(PLL_UNLOCK_FLAG_RISE, "PLL unlock flag rise", =
-cs35l45_pll_unlock),
-	CS35L45_IRQ(PLL_LOCK_FLAG, "PLL lock", cs35l45_pll_lock),
-	CS35L45_IRQ(DSP_VIRT2_MBOX, "DSP virtual MBOX 2 write flag", =
-cs35l45_dsp_virt2_mbox_cb),
-};
-
-static irqreturn_t cs35l45_spk_safe_err(int irq, void *data)
-{
-	struct cs35l45_private *cs35l45 =3D data;
-	int i;
-
-	i =3D irq - regmap_irq_get_virq(cs35l45->irq_data, 0);
-
-	if (i < 0 || i > 6)
-		dev_err(cs35l45->dev, "Unspecified global error =
-condition (%d) detected!\n", irq);
-	else
-		dev_err(cs35l45->dev, "%s condition detected!\n", =
-cs35l45_irqs[i].name);
-
-	return IRQ_HANDLED;
-}
-
-This snippet here is from the OoT CS35L45 driver. There are only seven =
-root causes for a speaker safe error and when one of those root cause =
-bits are set, we enter the common handler to print the root cause. Using =
-the IRQ and the VIRQ number we do some math and print the name of the =
-error as a dev_err.
-
-Why:
-
-Originally these root cause bits were treated as general bits and simply =
-checked in the cs35l45_global_err() handler. A problem arose when the =
-CS35L45 would come out of hibernation and the root cause bits would be =
-masked by default. Treating the root cause bits as IRQs ensured that, =
-like the other IRQ bits, the root cause bits would be unmasked before an =
-IRQ could be serviced.
-
-Further notes:
-
-static const struct cs35l45_irq cs35l45_irqs[] =3D {
-<snip>
-	CS35L45_IRQ(GLOBAL_ERROR, "Global error", cs35l45_spk_safe_err),
-	CS35L45_IRQ(DSP_WDT_EXPIRE, "DSP Watchdog Timer", =
-cs35l45_spk_safe_err),
-<snip>
-};
-
-This is from next-20230831. I am not sure how this happened, but these =
-IRQs are not pointing to cs35l45_global_err and cs35l45_dsp_wdt_expire =
-respectively. Maybe a bad cherry-pick. We will address this shortly.
-
-I hope this addresses any confusion, please let me know if I can offer =
-any further details.
-
-Thanks,
-Ricardo
-
+Konrad
