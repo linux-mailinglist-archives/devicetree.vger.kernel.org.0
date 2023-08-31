@@ -2,118 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 360DB78F11F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 18:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D2C078F122
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 18:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346790AbjHaQVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 12:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42876 "EHLO
+        id S232823AbjHaQWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 12:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244745AbjHaQVb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 12:21:31 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936F510C7;
-        Thu, 31 Aug 2023 09:21:22 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 37VF9lpT009908;
-        Thu, 31 Aug 2023 11:21:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding:content-type; s=
-        PODMain02222019; bh=KxaoXeqFYIEnZu6KbS/zohWD3joz0j1CP25czl4VYXE=; b=
-        RGSjDTnNIyn6AtnkVYwc4q1qn6bYWmLGJtU5HELrxujRwRS4egMBi9KYpUuR+g4I
-        /D488KbYcO6Lli3yI/hXkt195klsJErRgOrLYioNPQK0ut2TdMWnUQNNbHhtqIit
-        TmmiFkkgTUQtDhD7mz8Ic+iOaqSEbmeskJS7rw291d3yoq+H/vpNKpByN7936kbW
-        UeyisHDo91Wua3h5CSjGIHeeUsppNJiGMZ+lyMjtdjyvw9MG87qX2H31485zlv8o
-        k5nXLS2KDzVNXgYkHVpCXN3PDQQ0j+300meBUgAMkdKo8Tt3cPRw+JhXzbOmzqzx
-        zuBeGhtUZFbcR8oH6Bo3nA==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sqesyep1v-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 11:21:03 -0500 (CDT)
-Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Thu, 31 Aug
- 2023 17:21:01 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
- anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
- 15.2.1118.37 via Frontend Transport; Thu, 31 Aug 2023 17:21:01 +0100
-Received: from vkarpovich-ThinkStation-P620.crystal.cirrus.com (vkarpovich-ThinkStation-P620.ad.cirrus.com [141.131.145.49])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 38A3911D6;
-        Thu, 31 Aug 2023 16:20:59 +0000 (UTC)
-From:   Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-To:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-Subject: [PATCH v3 4/4] ASoC: cs35l45: Add AMP Enable Switch control
-Date:   Thu, 31 Aug 2023 11:20:42 -0500
-Message-ID: <20230831162042.471801-4-vkarpovi@opensource.cirrus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230831162042.471801-1-vkarpovi@opensource.cirrus.com>
-References: <20230831162042.471801-1-vkarpovi@opensource.cirrus.com>
+        with ESMTP id S231698AbjHaQWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 12:22:39 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FF1CCF3;
+        Thu, 31 Aug 2023 09:22:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 17887B8229D;
+        Thu, 31 Aug 2023 16:22:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D72C2C433C8;
+        Thu, 31 Aug 2023 16:22:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693498923;
+        bh=CTXJBHNMlG2S512kPkmVIDm+/koZ+JKTX7OmWnz6zkA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MoSlTJr5HrwsK9zs6I2kICcng8QccNM/8rFnIdYdBR8LODAfVQW9dAxG/KxKI1L+v
+         DdbekyxziJ+V+TnoRtkxyxC3MdztZFhgs3mj08d2sWTit5HCfS/wsWEv0i18j5VKpQ
+         ZPN6uJtEU5qrxXhaoiPHUoDyTgkA3XASn9pwp2+A+ac3ad631nXSIIsjgjIWgXcLUt
+         s5F74JlKuGnXhnmSPFmUWbUBD7ALEfpbOlxeiufDJs9L5Oyg+lKfqS9URDNhNQAtEG
+         sNV2GJF/8RaoNmFozOwfC5DdaeYN2dAr7ab4TLR5uVdQg1M9HyRP5YuQbsTpOmPJGK
+         wqzbSRxTKldAg==
+Received: (nullmailer pid 2383784 invoked by uid 1000);
+        Thu, 31 Aug 2023 16:22:01 -0000
+Date:   Thu, 31 Aug 2023 11:22:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Bastian Hecht <hechtb@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] dt-bindings: input: touchscreen: st1232: add
+ example with touch-overlay
+Message-ID: <20230831162201.GA2381101-robh@kernel.org>
+References: <20230510-feature-ts_virtobj_patch-v4-0-5c6c0fc1eed6@wolfvision.net>
+ <20230510-feature-ts_virtobj_patch-v4-4-5c6c0fc1eed6@wolfvision.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Proofpoint-ORIG-GUID: T-Wdx9XIUGTEFpyL4cYYEPwKN7DCtJqQ
-X-Proofpoint-GUID: T-Wdx9XIUGTEFpyL4cYYEPwKN7DCtJqQ
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230510-feature-ts_virtobj_patch-v4-4-5c6c0fc1eed6@wolfvision.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "AMP Enable Switch" is useful in systems with multiple
-amplifiers connected to the same audio bus
-but not all of them are needed for all use cases.
+On Thu, Aug 24, 2023 at 03:17:12PM +0200, Javier Carrasco wrote:
+> The st1232 driver supports the overlay-touchscreen and overlay-buttons
+> objects defined in the generic touchscreen bindings and implemented in
+> the touch-overlay module. Add an example where nodes for an overlay
+> touchscreen and overlay buttons are defined.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+> ---
+>  .../input/touchscreen/sitronix,st1232.yaml         | 40 ++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
+> index 1d8ca19fd37a..857b611f84c2 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/sitronix,st1232.yaml
+> @@ -48,3 +48,43 @@ examples:
+>                      gpios = <&gpio1 166 0>;
+>              };
+>      };
+> +  - |
+> +    #include <dt-bindings/input/linux-event-codes.h>
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            touchscreen@55 {
+> +                    compatible = "sitronix,st1232";
+> +                    reg = <0x55>;
+> +                    interrupts = <2 0>;
+> +                    gpios = <&gpio1 166 0>;
 
-Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
----
- sound/soc/codecs/cs35l45.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Just add this to the existing example. No value in 2 examples.
 
-diff --git a/sound/soc/codecs/cs35l45.c b/sound/soc/codecs/cs35l45.c
-index 4abc922ef210..f8646de20c36 100644
---- a/sound/soc/codecs/cs35l45.c
-+++ b/sound/soc/codecs/cs35l45.c
-@@ -417,6 +417,8 @@ static const struct snd_kcontrol_new cs35l45_dsp_muxes[] = {
- static const struct snd_kcontrol_new cs35l45_dac_muxes[] = {
- 	SOC_DAPM_ENUM("DACPCM Source", cs35l45_dacpcm_enums[0]),
- };
-+static const struct snd_kcontrol_new amp_en_ctl =
-+	SOC_DAPM_SINGLE("Switch", SND_SOC_NOPM, 0, 1, 0);
- 
- static const struct snd_soc_dapm_widget cs35l45_dapm_widgets[] = {
- 	SND_SOC_DAPM_SPK("DSP1 Preload", NULL),
-@@ -479,6 +481,8 @@ static const struct snd_soc_dapm_widget cs35l45_dapm_widgets[] = {
- 
- 	SND_SOC_DAPM_MUX("DACPCM Source", SND_SOC_NOPM, 0, 0, &cs35l45_dac_muxes[0]),
- 
-+	SND_SOC_DAPM_SWITCH("AMP Enable", SND_SOC_NOPM, 0, 0, &amp_en_ctl),
-+
- 	SND_SOC_DAPM_OUT_DRV("AMP", SND_SOC_NOPM, 0, 0, NULL, 0),
- 
- 	SND_SOC_DAPM_OUTPUT("SPK"),
-@@ -586,7 +590,8 @@ static const struct snd_soc_dapm_route cs35l45_dapm_routes[] = {
- 
- 	CS35L45_DAC_MUX_ROUTE("DACPCM"),
- 
--	{ "SPK", NULL, "AMP"},
-+	{ "AMP Enable", "Switch", "AMP" },
-+	{ "SPK", NULL, "AMP Enable"},
- };
- 
- static const char * const amplifier_mode_texts[] = {"SPK", "RCV"};
--- 
-2.25.1
-
+> +
+> +                    overlay-touchscreen {
+> +                            x-origin = <0>;
+> +                            x-size = <240>;
+> +                            y-origin = <40>;
+> +                            y-size = <280>;
+> +                    };
+> +
+> +                    overlay-buttons {
+> +                            button-light {
+> +                                    label = "Camera light";
+> +                                    linux,code = <KEY_LIGHTS_TOGGLE>;
+> +                                    x-origin = <40>;
+> +                                    x-size = <40>;
+> +                                    y-origin = <0>;
+> +                                    y-size = <40>;
+> +                            };
+> +
+> +                            button-power {
+> +                                    label = "Power";
+> +                                    linux,code = <KEY_POWER>;
+> +                                    x-origin = <160>;
+> +                                    x-size = <40>;
+> +                                    y-origin = <0>;
+> +                                    y-size = <40>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> 
+> -- 
+> 2.39.2
+> 
