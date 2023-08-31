@@ -2,122 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DE178E5B7
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 07:32:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF11678E5CF
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 07:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245087AbjHaFcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 01:32:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59154 "EHLO
+        id S232795AbjHaFin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 01:38:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343909AbjHaFcY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 01:32:24 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93532CD8;
-        Wed, 30 Aug 2023 22:32:15 -0700 (PDT)
-X-UUID: bb32912047bf11eeb20a276fd37b9834-20230831
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=KIe7sbzhr8pclxwbNUsUe49QcjNI1ozgaMNN0nDCuPo=;
-        b=A91S28/WjW2FJ3wfdi5SmOKt8er1oh/JyCxWPTBgijxqZPgkqleibKznw8lJp8Mq/ZLwyQVvF7GyqSnrCwBzME4Ey68WP1X71ZrH+Vdm/MQjSpWRIB82cIC0HAV4n04l9A828a+h+nwsPseLa+Ir/r+5+Wrofxz0R8WCNKiwAQE=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:37e88b3c-2346-458f-b55c-3a2cb111c316,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:d0826313-4929-4845-9571-38c601e9c3c9,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: bb32912047bf11eeb20a276fd37b9834-20230831
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 248086274; Thu, 31 Aug 2023 13:32:10 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+        with ESMTP id S229826AbjHaFin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 01:38:43 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BC7CE0;
+        Wed, 30 Aug 2023 22:38:39 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37V4W9bM026222;
+        Thu, 31 Aug 2023 05:38:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=Hs+rcs93upoiY3ZCsIyc6aAAAAfNFy5W2gcoWyavslE=;
+ b=CEDZt2yZy9PW05FvQkOPLISmDwtTolS+BWudTfWjdWTScSA2aX4PQTCFqp3pUWgeEYEk
+ yYLkK4+J17HPN3Kp2QWMq3ZEy/WwtMxWlMnv5Juznn8SFcFkCEyJHIJE7b+cp6hqvo4u
+ HplwmUuROrHhaMwnjdkQ12P/WfFQaH74CY1vVW3jZYiqT9GXZLMc21nyUI1Iq+CEji5x
+ DvUvIol177ufyWZ8nh1BVsfQ2Ad7DzfaULNKr1LiyvaA3HdfIN3P6CW51Gu+OqONRCUx
+ 9HdEbCUA6ZGDig79B+B+g1rSHm1JxYs7vqjp/Qbt95H95dzB20DBIHj4Gydf1e9pe7s9 Dg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3st159tdbt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 05:38:07 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37V5c6v5004968
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 05:38:06 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 31 Aug 2023 13:32:08 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Thu, 31 Aug 2023 13:32:08 +0800
-Message-ID: <39c24e4b-6ef7-6891-3292-b73fada9f252@mediatek.com>
-Date:   Thu, 31 Aug 2023 13:32:05 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 3/4] arm64: dts: mediatek: mt6360: add PMIC MT6360
- related nodes
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ 15.2.1118.36; Wed, 30 Aug 2023 22:38:00 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <arnd@arndb.de>, <geert+renesas@glider.be>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
- <20230830111532.9048-1-macpaul.lin@mediatek.com>
- <20230830111532.9048-3-macpaul.lin@mediatek.com>
- <7cba182f-2b35-84e5-16c7-770a6aff5062@linaro.org>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <7cba182f-2b35-84e5-16c7-770a6aff5062@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,
-        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        <linux-phy@lists.infradead.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v11 0/4] Enable IPQ5332 USB2
+Date:   Thu, 31 Aug 2023 11:07:46 +0530
+Message-ID: <cover.1693459976.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: _wlLYWLF8oOOxyh4VdkG3KoiLJGhzI2i
+X-Proofpoint-GUID: _wlLYWLF8oOOxyh4VdkG3KoiLJGhzI2i
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_03,2023-08-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
+ lowpriorityscore=0 mlxscore=0 suspectscore=0 spamscore=0 mlxlogscore=471
+ priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
+ malwarescore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2308100000 definitions=main-2308310049
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds the relevant phy and controller
+DT configurations for enabling USB2 on IPQ5332
 
+v11:
+	Driver: Rebased to accommodate https://lore.kernel.org/linux-arm-msm/20230824091345.1072650-1-yangyingliang@huawei.com/
+	DTS:	Sort nodes in alphanumeric order
+v10:
+	Driver: Restore register success print per Dmitry's comment
+	DTS:	usb@8a00000 -> usb@8af8800
+		regulator_s0500 -> regulator-s0500
+v9:
+	Driver: Since the driver code has been picked up for merge,
+		(https://lore.kernel.org/linux-arm-msm/169226613917.81413.1200008047604336868.b4-ty@kernel.org/)
+		adding the coding style fixes alone in this patch.
 
-On 8/30/23 19:20, Krzysztof Kozlowski wrote:
-> 	
-> 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
-> 
-> On 30/08/2023 13:15, Macpaul Lin wrote:
->> +
->> +led {
->> +compatible = "mediatek,mt6360-led";
->> +};
->> +
->> +regulator {
->> +compatible = "mediatek,mt6360-regulator";
->> +LDO_VIN3-supply = <&mt6360_emi_vddq_buck2_reg>;
->> +
->> +mt6360_emi_vdd2_buck1_reg: buck1-emi-vdd2 {
-> 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/  <https://urldefense.com/v3/__https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/__;!!CTRNKA9wMg0ARbw!nP-6nVffZXG2NCdjcl06my5g9HAohnT-GF-EIGrMWpegsBvwmqgOjfVQba5Ub13z_AWAJwGOlsQ3DSIWGo0ojHlPvDZ74WE$>
-> for instructions).
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+		Fix line break alignment
+		Remove register success print
+	DTS:	usb2@8a00000 -> usb@8a00000
+		regulator_fixed_5p0: s0500 -> regulator_fixed_5p0: regulator
+v8:
+	Driver:-
+		Change commit subject and message per review comments
+		Don't include of_platform.h
+		Change struct initialization coding style
+		GENMASK -> BIT for one of the defines
+v7:
+	Binding:-
+		Move 'compatible' to be the first entry
+		In the example have 'usb-phy' instead of 'usb2-phy'
+		Add 'Reviewed-by: Krzysztof Kozlowski'
+v6:
+	Binding and dts:-
+		Dropped the qcom,dwc3.yaml patch as it has been picked up for linux-next
+		Add const to compatible, vdd-supply
+		Move nodes per register address
+	Driver:-
+		Add vdd-supply
+		Cleanup error paths in probe with dev_err_probe
+v5:
+	Binding and dts:-
+		Fix email id
+		Removed 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+		as had to change bindings file to be able to use generic phy instead of
+		usb-phy
 
-Thanks for the review.
-Since next patch 4/4 of the patch set to modify mt6360 nodes in
-mt8195-demo.dts is no longer required, please drop this patch, too.
+	Driver:-
+		Remove unused definition
+		Use generic phy instead of usb-phy
+v4:
+	Binding and dts:-
+		Change node name (bindings & dts)
+	Driver:-
+		Remove unused enum
+		static const for '.data'
+		Error handling for devm_clk_get
+v3:
+	Fix bindings file based on review comments
 
-Thanks
-Macpaul Lin
+v1:
+	Cleanup DTS
+	Combine driver, kconfig and makefile patches
+	Remove unused functions from M31 driver
+	Drop the clock driver changes
+
+Varadarajan Narayanan (4):
+  phy: qcom: m31: Fix indentation issues
+  arm64: dts: qcom: ipq5332: Add USB related nodes
+  arm64: dts: qcom: ipq5332: Enable USB
+  arm64: defconfig: Enable M31 USB phy driver
+
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 23 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 55 +++++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig                |  1 +
+ drivers/phy/qualcomm/phy-qcom-m31.c         |  6 ++--
+ 4 files changed, 82 insertions(+), 3 deletions(-)
+
+-- 
+2.7.4
+
