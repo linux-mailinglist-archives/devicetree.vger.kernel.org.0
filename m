@@ -2,125 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D195578EFF5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:11:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B031478F009
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:16:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243727AbjHaPLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 11:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35730 "EHLO
+        id S233337AbjHaPQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 11:16:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237536AbjHaPLN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:11:13 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A669E4A
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:11:09 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2bcfdadd149so18240541fa.0
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 08:11:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693494668; x=1694099468; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OOFcgWJvykU3ufqPjMeqWWJXmE/XqPoeHSC5WspwBo8=;
-        b=sTbdHp2zDtjcLXvz+flCdxxtgBkfcYgwV4O45gYt3bGT9Tzhm6ObfsjJUqYNuz5xbh
-         1zzyLqWk3bnyTfOeZj+m0ejb+8Ij2mEfZop6SgMiMlNYYFALrSOM/ZG/UzhGvTxv9CUv
-         I6mkuUDKIGjrGVOni5LteaoRUCX/3jArWgxbcfG8+J50yVrds6WgGgdqieleHt58EGI5
-         R5Phygxi27e06MTTyYLnYwyoCPyD4fPF1MrhiwLBN2XRk9ELDacxeiJ501MmiaHLobql
-         1T+14S2W8ZHO9hxxg2bCjaS+0JuUBYq1jT6I+uS6EiWZq/7xbOtyKekdIZsD73iC95DQ
-         wq3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693494668; x=1694099468;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OOFcgWJvykU3ufqPjMeqWWJXmE/XqPoeHSC5WspwBo8=;
-        b=InOUqIwaUv9m3GVEyKpjX45dzjdUrMqUxVhJdr05p0YlSnrDbFmZTnIctJnY3grPlX
-         F77BBN9xSLh5EPOm5MMnGGWigPKQj3OKmJAQw3gpDpYwsdUx4LLieO/eyT5UoGJRmR6B
-         p77dTiadOQQ3UP5l+tICIgV2AsaAQHryCmX7PD4rs/B4UnZzmzxpjx/IjHi1xmS9ZZi2
-         NrjCW0PzYH/75VGUTpJyloUsDM6vtOjFEPzKnzCGW6bDh6SHdOJGdxW/2Z3NCT7y1eEj
-         JT5XLQGT9u9eOG5zQiuOle2+Q8ZIkLRGUh+6A+/pZqHVqicUK+MSTGrpREedbJI24CZ9
-         x/MA==
-X-Gm-Message-State: AOJu0YwM3XfKaqanw4kvt4K199/1PORThiCb1aLe+VJhFU+7kWLBrQ0M
-        gvf+zRxYR/jHS/gIeHE1p/pZug==
-X-Google-Smtp-Source: AGHT+IG3/w4gj2xbUPTCxyRSzFHoeJLeFZiW2uiiFnMe/1mHL0wORIqiK41cZCBiiOqL4QB/7ON/5A==
-X-Received: by 2002:a2e:3515:0:b0:2b9:f2e8:363 with SMTP id z21-20020a2e3515000000b002b9f2e80363mr4195887ljz.51.1693494667500;
-        Thu, 31 Aug 2023 08:11:07 -0700 (PDT)
-Received: from [192.168.1.101] (abxh58.neoplus.adsl.tpnet.pl. [83.9.1.58])
-        by smtp.gmail.com with ESMTPSA id r11-20020a2eb60b000000b002b9cc2f5c39sm356202ljn.37.2023.08.31.08.11.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 08:11:07 -0700 (PDT)
-Message-ID: <4c6877c9-97ad-4092-86a3-f9b314f131ef@linaro.org>
-Date:   Thu, 31 Aug 2023 17:11:05 +0200
+        with ESMTP id S233056AbjHaPQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:16:01 -0400
+Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75BE0E53;
+        Thu, 31 Aug 2023 08:15:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+        bh=dZ+CYy+NiImbraQzZFb/jEDAIlzMlTzLoJNY/bcsZII=; b=MAtcvuir2tPTWB75BVsumuwLNf
+        3SooZiTyRkl4NwwpAYGOymwio5PIxPeO7goMfZuC6v6azsGwn6ZG6xFHPdq1rjRfhDhmDfcYaHQRW
+        9zJs0RzRqdtAUyxGgrxmSHXaBy4/NKQWQUCDlJrcrBRMd3MLEtFzpb5MbH5zYrKmSQOwmHnSKTLm9
+        VGga4lf1vf4k8gDv7/BffS+yWM9S7qd+lUcP0n0V9+Oiik8gm6t1+0bvEhmNQldVY04Mx4j5HwxyJ
+        XkVeUjYjkHOqa4DpkWTitDU5CzYOhznQLNyuCQXxOw8TOm+d3Ep4S8sFi4ECuBwjIBvqXp6APdICj
+        ikW0w1ag==;
+Received: from [2601:1c2:980:9ec0::2764]
+        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
+        id 1qbjOg-00FUAa-1n;
+        Thu, 31 Aug 2023 15:15:50 +0000
+Message-ID: <478ac7ec-a89c-32ae-6b0b-e6f5c3f8e151@infradead.org>
+Date:   Thu, 31 Aug 2023 08:15:47 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] phy: qualcomm: phy-qcom-eusb2-repeater: Zero out
- untouched tuning regs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH] macintosh: Explicitly include correct DT includes
 Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Abel Vesa <abel.vesa@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230830-topic-eusb2_override-v1-0-ab23825385a8@linaro.org>
- <20230830-topic-eusb2_override-v1-3-ab23825385a8@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230830-topic-eusb2_override-v1-3-ab23825385a8@linaro.org>
+To:     Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>
+Cc:     Colin Leroy <colin@colino.net>, devicetree@vger.kernel.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20230714174654.4058898-1-robh@kernel.org>
+ <6df12112-0849-4d7b-8f99-d2a7a3560a97@roeck-us.net>
+From:   Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <6df12112-0849-4d7b-8f99-d2a7a3560a97@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.08.2023 04:40, Konrad Dybcio wrote:
-> The vendor kernel zeroes out all tuning data outside the init sequence
-> as part of initialization. Follow suit to avoid UB.
-This patch doesn't do what it says. It passes 0x0 as val and mask
-to regmap_update_bits resulting in a NOP, still..
 
-Konrad
+
+On 8/31/23 07:04, Guenter Roeck wrote:
+> On Fri, Jul 14, 2023 at 11:46:54AM -0600, Rob Herring wrote:
+>> The DT of_device.h and of_platform.h date back to the separate
+>> of_platform_bus_type before it as merged into the regular platform bus.
+>> As part of that merge prepping Arm DT support 13 years ago, they
+>> "temporarily" include each other. They also include platform_device.h
+>> and of.h. As a result, there's a pretty much random mix of those include
+>> files used throughout the tree. In order to detangle these headers and
+>> replace the implicit includes with struct declarations, users need to
+>> explicitly include the correct includes.
+>>
+>> Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> This patch results in the following build error.
+> 
+> Building powerpc:ppc32_allmodconfig ... failed
+> --------------
+> Error log:
+> drivers/macintosh/ams/ams-input.c: In function 'ams_input_enable':
+> drivers/macintosh/ams/ams-input.c:68:45: error: invalid use of undefined type 'struct platform_device'
+>    68 |         input->dev.parent = &ams_info.of_dev->dev;
+>       |                                             ^~
+> drivers/macintosh/ams/ams-input.c: In function 'ams_input_init':
+> drivers/macintosh/ams/ams-input.c:146:51: error: invalid use of undefined type 'struct platform_device'
+>   146 |         return device_create_file(&ams_info.of_dev->dev, &dev_attr_joystick);
+>       |                                                   ^~
+> drivers/macintosh/ams/ams-input.c: In function 'ams_input_exit':
+> drivers/macintosh/ams/ams-input.c:151:44: error: invalid use of undefined type 'struct platform_device'
+>   151 |         device_remove_file(&ams_info.of_dev->dev, &dev_attr_joystick);
+>       |                                            ^~
+> drivers/macintosh/ams/ams-input.c: In function 'ams_input_init':
+> drivers/macintosh/ams/ams-input.c:147:1: error: control reaches end of non-void function 
+> 
+> Bisect log attached.
+
+Hi Guenter,
+I posted a patch for this 2 days ago and Michael Ellerman just did a pull request
+to Linus with the fix.
+
+-- 
+~Randy
