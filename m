@@ -2,58 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E64A978F0B5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9146378F0C3
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239835AbjHaPzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 11:55:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49450 "EHLO
+        id S1346640AbjHaP6i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 11:58:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241971AbjHaPzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:55:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1C301A3;
-        Thu, 31 Aug 2023 08:55:46 -0700 (PDT)
+        with ESMTP id S231980AbjHaP6i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:58:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70BA41B0;
+        Thu, 31 Aug 2023 08:58:35 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E860B60B9B;
-        Thu, 31 Aug 2023 15:55:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC878C433C8;
-        Thu, 31 Aug 2023 15:55:42 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 2B6FCB8226C;
+        Thu, 31 Aug 2023 15:58:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCE2FC433C7;
+        Thu, 31 Aug 2023 15:58:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693497345;
-        bh=6kYNSIgYaJxLu/+vmv4nY7E+BsV6ytSAY2NG81tEbrM=;
+        s=k20201202; t=1693497512;
+        bh=NlQHAlRSWJmw3BpQmppIzYbTKnU63kdcr30JgkmYLIM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l8FhtKblsxbqJrPMM+JVNEIfI6PhxkdWm9a9sMzK5w6eh2a3YrD5tKeeYPFQSgvle
-         /hP9NMQyfvbpfvgG7+ySKrz2bAtLBKhvJeQblebMnPHBF8uipa5wIWhu9wK1UtzcLo
-         32oh+d0xK5nPSP2Pf0p8WDupkdhG7quIemjn6Fab4h4nDNtIFM3WFqm/l/AgoQW/LK
-         Bu6yKsUFBxXzzTWmT5hzcUqk18lFZF0Tp+TewTJv0Rl2GF+u2ST4oafzZPac5LGXeD
-         H5Z0f55pjHCvpMI1pWf6C5gAYVqWpoJ8hqLeoap1GMKG6DXhP4dzSfdetyTLbYoF5u
-         hSypfEty2m6+g==
-Date:   Thu, 31 Aug 2023 16:55:40 +0100
+        b=cOd+R2yDkLOJQ3pT9aougIZLtGJ5cWB99CqeZoxE+FnXTRz+YpzH3atrfMaU+6jpO
+         7Il4vRln0t0VxRV5cgysytUuaAM33O6UhY7TwmzXm+Lgs3ZUFR5ZJ618CtWbrpTnE+
+         3UJU+mgbkEShQ2XqXyAZFnOJMKmieFFjNCiRAaU+z5qJ4sPuZTbM46GjrHgZpsgEg3
+         WYYpVPUSYJUaVm4ls/0tHyk1SVZBb6MjEAPTvTttyQ0+4Ll9fGW+Qlu2/plPUsobls
+         Zky75L6m0972WAqFUDYiYFbzoUdAa0pmgHUVyiszj1/i8KRMGs3N8LKZpRXaRontgS
+         NnE4yTVlPp1Ng==
+Date:   Thu, 31 Aug 2023 16:58:26 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        bcousson@baylibre.com, tony@atomide.com, mturquette@baylibre.com,
-        sboyd@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: mfd: ti,twl: Add clock provider
- properties
-Message-ID: <20230831-dimness-pushover-3de199fb268c@spud>
-References: <20230830182038.878265-1-andreas@kemnade.info>
- <20230830182038.878265-3-andreas@kemnade.info>
+To:     Anjelique Melendez <quic_amelende@quicinc.com>
+Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+        luca.weiss@fairphone.com, konrad.dybcio@linaro.org,
+        u.kleine-koenig@pengutronix.de, quic_subbaram@quicinc.com,
+        quic_gurus@quicinc.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        kernel@quicinc.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 2/7] dt-bindings: leds: leds-qcom-lpg: Add support for
+ LPG PPG
+Message-ID: <20230831-dose-eligibly-dee96e1f4dc2@spud>
+References: <20230830180600.1865-2-quic_amelende@quicinc.com>
+ <20230830180600.1865-5-quic_amelende@quicinc.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="srGWJR8qE45I+k+n"
+        protocol="application/pgp-signature"; boundary="siNBzA7SpfMo2ngy"
 Content-Disposition: inline
-In-Reply-To: <20230830182038.878265-3-andreas@kemnade.info>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230830180600.1865-5-quic_amelende@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -61,54 +66,172 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---srGWJR8qE45I+k+n
+--siNBzA7SpfMo2ngy
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 30, 2023 at 08:20:35PM +0200, Andreas Kemnade wrote:
-> Since these devices provide clock outputs, add the corresponding
-> property.
+On Wed, Aug 30, 2023 at 11:05:57AM -0700, Anjelique Melendez wrote:
+> Update leds-qcom-lpg binding to support LPG PPG.
 >=20
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mfd/ti,twl.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../bindings/leds/leds-qcom-lpg.yaml          | 89 ++++++++++++++++++-
+>  1 file changed, 88 insertions(+), 1 deletion(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Document=
-ation/devicetree/bindings/mfd/ti,twl.yaml
-> index 3d7b3e0addafa..6bb781b95ecdb 100644
-> --- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
-> @@ -37,6 +37,9 @@ properties:
->    "#interrupt-cells":
->      const: 1
+> diff --git a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml b/=
+Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+> index e6f1999cb22f..067ebe35ca5e 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+> @@ -11,7 +11,7 @@ maintainers:
 > =20
-> +  "#clock-cells":
-> +    const: 1
-> +
+>  description: >
+>    The Qualcomm Light Pulse Generator consists of three different hardwar=
+e blocks;
+> -  a ramp generator with lookup table, the light pulse generator and a th=
+ree
+> +  a ramp generator with lookup table (LUT), the light pulse generator an=
+d a three
+>    channel current sink. These blocks are found in a wide range of Qualco=
+mm PMICs.
+> =20
+>  properties:
+> @@ -63,6 +63,29 @@ properties:
+>          - description: dtest line to attach
+>          - description: flags for the attachment
+> =20
+> +  nvmem:
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> +    description: >
+
+Why do you have these chomping operators? I can't see any formatting
+that'd require them. Unless you're respinning for other reasons, you can
+ignore this comment.
 
 Thanks,
 Conor.
 
->  additionalProperties: true
+
+> +      This property is required for PMICs that supports PPG, which is wh=
+en a
+> +      PMIC stores LPG per-channel data and pattern LUT in SDAM modules i=
+nstead
+> +      of in a LUT peripheral. For PMICs, such as PM8350C, per-channel da=
+ta
+> +      and pattern LUT is separated into 2 SDAM modules. In that case, ph=
+andles
+> +      to both SDAM modules need to be specified.
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  nvmem-names:
+> +    minItems: 1
+> +    items:
+> +      - const: lpg_chan_sdam
+> +      - const: lut_sdam
+> +
+> +  qcom,pbs:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description: >
+> +      Phandle of the Qualcomm Programmable Boot Sequencer node (PBS).
+> +      PBS node is used to trigger LPG pattern sequences for PMICs that s=
+upport
+> +      single SDAM PPG.
+> +
+>    multi-led:
+>      type: object
+>      $ref: leds-class-multicolor.yaml#
+> @@ -106,6 +129,39 @@ required:
 > =20
->  required:
+>  additionalProperties: false
+> =20
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,pmi632-lpg
+> +    then:
+> +      properties:
+> +        nvmem:
+> +          maxItems: 1
+> +        nvmem-names:
+> +          maxItems: 1
+> +      required:
+> +        - nvmem
+> +        - nvmem-names
+> +        - qcom,pbs
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,pm8350c-pwm
+> +              - qcom,pm8550-pwm
+> +    then:
+> +      properties:
+> +        nvmem:
+> +          minItems: 2
+> +        nvmem-names:
+> +          minItems: 2
+> +      required:
+> +        - nvmem
+> +        - nvmem-names
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/leds/common.h>
+> @@ -191,4 +247,35 @@ examples:
+>        compatible =3D "qcom,pm8916-pwm";
+>        #pwm-cells =3D <2>;
+>      };
+> +  - |
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    led-controller {
+> +      compatible =3D "qcom,pmi632-lpg";
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +      #pwm-cells =3D <2>;
+> +      nvmem-names =3D "lpg_chan_sdam";
+> +      nvmem =3D <&pmi632_sdam_7>;
+> +      qcom,pbs =3D <&pmi632_pbs_client3>;
+> +
+> +      led@1 {
+> +        reg =3D <1>;
+> +        color =3D <LED_COLOR_ID_RED>;
+> +        label =3D "red";
+> +      };
+> +
+> +      led@2 {
+> +        reg =3D <2>;
+> +        color =3D <LED_COLOR_ID_GREEN>;
+> +        label =3D "green";
+> +      };
+> +
+> +      led@3 {
+> +        reg =3D <3>;
+> +        color =3D <LED_COLOR_ID_BLUE>;
+> +        label =3D "blue";
+> +      };
+> +    };
+> +
+>  ...
 > --=20
-> 2.39.2
+> 2.41.0
 >=20
 
---srGWJR8qE45I+k+n
+--siNBzA7SpfMo2ngy
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPC3/AAKCRB4tDGHoIJi
-0t3IAP9axavIUz5h6IdSBGWOuHgSx5jnlWEoNPa373TRW7/vZQEAtPjG+/jNENgU
-EwF8jy9XKAYCoKCoSEtLpq1lQcOWDQQ=
-=duFO
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPC4ogAKCRB4tDGHoIJi
+0rvnAQCC/NP8ZnTt8cM3IdN+5mZMI0oAy5tg3F8KoasVqxYwXwEAggM0YFw0w7Vk
+RTdsGwIHbsfaMnnBOL+FBI0RD5ZK1wA=
+=EpUf
 -----END PGP SIGNATURE-----
 
---srGWJR8qE45I+k+n--
+--siNBzA7SpfMo2ngy--
