@@ -2,122 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6386778E7EB
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 639A578E7FE
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:30:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240248AbjHaI0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 04:26:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52250 "EHLO
+        id S229950AbjHaIa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 04:30:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242250AbjHaI0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:26:36 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2314E47;
-        Thu, 31 Aug 2023 01:26:24 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 37V8QAQ5079893;
-        Thu, 31 Aug 2023 03:26:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1693470370;
-        bh=BpAQV6wM+o+2MShaJlsa19Hy9LkX3eiX1Pj9x74n76U=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=Qj9/utkFlU15CyJ5mc2zOMfH3tsBtEzUwVD43F8rcFo0q21RUuRKwP+IrbFuuPQM0
-         ZmpUuZS3utT+1TArJkQDG+Vxa+tkYiSeK9AALqxfR3FkG1by2tRpLW00n+iFYnIIp9
-         OOfjd1Uc/4PbDx3oxkKXNcZ7eFaBBVN4hOvx0wfk=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 37V8QAJm098384
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 31 Aug 2023 03:26:10 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 31
- Aug 2023 03:26:09 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 31 Aug 2023 03:26:09 -0500
-Received: from [172.24.227.35] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 37V8Q3kZ104652;
-        Thu, 31 Aug 2023 03:26:04 -0500
-Message-ID: <1b384a76-9c7d-29b9-8723-258324e4ec8e@ti.com>
-Date:   Thu, 31 Aug 2023 13:56:02 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add compatible for
- AM64x in ICSSG
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Simon Horman <horms@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S229785AbjHaIa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:30:27 -0400
+Received: from mail-pg1-x52e.google.com (mail-pg1-x52e.google.com [IPv6:2607:f8b0:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9200E185;
+        Thu, 31 Aug 2023 01:30:24 -0700 (PDT)
+Received: by mail-pg1-x52e.google.com with SMTP id 41be03b00d2f7-565e395e7a6so398201a12.0;
+        Thu, 31 Aug 2023 01:30:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693470624; x=1694075424; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qMjIF994q3qSA6WWBgnks3eIIMa6B1Wh1e0XtMkE9qw=;
+        b=Zv10CyxDGvbyzCOfQzIEoPmY6w8tODbmdlBnYeQFD7KGpU3ARxb5Kg+mcV1QhL+09S
+         5DJfneT7AvTU4bsfhKWt+GNyEylgrzBg1Jy9mVON5VJtjjn5cHSRGoP0lJTVA0Y+DfsM
+         x32s8ezXRPTPPZbLbLO19COCTmqJh10nQSbPhvEWVx9DrXIJUJzn5vVuVJnCLUAa3ZuD
+         IM3Xd3NFpmPE1tWEjIipMPezU0sXNtPUQXybsZAq9PvA0lHvHvOzsCyRamvmfm6dJSdp
+         xgRO6sg0yQ1CB186prlKyJ6mAjWSd9mQamiX6vBAXBDEcEPEICbbuHVH5K/gyjFOc/y5
+         CLpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693470624; x=1694075424;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qMjIF994q3qSA6WWBgnks3eIIMa6B1Wh1e0XtMkE9qw=;
+        b=VCQfA6M1UYJEvecvOVxwRar9uocNO0VcvFyxi2+CGXfOwVzMuoR5yP8o+Rt8uMNIh3
+         JjcipDD1oOE42EcLU8UJtpSpditoX/TPoGU/Yp7j76xyS9DN54kvd4700fZigFvCbl2j
+         8u+bkVMrDeKoEXwiKDrwG6uQ7muUW77i4eEIn3pnh457Xevel6ss928uLhjFUcpTJC4U
+         BNoslqBvSWJ2V052NvCWgANeg+ivfQOdhDjKjTmrXq/ejQkH7iaCEJdAIBmcrci8Pvzy
+         yD408f0eizP1yVEC5cJzHVi3/wieIPWvnFMQxSERH+Q6nX6mKMnZupIZcmRfdJ35he8y
+         AWrQ==
+X-Gm-Message-State: AOJu0YxshJeYlgcefpBxJKRvj1WxraLoDSwhaDlLIGx2GRPU1gWsgYhp
+        ZBPS1vQPLeGSOiyaNmUqfJY=
+X-Google-Smtp-Source: AGHT+IGq02q6EYdzv4j+dIJgAqXae16JDV44BC6e7208bdXWcap4pw1HaygLxTRCG/9TzNfLH+F3bw==
+X-Received: by 2002:a05:6a21:71cb:b0:11f:6dc:4f38 with SMTP id ay11-20020a056a2171cb00b0011f06dc4f38mr4826670pzc.55.1693470624065;
+        Thu, 31 Aug 2023 01:30:24 -0700 (PDT)
+Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id a17-20020a62e211000000b0068a46cd4120sm812253pfi.199.2023.08.31.01.30.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 31 Aug 2023 01:30:23 -0700 (PDT)
+From:   Peter Yin <peteryin.openbmc@gmail.com>
+To:     patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20230830113724.1228624-1-danishanwar@ti.com>
- <20230830113724.1228624-2-danishanwar@ti.com>
- <25b44b0d-e958-ada3-3900-589224c1e37f@linaro.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <25b44b0d-e958-ada3-3900-589224c1e37f@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     Peter Yin <peteryin.openbmc@gmail.com>
+Subject: [PATCH v6 0/2] *** Add Facebook Minerva (AST2600) BMC ***
+Date:   Thu, 31 Aug 2023 16:28:16 +0800
+Message-Id: <20230831082819.4000425-1-peteryin.openbmc@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/23 8:16 pm, Krzysztof Kozlowski wrote:
-> On 30/08/2023 13:37, MD Danish Anwar wrote:
->> Add compatible for AM64x in icssg-prueth dt bindings. AM64x supports
->> ICSSG similar to AM65x SR2.0.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> index 311c570165f9..13371159515a 100644
->> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> @@ -20,6 +20,7 @@ properties:
->>    compatible:
->>      enum:
->>        - ti,am654-icssg-prueth  # for AM65x SoC family
->> +      - ti,am642-icssg-prueth  # for AM64x SoC family
-> 
-> Keep the list ordered, probably alphanumerically.
-> 
+v1 link : https://lore.kernel.org/all/fb09f5e6-8381-312f-2f1e-f2b471cec68a@linaro.org/
+v2 link : https://lore.kernel.org/lkml/9f499fe5-db59-f4c8-6a50-93725b7287fd@linaro.org/
+v3 link : https://lore.kernel.org/lkml/20230830025133.3756506-1-peteryin.openbmc@gmail.com/
+v4 link : https://lore.kernel.org/all/1d531692-5455-fbfd-0775-50856bf0fbc7@linaro.org/
+v5 link : https://lore.kernel.org/all/5347163b-c225-d805-d851-fe28e6b57c56@gmail.com/
+v6 link : https://lore.kernel.org/all/20230831072048.3966398-2-peteryin.openbmc@gmail.com/
 
-Sure. I will change the order to alphanumeric when I drop the RFC and post it
-as PATCH.
+Change log:
+v7: 1.Change order before aspeed-bmc-facebook-minipack.dtb
 
-> 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+v6: 1.Correcting the arrangement order in Makefile.
 
-Thanks for the ack.
+v5: 1.remove redundant blank line.
+    2.Correcting the arrangement order in document.
 
-> Best regards,
-> Krzysztof
-> 
+v4:
+    1.seprate dts document.
+
+v3:
+    1.Fixed commit description.
+    2.Add sgpio line name to sgpioP.
+    3.Add ipmb debug card bus.
+
+v2:
+    1.Add facebook,minerva-bmc in aspeed.yaml
+    2.Use stdout-path
+    3.Add Makefile
+
+v1:
+    1. Create minerva dts file.
+
+*** BLURB HERE ***
+
+Peter Yin (2):
+  ARM: dts: aspeed: Minerva: Add Facebook Minerva (AST2600) BMC
+  dt-bindings: arm: aspeed: add Meta Minerva board
+
+ .../bindings/arm/aspeed/aspeed.yaml           |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 377 ++++++++++++++++++
+ 3 files changed, 379 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
 
 -- 
-Thanks and Regards,
-Danish.
+2.25.1
+
