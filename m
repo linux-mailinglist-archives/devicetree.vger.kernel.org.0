@@ -2,119 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B47B78E909
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:04:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D7178E93B
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:19:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243125AbjHaJEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 05:04:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57800 "EHLO
+        id S232984AbjHaJTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 05:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241685AbjHaJEP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:04:15 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1255CF7
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:04:12 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-d77ad095f13so347176276.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:04:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693472652; x=1694077452; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=EP5BZ5K3ZE2Pv+daLf3Z5xOE89jzoMtdEYKXKltONtI=;
-        b=w2zcrDrVoFU/fkOeFET2k1tuxpd0M3Dd140GlcvM18nL33DsTUPy9cZGXHIsJ7hiat
-         jKzHeo7AW9cwQg/pz8sLq0X3rxd0QuG/cT4KKwEbUzDRDHkQHrfBCOLVB7TJhJWDxYd2
-         +q2agvYaprOoIB+O5HpTaDvfaoLzcAo8VLjnFiEl8W7iCznxgRoBKeyVUZCLFMTleLgm
-         aTaq9lzf1+SO6cS3dgczZfe7sYPpF7SCo+glEiJMw1jM3aCcct3+S2ydo7+YNMoiB5zq
-         Dv9nJOOjrXgPWNpFIcP2NgymUZ2K26/3N8nEQgFDE5cIeZ5zKT7pcuKHNqF7ANN2IhGm
-         M0mA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693472652; x=1694077452;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EP5BZ5K3ZE2Pv+daLf3Z5xOE89jzoMtdEYKXKltONtI=;
-        b=hLenXbc+KCMC05NOA65b6JAImagwHeVuf+u7yVrtQjqvRykfZTA96/KFaatvSKYDaK
-         Oew8eKV78jAxKKRRpp9UDDKLP1GDe41s9aVlsz1CCNfE+f15vQVlrETbT88XBzY47ND/
-         jKw/UEtR0nMG7ZurXJd5DFREg7DkPHCaABOw6BoVdM3CEiGqlO6xwcr1iKbysO92gCqR
-         Y+tFD1IX2OGEKTICE/+/zMpBNM4q25ifOstVsGB6kqEHBcQrVQrKUYiq5933YeYsumUe
-         bJfdpG0kevdBlMeVU0CpODPDR4TjfJjYQPFsrm/EyFjLDM+oZyp4ydNifg9kXGRhO4py
-         V/2g==
-X-Gm-Message-State: AOJu0YyF6FUdBDqtLHtiC0YgBfR6BQchToVxFEYWBIa9zXZ39pK+Y441
-        6S/xWgRBAEaiLn1S0wG8UmroSq+/dkgIXGBgDD+ZQA==
-X-Google-Smtp-Source: AGHT+IGehtGlJIPJafHY2MmAezN7Q363OmOcjqCTAtgV2JV18r+NtcaCGcVXy1e3IqPacnn/e6Yebu3QeMS+pEFWfK8=
-X-Received: by 2002:a25:d794:0:b0:d6b:1531:bc6d with SMTP id
- o142-20020a25d794000000b00d6b1531bc6dmr4269044ybg.30.1693472652133; Thu, 31
- Aug 2023 02:04:12 -0700 (PDT)
+        with ESMTP id S243840AbjHaJTG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:19:06 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 652E7E61;
+        Thu, 31 Aug 2023 02:18:58 -0700 (PDT)
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37V9FB8R019774;
+        Thu, 31 Aug 2023 09:18:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=DhHobCxLEkV5FWZ0NaqM4hKdOLVEZC4wYjzajgUIplk=;
+ b=KUNJLxEmi+XlS5dQxss2My1vqrPr1+QDgRtWr2bH6FbldhMeJxCsKyde/Abf0P3On3AB
+ 38b6SOIVjUxGz5TSqwvWA1o+nY4P9op+1iUteHbHwCu3r46LIdCHFl4UHBvGAzYLC0Wb
+ ohc8B1hN8A0bRTrndiXyXDnMWuJqwN4Fjv7API9uneSnE+l8dY8gb8tmmoiGmtSHPq1X
+ pE96qt9xPhXILUEpbmfT5tPUHym3VtbYkiDPHjh/OxvpgBGAVJMxI7kPVl38JfMvNUw2
+ Jb8vUY3PkKmVGuCCo/+MGcm2ngTVNkqd9AkWeV+mQ1i/M8bjT6efWB7U+mUKSCKZHacS vg== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3st0tatss8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 09:18:03 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37V9I2X8030791
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 09:18:02 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 31 Aug 2023 02:17:55 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <arnd@arndb.de>, <geert+renesas@glider.be>,
+        <nfraprado@collabora.com>, <rafal@milecki.pl>, <peng.fan@nxp.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v12 0/4] Enable IPQ5332 USB2
+Date:   Thu, 31 Aug 2023 14:47:42 +0530
+Message-ID: <cover.1693468292.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org> <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 31 Aug 2023 12:04:00 +0300
-Message-ID: <CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com>
-Subject: Re: [PATCH 2/5] arm64: dts: qcom: apq8096-db820c: drop simple-bus
- from clocks
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7Fc4qYBgYd0FPTHqcR8mlRHIg7NVlUnX
+X-Proofpoint-ORIG-GUID: 7Fc4qYBgYd0FPTHqcR8mlRHIg7NVlUnX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_07,2023-08-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
+ spamscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 mlxlogscore=471
+ adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308310083
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 24 Mar 2023 at 22:23, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> 'clocks' node is not a bus, but just a placeholder for clocks:
->
->   apq8096-db820c.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
->     From schema: dtschema/schemas/simple-bus.yaml
->   apq8096-db820c.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]],  ...
->     From schema: dtschema/schemas/simple-bus.yaml
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This patch series adds the relevant phy and controller
+DT configurations for enabling USB2 on IPQ5332
 
-This patch broke audio support on DB820c. Now the divclk1 clock is not
-registered, as drivers/clk/clk-gpio.c doesn't have CLK_OF_DECLARE().
+v12:
+	DTS:	usb2_0_dwc -> usb_dwc
+v11:
+	Driver: Rebased to accommodate https://lore.kernel.org/linux-arm-msm/20230824091345.1072650-1-yangyingliang@huawei.com/
+	DTS:	Sort nodes in alphanumeric order
+v10:
+	Driver: Restore register success print per Dmitry's comment
+	DTS:	usb@8a00000 -> usb@8af8800
+		regulator_s0500 -> regulator-s0500
+v9:
+	Driver: Since the driver code has been picked up for merge,
+		(https://lore.kernel.org/linux-arm-msm/169226613917.81413.1200008047604336868.b4-ty@kernel.org/)
+		adding the coding style fixes alone in this patch.
 
-Stephen, What would be the best way to fix this? Add CLK_OF_DECLARE
-support to clk-gpio.c? Or simply move divclk1 from /clocks into a
-separate device?
+		Fix line break alignment
+		Remove register success print
+	DTS:	usb2@8a00000 -> usb@8a00000
+		regulator_fixed_5p0: s0500 -> regulator_fixed_5p0: regulator
+v8:
+	Driver:-
+		Change commit subject and message per review comments
+		Don't include of_platform.h
+		Change struct initialization coding style
+		GENMASK -> BIT for one of the defines
+v7:
+	Binding:-
+		Move 'compatible' to be the first entry
+		In the example have 'usb-phy' instead of 'usb2-phy'
+		Add 'Reviewed-by: Krzysztof Kozlowski'
+v6:
+	Binding and dts:-
+		Dropped the qcom,dwc3.yaml patch as it has been picked up for linux-next
+		Add const to compatible, vdd-supply
+		Move nodes per register address
+	Driver:-
+		Add vdd-supply
+		Cleanup error paths in probe with dev_err_probe
+v5:
+	Binding and dts:-
+		Fix email id
+		Removed 'Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>'
+		as had to change bindings file to be able to use generic phy instead of
+		usb-phy
 
-What is the rule, which clock drivers must support such device-less
-binding using /clocks/foo nodes?
+	Driver:-
+		Remove unused definition
+		Use generic phy instead of usb-phy
+v4:
+	Binding and dts:-
+		Change node name (bindings & dts)
+	Driver:-
+		Remove unused enum
+		static const for '.data'
+		Error handling for devm_clk_get
+v3:
+	Fix bindings file based on review comments
 
-> ---
->  arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> index 4476e2e22816..b599909c4463 100644
-> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-> @@ -63,7 +63,6 @@ chosen {
->         };
->
->         clocks {
-> -               compatible = "simple-bus";
->                 divclk4: divclk4 {
->                         compatible = "fixed-clock";
->                         #clock-cells = <0>;
-> --
-> 2.34.1
->
+v1:
+	Cleanup DTS
+	Combine driver, kconfig and makefile patches
+	Remove unused functions from M31 driver
+	Drop the clock driver changes
 
+Varadarajan Narayanan (4):
+  phy: qcom: m31: Fix indentation issues
+  arm64: dts: qcom: ipq5332: Add USB related nodes
+  arm64: dts: qcom: ipq5332: Enable USB
+  arm64: defconfig: Enable M31 USB phy driver
+
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts | 23 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi       | 55 +++++++++++++++++++++++++++++
+ arch/arm64/configs/defconfig                |  1 +
+ drivers/phy/qualcomm/phy-qcom-m31.c         |  6 ++--
+ 4 files changed, 82 insertions(+), 3 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.7.4
+
