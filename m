@@ -2,150 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3223678E9FF
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 12:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E4FD78EB45
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 13:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344052AbjHaKPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 06:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33472 "EHLO
+        id S231375AbjHaLCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 07:02:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243175AbjHaKPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 06:15:21 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAB59CFC
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 03:15:17 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99df431d4bfso69364266b.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 03:15:17 -0700 (PDT)
+        with ESMTP id S234932AbjHaLCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 07:02:08 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F08CFA;
+        Thu, 31 Aug 2023 04:02:05 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9a1de3417acso404897166b.0;
+        Thu, 31 Aug 2023 04:02:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693476916; x=1694081716; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=H/QBPbcdBIUaDmEdJvoBEfz2mE+9ATt7Z3dvvW3W+XM=;
-        b=D/83I3LUXCsZrb2APzMxQs1EUOarA9A37v0QZ5Th/A1QfUv9Ba6mNjMUFzck6TCSOs
-         tsoT2fMlnImN/d24DKJ4cE6K+77LdwNYaBWWhJbQtKbkXt+XkRsN9gkVsG1e3Mpn/qVV
-         HatyYwZu8nvsvu19FcnUbAGyMbVGm8MIcvVqFZEGiWa4dLt7IS0vdgBdRX24jJ6rgZkF
-         74laAtR4otK517WelO50NF8RSBBgFxqfC6MHhQK0bt97MF/Xe73cZJH1S3ofyXGskv1Z
-         8Iy2JkwxJYUt+etXjWbiI5qH+VH+8zeCMXUBDqU3VU4t5hIbwgvgQjAMFvwbMwX0czHZ
-         qfTA==
+        d=gmail.com; s=20221208; t=1693479724; x=1694084524; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oTXl8mKJCoSXKQpNwtK+OO0amUPSdiia5crdcPt8muI=;
+        b=E+oqK58T2xDwEFt28ap15LWJt4vmTlg+bnDCandK7A7O8dNb1mv5LaTHniKEOeccoO
+         SHM0+lHqPtLGBxU9/4Fy6r15+TReFKndNTY5qERIYKG+Af3FfXcO1rAtJoQruF4SihUn
+         lfOe+v/F/AsbofieYDEHOCxV71GT9C6JM+ZFE25hoWsaihelCnrOOZ7I7+R3gijJ9Y/d
+         L4RbR4KTDtRZ/P7Hv9luhmCkTwWVPIvU9SoAMC87QRjJ10rTByvXTDVUIuTJSOkl3tkJ
+         2FOTGOS1O+5Uv7vGKMGM6KSQgqV/lKKkk4YfHP1UOA+z+JzL+Q501lmTUFIDtrUo8oKO
+         HhtQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693476916; x=1694081716;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=H/QBPbcdBIUaDmEdJvoBEfz2mE+9ATt7Z3dvvW3W+XM=;
-        b=NxWmtOGPDJUQoMMU5j6pNGWd3+7pelBKksph0ohzmfOVfOdldcqr4OrknfVyKzStaa
-         9C61J4shvHEgwJLDD0ZvZx2gvCqNUVt7VFojzrUh/zWS7s6bTvvvAJWbG3L1bSUFLcM+
-         /pR/DhT0hjzQrdFeU3/0anY5DGYp3I+lHkBlJ8uqNzzpCKdf8csm1YZJ59YmveVBrHS0
-         96RNYnLWUMkkMWnhtF/mh52P6yTcygxtexGyTMGPW9gbrb8FHsZ6P9qwX17do6urmlJ6
-         P8wYNq2GnFlXGFi0hanMh9PWu46adne83VSM++mzKngleGp0ghf0+jMc8UJtlauGFguS
-         qFFA==
-X-Gm-Message-State: AOJu0YxQyXrqjnepU1516+HHZiOnN7yHBTLmGHv1iuXLbnYmlCp1kvEo
-        OhkL1Nru9vpeCFuB5vcyo+Yt8g==
-X-Google-Smtp-Source: AGHT+IFieRs3jKu+tDRFvH+FgeMgEnwkMxzDYii31CjCN37+X6VKTZjqXup8FZU8u0Hccxr1RrpNHQ==
-X-Received: by 2002:a17:907:77d3:b0:99e:1581:6437 with SMTP id kz19-20020a17090777d300b0099e15816437mr3483828ejc.46.1693476916352;
-        Thu, 31 Aug 2023 03:15:16 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id h5-20020a1709062dc500b009a2235ed496sm604388eji.141.2023.08.31.03.15.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Aug 2023 03:15:15 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1693479724; x=1694084524;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oTXl8mKJCoSXKQpNwtK+OO0amUPSdiia5crdcPt8muI=;
+        b=QjJomj4LvMGns58nrlekzKu8bEV3eCfc6luFpLzoVlPwuS/CzQojY33hhlpr6JC7zR
+         KQwq0798MNmkG4p7WyF6+lVPy4LP+ve5INCQc0gYvCZaUljAsdpwQ7eGxOL8qcjJ2cPv
+         L5U+H8txcibNqFCzQAor5kYuQDXQHEDqkoMAJGZ7cUSSBmPbRPMVxnhD5EmOOdyzucjY
+         f4S97m7F20WVSnq7aP6JcRDzM/6KqMx4yDhDzlYc/aFtj9xt8OjHncB/Y9PhSAwahK+b
+         FCNgLEjxCL5AI+mwvh8DN1MeDaank/XgvDpK2dynQTXtrjQpeLNcd3d7FIpFdEd7EWnz
+         52Tw==
+X-Gm-Message-State: AOJu0Yy9poTVX7d5jWWldKrZh7D3TtOlA4QugbJpks+4BLov33VRTu3i
+        DGbSxqoU3km5WA40rQAJDe8z+1SJqY+4hYfunwd0inVK/3rGgA==
+X-Google-Smtp-Source: AGHT+IFq6TiAayoEpOcVY3q+kTFxUlMOEDYcxgXQPawqzmVsOEzqNB3KNO4GhQ+DoCSP8vjisiE6mD7ms+6bcSzzPmM=
+X-Received: by 2002:a17:906:7311:b0:9a5:b66a:436d with SMTP id
+ di17-20020a170906731100b009a5b66a436dmr2847772ejc.14.1693479723591; Thu, 31
+ Aug 2023 04:02:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230830134241.506464-1-keguang.zhang@gmail.com>
+ <20230830134241.506464-5-keguang.zhang@gmail.com> <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
+In-Reply-To: <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
+From:   Keguang Zhang <keguang.zhang@gmail.com>
+Date:   Thu, 31 Aug 2023 19:01:27 +0800
+Message-ID: <CAJhJPsVj1836-DoKTokxMd664FPX70vtSv96x4DfHzBFRZ_9Tg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
+To:     =?UTF-8?Q?Philippe_Mathieu=2DDaud=C3=A9?= <philmd@linaro.org>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Naresh Solanki <Naresh.Solanki@9elements.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/2] dt-bindings: i2c: Add custom properties for MAX7357/MAX7358
-Date:   Thu, 31 Aug 2023 12:15:11 +0200
-Message-ID: <20230831101513.2042773-1-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+On Thu, Aug 31, 2023 at 4:40=E2=80=AFPM Philippe Mathieu-Daud=C3=A9
+<philmd@linaro.org> wrote:
+>
+> Hi,
+>
+> On 30/8/23 15:42, Keguang Zhang wrote:
+> > Add two new F: entries for Loongson1 Ethernet driver
+> > and dt-binding document.
+> > Add a new F: entry for the rest Loongson-1 dt-binding documents.
+> >
+> > Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> > ---
+> > V3 -> V4: Update the dt-binding document entry of Loongson1 Ethernet
+> > V2 -> V3: Update the entries and the commit message
+> > V1 -> V2: Improve the commit message
+> >
+> >   MAINTAINERS | 3 +++
+> >   1 file changed, 3 insertions(+)
+> >
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index ff1f273b4f36..2519d06b5aab 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
+> >   M:  Keguang Zhang <keguang.zhang@gmail.com>
+> >   L:  linux-mips@vger.kernel.org
+> >   S:  Maintained
+> > +F:   Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
+> > +F:   Documentation/devicetree/bindings/net/loongson,ls1*.yaml
+>
+> Why not simply squash in patch 2
+>
+> >   F:  arch/mips/include/asm/mach-loongson32/
+> >   F:  arch/mips/loongson32/
+> >   F:  drivers/*/*loongson1*
+> > +F:   drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+>
+> and 3 of this series?
 
-Both chips have a configuration register to enable additional
-features. These features aren't enabled by default & its up to
-board designer to enable the same.
+Do you mean squashing patch 2 and patch 4 into one patch?
+>
+> >   MIPS/LOONGSON2EF ARCHITECTURE
+> >   M:  Jiaxun Yang <jiaxun.yang@flygoat.com>
+>
 
-Add booleans for:
- - maxim,isolate-stuck-channel
- - maxim,send-flush-out-sequence
- - maxim,preconnection-wiggle-test-enable
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
----
-Changes in V2:
-- Update properties.
----
- .../bindings/i2c/i2c-mux-pca954x.yaml         | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+--=20
+Best regards,
 
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-index 2d7bb998b0e9..fa73eadfdf7b 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-@@ -71,6 +71,23 @@ properties:
-     description: A voltage regulator supplying power to the chip. On PCA9846
-       the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
- 
-+  maxim,isolate-stuck-channel:
-+    type: boolean
-+    description: Allows to use non faulty channels while a stuck channel is
-+      isolated from the upstream bus. If not set all channels are isolated from
-+      the upstream bus until the fault is cleared.
-+
-+  maxim,send-flush-out-sequence:
-+    type: boolean
-+    description: Send a flush-out sequence to stuck auxiliary buses
-+      automatically after a stuck channel is being detected.
-+
-+  maxim,preconnection-wiggle-test-enable:
-+    type: boolean
-+    description: Send a STOP condition to the auxiliary buses when the switch
-+      register activates a channel to detect a stuck high fault. On fault the
-+      channel is isolated from the upstream bus.
-+
- required:
-   - compatible
-   - reg
-@@ -95,6 +112,20 @@ allOf:
-         "#interrupt-cells": false
-         interrupt-controller: false
- 
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - maxim,max7357
-+                - maxim,max7358
-+    then:
-+      properties:
-+        maxim,isolate-stuck-channel: false
-+        maxim,send-flush-out-sequence: false
-+        maxim,preconnection-wiggle-test-enable: false
-+
- unevaluatedProperties: false
- 
- examples:
-
-base-commit: f9ea75e087b81081f33e34c4e1ba8b4abe841d9f
--- 
-2.41.0
-
+Keguang Zhang
