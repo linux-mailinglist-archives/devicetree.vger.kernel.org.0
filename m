@@ -2,112 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B8178E995
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B198B78E9BC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245456AbjHaJgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 05:36:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38266 "EHLO
+        id S230182AbjHaJpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 05:45:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243816AbjHaJgB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:36:01 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D18ACEB;
-        Thu, 31 Aug 2023 02:35:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1693474558; x=1725010558;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=D3KjoyegWgCFqbsvoAhvULbaH+lWNnUj86eE942AVgc=;
-  b=WxbpgxIBX4arNrs0N0yAhGKl0ob17ZUcchqxH6ermJa/JDxBQuW1/0II
-   ZtxYABxepBzKYAORe0Cst8TBVYCQjvFssQyTbz9ybTaI6+1fj82KpiAWx
-   955yecPR6qW6OHWY3bD/c7Gld1Wrg2IonT7v7uf3P6iMEy8UMvxGcJqt0
-   u3fnMhVPjy5ouE015doKy+P7nIdKsuuh9+434NhAU4OEJstZz5ow0cT3E
-   FU/YElhz4c1lby6jNGucmcdZkqlA8U8WAimvfIHLg77IcoHjKYFatT0Wq
-   8WllsIxxGZs1P4pCINP4Q8zDPnpQ/6gGbf/jlmrIDgILex98VtPJ/xF2b
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="360871343"
-X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; 
-   d="scan'208";a="360871343"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2023 02:35:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="986145667"
-X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; 
-   d="scan'208";a="986145667"
-Received: from lkp-server02.sh.intel.com (HELO daf8bb0a381d) ([10.239.97.151])
-  by fmsmga006.fm.intel.com with ESMTP; 31 Aug 2023 02:35:54 -0700
-Received: from kbuild by daf8bb0a381d with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qbe5Y-000BBn-2G;
-        Thu, 31 Aug 2023 09:35:50 +0000
-Date:   Thu, 31 Aug 2023 17:35:36 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Fabio Estevam <festevam@gmail.com>, rafael@kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        daniel.lezcano@linaro.org, amitk@kernel.org, rui.zhang@intel.com,
-        linux-pm@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v6 3/3] thermal: thermal_core: Allow rebooting after
- critical temp
-Message-ID: <202308311705.C7t4Vtwu-lkp@intel.com>
-References: <20230830151908.2149847-3-festevam@gmail.com>
+        with ESMTP id S237425AbjHaJpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:45:21 -0400
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD81FCED
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:45:17 -0700 (PDT)
+Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-5738cb00eebso387070eaf.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:45:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=9elements.com; s=google; t=1693475117; x=1694079917; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=a2zrg/nVtnDJBTWbtaCFXh/8/Zf+li9b0Mqo2R7m2zs=;
+        b=ZVzLCRsX6mmsDlod3PwY+Lg7bm4SGfgice1awwvAe1RBrhI5UMSTwJSSb8HcC/BeCr
+         WGzyQC+Ntcq+eVVH5X/tnkvq1SGk3jQvvzwCX8wmdDhrQ7m2W6oMTfKzf242efOQKOu9
+         invOyZWm8esGbr+Ae+hXRl1NlHx7BDdXGN7bacbhRepE6h0zElu0tn/Ot452bopOHG8p
+         uW34jPesP7HloIw0G0uFCi7dwvAQO6Nvm+L2SQ7ILbyy+3COawmGE8Dk3O/pSH26VsAs
+         Ejm7SsgbJgC/xruytAUjclhSoJWUFiQHYofdmtl9nYR55tIOo9QIV8jJ0NmBLriDAfdJ
+         2VQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693475117; x=1694079917;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a2zrg/nVtnDJBTWbtaCFXh/8/Zf+li9b0Mqo2R7m2zs=;
+        b=EDhiqfBYZaPUFIvPSG2BobSMt5Dt2oqlJG8NaYUYBuH9XkgID5/Tuc56ROMAE3Onfm
+         fSlv7Tj5S7IWxNQKE2jQ3FoMtX7erT4BlcMXr/Ow/rL72B1UpzQpIDuDN+vZ5PMk3H3E
+         FFqDEQFOEtZCWY4MN+ICB0n+5A5tWFz0Tajck1sUZgLeKmkzCSrOu724NY9j554XxVYf
+         LBXP05LXsIqjHOChM5KZOCMesy5PhqKDB2tTwNP/YttHaQVS8+HiGwZEjVKSrN1ZmAvo
+         ywuIhOFXj9REkQyocwJZpgM7F/uIj6jy8PxQT7VBdQz3leYYs3Uq2gs1ymZN1p5Csjcc
+         HImQ==
+X-Gm-Message-State: AOJu0YyhO7FvOSyI45mkr8nttsxEFAAEDFzIq/Wai7hdUIFq/pxSc38P
+        BDkfQ+sO39mpSkuZCMmaALYCDniys8qKe796G+CQYg==
+X-Google-Smtp-Source: AGHT+IHXqhx+egqjWM5j15UIT7/uZ1bsMGVA9Ml4N+F2VDhanOVMqWkqLiRc05FX0WYyYZzCby9EodfyM2swlGMZyos=
+X-Received: by 2002:a05:6870:9d14:b0:1d0:fa7b:c3f9 with SMTP id
+ pp20-20020a0568709d1400b001d0fa7bc3f9mr2880440oab.30.1693475117223; Thu, 31
+ Aug 2023 02:45:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230830151908.2149847-3-festevam@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230830115744.4102929-1-Naresh.Solanki@9elements.com> <b467c423-dbd4-8a14-8fa4-169658e21693@linaro.org>
+In-Reply-To: <b467c423-dbd4-8a14-8fa4-169658e21693@linaro.org>
+From:   Naresh Solanki <naresh.solanki@9elements.com>
+Date:   Thu, 31 Aug 2023 15:15:08 +0530
+Message-ID: <CABqG17hB_GvQ56ZB+wjhSrDtZLreZ4vPc+3AfUj6AdA3Btd1+Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-binding: Add custom property for MAX7357
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
+Hi
 
-kernel test robot noticed the following build warnings:
+On Wed, 30 Aug 2023 at 20:08, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 30/08/2023 13:57, Naresh Solanki wrote:
+> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> >
+> > Add a custom property "maxim,bus-lockup-fix" to enable proprietary
+> > features on MAX7357. The driver configures MAX7357 to isolate the
+> > failing channel and trigger a flush-out sequence for bus lock-up
+> > resolution.
+>
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
+Ack
+>
+> It is "dt-bindings" not binding and several other fields are needed.
+Ack
+>
+> Also "add custom property" is quite generic. When you add next custom
+> property you are going to have two commits with the same subject. Just
+> make it descriptive - "Add foobar for MAX7357"
+Missed Properties in this Patch Series, Will Be Addressed in V2.
+So in that case I guess the below title should be fine?
+dt-bindings: i2c: Add custom properties for MAX7357/MAX7358
 
-[auto build test WARNING on rafael-pm/thermal]
-[also build test WARNING on linus/master v6.5 next-20230831]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+>
+>
+>
+> >
+> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> > ---
+> >  .../devicetree/bindings/i2c/i2c-mux-pca954x.yaml  | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> > index 2d7bb998b0e9..984d4614a270 100644
+> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
+> > @@ -71,6 +71,11 @@ properties:
+> >      description: A voltage regulator supplying power to the chip. On PCA9846
+> >        the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
+> >
+> > +  maxim,bus-lockup-fix:
+> > +    type: boolean
+> > +    description: Isolates only the stuck channel and generates a flush-out sequence
+> > +      to attempt to clear the bus lock-up.
+>
+> Why wouldn't you want it to be enabled all the time? Why should it be
+> configurable per-board?
+The chip doesn't enable these features by default & it is left to
+discretion of board designer to enable the same.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Fabio-Estevam/reboot-Introduce-hw_protection_reboot/20230831-034226
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm.git thermal
-patch link:    https://lore.kernel.org/r/20230830151908.2149847-3-festevam%40gmail.com
-patch subject: [PATCH v6 3/3] thermal: thermal_core: Allow rebooting after critical temp
-config: s390-randconfig-r025-20230831 (https://download.01.org/0day-ci/archive/20230831/202308311705.C7t4Vtwu-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project.git 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230831/202308311705.C7t4Vtwu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202308311705.C7t4Vtwu-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/thermal/thermal_of.c:221:27: warning: unused variable 'critical_actions' [-Wunused-const-variable]
-   static const char * const critical_actions[] = {
-                             ^
-   1 warning generated.
-
-
-vim +/critical_actions +221 drivers/thermal/thermal_of.c
-
-   220	
- > 221	static const char * const critical_actions[] = {
-   222		[THERMAL_CRITICAL_ACTION_SHUTDOWN]	= "shutdown",
-   223		[THERMAL_CRITICAL_ACTION_REBOOT]	= "reboot",
-   224	};
-   225	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Naresh
+>
+> Best regards,
+> Krzysztof
+>
