@@ -2,643 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597D278ECC0
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:07:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D11678ECD2
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:14:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239924AbjHaMH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:07:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54606 "EHLO
+        id S237898AbjHaMOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:14:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbjHaMH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:07:26 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21B15CFA;
-        Thu, 31 Aug 2023 05:07:17 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37V9FUQv024216;
-        Thu, 31 Aug 2023 12:06:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=85YMpzQVPOLVhBgEmW4Gwy3yaFWi+vOJuj3Gi37qnmQ=;
- b=dSVp9VA812FQsR8fvl3nB/ci9qEW5ivrdqpPlRAwbbOzN5qQT5Rigs9y7LjXPawxkJTr
- vTofBt6p8WsWpTChjXNJHSK0+VgtCYhy2v01yHg2GMg/fnjtaKhL5ulq1MOwYsFA3uJI
- 0THEHaipgTBd/SXXqsdpdqXILZLeak3tNkrWOtPoz8oE7PRsz9MRg4tp1BOHqzGu4f3z
- KQNOSD4SkpqNO+nlpe26taIYszIfJT/6zxfqugKXd/DgwY4ubiGVNmjxwLBEet0BLPrA
- eYtYGYMQBYVMmGX9g8xAdCPfNhvXCz+4CD9mccmoMjRsjGQotTrqluYnkemwqYT0Sd3p XQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stks5rthr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 12:06:00 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VC5xei012284
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 12:05:59 GMT
-Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 31 Aug
- 2023 05:05:51 -0700
-Message-ID: <25352cd1-22a9-414e-86da-3401e1956d27@quicinc.com>
-Date:   Thu, 31 Aug 2023 17:35:48 +0530
+        with ESMTP id S229766AbjHaMOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:14:20 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2135.outbound.protection.outlook.com [40.107.215.135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 053FCCDB;
+        Thu, 31 Aug 2023 05:13:34 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fcOb3RpeX6ARNaKogUlBkJdOF1gti5C7ueomNrXBU3aWimJj3TcY2TCigKrFW6oxg3A7xVhLxbc2Z4elgNtd8aKliyiADEpLaegmMRlaa0kmsMqvW52QJRqmtR+jFe/vz7p05iKTQOzLofxmS2lbZyCYNAZ2CQQsnMrgAiMLfe9+lXLforYqVHK1afWYlOjmjTutCNzOIOVjzArSNOLixpw1Jbzz8WL87LCscae5RrySI8erQoG4Nw9KOOALfWCp+Nw5EnSlWgYosj7J7dNP9Wgvh0WQwee9vsy2cqLinDGxtEpldcoHwHg4NYHJF6PBw7oaXlj4vPg0IuCcbFlzYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dznaFVogfRqivBp9395Rm3mvT7q6Vw6N2TXPEatct8M=;
+ b=WBq0psyWMMqgQpAOVM6EBpQDLy0oreyQgDpyE/0IZtIapLpIfoIirEjGkiTaQQtu/Oh3kT3NCl1H+rWuoX/MP9RdBbhLi9NfMD2AGfy9IYwZvKjMh1/uNFfFnSZcl4yn6sYcuqwnuWTMMOVHCUU5M3wYFSbutPp0QAIvS7u5SWUJvpA5jzOKq/R9A8qdB4Bqv8cqd+awy9KFw4nijqs3qBsWUvCSwpMWX00Rg6viMP7Td7Q7twtxC0Y4wr3WtClo6ltFlve00OBxbr8uqTSTvGts0skzGxlxPv8+zpxW9MUOQ4dwn9ULvNcMrhswL3CC9UmAzT9cEL1+beb2Ohhm6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dznaFVogfRqivBp9395Rm3mvT7q6Vw6N2TXPEatct8M=;
+ b=bAr7kqPYQUJ8BpKz2G1t8ZN29Yg4hjjisjU60EjFmo+1F9ttUcfHeSriTfSLxSk+owH56O+sN7G6+ss4igVOr5Mm5ukFArFaCVZnkWdBHAU/37MBlta/Yq1cJ9eGL3ERs1dmbwQPwTrZf1fFMuWch6qSMnYW0+Q7IG32eWB2vRphazQ697rqmGWIsngPwVIQGVjlwKBvNu7+WXjMDXqRZjNNmLiv07KHgugzbZQAWiIlYlJDpOSx/7bEPc0vxqDN0y7Soyy4UvBL1qc7KRFa2Gbow6dC4Kc3wMr7eFLtJSyvzcOLjW+Vilra+qSFKXTze6TWottr64gX1bgS7ImxHQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TY0PR03MB7240.apcprd03.prod.outlook.com (2603:1096:400:276::8)
+ by TYSPR03MB7521.apcprd03.prod.outlook.com (2603:1096:400:411::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.21; Thu, 31 Aug
+ 2023 12:13:28 +0000
+Received: from TY0PR03MB7240.apcprd03.prod.outlook.com
+ ([fe80::1cb:e12:c7a6:487d]) by TY0PR03MB7240.apcprd03.prod.outlook.com
+ ([fe80::1cb:e12:c7a6:487d%7]) with mapi id 15.20.6745.021; Thu, 31 Aug 2023
+ 12:13:27 +0000
+Message-ID: <b6e9fc91-0c99-5635-235b-76bc6db55f75@amlogic.com>
+Date:   Thu, 31 Aug 2023 20:13:22 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
+ RC_DRIVER_SCANCODE
+To:     Sean Young <sean@mess.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
+        kelvin.zhang@amlogic.com
+References: <20230825115310.39993-1-zelong.dong@amlogic.com>
+ <20230825115310.39993-2-zelong.dong@amlogic.com>
+ <ZO2gvMl2IS70ve3T@gofer.mess.org>
+From:   Zelong Dong <Zelong.Dong@amlogic.com>
+In-Reply-To: <ZO2gvMl2IS70ve3T@gofer.mess.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: TYCP286CA0321.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3b7::14) To TY0PR03MB7240.apcprd03.prod.outlook.com
+ (2603:1096:400:276::8)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] phy: qcom: uniphy: Update UNIPHY driver to be a
- common driver
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     <robert.marko@sartura.hr>, <luka.perkov@sartura.hr>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
-        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
-        <rafal@milecki.pl>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>
-References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
- <20230829135818.2219438-4-quic_ipkumar@quicinc.com>
- <CAA8EJpoYu_98GhofMcJ_Z6tfGZXxDLOyG8Xbo_ohC6R8+JdF4g@mail.gmail.com>
-From:   Praveenkumar I <quic_ipkumar@quicinc.com>
-In-Reply-To: <CAA8EJpoYu_98GhofMcJ_Z6tfGZXxDLOyG8Xbo_ohC6R8+JdF4g@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: VhbCau3nm_kN4ZowVHXAMijORRj0WELd
-X-Proofpoint-ORIG-GUID: VhbCau3nm_kN4ZowVHXAMijORRj0WELd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-31_09,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- spamscore=0 impostorscore=0 clxscore=1011 malwarescore=0 bulkscore=0
- mlxlogscore=663 suspectscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308310108
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY0PR03MB7240:EE_|TYSPR03MB7521:EE_
+X-MS-Office365-Filtering-Correlation-Id: c9ffd36f-71ff-47da-017a-08dbaa1bae0c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: G73KZRe0cxxJ3xHRV2oTW4nHUAkT8LZbX6YdHFlMU0aFqnlktIdNGbGeOhL3uymSbsucanCdrhHgSS/6i5xTbeQ5No9OMB3uZ00LjzoianyOXBqJ2g7vzBoY/tdtdUZMg4xCKN/sxmLT62SPtdAFrSNXWvfKUniWFDa0pI75APf9M0tMlC5rAro23f9L17j3FmC8/V9AQr2DkrpYlR8Ir/1IS4EgnBvgFWc9QvTIR87fhDohqdZ4k4x8QVtRVYQ7qz8laPZh6IQgBo06V3MyAwtAz9It3cNyCcWlOkiD00VgweGyA/H5XszGxpBnVTEMUD+RkF5VnCuWDaf7j5nFqgwiTHsbPfOxmfCoeoCKpgn9Z7w6EB0CxcCRye4/TjKCkdpa3OCdAKiC5IsK7Uut/duUZDApqxIFGfraMwD9rknKrM+UiVa2S81R1nMnyqDGCbj82YSrav/DFQBJiS2RjNfCyUmbmW9MdPawwK4m6KOqJBSVmMbIQRl6UPMF8ihTif4jDvNaR/viAV08FCn36LGKIcxuiu2yYArfEKkEKDBSGB35WxeRBy9LW2fAuMZ/oxeB+7IpD8cnS1nsXoANzK8qGqN92jyS+u17G7j1zMQ8HoFiR1OKrap2evb0ihb4+w7og7eBI17fZgxE53MMxc7Ha4fUddE7LzGcD8aSsWhKWbpbDRX/GjDUHwFrAPh/
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY0PR03MB7240.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(396003)(366004)(346002)(39850400004)(451199024)(1800799009)(186009)(6666004)(6486002)(6506007)(6512007)(478600001)(2616005)(107886003)(2906002)(26005)(7416002)(316002)(66556008)(6916009)(66476007)(54906003)(41300700001)(5660300002)(4326008)(8676002)(8936002)(36756003)(86362001)(38100700002)(31696002)(31686004)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YktPOWd3TDZrT01ZV0IyVEZUckNVS25zT2Y4YXNzUXlHRWNPV2VBWnluTVEz?=
+ =?utf-8?B?VURscTNVaGRWQVBpNVhPZmlkVkRQMkxLNDlSYW1SQkpTT3REUis2T3pMcGN3?=
+ =?utf-8?B?NFVEcjI1ZENPaWg1c2ZhOG41cXBEZ1pHK1lXR21ObFQra3lzMTdzVXNIWDBi?=
+ =?utf-8?B?ay9uWnRSU0xieTdqdkJJMS9qWXAwY1NEbDFQTWg2TTFYaFhEOWxHRzJRS3Vz?=
+ =?utf-8?B?UHQ0RHJwdXdRTFBScWlyd3E2U1A4SXNBQXJpVGpWaTljL1J6cEVsMk9iVCtU?=
+ =?utf-8?B?TGZQYU10M25pV2trRFJlaUlSREZjK3kxVGp6dXFHR0YwajdLd251ZDc5R3dh?=
+ =?utf-8?B?Z005SFJRekg5YXdTMngvZXFBK1RVZ2lHeTZJUUdlY1VQZUhwdGpIclcwTk1t?=
+ =?utf-8?B?U21SUVJrVjdUeVUrY1luTitxTHpUamhTTmhYMUhlUUIvdHMwcm8vd3l3TDNF?=
+ =?utf-8?B?ZCtjdnhpZVpQalBxV0ZYY1pPQVJDMWpESHVHQTdJeUNkZUg2V1duSmNhN0ZN?=
+ =?utf-8?B?TnpZNFZyLzNTaFk1N0pZZTA1QVlMd3hZZU14d3IrT2JNZmc0OTlWNlJETzNt?=
+ =?utf-8?B?M0tLdFY2L1RkaEpDcXF6bDBmbUNQdjZBME5vUXdKMi9VRXRHd2NmeUQyVUtx?=
+ =?utf-8?B?U05tUk9jTGJqcS9jZC9zanJGTVZlNUszdnhEQ1pxK0xOWG5kYk5EM2s2VnNE?=
+ =?utf-8?B?bk9oOTI4NE5jRmVjekkxd2h6U3VXa3RPK1FXMUtIbDNOUVVZNmVpL1pvYWtN?=
+ =?utf-8?B?QkdCcHpRWm8zOFBuTlBFdGxNVHA2STRHLzFBRDZDaDdQSno4RnpNSmNzZ0Er?=
+ =?utf-8?B?OVZlTzFCREhvODRZRGlGSU9Dc2JkQXRUOU9tVUprUkdFMnJSOGxzSjUyVlBT?=
+ =?utf-8?B?WXpaMTlEWGRLb3FhazFtZGYzdWlDdFpsK2dSZjdPMTdZM2llYWhEYlVtUmhM?=
+ =?utf-8?B?ZkN4NnJzRmovOEE3d01iRDl5UlBYSnBoSFNsdjBnNzVjZVR1V3BIOXRVMDNk?=
+ =?utf-8?B?d0owaTBmMWkzMG5FWnFWUHA5a29qZ2hCVHJsRElkWDFWQ0xXZ0QwemU2NTd4?=
+ =?utf-8?B?TDM2V0crUy9pWWpud1oxck94Y21KRThSVUswSjIrajFMNjFWcXJWdlM5cHc3?=
+ =?utf-8?B?L1hvcTFSYVdtRldRaUJOdjI1YjBjNUtISDRMb2lheGlYWWNGRVFkSElsaXF5?=
+ =?utf-8?B?OGZoZ29kZmRHY1M4Zk5KYzQwbVcvb1FEbWIrVVJVT1YrYjkvYkpkdmhta25U?=
+ =?utf-8?B?N1ZybENMZytucDhzMDZ0dnZBN1RGdGZLdlY0TU9hby80SXh1K1JyeTk0TFBp?=
+ =?utf-8?B?THpnT0VQc3JjMUhQK3ZGMFFZYVBQQitnT2JhVERjZkREdVMxU3ZvbE1vSGtC?=
+ =?utf-8?B?RS80RkRwSDVRYWxqOThna2JXZ29DRWkwMklkMG5rWG54S0R6M0g0eER5ZG9h?=
+ =?utf-8?B?UW9vTzBEVjBUbkV0Nk14MmhwdE1kYUlKNWhwTjVmeDZvakRFM0lBcExUc1RJ?=
+ =?utf-8?B?UkhsTUk4SWluRUp6K2tnM3FNR0xzTEJQb0RnYVdOMk91eWhpeU44QXcwS2R1?=
+ =?utf-8?B?b05RcW9rZUt4alVRZnZXOGYrN1N6MURaY3VaQ3RIU1IvN2JHNWw2OW5FT3Yy?=
+ =?utf-8?B?K3JSWHRPcmxrVU1ybk41dEdxZnlCR2JYWUpaQS9ZTDFaMDBCbXZsL2lHN0Fx?=
+ =?utf-8?B?azREazdGWWRRdkhBNEZRVFQ5WkZBelU4aHhQSmg1eWhkcEY4NkMzM25leGF3?=
+ =?utf-8?B?cS9jVStwVzhLejdhNHdPTGR4VVJMcy9ScW9LeTYvQnF2eFYwSjUwUEFqNXZo?=
+ =?utf-8?B?YkhrYUo1OEdIdkgxUGxYalVNOUpwN1ZuRlMzQWZ2MDNRSC9rRzdwdFRVQkd5?=
+ =?utf-8?B?NnhLUVMvemcyNzRZdzh6TzFFQ1ppSHNUeGFOMWlLcG9INTJpTGx1c1lUejZl?=
+ =?utf-8?B?Y09VUkI5ZVBDV3lIVHlPbHIyZGJVRTNHMFVHbFZ2UktWczNGUWZoZ01ZS3ps?=
+ =?utf-8?B?Z3FxMlRYNmJacUtEYXZwM3A2bTF6a2ZERTVqQkRHcDI3RWdqWUovNUtXMG5o?=
+ =?utf-8?B?cUo0RXNDWE95d1hZdDV3a21rcVZwTGNmNGtzTWxzWVBvN1lRR050YmZqZFo1?=
+ =?utf-8?B?TFVUTENOVU5HeTFUcSs0aTJSNS9Oa0lGTysweS8ySGZFK0dTRVJwOXVSSDBu?=
+ =?utf-8?B?cFE9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9ffd36f-71ff-47da-017a-08dbaa1bae0c
+X-MS-Exchange-CrossTenant-AuthSource: TY0PR03MB7240.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 12:13:27.0673
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6VBwvQb1kG8T89dAPiYZqwGZKQg7muVAlFstfU4AQXmhJa769TedtjAFH8KGZvF4PwJY4IrQIsbXDVnEb7safg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7521
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+在 2023/8/29 15:39, Sean Young 写道:
+> On Fri, Aug 25, 2023 at 07:53:08PM +0800, zelong dong wrote:
+>> From: Zelong Dong<zelong.dong@amlogic.com>
+>>
+>> Meson IR Controller supports hardware decoder in Meson-S4 and later
+>> SoC. So far, protocol NEC could be decoded by hardware decoder.
+> On Meson-S4, only the hardware decoder for NEC can be used using this
+> driver. Does the Meson-S4 hardware support software decoding? If
+> software decoding could be used, then any protocol could be supported,
+> not just NEC.
+> 
+> Also, out of interest, is there are documentation available for this
+> hardware?
+> 
+> Thanks,
+> 
+> Sean
+> 
+Yes, IR driver still supports SW decoding on Meson-S4. The decode mode 
+could be changed by 'support_hw_decoder'.
+If IR Controller works in SW decoding, driver will be registered by 
+RC_DRIVER_IR_RAW and allows all protocol.
+Otherwise, driver will be registered by RC_DRIVER_SCANCODE and only 
+allows NEC.
 
-On 8/29/2023 8:07 PM, Dmitry Baryshkov wrote:
-> On Tue, 29 Aug 2023 at 17:00, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->> This patch updates the UNIPHY driver to be a common driver to
->> accommodate all UNIPHY / Combo PHY. This driver can be used for
->> both USB and PCIe UNIPHY. Using phy-mul-sel from DTS MUX selection
->> for USB / PCIe can be acheived.
-> I'm not sure why you are talking about PCIe here. This patch adds only
-> SS PHY support.
->
-> Also, I'd like to point out that we had this 'USB and PCIe and
-> everything else' design in the QMP driver. We had to split the driver
-> into individual pieces to make it manageable again.
-This Uniphy 22ull is a combo PHY used between USB GEN3 or PCIe GEN3. Via 
-mux selection
-the one of the controller interface can use it. Hence thought to have a 
-same PHY driver for
-both USB3 and PCIe. Will drop the plan of adding the PCIe support.
->
->> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
->> ---
->>   drivers/phy/qualcomm/phy-qcom-uniphy.c | 401 +++++++++++++++++++++----
->>   1 file changed, 335 insertions(+), 66 deletions(-)
->>
->> diff --git a/drivers/phy/qualcomm/phy-qcom-uniphy.c b/drivers/phy/qualcomm/phy-qcom-uniphy.c
->> index da6f290af722..eb71588f5417 100644
->> --- a/drivers/phy/qualcomm/phy-qcom-uniphy.c
->> +++ b/drivers/phy/qualcomm/phy-qcom-uniphy.c
->> @@ -5,141 +5,410 @@
->>    * Based on code from
->>    * Allwinner Technology Co., Ltd. <www.allwinnertech.com>
->>    *
->> + * Modified the driver to be common for Qualcomm UNIPHYs
->> + * Copyright (c) 2023, The Linux Foundation. All rights reserved.
-> I'd not call this 'modified', but rather 'rewritten from scratch.
-Sure, will correct.
->
->>    */
->>
->> +#include <linux/bitfield.h>
->> +#include <linux/clk.h>
->> +#include <linux/clk-provider.h>
->>   #include <linux/delay.h>
->>   #include <linux/err.h>
->>   #include <linux/io.h>
->>   #include <linux/kernel.h>
->> +#include <linux/mfd/syscon.h>
->>   #include <linux/module.h>
->>   #include <linux/mutex.h>
->>   #include <linux/of.h>
->>   #include <linux/phy/phy.h>
->>   #include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/regulator/consumer.h>
->>   #include <linux/reset.h>
->>
->> -struct ipq4019_usb_phy {
->> +struct uniphy_init_tbl {
->> +       unsigned int offset;
->> +       unsigned int val;
->> +};
-> unused
->
->> +
->> +#define UNIPHY_INIT_CFG(o, v)          \
->> +       {                               \
->> +               .offset = o,            \
->> +               .val = v,               \
->> +       }
-> unused
->
->> +
->> +struct uniphy_cfg {
->> +       const struct uniphy_init_tbl *init_seq;
->> +       int num_init_seq;
->> +       const char * const *clk_list;
->> +       int num_clks;
->> +       const char * const *reset_list;
->> +       int num_resets;
->> +       const char * const *vreg_list;
->> +       int num_vregs;
->> +       unsigned int pipe_clk_rate;
->> +       unsigned int reset_udelay;
->> +       unsigned int autoload_udelay;
->> +};
->> +
->> +struct qcom_uniphy {
->>          struct device           *dev;
->> +       const struct uniphy_cfg *cfg;
->>          struct phy              *phy;
->>          void __iomem            *base;
->> -       struct reset_control    *por_rst;
->> -       struct reset_control    *srif_rst;
->> +       struct clk_bulk_data    *clks;
->> +       struct reset_control_bulk_data  *resets;
->> +       struct regulator_bulk_data *vregs;
->> +       struct clk_fixed_rate pipe_clk_fixed;
->> +};
->> +
->> +static const char * const ipq4019_ssphy_reset_l[] = {
->> +       "por_rst",
->> +};
->> +
->> +static const struct uniphy_cfg ipq4019_usb_ssphy_cfg = {
->> +       .reset_list     = ipq4019_ssphy_reset_l,
->> +       .num_resets     = ARRAY_SIZE(ipq4019_ssphy_reset_l),
->> +       .reset_udelay   = 10000,
->> +
->>   };
->>
->> -static int ipq4019_ss_phy_power_off(struct phy *_phy)
->> +static const char * const ipq4019_hsphy_reset_l[] = {
->> +       "por_rst", "srif_rst",
->> +};
-> +
->> +static const struct uniphy_cfg ipq4019_usb_hsphy_cfg = {
->> +       .reset_list     = ipq4019_hsphy_reset_l,
->> +       .num_resets     = ARRAY_SIZE(ipq4019_hsphy_reset_l),
->> +       .reset_udelay   = 10000,
->> +};
->> +
->> +static int phy_mux_sel(struct phy *phy)
->> +{
->> +       struct qcom_uniphy *uniphy = phy_get_drvdata(phy);
->> +       struct device *dev = uniphy->dev;
->> +       struct regmap *tcsr;
->> +       unsigned int args[2];
->> +       int ret;
->> +
->> +       tcsr = syscon_regmap_lookup_by_phandle_args(dev->of_node, "qcom,phy-mux-sel",
->> +                                                   ARRAY_SIZE(args), args);
-> No. mux data should come from match_data rather than polluting DT with it.
->
->> +       if (IS_ERR(tcsr)) {
->> +               ret = PTR_ERR(tcsr);
->> +               if (ret == -ENOENT)
->> +                       return 0;
->> +
->> +               dev_err(dev, "failed to lookup syscon for phy mux %d\n", ret);
->> +               return ret;
->> +       }
->> +
->> +       /* PHY MUX registers only have this BIT0 */
-> huh?
->
->> +       ret = regmap_write(tcsr, args[0], args[1]);
->> +       if (ret < 0) {
->> +               dev_err(dev, "PHY Mux selection failed: %d\n", ret);
->> +               return ret;
->> +       }
->> +
->> +       return 0;
->> +}
->> +
->> +static int uniphy_enable(struct phy *phy)
->>   {
->> -       struct ipq4019_usb_phy *phy = phy_get_drvdata(_phy);
->> +       struct qcom_uniphy *uniphy = phy_get_drvdata(phy);
->> +       const struct uniphy_cfg *cfg = uniphy->cfg;
->> +       const struct uniphy_init_tbl *tbl;
->> +       void __iomem *base = uniphy->base;
->> +       int i, ret;
->>
->> -       reset_control_assert(phy->por_rst);
->> -       msleep(10);
->> +       ret = regulator_bulk_enable(cfg->num_vregs, uniphy->vregs);
->> +       if (ret) {
->> +               dev_err(uniphy->dev, "failed to enable regulators: %d\n", ret);
->> +               return ret;
->> +       }
->> +
->> +       /* Assert all available resets */
->> +       for (i = 0; i < cfg->num_resets; i++) {
->> +               ret = reset_control_assert(uniphy->resets[i].rstc);
->> +               if (ret) {
->> +                       dev_err(uniphy->dev, "reset assert failed: %d\n", ret);
->> +                       goto err_assert_reset;
->> +               }
->> +               if (cfg->reset_udelay)
->> +                       usleep_range(cfg->reset_udelay, cfg->reset_udelay + 10);
->> +       }
-> There is a whole reset_control_bulk_*() set of API. Please use it
-> instead of hardcoding reset cycles.
->
->> +
->> +       /* Deassert all available resets */
->> +       for (i = 0; i < cfg->num_resets; i++) {
->> +               ret = reset_control_deassert(uniphy->resets[i].rstc);
->> +               if (ret) {
->> +                       dev_err(uniphy->dev, "reset deassert failed: %d\n", ret);
->> +                       goto err_assert_reset;
->> +               }
->> +               if (cfg->reset_udelay)
->> +                       usleep_range(cfg->reset_udelay, cfg->reset_udelay + 10);
->> +       }
->> +
->> +       ret = phy_mux_sel(phy);
->> +       if (ret < 0)
->> +               goto err_assert_reset;
->> +
->> +       ret = clk_bulk_prepare_enable(cfg->num_clks, uniphy->clks);
->> +       if (ret) {
->> +               dev_err(uniphy->dev, "failed to enable clocks: %d\n", ret);
->> +               goto err_assert_reset;
->> +       }
->> +
->> +       if (cfg->autoload_udelay)
->> +               usleep_range(cfg->autoload_udelay, cfg->autoload_udelay + 10);
->> +
->> +       if (cfg->num_init_seq) {
->> +               tbl = cfg->init_seq;
->> +               for (i = 0; i < cfg->num_init_seq; i++, tbl++)
->> +                       writel(tbl->val, base + tbl->offset);
->> +       }
-> unused
->
->>          return 0;
->> +
->> +err_assert_reset:
->> +       /* Assert all available resets */
->> +       for (i = 0; i < cfg->num_resets; i++) {
->> +               reset_control_assert(uniphy->resets[i].rstc);
->> +               if (cfg->reset_udelay)
->> +                       usleep_range(cfg->reset_udelay, cfg->reset_udelay + 10);
->> +       }
->> +
->> +       return ret;
->>   }
->>
->> -static int ipq4019_ss_phy_power_on(struct phy *_phy)
->> +static int uniphy_disable(struct phy *phy)
->>   {
->> -       struct ipq4019_usb_phy *phy = phy_get_drvdata(_phy);
->> +       struct qcom_uniphy *uniphy = phy_get_drvdata(phy);
->> +       const struct uniphy_cfg *cfg = uniphy->cfg;
->> +       int i;
->>
->> -       ipq4019_ss_phy_power_off(_phy);
->> +       /* Assert all available resets */
->> +       for (i = 0; i < cfg->num_resets; i++) {
->> +               reset_control_assert(uniphy->resets[i].rstc);
->> +               if (cfg->reset_udelay)
->> +                       usleep_range(cfg->reset_udelay, cfg->reset_udelay + 10);
->> +       }
->>
->> -       reset_control_deassert(phy->por_rst);
->> +       clk_bulk_disable_unprepare(cfg->num_clks, uniphy->clks);
->> +
->> +       regulator_bulk_disable(cfg->num_vregs, uniphy->vregs);
->>
->>          return 0;
->>   }
->>
->> -static const struct phy_ops ipq4019_usb_ss_phy_ops = {
->> -       .power_on       = ipq4019_ss_phy_power_on,
->> -       .power_off      = ipq4019_ss_phy_power_off,
->> +static const struct phy_ops uniphy_phy_ops = {
->> +       .power_on       = uniphy_enable,
->> +       .power_off      = uniphy_disable,
-> Using _enable / _disable for power_on() and power_off() isn't logical.
->
->> +       .owner          = THIS_MODULE,
->>   };
->>
->> -static int ipq4019_hs_phy_power_off(struct phy *_phy)
->> +static int qcom_uniphy_vreg_init(struct qcom_uniphy *uniphy)
->> +{
->> +       const struct uniphy_cfg *cfg = uniphy->cfg;
->> +       struct device *dev = uniphy->dev;
->> +       int i, ret;
->> +
->> +       uniphy->vregs = devm_kcalloc(dev, cfg->num_vregs,
->> +                                    sizeof(*uniphy->vregs), GFP_KERNEL);
-> You know the maximum amount of regulators. Can you use an array
-> instead of allocating data?
->
->> +       if (!uniphy->vregs)
->> +               return -ENOMEM;
->> +
->> +       for (i = 0; i < cfg->num_vregs; i++)
->> +               uniphy->vregs[i].supply = cfg->vreg_list[i];
->> +
->> +       ret = devm_regulator_bulk_get(dev, cfg->num_vregs, uniphy->vregs);
->> +
-> Drop empty lines between ret assignment and check.
->
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "failed to get regulators\n");
->> +
->> +       return 0;
->> +}
->> +
->> +static int qcom_uniphy_reset_init(struct qcom_uniphy *uniphy)
->>   {
->> -       struct ipq4019_usb_phy *phy = phy_get_drvdata(_phy);
->> +       const struct uniphy_cfg *cfg = uniphy->cfg;
->> +       struct device *dev = uniphy->dev;
->> +       int i, ret;
->> +
->> +       uniphy->resets = devm_kcalloc(dev, cfg->num_resets,
->> +                                     sizeof(*uniphy->resets), GFP_KERNEL);
-> Same here, can you use an array?
->
->> +       if (!uniphy->resets)
->> +               return -ENOMEM;
->>
->> -       reset_control_assert(phy->por_rst);
->> -       msleep(10);
->> +       for (i = 0; i < cfg->num_resets; i++)
->> +               uniphy->resets[i].id = cfg->reset_list[i];
-> Declare common resets list and use
-> devm_reset_control_bulk_get_optional_exclusive().
->
->> -       reset_control_assert(phy->srif_rst);
->> -       msleep(10);
->> +       ret = devm_reset_control_bulk_get_exclusive(dev, cfg->num_resets, uniphy->resets);
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "failed to get resets\n");
->>
->>          return 0;
->>   }
->>
->> -static int ipq4019_hs_phy_power_on(struct phy *_phy)
->> +static int qcom_uniphy_clk_init(struct qcom_uniphy *uniphy)
-> I don't see clocks actually being used. Please do not introduce unused features.
->
->>   {
->> -       struct ipq4019_usb_phy *phy = phy_get_drvdata(_phy);
->> +       const struct uniphy_cfg *cfg = uniphy->cfg;
->> +       struct device *dev = uniphy->dev;
->> +       int i, ret;
->>
->> -       ipq4019_hs_phy_power_off(_phy);
->>
->> -       reset_control_deassert(phy->srif_rst);
->> -       msleep(10);
->> +       uniphy->clks = devm_kcalloc(dev, cfg->num_clks,
->> +                                   sizeof(*uniphy->clks), GFP_KERNEL);
->> +       if (!uniphy->clks)
->> +               return -ENOMEM;
->> +
->> +       for (i = 0; i < cfg->num_clks; i++)
->> +               uniphy->clks[i].id = cfg->clk_list[i];
->>
->> -       reset_control_deassert(phy->por_rst);
->> +       ret = devm_clk_bulk_get(dev, cfg->num_clks, uniphy->clks);
->> +       if (ret)
->> +               return dev_err_probe(dev, ret, "failed to get clocks\n");
->>
->>          return 0;
->>   }
->>
->> -static const struct phy_ops ipq4019_usb_hs_phy_ops = {
->> -       .power_on       = ipq4019_hs_phy_power_on,
->> -       .power_off      = ipq4019_hs_phy_power_off,
->> -};
->> +static void phy_clk_release_provider(void *res)
->> +{
->> +       of_clk_del_provider(res);
->> +}
->>
->> -static const struct of_device_id ipq4019_usb_phy_of_match[] = {
->> -       { .compatible = "qcom,usb-hs-ipq4019-phy", .data = &ipq4019_usb_hs_phy_ops},
->> -       { .compatible = "qcom,usb-ss-ipq4019-phy", .data = &ipq4019_usb_ss_phy_ops},
->> -       { },
->> -};
->> -MODULE_DEVICE_TABLE(of, ipq4019_usb_phy_of_match);
->> +/*
->> + * Register a fixed rate pipe clock.
->> + *
->> + * The <s>_pipe_clksrc generated by PHY goes to the GCC that gate
->> + * controls it. The <s>_pipe_clk coming out of the GCC is requested
->> + * by the PHY driver for its operations.
->> + * We register the <s>_pipe_clksrc here. The gcc driver takes care
->> + * of assigning this <s>_pipe_clksrc as parent to <s>_pipe_clk.
->> + * Below picture shows this relationship.
->> + *
->> + *         +---------------+
->> + *         |   PHY block   |<<---------------------------------------+
->> + *         |               |                                         |
->> + *         |   +-------+   |                   +-----+               |
->> + *   I/P---^-->|  PLL  |---^--->pipe_clksrc--->| GCC |--->pipe_clk---+
->> + *    clk  |   +-------+   |                   +-----+
->> + *         +---------------+
->> + */
->> +static int phy_pipe_clk_register(struct qcom_uniphy *uniphy, struct device_node *np)
->> +{
->> +       struct clk_fixed_rate *fixed = &uniphy->pipe_clk_fixed;
->> +       const struct uniphy_cfg *cfg = uniphy->cfg;
->> +       struct device *dev = uniphy->dev;
->> +       struct clk_init_data init = { };
->> +       int ret;
->> +
->> +       ret = of_property_read_string(np, "clock-output-names", &init.name);
->> +       if (ret) {
->> +               dev_err(dev, "%pOFn: No clock-output-names\n", np);
->> +               return ret;
->> +       }
->> +
->> +       init.ops = &clk_fixed_rate_ops;
->> +
->> +       fixed->fixed_rate = cfg->pipe_clk_rate;
->> +       fixed->hw.init = &init;
->>
->> -static int ipq4019_usb_phy_probe(struct platform_device *pdev)
->> +       ret = devm_clk_hw_register(dev, &fixed->hw);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = of_clk_add_hw_provider(np, of_clk_hw_simple_get, &fixed->hw);
->> +       if (ret)
->> +               return ret;
-> When you c&p something, please take care to understand the code you are copying.
-> Unlike QMP drivers you can (and should) use devm_of_clk_add_hw_provider() here.
->
-> Not to mention that pipe clocks are not in this patch.
->
->> +
->> +       /*
->> +        * Roll a devm action because the clock provider is the child node, but
->> +        * the child node is not actually a device.
->> +        */
->> +       return devm_add_action_or_reset(dev, phy_clk_release_provider, np);
->> +}
->> +
->> +static int qcom_uniphy_probe(struct platform_device *pdev)
->>   {
->>          struct device *dev = &pdev->dev;
->>          struct phy_provider *phy_provider;
->> -       struct ipq4019_usb_phy *phy;
->> +       struct qcom_uniphy *uniphy;
->> +       struct device_node *np;
->> +       int ret;
->>
->> -       phy = devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
->> -       if (!phy)
->> +       uniphy = devm_kzalloc(dev, sizeof(*uniphy), GFP_KERNEL);
->> +       if (!uniphy)
->>                  return -ENOMEM;
->>
->> -       phy->dev = &pdev->dev;
->> -       phy->base = devm_platform_ioremap_resource(pdev, 0);
->> -       if (IS_ERR(phy->base)) {
->> -               dev_err(dev, "failed to remap register memory\n");
->> -               return PTR_ERR(phy->base);
->> -       }
->> +       uniphy->dev = dev;
->>
->> -       phy->por_rst = devm_reset_control_get(phy->dev, "por_rst");
->> -       if (IS_ERR(phy->por_rst)) {
->> -               if (PTR_ERR(phy->por_rst) != -EPROBE_DEFER)
->> -                       dev_err(dev, "POR reset is missing\n");
->> -               return PTR_ERR(phy->por_rst);
->> +       uniphy->cfg = of_device_get_match_data(dev);
->> +       if (!uniphy->cfg)
->> +               return -EINVAL;
->> +
->> +       uniphy->base = devm_platform_ioremap_resource(pdev, 0);
->> +       if (IS_ERR(uniphy->base)) {
->> +               ret = PTR_ERR(uniphy->base);
->> +               dev_err_probe(dev, ret, "failed to remap register memory\n");
->> +               return ret;
->>          }
->>
->> -       phy->srif_rst = devm_reset_control_get_optional(phy->dev, "srif_rst");
->> -       if (IS_ERR(phy->srif_rst))
->> -               return PTR_ERR(phy->srif_rst);
->> +       ret = qcom_uniphy_clk_init(uniphy);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = qcom_uniphy_reset_init(uniphy);
->> +       if (ret)
->> +               return ret;
->> +
->> +       ret = qcom_uniphy_vreg_init(uniphy);
->> +       if (ret < 0)
->> +               return ret;
->> +
->> +       if (uniphy->cfg->pipe_clk_rate) {
->> +               np = of_node_get(dev->of_node);
-> What for? Do you think that the driver can outlive struct device?
->
->> +               ret = phy_pipe_clk_register(uniphy, np);
->> +               if (ret) {
->> +                       dev_err_probe(dev, ret, "failed to register pipe clk\n");
->> +                       goto err;
->> +               }
->> +       }
->>
->> -       phy->phy = devm_phy_create(dev, NULL, of_device_get_match_data(dev));
->> -       if (IS_ERR(phy->phy)) {
->> -               dev_err(dev, "failed to create PHY\n");
->> -               return PTR_ERR(phy->phy);
->> +       uniphy->phy = devm_phy_create(dev, NULL, &uniphy_phy_ops);
->> +       if (IS_ERR(uniphy->phy)) {
->> +               ret = PTR_ERR(uniphy->phy);
->> +               dev_err_probe(dev, ret, "failed to create PHY\n");
->> +               goto err;
->>          }
->> -       phy_set_drvdata(phy->phy, phy);
->> +
->> +       phy_set_drvdata(uniphy->phy, uniphy);
->>
->>          phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
->>
->> -       return PTR_ERR_OR_ZERO(phy_provider);
->> +       ret = PTR_ERR_OR_ZERO(phy_provider);
->> +
->> +err:
->> +       if (uniphy->cfg->pipe_clk_rate)
->> +               of_node_put(np);
->> +       return ret;
->>   }
->>
->> -static struct platform_driver ipq4019_usb_phy_driver = {
->> -       .probe  = ipq4019_usb_phy_probe,
->> +static const struct of_device_id qcom_uniphy_of_match[] = {
->> +       { .compatible = "qcom,usb-hs-ipq4019-phy", .data = &ipq4019_usb_hsphy_cfg},
->> +       { .compatible = "qcom,usb-ss-ipq4019-phy", .data = &ipq4019_usb_ssphy_cfg},
->> +       { },
->> +};
->> +MODULE_DEVICE_TABLE(of, qcom_uniphy_of_match);
->> +
->> +static struct platform_driver qcom_uniphy_driver = {
->> +       .probe  = qcom_uniphy_probe,
->>          .driver = {
->> -               .of_match_table = ipq4019_usb_phy_of_match,
->> -               .name  = "ipq4019-usb-phy",
->> +               .of_match_table = qcom_uniphy_of_match,
->> +               .name  = "qcom-uniphy",
->>          }
->>   };
->> -module_platform_driver(ipq4019_usb_phy_driver);
->> +module_platform_driver(qcom_uniphy_driver);
->>
->> -MODULE_DESCRIPTION("QCOM/IPQ4019 USB phy driver");
->> +MODULE_DESCRIPTION("QCOM uniphy driver");
->>   MODULE_AUTHOR("John Crispin <john@phrozen.org>");
->>   MODULE_LICENSE("GPL v2");
-> General comment: please consider dropping this beast and starting from
-> scratch, adding only really necessary bits to the existing ipq4019 USB
-> PHY driver.
-Rewritten the entire driver considering the IPQ5332 as well and because 
-of it
-there are unused code which are utilized in patch [8/9]. I should have 
-added only the IPQ4019
-support alone in this patch and then incrementally update it for 
-IPQ5332. Will follow that here
-onwards. Will address all the review comments.
+489         if (ir->rc->driver_type == RC_DRIVER_IR_RAW) {
+490                 ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
+491                 ir->rc->rx_resolution = MESON_RAW_TRATE;
+492                 ir->rc->min_timeout = 1;
+493                 ir->rc->timeout = IR_DEFAULT_TIMEOUT;
+494                 ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
+495         } else if (ir->rc->driver_type == RC_DRIVER_SCANCODE) {
+496                 ir->rc->allowed_protocols = RC_PROTO_BIT_NEC;
+497                 ir->rc->change_protocol = meson_ir_hw_decoder_init;
+498         }
 
-- Praveenkumar
+Do you get Meson-S4 datasheet? Please refer to chapter 13.5 Infrared Remote.
