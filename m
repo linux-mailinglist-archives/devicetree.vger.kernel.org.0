@@ -2,74 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF23A78E81F
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:31:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DEB578E885
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:41:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245594AbjHaIbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 04:31:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49736 "EHLO
+        id S236920AbjHaIlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 04:41:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242308AbjHaIaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:30:52 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE6F2E4C;
-        Thu, 31 Aug 2023 01:30:38 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id 41be03b00d2f7-53fbf2c42bfso461920a12.3;
-        Thu, 31 Aug 2023 01:30:38 -0700 (PDT)
+        with ESMTP id S238396AbjHaIlT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:41:19 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B09E7C
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 01:40:52 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52a250aa012so629222a12.3
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 01:40:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693470638; x=1694075438; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A7qrHrxv+tQmHkxgkfHoWgymD/z9+utSjFBhVwcl5B4=;
-        b=O516OsnrH5WeXCmDlWnIyZ3m2iyaHZVK0wqUMrC+0W83PQyp+jyZBWRdm6Ii0hySC5
-         g341C+XIolwRkZz0Qd50S3h3gb3P3HogBgJpM/pG53oEQRMBBqxpMbDnmzi5z3rKoBEi
-         lthDIJLYF35IanQ49bXz89zAmkNpHMfxCTG7JspaNhRJBPfQfwYdPbMpOtrqhYJUsZlJ
-         Qx/aOGLhyPSJ+PZBQjkQBHuoo1dVLGohoVS6qwMcesfOa1OcOQC0s4sEPZtqLZeuzHqN
-         BH8qWPwYXYTyyHn+swWEK0Xkoe5qugGzlWTr6CoxFJohZ2uHVGvswJHysNc61cA7cO29
-         KGJA==
+        d=linaro.org; s=google; t=1693471248; x=1694076048; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4oj9ZHh9uIvpj0ERp23NgRxjtB8A/WDYvtNWK07v2zI=;
+        b=GN31XdmsfylTAo9cekW7yHl9SPIoQSERRZqVvKX9ghQGtgDJrGlRz72VEqdZXW6KCD
+         TtnuLvFmoP0XGAFsX5cT+TMz3drzgOAeUgx/c3pmaz+WMY3R3+RQ7CpfUIZ32cFL4icK
+         6ScXCJ29qa51V0/1izVjKUZ3ek3oikYN4S+v/x6/ZiyOuv8WDTVaP38jZAO5wHr5eRzN
+         AQKMpLrCvgPkLdGkbg7OUjFop5/cYIffoh2Vc7O4BWPEEhU4rmYqMCgdtsWWNQUAleSq
+         9ZSDAv3krMlnkFB4+5zA3usrBssuvJNCiTgJ9U7v6f/tTE7Wv9uj9TVZGAkaLlBBAO+w
+         h9sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693470638; x=1694075438;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A7qrHrxv+tQmHkxgkfHoWgymD/z9+utSjFBhVwcl5B4=;
-        b=j8UfT0RjtomqMo6k3n72G/T5mydGmdu8I7XvqBv0JD7sKukX8qjiYsoucbHGcdNfUn
-         lUR5HWjScYir0NIaUus6rCaOt1x+J8ShdvbH7Pb4M6tTHhSHLimDBdsTIJl9Fnl5RALt
-         QWw8x4NPXWkoBJVtqkTN4KW6XWfikYTxMkMRVu5BxW7bMRJCr7CmAyZzMx99d3qMZEdN
-         ZnHU5OJvAQbiDtUAjsaBQmWJgrjx8wEcSmrPQFxNzaYIfho6KIDfpswCEG4JG+svxlt9
-         4iwhuSvj2JYoYsJLpbyxrE4kHN/OO2KG+GUu9iemZaJgb9yB5m+UAP1bDR/F57au8624
-         3cog==
-X-Gm-Message-State: AOJu0Yw2JugcESX90TOpK7tvtNUdkFGdDdgniRx1PR6zzOaHChPxeqFj
-        cT+c7hG3ec6h+rBpR1GwW/M=
-X-Google-Smtp-Source: AGHT+IGJ0sJH/K/tzzupjuyRlTkxXV5KC1GX2bDuoSlnYE5+YMUZE9wWtazb3sOipXp4chWI3AmNYA==
-X-Received: by 2002:a05:6a21:3d83:b0:14c:d5e9:211e with SMTP id bj3-20020a056a213d8300b0014cd5e9211emr4640510pzc.35.1693470637972;
-        Thu, 31 Aug 2023 01:30:37 -0700 (PDT)
-Received: from peter-bmc.dhcpserver.bu9bmc.local (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
-        by smtp.gmail.com with ESMTPSA id a17-20020a62e211000000b0068a46cd4120sm812253pfi.199.2023.08.31.01.30.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 31 Aug 2023 01:30:37 -0700 (PDT)
-From:   Peter Yin <peteryin.openbmc@gmail.com>
-To:     patrick@stwcx.xyz, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     Peter Yin <peteryin.openbmc@gmail.com>
-Subject: [PATCH v7 2/2] dt-bindings: arm: aspeed: add Meta Minerva board
-Date:   Thu, 31 Aug 2023 16:28:18 +0800
-Message-Id: <20230831082819.4000425-3-peteryin.openbmc@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230831082819.4000425-1-peteryin.openbmc@gmail.com>
-References: <20230831082819.4000425-1-peteryin.openbmc@gmail.com>
+        d=1e100.net; s=20221208; t=1693471248; x=1694076048;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4oj9ZHh9uIvpj0ERp23NgRxjtB8A/WDYvtNWK07v2zI=;
+        b=i8vDq40xHz75FUtxPo1oo3b96Ga8ebSmFhnVSqmX4e1BqUzl979KvI+FSqXKi1YDhw
+         0RSWsmygCbZlVz3wRiBglDcjb+q5+C4uM+q1Ob8PxAyp4kOzR1k8gdq+Z3UKQGki68WV
+         SYLQ4mym3O3EW9+AVV0H1Qlj/15uUWt7vp6qgXOqsEzM6fM2ziWLmAJt4rh9fsJy+8cY
+         nvM46urrvapLS1e1UBuKlaCxZXpYI8AViI63trJCm2pHTAY4G+ipx1j8pcdm7m7KPIgg
+         1+8eV/P71y9jqZYsmca+VgE2/3pm9y4ab9u6UHKPMLSC00jkcpY7RNuIU7pXCpeH5pNC
+         6fpg==
+X-Gm-Message-State: AOJu0YyVHEkqjb00wOJAW+BJtqOTP9kb1H1gdPRj4mJkLPt/7KQI3yf/
+        9szXuk6uNvZ7B/884qeWm44RFQ==
+X-Google-Smtp-Source: AGHT+IEC5YtV2U2cEklN+/jylIkWH4T7gor9vRqdxcg0xCCXWtlM2PpTXI6h2lSgtqlfrGIVvathzQ==
+X-Received: by 2002:a05:6402:646:b0:526:9c4:bc06 with SMTP id u6-20020a056402064600b0052609c4bc06mr3431058edx.18.1693471248160;
+        Thu, 31 Aug 2023 01:40:48 -0700 (PDT)
+Received: from [192.168.69.115] ([176.187.199.245])
+        by smtp.gmail.com with ESMTPSA id l22-20020a056402345600b0052c11951f4asm522481edc.82.2023.08.31.01.40.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Aug 2023 01:40:47 -0700 (PDT)
+Message-ID: <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
+Date:   Thu, 31 Aug 2023 10:40:45 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.14.0
+Subject: Re: [PATCH v4 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
+Content-Language: en-US
+To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Serge Semin <Sergey.Semin@baikalelectronics.ru>
+References: <20230830134241.506464-1-keguang.zhang@gmail.com>
+ <20230830134241.506464-5-keguang.zhang@gmail.com>
+From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
+In-Reply-To: <20230830134241.506464-5-keguang.zhang@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,25 +87,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the new compatibles used on Meta Minerva.
+Hi,
 
-Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
----
- Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On 30/8/23 15:42, Keguang Zhang wrote:
+> Add two new F: entries for Loongson1 Ethernet driver
+> and dt-binding document.
+> Add a new F: entry for the rest Loongson-1 dt-binding documents.
+> 
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+> ---
+> V3 -> V4: Update the dt-binding document entry of Loongson1 Ethernet
+> V2 -> V3: Update the entries and the commit message
+> V1 -> V2: Improve the commit message
+> 
+>   MAINTAINERS | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ff1f273b4f36..2519d06b5aab 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
+>   M:	Keguang Zhang <keguang.zhang@gmail.com>
+>   L:	linux-mips@vger.kernel.org
+>   S:	Maintained
+> +F:	Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
+> +F:	Documentation/devicetree/bindings/net/loongson,ls1*.yaml
 
-diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-index 6b0a6683ccae..3b93bae4f43a 100644
---- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-+++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-@@ -79,6 +79,7 @@ properties:
-               - facebook,elbert-bmc
-               - facebook,fuji-bmc
-               - facebook,greatlakes-bmc
-+              - facebook,minerva-bmc
-               - facebook,yosemite4-bmc
-               - ibm,everest-bmc
-               - ibm,rainier-bmc
--- 
-2.25.1
+Why not simply squash in patch 2
+
+>   F:	arch/mips/include/asm/mach-loongson32/
+>   F:	arch/mips/loongson32/
+>   F:	drivers/*/*loongson1*
+> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+
+and 3 of this series?
+
+>   MIPS/LOONGSON2EF ARCHITECTURE
+>   M:	Jiaxun Yang <jiaxun.yang@flygoat.com>
 
