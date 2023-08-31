@@ -2,133 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4CCE78E629
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 08:11:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5498178E635
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 08:21:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241749AbjHaGLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 02:11:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56982 "EHLO
+        id S242227AbjHaGVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 02:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232588AbjHaGLB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 02:11:01 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1CFE0;
-        Wed, 30 Aug 2023 23:10:59 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37V5WmGl030948;
-        Thu, 31 Aug 2023 06:10:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=fXMYq1GgugiApxviuhU/l2UCt3A4SW3Pp7aUIiZqVoo=;
- b=IZ6Y/x54NEd7YQytE+Ec/y/EHTYB8HO1HeTFWwQOaeImz1YQ8OaZlH3quOqUyU22kjer
- K4s+NLm+JgP/EIG/JVSiLoB7qJTNEb0qWCH/4q52aceuD0VNaaPkF4eWRE0wXeudAKEn
- 75HcHaL3+lwR7HyVLZRroZIHs8yTEb3UIp2J7HRC1ZyMuBIjXiUOzkyJF66+5sRmB3uG
- JgnLjtx1GV4JhXhYq/3ZjywtL7pTW2Dfo4dS8g4SQl2cfU8CHK+Ib1TYq8r02sx+9zKW
- YK7Ogdoal5Jhf/NuQOtNtkCwl0qbgkX+mr3tMYkm7RWT4vx3uUFhmXd3C2/CCzdJTrcs VA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3st6ct9pjq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 06:10:52 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37V6Anxj010632
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 31 Aug 2023 06:10:49 GMT
-Received: from [10.201.192.51] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Wed, 30 Aug
- 2023 23:10:44 -0700
-Message-ID: <1aad08e5-d3a4-e3cf-3535-deb54ecf0169@quicinc.com>
-Date:   Thu, 31 Aug 2023 11:40:41 +0530
+        with ESMTP id S235568AbjHaGVD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 02:21:03 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C62A3CE6
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 23:20:58 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99bcf2de59cso46423166b.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Aug 2023 23:20:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693462857; x=1694067657; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pG3JY/czPpavqqVu3lLo9xEZ0gRVLmUoMl7zqpjOA3s=;
+        b=EdnRbBdvPpZU4vumaNgsB82foaLnlqZkwl5KNQ8OBcQ+t+CD7Y4Evr2H1g6PtUdw4c
+         b+AchJRBZ8vd31ltg5kDi8Hu8x/QLPDbB1B3+9WLEqcjQppeooXD5/4DLTEGBm9hJJTQ
+         2Xzb+5stxnKjI14dr4R9SevVg252I/M3uD3HVIk1Y1Cibt6//8ZcFoukzR57EwEOO/eF
+         YehuRO7+ZZ9dpBfNZ33R40hD7TQKJ40G97DOGnyu1LKYhCetnQpEZjZWH6dWsOGm7OuK
+         2jALxPsJAtgSO9sd/uxlE8UStDZW0TzlY3quajQzyMguB2OnAr/j88tZCncB/h7qnVhI
+         aG4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693462857; x=1694067657;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pG3JY/czPpavqqVu3lLo9xEZ0gRVLmUoMl7zqpjOA3s=;
+        b=TWQpEXovUGM6ZKBKMCK9zhG/SWje0nV0UTtrn9NLwWCqrWm0qfkJX6TSVbb3UEGHX9
+         oGKyXabePBQ0+HZan9XwSUzwRVt7kJ+KAh21ZTpcxZ8rSgDT9SR+7woQXOKM3RSZMoOs
+         WdrqNfedDAZ2GNo6fGU7ChIREPv7/p9Xdq1JBjEONYGK8LCVGXkR4Pw+RQIdEBWb6xgI
+         gGCX4pNSU1IdKHysOMiID0YhyAKnHeo7lWz3HfvtkrLwY753bfQwUYoFBpMOmv8N6ASN
+         7+11YqTLhCoyjQX8DGZY4+55qVI6rtHJs02Ou3l645jNwZu+wmPYHXouL2KuhWxs9aad
+         +h8w==
+X-Gm-Message-State: AOJu0YzoDGBRes9YWN2JKqAPxk0onTja7uFYiZzlGHsBdJ6fgbnp9nLi
+        WKvKnOeEH835v2B+YEZ2yTlAKQ==
+X-Google-Smtp-Source: AGHT+IE5VrHVFgWGXJLbJl+dOweoU18kkN+ftvOBbWJPeXG1U8hZQKsjqxQ+o+0QMmm7ATpbH7hmvA==
+X-Received: by 2002:a17:906:8466:b0:9a5:c4ae:9fd4 with SMTP id hx6-20020a170906846600b009a5c4ae9fd4mr3234720ejc.59.1693462857179;
+        Wed, 30 Aug 2023 23:20:57 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id h18-20020a1709066d9200b0099b5a71b0bfsm384516ejt.94.2023.08.30.23.20.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Aug 2023 23:20:56 -0700 (PDT)
+Message-ID: <4cbe662d-cd20-ceef-e3e4-6608029f94b7@linaro.org>
+Date:   Thu, 31 Aug 2023 08:20:55 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: ipq5018: enable the CPUFreq support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v5 1/2] ARM: dts: aspeed: Minerva: Add Facebook Minerva
+ (AST2600) BMC
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Robert Marko <robimarko@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <jassisinghbrar@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
-References: <20230829095423.760641-1-quic_gokulsri@quicinc.com>
- <20230829095423.760641-4-quic_gokulsri@quicinc.com>
- <f457ee94-81d0-bd28-1432-ba2828dabb79@linaro.org>
- <efe09cb6-7b67-9307-28e7-99e238a3672b@gmail.com>
- <0941e2f4-6b58-a4e7-3dda-c1723f5503ac@linaro.org>
- <CAOX2RU4j57H51ceYdKk9K-2ZNO7N4MDA6BOKrP2N3DNbphQAow@mail.gmail.com>
- <f7a350a9-5580-c3b9-a917-69a9b16dbf41@quicinc.com>
- <CAA8EJpoE=oF86piKCnt-7-Nw8xa9nYg-TqSOaP1V-vb=Oxwwng@mail.gmail.com>
-From:   Gokul Sriram P <quic_gokulsri@quicinc.com>
-In-Reply-To: <CAA8EJpoE=oF86piKCnt-7-Nw8xa9nYg-TqSOaP1V-vb=Oxwwng@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To:     Peter Yin <peteryin.openbmc@gmail.com>, patrick@stwcx.xyz,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        soc@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     cosmo.chou@quantatw.com, potin.lai@quantatw.com,
+        daniel-hsu@quantatw.com
+References: <20230831055030.3958798-1-peteryin.openbmc@gmail.com>
+ <20230831055030.3958798-2-peteryin.openbmc@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230831055030.3958798-2-peteryin.openbmc@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oVU8rjJsxSQBKBNtdRnQeXJJetB8JRWp
-X-Proofpoint-ORIG-GUID: oVU8rjJsxSQBKBNtdRnQeXJJetB8JRWp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-08-31_04,2023-08-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- clxscore=1015 malwarescore=0 phishscore=0 adultscore=0 mlxlogscore=791
- suspectscore=0 spamscore=0 lowpriorityscore=0 mlxscore=0 bulkscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2308310055
 X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 31/08/2023 07:50, Peter Yin wrote:
+> Add linux device tree entry related to
+> Minerva specific devices connected to BMC SoC.
+> 
+> Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-facebook-minerva.dts  | 377 ++++++++++++++++++
+>  2 files changed, 378 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-minerva.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 9e1d7bf3cff6..edb0b2105333 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1604,6 +1604,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-facebook-wedge400.dtb \
+>  	aspeed-bmc-facebook-yamp.dtb \
+>  	aspeed-bmc-facebook-yosemitev2.dtb \
+> +	aspeed-bmc-facebook-minerva.dtb \
 
-On 8/31/2023 1:12 AM, Dmitry Baryshkov wrote:
-> On Wed, 30 Aug 2023 at 21:32, Gokul Sriram P <quic_gokulsri@quicinc.com> wrote:
->>
->>>>>>>     #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>>>>     #include <dt-bindings/clock/qcom,gcc-ipq5018.h>
->>>>>>>     #include <dt-bindings/reset/qcom,gcc-ipq5018.h>
->>>>>>> +#include <dt-bindings/clock/qcom,apss-ipq.h>
->>>>>> c is before r.
->>    Sure, will update.
->>
->> [...]
->>>>>>> +   cpu_opp_table: opp-table-cpu {
->>>>>>> +           compatible = "operating-points-v2";
->>>>>>> +           opp-shared;
->>>>>>> +
->>>>>>> +           opp-1008000000 {
->>>>>>> +                   opp-hz = /bits/ 64 <1008000000>;
->>>>>>> +                   opp-microvolt = <1100000>;
->>>>>>> +                   clock-latency-ns = <200000>;
->>>>>> And the rest of OPPs?
->>>>> Hi Krzysztof,
->>>>> IPQ5018 only supports running at 1.1GHz, but its running at 800MHz
->>>>> by default from the bootloader so there is only one OPP.
->>>> Isn't this contradictory? If it is running at 800 initially, then it
->>>> supports running at 800...
->>> I can only guess that it's not validated at 800MHz.
->> As per the h/w design team, there is negligible power or thermal benefit
->> by lowering to 800MHz clock.
->> Hence, 800MHz opp wasn't included here.
-> Just my 2c. If 800 MHz is supported, it should be included. Even if
-> just to prevent the kernel from throwing a warning about the CPU
-> running at the unsupported frequency. Then one can use scheduler
-> tunings to prevent the CPU from going to 800 MHz state.
+Third or fourth time: that's not a correct order. This is a nit, but
+since you keep ignoring it, I don't believe any other feedback was
+applied. Why you did not respond to my comments but just ignored them?
 
-sure, understood. Will add opp at 800MHz. Thanks.
 
-Regards,
-Gokul
+Best regards,
+Krzysztof
 
