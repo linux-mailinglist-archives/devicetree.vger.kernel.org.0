@@ -2,135 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B198B78E9BC
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9901978E9D6
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 12:00:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230182AbjHaJpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 05:45:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50966 "EHLO
+        id S242578AbjHaKAj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 06:00:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237425AbjHaJpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:45:21 -0400
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD81FCED
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:45:17 -0700 (PDT)
-Received: by mail-oo1-xc36.google.com with SMTP id 006d021491bc7-5738cb00eebso387070eaf.2
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:45:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1693475117; x=1694079917; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=a2zrg/nVtnDJBTWbtaCFXh/8/Zf+li9b0Mqo2R7m2zs=;
-        b=ZVzLCRsX6mmsDlod3PwY+Lg7bm4SGfgice1awwvAe1RBrhI5UMSTwJSSb8HcC/BeCr
-         WGzyQC+Ntcq+eVVH5X/tnkvq1SGk3jQvvzwCX8wmdDhrQ7m2W6oMTfKzf242efOQKOu9
-         invOyZWm8esGbr+Ae+hXRl1NlHx7BDdXGN7bacbhRepE6h0zElu0tn/Ot452bopOHG8p
-         uW34jPesP7HloIw0G0uFCi7dwvAQO6Nvm+L2SQ7ILbyy+3COawmGE8Dk3O/pSH26VsAs
-         Ejm7SsgbJgC/xruytAUjclhSoJWUFiQHYofdmtl9nYR55tIOo9QIV8jJ0NmBLriDAfdJ
-         2VQw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693475117; x=1694079917;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a2zrg/nVtnDJBTWbtaCFXh/8/Zf+li9b0Mqo2R7m2zs=;
-        b=EDhiqfBYZaPUFIvPSG2BobSMt5Dt2oqlJG8NaYUYBuH9XkgID5/Tuc56ROMAE3Onfm
-         fSlv7Tj5S7IWxNQKE2jQ3FoMtX7erT4BlcMXr/Ow/rL72B1UpzQpIDuDN+vZ5PMk3H3E
-         FFqDEQFOEtZCWY4MN+ICB0n+5A5tWFz0Tajck1sUZgLeKmkzCSrOu724NY9j554XxVYf
-         LBXP05LXsIqjHOChM5KZOCMesy5PhqKDB2tTwNP/YttHaQVS8+HiGwZEjVKSrN1ZmAvo
-         ywuIhOFXj9REkQyocwJZpgM7F/uIj6jy8PxQT7VBdQz3leYYs3Uq2gs1ymZN1p5Csjcc
-         HImQ==
-X-Gm-Message-State: AOJu0YyhO7FvOSyI45mkr8nttsxEFAAEDFzIq/Wai7hdUIFq/pxSc38P
-        BDkfQ+sO39mpSkuZCMmaALYCDniys8qKe796G+CQYg==
-X-Google-Smtp-Source: AGHT+IHXqhx+egqjWM5j15UIT7/uZ1bsMGVA9Ml4N+F2VDhanOVMqWkqLiRc05FX0WYyYZzCby9EodfyM2swlGMZyos=
-X-Received: by 2002:a05:6870:9d14:b0:1d0:fa7b:c3f9 with SMTP id
- pp20-20020a0568709d1400b001d0fa7bc3f9mr2880440oab.30.1693475117223; Thu, 31
- Aug 2023 02:45:17 -0700 (PDT)
+        with ESMTP id S233881AbjHaKAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 06:00:39 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA82CED;
+        Thu, 31 Aug 2023 03:00:35 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37V9GP4v032484;
+        Thu, 31 Aug 2023 10:00:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=uh2tVtIUs3ZV9uZDdyhxj6TuRdsD5ZaJVkC1lFuqyjc=;
+ b=GBXOQyRKIEj7tgYISTcJORwXHUbiqSBsmmevysG/Yw38pYLSQC8eTCOvfimdDwug0IHq
+ Z2GTMK8WwsXUgabhC7b8AK3Hcv8o68ZCCx2M/GJZoHeMJ8QjZHtsrSQBjF6QxmGzUJyq
+ 6BOLKBYqT6aY8p4u5vF00i6M4kquKd3MwG9ZxmB9ZlgNItpL7FI0Bd9SAPKTZBRH817x
+ r06Cf53lV5UHtFSx/pdJKyfxj7YbUXx7URrDXkaKyKhxOYTpG3IHjKuJ/F8r5DYJws5L
+ ydTHrJAmSLO+Km90EVqstzxb3Zq6u73364iZPDcDYt6Q8zEL6MgT4SePNDRIoKpG6obK 3w== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sswbv2vty-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 10:00:30 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VA0TTr020290
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 10:00:29 GMT
+Received: from [10.218.10.146] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 31 Aug
+ 2023 03:00:23 -0700
+Message-ID: <7d4a2cd5-291c-e058-9834-1d7eaf911821@quicinc.com>
+Date:   Thu, 31 Aug 2023 15:30:19 +0530
 MIME-Version: 1.0
-References: <20230830115744.4102929-1-Naresh.Solanki@9elements.com> <b467c423-dbd4-8a14-8fa4-169658e21693@linaro.org>
-In-Reply-To: <b467c423-dbd4-8a14-8fa4-169658e21693@linaro.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Thu, 31 Aug 2023 15:15:08 +0530
-Message-ID: <CABqG17hB_GvQ56ZB+wjhSrDtZLreZ4vPc+3AfUj6AdA3Btd1+Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-binding: Add custom property for MAX7357
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 3/4] dt-bindings: clock: qcom: Add GCC clocks for SM4450
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Bjorn Andersson <andersson@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230824173410.550126-1-quic_ajipan@quicinc.com>
+ <20230824173410.550126-4-quic_ajipan@quicinc.com>
+ <161de126-87b0-3440-8517-330b529c3fb6@linaro.org>
+From:   Ajit Pandey <quic_ajipan@quicinc.com>
+In-Reply-To: <161de126-87b0-3440-8517-330b529c3fb6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: gl8gxOXJflGu-4r4GQnPBpF3UPZ9ZV9Z
+X-Proofpoint-GUID: gl8gxOXJflGu-4r4GQnPBpF3UPZ9ZV9Z
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_07,2023-08-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ lowpriorityscore=0 phishscore=0 impostorscore=0 bulkscore=0 spamscore=0
+ mlxlogscore=999 adultscore=0 malwarescore=0 priorityscore=1501
+ clxscore=1011 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308310088
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
 
-On Wed, 30 Aug 2023 at 20:08, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 30/08/2023 13:57, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > Add a custom property "maxim,bus-lockup-fix" to enable proprietary
-> > features on MAX7357. The driver configures MAX7357 to isolate the
-> > failing channel and trigger a flush-out sequence for bus lock-up
-> > resolution.
->
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching.
-Ack
->
-> It is "dt-bindings" not binding and several other fields are needed.
-Ack
->
-> Also "add custom property" is quite generic. When you add next custom
-> property you are going to have two commits with the same subject. Just
-> make it descriptive - "Add foobar for MAX7357"
-Missed Properties in this Patch Series, Will Be Addressed in V2.
-So in that case I guess the below title should be fine?
-dt-bindings: i2c: Add custom properties for MAX7357/MAX7358
 
->
->
->
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> > ---
-> >  .../devicetree/bindings/i2c/i2c-mux-pca954x.yaml  | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > index 2d7bb998b0e9..984d4614a270 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > @@ -71,6 +71,11 @@ properties:
-> >      description: A voltage regulator supplying power to the chip. On PCA9846
-> >        the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
-> >
-> > +  maxim,bus-lockup-fix:
-> > +    type: boolean
-> > +    description: Isolates only the stuck channel and generates a flush-out sequence
-> > +      to attempt to clear the bus lock-up.
->
-> Why wouldn't you want it to be enabled all the time? Why should it be
-> configurable per-board?
-The chip doesn't enable these features by default & it is left to
-discretion of board designer to enable the same.
-
-Regards,
-Naresh
->
+On 8/24/2023 11:40 PM, Krzysztof Kozlowski wrote:
+> On 24/08/2023 19:34, Ajit Pandey wrote:
+>> Add support for qcom global clock controller bindings for SM4450 platform.
+>>
+>> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
+>> ---
+>>   .../bindings/clock/qcom,sm4450-gcc.yaml       |  54 +++++
+>>   include/dt-bindings/clock/qcom,sm4450-gcc.h   | 197 ++++++++++++++++++
+>>   2 files changed, 251 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+>>   create mode 100644 include/dt-bindings/clock/qcom,sm4450-gcc.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+>> new file mode 100644
+>> index 000000000000..8c767bdf7f9d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm4450-gcc.yaml
+>> @@ -0,0 +1,54 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,sm4450-gcc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Global Clock & Reset Controller on SM4450
+>> +
+>> +maintainers:
+>> +  - Ajit Pandey <quic_ajipan@quicinc.com>
+>> +  - Taniya Das <quic_tdas@quicinc.com>
+>> +
+>> +description: |
+>> +  Qualcomm global clock control module provides the clocks, resets and power
+>> +  domains on SM4450
+>> +
+>> +  See also:: include/dt-bindings/clock/qcom,sm4450-gcc.h
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: qcom,sm4450-gcc
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Board XO source
+>> +      - description: Sleep clock source
+>> +      - description: UFS Phy Rx symbol 0 clock source (Optional clock)
+>> +      - description: UFS Phy Rx symbol 1 clock source (Optional clock)
+>> +      - description: UFS Phy Tx symbol 0 clock source (Optional clock)
+>> +      - description: USB3 Phy wrapper pipe clock source (Optional clock)
+> 
+> I doubt that these are really optional clocks. They are set as parents
+> of your clocks in the controller, so if these clocks are physically
+> missing, how does the clock controller work?
+> 
+> 
 > Best regards,
 > Krzysztof
->
+> 
+
+Yeah, if these optional clocks are missing, few dependent child clocks 
+functionality (UFS/USB) will not work and clock controller will work 
+with limited functionality, but I agree that the tag "Optional Clock" is 
+bit confusing here and will remove this in next patch series.
+
+-- 
+Thanks, and Regards
+Ajit
