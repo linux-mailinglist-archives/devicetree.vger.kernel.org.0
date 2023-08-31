@@ -2,71 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EFC078ED0E
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:28:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13BAD78ED19
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243303AbjHaM2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:28:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36044 "EHLO
+        id S231191AbjHaMau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:30:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231799AbjHaM2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:28:52 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42297CDB;
-        Thu, 31 Aug 2023 05:28:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id CFC8BB82288;
-        Thu, 31 Aug 2023 12:28:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93F28C433CC;
-        Thu, 31 Aug 2023 12:28:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693484926;
-        bh=Vyak1dTXZ6H1ELH2V6tR0Berxj+Mh0hnmpnrgiYOi4A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Q1vNqyifUgY4lrK/jaUT18rHZBA7ZouBEtmNsHQrf/SAjjjQuQjLXKbwAsxSI9u/p
-         666GulrypEJKTm7gSCZINhrAB2IQXEZTDf4ln8oQ367RsqpBnuzXgU0TQT1r2zYCed
-         uUnPgTwPOra/Q6faCjIwmLori4K0rresH6Q6CbQIbrP1UfINp01kdKl0++ck5MQbRk
-         BDfe1zXfiNC35th+hz6rypABL3mUyf8Bhvg+R/z4G0YUS17PYvP0iml8ae0pnNw9bD
-         pdlkfQbsqCdmwFmN5iYRskkat7qDnWnIQo8Xu4rHa47FUghBSOEh4EA29OUE/pUeki
-         bDclJWwmEk8jA==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-500bbe3ef0eso842035e87.1;
-        Thu, 31 Aug 2023 05:28:46 -0700 (PDT)
-X-Gm-Message-State: AOJu0YwyZ1xpZkXl4wbHwvJfkvSBsC4ch/T04sSvCWY9Y60u9uko22JP
-        5kK0XyuhvBSxEvDI5eHL/cwDtmQ5VwsnaWpUxD4=
-X-Google-Smtp-Source: AGHT+IEt6ssTLnEZQPql8uv0e9cCMN2qYBu4GX0LcJsKO+irQC/odNOUf2HHFRys9I3941ggRp0B4CR23/MLwZcdE20=
-X-Received: by 2002:a05:6512:ba9:b0:500:8676:aa7f with SMTP id
- b41-20020a0565120ba900b005008676aa7fmr819687lfv.23.1693484924436; Thu, 31 Aug
- 2023 05:28:44 -0700 (PDT)
+        with ESMTP id S235106AbjHaMat (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:30:49 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F10F81A4;
+        Thu, 31 Aug 2023 05:30:46 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37VBp03P005935;
+        Thu, 31 Aug 2023 12:30:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=BU00vg17G76ircAg1xz3lhcsO7N9Z7ZT+RXru3K620c=;
+ b=ASJcHerclvq97OBC2NFYxwEecGWz4kfrHfYuEnqP6BUMkti/TjsPV6n5rREJ/exL02sF
+ boCk/3Z3az3nEyWV9P9COSKnXwECSF8PFhLBuPSPwMK0bN9TuhVlLtEXgt0SHuUuy4Ov
+ 2cId14V5WFwSrPdRseQRdi/uG5tUcYzTDimJV3hpc8v2VsU7w6huWfyOOM45u4rpmY4C
+ myEtaezW2RxXAonjp8l8NSmwHS3zuUQH7LeOfxtxz4RS68Yyml2716CBvlAmbdcPh6w0
+ ZRzW5FAVZqoi5h3K09FVvi0SdHaRe48YA8Eq18M2UO32jZVTURGk51AsdtwAgSQ5lXjE qA== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stpy98hnk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 12:30:09 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VCU8Ss008797
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 12:30:08 GMT
+Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 31 Aug
+ 2023 05:30:00 -0700
+Message-ID: <4e9a43c5-43ec-4a07-9053-366a517f5c54@quicinc.com>
+Date:   Thu, 31 Aug 2023 17:59:57 +0530
 MIME-Version: 1.0
-References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
- <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com>
- <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
- <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
- <CAPnjgZ2kkUt1eOWX8K+EsbjcQZPefNvj5DSaFb9QrvRg0t2h7w@mail.gmail.com>
- <CAMj1kXGe84uaJ9j9ic0V4HC43p7QBoKQ5ssTYd5DMBGtZ3++Jw@mail.gmail.com> <CAPnjgZ3L-jGxoXNHnsXY0MXU=jTAN66KNAxSLHPVeHinHMjzkQ@mail.gmail.com>
-In-Reply-To: <CAPnjgZ3L-jGxoXNHnsXY0MXU=jTAN66KNAxSLHPVeHinHMjzkQ@mail.gmail.com>
-From:   Ard Biesheuvel <ardb@kernel.org>
-Date:   Thu, 31 Aug 2023 14:28:33 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXGw6DGK=gVF3bMH5dp=LL89V9n1V1LMGKDn0CZWGHh8qg@mail.gmail.com>
-Message-ID: <CAMj1kXGw6DGK=gVF3bMH5dp=LL89V9n1V1LMGKDn0CZWGHh8qg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
-To:     Simon Glass <sjg@chromium.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/9] dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY
+ to UNIPHY
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     <robert.marko@sartura.hr>, <luka.perkov@sartura.hr>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
+        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
+        <rafal@milecki.pl>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <quic_varada@quicinc.com>
+References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+ <20230829135818.2219438-2-quic_ipkumar@quicinc.com>
+ <CAA8EJpqA-poJ9=XKJa2s=yZUGbBbgOqgiDC-q9skJzBqLux84g@mail.gmail.com>
+ <73879012-581d-47fb-b741-577c90b31dfb@quicinc.com>
+ <CAA8EJpr3PJtvyYKRPqT=hO4sUd4oOjTvOjD3kOqffbjzHdByAw@mail.gmail.com>
+From:   Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <CAA8EJpr3PJtvyYKRPqT=hO4sUd4oOjTvOjD3kOqffbjzHdByAw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 9ehDmc-1lt6mX6pcugNoo-YAcP_FWp96
+X-Proofpoint-GUID: 9ehDmc-1lt6mX6pcugNoo-YAcP_FWp96
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_11,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 spamscore=0 impostorscore=0 suspectscore=0 adultscore=0
+ mlxlogscore=999 clxscore=1015 malwarescore=0 phishscore=0 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308310111
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,89 +92,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Aug 2023 at 23:11, Simon Glass <sjg@chromium.org> wrote:
->
-> Hi Ard,
->
-> On Tue, 29 Aug 2023 at 15:32, Ard Biesheuvel <ardb@kernel.org> wrote:
-> >
-> > On Tue, 29 Aug 2023 at 21:18, Simon Glass <sjg@chromium.org> wrote:
-> > >
-> > > Hi Ard,
-> > >
-> > > On Thu, 24 Aug 2023 at 03:10, Ard Biesheuvel <ardb@kernel.org> wrote:
-...
-> > > > In summary, I don't see why a non-UEFI payload would care about UEFI
-> > > > semantics for pre-existing memory reservations, or vice versa. Note
-> > > > that EDK2 will manage its own memory map, and expose it via UEFI boot
-> > > > services and not via DT.
-> > >
-> > > Bear in mind that one or both sides of this interface may be UEFI.
-> > > There is no boot-services link between the two parts that I have
-> > > outlined.
-> > >
-> >
-> > I don't understand what this means.
-> >
-> > UEFI specifies how one component invokes another, and it is not based
-> > on a DT binding. If the second component calls UEFI boot or runtime
-> > services, it should be invoked in this manner. If it doesn't, then it
-> > doesn't care about these memory reservations (and the OS will not be
-> > booted via UEFI either)
-> >
-> > So I feel I am missing something here. Perhaps a practical example
-> > would be helpful?
->
-> Let's say we want to support these combinations:
->
-> Platform Init -> Payload
-> --------------------------------
-> U-Boot -> Tianocore
-> coreboot -> U-Boot
-> Tianocore -> U-Boot
-> Tianocore -> Tianocore
-> U-Boot -> U-Boot
->
-> Some of the above things have UEFI interfaces, some don't. But in the
-> case of Tianocore -> Tianocore we want things to work as if it were
-> Tianocore -> (its own handoff mechanism) Tiancore.
->
 
-If Tianocore is the payload, it is either implemented as a EFI app, in
-which case it has access to EFI services, or it is not, in which case
-it doesn't care about UEFI semantics of the existing reserved regions,
-and it only needs to know which regions exist and which of those are
-reserved.
+On 8/31/2023 5:47 PM, Dmitry Baryshkov wrote:
+> On Thu, 31 Aug 2023 at 14:54, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>>
+>> On 8/29/2023 7:49 PM, Dmitry Baryshkov wrote:
+>>> On Tue, 29 Aug 2023 at 16:59, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
+>>>> UNIPHY / Combo PHY used on various qualcomm SoC's are very similar to
+>>>> ipq4019 PHY. Hence renaming this dt-binding to uniphy dt-binding and
+>>>> can be used for other qualcomm SoCs which are having similar UNIPHY.
+>>>>
+>>>> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> ---
+>>>>    .../phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml}  | 9 +++++++--
+>>>>    1 file changed, 7 insertions(+), 2 deletions(-)
+>>>>    rename Documentation/devicetree/bindings/phy/{qcom-usb-ipq4019-phy.yaml => qcom,uniphy.yaml} (78%)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+>>>> similarity index 78%
+>>>> rename from Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
+>>>> rename to Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+>>>> index 09c614952fea..cbe2cc820009 100644
+>>>> --- a/Documentation/devicetree/bindings/phy/qcom-usb-ipq4019-phy.yaml
+>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,uniphy.yaml
+>>>> @@ -1,13 +1,18 @@
+>>>>    # SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>>    %YAML 1.2
+>>>>    ---
+>>>> -$id: http://devicetree.org/schemas/phy/qcom-usb-ipq4019-phy.yaml#
+>>>> +$id: http://devicetree.org/schemas/phy/qcom,uniphy.yaml#
+>>>>    $schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>
+>>>> -title: Qualcom IPQ40xx Dakota HS/SS USB PHY
+>>>> +title: Qualcomm UNIPHY
+>>> We know that UNIPHY was a common design / IP block used for APQ8064
+>>> SATA and MSM8974 DSI and HDMI PHYs. Is this the same design, or was
+>>> the name reused by the Qualcomm for some other PHYs?
+>>> Several latest generations have USB QMP PHYs which are called 'uni-phy'.
+>> This PHY is build on top of QCA Uniphy 22ull. A combo PHY used between
+>> USB Gen3 / PCIe Gen3 controller.
+>> It is different from USB QMP PHYs.
+> So we have now three different items called Qualcomm uniphy. Could you
+> please add some distinctive name?
+There is one more target called IPQ5018 which is also having similar USB 
+PHY built on top of
+Uniphy 28nm LP. That also can leverage this upcoming IPQ5332 USB PHY 
+driver. Considering that,
+given a common name 'uniphy'.
 
-And I think the same applies to all other rows in your table: either
-the existence of UEFI needs to be carried forward, which needs to be
-done via EFI services, or it doesn't, in which case the UEFI specific
-reservations can be dropped, and only reserved and available memory is
-relevant.
-
-> Some Platform Init may create runtime code which needs to accessible later.
+- Praveenkumar
 >
-
-But not UEFI runtime code, right? If the payload is not UEFI based,
-the OS would never be able to call that runtime code unless it is
-described in a different, non-UEFI way. This is fine, but it is not
-UEFI so we shouldn't call it UEFI runtime memory.
-
-> The way I think of it is that we need to generalise the memory map a
-> bit. Saying that you must use UEFI boot services to discover it is too
-> UEFI-specific.
+>> - Praveenkumar
+>>>>    maintainers:
+>>>>      - Robert Marko <robert.marko@sartura.hr>
+>>>> +  - Praveenkumar I <quic_ipkumar@quicinc.com>
+>>>> +
+>>>> +description:
+>>>> +  UNIPHY / COMBO PHY supports physical layer functionality for USB and PCIe on
+>>>> +  Qualcomm chipsets.
+>>>>
+>>>>    properties:
+>>>>      compatible:
+>>>> --
+>>>> 2.34.1
+>>>>
 >
-
-What I am questioning is why a memory map with UEFI semantics is even
-relevant when those boot services do not exist.
-
-Could you be more specific about why a payload would have to be aware
-of the existence of UEFI boot/runtime service regions if it does not
-consume the UEFI interfaces of the platform init? And if the payload
-exposes UEFI services to the OS, why would it consume a memory map
-with UEFI semantics rather than a simple list of memblocks and memory
-reservations?
-
-Again, I am inclined to treat this as a firmware implementation
-detail, and the OS must never consume this binding. But I am still
-puzzled about what exact purpose it is expected to serve.
+>
