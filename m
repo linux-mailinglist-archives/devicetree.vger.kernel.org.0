@@ -2,127 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DEB578E885
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 10:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B47B78E909
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 11:04:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236920AbjHaIlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 04:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40344 "EHLO
+        id S243125AbjHaJEQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 05:04:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238396AbjHaIlT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 04:41:19 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B09E7C
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 01:40:52 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52a250aa012so629222a12.3
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 01:40:52 -0700 (PDT)
+        with ESMTP id S241685AbjHaJEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 05:04:15 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1255CF7
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:04:12 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-d77ad095f13so347176276.2
+        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 02:04:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693471248; x=1694076048; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4oj9ZHh9uIvpj0ERp23NgRxjtB8A/WDYvtNWK07v2zI=;
-        b=GN31XdmsfylTAo9cekW7yHl9SPIoQSERRZqVvKX9ghQGtgDJrGlRz72VEqdZXW6KCD
-         TtnuLvFmoP0XGAFsX5cT+TMz3drzgOAeUgx/c3pmaz+WMY3R3+RQ7CpfUIZ32cFL4icK
-         6ScXCJ29qa51V0/1izVjKUZ3ek3oikYN4S+v/x6/ZiyOuv8WDTVaP38jZAO5wHr5eRzN
-         AQKMpLrCvgPkLdGkbg7OUjFop5/cYIffoh2Vc7O4BWPEEhU4rmYqMCgdtsWWNQUAleSq
-         9ZSDAv3krMlnkFB4+5zA3usrBssuvJNCiTgJ9U7v6f/tTE7Wv9uj9TVZGAkaLlBBAO+w
-         h9sQ==
+        d=linaro.org; s=google; t=1693472652; x=1694077452; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=EP5BZ5K3ZE2Pv+daLf3Z5xOE89jzoMtdEYKXKltONtI=;
+        b=w2zcrDrVoFU/fkOeFET2k1tuxpd0M3Dd140GlcvM18nL33DsTUPy9cZGXHIsJ7hiat
+         jKzHeo7AW9cwQg/pz8sLq0X3rxd0QuG/cT4KKwEbUzDRDHkQHrfBCOLVB7TJhJWDxYd2
+         +q2agvYaprOoIB+O5HpTaDvfaoLzcAo8VLjnFiEl8W7iCznxgRoBKeyVUZCLFMTleLgm
+         aTaq9lzf1+SO6cS3dgczZfe7sYPpF7SCo+glEiJMw1jM3aCcct3+S2ydo7+YNMoiB5zq
+         Dv9nJOOjrXgPWNpFIcP2NgymUZ2K26/3N8nEQgFDE5cIeZ5zKT7pcuKHNqF7ANN2IhGm
+         M0mA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693471248; x=1694076048;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4oj9ZHh9uIvpj0ERp23NgRxjtB8A/WDYvtNWK07v2zI=;
-        b=i8vDq40xHz75FUtxPo1oo3b96Ga8ebSmFhnVSqmX4e1BqUzl979KvI+FSqXKi1YDhw
-         0RSWsmygCbZlVz3wRiBglDcjb+q5+C4uM+q1Ob8PxAyp4kOzR1k8gdq+Z3UKQGki68WV
-         SYLQ4mym3O3EW9+AVV0H1Qlj/15uUWt7vp6qgXOqsEzM6fM2ziWLmAJt4rh9fsJy+8cY
-         nvM46urrvapLS1e1UBuKlaCxZXpYI8AViI63trJCm2pHTAY4G+ipx1j8pcdm7m7KPIgg
-         1+8eV/P71y9jqZYsmca+VgE2/3pm9y4ab9u6UHKPMLSC00jkcpY7RNuIU7pXCpeH5pNC
-         6fpg==
-X-Gm-Message-State: AOJu0YyVHEkqjb00wOJAW+BJtqOTP9kb1H1gdPRj4mJkLPt/7KQI3yf/
-        9szXuk6uNvZ7B/884qeWm44RFQ==
-X-Google-Smtp-Source: AGHT+IEC5YtV2U2cEklN+/jylIkWH4T7gor9vRqdxcg0xCCXWtlM2PpTXI6h2lSgtqlfrGIVvathzQ==
-X-Received: by 2002:a05:6402:646:b0:526:9c4:bc06 with SMTP id u6-20020a056402064600b0052609c4bc06mr3431058edx.18.1693471248160;
-        Thu, 31 Aug 2023 01:40:48 -0700 (PDT)
-Received: from [192.168.69.115] ([176.187.199.245])
-        by smtp.gmail.com with ESMTPSA id l22-20020a056402345600b0052c11951f4asm522481edc.82.2023.08.31.01.40.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 01:40:47 -0700 (PDT)
-Message-ID: <1cc2c8f8-1f9b-1d47-05d4-9bcad9a246cd@linaro.org>
-Date:   Thu, 31 Aug 2023 10:40:45 +0200
+        d=1e100.net; s=20221208; t=1693472652; x=1694077452;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EP5BZ5K3ZE2Pv+daLf3Z5xOE89jzoMtdEYKXKltONtI=;
+        b=hLenXbc+KCMC05NOA65b6JAImagwHeVuf+u7yVrtQjqvRykfZTA96/KFaatvSKYDaK
+         Oew8eKV78jAxKKRRpp9UDDKLP1GDe41s9aVlsz1CCNfE+f15vQVlrETbT88XBzY47ND/
+         jKw/UEtR0nMG7ZurXJd5DFREg7DkPHCaABOw6BoVdM3CEiGqlO6xwcr1iKbysO92gCqR
+         Y+tFD1IX2OGEKTICE/+/zMpBNM4q25ifOstVsGB6kqEHBcQrVQrKUYiq5933YeYsumUe
+         bJfdpG0kevdBlMeVU0CpODPDR4TjfJjYQPFsrm/EyFjLDM+oZyp4ydNifg9kXGRhO4py
+         V/2g==
+X-Gm-Message-State: AOJu0YyF6FUdBDqtLHtiC0YgBfR6BQchToVxFEYWBIa9zXZ39pK+Y441
+        6S/xWgRBAEaiLn1S0wG8UmroSq+/dkgIXGBgDD+ZQA==
+X-Google-Smtp-Source: AGHT+IGehtGlJIPJafHY2MmAezN7Q363OmOcjqCTAtgV2JV18r+NtcaCGcVXy1e3IqPacnn/e6Yebu3QeMS+pEFWfK8=
+X-Received: by 2002:a25:d794:0:b0:d6b:1531:bc6d with SMTP id
+ o142-20020a25d794000000b00d6b1531bc6dmr4269044ybg.30.1693472652133; Thu, 31
+ Aug 2023 02:04:12 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.14.0
-Subject: Re: [PATCH v4 4/4] MAINTAINERS: Update MIPS/LOONGSON1 entry
-Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org> <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 31 Aug 2023 12:04:00 +0300
+Message-ID: <CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: apq8096-db820c: drop simple-bus
+ from clocks
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-References: <20230830134241.506464-1-keguang.zhang@gmail.com>
- <20230830134241.506464-5-keguang.zhang@gmail.com>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <20230830134241.506464-5-keguang.zhang@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 24 Mar 2023 at 22:23, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> 'clocks' node is not a bus, but just a placeholder for clocks:
+>
+>   apq8096-db820c.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+>     From schema: dtschema/schemas/simple-bus.yaml
+>   apq8096-db820c.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]],  ...
+>     From schema: dtschema/schemas/simple-bus.yaml
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-On 30/8/23 15:42, Keguang Zhang wrote:
-> Add two new F: entries for Loongson1 Ethernet driver
-> and dt-binding document.
-> Add a new F: entry for the rest Loongson-1 dt-binding documents.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+This patch broke audio support on DB820c. Now the divclk1 clock is not
+registered, as drivers/clk/clk-gpio.c doesn't have CLK_OF_DECLARE().
+
+Stephen, What would be the best way to fix this? Add CLK_OF_DECLARE
+support to clk-gpio.c? Or simply move divclk1 from /clocks into a
+separate device?
+
+What is the rule, which clock drivers must support such device-less
+binding using /clocks/foo nodes?
+
 > ---
-> V3 -> V4: Update the dt-binding document entry of Loongson1 Ethernet
-> V2 -> V3: Update the entries and the commit message
-> V1 -> V2: Improve the commit message
-> 
->   MAINTAINERS | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ff1f273b4f36..2519d06b5aab 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
->   M:	Keguang Zhang <keguang.zhang@gmail.com>
->   L:	linux-mips@vger.kernel.org
->   S:	Maintained
-> +F:	Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
-> +F:	Documentation/devicetree/bindings/net/loongson,ls1*.yaml
+>  arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> index 4476e2e22816..b599909c4463 100644
+> --- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> +++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+> @@ -63,7 +63,6 @@ chosen {
+>         };
+>
+>         clocks {
+> -               compatible = "simple-bus";
+>                 divclk4: divclk4 {
+>                         compatible = "fixed-clock";
+>                         #clock-cells = <0>;
+> --
+> 2.34.1
+>
 
-Why not simply squash in patch 2
 
->   F:	arch/mips/include/asm/mach-loongson32/
->   F:	arch/mips/loongson32/
->   F:	drivers/*/*loongson1*
-> +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
-
-and 3 of this series?
-
->   MIPS/LOONGSON2EF ARCHITECTURE
->   M:	Jiaxun Yang <jiaxun.yang@flygoat.com>
-
+-- 
+With best wishes
+Dmitry
