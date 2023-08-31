@@ -2,191 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 01B2A78ECF5
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE5CD78ECFC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:24:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345014AbjHaMWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34388 "EHLO
+        id S244059AbjHaMY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240291AbjHaMWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:22:02 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00790CFE
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:21:55 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-d746ea563f9so509790276.1
-        for <devicetree@vger.kernel.org>; Thu, 31 Aug 2023 05:21:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693484514; x=1694089314; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Bwx8x4YtYezNUMgi8q+uTUrpHBYEE2Cu4KRHN4N06co=;
-        b=iP8fheTS/32j0rX87XC3FfXVBW87D1H0lmG8rIZgCUOu+LQzQa0j5HBCQ/LciZI2QD
-         EacHjbYnejhUqu/FgzTi6Qly70KikuhNj63p+EIi4ZuZp7bYb9eos9eKdkgAlIynJMOh
-         ggw/MYAfgX4T0rvLaxVvPdpz+Lh7ot3+/GPeqPKqHI6njRcDAQ+F4BaD5l0pBsbcGtr7
-         ghBHCZL4j3dO6wOQOZIT96LSj4nNopokqXajNZdAopeh1Zo4KQULrxNi9KONYOWrF1fz
-         P7A2w/L09pXTclCZvCt3oztyJf4ImpJF9SLmrFfLXwHaeTl/ggNXiQwcbV641Kl+nvEw
-         QKEg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693484514; x=1694089314;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Bwx8x4YtYezNUMgi8q+uTUrpHBYEE2Cu4KRHN4N06co=;
-        b=Nb3WZ/5LxikET7/XNWkKIZFSzJG1tUcP6SdeoN+J6bEi/w+xTw06Z/0Q89csVxogwv
-         0Gel/3IPx7TUppkXpwMweqAMlxGUCGUdsMe/iiw4OpwzOIlGnTry1p1XP9ZyoHRtzVsz
-         2oxy6WLH+be2z18TinFavhEmd4UzroT7fHfCy/i/ZRP2sZ4EAbCXbc0Vnfj6UaqWC/Mj
-         U5B1CPp//vB+FI1QiSz0Ysr387WbIehBMwXIydxZ558uuREkW7bTFs5UT4/SyC1Mgl7k
-         rDK/X/hgZMUPgi+1EmMerFL36+ai81rkX3m9CPLpZq7Wj/smr5FKozmpwciqLsRZsAMY
-         EZFA==
-X-Gm-Message-State: AOJu0YyuFCJDQ/fUZ+0hNADjJg0KmFcYSWZB0YqVI/T/DdYb4hhox6G5
-        foLG8r6vQmuzTc/2Fr6DATZ3ryqdTHcdEBMFK0ezyw==
-X-Google-Smtp-Source: AGHT+IEo8NkEEu0Mba1RWLUMRB4w7afRpOH0sbqEazlACaU2jB+LyYPESyYrSiL6PqveSzE4onlwPh0ZMuVpwsJCsf0=
-X-Received: by 2002:a25:dbd2:0:b0:d7b:a834:3b2c with SMTP id
- g201-20020a25dbd2000000b00d7ba8343b2cmr4698974ybf.1.1693484514213; Thu, 31
- Aug 2023 05:21:54 -0700 (PDT)
+        with ESMTP id S230171AbjHaMY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:24:56 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAEEA1A4;
+        Thu, 31 Aug 2023 05:24:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id A1C2ACE20DB;
+        Thu, 31 Aug 2023 12:24:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF801C433C9;
+        Thu, 31 Aug 2023 12:24:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693484689;
+        bh=nXWcobST5xvZcG1UeeKu5sV7yE2+CygPSMmrLOFEf0M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Fs4kR/bSqpjFjNJTJAWL64045RYFRG42iIS580k8R3taCUkllCPBectpxgvkgmDrq
+         q+kNnLogNk65FY+JkDL79buGJga9h42YQdq8IVF/43x2EWQvKsz31BzE++C2+/xZAP
+         zHkASNL3KxS7VJR7XIkcBalnDuCnq8A+qKLP1hh67KTc0B6iImTFPz8dBReoseG2Eg
+         h6v2M96nxJiAuxEpWn3KC5k1cDU26W+ncF+3VI+DN6VlCjMfokCXRkcEDjTCuBe8aS
+         SdATOOW67qPqB25TY8LlKww7ld60C+dOXtW+oBW3opY9/NA2gF5CxVhWkIsn/HqFfz
+         4MJAM/teGorxg==
+Date:   Thu, 31 Aug 2023 13:24:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     John Watts <contact@jookia.org>
+Cc:     alsa-devel@alsa-project.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH 0/7] sun4i-i2s: Support channel remapping
+Message-ID: <ZPCGjA9g8hVdr2Pm@finisterre.sirena.org.uk>
+References: <20230811201406.4096210-1-contact@jookia.org>
 MIME-Version: 1.0
-References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
- <20230829135818.2219438-9-quic_ipkumar@quicinc.com> <CAA8EJpqraO6UXBs=aPpWNuhEPjdcQ01FyV_Np1KtuJtEkJE0Hg@mail.gmail.com>
- <2ff8ef8e-c7d8-4a02-a764-ef2a3f83e87c@quicinc.com>
-In-Reply-To: <2ff8ef8e-c7d8-4a02-a764-ef2a3f83e87c@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 31 Aug 2023 15:21:43 +0300
-Message-ID: <CAA8EJpoFYeHFJ5SDaJJYUO09JO31dv8fnsG8207ginpe6mQ0ag@mail.gmail.com>
-Subject: Re: [PATCH 8/9] phy: qcom: uniphy: Add ipq5332 USB UNIPHY support
-To:     Praveenkumar I <quic_ipkumar@quicinc.com>
-Cc:     robert.marko@sartura.hr, luka.perkov@sartura.hr, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
-        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
-        geert+renesas@glider.be, nfraprado@collabora.com, rafal@milecki.pl,
-        peng.fan@nxp.com, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        quic_varada@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="DeugAER/HXv/4y4M"
+Content-Disposition: inline
+In-Reply-To: <20230811201406.4096210-1-contact@jookia.org>
+X-Cookie: Give him an evasive answer.
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 31 Aug 2023 at 15:13, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->
->
-> On 8/29/2023 8:15 PM, Dmitry Baryshkov wrote:
->
-> On Tue, 29 Aug 2023 at 17:00, Praveenkumar I <quic_ipkumar@quicinc.com> wrote:
->
-> This patch adds ipq5332 USB SS UNIPHY support.
->
-> First, please read to Documentation/process/submitting-patches.rst,
-> then rewrite the commit message.
->
-> Next, I tend to say that this driver doesn't have a lot in common with
-> the ipq4019 driver you have modified. Please consider adding new
-> driver for ipq5332, then we can see whether it makes sense to fold
-> ipq4019 to use new infrastructure.
->
-> Sure, will add new driver for IPQ5332 USB3 PHY. Thanks a lot for the review.
 
-No HTML mail please. Ever. And use proper quotation. Thank you.
+--DeugAER/HXv/4y4M
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
->
-> --
-> Thanks,
-> Praveenkumar
->
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
-> ---
-> This patch depends on the below series which adds support for USB2 in
-> IPQ5332
-> https://lore.kernel.org/all/cover.1692699472.git.quic_varada@quicinc.com/
->
->  drivers/phy/qualcomm/phy-qcom-uniphy.c | 37 ++++++++++++++++++++++++++
->  1 file changed, 37 insertions(+)
->
-> diff --git a/drivers/phy/qualcomm/phy-qcom-uniphy.c b/drivers/phy/qualcomm/phy-qcom-uniphy.c
-> index eb71588f5417..91487e68bb6e 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-uniphy.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-uniphy.c
-> @@ -26,6 +26,10 @@
->  #include <linux/regulator/consumer.h>
->  #include <linux/reset.h>
->
-> +#define PCIE_USB_COMBO_PHY_CFG_MISC1           0x214
-> +#define PCIE_USB_COMBO_PHY_CFG_RX_AFE_2                0x7C4
-> +#define PCIE_USB_COMBO_PHY_CFG_RX_DLF_DEMUX_2  0x7E8
-> +
->  struct uniphy_init_tbl {
->         unsigned int offset;
->         unsigned int val;
-> @@ -37,6 +41,12 @@ struct uniphy_init_tbl {
->                 .val = v,               \
->         }
->
-> +static const struct uniphy_init_tbl ipq5332_usb_ssphy_init_tbl[] = {
-> +       UNIPHY_INIT_CFG(PCIE_USB_COMBO_PHY_CFG_RX_AFE_2, 0x1076),
-> +       UNIPHY_INIT_CFG(PCIE_USB_COMBO_PHY_CFG_RX_DLF_DEMUX_2, 0x3142),
-> +       UNIPHY_INIT_CFG(PCIE_USB_COMBO_PHY_CFG_MISC1, 0x3),
-> +};
-> +
->  struct uniphy_cfg {
->         const struct uniphy_init_tbl *init_seq;
->         int num_init_seq;
-> @@ -83,6 +93,32 @@ static const struct uniphy_cfg ipq4019_usb_hsphy_cfg = {
->         .reset_udelay   = 10000,
->  };
->
-> +static const char * const ipq5332_usb_ssphy_clk_l[] = {
-> +       "phy_ahb", "phy_cfg_ahb", "pipe",
-> +};
-> +
-> +static const char * const ipq5332_usb_ssphy_reset_l[] = {
-> +       "por_rst",
-> +};
-> +
-> +static const char * const ipq5332_usb_ssphy_vreg_l[] = {
-> +       "vdda-phy",
-> +};
-> +
-> +static const struct uniphy_cfg ipq5332_usb_ssphy_cfg = {
-> +       .init_seq       = ipq5332_usb_ssphy_init_tbl,
-> +       .num_init_seq   = ARRAY_SIZE(ipq5332_usb_ssphy_init_tbl),
-> +       .clk_list       = ipq5332_usb_ssphy_clk_l,
-> +       .num_clks       = ARRAY_SIZE(ipq5332_usb_ssphy_clk_l),
-> +       .reset_list     = ipq5332_usb_ssphy_reset_l,
-> +       .num_resets     = ARRAY_SIZE(ipq5332_usb_ssphy_reset_l),
-> +       .vreg_list      = ipq5332_usb_ssphy_vreg_l,
-> +       .num_vregs      = ARRAY_SIZE(ipq5332_usb_ssphy_vreg_l),
-> +       .pipe_clk_rate  = 250000000,
-> +       .reset_udelay   = 1,
-> +       .autoload_udelay = 35,
-> +};
-> +
->  static int phy_mux_sel(struct phy *phy)
->  {
->         struct qcom_uniphy *uniphy = phy_get_drvdata(phy);
-> @@ -396,6 +432,7 @@ static int qcom_uniphy_probe(struct platform_device *pdev)
->  static const struct of_device_id qcom_uniphy_of_match[] = {
->         { .compatible = "qcom,usb-hs-ipq4019-phy", .data = &ipq4019_usb_hsphy_cfg},
->         { .compatible = "qcom,usb-ss-ipq4019-phy", .data = &ipq4019_usb_ssphy_cfg},
-> +       { .compatible = "qcom,ipq5332-usb-ssphy", .data = &ipq5332_usb_ssphy_cfg},
->         { },
->  };
->  MODULE_DEVICE_TABLE(of, qcom_uniphy_of_match);
-> --
-> 2.34.1
->
+On Sat, Aug 12, 2023 at 06:13:59AM +1000, John Watts wrote:
 
+> First, I split up channel-dins and channel-slots. This is mainly
+> because I implemented one first but both of them only make sense
+> together. The registers themselves use a format of a byte per
+> channel with the upper nibble being the din and the lower being
+> the slot. Perhaps this is a better format to copy?
 
--- 
-With best wishes
-Dmitry
+I think this is fine.
+
+> Third, channel-slots is available on all sun4i-i2s controllers,
+> but I only have it implemented on the R329 variant for now when
+> there are multiple din pins.
+> I could add support for this on older controllers but there's not
+> really a use case for manual configuration as there's no DIN
+> and I don't have hardware to test it on.
+
+It's fine to leave this for someone who cares about that hardware to
+implement, might be nice to add a warning if the properties are set but
+not supported but it's not essential.
+
+> Fourth, I don't limit the readable channels to the channels
+> listed. Reading more channels than you have currently results in
+> the controller assuming you want to use TDM, but that's not the
+> case here and you can have strange duplicate channels show up.
+
+It would be better to have constraints which prevent userspace doing the
+wrong thing here.
+
+> Fifth, it might be a good idea to increase the maximum channels
+> from 8 to 16, especially if people are going to be running
+> multiple TDM streams on one controller.
+
+If there's no reason not to...
+
+--DeugAER/HXv/4y4M
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmTwhowACgkQJNaLcl1U
+h9CjTAf9Eb9zBoEzAuUZtcuChIs4gYOvUP+KJHWZQvgZ7KMKd9UsThI0n7CTASTY
+yvJjmMWvrFRTRoW1aGyk4Vc+bBYNX+fVBlmwxcqrQtNda7MSGKlIpf/FNpGOOZEz
+h5OjmgfIsLqH0KWJKkWrdQK581QDxGXtVGaJ/gzKtKmhsKyVyGsVHYRe4mc1kn47
+dabSfrqQV1S1B3U6HhtVsZ4eF3kvxfiGkaGgyjr1Kwij5xkoAYW+HrYJf3N/lO5P
+kCl1OMYD/9HGpIZneXwp+765K5ja28fM/nXtlbwrBIyN7BlNuFXoKo1rVqWXmpQc
+9x/1s+zCXiDfKj9iX3gpEt4IrHmg1Q==
+=CYGX
+-----END PGP SIGNATURE-----
+
+--DeugAER/HXv/4y4M--
