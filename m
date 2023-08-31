@@ -2,136 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA6FA78F062
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9D2478F091
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 17:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346622AbjHaPc7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 31 Aug 2023 11:32:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60404 "EHLO
+        id S1344886AbjHaPru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 11:47:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345989AbjHaPc7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:32:59 -0400
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C40AE53;
-        Thu, 31 Aug 2023 08:32:56 -0700 (PDT)
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-1ccb58b0099so538338fac.0;
-        Thu, 31 Aug 2023 08:32:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693495975; x=1694100775;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6hcrnB2F8lyWwzX7mYsHECAXPLOtvdjL4oOKYMjzocU=;
-        b=MRqM9Iee4AC9EJyRR8INNPgfUBbNBa7L/DUnGrPoNn7CfVSKk+dIh67hoCZueTIOkD
-         JG6Gq5O3SXjglN/h7r0xunzhRUndm1LXU/78xWK62txNfKO3f8pQV2+twTE+11KSaEAI
-         IpEzq+kTJoFoOkRmZUk2CClft8tI6SYzn61cdF02T2QpcZt6RfqBACxDP9mJUapog53f
-         FHct4POLGgbdoiSMOXG/u+3jOt7cfFc0GwvALifbUPJC1003Xi9pU7uq/brrWiG+ddOU
-         /BuWX2VWsSFQKmM/kGuFdz4v7Pe2p56Ntt2iBDHxj1ifq0SOB2oWv1itIL40qjNknTvk
-         izNg==
-X-Gm-Message-State: AOJu0Yz05b+cP9JpAvWNJd5rjIkg0BRAfUW8vW1oZcq3cEG1qC6h3x14
-        o9ha+5tNeVgXPXJ8wj0HtKYtqlugVdr8QQ==
-X-Google-Smtp-Source: AGHT+IFG8t8vslsXXzOxK4XZnMgpYmNNFSDISZkI96uF+tHXZ932RZ6N/kxPKYkv+dxy0j3XEfRnMg==
-X-Received: by 2002:a05:6870:1606:b0:1bf:a95:7a3f with SMTP id b6-20020a056870160600b001bf0a957a3fmr7354077oae.54.1693495975059;
-        Thu, 31 Aug 2023 08:32:55 -0700 (PDT)
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com. [209.85.161.52])
-        by smtp.gmail.com with ESMTPSA id s3-20020a4a5103000000b0056d361ca33fsm822979ooa.16.2023.08.31.08.32.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 31 Aug 2023 08:32:54 -0700 (PDT)
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-5738cb00eebso580399eaf.2;
-        Thu, 31 Aug 2023 08:32:54 -0700 (PDT)
-X-Received: by 2002:a05:6358:61c5:b0:139:c7cb:77b8 with SMTP id
- x5-20020a05635861c500b00139c7cb77b8mr6505385rwx.20.1693495974703; Thu, 31 Aug
- 2023 08:32:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230825090518.87394-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230825090518.87394-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 31 Aug 2023 17:32:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVEBREj_Y-wQ=fRQu9mnYyCF6Ut7ZhvRkM0N6eWFXp0Qw@mail.gmail.com>
-Message-ID: <CAMuHMdVEBREj_Y-wQ=fRQu9mnYyCF6Ut7ZhvRkM0N6eWFXp0Qw@mail.gmail.com>
-Subject: Re: [PATCH v4] arm64: dts: renesas: rz-smarc-common: Use versa3 clk
- for audio mclk
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231431AbjHaPrt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 11:47:49 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B3771A3;
+        Thu, 31 Aug 2023 08:47:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 29241B82336;
+        Thu, 31 Aug 2023 15:47:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24ED3C433C7;
+        Thu, 31 Aug 2023 15:47:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693496864;
+        bh=5mQXYKt6vGAv9319MthmUhxTFPuM6XRnJS1sdwqwBB0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=byDFihe2+iK0CORw/mKsL0Y2hRd5XulSDVEduYeIv3NpQvpNuVJy9V1V4dNtsD0wO
+         8aGI4E+L5UxtqUFBCqNqNJC0obGY/pJfZKR28ABTMXVNf6QbIroM94O4pz6ZGCjTQy
+         yqldoUbyxJflxoPfBG6OanGcqELTkP2Hawg90PYjd697uiLch/TO/GOCAv3ovcOEb4
+         Gva/o1fd58zHf+SI41K1ogecu1ucbrjd4F+elitaSo0kYqu456RDHO5h6T4GGBwVCo
+         AYcijWddsPSFJ22IGw4/G4rwoFY4YrUGBgJwOCalb2LGT8izwwlnDkyUc0l+r7Ub18
+         GQvWdMqoPMGAg==
+Date:   Thu, 31 Aug 2023 16:47:39 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,usb-snps-femto-v2: Add REFGEN
+ regulator
+Message-ID: <20230831-asleep-revisable-17e16524f886@spud>
+References: <20230830-topic-refgenphy-v1-0-892db196a1c0@linaro.org>
+ <20230830-topic-refgenphy-v1-1-892db196a1c0@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="0wmHf2n6L8Edbw7d"
+Content-Disposition: inline
+In-Reply-To: <20230830-topic-refgenphy-v1-1-892db196a1c0@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Fri, Aug 25, 2023 at 11:05 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Currently audio mclk uses a fixed clk of 11.2896MHz (multiple of 44.1kHz).
-> Replace this fixed clk with the programmable versa3 clk that can provide
-> the clocking to support both 44.1kHz (with a clock of 11.2896MHz) and
-> 48kHz (with a clock of 12.2880MHz), based on audio sampling rate for
-> playback and record.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+--0wmHf2n6L8Edbw7d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Aug 30, 2023 at 11:13:51PM +0200, Konrad Dybcio wrote:
+> The HSPHY is (or at least can be) one of the users of the reference
+> voltage generating regulator. Ensure that dependency is described
+> properly.
+>=20
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> v3->v4:
->  * Dropped clock-output-names from dtsi files.
->  * Updated example with dropping clock-output-names.
-
-Thanks for the update!
-
-> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
-> @@ -105,6 +105,26 @@ &i2c3 {
->
->         status = "okay";
->
-> +       versa3: versa3@68 {
-
-clock-generator@ (everywhere)
-
-> +               compatible = "renesas,5p35023";
-> +               reg = <0x68>;
-> +               #clock-cells = <1>;
-> +               clocks = <&x1>;
+>  Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2=
+=2Eyaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> index 0f200e3f97a9..e895b6c4ee49 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+> @@ -53,6 +53,9 @@ properties:
+>      items:
+>        - description: PHY core reset
+> =20
+> +  refgen-supply:
+> +    description: phandle to the REFGEN regulator node
 > +
-> +               renesas,settings = [
-> +                       80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-> +                       00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-> +                       80 b0 45 c4 95
-> +               ];
-> +
-> +               assigned-clocks = <&versa3 0>, <&versa3 1>,
-> +                                 <&versa3 2>, <&versa3 3>,
-> +                                 <&versa3 4>, <&versa3 5>;
-> +               assigned-clock-rates = <24000000>, <11289600>,
-> +                                      <11289600>, <12000000>,
-> +                                      <25000000>, <12288000>;
-> +       };
+>    vdda-pll-supply:
+>      description: phandle to the regulator VDD supply node.
 
-Please move this node down, to preserve sort order (by unit-address).
+My OCD isn't keen on the inconsistent full stop usage but that's a
+nitpick of the context, not of the patch itself.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Same comments arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+Thanks,
+Conor,
 
-Unless we're gonna need a new iteration for some other reason (the
-corresponding fixes for the clock index order are not yet in linux-next),
-I can fix the above while applying...
+> =20
+>=20
+> --=20
+> 2.42.0
+>=20
 
+--0wmHf2n6L8Edbw7d
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Gr{oetje,eeting}s,
+-----BEGIN PGP SIGNATURE-----
 
-                        Geert
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPC2GwAKCRB4tDGHoIJi
+0vJaAP9rRzGpps5j5CxJkm7BgsWK5+zfGZT7HUjJD7fwv1yhHwD42Ji6OwShQoNl
+BWABX5M3jTUiImtdZq+sIulqU7bKDA==
+=s7w1
+-----END PGP SIGNATURE-----
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--0wmHf2n6L8Edbw7d--
