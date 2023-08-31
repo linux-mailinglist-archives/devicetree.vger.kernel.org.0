@@ -2,175 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D11678ECD2
-	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60BD978ECDC
+	for <lists+devicetree@lfdr.de>; Thu, 31 Aug 2023 14:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237898AbjHaMOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 08:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43208 "EHLO
+        id S1346189AbjHaMPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 31 Aug 2023 08:15:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229766AbjHaMOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:14:20 -0400
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2135.outbound.protection.outlook.com [40.107.215.135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 053FCCDB;
-        Thu, 31 Aug 2023 05:13:34 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fcOb3RpeX6ARNaKogUlBkJdOF1gti5C7ueomNrXBU3aWimJj3TcY2TCigKrFW6oxg3A7xVhLxbc2Z4elgNtd8aKliyiADEpLaegmMRlaa0kmsMqvW52QJRqmtR+jFe/vz7p05iKTQOzLofxmS2lbZyCYNAZ2CQQsnMrgAiMLfe9+lXLforYqVHK1afWYlOjmjTutCNzOIOVjzArSNOLixpw1Jbzz8WL87LCscae5RrySI8erQoG4Nw9KOOALfWCp+Nw5EnSlWgYosj7J7dNP9Wgvh0WQwee9vsy2cqLinDGxtEpldcoHwHg4NYHJF6PBw7oaXlj4vPg0IuCcbFlzYg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dznaFVogfRqivBp9395Rm3mvT7q6Vw6N2TXPEatct8M=;
- b=WBq0psyWMMqgQpAOVM6EBpQDLy0oreyQgDpyE/0IZtIapLpIfoIirEjGkiTaQQtu/Oh3kT3NCl1H+rWuoX/MP9RdBbhLi9NfMD2AGfy9IYwZvKjMh1/uNFfFnSZcl4yn6sYcuqwnuWTMMOVHCUU5M3wYFSbutPp0QAIvS7u5SWUJvpA5jzOKq/R9A8qdB4Bqv8cqd+awy9KFw4nijqs3qBsWUvCSwpMWX00Rg6viMP7Td7Q7twtxC0Y4wr3WtClo6ltFlve00OBxbr8uqTSTvGts0skzGxlxPv8+zpxW9MUOQ4dwn9ULvNcMrhswL3CC9UmAzT9cEL1+beb2Ohhm6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dznaFVogfRqivBp9395Rm3mvT7q6Vw6N2TXPEatct8M=;
- b=bAr7kqPYQUJ8BpKz2G1t8ZN29Yg4hjjisjU60EjFmo+1F9ttUcfHeSriTfSLxSk+owH56O+sN7G6+ss4igVOr5Mm5ukFArFaCVZnkWdBHAU/37MBlta/Yq1cJ9eGL3ERs1dmbwQPwTrZf1fFMuWch6qSMnYW0+Q7IG32eWB2vRphazQ697rqmGWIsngPwVIQGVjlwKBvNu7+WXjMDXqRZjNNmLiv07KHgugzbZQAWiIlYlJDpOSx/7bEPc0vxqDN0y7Soyy4UvBL1qc7KRFa2Gbow6dC4Kc3wMr7eFLtJSyvzcOLjW+Vilra+qSFKXTze6TWottr64gX1bgS7ImxHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TY0PR03MB7240.apcprd03.prod.outlook.com (2603:1096:400:276::8)
- by TYSPR03MB7521.apcprd03.prod.outlook.com (2603:1096:400:411::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.21; Thu, 31 Aug
- 2023 12:13:28 +0000
-Received: from TY0PR03MB7240.apcprd03.prod.outlook.com
- ([fe80::1cb:e12:c7a6:487d]) by TY0PR03MB7240.apcprd03.prod.outlook.com
- ([fe80::1cb:e12:c7a6:487d%7]) with mapi id 15.20.6745.021; Thu, 31 Aug 2023
- 12:13:27 +0000
-Message-ID: <b6e9fc91-0c99-5635-235b-76bc6db55f75@amlogic.com>
-Date:   Thu, 31 Aug 2023 20:13:22 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
- RC_DRIVER_SCANCODE
-To:     Sean Young <sean@mess.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
-        kelvin.zhang@amlogic.com
-References: <20230825115310.39993-1-zelong.dong@amlogic.com>
- <20230825115310.39993-2-zelong.dong@amlogic.com>
- <ZO2gvMl2IS70ve3T@gofer.mess.org>
-From:   Zelong Dong <Zelong.Dong@amlogic.com>
-In-Reply-To: <ZO2gvMl2IS70ve3T@gofer.mess.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TYCP286CA0321.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3b7::14) To TY0PR03MB7240.apcprd03.prod.outlook.com
- (2603:1096:400:276::8)
+        with ESMTP id S230227AbjHaMPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 08:15:41 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E00B4E43;
+        Thu, 31 Aug 2023 05:15:36 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 37V9FPxw024020;
+        Thu, 31 Aug 2023 12:14:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=rSCXqtKlx7gJr8jIeaQfsRco9uXPb8O3IwsCKX2yLQo=;
+ b=KitO1WXHjvRRVpWDEY+oDFWVhhu6D/K7/aZhjDiawtnindQ0Ns8F2UFq4GGzWqZ2gGQ+
+ Xg59vk/Wc31F8zk0ewGogDQ9kTZXUkbCTLHZJjYYfs6KaTEyAxH5G23UuJM45FODh3+B
+ XutDn6jnIiNb95cO9FPRoSLcrh7d4m75mxZUkPLKhA3h489lwrp5vH3xgrRKfc7zF1gY
+ ICqE25HPyT+RVxag7oVMPRPIfKzLZjOqu0Luxn3sDavNb9PTNjBgjlUyO/rYPL5DkMk5
+ Rj1ufpfev6gTuZJ1jtywHbS3lhhdgqCR6CxXurEKrfSTy7fyjBq07rRz/0Ti8t+JlNwf 3g== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stks5ruhp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 12:14:42 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 37VCENIl017429
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 31 Aug 2023 12:14:23 GMT
+Received: from [10.201.3.91] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 31 Aug
+ 2023 05:14:15 -0700
+Message-ID: <2c9aeb22-d3e9-463c-9985-f489f9bcacb9@quicinc.com>
+Date:   Thu, 31 Aug 2023 17:44:15 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TY0PR03MB7240:EE_|TYSPR03MB7521:EE_
-X-MS-Office365-Filtering-Correlation-Id: c9ffd36f-71ff-47da-017a-08dbaa1bae0c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: G73KZRe0cxxJ3xHRV2oTW4nHUAkT8LZbX6YdHFlMU0aFqnlktIdNGbGeOhL3uymSbsucanCdrhHgSS/6i5xTbeQ5No9OMB3uZ00LjzoianyOXBqJ2g7vzBoY/tdtdUZMg4xCKN/sxmLT62SPtdAFrSNXWvfKUniWFDa0pI75APf9M0tMlC5rAro23f9L17j3FmC8/V9AQr2DkrpYlR8Ir/1IS4EgnBvgFWc9QvTIR87fhDohqdZ4k4x8QVtRVYQ7qz8laPZh6IQgBo06V3MyAwtAz9It3cNyCcWlOkiD00VgweGyA/H5XszGxpBnVTEMUD+RkF5VnCuWDaf7j5nFqgwiTHsbPfOxmfCoeoCKpgn9Z7w6EB0CxcCRye4/TjKCkdpa3OCdAKiC5IsK7Uut/duUZDApqxIFGfraMwD9rknKrM+UiVa2S81R1nMnyqDGCbj82YSrav/DFQBJiS2RjNfCyUmbmW9MdPawwK4m6KOqJBSVmMbIQRl6UPMF8ihTif4jDvNaR/viAV08FCn36LGKIcxuiu2yYArfEKkEKDBSGB35WxeRBy9LW2fAuMZ/oxeB+7IpD8cnS1nsXoANzK8qGqN92jyS+u17G7j1zMQ8HoFiR1OKrap2evb0ihb4+w7og7eBI17fZgxE53MMxc7Ha4fUddE7LzGcD8aSsWhKWbpbDRX/GjDUHwFrAPh/
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY0PR03MB7240.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(136003)(376002)(396003)(366004)(346002)(39850400004)(451199024)(1800799009)(186009)(6666004)(6486002)(6506007)(6512007)(478600001)(2616005)(107886003)(2906002)(26005)(7416002)(316002)(66556008)(6916009)(66476007)(54906003)(41300700001)(5660300002)(4326008)(8676002)(8936002)(36756003)(86362001)(38100700002)(31696002)(31686004)(66946007)(45980500001)(43740500002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YktPOWd3TDZrT01ZV0IyVEZUckNVS25zT2Y4YXNzUXlHRWNPV2VBWnluTVEz?=
- =?utf-8?B?VURscTNVaGRWQVBpNVhPZmlkVkRQMkxLNDlSYW1SQkpTT3REUis2T3pMcGN3?=
- =?utf-8?B?NFVEcjI1ZENPaWg1c2ZhOG41cXBEZ1pHK1lXR21ObFQra3lzMTdzVXNIWDBi?=
- =?utf-8?B?ay9uWnRSU0xieTdqdkJJMS9qWXAwY1NEbDFQTWg2TTFYaFhEOWxHRzJRS3Vz?=
- =?utf-8?B?UHQ0RHJwdXdRTFBScWlyd3E2U1A4SXNBQXJpVGpWaTljL1J6cEVsMk9iVCtU?=
- =?utf-8?B?TGZQYU10M25pV2trRFJlaUlSREZjK3kxVGp6dXFHR0YwajdLd251ZDc5R3dh?=
- =?utf-8?B?Z005SFJRekg5YXdTMngvZXFBK1RVZ2lHeTZJUUdlY1VQZUhwdGpIclcwTk1t?=
- =?utf-8?B?U21SUVJrVjdUeVUrY1luTitxTHpUamhTTmhYMUhlUUIvdHMwcm8vd3l3TDNF?=
- =?utf-8?B?ZCtjdnhpZVpQalBxV0ZYY1pPQVJDMWpESHVHQTdJeUNkZUg2V1duSmNhN0ZN?=
- =?utf-8?B?TnpZNFZyLzNTaFk1N0pZZTA1QVlMd3hZZU14d3IrT2JNZmc0OTlWNlJETzNt?=
- =?utf-8?B?M0tLdFY2L1RkaEpDcXF6bDBmbUNQdjZBME5vUXdKMi9VRXRHd2NmeUQyVUtx?=
- =?utf-8?B?U05tUk9jTGJqcS9jZC9zanJGTVZlNUszdnhEQ1pxK0xOWG5kYk5EM2s2VnNE?=
- =?utf-8?B?bk9oOTI4NE5jRmVjekkxd2h6U3VXa3RPK1FXMUtIbDNOUVVZNmVpL1pvYWtN?=
- =?utf-8?B?QkdCcHpRWm8zOFBuTlBFdGxNVHA2STRHLzFBRDZDaDdQSno4RnpNSmNzZ0Er?=
- =?utf-8?B?OVZlTzFCREhvODRZRGlGSU9Dc2JkQXRUOU9tVUprUkdFMnJSOGxzSjUyVlBT?=
- =?utf-8?B?WXpaMTlEWGRLb3FhazFtZGYzdWlDdFpsK2dSZjdPMTdZM2llYWhEYlVtUmhM?=
- =?utf-8?B?ZkN4NnJzRmovOEE3d01iRDl5UlBYSnBoSFNsdjBnNzVjZVR1V3BIOXRVMDNk?=
- =?utf-8?B?d0owaTBmMWkzMG5FWnFWUHA5a29qZ2hCVHJsRElkWDFWQ0xXZ0QwemU2NTd4?=
- =?utf-8?B?TDM2V0crUy9pWWpud1oxck94Y21KRThSVUswSjIrajFMNjFWcXJWdlM5cHc3?=
- =?utf-8?B?L1hvcTFSYVdtRldRaUJOdjI1YjBjNUtISDRMb2lheGlYWWNGRVFkSElsaXF5?=
- =?utf-8?B?OGZoZ29kZmRHY1M4Zk5KYzQwbVcvb1FEbWIrVVJVT1YrYjkvYkpkdmhta25U?=
- =?utf-8?B?N1ZybENMZytucDhzMDZ0dnZBN1RGdGZLdlY0TU9hby80SXh1K1JyeTk0TFBp?=
- =?utf-8?B?THpnT0VQc3JjMUhQK3ZGMFFZYVBQQitnT2JhVERjZkREdVMxU3ZvbE1vSGtC?=
- =?utf-8?B?RS80RkRwSDVRYWxqOThna2JXZ29DRWkwMklkMG5rWG54S0R6M0g0eER5ZG9h?=
- =?utf-8?B?UW9vTzBEVjBUbkV0Nk14MmhwdE1kYUlKNWhwTjVmeDZvakRFM0lBcExUc1RJ?=
- =?utf-8?B?UkhsTUk4SWluRUp6K2tnM3FNR0xzTEJQb0RnYVdOMk91eWhpeU44QXcwS2R1?=
- =?utf-8?B?b05RcW9rZUt4alVRZnZXOGYrN1N6MURaY3VaQ3RIU1IvN2JHNWw2OW5FT3Yy?=
- =?utf-8?B?K3JSWHRPcmxrVU1ybk41dEdxZnlCR2JYWUpaQS9ZTDFaMDBCbXZsL2lHN0Fx?=
- =?utf-8?B?azREazdGWWRRdkhBNEZRVFQ5WkZBelU4aHhQSmg1eWhkcEY4NkMzM25leGF3?=
- =?utf-8?B?cS9jVStwVzhLejdhNHdPTGR4VVJMcy9ScW9LeTYvQnF2eFYwSjUwUEFqNXZo?=
- =?utf-8?B?YkhrYUo1OEdIdkgxUGxYalVNOUpwN1ZuRlMzQWZ2MDNRSC9rRzdwdFRVQkd5?=
- =?utf-8?B?NnhLUVMvemcyNzRZdzh6TzFFQ1ppSHNUeGFOMWlLcG9INTJpTGx1c1lUejZl?=
- =?utf-8?B?Y09VUkI5ZVBDV3lIVHlPbHIyZGJVRTNHMFVHbFZ2UktWczNGUWZoZ01ZS3ps?=
- =?utf-8?B?Z3FxMlRYNmJacUtEYXZwM3A2bTF6a2ZERTVqQkRHcDI3RWdqWUovNUtXMG5o?=
- =?utf-8?B?cUo0RXNDWE95d1hZdDV3a21rcVZwTGNmNGtzTWxzWVBvN1lRR050YmZqZFo1?=
- =?utf-8?B?TFVUTENOVU5HeTFUcSs0aTJSNS9Oa0lGTysweS8ySGZFK0dTRVJwOXVSSDBu?=
- =?utf-8?B?cFE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9ffd36f-71ff-47da-017a-08dbaa1bae0c
-X-MS-Exchange-CrossTenant-AuthSource: TY0PR03MB7240.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 12:13:27.0673
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6VBwvQb1kG8T89dAPiYZqwGZKQg7muVAlFstfU4AQXmhJa769TedtjAFH8KGZvF4PwJY4IrQIsbXDVnEb7safg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7521
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/9] Enable USB3 for IPQ5332
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <robert.marko@sartura.hr>, <luka.perkov@sartura.hr>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
+        <geert+renesas@glider.be>, <nfraprado@collabora.com>,
+        <rafal@milecki.pl>, <peng.fan@nxp.com>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC:     <quic_varada@quicinc.com>
+References: <20230829135818.2219438-1-quic_ipkumar@quicinc.com>
+ <92d97b12-48ba-13c9-de9e-70b6eb330904@linaro.org>
+From:   Praveenkumar I <quic_ipkumar@quicinc.com>
+In-Reply-To: <92d97b12-48ba-13c9-de9e-70b6eb330904@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: HEVg23D_oTPpSrayK0KHJb6Kc-uMFm_Q
+X-Proofpoint-ORIG-GUID: HEVg23D_oTPpSrayK0KHJb6Kc-uMFm_Q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-08-31_10,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ spamscore=0 impostorscore=0 clxscore=1011 malwarescore=0 bulkscore=0
+ mlxlogscore=851 suspectscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2308310110
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2023/8/29 15:39, Sean Young 写道:
-> On Fri, Aug 25, 2023 at 07:53:08PM +0800, zelong dong wrote:
->> From: Zelong Dong<zelong.dong@amlogic.com>
+
+On 8/29/2023 10:37 PM, Krzysztof Kozlowski wrote:
+> On 29/08/2023 15:58, Praveenkumar I wrote:
+>> IPQ5332 has UNIPHY for USB and PCIe which is similar to the UNIPHY
+>> present in IPQ4019. Few extra settings like clock, reset delay, mux
+>> selection and voltage regulator are required for IPQ5332. Hence
+>> repurposed the IPQ4019 PHY driver for IPQ5332 UNIPHY. Few more Qualcomm
+>> SoCs are also having the UNIPHY which can use the same driver for both
+>> USB and PCIe PHY.
 >>
->> Meson IR Controller supports hardware decoder in Meson-S4 and later
->> SoC. So far, protocol NEC could be decoded by hardware decoder.
-> On Meson-S4, only the hardware decoder for NEC can be used using this
-> driver. Does the Meson-S4 hardware support software decoding? If
-> software decoding could be used, then any protocol could be supported,
-> not just NEC.
-> 
-> Also, out of interest, is there are documentation available for this
-> hardware?
-> 
-> Thanks,
-> 
-> Sean
-> 
-Yes, IR driver still supports SW decoding on Meson-S4. The decode mode 
-could be changed by 'support_hw_decoder'.
-If IR Controller works in SW decoding, driver will be registered by 
-RC_DRIVER_IR_RAW and allows all protocol.
-Otherwise, driver will be registered by RC_DRIVER_SCANCODE and only 
-allows NEC.
+>> Praveenkumar I (9):
+>>    dt-bindings: phy: qcom,uniphy: Rename ipq4019 usb PHY to UNIPHY
+>>    phy: qcom: uniphy: Rename ipq4019 USB phy driver to UNIPHY driver
+>>    phy: qcom: uniphy: Update UNIPHY driver to be a common driver
+>>    dt-bindings: phy: qcom,uniphy: Add ipq5332 USB3 SS UNIPHY
+>>    dt-bindings: usb: dwc3: Update IPQ5332 compatible
+>>    arm64: dts: qcom: ipq5332: Add USB3 related nodes
+>>    arm64: dts: qcom: ipq5332: Enable USB SS UNIPHY
+> DTS does not go before drivers. DTS should be sent separately or as the
+> last patches. If you stuff it in the middle, means your patchset has
+> dependencies which it cannot have. Thus it is broken.
 
-489         if (ir->rc->driver_type == RC_DRIVER_IR_RAW) {
-490                 ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
-491                 ir->rc->rx_resolution = MESON_RAW_TRATE;
-492                 ir->rc->min_timeout = 1;
-493                 ir->rc->timeout = IR_DEFAULT_TIMEOUT;
-494                 ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
-495         } else if (ir->rc->driver_type == RC_DRIVER_SCANCODE) {
-496                 ir->rc->allowed_protocols = RC_PROTO_BIT_NEC;
-497                 ir->rc->change_protocol = meson_ir_hw_decoder_init;
-498         }
+Sorry, I ordered it wrongly. Will correct in the next patches.
 
-Do you get Meson-S4 datasheet? Please refer to chapter 13.5 Infrared Remote.
+-  Praveenkumar
+
+>
+> Best regards,
+> Krzysztof
+>
