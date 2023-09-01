@@ -2,67 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C00379000F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 17:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9336379001C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 17:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234761AbjIAPnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 11:43:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60344 "EHLO
+        id S240373AbjIAPpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 11:45:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233355AbjIAPm7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 11:42:59 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3A6CAC;
-        Fri,  1 Sep 2023 08:42:56 -0700 (PDT)
+        with ESMTP id S237120AbjIAPpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 11:45:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77E3510EC;
+        Fri,  1 Sep 2023 08:45:47 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id E0A71CE201A;
-        Fri,  1 Sep 2023 15:42:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C978C433C8;
-        Fri,  1 Sep 2023 15:42:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 15CFF61B0F;
+        Fri,  1 Sep 2023 15:45:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37CE0C433C8;
+        Fri,  1 Sep 2023 15:45:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693582973;
-        bh=Aec0t6krFCEGf5U3ptUC6kwjD2IAlaWgVN7rht2AvZU=;
+        s=k20201202; t=1693583146;
+        bh=H6ARSJFoDsSPV83VjPgwPt2VOUG00bEhvrkCXa2AQZw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nsT62ZoHWt5x0aCRPsHutsG+4ryQ4Ewb1L7t+icTEW4pIECRDYYxVH9UhxS4Wwq+h
-         9+HQLKh5uU1TC8U/o3WUj242ae6d98D2XnM34kAHfW+nTzpLF57X/err1iGrD5GNzE
-         7KgMGe69qoCTqNQkFb9KA3LvwnHQVz6YrOXxRrMSzMGScusjrstm3e6NwUpFF9Q8Ks
-         8mL5GNM7hzTGF/fimd9nsjhpw3OsqmPAnHT0kWjnVnPsPZo9GGHwM5G2znW4e9FQ25
-         VZZ0aeTCaIyxuB6zpFes93NsCjKT/v6WUdQEPhABP8iCmQ7XIYoyvPoJL6IBdgHQQK
-         /Qm4eVkrBSSyg==
-Date:   Fri, 1 Sep 2023 16:42:47 +0100
+        b=X4+FStK24nYpfln7ViuJUzT3AKUyEtRob7ObVtpW/ELbndiXKNs9pdTPGNlgmX8sd
+         WTOsBjtlQ7HQfVFvrIrwx0QKaqS0gJgR/8sbelZHjcYX+o36d8AQkCNMVTuAs08ZtY
+         0s6ij6QQtFw05kKhfSyLxuPfC7xG0aMOofHCD0ZUuFnH2PayV9ets4i5zSSIHP1I7W
+         FZPeCIxCj4rwOrx1Sc9NZyfxBfUPvfkWPhNbTlAAnRLzSjn/tV1Lj5A7WzZgrrdmi9
+         RcfcagLFe6XQNyoT+NrT0sl3QJ3EM25hmUXBbr4fNBS/+Y5yKOV0n646cHZWs3cn3g
+         GB74H0xfcMofw==
+Date:   Fri, 1 Sep 2023 16:45:41 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-mmc@vger.kernel.org,
-        Emil Renner Berthing <kernel@esmil.dk>,
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
-Message-ID: <20230901-remold-sublease-a1ddb1fc6348@spud>
-References: <20230830031846.127957-1-william.qiu@starfivetech.com>
- <20230830031846.127957-2-william.qiu@starfivetech.com>
- <20230830-commence-trickery-40eaa193cb15@wendy>
- <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
- <20230830-procedure-frostbite-56c751f7c276@wendy>
- <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com>
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Message-ID: <20230901-likely-bucktooth-6d2d399f172d@spud>
+References: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pLuG68yt4VHhXP8C"
+        protocol="application/pgp-signature"; boundary="9rCByC659KURaw0t"
 Content-Disposition: inline
-In-Reply-To: <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,60 +62,130 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---pLuG68yt4VHhXP8C
+--9rCByC659KURaw0t
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
+On Thu, Aug 31, 2023 at 09:07:27PM +0200, Naresh Solanki wrote:
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
 >=20
+> Add the DT property 'infineon,en-pin-fixed-level' to
+> indicated that the chip EN pin is at fixed level
+> or left unconnected(has internal pull-down).
 >=20
-> On 2023/8/30 16:34, Conor Dooley wrote:
-> > On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski wrote:
-> >> On 30/08/2023 08:50, Conor Dooley wrote:
-> >> > On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
-> >> >> Due to the change of tuning implementation, it's no longer necessar=
-y to
-> >> >> use the "starfive,sysreg" property in dts, so drop the relevant
-> >> >> description in dt-bindings here.
-> >> >=20
-> >> > How does changing your software implantation invalidate a descriptio=
-n of
-> >> > the hardware?
-> >> >=20
-> >>=20
-> >> Which is kind of proof that this syscon was just to substitute
-> >> incomplete hardware description (e.g. missing clocks and phys). We
-> >> should have rejected it. Just like we should reject them in the future.
-> >=20
-> > :s I dunno what to do with this... I'm inclined to say not to remove it
-> > from the binding or dts at all & only change the software.
-> >=20
-> >> There are just few cases where syscon is reasonable. All others is just
-> >> laziness. It's not only starfivetech, of course. Several other
-> >> contributors do the same.
-> >=20
-> > I'm not sure if laziness is fair, lack of understanding is usually more
-> > likely.
->=20
-> For this, I tend to keep it in binding, but remove it from required. Beca=
-use
-> we only modify the tuning implementation, it doesn't mean that this prope=
-rty
-> need to be removed, it's just no longer be the required one.
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
 
-Please only remove it from required if the current driver doesn't break
-if the regmap is removed.
+If there's another revision, please add some of the context as to why
+the property is needed to the commit message. Otherwise, this looks okay
+to me.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---pLuG68yt4VHhXP8C
+Thanks,
+Conor.
+
+> ----
+> Changes in V5:
+> - Update pin name to align with datasheet
+> Changes in V4:
+> - Update property name & description.
+> - Update commit message.
+> ---
+>  .../hwmon/pmbus/infineon,tda38640.yaml        | 50 +++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |  2 -
+>  2 files changed, 50 insertions(+), 2 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/pmbus/infineo=
+n,tda38640.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38=
+640.yaml b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.=
+yaml
+> new file mode 100644
+> index 000000000000..9eecfae5dfcf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/pmbus/infineon,tda38640.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/hwmon/pmbus/infineon,tda38640.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon TDA38640 Synchronous Buck Regulator with SVID and I2C
+> +
+> +maintainers:
+> +  - Naresh Solanki <naresh.solanki@9elements.com>
+> +
+> +description: |
+> +  The Infineon TDA38640 is a 40A Single-voltage Synchronous Buck
+> +  Regulator with SVID and I2C designed for Industrial use.
+> +
+> +  Datasheet: https://www.infineon.com/dgdl/Infineon-TDA38640-0000-DataSh=
+eet-v02_04-EN.pdf?fileId=3D8ac78c8c80027ecd018042f2337f00c9
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - infineon,tda38640
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  infineon,en-pin-fixed-level:
+> +    description:
+> +      Indicates that the chip EN pin is at fixed level or left
+> +      unconnected(has internal pull-down).
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        tda38640@40 {
+> +            compatible =3D "infineon,tda38640";
+> +            reg =3D <0x40>;
+> +        };
+> +    };
+> +
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
+umentation/devicetree/bindings/trivial-devices.yaml
+> index 40bc475ee7e1..86c7d34f63bf 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -151,8 +151,6 @@ properties:
+>            - infineon,slb9645tt
+>              # Infineon SLB9673 I2C TPM 2.0
+>            - infineon,slb9673
+> -            # Infineon TDA38640 Voltage Regulator
+> -          - infineon,tda38640
+>              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>            - infineon,tlv493d-a1b6
+>              # Infineon Multi-phase Digital VR Controller xdpe11280
+>=20
+> base-commit: 919a83d020a8dfa1411c1dc1cff23a833f0f5268
+> --=20
+> 2.41.0
+>=20
+
+--9rCByC659KURaw0t
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPIGdwAKCRB4tDGHoIJi
-0s3uAQCCUsv/FqKDOGNlzYbIkcuD89HVaHQ7QYCJNSwvBPh3/gD9Gmy1suT2VgbM
-R6+a6rUuyrNXFDz0Y9tRIQt3NPZZ9w4=
-=dgfB
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPIHJQAKCRB4tDGHoIJi
+0uLkAP94BgZ0S0sCuSI4UKEGvrRITGPitc4jESpy9pPyx3CC5AD+OzjWrn/ts6Ut
+7J5jGY/iMVN+uDykI5p0VcjPhKvRDAc=
+=sHr+
 -----END PGP SIGNATURE-----
 
---pLuG68yt4VHhXP8C--
+--9rCByC659KURaw0t--
