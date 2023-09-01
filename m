@@ -2,116 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E07F78F974
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:02:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B654C78F97C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:04:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237075AbjIAICR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 04:02:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35542 "EHLO
+        id S232644AbjIAIE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 04:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233314AbjIAICR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:02:17 -0400
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B1510D7;
-        Fri,  1 Sep 2023 01:02:14 -0700 (PDT)
-Received: by gofer.mess.org (Postfix, from userid 1000)
-        id 3A6A51007F5; Fri,  1 Sep 2023 09:02:12 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-        t=1693555332; bh=hAB9s4XrUu7LHVJzvkljFiphva5beXTT7msBZLZEBik=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qwFfL+hgCH8bfV7jFXSUAVurMFlcFyfbk54nZRRDFq6G0FEb81orDgMedlONbQT3r
-         z6V3rxGcBhL1RCO1hmvcqYOUOxwRaWcWYBN1XDaI2ZR6lMdo4T2ASNq3OsFSf2fHe8
-         h3qrZPkHn7eXZxwTkjmbpQdOliVId5EVQ8McECSfpwhYq1FxnUp3lrcf+oxh3cacWU
-         Y9yaiZ6ou77KDW9NuXhbTIrP1D1JQDhUu1pygY4L5tRp0AKtJYfuLplrCtv+/7dCbV
-         p4+ylaWdtqxusZ3x2cQJZ3n3u6vV1ognjHcvtAe/XKKScWwKkUsRT/kb24OR1ICM9f
-         xXzw45ejGUGWQ==
-Date:   Fri, 1 Sep 2023 09:02:12 +0100
-From:   Sean Young <sean@mess.org>
-To:     Zelong Dong <Zelong.Dong@amlogic.com>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
-        kelvin.zhang@amlogic.com
-Subject: Re: [PATCH 1/3] media: rc: meson-ir: support rc driver type
- RC_DRIVER_SCANCODE
-Message-ID: <ZPGahNKlq/31MXbh@gofer.mess.org>
-References: <20230825115310.39993-1-zelong.dong@amlogic.com>
- <20230825115310.39993-2-zelong.dong@amlogic.com>
- <ZO2gvMl2IS70ve3T@gofer.mess.org>
- <b6e9fc91-0c99-5635-235b-76bc6db55f75@amlogic.com>
+        with ESMTP id S1348583AbjIAIE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:04:58 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD8E10DE
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 01:04:54 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-500c63c9625so3108494e87.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 01:04:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693555493; x=1694160293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IzO9gCUfcK7k5IuvVe3uhn05iEMO5z76y81oJIjvpxQ=;
+        b=JuUFwkXBhiBtLXWZzDSjP7DZkTsIF8yG2b1+ioWGL+ObGniRvouuKapBpBzqL24mCR
+         2s5f+ewDtenABFY5Cmjtu5bYLyMDTH87nnccvC2SmLNA/m+rVOLObtr3ZGe+TwIYur0f
+         5Ol+W7uFsWW+O8H+KZB+AYLE8zrFByn067Dq6U3g44ECrLrZiL2kQM8wuvYP9A3pFVr+
+         h42XGZQHJHH9oBAlQxVDJTkh/qF3VGKPaSzBmvu+z4dyqKb1TY6HDX8QK7T+6FnaNtQX
+         bxqywon9+LDa8T7weLOzaJtXy6HoajqctcL47t0jfykPjLSFLkrWFHgfVypjpbFiOUi5
+         n37A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693555493; x=1694160293;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IzO9gCUfcK7k5IuvVe3uhn05iEMO5z76y81oJIjvpxQ=;
+        b=Yl7HL8Logdzx+VJSgCodZJqOLKHDTKw03eS5LkeqtkjAj6ro03HugEwxoo387yPiQx
+         cb0knxlkRO8qremfI1OEc0/eyXsmD8txGKoNZVhjU04Plx/L2CaM0RPhPElQQgTuET43
+         8uEKmBcVmKnqZinxCDPxWqDfD18NoH1VgfUeuOIFdVy9jY7h5+ZMINk0en2PL5rZ2zNn
+         kenEF2cioY7TyXPhCz2zza/6kerzYQRD98xdO+31hFyJ9lSH3K5G5Gr5v6BRF0vnM90v
+         pNvamRnShfygTqFYwajWCyiaNBdJperFKPrNPFAF8nvQOnAOAB1EF+90zrjxagjk2ApY
+         BONA==
+X-Gm-Message-State: AOJu0YxCGVr3lruOPYZkwcnxHLRbJ0UIc+THZgVMyIIxClqPz7kuJsal
+        o+pd25Esi4fTtQIuj0JAxhl757ANZ1panBxoe2I=
+X-Google-Smtp-Source: AGHT+IGD9kp6I2JS12SaZje0a91CCugy8xHNz6eemJbMlSkmb/3tNimG4/2DqOvk9/ZGpv/nHkUi0g==
+X-Received: by 2002:a19:2d17:0:b0:500:9a45:636 with SMTP id k23-20020a192d17000000b005009a450636mr951676lfj.13.1693555492923;
+        Fri, 01 Sep 2023 01:04:52 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id bm26-20020a0564020b1a00b005288f0e547esm1777261edb.55.2023.09.01.01.04.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Sep 2023 01:04:52 -0700 (PDT)
+Message-ID: <99045d3e-53b4-dd75-fe57-9a3465d49b6c@linaro.org>
+Date:   Fri, 1 Sep 2023 10:04:50 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b6e9fc91-0c99-5635-235b-76bc6db55f75@amlogic.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: apq8096-db820c: drop simple-bus
+ from clocks
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
+ <20230324202244.744271-2-krzysztof.kozlowski@linaro.org>
+ <CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 31, 2023 at 08:13:22PM +0800, Zelong Dong wrote:
-> 在 2023/8/29 15:39, Sean Young 写道:
-> > On Fri, Aug 25, 2023 at 07:53:08PM +0800, zelong dong wrote:
-> > > From: Zelong Dong<zelong.dong@amlogic.com>
-> > > 
-> > > Meson IR Controller supports hardware decoder in Meson-S4 and later
-> > > SoC. So far, protocol NEC could be decoded by hardware decoder.
-> > On Meson-S4, only the hardware decoder for NEC can be used using this
-> > driver. Does the Meson-S4 hardware support software decoding? If
-> > software decoding could be used, then any protocol could be supported,
-> > not just NEC.
-> > 
-> > Also, out of interest, is there are documentation available for this
-> > hardware?
-> > 
-> > Thanks,
-> > 
-> > Sean
-> > 
-> Yes, IR driver still supports SW decoding on Meson-S4. The decode mode could
-> be changed by 'support_hw_decoder'.
-
-This requires changing the source code, it cannot be done at runtime.
-
-> If IR Controller works in SW decoding, driver will be registered by
-> RC_DRIVER_IR_RAW and allows all protocol.
-> Otherwise, driver will be registered by RC_DRIVER_SCANCODE and only allows
-> NEC.
+On 31/08/2023 11:04, Dmitry Baryshkov wrote:
+> On Fri, 24 Mar 2023 at 22:23, Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> 'clocks' node is not a bus, but just a placeholder for clocks:
+>>
+>>   apq8096-db820c.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+>>     From schema: dtschema/schemas/simple-bus.yaml
+>>   apq8096-db820c.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]],  ...
+>>     From schema: dtschema/schemas/simple-bus.yaml
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> 489         if (ir->rc->driver_type == RC_DRIVER_IR_RAW) {
-> 490                 ir->rc->allowed_protocols = RC_PROTO_BIT_ALL_IR_DECODER;
-> 491                 ir->rc->rx_resolution = MESON_RAW_TRATE;
-> 492                 ir->rc->min_timeout = 1;
-> 493                 ir->rc->timeout = IR_DEFAULT_TIMEOUT;
-> 494                 ir->rc->max_timeout = 10 * IR_DEFAULT_TIMEOUT;
-> 495         } else if (ir->rc->driver_type == RC_DRIVER_SCANCODE) {
-> 496                 ir->rc->allowed_protocols = RC_PROTO_BIT_NEC;
-> 497                 ir->rc->change_protocol = meson_ir_hw_decoder_init;
-> 498         }
+> This patch broke audio support on DB820c. Now the divclk1 clock is not
+> registered, as drivers/clk/clk-gpio.c doesn't have CLK_OF_DECLARE().
+> 
+> Stephen, What would be the best way to fix this? Add CLK_OF_DECLARE
+> support to clk-gpio.c? Or simply move divclk1 from /clocks into a
+> separate device?
+> 
+> What is the rule, which clock drivers must support such device-less
+> binding using /clocks/foo nodes?
 
-There are other drivers too which can do hardware decoding and software
-decoding. Ideally we should have a mechanism to switch between them at
-runtime, but as-is rc-core does not provide for this.
+Uh, sorry for that, I think my patch is incomplete. I did not notice
+that not all clocks have CLK_OF_DECLARE. How about moving all the clocks
+out of "clocks" node to the root? Then they should be instantiated,
+regardless of having CLK_OF_DECLARE.
 
-> Do you get Meson-S4 datasheet? Please refer to chapter 13.5 Infrared Remote.
+Best regards,
+Krzysztof
 
-I did not get it, unfortunately. Any help would be appreciated, thanks.
-
-Other than that, the driver does look fine. Nothing to hold up merging for. 
-I'll apply it when I can.
-
-Thanks,
-
-Sean
