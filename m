@@ -2,80 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9ADA78F909
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 09:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCDCC78F913
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 09:27:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235628AbjIAHWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 03:22:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37544 "EHLO
+        id S229632AbjIAH1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 03:27:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232661AbjIAHWb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 03:22:31 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38DAFE7F
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 00:22:28 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52683da3f5cso2112194a12.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 00:22:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693552947; x=1694157747; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SPFsQnNFOyEr/TykWKNk6Jb2skH/iHM6FQJgvqRqvps=;
-        b=WPTuZWSXyo1h+b+TfFV5S1aQRMEl8CHlEKKlmrZTy9oMNFvwuiE4P6gTkUV87w0SsC
-         +tqwKyQQ9bLDkZafmJEowPP0xLZPbx/2/MJncB9ew0zHTe7tQE2tuT+BU4TH3dbDMXPK
-         IAWrn4mKXkAZD3rsWQGvlrAr2RCnrlXjBMVstwPX5VjLfl89lTIG0so58yC2v/l1vTws
-         o5S30pRg5SjurCikElK92Hu09M/XCbBkGKJYbr7NvDvfsaMdvcG0H1gCUo+yTduIRW2/
-         5ko9kIk7Chkdy1gNO36Jof057/wYH8Dx+58xPNqPwSturygAsV/cmyM8dZXoRVP8MMG2
-         xkag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693552947; x=1694157747;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SPFsQnNFOyEr/TykWKNk6Jb2skH/iHM6FQJgvqRqvps=;
-        b=Yw8FL8ez0XCfzOe9+ki66HQt5Uzb60InL6itL1ahW3lvlL+L/b7HCUA6lSiay+/OFO
-         DGtSEojVg8bpkKz8FGtchITcr+M2rQMJ94FblEplXgzZDM5LK7wuRnjSJRY19ax7Aq0G
-         2y0H4YbwhmaT+R+IXskaqyc1/tEFx3d5AcStr3ZkCCbqEa4nrp+4bFcZk6Mdd55nnJtB
-         O6fhO8UAC/E68weDXCjPW4FIU0kubRehyifShKBbyZPUjhpfMXz0lgWmM5iMEdtxg1yA
-         3kFz0Ex78c6cpXG/l0equyXDEIe7yltc7uZ8/lynSlYkRChIfWgCJm1DZMirtEPRc67X
-         pwPw==
-X-Gm-Message-State: AOJu0YxVjAtmi/WHX3PRw46yQP/geglcC2H7zkP4tSesx0bFHx2j/DXF
-        s/4XCyf/K7JMov4IHu31Gq1UwQ==
-X-Google-Smtp-Source: AGHT+IFgN+HP2h7HdCEHswR/JfRaRMzRiHzFqtC23Op5CwtCJi3SNSIxWFUJtkdGiI04AMI4XWMdvA==
-X-Received: by 2002:aa7:c3d4:0:b0:522:2711:863 with SMTP id l20-20020aa7c3d4000000b0052227110863mr1351919edr.1.1693552946615;
-        Fri, 01 Sep 2023 00:22:26 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id i14-20020aa7dd0e000000b0052bcdbe263esm1748912edv.36.2023.09.01.00.22.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Sep 2023 00:22:26 -0700 (PDT)
-Message-ID: <f340f731-8471-39be-c7b2-7d930916e3b1@linaro.org>
-Date:   Fri, 1 Sep 2023 09:22:24 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH] dt-bindings: firmware: Add documentation for
- qcom,platform-parts-info
-To:     Naman Jain <quic_namajain@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S1345419AbjIAH1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 03:27:49 -0400
+Received: from mxout1.routing.net (mxout1.routing.net [IPv6:2a03:2900:1:a::a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837A8CFE;
+        Fri,  1 Sep 2023 00:27:43 -0700 (PDT)
+Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
+        by mxout1.routing.net (Postfix) with ESMTP id B59283FF3B;
+        Fri,  1 Sep 2023 07:27:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1693553261;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=kIjOu9XgiejjBGgxALVhj8CipJIkLUKJc8BINq5SLgk=;
+        b=jdy1+n1CvunsgfhGiX0wrC4o89x841J8EAsmKNy1Y23y8Jyp/C1sObUPbCpYyQRPndw5Ee
+        zXrtEtfjDE61ibn7N5hEJBwhVGkViQJC23wmLzX4dvizlN26smsxuRzdifyhEXkkZA4toq
+        B/fwRXHI0RHI1/Fxa0BP0fNhQIptlYg=
+Received: from frank-G5.. (fttx-pool-80.245.79.3.bambit.de [80.245.79.3])
+        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id 4B95D3601E7;
+        Fri,  1 Sep 2023 07:27:37 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_kaushalk@quicinc.com, quic_rohiagar@quicinc.com,
-        kernel@quicinc.com
-References: <20230901060223.19575-1-quic_namajain@quicinc.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230901060223.19575-1-quic_namajain@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1] arm64: dts: mt7986: add overlay for SATA power socket on BPI-R3
+Date:   Fri,  1 Sep 2023 09:27:30 +0200
+Message-Id: <20230901072730.13571-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 17c63c84-d582-4f38-896e-fd3131e7c05c
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,28 +56,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2023 08:02, Naman Jain wrote:
-> Add documentation to describe device tree bindings for QCOM's
-> platform-parts-info node. Firmware populates these nodes to pass the
-> information to kernel regarding the subset of hardware blocks
-> and features like Camera, Modem, Display present in a product.
-> 
-> This is to support that the same software image runs seamlessly on
-> different platforms where one or more HW blocks are not supported or
-> if some sub parts for a particular block are not supported.
-> 
-> Purpose of these definitions is to allow clients to know about this,
-> and thus, handle these cases gracefully.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Whether camera is or is not supported, is defined by presence of camera
-node or by its status field.
+Bananapi R3 has a Power socket entended for using external SATA drives.
+This Socket is off by default but can be switched with gpio 8.
 
-Existing firmware (e.g. U-Boot) is also doing this - patching DTS when
-needed.
+Add an overlay to activate it.
 
-I do not think introducing some parallel way makes any sense, so no,
-that's not the way to do it.
+Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+---
+ arch/arm64/boot/dts/mediatek/Makefile         |  1 +
+ .../mt7986a-bananapi-bpi-r3-sata.dtso         | 39 +++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dts/mediatek/Makefile
+index c99c3372a4b5..822d3e36d3df 100644
+--- a/arch/arm64/boot/dts/mediatek/Makefile
++++ b/arch/arm64/boot/dts/mediatek/Makefile
+@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-emmc.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nand.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-nor.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sd.dtbo
++dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-bananapi-bpi-r3-sata.dtbo
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986a-rfb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt7986b-rfb.dtb
+ dtb-$(CONFIG_ARCH_MEDIATEK) += mt8167-pumpkin.dtb
+diff --git a/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso
+new file mode 100644
+index 000000000000..6ab06813412a
+--- /dev/null
++++ b/arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3-sata.dtso
+@@ -0,0 +1,39 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
++/*
++ * Copyright (C) 2021 MediaTek Inc.
++ * Author: Frank Wunderlich <frank-w@public-files.de>
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	compatible = "bananapi,bpi-r3", "mediatek,mt7986a";
++
++	fragment@0 {
++		target-path = "/";
++		__overlay__ {
++			reg_sata12v: regulator-sata12v {
++				compatible = "regulator-fixed";
++				regulator-name = "sata12v";
++				regulator-min-microvolt = <12000000>;
++				regulator-max-microvolt = <12000000>;
++				gpio = <&pio 8 GPIO_ACTIVE_HIGH>;
++				enable-active-high;
++				regulator-always-on;
++			};
++
++			reg_sata5v: regulator-sata5v {
++				compatible = "regulator-fixed";
++				regulator-name = "sata5v";
++				regulator-min-microvolt = <5000000>;
++				regulator-max-microvolt = <5000000>;
++				regulator-always-on;
++				vin-supply = <&reg_sata12v>;
++			};
++		};
++	};
++};
++
+-- 
+2.34.1
 
