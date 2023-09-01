@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29CF978FCBB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 13:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C00C78FCD2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:01:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349284AbjIAL5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 07:57:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57458 "EHLO
+        id S1349311AbjIAMBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 08:01:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243763AbjIAL5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 07:57:42 -0400
+        with ESMTP id S240499AbjIAMBF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:01:05 -0400
 Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2296E70
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 04:57:36 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bcf2de59cso229492566b.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 04:57:36 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8938B5
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 05:01:01 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99df431d4bfso228321866b.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 05:01:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693569455; x=1694174255; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693569660; x=1694174460; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=6aAmuXWpK9R9ONwjhEFCz2euSxwTZnw/oAWjomMKyvU=;
-        b=f2vYIcBcqckOcsV+2zw3wA8uXHPCPNHunWh+cwQ7ED+0AivYoIPgf+WLiUMkMBqWZo
-         aKwXSqfoA43WvdiB8pumWD4C864g6w+wa5kMctVdz/TzgGMg0O10TnMyWnmWtnVpYMUI
-         AWVes0bOS9RNKXiCEjeiXc6vwcL9caNJtw2vguW1Mbb4APJsXn12M24thHJhQuzO3LXV
-         tgyirFtMLJGNPTt71l75d0BFHI5wtt7XHhoN1TVedwLiAwvLyVW8QCLrm0n6uRwDTRMJ
-         2w2BDc6FZpEx956nkE3CcdBcOB51KbQFAf3bCrhKL7jCVsAjxjkkOkb4Nh4P/yxg3+j2
-         DCWA==
+        bh=Vs/PRb2b7V6rR58f88F1xUyXEBig3vOWtcP0jsGuDGI=;
+        b=oMRBCeSDBsXI89x168ye82aAfo7KOm/WJVB1zF0W5myedlyoSR7uSw9sUknO7srDGX
+         Vdxg1FANQn5JJ7227oYZ1P90uMCfAvP0Qgzxs2sohpmPf4Z0QUOBZGmAEu/Ch3m07nM5
+         mCuudL8sQmqX12Nl0gnyNtiplrh3BK3i1kkJoXaZGwelRyOWefJ1S4wkXozEyZHYJNdH
+         0/NYg2yoRIyJJfkwC2cayr33h5teTn5mf6FsBi43AbGsSC1Bz5XjIiCc1EOJlU+GGQvK
+         QGw0iX45rquFCYAJuEEMIZmWcqk17iJACRBVTDnvtApaz9WZsC5A5NHzabTiZvL0rI0D
+         jwkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693569455; x=1694174255;
+        d=1e100.net; s=20221208; t=1693569660; x=1694174460;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=6aAmuXWpK9R9ONwjhEFCz2euSxwTZnw/oAWjomMKyvU=;
-        b=RXZYa/ptC4nHcgJP0qmH5zda8iufu8iW34jRoXwDkGr0dftn230hKEre/RUHj/4pCd
-         VcQfkJUshJG0Z7rOjikILp7w2LoiAY2hiKNWL++TVM7BAEGdUH4HP4xrfANCx01pj9Hr
-         m8QRqwt3pkSMheEGPrdb8tP+08wvqf1VzENwbG6kwh8+UXExqGsKWxkVJlxle5mybRwn
-         B8u947497rITXN8UppCks9TVM7SPAhg0sjw0k3cp4/sHQ7a1lXznKW8tZVF1V3v2/RYo
-         k9FEN+nOEVzMYcjW02or6JE7RoGf49cEB0k4Nj/MM1nfUUsAkQmzBHSkKDM+inP0P3vv
-         TNeA==
-X-Gm-Message-State: AOJu0Yxeh1QJk/4uV1f+vkV4L6ZYVTk+vpEy0QpMaDcwyuoWRTRjJo0b
-        f6nQQQaiFwG8+1meY3kM4oXN1Q==
-X-Google-Smtp-Source: AGHT+IE53YnDzQDCbFDcC3Zu5aY62S51MDsbpqPyeKqbHf/Q/JagOF915pEdB+ulrN7nuS6tYG750g==
-X-Received: by 2002:a17:907:a068:b0:9a1:cbe5:758c with SMTP id ia8-20020a170907a06800b009a1cbe5758cmr1591640ejc.7.1693569455460;
-        Fri, 01 Sep 2023 04:57:35 -0700 (PDT)
+        bh=Vs/PRb2b7V6rR58f88F1xUyXEBig3vOWtcP0jsGuDGI=;
+        b=A3abrhcEzrxD6gKViQMX8OSdEsFQo8kzln5U0ct3wBKmEbXkxssaLSfwVLS6ue8WhC
+         QhY6T6mqYfB0Nie1Ftne/zxwk2pW9wlQ/s68HLbXLBLJ9iyn8MjFVEF3V7k6+lvVjRfo
+         FD/iPg4iqEVsCx99DO9bB2tvnvptB3VS3HWP5kr9L4pJBPajTJEwlq8PPAZQHottsEIR
+         9LsnVr7oyyalfep/3fKdFjauYikTf+jNxWFwgbkAXTCO0JVgDMs+49GJobg4ErBZeoIn
+         YK8Wsl8WOyrvCPiCdy88Zw0+R0mXhp0arJeIix2sS2EKnnrtnQP9naIP3vO1fJgykMb5
+         2wHA==
+X-Gm-Message-State: AOJu0YzzYmQl1JQhHeUgc1fukos0p4QP9f/QiEA1DktTYpVQ1m+wYFhq
+        O8GDuM1QEy9DCF0Q0ajiKZmjFw==
+X-Google-Smtp-Source: AGHT+IG3WoF6WkfiDpXFLy4paG6AbtYn6jxN1oPMmMoQbVt+83Mf/3i7rbvu6QvyebF/Iz2uTyzQwQ==
+X-Received: by 2002:a17:906:30d9:b0:9a1:f96c:4baf with SMTP id b25-20020a17090630d900b009a1f96c4bafmr1285349ejb.5.1693569660354;
+        Fri, 01 Sep 2023 05:01:00 -0700 (PDT)
 Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id h23-20020a1709063c1700b0099d45ed589csm1881248ejg.125.2023.09.01.04.57.34
+        by smtp.gmail.com with ESMTPSA id kg12-20020a17090776ec00b00993928e4d1bsm1877343ejc.24.2023.09.01.05.00.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Sep 2023 04:57:34 -0700 (PDT)
+        Fri, 01 Sep 2023 05:00:59 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: defconfig: enable syscon-poweroff driver
-Date:   Fri,  1 Sep 2023 13:57:32 +0200
-Message-Id: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] dt-bindings: power: syscon-poweroff: get regmap from parent node
+Date:   Fri,  1 Sep 2023 14:00:55 +0200
+Message-Id: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -71,26 +71,63 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the generic syscon-poweroff driver used on all Exynos ARM64 SoCs
-(e.g. Exynos5433) and few APM SoCs.
+Just like syscon-reboot device, the syscon-poweroff is supposed to be a
+child of syscon node, thus we can take the same approach as
+syscon-poweroff: deprecate the 'regmap' field in favor of taking it from
+the parent's node.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5315789f4868..ec59174b14db 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -636,6 +636,7 @@ CONFIG_POWER_RESET_MSM=y
- CONFIG_POWER_RESET_QCOM_PON=m
- CONFIG_POWER_RESET_XGENE=y
- CONFIG_POWER_RESET_SYSCON=y
-+CONFIG_POWER_RESET_SYSCON_POWEROFF=y
- CONFIG_SYSCON_REBOOT_MODE=y
- CONFIG_NVMEM_REBOOT_MODE=m
- CONFIG_BATTERY_SBS=m
+---
+
+See also syscon-regmap:
+https://lore.kernel.org/all/20200526135102.21236-1-Sergey.Semin@baikalelectronics.ru/
+---
+ .../bindings/power/reset/syscon-poweroff.yaml          | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml b/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
+index 3412fe7e1e80..3c58f8251882 100644
+--- a/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
++++ b/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
+@@ -15,6 +15,9 @@ description: |+
+   defined by the register map pointed by syscon reference plus the offset
+   with the value and mask defined in the poweroff node.
+   Default will be little endian mode, 32 bit access only.
++  The SYSCON registers map is normally retrieved from the parental dt-node. So
++  the SYSCON poweroff node should be represented as a sub-node of a "syscon",
++  "simple-mfd" node.
+ 
+ properties:
+   compatible:
+@@ -30,7 +33,10 @@ properties:
+ 
+   regmap:
+     $ref: /schemas/types.yaml#/definitions/phandle
+-    description: Phandle to the register map node.
++    deprecated: true
++    description:
++      Phandle to the register map node. This property is deprecated in favor of
++      the syscon-poweroff node been a child of a system controller node.
+ 
+   value:
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -38,7 +44,6 @@ properties:
+ 
+ required:
+   - compatible
+-  - regmap
+   - offset
+ 
+ additionalProperties: false
+@@ -56,7 +61,6 @@ examples:
+   - |
+     poweroff {
+         compatible = "syscon-poweroff";
+-        regmap = <&regmapnode>;
+         offset = <0x0>;
+         mask = <0x7a>;
+     };
 -- 
 2.34.1
 
