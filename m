@@ -2,380 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DDDA78FCB6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 13:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29CF978FCBB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 13:57:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241685AbjIALzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 07:55:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47740 "EHLO
+        id S1349284AbjIAL5n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 07:57:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229717AbjIALzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 07:55:19 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BE9FE70
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 04:55:15 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so2493319a12.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 04:55:15 -0700 (PDT)
+        with ESMTP id S243763AbjIAL5m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 07:57:42 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2296E70
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 04:57:36 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99bcf2de59cso229492566b.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 04:57:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1693569314; x=1694174114; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=VLpJ0By+uggcIhJYmSWnMBNXU1HDxm7Xj4Itea5Fi6Q=;
-        b=XT26yiNUmcFvQj8YcXLhMidXN4oNoaX6SSnEWtUjNJfrzrb2+i9EEByaCpadNzOObX
-         CkLnOTxpKWyAvn4V5saH71L5avAd5f4f2cpXa1CUax6yW69vo/1Sq6Ya/0uyoy4n+9VZ
-         J6a14gZPhokGn53ToZg9a6jsHjtTXdN9N6W2A=
+        d=linaro.org; s=google; t=1693569455; x=1694174255; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6aAmuXWpK9R9ONwjhEFCz2euSxwTZnw/oAWjomMKyvU=;
+        b=f2vYIcBcqckOcsV+2zw3wA8uXHPCPNHunWh+cwQ7ED+0AivYoIPgf+WLiUMkMBqWZo
+         aKwXSqfoA43WvdiB8pumWD4C864g6w+wa5kMctVdz/TzgGMg0O10TnMyWnmWtnVpYMUI
+         AWVes0bOS9RNKXiCEjeiXc6vwcL9caNJtw2vguW1Mbb4APJsXn12M24thHJhQuzO3LXV
+         tgyirFtMLJGNPTt71l75d0BFHI5wtt7XHhoN1TVedwLiAwvLyVW8QCLrm0n6uRwDTRMJ
+         2w2BDc6FZpEx956nkE3CcdBcOB51KbQFAf3bCrhKL7jCVsAjxjkkOkb4Nh4P/yxg3+j2
+         DCWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693569314; x=1694174114;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1693569455; x=1694174255;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VLpJ0By+uggcIhJYmSWnMBNXU1HDxm7Xj4Itea5Fi6Q=;
-        b=Iy+yAvDA8imn/Qtov1AmRYRcu4B/XrR5Wick6BupVQkJWfnnixde1xF7jB6COY/fHK
-         UOO9DB76FB04SHs7ukPEJB57bvz5b7unZAFuKhxCc7g8JtPvD8hepuTgX8EZ8i0qW0az
-         fpJJsRYfcjcLcnqneKuW7HHGHzHbgvKixWKgwNrOJoXVqTokupXNg/pztpoeu6kkvMxw
-         ayPXFL7g2OPwWUVtY0g57zi8T9695d24N6YugGg6J48FhGjlIp+gip1yuDIx/j3GF9X+
-         B51pVD0Jmsft89iv/PY3ZI/oHAb9jBcuJnWY8l1TBFyEIHm8U8wPEXW0VS7RrBHF7Xrc
-         9Rkg==
-X-Gm-Message-State: AOJu0Yyk3MrAsFhu8KwiD3WqUFN+ytYrr5bUKLsZa6tTkhLXWAy5BfHm
-        dp0s8lfzj3rKDOPbSqLXc2pBom+lMwUGymYOP6KwBQ==
-X-Google-Smtp-Source: AGHT+IEcWg7zk9WqYgf0xMGG6p7VFPPafnOIrBqWVJIfADLpCoqcFT1EDDsVk+MAmpBcdhM0oIPznG5cCndUFoU8duk=
-X-Received: by 2002:a05:6402:389:b0:523:47b0:9077 with SMTP id
- o9-20020a056402038900b0052347b09077mr1729490edv.38.1693569313494; Fri, 01 Sep
- 2023 04:55:13 -0700 (PDT)
+        bh=6aAmuXWpK9R9ONwjhEFCz2euSxwTZnw/oAWjomMKyvU=;
+        b=RXZYa/ptC4nHcgJP0qmH5zda8iufu8iW34jRoXwDkGr0dftn230hKEre/RUHj/4pCd
+         VcQfkJUshJG0Z7rOjikILp7w2LoiAY2hiKNWL++TVM7BAEGdUH4HP4xrfANCx01pj9Hr
+         m8QRqwt3pkSMheEGPrdb8tP+08wvqf1VzENwbG6kwh8+UXExqGsKWxkVJlxle5mybRwn
+         B8u947497rITXN8UppCks9TVM7SPAhg0sjw0k3cp4/sHQ7a1lXznKW8tZVF1V3v2/RYo
+         k9FEN+nOEVzMYcjW02or6JE7RoGf49cEB0k4Nj/MM1nfUUsAkQmzBHSkKDM+inP0P3vv
+         TNeA==
+X-Gm-Message-State: AOJu0Yxeh1QJk/4uV1f+vkV4L6ZYVTk+vpEy0QpMaDcwyuoWRTRjJo0b
+        f6nQQQaiFwG8+1meY3kM4oXN1Q==
+X-Google-Smtp-Source: AGHT+IE53YnDzQDCbFDcC3Zu5aY62S51MDsbpqPyeKqbHf/Q/JagOF915pEdB+ulrN7nuS6tYG750g==
+X-Received: by 2002:a17:907:a068:b0:9a1:cbe5:758c with SMTP id ia8-20020a170907a06800b009a1cbe5758cmr1591640ejc.7.1693569455460;
+        Fri, 01 Sep 2023 04:57:35 -0700 (PDT)
+Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id h23-20020a1709063c1700b0099d45ed589csm1881248ejg.125.2023.09.01.04.57.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Sep 2023 04:57:34 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: defconfig: enable syscon-poweroff driver
+Date:   Fri,  1 Sep 2023 13:57:32 +0200
+Message-Id: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230822203446.4111742-1-sjg@chromium.org> <ZOXKTrC_dzN_hUkY@FVFF77S0Q05N>
- <CAMj1kXEHpRjk_YKOm4czCnnpjqgahj2jV8MMfGLx7b1RdnBnVw@mail.gmail.com>
- <CAPnjgZ1S8G=7eCBF9PcDk4H5sk3AcxSSWXO575jK8SjA9dR8qw@mail.gmail.com>
- <CAMj1kXH83_TB4S0PL3jswxjCP+907YpgS7FRuVTO3G62s7nn5w@mail.gmail.com>
- <CAPnjgZ2kkUt1eOWX8K+EsbjcQZPefNvj5DSaFb9QrvRg0t2h7w@mail.gmail.com>
- <CAMj1kXGe84uaJ9j9ic0V4HC43p7QBoKQ5ssTYd5DMBGtZ3++Jw@mail.gmail.com>
- <CAPnjgZ3L-jGxoXNHnsXY0MXU=jTAN66KNAxSLHPVeHinHMjzkQ@mail.gmail.com>
- <CAMj1kXGw6DGK=gVF3bMH5dp=LL89V9n1V1LMGKDn0CZWGHh8qg@mail.gmail.com>
- <CAPnjgZ1fjee3rf91onPbuLpgqTHe3dZgz0WBSzoiKAabO+ETkQ@mail.gmail.com>
- <CAMj1kXFvLGeXXmyK1wSXLk5yq42f2G3GvBGoN40JF=y4bvCo=Q@mail.gmail.com>
- <CAPnjgZ25VqPCBSZ69fyb+G93=hzS-gX6zVa0J3vYyY49p0CZmw@mail.gmail.com>
- <CAMj1kXGzPHFpjr4-Q5Vwe3TSZWdAumWVL7iYJR76VGQbZUSsEA@mail.gmail.com>
- <CAPnjgZ29DP_fwwV2bJiSP3zgpL2Q=CYHG1qjOiHyL4FUi895BA@mail.gmail.com> <CAMj1kXGk6cH_PeZz_1WbA4ztxF2QHXRvxbLQi4Eh0jW0atO5Ug@mail.gmail.com>
-In-Reply-To: <CAMj1kXGk6cH_PeZz_1WbA4ztxF2QHXRvxbLQi4Eh0jW0atO5Ug@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Fri, 1 Sep 2023 05:54:55 -0600
-Message-ID: <CAPnjgZ2wOj4Ue2YEM860ubHj=Uzs+Xf7AfAoTFFeX13mRYW46g@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] schemas: Add a schema for memory map
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Gua Guo <gua.guo@intel.com>, linux-acpi@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-9.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ard,
+Enable the generic syscon-poweroff driver used on all Exynos ARM64 SoCs
+(e.g. Exynos5433) and few APM SoCs.
 
-On Fri, 1 Sept 2023 at 04:48, Ard Biesheuvel <ardb@kernel.org> wrote:
->
-> On Fri, 1 Sept 2023 at 03:12, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Ard,
-> >
-> > On Thu, 31 Aug 2023 at 16:39, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > >
-> > > On Fri, 1 Sept 2023 at 00:17, Simon Glass <sjg@chromium.org> wrote:
-> > > >
-> > > > Hi Ard,
-> > > >
-> > > > On Thu, 31 Aug 2023 at 15:48, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > > > >
-> > > > > On Thu, 31 Aug 2023 at 21:03, Simon Glass <sjg@chromium.org> wrote:
-> > > > > >
-> > > > > > Hi Ard,
-> > > > > >
-> > > > > > On Thu, 31 Aug 2023 at 06:28, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > > > > > >
-> > > > > > > On Wed, 30 Aug 2023 at 23:11, Simon Glass <sjg@chromium.org> wrote:
-> > > > > > > >
-> > > > > > > > Hi Ard,
-> > > > > > > >
-> > > > > > > > On Tue, 29 Aug 2023 at 15:32, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > > > > > > > >
-> > > > > > > > > On Tue, 29 Aug 2023 at 21:18, Simon Glass <sjg@chromium.org> wrote:
-> > > > > > > > > >
-> > > > > > > > > > Hi Ard,
-> > > > > > > > > >
-> > > > > > > > > > On Thu, 24 Aug 2023 at 03:10, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > > > > > > ...
-> > > > > > > > > > > In summary, I don't see why a non-UEFI payload would care about UEFI
-> > > > > > > > > > > semantics for pre-existing memory reservations, or vice versa. Note
-> > > > > > > > > > > that EDK2 will manage its own memory map, and expose it via UEFI boot
-> > > > > > > > > > > services and not via DT.
-> > > > > > > > > >
-> > > > > > > > > > Bear in mind that one or both sides of this interface may be UEFI.
-> > > > > > > > > > There is no boot-services link between the two parts that I have
-> > > > > > > > > > outlined.
-> > > > > > > > > >
-> > > > > > > > >
-> > > > > > > > > I don't understand what this means.
-> > > > > > > > >
-> > > > > > > > > UEFI specifies how one component invokes another, and it is not based
-> > > > > > > > > on a DT binding. If the second component calls UEFI boot or runtime
-> > > > > > > > > services, it should be invoked in this manner. If it doesn't, then it
-> > > > > > > > > doesn't care about these memory reservations (and the OS will not be
-> > > > > > > > > booted via UEFI either)
-> > > > > > > > >
-> > > > > > > > > So I feel I am missing something here. Perhaps a practical example
-> > > > > > > > > would be helpful?
-> > > > > > > >
-> > > > > > > > Let's say we want to support these combinations:
-> > > > > > > >
-> > > > > > > > Platform Init -> Payload
-> > > > > > > > --------------------------------
-> > > > > > > > U-Boot -> Tianocore
-> > > > > > > > coreboot -> U-Boot
-> > > > > > > > Tianocore -> U-Boot
-> > > > > > > > Tianocore -> Tianocore
-> > > > > > > > U-Boot -> U-Boot
-> > > > > > > >
-> > > > > > > > Some of the above things have UEFI interfaces, some don't. But in the
-> > > > > > > > case of Tianocore -> Tianocore we want things to work as if it were
-> > > > > > > > Tianocore -> (its own handoff mechanism) Tiancore.
-> > > > > > > >
-> > > > > > >
-> > > > > > > If Tianocore is the payload, it is either implemented as a EFI app, in
-> > > > > > > which case it has access to EFI services, or it is not, in which case
-> > > > > > > it doesn't care about UEFI semantics of the existing reserved regions,
-> > > > > > > and it only needs to know which regions exist and which of those are
-> > > > > > > reserved.
-> > > > > > >
-> > > > > > > And I think the same applies to all other rows in your table: either
-> > > > > > > the existence of UEFI needs to be carried forward, which needs to be
-> > > > > > > done via EFI services, or it doesn't, in which case the UEFI specific
-> > > > > > > reservations can be dropped, and only reserved and available memory is
-> > > > > > > relevant.
-> > > > > > >
-> > > > > > > > Some Platform Init may create runtime code which needs to accessible later.
-> > > > > > > >
-> > > > > > >
-> > > > > > > But not UEFI runtime code, right? If the payload is not UEFI based,
-> > > > > > > the OS would never be able to call that runtime code unless it is
-> > > > > > > described in a different, non-UEFI way. This is fine, but it is not
-> > > > > > > UEFI so we shouldn't call it UEFI runtime memory.
-> > > > > > >
-> > > > > > > > The way I think of it is that we need to generalise the memory map a
-> > > > > > > > bit. Saying that you must use UEFI boot services to discover it is too
-> > > > > > > > UEFI-specific.
-> > > > > > > >
-> > > > > > >
-> > > > > > > What I am questioning is why a memory map with UEFI semantics is even
-> > > > > > > relevant when those boot services do not exist.
-> > > > > > >
-> > > > > > > Could you be more specific about why a payload would have to be aware
-> > > > > > > of the existence of UEFI boot/runtime service regions if it does not
-> > > > > > > consume the UEFI interfaces of the platform init? And if the payload
-> > > > > > > exposes UEFI services to the OS, why would it consume a memory map
-> > > > > > > with UEFI semantics rather than a simple list of memblocks and memory
-> > > > > > > reservations?
-> > > > > >
-> > > > > > It seems like you are thinking of the Payload as grub, or something
-> > > > > > like that? This is not about grub. If there are EFI boot services to
-> > > > > > be provided, they are provided by the Payload, not Platform Init. I am
-> > > > > > not that familiar with Tianocore, but if you are, perhaps think of it
-> > > > > > as splitting Tianocore into two pieces, one of which inits the silicon
-> > > > > > and the other which provides the EFI boot services.
-> > > > > >
-> > > > > > Again, if you are familiar with Tianocore, it can be built either as a
-> > > > > > monolithic whole, or as a coreboot Payload. The Payload part of the
-> > > > > > code is (roughly) the same in each case. But the Platform Init is
-> > > > > > different[1]
-> > > > > >
-> > > > >
-> > > > > I co-maintain OVMF [including the ARM port that I created from
-> > > > > scratch] as well as the ARM architecture support in Tianocore, along
-> > > > > with a couple of platform ports for ARM boards, some of which could by
-> > > > > now be characterized as 'historical' (AMD Seattle, Socionext SynQuacer
-> > > > > and Raspberry Pi 3/4). So I think I have a pretty good handle on how
-> > > > > Tianocore based firmware is put together.
-> > > > >
-> > > > > Tianocore as a payload will expose boot services to the OS, and will
-> > > > > provide the OS with a memory map using the UEFI APIs. But you still
-> > > > > haven't explained why the memory description this Tianocore inherits
-> > > > > from the Platform Init would include any UEFI boot or runtime service
-> > > > > regions, or any of the other memory regions with UEFI semantics.
-> > > > > TIanocore just needs to know a) where memory lives b) which parts of
-> > > > > it are already in use (as far as the memory map is concerned), and the
-> > > > > existing bindings suffice for this purpose.
-> > > > >
-> > > > > In short, the memory regions with UEFI semantics are created by the
-> > > > > boot phase that actually exposes UEFI to the OS, in which case the
-> > > > > boot services can be used to obtain the memory map. If the consumer is
-> > > > > not UEFI based, there is no reason to bother it with descriptions of
-> > > > > memory regions that have no significance to it.
-> > > >
-> > > > But aren't you assuming that the Payload knows how to handle the
-> > > > hardware and can implement the runtime services? What if (for example)
-> > > > powering off the device is hardware-specific and only Platform Init
-> > > > knows how?
-> > > >
-> > >
-> > > If the payload relies on the platform init for anything, it can use
-> > > whichever interface those components manage to agree on.
-> > >
-> > > If this interface is UEFI, the payload can use UEFI to obtain the memory map.
-> >
-> > I think you are still getting mixed up with grub. Platform Init does
-> > not necessarily provide EFI boot services, even for Tianocore. It is
-> > the Payload which provides those services. In other words, the second
-> > half of Tianocore does not use EFI boot services to talk to the first
-> > half.
-> >
->
-> I might be misunderstanding your examples, as they are somewhat vague
-> and hypothetical.
->
-> Drawing from my experience working on Tianocore, allow me to give a
-> few examples myself:
-> - ArmVirtQemu (ARM port of OVMF) receives information about system RAM
-> via memory nodes in the device tree, using device_type=memory, from
-> QEMU, which fulfills the role of platform init in this case.
-> ArmVirtQemu currently doesn't consume the /reserved-memory node as
-> QEMU does not populate it, but that would be the appropriate place to
-> document RAM regions that Tianocore must treat as reserved;
-> - DeveloperBox [0] (based on Socionext SynQuacer) receives a platform
-> specific struct with memory regions and reservations in a patch of
-> SRAM that the early Tianocore code uses for stack and heap. Note that
-> system RAM is not available yet at this point (as it is being
-> discovered via this mechanism) and SRAM is quite tight, so DT is not
-> an option here;
-> - The Tianocore port for Raspberry Pi 4 [1] receives RAM information
-> from the VideoCore firmware by calling the mailbox interface. This
-> covers both available memory and reserved memory (for the GPU). The
-> statically allocated TF-A code and data regions that reside in
-> non-secure DRAM on this platform are reserved implicitly due to the
-> fact that they are part of the same firmware image, which knows not to
-> step on itself.
->
-> In none of these cases, I see a need for the binding that you propose.
-> Platfom Init -> Payload handover is highly platform specific, so
-> adding another generic DT binding for an as yet unidentified use case
-> seems seems premature at the very least.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/configs/defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-I am working with the Tiancocore people and volunteered to submit this
-binding on their behalf. I did try suggesting it was not needed, but
-it seems that it is.
+diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+index 5315789f4868..ec59174b14db 100644
+--- a/arch/arm64/configs/defconfig
++++ b/arch/arm64/configs/defconfig
+@@ -636,6 +636,7 @@ CONFIG_POWER_RESET_MSM=y
+ CONFIG_POWER_RESET_QCOM_PON=m
+ CONFIG_POWER_RESET_XGENE=y
+ CONFIG_POWER_RESET_SYSCON=y
++CONFIG_POWER_RESET_SYSCON_POWEROFF=y
+ CONFIG_SYSCON_REBOOT_MODE=y
+ CONFIG_NVMEM_REBOOT_MODE=m
+ CONFIG_BATTERY_SBS=m
+-- 
+2.34.1
 
->
-> [0] https://github.com/tianocore/edk2-platforms/tree/master/Platform/Socionext/DeveloperBox
-> [1] https://github.com/tianocore/edk2-platforms/tree/master/Platform/RaspberryPi/RPi4
->
-> > >
-> > > If this interface is not UEFI, the UEFI memory map is irrelevant, and
-> > > existing DT bindings are available that can describe this information.
-> >
-> > Can you please point me to those?
-> >
->
-> The /memory node is documented in the DT specification. The
-> /reserved-memory node is documented here:
->
-> Documentation/devicetree/bindings/reserved-memory/reserved-memory.yaml
-
-OK, so I think we have reached a conclusion here.
-
->
-> > >
-> > > > On another track, would it help if we just dropped all mention of
-> > > > UEFI? The binding does not mention it.
-> > > >
-> > >
-> > > Your binding has
-> > >
-> > > +      usage:
-> > > +        $ref: /schemas/types.yaml#/definitions/string
-> > > +        description: |
-> > > +          Describes the usage of the memory region, e.g.:
-> > > +
-> > > +            "acpi-reclaim", "acpi-nvs", "bootcode", "bootdata", "bootdata",
-> > > +            "runtime-code", "runtime-data".
-> > > +
-> > > +            See enum EFI_MEMORY_TYPE in "Unified Extensible Firmware Interface
-> > > +            (UEFI) Specification" for all the types. For now there are not
-> > > +            listed here.
-> > >
-> > > Every type listed is derived from a definition in the UEFI spec, which
-> > > is specifically mentioned as the source.
-> >
-> > Yes, but please see the v4 or v5 patch version, where that has
-> > changed. I sent v4 two days ago. I am worried that you are still
-> > responding to something that I revised in response to your original
-> > comments?
-> >
->
-> No, I haven't looked at those yet. Maybe the uboot community is
-> different, but in the Linux community, we tend to finish discussing vN
-> of a series before sendindg out vN+1. This prevents the kind of
-> parallel track discussions that seem to be taking place here. Also, it
-> is highly appreciated when an author takes all feedback into account
-> (or at least acknowledges it) in a vN+1 submission, which is difficult
-> to do before the discussion around vN has concluded.
-
-OK. I tend to react to feedback and try to rework my patches accordingly.
-
->
-> ...
-> > >
-> > > But if the Platform Init wants to reserve some system RAM for runtime
-> > > code (e.g., for its PSCI implementation on ARM), it can add it to the
-> > > /reserved-memory node, where both the payload and the OS will be able
-> > > to find it if needed.
-> >
-> > OK good. So with my binding that would be 'runtime-code@...'. I am
-> > still not sure what the problem is here.
-> >
->
-> The problem is that you are not using /reserved-memory to describe a
-> memory reservation but something new that all DT consumers need to be
-> taught about, or they might step on memory that turns out to be
-> reserved. The DT ecosystem is large and heterogeneous, and any tool or
-> boot stage in existence is at the risk of stepping on this memory
-> inadvertently, whereas /reserved-memory already provides the means to
-> reserve it and document its nature.
->
-> > >
-> > > > I'm just not sure that Platform Init and Payload are as completely
-> > > > independent as you seem to be suggesting. Once we get into the
-> > > > Payload, the only things we know are what Platform Init told us.
-> > > >
-> > >
-> > > They are not independent, and that is not at all what I am claiming.
-> > >
-> > > What I am objecting to is framing the platform init<->payload memory
-> > > handover in terms of UEFI memory types, which may conflict with well
-> > > established DT bindings that already serve the same purpose. The only
-> > > difference between /reserved-memory and this binding seems to be the
-> > > collection of UEFI memory types, which don't belong there in the first
-> > > place.
-> >
-> > OK, so please help me get this resolved.
-> >
->
-> I have already indicated how this should be resolved in my opinion,
-> which is by using the /reserved-memory node to describe memory
-> reservations, and not this binding.
-
-OK, that is the direction I took from Rob's email a week ago. Let's
-continue any discussion on the v5 series.
-
-Regards,
-Simon
