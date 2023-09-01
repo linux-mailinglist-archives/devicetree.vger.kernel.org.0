@@ -2,106 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 554A578FCD8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0136178FCE6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349327AbjIAMBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 08:01:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35950 "EHLO
+        id S1345076AbjIAMGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 08:06:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349325AbjIAMBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:01:11 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4396510D2
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 05:01:04 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso240174166b.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 05:01:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693569663; x=1694174463; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oS/0ElWUbV8BeVd+6AgHAloG3yh8d3D/aZCsvM27g5c=;
-        b=dYtJR3J8jVBGQWSRkwxQC1Mjk4V89T+SFg0OVPktOEX173pBH1RMBoA7Y5YY+6oXIB
-         2DGKImoqatGQ1QeAy0hnb33T9YbQdsAJZ2UHsVOnaPWFqSdd6hJM+5F2Oy/AHQzocv6m
-         W7zDoXC1XLctatW4Nxq0lEOfmHAR3Qs0NxAcC82jX88rn/LknrXLaVrJ5yr9gapMqJAQ
-         UU2No4Aw9s0+nOLulNGyKcU5pgVyGehB7H8aQroL0jgEZAV8rFK/CaumQF5fSjoPxSJw
-         DZWuI0YHl+5xZL1gLcOabkNABzxkkcHZxCSl/Q5odhRNhqdY4jkR6U0Ii84fpyviP2LT
-         KW/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693569663; x=1694174463;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oS/0ElWUbV8BeVd+6AgHAloG3yh8d3D/aZCsvM27g5c=;
-        b=lFGXYnh6eDWkgzN8M7A3Q+QKy9FItp7lWb6A/7ptA8C8kW0yca5QbHWgR4wscB5QVZ
-         QOqBNBy+03wD+7VKE4aA4Dyr0RgjdnK3A7s/6Nm6f9tz3oU7LAQtShbo4HVRlZf3qUr6
-         EaQ6N7wGKYVcj4hxAXT3F8bGo2v0/nLd7gAE9tNnMXfE1VX1zL9zOehbchoFCNATz3bU
-         oiOtswEzfjNL5sJ1x4Whw4hXWNzIf9sK9QGZuqZMWmVuxQfYtwWusdDtix0vhyY/NbMu
-         n+XBN5PmD0Osv2sjg0TaWGJIOuCnclcH3gABpjc2XyRlyiwNgEb8ieNAwHncexR7qT+Z
-         hJOg==
-X-Gm-Message-State: AOJu0YxRB1qff7XsXbCoOJWrTlO44mZAbqcS6QMyMX2yMImcPi5+XNGw
-        5UYT6+tC+PJXLhk+f+93Mv+Xnw==
-X-Google-Smtp-Source: AGHT+IEV6aXOvW/K5E49cBpDsHJ6RPd3sDkgSq3TDoEjuLdw9Iaukbt/a2aU3OL05Q/sA3k8mg4Ynw==
-X-Received: by 2002:a17:906:189:b0:9a2:1df2:8e08 with SMTP id 9-20020a170906018900b009a21df28e08mr1670600ejb.45.1693569662760;
-        Fri, 01 Sep 2023 05:01:02 -0700 (PDT)
-Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id kg12-20020a17090776ec00b00993928e4d1bsm1877343ejc.24.2023.09.01.05.01.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Sep 2023 05:01:02 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] power: reset: syscon-poweroff: get regmap from parent node
-Date:   Fri,  1 Sep 2023 14:00:57 +0200
-Message-Id: <20230901120057.47018-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
-References: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229943AbjIAMGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:06:12 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBAC91;
+        Fri,  1 Sep 2023 05:06:07 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 381BPsDF013382;
+        Fri, 1 Sep 2023 14:05:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=selector1; bh=NdSlHIHqa5tMok/K2U+U9
+        v+r1JijepolsIc0T+IbFQ4=; b=ejU/A+57BLWOJdbX0rDTGXH7bpUvLf5c3Gitr
+        lHWbqUuJkFpEYOhDqMTA5HzPKc5io4kyfTAECheP/TFtHZvSWAM1wUVFsj03csiO
+        85tWlzxzgGOC4BaOkMzTiR9Q3P8G8kwrKEzfks8aT5bTiDp1D2EEjicB3uc8KUXy
+        hZq4WZipRvw9YJsBx5htSZy+ttmm2bN2ibHD96/Lii8uwFPC2Ddwg1I11cdJle6/
+        era68FaMWsQwMH+nyUoaLXpK8BxeUnLQsMgi5I1swJwnTpdj4cA6AK3U/p5qy2Bh
+        EmN/P0nbE1/kgYKP8Vrvue9lxHI/WW2VloB9xo73W+4j5gBzg==
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sq6tg1td9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 Sep 2023 14:05:45 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 816CB100056;
+        Fri,  1 Sep 2023 14:05:44 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 619A22291C9;
+        Fri,  1 Sep 2023 14:05:44 +0200 (CEST)
+Received: from gnbcxd0016.gnb.st.com (10.129.178.213) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 1 Sep
+ 2023 14:05:44 +0200
+Date:   Fri, 1 Sep 2023 14:05:35 +0200
+From:   Alain Volmat <alain.volmat@foss.st.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+CC:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Philippe CORNU <philippe.cornu@foss.st.com>
+Subject: Re: [Linux-stm32] [PATCH v1 3/5] media: stm32-dcmipp: STM32 DCMIPP
+ camera interface driver
+Message-ID: <20230901120535.GA247208@gnbcxd0016.gnb.st.com>
+Mail-Followup-To: Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Philippe CORNU <philippe.cornu@foss.st.com>
+References: <20220910144010.34272-1-hugues.fruchet@foss.st.com>
+ <20220910144010.34272-4-hugues.fruchet@foss.st.com>
+ <ZNC5k3PynnEWL/ou@kekkonen.localdomain>
+ <20230825110903.GA30381@gnbcxd0016.gnb.st.com>
+ <ZO771VvxPREnoyOY@kekkonen.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZO771VvxPREnoyOY@kekkonen.localdomain>
+X-Disclaimer: ce message est personnel / this message is private
+X-Originating-IP: [10.129.178.213]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-01_10,2023-08-31_01,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Just like syscon-reboot device, the syscon-poweroff is supposed to be a
-child of syscon node, thus we can take the same approach as
-syscon-poweroff: deprecate the 'regmap' field in favor of taking it from
-the parent's node.
+Hi Sakari,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/power/reset/syscon-poweroff.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+Thank you for your comments.  I made corrections on top of the
+v2 I already pushed and will push this into a v3 shortly.
 
-diff --git a/drivers/power/reset/syscon-poweroff.c b/drivers/power/reset/syscon-poweroff.c
-index 11b955983279..764aeea6c34a 100644
---- a/drivers/power/reset/syscon-poweroff.c
-+++ b/drivers/power/reset/syscon-poweroff.c
-@@ -37,8 +37,11 @@ static int syscon_poweroff_probe(struct platform_device *pdev)
- 
- 	map = syscon_regmap_lookup_by_phandle(dev->of_node, "regmap");
- 	if (IS_ERR(map)) {
--		dev_err(dev, "unable to get syscon");
--		return PTR_ERR(map);
-+		map = syscon_node_to_regmap(dev->parent->of_node);
-+		if (IS_ERR(map)) {
-+			dev_err(dev, "unable to get syscon");
-+			return PTR_ERR(map);
-+		}
- 	}
- 
- 	if (of_property_read_u32(dev->of_node, "offset", &offset)) {
--- 
-2.34.1
+On Wed, Aug 30, 2023 at 08:20:37AM +0000, Sakari Ailus wrote:
 
+...
+
+> > > > +#define STOP_TIMEOUT_US 1000
+> > > > +#define POLL_INTERVAL_US  50
+> > > > +static int dcmipp_byteproc_s_stream(struct v4l2_subdev *sd, int enable)
+> > > > +{
+> > > > +	struct dcmipp_byteproc_device *byteproc = v4l2_get_subdevdata(sd);
+> > > > +	int ret = 0;
+> > > > +
+> > > > +	mutex_lock(&byteproc->lock);
+> > > > +	if (enable) {
+> > > > +		dcmipp_byteproc_configure_framerate(byteproc);
+> > > > +
+> > > > +		ret = dcmipp_byteproc_configure_scale_crop(byteproc);
+> > > > +		if (ret)
+> > > > +			goto err;
+> > > 
+> > > This does nothing.
+> > 
+> > Not sure to understand your point here.  The s_stream callback of this
+> > subdev is used to configure the registers (here the ones controlling
+> > decimation and cropping) of the byteproc subdev.
+> 
+> I was referring to the last two lines --- you're jumping to essentially the
+> same location here.
+
+Ok.  Fixed with the s_stream calls rework.
+
+...
+
+> > > > diff --git a/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> > > > new file mode 100644
+> > > > index 000000000000..aa7ae9a5b1a8
+> > > > --- /dev/null
+> > > > +++ b/drivers/media/platform/st/stm32/stm32-dcmipp/dcmipp-core.c
+> > > > @@ -0,0 +1,682 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > +/*
+> > > > + * Driver for STM32 Digital Camera Memory Interface Pixel Processor
+> > > > + *
+> > > > + * Copyright (C) STMicroelectronics SA 2022
+> > > > + * Authors: Hugues Fruchet <hugues.fruchet@foss.st.com>
+> > > > + *          Alain Volmat <alain.volmat@foss.st.com>
+> > > > + *          for STMicroelectronics.
+> > > > + */
+> > > > +
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/component.h>
+> > > > +#include <linux/delay.h>
+> > > > +#include <linux/init.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/of.h>
+> > > > +#include <linux/of_device.h>
+> > > > +#include <linux/of_graph.h>
+> > > 
+> > > #include <linux/property.h> instead of these three.
+> > 
+> > Added linux/property.h however kept of_graph.h which is still necessary.
+> > 
+> You should switch to fwnode graph API as you're already using fwnodes in
+> the driver --- due to V4L2 fwnode.
+
+Done as well.
+
+> ...
+> 
+> > > > +static int dcmipp_graph_notify_bound(struct v4l2_async_notifier *notifier,
+> > > > +				     struct v4l2_subdev *subdev,
+> > > > +				     struct v4l2_async_subdev *asd)
+> > > > +{
+> > > > +	struct dcmipp_device *dcmipp = notifier_to_dcmipp(notifier);
+> > > > +	unsigned int ret;
+> > > > +	int src_pad;
+> > > > +	struct dcmipp_ent_device *sink;
+> > > > +	struct device_node *np = dcmipp->dev->of_node;
+> > > > +	struct v4l2_fwnode_endpoint ep = { .bus_type = 0 };
+> > > 
+> > > Please set bus_type explicitly (DPHY)?
+> > 
+> > My understanding is that I cannot set the bus_type here to have the
+> > framework check for me since we support both V4L2_MBUS_PARALLEL and
+> > V4L2_MBUS_BT656.
+> 
+> Ah, I missed this was using a parallel bus.
+> 
+> As you have a default in bindings, then you'll need to parse this assuming
+> that bus-type first. I.e. set the bus type to the default and if parsing
+> fails, try the other one.
+
+Ok
+
+Regards,
+Alain
