@@ -2,70 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E66BA78F795
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 05:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4780F78F7B6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 06:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243742AbjIAD6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 31 Aug 2023 23:58:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45924 "EHLO
+        id S236876AbjIAE4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 00:56:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232502AbjIAD6B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 31 Aug 2023 23:58:01 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE27CFE;
-        Thu, 31 Aug 2023 20:57:56 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1474580CF;
-        Fri,  1 Sep 2023 11:57:47 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Sep
- 2023 11:57:48 +0800
-Received: from [192.168.125.127] (183.27.96.188) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 1 Sep
- 2023 11:57:45 +0800
-Message-ID: <837c3675-51d4-2eba-e8c6-3065d6e5d301@starfivetech.com>
-Date:   Fri, 1 Sep 2023 11:57:44 +0800
+        with ESMTP id S229733AbjIAE4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 00:56:50 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18C4412F;
+        Thu, 31 Aug 2023 21:56:48 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1c1f8aaab9aso12483865ad.1;
+        Thu, 31 Aug 2023 21:56:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693544207; x=1694149007; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:cc:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AxMAdQ9JHhbY/6XOYXhohZX4W0hkhsENsmdXA3joCPY=;
+        b=C6+nZqaaqsQRSPdbqP8L9VhVfHF5lwRQqVz+2KlIFc+UicH7DCHsfU0z/KAwH6iGjE
+         yquPphJKmh9YO6hgaidYwSeyqQNY9/MZbiiPywqo/KYxHvP1LQw79lXJpdRCAvrMViOy
+         0RaA7iU20sF5ybiPJVo7R0/Vu5RUZG1aKC6wk31m31oPzi4775c/CWn3s1Ee09Ri5zm2
+         igHl/rqmR3QFHGzbpviAUAD7c1EtOdq+bxEe2UorPI3W2GtfadCDrsDU6oIHdgNT7kR7
+         zX08A8f0YUmUV/QrEZ6BcopK7L5bPxXMhgyalOPP90lYc1wznxksRFDlUgLn33wL5Egg
+         sa2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693544207; x=1694149007;
+        h=content-transfer-encoding:in-reply-to:cc:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AxMAdQ9JHhbY/6XOYXhohZX4W0hkhsENsmdXA3joCPY=;
+        b=QR6+sGb3QSorLYFfd3P4Vw3F1ImaESOCNs48oYGPr18gHxVRKehfyWgLM5TS170GHl
+         9ZuToQMwLiNbh5N11ZHkdf/dU6LHbTkR5O1iZMMmcVsXXIIn0JZEIVVsD3oKQWbInE/L
+         PTF1rk/JKAImC/EO1LPyjIS3B1/ok4r/LffTRxWot230UPIEr3pauc4SnkiZ6Q2Yf8/G
+         RpD8vkZYGdStpi35AoYcIcNQfokAYjyJmPg5Z8ois8fDdOTQ5hlFpGU6OjSw11+z6I+J
+         yYr3IleuBH2iWGCWZkLhJzXQ/agRchQwehZ4PB4EKGIW4spc9e6hHrE+sXqO7SMK8eEc
+         fuWA==
+X-Gm-Message-State: AOJu0YwyFTUF4XJcm2D10XmlhHphmmFNcM8sPJ2mepm+OT27/TNESKtO
+        tH4r1aJ3mrYJ+iEhNWQHqg8=
+X-Google-Smtp-Source: AGHT+IF6QDy3CuYUe+uak82ob23I21g9dB49A8IeXHA8TbCz/H5rYUS4VaHBNmXQXV04PA1Rwb8IDw==
+X-Received: by 2002:a17:902:c40b:b0:1b9:de75:d5bb with SMTP id k11-20020a170902c40b00b001b9de75d5bbmr2191573plk.7.1693544207479;
+        Thu, 31 Aug 2023 21:56:47 -0700 (PDT)
+Received: from [10.10.4.41] (1-34-21-66.hinet-ip.hinet.net. [1.34.21.66])
+        by smtp.gmail.com with ESMTPSA id e4-20020a170902d38400b001adf6b21c77sm2036354pld.107.2023.08.31.21.56.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 31 Aug 2023 21:56:46 -0700 (PDT)
+Message-ID: <99ffd1fb-14ae-1c83-bc32-2d0aead4d696@gmail.com>
+Date:   Fri, 1 Sep 2023 12:54:33 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v4 08/11] PCI: microchip: Move IRQ init functions to
- pcie-plda-host.c
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v8 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED
+ g6 PWM/Fan tach
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>
-CC:     Daire McNamara <daire.mcnamara@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Mason Huo <mason.huo@starfivetech.com>,
-        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-        Kevin Xie <kevin.xie@starfivetech.com>
-References: <20230825090129.65721-1-minda.chen@starfivetech.com>
- <20230825090129.65721-9-minda.chen@starfivetech.com>
- <20230825-sip-pentagon-e1760dcfce58@wendy>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <20230825-sip-pentagon-e1760dcfce58@wendy>
-Content-Type: text/plain; charset="UTF-8"
+To:     Billy Tsai <billy_tsai@aspeedtech.com>
+References: <20230830123202.3408318-1-billy_tsai@aspeedtech.com>
+ <20230830123202.3408318-4-billy_tsai@aspeedtech.com>
+From:   Potin Lai <potin.lai.pt@gmail.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
+        corbet@lwn.net, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+        naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+        BMC-SW@aspeedtech.com, patrick@stwcx.xyz
+In-Reply-To: <20230830123202.3408318-4-billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [183.27.96.188]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -74,53 +85,58 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2023/8/25 20:09, Conor Dooley wrote:
-> Daire, can you look at this one too please?
-> 
-> On Fri, Aug 25, 2023 at 05:01:26PM +0800, Minda Chen wrote:
->> Move IRQ init functions to pcie-plda-host.c.
->> mc_handle_event() is merged to plda_handle_event().
->> Set most of the IRQ functions to static in pcie-plda-host.c
->> 
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> 
->> -void plda_handle_event(struct irq_desc *desc)
->> +static void plda_handle_event(struct irq_desc *desc)
->>  {
->>  	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
->>  	struct irq_chip *chip = irq_desc_get_chip(desc);
->> @@ -264,14 +268,18 @@ void plda_handle_event(struct irq_desc *desc)
->>  
->>  	chained_irq_enter(chip, desc);
->>  
->> -	val = readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
->> -	origin = val;
->> -	val = val >> A_ATR_EVT_POST_ERR_SHIFT;
->> -	events |= val & 0xff;
->> -	if (origin & PM_MSI_INT_INTX_MASK)
->> -		events |= BIT(EVENT_PM_MSI_INT_INTX);
->> -	val = (origin >> PM_MSI_INT_MSI_SHIFT) & 0xf;
->> -	events |= val << EVENT_PM_MSI_INT_MSI;
->> +	if (port->ops && port->ops->get_events) {
-> 
-> I still don't love the dancing here. Can you just always register a
-> callback?
-> 
-> Thanks,
-> Conor.
-> 
-OK, Thanks.
->> +		events = port->ops->get_events(port);
->> +	} else {
->> +		val = readl_relaxed(port->bridge_addr + ISTATUS_LOCAL);
->> +		origin = val;
->> +		val = val >> A_ATR_EVT_POST_ERR_SHIFT;
->> +		events |= val & 0xff;
->> +		if (origin & PM_MSI_INT_INTX_MASK)
->> +			events |= BIT(EVENT_PM_MSI_INT_INTX);
->> +		val = (origin >> PM_MSI_INT_MSI_SHIFT) & 0xf;
->> +		events |= val << EVENT_PM_MSI_INT_MSI;
->> +	}
->>  
->>  	for_each_set_bit(bit, &events, port->num_events)
->>  		generic_handle_domain_irq(port->event_domain, bit);
+On 8/30/23 20:32, Billy Tsai wrote:
+> +static int aspeed_tach_hwmon_write(struct device *dev,
+> +				   enum hwmon_sensor_types type, u32 attr,
+> +				   int channel, long val)
+> +{
+> +	struct aspeed_pwm_tach_data *priv = dev_get_drvdata(dev);
+> +	u32 reg_val;
+> +
+> +	switch (attr) {
+> +	case hwmon_fan_div:
+> +		if (!is_power_of_2(val) || (ilog2(val) % 2) ||
+> +		    DIV_TO_REG(val) > 0xb)
+> +			return -EINVAL;
+> +		priv->tach_divisor = val;
+> +		reg_val = readl(priv->base + TACH_ASPEED_CTRL(channel));
+> +		reg_val &= ~TACH_ASPEED_CLK_DIV_T_MASK;
+> +		reg_val |= FIELD_GET(TACH_ASPEED_CLK_DIV_T_MASK,
+> +				     DIV_TO_REG(priv->tach_divisor));
+Hi Billy,
+I notice the fanX_div is always shows 1 after I set 1024.
+I think FIELD_GET() needs to replaced with FIELD_PREP().
+
+> +		writel(reg_val, priv->base + TACH_ASPEED_CTRL(channel));
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	return 0;
+> +}
+
+
+> +static void aspeed_present_fan_tach(struct aspeed_pwm_tach_data *priv, u32 tach_ch)
+> +{
+> +	u32 val;
+> +
+> +	priv->tach_present[tach_ch] = true;
+> +	priv->tach_divisor = DEFAULT_TACH_DIV;
+> +
+> +	val = readl(priv->base + TACH_ASPEED_CTRL(tach_ch));
+> +	val &= ~(TACH_ASPEED_INVERS_LIMIT | TACH_ASPEED_DEBOUNCE_MASK |
+> +		 TACH_ASPEED_IO_EDGE_MASK | TACH_ASPEED_CLK_DIV_T_MASK |
+> +		 TACH_ASPEED_THRESHOLD_MASK);
+> +	val |= (DEBOUNCE_3_CLK << TACH_ASPEED_DEBOUNCE_BIT) | F2F_EDGES |
+> +	       FIELD_GET(TACH_ASPEED_CLK_DIV_T_MASK,
+> +			 DIV_TO_REG(priv->tach_divisor));
+And here as well.
+
+> +	writel(val, priv->base + TACH_ASPEED_CTRL(tach_ch));
+> +
+> +	aspeed_tach_ch_enable(priv, tach_ch, true);
+> +}
+> +
+>
+
