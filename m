@@ -2,122 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0906178FED8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 16:19:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A506A78FEFC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 16:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349936AbjIAOTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 10:19:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40752 "EHLO
+        id S1349978AbjIAOYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 10:24:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349938AbjIAOTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 10:19:34 -0400
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2DD61702;
-        Fri,  1 Sep 2023 07:19:25 -0700 (PDT)
-Received: by gofer.mess.org (Postfix, from userid 501)
-        id 37F211007FB; Fri,  1 Sep 2023 15:19:24 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-        t=1693577964; bh=Lbm8wzOKC2M9GeSPbw06e8KPiOFgpvPECNpJXbRnIo4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OR/WtiAGuMKYxvf8uQg/v/LcwgzCqcfQeQwtjWN1P/XAXpiUqnVCw1bqZ1m46Z2pd
-         ZRfvNTR31CfeB3FWXaYYK8HSYRPj6GEZ7lSzdTvZcsLaoS5Zyx0Y9GQkpzLSWIR7Zr
-         Tjye0gETkda+BrjYmukIM/gFAxuIcMHJcNJKyB9zP7346F2u64M0hLibr4N4I1pyvA
-         ye2fPxbJZ1bLOwPi7yNyS4zcdkJPYkKUjI9RD5Gan/pi4Gxtoj8sAizvyB8xW09TZc
-         fYLBZze8QleCNfx2a/VKxk3agUvxYsGmaO/3BDsIg9EhFwjL/gEyITxK3kNb74xXbp
-         wLd7fBIPNP5Kw==
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
-X-Spam-Level: 
+        with ESMTP id S1349965AbjIAOYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 10:24:33 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3E2CCC5
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 07:24:30 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-d7bb34576b9so1617487276.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 07:24:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693578270; x=1694183070; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=4JTq3QyNvEDgshksBGAuADiMeaDa0EKwLIahQgHW96c=;
+        b=g8dj3tbrowzKoX3GNoQ0+h6daW1xO9Fyk6FnoUKFNpIFQmXax3E+XyIViPHEl5jfNo
+         GHJUeDjUEG9g8KEMbCvWV2Ap4BIxaHhbblI83sk/20nboZs8xutjMiOyAfjthfQPbFSW
+         r/Nv3YzwCBaJMOiyDKtn1YPIAs3E0uDnRrjeyzdYwKQFQhavzLp04cDAubWNPORLaelB
+         24HiHlovsCO09/Pemg4Wfxl3s00fpq/UGdSru92PmdpaxuKm110we9/+p1mHzpjs0jJE
+         McE/Aa9g9NCNjNAqGw2D0o5axBdvMeCsJoToYQCmyJ+mzzANxDoCKnnfA9+gRI2Iy7zW
+         0iEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693578270; x=1694183070;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4JTq3QyNvEDgshksBGAuADiMeaDa0EKwLIahQgHW96c=;
+        b=Ybf50H8+PXoDI8XJoByAd4XHRL5hA/13UoPBGiSbFxugrRs+6Bmu7EpaEymBHq9l1r
+         XxGMFQeTRQ6H8D91T0Bks1F0dxz3i3R77xVYkAJFqoyHAHlqXA2ODl4TKkWptiI3sxn7
+         aa/Pkwjz2fu0kcfySuTT9eWt3hgZDfI1aB2PQgZdEzyWFNYAjQ2kYHP8i8k890AWwwoh
+         GLPJZnHIVBs8NW7hVLZslZx6+puaXdJYRxKgZnshVJmgx90KY9s2A6CreG/p8oKFiTBY
+         f5DLnmRluDGpLEK00juuzAFRUPZkiE43vo9Sn/um9kbuAoAvSoHV2lpf/7FK14PI4OtO
+         lvWw==
+X-Gm-Message-State: AOJu0YxjrZBPhuTsJhEgySzRNEuEUyhB1HqfLXw9iT6sOvYgD8jybX7r
+        1Va/PLzvdjz5ATqLK1PnuydODpZfjO1B4ULt1C4v+w==
+X-Google-Smtp-Source: AGHT+IHYBbed9QoyEbl7nDLpZlbr4GZ0M/NYtjSG2pehE4nSWsii7WiwuTpje80SdlHsY6HjPJArMMUKjrm3BVULFH4=
+X-Received: by 2002:a25:d14:0:b0:d7a:8e37:6d4d with SMTP id
+ 20-20020a250d14000000b00d7a8e376d4dmr2820258ybn.43.1693578269933; Fri, 01 Sep
+ 2023 07:24:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230324202244.744271-1-krzysztof.kozlowski@linaro.org>
+ <20230324202244.744271-2-krzysztof.kozlowski@linaro.org> <CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com>
+ <99045d3e-53b4-dd75-fe57-9a3465d49b6c@linaro.org>
+In-Reply-To: <99045d3e-53b4-dd75-fe57-9a3465d49b6c@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 1 Sep 2023 17:24:18 +0300
+Message-ID: <CAA8EJpq2K0ZJM==8Va7eSa1oqYz8u5-_6k_gs_D=hjVr_TaXOQ@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: apq8096-db820c: drop simple-bus
+ from clocks
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
-Received: from localhost.localdomain (bigcore.mess.org [IPv6:2a02:8011:d000:212:44e0:1480:5a2d:d8ed])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by gofer.mess.org (Postfix) with ESMTPSA id CB23E1007F5;
-        Fri,  1 Sep 2023 15:19:22 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-        t=1693577962; bh=Lbm8wzOKC2M9GeSPbw06e8KPiOFgpvPECNpJXbRnIo4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mTjVgXPwKuo4921vycPIOm2LJTc7VMoFgoMgAKciGPX9RJuSuxbA5qXdHuiBoie4m
-         +SLlaXXO/jTkWO1u+X4xKCcgMEIxG5SEfHOQ6i6kBIZOZDFQaGx+lDUnQwMl0uP9Mt
-         238pRWyiJAxl3zpG5ZEyV71jK9A0mdFe4gwcfkoEJiU46PjeVnvK2vS0Z0+B/0pdLk
-         EqqOfPxfW23k8KE+zx7xh3YGYJF4ZU3WGie6AXC/hNt1WXrhLfG2JL5s8CrsAukcfc
-         ka0hYlbrcATg3vXSbWQLEuN/QXzwyGFxXApwR0UYJVZsJhiuLi9ZrrBwERuf5kjZ5s
-         58oYuDkVQasoQ==
-From:   Sean Young <sean@mess.org>
-To:     linux-media@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v5 1/2] dt-bindings: media: remove nokia,n900-ir as pwm-ir-tx is compatible
-Date:   Fri,  1 Sep 2023 15:18:55 +0100
-Message-ID: <25e8f2626d15199a1bf727fee375b5b149004c8e.1693577725.git.sean@mess.org>
-X-Mailer: git-send-email 2.42.0
-In-Reply-To: <cover.1693577725.git.sean@mess.org>
-References: <cover.1693577725.git.sean@mess.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The generic pwm-ir-tx driver works for the Nokia n900, so nokia,n900-ir
-can be removed.
+On Fri, 1 Sept 2023 at 11:04, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 31/08/2023 11:04, Dmitry Baryshkov wrote:
+> > On Fri, 24 Mar 2023 at 22:23, Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> 'clocks' node is not a bus, but just a placeholder for clocks:
+> >>
+> >>   apq8096-db820c.dtb: clocks: $nodename:0: 'clocks' does not match '^([a-z][a-z0-9\\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+> >>     From schema: dtschema/schemas/simple-bus.yaml
+> >>   apq8096-db820c.dtb: clocks: xo-board: {'compatible': ['fixed-clock'], '#clock-cells': [[0]],  ...
+> >>     From schema: dtschema/schemas/simple-bus.yaml
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >
+> > This patch broke audio support on DB820c. Now the divclk1 clock is not
+> > registered, as drivers/clk/clk-gpio.c doesn't have CLK_OF_DECLARE().
+> >
+> > Stephen, What would be the best way to fix this? Add CLK_OF_DECLARE
+> > support to clk-gpio.c? Or simply move divclk1 from /clocks into a
+> > separate device?
+> >
+> > What is the rule, which clock drivers must support such device-less
+> > binding using /clocks/foo nodes?
+>
+> Uh, sorry for that, I think my patch is incomplete. I did not notice
+> that not all clocks have CLK_OF_DECLARE. How about moving all the clocks
+> out of "clocks" node to the root? Then they should be instantiated,
+> regardless of having CLK_OF_DECLARE.
 
-Signed-off-by: Sean Young <sean@mess.org>
----
- .../bindings/leds/irled/pwm-ir-tx.yaml        |  5 ++++-
- .../devicetree/bindings/media/nokia,n900-ir   | 20 -------------------
- 2 files changed, 4 insertions(+), 21 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/nokia,n900-ir
+We can do this, but first I'd like to understand the rule with /clocks/.
 
-diff --git a/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml b/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
-index f2a6fa140f38..7526e3149f72 100644
---- a/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
-+++ b/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
-@@ -15,7 +15,10 @@ description:
- 
- properties:
-   compatible:
--    const: pwm-ir-tx
-+    oneOf:
-+      - const: pwm-ir-tx
-+      - const: nokia,n900-ir
-+        deprecated: true
- 
-   pwms:
-     maxItems: 1
-diff --git a/Documentation/devicetree/bindings/media/nokia,n900-ir b/Documentation/devicetree/bindings/media/nokia,n900-ir
-deleted file mode 100644
-index 13a18ce37dd1..000000000000
---- a/Documentation/devicetree/bindings/media/nokia,n900-ir
-+++ /dev/null
-@@ -1,20 +0,0 @@
--Device-Tree bindings for LIRC TX driver for Nokia N900(RX51)
--
--Required properties:
--	- compatible: should be "nokia,n900-ir".
--	- pwms: specifies PWM used for IR signal transmission.
--
--Example node:
--
--	pwm9: dmtimer-pwm@9 {
--		compatible = "ti,omap-dmtimer-pwm";
--		ti,timers = <&timer9>;
--		ti,clock-source = <0x00>; /* timer_sys_ck */
--		#pwm-cells = <3>;
--	};
--
--	ir: n900-ir {
--		compatible = "nokia,n900-ir";
--
--		pwms = <&pwm9 0 26316 0>; /* 38000 Hz */
--	};
 -- 
-2.42.0
-
+With best wishes
+Dmitry
