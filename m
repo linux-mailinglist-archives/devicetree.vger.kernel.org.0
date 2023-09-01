@@ -2,116 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A4278FD6F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2981178FDD7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:56:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230509AbjIAMnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 08:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
+        id S1348964AbjIAM4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 08:56:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232970AbjIAMnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:43:22 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A780CE7F
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 05:43:17 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5008d16cc36so3436206e87.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 05:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693572196; x=1694176996; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+a+iz9wBM/RnkGSUCsFhA72uNvdIJyLIqk+nxrMTVAc=;
-        b=SdHozke5YfHPd7ZBSb8pSMnJaNZ1U8mpYr/xF1sP6+MamJysJpzeEJFtUok6C2TFAx
-         Muvx1lRTmgLRwKPWPUPCsUTZeYmMXGVg2TbEs91BIayxseD149mbshg1TyHnQok2gK9e
-         v/7y/AjnjBzfL00kTk6KX+WJ9naipRuRmqzFtFSGwR3hH4Gau4GebPFBI3sKvKPlrP3U
-         Uh8Zre6jWQfgiqHTETXCStb9VeCmUTLf2UNpWenEDUqFO2np8CWJ5ABmdk2qdpkLEUVF
-         YRc7rBystEjqGTnT65VCtCtz8U7ZDFQpsmi1f0aAx4Qera8XL4ikbzrZ6HrAs0JGohE/
-         nfAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693572196; x=1694176996;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+a+iz9wBM/RnkGSUCsFhA72uNvdIJyLIqk+nxrMTVAc=;
-        b=hwllNcAl8QOuRFmElmbQCqVwpY52QfWQDKe9RPpeF3kMtIG90l0xyu2CqapKOGu+CN
-         UjEgens2eU9Jpqxi7h8WehzPoocncyIH4RbzjSkkMSvAMrGd+pgZ8RjC1A1bjqaKfQ87
-         u841xmH4fX3QvllhgNcSiiHfZ6wkgMyhFhVry8NdsGOmUX+C2I49mOLAgxH0P8J4ASZi
-         X0rk/YxQhNgDYS4Hxsvti+Ch1+FBk1lG7hV1muL4v3SvYvL0u0skRTY4ghEhUjnblImc
-         I+w1x3A9LHFIJsRh9drhkh0G//zyN4Qc4N//CSIc0WsgosZAHRWs2alK6PPCscF9KhZs
-         hQlg==
-X-Gm-Message-State: AOJu0YzrfNTdAkQZNXF/MKcGxqU954sLwwpeKH7VAtVKeCqfcjqyA5zs
-        xT6ZjWi7gZ/jFPG44eJYv7s=
-X-Google-Smtp-Source: AGHT+IGGiaOuqRWPq7jbGOlYBFKYVS97u9RbEcWV2zVY8mHCwEl+SgnwYibEvBfmfgZQOaq5OVOY/Q==
-X-Received: by 2002:a05:6512:1053:b0:500:a41d:354c with SMTP id c19-20020a056512105300b00500a41d354cmr2070291lfb.28.1693572195590;
-        Fri, 01 Sep 2023 05:43:15 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id l22-20020a19c216000000b004fdbb36a677sm640599lfc.288.2023.09.01.05.43.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Sep 2023 05:43:15 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        with ESMTP id S240835AbjIAM4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:56:36 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9A7910FC;
+        Fri,  1 Sep 2023 05:56:21 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3817dnOv027910;
+        Fri, 1 Sep 2023 12:56:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=iQDpE3oUzsQpFX7y4ICrAyxTrW4xNtItubvy27V7X6w=;
+ b=blc+JGa/O/6sU0yVVfkeB7lDoZemDsthXnhOPnR0q2Jg48MTQA1nn13MjIi6YhrAg6LW
+ 0lRK6PsDhcliQMnN6jL8HcgAYwdfdsZktw3BdmPHNN1dQ3sRG4QAArRv25YhBYs2nW/4
+ z1taGlcdSz26vQUDjlmrVMSh5n1GIkmaJDv8g+7e/mmmeJ6OKoRzcAz7gxrXMq6UHsKV
+ OSzF5SFS+OLmrKaCKwyfPnUF8IV/QHmixuuG6fY6qbS4IjNhxzJf+GmIAPsH+cinbhME
+ 0QzFo0BkBvR4d5pvH6C2o1c+hH+3siJ4/7AbU5i2crfdpXM0uwE7uROshVByTu/KT2MG 4A== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sua0brv3p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 Sep 2023 12:56:12 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 381CuBhX028522
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 1 Sep 2023 12:56:11 GMT
+Received: from [10.216.45.103] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 1 Sep
+ 2023 05:56:06 -0700
+Message-ID: <3d09f47f-b0b8-4429-944a-df3de19c7a6c@quicinc.com>
+Date:   Fri, 1 Sep 2023 18:26:03 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/7] crypto: qcom-rng - Add support for trng
+From:   Om Prakash Singh <quic_omprsing@quicinc.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: BCM5301X: Set MAC addresss for Asus RT-AC87U
-Date:   Fri,  1 Sep 2023 14:43:11 +0200
-Message-Id: <20230901124311.31156-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-crypto@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
+ <20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org>
+ <29fb1e51-1e18-4e45-be64-190df52e1156@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <29fb1e51-1e18-4e45-be64-190df52e1156@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: HiK5IzspJB4nPNxUEVUqaX2pFvvdu8Ws
+X-Proofpoint-GUID: HiK5IzspJB4nPNxUEVUqaX2pFvvdu8Ws
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-01_10,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=786
+ suspectscore=0 clxscore=1015 priorityscore=1501 impostorscore=0 mlxscore=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 malwarescore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309010120
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+I missed to notice. Please correct "-" to ":" in subject line
 
-Specify NVRAM access and use its "et1macaddr" NVMEM cell.
-
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts
-index 4f44cb4df704..59400217f8c3 100644
---- a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts
-@@ -25,6 +25,12 @@ memory@0 {
- 		      <0x88000000 0x08000000>;
- 	};
- 
-+	nvram@1c080000 {
-+		et1macaddr: et1macaddr {
-+			#nvmem-cell-cells = <1>;
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -62,6 +68,11 @@ button-restart {
- 	};
- };
- 
-+&gmac0 {
-+	nvmem-cells = <&et1macaddr 0>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
- &usb3_phy {
- 	status = "okay";
- };
--- 
-2.35.3
-
+On 8/28/2023 10:29 AM, Om Prakash Singh wrote:
+> 
+> 
+> On 8/24/2023 5:03 PM, Neil Armstrong wrote:
+>> The SM8450 & later SoCs RNG HW is now a True Random Number Generator
+>> and a new compatible has been introduced to handle the difference.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> Reviewed-by: Om Prakash Singh <quic_omprsing@quicinc.com>
