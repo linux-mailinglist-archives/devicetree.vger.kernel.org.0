@@ -2,88 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04C6A78FFAA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 17:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64B1578FFFF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 17:35:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345676AbjIAPJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 11:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55742 "EHLO
+        id S243999AbjIAPfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 11:35:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36930 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241535AbjIAPJC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 11:09:02 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9C0A10D2
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 08:08:59 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52bcb8b199aso2803270a12.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 08:08:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1693580938; x=1694185738; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ir5d0LdfkLCgxj9RUuUc7L+7Tk1dgspXe4TSyCCKnNc=;
-        b=BFqOKap8RUnad7h828a3fw7ktj8TTvmoxjWxf8jg3J/jprU+l01Nntw5j8Mv9vwmU+
-         +JXN5PHwXFBgxZQ1HgsH6uuqbNnCyZkHQr6ZmVfZqIYB1IN7xuTlKIywaliUvh6WS47B
-         pZvX6SrgtvT+bEs5QN0PRUSjV3e/hIbMIawWc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693580938; x=1694185738;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ir5d0LdfkLCgxj9RUuUc7L+7Tk1dgspXe4TSyCCKnNc=;
-        b=PHvmZlQn1Le9jqAXe+4wpK610XLzNQ4v0LqgFXOwTz3TOxRu25jIsqxiFOIbro9E0B
-         NDvCyp1K+1kNh+9dQj20FvB2pjMJ3SIlxW7NbA2xeWW/ZF/v6a8b9cOg+oM20P+C4tqG
-         Uielt8SPODhFI8HaneUSlU/G2Fha+hGq35S2Z9lazxiFMy9Id3rdWAUsGpq3TfkGI4/v
-         Ci+Dx+RtQJWFMoe2pXUtVwhyoGvKbQNGuBr7aaUACtJ26gMTe54CUKb3oefaR0jPhhCX
-         J6Ang1+J3fuMQvoLvDzbhNZFODGzMzCa8RNosWewTbPiDRGHGwTBgt7/WVOfPEfAMozO
-         wiBA==
-X-Gm-Message-State: AOJu0YyPzVB/GFQOm9rW83UoDx1SlnuspjFbZ3Yf2Wd56tSevU84Yu+K
-        vE4bMLex1L/4KcNIK9YqNEofa+oMEOLXNN3OI2/kSBuX
-X-Google-Smtp-Source: AGHT+IEryBIfZ5xkHgm299u24fwH7jQf2Ar2fLzB8kJnVQCipPGkAAthoUB4p5anKooBYUS271G/hw==
-X-Received: by 2002:a05:6402:785:b0:523:2e30:aaea with SMTP id d5-20020a056402078500b005232e30aaeamr2311648edy.33.1693580937990;
-        Fri, 01 Sep 2023 08:08:57 -0700 (PDT)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com. [209.85.128.48])
-        by smtp.gmail.com with ESMTPSA id u20-20020a056402065400b00529fb5fd3b9sm2158850edx.80.2023.09.01.08.08.57
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Sep 2023 08:08:57 -0700 (PDT)
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-402bec56ca6so4565e9.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 08:08:57 -0700 (PDT)
-X-Received: by 2002:a05:600c:282:b0:3fe:dd72:13ae with SMTP id
- 2-20020a05600c028200b003fedd7213aemr166371wmk.0.1693580932622; Fri, 01 Sep
- 2023 08:08:52 -0700 (PDT)
+        with ESMTP id S242249AbjIAPfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 11:35:11 -0400
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C239410F0
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 08:35:07 -0700 (PDT)
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20230901153503epoutp0133d574c0f1674ef5f4af377b2210852c~A0FB6_lyl1222812228epoutp01S
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 15:35:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20230901153503epoutp0133d574c0f1674ef5f4af377b2210852c~A0FB6_lyl1222812228epoutp01S
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1693582504;
+        bh=aOlYQ5cBte/JzMksONmfKqcJOHs9+CZOZVn/iaN6WH4=;
+        h=From:To:In-Reply-To:Subject:Date:References:From;
+        b=nWbLvm2Z44V6o7tMidoCp2zpPx4RUMcSVCRPvEiELd+1QpjxrEHEiTrCBfnAQQ1z3
+         ZBmfA6FjZf/d4XxaphVHS5uiMWJUnHr60e8yrKKzFtSDNjvPcE0Gj01gtL6LOjXdWi
+         JZbIneLUQAvBx1kVLkK70cphI/Xdg1WYYE8h5SZA=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas5p1.samsung.com (KnoxPortal) with ESMTP id
+        20230901153503epcas5p17aada13e7e175c5d6358b274d0e96509~A0FBdLNAd2796027960epcas5p12;
+        Fri,  1 Sep 2023 15:35:03 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.174]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4RchtG2gYYz4x9Pr; Fri,  1 Sep
+        2023 15:35:02 +0000 (GMT)
+Received: from epcas5p2.samsung.com ( [182.195.41.40]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        9A.E6.09949.6A402F46; Sat,  2 Sep 2023 00:35:02 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+        20230901153501epcas5p471785b05f3bdb4acdb27ff402cf3f331~A0E-ap-3V2822928229epcas5p45;
+        Fri,  1 Sep 2023 15:35:01 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230901153501epsmtrp24014501e2a47447fb5e3085742fe4549~A0E-X_SLI2406224062epsmtrp2S;
+        Fri,  1 Sep 2023 15:35:01 +0000 (GMT)
+X-AuditID: b6c32a49-bd9f8700000026dd-4d-64f204a676dc
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        3B.A2.08788.5A402F46; Sat,  2 Sep 2023 00:35:01 +0900 (KST)
+Received: from alimakhtar04 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20230901153459epsmtip214e46d6101a491878b35aeda8143695d~A0E_Ds1bQ1862818628epsmtip2U;
+        Fri,  1 Sep 2023 15:34:59 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <arm@kernel.org>, <soc@kernel.org>,
+        "'Arnd Bergmann'" <arnd@arndb.de>,
+        "'Olof Johansson'" <olof@lixom.net>
+In-Reply-To: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
+Subject: RE: [PATCH] arm64: defconfig: enable syscon-poweroff driver
+Date:   Fri, 1 Sep 2023 21:04:58 +0530
+Message-ID: <000401d9dce9$ded545f0$9c7fd1d0$@samsung.com>
 MIME-Version: 1.0
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-2-5a954519bbad@fairphone.com> <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
- <CV5YJVXIL8OT.1ZWW3KVCHPTA5@otso> <CAD=FV=XhdORH=naTtoc+kCC4A7UdAJKwq=Te6B3qvXNGBwBieg@mail.gmail.com>
- <CV7O0TYYEFA8.1Q42JITFSW77Q@otso>
-In-Reply-To: <CV7O0TYYEFA8.1Q42JITFSW77Q@otso>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 1 Sep 2023 08:08:36 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UG-dFg7wZsn6n=pkejie0fr+G0q3CguNspGYxoC2ZBLw@mail.gmail.com>
-Message-ID: <CAD=FV=UG-dFg7wZsn6n=pkejie0fr+G0q3CguNspGYxoC2ZBLw@mail.gmail.com>
-Subject: Re: [PATCH 02/11] nvmem: qfprom: Mark core clk as optional
-To:     Luca Weiss <luca.weiss@fairphone.com>
-Cc:     cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJpw2blY2KnWiSxJ1DezFvi/M20/AGXv2sKrtmOvbA=
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBJsWRmVeSWpSXmKPExsWy7bCmhu4ylk8pBtemCFsc+7KFzeLvpGPs
+        FvOPnGO12Pt6K7vFpsfXWC0u75rDZjHj/D4mi1PXP7NZPL7+h82B0+P3r0mMHptWdbJ53Lm2
+        h81j85J6jysnmlg9Pm+SC2CLyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQwV1LI
+        S8xNtVVy8QnQdcvMATpKSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgUqBXnJhb
+        XJqXrpeXWmJlaGBgZApUmJCdMedXF1vBE66KR4v2MzUwruXsYuTkkBAwkWhvvMDWxcjFISSw
+        m1Gid/YVFgjnE6PEk7f7mSGcb4wSM669YoVpefBpBxOILSSwl1Hi/fREiKKXjBKfbrYygyTY
+        BHQldixuA5srIrCbSeLzxw3sIAlOAReJXduXgBUJA9lfJ3wFm8oioCKxuOkYC4jNK2ApcXHR
+        SSYIW1Di5MwnYHFmAXmJ7W/nMENcoSDx8+kysF4RASuJ3bduMkLUiEu8PHqEHaJmIYfEw99c
+        ELaLxO6Du6B6hSVeHd8CVSMl8fndXqBDOYBsD4lFf6QgwhkSb5evZ4Sw7SUOXJnDAlLCLKAp
+        sX6XPsQmPone30+YIDp5JTrahCCqVSWa311lgbClJSZ2d0ODzUNiU/M0aEhPZ5RY1H+CZQKj
+        wiwkT85C8uQsJM/MQti8gJFlFaNkakFxbnpqsWmBYV5qOTy+k/NzNzGCk6yW5w7Guw8+6B1i
+        ZOJgPMQowcGsJMIba/YuRYg3JbGyKrUoP76oNCe1+BCjKTDkJzJLiSbnA9N8Xkm8oYmlgYmZ
+        mZmJpbGZoZI47+vWuSlCAumJJanZqakFqUUwfUwcnFINTJV3lq6emy1z2l5jwZFOHddtIpPZ
+        zc4uX3hi5srpoTd/spyNScrneR4WI/NY+srmLZPCDqpHr98uNzE69uDJL+afYhf++ZA0M9lr
+        afcqv8Yinu/t7zZ93lgWYdFdoOSiMKNerOWo/0P1OinhdXVrb7AvFBBs3e8S7XXZ99+Hy/kr
+        li+5Ytbgvz5/zjq+rixdr+7T6QrxzNmBO25+tecWbJX+5lny9Mnvwl/fd9sLRMWobd/scGft
+        JP4b35WcY7ynyfPURrmv4mowY879tv60/3LV69dY14rvvnrfTGqFmY7zmgezeNb2yy2bbjBP
+        aOe2s5836jiWqtelps0zeXiV0zVo9rMHW6xSn1s0VhZZ2SuxFGckGmoxFxUnAgBGyLLsOwQA
+        AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmphkeLIzCtJLcpLzFFi42LZdlhJXncpy6cUg+vP2C2OfdnCZvF30jF2
+        i/lHzrFa7H29ld1i0+NrrBaXd81hs5hxfh+Txanrn9ksHl//w+bA6fH71yRGj02rOtk87lzb
+        w+axeUm9x5UTTawenzfJBbBFcdmkpOZklqUW6dslcGXM+dXFVvCEq+LRov1MDYxrObsYOTkk
+        BEwkHnzawQRiCwnsZpRY89gNIi4tcX3jBHYIW1hi5b/nQDYXUM1zRolZf26ygCTYBHQldixu
+        YwNJiAgcZpLobbjOClE1lVFi/dftrCBVnAIuEru2L2EGsYWB7K8TvoLFWQRUJBY3HQObxCtg
+        KXFx0UkmCFtQ4uTMJ0BxDg5mAT2Jto2MIGFmAXmJ7W/nMENcpCDx8+kysDEiAlYSu2/dhKoR
+        l3h59Aj7BEahWUgmzUKYNAvJpFlIOhYwsqxilEwtKM5Nzy02LDDKSy3XK07MLS7NS9dLzs/d
+        xAiOKC2tHYx7Vn3QO8TIxMF4iFGCg1lJhDfW7F2KEG9KYmVValF+fFFpTmrxIUZpDhYlcd5v
+        r3tThATSE0tSs1NTC1KLYLJMHJxSDUzq3wPXLzzzc6LDi6ka34uZmK59WezeHtTy++60U6ev
+        F3/SXn9ad/WUbdkbXyztEXu0db8Rv/0EFSEpzT9f+UMXFc/mb33U1bfmX9mJ+ZJNaXESn2Sd
+        shJN4y5ocDEruK9RlrGUfms0/4bXl2lf22t+beh92vw80CpsxZw/MqmN5t8iah+Zb78aOTeU
+        5YCO55577bfUD2QHVS3Mmxr57ET0XY+NC7pWnGq4JFmm8CvIg9t5tulN1uOl1uc2vGScxv3T
+        io0lcsHe7l85152nNCXmcxzmDHt0kV8knOWqS+POe3Ii2lnZW3Z+smR7Zy/c+zSoKibkRa1C
+        jszl7TKvE5a/z7qQqbC2gl/6yRVd3pdKLMUZiYZazEXFiQBKg3yKFwMAAA==
+X-CMS-MailID: 20230901153501epcas5p471785b05f3bdb4acdb27ff402cf3f331
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230901115741epcas5p185b55c93ec71163e618a5a70b141800c
+References: <CGME20230901115741epcas5p185b55c93ec71163e618a5a70b141800c@epcas5p1.samsung.com>
+        <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,101 +121,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Krzysztof,
 
-On Fri, Sep 1, 2023 at 7:54=E2=80=AFAM Luca Weiss <luca.weiss@fairphone.com=
-> wrote:
->
-> > > > So maybe the right fix here is to just change your dts to specify o=
-ne
-> > > > memory region?
-> > >
-> > > I got feedback from Konrad that this here would be the preferred
-> > > approach compared to having a different dts for ChromeOS vs non-Chrom=
-eOS
-> > > devices. I don't feel strongly to either, for me it's also okay to
-> > > remove the extra memory regions and only have the main one used on
-> > > regular qcom devices.
-> > >
-> > > Let me know what you think.
-> >
-> > I don't hate the idea of leaving the extra memory regions in the dts.
-> > They do describe the hardware, after all, even if the main OS can't
-> > actually access those memory regions. ...though the same could also be
-> > said about the clock you've removed. Said another way: if you want to
-> > fully describe the hardware then the dts should have the extra memory
-> > regions and the clock. If you are OK w/ just describing the hardware
-> > in the way that the OS has access to then the dts should not have the
-> > extra memory regions and not have the clock. Does that sound right?
->
-> Not sure which of those memory regions are actually accessible on this
-> board, but honestly I don't even want to try accessing it. Blowing fuses
-> is not my wish there ;)
->
-> On downstream the node is just described like the following:
->
->         qfprom: qfprom@780000 {
->                 compatible =3D "qcom,qfprom";
->                 reg =3D <0x780000 0x7000>;
->                 ...
->         };
->
-> So we have 0x780000 - 0x786fff here.
->
-> In sc7280.dtsi we have the following:
->
->         qfprom: efuse@784000 {
->                 compatible =3D "qcom,sc7280-qfprom", "qcom,qfprom";
->                 reg =3D <0 0x00784000 0 0xa20>,
->                           <0 0x00780000 0 0xa20>,
->                           <0 0x00782000 0 0x120>,
->                           <0 0x00786000 0 0x1fff>;
->                 ...
->         };
->
-> So I guess this:
-> * 0x780000 - 0x780a1f
-> * 0x782000 - 0x78211f
-> * 0x784000 - 0x784a1f
-> * 0x786000 - 0x787ffe
->
-> So at least the last memory region seems to be partially out of range
-> according to downstream.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sent: Friday, September 1, 2023 5:28 PM
+> To: Alim Akhtar <alim.akhtar@samsung.com>; devicetree@vger.kernel.org;
+> linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org;
+> linux-kernel@vger.kernel.org; arm@kernel.org; soc@kernel.org; Arnd
+> Bergmann <arnd@arndb.de>; Olof Johansson <olof@lixom.net>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Subject: [PATCH] arm64: defconfig: enable syscon-poweroff driver
+> 
+> Enable the generic syscon-poweroff driver used on all Exynos ARM64 SoCs
+> (e.g. Exynos5433) and few APM SoCs.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-From the other discussion, it sounds as if you _can_ leave the clock
-in the device tree and then use "clk_get_optional" here. IMO then, the
-right answer is to use "clk_get_optional" but then also modify the
-check below so that instead of:
-
-/* Only enable writing if we have SoC data. */
-if (priv->soc_data)
-  econfig.reg_write =3D qfprom_reg_write;
-
-It is:
-
-/* Only enable writing if we have SoC data and a valid clock */
-if (priv->soc_data && priv->secclk)
-  econfig.reg_write =3D qfprom_reg_write;
+>  arch/arm64/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index 5315789f4868..ec59174b14db 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -636,6 +636,7 @@ CONFIG_POWER_RESET_MSM=y
+> CONFIG_POWER_RESET_QCOM_PON=m  CONFIG_POWER_RESET_XGENE=y
+> CONFIG_POWER_RESET_SYSCON=y
+> +CONFIG_POWER_RESET_SYSCON_POWEROFF=y
+>  CONFIG_SYSCON_REBOOT_MODE=y
+>  CONFIG_NVMEM_REBOOT_MODE=m
+>  CONFIG_BATTERY_SBS=m
+> --
+> 2.34.1
 
 
-Does that work for you?
-
-
-> So after reading all of this I tried running this commmand on the phone
-> and the phone reboots into 900e mode.
->
->   $ cat /sys/devices/platform/soc@0/784000.efuse/qfprom0/nvmem
->
-> I guess normally this should work? So if I interpret this correctly, the
-> Linux driver thinks it can access more than it can/should. But also
-> should probably try this command on another chipset to see if it works
-> on any really?
-
-Presumably your firmware needs a different "sc7280_qfprom_keepout". If
-that's true then I guess you'll have to undergo negotiations with the
-DT bindings folks and the nvmem maintainer to figure out how to
-specify that your firmware protects different things than the ChromeOS
-firmware?
-
-
--Doug
