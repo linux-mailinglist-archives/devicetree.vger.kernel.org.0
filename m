@@ -2,87 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE5BE78FA39
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:51:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54FD978FA6F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 11:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346175AbjIAIvE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 04:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44676 "EHLO
+        id S236960AbjIAJG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 05:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36742 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346994AbjIAIvC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:51:02 -0400
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7207810EF;
-        Fri,  1 Sep 2023 01:50:59 -0700 (PDT)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 3815QgUA022494;
-        Fri, 1 Sep 2023 03:50:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=PODMain02222019; bh=za8y5lvVzB9oa0e
-        VtAWyf93Fucehe4zshiET5W9+dUg=; b=LQU+jcl3Mokf/SB99EygO9XkrmtuFXV
-        RrDlewc4WUEB3PtIXi5avbn0sFVslixZlbFxdXAjB8Hbg/Ivy577xTXw0ErA2Akc
-        8MZg76Aw3vXViKK6xOg0lf0cDdEoHs17CS3YJ4D2bgOHr5V5LmlwDcixog8z3g6B
-        E+SXVRX1bs0wPDwm0eRtWDpPkEi2KqvvGP0WW2yFFq2um8h+R5+cYUidw02DZOQ3
-        i7HvJI5heiQOatoLhPM5uPncYPHAZWIiUyMX4ZnVZutac4AK/7r9C/faUBdcOvf1
-        Jbf014LcEG8iI5VhtIBCPNifA2LrcGOZaJ+CCQVCGKksXe2lNGFcOyA==
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3sqesyg4ng-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 Sep 2023 03:50:41 -0500 (CDT)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.37; Fri, 1 Sep
- 2023 09:50:39 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.37 via Frontend
- Transport; Fri, 1 Sep 2023 09:50:39 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 941EFB06;
-        Fri,  1 Sep 2023 08:50:39 +0000 (UTC)
-Date:   Fri, 1 Sep 2023 08:50:39 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-CC:     James Schulman <james.schulman@cirrus.com>,
-        David Rhodes <david.rhodes@cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 4/4] ASoC: cs35l45: Add AMP Enable Switch control
-Message-ID: <20230901085039.GC103419@ediswmail.ad.cirrus.com>
-References: <20230831162042.471801-1-vkarpovi@opensource.cirrus.com>
- <20230831162042.471801-4-vkarpovi@opensource.cirrus.com>
+        with ESMTP id S232335AbjIAJG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 05:06:57 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E984A10D2
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 02:06:54 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99c1c66876aso207627366b.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 02:06:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693559213; x=1694164013; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CL2wZFAQ9DQMYKYYGQQIGah4zjC0ig67LMgG+Wt4f1Y=;
+        b=d3G7fIe8UBMa7gt6/G7qj29NWsPBatVgzGJzXHP5l++Wu7/0gRZ6rlj+4bu1BjP1Gy
+         2fsbLHcMS4FApmD3M+FlTyxu8yaT2tGgMeBkNB7Y6qWeu3JBxO+gdkU6f4IlJnRhsNkn
+         MKGFthxQR6deD59S+crpEVayayBlLW6yhYnGDGn/kQytn2MAG4HsApgD7T/l5929dpRf
+         9qYs/CHgS/2XPzcQ1oePIOvFNb359qW0DgA41wvFLUtjD23WPC/1WpYd8Aahvu3m1TNZ
+         dcxp83oal8lV67e9uf0WHHYDNqYoOQ/NeaO7hq49ODb6XdquByGEXvQN7FypXLeOSnID
+         t1Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693559213; x=1694164013;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CL2wZFAQ9DQMYKYYGQQIGah4zjC0ig67LMgG+Wt4f1Y=;
+        b=P3G8TK+7wYcL4JbSSqwj4D3Fz/2hqEyZNVFBCmSGpWWh9pS81HZqptzH7C5o8MKQhR
+         BI8Y36aCyVR/jJPiNKgUINlVbCmZ4k1S0MCCkCdXrPdjTFcgDBf0sfhLvQ8lUKOgBf4C
+         u80STigeNh9t1AAnt8WT/jLY7UZzsLg/sYPtzPu3N9jEVlnCEBZzASQ3PXmRkx0Tn5rV
+         zq3fP6Fy4PUUVMr3vMSg9gRi+lSK3fLytQ44WqTKY8ZH9jjaE4LJCk1hJFJ6TXab7yRf
+         rnEPdgu4XB5xnn5Vov8LPEsvbiA0TZW1t78O3JFVd+ZE7LZ1Og24Kpjsk5H+ZPX5EP2W
+         sMpw==
+X-Gm-Message-State: AOJu0Yz/ntTls0JwTjALqe0mLZy/Kwqv9+E3PxaizgoWVZ9XCvy0Gd2A
+        8LrGDZ94sgB3gMS2CkAvel7L7g==
+X-Google-Smtp-Source: AGHT+IFgycuMFi2b9nbCWqWNuNSEcE07Zi45QXIvtjzYup3K8uPK4QvdgSYexfoBzJlc6i5xrD3o3g==
+X-Received: by 2002:a17:907:75fa:b0:9a5:7ade:b5e8 with SMTP id jz26-20020a17090775fa00b009a57adeb5e8mr1170613ejc.10.1693559213457;
+        Fri, 01 Sep 2023 02:06:53 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id e7-20020a170906248700b009920a690cd9sm1727779ejb.59.2023.09.01.02.06.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Sep 2023 02:06:52 -0700 (PDT)
+Message-ID: <cfa55813-946e-7aad-b7a4-54450a1ea5d5@linaro.org>
+Date:   Fri, 1 Sep 2023 11:06:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230831162042.471801-4-vkarpovi@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-ORIG-GUID: 5pVzOaU-Hl8lz1MEbVUUZtmufoJJRWkG
-X-Proofpoint-GUID: 5pVzOaU-Hl8lz1MEbVUUZtmufoJJRWkG
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 4/5] dt-bindings: soc: loongson,ls2k-pmc: Allow
+ syscon-reboot/syscon-poweroff as child
+To:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <cover.1693474728.git.zhoubinbin@loongson.cn>
+ <38e811816c37a2d52374fa04864654ff1e9b4dc8.1693474728.git.zhoubinbin@loongson.cn>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <38e811816c37a2d52374fa04864654ff1e9b4dc8.1693474728.git.zhoubinbin@loongson.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 31, 2023 at 11:20:42AM -0500, Vlad Karpovich wrote:
-> The "AMP Enable Switch" is useful in systems with multiple
-> amplifiers connected to the same audio bus
-> but not all of them are needed for all use cases.
-> 
-> Signed-off-by: Vlad Karpovich <vkarpovi@opensource.cirrus.com>
-> ---
+On 31/08/2023 13:43, Binbin Zhou wrote:
+>  required:
+>    - compatible
+>    - reg
+> @@ -54,4 +66,18 @@ examples:
+>          interrupt-parent = <&liointc1>;
+>          interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+>          loongson,suspend-address = <0x0 0x1c000500>;
+> +
+> +        syscon-reboot {
+> +            compatible = "syscon-reboot";
+> +            offset = <0x30>;
+> +            mask = <0x1>;
+> +        };
+> +
+> +        syscon-poweroff {
+> +            compatible = "syscon-poweroff";
+> +            regmap = <&pmc>;
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+???
 
-Thanks,
-Charles
+This is a friendly reminder during the review process.
+
+It seems my previous comments were not fully addressed. Maybe my
+feedback got lost between the quotes, maybe you just forgot to apply it.
+Please go back to the previous discussion and either implement all
+requested changes or keep discussing them.
+
+Thank you.
+
+Best regards,
+Krzysztof
+
