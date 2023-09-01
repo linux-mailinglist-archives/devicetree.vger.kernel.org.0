@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 042B878FC5F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 13:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3C7878FC92
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 13:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231160AbjIALkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 07:40:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
+        id S1345895AbjIALpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 07:45:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbjIALkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 07:40:09 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E4591
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 04:40:04 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-5007616b756so3326294e87.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 04:40:04 -0700 (PDT)
+        with ESMTP id S1349276AbjIALo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 07:44:59 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 673891725
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 04:44:27 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52a06f5f556so2517978a12.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 04:44:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693568403; x=1694173203; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1693568666; x=1694173466; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kp69p9Zx8jZm35in4Sfoz8ZwxS7m1KLnjf2cXSylp44=;
-        b=cS1YmQKybIJiMsnLfxdgRAAiN1HqnPCkvpHC1OMg8YrsIbPUBue1klwh3wewHzVfzn
-         b+80x4uHDEroMkhlnkfAz2sZEv+MGSNIr7j5/ilpXVdH9O3qHOn54Nok+JW6T9ETy3oT
-         HhyP7NIi5JMfOVRpeY3SddAGx25QccSeXJAjAEiLAEE6dMYX+ImXwTsTZYR/fMIKYiOg
-         Naf9DZP4vl2UCzcVTWsSZa2MyMgYSGe2RntBWNj9HnbA+hHqRI7KHBo5IyBRDf68jG9c
-         Uajt433vWySAInXarAcrNqOP8XTMMZN7hDHbocyCS3D4Cpm/1AWUWq+XdRPetIlylWY5
-         QXgA==
+        bh=ccQYapkyLHudPKqBjBN4Jee+XKRx/affoccRGde5aC4=;
+        b=Azd2jTRcGpqJto14hS1IXNlImHpL5gpfD85s6DufCP44oU4XvWnP/Nkglz78gE6Jl2
+         Us/d94rbPUAbyU6wIqYtzpDalP92uOohRipWQtaWrRIlPZd2Hoy5expYkBOIHJy+SRpG
+         c7zH/tn0ZE/86okkGDoBja6mfHhIQmRc/HElxouzgZTzvpuJKDYOEMYiBEUqk/h1YijE
+         2JHHh5ILx/zuBg/D5mZS51Mk+Ry69vlIvZ3+pb6hsK8/zsejn24UUCW2yNRTfKaKob3z
+         dZPkXLpzxJnwPbumJ7BHYkAGDUcmj0qpY91crXCT1O+LveWgN8jzTsTiJL9X092FerPD
+         IFrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693568403; x=1694173203;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693568666; x=1694173466;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kp69p9Zx8jZm35in4Sfoz8ZwxS7m1KLnjf2cXSylp44=;
-        b=J26vapXBTn6haclUUP52ncBdqZjq3df+oy5dPt+Wafhz27BNnAm8ouuD+9HJQbr3R4
-         BEXxkFOmzGW8KpyIucvxHoOfYbNj1JBqNJlcsUHCRtStTXSY1eDMTuFSmOdBfzusjLpj
-         6tGpFoWjueq9GgJ4CFPwWb5u5M6PuI+QnZQGppPwT1PIFZsqZxnBsvFTGljMLUIQHv7Y
-         OtwUejkSO0XDUaSkgLiLxSG2MrYh/1dUzy5YcpNSgQCfp6F42wvy6uqj+xUVuTTGxJgq
-         re2Ns2bJX8PmLqfNncesHozWKfx6qgzNSksT+Aiw+IwQPtr+H0DqSz7Mvdwg3ffc9mZ9
-         ftDQ==
-X-Gm-Message-State: AOJu0YxOZipyVTi+v0NHZDk0ghJbT4pBZ3aKZJKWS4vR34a5L3n4dwzi
-        ec9DiuflwJhXWZoETsoxz67Nrg==
-X-Google-Smtp-Source: AGHT+IGZbpHK6jfi7srWUarjgvFSbRnzBUrg+9jzA8L4rbc+OlK095lmkX03nbPqC8p+0N3Jyvqy6w==
-X-Received: by 2002:ac2:5b8f:0:b0:4ff:8c9e:eb0d with SMTP id o15-20020ac25b8f000000b004ff8c9eeb0dmr1369836lfn.0.1693568403181;
-        Fri, 01 Sep 2023 04:40:03 -0700 (PDT)
+        bh=ccQYapkyLHudPKqBjBN4Jee+XKRx/affoccRGde5aC4=;
+        b=XtPCgRIj8BgBEzXYD4AhtTURnQb/npCGi9TeK4foiWLxYU5hKJ7aRfjnZlCBAqFLTP
+         YdQ0Fti8dtNtIIOYRRr/o1qg5fdYWVEpNUVod5mua7dotYLXyoQyqCOTjoZneegFlROb
+         hqbLvQTbcHYxeINZ93+rNByPxVyPHwCPFJh/cdGJIEkDL5pcE1OdBBe2jqPvpXgmDBJn
+         baWM8uI+wRybIa5VdYs/Wu1BizlGlSAyk0igs6a/f88Ox0ftKGz3DX5xzlGwqPNlMZuT
+         VJg7uU4FvxAdm8kyyUpaZTsVY252fbB7Bt2hYpRtdR9ewZW5kwSmM+iIai1TLiGpF6a6
+         rxAw==
+X-Gm-Message-State: AOJu0YxJukS+dnXbOHDjJMdrxOTbv7dk3u9rp02RzIvfR736OUmoHUp+
+        teaoA607YW1QPUxhjrVO7XGGaA==
+X-Google-Smtp-Source: AGHT+IF3f42PZsx9Wukf/yRVc3BWJ32P+eejGXCQuTJM1PrdyFFe4dk1dU4UWk7fw7dwwyBWpvA+RQ==
+X-Received: by 2002:aa7:d513:0:b0:52c:164:efe9 with SMTP id y19-20020aa7d513000000b0052c0164efe9mr1648382edq.29.1693568665864;
+        Fri, 01 Sep 2023 04:44:25 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id u20-20020a056402065400b00529fb5fd3b9sm1960356edx.80.2023.09.01.04.40.01
+        by smtp.gmail.com with ESMTPSA id a9-20020aa7d749000000b005257da6be23sm1985731eds.75.2023.09.01.04.44.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Sep 2023 04:40:02 -0700 (PDT)
-Message-ID: <ac74775f-ea4f-7eba-e989-136524e96c81@linaro.org>
-Date:   Fri, 1 Sep 2023 13:40:01 +0200
+        Fri, 01 Sep 2023 04:44:25 -0700 (PDT)
+Message-ID: <db785937-1a71-7596-aab4-1c698a632211@linaro.org>
+Date:   Fri, 1 Sep 2023 13:44:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.14.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: stm32: document MYD-YA15XC-T
- development board
-To:     Alexander Shiyan <eagle.alexander923@gmail.com>,
-        inux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2 4/5] dt-bindings: soc: loongson,ls2k-pmc: Allow
+ syscon-reboot/syscon-poweroff as child
+Content-Language: en-US
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20230901103856.31091-1-eagle.alexander923@gmail.com>
-Content-Language: en-US
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+References: <cover.1693474728.git.zhoubinbin@loongson.cn>
+ <38e811816c37a2d52374fa04864654ff1e9b4dc8.1693474728.git.zhoubinbin@loongson.cn>
+ <cfa55813-946e-7aad-b7a4-54450a1ea5d5@linaro.org>
+ <CAMpQs4Jrvd=KAXUBYYdixvvhBx1hAXxECUhGVsuEED1Jp9SPDA@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230901103856.31091-1-eagle.alexander923@gmail.com>
+In-Reply-To: <CAMpQs4Jrvd=KAXUBYYdixvvhBx1hAXxECUhGVsuEED1Jp9SPDA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -81,43 +87,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/09/2023 12:38, Alexander Shiyan wrote:
-> Add new entry for MYD-YA15XC-T development board.
+On 01/09/2023 11:27, Binbin Zhou wrote:
+> Hi Krzysztof:
 > 
-> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 4466b455bffa..1bde704bcd65 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -140,6 +140,13 @@ properties:
->            - const: engicam,microgea-stm32mp1
->            - const: st,stm32mp157
->  
-> +      - description: MyirTech STM32MP15x SoM based Boards
-> +        items:
-> +          - const: myir,myd-ya15xc-t   # MYIR MYD-YA15XC-T STM32MP151C
-> +          - const: myir,myc-ya15xc-t   # MYIR MYC-YA15XC-T STM32MP15X SoM
+> On Fri, Sep 1, 2023 at 5:06 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 31/08/2023 13:43, Binbin Zhou wrote:
+>>>  required:
+>>>    - compatible
+>>>    - reg
+>>> @@ -54,4 +66,18 @@ examples:
+>>>          interrupt-parent = <&liointc1>;
+>>>          interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+>>>          loongson,suspend-address = <0x0 0x1c000500>;
+>>> +
+>>> +        syscon-reboot {
+>>> +            compatible = "syscon-reboot";
+>>> +            offset = <0x30>;
+>>> +            mask = <0x1>;
+>>> +        };
+>>> +
+>>> +        syscon-poweroff {
+>>> +            compatible = "syscon-poweroff";
+>>> +            regmap = <&pmc>;
+>>
+>> ???
+> 
+> I did notice that commit [1] changed "regmap" to "unrequired" for
+> "syscon-reboot", but "syscon-poweroff" did not do the same.
+> So, at least under the current "syscon-poweroff" rule, "regmap" is "required".
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml?h=v6.5#n41
+> 
+> I had my doubts before, but seeing that some dts do have
+> "syscon-poweroff" as a separate node, I assumed there was a
+> difference.
+> 
+> commit[1]: 2140d68d69d4 dt-bindings: power: reset: Unrequired regmap
+> property in syscon-reboot node
+> 
 
-I don't think you can have one compatible for all of them. The 153 and
-157 variants differ by number of CANs, which are probably enabled in
-your board DTS?
+You are right. I wonder why Serge did not change others.
 
-Also, I cannot find ordering of 153 and 157 variants:
-https://www.myirtech.com/list.asp?id=658
-so I wonder if they have actually same part numbers.
+Looks good, thanks for clarification.
 
-
-> +          - enum:
-> +              - st,stm32mp151
-
-This is highly unusual syntax - I think no other binding in Linux kernel
-uses it. It is correct and I understand why you did it, just might
-confuse others as we usually NAK it. I think less confusing would be to
-have here const (with the price of duplicating this per variant).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
