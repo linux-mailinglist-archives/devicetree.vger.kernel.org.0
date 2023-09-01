@@ -2,173 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D675278F9CA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:18:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1A8A78FA15
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:41:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239539AbjIAISY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 04:18:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
+        id S238961AbjIAIlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 04:41:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236268AbjIAISY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:18:24 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A053B10E4
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 01:18:20 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-986d8332f50so202814066b.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 01:18:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693556299; x=1694161099; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rTKmHqxdbbgU1JE7lxhnJDHkPsC++RCUQ0vzQOeOdeM=;
-        b=bgznRccpBQwxz9X9mMtZPtpk7Bl6Qm7gH0OLkmY0JsAXuhU8gYFJ0hdXbYUpyODYqH
-         0eg/v1cedVhrH2OLD7e3QG81Vqa3OWvmp8puRFCUpaIWiJouamd7cYzlZYmELP1AgckG
-         lEoIKTQ2eKoqFbkpbp/WcVOkoZRXESjLHyHi2XXma7r9oMA62H0FMPY2Hu9VeT2e2Nbc
-         6q4X3mqSq+WxdI2HHL22zFsKomjoc6V908q2veIopff6u9+kj2Foc/KF4yck0Hsz4qwx
-         P01nh5h6f5wS+SfKlew5fV8w973dIJuRi73gmuK2Oqme9A+rzdbGfPzRm8G+Xi5fO3PE
-         17ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693556299; x=1694161099;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rTKmHqxdbbgU1JE7lxhnJDHkPsC++RCUQ0vzQOeOdeM=;
-        b=eWsnoAP35NQRK+RluZa/F39tjyswvmDepK3zg0kdQTTIzx0y14GlFeYQyl1H9Vdqc3
-         PtKbSohWUJlaQjJ/j7JB3HEl7OTzac69fTbqmvetk97rj4X/LkXZWkniYuh2cGxmi4Ad
-         ES/t8cHgQ2Fuyemwf7sNAMgNjs3Fg40//jjkUbJGtXKoZP36O67yt5K3/upEfm4N1inQ
-         xE0w78i+qEAdcHGUiFJhsLQHRj8PZ150L32URBtUksz9C7J322jw/oO8w6LNlj1DW2OM
-         gs/j5s69WTRNcbiOo2kBPKKXeP9QTmcstvGpiVW9ZzKgvhAymmIUJGq2PZfaJMlIEmyt
-         UeMg==
-X-Gm-Message-State: AOJu0YxU6fn4XLl1uyfqFTLXDsfrpkyFNj0o2IQxOnF7hbgTYTM1MZ4b
-        HwYQbjOGrLDUCCB3EGo2Tis5qg==
-X-Google-Smtp-Source: AGHT+IGqacyPL0i0XUZoFYuwR5IbzcWzdf6+ZY5GzbHzlOO0OAM1K6lJBQyJ1+shNoedmW5/V913tw==
-X-Received: by 2002:a17:906:dd:b0:99e:1358:ffdf with SMTP id 29-20020a17090600dd00b0099e1358ffdfmr1154688eji.72.1693556299149;
-        Fri, 01 Sep 2023 01:18:19 -0700 (PDT)
-Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id b6-20020a170906d10600b009a57d30df89sm1676657ejz.132.2023.09.01.01.18.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Sep 2023 01:18:18 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        stable@vger.kernel.org
-Subject: [RFT PATCH 2/2] arm64: dts: qcom: msm8996-xiaomi: fix missing clock populate
-Date:   Fri,  1 Sep 2023 10:18:12 +0200
-Message-Id: <20230901081812.19121-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230901081812.19121-1-krzysztof.kozlowski@linaro.org>
-References: <20230901081812.19121-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S233494AbjIAIlK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:41:10 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2043.outbound.protection.outlook.com [40.107.93.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 432BC10E5;
+        Fri,  1 Sep 2023 01:41:07 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jNK75PVDkPWRnUgM/qH9l94Jvmtf6zka3K+qlhX8rekVbZvd50LhbUl+1PXolxW/6heFUKTN64S+vClZYD9i3dz/XD+uJtN2ZV4GTA68scbI43o3BiQZdgSJ7K0WjM439vUamVU3f3G655y7UHJwo4lWq1YNIKng/PtHsleBQ3D4BgvZBscpCcmAZt9XBizqM74m59V+iZ8LRZhRntgJN0BH3p4+7R7tNDgVPFk9Bd6irlpAjvZCvf6dJxIXPq5tsuRaB2awcHP7NMXbh7wMKukUhE7PyUKCyWfkOqITi3SJyowIrpl+XBMBqfA9LiIWbT15eawXbNReCF83KBu3Pw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eZZbTYX8RMw96wG7sOtk4iAfZ8jgJt9JMwFOWywAR7k=;
+ b=gKf/HXt4N7sORyhXJ9MsxJubNTS20koDfo7WRDyh55gDl7ER/BCRlj7u1u03mTSkdX5swn++w9X+Jk7mfxCR03oadG3QBKvCTvcw250vLmBoSjyrkaGNLGKEEY4RjPdDKEFsewqQ7lbrbrNiOq9Ntr2/MVFtPiYVcaGlzpiep26Ej75Bedg6FVY+kqbqokg91IumfqkfXa8Se9+/2Zn/lwYbh083WYat4rOx9QHLdLvc27/YPIFYcfbqs4QepbGgpowJC38EAiupqx5OuUHG8X21GKjxFGejnpwoVi2ONbS9/xKGsO6T1Ye/WSWBgFVaWHb0Jgs6A4NM4LGTGqrxxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=grandegger.com smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eZZbTYX8RMw96wG7sOtk4iAfZ8jgJt9JMwFOWywAR7k=;
+ b=es/LLj+mcLQO3yFPVQ0oxkdaIn4IFRGfaxvrVBjkaAWyErU5uGEfqGRpbFz5+5BaVPjZXqmuDwQU8T8tiEmNQFsJjo27kojqyRRATafqZaTk/JEScFQ50ybIMEzBRLmFu1d9D1PBY67o4FP/fAfhLfE4Z4IBhryIhTJl4IIPal4=
+Received: from BL1PR13CA0247.namprd13.prod.outlook.com (2603:10b6:208:2ba::12)
+ by CH2PR12MB4101.namprd12.prod.outlook.com (2603:10b6:610:a8::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.23; Fri, 1 Sep
+ 2023 08:41:04 +0000
+Received: from MN1PEPF0000ECD7.namprd02.prod.outlook.com
+ (2603:10b6:208:2ba:cafe::a) by BL1PR13CA0247.outlook.office365.com
+ (2603:10b6:208:2ba::12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.15 via Frontend
+ Transport; Fri, 1 Sep 2023 08:41:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ MN1PEPF0000ECD7.mail.protection.outlook.com (10.167.242.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6745.20 via Frontend Transport; Fri, 1 Sep 2023 08:41:04 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 1 Sep
+ 2023 03:41:03 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 1 Sep
+ 2023 01:41:02 -0700
+Received: from xhdsgoud40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.27 via Frontend
+ Transport; Fri, 1 Sep 2023 03:40:57 -0500
+From:   Srinivas Goud <srinivas.goud@amd.com>
+To:     <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <p.zabel@pengutronix.de>
+CC:     <git@amd.com>, <michal.simek@amd.com>, <linux-can@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <appana.durga.rao@xilinx.com>,
+        <naga.sureshkumar.relli@xilinx.com>,
+        "Srinivas Goud" <srinivas.goud@amd.com>
+Subject: [PATCH v4 0/3] can: xilinx_can: Add ECC feature support
+Date:   Fri, 1 Sep 2023 14:10:42 +0530
+Message-ID: <1693557645-2728466-1-git-send-email-srinivas.goud@amd.com>
+X-Mailer: git-send-email 2.1.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD7:EE_|CH2PR12MB4101:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0a818a07-a5d1-46e7-987b-08dbaac72db8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: UZ/H04M2VFMGLehHXis8ncB3Pt/7YRpb+D9g0g3rwpJhT89Mm8HC9dEJTlXrYUY5r7/GuW/PwWhGf5a4GRjAvxtksfJwSN4sBrQJTCgGaGbq3pSoSdiZ+Tjb8Y8cBBkfwxwOP0+dXm+HMEM5XfuM3pxeHVw+/LAqL1RI7qpSJ4viePgHySDvZyOZ41ndBcSc0oTVknBjzzrCG5Z4iYOyQ+KchhzGE5wXMGPllG3nrL5VOeiHhDh3LNRilIZurdlG742Axuaq9FZS6Un6MvOjnPitPCR+DRnup1hW6aag3+Ef89ve+70NdXz9FNXclylhDriGWqu0RhzWvsTD2DYgS4mifXV7qoqOdD/xaVY8B5N10M1PU8RtwNDpmxwKpc7h1jYKN37Z/1XHzZ+i6t8ChdvF/qos7Q8WXFZRr3//vx84oLpx+f+ooJttfryUXriEkU3JoRlwvURB68x/x/N7aqxWLF1deayIMC3v74En0KVnxZeQEyUhTrJtZyBYTo2gVlGPiLkmE5ZNDS1TBq8lzrKpYcJSqC89G77lc/g8+udAJiak8AVDUxlNboqYvlsspVhd/fGzFMUyCL+ck8DsYOiTVhl6FUE78Q5g78r1GkXTXxqOsRnJSxEbZz2By1Gh10RqDUalmC7t0EQVzg6NHpThBUJGBC9H1u2cjjyVWSV18BkC2ydQG6q6m4TdBKedS6WCN80LgOpc+mv1W1ShGsrEzfkGyKJ9E73iTu7Hk5FjCEKaeeJ0/K8FFIv35y9EDPS+JpLZ7jfpCZNrmMqxLt+AwyVlFBxJ2sjWOv0xUlg=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(4636009)(39860400002)(396003)(346002)(136003)(376002)(82310400011)(451199024)(1800799009)(186009)(40470700004)(36840700001)(46966006)(6666004)(478600001)(83380400001)(2616005)(336012)(426003)(26005)(2906002)(7416002)(44832011)(54906003)(316002)(41300700001)(70586007)(70206006)(110136005)(5660300002)(8936002)(8676002)(4326008)(40460700003)(36756003)(40480700001)(47076005)(36860700001)(86362001)(81166007)(921005)(356005)(82740400003)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2023 08:41:04.4874
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0a818a07-a5d1-46e7-987b-08dbaac72db8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD7.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4101
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 338958e30c68 ("arm64: dts: qcom: msm8996-xiaomi: drop simple-bus
-from clocks") removed "simple-bus" compatible from "clocks" node, but
-one of the clocks - divclk1 - is a gpio-gate-clock, which does not have
-CLK_OF_DECLARE.  This means it will not be instantiated if placed in
-some subnode.  Move the clocks to the root node, so regular devices will
-be populated.
+Add ECC feature support to Tx and Rx FIFOs for Xilinx CAN Controller.
+Part of this feature configuration and counter registers added in
+Xilinx AXI CAN Controller for 1bit/2bit ECC errors count and reset.
+Also driver reports 1bit/2bit ECC errors for FIFOs based on
+ECC error interrupts.
 
-Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Closes: https://lore.kernel.org/all/CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com/
-Cc: <stable@vger.kernel.org>
-Fixes: 338958e30c68 ("arm64: dts: qcom: msm8996-xiaomi: drop simple-bus from clocks")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Add xlnx,has-ecc optional property for Xilinx AXI CAN controller to
+support ECC if the ECC block is enabled in the HW.
+
+Add ethtool stats interface for getting all the ECC errors information.
+
+There is no public documentation for it available.
+
 ---
- .../boot/dts/qcom/msm8996-xiaomi-common.dtsi  | 32 +++++++++----------
- .../boot/dts/qcom/msm8996-xiaomi-gemini.dts   | 16 ++++------
- 2 files changed, 22 insertions(+), 26 deletions(-)
+BRANCH: linux-can-next/master
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-index bcd2397eb373..06f8ff624181 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-@@ -11,26 +11,24 @@
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- 
- / {
--	clocks {
--		divclk1_cdc: divclk1 {
--			compatible = "gpio-gate-clock";
--			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
--			#clock-cells = <0>;
--			enable-gpios = <&pm8994_gpios 15 GPIO_ACTIVE_HIGH>;
-+	divclk1_cdc: divclk1 {
-+		compatible = "gpio-gate-clock";
-+		clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
-+		#clock-cells = <0>;
-+		enable-gpios = <&pm8994_gpios 15 GPIO_ACTIVE_HIGH>;
- 
--			pinctrl-names = "default";
--			pinctrl-0 = <&divclk1_default>;
--		};
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&divclk1_default>;
-+	};
- 
--		divclk4: divclk4 {
--			compatible = "fixed-clock";
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--			clock-output-names = "divclk4";
-+	divclk4: divclk4 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "divclk4";
- 
--			pinctrl-names = "default";
--			pinctrl-0 = <&divclk4_pin_a>;
--		};
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&divclk4_pin_a>;
- 	};
- 
- 	gpio-keys {
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-index d1066edaea47..f8e9d90afab0 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dts
-@@ -20,16 +20,14 @@ / {
- 	qcom,pmic-id = <0x20009 0x2000a 0x00 0x00>;
- 	qcom,board-id = <31 0>;
- 
--	clocks {
--		divclk2_haptics: divclk2 {
--			compatible = "fixed-clock";
--			#clock-cells = <0>;
--			clock-frequency = <32768>;
--			clock-output-names = "divclk2";
-+	divclk2_haptics: divclk2 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <32768>;
-+		clock-output-names = "divclk2";
- 
--			pinctrl-names = "default";
--			pinctrl-0 = <&divclk2_pin_a>;
--		};
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&divclk2_pin_a>;
- 	};
- };
- 
+Changes in v4:
+Fix DT binding check warning
+Update xlnx,has-ecc property description
+
+Changes in v3:
+Update mailing list
+Update commit description
+
+Changes in v2:
+Address review comments
+Add ethtool stats interface
+Update commit description
+
+
+Srinivas Goud (3):
+  dt-bindings: can: xilinx_can: Add ECC property 'xlnx,has-ecc'
+  can: xilinx_can: Add ECC support
+  can: xilinx_can: Add ethtool stats interface for ECC errors
+
+ .../devicetree/bindings/net/can/xilinx,can.yaml    |   5 +
+ drivers/net/can/xilinx_can.c                       | 154 +++++++++++++++++++--
+ 2 files changed, 144 insertions(+), 15 deletions(-)
+
 -- 
-2.34.1
+2.1.1
 
