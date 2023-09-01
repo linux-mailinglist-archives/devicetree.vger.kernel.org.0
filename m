@@ -2,96 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E61E978F9C2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E0F678F9C6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:18:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232449AbjIAIRL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 1 Sep 2023 04:17:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
+        id S234473AbjIAISX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 04:18:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjIAIRL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:17:11 -0400
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90AF8F;
-        Fri,  1 Sep 2023 01:17:07 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-5922b96c5fcso18437277b3.0;
-        Fri, 01 Sep 2023 01:17:07 -0700 (PDT)
+        with ESMTP id S233578AbjIAISW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:18:22 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE1010E9
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 01:18:19 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e28cac164so6072052a12.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 01:18:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693556298; x=1694161098; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hPnBKmoj2QhKcVODKMBJIDW9pFuru0q8Pgaqmd29Dcs=;
+        b=rw+AMRkAJFgA/VorALwUfMcCqUmj63UDHZI8qhKF1EBe+Frc2uQEXOF/mEdTZBz6m/
+         lqsCCQQTffg0ygmAeXeJAQzo+70fsIkG4qFUBeCJtEm3qy7QoX13isHUPDIMeczLRV93
+         e65z+FecMQT7ugN/ZLZpq4MaOjhXzRDT9cuSJmRwJL10TNurvskYGwc/zD3pwz8vMaZc
+         eu1Q3wV78DYeI/lGjCpUqnIJnQw4mLzjWUvDY6oBBmQCrvV5tT0nevdd0unJnTPjqeXu
+         0QckxDcyFJdrSrIV4V4d7R7kjuWN7tVPM95NkryU0/s1uYvDE7qkp+jj0fkLcE3EFx0L
+         LO0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693556227; x=1694161027;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wdHaDXHtYr3ML3gRgEjVJjdfXKNvKOVFfI7tWyAzqws=;
-        b=E5XUbGLMSXdSGcsgwBZPqM+HdS30CQdfLvrUiPHXXoP/zkzgX7KfbTW8mGM7dK7tIg
-         2GPVvscP7AOaxI3xCotR88zHX+B2lNqfGe3G/M1ooT/kNZoKDrizD2bkz4xTZ819jkWe
-         C8jqxemNtO48sfAl0AoEOZumcCDIL3VinUUcxUy2GlTTn9z8YlYP54a/Dgivj5b1zuQk
-         ogqYClMHJOVLWjAF1e7uDycA0GkQYwpNKW0xlQlnrIX/+oyO2RlJRjSeh4Y42JId/hIn
-         c/IFJH4pN5z0BGxZZBrtwcdskdGldWhEik6YQIOFbwWrRG9p2RecWrVGXxeyq4Z2CEZo
-         dfdg==
-X-Gm-Message-State: AOJu0YwS0RQmaeRwq4dBQwsByiLz69BlSW0HQidPFbjcsJQqUSUuYHpr
-        0DTkT7CInqVoiKJOU9r2qYNQF2MhPy+p5Q==
-X-Google-Smtp-Source: AGHT+IEl/b2UIUFki2a7Vr/mxj/pBn1EHS2VpDZAEncnXIYzNaF/o0qJTNJzKN2ddja+1gzIdiCHXw==
-X-Received: by 2002:a81:62d7:0:b0:586:c0bc:77a2 with SMTP id w206-20020a8162d7000000b00586c0bc77a2mr1906564ywb.0.1693556226814;
-        Fri, 01 Sep 2023 01:17:06 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id g191-20020a8152c8000000b0058fb9863fe7sm922597ywb.103.2023.09.01.01.17.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Sep 2023 01:17:06 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-d78328bc2abso1326737276.2;
-        Fri, 01 Sep 2023 01:17:06 -0700 (PDT)
-X-Received: by 2002:a25:bc8c:0:b0:d7a:d923:4493 with SMTP id
- e12-20020a25bc8c000000b00d7ad9234493mr2039914ybk.64.1693556225863; Fri, 01
- Sep 2023 01:17:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230901075932.105822-1-biju.das.jz@bp.renesas.com> <20230901075932.105822-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20230901075932.105822-2-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 1 Sep 2023 10:16:54 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWh7TLORPJQBtX+8wisVeFEGwVX8+p_xxNmAsA7e0zU8Q@mail.gmail.com>
-Message-ID: <CAMuHMdWh7TLORPJQBtX+8wisVeFEGwVX8+p_xxNmAsA7e0zU8Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] arm64: dts: renesas: rzg2ul-smarc-som: Enable
- serial NOR flash
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1693556298; x=1694161098;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hPnBKmoj2QhKcVODKMBJIDW9pFuru0q8Pgaqmd29Dcs=;
+        b=bk7Hvq+qJ5w5MzIwjSo6pQgP1X3zCjkGNfDN/JDH2EbViewaZ6ueZJ2YlT5xYAm0G2
+         /P/oqZqto2tuUdDC8QSPL/3oZR+/oyV/VXUMp9ZrNlPzI5L6K469XB89iXvjTkUv+g4g
+         j2rhf48BYuq5TvA1Al1w0t/hHOcCKd2pWEwXP3VDG51uFjd/O3Y5ZuMJH0tchPXpZtk+
+         oW8cRG+9SY1YovIq1fQqwGstrcwvv2Ha3MOaroHZyO4QRKvAUvI7zbiEfJloQ6QLswwb
+         1am5FLz9DPTIqG76HOrfMDIZYgCwBmaMmHWdS94UQr+SD31eZMeIjTpRws+tfCzO0lh3
+         PSrw==
+X-Gm-Message-State: AOJu0YwYFIVP8lxBiYHnu7os2WN7bzGH6mDpWTN4WpRf3z+JyLkgDCc8
+        PzgvqLhSjFyAoVIFkIz0rEvFuQ==
+X-Google-Smtp-Source: AGHT+IGHY/GfuZiBDwDoGN9ntKm58k7HJCv8+cMHykyj8S7fvdlAdcHLP0T8RRNwTlmAdDeJoiikOQ==
+X-Received: by 2002:a17:907:6e20:b0:9a1:e5bf:c907 with SMTP id sd32-20020a1709076e2000b009a1e5bfc907mr5623717ejc.2.1693556297840;
+        Fri, 01 Sep 2023 01:18:17 -0700 (PDT)
+Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id b6-20020a170906d10600b009a57d30df89sm1676657ejz.132.2023.09.01.01.18.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Sep 2023 01:18:17 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        stable@vger.kernel.org
+Subject: [RFT PATCH 1/2] arm64: dts: qcom: apq8096-db820c: fix missing clock populate
+Date:   Fri,  1 Sep 2023 10:18:11 +0200
+Message-Id: <20230901081812.19121-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 1, 2023 at 9:59 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable Renesas at25ql128a flash connected to QSPI0. Also disable
-> the node from rzfive-smarc-som as it is untested.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v2->v3:
->  * Dropped subnodes, as all pins use the same power-source value.
+Commit 704e26678c8d ("arm64: dts: qcom: apq8096-db820c: drop simple-bus
+from clocks") removed "simple-bus" compatible from "clocks" node, but
+one of the clocks - divclk1 - is a gpio-gate-clock, which does not have
+CLK_OF_DECLARE.  This means it will not be instantiated if placed in
+some subnode.  Move the clocks to the root node, so regular devices will
+be populated.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reported-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Closes: https://lore.kernel.org/all/CAA8EJprF==p87oN+RiwAiNeURF1JcHGfL2Ez5zxqYPRRbN-hhg@mail.gmail.com/
+Cc: <stable@vger.kernel.org>
+Fixes: 704e26678c8d ("arm64: dts: qcom: apq8096-db820c: drop simple-bus from clocks")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 32 ++++++++++-----------
+ 1 file changed, 15 insertions(+), 17 deletions(-)
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+index 385b178314db..3067a4091a7a 100644
+--- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
++++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
+@@ -62,25 +62,23 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
+-	clocks {
+-		divclk4: divclk4 {
+-			compatible = "fixed-clock";
+-			#clock-cells = <0>;
+-			clock-frequency = <32768>;
+-			clock-output-names = "divclk4";
++	div1_mclk: divclk1 {
++		compatible = "gpio-gate-clock";
++		pinctrl-0 = <&audio_mclk>;
++		pinctrl-names = "default";
++		clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
++		#clock-cells = <0>;
++		enable-gpios = <&pm8994_gpios 15 0>;
++	};
+ 
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&divclk4_pin_a>;
+-		};
++	divclk4: divclk4 {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <32768>;
++		clock-output-names = "divclk4";
+ 
+-		div1_mclk: divclk1 {
+-			compatible = "gpio-gate-clock";
+-			pinctrl-0 = <&audio_mclk>;
+-			pinctrl-names = "default";
+-			clocks = <&rpmcc RPM_SMD_DIV_CLK1>;
+-			#clock-cells = <0>;
+-			enable-gpios = <&pm8994_gpios 15 0>;
+-		};
++		pinctrl-names = "default";
++		pinctrl-0 = <&divclk4_pin_a>;
+ 	};
+ 
+ 	gpio-keys {
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
