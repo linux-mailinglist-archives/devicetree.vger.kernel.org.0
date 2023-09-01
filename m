@@ -2,179 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37913790380
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 00:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5063D7903D0
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 00:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350868AbjIAWDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 18:03:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54608 "EHLO
+        id S1351107AbjIAWzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 18:55:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350871AbjIAVwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 17:52:20 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82AEF2117
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 14:50:12 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id 3f1490d57ef6-d7225259f52so2054654276.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 14:50:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693605011; x=1694209811; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=lA/gYj4G9dBVeXUfikZ7kSFesNkiwy9bpcMTmp53A5g=;
-        b=Df9m0Zb0XoB4vJn0lpjDR/qkENwptWimLSJ4AY5Rmbt7PAHxmeIivyRbLYSDT1g4tV
-         QW50GwFZ/wRqop9ReuCUdo/ewoGQGPJ3s65AZpjNAh9+a+RYoJ/ZcRFiTuf2dzveENbZ
-         Wy26uhiAfzMAp9+Q0TVK1x4GKdCmnkWkI4bOmcUDTrtKQLyBUFejl1ibCy1LQQ40l3On
-         075O8kIws/ebJXupO5S3BCVrbJt4yXiUunidFB54Otm7Iq65OwOccZNIZvO5ISRYH6mf
-         x+890tG/k060/SJDtybsAQTehuTCdYII7Ulp7MVp9tCuKkSAhkHbBGSWF1gsfdbXddp6
-         EKEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693605011; x=1694209811;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lA/gYj4G9dBVeXUfikZ7kSFesNkiwy9bpcMTmp53A5g=;
-        b=ImUSqsIaF/1cd3DO4RVB2HjOFGh8pTIZR5sXdNTsXQw5B8x0UsjQvKfithu6hliV7/
-         JjslCcFHb1j9XwHyn9Alo3nOBOxtFjF6PjIblMJSri8HiP9BJEC0QN8JlTdkOpk5uit+
-         IM9bhaWEhoF1eiNQIZSkFPnGFk0Fohz9CSGdRb5o/wDnNIeBrZLFqYyTB0OoUEp3G59A
-         0mONDw/cQOkJE+pnnb0vq6s2XSTnAmW2XvwRVHOAKssE5SdT2HneYfqer2klP2lbaqti
-         pOWyeMKQCK139d0xCHDwLY4bWCipfbJdXAnd/4uWJzsmZS9wZr0NQifU/BEAlJdDjZ2a
-         wKHQ==
-X-Gm-Message-State: AOJu0YxLl6UeIlTgaRBg6F1AUW8+ngxemh2f0jrEr37glE1o1S2PbCxA
-        dEPYpMnG2yRYNYj/vTuJc4G8SqwkcVJRHutk0Cinww==
-X-Google-Smtp-Source: AGHT+IFAIw3fZY5uif8FGyQUm6GVIBe/G3nd55d0OfG3nGHm9snPjGrA8RAKabs/WWggVm9iSiyma2/CBVv19LYToSA=
-X-Received: by 2002:a25:348b:0:b0:d78:1311:aa1b with SMTP id
- b133-20020a25348b000000b00d781311aa1bmr4040638yba.48.1693605011562; Fri, 01
- Sep 2023 14:50:11 -0700 (PDT)
+        with ESMTP id S1351114AbjIAWzF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 18:55:05 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A457172A;
+        Fri,  1 Sep 2023 14:06:01 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8C6488470A;
+        Fri,  1 Sep 2023 23:05:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1693602359;
+        bh=T5ppM+hgDLNOtzXqZpuHfRJkf0h6CLW4GEyZrbv/dZI=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=BzvfltVXLI3Z/vlBO7Rwzt7Zbe0QRH/NpmA48YQhr1xT/XQ5W+jZIg9t27H4OegZM
+         hpv1/qsIs0Hk/Gtnxuq9VIgEP0WmE/aqSUh6D3i175CYMqi+IcA/OnX1yVLh4Z++Lb
+         ktdIfEp2l+PAJyZMRshn5KzjOXzAxl+a03/qSwnIDdEgPxvCupvMoM8RHg3FI/I/tT
+         4cu6uuTSXrAluCF1n8vSv0On1EETiFwEdmSdb2/6XhgqaBk4uT6gwEfblOjXeA8/YV
+         GzF99kqH8JYhLjCfS/zoDrwEBESaXv3F535rxLBj2WQ1whpaPPuwG+LKIFWeQtLWRB
+         v6R1rLf9jkLBg==
+Message-ID: <4ec813ef-aa0d-655e-3f78-7c669d72551c@denx.de>
+Date:   Fri, 1 Sep 2023 17:47:57 +0200
 MIME-Version: 1.0
-References: <20230901092645.20522-1-quic_nsekar@quicinc.com> <20230901092645.20522-3-quic_nsekar@quicinc.com>
-In-Reply-To: <20230901092645.20522-3-quic_nsekar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 2 Sep 2023 00:50:00 +0300
-Message-ID: <CAA8EJppej++gbrWrRU9EFBntjzck4-9xbgS_sCPBfcxEofUo3Q@mail.gmail.com>
-Subject: Re: [PATCH V3 2/4] phy: qcom-m31: Add compatible, phy init sequence
- for IPQ5018
-To:     Nitheesh Sekar <quic_nsekar@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, quic_srichara@quicinc.com,
-        quic_varada@quicinc.com, quic_wcheng@quicinc.com,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH V3 1/3] arm64: dts: imx8mp: Add easrc node
+To:     Adam Ford <aford173@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20230831044431.250338-1-aford173@gmail.com>
+ <99204fbf-3246-6124-2e35-bdc353d7e7b6@denx.de>
+ <CAHCN7xJGGSaO949=u2W6jybdE5R1dE8ihdP9wSrCgk5+9=9H6g@mail.gmail.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAHCN7xJGGSaO949=u2W6jybdE5R1dE8ihdP9wSrCgk5+9=9H6g@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.0 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 1 Sept 2023 at 12:27, Nitheesh Sekar <quic_nsekar@quicinc.com> wrote:
->
-> Add phy init sequence and compatible string for IPQ5018
-> chipset.
->
-> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
-> ---
-> V3:
->         Dropped 0 delay inits.
->         Added static const type for m31_ipq5018_regs.
-> V2:
->         Updated the commit message.
-> ---
->  drivers/phy/qualcomm/phy-qcom-m31.c | 49 +++++++++++++++++++++++++++++
->  1 file changed, 49 insertions(+)
->
-> diff --git a/drivers/phy/qualcomm/phy-qcom-m31.c b/drivers/phy/qualcomm/phy-qcom-m31.c
-> index ed08072ca032..ceee38695d7d 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-m31.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-m31.c
-> @@ -82,6 +82,48 @@ struct m31_priv_data {
->         unsigned int                    nregs;
->  };
->
-> +static const struct m31_phy_regs m31_ipq5018_regs[] = {
-> +       {
+On 9/1/23 13:02, Adam Ford wrote:
+> On Thu, Aug 31, 2023 at 4:52 PM Marek Vasut <marex@denx.de> wrote:
+>>
+>> On 8/31/23 06:44, Adam Ford wrote:
+>>> The i.MX8MP has an asynchronous sample rate converter which seems
+>>> to be the same as what is available on the i.MX8M Nano.
+>>>
+>>> Signed-off-by: Adam Ford <aford173@gmail.com>
+>>> ---
+>>> V3:  No Change.  The dt-binding update was already accepted into the sound tree, so that patch
+>>>        was dropped from the series
+>>>
+>>> V2:  No Change.
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> index 83d907294fbc..3167706d81e1 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> @@ -1459,6 +1459,26 @@ sai7: sai@30c80000 {
+>>>                                        interrupts = <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
+>>>                                        status = "disabled";
+>>>                                };
+>>> +
+>>> +                             easrc: easrc@30c90000 {
+>>> +                                     compatible = "fsl,imx8mp-easrc", "fsl,imx8mn-easrc";
+>>> +                                     reg = <0x30c90000 0x10000>;
+>>> +                                     interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
+>>> +                                     clocks = <&audio_blk_ctrl IMX8MP_CLK_AUDIOMIX_ASRC_IPG>;
+>>> +                                     clock-names = "mem";
+>>> +                                     dmas = <&sdma2 16 23 0> , <&sdma2 17 23 0>,
+>>> +                                            <&sdma2 18 23 0> , <&sdma2 19 23 0>,
+>>> +                                            <&sdma2 20 23 0> , <&sdma2 21 23 0>,
+>>> +                                            <&sdma2 22 23 0> , <&sdma2 23 23 0>;
+>>> +                                     dma-names = "ctx0_rx", "ctx0_tx",
+>>> +                                                 "ctx1_rx", "ctx1_tx",
+>>> +                                                 "ctx2_rx", "ctx2_tx",
+>>> +                                                 "ctx3_rx", "ctx3_tx";
+>>> +                                     firmware-name = "imx/easrc/easrc-imx8mn.bin";
+>>
+>> Should the firmware name really be imx8mn or should it be imx8mp ?
+> 
+> The firmware blobs provided by NXP only has easrc-imx8mn.bin and would
+> be concerned that having a different name might confuse people if they
+> try to go look for it and they only find easrc-imx8mn.bin.  To me,
+> this is no different than the SDMA driver using firmware called
+> sdma-imx7d.bin
 
-C99 initializers, please?
+On the other hand, there is "fsl,imx8mp-easrc" compatible string -- to 
+differentiate between IPs in case some difference between the IPs that 
+cannot be predicted so far is found later on.
 
-> +               USB_PHY_CFG0,
-> +               UTMI_PHY_OVERRIDE_EN
-> +       },
-> +       {
-> +               USB_PHY_UTMI_CTRL5,
-> +               POR_EN,
-> +               15
-> +       },
-> +       {
-> +               USB_PHY_FSEL_SEL,
-> +               FREQ_SEL
-> +       },
-> +       {
-> +               USB_PHY_HS_PHY_CTRL_COMMON0,
-> +               COMMONONN | FSEL | RETENABLEN
-> +       },
-> +       {
-> +               USB_PHY_REFCLK_CTRL,
-> +               CLKCORE
-> +       },
-> +       {
-> +               USB_PHY_UTMI_CTRL5,
-> +               POR_EN
-> +       },
-> +       {
-> +               USB_PHY_HS_PHY_CTRL2,
-> +               USB2_SUSPEND_N_SEL | USB2_SUSPEND_N | USB2_UTMI_CLK_EN
-> +       },
-> +       {
-> +               USB_PHY_UTMI_CTRL5
-> +       },
-> +       {
-> +               USB_PHY_HS_PHY_CTRL2,
-> +               USB2_SUSPEND_N | USB2_UTMI_CLK_EN
-> +       },
-> +       {
-> +               USB_PHY_CFG0
+>> I think the later is better, you can always add a symlink for the
+>> firmware name, and you can discern mx8mn/mp firmwares on the same rootfs
+>> in case that was ever needed in the future.
 
-What is the value written? While it didn't make sense to write 0
-delays, it is sensible to write 0 register values here.
-
-> +       },
-> +};
-> +
->  struct m31_phy_regs m31_ipq5332_regs[] = {
->         {
->                 USB_PHY_CFG0,
-> @@ -268,6 +310,12 @@ static int m31usb_phy_probe(struct platform_device *pdev)
->         return PTR_ERR_OR_ZERO(phy_provider);
->  }
->
-> +static const struct m31_priv_data m31_ipq5018_data = {
-> +       .ulpi_mode = false,
-> +       .regs = m31_ipq5018_regs,
-> +       .nregs = ARRAY_SIZE(m31_ipq5018_regs),
-> +};
-> +
->  static const struct m31_priv_data m31_ipq5332_data = {
->         .ulpi_mode = false,
->         .regs = m31_ipq5332_regs,
-> @@ -275,6 +323,7 @@ static const struct m31_priv_data m31_ipq5332_data = {
->  };
->
->  static const struct of_device_id m31usb_phy_id_table[] = {
-> +       { .compatible = "qcom,ipq5018-usb-hsphy", .data = &m31_ipq5018_data },
->         { .compatible = "qcom,ipq5332-usb-hsphy", .data = &m31_ipq5332_data },
->         { },
->  };
-> --
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
->
-
-
--- 
-With best wishes
-Dmitry
+Which is what this part of my comment ^ is all about.
