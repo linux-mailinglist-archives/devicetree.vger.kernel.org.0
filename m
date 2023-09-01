@@ -2,155 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D8078F7F7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 07:21:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1E3078F850
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 08:03:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237840AbjIAFVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 01:21:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34310 "EHLO
+        id S1348314AbjIAGDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 02:03:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229962AbjIAFVa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 01:21:30 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1077E7E;
-        Thu, 31 Aug 2023 22:21:25 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 3815L8sO110355;
-        Fri, 1 Sep 2023 00:21:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1693545668;
-        bh=J0hVox480wdeTLrybfvYeJEAE1VGg4oiahSoZh+Hb9U=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=hrRuoQZst2kYRNwCjN5sb5qw4DMiOSIrTraRLJz2CxQ09VrKV8uXChLNHuU6nESFR
-         7WNWIHBJP9SSgWwWv0tWZqgZDCgVJ1k3nQxFZbmM8Zvr6YLEPDWrC+vEIGTvB1pGRq
-         snrj9k7P3FBEMUkUT1cpp/ctGzEuOZqozt5ejpzE=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 3815L8vX020444
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 1 Sep 2023 00:21:08 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 1
- Sep 2023 00:21:08 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 1 Sep 2023 00:21:08 -0500
-Received: from [172.24.227.217] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 3815L2Kl028289;
-        Fri, 1 Sep 2023 00:21:03 -0500
-Message-ID: <90669794-2fc1-bff1-104b-cf1daa2e9998@ti.com>
-Date:   Fri, 1 Sep 2023 10:51:02 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add documentation for
- Half duplex support.
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, MD Danish Anwar <danishanwar@ti.com>
-CC:     Andrew Lunn <andrew@lunn.ch>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Roger Quadros <rogerq@kernel.org>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Simon Horman <horms@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S1348326AbjIAGDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 02:03:06 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDAF10CC;
+        Thu, 31 Aug 2023 23:03:03 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38155hBm029804;
+        Fri, 1 Sep 2023 06:02:51 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=oN8zR8xZVsT+fn+C96m/X0XHTmuDPyu0oN86deQxb6Q=;
+ b=RSB3hNZrqUmnipPpeF99EYJqZ60Gic9WJazJVJ0em4ePRi6cRw5s+R9x5vASlYYFaMfA
+ 7KxGwVWcNF8VFtdfpdC69gfJwzRgmWwWqQA2ZQyVYI25993ab5NkJa7YweaL9h5VoQSa
+ dArpWwnAJDiVwvKq0uuMjekdqgwYc7mTrInoZe51qDLzhbR2sLxzcwFn0V444vVQMZfb
+ 0bp+seK2vL2Z60tnuoQPp/PYTIhihcgoCHre0y/KYt8b+b2Jx2Js0t1IM7bQZoeJ0aa+
+ 0GphBXone0vhJBUONuMlAj1oS5pqc5menXtKiqupUtLSfxvQTP5rNL+rKFqbyi+M4OOl yA== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3stks5u901-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 Sep 2023 06:02:51 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38162oAO014950
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 1 Sep 2023 06:02:50 GMT
+Received: from hu-namajain-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.36; Thu, 31 Aug 2023 23:02:43 -0700
+From:   Naman Jain <quic_namajain@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>
-References: <20230830113134.1226970-1-danishanwar@ti.com>
- <20230830113134.1226970-2-danishanwar@ti.com>
- <20230831181636.GA2484338-robh@kernel.org>
-From:   Md Danish Anwar <a0501179@ti.com>
-Organization: Texas Instruments
-In-Reply-To: <20230831181636.GA2484338-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Naman Jain <quic_namajain@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
+        <quic_kaushalk@quicinc.com>, <quic_rohiagar@quicinc.com>,
+        <kernel@quicinc.com>
+Subject: [PATCH] dt-bindings: firmware: Add documentation for qcom,platform-parts-info
+Date:   Fri, 1 Sep 2023 11:32:23 +0530
+Message-ID: <20230901060223.19575-1-quic_namajain@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VUhUXjWcmu9rUsBCdO3L7eqYPA8JswEZ
+X-Proofpoint-ORIG-GUID: VUhUXjWcmu9rUsBCdO3L7eqYPA8JswEZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-01_04,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ spamscore=0 impostorscore=0 clxscore=1011 malwarescore=0 bulkscore=0
+ mlxlogscore=999 suspectscore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309010056
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Add documentation to describe device tree bindings for QCOM's
+platform-parts-info node. Firmware populates these nodes to pass the
+information to kernel regarding the subset of hardware blocks
+and features like Camera, Modem, Display present in a product.
 
-On 31/08/23 11:46 pm, Rob Herring wrote:
-> On Wed, Aug 30, 2023 at 05:01:33PM +0530, MD Danish Anwar wrote:
->> In order to support half-duplex operation at 10M and 100M link speeds, the
->> PHY collision detection signal (COL) should be routed to ICSSG
->> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
->> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
->> property, "ti,half-duplex-capable" is introduced for this purpose. If
->> board has PHY COL pin conencted to PRGx_PRU1_GPIO10, this DT property can
->> be added to eth node of ICSSG, MII port to support half duplex operation at
->> that port.
-> 
-> I take it the GPIO here is not visble to the OS and that's why it's not 
-> described in DT?
->  
+This is to support that the same software image runs seamlessly on
+different platforms where one or more HW blocks are not supported or
+if some sub parts for a particular block are not supported.
 
-Yes the GPIO here is not visible in the OS and we need to indicate whether the
-PHY COL signal is routed to PRGx_PRU0/1_GPI10 pin or not by setting the
-property "ti,half-duplex-capable" as true.
+Purpose of these definitions is to allow clients to know about this,
+and thus, handle these cases gracefully.
+For eg: Camera drivers and user space daemons can use this to know
+if camera is not supported on the device, or some particular HW blocks
+inside a camera are not supported.
 
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
->>  1 file changed, 7 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> index 13371159515a..59da9aeaee7e 100644
->> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
->> @@ -107,6 +107,13 @@ properties:
->>                phandle to system controller node and register offset
->>                to ICSSG control register for RGMII transmit delay
->>  
->> +          ti,half-duplex-capable:
-> 
-> capable or...
-> 
->> +            type: boolean
->> +            description:
->> +              Enable half duplex operation on ICSSG MII port. This requires
-> 
-> enable the mode?
-> 
+Signed-off-by: Naman Jain <quic_namajain@quicinc.com>
+---
+ .../firmware/qcom,platform-parts-info.yaml    | 88 +++++++++++++++++++
+ 1 file changed, 88 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/qcom,platform-parts-info.yaml
 
-I think capable is good here. The property "ti,half-duplex-capable" indicates
-that the board is capable of half duplex operation. This doesn't necessarily
-means we have to enable the half duplex mode. The user can modify the duplex
-settings from ethtool and enable / disable is controlled by the user. This
-property basically let's the driver know that it can support half duplex
-operations and when user enables half duplex mode through ethtool, the driver
-can do the necessary configurations.
-
-When this property is false, half duplex is not supported. If user still wants
-to change the duplex mode, it will get an error saying half duplex is not
-supported.
-
-So the property "ti,half-duplex-capable" let's the driver know whether half
-duplex is supported or not. Enable / disable is controlled by user through ethtool.
-
-> Maybe too late if it's already been assumed not supported, but shouldn't 
-> supporting half duplex be the default? I guess half duplex isn't too 
-> common any more.
-> 
-
-Unfortunately ICSSG doesn't support half duplex by default. Routing the PHY COL
-signal is necessary.
-
-> Rob
-
+diff --git a/Documentation/devicetree/bindings/firmware/qcom,platform-parts-info.yaml b/Documentation/devicetree/bindings/firmware/qcom,platform-parts-info.yaml
+new file mode 100644
+index 000000000000..64e085d3ea88
+--- /dev/null
++++ b/Documentation/devicetree/bindings/firmware/qcom,platform-parts-info.yaml
+@@ -0,0 +1,88 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/firmware/qcom,platform-parts-info.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: QCOM Platform's Parts Information
++
++description:
++  Qualcomm platforms support a feature where a subset of hardware blocks
++  like Camera, GPU, Display, Modem, CPUs are available in a product,
++  based on features selected for a particular Stock keeping unit (SKU)
++  and the same software images are supposed to work seamlessly with these.
++  This is to support usecases where lets say a software image running on handset
++  device which supports display and camera, can work just fine on another
++  IoT product which doesn't need these. This also enables usecases, where certain
++  sub parts for a HW block are not supported.
++
++  Firmware (bootloader), reads the parts related information from lower
++  layers and passes this information to kernel via this device tree interface,
++  so that the respective clients are aware of it.
++  For example, Camera drivers and its user space daemons can use this interface
++  to know if camera is not supported on the device or if certain sub feature inside
++  camera is not supported.
++
++maintainers:
++  - Naman Jain <quic_namajain@quicinc.com>
++
++properties:
++  $nodename:
++    const: qcom,platform-parts-info
++
++  qcom,subset-parts-names:
++    description:
++      List of part name strings, sorted in same order as the subset-parts property.
++      Parts here can be modem, camera, display etc. which are either partially supported
++      or not supported at all.
++    $ref: /schemas/types.yaml#/definitions/string-array
++    minItems: 1
++    maxItems: 13
++    items:
++      enum: [gpu, video, camera, display, audio, wlan, compute, sensors, npu, spss, nav, nsp, eva]
++
++  qcom,subset-parts:
++    description:
++      A matrix, with each row corresponding to a specific part type (GPU, Camera etc) mentioned
++      in subset-parts-names property. The number of rows here are expected to be same as number of
++      subset-parts-names provided. A row can contain multiple bitmask values representing
++      multiple parts of the same type, if supported on a platform, like 2 display panels, or
++      3 cameras for example.
++      Each bitmask value, has its 0th bit set if that part is completely not supported.
++      Otherwise, rest of the bits will correspond to specific functionalities
++      of that part not supported.
++      If the bitmask is 0xffff, i.e. all bits set, then that value is invalid and not to be
++      considered.
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    minItems: 1
++    maxItems: 13
++    items:
++      maxItems: 3
++      items:
++        description:
++          Bitmask value corresponding to a part of a specific part type, or 0xffff if data is
++          invalid and not to be considered.
++
++  qcom,subset-cores:
++    description:
++      A bitmask value, encoded from LSB with a set bit corresponding to actual physical CPU
++      not supported on the SoC.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++required:
++  - qcom,subset-cores
++
++additionalProperties: false
++
++examples:
++  - |
++    firmware {
++        qcom,platform-parts-info {                    /* populated by firmware */
++            qcom,subset-parts-names = "gpu", "display", "camera";
++            qcom,subset-parts = <0x1 0xffff 0xffff>,  /* GPU 1 is completely not supported */
++                                <0x0 0x1 0xffff>,     /* Display 2 is fully not supported */
++                                <0x30 0xffff 0xffff>; /* Camera 1 is partially supported */
++            qcom,subset-cores = <0x90>;               /* CPU 4 and 7 are not supported */
++        };
++    };
++...
 -- 
-Thanks and Regards,
-Danish.
+2.17.1
+
