@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A66D79002E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 17:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92AC3790030
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 17:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237387AbjIAPxj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 11:53:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56752 "EHLO
+        id S237033AbjIAP53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 11:57:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234355AbjIAPxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 11:53:38 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AC4210E4;
-        Fri,  1 Sep 2023 08:53:35 -0700 (PDT)
+        with ESMTP id S234355AbjIAP52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 11:57:28 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76CE8E40;
+        Fri,  1 Sep 2023 08:57:25 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id D482FCE241C;
-        Fri,  1 Sep 2023 15:53:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 340B7C433C7;
-        Fri,  1 Sep 2023 15:53:29 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id CD9B4CE2432;
+        Fri,  1 Sep 2023 15:57:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B2F5C433C7;
+        Fri,  1 Sep 2023 15:57:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693583612;
-        bh=JWNcJNvheH+akiGf3PgkzFM5AjpEwjUxYvmw8i2FLMc=;
+        s=k20201202; t=1693583842;
+        bh=JGy3YR8DCAAeMCd/+utAzvUeCAo5PJiatwnbhTsPF2E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jJaPxDJwSdCAsS6m4FKe5rBGc6WVj0fdAMb0QJ/AUJmaVUP5LRv3cF8ldefuEun4j
-         6Dl6Dra+bI51laMGDUgK/zifULC+Ck5YujTXyPkwcaxsp3Z9VTEWeVA31Vw5vvwP64
-         xxCcUDwlfqo2u02+fVn64jp8XxvFYS1Dk3Uds2zTkfPM02zvK27SOsFAjX4cd68nMD
-         NQYMu5r1Q1pgVFsxFF2e5WC3fjMpl6eUjwO2wkYkbhI5+ngilgLpDhfdOWA7GULIgt
-         x5UGSFAJwnlojdKkcgW+ONYr1VejzO4LUA5YDVV68edNdF0P9r0w8T/ATXp0TxICjP
-         tuQcX0y//zx7Q==
-Date:   Fri, 1 Sep 2023 16:53:26 +0100
+        b=s41OL3q4laOd8Y1JNO6f8ieIcLG7uFyctVHlnQ+VJETg8y2HBYVb5C9ZRQQKLwrAN
+         CRAorJiRUDn1t9CR7UK7MAt8+3JZFw5CrEbZ5cqYFsuVV5WlM+SgUhfPqeIi+T1C7r
+         vZUCVlT6ZjFGPqrNCOJSH4BGTft2Km9NSuY04AGquhwIvmqZGJi8cz0YHd7eUoCbhr
+         nUKGyAJJfjnR7zQjgGtqWW6/+LkPHxj2PUtM3hc0MPzMEAqYgSNU55cWgky9yE3Oqf
+         iXfukMCRvC3BT5A8fWoezr8wjIK+z0IQb7NU1eY/qH/3koKSS1TtYPmQSxhMUS8L38
+         8v8468JQVYglg==
+Date:   Fri, 1 Sep 2023 16:57:17 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mani@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: PCI: Revise dwc and rcar-gen4-pcie
-Message-ID: <20230901-squeak-pacifism-00639bfab28a@spud>
-References: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: power: syscon-poweroff: get regmap from
+ parent node
+Message-ID: <20230901-uninvited-crewless-a2146c901e2d@spud>
+References: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="VryAOrk3H+CfsRBh"
+        protocol="application/pgp-signature"; boundary="ID0nFTcvt+Gm0iXJ"
 Content-Disposition: inline
-In-Reply-To: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <20230901120057.47018-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -59,55 +59,104 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---VryAOrk3H+CfsRBh
+--ID0nFTcvt+Gm0iXJ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 01, 2023 at 10:17:08PM +0900, Yoshihiro Shimoda wrote:
-> This patch series is based on pci.git / controller/rcar branch
-> to fix dt-bindings doc patches. Krzysztof mentioned that the paches
-> will be squashed everything later [1].
->=20
-> [1]
-> https://lore.kernel.org/linux-pci/20230831140426.GA255922@rocinante/
+Yo,
 
-On the basis of it being squashed:
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Otherwise, the commit messages don't offer explanation of what the
-problems are etc. "Fix minor issues of rcar-gen4-pci-ep.yaml." means
-nothing to me, for example. A link to the comments you were addressing
-would have been nice.
+Two minor nits that look like copy-paste duplication of the same
+problems in the syscon-reboot binding.
+
+On Fri, Sep 01, 2023 at 02:00:55PM +0200, Krzysztof Kozlowski wrote:
+> Just like syscon-reboot device, the syscon-poweroff is supposed to be a
+> child of syscon node, thus we can take the same approach as
+> syscon-poweroff: deprecate the 'regmap' field in favor of taking it from
+> the parent's node.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> ---
+>=20
+> See also syscon-regmap:
+> https://lore.kernel.org/all/20200526135102.21236-1-Sergey.Semin@baikalele=
+ctronics.ru/
+> ---
+>  .../bindings/power/reset/syscon-poweroff.yaml          | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/power/reset/syscon-powerof=
+f.yaml b/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
+> index 3412fe7e1e80..3c58f8251882 100644
+> --- a/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
+> +++ b/Documentation/devicetree/bindings/power/reset/syscon-poweroff.yaml
+> @@ -15,6 +15,9 @@ description: |+
+>    defined by the register map pointed by syscon reference plus the offset
+>    with the value and mask defined in the poweroff node.
+>    Default will be little endian mode, 32 bit access only.
+> +  The SYSCON registers map is normally retrieved from the parental dt-no=
+de. So
+
+s/registers/register/, no?
+
+> +  the SYSCON poweroff node should be represented as a sub-node of a "sys=
+con",
+> +  "simple-mfd" node.
+> =20
+>  properties:
+>    compatible:
+> @@ -30,7 +33,10 @@ properties:
+> =20
+>    regmap:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+> -    description: Phandle to the register map node.
+> +    deprecated: true
+> +    description:
+> +      Phandle to the register map node. This property is deprecated in f=
+avor of
+> +      the syscon-poweroff node been a child of a system controller node.
+
+s/been/being/
+
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
->=20
-> Yoshihiro Shimoda (3):
->   dt-bindings: PCI: dwc: Update maxItems of reg and reg-names take 2
->   dt-bindings: PCI: rcar-gen4-pcie: Fix minor issues
->   dt-bindings: PCI: rcar-gen4-pcie-ep: Fix minor issues
->=20
->  .../bindings/pci/rcar-gen4-pci-ep.yaml        | 39 ++++++++++++-------
->  .../bindings/pci/rcar-gen4-pci-host.yaml      | 36 +++++++++--------
->  .../bindings/pci/snps,dw-pcie-common.yaml     |  4 +-
->  .../bindings/pci/snps,dw-pcie-ep.yaml         |  4 +-
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml |  4 +-
->  5 files changed, 50 insertions(+), 37 deletions(-)
->=20
+> =20
+>    value:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -38,7 +44,6 @@ properties:
+> =20
+>  required:
+>    - compatible
+> -  - regmap
+>    - offset
+> =20
+>  additionalProperties: false
+> @@ -56,7 +61,6 @@ examples:
+>    - |
+>      poweroff {
+>          compatible =3D "syscon-poweroff";
+> -        regmap =3D <&regmapnode>;
+>          offset =3D <0x0>;
+>          mask =3D <0x7a>;
+>      };
 > --=20
-> 2.25.1
+> 2.34.1
 >=20
 
---VryAOrk3H+CfsRBh
+--ID0nFTcvt+Gm0iXJ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPII9gAKCRB4tDGHoIJi
-0iNhAP92naUqrS2pxl328tQuKWri+BT9Ad3GNBIuPvfp+k/bpQD/eCEogjTZ1Yxh
-nLz5NastQ6MJgEuBUspxqGk1REW/KgM=
-=OJRm
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPIJ3QAKCRB4tDGHoIJi
+0sWlAP0TOemTcQpeCcheNgkSboHB/V4lT/KIZKHapFPD7j/yAgD8CYX36UqnVUKA
+07qa2Zi7FGAmsR3eWjEsxyCQfViMqg0=
+=XNmB
 -----END PGP SIGNATURE-----
 
---VryAOrk3H+CfsRBh--
+--ID0nFTcvt+Gm0iXJ--
