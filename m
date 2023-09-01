@@ -2,89 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A685D7902D2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 22:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86668790308
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 22:59:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350724AbjIAU3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 16:29:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58918 "EHLO
+        id S236738AbjIAU7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 16:59:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242521AbjIAU3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 16:29:22 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FD4E7E;
-        Fri,  1 Sep 2023 13:29:19 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 381ItjDG005899;
-        Fri, 1 Sep 2023 20:29:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2FYXvMmpReuPlYSmTDcvNg1rIzAmGZtkeMDCuhzAtGw=;
- b=RpGMbsimYgMc3eNR7ei7vHPVzYUwHYGYWfqvFd5Hm0dfsshzelWMpDIZ1rnuLnmPTBJW
- QrE9r0G9055pwpCfvVOPDMYtRHxC1oQjdFF+Gqzr4/3Fj+LWLC7Ub9J9K4ZZKtKtFbum
- sHYN6I0cLw7UKq0OoSob97cywjNlU+qDOZ1qNg1FPayvbNvP7zzH3hwGYkQ+kG9Bx9jv
- pkoE04KD1f8QglapQUr69SaBGB43NBDRiCuHqw/3ZSvJVuKYp2UadZBnGPAgApX2FtyJ
- dkQahInoVqPNSAkfaD2bOsDEwD7LSCXJ9CVg7yTTQ0XSZVrP7POVtWlVknMqnRdcBF39 TQ== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suc22hupp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 Sep 2023 20:29:05 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 381KT4X3011614
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 1 Sep 2023 20:29:04 GMT
-Received: from [10.110.95.146] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 1 Sep
- 2023 13:29:04 -0700
-Message-ID: <deeefaf8-2ac9-cee0-eed4-687e36ac6f10@quicinc.com>
-Date:   Fri, 1 Sep 2023 13:29:03 -0700
+        with ESMTP id S229866AbjIAU73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 16:59:29 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77CB3CC;
+        Fri,  1 Sep 2023 13:59:25 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id E8E4A8657B;
+        Fri,  1 Sep 2023 22:59:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1693601962;
+        bh=9odOAZuqxqO3GhfS6yAgN5dZud26TQQRpQz8qJzUt3Q=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=I+ivvHeYkjFe1Kpu8pWMoIthhgR77ENC6LgA+fvAI2PslskRiSX6QdzjBygV0uXBG
+         nkKapZ7ZfetcqKv46aQ7mKPhn7Oo3BwlI0v7b/RGn0L7ez6qcFnsq0O2qsLh4XmL/Z
+         9QBwM3CnnPj86KskMIa64mgyMSNnYpbCWd97NVeYzEXejm37bBzo0SqRCALPHpdIM+
+         Q2pR2shH6Xnl73f//upYtJqfRSIiCIW/wjHJynIuCe3tj3ZuBhDDVwEhgQO0XfxA3s
+         CsIDA2CT5CZHouZU/WapAkdjuJ1pDC7uklVaulX3ZeHvCpBYXvXU4i3QhG1pBMzKvb
+         YtQgA2q/rvDrw==
+Message-ID: <2cbf879d-8052-29e4-5f2a-40a6562dc4b4@denx.de>
+Date:   Fri, 1 Sep 2023 22:59:21 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 02/11] nvmem: qfprom: Mark core clk as optional
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Subject: Re: [PATCH v2 2/3] watchdog: stm32_iwdg: Add pretimeout support
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Doug Anderson <dianders@chromium.org>
-CC:     <cros-qcom-dts-watchers@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Antonio Borneo <antonio.borneo@foss.st.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-2-5a954519bbad@fairphone.com>
- <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
- <CV5YJVXIL8OT.1ZWW3KVCHPTA5@otso>
-From:   Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <CV5YJVXIL8OT.1ZWW3KVCHPTA5@otso>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 9Ar9RfHXW3BZTXygIUaxyBxzbbtd8VRn
-X-Proofpoint-ORIG-GUID: 9Ar9RfHXW3BZTXygIUaxyBxzbbtd8VRn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-01_17,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- clxscore=1011 mlxscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- mlxlogscore=999 phishscore=0 lowpriorityscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309010192
+        Marc Zyngier <maz@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-watchdog@vger.kernel.org
+References: <20230517194349.105745-1-marex@denx.de>
+ <20230517194349.105745-2-marex@denx.de>
+ <ba596dd5-e9b9-4972-a768-e42e69897fea@roeck-us.net>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <ba596dd5-e9b9-4972-a768-e42e69897fea@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -95,52 +70,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/30/2023 7:43 AM, Luca Weiss wrote:
-> On Wed Aug 30, 2023 at 4:30 PM CEST, Doug Anderson wrote:
->> Hi,
->>
->> On Wed, Aug 30, 2023 at 2:58 AM Luca Weiss <luca.weiss@fairphone.com> wrote:
->>>
->>> On some platforms like sc7280 on non-ChromeOS devices the core clock
->>> cannot be touched by Linux so we cannot provide it. Mark it as optional
->>> as accessing qfprom works without it.
->>>
->>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>> ---
->>>  drivers/nvmem/qfprom.c | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> Are you actually testing burning fuses from the OS, or are you just
->> using the nvmem in "read-only" mode? From comments in the bindings, if
->> you're trying to burn the fuses then the clock is required. If things
->> are in read-only mode then the clock isn't required.
-> 
-> Hi Doug,
-> 
-> I definitely don't plan on burning any fuses on this phone. Not even
-> sure that's allowed by the TZ / boot stack.
-> 
->>
->> When I compare to the driver, it seems like the driver assumes that if
->> more than one memory region is provided then you must be supporting
->> burning fuses. The bindings agree that having 4 memory regions
->> specified means that the nvmem supports burning and 1 memory region
->> specified means read-only. The extra 3 memory regions in the nvmem are
->> all about fuse burning, I believe.
->>
->> So maybe the right fix here is to just change your dts to specify one
->> memory region?
-> 
-> I got feedback from Konrad that this here would be the preferred
-> approach compared to having a different dts for ChromeOS vs non-ChromeOS
-> devices. I don't feel strongly to either, for me it's also okay to
-> remove the extra memory regions and only have the main one used on
-> regular qcom devices.
-> 
-> Let me know what you think.
+On 8/6/23 16:19, Guenter Roeck wrote:
+> On Wed, May 17, 2023 at 09:43:48PM +0200, Marek Vasut wrote:
+>> The STM32MP15xx IWDG adds registers which permit this IP to generate
+>> pretimeout interrupt. This interrupt can also be used to wake the CPU
+>> from suspend. Implement support for generating this interrupt and let
+>> userspace configure the pretimeout. In case the pretimeout is not
+>> configured by user, set pretimeout to half of the WDT timeout cycle.
 
-I would prefer to re-use the sc7280 DT as well. Thank you for your patches. We plan to use your patches for platform on the same part. 
+[...]
 
--- 
----Trilok Soni
+>>   static int stm32_iwdg_probe(struct platform_device *pdev)
+>>   {
+>>   	struct device *dev = &pdev->dev;
+>> @@ -253,6 +340,11 @@ static int stm32_iwdg_probe(struct platform_device *pdev)
+>>   	wdd->max_hw_heartbeat_ms = ((RLR_MAX + 1) * wdt->data->max_prescaler *
+>>   				    1000) / wdt->rate;
+>>   
+>> +	/* Initialize IRQ, this might override wdd->info, hence it is here. */
+>> +	ret = stm32_iwdg_irq_init(pdev, wdt);
+>> +	if (ret)
+>> +		return ret;
+>> +
+> 
+> What if the interrupt fires for whatever reason and the watchdog
+> isn't registered yet and the driver data is not set and the
+> watchdog core doesn't know about the watchdog ?
 
+That cannot happen since the pretimeout IRQ was not configured yet.
+That can only happen once the core is aware of the WDT and calls 
+set_pretimeout .
