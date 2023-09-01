@@ -2,80 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 446CD78FD66
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:39:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A4278FD6F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 14:43:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230173AbjIAMjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 08:39:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38612 "EHLO
+        id S230509AbjIAMnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 08:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231718AbjIAMjt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:39:49 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A14E610CF;
-        Fri,  1 Sep 2023 05:39:45 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3818aSZT004423;
-        Fri, 1 Sep 2023 12:39:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=k1kev0CaEjHSf9FHyvneqGylMQtr6Je4H0t2FJvzYfU=;
- b=GNdch/3uHQM6uiXAw8+vaaRBBLYHf3sULrBBBAzLSeD2M8Rbbn674g7dPsvA5LOa4Ipx
- PCoParouCC9aFyPRqok85xEOJHw4xdrH90nKQL3kZi7Xl+PWb2YUPGlyzSQsuuMV15CN
- nR/NMt6RFpAQ0z1cWj3NMh+QOysr+Y1UENDY0X3QD+MqIRig3UZ5kRrjceXBoYP+Gbl3
- E/3yYX97ydRhXcIQQ7fO4rI6XBL38yqR9MFylrBC2JmtL2VsRAyb08GJgKaW8UZMr4G7
- DAMS2oqlU1OUWvLyJVDxFaeFpenp6FdJiRZcugMwmGHYoduqKRPL42YNq0SlurXpQbqo cg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3str1nkexu-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 Sep 2023 12:39:37 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 381CdalX029982
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 1 Sep 2023 12:39:36 GMT
-Received: from [10.201.203.60] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 1 Sep
- 2023 05:39:32 -0700
-Message-ID: <7a2612ae-7ab0-5aaf-c903-d2d58f89f5ea@quicinc.com>
-Date:   Fri, 1 Sep 2023 18:09:29 +0530
+        with ESMTP id S232970AbjIAMnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 08:43:22 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A780CE7F
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 05:43:17 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5008d16cc36so3436206e87.2
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 05:43:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693572196; x=1694176996; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+a+iz9wBM/RnkGSUCsFhA72uNvdIJyLIqk+nxrMTVAc=;
+        b=SdHozke5YfHPd7ZBSb8pSMnJaNZ1U8mpYr/xF1sP6+MamJysJpzeEJFtUok6C2TFAx
+         Muvx1lRTmgLRwKPWPUPCsUTZeYmMXGVg2TbEs91BIayxseD149mbshg1TyHnQok2gK9e
+         v/7y/AjnjBzfL00kTk6KX+WJ9naipRuRmqzFtFSGwR3hH4Gau4GebPFBI3sKvKPlrP3U
+         Uh8Zre6jWQfgiqHTETXCStb9VeCmUTLf2UNpWenEDUqFO2np8CWJ5ABmdk2qdpkLEUVF
+         YRc7rBystEjqGTnT65VCtCtz8U7ZDFQpsmi1f0aAx4Qera8XL4ikbzrZ6HrAs0JGohE/
+         nfAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693572196; x=1694176996;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+a+iz9wBM/RnkGSUCsFhA72uNvdIJyLIqk+nxrMTVAc=;
+        b=hwllNcAl8QOuRFmElmbQCqVwpY52QfWQDKe9RPpeF3kMtIG90l0xyu2CqapKOGu+CN
+         UjEgens2eU9Jpqxi7h8WehzPoocncyIH4RbzjSkkMSvAMrGd+pgZ8RjC1A1bjqaKfQ87
+         u841xmH4fX3QvllhgNcSiiHfZ6wkgMyhFhVry8NdsGOmUX+C2I49mOLAgxH0P8J4ASZi
+         X0rk/YxQhNgDYS4Hxsvti+Ch1+FBk1lG7hV1muL4v3SvYvL0u0skRTY4ghEhUjnblImc
+         I+w1x3A9LHFIJsRh9drhkh0G//zyN4Qc4N//CSIc0WsgosZAHRWs2alK6PPCscF9KhZs
+         hQlg==
+X-Gm-Message-State: AOJu0YzrfNTdAkQZNXF/MKcGxqU954sLwwpeKH7VAtVKeCqfcjqyA5zs
+        xT6ZjWi7gZ/jFPG44eJYv7s=
+X-Google-Smtp-Source: AGHT+IGGiaOuqRWPq7jbGOlYBFKYVS97u9RbEcWV2zVY8mHCwEl+SgnwYibEvBfmfgZQOaq5OVOY/Q==
+X-Received: by 2002:a05:6512:1053:b0:500:a41d:354c with SMTP id c19-20020a056512105300b00500a41d354cmr2070291lfb.28.1693572195590;
+        Fri, 01 Sep 2023 05:43:15 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id l22-20020a19c216000000b004fdbb36a677sm640599lfc.288.2023.09.01.05.43.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Sep 2023 05:43:15 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Set MAC addresss for Asus RT-AC87U
+Date:   Fri,  1 Sep 2023 14:43:11 +0200
+Message-Id: <20230901124311.31156-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v2] arm64: dts: ipq5018: Correct uart1_pins pinconf
-Content-Language: en-US
-To:     Bryan O'Donoghue <pure.logic@nexus-software.ie>,
-        Ziyang Huang <hzyitc@outlook.com>, <agross@kernel.org>
-CC:     <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <quic_gokulsri@quicinc.com>,
-        <quic_varada@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <TYZPR01MB5556F902BF64AF857C3ABD44C9E5A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <49fbae87-ce09-23af-6bcd-459b5646e680@nexus-software.ie>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <49fbae87-ce09-23af-6bcd-459b5646e680@nexus-software.ie>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u1IIqYurAniy2UKzdph7GcVPAVzqhdxF
-X-Proofpoint-ORIG-GUID: u1IIqYurAniy2UKzdph7GcVPAVzqhdxF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-01_10,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- mlxlogscore=982 spamscore=0 malwarescore=0 priorityscore=1501
- suspectscore=0 adultscore=0 mlxscore=0 bulkscore=0 lowpriorityscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309010118
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,42 +74,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ziyang,
+From: Rafał Miłecki <rafal@milecki.pl>
 
-<...>
+Specify NVRAM access and use its "et1macaddr" NVMEM cell.
 
->> diff --git a/arch/arm64/boot/dts/qcom/ipq5018.dtsi 
->> b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> index 9f13d2dcdfd5..91b98020e1c6 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq5018.dtsi
->> @@ -104,10 +104,10 @@ tlmm: pinctrl@1000000 {
->>               #interrupt-cells = <2>;
->>               uart1_pins: uart1-state {
->> -                pins = "gpio31", "gpio32", "gpio33", "gpio34";
->> -                function = "blsp1_uart1";
->> +                pins = "gpio28", "gpio29";
->> +                function = "blsp0_uart1";
->>                   drive-strength = <8>;
->> -                bias-pull-down;
->> +                bias-disabled;
->>               };
->>           };
-> 
-> So this change will have the effect of changing the console on 
-> ipq5018-rdp432 from gpio31-gpio34 to gpio28, gpio29.
-> 
-> Have you verified that change on hardware or the schematic ?
-> 
-> https://forum.openwrt.org/t/add-support-for-xiaomi-redmi-ax5400-white-version/140879/22?page=2 
-> 
-> 
-> This has the wrong UART pinout ?
-> 
-> Is this change something that should be expressed for a particular board ?
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-  Infact again checked it, the correct pins are "gpio20", "gpio21".
-  It works so far because u-boot has configured it.
+diff --git a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts
+index 4f44cb4df704..59400217f8c3 100644
+--- a/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts
++++ b/arch/arm/boot/dts/broadcom/bcm4709-asus-rt-ac87u.dts
+@@ -25,6 +25,12 @@ memory@0 {
+ 		      <0x88000000 0x08000000>;
+ 	};
+ 
++	nvram@1c080000 {
++		et1macaddr: et1macaddr {
++			#nvmem-cell-cells = <1>;
++		};
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -62,6 +68,11 @@ button-restart {
+ 	};
+ };
+ 
++&gmac0 {
++	nvmem-cells = <&et1macaddr 0>;
++	nvmem-cell-names = "mac-address";
++};
++
+ &usb3_phy {
+ 	status = "okay";
+ };
+-- 
+2.35.3
 
-Regards,
-  Sricharan
