@@ -2,183 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9998778F982
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE06478F991
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 10:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232855AbjIAIHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 04:07:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
+        id S240741AbjIAIKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 04:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231522AbjIAIHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:07:09 -0400
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on20606.outbound.protection.outlook.com [IPv6:2a01:111:f400:7e1b::606])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1105EE56;
-        Fri,  1 Sep 2023 01:07:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZEaKLusM1IoUjmVHEEkGg0nd5llCoEjJVq80R8h5SQgDXb8AQ+K5PHRDjU0oyudPjo/lXZAGEn7A/ooJaQAWbr/hknL9ipv54I1oJ1hIvTazH/raFF1AzJiGJ8ey7f1Zex6KC1l1xv1iFoeuZWD77Vq7F0v9U39LFjcW1C0T4aRIg5LZ0Cq7GPkNKfCgbsh6h4paWT5XX3C2wnjXMBvIBfjx1WQbW4w3T1gkQlNScb6bzg73cAlnRxlw86FJnR+1HNSpiBQkSyUngwIMIDZt7I+O00Zc4dwdwy7gF9TsdScnFBL36WUIG3I0dvNDQcmxPW7WV4w5RFqIIpyS+fLIvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Oe+vtAUFYpMrbi0UqZ4qLF/+JgTaY0QlXWQiDo1UQ+I=;
- b=iB4YJivp6umXRj0rmwaWjd7IMHNSE+ZGTIVLIX1xDfkhu7gdhPWNxAqKI9RgX4DvJqic9RjYu8FJiwtK3igRsclvseJPVsqhc0w4nBIFG4e2tf/+tnqgJlDU/eYALWki6sAMPS0555e9i2OQTRCS79Y+3sWILnL1adHJOXqjAB8tKjAeLfzir6hnwKblpUA6wUIAEtAweM0zoUVxI5sW/fsWoPliXrD0xmIuCTCcqwM7uKHwL2ZKbNw0ZfY93KrHu5XPH0YDfbGXji5P94oDnQ0ZrXlOxDw0qbRyY13uDXcLxqNbX0968AKruVgC1xPuro1Tv4XmAdnyR3ivsIHHAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
- header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
- arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oe+vtAUFYpMrbi0UqZ4qLF/+JgTaY0QlXWQiDo1UQ+I=;
- b=FlFMZbj/+/qJSRs5y+l/j6ai8SU7+sZfGw16T+otXDADUqsuetsbqrC0iAfCs44WTEJN/sObi1euuyfeUg5hsZSFzf7FpiHy8LoRcwL0wvS3Bfi4LUMNUH+sdaWp59P7IPka5NiVK1jHTBmJYo4RZt2MvTo6V799SmK31+kchWXCjqJBOL390StUKv3DKQzKrB0DkIJN6/3WNMp70KJLYhxoFZGezVS4nAs5vZYwSCkPu7aIqAwF/b/VwN+hq6v9JkepZpmve79zC4oBN37kt6FDU/SCrO6vEH53udFPv3LaOpAyrV6y+Ad/eGUYdA886x8/jMIQcRT+mYhRxCQHGA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
- by DUZPR04MB9793.eurprd04.prod.outlook.com (2603:10a6:10:4b0::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.20; Fri, 1 Sep
- 2023 08:07:01 +0000
-Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::5c00:6152:6ce:72b6]) by DU2PR04MB8536.eurprd04.prod.outlook.com
- ([fe80::5c00:6152:6ce:72b6%6]) with mapi id 15.20.6745.026; Fri, 1 Sep 2023
- 08:07:01 +0000
-Message-ID: <051ceb69-2f6b-4944-4fbe-0ced66f0b669@theobroma-systems.com>
-Date:   Fri, 1 Sep 2023 10:06:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-From:   quentin.schulz@theobroma-systems.com
-To:     Jakob Unterwurzacher <jakobunt@gmail.com>,
+        with ESMTP id S1348588AbjIAIKL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 04:10:11 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC37510EB;
+        Fri,  1 Sep 2023 01:09:59 -0700 (PDT)
+X-UUID: edefda84489e11ee8051498923ad61e6-20230901
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=QTrMGX90F7eURewMJllkKG1MyLBqb1QGi6D79bVsJ7Q=;
+        b=AZBu4IXfR1O6OkvaibcqVHRo203YliepP+wtX2i7V3lNUdR3yRs86iPZ+gT244HzoN4t2KZGAT/riARcKeQmRPpU/etCPkO0a6m4RmT4TtRwb0zi2C45fcuiffXMvyw04u3ZV/hcbDi0T5AGtoisYr1651z8pFATLiTtuWeqylQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:d6379f1b-c3dd-4c20-9727-6485940559f6,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:0cf90020-33fd-4aaa-bb43-d3fd68d9d5ae,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: edefda84489e11ee8051498923ad61e6-20230901
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1051751760; Fri, 01 Sep 2023 16:09:52 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 1 Sep 2023 16:09:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 1 Sep 2023 16:09:51 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        jakob.unterwurzacher@theobroma-systems.com,
-        Ermin Sunj <ermin.sunj@theobroma-systems.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: rockchip: use codec as clock master on
- px30-ringneck-haikou
-References: <20230823131651.586934-1-jakob.unterwurzacher@theobroma-systems.com>
-In-Reply-To: <20230823131651.586934-1-jakob.unterwurzacher@theobroma-systems.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR0P281CA0220.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ac::15) To DU2PR04MB8536.eurprd04.prod.outlook.com
- (2603:10a6:10:2d7::10)
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v17 00/14] Add support for MT8195 SCP 2nd core
+Date:   Fri, 1 Sep 2023 16:09:21 +0800
+Message-ID: <20230901080935.14571-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|DUZPR04MB9793:EE_
-X-MS-Office365-Filtering-Correlation-Id: f047807a-8a7f-43f7-7b0e-08dbaac26bd3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: F/NK6fdriluauRq3QeiVK2SJy8BRz0Ob4e+IM7q4ARQGDKhxQBiNOgJZxGZ9b4TauHC+dB8sK+biy+fc+Psa/qxLBViDQqLUEV0loRqUA92Xj60qh4z/2SLovjfg78F1XcEt4T9vp3QKjW468PZ5UobkrSgdzfyFnywZ9A5S3mNDFO1Z2qMBDvZCV0yMewaxUobUoa+mWAM2S5NblG1BFnd/CSq2Hro6dQaund8/eipM1uCdYNbpKqrq33xcSzLKbF8/Jx6ghMrTWUveEIlWdrHHOY+pXmzOexq4+Hf5CqTe/c6cTAAi/8Ol3/HfP0La1DYxo78NwpMQtLVTjFg4ngDOGTKUjMlml7bftQN8NHe5lWSLDVxdfNbF+V9kPP/lGM5b09aHYkMqJeu02e8XYdfDliuEDIpZPSBKx1vb2fuML90Bx/F9EJUX+T4PU3MEz3EBZVQr996bTxg5fzGyPoDj2llSYc1BfxPqcMdcBcYG5ydxx3+06DOafv4BYjMBOemrOHxoO04inPzNKQzDWz7SWBl3LgIHmy1pm/iOl0280wbE2DoRawO57AySXchpqHIesrl7hRy0oV6NTEb8Li2mrxBeQcL2/mSzVgr1cN4YDSMS7T5hheAzs80RuTy/
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376002)(39850400004)(366004)(396003)(346002)(136003)(186009)(451199024)(1800799009)(31686004)(6486002)(6506007)(6512007)(9686003)(31696002)(36756003)(86362001)(38100700002)(921005)(2616005)(2906002)(53546011)(26005)(966005)(83380400001)(478600001)(41300700001)(8676002)(66946007)(66556008)(8936002)(110136005)(5660300002)(66476007)(316002)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YkxZR0M5Zzc1ZVU4ZkV6cHBqUDlhRFhNNTcxTU1VZmRqaGE5MU5TNWkveXhY?=
- =?utf-8?B?eDNZTHJaQytBTTI1SHBxRG9UUnJUc3Q1elQ5ZE5PaVMwak9NUytSbjdXMStY?=
- =?utf-8?B?N0lKNFpCN0xDcndoZHBhT2RUL0RLZlhFM0VIbFBySXBHazlFS3RsSm9sK25p?=
- =?utf-8?B?TzJla0RHemxCeVhwNzhNREdwNTZHa0lZMmtndDU2bEduTThWbVJ1dkJqdmxt?=
- =?utf-8?B?Y0NLQ0ZyY2lJeHlPa0I4Y2hnbkxqZXkxNzk3Q3pUYW8yM1d3eE5jNnptWW43?=
- =?utf-8?B?ZTJUbzFUWDl1ZWxPeGhlbkI1R01HS0VWTDA5OVNRWnk1akpwL1puUGMwOHZq?=
- =?utf-8?B?ajIrUTFWRUoyeDJtcXdSMWxtTXF1UkIybmlQY0hKZFJTRCtlMjB4REk0K3ZR?=
- =?utf-8?B?Q3V4dWtlZUFsdVpaRFdwbTJ5V3VzdGMxa3VPSE1NNmdBQjFWNE5PNWtMLzVV?=
- =?utf-8?B?TFJmelRPeVhHdU53U1kzVGZwUnFLOFFEVmxDQVRiN0c3Y05BVXBiaDBoa2lZ?=
- =?utf-8?B?Zy96VXFSckxFSnFIZEdFRG5uckNNWWcxUlZPa0l3eEI4dXFwSS9ic3ozeEJl?=
- =?utf-8?B?Tjh4cTBmay9YbTZpNWxPSk5WK2FrTXRiZ0M0SERWRkZZYWh4WmIrbDF1SmNn?=
- =?utf-8?B?L1Izd0I3UXF0aml1VkRDcC94eTRRaDN2MHRqQThnTTlJeFhyUHdkM3c4bmcr?=
- =?utf-8?B?VGc2WXlCQXhFYzRmWUx4d2pxcjlPb1Nibmp5cTBwcWVTZ01vZTNLK0pkQnFV?=
- =?utf-8?B?Rmg4MzFHK0JBc3g3Vkg0ei9YWWE1dTRSWEc4dGlKRHZKRWtmVzN4SGtsWVor?=
- =?utf-8?B?czBRb1BBNUE2cmI0cXNNYzhyR3BSVFhwY2Vuaks0RjVPR21sS2lBV29TUU0y?=
- =?utf-8?B?QkhkeldSV0FKMFlMUUdKalZDNmFaQ2x1V3pqM1BzaHBYd01oSHZlb1JJMmpS?=
- =?utf-8?B?T3BMN3pCNXUvYm9QVHFmbkhlYUZNRlloZVFCbkNCN3pnZ1lWNWlybFF1R1pN?=
- =?utf-8?B?cUxDN0pFWDE2Zm02RGx0VG54RzBPdXp2OWVpZ3N6andJYVl6WHI2Y3ZVMjND?=
- =?utf-8?B?OWNuRFJnODRjR1ByM3lZbkJLWU9RbzFVZHVaMStobVZubnVJU0pvMFZxanI3?=
- =?utf-8?B?TkdRTHhzeHc2R2VBcVZYQ2Z5TkJMdVh4TE5ueFJyMHhPRS9JR1pVVlkvdkQ0?=
- =?utf-8?B?cmxQNVc0a1pkNU14QlRmeHNCeFQrK1NQbHNpd04raTZuTW9uQUlORVJjUGQ5?=
- =?utf-8?B?b1h0RmV0TitiM3hQdVlzdFlGaVlWRCt1cVM4WVNrWUVmNm9adUZKU2VGSEVJ?=
- =?utf-8?B?eHFIQ1NJQ2dpWlhYbGZVaDdQUkRSNnFhbExUelp3SFkwQm5JNTY5VjN6ekFQ?=
- =?utf-8?B?QzY2Z0dvMkJaU0tVZ0ZQdXM3ZHBpRE9CLzVjVDQyWmtuT0lYdFhyaWQ0eExC?=
- =?utf-8?B?SHJpbFJCeXRLQWY0U0NVNlNIdzBUM1NVaGFTU2M0Vy8xZHB3N3FacE9wZFpm?=
- =?utf-8?B?VlhGOGlOYk1uQzR1RkFqWGozckNWK2hJd1pLWkZkT1BEaHJqOWlMdjRhejdl?=
- =?utf-8?B?SXROQU1rR1JoYWM2L2Y3a3czT2JxRjNrNitDbHVFUDIvNkkrUFIyTzR2Nllk?=
- =?utf-8?B?Y0VPaThLZTZ5b0ErcVFJbmpCRHJiTGFCNUV2NTVTdmgrTlFMU2dHT1YvZHNj?=
- =?utf-8?B?Q2RPWUxTQWRLWUk2azV3VTd1bVkwaWNIaG9UeENYcW5tVEN3TERLQlo5c1FY?=
- =?utf-8?B?Y0JWSDFjRkszcU40WFlFR3Q3LzhtL3BLeGtGS1prVEZZVzJPeG5EdVNwZ3Fj?=
- =?utf-8?B?R0FMcTRwcUluK2NaNUw0cnhVVGZtR0pXTHgzWlVVS0ZxTEVYR3VzMVBNQVB5?=
- =?utf-8?B?QWdHbGJrTU9KWWxJaHZiMzNNTFd5NUpIc0hNRk92TEdKYXFydXNJaDdONFNl?=
- =?utf-8?B?MVM2MHRGazloZEFEZVdlZFlmcVdqM2V2eXJra3FWbnlGTFR1dFBMRXBXeTZZ?=
- =?utf-8?B?bzVITTZOVjZhU0N2WDhwR25ER0Q0TlR4U3pvU0pKK2dEUFBPTmpsb2FHV0Ux?=
- =?utf-8?B?Y2hoQU5WUVgra1NXMHRzMnBZVnkxY2oyVlgyblM4bEVkTTF3TXliTkEwUmx1?=
- =?utf-8?B?VENKTC9GazdWUUFuc0NpRC9ESjRpVFdoWTluaThBRHNyMDRPRTBKZU03eTAv?=
- =?utf-8?Q?cHsZ1dd8vruv+4la0bIRMhs=3D?=
-X-OriginatorOrg: theobroma-systems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f047807a-8a7f-43f7-7b0e-08dbaac26bd3
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2023 08:07:01.6551
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KYBeXWrwaCWqCfRMj8Bcrd8MZhf0O4YpRMM9ggGncL88EMLhtSi2VKQpzkqa/eFfJRCjonxggZxG/EavBSYSv34U9C4MkpI8yh/YxrHf5ErKz7uZx/cnlmRowHzhwpzv
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9793
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,RDNS_NONE,SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jakob,
+The mediatek remoteproc driver currently only allows bringing up a 
+single core SCP, e.g. MT8183. It also only bringing up the 1st 
+core in SoCs with a dual-core SCP, e.g. MT8195. This series support 
+to bring-up the 2nd core of the dual-core SCP.
 
-On 8/23/23 3:16 PM, Jakob Unterwurzacher <jakobunt@gmail.com> wrote:
-> From: Ermin Sunj <ermin.sunj@theobroma-systems.com>
-> 
-> If the codec is not the clock master, the MCLK needs to be
-> synchronous to both I2S_SCL ans I2S_LRCLK. We do not have that
-> on Haikou, causing distorted audio.
-> 
-> Before:
-> 
->   Running an audio test script on Ringneck, 1kHz
->   output sine wave is not stable and shows distortion.
-> 
-> After:
-> 
->   10h audio test script loop failed only one time.
->   That is 0.00014% failure rate.
-> 
-> Signed-off-by: Ermin Sunj <ermin.sunj@theobroma-systems.com>
-> Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
-> ---
->   arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 4 +++-
->   1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-> index 3a447d03e2a8..dafeef0c2dab 100644
-> --- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-> +++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
-> @@ -68,8 +68,10 @@ i2s0-sound {
->   		simple-audio-card,format = "i2s";
->   		simple-audio-card,name = "Haikou,I2S-codec";
->   		simple-audio-card,mclk-fs = <512>;
-> +		simple-audio-card,frame-master = <&sgtl5000_codec>;
-> +		simple-audio-card,bitclock-master = <&sgtl5000_codec>;
->   
-> -		simple-audio-card,codec {
-> +		sgtl5000_codec: simple-audio-card,codec {
->   			clocks = <&sgtl5000_clk>;
->   			sound-dai = <&sgtl5000>;
->   		};
-> 
+v16 -> v17:
+1. add a comment in scp_add_multi_core() at patchset 8
 
-It isn't actually shown in the diff here but we now have two different bitclock and frame masters, specified differently, c.f.:
+v15 -> v16:
+1. fix the checkpatch warning at patchset 1 
+2. move changes on scp_probe() to the new added patchset 6
+3. revise platform_set_drvdata() at patchset 8
+4. fix commit message at patchset 9
 
-https://gitlab.com/linux-kernel/linux/-/blob/master/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts?ref_type=heads#L78-L79
+v15 -> v14:
+1. use the common SCP registers in struct mtk_scp_of_cluster instead of
+   copy it to struct mtk_scp at patchset 5 
+2. use platform_set_drvdata instead of platform_device_add_data at patchset 5 
+3. rename l2tcm_lock to cluster_lock at patchset 8
+4. check l2tcm_refcnt value before decreasing at patchset 8
+5. revise the commit message at patchset 11
 
-So I very much assume we should also delete those two lines in the simple-audio-card,cpu node?
+v13 -> v14:
+1. add review tag to patchset 1,6
+2. exchange the order of sram power on and reset assert in
+mt8195_scp_c1_before_load at patchset 2
+3. use ERR_CAST in patchset 5
+4. re-write patchset 7 to remove dependency between core 0 and core 1 
+5. add patch set 10 to report watchdot timeout to all cores
 
-Cheers,
-Quentin
+v12 -> v13:
+1. replace subdevice with new mediatek scp operations in patchset 7 
+2. add review tag to patchset 3
+3. modify mediatek,scp phandle name of video-codec@18000000 at patchset 11
+
+v11 -> v12:
+1. add scp_add_single/multi_core() to patchset 6
+2. remove unused comment in patchset 6
+3. rename list name from mtk_scp_cluster to mtk_scp_list
+4. rewrite the multi-core probe flow 
+5. disable rproc->autoboot and boot rproc by request_firmware_nowait at patchset 7 
+6. remove patchset 7 review tag  
+
+v10 -> v11:
+1. rewrite patchset 5 to probe single-core SCP with the cluster list
+2. Also in patchset 5, move the pointer of mtk_scp object from the
+   platform data property to the driver data property 
+3. move the appearance of mtk_scp cluster property to patcheset 7
+
+v9 -> v10:
+1. move the global mtk_scp list into the platform device driver data structure
+2. remove an unnecessary if() condition
+
+v8 -> v9:
+1. initialize l1tcm_size/l1tcm_phys at patchset 05/11 
+2. rewrite patchset 06/11 to unify the flow and remove hacks
+
+v7 -> v8:
+1. update the node name of mt8192 asurada SCP rpmsg subnode
+2. squash register definitions into driver patches
+3. initialize local variables on the declaration at patch v8 06/11 
+
+v6 -> v7:
+1. merge the mtk_scp_cluster struct into the mtk_scp structure
+   at the "Probe multi-core SCP" patch
+
+v5 -> v6:
+1. move the mtk_scp_of_regs structure from mtk_common.h to mtk_scp.c
+2. rename the SCP core 0 label from 'scp' to 'scp_c0'
+
+v4 -> v5:
+1. move resource release actions to the platform driver remove operation 
+2. fix dual-core watchdog handling
+
+v3 -> v4:
+1. change the representation of dual-core SCP in dts file and update SCP yaml
+2. rewrite SCP driver to reflect the change of dts node
+3. drop 'remove redundant call of rproc_boot for SCP' in v3 for further investigation
+
+v2 -> v3:
+1. change the representation of dual-core SCP in dts file and update SCP yaml
+2. rewrite SCP driver to reflect the change of dts node
+3. add SCP core 1 node to mt8195.dtsi
+4. remove redundant call of rproc_boot for SCP
+5. refine IPI error message
+
+v1 -> v2:
+1. update dt-binding property description
+2. remove kconfig for scp dual driver
+3. merge mtk_scp_dual.c and mtk_scp_subdev.c to mtk_scp.c
+
+
+Tinghan Shen (14):
+  dt-bindings: remoteproc: mediatek: Improve the rpmsg subnode
+    definition
+  arm64: dts: mediatek: Update the node name of SCP rpmsg subnode
+  dt-bindings: remoteproc: mediatek: Support MT8195 dual-core SCP
+  remoteproc: mediatek: Add MT8195 SCP core 1 operations
+  remoteproc: mediatek: Extract SCP common registers
+  remoteproc: mediatek: Revise SCP rproc initialization flow for
+    multi-core SCP
+  remoteproc: mediatek: Probe SCP cluster on single-core SCP
+  remoteproc: mediatek: Probe SCP cluster on multi-core SCP
+  remoteproc: mediatek: Remove dependency of MT8195 SCP L2TCM power
+    control on dual-core SCP
+  remoteproc: mediatek: Setup MT8195 SCP core 1 SRAM offset
+  remoteproc: mediatek: Handle MT8195 SCP core 1 watchdog timeout
+  remoteproc: mediatek: Report watchdog crash to all cores
+  remoteproc: mediatek: Refine ipi handler error message
+  arm64: dts: mediatek: mt8195: Add SCP 2nd core
+
+ .../bindings/remoteproc/mtk,scp.yaml          | 176 +++++-
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   2 +-
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     |   2 +-
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      |   6 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  34 +-
+ drivers/remoteproc/mtk_common.h               |  39 +-
+ drivers/remoteproc/mtk_scp.c                  | 539 ++++++++++++++----
+ drivers/remoteproc/mtk_scp_ipi.c              |   4 +-
+ 8 files changed, 656 insertions(+), 146 deletions(-)
+
+-- 
+2.18.0
+
