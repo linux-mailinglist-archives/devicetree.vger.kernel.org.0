@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A970978FBF6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 12:56:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6064578FC09
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 13:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232274AbjIAK4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 06:56:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38970 "EHLO
+        id S235118AbjIALCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 07:02:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232796AbjIAK4C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 06:56:02 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9323510CF
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 03:55:59 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-500bdef7167so3642599e87.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 03:55:59 -0700 (PDT)
+        with ESMTP id S231592AbjIALCd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 07:02:33 -0400
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C1AFE42;
+        Fri,  1 Sep 2023 04:02:31 -0700 (PDT)
+Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-68becf931bfso1445126b3a.0;
+        Fri, 01 Sep 2023 04:02:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693565758; x=1694170558; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=U8a+xA7GL0/faKKo3smbV13PcsHnv4aKVFRIta6OWlg=;
-        b=ZgkQm5nrhwTBSH9VuWF8BhaKg2EdrtgmFUiK3GGuXgkigrYQb/kXco/nPh0yX3KSqg
-         pO+NdstZMOHVnudfMYQfP6Gkts/10eowV0+93UP+qvpURvH2/M/LsJhV+tpmDZ6637zw
-         ESi0iRQXsuX/cHhit/vYS2CfMK+nvuf3YKPmA7Giw4IeK7Ts7h5cwC35YapU7ZdqHGsZ
-         RO7JMrOi+7KbvGxdHV5UO/GCgcs8IKLZXkfZF1982Ua6JyX2/Qb2EjlU1Y2niP/05pGR
-         bMy8HIrlaeMCw2ruPvwL2KwBt7swbSJsiNUivaMNCsrbsKAHjQux80I6l1XvEQqXEZZ6
-         lB3w==
+        d=gmail.com; s=20221208; t=1693566151; x=1694170951; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WaNPFWIWuliIYtcO+upyqNmV7l5WRS5CbnAo0TfGhaI=;
+        b=FSjL0unoYVO0a+g5BFTG6ioL2nBczPBj5unBqyJeLfer6kJMjDG8Qcfpz7ij8GmTNt
+         U9KhDLHRwiZGKmC/qJjfViPx7qt1aa9YNDcFWJgze8cebUCHaAEtQEG7la9Zzx741+Q8
+         pJFuyIcp35LIqx2xuZSSk1tfSFBx70HIS80vLwQL5x782X1iq6lh59C0drnkgwF64DT3
+         HVo744xStUFDtONi0FMlHViiw+WFqWvdOXh8NT2wd6oJ729M9+ij1nAJf2cYQLR2hWND
+         X7hctyviJJUDgO+wqCBcuhdwjWAf90POq4NpkIzXS3N7QMNSqyK5PqV0QguXhRnF6ZyQ
+         aWFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693565758; x=1694170558;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=U8a+xA7GL0/faKKo3smbV13PcsHnv4aKVFRIta6OWlg=;
-        b=OZXmFI3wobeNzAK4FvZCc8TvHVM78BXTG6jhRgTWj7n9vBAFcGoY9+1qcnO3A3IwTl
-         ClyQ4NpI0rzeT03b0pInmRWrXf5OrMy3j3aISEYdDsvW78voTbdfpRMASpCh6xGllMGn
-         NCZ3NlZnDqBrWiwDYt+kkYnK316erIJ1J/g7GezfIuaoQIDYm7HM7PAMDemLIdBKXhy2
-         0PstaQ+GVlBDtNg8g48FQ/YR4x+/TUQsfOpNTzuYUs0WWOhHhj5Zbm1wHO0pxZPRB9zZ
-         fbVHbjcK2hVBThjXb8gbsZt6JmGrqpT4nK5mJ5E0bt8I9MkXnkSTN/ipuX9209B69kkn
-         g9BQ==
-X-Gm-Message-State: AOJu0YxhUKTeeg3EyRhwkhOjPUJBdmc4mm5+T7vQj6QU6C+/elfTuPnN
-        aXnLzl08WTNFDEVc97iD2klA1lgzmtA=
-X-Google-Smtp-Source: AGHT+IEDpxiit9wGzGHbu83b4Rg0Rj+hBTxcZG/AllA5FNxDk24WDeeSSjGh3EGbCkYuEZw0RPihxg==
-X-Received: by 2002:a05:6512:b97:b0:4ff:78b6:2ea0 with SMTP id b23-20020a0565120b9700b004ff78b62ea0mr832587lfv.34.1693565757442;
-        Fri, 01 Sep 2023 03:55:57 -0700 (PDT)
-Received: from localhost.lan ([31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id l9-20020ac24309000000b004fe202a5c7csm615448lfh.135.2023.09.01.03.55.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Sep 2023 03:55:56 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        d=1e100.net; s=20221208; t=1693566151; x=1694170951;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WaNPFWIWuliIYtcO+upyqNmV7l5WRS5CbnAo0TfGhaI=;
+        b=RXU15kNJ926wfwOwg5wT8357o6kl+NF2+DI3WxuVV7oKUxQPloA5rbahFHquBjoNIy
+         7dlamFUSR4Pbli0eEtxIgmHQa5tPmeL/sqxPTdSDFt/m24adt44VryAaXOnBCXdlWiNN
+         d1eGrkmVXvvpBVjuSL04Gudzsyc/ckg0MvpbZwO/eE3JDQA9ufIjwwT7ilpJHKFUTuH7
+         5kIxyZ4HJwCztFQe6JahcRuSc6WoBw96aWTsmkDccUItEUzLS6pZRQGrFfBQY9YeGdZe
+         2Ti065lVADvh9mx66AzMkOsFBWv5/hnd+zuNVRMXD4pEGR/whfHzBcgyftXZjp5NOKWY
+         lDuQ==
+X-Gm-Message-State: AOJu0YxpXhSyBsF3JF2V9RSZBQ2ZN2bz6fuaD0hvbg9+h55dpCdqVHxA
+        NMeic5/lHfrGCEmgKAmrU3MQoHUYkw6kNT2q7fs=
+X-Google-Smtp-Source: AGHT+IFR9WW+K2rsaZpP9M4Fkt6GT9Xl6X3fTDiodA1ldxcB7wireh9+kRbbrOLiSNS+b+bt4K8sr9Nau/KfboR+C8c=
+X-Received: by 2002:a17:90a:6096:b0:262:ceaa:1720 with SMTP id
+ z22-20020a17090a609600b00262ceaa1720mr1845394pji.5.1693566150530; Fri, 01 Sep
+ 2023 04:02:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230831044431.250338-1-aford173@gmail.com> <99204fbf-3246-6124-2e35-bdc353d7e7b6@denx.de>
+In-Reply-To: <99204fbf-3246-6124-2e35-bdc353d7e7b6@denx.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Fri, 1 Sep 2023 06:02:17 -0500
+Message-ID: <CAHCN7xJGGSaO949=u2W6jybdE5R1dE8ihdP9wSrCgk5+9=9H6g@mail.gmail.com>
+Subject: Re: [PATCH V3 1/3] arm64: dts: imx8mp: Add easrc node
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org, aford@beaconembedded.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] ARM: dts: BCM5301X: Set MACs for D-Link DIR-885L
-Date:   Fri,  1 Sep 2023 12:55:49 +0200
-Message-Id: <20230901105549.7076-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
@@ -74,56 +79,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Thu, Aug 31, 2023 at 4:52=E2=80=AFPM Marek Vasut <marex@denx.de> wrote:
+>
+> On 8/31/23 06:44, Adam Ford wrote:
+> > The i.MX8MP has an asynchronous sample rate converter which seems
+> > to be the same as what is available on the i.MX8M Nano.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> > ---
+> > V3:  No Change.  The dt-binding update was already accepted into the so=
+und tree, so that patch
+> >       was dropped from the series
+> >
+> > V2:  No Change.
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boo=
+t/dts/freescale/imx8mp.dtsi
+> > index 83d907294fbc..3167706d81e1 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -1459,6 +1459,26 @@ sai7: sai@30c80000 {
+> >                                       interrupts =3D <GIC_SPI 111 IRQ_T=
+YPE_LEVEL_HIGH>;
+> >                                       status =3D "disabled";
+> >                               };
+> > +
+> > +                             easrc: easrc@30c90000 {
+> > +                                     compatible =3D "fsl,imx8mp-easrc"=
+, "fsl,imx8mn-easrc";
+> > +                                     reg =3D <0x30c90000 0x10000>;
+> > +                                     interrupts =3D <GIC_SPI 122 IRQ_T=
+YPE_LEVEL_HIGH>;
+> > +                                     clocks =3D <&audio_blk_ctrl IMX8M=
+P_CLK_AUDIOMIX_ASRC_IPG>;
+> > +                                     clock-names =3D "mem";
+> > +                                     dmas =3D <&sdma2 16 23 0> , <&sdm=
+a2 17 23 0>,
+> > +                                            <&sdma2 18 23 0> , <&sdma2=
+ 19 23 0>,
+> > +                                            <&sdma2 20 23 0> , <&sdma2=
+ 21 23 0>,
+> > +                                            <&sdma2 22 23 0> , <&sdma2=
+ 23 23 0>;
+> > +                                     dma-names =3D "ctx0_rx", "ctx0_tx=
+",
+> > +                                                 "ctx1_rx", "ctx1_tx",
+> > +                                                 "ctx2_rx", "ctx2_tx",
+> > +                                                 "ctx3_rx", "ctx3_tx";
+> > +                                     firmware-name =3D "imx/easrc/easr=
+c-imx8mn.bin";
+>
+> Should the firmware name really be imx8mn or should it be imx8mp ?
 
-Specify NVRAM access and use its "et2macaddr" NVMEM cell.
+The firmware blobs provided by NXP only has easrc-imx8mn.bin and would
+be concerned that having a different name might confuse people if they
+try to go look for it and they only find easrc-imx8mn.bin.  To me,
+this is no different than the SDMA driver using firmware called
+sdma-imx7d.bin
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../dts/broadcom/bcm47094-dlink-dir-885l.dts     | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm/boot/dts/broadcom/bcm47094-dlink-dir-885l.dts b/arch/arm/boot/dts/broadcom/bcm47094-dlink-dir-885l.dts
-index c914569ddd5e..abe0cb245c7e 100644
---- a/arch/arm/boot/dts/broadcom/bcm47094-dlink-dir-885l.dts
-+++ b/arch/arm/boot/dts/broadcom/bcm47094-dlink-dir-885l.dts
-@@ -25,6 +25,15 @@ memory@0 {
- 		      <0x88000000 0x08000000>;
- 	};
- 
-+	nvram@1e3f0000 {
-+		compatible = "brcm,nvram";
-+		reg = <0x1e3f0000 0x10000>;
-+
-+		et2macaddr: et2macaddr {
-+			#nvmem-cell-cells = <1>;
-+		};
-+	};
-+
- 	nand_controller: nand-controller@18028000 {
- 		nand@0 {
- 			partitions {
-@@ -112,6 +121,11 @@ &usb3 {
- 	vcc-gpio = <&chipcommon 18 GPIO_ACTIVE_HIGH>;
- };
- 
-+&gmac0 {
-+	nvmem-cells = <&et2macaddr 0>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
- &spi_nor {
- 	status = "okay";
- };
-@@ -142,6 +156,8 @@ port@3 {
- 
- 		port@4 {
- 			label = "wan";
-+			nvmem-cells = <&et2macaddr 3>;
-+			nvmem-cell-names = "mac-address";
- 		};
- 
- 		port@8 {
--- 
-2.35.3
-
+>
+> I think the later is better, you can always add a symlink for the
+> firmware name, and you can discern mx8mn/mp firmwares on the same rootfs
+> in case that was ever needed in the future.
