@@ -2,125 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7A6A78FAC5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 11:27:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C02178FACD
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 11:28:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243863AbjIAJ1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 05:27:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53308 "EHLO
+        id S244107AbjIAJ2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 05:28:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234850AbjIAJ1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 05:27:54 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D845D1730;
-        Fri,  1 Sep 2023 02:27:37 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3818w5JD015622;
-        Fri, 1 Sep 2023 09:27:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=z9h5OietALUlWpPG+Jm+Q/uVhH0CTwsoV5KDaBuoAuo=;
- b=AneeKo+Y+Ybp/YYTpX2YzgiPSWsHyz//OVX7VdlRZuxF0GH2YLwjgogOTJhFMtbBvuSl
- OFeJh5XydRXI+TpJ1ZmJZh7X2kiPYJ+NQcX0bqvbsiuCoyyLJlBd+RgjEXQwvSuH+I2E
- AbT/YcQZUr1J0gNCsfx3gRZsPv+ljnJ1b/T+vPVnXLXs0oqS1FPXwEvTBgObZHhziBYt
- 4gwUmPDpFoBbF9FtAiqXNWqhnD+vhqROhe0xOZSdmMMiG9OTA4E2HnMhBDEZbIMGAkBK
- LHTKX2brapoQYTwF8mgjgrM190suz8ujgIZoYKATeIXxzI58AqI8fqjk04mpEtkwFunB 1A== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suc22g5fp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 Sep 2023 09:27:30 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3819RThM013037
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 1 Sep 2023 09:27:29 GMT
-Received: from nsekar-linux.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.36; Fri, 1 Sep 2023 02:27:23 -0700
-From:   Nitheesh Sekar <quic_nsekar@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>
-CC:     Nitheesh Sekar <quic_nsekar@quicinc.com>,
-        Amandeep Singh <quic_amansing@quicinc.com>
-Subject: [PATCH V3 4/4] arm64: dts: qcom: ipq5018: Enable USB
-Date:   Fri, 1 Sep 2023 14:56:45 +0530
-Message-ID: <20230901092645.20522-5-quic_nsekar@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230901092645.20522-1-quic_nsekar@quicinc.com>
-References: <20230901092645.20522-1-quic_nsekar@quicinc.com>
+        with ESMTP id S236132AbjIAJ2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 05:28:10 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFF9F1703;
+        Fri,  1 Sep 2023 02:27:43 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6bb07d274feso1356300a34.0;
+        Fri, 01 Sep 2023 02:27:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693560460; x=1694165260; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nNejtY2CYRQHuWNnMRsL970fJ2LcYenjaMg4E67qwZg=;
+        b=aPMPbbkVTpRFHS2sbTuv8SBuUMHDEXNixNglpJxD0EFQnKdcSGl/A/i83axsUf+w3H
+         OplaEXAQvdXkXrkfqs1Ft5QBwDsJ2yx0EOu537gaYKmOvbXOp/AB3JXoX9T3wnrnl4U3
+         Mi0OhbfO+D6Vrca6dLw0W77T2aLBQhoqoiLvbTJRasMo5CNsZCK6Tnb1jxwcTg2nIHxY
+         bEkPEJNCM9ha2Hrk7QfCNYMERyAbGerbiWgP6gS+pvi94dEnShQiHdo2iD8lJLqLwKOd
+         pJs9h00VlPRM5bSaDQv/VRF67WwyJHbABJKjc5z0Xq1S+bLAWt2YDTWoa7G1TBBeudrx
+         lP3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693560460; x=1694165260;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nNejtY2CYRQHuWNnMRsL970fJ2LcYenjaMg4E67qwZg=;
+        b=U3u3clEJpv/BdeGNplEEixSji5e+4KdUoPgvhTP0E0aQjPH3M6Hk9Gs1EYX6Cajfum
+         lOs2UaenwVO+VTwXFEyChodxZm2j5zKeDPxa9btvvB7X/cn/xcj4UnMuNA8S7yr16/Gf
+         IRI9OM5U3jRkv0qfX96Aludg8tNg1SlWQDqymo5vtnK10awNGwS1D61FdrV2dRRHA1Ot
+         +rAVTPx+dH2J6JINRso79iCbYcLgPmRSWYZ6fj2GylJ7Xz1oVY+8ZuXWH6kcpWg0f1m5
+         tfq8oFM2nRlUkovBENBBHCaro/WNSJR1sPSZjn2+ElX8sFuQVaDglgaN2rXP2uDtB36C
+         7x4g==
+X-Gm-Message-State: AOJu0Yy64uMuiinzF/hUj6aZWHV1/QC6y2eo2JOoDr8NzF1IdGGUH0RL
+        46pAvPRXojkAmrVObMUUY7jPlpTvFrcY8QgNo3s=
+X-Google-Smtp-Source: AGHT+IHGcKLODahchCBBvFixtlLSYCgY2KNa3x1lSet1wv+1MdRrmY04593geKiUioPkoJbLl9x3eu52b/hIFO0+TyY=
+X-Received: by 2002:a05:6358:342a:b0:133:428:35dc with SMTP id
+ h42-20020a056358342a00b00133042835dcmr1444953rwd.11.1693560460156; Fri, 01
+ Sep 2023 02:27:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 16vT5A4Uu2IxR5fXKMIUKp3rXCOwOfWJ
-X-Proofpoint-ORIG-GUID: 16vT5A4Uu2IxR5fXKMIUKp3rXCOwOfWJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-01_07,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- clxscore=1015 mlxscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- mlxlogscore=553 phishscore=0 lowpriorityscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309010088
+References: <cover.1693474728.git.zhoubinbin@loongson.cn> <38e811816c37a2d52374fa04864654ff1e9b4dc8.1693474728.git.zhoubinbin@loongson.cn>
+ <cfa55813-946e-7aad-b7a4-54450a1ea5d5@linaro.org>
+In-Reply-To: <cfa55813-946e-7aad-b7a4-54450a1ea5d5@linaro.org>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Fri, 1 Sep 2023 17:27:28 +0800
+Message-ID: <CAMpQs4Jrvd=KAXUBYYdixvvhBx1hAXxECUhGVsuEED1Jp9SPDA@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] dt-bindings: soc: loongson,ls2k-pmc: Allow
+ syscon-reboot/syscon-poweroff as child
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Yinbo Zhu <zhuyinbo@loongson.cn>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, soc@kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB2 in host mode.
+Hi Krzysztof:
 
-Co-developed-by: Amandeep Singh <quic_amansing@quicinc.com>
-Signed-off-by: Amandeep Singh <quic_amansing@quicinc.com>
-Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
----
-V3:
-	Renamed usb2_0_dwc  to usb_dwc and sorted
-	the USB related nodes.
-V2:
-	Sort and reorder USB related nodes.
----
- arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-index e636a1cb9b77..8460b538eb6a 100644
---- a/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
-@@ -67,6 +67,18 @@
- 	};
- };
- 
-+&usb {
-+	status = "okay";
-+};
-+
-+&usb_dwc {
-+	dr_mode = "host";
-+};
-+
-+&usbphy0 {
-+	status = "okay";
-+};
-+
- &xo_board_clk {
- 	clock-frequency = <24000000>;
- };
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+On Fri, Sep 1, 2023 at 5:06=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 31/08/2023 13:43, Binbin Zhou wrote:
+> >  required:
+> >    - compatible
+> >    - reg
+> > @@ -54,4 +66,18 @@ examples:
+> >          interrupt-parent =3D <&liointc1>;
+> >          interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> >          loongson,suspend-address =3D <0x0 0x1c000500>;
+> > +
+> > +        syscon-reboot {
+> > +            compatible =3D "syscon-reboot";
+> > +            offset =3D <0x30>;
+> > +            mask =3D <0x1>;
+> > +        };
+> > +
+> > +        syscon-poweroff {
+> > +            compatible =3D "syscon-poweroff";
+> > +            regmap =3D <&pmc>;
+>
+> ???
 
+I did notice that commit [1] changed "regmap" to "unrequired" for
+"syscon-reboot", but "syscon-poweroff" did not do the same.
+So, at least under the current "syscon-poweroff" rule, "regmap" is "require=
+d".
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
+umentation/devicetree/bindings/power/reset/syscon-poweroff.yaml?h=3Dv6.5#n4=
+1
+
+I had my doubts before, but seeing that some dts do have
+"syscon-poweroff" as a separate node, I assumed there was a
+difference.
+
+commit[1]: 2140d68d69d4 dt-bindings: power: reset: Unrequired regmap
+property in syscon-reboot node
+
+Thanks.
+Binbin
+>
+> This is a friendly reminder during the review process.
+>
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
+>
+> Thank you.
+>
+> Best regards,
+> Krzysztof
+>
