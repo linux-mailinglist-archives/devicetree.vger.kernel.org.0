@@ -2,175 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3212279021E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 20:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A685D7902D2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 22:29:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239306AbjIASjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 14:39:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53324 "EHLO
+        id S1350724AbjIAU3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 16:29:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237600AbjIASja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 14:39:30 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5156107
-        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 11:39:27 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fee8af9cb9so22974695e9.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 11:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1693593566; x=1694198366; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bA5Lm6a1t+KFAs7vnfL5/17M6lm4KSTTxqyCI/pc5BY=;
-        b=ZiqUuk9p4uZ/yOZAr5a+RcMr0ew02/QrP2SaKXTOtNRKAhMTGpo/XtFQGJu0Omhu1K
-         qhpkoPCaQFESaNA6OeK3whxRVLW/NkzbKlzwIo+kCnF8K+4ckSIjxaA5NeQyi9+e5nPo
-         ShDY1K5wYQudm+SXQKDcI2MUete8t0pGLXXpxfy70IeHaXjTbeidkHbDBM5wCnpDrnRV
-         240RgKdpMmDvmkJsWumT31Sm/IK7KK6lbeuPndS69jE4WaLoQibwU97TQdGjgHA//Cq1
-         frJIX1mfv3AlWny/85CNz67tz4O94lqM7DUTW+kg/ZDXIPdAxk0UTChPNey1MvEU8bv/
-         kBeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693593566; x=1694198366;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bA5Lm6a1t+KFAs7vnfL5/17M6lm4KSTTxqyCI/pc5BY=;
-        b=kdLSQ5gO3ZB/JSkmH+LjBE3uzfqAewp7mlwUdWzLiYeQq4AV5LWsLYvCGAaqlC/oNW
-         oaHoUjkA/j3/sOfP19OlyBEFMfonqS8HEDF9oU4gFycvJt5aMbJ7MNGodvSTcd+PE/Ck
-         cj2ga84a1CuLJblsCsisGtIwj0xfwmSPk5zpw9oi9H4KxnwljXo2h9OWNXGB0ATl1Rtd
-         y3Vb0kzOgl12QPOMtsgkQ8yR36ohw6qI2oqL+Rln2JsfPt+OjKhTadXjElZ3OetUvs5j
-         90U600rHHuDB9ES7OJ1V7b6Qkif2NiSvBWNvO5Ih+4o5Ej2qtVHmCQd1iSvuWxlm6WoF
-         wZnw==
-X-Gm-Message-State: AOJu0Yzhaq/JEde+KBT3J6hrN4RMsxdT0TI9sekkJsUOEkXEBmrb1Ctw
-        fR3MHvRyYDft5l/WYIk18O+AJQ==
-X-Google-Smtp-Source: AGHT+IHwt+wcmiHzIzpBrobUBa991WScHeOvwtCAq4Ysh3WkCDFvhnNCS5xE0Y9TRcLz8axynzkOjA==
-X-Received: by 2002:a7b:c8ca:0:b0:401:b204:3b95 with SMTP id f10-20020a7bc8ca000000b00401b2043b95mr2441626wml.15.1693593566116;
-        Fri, 01 Sep 2023 11:39:26 -0700 (PDT)
-Received: from smtpclient.apple ([131.111.5.246])
-        by smtp.gmail.com with ESMTPSA id l8-20020a05600c1d0800b003fef6881350sm5840720wms.25.2023.09.01.11.39.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 01 Sep 2023 11:39:25 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20230901-affected-wanting-ab517791a870@spud>
-Date:   Fri, 1 Sep 2023 19:39:14 +0100
-Cc:     William Qiu <william.qiu@starfivetech.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-mmc@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S242521AbjIAU3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 16:29:22 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9FD4E7E;
+        Fri,  1 Sep 2023 13:29:19 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 381ItjDG005899;
+        Fri, 1 Sep 2023 20:29:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=2FYXvMmpReuPlYSmTDcvNg1rIzAmGZtkeMDCuhzAtGw=;
+ b=RpGMbsimYgMc3eNR7ei7vHPVzYUwHYGYWfqvFd5Hm0dfsshzelWMpDIZ1rnuLnmPTBJW
+ QrE9r0G9055pwpCfvVOPDMYtRHxC1oQjdFF+Gqzr4/3Fj+LWLC7Ub9J9K4ZZKtKtFbum
+ sHYN6I0cLw7UKq0OoSob97cywjNlU+qDOZ1qNg1FPayvbNvP7zzH3hwGYkQ+kG9Bx9jv
+ pkoE04KD1f8QglapQUr69SaBGB43NBDRiCuHqw/3ZSvJVuKYp2UadZBnGPAgApX2FtyJ
+ dkQahInoVqPNSAkfaD2bOsDEwD7LSCXJ9CVg7yTTQ0XSZVrP7POVtWlVknMqnRdcBF39 TQ== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suc22hupp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 01 Sep 2023 20:29:05 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 381KT4X3011614
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 1 Sep 2023 20:29:04 GMT
+Received: from [10.110.95.146] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 1 Sep
+ 2023 13:29:04 -0700
+Message-ID: <deeefaf8-2ac9-cee0-eed4-687e36ac6f10@quicinc.com>
+Date:   Fri, 1 Sep 2023 13:29:03 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH 02/11] nvmem: qfprom: Mark core clk as optional
+Content-Language: en-US
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Doug Anderson <dianders@chromium.org>
+CC:     <cros-qcom-dts-watchers@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <C9C76D81-7244-4549-97E2-83CE10050A74@jrtc27.com>
-References: <20230830031846.127957-1-william.qiu@starfivetech.com>
- <20230830031846.127957-2-william.qiu@starfivetech.com>
- <20230830-commence-trickery-40eaa193cb15@wendy>
- <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
- <20230830-procedure-frostbite-56c751f7c276@wendy>
- <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com>
- <20230901-remold-sublease-a1ddb1fc6348@spud>
- <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com>
- <20230901-affected-wanting-ab517791a870@spud>
-To:     Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3731.600.7)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
+References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
+ <20230830-fp5-initial-v1-2-5a954519bbad@fairphone.com>
+ <CAD=FV=WS2hgY=bQjLOs3Fdp8pbZyMsaS-0BpoxPq90Etfi+Xuw@mail.gmail.com>
+ <CV5YJVXIL8OT.1ZWW3KVCHPTA5@otso>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <CV5YJVXIL8OT.1ZWW3KVCHPTA5@otso>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 9Ar9RfHXW3BZTXygIUaxyBxzbbtd8VRn
+X-Proofpoint-ORIG-GUID: 9Ar9RfHXW3BZTXygIUaxyBxzbbtd8VRn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-01_17,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ clxscore=1011 mlxscore=0 impostorscore=0 suspectscore=0 malwarescore=0
+ mlxlogscore=999 phishscore=0 lowpriorityscore=0 priorityscore=1501
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309010192
+X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1 Sep 2023, at 18:43, Conor Dooley <conor@kernel.org> wrote:
->=20
-> On Fri, Sep 01, 2023 at 06:20:38PM +0100, Jessica Clarke wrote:
->> On 1 Sep 2023, at 16:42, Conor Dooley <conor@kernel.org> wrote:
->>>=20
->>> On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
->>>>=20
->>>>=20
->>>> On 2023/8/30 16:34, Conor Dooley wrote:
->>>>> On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski =
-wrote:
->>>>>> On 30/08/2023 08:50, Conor Dooley wrote:
->>>>>>> On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
->>>>>>>> Due to the change of tuning implementation, it's no longer =
-necessary to
->>>>>>>> use the "starfive,sysreg" property in dts, so drop the relevant
->>>>>>>> description in dt-bindings here.
->>>>>>>=20
->>>>>>> How does changing your software implantation invalidate a =
-description of
->>>>>>> the hardware?
->>>>>>>=20
->>>>>>=20
->>>>>> Which is kind of proof that this syscon was just to substitute
->>>>>> incomplete hardware description (e.g. missing clocks and phys). =
-We
->>>>>> should have rejected it. Just like we should reject them in the =
-future.
->>>>>=20
->>>>> :s I dunno what to do with this... I'm inclined to say not to =
-remove it
->>>>> from the binding or dts at all & only change the software.
->>>>>=20
->>>>>> There are just few cases where syscon is reasonable. All others =
-is just
->>>>>> laziness. It's not only starfivetech, of course. Several other
->>>>>> contributors do the same.
->>>>>=20
->>>>> I'm not sure if laziness is fair, lack of understanding is usually =
-more
->>>>> likely.
->>>>=20
->>>> For this, I tend to keep it in binding, but remove it from =
-required. Because
->>>> we only modify the tuning implementation, it doesn't mean that this =
-property
->>>> need to be removed, it's just no longer be the required one.
->>>=20
->>> Please only remove it from required if the current driver doesn't =
-break
->>> if the regmap is removed.
->>=20
->> Either way please make sure the documentation clearly states =E2=80=9Cn=
-ever use
->> this, if you=E2=80=99re using it you=E2=80=99re doing it wrong, this =
-only exists
->> because it was wrongly used in the past=E2=80=9D. Otherwise people =
-writing
->> drivers for other OSes will probably use it too thinking they need =
-to.
->=20
-> Maybe we should just delete it if the impact is going to be =
-negligible,
-> sounds like you're not using it in FreeBSD, which was part of what I =
-was
-> worried about. Guess it depends on what Emil & the distro heads think.
+On 8/30/2023 7:43 AM, Luca Weiss wrote:
+> On Wed Aug 30, 2023 at 4:30 PM CEST, Doug Anderson wrote:
+>> Hi,
+>>
+>> On Wed, Aug 30, 2023 at 2:58 AM Luca Weiss <luca.weiss@fairphone.com> wrote:
+>>>
+>>> On some platforms like sc7280 on non-ChromeOS devices the core clock
+>>> cannot be touched by Linux so we cannot provide it. Mark it as optional
+>>> as accessing qfprom works without it.
+>>>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>>> ---
+>>>  drivers/nvmem/qfprom.c | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> Are you actually testing burning fuses from the OS, or are you just
+>> using the nvmem in "read-only" mode? From comments in the bindings, if
+>> you're trying to burn the fuses then the clock is required. If things
+>> are in read-only mode then the clock isn't required.
+> 
+> Hi Doug,
+> 
+> I definitely don't plan on burning any fuses on this phone. Not even
+> sure that's allowed by the TZ / boot stack.
+> 
+>>
+>> When I compare to the driver, it seems like the driver assumes that if
+>> more than one memory region is provided then you must be supporting
+>> burning fuses. The bindings agree that having 4 memory regions
+>> specified means that the nvmem supports burning and 1 memory region
+>> specified means read-only. The extra 3 memory regions in the nvmem are
+>> all about fuse burning, I believe.
+>>
+>> So maybe the right fix here is to just change your dts to specify one
+>> memory region?
+> 
+> I got feedback from Konrad that this here would be the preferred
+> approach compared to having a different dts for ChromeOS vs non-ChromeOS
+> devices. I don't feel strongly to either, for me it's also okay to
+> remove the extra memory regions and only have the main one used on
+> regular qcom devices.
+> 
+> Let me know what you think.
 
-FreeBSD doesn=E2=80=99t have StarFive drivers yet; I don=E2=80=99t have =
-time to write
-them, and a community member has taken it upon themselves as a hobby
-but is rather inexperienced and has been struggling for months. OpenBSD
-has drivers, including a modified dwmmc, but doesn=E2=80=99t use this =
-property
-(in fact its driver doesn=E2=80=99t use the compatible other than to =
-probe the
-generic driver). I don=E2=80=99t think anyone else has a serious port; =
-Haiku=E2=80=99s
-the closest but also has no StarFive support.
+I would prefer to re-use the sc7280 DT as well. Thank you for your patches. We plan to use your patches for platform on the same part. 
 
-Jess
+-- 
+---Trilok Soni
 
