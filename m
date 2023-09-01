@@ -2,99 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 193167901ED
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 20:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3212279021E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 20:39:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350507AbjIASKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 14:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33908 "EHLO
+        id S239306AbjIASjb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 14:39:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244823AbjIASKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 14:10:49 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5F6E19C;
-        Fri,  1 Sep 2023 11:10:46 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a58dbd5daeso294640366b.2;
-        Fri, 01 Sep 2023 11:10:46 -0700 (PDT)
+        with ESMTP id S237600AbjIASja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 14:39:30 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5156107
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 11:39:27 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fee8af9cb9so22974695e9.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 11:39:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693591845; x=1694196645; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=jrtc27.com; s=gmail.jrtc27.user; t=1693593566; x=1694198366; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=zxWwqJu6zd1x4UXrAe321NeYBqI8ed/gpuuiA6ARJ4U=;
-        b=ph859srzdrb3JdJszo4Mg9gyW+WMjXui6BaH/6B4tIs5NKyQb03iqcQFTEWL1gyind
-         KLpabg1cx3TG7Nv9C61whqjUwabQDxsAVK6vpK1tvVC+OiJZDr+tFKaO+nH7vuVzYw4j
-         NwvuGuhdtra9F3ZX/KscvfmcR00oDXk2Fc4m/WvyGsWjoGPCk19eCVlqZ05VkoNbpkUr
-         YB0oA2Vr0vDT4ZYG6zXYVMsfPCbAWQnVaOgDvwWhRBQuYNrC395/ph2U3nBGVT8rbCZ7
-         lWdYWte859qUS4+/AKyQsG5DDfhOIUhJYfVf2ZYJvuaiybPw9eOU3c/5KsmMQ2pk/wFJ
-         DXnA==
+        bh=bA5Lm6a1t+KFAs7vnfL5/17M6lm4KSTTxqyCI/pc5BY=;
+        b=ZiqUuk9p4uZ/yOZAr5a+RcMr0ew02/QrP2SaKXTOtNRKAhMTGpo/XtFQGJu0Omhu1K
+         qhpkoPCaQFESaNA6OeK3whxRVLW/NkzbKlzwIo+kCnF8K+4ckSIjxaA5NeQyi9+e5nPo
+         ShDY1K5wYQudm+SXQKDcI2MUete8t0pGLXXpxfy70IeHaXjTbeidkHbDBM5wCnpDrnRV
+         240RgKdpMmDvmkJsWumT31Sm/IK7KK6lbeuPndS69jE4WaLoQibwU97TQdGjgHA//Cq1
+         frJIX1mfv3AlWny/85CNz67tz4O94lqM7DUTW+kg/ZDXIPdAxk0UTChPNey1MvEU8bv/
+         kBeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693591845; x=1694196645;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1693593566; x=1694198366;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zxWwqJu6zd1x4UXrAe321NeYBqI8ed/gpuuiA6ARJ4U=;
-        b=PpYQoHTB5Z7tXRfdJvu/x0PJxKkCj71vArgbmArwJSF/WGmqSHcFlZwSASJPxJQxFW
-         nohJk1X/Rrm2fD8wMGJMrPzSgOZUPN0XLDddDrX+Rux5iWRrtR6Ltlvu8K2ZXyxmVj6b
-         g/0DGeWA1JqTe7RoQ+Oeh42b3/aHzKhkMppUIqFIVTaem/Qo8tDo/yQRutLKgPA3Sv/n
-         ezyPSaEp25v62RaZQDdleToo/dzga6x7OJELFphVOfQ6g+9idbECeXKNGxeH329jVsGa
-         GZA8QFhJI9lSkR2esNeT7PshXDWRIVqH9c4pPwq2qngdOCqSCT2z3O5X9Xr6G2stzLYh
-         XzNA==
-X-Gm-Message-State: AOJu0YwrwRVZDPiqugWf5eJmZdGKoneJYrMOvfIk1P541zNDOTbY7j4L
-        5b5dYxY0Dudq+bdWpcluOho=
-X-Google-Smtp-Source: AGHT+IFVYLNs2VBY6jrYIC97D3941yh4hyQRLWEZpvcFzpC4AOdibDnMFWZ0u1FxneSr/LTchcZEVQ==
-X-Received: by 2002:a17:906:f252:b0:9a2:40e:2cad with SMTP id gy18-20020a170906f25200b009a2040e2cadmr2351811ejb.48.1693591845094;
-        Fri, 01 Sep 2023 11:10:45 -0700 (PDT)
-Received: from fedora.. (dh207-99-49.xnet.hr. [88.207.99.49])
-        by smtp.googlemail.com with ESMTPSA id j9-20020a170906410900b0099bd5b72d93sm2278999ejk.43.2023.09.01.11.10.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Sep 2023 11:10:44 -0700 (PDT)
-From:   Robert Marko <robimarko@gmail.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Robert Marko <robimarko@gmail.com>
-Subject: [PATCH 2/2] soc: qcom: socinfo: Add IDs for IPQ8174 family
-Date:   Fri,  1 Sep 2023 20:10:05 +0200
-Message-ID: <20230901181041.1538999-2-robimarko@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230901181041.1538999-1-robimarko@gmail.com>
-References: <20230901181041.1538999-1-robimarko@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        bh=bA5Lm6a1t+KFAs7vnfL5/17M6lm4KSTTxqyCI/pc5BY=;
+        b=kdLSQ5gO3ZB/JSkmH+LjBE3uzfqAewp7mlwUdWzLiYeQq4AV5LWsLYvCGAaqlC/oNW
+         oaHoUjkA/j3/sOfP19OlyBEFMfonqS8HEDF9oU4gFycvJt5aMbJ7MNGodvSTcd+PE/Ck
+         cj2ga84a1CuLJblsCsisGtIwj0xfwmSPk5zpw9oi9H4KxnwljXo2h9OWNXGB0ATl1Rtd
+         y3Vb0kzOgl12QPOMtsgkQ8yR36ohw6qI2oqL+Rln2JsfPt+OjKhTadXjElZ3OetUvs5j
+         90U600rHHuDB9ES7OJ1V7b6Qkif2NiSvBWNvO5Ih+4o5Ej2qtVHmCQd1iSvuWxlm6WoF
+         wZnw==
+X-Gm-Message-State: AOJu0Yzhaq/JEde+KBT3J6hrN4RMsxdT0TI9sekkJsUOEkXEBmrb1Ctw
+        fR3MHvRyYDft5l/WYIk18O+AJQ==
+X-Google-Smtp-Source: AGHT+IHwt+wcmiHzIzpBrobUBa991WScHeOvwtCAq4Ysh3WkCDFvhnNCS5xE0Y9TRcLz8axynzkOjA==
+X-Received: by 2002:a7b:c8ca:0:b0:401:b204:3b95 with SMTP id f10-20020a7bc8ca000000b00401b2043b95mr2441626wml.15.1693593566116;
+        Fri, 01 Sep 2023 11:39:26 -0700 (PDT)
+Received: from smtpclient.apple ([131.111.5.246])
+        by smtp.gmail.com with ESMTPSA id l8-20020a05600c1d0800b003fef6881350sm5840720wms.25.2023.09.01.11.39.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 01 Sep 2023 11:39:25 -0700 (PDT)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
+From:   Jessica Clarke <jrtc27@jrtc27.com>
+In-Reply-To: <20230901-affected-wanting-ab517791a870@spud>
+Date:   Fri, 1 Sep 2023 19:39:14 +0100
+Cc:     William Qiu <william.qiu@starfivetech.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-mmc@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <C9C76D81-7244-4549-97E2-83CE10050A74@jrtc27.com>
+References: <20230830031846.127957-1-william.qiu@starfivetech.com>
+ <20230830031846.127957-2-william.qiu@starfivetech.com>
+ <20230830-commence-trickery-40eaa193cb15@wendy>
+ <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
+ <20230830-procedure-frostbite-56c751f7c276@wendy>
+ <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com>
+ <20230901-remold-sublease-a1ddb1fc6348@spud>
+ <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com>
+ <20230901-affected-wanting-ab517791a870@spud>
+To:     Conor Dooley <conor@kernel.org>
+X-Mailer: Apple Mail (2.3731.600.7)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IPQ8174 (Oak) family is part of the IPQ8074 family, but the ID-s for it
-are missing so lets add them.
+On 1 Sep 2023, at 18:43, Conor Dooley <conor@kernel.org> wrote:
+>=20
+> On Fri, Sep 01, 2023 at 06:20:38PM +0100, Jessica Clarke wrote:
+>> On 1 Sep 2023, at 16:42, Conor Dooley <conor@kernel.org> wrote:
+>>>=20
+>>> On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
+>>>>=20
+>>>>=20
+>>>> On 2023/8/30 16:34, Conor Dooley wrote:
+>>>>> On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski =
+wrote:
+>>>>>> On 30/08/2023 08:50, Conor Dooley wrote:
+>>>>>>> On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
+>>>>>>>> Due to the change of tuning implementation, it's no longer =
+necessary to
+>>>>>>>> use the "starfive,sysreg" property in dts, so drop the relevant
+>>>>>>>> description in dt-bindings here.
+>>>>>>>=20
+>>>>>>> How does changing your software implantation invalidate a =
+description of
+>>>>>>> the hardware?
+>>>>>>>=20
+>>>>>>=20
+>>>>>> Which is kind of proof that this syscon was just to substitute
+>>>>>> incomplete hardware description (e.g. missing clocks and phys). =
+We
+>>>>>> should have rejected it. Just like we should reject them in the =
+future.
+>>>>>=20
+>>>>> :s I dunno what to do with this... I'm inclined to say not to =
+remove it
+>>>>> from the binding or dts at all & only change the software.
+>>>>>=20
+>>>>>> There are just few cases where syscon is reasonable. All others =
+is just
+>>>>>> laziness. It's not only starfivetech, of course. Several other
+>>>>>> contributors do the same.
+>>>>>=20
+>>>>> I'm not sure if laziness is fair, lack of understanding is usually =
+more
+>>>>> likely.
+>>>>=20
+>>>> For this, I tend to keep it in binding, but remove it from =
+required. Because
+>>>> we only modify the tuning implementation, it doesn't mean that this =
+property
+>>>> need to be removed, it's just no longer be the required one.
+>>>=20
+>>> Please only remove it from required if the current driver doesn't =
+break
+>>> if the regmap is removed.
+>>=20
+>> Either way please make sure the documentation clearly states =E2=80=9Cn=
+ever use
+>> this, if you=E2=80=99re using it you=E2=80=99re doing it wrong, this =
+only exists
+>> because it was wrongly used in the past=E2=80=9D. Otherwise people =
+writing
+>> drivers for other OSes will probably use it too thinking they need =
+to.
+>=20
+> Maybe we should just delete it if the impact is going to be =
+negligible,
+> sounds like you're not using it in FreeBSD, which was part of what I =
+was
+> worried about. Guess it depends on what Emil & the distro heads think.
 
-Signed-off-by: Robert Marko <robimarko@gmail.com>
----
- drivers/soc/qcom/socinfo.c | 3 +++
- 1 file changed, 3 insertions(+)
+FreeBSD doesn=E2=80=99t have StarFive drivers yet; I don=E2=80=99t have =
+time to write
+them, and a community member has taken it upon themselves as a hobby
+but is rather inexperienced and has been struggling for months. OpenBSD
+has drivers, including a modified dwmmc, but doesn=E2=80=99t use this =
+property
+(in fact its driver doesn=E2=80=99t use the compatible other than to =
+probe the
+generic driver). I don=E2=80=99t think anyone else has a serious port; =
+Haiku=E2=80=99s
+the closest but also has no StarFive support.
 
-diff --git a/drivers/soc/qcom/socinfo.c b/drivers/soc/qcom/socinfo.c
-index 497cfb720fcb..345f0b002eb5 100644
---- a/drivers/soc/qcom/socinfo.c
-+++ b/drivers/soc/qcom/socinfo.c
-@@ -359,6 +359,9 @@ static const struct soc_id soc_id[] = {
- 	{ qcom_board_id(SM6125) },
- 	{ qcom_board_id(IPQ8070A) },
- 	{ qcom_board_id(IPQ8071A) },
-+	{ qcom_board_id(IPQ8172) },
-+	{ qcom_board_id(IPQ8173) },
-+	{ qcom_board_id(IPQ8174) },
- 	{ qcom_board_id(IPQ6018) },
- 	{ qcom_board_id(IPQ6028) },
- 	{ qcom_board_id(SDM429W) },
--- 
-2.41.0
+Jess
 
