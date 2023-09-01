@@ -2,71 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5383E79018E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 19:43:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8E757901A4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 19:55:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244007AbjIARnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 13:43:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48776 "EHLO
+        id S234031AbjIARzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 13:55:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231772AbjIARnQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 13:43:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467C9CF3;
-        Fri,  1 Sep 2023 10:43:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D001D61DD4;
-        Fri,  1 Sep 2023 17:43:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2AEAC433C7;
-        Fri,  1 Sep 2023 17:43:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693590191;
-        bh=dbHY4NbH/giNzi2oBHDT/tg4te/ZtoQps2IQIiB/Gww=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QRzNP25N4+w+sHpLXmmMpcBoqwFdfPW0ayH8hbGnliHWT3PJ8I46jCRqDEBnt8YXZ
-         NoPUYzW3QIp64SA/fuA/truy57OOddgUFM27GGii88cOYHIa3nA3+vXCPPfcfvOtct
-         u16dClrcXSNGNonWe6WtyF36HgSFLoMP+fGj0mpuMkLoCZRTPEvLDa/EYdaV8QS5iP
-         WAqKRf/ftPS9f8aRXyaP9aSGemk8kqxL7SiaglUFvSwFKwaqKvU+Vcsdh5naqTRq7E
-         dA2G4D3Uxc2aOB7Bwi4TGb2g6+sFWZNEYqb5W+sE+imqgsvBEVesu5wLST7uAdjiOq
-         ZxlOpYDgb27jA==
-Date:   Fri, 1 Sep 2023 18:43:05 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Jessica Clarke <jrtc27@jrtc27.com>
-Cc:     William Qiu <william.qiu@starfivetech.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-mmc@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S232428AbjIARzi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 13:55:38 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F215E5A
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 10:55:35 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-500c7796d8eso4065261e87.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 10:55:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693590933; x=1694195733; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=iXwfrkGM7Hz+jCAI0wm9OEdUpgziFLOO3YnjHkqpV2w=;
+        b=xdoz+/a23dmydI3ey5EbohLlk1xVa0PRFwgfEbKyT5yqzWSZpmqKvxzagemM34mJHr
+         BiuPFGWu/VgtvMSiCict3JQAwZZAAmqMX+deq9FXGMmnFTuR1nniieoryYnObZwysVUH
+         E8TY7LxHC/Tm6kXNPq8ennScCZt7NJdGlAJtBeQWjcYjJNbf4Kp4aaO/eCM2nQiS7rhb
+         xs9IHcK/wKzgxe8EY0V8jBIVWhC1vHxvQqdI0XGyuqmy2mQ1lmngVsQsWdb2JtYXPnAE
+         NlP9OorykmSZegjxcCrtl1ToNMnI+k3Ee8pfVxczjiI2AyZ62bLN8pvCguVT/9mchIGo
+         M2rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693590933; x=1694195733;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iXwfrkGM7Hz+jCAI0wm9OEdUpgziFLOO3YnjHkqpV2w=;
+        b=T/1npKB+HmSLDDrh6ihJ2CFdXg/LOPS8M9EqC2iS6UsmwX1USrEdNJKkXr3JEYYOao
+         rno+LLAeldTIdrCGNF/tXrLQYnBYD7UMer6AIWFrQSNNc5yMIh/x9QURfbyqhFqLuD2I
+         XfUVtGrCHkxEsJHBM1i/QSkgvU/K4NkFyaeVVKrBbcGDXgoWzJD9pgUIeHJYKRyM4KsU
+         AntkX703wNrzO/CdVXa/0cWIz9XZ0Jg60FwA8kJip0zIr8onoDTMkuhoms2TAMmtt930
+         72CE6N6m7wHFNI7FiB40E+7p5zzux82h/LiTDT4G84O1uXyrNWZWW9ulU7l0ESaYyroa
+         XzPw==
+X-Gm-Message-State: AOJu0YzA7JgJr6t75LdAQQrPsoSqwjhF5NLo753SUEcz2knSssG4YPYT
+        LHQNaanuNw8Ux5PSHSf3GI78yCJ+JtA4FpX4HPPxxA==
+X-Google-Smtp-Source: AGHT+IEVz6fJWAjbQSaZH9j8buVj8fBa5mtJlorGodbyAE6AeJjp2x4UEgh5FPmAsFJCi5/vrH6s7Q==
+X-Received: by 2002:a05:6512:2016:b0:500:91c1:9642 with SMTP id a22-20020a056512201600b0050091c19642mr1780047lfb.21.1693590933257;
+        Fri, 01 Sep 2023 10:55:33 -0700 (PDT)
+Received: from [192.168.1.101] (abxh154.neoplus.adsl.tpnet.pl. [83.9.1.154])
+        by smtp.gmail.com with ESMTPSA id r1-20020a19ac41000000b004ff748f6f1fsm717827lfc.69.2023.09.01.10.55.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Sep 2023 10:55:32 -0700 (PDT)
+Message-ID: <519259d7-ac6d-409b-a864-071e41f66f70@linaro.org>
+Date:   Fri, 1 Sep 2023 19:55:30 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/15] clk: qcom: gcc-sm6375: Unregister critical clocks
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+To:     Johan Hovold <johan@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
-Message-ID: <20230901-affected-wanting-ab517791a870@spud>
-References: <20230830031846.127957-1-william.qiu@starfivetech.com>
- <20230830031846.127957-2-william.qiu@starfivetech.com>
- <20230830-commence-trickery-40eaa193cb15@wendy>
- <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
- <20230830-procedure-frostbite-56c751f7c276@wendy>
- <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com>
- <20230901-remold-sublease-a1ddb1fc6348@spud>
- <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="VVkFRg4/+IISb4qT"
-Content-Disposition: inline
-In-Reply-To: <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230717-topic-branch_aon_cleanup-v1-0-27784d27a4f4@linaro.org>
+ <20230717-topic-branch_aon_cleanup-v1-3-27784d27a4f4@linaro.org>
+ <ZLaRtrH85v4kpSvb@hovoldconsulting.com>
+ <33a26241-026a-9466-5dd6-e3202b29f57c@linaro.org>
+ <ybugl2m7o5cnzj4lv5ksit2rip6yvths5ieo3xlw6cycto2zax@2jimga475z2t>
+ <ZLeiM6l6tu6XDzrr@hovoldconsulting.com>
+ <cc9e6464-5e47-4044-9785-c57167f0e1c5@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <cc9e6464-5e47-4044-9785-c57167f0e1c5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,79 +122,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 9.08.2023 18:52, Konrad Dybcio wrote:
+> On 19.07.2023 10:43, Johan Hovold wrote:
+>> On Tue, Jul 18, 2023 at 09:23:52AM -0700, Bjorn Andersson wrote:
+>>> On Tue, Jul 18, 2023 at 03:26:51PM +0200, Konrad Dybcio wrote:
+>>>> On 18.07.2023 15:20, Johan Hovold wrote:
+>>>>> On Mon, Jul 17, 2023 at 05:19:10PM +0200, Konrad Dybcio wrote:
+>>>>>> Some clocks need to be always-on, but we don't really do anything
+>>>>>> with them, other than calling enable() once and telling Linux they're
+>>>>>> enabled.
+>>>>>>
+>>>>>> Unregister them to save a couple of bytes and, perhaps more
+>>>>>> importantly, allow for runtime suspend of the clock controller device,
+>>>>>> as CLK_IS_CRITICAL prevents the latter.
+>>>>>
+>>>>> But this doesn't sound right. How can you disable a controller which
+>>>>> still has clocks enabled?
+>>>>>
+>>>>> Shouldn't instead these clocks be modelled properly so that they are
+>>>>> only enabled when actually needed?
+>>>> Hm.. We do have clk_branch2_aon_ops, but something still needs to
+>>>> toggle these clocks.
+>>>>
+>>>
+>>> Before we started replacing these clocks with static votes, I handled
+>>> exactly this problem in the turingcc-qcs404 driver by registering the
+>>> ahb clock with a pm_clk_add(). The clock framework will then
+>>> automagically keep the clock enabled around operations, but it will also
+>>> keep the runtime state active as long as the clock is prepared.
+>>>
+>>> As mentioned in an earlier reply today, there's no similarity to this in
+>>> the reset or gdsc code, so we'd need to add that in order to rely on
+>>> such mechanism.
+>>
+>> This reminds me of:
+>>
+>> 	4cc47e8add63 ("clk: qcom: gdsc: Remove direct runtime PM calls")
+>>
+>> which recently removed a broken attempt to implement this for gdscs.
+>>
+>> Just stumbled over GENPD_FLAG_PM_CLK which may provide a way forward at
+>> least for genpd (but see below).
+>>
+>>>> I *think* we could leave a permanent vote in probe() without breaking
+>>>> runtime pm! I'll give it a spin bit later..
+>>>>
+>>>
+>>> Modelling the AHB clock in DT and putting a devm_clk_get_enabled() would
+>>> properly connect the two, and thereby handle probe order between the two
+>>> clock controllers.
+>>
+>> Yeah, this dependency really should be described eventually.
+>>
+>>> But it would prevent the power-domain of the parent provider to ever
+>>> suspending. Using pm_clk_add() this would at least depend on client
+>>> votes.
+>>
+>> IIUC using pm_clk_add() would also prevent the parent from suspending
+>> due to that resume call in clk_prepare().
+>>
+>> And this mechanism is also used for GENPD_FLAG_PM_CLK...
+> So.. how do we go about solving the issue that this patch tried to
+> address?
+I see things this way:
 
---VVkFRg4/+IISb4qT
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+- clock controllers (non-gcc) that use magic writes today,
+  they should stay as they are to avoid dramatic spaghetti wrt
+  dt backwards compatibility
 
-On Fri, Sep 01, 2023 at 06:20:38PM +0100, Jessica Clarke wrote:
-> On 1 Sep 2023, at 16:42, Conor Dooley <conor@kernel.org> wrote:
-> >=20
-> > On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
-> >>=20
-> >>=20
-> >> On 2023/8/30 16:34, Conor Dooley wrote:
-> >>> On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski wrote:
-> >>>> On 30/08/2023 08:50, Conor Dooley wrote:
-> >>>>> On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
-> >>>>>> Due to the change of tuning implementation, it's no longer necessa=
-ry to
-> >>>>>> use the "starfive,sysreg" property in dts, so drop the relevant
-> >>>>>> description in dt-bindings here.
-> >>>>>=20
-> >>>>> How does changing your software implantation invalidate a descripti=
-on of
-> >>>>> the hardware?
-> >>>>>=20
-> >>>>=20
-> >>>> Which is kind of proof that this syscon was just to substitute
-> >>>> incomplete hardware description (e.g. missing clocks and phys). We
-> >>>> should have rejected it. Just like we should reject them in the futu=
-re.
-> >>>=20
-> >>> :s I dunno what to do with this... I'm inclined to say not to remove =
-it
-> >>> from the binding or dts at all & only change the software.
-> >>>=20
-> >>>> There are just few cases where syscon is reasonable. All others is j=
-ust
-> >>>> laziness. It's not only starfivetech, of course. Several other
-> >>>> contributors do the same.
-> >>>=20
-> >>> I'm not sure if laziness is fair, lack of understanding is usually mo=
-re
-> >>> likely.
-> >>=20
-> >> For this, I tend to keep it in binding, but remove it from required. B=
-ecause
-> >> we only modify the tuning implementation, it doesn't mean that this pr=
-operty
-> >> need to be removed, it's just no longer be the required one.
-> >=20
-> > Please only remove it from required if the current driver doesn't break
-> > if the regmap is removed.
->=20
-> Either way please make sure the documentation clearly states =E2=80=9Cnev=
-er use
-> this, if you=E2=80=99re using it you=E2=80=99re doing it wrong, this only=
- exists
-> because it was wrongly used in the past=E2=80=9D. Otherwise people writing
-> drivers for other OSes will probably use it too thinking they need to.
+- clock controllers (non-gcc) that use CLK_IS_CRITICAL are
+  transitioned to magic writes to skip the PM code fluff which
+  prevents shutting down the PDs if any clock is critical and
+  for uniformity with point 1 (as the device trees still don't
+  contain any references to the necessary clocks)
 
-Maybe we should just delete it if the impact is going to be negligible,
-sounds like you're not using it in FreeBSD, which was part of what I was
-worried about. Guess it depends on what Emil & the distro heads think.
+- new clock controllers are modeled with use of pm_clk and with
+  proper device tree references
 
---VVkFRg4/+IISb4qT
-Content-Type: application/pgp-signature; name="signature.asc"
+FWIW Qualcomm nowadays just keep these clocks always on (answering
+Johan's question - they're either off-from-Linux-POV-not-really-in-
+hardware or these clocks retain the enable bit, I don't know) in
+their shipping downstream kernels, the power leak is probably
+minimal, but if we can avoid it, every nanowatt is to our advantage
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPIiqQAKCRB4tDGHoIJi
-0gykAPwMyjaH4QlvlKNp66b+AkhwtZYuHNp93F2DQ5zKpQdaNgEAuBss3Yag0o95
-9UvKadGCMRv9Wi5nr/an6EGVMLhKkAQ=
-=nFPr
------END PGP SIGNATURE-----
-
---VVkFRg4/+IISb4qT--
+Konrad
