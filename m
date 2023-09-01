@@ -2,164 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25BB778FE32
-	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 15:17:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BC8C78FE60
+	for <lists+devicetree@lfdr.de>; Fri,  1 Sep 2023 15:38:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349716AbjIANRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 09:17:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56568 "EHLO
+        id S1345575AbjIANiT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 1 Sep 2023 09:38:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349710AbjIANRc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 09:17:32 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 593ACE7E;
-        Fri,  1 Sep 2023 06:17:29 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.02,219,1688396400"; 
-   d="scan'208";a="178442172"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 01 Sep 2023 22:17:26 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 396F9421CCBF;
-        Fri,  1 Sep 2023 22:17:26 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mani@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH 3/3] dt-bindings: PCI: rcar-gen4-pcie-ep: Fix minor issues
-Date:   Fri,  1 Sep 2023 22:17:11 +0900
-Message-Id: <20230901131711.2861283-4-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S233098AbjIANiT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 09:38:19 -0400
+X-Greylist: delayed 322 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 01 Sep 2023 06:38:15 PDT
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFFF5CC5;
+        Fri,  1 Sep 2023 06:38:15 -0700 (PDT)
+Received: from toolbox.int.toradex.com ([213.55.223.243]) by
+ mrelay.perfora.net (mreueus002 [74.208.5.2]) with ESMTPSA (Nemesis) id
+ 0M6SuT-1pjA5T1zzf-00yNVJ; Fri, 01 Sep 2023 15:32:41 +0200
+From:   Marcel Ziswiler <marcel@ziswiler.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Subject: [PATCH v1] arm64: dts: ti: verdin-am62: add iw416 based bluetooth
+Date:   Fri,  1 Sep 2023 15:32:32 +0200
+Message-Id: <20230901133233.105546-1-marcel@ziswiler.com>
+X-Mailer: git-send-email 2.36.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Provags-ID: V03:K1:Y2b6Xok5Ab6kDR8NeHrJj30jRiKwp+d75tz42valdNq83GDoqqO
+ TSyo4xfyK1JKB5YPkBkjepHa2Dz6yZEA9V4zt615SM1UGN09CaARAL5RlvqgxQFqOM3gDCs
+ GB7bW8R7GwaHXCKtdQs7/XzT4x7Qb8G/gjp49dxlxcJxOgbq4jA7mjwMoaHfiYcIaixSbTi
+ HV+IC/2ecMvEknEKV03pg==
+UI-OutboundReport: notjunk:1;M01:P0:ioNU7onBA9M=;1FXsYta/Ly5GTixTlhk5eWTwqN4
+ n0TyLpsNkyE465WwrK6fCopeQ4CYgf54wUfhMMEtmFIxTH7LI1rLJsQWbmbfe1hKrcInpDUE7
+ 2KC4oVcm8Rh/Vkytzd8oODhtSFWLALBbW8lVdvZnQoCCR2upY3clncPPqz2U+gNcEK2SmEmsZ
+ GUKVre43AHq8zlwqxIknJsKvq6L4Vt+O/nIV4fGQ6O6fZi4E67H1OR0gBGXtey58Iz0eoyShV
+ slNnM2lznLSBbpyr8VQaXppAug92vl4mBgbsngQMuFABb4FP1by0UcUnhZuQ3KvFPxTvBR5uo
+ x7dQNwm6NriCtJS3VVAVSH9F3t5lPz1ZaOTtvHoMn1BV0vmHbhIr0utQJLJGIwbQMv6JB0EO0
+ bvxDXlLoOdkgsz8Bq/edU6QzPKd6NugF9weiHg7wSKycHhsYl2USFAtxQpy4Asaj0F3m+N7ue
+ g4Vgo9Ew43bEYmjzvTjvgODAtdbROztLQhPB0GQ+CN1x9ta4A9bgBygfZNtgqJHwIRZHjJzfj
+ TYtEE4WHEesBQ69rxcQFBv9vB16zd4AM2MnIWCDCoU0iaLg66rAJBAvfOBL7lljAP2ysmX91n
+ seMr/Xs7PTi1E/NjtJWgBXMrD4/osx6MD5TmkU4xooy2HkT/tAuZYxS+23XJbKHRElJrn9wR3
+ r66ekNtXBkuRuhV0qmf5BGt4IeH74iZSdR7Z8Drl8KNBkHs/F71NqCjm9Qvj21dAIYhW0W/7E
+ DgDmrR3Jjm2unwXZMzLwrIDqDI1jL9huHFMR4n0x9Ia+pUyreQbblwYd8pEjKt8e0HDrnKEtj
+ M6PumVaVLFiNDQUtrfDHrlysWYnocmJJUY2lODiHzKcqbuwE+SDxdSOtwOVnY0Lk90R+mExev
+ O2iIxmEfZvCz9gXvCwxayfyXqtLHvG46eXuE=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix minor issues of rcar-gen4-pci-ep.yaml.
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Add NXP IW416 based u-blox MAYA-W1 Bluetooth (using btnxpuart) as used
+on the V1.1 SoMs. Wi-Fi is and was already using mwifiex.
+
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+
 ---
 
-This patch will be squashed into the following commit on the pci.git /
-controller/rcar branch so that many fixes into a patch:
+ arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
-https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/rcar&id=738bded11aaa3a9717e415197cd6b833dc439cb3
----
- .../bindings/pci/rcar-gen4-pci-ep.yaml        | 39 ++++++++++++-------
- 1 file changed, 24 insertions(+), 15 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-index 4e6be856104c..fe38f62da066 100644
---- a/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-+++ b/Documentation/devicetree/bindings/pci/rcar-gen4-pci-ep.yaml
-@@ -20,7 +20,7 @@ properties:
-       - const: renesas,rcar-gen4-pcie-ep  # R-Car Gen4
- 
-   reg:
--    maxItems: 6
-+    maxItems: 7
- 
-   reg-names:
-     items:
-@@ -29,6 +29,7 @@ properties:
-       - const: atu
-       - const: dma
-       - const: app
-+      - const: phy
-       - const: addr_space
- 
-   interrupts:
-@@ -40,12 +41,6 @@ properties:
-       - const: sft_ce
-       - const: app
- 
--  power-domains:
--    maxItems: 1
--
--  resets:
--    maxItems: 1
--
-   clocks:
-     maxItems: 2
- 
-@@ -54,8 +49,15 @@ properties:
-       - const: core
-       - const: ref
- 
--  max-functions:
--    maximum: 2
-+  power-domains:
-+    maxItems: 1
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+index 90ddc71bcd30..a6808b10c7b2 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-wifi.dtsi
+@@ -35,5 +35,11 @@ &sdhci2 {
+ &main_uart5 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart5>;
++	uart-has-rtscts;
+ 	status = "okay";
 +
-+  resets:
-+    maxItems: 1
-+
-+  reset-names:
-+    items:
-+      - const: pwr
- 
-   max-link-speed:
-     maximum: 4
-@@ -63,15 +65,20 @@ properties:
-   num-lanes:
-     maximum: 4
- 
-+  max-functions:
-+    maximum: 2
-+
- required:
-   - compatible
-   - reg
-   - reg-names
-   - interrupts
--  - resets
--  - power-domains
-+  - interrupt-names
-   - clocks
-   - clock-names
-+  - power-domains
-+  - resets
-+  - reset-names
- 
- unevaluatedProperties: false
- 
-@@ -87,10 +94,11 @@ examples:
- 
-         pcie0_ep: pcie-ep@e65d0000 {
-             compatible = "renesas,r8a779f0-pcie-ep", "renesas,rcar-gen4-pcie-ep";
--            reg = <0 0xe65d0000 0 0x2000>, <0 0xe65d2800 0 0x0800>,
-+            reg = <0 0xe65d0000 0 0x2000>, <0 0xe65d2000 0 0x1000>,
-                   <0 0xe65d3000 0 0x2000>, <0 0xe65d5000 0 0x1200>,
--                  <0 0xe65d6200 0 0x0e00>, <0 0xfe000000 0 0x400000>;
--            reg-names = "dbi", "dbi2", "atu", "dma", "app", "addr_space";
-+                  <0 0xe65d6200 0 0x0e00>, <0 0xe65d7000 0 0x0400>,
-+                  <0 0xfe000000 0 0x400000>;
-+            reg-names = "dbi", "dbi2", "atu", "dma", "app", "phy", "addr_space";
-             interrupts = <GIC_SPI 417 IRQ_TYPE_LEVEL_HIGH>,
-                          <GIC_SPI 418 IRQ_TYPE_LEVEL_HIGH>,
-                          <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>;
-@@ -99,8 +107,9 @@ examples:
-             clock-names = "core", "ref";
-             power-domains = <&sysc R8A779F0_PD_ALWAYS_ON>;
-             resets = <&cpg 624>;
--            num-lanes = <2>;
-+            reset-names = "pwr";
-             max-link-speed = <4>;
-+            num-lanes = <2>;
-             max-functions = /bits/ 8 <2>;
-         };
-     };
++	bluetooth {
++		compatible = "nxp,88w8987-bt";
++		fw-init-baudrate = <3000000>;
++	};
+ };
 -- 
-2.25.1
+2.36.1
 
