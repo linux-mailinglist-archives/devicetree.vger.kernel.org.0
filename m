@@ -2,116 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0152B790890
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 17:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 162717908EC
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 19:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233663AbjIBPoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 11:44:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42540 "EHLO
+        id S229814AbjIBRdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 13:33:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231886AbjIBPoF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 11:44:05 -0400
-Received: from bombadil.infradead.org (bombadil.infradead.org [IPv6:2607:7c80:54:3::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59342CFE;
-        Sat,  2 Sep 2023 08:44:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-        Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-        Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-        bh=OI7BJO+ZJALq3UZuaDfs583qm49QoWB+dj6di5RNwhA=; b=pSoXvhBWh3kByyoYDq+FsjDoxa
-        Oj4rVzzPvRuSqDbQnFNAd8ndXdFAAkdDjTlK1RN0R+n5yl9devylYzqRTW6ucQe6y6ViqdbE//fTb
-        XncJKZbxLDpXos9/i4g2r7J/H3PLDlahphziBGaX9sJDkNunop1GbRcft0mlQ0QJlB+JoQYGGyaeV
-        dSCQG6EBjXB1GKNC8/qkbWxtaxAKCH4fVz+CKDMLDEpgDi58V3UWWCEEMLsSQxP1zfD5s2rXyJ3Dq
-        looCVp1sqngcHTIuiUGanqeNBGXSNc0k8zrjnlXJRJkvraU5rylVt45mbQSvQ1Dfodva3A7dkwWF5
-        VW6CzKNg==;
-Received: from [2601:1c2:980:9ec0::2764]
-        by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
-        id 1qcSmq-001ZBJ-1a;
-        Sat, 02 Sep 2023 15:43:48 +0000
-Message-ID: <885eab85-2c11-cf20-9187-55cd647fbe9f@infradead.org>
-Date:   Sat, 2 Sep 2023 08:43:45 -0700
+        with ESMTP id S229436AbjIBRdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 13:33:17 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4FD0130;
+        Sat,  2 Sep 2023 10:33:11 -0700 (PDT)
+Received: from [192.168.178.23] (k10064.upc-k.chello.nl [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id A1E1ED074A;
+        Sat,  2 Sep 2023 17:32:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1693675959; bh=MIfk0rla9KfQTZEjEKwE98+NrQUedgBa/nUkrZnJh1E=;
+        h=From:Subject:Date:To:Cc;
+        b=NmcejQ9HYgXVepN9sGzwVgKxPQgzvOenD1at0u6maZsjN9xfZy1FjZoVoipXdFgo/
+         OAzV6UnS1YpXrTns6uD7eqAk30Fz/0wkfe11RVLqYY0B038EE1vRKmirgf4PLvP22/
+         3kxkV5lv2uBH6WhZxYez0OfQiDKlFW/UizujxRr4=
+From:   Luca Weiss <luca@z3ntu.xyz>
+Subject: [PATCH 0/2] Add blsp1_i2c6 and blsp1_uart2 to MSM8226 SoC
+Date:   Sat, 02 Sep 2023 19:32:23 +0200
+Message-Id: <20230902-msm8226-i2c6-v1-0-9632b8916789@z3ntu.xyz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH v3 1/5] soc: loongson: loongson2_pm: Add dependency for
- INPUT
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKdx82QC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDSwMj3dziXAsjIzPdTKNkM12DNPMUc5OUxLREiyQloJaCotS0zAqwcdG
+ xtbUANu7RHF4AAAA=
+To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev
-References: <cover.1693623752.git.zhoubinbin@loongson.cn>
- <16a37f6ad3cc9417b6638c2cd532d88c79468eb1.1693623752.git.zhoubinbin@loongson.cn>
-From:   Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <16a37f6ad3cc9417b6638c2cd532d88c79468eb1.1693623752.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Luca Weiss <luca@z3ntu.xyz>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=669; i=luca@z3ntu.xyz;
+ h=from:subject:message-id; bh=MIfk0rla9KfQTZEjEKwE98+NrQUedgBa/nUkrZnJh1E=;
+ b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBk83GxgyY3Ma4897J4Cidfz0V3l6kb9UcChVj3k
+ G313YhOKKeJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZPNxsQAKCRBy2EO4nU3X
+ VohgEAC1SnpotLH+kqVNteXXhdKopKrL+aP54oMaNqapdrg9tPKco3VwAkElpp3y0aO4cJaqPd8
+ sbrIPGVYxaCRsM48ip49yqhp9zgJOa0p2kGdnK2K5N8Js/+peJD3sJaqyG8h3RvodQDtFLzdlEP
+ mj3cbSEkxGVNOP9o9qaFZ/JnXKUrmfLgXD6oxm6CJQiYul1fWPOclQrNEG+7digy0u8TraKAnsS
+ Mb4OxD2xns2SravIumC5zU1YIYur+H7aUuJS7l+6hOJd4OrXaJpkSHmp2UIlrk/h5mTkCaUn9Rs
+ 1z+TAxhbZuDoipnC8Kuq2hGJRHxsO3oWEN0RDOe4tuuBkPuqPl59DbQEBXN7kZLVO0XzsOdOzsF
+ ncgP2qDK/yJ02FDnmrApgxiuLUWmMqjXG90wu/J0C8mV8do7SM4+M+Q9hO7bPF5m/szk7EL/bH5
+ 34OZGHZ8qAxzyNVJhBU5GS4P9gJgg9Wwa/5o4rN2NPfVoWwgfLvKXTG50F4DZm+/xTEzRxrNaPx
+ /KK78LaHoZB1biYkJ7RGjdpQMA+9Uw9y4ba/xIS2uknsqwHPU9f/TJy5PCEJp2/dUAO+ddRhbcK
+ 1cZBN74X30J5zwR0B/fQxat5/se0qULW9LpXhvhQFB0nPJEkOM2fXsxulg79zzzUJcNC1SpCm0u
+ hI6LwcyoR7YIOLw==
+X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
+ fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the I2C bus and UART interface found on the MSM8226. For the I2C bus
+we also first need to add the pinctrl function in the driver.
 
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Luca Weiss (2):
+      pinctrl: qcom: msm8226: Add blsp_i2c6 function
+      ARM: dts: qcom: msm8226: Add blsp1_i2c6 and blsp1_uart2
 
-On 9/2/23 01:47, Binbin Zhou wrote:
-> Since commit 67694c076bd7 ("soc: loongson2_pm: add power management
-> support"), the Loongson-2K PM driver was added, but it didn't update the
-> Kconfig entry for the INPUT dependency, leading to build errors:
-> 
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
-> drivers/soc/loongson/loongson2_pm.o: in function `loongson2_power_button_init':
-> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:101:(.text+0x350): undefined reference to `input_allocate_device'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
-> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:109:(.text+0x3dc): undefined reference to `input_set_capability'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
-> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:111:(.text+0x3e4): undefined reference to `input_register_device'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld:
-> /work/lnx/next/linux-next-20230825/LOONG64/../drivers/soc/loongson/loongson2_pm.c:125:(.text+0x3fc): undefined reference to `input_free_device'
-> /opt/crosstool/gcc-13.2.0-nolibc/loongarch64-linux/bin/loongarch64-linux-ld: drivers/soc/loongson/loongson2_pm.o: in function `input_report_key':
-> /work/lnx/next/linux-next-20230825/LOONG64/../include/linux/input.h:425:(.text+0x58c): undefined reference to `input_event'
-> 
-> Also, since this driver can only be built-in, it fails to link when the
-> INPUT is in a loadable module, so we should update the Kconfig entry to
-> depend on INPUT=y.
-> 
-> Fixes: 67694c076bd7 ("soc: loongson2_pm: add power management support")
-> Reported-by: Randy Dunlap <rdunlap@infradead.org>
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+ arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 29 +++++++++++++++++++++++++++++
+ drivers/pinctrl/qcom/pinctrl-msm8226.c   |  8 ++++++--
+ 2 files changed, 35 insertions(+), 2 deletions(-)
+---
+base-commit: 7c2878be573282a9961c359b806ccf70afe1a6b6
+change-id: 20230902-msm8226-i2c6-0f7d74dafa8b
 
-Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
-Tested-by: Randy Dunlap <rdunlap@infradead.org>
-
-Thanks.
-
-> ---
->  drivers/soc/loongson/Kconfig | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
-> index 314e13bb3e01..368344943a93 100644
-> --- a/drivers/soc/loongson/Kconfig
-> +++ b/drivers/soc/loongson/Kconfig
-> @@ -20,6 +20,7 @@ config LOONGSON2_GUTS
->  config LOONGSON2_PM
->  	bool "Loongson-2 SoC Power Management Controller Driver"
->  	depends on LOONGARCH && OF
-> +	depends on INPUT=y
->  	help
->  	  The Loongson-2's power management controller was ACPI, supports ACPI
->  	  S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-
+Best regards,
 -- 
-~Randy
+Luca Weiss <luca@z3ntu.xyz>
+
