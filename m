@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B41DF790992
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 22:30:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AEC790997
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 22:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233894AbjIBUa1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 16:30:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37498 "EHLO
+        id S234461AbjIBUdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 16:33:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233986AbjIBUa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 16:30:26 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2543FE54
-        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 13:30:23 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bcc14ea414so2532331fa.0
-        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 13:30:23 -0700 (PDT)
+        with ESMTP id S234415AbjIBUdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 16:33:19 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66ACFCD7
+        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 13:33:15 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-50079d148aeso413778e87.3
+        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 13:33:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693686621; x=1694291421; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693686793; x=1694291593; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZMYwzCW8pcjdXL33e2tZEqZSaF+wjb9sldJxIrkyvSM=;
-        b=r+0R4CG00HcgVDY+YVBPvwa2nJ/Zg+0I9+S58PuCKVLUI7i4FvFEIEZBaG4NAoVd3t
-         kTvUyMXd3jlXWqwCTW+W/GYGWT+cOSPnZPOFM5YVY7OPkbK5aLALJ0LL9GyxIx+/60iM
-         Tr6G/s+G3Z7yi2N/awYWAHDHQUomwslJgNSXNW6q06/IvuG5J0KdU7u/trJg6Udevl/8
-         sxJ3hv1XVRs2g4N+XvdYuAvbLNd/a0kjSMQH5X3OKyxPaBVE1geD6QWY7J7hKi8CtuDo
-         kPvjOjGF0qtRl4THybC0yTRV/Jtwnbwnr/arbtFlTs/JkVnzgNb7fQbS2hQbF22segIl
-         2cfQ==
+        bh=dH6NiKbQqe9vmnrJhfaltDvwHP6URRATlfVkCOgJw/A=;
+        b=UI/XtxaIdFuJGAoWO7uQ7Umhizh1IIONklRZO7+dLCNMSDO56BW/wyL+ZoxKObL+1L
+         AbZGD5RbduzbZg8aF+AjeUOyjLxo8nKJJSOEe4J1f8c34CeaLztExaMzQudHRfhoyrFr
+         23kuXXWIucZt1va5ZlVVJN0rOm5LhuWgeWoRCPXYoUzfvVjnAvp705vt0a4F8y7zQPED
+         Rk8+h98PbebcUSsjzZxiOwBZ184ow2equOFYyvJzU6q/s/mziNeoT+exdpCrg+hNn+Qc
+         lhMB3veYcFQixxChVSc8u25t4HCkPjwLFyneiC+l51LvDyBPKBU0EIuFzebrk1Tf8fCQ
+         xswA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693686621; x=1694291421;
+        d=1e100.net; s=20221208; t=1693686793; x=1694291593;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZMYwzCW8pcjdXL33e2tZEqZSaF+wjb9sldJxIrkyvSM=;
-        b=cuZ3bEjWf2xd+gklQfnHkwsYKSwEGNSP+8TfLxaWUh8PY73F40yxV/DQIuHGRBc0yH
-         7J29u03EZI9vN2kW4GIFDt2ONzFu5il3UyKE8PcVcm0H8OQb6BxHcxYFuqElJgpPIpFg
-         lg828lH8sL6X61Pl4GfdnDlWoJlKWNaT+vUGLf+/qAOQT1IREnK4hDzF8i0Ha8nxRlAr
-         Uw4nP7LxFJ2lQW4W/y/c0pMmNUz2Zcj6mrfPHbJsciSpkTGPErmEP/5jU0a2Ajz27y43
-         kiDN+Mh3og9bPtgRfAsy275Pja/Z8XQmOOIT2dyJNVev7NBabNvmtVeMF2y+e7f73GPM
-         veQQ==
-X-Gm-Message-State: AOJu0YxYYEnz9UIFVmtjsPEutZ+KRtRNdQfVJqjmor+cE4JmYZYymcT/
-        HXsOuEhLQJ9ubArQhB8R+/Ucxw==
-X-Google-Smtp-Source: AGHT+IF8uVwtzRgCTp26MntN0aO1ligWKeFaBuz/fu6vt+LLd5ZzMsXpoBNsEvwIZOK2vfxFKAHPig==
-X-Received: by 2002:a2e:a17a:0:b0:2bb:a28b:58e1 with SMTP id u26-20020a2ea17a000000b002bba28b58e1mr4336005ljl.41.1693686621086;
-        Sat, 02 Sep 2023 13:30:21 -0700 (PDT)
+        bh=dH6NiKbQqe9vmnrJhfaltDvwHP6URRATlfVkCOgJw/A=;
+        b=cE2NYYvnccJTV2Bk9YvRHflf4CjAX758mBRHvDsJX2huT3IMv4ndDdpsYZ3vdUuPPK
+         uazsH4N6kJDhQPLiEHYcvMcUTQQvgyhuSlVU0SPu5yRwSUXjO0g4qE7bmeik5XECTCDN
+         BAnFsYJeKZyRYWHOa3/EvTMe/82Jd/gek2bul8g/MixUtLaWBNiXwtwHOK9edGMk5HK7
+         XF3waPHntZst88Czw2KVjH64AI8sxcUeWIUZqqcBUmgmBQ63+zL6M86z6qjB4N5LBqK9
+         nMpHxPtO0iQacrdA8n10Mim2UOYK59NdyalzYWOGTHcTpRT6o2vxH03jGWzABZayIE1i
+         0t9A==
+X-Gm-Message-State: AOJu0YwURlE+TC74agNtzrd0nxbQupjag5lX5fPg94UGtXXeJkQ9xjza
+        Pg8QmS2jxEmYs8YvjW5Zgbsn2g==
+X-Google-Smtp-Source: AGHT+IG/ehxGK8nYwyOuB9I9WzwivyALoSIWWDeFS2WRms80E8dL9EPXOMGZNN4nZuejWRmw6y8bxA==
+X-Received: by 2002:a2e:95d7:0:b0:2bc:e330:660b with SMTP id y23-20020a2e95d7000000b002bce330660bmr4212501ljh.9.1693686793674;
+        Sat, 02 Sep 2023 13:33:13 -0700 (PDT)
 Received: from [192.168.1.101] (abxi170.neoplus.adsl.tpnet.pl. [83.9.2.170])
-        by smtp.gmail.com with ESMTPSA id j20-20020a2e8514000000b002b6d7682050sm1296922lji.89.2023.09.02.13.30.20
+        by smtp.gmail.com with ESMTPSA id z5-20020a2e9645000000b002b9f1538816sm1292880ljh.80.2023.09.02.13.33.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Sep 2023 13:30:20 -0700 (PDT)
-Message-ID: <86312d2b-698a-4551-acd6-f947ebdb986a@linaro.org>
-Date:   Sat, 2 Sep 2023 22:30:19 +0200
+        Sat, 02 Sep 2023 13:33:13 -0700 (PDT)
+Message-ID: <11f4e8f9-1193-4c6a-a5ae-cf592039a6b9@linaro.org>
+Date:   Sat, 2 Sep 2023 22:33:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] pinctrl: qcom: msm8226: Add blsp_i2c6 function
+Subject: Re: [PATCH 2/2] ARM: dts: qcom: msm8226: Add blsp1_i2c6 and
+ blsp1_uart2
 Content-Language: en-US
 To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
         phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
@@ -65,7 +66,7 @@ To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
 Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230902-msm8226-i2c6-v1-0-9632b8916789@z3ntu.xyz>
- <20230902-msm8226-i2c6-v1-1-9632b8916789@z3ntu.xyz>
+ <20230902-msm8226-i2c6-v1-2-9632b8916789@z3ntu.xyz>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -102,7 +103,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230902-msm8226-i2c6-v1-1-9632b8916789@z3ntu.xyz>
+In-Reply-To: <20230902-msm8226-i2c6-v1-2-9632b8916789@z3ntu.xyz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -116,10 +117,63 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 2.09.2023 19:32, Luca Weiss wrote:
-> On GPIO22 and GPIO23 there is another I2C bus. Add the function for it.
+> Add more busses found on msm8226 SoC.
 > 
 > Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
-Need to also update the bindings
+>  arch/arm/boot/dts/qcom/qcom-msm8226.dtsi | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
+> index b6ae4b7936e3..3b6114049e61 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-msm8226.dtsi
+> @@ -230,6 +230,15 @@ blsp1_uart1: serial@f991d000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		blsp1_uart2: serial@f991e000 {
+> +			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+> +			reg = <0xf991e000 0x1000>;
+> +			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_UART2_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
+One per line, please
+> +			clock-names = "core", "iface";
+> +			status = "disabled";
+> +		};
+> +
+>  		blsp1_uart3: serial@f991f000 {
+>  			compatible = "qcom,msm-uartdm-v1.4", "qcom,msm-uartdm";
+>  			reg = <0xf991f000 0x1000>;
+> @@ -313,6 +322,19 @@ blsp1_i2c5: i2c@f9927000 {
+>  			#size-cells = <0>;
+>  		};
+>  
+> +		blsp1_i2c6: i2c@f9928000 {
+> +			status = "disabled";
+> +			compatible = "qcom,i2c-qup-v2.1.1";
+> +			reg = <0xf9928000 0x1000>;
+> +			interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> +			clocks = <&gcc GCC_BLSP1_QUP6_I2C_APPS_CLK>, <&gcc GCC_BLSP1_AHB_CLK>;
+> +			clock-names = "core", "iface";
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&blsp1_i2c6_pins>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+compatible
+reg
+interrupts
+clocks
+clock-names
+pinctrl-0
+pinctrl-names
+addrsizecells
+status
+
+to make it coherent ish with new nodes being added today
+
+I know it's rather incoherent with what's in the file, but I guess
+my wunderwaffe dt sorter script is still on the back burner..
 
 Konrad
