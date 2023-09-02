@@ -2,157 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD24F7908F5
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 19:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4FA279091F
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 20:23:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229804AbjIBRem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 13:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34900 "EHLO
+        id S230379AbjIBSXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 14:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjIBRed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 13:34:33 -0400
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3CAAA4;
-        Sat,  2 Sep 2023 10:34:27 -0700 (PDT)
-Received: from [192.168.178.23] (k10064.upc-k.chello.nl [62.108.10.64])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 7EF76CF376;
-        Sat,  2 Sep 2023 17:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1693676066; bh=4AwTwBIRZzliGYZREHlXp1lG8UPu59oASjiNI3bF69E=;
-        h=From:Date:Subject:To:Cc;
-        b=c/NZHMQW118TC49OMKDBUTT5pzfgJXnGA+hPJBBd8dXvBCG2p5jAKWpwyd839MVrs
-         MEX56NJjEvGXAF8pLYgtvsDUQ4cFekeWREK9cpTxixxKFmBKhdETznERNFI6RP4WMz
-         fSZBPnq6FWyFJS8mA7h41cplQbZ5hb7u/J00l0ME=
-From:   Luca Weiss <luca@z3ntu.xyz>
-Date:   Sat, 02 Sep 2023 19:34:23 +0200
-Subject: [PATCH] clk: qcom: mmcc-msm8974: remove ocmemcx_ahb_clk
+        with ESMTP id S229482AbjIBSXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 14:23:47 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CDBEE4B
+        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 11:23:44 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1bf3a2f4528so972975ad.2
+        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 11:23:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693679024; x=1694283824; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S/h6f60a51OBLWnoS64kjCROnu9sNnSGTdI4hkrdrgU=;
+        b=DJzfNxdAJfh+QHZeElt4uwcLV50p+qMkM993HDvs/xMXwTXBeXN1er6+Y0D+UTUfc8
+         lpWbbDGqIadTccQibh3P8vlRNwV8Rwx9EUK8wkMvGb/IZnR6vbNs3n73cLdSekLvZ5Mg
+         mlX48+DHjHXY8f54H0ZZrAt0aoNpsjDpbljQISBr2Qlwxpz/5UTwtupL2aAUPGtZismc
+         tiqNGOuJ/e7Zgo7uRUcd42ytav7yeyIuCCq4Mv0zZiNBsBMT0eNA26idz8HAntycbMbp
+         byEuWrpWJ3H6m1UDa4F3ZW0Q6S+UKduJWiD9Ri77/yVQAE+5HA9OWMe8zyeyle1FaUg5
+         ekBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693679024; x=1694283824;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S/h6f60a51OBLWnoS64kjCROnu9sNnSGTdI4hkrdrgU=;
+        b=DzodfwtyMId+PUta8uXmepWxseNGjQQ99Rdtwmd3PxQaurc0E1D+DRMXk4AAJgK3Sj
+         qFBnKaP2xOgmM0FHXu5WMFA4IrOukBgOtniU69X1HdXk/MOe2p03IlPA3B1z86Aqec0v
+         MJFAcPONHmsxrCP9XMhnWnT1MA9FtMg+9HmH8iQ9YjNiFWy0fqzyfUo3M6HHPYQQIkYU
+         8BCHahOwAG/s+5pTMDc623VZVVczZZ23oxfFSvRB1/Nc9dx2XRQF9cd3q9p/PsX+HQxr
+         zXlaN7QUDfp1p5JRvwVOth2UXDzFz8EcweGdSim5wvEfTC1D8eoAEdZiZ009vOGCc+jk
+         SeFA==
+X-Gm-Message-State: AOJu0YxQvgSZtDO2zYCokyTWGjh1A+LRpZoFimf4Lzb2aHteJFqwbvnq
+        7eFJ/MCsuHfTqLxxJGu6cUU=
+X-Google-Smtp-Source: AGHT+IHFvEafo7q0avmTsrUfG8fYgqrU08jnX3qM1X8SnECauUTJFJ8cH1IXNkXvVcsJmrwcsG3Fzg==
+X-Received: by 2002:a17:902:be05:b0:1bb:c06e:647a with SMTP id r5-20020a170902be0500b001bbc06e647amr6563279pls.53.1693679023694;
+        Sat, 02 Sep 2023 11:23:43 -0700 (PDT)
+Received: from toolbox.iitism.net ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id i4-20020a170902eb4400b001b801044466sm4899870pli.114.2023.09.02.11.23.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Sep 2023 11:23:43 -0700 (PDT)
+From:   Ayush Singh <ayushdevel1325@gmail.com>
+To:     greybus-dev@lists.linaro.org
+Cc:     Ayush Singh <ayushdevel1325@gmail.com>, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org,
+        Vaishnav M A <vaishnav@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Nishanth Menon <nm@ti.com>
+Subject: [PATCH v4 0/3] greybus: Add BeaglePlay Greybus Driver
+Date:   Sat,  2 Sep 2023 23:52:23 +0530
+Message-ID: <20230902182243.1838554-1-ayushdevel1325@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230902-msm8226-ocmemcx_ahb_clk-remove-v1-1-8124dbde83b9@z3ntu.xyz>
-X-B4-Tracking: v=1; b=H4sIAB5y82QC/x3NQQqDQAxA0atI1g2MUYt6lVJEY6xB48gMiCDev
- YPLt/n/gihBJUKbXRDk0Kh+S8hfGfDcbz9BHZOBHBWucYQWrSZ6o2cT47Pr56HjdcEg5g/Buhr
- ZlQXzlBOkyB5k0vMZfL73/QdBLv5VcAAAAA==
-To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mike Turquette <mturquette@linaro.org>
-Cc:     Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3142; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=4AwTwBIRZzliGYZREHlXp1lG8UPu59oASjiNI3bF69E=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBk83Ihgntx2p7Pa8+ZtqGg0lBSF3+6uCpxhNDkE
- HWdALklowyJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZPNyIQAKCRBy2EO4nU3X
- VmMRD/41WapwOh7gw0YxXKz1jni5oxzXtDIBedeyoNFO9qwQcC08VyjBE4qoDJv2liQ4qF71/lI
- R0767d4pFaZTq+acl1cOi9nqQk7E9uuWOHv3u9FH9kRjC+R9pfDz8N4zaiYlkUFOCQi3Wm3wtE4
- yVcZ09hiURCB7nhSjRj2rpypLr9HTzyr/Sj5H6tQ8CgWAuw6q0nRjBcgvP3707g/0MyIA+wH7+M
- hnP3nELVChPMXMhrd+/6US4NYNxAYkvyDiNvHbvnphAQvkQdKSSPeJTrO1H92hc7ZBJquAJpcAq
- +M42mk4yapK/QsrYBpyB2L9qkCHOfyvhQ5u+0MQI/rdxaSBeYUFKAaFSGj1B83yBxme5fth8se/
- IcUQVodOGg19X3eJ3Ea7zlQ02cm4A/Mx8SpFi9DRdck+GUcQVOqTvbZ/kklVrplCxUO2ywy7TR0
- Ip2qewZt4Em2smnEVui8Cu+KfxJnC4oKU4QcYRVPJ03XvmF9FQVimCoRrmb2c8deso9czgwCTK0
- 6+b0BxTAnUFa6xmVRoBsn9It2QRMVw0P8ecAMQdd/pw2Z9p0OH4oaXRaNMpeVGm4lQv1uOgwnsQ
- LlWrUuTJ6IydYIg0eZkzSRRIBbdp/62rhrbnP2xUoB68WLcb8uZIX+ecngjvurC8dUG7kFJMP10
- Pnm3RuTPCcu0VTw==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to a commit in the 3.4 vendor kernel sources[0] the
-ocmemcx_ahb_clk clock "is controlled by RPM and should not be touched by
-APPS.".
+BeaglePlay is a board by BeagleBoard.org. It contains a main AM62
+processor with a CC1352 co-processor. They are connected over UART.
 
-[0] https://git.codelinaro.org/clo/la/kernel/msm/-/commit/37df5f2d91b4d5768b37fcaacaeea958dd683ebc
+Greybus is a hardware protocol that was designed to provide Unipro with a
+sane application layer. It can be used in IOT and IIOT applications
+keeping the intelligence on the host.
 
-And indeed, when using MDSS+GPU+OCMEM on MSM8226 and not using
-clk_ignore_unused, when Linux tries to disable the clock the device
-crashes and reboots.
+This driver has been tested on BeaglePlay by BeagleBoard.org. It serves
+as Greybus Host device and communicates with BeaglePlay CC1352
+co-processor which serves as Greybus SVC. This replaces the old setup with
+bcfserial, wpanusb and GBridge. This driver also contains async HDLC code
+since communication with SVC take place over UART using HDLC.
 
-And since there's also no evidence of this clock in msm8974 vendor
-kernel sources, remove the clock for msm8226 and msm8974.
+This driver has been created as a part of my Google Summer of Code 2023.
+For more information, take a look at my blog.
 
-Fixes: d8b212014e69 ("clk: qcom: Add support for MSM8974's multimedia clock controller (MMCC)")
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- drivers/clk/qcom/mmcc-msm8974.c               | 18 ------------------
- include/dt-bindings/clock/qcom,mmcc-msm8974.h |  1 -
- 2 files changed, 19 deletions(-)
+This patchset has been tested over `next-20230825`.
 
-diff --git a/drivers/clk/qcom/mmcc-msm8974.c b/drivers/clk/qcom/mmcc-msm8974.c
-index c37524d55d8e..3ce40c80666b 100644
---- a/drivers/clk/qcom/mmcc-msm8974.c
-+++ b/drivers/clk/qcom/mmcc-msm8974.c
-@@ -2171,22 +2171,6 @@ static struct clk_branch mmss_s0_axi_clk = {
- 	},
- };
- 
--static struct clk_branch ocmemcx_ahb_clk = {
--	.halt_reg = 0x405c,
--	.clkr = {
--		.enable_reg = 0x405c,
--		.enable_mask = BIT(0),
--		.hw.init = &(struct clk_init_data){
--			.name = "ocmemcx_ahb_clk",
--			.parent_hws = (const struct clk_hw*[]){
--				&mmss_ahb_clk_src.clkr.hw
--			},
--			.num_parents = 1,
--			.ops = &clk_branch2_ops,
--		},
--	},
--};
--
- static struct clk_branch ocmemcx_ocmemnoc_clk = {
- 	.halt_reg = 0x4058,
- 	.clkr = {
-@@ -2504,7 +2488,6 @@ static struct clk_regmap *mmcc_msm8226_clocks[] = {
- 	[MMSS_MMSSNOC_BTO_AHB_CLK] = &mmss_mmssnoc_bto_ahb_clk.clkr,
- 	[MMSS_MMSSNOC_AXI_CLK] = &mmss_mmssnoc_axi_clk.clkr,
- 	[MMSS_S0_AXI_CLK] = &mmss_s0_axi_clk.clkr,
--	[OCMEMCX_AHB_CLK] = &ocmemcx_ahb_clk.clkr,
- 	[OXILI_GFX3D_CLK] = &oxili_gfx3d_clk.clkr,
- 	[OXILICX_AHB_CLK] = &oxilicx_ahb_clk.clkr,
- 	[OXILICX_AXI_CLK] = &oxilicx_axi_clk.clkr,
-@@ -2661,7 +2644,6 @@ static struct clk_regmap *mmcc_msm8974_clocks[] = {
- 	[MMSS_MMSSNOC_BTO_AHB_CLK] = &mmss_mmssnoc_bto_ahb_clk.clkr,
- 	[MMSS_MMSSNOC_AXI_CLK] = &mmss_mmssnoc_axi_clk.clkr,
- 	[MMSS_S0_AXI_CLK] = &mmss_s0_axi_clk.clkr,
--	[OCMEMCX_AHB_CLK] = &ocmemcx_ahb_clk.clkr,
- 	[OCMEMCX_OCMEMNOC_CLK] = &ocmemcx_ocmemnoc_clk.clkr,
- 	[OCMEMNOC_CLK] = &ocmemnoc_clk.clkr,
- 	[OXILI_GFX3D_CLK] = &oxili_gfx3d_clk.clkr,
-diff --git a/include/dt-bindings/clock/qcom,mmcc-msm8974.h b/include/dt-bindings/clock/qcom,mmcc-msm8974.h
-index a62cb0629a7a..743ee60632eb 100644
---- a/include/dt-bindings/clock/qcom,mmcc-msm8974.h
-+++ b/include/dt-bindings/clock/qcom,mmcc-msm8974.h
-@@ -121,7 +121,6 @@
- #define MMSS_MMSSNOC_BTO_AHB_CLK			112
- #define MMSS_MMSSNOC_AXI_CLK				113
- #define MMSS_S0_AXI_CLK					114
--#define OCMEMCX_AHB_CLK					115
- #define OCMEMCX_OCMEMNOC_CLK				116
- #define OXILI_OCMEMGX_CLK				117
- #define OCMEMNOC_CLK					118
+My GSoC23 Blog: https://programmershideaway.xyz/tags/gsoc23/
+Zephyr App: https://git.beagleboard.org/gsoc/greybus/cc1352-firmware
+GitHub Branch: https://github.com/Ayush1325/linux/tree/gb-beagleplay
+Video Demo: https://youtu.be/GVuIB7i5pjk
 
----
-base-commit: 7c2878be573282a9961c359b806ccf70afe1a6b6
-change-id: 20230902-msm8226-ocmemcx_ahb_clk-remove-85dc043ccf12
+This the v4 of this patch
+v3 -> v4:
+- Add DT Bindings
+- Reorder commits
+- Improve commit messages
 
-Best regards,
+v2 -> v3:
+- Move gb-beagleplay out of staging
+
+v1 -> v2:
+- Combine the driver into a single file
+- Remove redundant code
+- Fix Checkpatch complaints
+- Other suggested changes
+
+Ayush Singh (3):
+  dt-bindings: Add beaglecc1352
+  greybus: Add BeaglePlay Linux Driver
+  dts: ti: k3-am625-beagleplay: Add beaglecc1352
+
+ .../bindings/serial/beaglecc1352.yaml         |  25 +
+ MAINTAINERS                                   |   7 +
+ .../arm64/boot/dts/ti/k3-am625-beagleplay.dts |   4 +
+ drivers/greybus/Kconfig                       |  10 +
+ drivers/greybus/Makefile                      |   3 +-
+ drivers/greybus/gb-beagleplay.c               | 494 ++++++++++++++++++
+ 6 files changed, 542 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/serial/beaglecc1352.yaml
+ create mode 100644 drivers/greybus/gb-beagleplay.c
+
 -- 
-Luca Weiss <luca@z3ntu.xyz>
+2.41.0
 
