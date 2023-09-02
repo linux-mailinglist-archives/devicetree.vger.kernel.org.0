@@ -2,101 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94DB3790832
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 16:13:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0E84790849
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 16:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231168AbjIBONj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 10:13:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39898 "EHLO
+        id S232198AbjIBOnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 10:43:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229579AbjIBONj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 10:13:39 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9569910EF;
-        Sat,  2 Sep 2023 07:13:36 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1c1f8aaab9aso23087795ad.1;
-        Sat, 02 Sep 2023 07:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693664016; x=1694268816; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4MWR8yXXtpKuEsZy4kLJfJzxDixTk8R1fNTGvvoydOA=;
-        b=NUxsvkN4y8ZEFL6PPzw2g97Y/Z7hMezHV01CZjSAPr4FI9AMxcXbMaQAFXWiSQq6MZ
-         NBykmmq5w8J0HFHeZMqRvGnB5m6FZQ9Yq+n+8KJeB70njoP9bDpr9YFAgPZml9ZMkFKM
-         xmeuUobTFnoHKH+52og5iPAVoJfOOwmPnUDKkN4kVq81FRqKGya9Wh7OwuJ8mDwhZDQQ
-         Y8J9nc5+dbYMZUkSYvj3DFZDHnxchjzG1vUuhz1uztgDzJc8ZyyAdYi05mzjg7FJ1BD/
-         DeKTbHFicPpVrRjsHoGMGjWxCk/LVQgyH62qFRoJpuWvGwwiDlIIvDih3jeepjaVVk6D
-         UlVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693664016; x=1694268816;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4MWR8yXXtpKuEsZy4kLJfJzxDixTk8R1fNTGvvoydOA=;
-        b=D3jHWYjltVEXL1BM04GcH6MggxjYzBTiqz+QRiRjScmAQYEMiMVNBUaoHclkaqvC0v
-         DVbyzk1ANXbN0qGr2ZWaD4dXW5bKPicjQahROBzv2AHU7/fN5oRn2zIMSQuJ7MS7VaoY
-         uG1rjoY/e2bTbDnLcYWU+zwba+DDhp5BJ9XZPd8Zoxbkt4RQgMcTxUOHh/Q0SPw9V1pu
-         /XVgq1twYqx8p+/HMR2xk0fQ5vs9/OMpQGKv6fiy+lRb565548G4OP6eOlE8VLVRW19w
-         Y4yQKd49XkAu5UbvSqzzqnDt+g82hqndgRCaeXNIGK6XHDfXGBqIoE3O1v+legwQJGAK
-         oGRg==
-X-Gm-Message-State: AOJu0Yz1UojTp7kug5VeIUrSbuKHE46N6kz3URMCml7mGtvv0Dk+CZwY
-        Pnn2n4MnRZzhW7umtNDwXfdTeE/xCjg=
-X-Google-Smtp-Source: AGHT+IHS28RxmLeVYWgp0birWGyzLHWodWvMCn/ALR1BKINwmSQ3Q6NHk/b5UNIMlXzjIeM9ERfieA==
-X-Received: by 2002:a17:902:ff01:b0:1c1:fa12:5c1 with SMTP id f1-20020a170902ff0100b001c1fa1205c1mr5257396plj.55.1693664015974;
-        Sat, 02 Sep 2023 07:13:35 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 19-20020a170902c11300b001bb9bc8d232sm4719774pli.61.2023.09.02.07.13.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Sep 2023 07:13:35 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sat, 2 Sep 2023 07:13:34 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Naresh Solanki <naresh.solanki@9elements.com>
-Cc:     Jean Delvare <jdelvare@suse.com>,
-        krzysztof.kozlowski+dt@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Infineon TDA38640
-Message-ID: <eaaf8f33-ecf6-4e02-9772-7c4a30eb8957@roeck-us.net>
-References: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
+        with ESMTP id S229977AbjIBOnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 10:43:35 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2A010EB;
+        Sat,  2 Sep 2023 07:43:32 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 382EUhmH016693;
+        Sat, 2 Sep 2023 14:43:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=7IgLdeYroN9h8kUtLquNCkhdvV1TsayyKIMA2uBI1KI=;
+ b=infarNO153jGlQupJPgQuVkA1MOyiCcaCYMgnYHURV9AYjV3NmkUrM1XsVeqFcnnTh8R
+ m3w7CwJ3Kgxg6WucRzjK9L33HS8UbYzpe0F7I4H0bEWXSqcT8YNLlVHSTx1D/1Is9XBf
+ gX/JgXC5Xgui2UC2kAJpp0ffjrmgAnbckINkn5hDenoam7X54sI3ZSKFDT/JBDiyo89p
+ 8koUjUFF6OtBqsvgJQewl57ZJwuNa1uGmkQeqrNlpMx5yfWI6oYDb8ZPZCO4XjOUL+cX
+ XzTyfc8fpbzgjy9nJkAIaeda3LF2LWHp+G3gcfaCt0v3cRXSAltaGWLVsG/Kl7zL8CJx 1A== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suvcr8nrw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 02 Sep 2023 14:43:20 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 382EhJ9a008178
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sat, 2 Sep 2023 14:43:19 GMT
+Received: from [10.216.50.18] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Sat, 2 Sep
+ 2023 07:43:12 -0700
+Message-ID: <28b7934f-f041-ad7b-d44a-3bed70aaf100@quicinc.com>
+Date:   Sat, 2 Sep 2023 20:12:58 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for IPQ8174
+ family
+To:     Robert Marko <robimarko@gmail.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230901181041.1538999-1-robimarko@gmail.com>
+Content-Language: en-US
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <20230901181041.1538999-1-robimarko@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: v91YVXAMLEqM4C0XzDp10JK0U7NqvPcr
+X-Proofpoint-ORIG-GUID: v91YVXAMLEqM4C0XzDp10JK0U7NqvPcr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-02_10,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=821 impostorscore=0 suspectscore=0
+ lowpriorityscore=0 mlxscore=0 spamscore=0 clxscore=1011 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309020137
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 31, 2023 at 09:07:27PM +0200, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> 
-> Add the DT property 'infineon,en-pin-fixed-level' to
-> indicated that the chip EN pin is at fixed level
-> or left unconnected(has internal pull-down).
-> 
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
-> ----
-> Changes in V5:
-> - Update pin name to align with datasheet
-> Changes in V4:
-> - Update property name & description.
-> - Update commit message.
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Applied to hwmon-next.
+On 9/1/2023 11:40 PM, Robert Marko wrote:
+> IPQ8174 (Oak) family is part of the IPQ8074 family, but the ID-s for it
+> are missing so lets add them.
+>
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
+> ---
+>   include/dt-bindings/arm/qcom,ids.h | 3 +++
+>   1 file changed, 3 insertions(+)
 
-Thanks,
-Guenter
+
+Reviewed-by: Kathiravan T <quic_kathirav@quicinc.com>
+
+
+>
+> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+> index be12e1dd1f38..d2b84a308fde 100644
+> --- a/include/dt-bindings/arm/qcom,ids.h
+> +++ b/include/dt-bindings/arm/qcom,ids.h
+> @@ -203,6 +203,9 @@
+>   #define QCOM_ID_SM6125			394
+>   #define QCOM_ID_IPQ8070A		395
+>   #define QCOM_ID_IPQ8071A		396
+> +#define QCOM_ID_IPQ8172			397
+> +#define QCOM_ID_IPQ8173			398
+> +#define QCOM_ID_IPQ8174			399
+>   #define QCOM_ID_IPQ6018			402
+>   #define QCOM_ID_IPQ6028			403
+>   #define QCOM_ID_SDM429W			416
