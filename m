@@ -2,139 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3D57903AE
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 00:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499C9790511
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 06:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350878AbjIAWkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 1 Sep 2023 18:40:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55082 "EHLO
+        id S1345669AbjIBEwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 00:52:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350908AbjIAWkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 1 Sep 2023 18:40:05 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2525B8;
-        Fri,  1 Sep 2023 14:55:14 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 381LaaOZ032526;
-        Fri, 1 Sep 2023 21:54:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=HazOzvjlOVztOGuiiRKq62q+xU7gLIZ3wqTtkKa8RHY=;
- b=dITP7fuz6kkx4OxVTRmtdnflx3HE/Xl1jnWnkzr0ZCvZMbtdsUZ5VdBp+Z8vJEdKpG+z
- v+X0d+Z+CFQ2NItEOUsm5Wa7gXjvOayy1/WkvG47CUlxFy96ivpMGTsX2SKCYy7IKgES
- Ydluabl/AlKV3QR3DTRRYRoitpT9atjPEjqtP2Pp8HlHQGhQl1Z8kkta5Lzi56D7A40G
- oGdJFnDmCT5/zV8oW/tHrONjLfZaj6qMtK2nPpqc190027QmbLPs8TndiZp08otF+ZC8
- oK1KrRBmU0pA1jopOdg46ZNJF+3kyIEVq81uHahI8Ebie7QyhEsXF4+p8mwNE//bJmvC wg== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suc22j05y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 01 Sep 2023 21:54:59 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 381LswSP010596
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 1 Sep 2023 21:54:58 GMT
-Received: from [10.216.57.50] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 1 Sep
- 2023 14:54:50 -0700
-Message-ID: <565edf1c-96a5-83e3-50ce-9c328f457abf@quicinc.com>
-Date:   Sat, 2 Sep 2023 03:24:46 +0530
+        with ESMTP id S245479AbjIBEw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 00:52:29 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57EA01702
+        for <devicetree@vger.kernel.org>; Fri,  1 Sep 2023 21:52:26 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1c0bae4da38so4111185ad.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Sep 2023 21:52:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693630346; x=1694235146; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ijD/QXgkfcmQQpjgZVWk02lSeb5Kah86yA9TYX6zx1I=;
+        b=eXUrCH/NCbPAQb8WecToMDsXyi4d0slJHEPIq4M03moU+H9GjFla31Rx76ELE9nJFU
+         WGHEJyAV/vv9n+TN9GIIa7tSv4hhJx5987N0o/xAo8YD4UNTphOfnq97meC8rNotAytC
+         ah5HZ4ySfYhpEsxMTCkprLItsE8AypZmyU4Y6WyWeHSxFwYpkQaFoWo8d1ecRdAVmgMA
+         1ZF82fYFluKN3AoKpkkxmPXhQPzPcDaezTRHtMXVjUDIj3bOqLl2gEM31QjpaFN0tW8N
+         yeIY8ZLcernOQ3pCzyCujYap/zLMnVo3BNe8DydiLTQPNmvdwqcL7nTBy6ZEvGjmNxck
+         W/7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693630346; x=1694235146;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ijD/QXgkfcmQQpjgZVWk02lSeb5Kah86yA9TYX6zx1I=;
+        b=UdhSIkIlHWcUnCIfEeRtCRCDsW7lQJvNmZxbw/qXAfV4emNq90wFiA2BzoG6BBc2Pc
+         58g7XrF4MQcDVM8y9ZMnbB4UDE+WB+PR9Cat4Cxyw0kZQLRRIsB4vuja6fANKJoK+jyj
+         kRciO1Z4sZQnnoo/AXpOLj0LhPuXl29m9TKbP1J1K0u+qy4hMvGtez2rnFWIPNBkdeH6
+         zO6kTcTAF2mBWi8S5Wlz+5W5usPmEoZQ4+6hhv+KMiZLF5OBr4duCVGnaKDN908yKFI/
+         o67CPnEYRht2oHwalDx8D8wLEPh3kOLcqYEvXbltdSgjjHuMaCsZAC2fVpWTli8TTtcx
+         eYNA==
+X-Gm-Message-State: AOJu0YwzKoyCaKFZUKfIIRBvlTONUuUucf73X3TB8Y+dBHbwdAa5ZcJO
+        IBtQlS5O6IrmW/8QDJ9f57ym
+X-Google-Smtp-Source: AGHT+IHn+lpzw9uFuVsUrK4hFksx30nUuJVmCY/9azhZGZuuOYfsE09NMsfHfbXcr11fLWIN9x+S/g==
+X-Received: by 2002:a17:902:ce83:b0:1bc:2fe1:1821 with SMTP id f3-20020a170902ce8300b001bc2fe11821mr6157887plg.17.1693630345688;
+        Fri, 01 Sep 2023 21:52:25 -0700 (PDT)
+Received: from thinkpad ([117.217.187.8])
+        by smtp.gmail.com with ESMTPSA id u10-20020a170902e80a00b001aadd0d7364sm3794308plg.83.2023.09.01.21.52.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Sep 2023 21:52:24 -0700 (PDT)
+Date:   Sat, 2 Sep 2023 10:22:14 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <Frank.Li@nxp.com>
+Cc:     tglx@linutronix.de, aisheng.dong@nxp.com, bhelgaas@google.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+        ntb@lists.linux.dev, peng.fan@nxp.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH 1/3] PCI: endpoint: Add RC-to-EP doorbell support using
+ platform MSI controller
+Message-ID: <20230902045214.GA2913@thinkpad>
+References: <20230426203436.1277307-1-Frank.Li@nxp.com>
+ <20230426203436.1277307-2-Frank.Li@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.1
-Subject: Re: [PATCH v11 06/13] usb: dwc3: core: Refactor PHY logic to support
- Multiport Controller
-To:     Wesley Cheng <quic_wcheng@quicinc.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "Johan Hovold" <johan@kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>
-CC:     <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_pkondeti@quicinc.com>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>, <ahalaney@redhat.com>,
-        <quic_shazhuss@quicinc.com>,
-        Harsh Agarwal <quic_harshq@quicinc.com>
-References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
- <20230828133033.11988-7-quic_kriskura@quicinc.com>
- <9eee5666-8bd1-9a42-53b4-6a07ccba652e@quicinc.com>
-Content-Language: en-US
-From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <9eee5666-8bd1-9a42-53b4-6a07ccba652e@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7D2gvNj7QVsiB8NneCWmL1FpTADYYefn
-X-Proofpoint-ORIG-GUID: 7D2gvNj7QVsiB8NneCWmL1FpTADYYefn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-01_19,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- clxscore=1015 mlxscore=0 impostorscore=0 suspectscore=0 malwarescore=0
- mlxlogscore=817 phishscore=0 lowpriorityscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309010205
-X-Spam-Status: No, score=-5.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230426203436.1277307-2-Frank.Li@nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/1/2023 6:43 AM, Wesley Cheng wrote:
-> Hi Krishna,
+On Wed, Apr 26, 2023 at 04:34:34PM -0400, Frank Li wrote:
+> This commit introduces a common method for sending messages from the Root Complex
+> (RC) to the Endpoint (EP) by utilizing the platform MSI interrupt controller,
+> such as ARM GIC, as an EP doorbell. Maps the memory assigned for the BAR region
+> by the PCI host to the message address of the platform MSI interrupt controller
+> in the PCI EP. As a result, when the PCI RC writes to the BAR region, it triggers
+> an IRQ at the EP. This implementation serves as a common method for all endpoint
+> function drivers.
 > 
->>           if (dwc->usb2_phy)
->>               otg_set_vbus(dwc->usb2_phy->otg, false);
->> -        phy_set_mode(dwc->usb2_generic_phy, PHY_MODE_USB_DEVICE);
->> -        phy_set_mode(dwc->usb3_generic_phy, PHY_MODE_USB_DEVICE);
->> +        phy_set_mode(dwc->usb2_generic_phy[0], PHY_MODE_USB_DEVICE);
->> +        phy_set_mode(dwc->usb3_generic_phy[0], PHY_MODE_USB_DEVICE);
+> However, it currently supports only one EP physical function due to limitations
+> in ARM MSI/IMS readiness.
 > 
-> Throughout this patch, you are looping across all PHYs irrespective of 
-> if we are in device mode or not.  This is the only exception where you 
-> are setting only PHY index 0 (for both SS and HS PHYs).  Do you think we 
-> should also only modify PHY index#0 for other PHY related sequences?
-> 
-Hi Wesley,
 
-  Multiport controllers are host only capable currently. So if the 
-GHWPARAMS indicate we are DRD/peripheral capable, we set 
-num_usb2/3_ports to "1" unconditionally. So there would not be any 
-looping necessary here.
+I've provided generic comments below, but I will do one more thorough review
+after seeing epf-test driver patch.
 
->>           if (ret)
->> @@ -1804,9 +1887,12 @@ static int dwc3_read_port_info(struct dwc3 *dwc)
->>       dev_dbg(dwc->dev, "hs-ports: %u ss-ports: %u\n",
->>               dwc->num_usb2_ports, dwc->num_usb3_ports);
->> -
->>       iounmap(base);
->> +    if ((dwc->num_usb2_ports > DWC3_MAX_PORTS) ||
->> +        (dwc->num_usb3_ports > DWC3_MAX_PORTS))
->> +        return -ENOMEM;
->> +
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/pci/endpoint/pci-epf-core.c | 109 ++++++++++++++++++++++++++++
+>  include/linux/pci-epf.h             |  16 ++++
+>  2 files changed, 125 insertions(+)
 > 
-> Shouldn't this be more applicable to be included in patch#4 in this series?
-> 
-The read_port_info function was only initially intended to read only 
-port count and later the macro was added. So the check was put here.
+> diff --git a/drivers/pci/endpoint/pci-epf-core.c b/drivers/pci/endpoint/pci-epf-core.c
+> index 355a6f56fcea..94ac82bf84c5 100644
+> --- a/drivers/pci/endpoint/pci-epf-core.c
+> +++ b/drivers/pci/endpoint/pci-epf-core.c
+> @@ -6,10 +6,12 @@
+>   * Author: Kishon Vijay Abraham I <kishon@ti.com>
+>   */
+>  
+> +#include <linux/irqreturn.h>
 
-Regards,
-Krishna,
+Why is this needed?
+
+>  #include <linux/device.h>
+>  #include <linux/dma-mapping.h>
+>  #include <linux/slab.h>
+>  #include <linux/module.h>
+> +#include <linux/msi.h>
+>  
+>  #include <linux/pci-epc.h>
+>  #include <linux/pci-epf.h>
+> @@ -300,6 +302,113 @@ void *pci_epf_alloc_space(struct pci_epf *epf, size_t size, enum pci_barno bar,
+>  }
+>  EXPORT_SYMBOL_GPL(pci_epf_alloc_space);
+>  
+> +static enum irqreturn pci_epf_interrupt_handler(int irq, void *data)
+
+static irqreturn_t
+
+s/pci_epf_interrupt_handler/pci_epf_doorbell_handler
+
+> +{
+> +	struct pci_epf *epf = data;
+> +
+> +	if (epf->event_ops && epf->event_ops->doorbell)
+> +		epf->event_ops->doorbell(epf, irq - epf->virq_base);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void pci_epf_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+> +{
+> +	struct pci_epc *epc = container_of(desc->dev, struct pci_epc, dev);
+> +	struct pci_epf *epf;
+> +
+> +	/* Todo: Need check correct epf if multi epf supported */
+> +	list_for_each_entry(epf, &epc->pci_epf, list) {
+> +		if (epf->msg && desc->msi_index < epf->num_msgs)
+> +			epf->msg[desc->msi_index] = *msg;
+> +	}
+> +}
+> +
+> +int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 num_msgs)
+> +{
+> +	struct irq_domain *domain;
+> +	struct pci_epc *epc;
+> +	struct device *dev;
+> +	int virq;
+> +	int ret;
+> +	int i;
+> +
+> +	epc = epf->epc;
+> +	dev = &epc->dev;
+
+"epc_dev" to make it explicit
+
+> +
+> +	/*
+> +	 * Current only support 1 function.
+
+What does this mean exactly? Even a single EPC can support multiple EPFs
+
+> +	 * PCI IMS(interrupt message store) ARM support have not been
+> +	 * ready yet.
+
+No need to mention platform irq controller name.
+
+> +	 */
+> +	if (epc->function_num_map != 1)
+
+Why can't you use, epf->func_no?
+
+> +		return -EOPNOTSUPP;
+> +
+> +	domain = dev_get_msi_domain(dev->parent);
+> +	if (!domain)
+> +		return -EOPNTSUPP;
+
+Newline
+
+> +	dev_set_msi_domain(dev, domain);
+> +
+> +	/* use parent of_node to get device id information */
+> +	dev->of_node = dev->parent->of_node;
+> +
+
+Why do you need of_node assignment inside EPF core?
+
+> +	epf->msg = kcalloc(num_msgs, sizeof(struct msi_msg), GFP_KERNEL);
+> +	if (!epf->msg)
+> +		return -ENOMEM;
+> +
+> +	epf->num_msgs = num_msgs;
+> +
+
+Move this to the start of the function, after checks.
+
+> +	ret = platform_msi_domain_alloc_irqs(dev, num_msgs, pci_epf_write_msi_msg);
+> +	if (ret) {
+> +		dev_err(dev, "Can't allocate MSI from system MSI controller\n");
+
+"Failed to allocate MSI"
+
+> +		goto err_mem;
+
+err_free_mem
+
+> +	}
+> +
+> +	for (i = 0; i < num_msgs; i++) {
+> +		virq = msi_get_virq(dev, i);
+> +		if (i == 0)
+> +			epf->virq_base = virq;
+> +
+> +		ret = request_irq(virq, pci_epf_interrupt_handler, 0,
+> +				  "pci-epf-doorbell", epf);
+
+IRQ name should have an index, otherwise all of them will have the same name.
+
+> +
+> +		if (ret) {
+> +			dev_err(dev, "Failure request doorbell IRQ\n");
+
+"Failed to request doorbell"
+
+> +			goto err_irq;
+
+err_free_irq
+
+> +		}
+> +	}
+> +
+> +	epf->num_msgs = num_msgs;
+
+Newline
+
+> +	return ret;
+> +
+> +err_irq:
+> +	platform_msi_domain_free_irqs(dev);
+> +err_mem:
+> +	kfree(epf->msg);
+> +	epf->msg = NULL;
+> +	epf->num_msgs = 0;
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epf_alloc_doorbell);
+> +
+> +void pci_epf_free_doorbell(struct pci_epf *epf)
+> +{
+> +	struct pci_epc *epc;
+> +	int i;
+> +
+> +	epc = epf->epc;
+> +
+> +	for (i = 0; i < epf->num_msgs; i++)
+> +		free_irq(epf->virq_base + i, epf);
+> +
+> +	platform_msi_domain_free_irqs(&epc->dev);
+> +	kfree(epf->msg);
+> +	epf->msg = NULL;
+> +	epf->num_msgs = 0;
+> +}
+> +EXPORT_SYMBOL_GPL(pci_epf_free_doorbell);
+> +
+>  static void pci_epf_remove_cfs(struct pci_epf_driver *driver)
+>  {
+>  	struct config_group *group, *tmp;
+> diff --git a/include/linux/pci-epf.h b/include/linux/pci-epf.h
+> index b8441db2fa52..e187e3ee48d2 100644
+> --- a/include/linux/pci-epf.h
+> +++ b/include/linux/pci-epf.h
+> @@ -75,6 +75,7 @@ struct pci_epf_ops {
+>  struct pci_epc_event_ops {
+>  	int (*core_init)(struct pci_epf *epf);
+>  	int (*link_up)(struct pci_epf *epf);
+> +	int (*doorbell)(struct pci_epf *epf, int index);
+>  };
+>  
+>  /**
+> @@ -173,6 +174,9 @@ struct pci_epf {
+>  	unsigned long		vfunction_num_map;
+>  	struct list_head	pci_vepf;
+>  	const struct pci_epc_event_ops *event_ops;
+> +	struct msi_msg *msg;
+> +	u16 num_msgs;
+> +	int virq_base;
+>  };
+>  
+>  /**
+> @@ -216,4 +220,16 @@ int pci_epf_bind(struct pci_epf *epf);
+>  void pci_epf_unbind(struct pci_epf *epf);
+>  int pci_epf_add_vepf(struct pci_epf *epf_pf, struct pci_epf *epf_vf);
+>  void pci_epf_remove_vepf(struct pci_epf *epf_pf, struct pci_epf *epf_vf);
+> +int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 nums);
+> +void pci_epf_free_doorbell(struct pci_epf *epf);
+> +
+> +static inline struct msi_msg *epf_get_msg(struct pci_epf *epf)
+> +{
+> +	return epf->msg;
+> +}
+> +
+> +static inline u16 epf_get_msg_num(struct pci_epf *epf)
+> +{
+> +	return epf->num_msgs;
+> +}
+
+I don't see a need for these two functions as they are doing just dereferences.
+
+- Mani
+
+>  #endif /* __LINUX_PCI_EPF_H */
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
