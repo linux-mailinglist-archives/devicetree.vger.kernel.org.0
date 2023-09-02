@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A71A79081F
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 15:44:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94DB3790832
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 16:13:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230026AbjIBNoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 09:44:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50468 "EHLO
+        id S231168AbjIBONj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 10:13:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjIBNoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 09:44:18 -0400
-Received: from mail-ot1-x330.google.com (mail-ot1-x330.google.com [IPv6:2607:f8b0:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC0A2E5B;
-        Sat,  2 Sep 2023 06:44:15 -0700 (PDT)
-Received: by mail-ot1-x330.google.com with SMTP id 46e09a7af769-6bb1133b063so4730a34.1;
-        Sat, 02 Sep 2023 06:44:15 -0700 (PDT)
+        with ESMTP id S229579AbjIBONj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 10:13:39 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9569910EF;
+        Sat,  2 Sep 2023 07:13:36 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1c1f8aaab9aso23087795ad.1;
+        Sat, 02 Sep 2023 07:13:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693662255; x=1694267055; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=t5MW0CXTPSk+NqmypdFWCwTdnSw+85UwrhKdEQ+oUfQ=;
-        b=GYxziEkge88vA+P4JM3XWG4ud/YhaxLxG5H1hTghzvlicrGi8CGHdNQqPoJ7iWixQ+
-         +celG7astF2j7eEf0LQ4C9yqR5H5ioEQTtGkctMRorXNNM18G2hZNcdb5GwnCc8MhOvN
-         CTWf2ZP9dOwaOWF3vwQzvaZabXdroNbo7nePsm6uD+glVCpLb/X5HMKkUMwJxGNbyuc1
-         3jHQToBL56yeFhv3R/rkvjRVSWlixL4XnpRj81aq8Na2/iu8q+NFsIxU2f+XkrhynLU2
-         0SLFDpcSDPFJYh12T57huoLiI2cLDDBnSZQHfytIbY2bXA9S9kLUo2Bh1XfV95uSpmL6
-         EUjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693662255; x=1694267055;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20221208; t=1693664016; x=1694268816; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=t5MW0CXTPSk+NqmypdFWCwTdnSw+85UwrhKdEQ+oUfQ=;
-        b=BxvzZkaqYprd+AWhWg7dLTWRRz42Ez/eG4490kDuwRdVUenj7mgBegpDRhXmhGG4l4
-         z5c+o9xC9riNY7+rX+gZRmypedExciG67gcUOOKpn4H6GMeXuDv/RL+6d57aKozQdZvr
-         /3D9p48cD43/sg18hzw5l4siiR7x51wIrR2WJTRGPV/kSL5fbRauXsik1oVnubkOdUPA
-         vi5cGNsQY07KiyJkzFKXVrVWxs3CJq3j+39lPgKCsjNLGI9Km0r2pj/SwrSmurTG/KHu
-         2ashiJX4ICJnqA9YneAM9rp71IKIfYUKg8HywRM/302QUAhP30konpuQ1crU52M27ETG
-         pWow==
-X-Gm-Message-State: AOJu0YzUMxJ3BitH6YFA4odpIwMVQnViSDXurYyOvI2i7iGL5MUd6BRy
-        W6B5qlKzD2La8I4a6wfr3a9OERx0fUU=
-X-Google-Smtp-Source: AGHT+IHazI+oEZzC17Pw/8wNRX2LvFHtXHdtmAVoX1ZfY6izvZxD7DQ9Etep4pQMpovEvtps4J1Nhw==
-X-Received: by 2002:a05:6830:6a9b:b0:6bc:a6d0:ab7 with SMTP id da27-20020a0568306a9b00b006bca6d00ab7mr3625338otb.3.1693662255017;
-        Sat, 02 Sep 2023 06:44:15 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:24a7:7a7d:d9f7:937b])
-        by smtp.gmail.com with ESMTPSA id l2-20020a05683004a200b006b8c6eb962esm2791560otd.52.2023.09.02.06.44.12
+        bh=4MWR8yXXtpKuEsZy4kLJfJzxDixTk8R1fNTGvvoydOA=;
+        b=NUxsvkN4y8ZEFL6PPzw2g97Y/Z7hMezHV01CZjSAPr4FI9AMxcXbMaQAFXWiSQq6MZ
+         NBykmmq5w8J0HFHeZMqRvGnB5m6FZQ9Yq+n+8KJeB70njoP9bDpr9YFAgPZml9ZMkFKM
+         xmeuUobTFnoHKH+52og5iPAVoJfOOwmPnUDKkN4kVq81FRqKGya9Wh7OwuJ8mDwhZDQQ
+         Y8J9nc5+dbYMZUkSYvj3DFZDHnxchjzG1vUuhz1uztgDzJc8ZyyAdYi05mzjg7FJ1BD/
+         DeKTbHFicPpVrRjsHoGMGjWxCk/LVQgyH62qFRoJpuWvGwwiDlIIvDih3jeepjaVVk6D
+         UlVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693664016; x=1694268816;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4MWR8yXXtpKuEsZy4kLJfJzxDixTk8R1fNTGvvoydOA=;
+        b=D3jHWYjltVEXL1BM04GcH6MggxjYzBTiqz+QRiRjScmAQYEMiMVNBUaoHclkaqvC0v
+         DVbyzk1ANXbN0qGr2ZWaD4dXW5bKPicjQahROBzv2AHU7/fN5oRn2zIMSQuJ7MS7VaoY
+         uG1rjoY/e2bTbDnLcYWU+zwba+DDhp5BJ9XZPd8Zoxbkt4RQgMcTxUOHh/Q0SPw9V1pu
+         /XVgq1twYqx8p+/HMR2xk0fQ5vs9/OMpQGKv6fiy+lRb565548G4OP6eOlE8VLVRW19w
+         Y4yQKd49XkAu5UbvSqzzqnDt+g82hqndgRCaeXNIGK6XHDfXGBqIoE3O1v+legwQJGAK
+         oGRg==
+X-Gm-Message-State: AOJu0Yz1UojTp7kug5VeIUrSbuKHE46N6kz3URMCml7mGtvv0Dk+CZwY
+        Pnn2n4MnRZzhW7umtNDwXfdTeE/xCjg=
+X-Google-Smtp-Source: AGHT+IHS28RxmLeVYWgp0birWGyzLHWodWvMCn/ALR1BKINwmSQ3Q6NHk/b5UNIMlXzjIeM9ERfieA==
+X-Received: by 2002:a17:902:ff01:b0:1c1:fa12:5c1 with SMTP id f1-20020a170902ff0100b001c1fa1205c1mr5257396plj.55.1693664015974;
+        Sat, 02 Sep 2023 07:13:35 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 19-20020a170902c11300b001bb9bc8d232sm4719774pli.61.2023.09.02.07.13.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Sep 2023 06:44:14 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     alexandre.belloni@bootlin.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: rtc: ds3231: Remove text binding
-Date:   Sat,  2 Sep 2023 10:44:07 -0300
-Message-Id: <20230902134407.2589099-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        Sat, 02 Sep 2023 07:13:35 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Sat, 2 Sep 2023 07:13:34 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Naresh Solanki <naresh.solanki@9elements.com>
+Cc:     Jean Delvare <jdelvare@suse.com>,
+        krzysztof.kozlowski+dt@linaro.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add Infineon TDA38640
+Message-ID: <eaaf8f33-ecf6-4e02-9772-7c4a30eb8957@roeck-us.net>
+References: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230831190731.265099-1-Naresh.Solanki@9elements.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,63 +79,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On Thu, Aug 31, 2023 at 09:07:27PM +0200, Naresh Solanki wrote:
+> From: Patrick Rudolph <patrick.rudolph@9elements.com>
+> 
+> Add the DT property 'infineon,en-pin-fixed-level' to
+> indicated that the chip EN pin is at fixed level
+> or left unconnected(has internal pull-down).
+> 
+> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
+> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
+> ----
+> Changes in V5:
+> - Update pin name to align with datasheet
+> Changes in V4:
+> - Update property name & description.
+> - Update commit message.
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-The "maxim,ds3231" compatible is described in the rtc-ds1307.yaml, so
-there is no need to keep the text bindings version.
+Applied to hwmon-next.
 
-Remove the maxim,ds3231.txt file in favor of the rtc-ds1307.yaml binding.
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../devicetree/bindings/rtc/maxim,ds3231.txt  | 38 -------------------
- 1 file changed, 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/maxim,ds3231.txt
-
-diff --git a/Documentation/devicetree/bindings/rtc/maxim,ds3231.txt b/Documentation/devicetree/bindings/rtc/maxim,ds3231.txt
-deleted file mode 100644
-index 85be53a42180..000000000000
---- a/Documentation/devicetree/bindings/rtc/maxim,ds3231.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--* Maxim DS3231 Real Time Clock
--
--Required properties:
--- compatible: Should contain "maxim,ds3231".
--- reg: I2C address for chip.
--
--Optional property:
--- #clock-cells: Should be 1.
--- clock-output-names:
--  overwrite the default clock names "ds3231_clk_sqw" and "ds3231_clk_32khz".
--
--Each clock is assigned an identifier and client nodes can use this identifier
--to specify the clock which they consume. Following indices are allowed:
--    - 0: square-wave output on the SQW pin
--    - 1: square-wave output on the 32kHz pin
--
--- interrupts: rtc alarm/event interrupt. When this property is selected,
--  clock on the SQW pin cannot be used.
--
--Example:
--
--ds3231: ds3231@51 {
--	compatible = "maxim,ds3231";
--	reg = <0x68>;
--	#clock-cells = <1>;
--};
--
--device1 {
--...
--	clocks = <&ds3231 0>;
--...
--};
--
--device2 {
--...
--	clocks = <&ds3231 1>;
--...
--};
--- 
-2.34.1
-
+Thanks,
+Guenter
