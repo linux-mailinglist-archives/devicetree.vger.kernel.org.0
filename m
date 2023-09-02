@@ -2,107 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1FA790679
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 10:47:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B770179075D
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 12:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351900AbjIBIrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 04:47:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44678 "EHLO
+        id S1351985AbjIBKln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 06:41:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350459AbjIBIry (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 04:47:54 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 099031702;
-        Sat,  2 Sep 2023 01:47:50 -0700 (PDT)
-Received: from loongson.cn (unknown [112.20.109.102])
-        by gateway (Coremail) with SMTP id _____8DxBfG19vJk8f4dAA--.61385S3;
-        Sat, 02 Sep 2023 16:47:49 +0800 (CST)
-Received: from localhost.localdomain (unknown [112.20.109.102])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8CxWM2z9vJkbI1pAA--.60477S3;
-        Sat, 02 Sep 2023 16:47:49 +0800 (CST)
-From:   Binbin Zhou <zhoubinbin@loongson.cn>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Yinbo Zhu <zhuyinbo@loongson.cn>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, soc@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-        Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v3 5/5] soc: loongson: loongson2_pm: Populate children syscon nodes
-Date:   Sat,  2 Sep 2023 16:47:45 +0800
-Message-Id: <da06ff3c2405f36c8cedddfd20f8b54f4448f619.1693623752.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.39.3
-In-Reply-To: <cover.1693623752.git.zhoubinbin@loongson.cn>
-References: <cover.1693623752.git.zhoubinbin@loongson.cn>
+        with ESMTP id S234809AbjIBKlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 06:41:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B099F3;
+        Sat,  2 Sep 2023 03:41:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C9BCC60AE2;
+        Sat,  2 Sep 2023 10:41:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13FD5C433C8;
+        Sat,  2 Sep 2023 10:41:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693651299;
+        bh=gRq6R3jUpO3Io5Z6IXbWwg+pnvCCLZXm9uKnO2EYqC0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=nRgCgBpo83Ue3QaHVai+O8iHSWZotP8u3rY6LZM5UBibbFiJU9KpbOG2q26TD6TU7
+         r96wytMiMAg7uDCyIuzl0izRnQOTFZHkOeS05s3nFDirQ1pc1ro4kjDMuav6aKRLIF
+         OHp5uIImXFAGpCoKIAQC+X5AIfwZCG97NVq7akeyJfs9RRQNVfBfmg1gzxCs2pI1HG
+         Z9nP02QAwGHynWuMo45HtnXtnm+yDdBP/LonnuplMk4Kdf9Q3HWkTpIYsS5i/J+Q8Z
+         DrhvACL4jtTtCfGErDcE8YagbWTp8kiM7Ja4s8asuk/yQ/p+4YnzVLwDwHSDtMdUa2
+         Sh1Gp44o97Uug==
+Date:   Sat, 2 Sep 2023 11:41:34 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Robert Marko <robimarko@gmail.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for IPQ8174
+ family
+Message-ID: <20230902-e4a05a649a5f17b1e724cd21@fedora>
+References: <20230901181041.1538999-1-robimarko@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8CxWM2z9vJkbI1pAA--.60477S3
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj9xXoW7XF13WFy3tryUXr43AFy3KFX_yoWkKwc_u3
-        W29r48Cr1UJFnIy398Zw13Ar9Fgrn5u3W8uF1Dtw1Iq3WUt3sxJFyUArnrGF17WF4Syrn8
-        Z3y0gw1Ikw1rCosvyTuYvTs0mTUanT9S1TB71UUUUj7qnTZGkaVYY2UrUUUUj1kv1TuYvT
-        s0mT0YCTnIWjqI5I8CrVACY4xI64kE6c02F40Ex7xfYxn0WfASr-VFAUDa7-sFnT9fnUUI
-        cSsGvfJTRUUUbh8YFVCjjxCrM7AC8VAFwI0_Jr0_Gr1l1xkIjI8I6I8E6xAIw20EY4v20x
-        vaj40_Wr0E3s1l1IIY67AEw4v_Jrv_JF1l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxS
-        w2x7M28EF7xvwVC0I7IYx2IY67AKxVW7JVWDJwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxV
-        WxJVW8Jr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AK
-        xVW8Jr0_Cr1UM2kKe7AKxVWUAVWUtwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07
-        AIYIkI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWr
-        XVW3AwAv7VC2z280aVAFwI0_Cr0_Gr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-        0EwIxGrwCY1x0262kKe7AKxVWUAVWUtwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-        bVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-        80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0
-        I7IYx2IY67AKxVW7JVWDJwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42
-        xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
-        7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxUI0eHUUUUU
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7qkghVqtuu6RtUx4"
+Content-Disposition: inline
+In-Reply-To: <20230901181041.1538999-1-robimarko@gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The syscon poweroff and reboot nodes logically belong to the Power
-Management Unit so populate possible children.
 
-Without it, the reboot/poweroff feature becomes unavailable.
+--7qkghVqtuu6RtUx4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- drivers/soc/loongson/loongson2_pm.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Fri, Sep 01, 2023 at 08:10:04PM +0200, Robert Marko wrote:
+> IPQ8174 (Oak) family is part of the IPQ8074 family, but the ID-s for it
+> are missing so lets add them.
+>=20
+> Signed-off-by: Robert Marko <robimarko@gmail.com>
 
-diff --git a/drivers/soc/loongson/loongson2_pm.c b/drivers/soc/loongson/loongson2_pm.c
-index 5ffb77afd9eb..b8e5e1e3528a 100644
---- a/drivers/soc/loongson/loongson2_pm.c
-+++ b/drivers/soc/loongson/loongson2_pm.c
-@@ -11,6 +11,7 @@
- #include <linux/input.h>
- #include <linux/suspend.h>
- #include <linux/interrupt.h>
-+#include <linux/of_platform.h>
- #include <linux/pm_wakeirq.h>
- #include <linux/platform_device.h>
- #include <asm/bootinfo.h>
-@@ -192,6 +193,11 @@ static int loongson2_pm_probe(struct platform_device *pdev)
- 	if (loongson_sysconf.suspend_addr)
- 		suspend_set_ops(&loongson2_suspend_ops);
- 
-+	/* Populate children */
-+	retval = devm_of_platform_populate(dev);
-+	if (retval)
-+		dev_err(dev, "Error populating children, reboot and poweroff might not work properly\n");
-+
- 	return 0;
- }
- 
--- 
-2.39.3
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
+> ---
+>  include/dt-bindings/arm/qcom,ids.h | 3 +++
+>  1 file changed, 3 insertions(+)
+>=20
+> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm=
+/qcom,ids.h
+> index be12e1dd1f38..d2b84a308fde 100644
+> --- a/include/dt-bindings/arm/qcom,ids.h
+> +++ b/include/dt-bindings/arm/qcom,ids.h
+> @@ -203,6 +203,9 @@
+>  #define QCOM_ID_SM6125			394
+>  #define QCOM_ID_IPQ8070A		395
+>  #define QCOM_ID_IPQ8071A		396
+> +#define QCOM_ID_IPQ8172			397
+> +#define QCOM_ID_IPQ8173			398
+> +#define QCOM_ID_IPQ8174			399
+>  #define QCOM_ID_IPQ6018			402
+>  #define QCOM_ID_IPQ6028			403
+>  #define QCOM_ID_SDM429W			416
+> --=20
+> 2.41.0
+>=20
+
+--7qkghVqtuu6RtUx4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPMRWQAKCRB4tDGHoIJi
+0sS1AP943KUQuRoF4dTadpf4ZyyKp3fwVKeuD11TJLT/SopA/AD/WSCwrPLkOdvM
+hgMlhumClOW21VL9Jb3j9HY747jRTgg=
+=ug5+
+-----END PGP SIGNATURE-----
+
+--7qkghVqtuu6RtUx4--
