@@ -2,141 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 954007907CD
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 14:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597FB7907D8
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 14:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352113AbjIBMXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 08:23:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
+        id S1352161AbjIBMkr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 08:40:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241872AbjIBMXC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 08:23:02 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E94B12D
-        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 05:22:57 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-500c37d479aso4636806e87.2
-        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 05:22:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693657375; x=1694262175; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=inkHgVlv/XrMvFjg8YzebzCQsHBV+fhNXbfLxuaBdsc=;
-        b=EztvANhUDBwtoS26/ikGWtxMwVFhEsKZRftZPOFBVz+A6E2ZgfsEiuCrVVaMjVieNr
-         eUbr7PlTDAtydKpV1sLNAgaFyTCfsE2bmf9k+a9WXscgTN/i1ize/6QY/2Bdg/re0gxm
-         ZxAoTceJYYAJhViowiVcYbw+jdK8TndSrXQfYFDxNfFF0WmUQoKQzAAUatpgJKGPEN6W
-         L+ZmW7tOVv9m/sJ0cC3Fr3tFP0TRJwdWjU9M+rA22H83RpbLMOSvjM/qMKMRAsjkE+tX
-         p/kCcZFCHFwj/rhSNo/4JMNWzXKpOah4yaBaUi62yj+z05Szo/afXAZAo2QHlQkgK4Ii
-         TYsA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693657375; x=1694262175;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=inkHgVlv/XrMvFjg8YzebzCQsHBV+fhNXbfLxuaBdsc=;
-        b=Zmp9exa2zsdSTIrke62jiC30Se+bAf/VejRaweeowa6chwAmEa3wUGsUxriHrgJ3Td
-         aaEHOfSgDd25jnp22CJKSHOAPjwnO5ceqYpsW+Au0zkj0FWTsKasH8c5uAbZrF5s40QF
-         lDU1pD6SoO2+jgqTaBIB07usNtDae7OMHqNcS0vXL+D+YWFeIqxAcrpwK/Vt+zBcI+Yd
-         SJ9v30IT+fWEZkCO65mcGfBLi6ygO34ACg7EKxdZPw3CSWsd908+Omm4aRSd1ya0y8MQ
-         1gyQ8gv6TqPEogEbX4lwFkTJbOfr4ZQqdxpu3I+PUQlQqidyEzNygCrqSmrorWVJP85p
-         YB6w==
-X-Gm-Message-State: AOJu0YyEnH1y2ZiCwCnQwQh177Bdzh+aFSCRP8RUxkp5ajxPZxyeNiv3
-        oDaDTl3Dg7V8D0IpfKfULiHPfg==
-X-Google-Smtp-Source: AGHT+IFstkLJDS/HETwMajNV3deWCdOK9KBKLsTmQVXdkjplL/Yy2wh4gmT+Mnvc6W55XwcgNKkBow==
-X-Received: by 2002:a05:6512:1103:b0:500:bb99:69a6 with SMTP id l3-20020a056512110300b00500bb9969a6mr4499765lfg.39.1693657375475;
-        Sat, 02 Sep 2023 05:22:55 -0700 (PDT)
-Received: from [192.168.1.101] (abxi170.neoplus.adsl.tpnet.pl. [83.9.2.170])
-        by smtp.gmail.com with ESMTPSA id a2-20020a056512020200b004ff89a88ef7sm975884lfo.14.2023.09.02.05.22.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Sep 2023 05:22:55 -0700 (PDT)
-Message-ID: <295f0c31-3612-428c-849b-9469a6136f47@linaro.org>
-Date:   Sat, 2 Sep 2023 14:22:53 +0200
+        with ESMTP id S1352121AbjIBMkr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 08:40:47 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BFA010F0;
+        Sat,  2 Sep 2023 05:40:43 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkzdf0gkyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4506:4f15::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 4RdDyV3QGmzybw;
+        Sat,  2 Sep 2023 15:40:33 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1693658437;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=YY5wTcddqfyox2ECkwFzF7cWlIJ2LZA/PTeCQ10CFUY=;
+        b=ReHRi9GQ9YQD5reW7viAms/nZf8GeKeJBmL6PkHXCXl6ocGGg7SsVX8YubEeRgfE7cITfk
+        TXOmUOoXk/RRBzXqQsSB97ERdkH7LtJgfRI6fqAOoCPA8N9BDKMVv8b2rqawOCcakb3Gci
+        9zYaN264lxVI223oajJ6VhsnexGAbMw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1693658437;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=YY5wTcddqfyox2ECkwFzF7cWlIJ2LZA/PTeCQ10CFUY=;
+        b=Jhn/NH8jB74Gg7maonb9QxlMWZ5Cu7OLJcMT++D+aRg+jURLu1jVHCJToWS/o36AecXbrS
+        wogYTrnk5JRyKI3tqnUuOumJMVQwCZURhSjBbEjfwmhtgHt5fixwm3+KuEK+UH9GUKM5K2
+        kF3ggytTZxlPnl+0BBOuuBKeaVPalQw=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1693658437; a=rsa-sha256; cv=none;
+        b=A20WoSekUJrdw1LOw+eO8Vszh/SM28JcAzKrhvY61LVz1kVzo3v+ZlHmX+KlFDSgcxHq55
+        l3XzbUkXmoflNpLoiCyQiYnqQpeS874ulABsZNaTC+9zh2Bf/kcaLc4qSfeUQHSlSXB4tv
+        X+tR0huQZqTrWjVGvMe2tLVh81jY+Dg=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 77AAD634C95;
+        Sat,  2 Sep 2023 15:40:33 +0300 (EEST)
+Date:   Sat, 2 Sep 2023 12:40:33 +0000
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Umang Jain <umang.jain@ideasonboard.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Lee Jackson <lee.jackson@arducam.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        kieran.bingham@ideasonboard.com,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH 1/2] media: dt-bindings: imx519: Add IMX519 DT bindings
+Message-ID: <ZPMtQYEJGHL9kp/k@valkosipuli.retiisi.eu>
+References: <20230727154108.308320-1-umang.jain@ideasonboard.com>
+ <20230727154108.308320-2-umang.jain@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: ipq5018: Correct uart1_pins pinconf
-Content-Language: en-US
-To:     Ziyang Huang <hzyitc@outlook.com>, agross@kernel.org
-Cc:     andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        quic_gokulsri@quicinc.com, quic_srichara@quicinc.com,
-        quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230727154108.308320-2-umang.jain@ideasonboard.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1.09.2023 16:10, Ziyang Huang wrote:
-> In pinctrl, the pinconfigs for uart are named "blspX_uartY".
->   X is the UART ID. Starts from 1.
->     1-6 are in BLSP Block 1.
->     7-12 are in BLSP Block 2.
->   Y is the index of mux config. Starts from 0.
-> 
-> In dts, the serials are also named "blspX_uartY", but with different logic.
->   X is the BLSP Block ID. Starts from 1.
->   Y is the uart id inside block.
->     In "ipq6018.dtsi" and "ipq8074.dtsi", it starts from 1.
->     But in "ipq5332.dtsi" and "ipq9574.dtsi", it starts from 0.
-> 
-> +-----------------+-----------------+-------------+-----------------+
-> |     Block ID    | ID inside Block |  dts name   | pinconfig name  |
-> | (Starts from 1) | (Starts from 1) |             |                 |
-> +-----------------+-----------------+-------------+-----------------+
-> |        1        |        1        | blsp1_uart1 |   blsp0_uartY   |
-> |        1        |        2        | blsp1_uart2 |   blsp1_uartY   |
-> |        1        |        6        | blsp1_uart6 |   blsp5_uartY   |
-> |        2        |        1        | blsp2_uart1 |   blsp6_uartY   |
-> |        2        |        6        | blsp2_uart6 |   blsp12_uartY  |
-> +-----------------+-----------------+-------------+-----------------+
-> 
-> In "ipq5018.dts", "blsp1_uart1" (dts name) is the first serial (confimed
-> by the address), So its pinconfig should be "blsp0_uart0" (pinconfig name,
-> use GPIO 20 and 21) or "blsp0_uart1" (pinconfig name, use GPIO 28 and 29).
-Surely only one pair of wires is connected? Why is there an "OR"?
+Hi Umang,
 
-Konrad
+On Thu, Jul 27, 2023 at 09:11:07PM +0530, Umang Jain wrote:
+> From: Lee Jackson <lee.jackson@arducam.com>
+> 
+> Add YAML device tree binding documentation for IMX519 CMOS
+> image sensor.
+> 
+> Signed-off-by: Umang Jain <umang.jain@ideasonboard.com>
+> ---
+>  .../bindings/media/i2c/sony,imx519.yaml       | 113 ++++++++++++++++++
+>  1 file changed, 113 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> new file mode 100644
+> index 000000000000..6f38b09890d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx519.yaml
+> @@ -0,0 +1,113 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/imx519.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony 1/2.5-Inch 16Mpixel CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - Lee Jackson <lee.jackson@arducam.com>
+> +
+> +description: |-
+> +  The Sony IMX519 is a 1/2.5-inch CMOS active pixel digital image sensor
+> +  with an active array size of 4656H x 3496V. It is programmable through
+> +  I2C interface. The I2C address is fixed to 0x1A as per sensor data sheet.
+> +  Image data is sent through MIPI CSI-2, which is configured as either 2 or
+> +  4 data lanes.
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx519
+> +
+> +  reg:
+> +    description: I2C device address
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  VDIG-supply:
+> +    description:
+> +      Digital I/O voltage supply, 1.05 volts
+> +
+> +  VANA-supply:
+> +    description:
+> +      Analog voltage supply, 2.8 volts
+> +
+> +  VDDL-supply:
+> +    description:
+> +      Digital core voltage supply, 1.8 volts
+> +
+> +  reset-gpios:
+> +    description: |-
+> +      Reference to the GPIO connected to the xclr pin, if any.
+> +      Must be released (set high) after all supplies and INCK are applied.
+> +
+> +  # See ../video-interfaces.txt for more details
+> +  port:
+> +    type: object
+> +    properties:
+> +      endpoint:
+> +        type: object
+> +        properties:
+
+I think you should have, something alike (from mipi-ccs.yaml):
+
+  port:
+    $ref: /schemas/graph.yaml#/$defs/port-base
+    additionalProperties: false
+
+    properties:
+      endpoint:
+        $ref: /schemas/media/video-interfaces.yaml#
+        unevaluatedProperties: false
+
+
+See mipi-ccs.yaml on examples for some properties below. E.g.
+link-frequencies is described in video-interfaces.yaml, no need to describe
+it here.
+
+> +          data-lanes:
+> +            description: |-
+> +              The sensor supports either two-lane, or four-lane operation.
+> +              For two-lane operation the property must be set to <1 2>.
+> +            items:
+> +              - const: 1
+> +              - const: 2
+
+I guess the device also supports single lane operation?
+
+In any case minItems/maxItems here should be enough.
+
+> +
+> +          clock-noncontinuous:
+> +            type: boolean
+> +            description: |-
+> +              MIPI CSI-2 clock is non-continuous if this property is present,
+> +              otherwise it's continuous.
+> +
+> +          link-frequencies:
+> +            allOf:
+> +              - $ref: /schemas/types.yaml#/definitions/uint64-array
+> +            description:
+> +              Allowed data bus frequencies.
+> +
+> +        required:
+> +          - link-frequencies
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - VANA-supply
+> +  - VDIG-supply
+> +  - VDDL-supply
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        imx519: sensor@1a {
+> +            compatible = "sony,imx519";
+> +            reg = <0x1a>;
+> +            clocks = <&imx519_clk>;
+> +            VANA-supply = <&imx519_vana>;   /* 2.8v */
+> +            VDIG-supply = <&imx519_vdig>;   /* 1.05v */
+> +            VDDL-supply = <&imx519_vddl>;   /* 1.8v */
+> +
+> +            port {
+> +                imx519_0: endpoint {
+> +                    remote-endpoint = <&csi1_ep>;
+> +                    data-lanes = <1 2>;
+> +                    clock-noncontinuous;
+> +                    link-frequencies = /bits/ 64 <408000000>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+
+-- 
+Kind regards,
+
+Sakari Ailus
