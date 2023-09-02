@@ -2,107 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F61790930
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 20:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 541DD79098E
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 22:28:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231334AbjIBS3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 14:29:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46386 "EHLO
+        id S234312AbjIBU2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 16:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231464AbjIBS3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 14:29:40 -0400
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com [IPv6:2607:f8b0:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F49810F0;
-        Sat,  2 Sep 2023 11:29:36 -0700 (PDT)
-Received: by mail-pf1-x434.google.com with SMTP id d2e1a72fcca58-68c0d262933so92836b3a.0;
-        Sat, 02 Sep 2023 11:29:36 -0700 (PDT)
+        with ESMTP id S234286AbjIBU2S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 16:28:18 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79462E56
+        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 13:28:14 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-5008d16cc36so411851e87.2
+        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 13:28:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693679376; x=1694284176; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nnrT7LHJjUAagSGCNBHonhWO840GVzI76QQJKTy0U0o=;
-        b=CL0eI76EZtaH66cY9GuSviVKG30QxD7m0VmLdjKLT/u1pki/13B79pKgO/WRzPSBcb
-         4gCDz8N1oWvMXWncCZcVg5kYElUPhJYMbf1kT0C72jiPo8zxeMsQ6vR9eIK8fOa4Jw2O
-         tSiTVfA/8OfQ8ymBU9x14l7caSJAVtzHavoHX3oEFD08SdOQGAqjPu/AaopaT7O9ssSI
-         HS2egYl6GyXv0kPpoGWDoJPdVh4ikalAWpdDJyD/lC2fGwa5KbL4B/g5+8tcZhLqUSDc
-         7xGepAM6rQvz8mR0/5gE/N/NyuL09gIImLr31VyP0eepW1rfQpvALCHtuWsLr5JqDhcu
-         GP1Q==
+        d=linaro.org; s=google; t=1693686493; x=1694291293; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=AqfoenQWKjB8osDxkwnJtLt7lDhWz7e/+s7umbsPwHw=;
+        b=swKso9zaMeE8R5oZjRS8ty0OwExYJa4ha1t8KJkRfTc791O0G2shPvtBU4uifG8jBs
+         AZD3uT1E9Q2MkDU1l9svrGjU+VVCzsXgqjwJjgIPzBhOP7/9fK4PF3R2Z6mciOT7hQB+
+         B0PkhdQFSxqzBm3oiJ8wSspp2ey/zWuEBSif5eVMj9ahqbf/W+9rKBERtRVtnVHDskdG
+         Ed9IWcMPaZEyGRrk0sAmA13nktmI206WuBkks27jZlUkGqycITAa4qsVPGnm9JA2CfVw
+         H2kov2FFhEK6M9Q5tb/0z2ifUjk5PXASAxK5nuKa7UJ7mgv+xzZ6jZLxFIW029UhicTV
+         8ccg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693679376; x=1694284176;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nnrT7LHJjUAagSGCNBHonhWO840GVzI76QQJKTy0U0o=;
-        b=iz3/dar326rDPG+qNF+QGP5SNgyhNFPzPog+j0wNpnau/FkKporkBRVxOjTtMQQGeP
-         3C6rQsQ0kIuga5D8OvFagEykoTXqOjOZH2R2WtV8XTadBEz+kJvNkl1Oy2kouhezntX6
-         9i6lDLSgZS1nSMGvxCdDY6PaNrn34Zfm34ivhTItdf3J3hOKAsyDhNSzJ2MZLFlnMp0u
-         qN+rhaL9QAX+suyTczyzcSG89t5fB6F6MTpAV05apPPYF8soBqpchQzRycdozmxH0vKE
-         eNvpM5Ysa0A1x4SnCu9bG62hzbSEqw9JdSXuAC+OByY5lV8PbmucdXWgXwWW7mEtV5zQ
-         hqMg==
-X-Gm-Message-State: AOJu0Yx+8RsEanK+G2FdmkVwZjeCkN4/8GmQc/l1OlvCQaNxUD7opCmw
-        C9TW30Xl1U2qm/BApxnl4VV0Kml/4DA=
-X-Google-Smtp-Source: AGHT+IFyh/QK01pwrTqOJo0jEmHr/IuRlq/pYy1squww9SSU2If6HdRuDy0sTSLQ0E0NRXRHYegpnQ==
-X-Received: by 2002:a05:6a20:8f17:b0:138:1c5b:2653 with SMTP id b23-20020a056a208f1700b001381c5b2653mr6667590pzk.41.1693679376415;
-        Sat, 02 Sep 2023 11:29:36 -0700 (PDT)
-Received: from toolbox.iitism.net ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id i6-20020a170902eb4600b001bf846dd2d0sm4918970pli.13.2023.09.02.11.29.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Sep 2023 11:29:36 -0700 (PDT)
-From:   Ayush Singh <ayushdevel1325@gmail.com>
-To:     greybus-dev@lists.linaro.org
-Cc:     Ayush Singh <ayushdevel1325@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        Vaishnav M A <vaishnav@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Nishanth Menon <nm@ti.com>
-Subject: [PATCH v4 3/3] dts: ti: k3-am625-beagleplay: Add beaglecc1352
-Date:   Sat,  2 Sep 2023 23:58:43 +0530
-Message-ID: <20230902182845.1840620-4-ayushdevel1325@gmail.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
-References: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
+        d=1e100.net; s=20221208; t=1693686493; x=1694291293;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AqfoenQWKjB8osDxkwnJtLt7lDhWz7e/+s7umbsPwHw=;
+        b=NLLBqaYBO5x8Z8acv01asmaxCr4KDayIwV6BQuk0sLO1Iu8DH2I0AuXCX2Zr1XMwdc
+         wmaf1xOYrBonqc8713ICirZI2ek3+zzturUOvnxpWGKjMFkGJzaUriVtPoRujLj+6tRZ
+         8W4nOXpNYPaKob+/yfe3/XcMiGIuw0kwpRxzYQVfcn0C1iauAAnV4fEQMB3YLvLnwU4U
+         DLIN5ks7ucyh+MUCOOpIb/U64rhfi5jwjq+LmWkXsuZJMUTXMeU0B3Hjg7BZylJBpMkS
+         ZuwGqJTmlmuLhwe7g5d8foLQsUkjJ6449cwekb6qmjA1eLEMgGQjDPjorCBO87uXObdn
+         Bejw==
+X-Gm-Message-State: AOJu0YwB9u9oao55W2IGEb4FT0OltuizTSb1opAjBypssk/NgtZSqZjK
+        COPBZ8RKGCvZPlj8ZZbF19EaxA==
+X-Google-Smtp-Source: AGHT+IFKG4hNiSYylXmxPiCLbNRI/9QDxNUYdr8ha450JvMnEp+W79CNqzswJe03zTPMb/vPObWnrQ==
+X-Received: by 2002:a05:6512:742:b0:500:7f51:d129 with SMTP id c2-20020a056512074200b005007f51d129mr3115285lfs.34.1693686492622;
+        Sat, 02 Sep 2023 13:28:12 -0700 (PDT)
+Received: from [192.168.1.101] (abxi170.neoplus.adsl.tpnet.pl. [83.9.2.170])
+        by smtp.gmail.com with ESMTPSA id g22-20020ac25396000000b00500829f7b2bsm1073827lfh.250.2023.09.02.13.28.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Sep 2023 13:28:12 -0700 (PDT)
+Message-ID: <091e4156-cdaa-4233-b7e5-69e3f8ee9a49@linaro.org>
+Date:   Sat, 2 Sep 2023 22:28:09 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] clk: qcom: mmcc-msm8974: remove ocmemcx_ahb_clk
+To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mike Turquette <mturquette@linaro.org>
+Cc:     Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230902-msm8226-ocmemcx_ahb_clk-remove-v1-1-8124dbde83b9@z3ntu.xyz>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230902-msm8226-ocmemcx_ahb_clk-remove-v1-1-8124dbde83b9@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The BeaglePlay board by BeagleBoard.org has a CC1352 co-processor. This
-co-processor is connected to the main AM62 (running Linux) over UART. The
-CC1352 can run Zephyr and other embedded OS. This commit adds support for
-the CC1352 in the Linux kernel DTS. This allows Linux platform drivers to
-identify the device and communicate with it.
+On 2.09.2023 19:34, Luca Weiss wrote:
+> According to a commit in the 3.4 vendor kernel sources[0] the
+> ocmemcx_ahb_clk clock "is controlled by RPM and should not be touched by
+> APPS.".
+> 
+> [0] https://git.codelinaro.org/clo/la/kernel/msm/-/commit/37df5f2d91b4d5768b37fcaacaeea958dd683ebc
+> 
+> And indeed, when using MDSS+GPU+OCMEM on MSM8226 and not using
+> clk_ignore_unused, when Linux tries to disable the clock the device
+> crashes and reboots.
+> 
+> And since there's also no evidence of this clock in msm8974 vendor
+> kernel sources, remove the clock for msm8226 and msm8974.
+Going over the downstream clock driver for 26 and 74 and comparing
+the registered clocks with mainline may be useful.
 
-This UART is used by gb-beagleplay, an upcoming Greybus driver for
-BeaglePlay.
+Older clock drivers were likely written by hand and people doing
+that likely didn't have a great reference of which clocks should
+be skipped due to having been moved to firmware somewhere in the
+bringup process.
 
-Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
----
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index 7cfdf562b53b..10abbb8feda5 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -870,6 +870,10 @@ &main_uart6 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&wifi_debug_uart_pins_default>;
- 	status = "okay";
-+
-+	beaglecc1352 {
-+		compatible = "beagle,cc1352";
-+	};
- };
- 
- &dss {
--- 
-2.41.0
+Konrad
 
