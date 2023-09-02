@@ -2,70 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 845097907B9
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 13:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954007907CD
+	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 14:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229580AbjIBL5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 07:57:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43208 "EHLO
+        id S1352113AbjIBMXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 2 Sep 2023 08:23:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231278AbjIBL5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 07:57:33 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6092B10F6
-        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 04:57:30 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-500c6ff99acso975660e87.1
-        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 04:57:30 -0700 (PDT)
+        with ESMTP id S241872AbjIBMXC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 08:23:02 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E94B12D
+        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 05:22:57 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-500c37d479aso4636806e87.2
+        for <devicetree@vger.kernel.org>; Sat, 02 Sep 2023 05:22:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693655848; x=1694260648; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693657375; x=1694262175; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=jDa7Mj6sArPataDgSx4z5NxOtH/XftsbKDNnlo52CRg=;
-        b=RS53jAH4qgcbikiCiDgQ5CzSK+jO9f2kkDQdc2svtutW1wS942bfEiHOe/yhjzqzig
-         NiSKHv3uQwfA69cG6BFFl5ss/SRbqk4Ltg+1VYdr2B069H6MPfXJ01WBNhR2YUAj+4lu
-         JlRT9aAtK2rsl4H4kYWGqZ0Nk/5PYwRTRKNT5D20Wuh1ca9ZAOQJ8DLfTAAjDTliygrY
-         Q3SEqerZUl7iKnHMPGR+n88frBkQJ/prkLIw3Ji2urCYKFTLhMndraKWeINhjrw2rI2e
-         qV2dErOE4t9g/TQ8B3IcWXf53hf115qlVVo5fkGPo3c9Laejy/rILwksCRiWFmjPnsyE
-         kGrw==
+        bh=inkHgVlv/XrMvFjg8YzebzCQsHBV+fhNXbfLxuaBdsc=;
+        b=EztvANhUDBwtoS26/ikGWtxMwVFhEsKZRftZPOFBVz+A6E2ZgfsEiuCrVVaMjVieNr
+         eUbr7PlTDAtydKpV1sLNAgaFyTCfsE2bmf9k+a9WXscgTN/i1ize/6QY/2Bdg/re0gxm
+         ZxAoTceJYYAJhViowiVcYbw+jdK8TndSrXQfYFDxNfFF0WmUQoKQzAAUatpgJKGPEN6W
+         L+ZmW7tOVv9m/sJ0cC3Fr3tFP0TRJwdWjU9M+rA22H83RpbLMOSvjM/qMKMRAsjkE+tX
+         p/kCcZFCHFwj/rhSNo/4JMNWzXKpOah4yaBaUi62yj+z05Szo/afXAZAo2QHlQkgK4Ii
+         TYsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693655848; x=1694260648;
+        d=1e100.net; s=20221208; t=1693657375; x=1694262175;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jDa7Mj6sArPataDgSx4z5NxOtH/XftsbKDNnlo52CRg=;
-        b=N7+/XFoYYgLIFapxC0aNtQB8187QhHhmSGkYLkJBi9112Qh/M1/1Mb6DCYzxEvE4VP
-         GpgZapt8ATef7qBJ/jc8UfMYCx4UD23l3pIK9Xl+u1m3ffBn8vYecqxepKrWTpawtvYw
-         AE5d+t0T71bSjVVy7U/7Z6VDq9/4QifOfNGAfCuU0KoQ3bgBGQyPwuAWVgInp18klcp+
-         5kF6HN4RcqkLw1/ycPyL6ucOVGO78MWDO6Lz78DyaDYF9eDnVQZzqdvoL97mc+jlXtx4
-         0jSyFmFoXX5lwJnlk740THKYSfgMC/EEK5BFfCKhes3VT+WeZ9VPYCON+8xhUXWKmC8o
-         N7Zw==
-X-Gm-Message-State: AOJu0YyVXCICFu9VL/OFnOYSC3orItTQjskh/4uZXqZGrjjInFqp9ajB
-        h+MO7Y/HUlVdX4wO5I2Y34m4HA==
-X-Google-Smtp-Source: AGHT+IEYG2aZATJsHIb7Bhd7H3gdibYwXzz6lm5qAFh0+KxyLnYy8P4+diX+3bXR9VunynVsV3RT7w==
-X-Received: by 2002:ac2:4f08:0:b0:4f8:6d9d:abe0 with SMTP id k8-20020ac24f08000000b004f86d9dabe0mr1728550lfr.33.1693655848495;
-        Sat, 02 Sep 2023 04:57:28 -0700 (PDT)
+        bh=inkHgVlv/XrMvFjg8YzebzCQsHBV+fhNXbfLxuaBdsc=;
+        b=Zmp9exa2zsdSTIrke62jiC30Se+bAf/VejRaweeowa6chwAmEa3wUGsUxriHrgJ3Td
+         aaEHOfSgDd25jnp22CJKSHOAPjwnO5ceqYpsW+Au0zkj0FWTsKasH8c5uAbZrF5s40QF
+         lDU1pD6SoO2+jgqTaBIB07usNtDae7OMHqNcS0vXL+D+YWFeIqxAcrpwK/Vt+zBcI+Yd
+         SJ9v30IT+fWEZkCO65mcGfBLi6ygO34ACg7EKxdZPw3CSWsd908+Omm4aRSd1ya0y8MQ
+         1gyQ8gv6TqPEogEbX4lwFkTJbOfr4ZQqdxpu3I+PUQlQqidyEzNygCrqSmrorWVJP85p
+         YB6w==
+X-Gm-Message-State: AOJu0YyEnH1y2ZiCwCnQwQh177Bdzh+aFSCRP8RUxkp5ajxPZxyeNiv3
+        oDaDTl3Dg7V8D0IpfKfULiHPfg==
+X-Google-Smtp-Source: AGHT+IFstkLJDS/HETwMajNV3deWCdOK9KBKLsTmQVXdkjplL/Yy2wh4gmT+Mnvc6W55XwcgNKkBow==
+X-Received: by 2002:a05:6512:1103:b0:500:bb99:69a6 with SMTP id l3-20020a056512110300b00500bb9969a6mr4499765lfg.39.1693657375475;
+        Sat, 02 Sep 2023 05:22:55 -0700 (PDT)
 Received: from [192.168.1.101] (abxi170.neoplus.adsl.tpnet.pl. [83.9.2.170])
-        by smtp.gmail.com with ESMTPSA id l26-20020ac2555a000000b00500998f63cdsm962839lfk.109.2023.09.02.04.57.26
+        by smtp.gmail.com with ESMTPSA id a2-20020a056512020200b004ff89a88ef7sm975884lfo.14.2023.09.02.05.22.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Sep 2023 04:57:27 -0700 (PDT)
-Message-ID: <2b52c9b2-adf1-4622-9d0d-fe6599523174@linaro.org>
-Date:   Sat, 2 Sep 2023 13:57:26 +0200
+        Sat, 02 Sep 2023 05:22:55 -0700 (PDT)
+Message-ID: <295f0c31-3612-428c-849b-9469a6136f47@linaro.org>
+Date:   Sat, 2 Sep 2023 14:22:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: msm8916/39-samsung-a2015: Add flash LED
+Subject: Re: [PATCH v3] arm64: dts: ipq5018: Correct uart1_pins pinconf
 Content-Language: en-US
-To:     Henrik Grimler <henrik@grimler.se>
-Cc:     Raymond Hackley <raymondhackley@protonmail.com>, agross@kernel.org,
-        andersson@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        nikita@trvn.ru, robh+dt@kernel.org, stephan@gerhold.net,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230822140407.3316-1-raymondhackley@protonmail.com>
- <c016d9ac-da33-4a0b-8684-ab7b4b50ebe3@linaro.org>
- <20230822150035.3803-1-raymondhackley@protonmail.com>
- <fb452457-6687-4f68-9498-92a3077c9a44@linaro.org> <ZOz4460Q/JQcMcU1@L14.lan>
+To:     Ziyang Huang <hzyitc@outlook.com>, agross@kernel.org
+Cc:     andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        quic_gokulsri@quicinc.com, quic_srichara@quicinc.com,
+        quic_varada@quicinc.com, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -102,63 +98,45 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <ZOz4460Q/JQcMcU1@L14.lan>
+In-Reply-To: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28.08.2023 21:43, Henrik Grimler wrote:
-> Hi Konrad,
+On 1.09.2023 16:10, Ziyang Huang wrote:
+> In pinctrl, the pinconfigs for uart are named "blspX_uartY".
+>   X is the UART ID. Starts from 1.
+>     1-6 are in BLSP Block 1.
+>     7-12 are in BLSP Block 2.
+>   Y is the index of mux config. Starts from 0.
 > 
-> On Sat, Aug 26, 2023 at 02:09:38PM +0200, Konrad Dybcio wrote:
->> On 22.08.2023 17:01, Raymond Hackley wrote:
->>> Hi Konrad,
->>>
->>>> What about the other subdevices registered with the RT5033 MFD?
->>>
->>> Currently the MFD is not able to control the flash LED, due to missing
->>> driver for it.
->>> Alternatively we control it with GPIO pins. With driver leds-sgm3140, the
->>> binding is not under the RT5033 MFD.
->> Hm.. I have mixed feelings..
->>
->> Does the led controlled onboard this chip have some super complex
->> functionality that is going to be exposed through a specific driver
->> and that is not exposed through the sgm3140 driver?
+> In dts, the serials are also named "blspX_uartY", but with different logic.
+>   X is the BLSP Block ID. Starts from 1.
+>   Y is the uart id inside block.
+>     In "ipq6018.dtsi" and "ipq8074.dtsi", it starts from 1.
+>     But in "ipq5332.dtsi" and "ipq9574.dtsi", it starts from 0.
 > 
-> The rt5033-led&sgm3140 situation was discussed in msm8916-mainline
-> matrix room before, here is a summary for list.
+> +-----------------+-----------------+-------------+-----------------+
+> |     Block ID    | ID inside Block |  dts name   | pinconfig name  |
+> | (Starts from 1) | (Starts from 1) |             |                 |
+> +-----------------+-----------------+-------------+-----------------+
+> |        1        |        1        | blsp1_uart1 |   blsp0_uartY   |
+> |        1        |        2        | blsp1_uart2 |   blsp1_uartY   |
+> |        1        |        6        | blsp1_uart6 |   blsp5_uartY   |
+> |        2        |        1        | blsp2_uart1 |   blsp6_uartY   |
+> |        2        |        6        | blsp2_uart6 |   blsp12_uartY  |
+> +-----------------+-----------------+-------------+-----------------+
 > 
-> Using the full rt5033-led driver (old patchset here [1]) has some
-> benefits, like:
-> * led can have different intensity levels
-> * led can (supposedly) be used in strobe mode
-> 
-> Using sgm3140 driver mostly works fine, but there could potentially be
-> situations where led stops working and a reboot to stock android
-> kernel is required to get it working again.  So far that has only been
-> reproduced by first booting a kernel with full rt5033-led driver
-> (based on [1]), and then booting a kernel using sgm3140 driver
-> instead.
-> 
-> [1] https://lore.kernel.org/linux-leds/1448446948-13729-1-git-send-email-ingi2.kim@samsung.com/
-2015, whoops..
-
-Looks like the reviewers were mostly happy (style comments for the
-most part), so perhaps it'd be worth to bring it back?
-
-As for this patch, I'll be happy to take it if you can confirm the
-rt5033-leds driver won't require bindings changes (i.e. the node
-you're adding today would work fine as-is if you removed sgm3140
-and probed the separate driver), at least in the form that it was
-posted in the link above..
+> In "ipq5018.dts", "blsp1_uart1" (dts name) is the first serial (confimed
+> by the address), So its pinconfig should be "blsp0_uart0" (pinconfig name,
+> use GPIO 20 and 21) or "blsp0_uart1" (pinconfig name, use GPIO 28 and 29).
+Surely only one pair of wires is connected? Why is there an "OR"?
 
 Konrad
