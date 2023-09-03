@@ -2,67 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB62B790D42
-	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 19:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C2A6790D46
+	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 19:33:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345762AbjICR3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 13:29:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60150 "EHLO
+        id S1345728AbjICRda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 13:33:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345750AbjICR3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 13:29:34 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D505F9
-        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 10:29:31 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so3428806a12.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Sep 2023 10:29:31 -0700 (PDT)
+        with ESMTP id S244551AbjICRda (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 13:33:30 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5F1F9
+        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 10:33:26 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4c0so1577359a12.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Sep 2023 10:33:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693762169; x=1694366969; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693762405; x=1694367205; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NPHJUBMqgjrbaCmQyeTzEyQhvq2Pyskk2J6fzgNfO/w=;
-        b=k/lDe646vu57BtR2Gj24rrOcGylnCcsht2WC6i5VfN33za/Kr6++Q2OwISG/cxKbch
-         88dQ7wEfhRCKrPbq2hdp01b1o5pCmzBRGbmDP/Yv4aO88ctAt6MzR2lTZlV9VF+1q46/
-         LLBbQUgGoL8kPquLTFSZZvmB9MntIJGML0yT5Lq9dsI1YJMkbYI5b6/O6eRhXXMbS6/c
-         CfeXyPyO/MCv87v/QIFXaKd9pjQpSqdv+yKZiZ4lvx3XNbobTcU13+EV+cbiV5RKSlRf
-         9a4bgtNy1hvMI6K4DOFOgN+Pd8bnD+o+eP1yilavUUA0P0rsWqoXjYSCUYQwk279Q7U4
-         JuDw==
+        bh=gnbIqa3QLa9uMxTPmoPwXfavhfYZLupOpY21IJJuDrE=;
+        b=smEw1RozG8Fh6qlFDJwaE656nkKjcqlZDa/aXxhbD137rQ2JjOF6bSNSfGF1dV3qOc
+         61QBt29LXyL1CuIzyGhhWJcVShWN0LkdiP2lqXAVmNQodFgd6OLo5eKLCdCJHLGVizct
+         0Q+tOBDE/+p1p8BSmrz7Di6am07A9pKsNgOuv3fAqXfUUMiRFBe5B1Xsb1vSPpCN6FJh
+         lO+8PYQ+7mi1/5oqQUC34AwuDFj4Um0oPeYOV+QVkt8G/DPqghuaA28umxNY2Vl0vA23
+         cHzksLam5QMUqCed77S3oRO6v7JVIiXAW57tBuDr2QmEJs66xhfkhQsdLQosW11BK5jK
+         gwTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693762169; x=1694366969;
+        d=1e100.net; s=20221208; t=1693762405; x=1694367205;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NPHJUBMqgjrbaCmQyeTzEyQhvq2Pyskk2J6fzgNfO/w=;
-        b=iT92T0wz3df62apYQPXfW5cJD8mJckvG8NZzWyi34Etmqx8emL9J29eLTlhx5dPRJv
-         VN2H7HEnhwrlRmZDx7hz67KHHWRtI61fe+2nO8McP8w0W8qyuQ+G0J5/XkKMIJM1QK6n
-         mOFhBJlOEaNi3Y1AVcuabAL2v10CPCvTQXpOkekaUfty3AALhlWIXymtK4Y9AzhSWa66
-         hKdJ6XteuVNeBo4gWIvhNwkHpAXgJZczxGa5/KPgKEvhuonUA1NV02Dg1Cc/uH1oSzxJ
-         anRx92+UuDA8l/hcCmFkbpDoFduU4tHL1ZO7a/axWVVvYg2sS4lHj1RwKLIIOOTja6Pb
-         6ehg==
-X-Gm-Message-State: AOJu0YzjQIs5L+g62SAXmm1VqkCnww1HLZeeQtK1NiTcr/yUiuNQkzZe
-        SrILjk81tKqTsvnvln36c1+tJw==
-X-Google-Smtp-Source: AGHT+IEhCNWtl7YQ5p/jh+vxHI1d+ZEaGgMP7BekHl3orE2v19RJpwz8akAmdj1GoO5WSQhhqN5H0g==
-X-Received: by 2002:a17:907:1def:b0:9a5:d2f5:c76 with SMTP id og47-20020a1709071def00b009a5d2f50c76mr8833461ejc.5.1693762169524;
-        Sun, 03 Sep 2023 10:29:29 -0700 (PDT)
+        bh=gnbIqa3QLa9uMxTPmoPwXfavhfYZLupOpY21IJJuDrE=;
+        b=i+njlOpKH7vj5kE1DPbXv387WoeF8Dqo1wL99D8+CB22znecHrme7/aQTgb1sy8Zzb
+         IuFke+J55/olykvRhs3BPEf2kyQbUgRaK/6ufbT9h/Ypud6D5rfwEgjQmaqTgCgDAIrj
+         6icLWVoZp6wqJ5CPXoZ7FuKwSiVpclim7ZK8lrZkhOYaHaqohBGcD3V3+SE7JF+h8G7h
+         MWzKt8iyrZuZm9Vm8+oxdWmUOev4LC1yBVUKerF2OFQRu2z2VEC5+GaEEi1GVW/fJXZD
+         ulgBvz5L+eraYNzhVSZJyewC6pJiPCjtDEsLwijg9PHT9UrX6kcS4D2sXBsdnSNIRNIg
+         fUTA==
+X-Gm-Message-State: AOJu0YwRECKpWV8uNi8fWhqCzB8bScGz8fWxnRMx/YVgjP54OWX+7A8D
+        20wT5eaaOyzzV/6YCR1QN9zOPw==
+X-Google-Smtp-Source: AGHT+IFGB/BXefKvYXzHo/yhCqX2O412qIh3xyABISAk69aKJTwnVi8a9Uu/LOHlUTLSJPmKVOvD4Q==
+X-Received: by 2002:a05:6402:396:b0:521:d2ab:e4df with SMTP id o22-20020a056402039600b00521d2abe4dfmr8939077edv.19.1693762404933;
+        Sun, 03 Sep 2023 10:33:24 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id c25-20020a170906529900b0099b42c90830sm5001164ejm.36.2023.09.03.10.29.28
+        by smtp.gmail.com with ESMTPSA id t3-20020aa7d4c3000000b0051bed21a635sm4730574edr.74.2023.09.03.10.33.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Sep 2023 10:29:29 -0700 (PDT)
-Message-ID: <96620b14-6bc6-ed55-1cff-4eb1eef2a9fc@linaro.org>
-Date:   Sun, 3 Sep 2023 19:29:28 +0200
+        Sun, 03 Sep 2023 10:33:24 -0700 (PDT)
+Message-ID: <100bc802-b706-e923-463a-705522650ecb@linaro.org>
+Date:   Sun, 3 Sep 2023 19:33:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: rtc: ds3231: Remove text binding
+Subject: Re: [PATCH v2 4/7] crypto: qcom-rng - Add support for trng
 Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>, alexandre.belloni@bootlin.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-References: <20230902134407.2589099-1-festevam@gmail.com>
+To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230824-topic-sm8550-rng-v2-0-dfcafbb16a3e@linaro.org>
+ <20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org>
+ <29fb1e51-1e18-4e45-be64-190df52e1156@quicinc.com>
+ <3d09f47f-b0b8-4429-944a-df3de19c7a6c@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230902134407.2589099-1-festevam@gmail.com>
+In-Reply-To: <3d09f47f-b0b8-4429-944a-df3de19c7a6c@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -75,17 +87,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/09/2023 15:44, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> The "maxim,ds3231" compatible is described in the rtc-ds1307.yaml, so
-> there is no need to keep the text bindings version.
-> 
-> Remove the maxim,ds3231.txt file in favor of the rtc-ds1307.yaml binding.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+On 01/09/2023 14:56, Om Prakash Singh wrote:
+> I missed to notice. Please correct "-" to ":" in subject line
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hm? What do you want to correct? The subject prefix is correct, why do
+you ask to change it?
 
 Best regards,
 Krzysztof
