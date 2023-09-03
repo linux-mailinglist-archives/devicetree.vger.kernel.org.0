@@ -2,98 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D662B7909D0
-	for <lists+devicetree@lfdr.de>; Sat,  2 Sep 2023 23:39:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B457790B81
+	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 13:00:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234961AbjIBVji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 2 Sep 2023 17:39:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46004 "EHLO
+        id S236418AbjICLAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 07:00:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234956AbjIBVjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 2 Sep 2023 17:39:37 -0400
-X-Greylist: delayed 1008 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 02 Sep 2023 14:39:33 PDT
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D504EE54
-        for <devicetree@vger.kernel.org>; Sat,  2 Sep 2023 14:39:33 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qcY4W-0006CP-Tu; Sat, 02 Sep 2023 23:22:24 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qcY4V-003V6R-2G; Sat, 02 Sep 2023 23:22:23 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qcY4U-000jBN-AY; Sat, 02 Sep 2023 23:22:22 +0200
-Date:   Sat, 2 Sep 2023 23:22:11 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     =?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>
-Cc:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235800AbjICLAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 07:00:05 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAAAADC;
+        Sun,  3 Sep 2023 04:00:01 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 2C74ACE0959;
+        Sun,  3 Sep 2023 11:00:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F27EBC433C8;
+        Sun,  3 Sep 2023 10:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693738798;
+        bh=wVketto36Nxx/Uhx0mBINXNgcZs2dt65qgJnk9mferM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RJFp43KmxU22SzkInY+AONEEJm8eJhflD/2KzGPoKbJVEPWCWdL9kbBpYfKPnqcbF
+         tmO0MKVp6ZKanpqo/9TBlt6VkNz/UsBQonJBFWHduE7OuPIq5n04eNKEiT8VfNu5mN
+         tYxtdyuWTT7m/Y5BXV/i3h9cGSDNl0XHNMSiJ644Ql8mddWXP7zlJzbBEgW4B/92dN
+         t7LF72KNaAoaPQON4PQVnGbB5FqNiI04pihl7ok8Lk18PN0uFXlLU6TInOcGjPFWEq
+         fbWcx87cw+0DUfTQ8w7Av/bSxX0qj/N3GxVwX0UsFPwZV+X+kFcLJQn1a+b0S5xJSm
+         SQxPZIHSy3Vcg==
+Date:   Sun, 3 Sep 2023 12:00:24 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 2/2] leds: add ktd202x driver
-Message-ID: <20230902212211.egbmusrbawkrrdlu@pengutronix.de>
-References: <20230901-ktd202x-v2-0-3cb8b0ca02ed@apitzsch.eu>
- <20230901-ktd202x-v2-2-3cb8b0ca02ed@apitzsch.eu>
+        Conor Dooley <conor+dt@kernel.org>,
+        Matti Vaittinen <mazziesaccount@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: rohm,bu27010: add missing vdd-supply
+ to example
+Message-ID: <20230903120024.44054aa7@jic23-huawei>
+In-Reply-To: <20230811151755.GA3484524-robh@kernel.org>
+References: <20230808063223.80431-1-krzysztof.kozlowski@linaro.org>
+        <20230811151755.GA3484524-robh@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3yy36qt3op6mlcma"
-Content-Disposition: inline
-In-Reply-To: <20230901-ktd202x-v2-2-3cb8b0ca02ed@apitzsch.eu>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 11 Aug 2023 09:17:55 -0600
+Rob Herring <robh@kernel.org> wrote:
 
---3yy36qt3op6mlcma
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On Tue, Aug 08, 2023 at 08:32:23AM +0200, Krzysztof Kozlowski wrote:
+> > Bindings require vdd-supply but the example DTS was missing one.  This
+> > fixes dt_binding_check error:
+> > 
+> >   Documentation/devicetree/bindings/iio/light/rohm,bu27010.example.dtb: light-sensor@38: 'vdd-supply' is a required property
+> > 
+> > Fixes: ae8c47c51e5c ("dt-bindings: iio: ROHM BU27010 RGBC + flickering sensor")
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/iio/light/rohm,bu27010.yaml | 1 +
+> >  1 file changed, 1 insertion(+)  
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+Applied to the fixes-togreg branch of iio.git.
+Note I want to rebase that on rc1 before sending next pull request so it will be a week or two.
 
-Hello Andr=E9,
+Thanks,
 
-On Fri, Sep 01, 2023 at 11:19:59PM +0200, Andr=E9 Apitzsch wrote:
-> +	.probe_new =3D ktd202x_probe,
-
-probe_new is about to go away and since commit
-03c835f498b540087244a6757e87dfe7ef10999b you can just use .probe with
-the same prototype. So please use .probe here.
-
-(Disclaimer: This is the only thing I checked here.)
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---3yy36qt3op6mlcma
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmTzp4MACgkQj4D7WH0S
-/k6paggAr8GWkS0QCAUDHE36Yy80iYlPCMDhK+Buxs+2gjg2gfr3l+qI3D32cX37
-RsA3B94vmdZCx8Dkm1KPIwA3udb4/seZyzbwXO/9Qp5tt6J4K4OfD3sWeZKhQdgf
-BDH5xeKmnQZthacdfiEZs7h0Rjpm6nQrMuuYLKURhTb0yd9L7XZcdIig9jd45Cio
-BP2b+pNlSu2lP6mY5yZXmVVeApfx6uHRtRj9E4NJBz/SH/afu+MgUl+zs5MyHLoI
-r9Hp8JGT4TJ/DqsSr5zheOofJnNN5lSzaDNEZWpc/rbhhYHn7EEsZ+R4R67WNjX6
-kvLLcYguDddAChTqoOpJEsaprYHDOQ==
-=Puti
------END PGP SIGNATURE-----
-
---3yy36qt3op6mlcma--
+Jonathan
