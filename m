@@ -2,62 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FA11790B8D
-	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 13:14:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E9E790BA6
+	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 13:43:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236559AbjICLOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 07:14:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44118 "EHLO
+        id S236608AbjICLnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 07:43:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236538AbjICLOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 07:14:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB9691;
-        Sun,  3 Sep 2023 04:14:13 -0700 (PDT)
+        with ESMTP id S229599AbjICLnX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 07:43:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEEDF3;
+        Sun,  3 Sep 2023 04:43:16 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4298160B71;
-        Sun,  3 Sep 2023 11:14:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 558EDC433C7;
-        Sun,  3 Sep 2023 11:14:08 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 07B7560C26;
+        Sun,  3 Sep 2023 11:43:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D7CDC433C8;
+        Sun,  3 Sep 2023 11:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693739652;
-        bh=xksW8ataBM3f2JzXguQZovnO398ymnhbyG6nZVbqfD0=;
+        s=k20201202; t=1693741395;
+        bh=6Nqr5gw8uCnA8rg+G6Bui+BU1I6puGFeo5IqC4ON170=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=IAtKUIWM9jclNpk6e5lL94sA0jaKmlsoEfUmF6skVscFFFJ+l+Ba0aaiauE7/UKbj
-         IZjxSWs4hZ2SUIeI1/9QuluWVOZZSxe5h/dlsqCPrTrtOIU7pT0XZonYv/MDipi4lV
-         Jhv8t0Px3AkBOproF+9gcC6YGB3Bt7+JQqRTnRmxH8NjDWJvXKmtnGS0kiONG4Wwh2
-         pHy7SZxk292sjJ1sLD++/pDUIrYtB/yjdon2AxbyrHI1jd303fMIuGYzokTOFwdNAy
-         uQ5SsBnDf3ykHLGkmjhHvtfCKTRvH8lbDoB3mc8BTjQvXSr1bezvOF8TdTTB2bnOeE
-         Db4IFe/ygKGIA==
-Date:   Sun, 3 Sep 2023 12:14:37 +0100
+        b=LrsnYnE7FdIFvQjVAcYGXu9awE7Z8YCZkQxUgcNfzCrglEKuoAgcx0iiktcCPEtcF
+         QOKASvyxSwfSZx1r44F9cbSxnCqu1Qhu6C5Oc8UB5YHSzR0/krAZ+p0L6cGu83Ss+E
+         ocKGpsBpSEK8wxZKpY9bu6jFYmw/FG6BQTRV17+PpZzsoHEDLdKIFaEdPyVEx5+du4
+         PVqt6mlTHKhzROWRVU0NrQsx8PWo4su+uBuGTMwk1Sq4iRa5HvOBhjzXoWlopI3nLq
+         q1tGA/dIGYxiVMNwRWaF07epqAa2tIzOjcrQf9hcfYU90CAv49wxYHDd2nka8iiAsm
+         BQyYtT1j5bevg==
+Date:   Sun, 3 Sep 2023 12:43:41 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     =?UTF-8?B?5p2o5piO6YeR?= <magicyangmingjin@gmail.com>
-Cc:     Mingjin Yang <mingjin.yang@unisoc.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+To:     Liam Beguin <liambeguin@gmail.com>
+Cc:     Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Ling_Ling.Xu@unisoc.com,
-        Jinfeng.Lin1@unisoc.com, Yangbin.Li@unisoc.com,
-        Jiansheng.Wu@unisoc.com, Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V0 2/2] iio: adc: sprd_pmic_adc: Add support for UMP
- serise pmic adc
-Message-ID: <20230903121437.520e5da3@jic23-huawei>
-In-Reply-To: <CAKJtOf5chsyPrnMZGv32YFvxG1x5cDtBQmzk7wRqCn7C2+cB=g@mail.gmail.com>
-References: <20230816080225.21482-1-mingjin.yang@unisoc.com>
-        <20230816080225.21482-3-mingjin.yang@unisoc.com>
-        <20230828165709.56ffa299@jic23-huawei>
-        <CAKJtOf5chsyPrnMZGv32YFvxG1x5cDtBQmzk7wRqCn7C2+cB=g@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: add ltc2309 support
+Message-ID: <20230903124341.360c95fe@jic23-huawei>
+In-Reply-To: <20230828-ltc2309-v3-2-338b3a8fab8b@gmail.com>
+References: <20230828-ltc2309-v3-0-338b3a8fab8b@gmail.com>
+        <20230828-ltc2309-v3-2-338b3a8fab8b@gmail.com>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -68,111 +62,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Aug 2023 15:15:12 +0800
-=E6=9D=A8=E6=98=8E=E9=87=91 <magicyangmingjin@gmail.com> wrote:
+On Mon, 28 Aug 2023 22:41:35 -0400
+Liam Beguin <liambeguin@gmail.com> wrote:
 
-> Jonathan Cameron <jic23@kernel.org> =E4=BA=8E2023=E5=B9=B48=E6=9C=8828=E6=
-=97=A5=E5=91=A8=E4=B8=80 23:56=E5=86=99=E9=81=93=EF=BC=9A
-> >
-Hi,
+> The LTC2309 is an 8-Channel, 12-Bit SAR ADC with an I2C Interface.
+> 
+> This implements support for all single-ended and differential channels,
+> in unipolar mode only.
+> 
+> Signed-off-by: Liam Beguin <liambeguin@gmail.com>
+Hi Liam,
 
-Please crop replies to relevant part only.  Hopefully I found it!
+A few really small editorial bits in here.  I'll fix them whilst applying.
+Series applied to the togreg branch of iio.git
 
-
-> > > +static int sprd_adc_enable(struct sprd_adc_data *data, int channel)
-> > > +{
-> > > +     int ret =3D 0;
-> > > +     u32 reg_read =3D 0;
-> > > +
-> > > +     if (data->pm_data.clk_regmap) {
-> > > +             ret =3D regmap_update_bits(data->pm_data.clk_regmap, da=
-ta->pm_data.clk_reg,
-> > > +                                      data->pm_data.clk_reg_mask,
-> > > +                                      data->pm_data.clk_reg_mask);
-> > > +             ret |=3D regmap_read(data->pm_data.clk_regmap, data->pm=
-_data.clk_reg, &reg_read);
-> > > +             if (ret) {
-> > > +                     dev_err(data->dev, "failed to enable clk26m, ch=
-annel %d\n", channel);
-> > > +                     return ret;
-> > > +             }
-> > > +             dev_dbg(data->dev, "enable clk26m: ch %d, reg_read 0x%x=
-\n", channel, reg_read); =20
-> >
-> > Directly accessing the regmap of a clock seems unusual. Why not provide=
- generic clock interfaces
-> > for this? =20
->=20
-> This register is used to vote to enable/disable the pmic 26m clk which
-> is provided to modules like audio, typec and adc.
-> Therefore, this clk cannot be disabled or enabled directly.
-
-clk_enable() and friends support reference counted enable and disable
-so I don't understand why this needs something unusual.
-
-
->=20
-
-> > > +static int sprd_adc_probe(struct platform_device *pdev)
-> > > +{
-> > > +     struct device_node *np =3D pdev->dev.of_node;
-> > > +     struct sprd_adc_data *sprd_data;
-> > > +     const struct sprd_adc_variant_data *pdata;
-> > > +     struct iio_dev *indio_dev;
-> > > +     int ret;
-> > > +
-> > > +     pdata =3D of_device_get_match_data(&pdev->dev); =20
-> >
-> > device_get_match_data()
-> >
-> > =20
-> > > +     if (!pdata) {
-> > > +             dev_err(&pdev->dev, "No matching driver data found\n");
-> > > +             return -EINVAL;
-> > > +     }
-> > > +
-> > > +     indio_dev =3D devm_iio_device_alloc(&pdev->dev, sizeof(*sprd_da=
-ta));
-> > > +     if (!indio_dev)
-> > > +             return -ENOMEM;
-> > > +
-> > > +     sprd_data =3D iio_priv(indio_dev);
-> > > +
-> > > +     sprd_data->regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
-> > > +     if (!sprd_data->regmap) {
-> > > +             dev_err(&pdev->dev, "failed to get ADC regmap\n");
-> > > +             return -ENODEV;
-> > > +     }
-> > > +
-> > > +     ret =3D of_property_read_u32(np, "reg", &sprd_data->base); =20
-> >
-> > Even though some elements of this (of_hwspin...) don't have generic fir=
-mware
-> > interfaces, I would prefer to see those from linux/property.h used
-> > wherever possible.  It will take us a long time to make that a subsystem
-> > wide change, but good not to have more unnecessary instances of device =
-tree
-> > specific property reading. =20
->=20
-> Sorry, I don't understand what needs to be modified. Can you provide
-> more information or give an example?
-> Do you mean that the "reg"  property reading is unnecessary?
-
-No.  Where possibly use
-	device_property_read_u32(dev, "reg".. etc
-and similar functions from
-include/linux/property.h rather than device tree specific ones.
-The generic property handling deals with various different types of firmware
-without needing drivers to be aware of it.
-
-Some elements that you need here do not have generic property handling so
-for those you will need to continue using the of_ variants.
-Note that this is to support long term move of everything to the generic
-firmware framework.  Even if we drivers in IIO etc that are really device
-tree only there are benefits for maintenance in using one framework
-for all drivers. As some IIO drivers do support other firmware types
-(ACPI for example) the generic version is the preferred choice.
+Note I will be rebasing the tree on rc1 once available and in the meantime
+this will only be pushed out as testing.
 
 Thanks,
 
 Jonathan
+
+
+
+> +/**
+> + * struct ltc2309 - internal device data structure
+> + * @dev:	Device reference
+> + * @client:	I2C reference
+> + * @vref:	External reference source
+> + * @lock:	Lock to serialize data access
+> + * @vref_mv	Internal voltage reference
+
+Missing : which is what the bot picked up on.
+
+> + */
+> +struct ltc2309 {
+> +	struct device		*dev;
+> +	struct i2c_client	*client;
+> +	struct regulator	*vref;
+> +	struct mutex		lock; /* serialize data access */
+> +	int			vref_mv;
+> +};
+
+> +
+> +void ltc2309_regulator_disable(void *regulator)
+> +{
+> +	struct regulator *r = (struct regulator *)regulator;
+
+Never any need to explicitly cast from a void * to any other pointer type.
+(C spec says it is always fine to do this :)
+
+Given type is obvious from use, can just do
+	regulator_disable(regulator);
+and lose the local variable.
+
+> +
+> +	regulator_disable(r);
+> +}
+
+..
+> +
+> +static const struct of_device_id ltc2309_of_match[] = {
+> +	{ .compatible = "lltc,ltc2309" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ltc2309_of_match);
+> +
+> +static const struct i2c_device_id ltc2309_id[] = {
+> +	{ "ltc2309" },
+> +	{}
+
+Trivial but space between { and } for consistency.
+
+
