@@ -2,149 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4F6B790B87
-	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 13:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FA11790B8D
+	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 13:14:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236518AbjICLJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 07:09:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57062 "EHLO
+        id S236559AbjICLOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 07:14:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236527AbjICLJJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 07:09:09 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AD54124;
-        Sun,  3 Sep 2023 04:09:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
- s=s31663417; t=1693739337; x=1694344137; i=frank-w@public-files.de;
- bh=u8/szVbittwkRsWyf3e5cgTsrKMvXaYnL6wjccfCDI4=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
- b=pUiXolxN/GrMlTeVVI5WbP0hrg7+ZdtWU28sne+EM293HM6NX9vsjoZi+Y+FZ9qqe+IsRl1
- vZY3HmHjfrtHwmXrr0jSuq3C9RvuMSPom5sL2ZnKdM0akGzXhy6euMZ9sX60BPSc/qHtXmVeG
- Moaz9oJtiSwEkdb0NLGykYnstGvpxVWUpNucjMT14yfbXmBRsg62wqxw0NAK1XP37wKO7gkEu
- 9ymZZUZkExWljfoWV04ePOXh2ySss3xVCkg5Ria7rAgKfAymuKMkpvpvna+DiEjdw/gFPBupk
- WYPMwOTy2inPvTTUpvntx77XAbEkFZZUgE7s2N0psg9TESujYIDw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.159.177] ([217.61.159.177]) by web-mail.gmx.net
- (3c-app-gmx-bap43.server.lan [172.19.172.113]) (via HTTP); Sun, 3 Sep 2023
- 13:08:57 +0200
+        with ESMTP id S236538AbjICLOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 07:14:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB9691;
+        Sun,  3 Sep 2023 04:14:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4298160B71;
+        Sun,  3 Sep 2023 11:14:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 558EDC433C7;
+        Sun,  3 Sep 2023 11:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693739652;
+        bh=xksW8ataBM3f2JzXguQZovnO398ymnhbyG6nZVbqfD0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=IAtKUIWM9jclNpk6e5lL94sA0jaKmlsoEfUmF6skVscFFFJ+l+Ba0aaiauE7/UKbj
+         IZjxSWs4hZ2SUIeI1/9QuluWVOZZSxe5h/dlsqCPrTrtOIU7pT0XZonYv/MDipi4lV
+         Jhv8t0Px3AkBOproF+9gcC6YGB3Bt7+JQqRTnRmxH8NjDWJvXKmtnGS0kiONG4Wwh2
+         pHy7SZxk292sjJ1sLD++/pDUIrYtB/yjdon2AxbyrHI1jd303fMIuGYzokTOFwdNAy
+         uQ5SsBnDf3ykHLGkmjhHvtfCKTRvH8lbDoB3mc8BTjQvXSr1bezvOF8TdTTB2bnOeE
+         Db4IFe/ygKGIA==
+Date:   Sun, 3 Sep 2023 12:14:37 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     =?UTF-8?B?5p2o5piO6YeR?= <magicyangmingjin@gmail.com>
+Cc:     Mingjin Yang <mingjin.yang@unisoc.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Ling_Ling.Xu@unisoc.com,
+        Jinfeng.Lin1@unisoc.com, Yangbin.Li@unisoc.com,
+        Jiansheng.Wu@unisoc.com, Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V0 2/2] iio: adc: sprd_pmic_adc: Add support for UMP
+ serise pmic adc
+Message-ID: <20230903121437.520e5da3@jic23-huawei>
+In-Reply-To: <CAKJtOf5chsyPrnMZGv32YFvxG1x5cDtBQmzk7wRqCn7C2+cB=g@mail.gmail.com>
+References: <20230816080225.21482-1-mingjin.yang@unisoc.com>
+        <20230816080225.21482-3-mingjin.yang@unisoc.com>
+        <20230828165709.56ffa299@jic23-huawei>
+        <CAKJtOf5chsyPrnMZGv32YFvxG1x5cDtBQmzk7wRqCn7C2+cB=g@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Message-ID: <trinity-cb228db4-32f9-4606-b733-2d148073de5d-1693739337284@3c-app-gmx-bap43>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: RecursionError when try to check bindings (ubuntu 22.04 /
- Python3.10)
 Content-Type: text/plain; charset=UTF-8
-Date:   Sun, 3 Sep 2023 13:08:57 +0200
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:OwC3cXbrWuDlCByBlHW2m7NqkIDL2tZb6sUR0yxDtK6LCImgIyfnPZ/Otp1r2ynRF5TZ2
- iT1Qq0W5PUH8zM7FqOykS3+txSvtCX+ZGna34AJngdBPq8DeXTC+LCpCW0VAXz2V26wubQvntyVe
- ajWdrlNeaabfjQZHRpGwiqAV8D3UBD64klp8fTN6NZULqoel5Sh3VmhMGbgCWnynBcdTLxgTI9Oo
- pPgjfW/BkFOZuIzD1yo5uScVhXnwLCkBEtbfE1XbA+zF6WWUkmCB876JNL9XUo9zu6R4c6B7+0O3
- UM=
-UI-OutboundReport: notjunk:1;M01:P0:5PCjodAlLA8=;geT5mhRf1Bf/p7+J0rUb5l7pefm
- 36Zu88UWuvEf/Em42f/DOlGrYTeXQzAAdiS/1qqD4Szq1jL/e2vfB/p9o2D1G5P5xVr9MMlNY
- IGNXKA/alP2jGpqSuYM6zgW9zD8Cyjhs2bZRpqHctyq6jTmdK+JArxK1O5okRyebTW0naxxD1
- S7asGIuyvEqx682Kpyp4nU+8BKAJoPkDye7NbdYzwVikKSi3dOb3qO2NTp7aWQnoj4EVQZkIN
- 09PhH+e8xGA6thPc/BG9wQl061bFtgYoRlzNhgDsOjYLc6gge14nHpIFzH1UUoDyjE2gkEiV7
- IOQGS6PYlk+ba3uPy76i7JDhJvCDlCk0Td3NcLKZq358QJRXn1HKCGfNnoEoqsFDgR26silOe
- cmqL2TfH14QKgWBq0BYCDOJzEXIAmb85HuBa7fXUomi5FIvdyhWr0obAfQDVIP37/Dk94gr/T
- dyB1pVThy0h4oFaXUifn6qXDyIKKfyVDcmpMaaCesmYkf4wGPqJ1KrJVVb6+UQlA3ky3ODOPL
- S0zpHOzYD3kfJUkkmrHIU1nNKsjkJqVQ+2IRl75ZdawcmrV8zZrjNhkZvJp0DIFhuGXrI80mZ
- FxE4FN7DDiUnxS7gXzgJw4fQETXhOmDen7wvVGW10gSZCPKkwAkYM7NdHwtsgzSoLgeWujdrs
- Puv7pXcDo8jK4s9Fflb82n9/EmyYWJHTZmcgGPaHH1gJteCTdG4mUQaBC3DJHOzh9GKV1y8ta
- x/sK9bbp0l4jjFp9TG3f1KuN+dMvVx3XdtlDpiZOostnqocYgsSxSRj4+c48QQN0fog2K9E+O
- mdK3ewloXk7Ntvv4eBlpUW++ZI8dCD7GFcLM7LDhsXea4=
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 30 Aug 2023 15:15:12 +0800
+=E6=9D=A8=E6=98=8E=E9=87=91 <magicyangmingjin@gmail.com> wrote:
+
+> Jonathan Cameron <jic23@kernel.org> =E4=BA=8E2023=E5=B9=B48=E6=9C=8828=E6=
+=97=A5=E5=91=A8=E4=B8=80 23:56=E5=86=99=E9=81=93=EF=BC=9A
+> >
 Hi,
 
-i tried to check a binding-file with 6.5 kernelsource and get this error
+Please crop replies to relevant part only.  Hopefully I found it!
 
-  GNU nano 6.2                                                            =
-dt.log
-  LINT    Documentation/devicetree/bindings
-  CHKDT   Documentation/devicetree/bindings/processed-schema.json
-  SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-Traceback (most recent call last):
-  File "/home/frank/.local/bin/dt-mk-schema", line 38, in <module>
-    schemas =3D dtschema.DTValidator(args.schemas).schemas
-  File "/home/frank/.local/lib/python3.10/site-packages/dtschema/validator=
-.py", line 354, in __init__
-    self.schemas =3D process_schemas(schema_files)
-  File "/home/frank/.local/lib/python3.10/site-packages/dtschema/validator=
-.py", line 271, in process_schemas
-    sch =3D process_schema(os.path.abspath(filename))
-  File "/home/frank/.local/lib/python3.10/site-packages/dtschema/validator=
-.py", line 248, in process_schema
-    dtsch.is_valid()
-  File "/home/frank/.local/lib/python3.10/site-packages/dtschema/schema.py=
-", line 145, in is_valid
-    for error in self.DtValidator(self.DtValidator.META_SCHEMA).iter_error=
-s(self):
-  File "/home/frank/.local/lib/python3.10/site-packages/jsonschema/validat=
-ors.py", line 242, in iter_errors
-    for error in errors:
-  File "/home/frank/.local/lib/python3.10/site-packages/jsonschema/_valida=
-tors.py", line 362, in allOf
-    yield from validator.descend(instance, subschema, schema_path=3Dindex)
-  File "/home/frank/.local/lib/python3.10/site-packages/jsonschema/validat=
-ors.py", line 258, in descend
-    for error in self.evolve(schema=3Dschema).iter_errors(instance):
 
-block from line 242-258 repeats many times (~2000 lines in log)
+> > > +static int sprd_adc_enable(struct sprd_adc_data *data, int channel)
+> > > +{
+> > > +     int ret =3D 0;
+> > > +     u32 reg_read =3D 0;
+> > > +
+> > > +     if (data->pm_data.clk_regmap) {
+> > > +             ret =3D regmap_update_bits(data->pm_data.clk_regmap, da=
+ta->pm_data.clk_reg,
+> > > +                                      data->pm_data.clk_reg_mask,
+> > > +                                      data->pm_data.clk_reg_mask);
+> > > +             ret |=3D regmap_read(data->pm_data.clk_regmap, data->pm=
+_data.clk_reg, &reg_read);
+> > > +             if (ret) {
+> > > +                     dev_err(data->dev, "failed to enable clk26m, ch=
+annel %d\n", channel);
+> > > +                     return ret;
+> > > +             }
+> > > +             dev_dbg(data->dev, "enable clk26m: ch %d, reg_read 0x%x=
+\n", channel, reg_read); =20
+> >
+> > Directly accessing the regmap of a clock seems unusual. Why not provide=
+ generic clock interfaces
+> > for this? =20
+>=20
+> This register is used to vote to enable/disable the pmic 26m clk which
+> is provided to modules like audio, typec and adc.
+> Therefore, this clk cannot be disabled or enabled directly.
 
-  File "/home/frank/.local/lib/python3.10/site-packages/jsonschema/validat=
-ors.py", line 242, in iter_errors
-    for error in errors:
-  File "/home/frank/.local/lib/python3.10/site-packages/jsonschema/_legacy=
-_validators.py", line 216, in recursiveRef
-    lookup_url, next_target =3D validator.resolver.resolve(each)
-  File "/home/frank/.local/lib/python3.10/site-packages/jsonschema/validat=
-ors.py", line 835, in resolve
-    url =3D self._urljoin_cache(self.resolution_scope, ref).rstrip("/")
-RecursionError: maximum recursion depth exceeded in comparison
+clk_enable() and friends support reference counted enable and disable
+so I don't understand why this needs something unusual.
 
-make[2]: *** [Documentation/devicetree/bindings/Makefile:68: Documentation=
-/devicetree/bindings/processed-schema.json] Error 1
-make[2]: *** Deleting file 'Documentation/devicetree/bindings/processed-sc=
-hema.json'
-make[1]: *** [/media/data_nvme/git/kernel/BPI-R2-4.14/Makefile:1516: dt_bi=
-nding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
 
-my command is (after importing defconfig, also tried a clean before):
+>=20
 
-ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make dt_binding_check
+> > > +static int sprd_adc_probe(struct platform_device *pdev)
+> > > +{
+> > > +     struct device_node *np =3D pdev->dev.of_node;
+> > > +     struct sprd_adc_data *sprd_data;
+> > > +     const struct sprd_adc_variant_data *pdata;
+> > > +     struct iio_dev *indio_dev;
+> > > +     int ret;
+> > > +
+> > > +     pdata =3D of_device_get_match_data(&pdev->dev); =20
+> >
+> > device_get_match_data()
+> >
+> > =20
+> > > +     if (!pdata) {
+> > > +             dev_err(&pdev->dev, "No matching driver data found\n");
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     indio_dev =3D devm_iio_device_alloc(&pdev->dev, sizeof(*sprd_da=
+ta));
+> > > +     if (!indio_dev)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     sprd_data =3D iio_priv(indio_dev);
+> > > +
+> > > +     sprd_data->regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
+> > > +     if (!sprd_data->regmap) {
+> > > +             dev_err(&pdev->dev, "failed to get ADC regmap\n");
+> > > +             return -ENODEV;
+> > > +     }
+> > > +
+> > > +     ret =3D of_property_read_u32(np, "reg", &sprd_data->base); =20
+> >
+> > Even though some elements of this (of_hwspin...) don't have generic fir=
+mware
+> > interfaces, I would prefer to see those from linux/property.h used
+> > wherever possible.  It will take us a long time to make that a subsystem
+> > wide change, but good not to have more unnecessary instances of device =
+tree
+> > specific property reading. =20
+>=20
+> Sorry, I don't understand what needs to be modified. Can you provide
+> more information or give an example?
+> Do you mean that the "reg"  property reading is unnecessary?
 
-already did an update of dtschema with "pip3 install dtschema --upgrade" a=
-nd also an uninstall/install of this python-package
+No.  Where possibly use
+	device_property_read_u32(dev, "reg".. etc
+and similar functions from
+include/linux/property.h rather than device tree specific ones.
+The generic property handling deals with various different types of firmware
+without needing drivers to be aware of it.
 
-$ pip3 show dtschema
-Name: dtschema
-Version: 2023.7
-Summary: DeviceTree validation schema and tools
-Home-page: https://github.com/devicetree-org/dt-schema
-Author: Rob Herring
-Author-email: robh@kernel.org
-License: BSD
-Location: /home/frank/.local/lib/python3.10/site-packages
-Requires: jsonschema, pylibfdt, rfc3987, ruamel.yaml
-Required-by:
+Some elements that you need here do not have generic property handling so
+for those you will need to continue using the of_ variants.
+Note that this is to support long term move of everything to the generic
+firmware framework.  Even if we drivers in IIO etc that are really device
+tree only there are benefits for maintenance in using one framework
+for all drivers. As some IIO drivers do support other firmware types
+(ACPI for example) the generic version is the preferred choice.
 
-any idea what can be the cause?
+Thanks,
 
-regards Frank
-
+Jonathan
