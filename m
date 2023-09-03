@@ -2,198 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D7B790BF4
-	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 14:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C415790BFD
+	for <lists+devicetree@lfdr.de>; Sun,  3 Sep 2023 15:02:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237190AbjICMoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 08:44:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50180 "EHLO
+        id S231726AbjICNCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 09:02:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237178AbjICMoM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 08:44:12 -0400
-Received: from sonic310-57.consmr.mail.ir2.yahoo.com (sonic310-57.consmr.mail.ir2.yahoo.com [77.238.177.30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 979C9126
-        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 05:44:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1693745044; bh=F2D1iE1yYlx04Zd2TcBuELMqwAZBbMB0N8BMx6gxJL0=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=M8Hx9/bTZX5u1AauSYZ/SD8ZX5tvsmpX1NOpxqodty7hV7g1ybKwoc6hCfadbv5JCfmlYR8iVmzNvAlG4wQIgp/wtIWc3Gu4FkkJG9vg9YlHsbfdFZsPaumyI58WaIePravoSWCB7nd9f/q4aLwu1V4JeC0eu5f2NecdRjciWkWB1KmW6gZ5fIFEadiOF3I2c89+791SDFCPYTmBc0Vawp4jQJQljEpAspiy5+Ou3O4WiKsHHCXWjO8YLHw5GYiGbGBTQ2zrJfugZwRd4zWZXbwgA/IA3IF2OWYybaqHQt3QWafwLLz4klI8F+5VxjUp9nb7xXjZeOfVCKlZDuYyIA==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1693745044; bh=qVEqmZRmXAuwhr6UK2VDLfBdRsIDroCBcDyed+SXaXD=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=N5OkB/jcaMIPaBxcLq1AHsAdTxJOf93z6ZgD+gN+6CNKE9KX5JbuaSWLMaU1cU036hn7/5yd0ygD0B/dqbjvoEpPxB/L2E+llQfRb0xmC6L/92kO0wf4SqwDVZ/MbvFIDbB1HUvSRog7l+GpN8wms5EFmBSKg+EzEoTb5plWPpXdZEhhBdbRrVx/ZVUAg3nJ3qGGkgEotpeWhqetfgE/R9Wj45YgNM9RRnrlBgLklweh/IcS0gZeDqfYzft5BSt+C5hUvOtk9TFNoM2hYS33YTnfwQv38CBgZpBOKWGAGhJ04Nvht0dKIDr/SMNyJnGITznwbSHErRiMq57wsV03Jw==
-X-YMail-OSG: bhZiEwIVM1k2OeR9lebTfUeG2znd3iUZl9TQMHGJ8uGiEGkWC22tmpPcoHmnvOs
- Y7L5_XHpzQ.WBP8rUuHXIuph1_N0W5FRndFhJsZls2W_tLAJ36Tkx7To8o0afKhXyexDqpS4Ou.R
- aRAm_7TjiVp3zZxDtb1rfMiTT.wr0rUCruZUgT5n1wCwbU1qOx1Tv5PGvaZ3uD5VYmAkwWUQiq0t
- T9HOSQOvoWgpYDAbhN3UxnTcy41xB_Lg2eTdks6hWy_WPgpOIS3JtQ_0Av3N6nxbYHATjW5pdojv
- HAfgJa26TLnYxPnyfj.qlZuJRJUGCz2W0xf7UZ54fjjo5kCV.hBKyJjk7U6bK6P1pdPX0_J9IYrL
- j9kEEZoM3rFlg47qWWXAEPK6gt_2iWscG_E.C5si55l5c8ViO5zWeR_XTXZXGs.KrT_uS5_GEyh2
- xkCGqRk5Y.tGaJ63Im.an8OKSTGZYeRBLNs.syxP.dk0ZVG_Iz7u7nyIuv7WHu8pyyua5L72qw6O
- yDYAu0mh8aeSV5nPuHkogIg_bHjfSdWxsKukBcSV5Am2guVsDv3Eo6aUJLV_tTzk4DFCanHHdNR5
- cdlmn9qne2LyL_ucSXu6WH9ABL0AvWiNQKZtHRQrEbQbFHVb2MXCk7_jfzn5BDOWpGBuyLr9L.Fv
- T49Pt_7Fb.pnxKmHDWLkOKmqx51uozY2JNLVi5g.ZLyDMJ7.DxwrgEJBKMpkPnKqjOX_uboxgTo6
- p5ZXJVLvu3yr79cxI9jkh.52rtmN5BtOQcf1UEBE1Rsr_vdgQxTgDmBenIgw0WKwThAsJLQdOibF
- Yrm3UWmXSPZLg9_cXU1JhCfsYDzuU.0IdU.tUQ1Qmlf6zr3tvKRgK7FHV5k_a0NNWvkUitWzhz3p
- LkuDI1qo9yLU_EjZE7J05dt7yPUPjLXAqidvozjtArJCLLomcbCUHy3aDMY0RosWsfU_dLupJN9Y
- xn2URYZBxSEtWPb7wUagIhkfCkuMB4jnQhjle4K4NnYFYXuUVyKjEM3EDcgpUX591bop0AzsyD0j
- ZkXTI98H_NQgVoAPxSjn48TnHDrq2eP9DKOccyewF7KREdt044P6KJ.gF6Ftz1AblvJtkW.Huv_b
- lxVldPAcFWJtnowgUn_1N4iGejjke24QMTwKz3Guqx2A.6tB.Nfeu6XVVzX.EX.l0N4vpdCOfPv1
- 0xKuPPeklk_5GLVW9aTxFZgzmNJJA1vB.wRJg209mmKfrdFxmCOvWqmFFG7xahSnK5_ThTf.NY4Y
- Ig8YtBI_Y_Iip1PmAZ1u.wVZisp_ZW5qbbJkg4lQ.7CyUBLkp.bfFuXVMskyBKRFg_vx82AvZLE2
- AEXUgKPaTP10xmstiBlU9icn8IQw50sLK0UIIEdN5uNMAyo8UmT349uM7SKaa6lkLyJ585DXe0iO
- 3H0Y.zn6McotbdaGQKM1jzLG81w1fjU3QOrMISCeDzTXF9vbw4l2unP34YLUpA2v0ReEd01x_HFE
- bVirVYmJm5kAMICMlsbw4tyQebb3Wy3LKPLcXFFpxgN32KQllyBphB97pRDAVPwHsnVSrtUQU3ih
- EY2jstgwGDEDs2xgi798eSHpyFeTi5LUonOy8devwI4yX1bd_hnODPAI95X7XlAt8dAitvX_MEzD
- 6fxEYAFRLfv5iFZ4RFLldy0PbM1TD9pn7nQYH3qTuw63qiFyjTICf6nT5IMtUruwD5exnaaj0BOb
- evuxp1qln.iTcxz9SgokAgtNhAa43cUjpM0wjK.8fuv5lersHNDvmvH2i4_KzUsZorot1oqpYZoO
- tI_YQY5VtlmypW8We1_sBOy9pvCjWc6sc2vprN_6mDltycNqgqigZ.s7jIr8xHMt_9Ef8UNgjnX3
- m6n775UWwqxZ3bnXGD4CNVySxwqozXMSISfi0oKbL3UCqx0Q6BgX4FY8EXkebhKtcg5K49u_eSyk
- Xr2jjWhq6fuyQUU9ZJsXAAv4H7vTVCWov1Iq0qBOXOTDORAWdQzV1eg03cfp8J1ogFCN94BPY.gu
- NVJFV22ny8IAk3.RsqJ0Ur75QKaSm0.z6CL5j9I0bgPt.cAJrr5YuUdd4U2tNGKwE6CwctdvpvSe
- M8JKlO5CvRjGqVApyCU36WmQ5.w9cKcX40lPeXCsjgSoKFVMY6ejRGyqr9cOrA4VgUxKkUzMCAnE
- z.T1E4DYCR7vDoFOuKCwQTb9_U4MzsOGOSdtwW3C6.P9HY4qWFHkmTfi1WDumNrxtgUKeElO5YF9
- qJFzfZC7hU50LF0F8QzKAB9TNDDZh__XcdTbPTMAKfDrY8V_VQ29QtwlxKw0mKZdUoGNqZQ--
-X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 4659669e-6d30-4d94-a68d-148d28952431
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.ir2.yahoo.com with HTTP; Sun, 3 Sep 2023 12:44:04 +0000
-Received: by hermes--production-ir2-5cc57b9c45-xh7tc (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 8c183e8fdb0c60d40f9a5dd2022be53b;
-          Sun, 03 Sep 2023 12:43:58 +0000 (UTC)
-Message-ID: <96c08475-72e7-9ef4-2f16-e962f9338e78@rocketmail.com>
-Date:   Sun, 3 Sep 2023 14:43:56 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: (subset) [PATCH v6 06/10 RESEND] power: supply: rt5033_charger:
- Add cable detection and USB OTG supply
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Beomho Seo <beomho.seo@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Raymond Hackley <raymondhackley@protonmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Axel Lin <axel.lin@ingics.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Henrik Grimler <henrik@grimler.se>,
-        Christophe Jaillet <christophe.jaillet@wanadoo.fr>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <cover.1684182964.git.jahau@rocketmail.com>
- <223b440ab6831f2e7302d2c49b2cfd7779d5effd.1684182964.git.jahau@rocketmail.com>
- <169226510772.947223.494995318945916008.b4-ty@kernel.org>
- <20230822070737.GP1380343@google.com>
- <20230822212909.mcnziqsuu523e4gk@mercury.elektranox.org>
-Content-Language: en-US
-From:   Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <20230822212909.mcnziqsuu523e4gk@mercury.elektranox.org>
+        with ESMTP id S229904AbjICNCu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 09:02:50 -0400
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01olkn2108.outbound.protection.outlook.com [40.92.52.108])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777DD11A;
+        Sun,  3 Sep 2023 06:02:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N8R1DKlxyuDgpEX3sMdm5xT3PEwtRuUb6NdTR8iV8ss9uTMcxiwvfsDcBYkoKtAks3ecaI/cIHG3KiKkN/pxEM7laZejIL4s4bY15rG0T21Fi1rilP6JOqaOtw+htQJ/wZzDkG5iOXhW2Ge5DncfluyzRzIGhFncZLTFnUmuqcs2ADQYAGh36BxhMAXksnrXbCTG9UcVheldjSiITkmgoR1rJFLIhgHGyjRlLv4NrIceio83rsuxY5F82iqNOJXL4EhUhdrCvL4d1zM4wi6N/GlkP1KhbotzhGPCd7gJycWZhZ5iL/V/6gSs22PW/dlPHiMywbTwYfU3rrRQHjoWUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TXCAujRKuEMg7A0gHtXxZtldt6Q3tGJ2G/QvgdT9XWk=;
+ b=lM7bcthQYSILPTGU085D+m7yKX0V/3FxQ8N9sFfkVx1H69m6Mr0PHlPCRLM+2JqQLwPLx6K1PYkXan0CV+fJn1Xvkng2cHxkuUSrKkyE3c6v0QeQziBT2b0Ka25h4S/tXv8N2mGqKXEZ3x32+l3vemQYe6nksM9pHnoqicHSqu7ata2Jtwa9aFCmKvJ2+ToC4JJaDGqD6drHpo54zouT9hUWXCw10UMWBZ18wESgnHmi2UuuVn5HXd1rnkrnGwYAWvlc2Q5Dz/M+1mTaFPALOoUiyTz5bbxQacq1Aocx+zG0hq1PCgvH3F9JoXUngl30MrWmScwRt8ANmJ/Al4yjfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TXCAujRKuEMg7A0gHtXxZtldt6Q3tGJ2G/QvgdT9XWk=;
+ b=nFeH6HKJgA/ik451WSdlT04BTDSWR7pKXuAH3nHZIBV6sPMxfrWWBIodNH6icQAgwooyNp1meSalap5gNSg5rcGh1GbRgo0PWBD43XoVwuwKR4iE/iLlQdJj/N8mcsF7YMQBJwPQxP7SR4R2NbtdL0XjhQgH3JPLp5OwiWL2D95hNsLa27l6Ak4kOjgN/nHx8luBBTC6OM8pWQeHIsrIwld558UR7LOhqiTNHwjyhAwVwfMC7l0CUV7sT+yuJV4O0eiiBX7m+onVIZGYhxYh3atx1a+tL2G6Jex2Zi13tjxBrRMMk2nfrVOF6sJMty02Oo5ScNB4ew6tTIEQBfPwPQ==
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9) by TYZPR01MB4941.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:282::8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.30; Sun, 3 Sep
+ 2023 13:02:41 +0000
+Received: from TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::a40d:d453:3c29:577c]) by TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ ([fe80::a40d:d453:3c29:577c%4]) with mapi id 15.20.6745.030; Sun, 3 Sep 2023
+ 13:02:41 +0000
+Message-ID: <TYZPR01MB555673C1E12A27DA8109DBEAC9EAA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+Date:   Sun, 3 Sep 2023 21:02:33 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v3] arm64: dts: ipq5018: Correct uart1_pins pinconf
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, quic_gokulsri@quicinc.com,
+        quic_srichara@quicinc.com, quic_varada@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
+ <b6fa8337-a5c0-172a-a41b-ab18de3f4f72@linaro.org>
+From:   Ziyang Huang <hzyitc@outlook.com>
+In-Reply-To: <b6fa8337-a5c0-172a-a41b-ab18de3f4f72@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailer: WebService/1.1.21763 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-TMN:  [BMVubM4hnjMhegShwFiPqGeAfylNvh6d]
+X-ClientProxiedBy: SI2PR01CA0039.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::16) To TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+ (2603:1096:400:363::9)
+X-Microsoft-Original-Message-ID: <ce970610-417d-7073-2d71-1bedd0195009@outlook.com>
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR01MB5556:EE_|TYZPR01MB4941:EE_
+X-MS-Office365-Filtering-Correlation-Id: 484e7e70-8bf0-4088-a72c-08dbac7e0eb3
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 6XZh4xGTJ9lM84jKcIg4lWljBKoCNiMk93w75Vv7/JZjB3nmuTcIYxrFkquoDYl6wi6lzPBA/zbMSTDfPFpOq6c36UA3KIrfa5NBBP2mTRmWlMHi8ve50dXIC308zv23iwMprQDdTZSKIrT942ziRt8jn1pTVip6FR+qBSR2/rmPLoLftwQLFWKPkYlRrsRM5OzcIdHW2YD9A4+kI1TvJLYxtKzBYVRTpkbIX1Ahu1YPGEo2FAsbDp34fHlAHT03hqbPyWq/nM0UQRcrhv0yVY8lea3THkqMMcPrMW2D2AkdOWSzbPJypKxTF0QZhecyvDfF8JGMCpzfaRJoY5Whs/xTDUv5iS4NZ/2kUIzzlJRjseL/X6FkSsEjn4+tYt61/1AinF0U0712iyXg/nv6YsmNbSstbpqhhSlKNm0Kd4DXR9V0jLaqkSWSDzxLwoEU4Ev7xi17/33K6fcYIW9r06IB3suhvidbZSWgVairiDxWmfL1rAnwUKXvPkdZACGpPKwQHjmHG7tvbgjuQRcoL+haB88RDHnpnt7TSKxuFJM=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VEg3cnk4bDFDM0x3UGdNaVdseURxczdhQ0p1ZENMRXBNOFRnRDBiVDZaWExO?=
+ =?utf-8?B?SFFHckV4V0NQSFZ4LzhjMUllbWR3Z2hoYXpSSUFLbUZFMysrOW5ZYjN6TWt0?=
+ =?utf-8?B?WTFEcUZOS01RNmJtRTA2NGtYTmk4TDVOQlFmcmYvL0pXWnExY0NGQXdqaFBI?=
+ =?utf-8?B?VjAzTSs1NkVzVXBiRGtOZnRQTHo2UmhEN2hmajZwbVByRk1wZ29qMzZZSzgy?=
+ =?utf-8?B?TDZpaURLcDBrdmdSS0hBTm9adUFvQ014L1d0dTNrNGpUd3V4bGE5VisxWTF2?=
+ =?utf-8?B?MkhsVDZFNmgxNkl0djR0b2ZBOElqTjVndDhqcUZTTi9NY3hyQ0d2MWM5OWpU?=
+ =?utf-8?B?Y0NtRU9RYlBDMFdLRE9GZnJzS1dOZ3M0ZFEzOXBnRHovdG80d0JRSTFySjVF?=
+ =?utf-8?B?Rk9qZVBTc2N6c0pIdTRnNXd5TVFCSXF0eGJDZ0dVRjFRZ3gvU0VtdnJQVkY2?=
+ =?utf-8?B?aTJ0YUhNbDZlVTZ2dUM3ajhOdTVTRVFUTFNOSFVkS08xSDA2cldyWnpENFpH?=
+ =?utf-8?B?dFltMVJEU2szbzBONi80eVZxUndjUjlCOVpGNytwblVtYnFhUERhMCtBay85?=
+ =?utf-8?B?R1E0TGk0OEZpS2puMUdzTlJwVnJWV2ZaM3dTTUNaSHNWck5kY1ArQmp6MUJ3?=
+ =?utf-8?B?amhQeTVKNHlLYlM4Mi9UNVo4MncyTSttWHFKbEhaNkJqWE95NkNRSWFMSTZS?=
+ =?utf-8?B?ODdZNkJzRjZFZWRtSnphdUZvb2dJUnhCb09wemJYQ1JGcmwyL05oQUNlUmJK?=
+ =?utf-8?B?VXMzZ2ZzMFZKM2I1VjFtcjY2ajN2SjRrNjRVQW9KMUJNMEVMZGh0NFQ3L1ZJ?=
+ =?utf-8?B?VnhtSklTRkRZRWhuQ0wxZms1cGk0a1dlKzRqcHY5VUZhQ09lN0hnM3N2SkhG?=
+ =?utf-8?B?N3RBOFlQbkpMRC9FSkF1NHhCZXJKbFhiK3doYWV4dnI4R2hEeE1RRlhiUDJI?=
+ =?utf-8?B?RWpMUjR6U2pVVE91TnNLSDJXSHNkbE5YUXNDa2NWcVlmWm94V3RFclY5MmpZ?=
+ =?utf-8?B?YUREL3Fac2V6cStreTZnV21jc2FYMkx2dWttTGdTbWxCL29sdGFwa2hraW15?=
+ =?utf-8?B?RSsrV2ltZFlCOExXU2hEN2hFY0hPTldPcGJ3OCtVYXo0TUlDZlp4VFJrRUtB?=
+ =?utf-8?B?QVgxSmVVdERlMzZPSU1zSkFHcjlvZyszL2pEZ0pIWTJHb3F5emlGNWh0UGg3?=
+ =?utf-8?B?UmdqL2hrWFlwUWpGamRUcGtveDBlMitpZXJKa2NtS01ieFRJeThqdVZFNlBC?=
+ =?utf-8?B?eUM0ZDRwaTB0UTJxU3drYXZYck5XU1NUUW14Q0htVGtmQkE4NlFpd1psc3U3?=
+ =?utf-8?B?WWY5OUxkSEZjWUxTNm5jRFdWWG9rVWpFWFVQR3l2T3RDSjkvdi9pMUJDcUJO?=
+ =?utf-8?B?OVJ3UW11SThYWkdKNnZDNkFyMzV2QWdvakJvTlhycWQ3QnI1VEllZTR0cmFW?=
+ =?utf-8?B?M3I1dkVwWUY4TXNlWU1MUEdNWWdFdUJ4b2ZTOU14dU94MkRyYm4rb3ZXNUJz?=
+ =?utf-8?B?eXVjMTBtemdoNzlQMUhnVEVDNDRPOXlUMU5QWmVKL2xsd1MyLzBaYTYyZTk1?=
+ =?utf-8?B?MngvQ0MzYXB5NUVNUE9wajR4MzJLRzhEeXBXdDJCLzZjdkdpWXkxbVR1d1Bv?=
+ =?utf-8?B?M3JmczBKYnB2V2kyV3BLUStqdG9zSXc9PQ==?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 484e7e70-8bf0-4088-a72c-08dbac7e0eb3
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR01MB5556.apcprd01.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2023 13:02:41.7726
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR01MB4941
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_MUA_MOZILLA,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
-
-On 22.08.23 23:29, Sebastian Reichel wrote:
-> Hi,
+在 2023/9/1 23:04, Bryan O'Donoghue 写道:
+> <...>
 > 
-> On Tue, Aug 22, 2023 at 08:07:37AM +0100, Lee Jones wrote:
->> On Thu, 17 Aug 2023, Lee Jones wrote:
->>
->>> On Mon, 15 May 2023 22:57:15 +0200, Jakob Hauser wrote:
->>>> Implement cable detection by extcon and handle the driver according to the
->>>> connector type.
->>>>
->>>> There are basically three types of action: "set_charging", "set_otg" and
->>>> "set_disconnect".
->>>>
->>>> A forth helper function to "unset_otg" was added because this is used in both
->>>> "set_charging" and "set_disconnect". In the first case it covers the rather
->>>> rare event that someone changes from OTG to charging without disconnect. In
->>>> the second case, when disconnecting, the values are set back to the ones from
->>>> initialization to return into a defined state.
->>>>
->>>> [...]
->>>
->>> Applied, thanks!
->>>
->>> [06/10] power: supply: rt5033_charger: Add cable detection and USB OTG supply
->>>          commit: c1af6bcc8583b0a1083338cd26c2090d0bcb0810
->>
->> Multiple fixes now follow this patch, so I am unapplying it.
->>
->> Sebastian, would you mind collecting it up please?
+> The assignment of pins 20 and 21 to blsp1_uart1 is not correct.
 > 
-> I'm leaving for a two week hiking trip (with basically no internet
-> access) in some hours. My planed return date is basically when Linus
-> is expected to tag 6.6-rc1, so I will not queue any more patches and
-> send my pull request early (within the next few hours).
+> The blspX_uartY in pinctrl should match what is in the dtsi so assigning 
+> pins_a above to blsp1_uart1 is not right. The dts name and pinctrl name 
+> should be the same.
 > 
-> I planned to catch up with the power-supply backlog last week during
-> Chaos Communication Camp, but it was too hot to do any sensible
-> review. Now I expect to process the power-supply backlog in the
-> week after the merge window.
+> Your console is on blsp0_uart0.
+> 
+> https://git.codelinaro.org/clo/qsdk/oss/boot/u-boot-2016/-/blob/5343739b4070bcec2fecd72f758c16adc31a3083/arch/arm/dts/ipq5018-mp03.3.dts#L33
+> 
+> So roughly speaking
+> 
+> arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
+> 
+> aliases {
+>      serial0 = &blsp0_uart0;
+> };
+> 
+> chosen {
+>      stdout-path = "serial0:115200n8";
+> };
+> 
+> &blsp0_uart0 {
+>          pinctrl-0 = <&uart0_pins>;
+>          pinctrl-names = "default";
+>          status = "okay";
+> };
+> 
+> 
+> arch/arm64/boot/dts/qcom/ipq5018.dtsi
+> 
+> blsp0_uart0: serial@78af000
+> 
+> either that or  blsp0_uart1 for pins28 and pins29 - you seem to indicate 
+> pins_1 => blsp0_uart0.
+> 
+> The two roots of the problem are
+> 
+> 1. Mislabeling of the uart block in the dtsi
+> 2. Invalid miscongiruation of pins for that misnamed block
+> 
+> The fix should be
+> 
+> 1. Fix the labeling of uart in the dtsi
+> 2. Decide on which pins gpio20, gpio21 ? are the right ones to configure
+> 
+> I thought you said in a previous email if you changed pins gpio28 and 
+> gpio29 that the UART would fail if so that implies blsp0_uart1.
+> 
+> Either way the pinctrl and dts should agree.
+> 
+> ---
+> bod
+> 
 
-The patch 6 of the rt5033-charger series v6 gathered some issues. For 
-all of them a solution was provided. Thanks to everyone involved! 
-However, I don't know what's the best way to put them together.
+No, please read my commit message carefully.
 
-- As the patch 6 was forgotten to apply with the others of the
-   patchset, in the meantime another small patch by Rob sneaked in. The
-   patch 6 needs to be rebased on Rob's patch. It affects the includes.
-   Would be nice to order them alphabetically after rebase.
+The Y of pinctrl is the index of pinmux config. So it can't be used in 
+the serial node definition.
 
-- After patch 6 was added on top of Rob's patch in linux-next, there
-   was a build failure. This is because "linux/of.h" now explicitly
-   needs to be added to the rt5033-charger driver. Stephen Rothwell
-   provided a fix. I'm not sure on the order: Maybe that needs to be
-   added before adding patch 6 to avoid the build failure when the
-   kernel test bot checks each commit separately.
- 
-https://lore.kernel.org/linux-next/20230821125741.3a2474d7@canb.auug.org.au/T/#u
+Please note that the physical port of first serial is configurable. It 
+can use gpio20, gpio21 or/and gpio28,29. All of these pins are for the 
+first serial.
 
-- Beyond that, the kernel test bot also complained about undefined
-   reference related to extcon. I didn't understand why this happens
-   because the driver has "linux/extcon.h" included. Randy was attentive
-   and provided a fix. Here again I'm not sure about the order, I guess
-   this should be added before adding patch 6 to avoid build failures if
-   each commit is tested separately.
-   Kernel test bot complaints:
-     x86_64 clang 
-https://lore.kernel.org/oe-kbuild-all/202308220324.LsI8q3ML-lkp@intel.com/T/#u
-     x86_64 gcc 
-https://lore.kernel.org/oe-kbuild-all/202308240723.O2rW0InU-lkp@intel.com/T/#u
-     arm gcc 
-https://lore.kernel.org/oe-kbuild-all/202308250617.ue4uQxWa-lkp@intel.com/T/#u
-   Fix by Randy:
- 
-https://lore.kernel.org/linux-pm/20230828224201.26823-1-rdunlap@infradead.org/T/#u
+Let's take the second serial as an example. It has 3 configurable 
+physical port groups - "blsp1_uart0" (pinconfig name, use GPIO 
+10,11,12,13), "blsp1_uart1" (gpio 31,32,33,34), "blsp1_uart2" (gpio 
+23,24,25,26).
 
-- Yang noticed that the mutex_unlock() is not handled correctly in
-   some error path and provided a fix:
- 
-https://lore.kernel.org/linux-pm/20230822030207.644738-1-yangyingliang@huawei.com/T/#u
+But the dts name of the second serial definition is "blsp1_uart2". 
+Because it the second serial of the first BLSP block.
 
-- There are two clean-up patches by me. They need to be rebased to the
-   patches mentioned above but there shouldn't be conflicts with them.
- 
-https://lore.kernel.org/linux-pm/cover.1686948074.git.jahau@rocketmail.com/T/#u
+Same logic. The dts name of the first serial definition is 
+"blsp1_uart1". Because it the first serial of the first BLSP block.
 
-Please also note that the commit hash in the linked fixes above refers 
-to linux-next, where the patch 6 had been applied. As the patch was 
-dropped later on, I don't know what this means for the commit hashes in 
-the fixes.
+I think I need to introduce the architecture of these SoC. It has two 
+BLSP block. Each BLSP block has several uart port.
 
-What's the best way to proceed? Can you put these patches together? Or 
-do you want me something to do?
+So the dts name of serial contains the BLSP index and the serial index 
+inside BLSP. But pinconf name doesn't care about it. So it use global 
+index. And due to the physical ports are configurable, it need pinmux index.
 
-Kind regards,
-Jakob
+The equation will be like this:
+
+dts name of serial definition: "blspX_uartY"
+pinconf name: "blspU_uartV"
+U = (uart_number_inside_each_blsp * (X - 1)) + (Y - 1)
