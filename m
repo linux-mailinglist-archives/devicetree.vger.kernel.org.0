@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A9BB7916E6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 14:11:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1CF7916EB
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 14:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241963AbjIDMLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 08:11:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36322 "EHLO
+        id S232889AbjIDMOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 08:14:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241819AbjIDMLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 08:11:52 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C54197
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 05:11:48 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-529fb2c6583so1891543a12.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 05:11:48 -0700 (PDT)
+        with ESMTP id S230348AbjIDMOi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 08:14:38 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A12B197
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 05:14:35 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-500b66f8b27so2233224e87.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 05:14:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693829507; x=1694434307; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693829673; x=1694434473; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xyfz+f7VyGeUd0ysOTxZ3d34KQmY46MduGm04AnUCII=;
-        b=rYM381EFgBFi8E/Iyo6FVn5MYSQPJcqKqJ+ITf7UM8UIWTZHGOffztPVRCup+wrzov
-         wKgha5Di6MyJRqhJWB6XdUXcl5w2JUu/5PrZ4/NgflKz0sfwhDJI56kQagDaGLjZ7Y/W
-         YDOjCQf17SqyVGK6OjjOpS2W9xnBaGZmYPZ4NdQ6dE3sIT1i+uQmSleJ074I2VNK51AC
-         LbYOng7JcQnVLBnx5RKQzsJlx52A6h2imBGaU2slAhlh3hbWXfUk3tuTQbFxgS1HezxT
-         d3EgljWn7CM844/+EaXnIHDN0InNLJfYf93wDnTYz1xJ2U3b8nSoeRAHV31Cwd2IwXvp
-         6pew==
+        bh=k8h2PEzYhpa6MHVwUhluiZHRc9KyJDz5gg/68n+8KtA=;
+        b=XRU7lkbiDt3rkV5mw5rhznZyS3bh42VDA8UDKkfVrqyX+Zk0ByN5LvWiioHg5e55rw
+         DLhSMHnBRJn3cW7OsJDX3s0Nlh1PovrNmOXy8CbWSVbvu/0TVCRy6S6z7VXLpRPoX0gU
+         Okw97o0NDqgi8NLIlEZBpTH3lfJ1RpXCeFhjCV7l306++gorVCM8IzbXcfnsCBifnOMD
+         8fqhQlZLIGUi8XVt2nysD32f4I9EJfVbBU4++t9Kfx/uoOvweO4ngLRUvdmFvkl4gDJl
+         0wRJhbGg6K1nHwCX8JsMTZyPG0I4CFSfeY8hrg55rPwGrIF74lpcm5iurvNHMnaMmCR5
+         MYYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693829507; x=1694434307;
+        d=1e100.net; s=20221208; t=1693829673; x=1694434473;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xyfz+f7VyGeUd0ysOTxZ3d34KQmY46MduGm04AnUCII=;
-        b=Jf1c7hUlnpheeOFbn9vGjt7w98HOcqEDVM7H3PofvlWerXTmrfaCzJLW/TSeOFjhVQ
-         Hr8wSqv1LrvQfpT1rhkqy1uO+Jr3lLppXbtJ+P1OafCrKqgYQ1MfoZfmD4nwY5CGF6su
-         WmNk/lbwSpWOxxw+1Po9QWnFAywpu9Qa8NmixPbtD4oVQHA/+H848Wx1gkV9wR/e0nxn
-         aP5pbowx6BnXPXSGnYrNzCFPkD81SW6A2gm3s5ZeXeWIaOZL+F/H1+slQcCdM9AdWyRC
-         T4TSj2L4+y+88hmgCdjwt8pkAa2/HHD2bY9g0rcDmQP+lt3qTdNprfOOC1EZhy3LeW2e
-         ra4g==
-X-Gm-Message-State: AOJu0YwVeBCIAkcPJ819S75b9giZ/kLzPhexuOLeee5Mq0v5gGSCPX8Z
-        Q+cp3jh+Z8+OHpIxYpQWzuieIA==
-X-Google-Smtp-Source: AGHT+IFB2Jh7XUiVV5an3Jp+fAAPvez8NEAQzLDG1i59tLqMZgGpLkp9bUYtaUJ+4kgbsc/ATfvo6g==
-X-Received: by 2002:a05:6402:120b:b0:51e:2e39:9003 with SMTP id c11-20020a056402120b00b0051e2e399003mr6398291edw.40.1693829506925;
-        Mon, 04 Sep 2023 05:11:46 -0700 (PDT)
+        bh=k8h2PEzYhpa6MHVwUhluiZHRc9KyJDz5gg/68n+8KtA=;
+        b=Rb+9G7ai2qG2X8OkX6hmsh5aKyryaxm/XXJuf323aHhSM/7dHZz/iSFoY+knTNFdf/
+         0EGgX0hhQFAHQKXrL4L3Fwr+9PCktsvYc/6eXJq5oegL2rvOrNzqx3HTe4/dS0xdexIB
+         jDt11yAd+BVW4avJBUzV0q5hrLF0+RzeU2RZ9qeG2hy02IJarub7NBcOyD/qj3fIzhQO
+         5Xgeply6aaQzChpy8Y+p74HGz/odcg7ioek6MsDfi4q7yykn3f7rbLMNnZ+yn7FMyPDx
+         vdQTVwkGk4dOOuqJ7v6PBt60t+/Fntx3GTTsnjR0tbb/w17eejSsMsVRbigwM99Al/EH
+         BzSQ==
+X-Gm-Message-State: AOJu0Yy5qvnphVac8HzHL1e0Z7bBZMxNJm8jtqXdD7vWL3949pfr7Dts
+        f8/c0lZDDovSkSFNYh6u7vXrzP0XrygiliH3jaI=
+X-Google-Smtp-Source: AGHT+IE2wrX16Gd9r87d7r5ei0oq1G2ppg6vlpwEiVioalK8RSkBhOZ14YzpapLDxGwN6EbpHHSRBg==
+X-Received: by 2002:a05:6512:ac7:b0:500:7cab:efc3 with SMTP id n7-20020a0565120ac700b005007cabefc3mr9077071lfu.11.1693829673359;
+        Mon, 04 Sep 2023 05:14:33 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id i19-20020a056402055300b005233609e39dsm5821877edx.30.2023.09.04.05.11.45
+        by smtp.gmail.com with ESMTPSA id r2-20020aa7c142000000b00522828d438csm5789637edp.7.2023.09.04.05.14.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 05:11:46 -0700 (PDT)
-Message-ID: <97b82a16-8710-9430-35c8-673381aaa417@linaro.org>
-Date:   Mon, 4 Sep 2023 14:11:44 +0200
+        Mon, 04 Sep 2023 05:14:32 -0700 (PDT)
+Message-ID: <a3ada071-4c8e-f65d-ad75-655370ba2c55@linaro.org>
+Date:   Mon, 4 Sep 2023 14:14:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8395-evk
- board
+Subject: Re: [PATCH V1 1/3] ASoC: dt-bindings: Add schema for "awinic,aw87390"
 Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
- <e2e35d4d-7853-fccc-28c2-b8ecf309d6ec@linaro.org>
- <00f0a1cf-6246-92e9-13b0-cf31bb292a94@mediatek.com>
+To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        rf@opensource.cirrus.com, herve.codina@bootlin.com,
+        shumingf@realtek.com, rdunlap@infradead.org, 13916275206@139.com,
+        ryans.lee@analog.com, linus.walleij@linaro.org,
+        ckeepax@opensource.cirrus.com, yijiangtao@awinic.com,
+        liweilei@awinic.com, colin.i.king@gmail.com, trix@redhat.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhangjianming@awinic.com
+References: <20230904114621.4457-1-wangweidong.a@awinic.com>
+ <20230904114621.4457-2-wangweidong.a@awinic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <00f0a1cf-6246-92e9-13b0-cf31bb292a94@mediatek.com>
+In-Reply-To: <20230904114621.4457-2-wangweidong.a@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,36 +83,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2023 11:50, Macpaul Lin wrote:
+On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
+> From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> 
-> On 9/4/23 17:33, Krzysztof Kozlowski wrote:
->> 	
->>
->> External email : Please do not click links or open attachments until you 
->> have verified the sender or the content.
->>
->> On 04/09/2023 11:20, Macpaul Lin wrote:
->>> Add bindings for the MediaTek mt8395-evk board.
->>> The mt8359-evk board is also named as "Genio 1200-EVK".
->>> MT8195 and MT8395 are the same family series SoC could share
->>
->> How can be the same and have different numbers? You sill need dedicated
->> compatible.
->>
-> 
-> The SoCs mt8195 and mt8395 are designed for different market application 
-> and physical characteristics, using different efuse values for 
-> distinction. The booting flow and configurations are controllered by the 
-> boot loaders, firmware, and TF-A. Therefore, the part numbers and 
-> procurement channels are different. The detail information of these 
-> efuse values is proprietary, so I cant disclose it futher. Hence the 
-> most of peripheral drivers and base address are almost the same.
+> Add a DT schema for describing awinic aw87390 audio amplifiers.
+> They are controlled using I2C.
 
-1. Drivers? So we talk about compatibility, not the same.
-2. "almost the same" is not the same. Follow the guidelines for writing
-bindings.
+Thank you for your patch. There is something to discuss/improve.
 
+
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: awinic,aw87390
+> +
+> +  reg:
+> +    maxItems: 1
+
+No reset-gpios? Shouldn't this be just merged with awinic,aw88395 bindings?
+
+Missing sound-dai-cells (const: 0 or 1)
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        audio-codec@58 {
+> +            compatible = "awinic,aw87390";
+> +            reg = <0x58>;
+
+Please add sound-dai-cells for the example to be complete.
 
 Best regards,
 Krzysztof
