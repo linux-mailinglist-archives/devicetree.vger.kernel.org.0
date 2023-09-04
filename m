@@ -2,76 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F35D79128D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 09:50:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A750D791298
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 09:53:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244704AbjIDHup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 03:50:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53618 "EHLO
+        id S1345022AbjIDHxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 03:53:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244268AbjIDHup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 03:50:45 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43E3D9
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 00:50:41 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99c93638322so241788166b.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 00:50:41 -0700 (PDT)
+        with ESMTP id S1348056AbjIDHxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 03:53:18 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC88106
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 00:53:13 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-52889bc61b6so1455459a12.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 00:53:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693813840; x=1694418640; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693813991; x=1694418791; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7rwo1JQ07wN9AZgkdq/ZN73aYRmpPxX5x4XvDTXJBqg=;
-        b=lYUepP5XD7GGYxipiVNlbz7XRpnQFNjTWMbqIz5HEYI5O0b+qZKBJEn871ZDFXSY/F
-         g78u6DwCDDfYAhlPNo/2DabdOCCKsBMICunUIEzm1Gd0d5XoYZoCNgC2eGgikzoaJzDk
-         eUJiwSNYNhSMr8StDMr6DphKFk9/UhWIh+zwT2uYKNALcGbvuzoz/iI0yFvBwKhOW4/k
-         8ohMwsEzoA+55+43ZurD+5Tlm1R71IHbgbdfDREKszBWXjJO9BwJu9+XdVDBRaY4ZB1V
-         lzs6SDYr85oumHsnMhBrXgH1rHwmVIgoB9ZOvjtrh6FM//eU4oHz/qZZ5Nc0ntbp68O1
-         EmxQ==
+        bh=hKg+j0ij0bj6tL0Ubk+HvKTshP5Zvzo1++prZoHQU4M=;
+        b=Bv0Cy/Cv4Lz9Mv/lKx/1cWP7Cwa4jvYVvtyPanjJQMhAuHzEc+jPdPCGA7/zg/MoHb
+         Fh03ltRwp2HqkAqR8FWnOjO+QikhymMNJB+gT2Dvj0zsaM7V1J8gQZEv5+HY3rtlD6ZL
+         YpuSJ8K5RC0DYAo2z05SLwF+BsYT1seXXawb6Y42RjXvJxJzo5IYmOV3uLBzZXioxhrE
+         5QGtUp25Wn3HtL6iN5vQFfwsU/itXmtJ3dYCGU/zipG31Sg/krqbz7vTUFXX5IYtn3S0
+         L/8+FGyo3iWiXtEps6Dt4bHlvgjI4sRHEu2O3Sf5OLLlwVR4/nrlG0RiH/C5j4QJ3nwB
+         xf5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693813840; x=1694418640;
+        d=1e100.net; s=20221208; t=1693813991; x=1694418791;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7rwo1JQ07wN9AZgkdq/ZN73aYRmpPxX5x4XvDTXJBqg=;
-        b=Ztq7sjMcFSTTgPBQuc2j2T2nOmumBaVw+MCyo90aZCMk4xRDY1/WfXxPA+uB5ymoLP
-         v8xTnk/Gymrhj5mOgBgvZpjFzVfoOheTVsloOnQigxZ6LwezIp0230AlSaTQ9sO35qsg
-         tgobPuRDf1aXvqIeQx4sdoZCY4z/VP6JyDr85S3Xty42K93PS50GPBLreOjA+Eu5YoMc
-         ywl2RVadtum5zw0z6HdnZ/5ooVyxddCO4k0a7jx57nWKjdFueUCY/Q6FDeahwEw1pzYL
-         mx/gyzkjpzZgaqqLp2/u2AXH8ig2jcuL2p0QTmwtvUgu5xAp1gopdU9XIhdoselDx/3c
-         RjOA==
-X-Gm-Message-State: AOJu0YxwNGscxk3qv46yRP9eX75UvWttgKiR6evNpZ1kyFXAnedKHbyk
-        51U1iYchIt44T/UyWUTVOvTMlg==
-X-Google-Smtp-Source: AGHT+IEMqpCQ0XocZ/dxGoFxB/NYSHOnxzelUaffF8qI5OwbjunnTJ/liyc30D7juKnqGjdDfxzxpQ==
-X-Received: by 2002:a17:907:7b9e:b0:9a1:d29c:fb6b with SMTP id ne30-20020a1709077b9e00b009a1d29cfb6bmr13395072ejc.25.1693813840320;
-        Mon, 04 Sep 2023 00:50:40 -0700 (PDT)
-Received: from [192.168.69.115] ([176.187.209.227])
-        by smtp.gmail.com with ESMTPSA id v20-20020a1709061dd400b00982a352f078sm5750337ejh.124.2023.09.04.00.50.38
+        bh=hKg+j0ij0bj6tL0Ubk+HvKTshP5Zvzo1++prZoHQU4M=;
+        b=bjlQ6E5llkWHFRfkpCIz/Z6/JhFWTXH8zBwZJROfWAAsY7Oxz7Wyvy89ZW5eeNbko+
+         dW3koQZAk20WwgDBHpKERy0I4lXvCNyLAQfPcZ9Sn0PdcWm7tSkwtEjkaHknlqvC4e41
+         L4PbejxDu/+LjRhmZrT+VYcww34Wb8i1A/AQ8k/S77I588+SSlVXmPBfdwj2hAG9Le7Q
+         qHdCoOrwPEb4W06DTMu6qaCLpAV/RZyEZ7O97eF5mzc0a/TGhzztuDM1FbhBdZJ75k9J
+         h+DZq0Oyue1Q4YFvlXc8Ij0ePXQXJmgJrU2x9N1bTqsb0w3XahCSSK3b9NTmhZJy2axc
+         pblw==
+X-Gm-Message-State: AOJu0Yz8qvnrNr1BDnfWdsUIFHTvYr8ybQpZRiaNN/JTbUzuAHuAz6R5
+        BIBG4pe1bFBCXIfqfsG3vPEXig==
+X-Google-Smtp-Source: AGHT+IG51yyXlEkoIHVtZBQ6BjDgQ9Ot4st5+o3nOo3wNnbxIkT/ovnRE6ZUUWjLC2qouRxMzCXnNQ==
+X-Received: by 2002:aa7:d982:0:b0:525:5ed2:abed with SMTP id u2-20020aa7d982000000b005255ed2abedmr6686818eds.30.1693813991487;
+        Mon, 04 Sep 2023 00:53:11 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id w25-20020aa7cb59000000b005222c6fb512sm5484731edt.1.2023.09.04.00.53.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 00:50:39 -0700 (PDT)
-Message-ID: <f6943509-25c5-b4fe-2218-638cc06a4e04@linaro.org>
-Date:   Mon, 4 Sep 2023 09:50:37 +0200
+        Mon, 04 Sep 2023 00:53:11 -0700 (PDT)
+Message-ID: <4b88a31a-bbff-21b5-a53d-19a3e66e2f3e@linaro.org>
+Date:   Mon, 4 Sep 2023 09:53:09 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.15.0
-Subject: Re: [PATCH v4 3/3] remoteproc: zynqmp: get TCM from device-tree
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v11 5/6] dt-bindings: media: wave5: add yaml devicetree
+ bindings
 Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@amd.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@amd.com>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        Ben Levinsky <ben.levinsky@amd.com>
-References: <20230829181900.2561194-1-tanmay.shah@amd.com>
- <20230829181900.2561194-4-tanmay.shah@amd.com>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <20230829181900.2561194-4-tanmay.shah@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        kernel@collabora.com, bob.beckett@collabora.com,
+        hverkuil-cisco@xs4all.nl, nicolas.dufresne@collabora.com,
+        nas.chung@chipsnmedia.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20221207121350.66217-1-sebastian.fricke@collabora.com>
+ <20221207121350.66217-6-sebastian.fricke@collabora.com>
+ <48d60bd0-4de1-4a5e-eca1-1f8a9303cce0@linaro.org>
+ <20230904062502.qtajep4zyslnouxv@basti-XPS-13-9310>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230904062502.qtajep4zyslnouxv@basti-XPS-13-9310>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
@@ -83,44 +81,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 04/09/2023 08:25, Sebastian Fricke wrote:
 
-On 29/8/23 20:19, Tanmay Shah wrote:
-> Use new dt bindings to get TCM address and size
-> information. Also make sure that driver stays
-> compatible with previous device-tree bindings.
-> So, if TCM information isn't available in device-tree
-> for zynqmp platform, hard-coded address of TCM will
-> be used.
+>>> +  sram:
+>>
+>> Missing vendor prefix.
 > 
-> New platforms that are compatible with this
-> driver must add TCM support in device-tree as per new
-> bindings.
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
->   drivers/remoteproc/xlnx_r5_remoteproc.c | 279 +++++++++++++++++++-----
->   1 file changed, 221 insertions(+), 58 deletions(-)
+> After some discussion with the the manufacturer of this CODEC chip, the SRAM
+> is not fixed to the CODEC chip but instead part of the SoC, thus the
+> vendor can vary. It sounds like the policy is to use the vendor prefix
+> of the SoC, that was used for upstreaming. But that policy sounds a bit
+> like a potential for future confusion to me, so I wanted to ask what you
+> would like to see. The SoC we develop on is from TI and the CODEC chip is from
+> C&M, so I could either call it: `ti,sram` or `cnm,sram`
+
+I meant vendor prefix of this device. It does not matter what SoC is
+that, however it turns out it is already a generic property, so no
+vendor prefix is needed if you use the same property - phandle points to
+a node which is a sram.yaml.
 
 
->   /**
-> @@ -75,11 +79,17 @@ struct mbox_info {
->    * Hardcoded TCM bank values. This will be removed once TCM bindings are
->    * accepted for system-dt specifications and upstreamed in linux kernel
-
-Just curious, for how long this fall back code has to be maintained?
-(When/how will we know we can remove it?)
-
->    */
-> -static const struct mem_bank_data zynqmp_tcm_banks[] = {
-> -	{0xffe00000UL, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
-> -	{0xffe20000UL, 0x10000UL, PD_R5_0_BTCM, "btcm0"},
-> -	{0xffe90000UL, 0x10000UL, PD_R5_1_ATCM, "atcm1"},
-> -	{0xffeb0000UL, 0x10000UL, PD_R5_1_BTCM, "btcm1"},
-> +static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
-> +	{0xffe00000, 0x0, 0x10000, PD_R5_0_ATCM, 0, "atcm0"}, /* TCM 64KB each */
-> +	{0xffe20000, 0x20000, 0x10000, PD_R5_0_BTCM, 0, "btcm0"},
-> +	{0xffe90000, 0x0, 0x10000, PD_R5_1_ATCM, 0, "atcm1"},
-> +	{0xffeb0000, 0x20000, 0x10000, PD_R5_1_BTCM, 0, "btcm1"},
-> +};
+Best regards,
+Krzysztof
 
