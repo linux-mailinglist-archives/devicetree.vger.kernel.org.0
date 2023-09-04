@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C2CC791AEB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 17:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B37CC791AE7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 17:57:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236342AbjIDP5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 11:57:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35156 "EHLO
+        id S233243AbjIDP5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 11:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348444AbjIDP5O (ORCPT
+        with ESMTP id S231611AbjIDP5O (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 11:57:14 -0400
-Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EB0BCFD;
-        Mon,  4 Sep 2023 08:57:09 -0700 (PDT)
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [IPv6:2001:4b7a:2000:18::162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E440CC7
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 08:57:09 -0700 (PDT)
 Received: from v0.lan (bband-dyn191.178-41-225.t-com.sk [178.41.225.191])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 7DE5B1F963;
-        Mon,  4 Sep 2023 17:57:05 +0200 (CEST)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id 493011FAFE;
+        Mon,  4 Sep 2023 17:57:06 +0200 (CEST)
 From:   Martin Botka <martin.botka@somainline.org>
-Date:   Mon, 04 Sep 2023 17:57:01 +0200
-Subject: [PATCH 1/6] firmware: smccc: Export revision soc_id function
+Date:   Mon, 04 Sep 2023 17:57:02 +0200
+Subject: [PATCH 2/6] cpufreq: dt-platdev: Blocklist allwinner,h616 SoC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230904-cpufreq-h616-v1-1-b8842e525c43@somainline.org>
+Message-Id: <20230904-cpufreq-h616-v1-2-b8842e525c43@somainline.org>
 References: <20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org>
 In-Reply-To: <20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org>
 To:     Mark Rutland <mark.rutland@arm.com>,
@@ -55,15 +55,15 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Martin Botka <martin@biqu3d.com>,
         Martin Botka <martin.botka@somainline.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1693843024; l=650;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1693843024; l=763;
  i=martin.botka@somainline.org; s=20230811; h=from:subject:message-id;
- bh=kr+kQu42jftnzRysfuRliIXntokD55LnjWm0KkOrQRY=;
- b=pAzHKAaWc3uxAZHLFKPmIIe/nbRnKh/YE++nWe15qMHVrrI0vNt1Ph6hE+aFzN+4S1wpRixuy
- C3B8nQmhvtKBDaa/gTX1xPTp4ZewRLtv2es7NWSHg0vT3FkLoNVVVaQ
+ bh=y6+Jp6XdKlMolFv5lUKbS3BMDgQUVTv9Ux9Y9Pn0TiI=;
+ b=jYK1Ddg2mSPl2rn47FMupLfy4TQbq4y4Ff2LU45va19Z4Fmq+B+x7B57OviVOXwqZEwVGQpX+
+ L7sv0XXIIk8D2MXSGs4p4If3SIc5J6qsYkfdvrBDMpnb7vKRS9UECKB
 X-Developer-Key: i=martin.botka@somainline.org; a=ed25519;
  pk=aTCd3jmwU8GrJidWg3DSKLpdVMcpFzXzCSLXLR6NtWU=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,26 +71,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-arm_smccc_get_soc_id_revision need to be exported so it can be used
-by sun50i cpufreq driver.
+The AllWinner H616 uses H6 cpufreq driver.
+Add it to blocklist so its not created twice
 
 Signed-off-by: Martin Botka <martin.botka@somainline.org>
 ---
- drivers/firmware/smccc/smccc.c | 1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/firmware/smccc/smccc.c b/drivers/firmware/smccc/smccc.c
-index db818f9dcb8e..d670635914ec 100644
---- a/drivers/firmware/smccc/smccc.c
-+++ b/drivers/firmware/smccc/smccc.c
-@@ -69,6 +69,7 @@ s32 arm_smccc_get_soc_id_revision(void)
- {
- 	return smccc_soc_id_revision;
- }
-+EXPORT_SYMBOL_GPL(arm_smccc_get_soc_id_revision);
+diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+index e2b20080de3a..51818cef8979 100644
+--- a/drivers/cpufreq/cpufreq-dt-platdev.c
++++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+@@ -104,6 +104,7 @@ static const struct of_device_id allowlist[] __initconst = {
+  */
+ static const struct of_device_id blocklist[] __initconst = {
+ 	{ .compatible = "allwinner,sun50i-h6", },
++	{ .compatible = "allwinner,sun50i-h616", },
  
- static int __init smccc_devices_init(void)
- {
+ 	{ .compatible = "apple,arm-platform", },
+ 
 
 -- 
 2.42.0
