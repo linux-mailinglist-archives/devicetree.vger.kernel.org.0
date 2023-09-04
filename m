@@ -2,95 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4476C7913BB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 10:44:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D7F791407
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 10:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352441AbjIDIoo convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 4 Sep 2023 04:44:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37568 "EHLO
+        id S243193AbjIDIzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 04:55:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234105AbjIDIoo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 04:44:44 -0400
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27833126;
-        Mon,  4 Sep 2023 01:44:41 -0700 (PDT)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-49040dc5cedso196461e0c.3;
-        Mon, 04 Sep 2023 01:44:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693817079; x=1694421879;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MdypnkqWPfFDZuLjucd3BrugeQJTVNQdzlIAmZgZVJI=;
-        b=bPc6N1LwhQ42d8rlbmP/fAU38I5ZdtafMbjm4KCAJYk2WE9pfLzbTbUf/APnDehLdG
-         5FuqdE3xxuY10nPFDXGCesyjFW8fESxnmpINCiETxQtwacRoLqnwtoxvrUm5NjqJHHJ8
-         BWlBLNgorBLtFYjpFor4qBn+GUpXcRhxx27LWItwwZKjxETKHbp3hnwZvpQXRfw5zxey
-         RJUSrl/XO3pMzk8dqm4iOoftS1vPnUBbK1FENxbcd7/kN6Cb+M6K6QJTcyl0yD7dXOxA
-         lw8e9Rkw6CwA19IPvk0591q3KQopXM18w1bVIv/HxxcIquLJ6WGWtE1e2VRCSxmeed4c
-         700Q==
-X-Gm-Message-State: AOJu0YycxOTxsy3L012AlOjpHabYDhcBL4+bEe5CKy6Z9k+fm9QPhfrv
-        wyhIwsWsaSxg4o+bb5sRVg9TIXdUDkHr4w==
-X-Google-Smtp-Source: AGHT+IHOqIp65QLtj+FQ/WoKDNGBjm79HXZ2r6xIYsblq05GeahVy1QBBRnkKRvAGAuQCwUsTM/tpw==
-X-Received: by 2002:a1f:6d81:0:b0:490:b58e:75a9 with SMTP id i123-20020a1f6d81000000b00490b58e75a9mr4791218vkc.4.1693817079582;
-        Mon, 04 Sep 2023 01:44:39 -0700 (PDT)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id l22-20020ac5cdb6000000b0048c34d8be47sm1527968vka.5.2023.09.04.01.44.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 01:44:38 -0700 (PDT)
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-48d0eb04c8cso198982e0c.0;
-        Mon, 04 Sep 2023 01:44:38 -0700 (PDT)
-X-Received: by 2002:a67:e9ce:0:b0:44e:8d95:88bb with SMTP id
- q14-20020a67e9ce000000b0044e8d9588bbmr5108769vso.18.1693817078322; Mon, 04
- Sep 2023 01:44:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com> <20230901131711.2861283-4-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20230901131711.2861283-4-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 4 Sep 2023 10:44:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXCznxgoP60FrjpZgpx8Pt8Gn-0E=r9eQHayza2FvJn0w@mail.gmail.com>
-Message-ID: <CAMuHMdXCznxgoP60FrjpZgpx8Pt8Gn-0E=r9eQHayza2FvJn0w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: PCI: rcar-gen4-pcie-ep: Fix minor issues
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, mani@kernel.org,
-        marek.vasut+renesas@gmail.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230127AbjIDIzD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 04:55:03 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D595A12E;
+        Mon,  4 Sep 2023 01:54:59 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 2E37FCE0E45;
+        Mon,  4 Sep 2023 08:54:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55827C433C8;
+        Mon,  4 Sep 2023 08:54:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693817696;
+        bh=vmeKCHtUYA8IeIELVnid+KWzEwLahzONF6LbdcZoVb8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=H88HQhh8NmYmSyu6SrxCA1WP8ayupocTr0zkvCVxoDsdSrvqJBiYehLGdRsOeYoR7
+         AiJF5DaGDg3NdaTEtCjGZriD5YVmMj6hVKZvRHUlAFya1+NLV7QLFJ8FVhjS5rs57k
+         B8NG8+AtYXZ8rebXb51Qo/EtwHFITYvEzNOtzI3DVbxIssVMKUovfrrginNVUdIdI+
+         K3UcTOtc/uKJc3CytEU0+zlxOiXPb0DIeZxiOHxsW3Vuf/RUmFspe3Fu/6EClX+CX2
+         7+PV7I+1Vdmb6qp7PyP7aPuyB2IJZEPkuQKolwz9T0sPxJLY1/kd8dISndaR2AZyKu
+         +PUyYF/206g0Q==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1qd5MD-00AM5D-Se;
+        Mon, 04 Sep 2023 09:54:54 +0100
+Date:   Mon, 04 Sep 2023 09:54:53 +0100
+Message-ID: <86pm2ye2si.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc: Fix warnings about liointc-2.0
+In-Reply-To: <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
+References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
+        <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
+        <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
+        <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org>
+        <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
+        <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org>
+        <a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
+        <86wmxcejav.wl-maz@kernel.org>
+        <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: jiaxun.yang@flygoat.com, krzysztof.kozlowski@linaro.org, zhoubb.aaron@gmail.com, zhoubinbin@loongson.cn, chenhuacai@loongson.cn, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chenhuacai@kernel.org, loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org, tsbogend@alpha.franken.de, linux-mips@vger.kernel.org, diasyzhang@tencent.com, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 2, 2023 at 12:40 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Fix minor issues of rcar-gen4-pci-ep.yaml.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> ---
->
-> This patch will be squashed into the following commit on the pci.git /
-> controller/rcar branch so that many fixes into a patch:
->
-> dt-bindings: PCI: renesas: Add R-Car Gen4 PCIe Endpoint
-> https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/rcar&id=738bded11aaa3a9717e415197cd6b833dc439cb3
+On Wed, 30 Aug 2023 16:25:48 +0100,
+Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+>=20
+>=20
+>=20
+> =E5=9C=A8 2023/8/30 21:44, Marc Zyngier =E5=86=99=E9=81=93:
+> [...]
+> >> What's the best way, in your opinion, to overhaul this property? As we=
+ don't
+> >> really care backward compatibility of DTBs on those systems we can
+> >> just redesign it.
+> > You may not care about backward compatibility, but I do. We don't
+> > break existing systems, full stop.
+> Ah it won't break any existing system. Sorry for not giving enough insight
+> into the platform in previous reply. As for Loongson64 all DTBs are built
+> into kernel binary. So as long as binding are changed together with all D=
+TS
+> in tree we won't break any system.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+This is factually wrong. QEMU produces a DT for Loongarch at runtime.
+So no, you're not allowed to just drop bindings on the floor. They
+stay forever.
 
-Gr{oetje,eeting}s,
+> > As for the offending property, it has no place here either. DT is not
+> > the place where you put "performance knobs".
+> Hmm, I can see various bindings with vendor prefix exposing device
+> configurations. If we seen this interrupt routing as a device configurati=
+on
+> I don't think it's against devicetree design philosophy.
 
-                        Geert
+Just because we have tons of crap in the device trees doesn't give you
+a license to be just as bad.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+	M.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--=20
+Without deviation from the norm, progress is not possible.
