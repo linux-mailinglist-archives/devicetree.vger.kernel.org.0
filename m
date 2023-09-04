@@ -2,114 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12208791E35
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 22:26:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A293E791E5D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 22:41:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237875AbjIDU04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 16:26:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50306 "EHLO
+        id S229942AbjIDUl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 16:41:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237845AbjIDU0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 16:26:53 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1D3184
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 13:26:50 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-58df8cab1f2so17164017b3.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 13:26:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693859209; x=1694464009; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zOPCv2NI+axDv4gb4abMd4AMNhAMpkyYYjA0xE2SSU0=;
-        b=DQtAgI9LUBkGSB34l/x/5tq0yeU19UmqOjF8QJ0Mc/XD3KBqRTBy/EHl44jjHfrIWm
-         ynOLQWBLj8B9LB3qVXdSDw6EYECAc/0KD/HjyUqP+qcrOJMZpSjqgov9U0jMyxlGe1uW
-         2MtMeCCX5K1DlMo9Vicx1eeqJ5moWdIooo1rjrmUi8zr1WNG+pzUPYtjJk/4U2hzz5E+
-         f3usUBIUGUvE9fBu4lGu60dDE+sIkCmsW7+AM9l0qmnWCC/KayqwxdTmW5O5tMuJ9cZ6
-         JOmZ8jz95U32Vmrj/P550LybSuEj+O29wTi1XQexKjsm+j8pGq20ksBIThCG9YLndkd8
-         QSxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693859209; x=1694464009;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zOPCv2NI+axDv4gb4abMd4AMNhAMpkyYYjA0xE2SSU0=;
-        b=Z/6ybmzxBZSSzJttYFiWVDz0ZTUpb4NmZZnfAcafPTrSJ/1zse/fGFAi9QstASYfKO
-         6w7YTfZlVbbvBVGaamX5pTCh+oNIVfljpOSEzjIqoMWjJrL7ElUrSN6+Ixs0TcndTIQx
-         yu8x7A+5qlYh4d2ZStzmV6nmpOufQIjMigmwDKL+dR0wkfPob6dxDNObI1udW7nHRBKs
-         Ni6/8Va880aKuP0hr21LViZZijWp0hqlyTunPFEctBmR+vMkslDDAb1SLye/NINae4wl
-         b/O9cT4bFTr/EIBRhOeisIXi6lt5Ut0459ss9Pfr4E1TdzGJtOMKxQWzdmMHKlHcaQ1B
-         riTQ==
-X-Gm-Message-State: AOJu0YyjX1H0Lw/BR+NUU0LfomCkBZcoq0mCmiSL7+75UL85x3anm7UQ
-        kMHhmzAbt2YUHRpgvLgnoR8dRtQs6LCt9w7oaFF+cQ==
-X-Google-Smtp-Source: AGHT+IGYxkclG89PUKOkDm67cPaVgl3DF1XdYgrU2viuEanv3N60lpWFmpZI/6uf+KY5yjj97vqPkmRPUzx+tp+//GE=
-X-Received: by 2002:a25:40d:0:b0:d78:4638:d52c with SMTP id
- 13-20020a25040d000000b00d784638d52cmr10982720ybe.34.1693859209653; Mon, 04
- Sep 2023 13:26:49 -0700 (PDT)
+        with ESMTP id S229685AbjIDUl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 16:41:27 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 923E612A;
+        Mon,  4 Sep 2023 13:41:23 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C0F6143D;
+        Mon,  4 Sep 2023 13:42:01 -0700 (PDT)
+Received: from slackpad.lan (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C52B33F793;
+        Mon,  4 Sep 2023 13:41:19 -0700 (PDT)
+Date:   Mon, 4 Sep 2023 21:40:18 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Martin Botka <martin.botka@somainline.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, Alan Ma <tech@biqu3d.com>,
+        Luke Harrison <bttuniversity@biqu3d.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rogerio Goncalves <rogerlz@gmail.com>,
+        Martin Botka <martin@biqu3d.com>
+Subject: Re: [PATCH 2/6] cpufreq: dt-platdev: Blocklist allwinner,h616 SoC
+Message-ID: <20230904214018.0a8f12e2@slackpad.lan>
+In-Reply-To: <20230904-cpufreq-h616-v1-2-b8842e525c43@somainline.org>
+References: <20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org>
+        <20230904-cpufreq-h616-v1-2-b8842e525c43@somainline.org>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 MIME-Version: 1.0
-References: <20230904114621.4457-1-wangweidong.a@awinic.com>
- <20230904114621.4457-4-wangweidong.a@awinic.com> <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
- <598febde-429e-4319-98d4-4306a7f8bfe8@sirena.org.uk> <0360d279-b535-f3f2-9651-07dff2df2e37@linaro.org>
-In-Reply-To: <0360d279-b535-f3f2-9651-07dff2df2e37@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 4 Sep 2023 22:26:38 +0200
-Message-ID: <CACRpkdbWE3enEjweZZQSQpdUDvCPXxQZfzOReS9YvZ2mxmevAg@mail.gmail.com>
-Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw87390 amplifier driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, wangweidong.a@awinic.com,
-        lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
-        herve.codina@bootlin.com, shumingf@realtek.com,
-        rdunlap@infradead.org, 13916275206@139.com, ryans.lee@analog.com,
-        ckeepax@opensource.cirrus.com, yijiangtao@awinic.com,
-        liweilei@awinic.com, colin.i.king@gmail.com, trix@redhat.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, zhangjianming@awinic.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 4, 2023 at 3:02=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 04/09/2023 14:30, Mark Brown wrote:
-> > On Mon, Sep 04, 2023 at 02:17:43PM +0200, Krzysztof Kozlowski wrote:
-> >> On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
-> >
-> >>> +   ret =3D regmap_read(regmap, AW87390_ID_REG, &chip_id);
-> >>> +   if (ret) {
-> >>> +           dev_err(&i2c->dev, "%s read chipid error. ret =3D %d\n", =
-__func__, ret);
-> >>> +           return ret;
-> >>> +   }
-> >
-> >>> +   if (chip_id !=3D AW87390_CHIP_ID) {
-> >>> +           dev_err(&i2c->dev, "unsupported device\n");
-> >
-> >> Why? The compatible tells it cannot be anything else.
-> >
-> > This is very common good practice, as well as validating communication
->
-> No, it is neither common nor good. The kernel's job is not to verify the
-> supplied DTS. Rob also made here a point:
->
-> https://lore.kernel.org/all/CAL_Jsq+wcrOjh7+0c=3Dmrg+Qz6dbhOUE-VEeQ4FoWC3=
-Y7ENoyfQ@mail.gmail.com/
+On Mon, 04 Sep 2023 17:57:02 +0200
+Martin Botka <martin.botka@somainline.org> wrote:
 
-I disagree, if a vendor one day decides to mount a new version of a
-component without notifying the community or users this is really
-helpful.
+> The AllWinner H616 uses H6 cpufreq driver.
+> Add it to blocklist so its not created twice
 
-The function is named "probe()" for a reason, as in "inspect
-the hardware and see what we find" this has always been the case
-I think.
+That looks alright, but I think needs to be squashed into the patch
+that enables the H616 driver operation, to avoid regressions during
+bisecting.
 
-Yours,
-Linus Walleij
+Cheers,
+Andre
+
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+> index e2b20080de3a..51818cef8979 100644
+> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> @@ -104,6 +104,7 @@ static const struct of_device_id allowlist[] __initconst = {
+>   */
+>  static const struct of_device_id blocklist[] __initconst = {
+>  	{ .compatible = "allwinner,sun50i-h6", },
+> +	{ .compatible = "allwinner,sun50i-h616", },
+>  
+>  	{ .compatible = "apple,arm-platform", },
+>  
+> 
+
