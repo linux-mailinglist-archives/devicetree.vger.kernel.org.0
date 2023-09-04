@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C4F791E2B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 22:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12208791E35
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 22:26:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237490AbjIDUVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 16:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35040 "EHLO
+        id S237875AbjIDU04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 16:26:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235863AbjIDUVs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 16:21:48 -0400
-Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7EAA187
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 13:21:44 -0700 (PDT)
-Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-58fc4d319d2so17616027b3.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 13:21:44 -0700 (PDT)
+        with ESMTP id S237845AbjIDU0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 16:26:53 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D1D3184
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 13:26:50 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-58df8cab1f2so17164017b3.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 13:26:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693858904; x=1694463704; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693859209; x=1694464009; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fIdGcDEg2RFpVY8/WSXPv+0h5xxmY9R8V3wRWCGVCYQ=;
-        b=wH6Wkp3CC4Oy4BUiHAGfjurSB1/6/DCgJ7Zq/mRpkla3AT2yuyHZ2wmqX5fJGrfmNH
-         kH6Fzf0/3imUKw9NEeauKXHmZBJ5ygY3xNBOMwbdlwcDtoHxWIAYgutJGIoS/Fj1zjl5
-         GHCJ3vmzTE3u7PxNBo55WoNnY5KEATegaU6S4c+9kcFGn4x7fdH3nLmKqd1Fd23SnJcm
-         arfXrOxUup5B+yZy+6vkNhAMJe57AhHl/9M/hvtYxCW/TXKd48K58ryEtfVyNHLYIHYT
-         dMSRIxN54Gpth9seQlJnXMhDS75m79stnBidMxSTRklTnbyWqQASsACiDSce1ONu1X1f
-         ujcQ==
+        bh=zOPCv2NI+axDv4gb4abMd4AMNhAMpkyYYjA0xE2SSU0=;
+        b=DQtAgI9LUBkGSB34l/x/5tq0yeU19UmqOjF8QJ0Mc/XD3KBqRTBy/EHl44jjHfrIWm
+         ynOLQWBLj8B9LB3qVXdSDw6EYECAc/0KD/HjyUqP+qcrOJMZpSjqgov9U0jMyxlGe1uW
+         2MtMeCCX5K1DlMo9Vicx1eeqJ5moWdIooo1rjrmUi8zr1WNG+pzUPYtjJk/4U2hzz5E+
+         f3usUBIUGUvE9fBu4lGu60dDE+sIkCmsW7+AM9l0qmnWCC/KayqwxdTmW5O5tMuJ9cZ6
+         JOmZ8jz95U32Vmrj/P550LybSuEj+O29wTi1XQexKjsm+j8pGq20ksBIThCG9YLndkd8
+         QSxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693858904; x=1694463704;
+        d=1e100.net; s=20221208; t=1693859209; x=1694464009;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fIdGcDEg2RFpVY8/WSXPv+0h5xxmY9R8V3wRWCGVCYQ=;
-        b=APprgdwTHGq2MT3nRWrC3L7L/4ZI+zeg01gmweqzk92Y6ESHSesuX42rwPhCXono0x
-         ImSLV088mcjVJds8vb0OxWXHJp9pSAQEkN+vZfXQkBKSLZSLTWu03HPynSq1zj5JjG+p
-         U1rJc4i6inY4azr9ICBYCawBax6zHn6pjbddZ4kJ3sLCd8sAE3Ul/DZ9Yzb10vRU/8ia
-         ElGe+VL02pw2G+TiEslZDeDK2SOv4s4yUHKTRsIct+3zNkQfkyQ9Sozk2Vsilzs6DCV8
-         xQ21N4BY/2Mv8tC03jEaGWeKvmRBu+oXxvnTgWa72v3TLs1zkyPHckGjPJN4iQuSRjTk
-         rghw==
-X-Gm-Message-State: AOJu0Yw7Nng4p5v1/mQr1XjVauAWolhiOpxw3C7+lvTlohT65kLy+vVv
-        TRYjksaRlmwOTlv4qYTIjrXjBILwp39tuP9GS20OWg==
-X-Google-Smtp-Source: AGHT+IEzdDqxXs9QZDSllPejOTay+Awx9NDl2MJSCZD3I3yUhS5JtosXX53OvrRtmVX5RO7qxnOT9Utgiiu/XFH+ve0=
-X-Received: by 2002:a25:e6c4:0:b0:d4e:3ffe:79d4 with SMTP id
- d187-20020a25e6c4000000b00d4e3ffe79d4mr10203380ybh.61.1693858903883; Mon, 04
- Sep 2023 13:21:43 -0700 (PDT)
+        bh=zOPCv2NI+axDv4gb4abMd4AMNhAMpkyYYjA0xE2SSU0=;
+        b=Z/6ybmzxBZSSzJttYFiWVDz0ZTUpb4NmZZnfAcafPTrSJ/1zse/fGFAi9QstASYfKO
+         6w7YTfZlVbbvBVGaamX5pTCh+oNIVfljpOSEzjIqoMWjJrL7ElUrSN6+Ixs0TcndTIQx
+         yu8x7A+5qlYh4d2ZStzmV6nmpOufQIjMigmwDKL+dR0wkfPob6dxDNObI1udW7nHRBKs
+         Ni6/8Va880aKuP0hr21LViZZijWp0hqlyTunPFEctBmR+vMkslDDAb1SLye/NINae4wl
+         b/O9cT4bFTr/EIBRhOeisIXi6lt5Ut0459ss9Pfr4E1TdzGJtOMKxQWzdmMHKlHcaQ1B
+         riTQ==
+X-Gm-Message-State: AOJu0YyjX1H0Lw/BR+NUU0LfomCkBZcoq0mCmiSL7+75UL85x3anm7UQ
+        kMHhmzAbt2YUHRpgvLgnoR8dRtQs6LCt9w7oaFF+cQ==
+X-Google-Smtp-Source: AGHT+IGYxkclG89PUKOkDm67cPaVgl3DF1XdYgrU2viuEanv3N60lpWFmpZI/6uf+KY5yjj97vqPkmRPUzx+tp+//GE=
+X-Received: by 2002:a25:40d:0:b0:d78:4638:d52c with SMTP id
+ 13-20020a25040d000000b00d784638d52cmr10982720ybe.34.1693859209653; Mon, 04
+ Sep 2023 13:26:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230904114621.4457-1-wangweidong.a@awinic.com> <20230904114621.4457-4-wangweidong.a@awinic.com>
-In-Reply-To: <20230904114621.4457-4-wangweidong.a@awinic.com>
+References: <20230904114621.4457-1-wangweidong.a@awinic.com>
+ <20230904114621.4457-4-wangweidong.a@awinic.com> <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
+ <598febde-429e-4319-98d4-4306a7f8bfe8@sirena.org.uk> <0360d279-b535-f3f2-9651-07dff2df2e37@linaro.org>
+In-Reply-To: <0360d279-b535-f3f2-9651-07dff2df2e37@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 4 Sep 2023 22:21:31 +0200
-Message-ID: <CACRpkdZ8Q0hWx5GLsJR+kmnkF6cMwY-ZJjePX5WO3qmXv8uJzQ@mail.gmail.com>
+Date:   Mon, 4 Sep 2023 22:26:38 +0200
+Message-ID: <CACRpkdbWE3enEjweZZQSQpdUDvCPXxQZfzOReS9YvZ2mxmevAg@mail.gmail.com>
 Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw87390 amplifier driver
-To:     wangweidong.a@awinic.com
-Cc:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, wangweidong.a@awinic.com,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
         herve.codina@bootlin.com, shumingf@realtek.com,
@@ -74,24 +77,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weidong,
-
-thanks for your patch!
-
-On Mon, Sep 4, 2023 at 1:47=E2=80=AFPM <wangweidong.a@awinic.com> wrote:
-
-> From: Weidong Wang <wangweidong.a@awinic.com>
+On Mon, Sep 4, 2023 at 3:02=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> On 04/09/2023 14:30, Mark Brown wrote:
+> > On Mon, Sep 04, 2023 at 02:17:43PM +0200, Krzysztof Kozlowski wrote:
+> >> On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
+> >
+> >>> +   ret =3D regmap_read(regmap, AW87390_ID_REG, &chip_id);
+> >>> +   if (ret) {
+> >>> +           dev_err(&i2c->dev, "%s read chipid error. ret =3D %d\n", =
+__func__, ret);
+> >>> +           return ret;
+> >>> +   }
+> >
+> >>> +   if (chip_id !=3D AW87390_CHIP_ID) {
+> >>> +           dev_err(&i2c->dev, "unsupported device\n");
+> >
+> >> Why? The compatible tells it cannot be anything else.
+> >
+> > This is very common good practice, as well as validating communication
 >
-> Add i2c and amplifier registration for aw87390 and
-> their associated operation functions.
+> No, it is neither common nor good. The kernel's job is not to verify the
+> supplied DTS. Rob also made here a point:
 >
-> Signed-off-by: Weidong Wang <wangweidong.a@awinic.com>
-(...)
-> +#include <linux/of_gpio.h>
+> https://lore.kernel.org/all/CAL_Jsq+wcrOjh7+0c=3Dmrg+Qz6dbhOUE-VEeQ4FoWC3=
+Y7ENoyfQ@mail.gmail.com/
 
-Please do not include this deprecated header.
+I disagree, if a vendor one day decides to mount a new version of a
+component without notifying the community or users this is really
+helpful.
 
-Also: it seems you do not even use it so it's unnecessary.
+The function is named "probe()" for a reason, as in "inspect
+the hardware and see what we find" this has always been the case
+I think.
 
 Yours,
 Linus Walleij
