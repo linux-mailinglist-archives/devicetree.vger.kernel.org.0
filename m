@@ -2,169 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8FA1791096
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 06:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34E1879109E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 06:50:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240303AbjIDE0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 00:26:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59116 "EHLO
+        id S1351858AbjIDEuC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 00:50:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346631AbjIDE0N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 00:26:13 -0400
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D070C116
-        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 21:26:08 -0700 (PDT)
-Received: from epcas1p1.samsung.com (unknown [182.195.41.45])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20230904042606epoutp0448b2ff9dcd1f97ff59a6a1d6751c6e5d~Bl4ziXYo-0856708567epoutp04Q
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 04:26:06 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20230904042606epoutp0448b2ff9dcd1f97ff59a6a1d6751c6e5d~Bl4ziXYo-0856708567epoutp04Q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1693801566;
-        bh=F0Cw2/eIVKvUe9Ad3kDZbvYRFetszRqIT02C8jm0Ihc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vfjfoOzR59kOatlizBYeVUYzM/G7l1Kw/qXf2PZqmi2HiPI6GFkR9DCoB29HvSyTr
-         3yqBfe6U6Dm29hva0IpLVw1WBf6OhW5Mu7haxZ0BbL3QthqoITYpWok4bV7x5s/Bne
-         xTMU/D/dnijDqD7fBDAARwP4WGLGhbFWQWWY50HI=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20230904042605epcas1p13e75eb52c8cef4bd57e8e556bdb6d119~Bl4yzpxWN3248132481epcas1p1g;
-        Mon,  4 Sep 2023 04:26:05 +0000 (GMT)
-Received: from epsmgec1p1-new.samsung.com (unknown [182.195.38.232]) by
-        epsnrtp3.localdomain (Postfix) with ESMTP id 4RfFv02xxqz4x9Q1; Mon,  4 Sep
-        2023 04:26:04 +0000 (GMT)
-Received: from epcas1p3.samsung.com ( [182.195.41.47]) by
-        epsmgec1p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        0C.8B.18968.C5C55F46; Mon,  4 Sep 2023 13:26:04 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-        20230904042603epcas1p47c4e858d65f2618d747bdc214d350cf7~Bl4xbOmDK0894808948epcas1p46;
-        Mon,  4 Sep 2023 04:26:03 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230904042603epsmtrp18accbbeb8bdfa7bc1a73b0833efad0e2~Bl4xaYGUI0102601026epsmtrp14;
-        Mon,  4 Sep 2023 04:26:03 +0000 (GMT)
-X-AuditID: b6c32a4c-34c49a8000004a18-e3-64f55c5cf3a8
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        28.1A.08742.B5C55F46; Mon,  4 Sep 2023 13:26:03 +0900 (KST)
-Received: from mediaserver.. (unknown [10.113.111.131]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20230904042603epsmtip10f0955ba6b9506551bf7511184e42159~Bl4xNs_XB1398813988epsmtip1i;
-        Mon,  4 Sep 2023 04:26:03 +0000 (GMT)
-From:   Kwanghoon Son <k.son@samsung.com>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jszhang@kernel.org, guoren@kernel.org, wefu@redhat.com,
-        paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, inki.dae@samsung.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [RFC PATCH 3/3] riscv: dts: Add th1520 reset device tree
-Date:   Mon,  4 Sep 2023 04:25:59 +0000
-Message-Id: <20230904042559.2322997-4-k.son@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230904042559.2322997-1-k.son@samsung.com>
+        with ESMTP id S242273AbjIDEuB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 00:50:01 -0400
+Received: from mail-ua1-x92f.google.com (mail-ua1-x92f.google.com [IPv6:2607:f8b0:4864:20::92f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A459B;
+        Sun,  3 Sep 2023 21:49:58 -0700 (PDT)
+Received: by mail-ua1-x92f.google.com with SMTP id a1e0cc1a2514c-7a0254de2fdso298536241.1;
+        Sun, 03 Sep 2023 21:49:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693802997; x=1694407797; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iacGK+V2SyI7u62NbaMeNw3cu42K5/MOVGdVpsBcQr4=;
+        b=eaQIkP+Bj8DKeudOBnZM4rWwWYme9HVcqV8qEzos/0FQKovM7u3fBGeAwS1zwyoa6s
+         4J4Why4DmfFKCK/Pn4OWw/J4Xm9anhOOcHNIQJQ3Axv5qjtP1qZV/4t/C16uYqPiuAR3
+         TPjXH9OzwLZouhleTBPWfKkaxny1gnRMVdhBf2V2s6wN+JdmKCRTOHIi+jM/WDBfHyQn
+         hLFddyrkegHWOdHJqRdNrBIL6HareTfFPZclk0IDUnAiKGgGVP1bONzuFex0ntRuxFtR
+         DwiHYWWQgWCGaE2nZ31Yq8mu6Tzgz5q94JFU8+ZIcd1CL+FW/3eog3XFazNcDqIH2fBm
+         ikDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693802997; x=1694407797;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iacGK+V2SyI7u62NbaMeNw3cu42K5/MOVGdVpsBcQr4=;
+        b=PR4m0m6cKA3Ao5sLqJLkptohwBEnVTa4bgeztk1rh447PkUhiyp+73Tum1Q5PU+v3u
+         ITuPWXGezdVsYzVixwRgNM+cWQXIYuh26Vbit9V85z3TC4BQn+Qyj2I70sks6rtITONT
+         dygdAd+8IUAwwWfxF+PYHuOQdrJt+l8Sb2tiFrW793XAXWZx67Bp5TEc61L3xGdMPhvT
+         qalPz//GSiAfkJx1/V89QbRtQ+pVeNPV76YaAVkg5U3m4o9y/VXGXwCzp81+CuEv+LPU
+         qwtRS+wSN8ukW03gaYCcZA1sjyZSVXBkOATH4f7ElcM+Pb0qooIFoL3P9+5xMQLNqwrw
+         SoWg==
+X-Gm-Message-State: AOJu0Yz9h3BhsjqQV4kZDA0SweZsozjYI21IdPHoIuCOx4Eu0Rb5guHj
+        dbEKm5AQ+R1jVc1M1WV4zklwK66KrnMdeGB8nlBreq89
+X-Google-Smtp-Source: AGHT+IEzJp2QEDITKv7Z+jdponAfIao6TEeQ9Rfl7fRLOLifmlMjC+/WEbeYvphjh6RikNhq5bcaorABVRljL2aKGqU=
+X-Received: by 2002:a05:6102:3a56:b0:44e:b30a:c0da with SMTP id
+ c22-20020a0561023a5600b0044eb30ac0damr7596914vsu.26.1693802997437; Sun, 03
+ Sep 2023 21:49:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJJsWRmVeSWpSXmKPExsWy7bCmvm5MzNcUg1t/RSy2/p7FbrFm7zkm
-        i/lHzrFavNjbyGIx6f4EFovmY+vZLPpePGS2uLxrDpvFts8tbBZ3751gsXh5uYfZom0Wv0Xr
-        3iPsFi37p7A48Hm8efmSxeNwxxd2j02rOtk87lzbw+axeUm9R/9fA4/3+66yefRtWcXocan5
-        OrvH501yAVxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6
-        bpk5QPcrKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgpMC/SKE3OLS/PS9fJSS6wM
-        DQyMTIEKE7IzXv/fxFjwmKvi2ck9LA2M3zm6GDk5JARMJG42v2ftYuTiEBLYwyix594UJgjn
-        E6PEyssHGSGcb4wSHd9+MMK09M59zQ6R2MsoMfv4V6j+N4wS257/YAapYhNQl1jSthasSkTg
-        P6PEmz+tTCAJZoF4iRPXzoEVCQs4Sqx4/YIVxGYRUJVoXLINqIaDg1fAQuLoJWOIbfIS+w+e
-        BSvnFLCU+PDwINgVvAKCEidnPmGBGCkv0bx1NjPILgmBPRwSu78dZoNodpFoafjKCmELS7w6
-        voUdwpaSeNnfBmVnSxz9uBeqvkTi+qxFUPXGEvuXTga7h1lAU2L9Ln2IsKLEzt9zGSH28km8
-        +9rDClIiIcAr0dEmBGHKS9zqLIeoFpU48/Qj1HAPiU+T26Hh1sMosfblVKYJjAqzkHwzC8k3
-        sxAWL2BkXsUolVpQnJuemmxYYKibl1oOj+Xk/NxNjOA0reWzg/H7+r96hxiZOBgPMUpwMCuJ
-        8Mppf0oR4k1JrKxKLcqPLyrNSS0+xGgKDO6JzFKiyfnATJFXEm9oYmlgYmZkbGJhaGaoJM4b
-        86k9RUggPbEkNTs1tSC1CKaPiYNTqoFp2mcxzuOHTfLLd//fyuZbrXp9fht7bJ7G9QcXJ/4y
-        C7+dZnm6cCdP7t+l2j92TlB6XaIt4zMh8HFlPX+QCKf+pA+3hC8E8Mef3menUhx+wnu269Gs
-        hpS6A+1c02pOyjtdEdp0K8ji2YuDcUcPrfEorJ5xQ7EpjOHLzwdVLoePb47f2bvw5v2bzrOq
-        bLfxBjhHq/IkBius3z77Z7L7gWOHrTUmqfGkzi1d0F10l4knRFXt3MW7cW0erLMi9/8MUgjq
-        0F79yGd6CePs94IR6asKfu679+XEyVCjh0sNHr0NVp97PsF5+g1O5q/SPUyR6/r/s/048uPZ
-        LLlvb9qUTJSMuH5MXXzev3AeR8mxkmkJSizFGYmGWsxFxYkAvZLQQFwEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrLLMWRmVeSWpSXmKPExsWy7bCSnG50zNcUg7YDZhZbf89it1iz9xyT
-        xfwj51gtXuxtZLGYdH8Ci0XzsfVsFn0vHjJbXN41h81i2+cWNou7906wWLy83MNs0TaL36J1
-        7xF2i5b9U1gc+DzevHzJ4nG44wu7x6ZVnWwed67tYfPYvKTeo/+vgcf7fVfZPPq2rGL0uNR8
-        nd3j8ya5AK4oLpuU1JzMstQifbsErozX/zcxFjzmqnh2cg9LA+N3ji5GTg4JAROJ3rmv2UFs
-        IYHdjBKzz1ZCxEUlOi43MnYxcgDZwhKHDxdDlLxilFi4LQHEZhNQl1jSthaolYtDRKCXSeLD
-        xyVMIAlmgUSJLV9fM4PYwgKOEitev2AFsVkEVCUal2xjApnJK2AhcfSSMcQqeYn9B8+ClXMK
-        WEp8eHiQEWKXhcSGX69YQGxeAUGJkzOfsECMl5do3jqbeQKjwCwkqVlIUgsYmVYxSqYWFOem
-        5xYbFhjmpZbrFSfmFpfmpesl5+duYgTHkJbmDsbtqz7oHWJk4mA8xCjBwawkwiun/SlFiDcl
-        sbIqtSg/vqg0J7X4EKM0B4uSOK/4i94UIYH0xJLU7NTUgtQimCwTB6dUA5PPG6Ooc7G2L0Vq
-        WW23+Mw0LbvS1NVY6HuD1+nZvwWiZ6erTZHMDDKUs7qbIBddlL9Bm/d8oIbO1JJVaRkMX9+s
-        u+SsUn5QfmXKPFnuKS0vd/eqlf3Mn3bTLMQxp1nGtdcvWtWcR4ntbFWi2JU39Wsr8+fPluI6
-        4r+t23e3gsEtJ79//xsO2344vTRV+Cv7Hrs9R9V+GtrqCMqdzt6nrL9toe2CmPK8E2Ki/PMf
-        RuxMVDG4nL+14HPh72iezefKDuwtV1ASWuUtXFKnMi2qbD7z1q7W3PqDLvprvtz/cGbC6SmH
-        5131/PH+kqvayX33g8K2H9E7lBUsbyK47LrH/dBjXovD1q3a/ptddJGMhxJLcUaioRZzUXEi
-        ACRhl6sQAwAA
-X-CMS-MailID: 20230904042603epcas1p47c4e858d65f2618d747bdc214d350cf7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20230904042603epcas1p47c4e858d65f2618d747bdc214d350cf7
-References: <20230904042559.2322997-1-k.son@samsung.com>
-        <CGME20230904042603epcas1p47c4e858d65f2618d747bdc214d350cf7@epcas1p4.samsung.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230828091859.3889817-1-milkfafa@gmail.com> <20230828091859.3889817-8-milkfafa@gmail.com>
+ <0c91f68d-d172-bd14-9115-b6977ad2d01f@xs4all.nl> <CADnNmFqVbRWs5Uf_tJdrM0AopF_CmSHYwBK8-+1go_K6Hefkcw@mail.gmail.com>
+ <ecc13f10-82b9-f99b-8ebf-ff505d65fe2e@xs4all.nl>
+In-Reply-To: <ecc13f10-82b9-f99b-8ebf-ff505d65fe2e@xs4all.nl>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Mon, 4 Sep 2023 12:49:46 +0800
+Message-ID: <CADnNmFoRjyHghQPA72HUmmCEr81oUBJPDG+QtuTFaem_imNB=Q@mail.gmail.com>
+Subject: Re: [PATCH v14 7/7] media: nuvoton: Add driver for NPCM video capture
+ and encode engine
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     mchehab@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reset device tree for th1520 SoC
+Hi Hans,
 
-Signed-off-by: Kwanghoon Son <k.son@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi | 4 ++++
- arch/riscv/boot/dts/thead/th1520.dtsi                  | 8 ++++++++
- 2 files changed, 12 insertions(+)
+Thanks for the reply.
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-index a802ab110429..b689cc049ad8 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-@@ -36,3 +36,7 @@ &uart_sclk {
- &dmac0 {
- 	status = "okay";
- };
-+
-+&rst {
-+	status = "okay";
-+};
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index ce708183b6f6..1cacfa386d19 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -5,6 +5,7 @@
-  */
- 
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/reset/th1520-reset.h>
- 
- / {
- 	compatible = "thead,th1520";
-@@ -418,5 +419,12 @@ portf: gpio-controller@0 {
- 				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
- 			};
- 		};
-+
-+		rst: reset-controller@ffef014000 {
-+			compatible = "thead,th1520-reset", "syscon";
-+			reg = <0xff 0xef014000 0x0 0x1000>;
-+			#reset-cells = <1>;
-+			status = "disabled";
-+		};
- 	};
- };
--- 
-2.34.1
+> > When userspace dequeues the 1st buffer (video->list[0]), it needs to
+> > know the count of HEXTILE rectangles in the buffer,
+> > so after dequeuing the buffer it will call this control to get the
+> > rect count (video->rect[0]). And when a buffer is dequeued,
+> > npcm_video_buf_finish() will be called, in which the buffer index (in
+> > this example, buffer index = 0) will be stored to video->vb_index.
+> > Then when userspace calls this control, npcm_video_get_volatile_ctrl()
+> > will return the rect count of vb_index = 0.
+> > In this way, I think userspace is always reading the correct control's
+> > value even if userspace is slow.
+> > Does it make sense to you or is there anything I missed?
+>
+> Ah, I don't think I have ever seen anyone use buf_finish in that way!
+>
+> Very inventive, and perfectly legal. Actually a very nice idea!
+>
+> So, with that in mind there are still some things that need to change.
+>
+> First of all, you can drop the 'VOLATILE' flag from the control, instead
+> just call v4l2_ctrl_s_ctrl() from buf_finish() to update the control.
+> And in stop_streaming the control value should probably be set to 0.
+>
+> The use of volatile for a control is a last resort, and in this case it
+> is not volatile at all.
+>
+> Secondly, this behavior has to be documented: in buf_finish add a comment
+> along the lines of: "This callback is called when the buffer is dequeued,
+> so update this control with the number of rectangles."
+>
+> And where the control is defined, refer to buf_finish to explain where it
+> is set.
+>
+> Finally the user-facing documentation has to be updated (npcm-video.rst)
+> to explain this behavior.
 
+OK. Will drop the VOLATILE flag and update comment/document in the next version.
+
+Regards,
+Marvin
