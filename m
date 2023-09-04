@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72489791D9F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 21:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 773C8791DAD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 21:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231820AbjIDTbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 15:31:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59448 "EHLO
+        id S233643AbjIDTdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 15:33:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231663AbjIDTbm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 15:31:42 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FF48CC8
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 12:31:38 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99c3d3c3db9so271306366b.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 12:31:38 -0700 (PDT)
+        with ESMTP id S240964AbjIDTcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 15:32:52 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3B81AB
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 12:32:48 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52e64bc7c10so30143a12.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 12:32:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693855896; x=1694460696; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1693855967; x=1694460767; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NJfzYAIKnwPTaNVAAkVDsZyLFKgbTLwbTGas3wSGj30=;
-        b=W56Pg/SlRwpi3KzSsROpzmGaVL1LuHfS6Wh1d2qLbdLLCSsL2Mh71XhrHFh9oVZj0K
-         k5mXlb5R9sS+XP501tsEQ/yc7OIn4y0flhD9FNaePvbrl5bX1oGCeLX8z/cJUUO8Srti
-         9UpKv3d4QoeIokpFkmSjv45o7lAh2VRp41tl8dfmAGhI+y+kZwaTJVEN8hY8yYZeQPSt
-         9868BxYjIjaaWCbgUlqPyDpaebzRIqwlXm9Bq7S2/c9ylHf576+tJpg4R238oGuFQz+P
-         GORG5Y80f5B8huR2q+cd7/54NjKV3cx4Qlv9kXzK9HN7k6qPY6sb9rKPEuu2WcgJoV4q
-         1BfQ==
+        bh=JZ6H5M4q548gV0CNQehrzM4g+Qp6ZkTiIwLgzPLmdrE=;
+        b=KQHbcGg2qEza06wKXWjJyW+5jwb7PWYwfCfpqk4STzxrATbVejI80mDrcqYhfFyH7A
+         3IHZytG0oRXvRSKQ/182aLUF3BwnHm+n23eWHAdncVBNDq+yYTB0iGgnw+5/PI6Le34d
+         Jzb9nBLtS/qeDTkEF4X45mFI4b2OhcbmJAhUhqzAYLefp2tq1sM7g91uMt5Z/nzs8f/+
+         H+I941HfFE01vT+BKC94CgLQ1pf7hgW6cmAsL2s10QYQw88F8Nld0NhCIF9UCJmwbHDI
+         moeno5/yj5x5NoZlVu+swOJM1ArXPTgoS5dJxATLBJTsTzGkF1JwAsr50GM3UTK81c6D
+         9Uhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693855896; x=1694460696;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1693855967; x=1694460767;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NJfzYAIKnwPTaNVAAkVDsZyLFKgbTLwbTGas3wSGj30=;
-        b=JIIAHU7zwILO7SHLNE96L6scMa166gU5gLkmQXHRiBpbqSaVvL9mlOQg6NFgMopLDF
-         EP1M7RoxE+q7XDTl4kSa1PeepKNzrUPkyqk9TjZwJKAfCr0ieYIu0vUl1b4dK5sOVxau
-         34s7u0YrsVyTpp/IWSXG4UWIHaxyK1bV9uvYB50cDfMJn4U1K83/8M9y1ro4Hw+/Y8W5
-         0emJRf9xojzjoaehe2GcQlPj+FblIVpt/mzwfhkRuHx/IUsOGgiKvb/fc9d6Tbtfcu9j
-         jcclLZAmR09DevSsxWneZw5kcB/61XJoqg0yqA+I9x7OHimCyYaXXsqGjz6p1pevHFzn
-         bkyQ==
-X-Gm-Message-State: AOJu0YxkMFFk07hXhBZPIUFjBN4RZ4mMh1/bk3fGwz0qZuIbYhJzPi+v
-        uXFiX4DXVek0uCNcVjAavuHQKQ==
-X-Google-Smtp-Source: AGHT+IHXIXug6nzry8NP/bG9picjl2qkVPdjAfH7GKSh1orCmcs5A6HXOx/Za69iL81di4h4TtnnlQ==
-X-Received: by 2002:a17:906:109:b0:9a4:88af:b82 with SMTP id 9-20020a170906010900b009a488af0b82mr6112989eje.77.1693855896681;
-        Mon, 04 Sep 2023 12:31:36 -0700 (PDT)
+        bh=JZ6H5M4q548gV0CNQehrzM4g+Qp6ZkTiIwLgzPLmdrE=;
+        b=Kgz5bVIQKu+aYeTN059coD5m1qZH5AmKfsFajOJt8Csnh2fvSKy7xTYbDmbqMT6mBv
+         BzwY1d/QmnzbqwYdoS1NhnH50ucmdjnH7WP3y2XPuwAwXDJA/0QCp6lznt37zCXfxccI
+         L5S+Wv7mSoPQJNW3ZO/vo8pqftWS8c4DeALVWFyUFnb4MLMnRCSnhU/c/wBBSaVhxJwa
+         0af98lcpKVobDaDw/y90ebxQwE5VoqS3AqWy5z/YgmR3g0E5VuBHU7qXglYviB3ewhQU
+         lVjdVF1d6A/+0pV3AAO6l14vEMvHzLR/uLkEywRYcVeGi8LSyMoiT1j54Othv2gEU/w2
+         jsaQ==
+X-Gm-Message-State: AOJu0YxE6a1sRdzbXUdwSnXvCNy+lV6w2LjPWDDWbyTz6zxyaUa+waH7
+        1b2xQPNkJjhgNhG8IYY8iU46BA==
+X-Google-Smtp-Source: AGHT+IH0xh+QO8RhaNAVW0WGOeQOxfC0ae3lGMMNGhE9JO1OTC8YPy5jmTHCLOWkkmmbswgc2wghsw==
+X-Received: by 2002:a17:907:b12:b0:9a1:aea2:d18d with SMTP id h18-20020a1709070b1200b009a1aea2d18dmr7710392ejl.48.1693855966844;
+        Mon, 04 Sep 2023 12:32:46 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id mc24-20020a170906eb5800b009829d2e892csm6659123ejb.15.2023.09.04.12.31.35
+        by smtp.gmail.com with ESMTPSA id qc8-20020a170906d8a800b009a5f7fb51dcsm6480287ejb.42.2023.09.04.12.32.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 12:31:36 -0700 (PDT)
-Message-ID: <f512f11a-6b66-5892-ad9e-cc45d4abc508@linaro.org>
-Date:   Mon, 4 Sep 2023 21:31:34 +0200
+        Mon, 04 Sep 2023 12:32:46 -0700 (PDT)
+Message-ID: <bda77747-aa97-0da9-fa73-cbb2dca48aeb@linaro.org>
+Date:   Mon, 4 Sep 2023 21:32:44 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
 Subject: Re: [PATCH 3/6] dt-bindings: opp: Add compatible for H616
 Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Martin Botka <martin.botka@somainline.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -83,61 +84,49 @@ Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Martin Botka <martin@biqu3d.com>
 References: <20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org>
  <20230904-cpufreq-h616-v1-3-b8842e525c43@somainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230904-cpufreq-h616-v1-3-b8842e525c43@somainline.org>
+ <f512f11a-6b66-5892-ad9e-cc45d4abc508@linaro.org>
+In-Reply-To: <f512f11a-6b66-5892-ad9e-cc45d4abc508@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2023 17:57, Martin Botka wrote:
-> We need to add compatible for H616 to H6 cpufreq driver bindings.
-
-Please describe the hardware, not what is needed for drivers.
-
+On 04/09/2023 21:31, Krzysztof Kozlowski wrote:
+> On 04/09/2023 17:57, Martin Botka wrote:
+>> We need to add compatible for H616 to H6 cpufreq driver bindings.
 > 
-> Also enable opp_supported_hw property that will be needed for H616.
+> Please describe the hardware, not what is needed for drivers.
 > 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> ---
->  .../bindings/opp/allwinner,sun50i-h6-operating-points.yaml          | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> Also enable opp_supported_hw property that will be needed for H616.
+>>
+>> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+>> ---
+>>  .../bindings/opp/allwinner,sun50i-h6-operating-points.yaml          | 6 +++++-
+>>  1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
+>> index 51f62c3ae194..2fa1199f2d23 100644
+>> --- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
+>> +++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
+>> @@ -23,7 +23,10 @@ allOf:
+>>  
+>>  properties:
+>>    compatible:
+>> -    const: allwinner,sun50i-h6-operating-points
+>> +    contains:
 > 
-> diff --git a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-> index 51f62c3ae194..2fa1199f2d23 100644
-> --- a/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-> +++ b/Documentation/devicetree/bindings/opp/allwinner,sun50i-h6-operating-points.yaml
-> @@ -23,7 +23,10 @@ allOf:
->  
->  properties:
->    compatible:
-> -    const: allwinner,sun50i-h6-operating-points
-> +    contains:
+> This does not look like part of allOf, so contains is no correct here.
+> This must be specific, so drop contains.
 
-This does not look like part of allOf, so contains is no correct here.
-This must be specific, so drop contains.
-
-> +      enum:
-> +        - allwinner,sun50i-h6-operating-points
-> +        - allwinner,sun50i-h616-operating-points
->  
->    nvmem-cells:
->      description: |
-> @@ -47,6 +50,7 @@ patternProperties:
->      properties:
->        opp-hz: true
->        clock-latency-ns: true
-> +      opp-supported-hw: true
-
-Why? It is already allowed. You should rather explain the values.
-
-> 
+BTW, I also do no see it used by the driver at all.
 
 Best regards,
 Krzysztof
