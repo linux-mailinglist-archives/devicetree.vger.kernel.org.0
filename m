@@ -2,126 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6177791B25
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 18:10:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A77A791B97
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 18:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353289AbjIDQKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 12:10:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38044 "EHLO
+        id S232893AbjIDQ3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 12:29:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233751AbjIDQKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 12:10:20 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B32879E;
-        Mon,  4 Sep 2023 09:10:16 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 384FxWiw024583;
-        Mon, 4 Sep 2023 16:10:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=b/7KLJc4yclV+oIeJUVHyWAmd0IXOxpWyqJ6VrhHEeM=;
- b=cW2nD6fIgoROubv4NzOhX/TlcbbDzod27evgXuXHla8YZUBk9HbjXt5oTw8gJ9r+fIXh
- SCu2nNORXCFzcXlpiTjiG75AhlqEKlkiTh9iky/Ok/R88Fhza/nTXszwcvx3Wx5xGSph
- 1FCkgscORzv0KuNshJCB0EeyNU1H1dqPNrZvo9Zw24SQdjEbWKTt4QGDyYLom9Q8oPzT
- PnKovwls5hJB25CUk1v+HMGMqDpNUD2fo1nKzQpuJ/LKIwk+5XxUj3tMiOJhSLkG33fE
- W4xY9EwOxnD3NwadV8LAALdCUJTB1Wwrt2yi4pgxZpbfMxNGh+IYMhVUviS3igRjfbsI nw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suwedbt5n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 04 Sep 2023 16:10:08 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 384GA79n022805
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 4 Sep 2023 16:10:07 GMT
-Received: from [10.50.40.93] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Mon, 4 Sep
- 2023 09:10:02 -0700
-Message-ID: <90795790-a5e4-419f-9e40-989731c1c685@quicinc.com>
-Date:   Mon, 4 Sep 2023 21:39:58 +0530
+        with ESMTP id S1345661AbjIDQ25 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 12:28:57 -0400
+Received: from xry111.site (xry111.site [89.208.246.23])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22C310E4;
+        Mon,  4 Sep 2023 09:28:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
+        s=default; t=1693844925;
+        bh=m9pWXbBe49tlMWmx7ceZ+WgmcQHqI9sadLx79JoqoHs=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=lndarXhJsj5eTZZzytgttIVLAHZ00If/azANijJL7+vxFoZtQgXOk5iiPxdEm1j7A
+         PhkwRFDWlZTeefh9otlfhGIhuEFu7CjKomKHcxrfVG82Vu5/PUEKK3uzYvT5MkG5H/
+         ewglGZ6p1p6+PcgMVYRKXpoEXrnjpdzVswZIIO0s=
+Received: from localhost.localdomain (xry111.site [IPv6:2001:470:683e::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
+        (Client did not present a certificate)
+        (Authenticated sender: xry111@xry111.site)
+        by xry111.site (Postfix) with ESMTPSA id 26728659C0;
+        Mon,  4 Sep 2023 12:28:43 -0400 (EDT)
+Message-ID: <292198d3915bafbe1c82372da2f2755a1842512f.camel@xry111.site>
+Subject: Re: [PATCH] riscv: dts: thead: set dma-noncoherent to soc bus
+From:   Xi Ruoyao <xry111@xry111.site>
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+        Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        inux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Tue, 05 Sep 2023 00:28:41 +0800
+In-Reply-To: <ZPXtl1iWlsYwmixc@xhacker>
+References: <20230820115353.1962-1-jszhang@kernel.org> <ZPUXhe7ogxvaB6Eg@x1>
+         <ZPXtl1iWlsYwmixc@xhacker>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.4 
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] hwspinlock: qcom: Drop unused qcom,ipq6018-tcsr-mutex
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <ohad@wizery.com>,
-        <baolin.wang@linux.alibaba.com>, <linux-remoteproc@vger.kernel.org>
-CC:     <quic_kathirav@quicinc.com>, <quic_anusha@quicinc.com>,
-        <quic_sjaganat@quicinc.com>, <quic_srichara@quicinc.com>,
-        <quic_varada@quicinc.com>
-References: <20230904055010.4118982-1-quic_viswanat@quicinc.com>
- <20230904055010.4118982-3-quic_viswanat@quicinc.com>
- <17c8ba39-2bcf-5799-13ff-bb96249dbf61@linaro.org>
- <880706cd-0987-47c7-8785-f8e4cb1c1907@linaro.org>
-From:   Vignesh Viswanathan <quic_viswanat@quicinc.com>
-In-Reply-To: <880706cd-0987-47c7-8785-f8e4cb1c1907@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: TvzdW7euSUVGQJaJaoeNn8pjoQivjS_7
-X-Proofpoint-GUID: TvzdW7euSUVGQJaJaoeNn8pjoQivjS_7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-04_09,2023-08-31_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 spamscore=0 suspectscore=0 mlxscore=0 adultscore=0
- mlxlogscore=796 impostorscore=0 clxscore=1015 phishscore=0 bulkscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309040144
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 2023-09-04 at 22:45 +0800, Jisheng Zhang wrote:
+> On Sun, Sep 03, 2023 at 04:32:21PM -0700, Drew Fustini wrote:
+> > On Sun, Aug 20, 2023 at 07:53:53PM +0800, Jisheng Zhang wrote:
+> > > riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
+> > > dma coherent, so set dma-noncoherent to reflect this fact.
+> > >=20
+> > > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
+> > > ---
+> > > =C2=A0arch/riscv/boot/dts/thead/th1520.dtsi | 1 +
+> > > =C2=A01 file changed, 1 insertion(+)
+> > >=20
+> > > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/=
+dts/thead/th1520.dtsi
+> > > index 56a73134b49e..58108f0eb3fd 100644
+> > > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > > @@ -139,6 +139,7 @@ soc {
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&plic>;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <2>;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <2>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0dma-noncoherent;
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0ranges;
+> > > =C2=A0
+> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0plic: interrupt-controller@ffd8000000 {
+> > > --=20
+> > > 2.40.1
+> > >=20
+> >=20
+> > Tested-by: Drew Fustini <dfustini@baylibre.com>
+> >=20
+> > I tried this on the BeagleV Ahead. They system booted as expected and I
+> > did not notice any problems in the boot log.
+> >=20
+> > Are there other patches such as the dwmac series that I should test thi=
+s
+> > with?
+>=20
+> Hmm, this patch is necessary to test dwmac, emmc ;)
 
+Drew: does this fix the "broken DMA" issue you've mentioned in the EMMC
+support patch?
 
-On 9/4/2023 9:31 PM, Konrad Dybcio wrote:
-> On 4.09.2023 08:42, Krzysztof Kozlowski wrote:
->> On 04/09/2023 07:50, Vignesh Viswanathan wrote:
->>> qcom,ipq6018-tcsr-mutex maps to incorrect config of IPQ6018 and is
->>> dropped from the devictree.
->>
->> No, it is not dropped.
->>
->>
->>> IPQ6018 will use qcom,tcsr-mutex compatible
->>> string.
->>
->> No, it will not.
->>
->>>
->>> Drop qcom,ipq6018-tcsr-mutex compatible string from
->>> qcom_hwspinlock_of_match table.
->>
->> Why? Do not write what you are doing here, but why you are doing it.
-> More importantly, looks like the ipq6018 compatible was added after
-> support for this SoC was introduced (see f5e303aefc06 and 5bf635621245a),
-> so if it's going to use of_tcsr_mutex data with the fallback compat, the
-> SoC-specific compatible can be removed from the driver.
-> 
-Hi Konrad, Krzysztof,
-
-I was planning to update the SOC-specific compatible for IPQ6018
-qcom,ipq6018-tcsr-mutex to point to of_tcsr_mutex data in the of_match
-table in the hwspinlock driver in V2.
-
-Do you think this would be okay? or should I go ahead with removal of
-IPQ6018 specific compatible so that it falls back to of_tcsr_mutex?
-
-Thanks,
-Vignesh
-
-> Konrad
+--=20
+Xi Ruoyao <xry111@xry111.site>
+School of Aerospace Science and Technology, Xidian University
