@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F0947919A9
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 16:28:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97C6B791A2A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 16:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351874AbjIDO2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 10:28:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41108 "EHLO
+        id S1352670AbjIDO5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 10:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345104AbjIDO2r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 10:28:47 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59899CE5;
-        Mon,  4 Sep 2023 07:28:42 -0700 (PDT)
+        with ESMTP id S229745AbjIDO5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 10:57:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4345BA9;
+        Mon,  4 Sep 2023 07:57:41 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 4D834CE0ED3;
-        Mon,  4 Sep 2023 14:28:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56398C433C7;
-        Mon,  4 Sep 2023 14:28:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CBB266181E;
+        Mon,  4 Sep 2023 14:57:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9100C433C8;
+        Mon,  4 Sep 2023 14:57:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693837718;
-        bh=Up07sfErFvj6d+ATkEHYNBDmwHdFvbMBAGVYWlJsRWo=;
+        s=k20201202; t=1693839460;
+        bh=LzT88cWedePN3nB5J2c47sYH8nUB4YIGJS2wdUEWZYA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Wcr5RIvKGmcsqGx7hxbCl+2tlzvjsDIh8LjcB2+BcpPBVo2/RCSrbH7KPlgJw04oM
-         9JBD/OA3g89RWKKGo6lNP3gjqgLxlcsWYkrbH/7GiWojDqKVXCzd9ZyTwoDvQ6hRKh
-         a/PREKMgMzt8YTmlXyGqesMNThjqiW3ngRnXjH0dL07EXQpe+UuXdeuB8oCEFr0b8+
-         Q9m8hwJ05cYczviRgmTuOFK9t1sVzDPy2hr5lVTcAxcM5UqMuNE/wnGvrbebXkslSu
-         vQWpKiUjgtfLTyvb7go7fugVVaR54abRRzEpxFmGyajsJmHwgux8ZlusCUhGNTLDHf
-         WCZ87NW5zC2BA==
-Date:   Mon, 4 Sep 2023 15:28:33 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Sean Young <sean@mess.org>, linux-media@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        b=Zi3r8Ynel24Dp6pgSwbOvVKbbbfUNxLqMGQnpLVnWhRhiLD6b3brJ29S7rUAMQ1Qp
+         InPp54qna5ff2I0nE1PfF17hPSM3DMbgejqKjXwMaZGWKMB+kwByXoxom3q2+0isK1
+         XpF0tKQPVNsJWB4PXy8if25eUwjMOoE7uHKv0HJycIzVstvFBxCGDAgndwgZFcGDqf
+         Tf/SgdafCTBRlEHBumfF0n4POTiwKtdV6NtOG4kupikBE3YLqYNIolPlZ/oa3FeBI2
+         cW+goPDSSgH8ExT0G9pA8h8uY3TsNRf3l1b+NU8qRVw40SDahJIB35PAjEElpK4fLS
+         0by1eZ7i9OyvA==
+Date:   Mon, 4 Sep 2023 22:45:43 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Drew Fustini <dfustini@baylibre.com>
+Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        inux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: media: remove nokia,n900-ir as
- pwm-ir-tx is compatible
-Message-ID: <20230904142833.GE13143@google.com>
-References: <cover.1693577725.git.sean@mess.org>
- <25e8f2626d15199a1bf727fee375b5b149004c8e.1693577725.git.sean@mess.org>
- <20230902-gender-sandstone-7da75af72f4f@spud>
+Subject: Re: [PATCH] riscv: dts: thead: set dma-noncoherent to soc bus
+Message-ID: <ZPXtl1iWlsYwmixc@xhacker>
+References: <20230820115353.1962-1-jszhang@kernel.org>
+ <ZPUXhe7ogxvaB6Eg@x1>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230902-gender-sandstone-7da75af72f4f@spud>
+In-Reply-To: <ZPUXhe7ogxvaB6Eg@x1>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -62,72 +61,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 02 Sep 2023, Conor Dooley wrote:
-
-> On Fri, Sep 01, 2023 at 03:18:55PM +0100, Sean Young wrote:
-> > The generic pwm-ir-tx driver works for the Nokia n900, so nokia,n900-ir
-> > can be removed.
+On Sun, Sep 03, 2023 at 04:32:21PM -0700, Drew Fustini wrote:
+> On Sun, Aug 20, 2023 at 07:53:53PM +0800, Jisheng Zhang wrote:
+> > riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
+> > dma coherent, so set dma-noncoherent to reflect this fact.
 > > 
-> > Signed-off-by: Sean Young <sean@mess.org>
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
+> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
 > > ---
-> >  .../bindings/leds/irled/pwm-ir-tx.yaml        |  5 ++++-
-
-Acked-by: Lee Jones <lee@kernel.org>
-
-> >  .../devicetree/bindings/media/nokia,n900-ir   | 20 -------------------
-> >  2 files changed, 4 insertions(+), 21 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/media/nokia,n900-ir
+> >  arch/riscv/boot/dts/thead/th1520.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
 > > 
-> > diff --git a/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml b/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
-> > index f2a6fa140f38..7526e3149f72 100644
-> > --- a/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/irled/pwm-ir-tx.yaml
-> > @@ -15,7 +15,10 @@ description:
+> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > index 56a73134b49e..58108f0eb3fd 100644
+> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
+> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
+> > @@ -139,6 +139,7 @@ soc {
+> >  		interrupt-parent = <&plic>;
+> >  		#address-cells = <2>;
+> >  		#size-cells = <2>;
+> > +		dma-noncoherent;
+> >  		ranges;
 > >  
-> >  properties:
-> >    compatible:
-> > -    const: pwm-ir-tx
-> > +    oneOf:
-> > +      - const: pwm-ir-tx
-> > +      - const: nokia,n900-ir
-> > +        deprecated: true
-> >  
-> >    pwms:
-> >      maxItems: 1
-> > diff --git a/Documentation/devicetree/bindings/media/nokia,n900-ir b/Documentation/devicetree/bindings/media/nokia,n900-ir
-> > deleted file mode 100644
-> > index 13a18ce37dd1..000000000000
-> > --- a/Documentation/devicetree/bindings/media/nokia,n900-ir
-> > +++ /dev/null
-> > @@ -1,20 +0,0 @@
-> > -Device-Tree bindings for LIRC TX driver for Nokia N900(RX51)
-> > -
-> > -Required properties:
-> > -	- compatible: should be "nokia,n900-ir".
-> > -	- pwms: specifies PWM used for IR signal transmission.
-> > -
-> > -Example node:
-> > -
-> > -	pwm9: dmtimer-pwm@9 {
-> > -		compatible = "ti,omap-dmtimer-pwm";
-> > -		ti,timers = <&timer9>;
-> > -		ti,clock-source = <0x00>; /* timer_sys_ck */
-> > -		#pwm-cells = <3>;
-> > -	};
-> > -
-> > -	ir: n900-ir {
-> > -		compatible = "nokia,n900-ir";
-> > -
-> > -		pwms = <&pwm9 0 26316 0>; /* 38000 Hz */
-> > -	};
+> >  		plic: interrupt-controller@ffd8000000 {
 > > -- 
-> > 2.42.0
+> > 2.40.1
 > > 
+> 
+> Tested-by: Drew Fustini <dfustini@baylibre.com>
+> 
+> I tried this on the BeagleV Ahead. They system booted as expected and I
+> did not notice any problems in the boot log.
+> 
+> Are there other patches such as the dwmac series that I should test this
+> with?
 
+Hmm, this patch is necessary to test dwmac, emmc ;)
 
+> 
+> Also, I think this might have missed patchwork since the original email
+> had a typo for the list, so it might be good to resend it?
 
--- 
-Lee Jones [李琼斯]
+This patch was sent after sending PR to soc people, so it was late for
+linux-6.6-rc1, but this patch is a fix, I may send it as a fix once
+linux-6.6-rc1 is out.
