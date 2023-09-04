@@ -2,359 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6811791645
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 13:33:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B29A6791661
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 13:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234089AbjIDLdc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 07:33:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48758 "EHLO
+        id S238243AbjIDLqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 07:46:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbjIDLdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 07:33:31 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB70D180;
-        Mon,  4 Sep 2023 04:33:26 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id B02CB60007;
-        Mon,  4 Sep 2023 11:33:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
-        t=1693827205;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=Twi19Sc1cBUTP1CesU6QEEC/D9fjvN+joaQeLm6jFLo=;
-        b=EgGj5AuFFhhXL01UHfSA0vJjPVFEbgTK7E0E8dvZQBljrDa3QNjIhqpV8WMIh914SF+mD4
-        +rcnvTpL0hIP4GhqCZ7BmexaujQ3Eov91q/oyAzK61o8+Hb/xPmF23d+dxVBEVqlUFA/Ug
-        RR8XS597sCFfqd8qjgGiqv02jRTXO5BI7zWP3YA/i6f0sGAoHjeCoJ3uTZoQjc7qSykmGo
-        DGViOpn1dBHwEpvFKjDJ4R+KqS0z+4APq6obobJ5F25h24foVKQG7MBt80D9WtaYDiFNcd
-        J0Iny5jZhYO307pzF30CBEypQTMKdMobkqpdoc2xNOdxlu79J/5LDY95WXxI6A==
-Message-ID: <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
-Date:   Mon, 4 Sep 2023 14:33:14 +0300
+        with ESMTP id S233683AbjIDLqj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 07:46:39 -0400
+Received: from out28-50.mail.aliyun.com (out28-50.mail.aliyun.com [115.124.28.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAAE6E6;
+        Mon,  4 Sep 2023 04:46:33 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.1591739|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.00437455-6.83401e-05-0.995557;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047187;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=24;RT=24;SR=0;TI=SMTPD_---.UXIjsfa_1693827983;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.UXIjsfa_1693827983)
+          by smtp.aliyun-inc.com;
+          Mon, 04 Sep 2023 19:46:31 +0800
+From:   wangweidong.a@awinic.com
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
+        wangweidong.a@awinic.com, herve.codina@bootlin.com,
+        shumingf@realtek.com, rdunlap@infradead.org, 13916275206@139.com,
+        ryans.lee@analog.com, linus.walleij@linaro.org,
+        ckeepax@opensource.cirrus.com, yijiangtao@awinic.com,
+        liweilei@awinic.com, colin.i.king@gmail.com, trix@redhat.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     zhangjianming@awinic.com
+Subject: [PATCH V1 0/3] ASoC: codecs: Add aw87390 amplifier driver
+Date:   Mon,  4 Sep 2023 19:46:18 +0800
+Message-ID: <20230904114621.4457-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230812091708.34665-3-arinc.unal@arinc9.com>
- <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
- <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
- <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
- <20230813112026.ohsx6srbt2staxma@skbuf>
- <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
- <20230813190157.4y3zoro53qsz43pe@skbuf>
- <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
- <20230814143601.mnpxtcm2zybnbvoh@skbuf>
- <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
- <20230827121235.zog4c3ehu2cyd3jy@skbuf>
-Content-Language: en-US
-From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-In-Reply-To: <20230827121235.zog4c3ehu2cyd3jy@skbuf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: arinc.unal@arinc9.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Vladimir,
+From: Weidong Wang <wangweidong.a@awinic.com>
 
-On 27.08.2023 15:12, Vladimir Oltean wrote:
-> Hi Arınç,
-> 
-> I am on vacation and I will just reply with some clarification aspects,
-> without having done any further research on the topic since my last reply.
-> 
-> On Sun, Aug 27, 2023 at 11:33:16AM +0300, Arınç ÜNAL wrote:
->> Before I continue commenting, I'd like to state my understanding so we can
->> make sure we're on the same page. If a driver doesn't use
->> ds->slave_mii_bus, the switch it controls must not have any internal MDIO
->> buses. Otherwise the PHYs on these buses couldn't function, and an improper
->> driver like this would not be on the official Linux source code.
-> 
-> A DSA switch port, like any OF-based ethernet-controller which uses
-> phylink, will use one of the phy-handle, fixed-link or managed properties
-> to describe the interface connecting the MAC/MAC-side PCS to the PHY.
-> 
-> At its core, ds->slave_mii_bus is nothing more than a mechanism to make
-> sense of device trees where the above 3 phylink properties are not present.
-> 
-> It is completely false to say that if a driver doesn't have ds->slave_mii_bus,
-> it must not have an internal MDIO bus. Because you could still describe
-> that internal MDIO bus like below, without making any use of the sole property
-> that makes ds->slave_mii_bus useful from a dt-bindings perspective.
-> 
-> ethernet-switch {
-> 	ethernet-ports {
-> 		port@0 {
-> 			reg = <0>;
-> 			phy-handle = <&port0_phy>;
-> 			phy-mode = "internal";
-> 		};
-> 	};
-> 
-> 	mdio {
-> 		port0_phy: ethernet-phy@0 {
-> 			reg = <0>;
-> 		};
-> 	};
-> };
-> 
-> This is the more universal way of describing the port setup in an
-> OF-based way. There is also the DSA-specific (and old-style, before phylink)
-> way of describing the same thing, which relies on the non-OF-based
-> ds->slave_mii_bus, with bindings that look like this:
-> 
-> ethernet-switch {
-> 	ethernet-ports {
-> 		port@0 {
-> 			reg = <0>;
-> 		};
-> 	};
-> };
-> 
-> But, I would say that the first variant of the binding is preferable,
-> since it is more universal.
-> 
-> Not all switches that have an internal MDIO bus support the second
-> variant of the dt-binding (the ones that don't have ds->slave_mii_bus don't).
-> But, they support the same configuration through the first form.
+The awinic aw87390 is a new high efficiency, low noise,
+constant large volume, 6th Smart K audio amplifier.
 
-Understood.
+Add a DT schema for describing awinic aw87390 audio amplifiers.
+They are controlled using I2C.
 
-> 
-> Furthermore, on the U-Boot mailing lists, I have been suggesting that
-> the DM_DSA driver for mv88e6xxx should not bother to support the second
-> version of the binding, since it is just more code to be added to handle
-> a case which can already be described with the more universal first binding.
+Weidong Wang (3):
+  ASoC: dt-bindings: Add schema for "awinic,aw87390"
+  ASoC: codecs: Add code for bin parsing compatible with aw87390
+  ASoC: codecs: Add aw87390 amplifier driver
 
-That makes sense.
+ .../bindings/sound/awinic,aw87390.yaml        |  43 ++
+ sound/soc/codecs/Kconfig                      |  15 +-
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/aw87390.c                    | 463 ++++++++++++++++++
+ sound/soc/codecs/aw87390.h                    |  85 ++++
+ sound/soc/codecs/aw88395/aw88395_lib.c        |  23 +-
+ sound/soc/codecs/aw88395/aw88395_reg.h        |   1 +
+ 7 files changed, 621 insertions(+), 11 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw87390.yaml
+ create mode 100644 sound/soc/codecs/aw87390.c
+ create mode 100644 sound/soc/codecs/aw87390.h
 
-> 
->> I've checked mscc,vsc7514-switch. What I see is, the architecture is an SoC
->> with a switch component. Since the switch component is not designed to be a
->> standalone IC, the MDIO bus of the SoC could just as well be used without
->> the need to design an MDIO controller specific to the switch component, to
->> manage the PHYs. So I see this switch as just another case of a switch
->> without an internal MDIO bus.
-> 
-> Well, we need to clarify the semantics of an "internal" MDIO bus.
-> 
-> I would say most discrete chips with DSA switches have this SoC-style
-> architecture, with separate address spaces for the switching IP, MDIO
-> bus, GPIO controller, IRQ controllers, temperature sensors etc (see
-> "mscc,vsc7512-switch" which is like "mscc,vsc7514-switch", but it is
-> controlled over SPIO instead of MMIO). The dt-bindings of most DSA
-> switches may or may not reflect that discrete chip organization. Those
-> drivers and dt-bindings could be reimagined so that DSA is not the
-> top-level driver.
-> 
-> Yet, I would argue that it's wrong to say that because it isn't an OF
-> child of the switch, the MDIO bus of the VSC7514 is not internal in the
-> same way that the Realtek MDIO bus is internal. The switch ports are
-> connected to internal PHYs on this MDIO bus, and there aren't PHYs on
-> this MDIO bus that go to other MACs than the switch ports. So, the
-> VSC7514 MDIO bus could legally be called the internal MDIO bus of the
-> switch, even if there isn't a parent/child relationship between them.
 
-Good point, I had believed that the management interface of all of the PHYs
-being connected to the MDIO bus - which is not part of the switching IP
-address space - would be enough to classify the MDIO bus as non-internal.
+base-commit: 708283abf896dd4853e673cc8cba70acaf9bf4ea
+-- 
+2.41.0
 
-However, the architecture of separate address spaces for the switching IP
-and MDIO bus is used on any type of IC with the switching feature.
-Therefore, this characteristic cannot be used to distinguish whether an
-MDIO bus is of a switch.
-
-What we can refer to to classify an internal MDIO bus is by confirming the
-data interface of all PHYs on the MDIO bus is connected to the switch port
-MACs, as you have pointed out here.
-
-Because the architecture of separate address spaces for the switching IP
-and MDIO bus is used on any type of IC with the switching feature, it can
-differ by driver how the MDIO bus is defined on the dt-bindings. So we
-can't make universal bindings of an internal MDIO bus of a switch that
-apply to every switch.
-
-So, the correct approach is to define things under the switch-specific
-schema which is affine to the driver, as you have already pointed out.
-Which schemas to define what will of course differ.
-
-> 
-> So, what I'm disagreeing with is your insistence to correlate your
-> problem with internal MDIO buses. The way in which the problem is
-> formulated dictates what problem gets solved, and the problem is not
-> correctly formulated here. It is purely about ds->slave_mii_bus and its
-> driver-defined OF presence/absence. It is a DSA-specific binding aspect
-> which not even all DSA switches inherit, let alone bindings outside DSA.
-
-Got it.
-
-> 
->>> For switches in the second category, it all depends on the way in which
->>> the driver finds the node for of_mdiobus_register().
->>
->> Ok, so some drivers require the mdio child node. Some require it and the
->> compatible property with a certain string.
->>
->> MDIO controlled Realtek switches do not need the compatible property under
->> the mdio child node. There're no compatible strings to make a distinction
->> between the SMI and MDIO controlled switches so the best we can do is keep
->> it the way it currently is. Define realtek,smi-mdio as a compatible string
->> but keep the compatible property optional. I did state this on my reply to
->> patch 3 but still received reviewed-bys regardless.
-> 
-> Yes, because.... [1]
-> 
->>> Having identified all switches which make some sort of use of
->>> ds->slave_mii_bus, the rule would sound like this:
->>>
->>> 1. If the schema is that of (need to replace this with compatible
->>>      strings, I'm too lazy for that):
->>>
->>>      - ksz_switch_ops
->>>      - mv88e6060_switch_ops
->>>      - lan9303_switch_ops
->>>      - rtl8365mb_switch_ops_mdio
->>>      - b53_switch_ops
->>>      - vsc73xx_ds_ops
->>>      - mv88e6xxx
->>>      - qca8k
->>>
->>>      and we have an "mdio" child, then phylink bindings are mandatory on user ports.
->>>
->>> 2. If the schema is that of gswip_mdio and we have a child node of "lantiq,xrx200-mdio",
->>>      then phylink bindings are mandatory on user ports (I haven't checked,
->>>      but it might be that the "lantiq,xrx200-mdio" child is mandatory, and
->>>      in that case, this goes to category 4 below).
->>>
->>> 3. If the schema is that of realtek_smi_setup_mdio and we have a child node of
->>>      "realtek,smi-mdio", then phylink bindings are mandatory on user ports
->>>      (same comment about the child MDIO note maybe being mandatory).
->>>
->>> 4. If the switch didn't appear in the above set of rules, then phylink
->>>      bindings are unconditionally mandatory on user ports.
->>>
->>> We don't care at all what the drivers that don't use ds->slave_mii_bus
->>> do with the "mdio" child node. It doesn't change the fact that their
->>> user ports can't have missing phylink bindings.
->>
->> I partially agree. I say, for the switches without an internal MDIO bus,
->> invalidate the mdio child node, and enforce the phylink bindings on the
->> user ports. Such as mscc,vsc7514-switch and nxp,sja1105x. For nxp,sja1110x,
->> invalidate the mdio child node, and enforce the phylink bindings on the
->> user ports if the mdios property is used.
-> 
-> Why "if the mdios property is used" and not "always"? :-/
-> 
-> To say it again: because the sja1105 driver does not use ds->slave_mii_bus,
-> it can make no sense of dt-bindings on user ports which lack phylink properties.
-> So they are *always* needed. The "mdios" property changes nothing in that regard.
-
-Got it.
-
-> 
->>
->> I'd like to add this before I conclude. The way I understand dt-bindings is
->> that a binding does not have to translate to an action on the driver.
->> Documenting bindings for the sole purpose of describing hardware is a valid
->> case.
-> 
-> [1] ...this. The SMI-controlled and MDIO-controlled Realtek switches are
-> otherwise the same, right? So why would they have different dt-bindings?
-
-Honestly, I'm wondering the answer to this as well. For some reason, when
-probing the SMI controlled Realtek switches, instead of just letting
-dsa_switch_setup() populate ds->slave_mii_bus, on realtek_smi_setup_mdio()
-on realtek-smi.c:
-
-- priv->slave_mii_bus is allocated.
-- mdio_np = of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
-- priv->slave_mii_bus->dev.of_node = mdio_np;
-- ds->slave_mii_bus = priv->slave_mii_bus;
-
-> 
->> For example, currently, the MT753X DSA subdriver won't, in any way,
->> register the bus OF-based. Still, the mdio property for the switches which
->> this driver controls can be documented because the internal mdio bus does
->> exist on the hardware.
-> 
-> It can, but the whole point is: if ds->slave_mii_bus gains an OF presence,
-> then it loses its core functionality (that user ports can lack phylink
-> bindings). This is the entire essence of what this discussion should capture.
-
-Understood.
-
-> 
->>
->> So I'd like to keep the mdio property valid for the switches which their
->> drivers can only register non-OF-based ds->slave_mii_bus.
->>
->> In conclusion, what to do:
->>
->> - Define "the mdio property" and "the enforcement of phylink bindings for
->>    user ports if mdio property is used" on ethernet-switch.yaml.
->>      - Invalidate the mdio property on the switches without an internal MDIO
->>        bus.
->> - Define "the enforcement of phylink bindings for user ports" on the
->>    switches without an internal MDIO bus.
->> - Require "the mdio property" for the switches which their driver requires
->>    it to function.
->> - Require "the mdio property" and "the compatible string of the mdio
->>    property" for the switches which their driver requires them to function.
->>
->> There's no 1:1 switch to switch compatible string relation, as seen on
->> Realtek switches so I'll have to figure that out as I go.
->>
->> I'm open to your comments to this mail but the gap between discussion and
->> end result has widened a lot on this patch series so I'd like to first
->> offload this conversation by preparing v2 with what I said here and discuss
->> further there.
-> 
-> Honestly, from my side, a verbal comment in the dt-bindings document
-> would have been just fine, as long as it is truthful to the reality it
-> describes.
-> 
-> You wanted to over-complicate things with an actual schema validation,
-> and then hooking onto things that are unrelated with the phenomenon that
-> needs to be captured (like the "mdio" child node, without explicit
-> regard to whether it is the ds->slave_mii_bus or not).
-> 
-> It's not about internal MDIO buses in general, it's about whether those
-> internal MDIO buses are used in ds->slave_mii_bus, and their OF
-> presence/absence! That is absolutely driver-specific and I would only
-> expect a driver-specific way of enforcing it. I didn't say it's not
-> hard, and I didn't ask to enforce it, either.
-
-OK, I believe we're on the same page now, I will start working on properly
-enforcing this.
-
-Arınç
