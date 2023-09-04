@@ -2,200 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAEC07916FC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 14:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0E72791717
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 14:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352935AbjIDMRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 08:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46692 "EHLO
+        id S230412AbjIDMay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 08:30:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239857AbjIDMRu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 08:17:50 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E925BCC4
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 05:17:46 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99c4923195dso216986566b.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 05:17:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693829865; x=1694434665; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gko8S92UwKDakAjbzjQZ/sNmZx2tljlr3QwwqTw8dTw=;
-        b=W2GXEiDFQbd2GOMkvDMGoTl+GiYFNT3SRJctr/7EJ1/Y3/ZkJIfTgeo2n4pJonqVLk
-         Ef69Q4t0KCIsTTymrdW7smnSPnpY6amAjAVnhcmRjo4ihJlNcfrpXDRWWfMcMxSwfFCx
-         oOVPNUL0xXsycQo12PTWkBpXiLbcWWXjjlKzeeDOgoqGnYqTSLOG2apRdHlWSF35MF7z
-         9bqFkf6t7vLVz4bbqXZcb51mURoN1haimw/WaPaUNJpJLHDUZFHR5vZB2ZlWTJVvddmK
-         cDnFlCUA6VNLilOOL3iOI3DO/qd1aFuWf5FFFJnG1/QxCeIu6TcMntCNyW6uA0dA0H7v
-         aBfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693829865; x=1694434665;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gko8S92UwKDakAjbzjQZ/sNmZx2tljlr3QwwqTw8dTw=;
-        b=Wa2ErrGOOK5ntInr++bqmAhzJUeqyIh77VDkTpV3Z5fMhOiEdLw4LGFl8aAyJYOcxg
-         uXUH3U6qVNuS94vzgEVuR5UMgqK0ixAXyVITZC/E378gZPS/oKhAUbaRmJVwJPtIgxKI
-         +NUjfFldfVUOnjgs3DltoQwgO+tNFbvBRppgohw4v73qFLWEHFN0BbMGF0CMHu9g2TTE
-         /80HcWpINn5lzpDP4mB4F63Xei7+8T8DFzeIhmB1ZRQJGP1ZCX0SKHDy4MwMk7CuaYnQ
-         mZrgE2qpcMPwQF29+jLhTwM2zkCUmRG9OkvJ5O1ZHzhYwRA8SNtRZzEsmz4yZJ0ojolE
-         sswA==
-X-Gm-Message-State: AOJu0YwbMUpM3Uqr/T6iwOACQy6x9LMVpW3ibiEjMhvwxxlMtTWZr40l
-        Il2xVtBqMKKXIEu8Qmo8p/29Mw==
-X-Google-Smtp-Source: AGHT+IEmnk0VrCde/RpXcTnJqLWkg8HN3gX0oQSn7T9cZd+70d9xlLecPSPO4/immxGbAA26YFLECg==
-X-Received: by 2002:a17:906:1011:b0:9a5:a44a:86f3 with SMTP id 17-20020a170906101100b009a5a44a86f3mr8193805ejm.25.1693829865436;
-        Mon, 04 Sep 2023 05:17:45 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id oz13-20020a170906cd0d00b00992f309cfe8sm6117340ejb.178.2023.09.04.05.17.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 05:17:45 -0700 (PDT)
-Message-ID: <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
-Date:   Mon, 4 Sep 2023 14:17:43 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
+        with ESMTP id S229534AbjIDMax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 08:30:53 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 936801A7;
+        Mon,  4 Sep 2023 05:30:50 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 313B2615E2;
+        Mon,  4 Sep 2023 12:30:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFEB9C433C8;
+        Mon,  4 Sep 2023 12:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693830649;
+        bh=RqwxV2g+EMhwDdFUCKxB6yJM/Of18ZC1KHGmZLecgyg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Rf8Rp8WMghLUrPsZXpPmwO5qAAAmw7r+iOTyexQ3ZrqARtvOP1UwO9Yt/Jso7Z/Re
+         icXXJCzdQCIelgTdwT7Nej/MCuJjVNe2EUlyOiffPOH+gv68zj4N6b9YZQS6/kFsAI
+         ILjsx5otxrcrKRE94+a4voWYIfjAHID5TmXhQvrQ2nohpr0i0z2Dg6j5YkKgx13jPO
+         dkKc+DoXft+NZX05/R8qcfE6Ibcv/ti+FpACkL5fN6FMpAS2lc4K5WewIgRGnx3Az4
+         TSY/fJk8UzFgMs0vxmU4N6NJxkvUrxjvTPz8UNXfywRa3hyFVUZZ3pyp0ElXOvyn3/
+         dGY1b6/eUViyA==
+Date:   Mon, 4 Sep 2023 13:30:41 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     wangweidong.a@awinic.com, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
+        herve.codina@bootlin.com, shumingf@realtek.com,
+        rdunlap@infradead.org, 13916275206@139.com, ryans.lee@analog.com,
+        linus.walleij@linaro.org, ckeepax@opensource.cirrus.com,
+        yijiangtao@awinic.com, liweilei@awinic.com, colin.i.king@gmail.com,
+        trix@redhat.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        zhangjianming@awinic.com
 Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw87390 amplifier driver
-Content-Language: en-US
-To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-        rf@opensource.cirrus.com, herve.codina@bootlin.com,
-        shumingf@realtek.com, rdunlap@infradead.org, 13916275206@139.com,
-        ryans.lee@analog.com, linus.walleij@linaro.org,
-        ckeepax@opensource.cirrus.com, yijiangtao@awinic.com,
-        liweilei@awinic.com, colin.i.king@gmail.com, trix@redhat.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     zhangjianming@awinic.com
+Message-ID: <598febde-429e-4319-98d4-4306a7f8bfe8@sirena.org.uk>
 References: <20230904114621.4457-1-wangweidong.a@awinic.com>
  <20230904114621.4457-4-wangweidong.a@awinic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230904114621.4457-4-wangweidong.a@awinic.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+ <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="x+c3Ap+3u5fsANoA"
+Content-Disposition: inline
+In-Reply-To: <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
+X-Cookie: Immanuel doesn't pun, he Kant.
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
-> From: Weidong Wang <wangweidong.a@awinic.com>
-> 
 
-...
+--x+c3Ap+3u5fsANoA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +static void aw87390_parse_channel_dt(struct aw87390 *aw87390)
-> +{
-> +	struct aw_device *aw_dev = aw87390->aw_pa;
-> +	struct device_node *np = aw_dev->dev->of_node;
-> +	u32 channel_value = AW87390_DEV_DEFAULT_CH;
-> +
-> +	of_property_read_u32(np, "sound-channel", &channel_value);
+On Mon, Sep 04, 2023 at 02:17:43PM +0200, Krzysztof Kozlowski wrote:
+> On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
 
-NAK, there is no such property. It seems you already sneaked in such for
-other codecs. Please do not repeat such patterns of work.
+> > +	ret = regmap_read(regmap, AW87390_ID_REG, &chip_id);
+> > +	if (ret) {
+> > +		dev_err(&i2c->dev, "%s read chipid error. ret = %d\n", __func__, ret);
+> > +		return ret;
+> > +	}
 
-That's also why I expect full DTS example, not some reduced pieces.
+> > +	if (chip_id != AW87390_CHIP_ID) {
+> > +		dev_err(&i2c->dev, "unsupported device\n");
 
-> +
-> +	aw_dev->channel = channel_value;
-> +}
-> +
-> +static int aw87390_init(struct aw87390 **aw87390, struct i2c_client *i2c, struct regmap *regmap)
-> +{
-> +	struct aw_device *aw_dev;
-> +	unsigned int chip_id;
-> +	int ret;
-> +
-> +	/* read chip id */
-> +	ret = regmap_read(regmap, AW87390_ID_REG, &chip_id);
-> +	if (ret) {
-> +		dev_err(&i2c->dev, "%s read chipid error. ret = %d\n", __func__, ret);
-> +		return ret;
-> +	}
-> +
-> +	if (chip_id != AW87390_CHIP_ID) {
-> +		dev_err(&i2c->dev, "unsupported device\n");
+> Why? The compatible tells it cannot be anything else.
 
-Why? The compatible tells it cannot be anything else.
+This is very common good practice, as well as validating communication
+with the device it verifies that the device descrbied in the DT is the
+one that is actually present in the system.  This might create hassle
+down the line if there is a backwards compatible upgrade but that's much
+rarer for this class of hardware than cut'n'pasting of device trees.
 
-> +		return -ENXIO;
-> +	}
-> +
-> +	dev_info(&i2c->dev, "chip id = 0x%x\n", chip_id);
-> +
-> +	aw_dev = devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
-> +	if (!aw_dev)
-> +		return -ENOMEM;
-> +
-> +	(*aw87390)->aw_pa = aw_dev;
-> +	aw_dev->i2c = i2c;
-> +	aw_dev->regmap = regmap;
-> +	aw_dev->dev = &i2c->dev;
-> +	aw_dev->chip_id = AW87390_CHIP_ID;
-> +	aw_dev->acf = NULL;
-> +	aw_dev->prof_info.prof_desc = NULL;
-> +	aw_dev->prof_info.count = 0;
-> +	aw_dev->prof_info.prof_type = AW88395_DEV_NONE_TYPE_ID;
-> +	aw_dev->channel = AW87390_DEV_DEFAULT_CH;
-> +	aw_dev->fw_status = AW87390_DEV_FW_FAILED;
-> +	aw_dev->prof_index = AW87390_INIT_PROFILE;
-> +	aw_dev->status = AW87390_DEV_PW_OFF;
-> +
-> +	aw87390_parse_channel_dt(*aw87390);
-> +
-> +	return ret;
-> +}
-> +
-> +static int aw87390_i2c_probe(struct i2c_client *i2c)
-> +{
-> +	struct aw87390 *aw87390;
-> +	int ret;
-> +
-> +	ret = i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C);
-> +	if (!ret)
-> +		return dev_err_probe(&i2c->dev, -ENXIO, "check_functionality failed\n");
-> +
-> +	aw87390 = devm_kzalloc(&i2c->dev, sizeof(*aw87390), GFP_KERNEL);
-> +	if (!aw87390)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&aw87390->lock);
-> +
-> +	i2c_set_clientdata(i2c, aw87390);
-> +
-> +	aw87390->regmap = devm_regmap_init_i2c(i2c, &aw87390_remap_config);
-> +	if (IS_ERR(aw87390->regmap)) {
-> +		ret = PTR_ERR(aw87390->regmap);
+--x+c3Ap+3u5fsANoA
+Content-Type: application/pgp-signature; name="signature.asc"
 
-ret is not needed here, so just:
-return dev_err_probe()
+-----BEGIN PGP SIGNATURE-----
 
-> +		return dev_err_probe(&i2c->dev, ret, "failed to init regmap: %d\n", ret);
-> +	}
-> +
-> +	/* aw pa init */
-> +	ret = aw87390_init(&aw87390, i2c, aw87390->regmap);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(aw87390->regmap, AW87390_ID_REG, AW87390_SOFT_RESET_VALUE);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_snd_soc_register_component(&i2c->dev,
-> +				&soc_codec_dev_aw87390, NULL, 0);
-> +	if (ret)
-> +		dev_err(&i2c->dev, "failed to register aw87390: %d\n", ret);
-> +
-> +	return ret;
-> +}
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmT1zfEACgkQJNaLcl1U
+h9A+8Af9GepgJeENtK4ITVlnoOj/k1G9hqOW1/oZbk1m0bHzN5cGdLzP2fbfXmiJ
+sItWYtATMZ6k8Jj3+m+3oN/Zb5LbJFgj2dn545Ta8ErJioNS58furbRG0tkvR4vt
+AsJaIUwPRVEQNhPWGVPDp4q6El1mcbsOZgxMvQD5ljIbRugC3OvzVdsin3M/Y/IL
+61QrFvP/9bfq5mP3ieLRcg8BkdZZnR4lLWGx6LFjIVedoFZ5aRrritfT/Hw8MLwC
+lFpu2yPXej0/WSRc0qcjhoeHm2fxKtYwHJCl61ZfnWUj/iV3ojpFlpeFCfyL92Xk
+bdGwVDZjPvpzWApR9AX5FkKvk+vH5w==
+=r39d
+-----END PGP SIGNATURE-----
 
-
-Best regards,
-Krzysztof
-
+--x+c3Ap+3u5fsANoA--
