@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED81A791A89
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 17:23:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D5B791AE9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 17:57:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242358AbjIDPXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 11:23:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57938 "EHLO
+        id S231611AbjIDP5P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 11:57:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231740AbjIDPXM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 11:23:12 -0400
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4847CCDA
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 08:22:45 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qdBPB-00058K-P3; Mon, 04 Sep 2023 17:22:21 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
+        with ESMTP id S236342AbjIDP5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 11:57:14 -0400
+Received: from relay01.th.seeweb.it (relay01.th.seeweb.it [5.144.164.162])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84FCFCE0;
+        Mon,  4 Sep 2023 08:57:09 -0700 (PDT)
+Received: from v0.lan (bband-dyn191.178-41-225.t-com.sk [178.41.225.191])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 97AFF218726;
-        Mon,  4 Sep 2023 15:22:20 +0000 (UTC)
-Date:   Mon, 4 Sep 2023 17:22:20 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Srinivas Goud <srinivas.goud@amd.com>
-Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
-        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        p.zabel@pengutronix.de, git@amd.com, michal.simek@amd.com,
-        linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, appana.durga.rao@xilinx.com,
-        naga.sureshkumar.relli@xilinx.com
-Subject: Re: [PATCH v4 3/3] can: xilinx_can: Add ethtool stats interface for
- ECC errors
-Message-ID: <20230904-unbiased-putt-a1a2919b02c7-mkl@pengutronix.de>
-References: <1693557645-2728466-1-git-send-email-srinivas.goud@amd.com>
- <1693557645-2728466-4-git-send-email-srinivas.goud@amd.com>
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r1.th.seeweb.it (Postfix) with ESMTPSA id AAA411F8A1;
+        Mon,  4 Sep 2023 17:57:04 +0200 (CEST)
+From:   Martin Botka <martin.botka@somainline.org>
+Subject: [PATCH 0/6] cpufreq for H616
+Date:   Mon, 04 Sep 2023 17:57:00 +0200
+Message-Id: <20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="f5dk3iq2kvsfzpmv"
-Content-Disposition: inline
-In-Reply-To: <1693557645-2728466-4-git-send-email-srinivas.goud@amd.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEz+9WQC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI2MDCyMT3eSC0rSi1ELdDDNDM10DY3ODlDTTxNREYxMloJaCotS0zAqwcdG
+ xtbUAEKOQaV4AAAA=
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Yangtao Li <tiny.windzz@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org,
+        Andre Przywara <andre.przywara@arm.com>,
+        Alan Ma <tech@biqu3d.com>,
+        Luke Harrison <bttuniversity@biqu3d.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Rogerio Goncalves <rogerlz@gmail.com>,
+        Martin Botka <martin@biqu3d.com>,
+        Martin Botka <martin.botka@somainline.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1693843024; l=1631;
+ i=martin.botka@somainline.org; s=20230811; h=from:subject:message-id;
+ bh=U/3GSrY/Da5OP4VIOMN9GgEPvGCUXEMC8rHSLoKA2Rw=;
+ b=MtvEf/mtaOylRcOzTcUjowCffBGTFqT6Srlp77NJ9QYCFml/mSDTBkShMH7IpjvA6TZsxu7K+
+ RVNodzZtuxfBZ3LhwAyAp68ANZQnuFvystXI1eMcjZPUvCL16DzlGJw
+X-Developer-Key: i=martin.botka@somainline.org; a=ed25519;
+ pk=aTCd3jmwU8GrJidWg3DSKLpdVMcpFzXzCSLXLR6NtWU=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
@@ -60,144 +72,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---f5dk3iq2kvsfzpmv
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series adds support for cpufreq on H616 SoC.
 
-On 01.09.2023 14:10:45, Srinivas Goud wrote:
-> Add ethtool stats interface for reading FIFO 1bit/2bit
-> ECC errors information.
->=20
-> Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
-> ---
-> Changes in v4:
-> None
->=20
-> Changes in v3:
-> None
->=20
-> Changes in v2:
-> Add ethtool stats interface
->=20
->  drivers/net/can/xilinx_can.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->=20
-> diff --git a/drivers/net/can/xilinx_can.c b/drivers/net/can/xilinx_can.c
-> index 798b32b..50e0c9d 100644
-> --- a/drivers/net/can/xilinx_can.c
-> +++ b/drivers/net/can/xilinx_can.c
-> @@ -219,6 +219,7 @@ struct xcan_devtype_data {
->   * @transceiver:		Optional pointer to associated CAN transceiver
->   * @rstc:			Pointer to reset control
->   * @ecc_enable:			ECC enable flag
-> + * @stats_lock:			Lock for synchronizing hardware stats
+H616 is bit interesting. It has SoC versions that have different
+frequencies and uV but some versions have the same version ID and
+we have to check the SoC revision to differentiate between them.
 
-To be precise: The lock is about the access of the 64 bit variables not
-about the hardware access:
-"Lock for accessing the "ecc_*bit_*fifo_cnt" stats"
+This is done via SMCCC. Thus the exporting of the symbol.
 
->   * @ecc_2bit_rxfifo_cnt:	RXFIFO 2bit ECC count
->   * @ecc_1bit_rxfifo_cnt:	RXFIFO 1bit ECC count
->   * @ecc_2bit_txolfifo_cnt:	TXOLFIFO 2bit ECC count
-> @@ -245,6 +246,7 @@ struct xcan_priv {
->  	struct phy *transceiver;
->  	struct reset_control *rstc;
->  	bool ecc_enable;
-> +	spinlock_t stats_lock; /* Lock for synchronizing hardware stats */
->  	u64 ecc_2bit_rxfifo_cnt;
->  	u64 ecc_1bit_rxfifo_cnt;
->  	u64 ecc_2bit_txolfifo_cnt;
-> @@ -1164,6 +1166,9 @@ static void xcan_err_interrupt(struct net_device *n=
-dev, u32 isr)
-> =20
->  	if (priv->ecc_enable) {
->  		u32 reg_ecc;
-> +		unsigned long flags;
+Please note that this series depends on my THS series which
+depends on my SID series.
 
-nitpick: move the flags before the reg_ecc.
+I also have not enabled the cpufreq on any devices to minimize
+the series dependencies and I did test it only on CB1 where
+it works.
 
-> +
-> +		spin_lock_irqsave(&priv->stats_lock, flags);
-> =20
->  		reg_ecc =3D priv->read_reg(priv, XCAN_RXFIFO_ECC_OFFSET);
->  		if (isr & XCAN_IXR_E2BERX_MASK) {
-> @@ -1212,6 +1217,8 @@ static void xcan_err_interrupt(struct net_device *n=
-dev, u32 isr)
->  		 */
->  		priv->write_reg(priv, XCAN_ECC_CFG_OFFSET, XCAN_ECC_CFG_REECRX_MASK |
->  				XCAN_ECC_CFG_REECTXOL_MASK | XCAN_ECC_CFG_REECTXTL_MASK);
-> +
-> +		spin_unlock_irqrestore(&priv->stats_lock, flags);
->  	}
-> =20
->  	if (cf.can_id) {
-> @@ -1639,6 +1646,23 @@ static int xcan_get_auto_tdcv(const struct net_dev=
-ice *ndev, u32 *tdcv)
->  	return 0;
->  }
-> =20
-> +static void ethtool_get_ethtool_stats(struct net_device *ndev,
-> +				      struct ethtool_stats *stats, u64 *data)
-> +{
-> +	struct xcan_priv *priv =3D netdev_priv(ndev);
-> +	unsigned long flags;
-> +	int i =3D 0;
-> +
-> +	spin_lock_irqsave(&priv->stats_lock, flags);
-> +	data[i++] =3D priv->ecc_2bit_rxfifo_cnt;
-> +	data[i++] =3D priv->ecc_1bit_rxfifo_cnt;
-> +	data[i++] =3D priv->ecc_2bit_txolfifo_cnt;
-> +	data[i++] =3D priv->ecc_1bit_txolfifo_cnt;
-> +	data[i++] =3D priv->ecc_2bit_txtlfifo_cnt;
-> +	data[i++] =3D priv->ecc_1bit_txtlfifo_cnt;
-> +	spin_unlock_irqrestore(&priv->stats_lock, flags);
-> +}
-> +
->  static const struct net_device_ops xcan_netdev_ops =3D {
->  	.ndo_open	=3D xcan_open,
->  	.ndo_stop	=3D xcan_close,
-> @@ -1648,6 +1672,7 @@ static const struct net_device_ops xcan_netdev_ops =
-=3D {
-> =20
->  static const struct ethtool_ops xcan_ethtool_ops =3D {
->  	.get_ts_info =3D ethtool_op_get_ts_info,
-> +	.get_ethtool_stats =3D ethtool_get_ethtool_stats,
+Cheers,
+Martin
 
-You also should implement .get_strings and .get_sset_count. Have you
-tested your patch with "ethtool -S can0"?
+Signed-off-by: Martin Botka <martin.botka@somainline.org>
+---
+Martin Botka (6):
+      firmware: smccc: Export revision soc_id function
+      cpufreq: dt-platdev: Blocklist allwinner,h616 SoC
+      dt-bindings: opp: Add compatible for H616
+      cpufreq: sun50i: Add H616 support
+      arm64: dts: allwinner: h616: Add CPU Operating Performance Points table
+      arm64: dts: allwinner: h616: Add cooling cells
 
->  };
-> =20
->  /**
-> --=20
-> 2.1.1
->=20
->=20
+ .../opp/allwinner,sun50i-h6-operating-points.yaml  |   6 +-
+ .../boot/dts/allwinner/sun50i-h616-cpu-opp.dtsi    | 129 ++++++++++++++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi     |   8 ++
+ drivers/cpufreq/cpufreq-dt-platdev.c               |   1 +
+ drivers/cpufreq/sun50i-cpufreq-nvmem.c             | 149 +++++++++++++++++----
+ drivers/firmware/smccc/smccc.c                     |   1 +
+ 6 files changed, 270 insertions(+), 24 deletions(-)
+---
+base-commit: a384547b9656aa2c98f643037b0e940476c41f51
+change-id: 20230824-cpufreq-h616-0370df5aea34
 
-regards,
-Marc
+Best regards,
+-- 
+Martin Botka <martin.botka@somainline.org>
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---f5dk3iq2kvsfzpmv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmT19ikACgkQvlAcSiqK
-BOjKKwf/XqBeS89ieZVoVrZnmkm/eKWi/h6aE4Oueilc6bRGc0NImrOHvmfFNfad
-ZZ/uNxK8Na5EafNjeI/Blh4H1Pk1KsxuK3wrb8YmrrajrZZwbIhQF+/wRMHW+ops
-CY34A+HZN/dsMseSLORDKTrvexxI0iKqbdLfnBwvVh0gAfEIxsUPzqWp+/Qz9DeW
-b2CHj8te4m7Ovk/KMjlJuipZWwkgjSL6d5D++Z8uTjQWHm0yNvCeCA6CpRTDdkwY
-Ckbb6qDi1I5h37X9JCtOOOgl1TQBaDZeGl6eBGuJDtIUNawL5naLDcPe4BoKyul1
-Xu4th/hAOGXGYrhclCMIjjT4rUAwfg==
-=FRQF
------END PGP SIGNATURE-----
-
---f5dk3iq2kvsfzpmv--
