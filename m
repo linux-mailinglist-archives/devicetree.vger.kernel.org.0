@@ -2,68 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5472791071
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 05:40:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52447791076
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 05:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234870AbjIDDkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 23:40:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39592 "EHLO
+        id S238171AbjIDDmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 23:42:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234835AbjIDDkK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 23:40:10 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C17CC5;
-        Sun,  3 Sep 2023 20:40:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=hXUbh5d+HTdbIDee5Rp2Uc9DuvaiGM208tOO58TGX14=; b=Q0
-        IMESgljKx/McE8gf027GvjBG1ahk0QfBYjsBrHNYyvDKta6BFLIiaC2c+sP1mL2DVbzBCvSEDEKYf
-        HFgwRhGCuTpqFniBUdblZgvo7jhG7aPEwZqBn3bYq9IwttHtQdcursIlzprjeX5MFSiQB5zuP6mOq
-        iEMn7GGDi9cEbfg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qd0R7-005iGt-TA; Mon, 04 Sep 2023 05:39:37 +0200
-Date:   Mon, 4 Sep 2023 05:39:37 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc:     Lubomir Rintel <lkundrak@v3.sk>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Haojian Zhuang <haojian.zhuang@gmail.com>,
-        Samuel Ortiz <sameo@linux.intel.com>,
-        Qing Xu <qingx@marvell.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v2] arm: marvell: Fix maxium->maxim typo in brownstone dts
-Message-ID: <8a24ae3c-30b4-489f-8f28-288f9c853d80@lunn.ch>
-References: <20230826-brownstone-typo-fix-v2-1-1f8196e9a2e3@skole.hr>
+        with ESMTP id S234654AbjIDDmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 23:42:44 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21A9FC5;
+        Sun,  3 Sep 2023 20:42:41 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3842h4gH007357;
+        Mon, 4 Sep 2023 03:42:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=O+/XS3FO6CJQ1q+RWnw2Sk5jsuw5ukIgy+7tMylPBMg=;
+ b=J1m75aG3z2Rz+VFjMCs/oUR8j5fW7DB9SPHANa1ZxLPSyZcTNCM3NsyDr88b8sKqG8W6
+ 7FGlsmKNq9MSNkZqSIuYRUixRId+N+t9mnJR5NEZKF88RelwygvRb1p+wAyxftYU6+xF
+ /gkPLswI838fsOuelJU3WLXqGZNh0otCO1h5L87RilUPFLuOM+vuaEZPg6V1Hh/Rz1Bg
+ YCU6nRp2DpWuK24kluFXFDJTrmoJV3MTp3Auk+me03P6fv3hoUXRleXH1M2YYZJ5nrzu
+ u3wyxkLNj6LKgei37fYboXT45t3B7bJ7D+NiO70iVCiGtM2HYWNFAVp3nBJx5K4j939I mg== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3suvn6jfsr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 04 Sep 2023 03:42:30 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3843gTAW028984
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 4 Sep 2023 03:42:29 GMT
+Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Sun, 3 Sep
+ 2023 20:42:25 -0700
+Message-ID: <dc7d8303-078d-4bd5-5e06-1e656f23d07a@quicinc.com>
+Date:   Mon, 4 Sep 2023 09:12:20 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230826-brownstone-typo-fix-v2-1-1f8196e9a2e3@skole.hr>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: Add IDs for IPQ8174
+ family
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC:     Robert Marko <robimarko@gmail.com>, <agross@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20230901181041.1538999-1-robimarko@gmail.com>
+ <28b7934f-f041-ad7b-d44a-3bed70aaf100@quicinc.com>
+ <CAA8EJproMKoW=ue3dDCW88gkLyYqWQFvbmKdkoqXb3dVOL45dw@mail.gmail.com>
+From:   Kathiravan T <quic_kathirav@quicinc.com>
+In-Reply-To: <CAA8EJproMKoW=ue3dDCW88gkLyYqWQFvbmKdkoqXb3dVOL45dw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4FeLDyeKMif2HymWS17ddb_esjdhbkUF
+X-Proofpoint-GUID: 4FeLDyeKMif2HymWS17ddb_esjdhbkUF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-03_21,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 adultscore=0 mlxscore=0
+ malwarescore=0 clxscore=1015 mlxlogscore=942 phishscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309040033
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 26, 2023 at 01:15:52PM +0200, Duje Mihanović wrote:
-> Fix an obvious spelling error in the PMIC compatible in the MMP2
-> Brownstone DTS file.
-> 
-> Without this, the PMIC would never probe.
-> 
-> Fixes: 58f1193e6210 ("mfd: max8925: Add dts")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On 9/2/2023 9:05 PM, Dmitry Baryshkov wrote:
+> On Sat, 2 Sept 2023 at 17:43, Kathiravan T <quic_kathirav@quicinc.com> wrote:
+>>
+>> On 9/1/2023 11:40 PM, Robert Marko wrote:
+>>> IPQ8174 (Oak) family is part of the IPQ8074 family, but the ID-s for it
+>>> are missing so lets add them.
+>>>
+>>> Signed-off-by: Robert Marko <robimarko@gmail.com>
+>>> ---
+>>>    include/dt-bindings/arm/qcom,ids.h | 3 +++
+>>>    1 file changed, 3 insertions(+)
+>>
+>> Reviewed-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Is there a chance of you using the full family name in your git tags?
 
-    Andrew
+
+Sure, Going forward will use the full family name..
+
+
+Thanks,
+
+>
+>>> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+>>> index be12e1dd1f38..d2b84a308fde 100644
+>>> --- a/include/dt-bindings/arm/qcom,ids.h
+>>> +++ b/include/dt-bindings/arm/qcom,ids.h
+>>> @@ -203,6 +203,9 @@
+>>>    #define QCOM_ID_SM6125                      394
+>>>    #define QCOM_ID_IPQ8070A            395
+>>>    #define QCOM_ID_IPQ8071A            396
+>>> +#define QCOM_ID_IPQ8172                      397
+>>> +#define QCOM_ID_IPQ8173                      398
+>>> +#define QCOM_ID_IPQ8174                      399
+>>>    #define QCOM_ID_IPQ6018                     402
+>>>    #define QCOM_ID_IPQ6028                     403
+>>>    #define QCOM_ID_SDM429W                     416
+>
+>
