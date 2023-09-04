@@ -2,203 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57564790F69
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 02:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75F1790FE5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 04:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350072AbjIDA5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 20:57:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46696 "EHLO
+        id S1350845AbjIDCGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 3 Sep 2023 22:06:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350066AbjIDA5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 20:57:35 -0400
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BFD690
-        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 17:57:29 -0700 (PDT)
-Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-31f4950333cso164962f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 03 Sep 2023 17:57:29 -0700 (PDT)
+        with ESMTP id S1350762AbjIDCGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 22:06:53 -0400
+Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9D410C
+        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 19:06:49 -0700 (PDT)
+Received: by mail-qt1-x832.google.com with SMTP id d75a77b69052e-411f5dd7912so7648251cf.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Sep 2023 19:06:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693789048; x=1694393848; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F4NiAX8nddOFb+q5MdSSZTo4J0GfTd0YP95tRAyVWeE=;
-        b=xw3hl6gLjolM1XU5AfcMXPIFNSvIf8DiOHTgSVwT7DubcasI0YbHjxehXd2O98955d
-         vgPHNVK7P0odIcxB+3JLJmTXRUbb6BQ0JPlEIAv4AANp0+0CRcxMZdpImYovjn3zi/mu
-         x70F790qKxoE4O2n9bLqb8+kqHbCB2fsBkja6yQ9KUjV78T0cXeW2v5CwXzgrJOsW3B+
-         EUte9yneVBIXA7Yu0sa4IkQ56KUbhvqxO0O51FL2iSFyRZHG9tt6B6x7R2Nnqrppo+w7
-         aXWxnPF3AJ9v5byxAyIUNMZQAE1jnc9fKjpODYpjkToyWRcVxlTvTPw9VGRUJxr35Zny
-         ER/Q==
+        d=gmail.com; s=20221208; t=1693793208; x=1694398008; darn=vger.kernel.org;
+        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QEzM+W+OEmpHfEeEaAySJoGydPuqhtpau7d10u77fwA=;
+        b=Kf3xlvTikq/uRKIDynJTD5LfdtJtaND2aUUP7fzD3Wns94ODWeqFnYko+US1/JQtmi
+         SSSLED1IJhkOnf4Hm++rmgh8+e6GkhrL+quBrcJBbOfdZWyMfE7KvAeSUdSqNUmN5CDG
+         F/YpAy2aj4/QMt39tumLXHf81nDqepMmubpJ14rT2g8zpB6c8QIJ8faN+/yMaLVDQ342
+         OQxAs3Vmd2hnZ0W4JxWdUyfOBlalfd2Gqm/VYVtttWq9JWnij2Y3Tr4cMi5Hf+UsBjxr
+         27fLiEI8Dm1+bS/ssSbAc08tJQuQDfPWL1uRMDwiv6PlND3sfvfsfNMDcwrCTVtiZcGC
+         kM1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693789048; x=1694393848;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1693793208; x=1694398008;
+        h=to:subject:message-id:date:from:reply-to:mime-version
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F4NiAX8nddOFb+q5MdSSZTo4J0GfTd0YP95tRAyVWeE=;
-        b=YACD/+m4NID41oaVSHA17nhv4FmePKPQRh6FnsmjhYKyQM8/36Aw22nIo4fk9NVU4E
-         KnSubZOH4YTQBJ+/sDohiSj+HglpAs/ugIcrhGlVcKT/TCTOhADnPtjbSrRkmHsS+yuW
-         kuigPDfpFO8NECIr+BfI60Mvy2UOKXj/CFmE82YVaucitYRZ0LCqJmioZ3HI1VrgCg9l
-         BfNmvoxud+rPHXJsGlr9Sg3o3ae2M8oT4O6Shi9lNXfVr8vRhMWzOShCkjuo7YKyVxNU
-         6r1pbaOm99nqkDtAMnbuNqoNErfVr1AuEOgIOoelZWFGkuMMWCOH7xgp1nAqy4aTljn9
-         jZHg==
-X-Gm-Message-State: AOJu0YwGiZ/8FJ3Wne5/GcpDJsi/Jm8GiZmtlbTgT25T5n/kBIG+3Bmq
-        FhcyFKKPZbPyBV5bQcjhmzXWuw==
-X-Google-Smtp-Source: AGHT+IFU+VFezB3qmW7ae+FJNxTsbAodLWMouwX29XWEuFb3b0PM47kSPr0KPSt6Bfebz16hQOqWEg==
-X-Received: by 2002:adf:ef91:0:b0:317:69d2:35be with SMTP id d17-20020adfef91000000b0031769d235bemr6522208wro.30.1693789047727;
-        Sun, 03 Sep 2023 17:57:27 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id k33-20020a05600c1ca100b0040210a27e29sm12824297wms.32.2023.09.03.17.57.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Sep 2023 17:57:27 -0700 (PDT)
-Message-ID: <c6f4b93c-aa80-e250-d06b-6b3bdfbfc64b@linaro.org>
-Date:   Mon, 4 Sep 2023 01:57:26 +0100
+        bh=QEzM+W+OEmpHfEeEaAySJoGydPuqhtpau7d10u77fwA=;
+        b=Pz4dUOkzPAnJMLsjgsx4JDfgKGn786X9/aN9kRibIVSU7LwxssZd5odvUGLdLkrKUd
+         29QuaakRXdKEobsaummGTEeuuYY5SqmD7IaccHMGfzteTrjvvT/wrwnySKxLzgBb75bt
+         yaW3nY8EiZymke0TQdyA9eV/g/6EBOU8OW5hb2CMNjDUbdXPr/i1USez0ikXmP5FFakX
+         UiC7WdxoyWg8rKGevAYPE8NEr8wgEPGbn87dAAmDwjYngE2LJWAKix7xwd/sbTvukJIb
+         YQUY3BRnc+XGAOu0HVuhc/LuGluyLePV/jg3PtYkVPkrpk2EkyPqhzL+ZtL3hPR/cnat
+         SF4w==
+X-Gm-Message-State: AOJu0Yxeq6nMwBbcmTr5e/8xPkjaP14BQcdCDpvwHNPF47SqguCCTzZN
+        tqnRT2INfzfIKk/JyUAuycQAYAeAX8KAMXE6E9s=
+X-Google-Smtp-Source: AGHT+IHfruWQC12OZTBDVvii1fOAymwQSAxlHmaMJY41lK0KMf3ugUllLO2kVC+Px4736wr5sVgmA67A42Z9cD81DfY=
+X-Received: by 2002:a05:622a:148:b0:412:f12:239f with SMTP id
+ v8-20020a05622a014800b004120f12239fmr12778775qtw.5.1693793208188; Sun, 03 Sep
+ 2023 19:06:48 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v3] arm64: dts: ipq5018: Correct uart1_pins pinconf
-Content-Language: en-US
-To:     Ziyang Huang <hzyitc@outlook.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, quic_gokulsri@quicinc.com,
-        quic_srichara@quicinc.com, quic_varada@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <b6fa8337-a5c0-172a-a41b-ab18de3f4f72@linaro.org>
- <TYZPR01MB555673C1E12A27DA8109DBEAC9EAA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <TYZPR01MB555673C1E12A27DA8109DBEAC9EAA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Received: by 2002:a05:622a:1708:b0:404:12aa:90d7 with HTTP; Sun, 3 Sep 2023
+ 19:06:47 -0700 (PDT)
+Reply-To: ava014708@gmail.com
+From:   "Dr. Ava Smith" <profbencarter@gmail.com>
+Date:   Mon, 4 Sep 2023 03:06:47 +0100
+Message-ID: <CAOmSZDbHSwrc=ns8D0hDnNLyicgZfjYjFqThJU=rr76+wggyUQ@mail.gmail.com>
+Subject: Hi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
+        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS,UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/09/2023 14:02, Ziyang Huang wrote:
-> 在 2023/9/1 23:04, Bryan O'Donoghue 写道:
->> <...>
->>
->> The assignment of pins 20 and 21 to blsp1_uart1 is not correct.
->>
->> The blspX_uartY in pinctrl should match what is in the dtsi so 
->> assigning pins_a above to blsp1_uart1 is not right. The dts name and 
->> pinctrl name should be the same.
->>
->> Your console is on blsp0_uart0.
->>
->> https://git.codelinaro.org/clo/qsdk/oss/boot/u-boot-2016/-/blob/5343739b4070bcec2fecd72f758c16adc31a3083/arch/arm/dts/ipq5018-mp03.3.dts#L33
->>
->> So roughly speaking
->>
->> arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->>
->> aliases {
->>      serial0 = &blsp0_uart0;
->> };
->>
->> chosen {
->>      stdout-path = "serial0:115200n8";
->> };
->>
->> &blsp0_uart0 {
->>          pinctrl-0 = <&uart0_pins>;
->>          pinctrl-names = "default";
->>          status = "okay";
->> };
->>
->>
->> arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>
->> blsp0_uart0: serial@78af000
->>
->> either that or  blsp0_uart1 for pins28 and pins29 - you seem to 
->> indicate pins_1 => blsp0_uart0.
->>
->> The two roots of the problem are
->>
->> 1. Mislabeling of the uart block in the dtsi
->> 2. Invalid miscongiruation of pins for that misnamed block
->>
->> The fix should be
->>
->> 1. Fix the labeling of uart in the dtsi
->> 2. Decide on which pins gpio20, gpio21 ? are the right ones to configure
->>
->> I thought you said in a previous email if you changed pins gpio28 and 
->> gpio29 that the UART would fail if so that implies blsp0_uart1.
->>
->> Either way the pinctrl and dts should agree.
->>
->> ---
->> bod
->>
-> 
-> No, please read my commit message carefully.
-> 
-> The Y of pinctrl is the index of pinmux config. So it can't be used in 
-> the serial node definition.
-> 
-> Please note that the physical port of first serial is configurable. It 
-> can use gpio20, gpio21 or/and gpio28,29. All of these pins are for the 
-> first serial.
-> 
-> Let's take the second serial as an example. It has 3 configurable 
-> physical port groups - "blsp1_uart0" (pinconfig name, use GPIO 
-> 10,11,12,13), "blsp1_uart1" (gpio 31,32,33,34), "blsp1_uart2" (gpio 
-> 23,24,25,26).
-> 
-> But the dts name of the second serial definition is "blsp1_uart2". 
-> Because it the second serial of the first BLSP block.
-> 
-> Same logic. The dts name of the first serial definition is 
-> "blsp1_uart1". Because it the first serial of the first BLSP block.
-> 
-> I think I need to introduce the architecture of these SoC. It has two 
-> BLSP block. Each BLSP block has several uart port.
-> 
-> So the dts name of serial contains the BLSP index and the serial index 
-> inside BLSP. But pinconf name doesn't care about it. So it use global 
-> index. And due to the physical ports are configurable, it need pinmux 
-> index.
-> 
-> The equation will be like this:
-> 
-> dts name of serial definition: "blspX_uartY"
-> pinconf name: "blspU_uartV"
-> U = (uart_number_inside_each_blsp * (X - 1)) + (Y - 1)
-
-I've checked the documentation for this chip.
-
-gpio20, gpio21 = blsp0_uart0
-gpio28, gpio29 = blsp0_uart0
-
-These pins are muxed to UART0, I agree, the u-boot dts also indicates 
-this also.
-
-If we open the documentation further we see
-
-0x78AF000 = BLSP1_BLSP_UART0
-0x79b0000 = BLSP1_BLSP_UART1
-
-So for starters the dtsi has the _wrong_ label.
-
-Here/anseo
-
-grep uart0: arch/arm64/boot/dts/qcom/*
-arch/arm64/boot/dts/qcom/ipq5332.dtsi:		blsp1_uart0: serial@78af000 {
-arch/arm64/boot/dts/qcom/ipq9574.dtsi:		blsp1_uart0: serial@78af000 {
-
-That's how that label ought to be the main hint something is askance is 
-assigning a pin named "blsp0_uart0" to a dts entry named "blsp1_uart1".
-
-Please update the label in your next revision.
-
----
-bod
+-- 
+Hello Dear,
+how are you today? I hope you are fine
+My name is Dr. Ava Smith, I Am an English and French nationality.
+I will give you pictures and more details about me as soon as I hear from you
+Thanks
+Ava
