@@ -2,167 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D6679132D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 10:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8388B791361
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 10:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350555AbjIDITz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 04:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38956 "EHLO
+        id S231658AbjIDI05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 04:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbjIDITz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 04:19:55 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 493F4FD
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 01:19:51 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9a2a4a5472dso438597766b.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 01:19:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1693815590; x=1694420390; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4SqCPlUACmzuR897Jw/2/k1NSEPnLNm8tSMQQYrDWME=;
-        b=sCURjlIECG75NChDPAFgJtYUliKIkBlB5lHdZQsZ03Nz7U91Yl93d2PkC76eTQNQk/
-         y0slJPkhPVfgWNEAicJ2mbdQB0OnQhmscuPWuv5ky5okEf7xFID7n7oroxJrHDZBO0sq
-         3FsW5kDCZHGOb/9qkERTek0aJxrchdLiTtpNQL3rvxN9b9O2xGfZePu1+Jc6RufwuLlR
-         DbA1aI0VzXXBXSQjBtLWvcSjhj7kDTNZFpHDoGX2YKkyIs43Wxps+LCXh7azfN0k0Zqr
-         qHNbnaC0hiDziup3gy7Oq38fzCrnTcnC7TJyESBQxbhLMtqlj7Kj0IJPDvwzP2V4Ly4B
-         n45w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693815590; x=1694420390;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=4SqCPlUACmzuR897Jw/2/k1NSEPnLNm8tSMQQYrDWME=;
-        b=BqgXzzJ3x/hjzjFZIeJmwY0/AI16X3EuI5h4yDphbywidTwVlL2bwpj30D16gUsBOG
-         Ra1dPMNCYwazGmUx3C/vzWXAWVV9s2+Gzz7H5JvWJNR8o3PRZmf/T7quHT3VDHfV/jlw
-         86897plP8GTK0Y32wDl9co6lMsV3MAc/0ZEl8bWtpK5Dq6VEq/u58f+uLYrWvnyWDcVF
-         VsFLP87Ypyyu1Q+DVgDGoUlHWVAASbKRQom/1UMg5Xz93Afg8tQwOB6Q5p091l5SpzAT
-         m67PE50awyGf9GamOtgkDdGabmvmslrNq+E98q0JPSj5clreqJLZHnwwDlEtxhCt8M7o
-         nS0g==
-X-Gm-Message-State: AOJu0Yyuc2jAXzZ3CShgUyoGCJCswAr+A8rIhvzoR1EHrs6OXOYjcYTY
-        zgCfa63akbGdeI1iutetwkURdWNIxtJLsOfnzWAkgA==
-X-Google-Smtp-Source: AGHT+IFdJLo8jZ3klMSQBPs2qIeMjRwZjzw3rOcgPXXM7tKUsmLDAMqJLlkkomMSQn9J8vCqgpfIIg==
-X-Received: by 2002:a17:906:76c9:b0:9a1:fc1e:19b8 with SMTP id q9-20020a17090676c900b009a1fc1e19b8mr9748830ejn.29.1693815589734;
-        Mon, 04 Sep 2023 01:19:49 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id le18-20020a170906ae1200b0099bcbaa242asm5757648ejb.9.2023.09.04.01.19.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 01:19:49 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 04 Sep 2023 10:19:49 +0200
-Message-Id: <CV9ZIJFTEBQE.1035ODUQD2B78@otso>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 11/11] arm64: dts: qcom: qcm6490: Add device-tree for
- Fairphone 5
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Conor Dooley" <conor+dt@kernel.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "Viresh Kumar" <viresh.kumar@linaro.org>
-X-Mailer: aerc 0.15.2
-References: <20230830-fp5-initial-v1-0-5a954519bbad@fairphone.com>
- <20230830-fp5-initial-v1-11-5a954519bbad@fairphone.com>
- <72c2fd33-613b-49be-b394-0663f459f0c5@linaro.org>
- <CV7NGPVH4U0W.PN2NOIO19Z7U@otso>
- <5f05c76e-e74e-4954-a729-3ed2a1d33605@linaro.org>
-In-Reply-To: <5f05c76e-e74e-4954-a729-3ed2a1d33605@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231621AbjIDI04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 04:26:56 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3ADB8D8;
+        Mon,  4 Sep 2023 01:26:53 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00D9711FB;
+        Mon,  4 Sep 2023 01:27:31 -0700 (PDT)
+Received: from [10.57.91.85] (unknown [10.57.91.85])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A0633F8A4;
+        Mon,  4 Sep 2023 01:26:50 -0700 (PDT)
+Message-ID: <59bf237d-1645-8c44-94f2-72a0cf229595@arm.com>
+Date:   Mon, 4 Sep 2023 09:26:49 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.15.0
+Subject: Re: [RFC PATCH v3 1/7] dt-bindings: arm: coresight-tmc: Add
+ "memory-region" property
+To:     Linu Cherian <lcherian@marvell.com>, mike.leach@linaro.org,
+        james.clark@arm.com, leo.yan@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, sgoutham@marvell.com,
+        gcherian@marvell.com
+References: <20230904050548.28047-1-lcherian@marvell.com>
+ <20230904050548.28047-2-lcherian@marvell.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20230904050548.28047-2-lcherian@marvell.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat Sep 2, 2023 at 1:45 PM CEST, Konrad Dybcio wrote:
-> On 1.09.2023 16:27, Luca Weiss wrote:
-> > On Wed Aug 30, 2023 at 12:45 PM CEST, Konrad Dybcio wrote:
-> >> On 30.08.2023 11:58, Luca Weiss wrote:
-> >>> Add device tree for the Fairphone 5 smartphone which is based on
-> >>> the QCM6490 SoC.
-> >>>
-> >>> Supported features are, as of now:
-> >>> * Bluetooth
-> >>> * Debug UART
-> >>> * Display via simplefb
-> >>> * Flash/torch LED
-> >>> * Flip cover sensor
-> >>> * Power & volume buttons
-> >>> * RTC
-> >>> * SD card
-> >>> * USB
-> >>> * Various plumbing like regulators, i2c, spi, etc
-> >>>
-> >>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> >>> ---
-> [...]
->
-> >>> +	panel: panel {
-> >>> +		compatible =3D "boe,rm692e5";
-> >> Undocumented compatbile
-> >=20
-> > Not quite sure how to document this properly. This dummy panel node is
-> > used for the simplefb/simpledrm so that user space can get panel
-> > dimensions already.
-> >=20
-> > This approach of a separate panel node was apparently preferred when th=
-e
-> > functionality was upstreamed but of course as can be seen this panel
-> > node is very barebones where many properties are not present which woul=
-d
-> > be needed with the full panel driver (once it's working).
-> >=20
-> > Also for example for the bindings I think width-mm and height-mm won't
-> > be needed anymore since that information will be provided by the driver
-> > then.
-> >=20
-> > Please let me know how/where to document this.
-> As discussed offline, the workflow here would be to oneOf: (wink)
->
-> - wait until there's a proper driver and create a binding based on
->   what you know (because you have a working driver and can test it)
->   is necessary for it to function
->
-> - create the binding for that display panel + driver ic combo in
->   advance and pray that whatever you put there will be enough when
->   you take upon yourself to write the driver
->
-> I'd suggest dropping these properties (or keeping them downstream or
-> something) for now, the display should not be terribly hard to bring
-> up properly, let's hope that can be done soon!
+On 04/09/2023 06:05, Linu Cherian wrote:
+> memory-region 0: Reserved trace buffer memory
+> 
+>    TMC ETR: When available, use this reserved memory region for
+>    trace data capture. Same region is used for trace data
+>    retention after a panic or watchdog reset.
+> 
+>    TMC ETF: When available, use this reserved memory region for
+>    trace data retention synced from internal SRAM after a panic or
+>    watchdog reset.
+> 
+> memory-region 1: Reserved meta data memory
+> 
+>    TMC ETR, ETF: When available, use this memory for register
+>    snapshot retention synced from hardware registers after a panic
+>    or watchdog reset.
 
-Yeah that sounds like a solution for now.
+Instead of having to use a number to map the memory regions, could
+we use
 
-But for other devices I hope something can be figured out so that these
-dummy panels can go into upstream dts. Otherwise the functionality added
-in the simplefb driver is kinda useless for pure upstream if noone's
-allowed to have incomplete bindings for providing the panel dimensions.
+memory-region-names property to describe the index ? That way it
+is much easier to read and is less error prone.
 
->
-> > I'm aware, but will work on this later since it's not useful without
-> > USB-C role switching and working audio.
-> You can still peek at it in like sysfs or so, but up to you.
+Names could be something like:
 
-Yes, later ;)
+tmc-reserved-trace
+tmc-reserved-metadata
 
-Regards
-Luca
+Suzuki
 
->
->
-> Konrad
+> 
+> Signed-off-by: Linu Cherian <lcherian@marvell.com>
+> ---
+>   .../devicetree/bindings/arm/arm,coresight-tmc.yaml  | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> index cb8dceaca70e..dce54978554a 100644
+> --- a/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/arm,coresight-tmc.yaml
+> @@ -101,6 +101,17 @@ properties:
+>             and ETF configurations.
+>           $ref: /schemas/graph.yaml#/properties/port
+>   
+> +   memory-region:
+> +    items:
+> +      - description: Reserved trace buffer memory for ETR and ETF sinks.
+> +        For ETR, this reserved memory region is used for trace data capture.
+> +        Same region is used for trace data retention as well after a panic
+> +        or watchdog reset.
+> +        For ETF, this reserved memory region is used for retention of trace
+> +        data synced from internal SRAM after a panic or watchdog reset.
+> +
+> +      - description: Reserved meta data memory. Used for ETR and ETF sinks.
+> +
+>   required:
+>     - compatible
+>     - reg
+> @@ -115,6 +126,8 @@ examples:
+>       etr@20070000 {
+>           compatible = "arm,coresight-tmc", "arm,primecell";
+>           reg = <0x20070000 0x1000>;
+> +        memory-region = <&etr_trace_mem_reserved>,
+> +                       <&etr_mdata_mem_reserved>;
+>   
+>           clocks = <&oscclk6a>;
+>           clock-names = "apb_pclk";
 
