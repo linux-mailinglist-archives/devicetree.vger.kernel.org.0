@@ -2,80 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F53B791080
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 05:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 882D1791092
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 06:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243777AbjIDD62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 3 Sep 2023 23:58:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60836 "EHLO
+        id S1351656AbjIDE0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 00:26:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34400 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234314AbjIDD61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 3 Sep 2023 23:58:27 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23596F0;
-        Sun,  3 Sep 2023 20:58:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=2KBGelxkdzNuQU0Ky+c2hpiqJmz+JVyJzOKJWp+DAoI=; b=JK7d7wURf+3CeXkX3TTYlcHQFw
-        uidB737ooOB0sB5VTDtfjQbkKs+gtqertZBlwv7xdFewzztw273IBco86ao2Vbr5/bOFR9Z1In6jC
-        l+fTeSitIXbk4AQeFK70VhA4cnX2Jss2Y0N6jmDY3iiE4VJ52nBXcH6JOH+i53elYotA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qd0iz-005iJX-Sr; Mon, 04 Sep 2023 05:58:05 +0200
-Date:   Mon, 4 Sep 2023 05:58:05 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
-Cc:     "christophe.jaillet@wanadoo.fr" <christophe.jaillet@wanadoo.fr>,
-        "simon.horman@corigine.com" <simon.horman@corigine.com>,
-        "Verdun, Jean-Marie" <verdun@hpe.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 4/5] net: hpe: Add GXP UMAC Driver
-Message-ID: <729dcda6-2d2c-4054-a570-17cdf6e4e57b@lunn.ch>
-References: <20230816215220.114118-1-nick.hawkins@hpe.com>
- <20230816215220.114118-5-nick.hawkins@hpe.com>
- <01e96219-4f0c-4259-9398-bc2e6bc1794f@lunn.ch>
- <88B3833C-19FB-4E4C-A398-E7EF3143ED02@hpe.com>
- <1b8058e1-6e7f-4a4a-a191-09a9b8010e0a@lunn.ch>
- <CF9BD927-B788-4554-B246-D5CC6D06258F@hpe.com>
- <befbee5a-7b11-4948-a837-6311dd4d7276@lunn.ch>
- <DM4PR84MB1927E85827B5450F1952E58A88E3A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
+        with ESMTP id S245095AbjIDE0M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 00:26:12 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9C3109
+        for <devicetree@vger.kernel.org>; Sun,  3 Sep 2023 21:26:08 -0700 (PDT)
+Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20230904042605epoutp036cbeb9d8d4067ba110bb16ff14eb0ba8~Bl4zIDcmB0044800448epoutp03Q
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 04:26:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20230904042605epoutp036cbeb9d8d4067ba110bb16ff14eb0ba8~Bl4zIDcmB0044800448epoutp03Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1693801565;
+        bh=OSy5o9yX85w5RQCPwAL+giA9DSBSLLh+5TEdeJJKcaw=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=qdwTjDwnRRG9qoat/FV5LIRKBX+R5642zisXHExBBMisnjamDOKzjufC7mgXvggVX
+         zEJ1PoAHu6l+l4nQjWaTkGCdYoC6roeJUaaRRyV4nDO0ljyUIIeqKii0brpMoN8FD6
+         2T4ChNwIn+2KeCX6RmJeARo/33FbOUO1TTafHNQU=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20230904042605epcas1p10333c599d6327646552f97e5a7d53e17~Bl4ynce752952229522epcas1p1g;
+        Mon,  4 Sep 2023 04:26:05 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.36.134]) by
+        epsnrtp3.localdomain (Postfix) with ESMTP id 4RfFv00XnXz4x9Q7; Mon,  4 Sep
+        2023 04:26:04 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        BB.D5.10012.B5C55F46; Mon,  4 Sep 2023 13:26:03 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
+        20230904042603epcas1p40f732a0ac7871371126d229945cc0849~Bl4xG1t4P1347613476epcas1p4T;
+        Mon,  4 Sep 2023 04:26:03 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230904042603epsmtrp24abae42dd979b0b36f1d697465a82f59~Bl4xEIMdD0179101791epsmtrp2G;
+        Mon,  4 Sep 2023 04:26:03 +0000 (GMT)
+X-AuditID: b6c32a35-50fff7000000271c-0a-64f55c5b8c57
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        06.1A.08742.B5C55F46; Mon,  4 Sep 2023 13:26:03 +0900 (KST)
+Received: from mediaserver.. (unknown [10.113.111.131]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230904042603epsmtip1dd79326365cf6747ba5b3ce823db0b4f~Bl4w0Rkjl1856018560epsmtip1e;
+        Mon,  4 Sep 2023 04:26:03 +0000 (GMT)
+From:   Kwanghoon Son <k.son@samsung.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jszhang@kernel.org, guoren@kernel.org, wefu@redhat.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, inki.dae@samsung.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [RFC PATCH 0/3] Introduce reset driver for T-HEAD th1520 SoC
+Date:   Mon,  4 Sep 2023 04:25:56 +0000
+Message-Id: <20230904042559.2322997-1-k.son@samsung.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM4PR84MB1927E85827B5450F1952E58A88E3A@DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmgW50zNcUg2VfbSy2/p7FbrFm7zkm
+        i/lHzrFavNjbyGIx6f4EFovmY+vZLPpePGS2uLxrDpvFts8tbBZ3751gsXh5uYfZom0Wv0Xr
+        3iPsFi37p7A48Hm8efmSxeNwxxd2j02rOtk87lzbw+axeUm9R/9fA4/3+66yefRtWcXocan5
+        OrvH501yAVxR2TYZqYkpqUUKqXnJ+SmZeem2St7B8c7xpmYGhrqGlhbmSgp5ibmptkouPgG6
+        bpk5QPcrKZQl5pQChQISi4uV9O1sivJLS1IVMvKLS2yVUgtScgpMC/SKE3OLS/PS9fJSS6wM
+        DQyMTIEKE7IzfnxtZi+YwF1xfelPpgbGExxdjJwcEgImEoueXmPqYuTiEBLYwSjR0D2fFSQh
+        JPCJUeLDOheIxDdGiesLf7DBdCx5/40NIrGXUWLazWvsEM4bRonlZ/Yyg1SxCahLLGlbC5YQ
+        EfjPKPHmTysTSIJZIF7ixLVzYEXCAq4SLz//BdvHIqAqMfPjOhYQm1fAQuJE6zRmiHXyEvsP
+        nmWGiAtKnJz5hAVijrxE89bZzCALJASWckhc2j6NEaLBReLZxY3sELawxKvjW6BsKYnP7/ZC
+        /ZAtcfQjjF0icX3WIlYI21hi/9LJQIdyAC3QlFi/Sx8irCix8/dcRoi9fBLvvvawgpRICPBK
+        dLQJQZjyErc6yyGqRSXOPP0INdxDYv+d+UyQEI2VWP7iH9MERvlZSJ6ZheSZWQh7FzAyr2IU
+        Sy0ozk1PLTYsMIRHanJ+7iZGcBLWMt3BOPHtB71DjEwcjIcYJTiYlUR45bQ/pQjxpiRWVqUW
+        5ccXleakFh9iNAUG70RmKdHkfGAeyCuJNzSxNDAxMzI2sTA0M1QS52V+1JsiJJCeWJKanZpa
+        kFoE08fEwSnVwHRt0lvbAyqlVV8uqXy4Oe3m2mVS22Wav62xVCkx18vqFRA4F7mznFejZqft
+        GiUre6vMM8b3ldl8+q4XS9741pIQwfKQo336vWu+K9aJbDtc3GD59tyBZI7a+9FBOWwHfIsV
+        lBlm3KjLjr359uBtba4jL/KahU8nXb98allV3j55h3d/fx14fbqm8dw77dU7Ii+d25jxz3el
+        nbQPo0S8V8tzrisR8g0snAcvMq7p8Fw7Uft18J+9m9r383If4DzBlnUiYF29ybGyFQ/mVpfF
+        bgjVzdeOD59/UbHFy+b82U0aLwy8Y19kq/BVtW6f92irxL5wp78/ugstYvYL7nFZcr8j8ZxE
+        Q/v3Pz8/iWyRVFNiKc5INNRiLipOBAA1tvkVSwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrBLMWRmVeSWpSXmKPExsWy7bCSnG50zNcUg7ObZS22/p7FbrFm7zkm
+        i/lHzrFavNjbyGIx6f4EFovmY+vZLPpePGS2uLxrDpvFts8tbBZ3751gsXh5uYfZom0Wv0Xr
+        3iPsFi37p7A48Hm8efmSxeNwxxd2j02rOtk87lzbw+axeUm9R/9fA4/3+66yefRtWcXocan5
+        OrvH501yAVxRXDYpqTmZZalF+nYJXBk/vjazF0zgrri+9CdTA+MJji5GTg4JAROJJe+/sXUx
+        cnEICexmlJh64gUzREJUouNyI2MXIweQLSxx+HAxRM0rRon5fa2sIDVsAuoSS9rWsoMkRAR6
+        mSQ+fFzCBJJgFkiU2PL1NdggYQFXiZef/4I1sAioSsz8uI4FxOYVsJA40ToNapm8xP6DZ5kh
+        4oISJ2c+YYGYIy/RvHU28wRGvllIUrOQpBYwMq1ilEwtKM5Nzy02LDDMSy3XK07MLS7NS9dL
+        zs/dxAiODC3NHYzbV33QO8TIxMF4iFGCg1lJhFdO+1OKEG9KYmVValF+fFFpTmrxIUZpDhYl
+        cV7xF70pQgLpiSWp2ampBalFMFkmDk6pBqb2xrVVWXNap+3Z9u/+hnVxIQWKiSWnzXXvL5Ji
+        O12lI7Qm68G81TcKrh2J5V1Wev+TxDPmg4pccgd2Xy/+dS0yy0rI7nLFmi+yh5Y5KCql6/w8
+        yqp1wdY8QZ3zypaUBbOmFxj/ZDpyl2f771lfxHcqhhXtczrutlmhcEtBlZXMrdyTMhbFPFvc
+        losmbVllH881MzZFMuHorNMxBQ+6XvfeizkWXH1UX1En00X1m4x0nNShCfEa6xojTnfW2mm2
+        3Pbfv31FYpbZm6arjFyT1xrcvKu4qlz17Zdcy2dXJgdMsF0lUXrYmNU1VPeC2JHwTzHZq9Rt
+        ePLPBN93l/lqsuPBt5sxXgVXL/3jMTW/YqrEUpyRaKjFXFScCAAQxPSu+wIAAA==
+X-CMS-MailID: 20230904042603epcas1p40f732a0ac7871371126d229945cc0849
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20230904042603epcas1p40f732a0ac7871371126d229945cc0849
+References: <CGME20230904042603epcas1p40f732a0ac7871371126d229945cc0849@epcas1p4.samsung.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> I have been trying to figure out how exactly I can translate the current code
-> over to using the page pool api over the past week. It seems like it is quiet
-> a complex change. As the driver seems to be keeping up with our
-> performance requirements would it be acceptable to mark this as a
+This patchset adds initial support for reset driver.
+Register information is from vendor kernel [1].
+I sent an e-mail to get permission the original author,
+but there was no answer. So I upload patch since it has GPL license.
 
-Its not just performance. Using well debugged and shared core code
-means less bugs in your driver. It makes maintenance simpler since
-there are more people who understand the page pool code than what you
-have in your driver and it makes your driver more like other drivers.
+This patch also can be tested with watchdog simply with 
+```
+		watchdog0: watchdog@ffefc30000 {
+			compatible = "snps,dw-wdt";
+			reg = <0xff 0xefc30000 0x0 0x1000>;
+			interrupts = <24 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&osc>;
+			resets = <&rst TH1520_RESET_WDT0>;
+			status = "disabled";
+		};
+```
 
-So overall you will end up with a better quality driver by adapting
-the page pool code.
+[1] https://github.com/revyos/thead-kernel.git
 
-    Andrew
+Kwanghoon Son (3):
+  dt-bindings: reset: Document th1520 reset control
+  reset: Add th1520 reset driver support
+  riscv: dts: Add th1520 reset device tree
+
+ .../bindings/reset/thead,th1520-reset.yaml    |  39 +++++++
+ .../dts/thead/th1520-lichee-module-4a.dtsi    |   4 +
+ arch/riscv/boot/dts/thead/th1520.dtsi         |   8 ++
+ drivers/reset/Kconfig                         |  10 ++
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-th1520.c                  | 109 ++++++++++++++++++
+ include/dt-bindings/reset/th1520-reset.h      |   9 ++
+ 7 files changed, 180 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+ create mode 100644 drivers/reset/reset-th1520.c
+ create mode 100644 include/dt-bindings/reset/th1520-reset.h
+
+-- 
+2.34.1
+
