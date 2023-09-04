@@ -2,115 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0A857914FD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 11:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE85E79159A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 12:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235978AbjIDJuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 05:50:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47718 "EHLO
+        id S1348602AbjIDKRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 06:17:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232600AbjIDJuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 05:50:16 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85A24AB;
-        Mon,  4 Sep 2023 02:50:12 -0700 (PDT)
-X-UUID: 6d7e64264b0811eea33bb35ae8d461a2-20230904
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=pDcVkHt0PgOyyDOoExjE+TeYuugV9WTIUjuLd6MGDyg=;
-        b=GxzsFXWXOCMWi9zBfbTxmpjGlIEVIEiwC1jgnV33zN5mhITHMwT+ReosEUxbq5ZLvxj9NYb2bdjabCqTEH1hjr4cGZ4n3jDbTtjrGk47GW6lVmblmtWiZtVy9+bMXwoVsZrYB+XuXnA+Wer/lYoIMX7zUBho1T2eSbO2z3tQA04=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:50857094-f2af-43a7-8087-da395980b8a2,IP:0,U
-        RL:0,TC:0,Content:3,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:3
-X-CID-META: VersionHash:0ad78a4,CLOUDID:1b691720-33fd-4aaa-bb43-d3fd68d9d5ae,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 6d7e64264b0811eea33bb35ae8d461a2-20230904
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1406635621; Mon, 04 Sep 2023 17:50:06 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 4 Sep 2023 17:50:05 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Mon, 4 Sep 2023 17:50:03 +0800
-Message-ID: <00f0a1cf-6246-92e9-13b0-cf31bb292a94@mediatek.com>
-Date:   Mon, 4 Sep 2023 17:50:01 +0800
+        with ESMTP id S232168AbjIDKRw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 06:17:52 -0400
+X-Greylist: delayed 599 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 04 Sep 2023 03:17:44 PDT
+Received: from mx-8.mail.web4u.cz (smtp7.web4u.cz [81.91.87.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C6CCD3;
+        Mon,  4 Sep 2023 03:17:44 -0700 (PDT)
+Received: from mx-8.mail.web4u.cz (localhost [127.0.0.1])
+        by mx-8.mail.web4u.cz (Postfix) with ESMTP id E00411FF76C;
+        Mon,  4 Sep 2023 12:00:03 +0200 (CEST)
+Received: from baree.pikron.com (unknown [78.102.109.231])
+        (Authenticated sender: ppisa@pikron.com)
+        by mx-8.mail.web4u.cz (Postfix) with ESMTPA id C96701FF1C9;
+        Mon,  4 Sep 2023 12:00:02 +0200 (CEST)
+From:   Pavel Pisa <pisa@cmp.felk.cvut.cz>
+To:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        Lizhi Hou <lizhi.hou@amd.com>, Rob Herring <robh@kernel.org>
+Cc:     Pavel Pisa <pisa@cmp.felk.cvut.cz>
+Subject: [PATCH] of: overlay: Fix of_overlay_fdt_apply prototype when !CONFIG_OF_OVERLAY
+Date:   Mon,  4 Sep 2023 12:00:02 +0200
+Message-Id: <20230904100002.7913-1-pisa@cmp.felk.cvut.cz>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8395-evk
- board
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
- <e2e35d4d-7853-fccc-28c2-b8ecf309d6ec@linaro.org>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <e2e35d4d-7853-fccc-28c2-b8ecf309d6ec@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-W4U-Auth: 9133a192d60015118c58877a0c2c4b7bfee0d0a3
+X-Spam-Status: No, score=0.0 required=5.0 tests=BAYES_20,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The of_overlay_fdt_apply has been changed but when CONFIG_OF_OVERLAY
+support is not configured then old stub prototype is declared
+by of.h header.
 
+Signed-off-by: Pavel Pisa <pisa@cmp.felk.cvut.cz>
+---
+ include/linux/of.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-On 9/4/23 17:33, Krzysztof Kozlowski wrote:
-> 	
-> 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
-> 
-> On 04/09/2023 11:20, Macpaul Lin wrote:
->> Add bindings for the MediaTek mt8395-evk board.
->> The mt8359-evk board is also named as "Genio 1200-EVK".
->> MT8195 and MT8395 are the same family series SoC could share
-> 
-> How can be the same and have different numbers? You sill need dedicated
-> compatible.
-> 
+diff --git a/include/linux/of.h b/include/linux/of.h
+index ed679819c279..6a9ddf20e79a 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -1676,8 +1676,8 @@ int of_overlay_notifier_unregister(struct notifier_block *nb);
+ 
+ #else
+ 
+-static inline int of_overlay_fdt_apply(void *overlay_fdt, u32 overlay_fdt_size,
+-				       int *ovcs_id)
++static inline int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
++				       int *ovcs_id, struct device_node *target_base)
+ {
+ 	return -ENOTSUPP;
+ }
+-- 
+2.39.2
 
-The SoCs mt8195 and mt8395 are designed for different market application 
-and physical characteristics, using different efuse values for 
-distinction. The booting flow and configurations are controllered by the 
-boot loaders, firmware, and TF-A. Therefore, the part numbers and 
-procurement channels are different. The detail information of these 
-efuse values is proprietary, so I cant disclose it futher. Hence the 
-most of peripheral drivers and base address are almost the same.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
-Best regards,
-Macpaul Lin
