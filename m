@@ -2,116 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6AFF7917B8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 15:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA00A7917EF
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 15:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352953AbjIDNCj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 09:02:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60746 "EHLO
+        id S1345482AbjIDNWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 09:22:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235799AbjIDNCj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 09:02:39 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F64CCD
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 06:02:35 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-52a1ce52ef4so1986906a12.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 06:02:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693832553; x=1694437353; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sP6V8ajHXT6yKSyr1cE3yHGsY7qGhYago0ofT+AYzCU=;
-        b=oIPBCOkpynMe4LI3jrgaBTVWEUniZCs3hag/J8B24KzWxfknrl9FCot0wHBkR3C75c
-         wXkZBNIW5t44y/61RIZHi0BQFo0GFdLbIKfzOZVSkgR+hnw3ooWceobVq/LQJadHM1q0
-         1aMo5tpRJO9M5hXgd6J8UTAjdB+VuCboWFGsRLr91t5ovVWwWkChvNGVQpu2qbiAqSBV
-         B3kuoPg08+WCydeUo8zE6tyeOC7xqWnhrgVsH0MC4LO1sLPQpCchyYxV20APAni5qhDx
-         fj+X1V46P47WtnBbpnwz/UhvXwJCfs+eSr5FzWYmjN8ZxFGDfeHmBQ7J2pP833nSPAAC
-         2PSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693832553; x=1694437353;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sP6V8ajHXT6yKSyr1cE3yHGsY7qGhYago0ofT+AYzCU=;
-        b=XyduXlWIg4K0QUPuy4lix1jl4tu37gM+q+EFdzVfu7l+P3LNS+1Vb2vBb3S2FH+2bU
-         Hsl7T/x26rzpWRg6KLpFV0aHlrz9uyrcgt72mxKX86WczVaQP7aC/yWktkN9EDRxPsBO
-         /novWx8Adj0ecz88QUyTTnPB80vhyFgHL3McsJIvwizxtMHhB00xcTRL7xIWa5zT+nSU
-         N6rRFv+Mhcv5vp4tMtSYqGbyxdSGpwv18dDLLNRSmoBCLMLjn0I2IF6hBZcL5I3TP547
-         rL0+5Z5YPCoInlffKEgKKja0WXAafjrscriDNSnCMWYQ0Nt79fXoXRINUzSQuvcTS4vn
-         x5bA==
-X-Gm-Message-State: AOJu0YwQ9L9hsFkjy3YaiXAHlf1PW4kR9ATsJr7VC/LxIwKaHi605D59
-        MuJ7cOvzHcerFMusIuVSV1FPPQ==
-X-Google-Smtp-Source: AGHT+IEJBeHsLqYueJWcEkffCP4VVC/CZWWv9130Yc9xYYY+tD0WJm6tOAoS2L8e8K1eUs77UXHirg==
-X-Received: by 2002:a05:6402:b30:b0:523:4057:fa6e with SMTP id bo16-20020a0564020b3000b005234057fa6emr5866008edb.42.1693832553657;
-        Mon, 04 Sep 2023 06:02:33 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id x26-20020aa7d39a000000b005257f2c057fsm5839006edq.33.2023.09.04.06.02.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 06:02:32 -0700 (PDT)
-Message-ID: <0360d279-b535-f3f2-9651-07dff2df2e37@linaro.org>
-Date:   Mon, 4 Sep 2023 15:02:31 +0200
+        with ESMTP id S239193AbjIDNWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 09:22:44 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CB1ACD1;
+        Mon,  4 Sep 2023 06:22:38 -0700 (PDT)
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3848V1f3031734;
+        Mon, 4 Sep 2023 15:22:21 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding:content-type; s=selector1; bh=XzmJmyD
+        GzbW4MncFV7Q4aRei5HWxvrVZ4z14lW+C8DE=; b=RZzb7GN2/IRD1mi0JAGiGEn
+        D8RjCpc78qsPqPJFe9hxLbhIzj9Shc2KFBA6JVtkejvYb4wKxsQ2J2TfN6CxbCCG
+        Y5T31DmgUqRHUErmYG1UK9s+fetP3hKcBIcquuNFGeyaphrdH7xEXqUxhoi7icI6
+        9lhEx0js/ksY1a8UH9E2irddi4p5Xq6uZ+qr1kQSR1ANXGVdmhOPBFOAV0TV+VgO
+        milTy/Tx1P7Km6nzouW0mH5E6pfiin0QMYRD4T6SWTQKC00B6v/b97IHTYHET7wT
+        zv6Kpt3/4tnwZuqrLhVLLXDcSEbEaIWNXlWAHITtHDRWVHu4+JiPZgd+jhrmD5Q=
+        =
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3sut63ftxa-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 04 Sep 2023 15:22:20 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 64876100058;
+        Mon,  4 Sep 2023 15:22:18 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 59936229A98;
+        Mon,  4 Sep 2023 15:22:18 +0200 (CEST)
+Received: from localhost (10.201.20.125) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Mon, 4 Sep
+ 2023 15:22:18 +0200
+From:   Yann Gautier <yann.gautier@foss.st.com>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Yann Gautier <yann.gautier@foss.st.com>
+Subject: [PATCH 0/3] Add SD-card support on STM32MP25
+Date:   Mon, 4 Sep 2023 15:22:09 +0200
+Message-ID: <20230904132212.157405-1-yann.gautier@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw87390 amplifier driver
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     wangweidong.a@awinic.com, lgirdwood@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        perex@perex.cz, tiwai@suse.com, rf@opensource.cirrus.com,
-        herve.codina@bootlin.com, shumingf@realtek.com,
-        rdunlap@infradead.org, 13916275206@139.com, ryans.lee@analog.com,
-        linus.walleij@linaro.org, ckeepax@opensource.cirrus.com,
-        yijiangtao@awinic.com, liweilei@awinic.com, colin.i.king@gmail.com,
-        trix@redhat.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        zhangjianming@awinic.com
-References: <20230904114621.4457-1-wangweidong.a@awinic.com>
- <20230904114621.4457-4-wangweidong.a@awinic.com>
- <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
- <598febde-429e-4319-98d4-4306a7f8bfe8@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <598febde-429e-4319-98d4-4306a7f8bfe8@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.20.125]
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-04_07,2023-08-31_01,2023-05-22_02
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2023 14:30, Mark Brown wrote:
-> On Mon, Sep 04, 2023 at 02:17:43PM +0200, Krzysztof Kozlowski wrote:
->> On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
-> 
->>> +	ret = regmap_read(regmap, AW87390_ID_REG, &chip_id);
->>> +	if (ret) {
->>> +		dev_err(&i2c->dev, "%s read chipid error. ret = %d\n", __func__, ret);
->>> +		return ret;
->>> +	}
-> 
->>> +	if (chip_id != AW87390_CHIP_ID) {
->>> +		dev_err(&i2c->dev, "unsupported device\n");
-> 
->> Why? The compatible tells it cannot be anything else.
-> 
-> This is very common good practice, as well as validating communication
+Add sdmmc1 node in SoC DT file, then the pins used on STM32MP257F-EV1
+board, and then the node in board file for SD-card support.
 
-No, it is neither common nor good. The kernel's job is not to verify the
-supplied DTS. Rob also made here a point:
+Yann Gautier (3):
+  arm64: dts: st: add sdmmc1 node in stm32mp251 SoC file
+  arm64: dts: st: add sdmmc1 pins for stm32mp25
+  arm64: dts: st: add SD-card support on STM32MP257F-EV1 board
 
-https://lore.kernel.org/all/CAL_Jsq+wcrOjh7+0c=mrg+Qz6dbhOUE-VEeQ4FoWC3Y7ENoyfQ@mail.gmail.com/
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi | 54 +++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 13 +++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    | 22 ++++++++
+ 3 files changed, 89 insertions(+)
 
-> with the device it verifies that the device descrbied in the DT is the
-> one that is actually present in the system.  This might create hassle
-> down the line if there is a backwards compatible upgrade but that's much
-> rarer for this class of hardware than cut'n'pasting of device trees.
-
-Best regards,
-Krzysztof
+-- 
+2.34.1
 
