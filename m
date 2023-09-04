@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A1CF7916EB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 14:14:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAEC07916FC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 14:17:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232889AbjIDMOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 08:14:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
+        id S1352935AbjIDMRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 08:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230348AbjIDMOi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 08:14:38 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A12B197
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 05:14:35 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-500b66f8b27so2233224e87.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 05:14:35 -0700 (PDT)
+        with ESMTP id S239857AbjIDMRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 08:17:50 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E925BCC4
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 05:17:46 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99c4923195dso216986566b.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 05:17:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693829673; x=1694434473; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693829865; x=1694434665; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=k8h2PEzYhpa6MHVwUhluiZHRc9KyJDz5gg/68n+8KtA=;
-        b=XRU7lkbiDt3rkV5mw5rhznZyS3bh42VDA8UDKkfVrqyX+Zk0ByN5LvWiioHg5e55rw
-         DLhSMHnBRJn3cW7OsJDX3s0Nlh1PovrNmOXy8CbWSVbvu/0TVCRy6S6z7VXLpRPoX0gU
-         Okw97o0NDqgi8NLIlEZBpTH3lfJ1RpXCeFhjCV7l306++gorVCM8IzbXcfnsCBifnOMD
-         8fqhQlZLIGUi8XVt2nysD32f4I9EJfVbBU4++t9Kfx/uoOvweO4ngLRUvdmFvkl4gDJl
-         0wRJhbGg6K1nHwCX8JsMTZyPG0I4CFSfeY8hrg55rPwGrIF74lpcm5iurvNHMnaMmCR5
-         MYYg==
+        bh=gko8S92UwKDakAjbzjQZ/sNmZx2tljlr3QwwqTw8dTw=;
+        b=W2GXEiDFQbd2GOMkvDMGoTl+GiYFNT3SRJctr/7EJ1/Y3/ZkJIfTgeo2n4pJonqVLk
+         Ef69Q4t0KCIsTTymrdW7smnSPnpY6amAjAVnhcmRjo4ihJlNcfrpXDRWWfMcMxSwfFCx
+         oOVPNUL0xXsycQo12PTWkBpXiLbcWWXjjlKzeeDOgoqGnYqTSLOG2apRdHlWSF35MF7z
+         9bqFkf6t7vLVz4bbqXZcb51mURoN1haimw/WaPaUNJpJLHDUZFHR5vZB2ZlWTJVvddmK
+         cDnFlCUA6VNLilOOL3iOI3DO/qd1aFuWf5FFFJnG1/QxCeIu6TcMntCNyW6uA0dA0H7v
+         aBfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693829673; x=1694434473;
+        d=1e100.net; s=20221208; t=1693829865; x=1694434665;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k8h2PEzYhpa6MHVwUhluiZHRc9KyJDz5gg/68n+8KtA=;
-        b=Rb+9G7ai2qG2X8OkX6hmsh5aKyryaxm/XXJuf323aHhSM/7dHZz/iSFoY+knTNFdf/
-         0EGgX0hhQFAHQKXrL4L3Fwr+9PCktsvYc/6eXJq5oegL2rvOrNzqx3HTe4/dS0xdexIB
-         jDt11yAd+BVW4avJBUzV0q5hrLF0+RzeU2RZ9qeG2hy02IJarub7NBcOyD/qj3fIzhQO
-         5Xgeply6aaQzChpy8Y+p74HGz/odcg7ioek6MsDfi4q7yykn3f7rbLMNnZ+yn7FMyPDx
-         vdQTVwkGk4dOOuqJ7v6PBt60t+/Fntx3GTTsnjR0tbb/w17eejSsMsVRbigwM99Al/EH
-         BzSQ==
-X-Gm-Message-State: AOJu0Yy5qvnphVac8HzHL1e0Z7bBZMxNJm8jtqXdD7vWL3949pfr7Dts
-        f8/c0lZDDovSkSFNYh6u7vXrzP0XrygiliH3jaI=
-X-Google-Smtp-Source: AGHT+IE2wrX16Gd9r87d7r5ei0oq1G2ppg6vlpwEiVioalK8RSkBhOZ14YzpapLDxGwN6EbpHHSRBg==
-X-Received: by 2002:a05:6512:ac7:b0:500:7cab:efc3 with SMTP id n7-20020a0565120ac700b005007cabefc3mr9077071lfu.11.1693829673359;
-        Mon, 04 Sep 2023 05:14:33 -0700 (PDT)
+        bh=gko8S92UwKDakAjbzjQZ/sNmZx2tljlr3QwwqTw8dTw=;
+        b=Wa2ErrGOOK5ntInr++bqmAhzJUeqyIh77VDkTpV3Z5fMhOiEdLw4LGFl8aAyJYOcxg
+         uXUH3U6qVNuS94vzgEVuR5UMgqK0ixAXyVITZC/E378gZPS/oKhAUbaRmJVwJPtIgxKI
+         +NUjfFldfVUOnjgs3DltoQwgO+tNFbvBRppgohw4v73qFLWEHFN0BbMGF0CMHu9g2TTE
+         /80HcWpINn5lzpDP4mB4F63Xei7+8T8DFzeIhmB1ZRQJGP1ZCX0SKHDy4MwMk7CuaYnQ
+         mZrgE2qpcMPwQF29+jLhTwM2zkCUmRG9OkvJ5O1ZHzhYwRA8SNtRZzEsmz4yZJ0ojolE
+         sswA==
+X-Gm-Message-State: AOJu0YwbMUpM3Uqr/T6iwOACQy6x9LMVpW3ibiEjMhvwxxlMtTWZr40l
+        Il2xVtBqMKKXIEu8Qmo8p/29Mw==
+X-Google-Smtp-Source: AGHT+IEmnk0VrCde/RpXcTnJqLWkg8HN3gX0oQSn7T9cZd+70d9xlLecPSPO4/immxGbAA26YFLECg==
+X-Received: by 2002:a17:906:1011:b0:9a5:a44a:86f3 with SMTP id 17-20020a170906101100b009a5a44a86f3mr8193805ejm.25.1693829865436;
+        Mon, 04 Sep 2023 05:17:45 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id r2-20020aa7c142000000b00522828d438csm5789637edp.7.2023.09.04.05.14.31
+        by smtp.gmail.com with ESMTPSA id oz13-20020a170906cd0d00b00992f309cfe8sm6117340ejb.178.2023.09.04.05.17.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 05:14:32 -0700 (PDT)
-Message-ID: <a3ada071-4c8e-f65d-ad75-655370ba2c55@linaro.org>
-Date:   Mon, 4 Sep 2023 14:14:31 +0200
+        Mon, 04 Sep 2023 05:17:45 -0700 (PDT)
+Message-ID: <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
+Date:   Mon, 4 Sep 2023 14:17:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH V1 1/3] ASoC: dt-bindings: Add schema for "awinic,aw87390"
+Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw87390 amplifier driver
 Content-Language: en-US
 To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -68,15 +68,14 @@ To:     wangweidong.a@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     zhangjianming@awinic.com
 References: <20230904114621.4457-1-wangweidong.a@awinic.com>
- <20230904114621.4457-2-wangweidong.a@awinic.com>
+ <20230904114621.4457-4-wangweidong.a@awinic.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230904114621.4457-2-wangweidong.a@awinic.com>
+In-Reply-To: <20230904114621.4457-4-wangweidong.a@awinic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,44 +85,116 @@ X-Mailing-List: devicetree@vger.kernel.org
 On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
 > From: Weidong Wang <wangweidong.a@awinic.com>
 > 
-> Add a DT schema for describing awinic aw87390 audio amplifiers.
-> They are controlled using I2C.
 
-Thank you for your patch. There is something to discuss/improve.
+...
 
+> +static void aw87390_parse_channel_dt(struct aw87390 *aw87390)
+> +{
+> +	struct aw_device *aw_dev = aw87390->aw_pa;
+> +	struct device_node *np = aw_dev->dev->of_node;
+> +	u32 channel_value = AW87390_DEV_DEFAULT_CH;
+> +
+> +	of_property_read_u32(np, "sound-channel", &channel_value);
+
+NAK, there is no such property. It seems you already sneaked in such for
+other codecs. Please do not repeat such patterns of work.
+
+That's also why I expect full DTS example, not some reduced pieces.
 
 > +
-> +allOf:
-> +  - $ref: dai-common.yaml#
+> +	aw_dev->channel = channel_value;
+> +}
 > +
-> +properties:
-> +  compatible:
-> +    const: awinic,aw87390
+> +static int aw87390_init(struct aw87390 **aw87390, struct i2c_client *i2c, struct regmap *regmap)
+> +{
+> +	struct aw_device *aw_dev;
+> +	unsigned int chip_id;
+> +	int ret;
 > +
-> +  reg:
-> +    maxItems: 1
+> +	/* read chip id */
+> +	ret = regmap_read(regmap, AW87390_ID_REG, &chip_id);
+> +	if (ret) {
+> +		dev_err(&i2c->dev, "%s read chipid error. ret = %d\n", __func__, ret);
+> +		return ret;
+> +	}
+> +
+> +	if (chip_id != AW87390_CHIP_ID) {
+> +		dev_err(&i2c->dev, "unsupported device\n");
 
-No reset-gpios? Shouldn't this be just merged with awinic,aw88395 bindings?
+Why? The compatible tells it cannot be anything else.
 
-Missing sound-dai-cells (const: 0 or 1)
+> +		return -ENXIO;
+> +	}
+> +
+> +	dev_info(&i2c->dev, "chip id = 0x%x\n", chip_id);
+> +
+> +	aw_dev = devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
+> +	if (!aw_dev)
+> +		return -ENOMEM;
+> +
+> +	(*aw87390)->aw_pa = aw_dev;
+> +	aw_dev->i2c = i2c;
+> +	aw_dev->regmap = regmap;
+> +	aw_dev->dev = &i2c->dev;
+> +	aw_dev->chip_id = AW87390_CHIP_ID;
+> +	aw_dev->acf = NULL;
+> +	aw_dev->prof_info.prof_desc = NULL;
+> +	aw_dev->prof_info.count = 0;
+> +	aw_dev->prof_info.prof_type = AW88395_DEV_NONE_TYPE_ID;
+> +	aw_dev->channel = AW87390_DEV_DEFAULT_CH;
+> +	aw_dev->fw_status = AW87390_DEV_FW_FAILED;
+> +	aw_dev->prof_index = AW87390_INIT_PROFILE;
+> +	aw_dev->status = AW87390_DEV_PW_OFF;
+> +
+> +	aw87390_parse_channel_dt(*aw87390);
+> +
+> +	return ret;
+> +}
+> +
+> +static int aw87390_i2c_probe(struct i2c_client *i2c)
+> +{
+> +	struct aw87390 *aw87390;
+> +	int ret;
+> +
+> +	ret = i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C);
+> +	if (!ret)
+> +		return dev_err_probe(&i2c->dev, -ENXIO, "check_functionality failed\n");
+> +
+> +	aw87390 = devm_kzalloc(&i2c->dev, sizeof(*aw87390), GFP_KERNEL);
+> +	if (!aw87390)
+> +		return -ENOMEM;
+> +
+> +	mutex_init(&aw87390->lock);
+> +
+> +	i2c_set_clientdata(i2c, aw87390);
+> +
+> +	aw87390->regmap = devm_regmap_init_i2c(i2c, &aw87390_remap_config);
+> +	if (IS_ERR(aw87390->regmap)) {
+> +		ret = PTR_ERR(aw87390->regmap);
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        audio-codec@58 {
-> +            compatible = "awinic,aw87390";
-> +            reg = <0x58>;
+ret is not needed here, so just:
+return dev_err_probe()
 
-Please add sound-dai-cells for the example to be complete.
+> +		return dev_err_probe(&i2c->dev, ret, "failed to init regmap: %d\n", ret);
+> +	}
+> +
+> +	/* aw pa init */
+> +	ret = aw87390_init(&aw87390, i2c, aw87390->regmap);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(aw87390->regmap, AW87390_ID_REG, AW87390_SOFT_RESET_VALUE);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_snd_soc_register_component(&i2c->dev,
+> +				&soc_codec_dev_aw87390, NULL, 0);
+> +	if (ret)
+> +		dev_err(&i2c->dev, "failed to register aw87390: %d\n", ret);
+> +
+> +	return ret;
+> +}
+
 
 Best regards,
 Krzysztof
