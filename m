@@ -2,78 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A750D791298
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 09:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B637912BA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 09:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345022AbjIDHxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 03:53:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37422 "EHLO
+        id S243557AbjIDH5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 03:57:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348056AbjIDHxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 03:53:18 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC88106
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 00:53:13 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-52889bc61b6so1455459a12.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 00:53:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693813991; x=1694418791; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hKg+j0ij0bj6tL0Ubk+HvKTshP5Zvzo1++prZoHQU4M=;
-        b=Bv0Cy/Cv4Lz9Mv/lKx/1cWP7Cwa4jvYVvtyPanjJQMhAuHzEc+jPdPCGA7/zg/MoHb
-         Fh03ltRwp2HqkAqR8FWnOjO+QikhymMNJB+gT2Dvj0zsaM7V1J8gQZEv5+HY3rtlD6ZL
-         YpuSJ8K5RC0DYAo2z05SLwF+BsYT1seXXawb6Y42RjXvJxJzo5IYmOV3uLBzZXioxhrE
-         5QGtUp25Wn3HtL6iN5vQFfwsU/itXmtJ3dYCGU/zipG31Sg/krqbz7vTUFXX5IYtn3S0
-         L/8+FGyo3iWiXtEps6Dt4bHlvgjI4sRHEu2O3Sf5OLLlwVR4/nrlG0RiH/C5j4QJ3nwB
-         xf5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693813991; x=1694418791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hKg+j0ij0bj6tL0Ubk+HvKTshP5Zvzo1++prZoHQU4M=;
-        b=bjlQ6E5llkWHFRfkpCIz/Z6/JhFWTXH8zBwZJROfWAAsY7Oxz7Wyvy89ZW5eeNbko+
-         dW3koQZAk20WwgDBHpKERy0I4lXvCNyLAQfPcZ9Sn0PdcWm7tSkwtEjkaHknlqvC4e41
-         L4PbejxDu/+LjRhmZrT+VYcww34Wb8i1A/AQ8k/S77I588+SSlVXmPBfdwj2hAG9Le7Q
-         qHdCoOrwPEb4W06DTMu6qaCLpAV/RZyEZ7O97eF5mzc0a/TGhzztuDM1FbhBdZJ75k9J
-         h+DZq0Oyue1Q4YFvlXc8Ij0ePXQXJmgJrU2x9N1bTqsb0w3XahCSSK3b9NTmhZJy2axc
-         pblw==
-X-Gm-Message-State: AOJu0Yz8qvnrNr1BDnfWdsUIFHTvYr8ybQpZRiaNN/JTbUzuAHuAz6R5
-        BIBG4pe1bFBCXIfqfsG3vPEXig==
-X-Google-Smtp-Source: AGHT+IG51yyXlEkoIHVtZBQ6BjDgQ9Ot4st5+o3nOo3wNnbxIkT/ovnRE6ZUUWjLC2qouRxMzCXnNQ==
-X-Received: by 2002:aa7:d982:0:b0:525:5ed2:abed with SMTP id u2-20020aa7d982000000b005255ed2abedmr6686818eds.30.1693813991487;
-        Mon, 04 Sep 2023 00:53:11 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id w25-20020aa7cb59000000b005222c6fb512sm5484731edt.1.2023.09.04.00.53.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Sep 2023 00:53:11 -0700 (PDT)
-Message-ID: <4b88a31a-bbff-21b5-a53d-19a3e66e2f3e@linaro.org>
-Date:   Mon, 4 Sep 2023 09:53:09 +0200
+        with ESMTP id S230106AbjIDH5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 03:57:01 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B22106;
+        Mon,  4 Sep 2023 00:56:10 -0700 (PDT)
+Received: from droid06.amlogic.com (10.18.11.248) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 4 Sep 2023
+ 15:56:07 +0800
+From:   Yu Tu <yu.tu@amlogic.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        "Martin Blumenstingl" <martin.blumenstingl@googlemail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <kelvin.zhang@amlogic.com>, <qi.duan@amlogic.com>,
+        Yu Tu <yu.tu@amlogic.com>
+Subject: [PATCH V11 0/4] Add S4 SoC PLLs and Peripheral clock
+Date:   Mon, 4 Sep 2023 15:55:00 +0800
+Message-ID: <20230904075504.23263-1-yu.tu@amlogic.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v11 5/6] dt-bindings: media: wave5: add yaml devicetree
- bindings
-Content-Language: en-US
-To:     Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc:     linux-media@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        kernel@collabora.com, bob.beckett@collabora.com,
-        hverkuil-cisco@xs4all.nl, nicolas.dufresne@collabora.com,
-        nas.chung@chipsnmedia.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20221207121350.66217-1-sebastian.fricke@collabora.com>
- <20221207121350.66217-6-sebastian.fricke@collabora.com>
- <48d60bd0-4de1-4a5e-eca1-1f8a9303cce0@linaro.org>
- <20230904062502.qtajep4zyslnouxv@basti-XPS-13-9310>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230904062502.qtajep4zyslnouxv@basti-XPS-13-9310>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.18.11.248]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,26 +49,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2023 08:25, Sebastian Fricke wrote:
+1. Add S4 SoC PLLs and Peripheral clock controller dt-bindings.
+2. Add PLLs and Peripheral clock controller driver for S4 SOC.
 
->>> +  sram:
->>
->> Missing vendor prefix.
-> 
-> After some discussion with the the manufacturer of this CODEC chip, the SRAM
-> is not fixed to the CODEC chip but instead part of the SoC, thus the
-> vendor can vary. It sounds like the policy is to use the vendor prefix
-> of the SoC, that was used for upstreaming. But that policy sounds a bit
-> like a potential for future confusion to me, so I wanted to ask what you
-> would like to see. The SoC we develop on is from TI and the CODEC chip is from
-> C&M, so I could either call it: `ti,sram` or `cnm,sram`
+Yu Tu (4):
+  dt-bindings: clock: document Amlogic S4 SoC PLL clock controller
+  dt-bindings: clock: document Amlogic S4 SoC peripherals clock
+    controller
+  clk: meson: S4: add support for Amlogic S4 SoC PLL clock driver
+  clk: meson: S4: add support for Amlogic S4 SoC peripheral clock
+    controller
 
-I meant vendor prefix of this device. It does not matter what SoC is
-that, however it turns out it is already a generic property, so no
-vendor prefix is needed if you use the same property - phandle points to
-a node which is a sram.yaml.
+V10 -> V11:
+1. Change patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
+2. Change patch 0002 dt-bindings added minItems. Suggested by Jerome.
+3. Change patch 0004 added clock ".flags = 0" and comment. Suggested by Jerome.
+
+V9 -> V10:
+1. Change the relevant S4 CLK patch based on Neil's recently modified
+patch.
+2. Change patch 0003/0004 clocks comment, format and clock flags suggested
+by Jerome.
+
+V8 -> V9: Add patch 0001/0002 dt-bindings tag. Suggested by Krzysztof.
+V7 -> V8:
+1. Change patch 0001/0002 dt-bindings title description, remove "meson".
+Suggested by Dmitry, Neil.
+2. Change patch 0003/0004 clocks comment, format and clock flags suggested by
+Dmitry, Neil, Jerome.
+
+V6 -> V7: Change send patch series as well change format and clock flags
+suggested by Jerome. Change dt-bindings suggested by Krzysztof.
+V5 -> V6: Change send patch series, as well change format and clock flags.
+V4 -> V5: change format and clock flags and adjust the patch series
+as suggested by Jerome.
+V3 -> V4: change format and clock flags.
+V2 -> V3: Use two clock controller.
+V1 -> V2: Change format as discussed in the email.
+
+Link:https://lore.kernel.org/linux-amlogic/20230822082750.27633-1-yu.tu@amlogic.com/
+
+ .../clock/amlogic,s4-peripherals-clkc.yaml    |   96 +
+ .../bindings/clock/amlogic,s4-pll-clkc.yaml   |   49 +
+ drivers/clk/meson/Kconfig                     |   23 +
+ drivers/clk/meson/Makefile                    |    2 +
+ drivers/clk/meson/s4-peripherals.c            | 3813 +++++++++++++++++
+ drivers/clk/meson/s4-peripherals.h            |   57 +
+ drivers/clk/meson/s4-pll.c                    |  867 ++++
+ drivers/clk/meson/s4-pll.h                    |   38 +
+ .../clock/amlogic,s4-peripherals-clkc.h       |  236 +
+ .../dt-bindings/clock/amlogic,s4-pll-clkc.h   |   43 +
+ 10 files changed, 5224 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-peripherals-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,s4-pll-clkc.yaml
+ create mode 100644 drivers/clk/meson/s4-peripherals.c
+ create mode 100644 drivers/clk/meson/s4-peripherals.h
+ create mode 100644 drivers/clk/meson/s4-pll.c
+ create mode 100644 drivers/clk/meson/s4-pll.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-peripherals-clkc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,s4-pll-clkc.h
 
 
-Best regards,
-Krzysztof
+base-commit: 41680df0975e04b959a28bf6ab85fd6a307ae0ea
+-- 
+2.33.1
 
