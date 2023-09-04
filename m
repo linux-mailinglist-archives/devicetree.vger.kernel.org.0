@@ -2,105 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97C6B791A2A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 16:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E593F791A0E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 16:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352670AbjIDO5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 10:57:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41328 "EHLO
+        id S231206AbjIDOxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 10:53:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjIDO5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 10:57:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4345BA9;
-        Mon,  4 Sep 2023 07:57:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S229473AbjIDOxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 10:53:21 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82B57E42
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 07:53:18 -0700 (PDT)
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1qdAwc-0007kU-4G; Mon, 04 Sep 2023 16:52:50 +0200
+Received: from pengutronix.de (unknown [172.20.34.65])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CBB266181E;
-        Mon,  4 Sep 2023 14:57:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9100C433C8;
-        Mon,  4 Sep 2023 14:57:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693839460;
-        bh=LzT88cWedePN3nB5J2c47sYH8nUB4YIGJS2wdUEWZYA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Zi3r8Ynel24Dp6pgSwbOvVKbbbfUNxLqMGQnpLVnWhRhiLD6b3brJ29S7rUAMQ1Qp
-         InPp54qna5ff2I0nE1PfF17hPSM3DMbgejqKjXwMaZGWKMB+kwByXoxom3q2+0isK1
-         XpF0tKQPVNsJWB4PXy8if25eUwjMOoE7uHKv0HJycIzVstvFBxCGDAgndwgZFcGDqf
-         Tf/SgdafCTBRlEHBumfF0n4POTiwKtdV6NtOG4kupikBE3YLqYNIolPlZ/oa3FeBI2
-         cW+goPDSSgH8ExT0G9pA8h8uY3TsNRf3l1b+NU8qRVw40SDahJIB35PAjEElpK4fLS
-         0by1eZ7i9OyvA==
-Date:   Mon, 4 Sep 2023 22:45:43 +0800
-From:   Jisheng Zhang <jszhang@kernel.org>
-To:     Drew Fustini <dfustini@baylibre.com>
-Cc:     Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        inux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] riscv: dts: thead: set dma-noncoherent to soc bus
-Message-ID: <ZPXtl1iWlsYwmixc@xhacker>
-References: <20230820115353.1962-1-jszhang@kernel.org>
- <ZPUXhe7ogxvaB6Eg@x1>
+         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        (Authenticated sender: mkl-all@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 4D3C92186D5;
+        Mon,  4 Sep 2023 14:52:48 +0000 (UTC)
+Date:   Mon, 4 Sep 2023 16:52:47 +0200
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Srinivas Goud <srinivas.goud@amd.com>
+Cc:     wg@grandegger.com, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        p.zabel@pengutronix.de, git@amd.com, michal.simek@amd.com,
+        linux-can@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, appana.durga.rao@xilinx.com,
+        naga.sureshkumar.relli@xilinx.com
+Subject: Re: [PATCH v4 1/3] dt-bindings: can: xilinx_can: Add ECC property
+ 'xlnx,has-ecc'
+Message-ID: <20230904-crystal-jokester-a76c1506c442-mkl@pengutronix.de>
+References: <1693557645-2728466-1-git-send-email-srinivas.goud@amd.com>
+ <1693557645-2728466-2-git-send-email-srinivas.goud@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="nin2tevzwjvssdyh"
 Content-Disposition: inline
-In-Reply-To: <ZPUXhe7ogxvaB6Eg@x1>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1693557645-2728466-2-git-send-email-srinivas.goud@amd.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 03, 2023 at 04:32:21PM -0700, Drew Fustini wrote:
-> On Sun, Aug 20, 2023 at 07:53:53PM +0800, Jisheng Zhang wrote:
-> > riscv select ARCH_DMA_DEFAULT_COHERENT by default, and th1520 isn't
-> > dma coherent, so set dma-noncoherent to reflect this fact.
-> > 
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > ---
-> >  arch/riscv/boot/dts/thead/th1520.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > index 56a73134b49e..58108f0eb3fd 100644
-> > --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> > +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> > @@ -139,6 +139,7 @@ soc {
-> >  		interrupt-parent = <&plic>;
-> >  		#address-cells = <2>;
-> >  		#size-cells = <2>;
-> > +		dma-noncoherent;
-> >  		ranges;
-> >  
-> >  		plic: interrupt-controller@ffd8000000 {
-> > -- 
-> > 2.40.1
-> > 
-> 
-> Tested-by: Drew Fustini <dfustini@baylibre.com>
-> 
-> I tried this on the BeagleV Ahead. They system booted as expected and I
-> did not notice any problems in the boot log.
-> 
-> Are there other patches such as the dwmac series that I should test this
-> with?
 
-Hmm, this patch is necessary to test dwmac, emmc ;)
+--nin2tevzwjvssdyh
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Also, I think this might have missed patchwork since the original email
-> had a typo for the list, so it might be good to resend it?
+On 01.09.2023 14:10:43, Srinivas Goud wrote:
+> ECC feature added to Tx and Rx FIFOs for Xilinx AXI CAN Controller.
+> Part of this feature configuration and counter registers added in
+> IP for 1bit/2bit ECC errors.
+>=20
+> xlnx,has-ecc is optional property and added to Xilinx AXI CAN Controller
+> node if ECC block enabled in the HW
+>=20
+> Signed-off-by: Srinivas Goud <srinivas.goud@amd.com>
+> ---
+> Changes in v4:
+> Fix binding check warning
+> Update property description=20
+>=20
+> Changes in v3:
+> Update commit description
+>=20
+> Changes in v2:
+> None
+>=20
+>  Documentation/devicetree/bindings/net/can/xilinx,can.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/=
+Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+> index 64d57c3..50a2671 100644
+> --- a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+> +++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+> @@ -49,6 +49,10 @@ properties:
+>    resets:
+>      maxItems: 1
+> =20
+> +  xlnx,has-ecc:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: CAN Tx and Rx fifo has ECC (AXI CAN)
 
-This patch was sent after sending PR to soc people, so it was late for
-linux-6.6-rc1, but this patch is a fix, I may send it as a fix once
-linux-6.6-rc1 is out.
+Are there 2 FIFOs? If so I'd phrase it this way:
+"CAN TX and RX FIFOs have ECC support (AXI CAN)" - or -
+"CAN TX and RX FIFOs support ECC"
+
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--nin2tevzwjvssdyh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmT17z0ACgkQvlAcSiqK
+BOgWQQf+My4CPC2KjO558oJv4n5uvbTZcmM8qAT2RFDMOB+Kny4bi4yvygdF6ysD
+sBj/FRevD9HgawxAHO7f99cCSdwg+DLex4Ya9wJ4Lu/SnebAP9WQxCx6esvnYdEa
+tsGQqEQqBPn6RsuK9fcmeiIX9kNg9EWstA5e6LclXusSrkdpYGMiF1seeUEzxDK7
+IBxfHm6I9n/HqOg92PJrhtOo4DFMAC0FXm35yqxTXidRW91CdpbECLJcRcnxhc2x
+jco+vaxeVylUUkzLhxcfX5+7dcOAQ8bwQeWYg0tREThMxrUbfeMvOxgCJ802pHZK
+XZroGNCv/NZ2s30019lKTfyPyalaRA==
+=NA90
+-----END PGP SIGNATURE-----
+
+--nin2tevzwjvssdyh--
