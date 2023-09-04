@@ -2,123 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 49D7F791407
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 10:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F13F17914A2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 11:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243193AbjIDIzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 04:55:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40568 "EHLO
+        id S245422AbjIDJVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 05:21:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230127AbjIDIzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 04:55:03 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D595A12E;
-        Mon,  4 Sep 2023 01:54:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 2E37FCE0E45;
-        Mon,  4 Sep 2023 08:54:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55827C433C8;
-        Mon,  4 Sep 2023 08:54:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693817696;
-        bh=vmeKCHtUYA8IeIELVnid+KWzEwLahzONF6LbdcZoVb8=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=H88HQhh8NmYmSyu6SrxCA1WP8ayupocTr0zkvCVxoDsdSrvqJBiYehLGdRsOeYoR7
-         AiJF5DaGDg3NdaTEtCjGZriD5YVmMj6hVKZvRHUlAFya1+NLV7QLFJ8FVhjS5rs57k
-         B8NG8+AtYXZ8rebXb51Qo/EtwHFITYvEzNOtzI3DVbxIssVMKUovfrrginNVUdIdI+
-         K3UcTOtc/uKJc3CytEU0+zlxOiXPb0DIeZxiOHxsW3Vuf/RUmFspe3Fu/6EClX+CX2
-         7+PV7I+1Vdmb6qp7PyP7aPuyB2IJZEPkuQKolwz9T0sPxJLY1/kd8dISndaR2AZyKu
-         +PUyYF/206g0Q==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.95)
-        (envelope-from <maz@kernel.org>)
-        id 1qd5MD-00AM5D-Se;
-        Mon, 04 Sep 2023 09:54:54 +0100
-Date:   Mon, 04 Sep 2023 09:54:53 +0100
-Message-ID: <86pm2ye2si.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231321AbjIDJVH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 05:21:07 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D89A0CC;
+        Mon,  4 Sep 2023 02:20:57 -0700 (PDT)
+X-UUID: 582c70da4b0411eea33bb35ae8d461a2-20230904
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ZIIUdF194+c8xCM8vrIQAaG0bWBWTzoK506Cd6POlW4=;
+        b=Op8lTp4I0/tXxamOy8dM78hn91z53Zta6Mn8eHmT+c/ZLYNWtHPge71oq2LkdA2GAJyK+1y/XUiULXB1DX8YyEZGnSZd9fp6s+s5C0gvL3xNhI+YQilME4fkWDkTuy9OIfWUwFslQW5tvZfm2SHq6gVvgCvtVoM6v5kUrMxdcBE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:dc9a602f-a2b3-425d-8e66-44cbd7202117,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:938a49ef-9a6e-4c39-b73e-f2bc08ca3dc5,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 582c70da4b0411eea33bb35ae8d461a2-20230904
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 838060893; Mon, 04 Sep 2023 17:20:52 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 4 Sep 2023 17:20:51 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 4 Sep 2023 17:20:51 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-mips@vger.kernel.org, diasyzhang@tencent.com,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: loongson,liointc: Fix warnings about liointc-2.0
-In-Reply-To: <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
-References: <20230821061315.3416836-1-zhoubinbin@loongson.cn>
-        <e62185ca-cdf6-bde9-ad46-f4150db9ed6d@linaro.org>
-        <CAMpQs4JhfuB4=s9VFc+xmw_+8h5u2EwPdM_0x2vO_=SYabAAxw@mail.gmail.com>
-        <6ba31912-6738-6156-d5f4-3c8d3a3ca7bc@linaro.org>
-        <CAMpQs4+GiExt9uMmV1pf8gg8rFwWxbLkx9mdW7hY9xxXDOza3Q@mail.gmail.com>
-        <d11873a1-b552-71f5-1100-7464687f8bb4@linaro.org>
-        <a084e6e9-46b0-42ef-b500-69c114ae11b2@flygoat.com>
-        <86wmxcejav.wl-maz@kernel.org>
-        <c7898abf-34ca-d0b4-fd0c-935100dcd3f2@flygoat.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: jiaxun.yang@flygoat.com, krzysztof.kozlowski@linaro.org, zhoubb.aaron@gmail.com, zhoubinbin@loongson.cn, chenhuacai@loongson.cn, tglx@linutronix.de, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, chenhuacai@kernel.org, loongson-kernel@lists.loongnix.cn, devicetree@vger.kernel.org, tsbogend@alpha.franken.de, linux-mips@vger.kernel.org, diasyzhang@tencent.com, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+Subject: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8395-evk board
+Date:   Mon, 4 Sep 2023 17:20:42 +0800
+Message-ID: <20230904092043.5157-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Aug 2023 16:25:48 +0100,
-Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
->=20
->=20
->=20
-> =E5=9C=A8 2023/8/30 21:44, Marc Zyngier =E5=86=99=E9=81=93:
-> [...]
-> >> What's the best way, in your opinion, to overhaul this property? As we=
- don't
-> >> really care backward compatibility of DTBs on those systems we can
-> >> just redesign it.
-> > You may not care about backward compatibility, but I do. We don't
-> > break existing systems, full stop.
-> Ah it won't break any existing system. Sorry for not giving enough insight
-> into the platform in previous reply. As for Loongson64 all DTBs are built
-> into kernel binary. So as long as binding are changed together with all D=
-TS
-> in tree we won't break any system.
+Add bindings for the MediaTek mt8395-evk board.
+The mt8359-evk board is also named as "Genio 1200-EVK".
+MT8195 and MT8395 are the same family series SoC could share
+many of the peripheral drivers.
 
-This is factually wrong. QEMU produces a DT for Loongarch at runtime.
-So no, you're not allowed to just drop bindings on the floor. They
-stay forever.
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> > As for the offending property, it has no place here either. DT is not
-> > the place where you put "performance knobs".
-> Hmm, I can see various bindings with vendor prefix exposing device
-> configurations. If we seen this interrupt routing as a device configurati=
-on
-> I don't think it's against devicetree design philosophy.
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index ae12b1cab9fb..685b461fda28 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -171,6 +171,7 @@ properties:
+           - enum:
+               - mediatek,mt8195-demo
+               - mediatek,mt8195-evb
++              - mediatek,mt8395-evk
+           - const: mediatek,mt8195
+       - description: Google Burnet (HP Chromebook x360 11MK G3 EE)
+         items:
+-- 
+2.18.0
 
-Just because we have tons of crap in the device trees doesn't give you
-a license to be just as bad.
-
-	M.
-
---=20
-Without deviation from the norm, progress is not possible.
