@@ -2,129 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8557791C52
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 20:06:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75377791CA2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 20:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238746AbjIDSGq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 14:06:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53264 "EHLO
+        id S235132AbjIDSQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 14:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235634AbjIDSGq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 14:06:46 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E336E6
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 11:06:43 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b9d07a8d84so24585181fa.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 11:06:42 -0700 (PDT)
+        with ESMTP id S233037AbjIDSQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 14:16:11 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5144E199
+        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 11:16:07 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5009969be25so2668144e87.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Sep 2023 11:16:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1693850801; x=1694455601; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UerQu8X0sDSfgf2+CbpRUuHP8N70bRTmPby/bAIFB0Q=;
-        b=lykhD/ZpsWtSMpRAcpJHijekRGF4WIf56DJsdE9vamhQZb9Ovz6T0jS0BQOWaTUvGT
-         GkrnK5Fy2fj0h4mJI4qAZGkMTyrcYCO9qNId8MCe3Sin1UjQfHBtiMvRbG0NppAmXioP
-         BR0ejdksrPypaZDfFIrC/kGromYu0QjvXJs4k=
+        d=linaro.org; s=google; t=1693851365; x=1694456165; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=wR4BXGPTZ7jEwQgwR6LtNXRwZm81M4EzJdY3O3FTYcE=;
+        b=qIiyKogZAcWQDObmdrrhVDa+c5nfjD0qJVeWyvssGgdAWVbkWyDsM3pMBFNbhcjmr/
+         NXBs4cQpDmA6MPghxyJ5mE+EWZnP+M0I1dQELfwdjVJTsa1OcBdJ8C/OvmmRXxgRtNHr
+         aNz0TLUbfbLiKZ0XgPF49Ls+H8yvFTXsDTVKU1+s/CEBB/zjvwX/h2+w46A/9sxqaUyX
+         1mo5Q2s5M8qpI51oaBHAWrar++cdAD0lfPJOgsoxfZN+5eUxXO/haFyqeYwO+XbbjYZI
+         dSX24agy4mrdofbPut1jymhBvhkRQvLq+4VIzLlEEg1903V1NOl4tSoUSHUHXaBqHVco
+         8+fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693850801; x=1694455601;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=UerQu8X0sDSfgf2+CbpRUuHP8N70bRTmPby/bAIFB0Q=;
-        b=YkTJDdP9k7t/3miuUWIkuU9uYId0IveuT+yzQIQvdBd4XzkOD/v4WuzvO4L1U8oHte
-         2JtDGOFjEi0xYZfXTmDO1VJrRepQjj5l+6kixcnunvdNU/wDHLkGixLmHLxTXPqiwVNE
-         mNeBO464SMCAPXo+z4CMzeckkAPcQpYvKfLYejrvbABpkHQ0F2/LoTRYz/CPqtCINTAn
-         EKa6pEECNchS1UMQVXuCbhwcwoIzqsgddI9pJNVjRobBCzaa7FIDAZV4zvXZM1fpW1ZX
-         LnGq/ziIW17oYWM8AbdLZJOsO5NkqJFXCwwutwCvnMwc5HCMbObWmlGaVr6fE2zvfmML
-         Olaw==
-X-Gm-Message-State: AOJu0YzvYbzF5RMv7F7uOJPtN3bIvtaDOniQGVdNVo3MJPNzOnvoWL9i
-        oxgZQYj0CAd+SCR7o7y2eAevcg==
-X-Google-Smtp-Source: AGHT+IE/yOwJTB71sCvOOHxNASxN/IQyYmWk7RSn4j6RvAtd5i/3U4nhAxCAXlqEBo6qGeVdzmGmfw==
-X-Received: by 2002:a2e:b6c2:0:b0:2bc:da3e:3bda with SMTP id m2-20020a2eb6c2000000b002bcda3e3bdamr6653000ljo.2.1693850801146;
-        Mon, 04 Sep 2023 11:06:41 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-54-71-141.retail.telecomitalia.it. [79.54.71.141])
-        by smtp.gmail.com with ESMTPSA id l13-20020a170906a40d00b0099bc0daf3d7sm6534375ejz.182.2023.09.04.11.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Sep 2023 11:06:40 -0700 (PDT)
-From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     linux-amarula@amarulasolutions.com,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [RFC PATCH] ARM: dts: stm32f469-disco: use the same 3v3 for SD and DSI nodes
-Date:   Mon,  4 Sep 2023 20:06:35 +0200
-Message-Id: <20230904180635.923506-1-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20221208; t=1693851365; x=1694456165;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wR4BXGPTZ7jEwQgwR6LtNXRwZm81M4EzJdY3O3FTYcE=;
+        b=Q8pfJueHHjtm1ZGrB/nn5ynFMLj/JLgqx+efr9EihH3tlO+5kFSS+rFXWlPPRdLBhK
+         QksZQvu/A3NNvqwWdGde4/kISlCJdRDoKCAS0SX0ZLdYVSGoEBfebjId+lqEy9D8KdVV
+         kbmI8zp2FYOEZqgD2IAQCZ9C4dwN6WFGiDw4Y3+CE1aK/AyFg1whDJ+a2zGIjzFH/0qa
+         GAn3wAbpc1XUpt7pVvBN6NKwlRag2lMd1DgEPSj7hmDWtG5iBkVb15E2P98+RY/GxXN4
+         hO2jORck8GP2QH7cx9IpccfCv/6UwjAI3O/Z4f6vJZEARmT9wE5HQGZXDgeJqFW9sD/c
+         eDEA==
+X-Gm-Message-State: AOJu0Yw3dl1ufOf73lEzuRVXRo+KJKR4pwWqowGDT627ixZUM6IFZ3cZ
+        2ZuE5bAh/MWZweI7E44RDkwYfA==
+X-Google-Smtp-Source: AGHT+IGOzVvReOCQRwsTm34zqkP1CrT7EuD+QTmlY3J+mbZpQaV3Dv35X98KyzB9hnzgcZ0+juBbGA==
+X-Received: by 2002:a05:6512:108d:b0:4ff:7f57:facd with SMTP id j13-20020a056512108d00b004ff7f57facdmr8447633lfg.54.1693851365059;
+        Mon, 04 Sep 2023 11:16:05 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id kt8-20020a170906aac800b0099cb1a2cab0sm6512298ejb.28.2023.09.04.11.16.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Sep 2023 11:16:04 -0700 (PDT)
+Message-ID: <246760a3-3230-e14d-0541-72d8f0da5fd2@linaro.org>
+Date:   Mon, 4 Sep 2023 20:16:02 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/3] hwspinlock: qcom: Drop unused qcom,ipq6018-tcsr-mutex
+To:     Vignesh Viswanathan <quic_viswanat@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ohad@wizery.com,
+        baolin.wang@linux.alibaba.com, linux-remoteproc@vger.kernel.org
+Cc:     quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
+        quic_sjaganat@quicinc.com, quic_srichara@quicinc.com,
+        quic_varada@quicinc.com
+References: <20230904055010.4118982-1-quic_viswanat@quicinc.com>
+ <20230904055010.4118982-3-quic_viswanat@quicinc.com>
+ <17c8ba39-2bcf-5799-13ff-bb96249dbf61@linaro.org>
+ <880706cd-0987-47c7-8785-f8e4cb1c1907@linaro.org>
+ <90795790-a5e4-419f-9e40-989731c1c685@quicinc.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <90795790-a5e4-419f-9e40-989731c1c685@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In the board schematic, the power supply for the SD card is the same 3.3
-volts used to power the LCD panel and other peripherals. By generalizing
-the name of the voltage regulator, it simplifies the device tree and makes
-it more readable.
+On 04/09/2023 18:09, Vignesh Viswanathan wrote:
+> 
+> 
+> On 9/4/2023 9:31 PM, Konrad Dybcio wrote:
+>> On 4.09.2023 08:42, Krzysztof Kozlowski wrote:
+>>> On 04/09/2023 07:50, Vignesh Viswanathan wrote:
+>>>> qcom,ipq6018-tcsr-mutex maps to incorrect config of IPQ6018 and is
+>>>> dropped from the devictree.
+>>>
+>>> No, it is not dropped.
+>>>
+>>>
+>>>> IPQ6018 will use qcom,tcsr-mutex compatible
+>>>> string.
+>>>
+>>> No, it will not.
+>>>
+>>>>
+>>>> Drop qcom,ipq6018-tcsr-mutex compatible string from
+>>>> qcom_hwspinlock_of_match table.
+>>>
+>>> Why? Do not write what you are doing here, but why you are doing it.
+>> More importantly, looks like the ipq6018 compatible was added after
+>> support for this SoC was introduced (see f5e303aefc06 and 5bf635621245a),
+>> so if it's going to use of_tcsr_mutex data with the fallback compat, the
+>> SoC-specific compatible can be removed from the driver.
+>>
+> Hi Konrad, Krzysztof,
+> 
+> I was planning to update the SOC-specific compatible for IPQ6018
+> qcom,ipq6018-tcsr-mutex to point to of_tcsr_mutex data in the of_match
+> table in the hwspinlock driver in V2.
+> 
+> Do you think this would be okay? or should I go ahead with removal of
+> IPQ6018 specific compatible so that it falls back to of_tcsr_mutex?
 
-Link: https://www.st.com/en/evaluation-tools/32f469idiscovery.html#cad-resources
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Remove, it's not needed in the driver.
 
----
-
- arch/arm/boot/dts/st/stm32f469-disco.dts | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
-
-diff --git a/arch/arm/boot/dts/st/stm32f469-disco.dts b/arch/arm/boot/dts/st/stm32f469-disco.dts
-index cbbd521bf010..8a4f8ddd083d 100644
---- a/arch/arm/boot/dts/st/stm32f469-disco.dts
-+++ b/arch/arm/boot/dts/st/stm32f469-disco.dts
-@@ -69,16 +69,9 @@ aliases {
- 		serial0 = &usart3;
- 	};
- 
--	mmc_vcard: mmc_vcard {
-+	vcc_3v3: vcc-3v3 {
- 		compatible = "regulator-fixed";
--		regulator-name = "mmc_vcard";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--	};
--
--	vdd_dsi: vdd-dsi {
--		compatible = "regulator-fixed";
--		regulator-name = "vdd_dsi";
-+		regulator-name = "vcc_3v3";
- 		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
- 	};
-@@ -164,7 +157,7 @@ panel@0 {
- 		compatible = "orisetech,otm8009a";
- 		reg = <0>; /* dsi virtual channel (0..3) */
- 		reset-gpios = <&gpioh 7 GPIO_ACTIVE_LOW>;
--		power-supply = <&vdd_dsi>;
-+		power-supply = <&vcc_3v3>;
- 		status = "okay";
- 
- 		port {
-@@ -219,7 +212,7 @@ timer@2 {
- 
- &sdio {
- 	status = "okay";
--	vmmc-supply = <&mmc_vcard>;
-+	vmmc-supply = <&vcc_3v3>;
- 	cd-gpios = <&gpiog 2 GPIO_ACTIVE_LOW>;
- 	broken-cd;
- 	pinctrl-names = "default", "opendrain";
--- 
-2.34.1
+Best regards,
+Krzysztof
 
