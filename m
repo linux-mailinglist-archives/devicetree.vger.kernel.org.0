@@ -2,85 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B018E791A06
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 16:51:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E8F791983
+	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 16:17:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231837AbjIDOvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 10:51:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42082 "EHLO
+        id S238655AbjIDORt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 4 Sep 2023 10:17:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229890AbjIDOvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 10:51:19 -0400
-Received: from mail.gis.tsuren.ru (mail.gis.tsuren.ru [212.248.65.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD700CC5
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 07:51:15 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8F9AED6C98D6
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 16:02:41 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gis.tsuren.ru;
-        s=dkim; t=1693832565;
-        h=from:reply-to:subject:date:message-id:to:mime-version:content-type:
-         content-transfer-encoding; bh=C/6N0QtrZ5wNW4ufpKDgJLrPGJg/wDZiFs52cwbEd78=;
-        b=OPjOL020gPNXmsMRlxPeGW3GSVW2vP0Bil0HMB1DSGF97UwFbSDrhEIgp60sW2TDBJVy3d
-        TlaljqOyJP5F4k4iAWzxctjxqUZtREhgYx1Zrb9Ir3QyKhR3XkwU1pEJuZA6soKBSP84ao
-        kGBW2WjTV7M2SHYecupD0O7Mc6GHY4kcSZDhRIhDZdR2kVejC15nTaz+1BNPN7HBfkZjwz
-        WPYSUSDSJ+iqcS28l6Y2uF96tf0GgivOk0CzzrHyJ87yQBJoa7AI3DkxI/AYpcBlGX/nSn
-        yBmkk6F4arXqGtem/iYHjALQZRoY06SSjxFBhhxzM24awrr7n7EJM1/fGaLuqQ==
-Reply-To: gohlai.huat@deerwoodcapitalgroup.com
-From:   Goh Huat <robot@gis.tsuren.ru>
-To:     devicetree@vger.kernel.org
-Subject: Investment Emissary
-Date:   04 Sep 2023 13:02:41 +0000
-Message-ID: <20230904130241.A1ACA446005C1F04@gis.tsuren.ru>
+        with ESMTP id S232310AbjIDORs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 10:17:48 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D67A1F9;
+        Mon,  4 Sep 2023 07:17:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=3OPAo4lBCxUsvNDw8QF7A24B4wyRHfWzj5T4gNsEf4Y=; b=T7YeAaGyGBJisK0Hv3uqRExzvZ
+        atvPskDrfdzBdaB//dmGUICTITqAdGSg8O/mxQm8qR1cqU3YyxWzvvEihNqdBHkmnIRr4UnBKvGSt
+        J6pbQgbytED364vEClvZBSAsSx+zq0v+t8YGZwN53DINSV54wYGs+6GQCGzH5hketa4s=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qdAOW-005kH2-HN; Mon, 04 Sep 2023 16:17:36 +0200
+Date:   Mon, 4 Sep 2023 16:17:36 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     MD Danish Anwar <danishanwar@ti.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Roger Quadros <rogerq@kernel.org>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Simon Horman <horms@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
+Subject: Re: [RFC PATCH net-next 2/2] net: ti: icssg-prueth: Add support for
+ half duplex operation
+Message-ID: <42e8a2d1-eb7b-4157-86b9-87a9dfb93e83@lunn.ch>
+References: <20230830113134.1226970-1-danishanwar@ti.com>
+ <20230830113134.1226970-3-danishanwar@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.2
-X-Spam-Status: No, score=0.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,LOTS_OF_MONEY,MONEY_NOHTML,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230830113134.1226970-3-danishanwar@ti.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sir/Madam,
+On Wed, Aug 30, 2023 at 05:01:34PM +0530, MD Danish Anwar wrote:
+> This patch adds support for half duplex operation at 10M and 100M link
+> speeds for AM654x/AM64x devices.
+> - Driver configures rand_seed, a random number, in DMEM HD_RAND_SEED_OFFSET
+> field, which will be used by firmware for Back off time calculation.
+> - Driver informs FW about half duplex link operation in DMEM
+> PORT_LINK_SPEED_OFFSET field by setting bit 7 for 10/100M HD.
+> 
+> Hence, the half duplex operation depends on board design the
+> "ti,half-duplex-capable" property has to be enabled for ICSS-G ports if HW
+> is capable to perform half duplex.
+> 
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 
-We are registered consultants and financial advisory firm
-operating from Bahamas with affiliates partners. We provide High
-Net worth discrete financial services globally and what we do is
-legal and within the ambient of the law.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-We fund projects around the globe. So we are looking for viable
-investments and projects that will be vetted to qualify for any
-type of funds injection. What is important to us is the viability
-of the project and the borrower ability to payback if a loan or
-return on Investment if funding a project. Note: We can also fund
-projects on equity basis. Both funding procedures requires
-collateral and other terms of agreement.
-
-Our core clienteles are people of interest and they do have the
-pool of funds to execute the project or loan you want, we have a
-huge portfolio that we are able to fund projects from 10M to 1
-Billion Dollars at a time. We fund projects around the globe.
-What is important to us, is the viability of the project and the
-borrower ability for return on investments (ROI) or pay back the
-loan and presentation of a collateral.
-
-Note: We can also fund projects on equity basis. These funds can
-also be given at a 0% interest and not a loan, rather it will be
-given as a tenured operational fund, and the investor is only
-interested on any agreed percentage of profit declared, either
-quarterly or yearly with the agreed minimum of ROI expected. Both
-funding procedures requires collateral.
-
-If you are interested in our service with any of your funding
-needs or option, then send us a three page brief summary of the
-projects that require funding or begin to let us know your
-options or the amount you want
-
-Regards,
-Goh L.Huat
-Associate Partner
+    Andrew
