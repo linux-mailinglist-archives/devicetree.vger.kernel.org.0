@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F6827928C2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:46:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1ED797928C9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346178AbjIEQYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:24:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37864 "EHLO
+        id S1346787AbjIEQYL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:24:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353898AbjIEIdx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:33:53 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D80ACDB
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 01:33:49 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcc4347d2dso32351351fa.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 01:33:49 -0700 (PDT)
+        with ESMTP id S1353900AbjIEIei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:34:38 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95016CD2
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 01:34:34 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2bce552508fso33451111fa.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 01:34:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693902827; x=1694507627; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=fIa/MpEa51tsfHy6/cWnzhXG3DHHEf9vL3b6MO1snO8=;
-        b=OnMbdMB5vCjLqUhgBi8/PmJF5kMKSFUD9qb0WBLqyStKqKg3SNCcL8FD+c/FLqjTvf
-         DH/ka5TzWk0OSV5fbyGs09G3kDShcAa00sN6P+SPwGui7NeTXsEtKyDRZ4ra1zV+7uvH
-         3Tt3jXjJaEuKQevTbrXcjw8nuNDBS2TD3p7B/OOG2Nj7NyBtI9H8UshBlizacwrPDiJn
-         akufMpnzFMK86LeslMBsduQC0opMfbAItbmja2Lmm2NUkpRzIVAkdjhyD/8QJXOrGk3t
-         Hz29H7xyVMmmY9DfvXOudYzPHXpBcrRLItNX3KjAmJGjjw7ySLbP0SDLfwBCsxZsbfsm
-         niKg==
+        d=linaro.org; s=google; t=1693902873; x=1694507673; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CTGH+1pVNhjtiXQkQ7n6lrjl8K9tEbIsrU+0ovPX2qI=;
+        b=cO2zo51X/vfbfhZGuoIZL6YhfT/cnhkmKJDC+K4v5YB0m5RneAeogELj1IY78eoNnn
+         YBApu7v94C5Z3Mo7dJnHb665txYf9AG53A33JfWVKXW3KZYu0CKuPdudSSofwd5ckuWr
+         O5tpmS42luREgmccHFXIXgIT10C63M2csCqEAeyGGV6NzA7/5SEpGEDvXYsLHyKReF4k
+         hJeIycUbJwdrv7OJSMErYcFHRjVbnuvCe7KvgRp+1n9XvtfABaR0ahDDO1Lxmz/h/FTU
+         kxXHJyzCN1hhmwNtQ5lJcvA2O0XAKizt2AOjh2eAxKBOWtgsVwZKr2xSze1kIcyJU/e8
+         NTaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693902827; x=1694507627;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fIa/MpEa51tsfHy6/cWnzhXG3DHHEf9vL3b6MO1snO8=;
-        b=DNdpLgClkDUecdpMa1Tcu6tRlx1bq28lQLzmDhn+xU+FaMdgGjV0TsjgTiKH3XjZXt
-         U2K3IbvX1FyMAv5hrLlE2tPxdy5q0bkKjzxR4SGZcBGKIgwU6UBHYYlCxotmtarwtT+7
-         16uowzF0CvlqtjW3E5HDSA9oPVyKM1qxmsbkqrat1Qm0jQsI16lZf8fhl6paW5qGIfyG
-         nJvKOlFV0Z7qa3VAjkJkO6Cp5zdFACAtKDL8fI+ZtAhnBshJLFQWAebMh2mhA2MlyfkD
-         pLeKhNi9THn8iWdYqHyUrS6a+C88UAyOiZLRFF0SbFILis27ybkMHbSCVs0wwhbX1MiF
-         0qzg==
-X-Gm-Message-State: AOJu0Yw4NPt/YRDZ0e+++ChkZBAQ/KnEz3w42UPFAcbRQJtEgRQsTKiF
-        9F+FyRY3hqO4WAl+XwykueZs3g==
-X-Google-Smtp-Source: AGHT+IERvRsqlyntQj4VnGYcehWf4fwbM2d9GauHcdKXaP7oVH8xT6P7pIWarRvWpuelwwxRKeA7rw==
-X-Received: by 2002:a2e:b6c2:0:b0:2bc:da3e:3bda with SMTP id m2-20020a2eb6c2000000b002bcda3e3bdamr7592956ljo.2.1693902827530;
-        Tue, 05 Sep 2023 01:33:47 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693902873; x=1694507673;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CTGH+1pVNhjtiXQkQ7n6lrjl8K9tEbIsrU+0ovPX2qI=;
+        b=JD17QTcjgHym0YaBAPG3n+JoBuj+Tvyw6L32XRISXhCwuWMoDNqW1dcXmugcQxWt6t
+         T6l28degPLxQYlU02nLzVhTzJgNgL+8QC4ITsHAy9gAcO5jFGPXAC99oYK6b1jCg3l9Y
+         ARffc+SzqQABdzQTJXvPc7j0U9zokJ/ifSPYerkM986abXZq6XnAyvGUIrwjmQ4oCFPx
+         AhjHLxqS4rGJR9YYk8MLLFWJxmX7sEOWSHZOzmk6zFSPGBQxiqgi7TzW14hxTHitIAlO
+         1OReUfNXoMtXGAPIWlE8euqDQVWS7wQaVbLANEXAEXgLqoWkOW49Tfbl3NM02heLoz93
+         UB9Q==
+X-Gm-Message-State: AOJu0Ywq0UkzYAPlZIPLI8/X7NB+zfEV1wKUwPuYaB82MFkdZmN8c8Ks
+        2VvN805lLzhldQR9hU9Lhr8VdQ==
+X-Google-Smtp-Source: AGHT+IFiKumTsMVRkq9//4/xK/5aF2y7nOg/3IOpthhey4Xl5TIFMEakn8LlQI5tMrxIync8gexAOw==
+X-Received: by 2002:a2e:b6c5:0:b0:2bb:9781:1a4c with SMTP id m5-20020a2eb6c5000000b002bb97811a4cmr8507865ljo.27.1693902872976;
+        Tue, 05 Sep 2023 01:34:32 -0700 (PDT)
 Received: from [192.168.1.101] (abxj43.neoplus.adsl.tpnet.pl. [83.9.3.43])
-        by smtp.gmail.com with ESMTPSA id z9-20020a2e8849000000b002b9415597d0sm2774957ljj.78.2023.09.05.01.33.45
+        by smtp.gmail.com with ESMTPSA id z9-20020a2e8849000000b002b9415597d0sm2774957ljj.78.2023.09.05.01.34.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 01:33:47 -0700 (PDT)
-Message-ID: <879d42f0-acf7-441b-a820-3b6f67620eeb@linaro.org>
-Date:   Tue, 5 Sep 2023 10:33:45 +0200
+        Tue, 05 Sep 2023 01:34:32 -0700 (PDT)
+Message-ID: <ad099cf1-1973-4471-a96b-348c4156a13d@linaro.org>
+Date:   Tue, 5 Sep 2023 10:34:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] crypto: qcom-rng: Add hwrng support
-To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
-        Bjorn Andersson <quic_bjorande@quicinc.com>
+Subject: Re: [PATCH V2] crypto: qcom-rng - Add hw_random interface support
+Content-Language: en-US
+To:     Om Prakash Singh <quic_omprsing@quicinc.com>
 Cc:     neil.armstrong@linaro.org, agross@kernel.org, andersson@kernel.org,
         conor+dt@kernel.org, davem@davemloft.net,
         devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
@@ -64,9 +63,7 @@ Cc:     neil.armstrong@linaro.org, agross@kernel.org, andersson@kernel.org,
         linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
         marijn.suijten@somainline.org, robh+dt@kernel.org, vkoul@kernel.org
 References: <20230901131502.1549809-1-quic_omprsing@quicinc.com>
- <20230901144636.GP818859@hu-bjorande-lv.qualcomm.com>
- <76bec0e9-3d80-469b-8666-06f1b639facb@quicinc.com>
-Content-Language: en-US
+ <20230905062420.3983268-1-quic_omprsing@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -103,63 +100,32 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <76bec0e9-3d80-469b-8666-06f1b639facb@quicinc.com>
+In-Reply-To: <20230905062420.3983268-1-quic_omprsing@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5.09.2023 04:50, Om Prakash Singh wrote:
+On 5.09.2023 08:24, Om Prakash Singh wrote:
+> Add hw_random interface support in qcom-rng driver as new IP block
+> in Qualcomm SoC has inbuilt NIST SP800 90B compliant entropic source
+> to generate true random number.
 > 
+> Keeping current rng_alg interface as well for random number generation
+> using Kernel Crypto API.
 > 
-> On 9/1/2023 8:16 PM, Bjorn Andersson wrote:
->> On Fri, Sep 01, 2023 at 06:45:02PM +0530, Om Prakash Singh wrote:
->>> This is follow patch on top of [1]
->>
->> This information does not add value to the git history, if you need to
->> inform the maintainer that the patch should be applied after some
->> in-flight dependency then state so after the "---" line below.
->>
->> But, this patch strictly conflicts with [1], so the statement won't make
->> sense if this is merged.
->>
->>> to add hwrng support for newer platform with trng capability.
->>
->> Please rewrite this so that it's clear that the problem you're trying to
->> solve with this patch (i.e. the problem description) is that newer
->> platforms has trng. Describe how this relates to the existing driver
->> (e.g. same/similar hardware interface). State that you purposefully kept
->> the crypto interface in place for the new hardware as well (so that it's
->> clear that this isn't an accident or oversight).
->>
->>>
->>> [1] https://lore.kernel.org/lkml/20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org/
->>>
->>> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
->>> ---
-[...]
-
->>
->> Can you please confirm that it's appropriate to name this "trng" without
->> the "-ee" suffix. Should all trng instances (v2 and v3) skip
->> initialization?
-> All trng supported platform needs to skip initialzation.
-> we don't need to have both "trng-ee" and "trng".
-> If "trng-ee" is prefer we shold update it in patch [1] it itself,
-Looking back at ba3ab6371cdd ("crypto: qcom-rng - Add support for prng-ee"),
-it was solved in a way that we would stray from today - nowadays
-we'd call it qcom,msm8996-prng or something.
-
-The -ee part was only there to discern parts that were initialized
-by other software.
-
-Since you said that all TRNGs need that, I'm also for dropping "-ee".
+> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+> ---
+> 
+> Changes in V2:
+> - Address review comment from Bjorn and Krzysztof
+"make changes" is not a valid changelog, please be more specific
+next time around
 
 Konrad
