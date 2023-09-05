@@ -2,45 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8414679328E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 01:29:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9AD579329D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 01:31:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239181AbjIEX3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 19:29:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53856 "EHLO
+        id S240382AbjIEXbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 19:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230081AbjIEX3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 19:29:01 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0C13B0;
-        Tue,  5 Sep 2023 16:28:57 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7628F40006;
-        Tue,  5 Sep 2023 23:28:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1693956536;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=zuWbjrK14FpRjBQ8BxeTR6DWVw5uS7OL9akdPs8EATo=;
-        b=SoGVmDnJ8MJUTmi54q+/E2/76mmA4x14DKTqSssRzZ6oLn3/XeKkPyjzNmMjQ83llRff8H
-        AC7jAbHyUoWFw+B9Y49evg1Rf1VsMEO2cOL2rI85o14rrBeBfXSxNZlRfofiQV2gr1j5H2
-        1UwliN0Kjwm6PkRBg9+D4iOfqidU26xwPEQCbWHzWY3SBVs1exaWS5Q5TpxwY6vgrp2kKK
-        ZPx16Mb8iHN+fXj35qyqOJh6WTIHGUg+/UQhRTVd/CeZ2NW8ncjzetvDXwxcaS9OizPSp5
-        /Q5EuFgxAO+370v1F0xSQBnXdWc9cmdANg95oymSE+CV+XBEiS/BPrp6B/xs9w==
-Date:   Wed, 6 Sep 2023 01:28:55 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: rtc: ds3231: Remove text binding
-Message-ID: <169395650936.306948.2415359175774403273.b4-ty@bootlin.com>
-References: <20230902134407.2589099-1-festevam@gmail.com>
+        with ESMTP id S230081AbjIEXbo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 19:31:44 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F288133;
+        Tue,  5 Sep 2023 16:31:40 -0700 (PDT)
+Received: from pyrite.hamster-moth.ts.net (h175-177-042-159.catv02.itscom.jp [175.177.42.159])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CBBF3B1;
+        Wed,  6 Sep 2023 01:30:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1693956612;
+        bh=y7wV/evml2IbKlgjDtIjPjWJ7o0VRAvqJGG6hYnSTuE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uTFvU6VawmuPqKS40ZjlxF6JA9+2QwNdkClz0M/ZlT3VN9gOf24WGNGtA3JZHLwGd
+         NJBq2mOtRd72agvwYP91yi2PtN1pwWt0b+GfrtmspIYHjGpyp5Z2v4lHZfrJxCaDqG
+         bPohtprZE337nA7QHGhOYPV8Dh9C8q5vazLoOg7s=
+From:   Paul Elder <paul.elder@ideasonboard.com>
+To:     linux-media@vger.kernel.org
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH 0/3] media: i2c: Add driver for THine THP7312 ISP
+Date:   Wed,  6 Sep 2023 08:31:15 +0900
+Message-Id: <20230905233118.183140-1-paul.elder@ideasonboard.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230902134407.2589099-1-festevam@gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -50,23 +51,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series adds support for a new driver for the THine THP7312
+ISP. It has been tested on an OLogic Pumpkin i350, which has a Mediatek
+mt8365 SoC, with the THine THSCG101 camera module.
 
-On Sat, 02 Sep 2023 10:44:07 -0300, Fabio Estevam wrote:
-> The "maxim,ds3231" compatible is described in the rtc-ds1307.yaml, so
-> there is no need to keep the text bindings version.
-> 
-> Remove the maxim,ds3231.txt file in favor of the rtc-ds1307.yaml binding.
-> 
-> 
+Technically the driver itself (and its bindings) have no dependencies,
+but to run/test this on the i350, a bunch of patches from Baylibre are
+required. I have these organized in a branch [1], and I have another
+branch on top which includes the patches from this series [2].
 
-Applied, thanks!
+Patch 3 depends on the device tree for the Pumpkin board, which as far
+as I know will be handled by Baylibre. I expect this patch to go in
+alone, separately, and at a later date.
 
-[1/1] dt-bindings: rtc: ds3231: Remove text binding
-      commit: ce413486c9a0d735d86cc7d88660abeac99c2501
+[1] https://git.uk.ideasonboard.com/THine/linux/src/branch/epaul/v6.5-rc1/base/thine/thp7312
+[2] https://git.uk.ideasonboard.com/THine/linux/src/branch/epaul/v6.5-rc1/rc/thine/thp7312
 
-Best regards,
+Paul Elder (3):
+  dt-bindings: media: Add THine THP7312 ISP
+  media: i2c: Add driver for THine THP7312
+  arm64: dts: mediatek: mt8365-pumpkin: Add overlays for thp7312 cameras
+
+ .../bindings/media/thine,thp7312.yaml         |  170 ++
+ arch/arm64/boot/dts/mediatek/Makefile         |    4 +
+ .../mt8365-pumpkin-common-thp7312.dtsi        |   23 +
+ .../mt8365-pumpkin-csi0-thp7312-imx258.dtso   |   73 +
+ .../mt8365-pumpkin-csi1-thp7312-imx258.dtso   |   73 +
+ drivers/media/i2c/Kconfig                     |    9 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/thp7312.c                   | 1674 +++++++++++++++++
+ 8 files changed, 2027 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/thine,thp7312.yaml
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin-common-thp7312.dtsi
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin-csi0-thp7312-imx258.dtso
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8365-pumpkin-csi1-thp7312-imx258.dtso
+ create mode 100644 drivers/media/i2c/thp7312.c
 
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.39.2
+
