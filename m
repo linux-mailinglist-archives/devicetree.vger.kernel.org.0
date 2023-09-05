@@ -2,112 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8F1D791EBF
-	for <lists+devicetree@lfdr.de>; Mon,  4 Sep 2023 23:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EEF0792896
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238406AbjIDVAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 4 Sep 2023 17:00:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45600 "EHLO
+        id S245658AbjIEQXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:23:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230261AbjIDVAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 17:00:18 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 765A2A9
-        for <devicetree@vger.kernel.org>; Mon,  4 Sep 2023 14:00:15 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B9785143D;
-        Mon,  4 Sep 2023 14:00:52 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 08FC33F793;
-        Mon,  4 Sep 2023 14:00:10 -0700 (PDT)
-Date:   Mon, 4 Sep 2023 21:59:08 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch,
-        heiko@sntech.de, jagan@edgeble.ai, jernej.skrabec@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
-        neil.armstrong@linaro.org, noralf@tronnes.org, robh+dt@kernel.org,
-        sam@ravnborg.org, samuel@sholland.org, uwu@icenowy.me,
-        wens@csie.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V4 6/8] ARM: dts: sun8i: v3s: add EHCI and OHCI to v3s
- dts
-Message-ID: <20230904215908.563fa139@slackpad.lan>
-In-Reply-To: <20230828181941.1609894-7-macroalpha82@gmail.com>
-References: <20230828181941.1609894-1-macroalpha82@gmail.com>
-        <20230828181941.1609894-7-macroalpha82@gmail.com>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S1343644AbjIECmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 4 Sep 2023 22:42:36 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63563CC6;
+        Mon,  4 Sep 2023 19:42:33 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2bc63e0d8cdso29990031fa.2;
+        Mon, 04 Sep 2023 19:42:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693881751; x=1694486551; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nt6ay0ilUmrNIrakmOthvuLnYKcSlh/71zqVmBj/MNI=;
+        b=eAVqggZ4SYFDQkPgn4YOQuLjtL7pkRlt9fAwagRklY3YslyBOUJG5lhAAN2Xtqw6qe
+         mkkICwFL0xcSiR5qoSjXYHIYxDPNJR2+5SK38n46QfsU/9bkMTISu7cYWL5FgZLyfrKB
+         UI7oMix7gM55h7WuxDA39BjAGydhYLVAOHOAPIjuBxSYTJdbRa9lAQVxmpcH4TOxkUkQ
+         HMzCqo7fPHWjUw4+gUBup7+Rd33BmvqztccMDfGruovD1I1nif/0ewizy9Bl5a9/rYkA
+         +60GB4YNC9haEOc2eeTy2+1RjWcXVGYY7K6RADPh3uHfLycVypM1tjgzAxEjvXXTDxAw
+         /hXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693881751; x=1694486551;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Nt6ay0ilUmrNIrakmOthvuLnYKcSlh/71zqVmBj/MNI=;
+        b=OVZAxkqjlUzQjiM22yszhNMPifMACktdH/Soke8zBmF42UNgtN1ipJE4iptpUDhYgG
+         R8tF9b63VqCmglZ2TnDy4t2TzJj1bxjFHTw5RslWqQNoIPfoAvfSHd+r27koGZ2HpIIn
+         XEy0MKm/rX33roKUSjcC+PKGrHpI35xUwY1hNwL1qtl2bb8cAyAlH9VjJIRQcUwNR9Mx
+         offW5AUK2+iUiy7nD71SFsH3gsg4nMToNd4CX/xkOIcZukN3JxRaO3L8W5nRThbV4ikB
+         3waKQ506FahqWsZRSlEeL7pe119sp5RIrmxOlLumdmvaEat1TVbMFPAl4FRZlNbUd2NO
+         eS1Q==
+X-Gm-Message-State: AOJu0Yxm7POxbvV6TipWyU1PFT/mBaMHLoOxMeyNgs02kJYWXK2TWq+i
+        yRbrjMJ/dGWF76AOT2kiStfbNds4vCK8uO5vwQhczOTOvvH5Gg==
+X-Google-Smtp-Source: AGHT+IGDYEM/D+VjDs53lbJVDTyoT0Bkv7iXApFmItzvgobWbxVZW0eXbIPiwJUhubc08jbCg8gVCb4oxy8r4PLOtqU=
+X-Received: by 2002:a2e:980a:0:b0:2bd:1ea9:f0fc with SMTP id
+ a10-20020a2e980a000000b002bd1ea9f0fcmr8939737ljj.21.1693881751359; Mon, 04
+ Sep 2023 19:42:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230812091708.34665-3-arinc.unal@arinc9.com> <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com> <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com> <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com> <20230814143601.mnpxtcm2zybnbvoh@skbuf>
+ <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com> <20230827121235.zog4c3ehu2cyd3jy@skbuf>
+ <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+In-Reply-To: <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Mon, 4 Sep 2023 23:42:19 -0300
+Message-ID: <CAJq09z6eghuHY+b2y-kGmjKnLiEEOABXGKhjnB-PxJ=-GtYD4w@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+To:     =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Aug 2023 13:19:39 -0500
-Chris Morgan <macroalpha82@gmail.com> wrote:
+> > [1] ...this. The SMI-controlled and MDIO-controlled Realtek switches are
+> > otherwise the same, right? So why would they have different dt-bindings?
+>
+> Honestly, I'm wondering the answer to this as well. For some reason, when
+> probing the SMI controlled Realtek switches, instead of just letting
+> dsa_switch_setup() populate ds->slave_mii_bus, on realtek_smi_setup_mdio()
+> on realtek-smi.c:
+>
+> - priv->slave_mii_bus is allocated.
+> - mdio_np = of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
+> - priv->slave_mii_bus->dev.of_node = mdio_np;
+> - ds->slave_mii_bus = priv->slave_mii_bus;
 
-Hi,
+I might be able to help here. The Realtek SMI version created a custom
+slave_mii driver because it was the only way to associate it with an
+MDIO DT node. And that DT node was required to specify the interrupts
+for each phy0.
+It would work without that mdio node, letting DSA setup handle the
+slave bus, but it would rely only on polling for port status.
 
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Add the EHCI and OHCI controller to the Allwinner v3s to support using
-> USB in host mode.
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+As we only have a single internal MDIO, the compatible string
+"realtek,smi-mdio" would not be necessary if the driver checks for a
+"mdio"-named child node. Maybe the code was just inspired by another
+DSA driver that uses more MDIO buses or external ones. The "mdio" name
+is suggested by docs since it was committed
+(https://www.kernel.org/doc/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt).
+That name was also kept in the YAML translation
+(https://www.kernel.org/doc/Documentation/devicetree/bindings/net/dsa/realtek.yaml).
 
-Looks good now, and the PHY connection is correct, even though the
-current code is ... interesting in this regard. It looks like the
-problem is more with the sunxi MUSB glue driver, though. Anyway:
+The Realtek MDIO driver was merged at the same release that included
+the change that allows dsa_switch_setup() to reference the "mdio"
+OF-node if present. That way, it could avoid creating a custom
+slave_mii_bus driver.
 
-Addresses, IRQs, clocks and resets checked against the manual:
+I submitted a small series of patches to unify that behavior between
+those two drivers:
 
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+https://lore.kernel.org/netdev/CAJq09z44SNGFkCi_BCpQ+3DuXhKfGVsMubRYE7AezJsGGOboVA@mail.gmail.com/
+(This is my answer to the series opening message to include the first
+paragraph ate by the editor)
 
-Cheers,
-Andre
+There was some discussion but not NAC, ACK or RFC. It would have
+dropped some lines of code. I can revive it if there is interest.
 
-> ---
->  arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi | 23 ++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> index c87476ea31e2..e8a04476b776 100644
-> --- a/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s.dtsi
-> @@ -319,6 +319,29 @@ usbphy: phy@1c19400 {
->  			#phy-cells = <1>;
->  		};
->  
-> +		ehci: usb@1c1a000 {
-> +			compatible = "allwinner,sun8i-v3s-ehci", "generic-ehci";
-> +			reg = <0x01c1a000 0x100>;
-> +			interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>;
-> +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-> +			phys = <&usbphy 0>;
-> +			phy-names = "usb";
-> +			status = "disabled";
-> +		};
-> +
-> +		ohci: usb@1c1a400 {
-> +			compatible = "allwinner,sun8i-v3s-ohci", "generic-ohci";
-> +			reg = <0x01c1a400 0x100>;
-> +			interrupts = <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks = <&ccu CLK_BUS_EHCI0>, <&ccu CLK_BUS_OHCI0>,
-> +				 <&ccu CLK_USB_OHCI0>;
-> +			resets = <&ccu RST_BUS_EHCI0>, <&ccu RST_BUS_OHCI0>;
-> +			phys = <&usbphy 0>;
-> +			phy-names = "usb";
-> +			status = "disabled";
-> +		};
-> +
->  		ccu: clock@1c20000 {
->  			compatible = "allwinner,sun8i-v3s-ccu";
->  			reg = <0x01c20000 0x400>;
+Regards,
 
+Luiz
