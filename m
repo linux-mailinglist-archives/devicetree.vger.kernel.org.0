@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B7F07928A4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC8627928EF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:46:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344576AbjIEQXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:23:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47334 "EHLO
+        id S1350416AbjIEQYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:24:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354428AbjIELes (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:34:48 -0400
-Received: from s.wrqvtzvf.outbound-mail.sendgrid.net (s.wrqvtzvf.outbound-mail.sendgrid.net [149.72.126.143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A36C1AB
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 04:34:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
-        h=mime-version:subject:references:from:in-reply-to:to:cc:content-type:
-        content-transfer-encoding:cc:content-type:from:subject:to;
-        s=s1; bh=8Oon+UZVxMzjsZmhyhxxf4Iok+yFxg7JUkPTPozzk2Y=;
-        b=UVXSHcpHRkuysgyXTlsLgYFD5G8Zf+7iKD2zhOY93EMero2+yHxox8SQCGOt52IQsbmu
-        LFG86tfIhEG9SBKzMcjTS87Wr08UHxaVaQogNfYs7JVvDqPhoreHTP9FFGnawws9df7mj6
-        gF8V2GOKOo4yTnmrUATsP1JSxx5YAuNK+YXHfODzvk9sOiMcr94AY+F+QBGTAdgWxhcRNT
-        AsyHlKVqRDA5sFQe5qbAYVDFozpAz+F0Lt2Dwgh1XdEHxPfb7SKwakXtZjVNg56Ge/gCgt
-        50ipMMb5phMrP8fQlWDiy+ziLLN0+hi5IxX27I4crpuV+ih+2LPFRUZYCHYmya9g==
-Received: by filterdrecv-7765c6879f-mrb57 with SMTP id filterdrecv-7765c6879f-mrb57-1-64F71232-5
-        2023-09-05 11:34:10.187704852 +0000 UTC m=+2232639.625816428
-Received: from [192.168.1.50] (unknown)
-        by geopod-ismtpd-8 (SG) with ESMTP
-        id jd1KlkDuTLa2t2toI-Tyqw
-        Tue, 05 Sep 2023 11:34:09.834 +0000 (UTC)
-Message-ID: <ca8d3730-dc32-0192-d812-82cc58700260@kwiboo.se>
-Date:   Tue, 05 Sep 2023 11:34:10 +0000 (UTC)
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 0/3] Make Rockchip IO domains dependency from other
- devices explicit
-Content-Language: en-US
-References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
-From:   Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20230904115816.1237684-1-s.hauer@pengutronix.de>
-X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
- =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h8rKZkhjZNKspq1qu?=
- =?us-ascii?Q?L4Ur5DSU6M7CKd5T0Kq7NrTwxkY0tJnRNwRv890?=
- =?us-ascii?Q?ix6HcaePIYyKW9zxu6ZLyGrpetznd+vDyK7DODW?=
- =?us-ascii?Q?zfga0myeRguOfqgI5zqUD6ebBdwqsmyRK79t4Ff?=
- =?us-ascii?Q?QFFwB+yHb19fqgKWz6QhIywF7SeIia0UyONfPC?=
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-rockchip@lists.infradead.org
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        kernel@pengutronix.de,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S1354429AbjIELfI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:35:08 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF2121AB;
+        Tue,  5 Sep 2023 04:35:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 307ADCE10BD;
+        Tue,  5 Sep 2023 11:35:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5190DC433C7;
+        Tue,  5 Sep 2023 11:35:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693913701;
+        bh=H/0TlFmw9zyljZX0YozlA/5QbHfYcOuak+YVEi4Bd8k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=bGmS/AbTUJg7iRJh+IeT66FWwrYYnBYevWLIRjUF6yTSgFo5LLW9bINszAi820XMN
+         hiUkqfIp89JASzkekfGuO045uTFvZNUytHFmmS3TGWAfna6YF6jI7DY2b8VXmhZ5pd
+         kf/nm36avqOCBjGFiyLR1+uPO0upzvY82Z3J5fQBVNumwucYHdnCh9HvEFnJ52TaYq
+         9WgggW5rSopsr1fY2LtU4jXjiq32CwQGBQq9F5zlRngEfVlm/1qCxfC083A98AEm1a
+         1Asc3IowNnOIFAcLRDPTdw4VF7naQM5DVZEWrW5Wepqbww1AUmNnayd9+KrtVJYXOi
+         i1qz+gwg2nZMw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.95)
+        (envelope-from <maz@kernel.org>)
+        id 1qdUKg-00AZBD-Lx;
+        Tue, 05 Sep 2023 12:34:58 +0100
+Date:   Tue, 05 Sep 2023 12:34:58 +0100
+Message-ID: <86msy0etul.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L3,
+        Fang Xiang <fangxiang3@xiaomi.com>
+Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent redistributors/ITSes probing
+In-Reply-To: <20230905104721.52199-3-lpieralisi@kernel.org>
+References: <20230905104721.52199-1-lpieralisi@kernel.org>
+        <20230905104721.52199-3-lpieralisi@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/28.2
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: lpieralisi@kernel.org, linux-kernel@vger.kernel.org, robin.murphy@arm.com, mark.rutland@arm.com, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, robh+dt@kernel.org, fangxiang3@xiaomi.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,85 +69,218 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sascha,
+On Tue, 05 Sep 2023 11:47:21 +0100,
+Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> 
+> The GIC architecture specification defines a set of registers
+> for redistributors and ITSes that control the sharebility and
+> cacheability attributes of redistributors/ITSes initiator ports
+> on the interconnect (GICR_[V]PROPBASER, GICR_[V]PENDBASER,
+> GITS_BASER<n>).
+> 
+> Architecturally the GIC provides a means to drive shareability
+> and cacheability attributes signals and related IWB/OWB/ISH barriers
+> but it is not mandatory for designs to wire up the corresponding
+> interconnect signals that control the cacheability/shareability
+> of transactions.
+> 
+> Redistributors and ITSes interconnect ports can be connected to
+> non-coherent interconnects that are not able to manage the
+> shareability/cacheability attributes; this implicitly makes
+> the redistributors and ITSes non-coherent observers.
+> 
+> So far, the GIC driver on probe executes a write to "probe" for
+> the redistributors and ITSes registers shareability bitfields
+> by writing a value (ie InnerShareable - the shareability domain the
+> CPUs are in) and check it back to detect whether the value sticks or
+> not; this hinges on a GIC programming model behaviour that predates the
+> current specifications, that just define shareability bits as writeable
+> but do not guarantee that writing certain shareability values
+> enable the expected behaviour for the redistributors/ITSes
+> memory interconnect ports.
+> 
+> To enable non-coherent GIC designs, introduce the "dma-noncoherent"
+> device tree property to allow firmware to describe redistributors and
+> ITSes as non-coherent observers on the memory interconnect and use the
+> property to force the shareability attributes to be programmed into the
+> redistributors and ITSes registers.
+> 
+> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: Marc Zyngier <maz@kernel.org>
+> ---
+>  drivers/irqchip/irq-gic-v3-its.c | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+> index e0c2b10d154d..758ea3092305 100644
+> --- a/drivers/irqchip/irq-gic-v3-its.c
+> +++ b/drivers/irqchip/irq-gic-v3-its.c
+> @@ -5056,7 +5056,8 @@ static int __init its_compute_its_list_map(struct resource *res,
+>  }
+>  
+>  static int __init its_probe_one(struct resource *res,
+> -				struct fwnode_handle *handle, int numa_node)
+> +				struct fwnode_handle *handle, int numa_node,
+> +				bool non_coherent)
+>  {
+>  	struct its_node *its;
+>  	void __iomem *its_base;
+> @@ -5148,7 +5149,7 @@ static int __init its_probe_one(struct resource *res,
+>  	gits_write_cbaser(baser, its->base + GITS_CBASER);
+>  	tmp = gits_read_cbaser(its->base + GITS_CBASER);
+>  
+> -	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE)
+> +	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE || non_coherent)
+>  		tmp &= ~GITS_CBASER_SHAREABILITY_MASK;
 
-On 2023-09-04 13:58, Sascha Hauer wrote:
-> This is a continuation of the patch posted by Quentin Schulz here [1]
-> 
-> This series aims to solve a problem with Rockchip IO domains. On many
-> Rockchip SoCs the pins are driven by external supplies normally
-> controlled by regulators of a PMIC. There are multiple voltages allowed
-> for the regulators; additionally the chosen voltage has to be programmed
-> into SoC registers. There already is a driver [2] handling setting these
-> registers. The driver works by registering a notifier on the regulators.
-> Whenever a regulator is about to change its voltage then the notifier will
-> program the IO domain registers suitably for the new voltage.
-> 
-> The problem is that there is no dependency between pins and the IO
-> domain driver which means that it can happen that a pin is used before
-> the IO domain driver has been probed. In that case the pin can end up
-> being non functional as neither the regulator has been configured
-> correctly nor the SoC registers have been adjusted to the regulators
-> voltage.
-> 
-> One way to ensure correct probing order is to defer probing of devices
-> in the pinctrl driver until the IO domain driver has been probed. We
-> can't do this for all devices though, as that would introduce a cyclic
-> dependency when for example the I2C port needed to access the PMIC for
-> the regulators is part of a IO domain itself.
-> 
-> This series solves these problems similarly to Quentins patch. With
-> Quentins patch we would have to add rockchip,io-domain properties for
-> all pin group nodes we wish to honor the IO domain dependency for. We
-> could put these properties into the board dts files which would mean
-> that we either only add the properties to nodes which actually byte us,
-> or that we would have to add the properties to all possible pin groups
-> except the ones needed to access the PMIC. We could also put these
-> properties into the dtsi files, but that would mean a board has to add a
-> /delete-property/ rockchip,io-domain to the pin groups needed to access
-> the PMIC to avoid circular dependencies.
-> 
-> The approach chosen here is slightly different. First of all this series
-> doesn't change the current behaviour without board specific dts changes.
-> To activate the IO domain dependency handling, a board has to add a
-> rockchip,io-domains property to the pinctrl node. When this property is
-> present all pins are assumed to need the IO domain driver. Pin groups
-> needed to access the PMIC can then be given a rockchip,io-domain-boot-on
-> property. When this property is given then the IO domain is assumed to
-> be correctly configured by the boot loader. It should be added to all
-> pin groups needed to access the PMIC to avoid cyclic dependencies. Patch
-> 3/3 contains a usage example for the Radxa Rock-3a.
+Please use the non_coherent attribute to set the flag, instead of
+using it as some sideband signalling. Not having this information
+stored in the its_node structure makes it harder to debug.
 
-FYI, I have sent out a series that ports the IO domain driver to U-Boot.
-This was needed to have working Ethernet on RK356x devices that use a
-1.8V PHY. Initially only RK356x support have been ported but support for
-other SoCs should follow in the future. Vendor U-Boot also initialize
-the IO domain configuration based on the voltage reported by the
-supplying regulator.
+We have an over-engineered quirk framework, and it should be put to a
+good use.
 
-So at least for the example board IO domains should be configured when
-entering linux while booting using a future version of mainline U-Boot.
+>  
+>  	if ((tmp ^ baser) & GITS_CBASER_SHAREABILITY_MASK) {
+> @@ -5356,11 +5357,19 @@ static const struct of_device_id its_device_id[] = {
+>  	{},
+>  };
+>  
+> +static void of_check_rdists_coherent(struct device_node *node)
+> +{
+> +	if (of_property_read_bool(node, "dma-noncoherent"))
+> +		gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
+> +}
+> +
+>  static int __init its_of_probe(struct device_node *node)
+>  {
+>  	struct device_node *np;
+>  	struct resource res;
+>  
+> +	of_check_rdists_coherent(node);
 
-https://lore.kernel.org/u-boot/20230821223020.3918620-1-jonas@kwiboo.se/
+It really feels that the flag should instead be communicated by the
+base GIC driver, as it readily communicates the whole rdists structure
+already.
 
-Regards,
-Jonas
+> +
+>  	/*
+>  	 * Make sure *all* the ITS are reset before we probe any, as
+>  	 * they may be sharing memory. If any of the ITS fails to
+> @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_node *node)
+>  			continue;
+>  		}
+>  
+> -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
+> +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
+> +			      of_property_read_bool(np, "dma-noncoherent"));
+>  	}
+>  	return 0;
+>  }
+> @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
+>  	}
+>  
+>  	err = its_probe_one(&res, dom_handle,
+> -			acpi_get_its_numa_node(its_entry->translation_id));
+> +			acpi_get_its_numa_node(its_entry->translation_id),
+> +			false);
 
-> 
-> Sascha
-> 
-> [1] https://lore.kernel.org/lkml/20220802095252.2486591-1-foss+kernel@0leil.net/
-> [2] drivers/soc/rockchip/io-domain.c
-> 
-> Sascha Hauer (3):
->   pinctrl: rockchip: add support for io-domain dependency
->   dt-bindings: pinctrl: rockchip: Add io domain properties
->   arm64: dts: rockchip: rock-3a: add io domain properties
-> 
->  .../bindings/pinctrl/rockchip,pinctrl.yaml    | 13 +++-
->  .../boot/dts/rockchip/rk3568-rock-3a.dts      | 11 ++++
->  drivers/pinctrl/pinctrl-rockchip.c            | 64 +++++++++++++++++++
->  drivers/pinctrl/pinctrl-rockchip.h            |  3 +
->  4 files changed, 90 insertions(+), 1 deletion(-)
-> 
+I came up with the following alternative approach, which is as usual
+completely untested. It is entirely based on the quirk infrastructure,
+and doesn't touch the ACPI path at all.
 
+Thanks,
+
+	M.
+
+diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
+index 3db4592cda1c..00641e88aa38 100644
+--- a/drivers/irqchip/irq-gic-common.h
++++ b/drivers/irqchip/irq-gic-common.h
+@@ -29,4 +29,8 @@ void gic_enable_quirks(u32 iidr, const struct gic_quirk *quirks,
+ void gic_enable_of_quirks(const struct device_node *np,
+ 			  const struct gic_quirk *quirks, void *data);
+ 
++#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
++#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
++#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
++
+ #endif /* _IRQ_GIC_COMMON_H */
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+index e0c2b10d154d..6edf59af757b 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -44,10 +44,6 @@
+ #define ITS_FLAGS_WORKAROUND_CAVIUM_23144	(1ULL << 2)
+ #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
+ 
+-#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
+-#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
+-#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
+-
+ #define RD_LOCAL_LPI_ENABLED                    BIT(0)
+ #define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
+ #define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
+@@ -4754,6 +4750,14 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
+ 	return true;
+ }
+ 
++static bool its_set_non_coherent(void *data)
++{
++	struct its_node *its = data;
++
++	its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
++	return true;
++}
++
+ static const struct gic_quirk its_quirks[] = {
+ #ifdef CONFIG_CAVIUM_ERRATUM_22375
+ 	{
+@@ -4808,6 +4812,11 @@ static const struct gic_quirk its_quirks[] = {
+ 		.init   = its_enable_rk3588001,
+ 	},
+ #endif
++	{
++		.desc	= "ITS: non-coherent attribute",
++		.property = "dma-noncoherent",
++		.init	= its_set_non_coherent,
++	},
+ 	{
+ 	}
+ };
+diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+index eedfa8e9f077..7f518c0ae723 100644
+--- a/drivers/irqchip/irq-gic-v3.c
++++ b/drivers/irqchip/irq-gic-v3.c
+@@ -1857,6 +1857,14 @@ static bool gic_enable_quirk_arm64_2941627(void *data)
+ 	return true;
+ }
+ 
++static bool rd_set_non_coherent(void *data)
++{
++	struct gic_chip_data *d = data;
++
++	d->rdists.flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
++	return true;
++}
++
+ static const struct gic_quirk gic_quirks[] = {
+ 	{
+ 		.desc	= "GICv3: Qualcomm MSM8996 broken firmware",
+@@ -1923,6 +1931,11 @@ static const struct gic_quirk gic_quirks[] = {
+ 		.mask	= 0xff0f0fff,
+ 		.init	= gic_enable_quirk_arm64_2941627,
+ 	},
++	{
++		.desc	= "GICv3: non-coherent attribute",
++		.property = "dma-noncoherent",
++		.init	= rd_set_non_coherent,
++	},
+ 	{
+ 	}
+ };
+
+-- 
+Without deviation from the norm, progress is not possible.
