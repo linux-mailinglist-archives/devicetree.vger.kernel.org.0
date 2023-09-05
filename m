@@ -2,110 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA80792AF9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:02:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67331792C8B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:38:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236160AbjIEQpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
+        id S231474AbjIERia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 13:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353573AbjIEQ2q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:28:46 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E35D273C
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 09:18:48 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fe15bfb1adso4507674e87.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 09:18:48 -0700 (PDT)
+        with ESMTP id S232517AbjIERhZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 13:37:25 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0ABB379B5B
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 10:08:36 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-52713d2c606so3872434a12.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 10:08:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693930645; x=1694535445; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSU9k7U5l+JbONJFiOhrIjvO2o9Sv1BbHrtzBfvKaJQ=;
-        b=fFJlPyNsrgah/zgX6UgCZqqiNe9AnYs7vsy1NyPDA0WffEFB/qJfD/lu2dteFcQAi7
-         fxn6P30eNNylgMjABcKyUSmucEXlxJI+pPt3+y0TXufoPdongKn1STRTuLXMWbJyG59O
-         oQqMA0QYgOQ0Sz4FhJOBx/MCBzMiQ5G6eFaWfQS5vDu/Eg6X9DnxY2NdtuD0FdgYE9mC
-         A6XSDsb5aQXACZxT4VFVoq5VmVEm96tH+asYxtJClF5nvAOefNYiUJ0wM9AB09Xs50Z2
-         gJiOMSgqI4u4ys/KaFaQEihs+0NyiAE8c1EFtSUaKanuucW5ZHGwXivgeKwoSH534EOQ
-         w/BQ==
+        d=linaro.org; s=google; t=1693933631; x=1694538431; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=u6kNwqRygWFRS5KQ5/JjmBSWEbqa5XGk45okpfYEhOI=;
+        b=BvCE+xptIO8kw0q/VdBS9yqSqXB08+E9GuET1FlLzHFmUuiMvri4KvG8N6iJIyIlyT
+         F8R7QHZRQGS23qzq355Nolx3AM390aaZen6vLSSHbdDvmwoyS8PnS7+eaVRzWBDr7vD9
+         zCtQMUwtMzO5+H7M0mtss1Xj+lfEs7XRMdn1EoAALSKVG4FP5qQkrBSWhIWWYyb+Am1c
+         5A3ae/+JpR/F6HCVYYDQ5AquAYNHrJhZ4ikq+BZ8rhWRQPFgMvVXM+wjmhDbIQK7xTHI
+         /DKLiXB8x4Ye/qFNS9hSbECwcJxBuKRoJPGkNa3IJCA2kQkRYlflnl3vHmvgsOvspIBS
+         87Wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693930645; x=1694535445;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZSU9k7U5l+JbONJFiOhrIjvO2o9Sv1BbHrtzBfvKaJQ=;
-        b=gNFC/9DLTyndVGjwmUbiaIX6WADRLArnB/oSyvN7J97HHC/qY992NgLoFigz3MeRdv
-         eGnE7nWYeO11OWjOY9JfhADGVWpLHWqu85a5oFwPpY1NDWvcDUHwUrintgVfYjlIPYQD
-         aNhT5LZIRbzjOFhurW243xSSZLL6NrbHxht5pHqpBW1rJLt9vA9600bINYZU+TodhQrd
-         trFVKB/5PRN4n7ac2GxB/hyTHog665FlnAdLQsQx4+/4UW6ytAPcm0n1jVWpXqnCMnZA
-         aIS7vwZvm3R5i4rFQWHw85F50f41cJBE7+r+JTws6SWYjHhia/Vfw4KgNicpg45jXf1z
-         XrRA==
-X-Gm-Message-State: AOJu0YwgJ20GhbfKNLSmJXnSJoxsO5W9WvSjAxyADiqUeTfnf7lHPbnl
-        ZSDtmIx8rI1JDllHfnjck49S/wRhaBCmt1HYJ+8=
-X-Google-Smtp-Source: AGHT+IHmLe1g3na3+mMgD44UxKDlaLyzw3S0+7joAYdsj5hlVVZrv+mXBkC3DKuopZa28QZ8CRXfoQ==
-X-Received: by 2002:a17:906:32c7:b0:9a5:9038:b1e7 with SMTP id k7-20020a17090632c700b009a59038b1e7mr236508ejk.36.1693930089748;
-        Tue, 05 Sep 2023 09:08:09 -0700 (PDT)
-Received: from [192.168.37.232] (178235177232.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.232])
-        by smtp.gmail.com with ESMTPSA id rl21-20020a170907217500b0099315454e76sm7701782ejb.211.2023.09.05.09.08.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 09:08:09 -0700 (PDT)
-Message-ID: <d89f9acb-60ca-4a86-a55f-194e7756107a@linaro.org>
-Date:   Tue, 5 Sep 2023 18:08:07 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] hwspinlock: qcom: Remove IPQ6018 SOC specific
- compatible
-Content-Language: en-US
-To:     Vignesh Viswanathan <quic_viswanat@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        d=1e100.net; s=20221208; t=1693933631; x=1694538431;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u6kNwqRygWFRS5KQ5/JjmBSWEbqa5XGk45okpfYEhOI=;
+        b=dgYfs8kVa3jNXcoSBAwCaWQ1x6Uy64xC473btP1VjiK5DGm/lnrCRHx/And0sUm0P0
+         KpYOuNyYDpK1NE7UPRdcNyz6ENJ2zAHv48kQIb49r+vJZKXRS/qpUS6fWnIg+VMXy+aD
+         zM6M3pKSvcDVo4ohu4sUehdZ8PHkC0FkWVyqMgMs7OsbCIQL4+ecgTzl7Uz3lDN63Wgr
+         6J23a50GAOth3fztnBa7l2O1IE24G3lhjepHMlT1Xxn8+1puNK9Utdy03RlrVvXOEm3O
+         W+4Qk5c/oG2LIlIC0GhIwoEfUw67564wPKPVGhLum+upT3ROgZvCp/f9+qEBG4FzwHkm
+         xFoQ==
+X-Gm-Message-State: AOJu0Yw8Q2yQ9bUEYbStHcGnGPvXnicZwm1/qGcWrMiervHW4WiJ9g9I
+        3L42yqswvHG1IsJtFabYUQf14OP4KUGbDYizPCQ=
+X-Google-Smtp-Source: AGHT+IG6fE0DFLC4mYCTNB761pLBJXI5zEAPWKwDAUwTMhFfQUCno/UDPuizMGw8KuJR95wGbAxJtA==
+X-Received: by 2002:a17:906:d0:b0:9a6:1eab:9c84 with SMTP id 16-20020a17090600d000b009a61eab9c84mr287940eji.9.1693930767760;
+        Tue, 05 Sep 2023 09:19:27 -0700 (PDT)
+Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id v26-20020a170906489a00b0099cc36c4681sm7743165ejq.157.2023.09.05.09.19.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Sep 2023 09:19:27 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ohad@wizery.com,
-        baolin.wang@linux.alibaba.com, linux-remoteproc@vger.kernel.org
-Cc:     quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_srichara@quicinc.com,
-        quic_varada@quicinc.com, stable@vger.kernel.org
-References: <20230905095535.1263113-1-quic_viswanat@quicinc.com>
- <20230905095535.1263113-3-quic_viswanat@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230905095535.1263113-3-quic_viswanat@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 00/12] arm64: dts: qcom: correct UFS pad supply
+Date:   Tue,  5 Sep 2023 18:19:08 +0200
+Message-Id: <20230905161920.252013-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
@@ -116,23 +74,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5.09.2023 11:55, Vignesh Viswanathan wrote:
-> IPQ6018 has 32 tcsr_mutex hwlock registers with stride 0x1000.
-> The compatible string qcom,ipq6018-tcsr-mutex is mapped to
-> of_msm8226_tcsr_mutex which has 32 locks configured with stride of 0x80
-> and doesn't match the HW present in IPQ6018.
-> 
-> Remove IPQ6018 specific compatible string so that it fallsback to
-> of_tcsr_mutex data which maps to the correct configuration for IPQ6018.
-> 
-> Changes in v2:
->  - Updated commit message
->  - Added Fixes and stable tags
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 5d4753f741d8 ("hwspinlock: qcom: add support for MMIO on older SoCs")
-> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hi,
 
-Konrad
+Not tested on hardware.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (12):
+  arm64: dts: qcom: sm6125-sprout: drop incorrect UFS phy max current
+  arm64: dts: qcom: sm6125-sprout: correct UFS pad supply
+  arm64: dts: qcom: sm6115-pro1x: correct UFS pad supply
+  arm64: dts: qcom: sm6115p-j606f: correct UFS pad supply
+  arm64: dts: qcom: apq8096-db820c: correct UFS pad supply
+  arm64: dts: qcom: msm8996-oneplus: correct UFS pad supply
+  arm64: dts: qcom: msm8996-gemini: correct UFS pad supply
+  arm64: dts: qcom: msm8998-pro1: correct UFS pad supply
+  arm64: dts: qcom: msm8998-mtp: correct UFS pad supply
+  arm64: dts: qcom: msm8998-oneplus: correct UFS pad supply
+  arm64: dts: qcom: msm8998-sagit: correct UFS pad supply
+  arm64: dts: qcom: sm4250-billie2: correct UFS pad supply
+
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dts              | 2 +-
+ arch/arm64/boot/dts/qcom/msm8996-oneplus-common.dtsi     | 2 +-
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi      | 2 +-
+ arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dts          | 2 +-
+ arch/arm64/boot/dts/qcom/msm8998-mtp.dts                 | 2 +-
+ arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi     | 2 +-
+ arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts        | 2 +-
+ arch/arm64/boot/dts/qcom/sm4250-oneplus-billie2.dts      | 2 +-
+ arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts          | 2 +-
+ arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts        | 2 +-
+ arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts | 4 +---
+ 11 files changed, 11 insertions(+), 13 deletions(-)
+
+-- 
+2.34.1
+
