@@ -2,104 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED28D79294B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB4037928B3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351523AbjIEQ0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:26:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53382 "EHLO
+        id S1345570AbjIEQX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353760AbjIEH4U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 03:56:20 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFFE6CCB
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 00:56:14 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9a5dff9d2d9so321450366b.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 00:56:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693900573; x=1694505373; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tA6N1zwAD88Cgl3i6p7QciLW3xFhFAIdikvljwPx/E4=;
-        b=PVHrswjZUhRRQRska/pIH66dsoT64dhltonmNPceeOhBbcB7eMuOP3q9HZeaC4Yp1r
-         PwPJjKtKaKry3k71XIAf3/srkcBdaMQZIvsRYnmxkQKAAzQJkSWOeeYJadLfqU8sTZ3K
-         XiPEicfhNP4LQC0hxO4Uloj+QFyh+OfB0qx4TTR/8K6Om8xL2GPiY10ltGrIqKVGF/87
-         uBMCOdIHYAPqeRHOwK2y1Kgf++Jk7XXqApKWAlMCwV012UPPD6tl6IniiR7aLSxGA78f
-         j81eguDI8kgxWmmHykLhAmFVyU4A0YXYMlw4S1chF/f9nqqN6p+o6Xi+pRQvtEukQM2x
-         S0aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693900573; x=1694505373;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tA6N1zwAD88Cgl3i6p7QciLW3xFhFAIdikvljwPx/E4=;
-        b=acjNrB78fOVNXCde6DEqCwhHL3s8b1dFp0kbJ8OhY/XD9Rrd2/4BGJaRg/btXFqbCZ
-         mn0pEM1ZzU2LKzGC9sL1W8sr/jno8TyxVt3LlHeI+Z0HfTOCTRkptecCvceTxTAmI1RQ
-         xv10yU4Imj95g2Nv0i72QrAp6idSp7MrisqAqUClm5LXnMXi1nlnY2nqrvcGnTGKNcBZ
-         /1mnMDhAUdmWVPfwUHq8q+DkRdk0BegpsRvzVy5WYnFDzK8ak9vGgK9FIWQoitWkCmaW
-         QF7MK/NQnm0FaMGhQrHwvQYlYLv3fjlcS9w34NjGqmyryMuy9zgbqAJF03J5wVJnjVND
-         2prw==
-X-Gm-Message-State: AOJu0YyC3wj58qL6qSiOiIv4fF0MjrgtWc/HNtbEJNjmxZkzFehzZo3f
-        fvPJdtXUd47fgMcCenFeMEan6w==
-X-Google-Smtp-Source: AGHT+IFzwHQmm2igqrBiBviDINXZhxNp5rbCu7WH1mYkxMQ5qhActIok3Pu8r3eEr4NGuhQcAx9ykw==
-X-Received: by 2002:a17:907:75f4:b0:9a1:d79a:418e with SMTP id jz20-20020a17090775f400b009a1d79a418emr9434819ejc.40.1693900573242;
-        Tue, 05 Sep 2023 00:56:13 -0700 (PDT)
-Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id j9-20020a170906410900b009926928d486sm7208682ejk.35.2023.09.05.00.56.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Sep 2023 00:56:12 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: mfd: Revert "dt-bindings: mfd: maxim,max77693: Add USB connector"
-Date:   Tue,  5 Sep 2023 09:55:58 +0200
-Message-Id: <20230905075558.21219-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S1353766AbjIEIAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:00:51 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC22DF;
+        Tue,  5 Sep 2023 01:00:47 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id CEA8F6600B9D;
+        Tue,  5 Sep 2023 09:00:45 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1693900846;
+        bh=2XjBi/AufZmvXBbTSDTBYuHW7Eq3EIKYGcbUyzuBYIg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=lG5wTiBnMhsuK03J3bFbkZxYoWG5c3bESzHfSG3dWWMCosmfdam4ti8fPG31P6PX9
+         AxtkwwWxGGTkDHTkaWC0MPdX+8LU8xU+3U3+Gye/XAiX6eHRqHfWVDLK4EF55IAykt
+         5lIjKJQxXj/dVk7tfnlCJmOQh8pSjmC85pH5DsObVo8McsfpswgS1RUDGBwv0GnuM5
+         jG9mZY0WivQ6dAO1oUBtFhL0Lbo9PxcIkvrfu47nt2cNg5RY95PAxegh8QaDvKYkdM
+         cKeAO78mj8gIOXXB5hgkOLpQ+XuPhPVTbv1zHLLUAMbSNEmqrksa983Hixi3K4vavQ
+         qF8CKg9++y69w==
+Message-ID: <4e0c1222-5211-5515-99f1-b44b25f8ecfe@collabora.com>
+Date:   Tue, 5 Sep 2023 10:00:43 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 1/2] arm64: dts: mediatek: mt8195-demo: fix the memory
+ size to 8GB
+Content-Language: en-US
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Alexandre Mergnat <amergnat@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>, stable@vger.kernel.org
+References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
+ <20230905034511.11232-1-macpaul.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230905034511.11232-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit da7ee30ae6662f016f28a9ef090b2132b3c0fb48.
+Il 05/09/23 05:45, Macpaul Lin ha scritto:
+> The onboard dram of mt8195-demo board is 8GB.
+> 
+> Cc: stable@vger.kernel.org      # 6.1, 6.4, 6.5
+> Fixes: 6147314aeedc ("arm64: dts: mediatek: Add device-tree for MT8195 Demo board")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> Changes for v2:
+> Changes for v3:
+>   - No change.
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> index b2485ddfd33b..ff363ab925e9 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+> @@ -48,7 +48,7 @@
+>   
+>   	memory@40000000 {
+>   		device_type = "memory";
+> -		reg = <0 0x40000000 0 0x80000000>;
+> +		reg = <0 0x40000000 0x2 0x00000000>;
 
-Commit da7ee30ae666 ("dt-bindings: mfd: maxim,max77693: Add USB
-connector") was an earlier version of my patch adding the connector,
-later superseded by commit 789c9ce9b46f ("dt-bindings: mfd:
-maxim,max77693: Add USB connector").
+Shouldn't this get automatically filled in by the bootloader?
+Usually, that's the case: if it is, then the right thing to do here
+is to change this property to
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+		/* The bootloader will fill in the size */
+		reg = <0x0 0x40000000 0x0 0x0>;
 
----
+Regards,
+Angelo
 
-Fix for v6.6-rc1.
----
- Documentation/devicetree/bindings/mfd/maxim,max77693.yaml | 4 ----
- 1 file changed, 4 deletions(-)
+>   	};
+>   
+>   	reserved-memory {
 
-diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-index 9804d13de648..6a6f222b868f 100644
---- a/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-+++ b/Documentation/devicetree/bindings/mfd/maxim,max77693.yaml
-@@ -31,10 +31,6 @@ properties:
-   charger:
-     $ref: /schemas/power/supply/maxim,max77693.yaml
- 
--  connector:
--    $ref: /schemas/connector/usb-connector.yaml#
--    unevaluatedProperties: false
--
-   led:
-     $ref: /schemas/leds/maxim,max77693.yaml
- 
--- 
-2.34.1
 
