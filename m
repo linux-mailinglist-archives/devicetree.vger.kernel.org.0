@@ -2,166 +2,302 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 591BA792883
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E7C792879
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:43:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234770AbjIEQWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:22:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40444 "EHLO
+        id S243462AbjIEQWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:22:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354666AbjIENXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 09:23:36 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBF319B;
-        Tue,  5 Sep 2023 06:23:32 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6bb1133b063so298386a34.1;
-        Tue, 05 Sep 2023 06:23:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693920212; x=1694525012; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tAnyjNoEHzOtoWr8RZt8Z0B0PvJcndgHMjpREL+JJTc=;
-        b=BKfp3hMsq6pBIVCozL+NV4m3WSnJh85eG61DsCI6irpq9MxhaiLrh7NWjsPqfVB9Fn
-         9ZhRghXNv71ttQjrvWhuu4WHaaKy0KAKhrbHGUZ1TA9xUsHf4b3+xhx+ZHopZBPSzjdo
-         L0jLVwl/XRbcQFR1Pfm5zd0op5Sj5J0hUq6+m43hCFScVpzIAbJhqTMngtAwRMuMFnVm
-         hXuU7MDv9TVfAtuaDjuWZEV7m5a+7AewoxLdWlFvvJBMRRdDNvmA3XPyKrt0hu8hwdJ+
-         t7B4TCcZMLbe12jUPYsXCesrT0yIKrgpWYj9Q14L+vbMfzOPLvIsgZtCso7tRTZMf0Wk
-         AEjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693920212; x=1694525012;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tAnyjNoEHzOtoWr8RZt8Z0B0PvJcndgHMjpREL+JJTc=;
-        b=gqFq6K4hwr9N4kPTMtcSdtk6jy3U0VIpYZHgYqag0LqXsqEmjXF6z9IBJ2jAhkjfBS
-         H6rd9+hvbviHs/oyHF82x1cFz9scx6FMuYVJa8UMSjWrHnqLeQFSu7Kv8YkcTfJ1Slzs
-         Tnlfzqm/ipyqlz47dZBGVzrpXOzEFy3eAXhyfmdzQ34aVfsccR08pgNrUdXiHzPLAX5L
-         As8ZgpHq48SUzFY1aZRdY6tgfgGJ0jyi0vT2tdNZeWA6RX48CxsXP9bAli9TkWj88lTr
-         IwhSszyWFtJryr5jRJvLcNLjY1BP6LkgI804YppuF7b9M6IyThtSZKSxXohhB2atpxDe
-         pQrA==
-X-Gm-Message-State: AOJu0YytNPWH+H5hNNX/sbryXTzT/dl7C7njtX5Gz2IJqBWJdVif1bFN
-        OA4kjrdRbHCRPjOz1pLLbO0=
-X-Google-Smtp-Source: AGHT+IGzXHFvxkJru02iZ4T7UiUFfUmCbJBdZ7YcOEEj2J6kpE0YGf1LLj2iwpaTeIynToQfSlvAFQ==
-X-Received: by 2002:a05:6830:6a9b:b0:6bc:a6d0:ab7 with SMTP id da27-20020a0568306a9b00b006bca6d00ab7mr11675305otb.3.1693920212064;
-        Tue, 05 Sep 2023 06:23:32 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ed1a:13f:d0c6:913b])
-        by smtp.gmail.com with ESMTPSA id e26-20020a9d63da000000b006b9d8c31e94sm5443062otl.39.2023.09.05.06.23.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Sep 2023 06:23:31 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     alexandre.belloni@bootlin.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, sam@ravnborg.or, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH] dt-bindings: rtc: pcf8523: Convert to YAML
-Date:   Tue,  5 Sep 2023 10:23:24 -0300
-Message-Id: <20230905132324.3146722-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S1354795AbjIEOZD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 10:25:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5A9189;
+        Tue,  5 Sep 2023 07:24:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B16DC60A05;
+        Tue,  5 Sep 2023 14:24:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0C86C433C8;
+        Tue,  5 Sep 2023 14:24:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693923897;
+        bh=NICtguhYFU5XK+p+0Fcl4j5Jqt6ZWmZlQQ66VhLN2iA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ksrcFVc27J2ZC5qQRXaat0E1oHt6KrLRHrXbfgIiDBjHMg0SCYdvZotoIuB63/wVJ
+         Mfu2KCfM6qNYAwnPKfxNzRW9jGiVuwqv+edBRgbSzpexSJQpyQhwkIrjalcVORINlf
+         x6lV6uZ7qUhS49SaoCNe6IbIYy+InI8mzmVLixtXPNB7T4LOSJudN1cWYSBeJ+Eb5Q
+         2OrEW42zezSEtBidIyWdYWqy/ksnwzI+tAQCa4Jx1buM0AYni+HYTu1aYmRb5zSK3j
+         8nJCSiQRZRlvrndEfVV1SdLySJd8vAtTU4il/9pYnm/OVQpNBLUPvNXx96L1opvmE+
+         YuI9xMAYeKzpQ==
+Date:   Tue, 5 Sep 2023 16:24:51 +0200
+From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Fang Xiang <fangxiang3@xiaomi.com>
+Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent
+ redistributors/ITSes probing
+Message-ID: <ZPc6M6Of/dGl4kIT@lpieralisi>
+References: <20230905104721.52199-1-lpieralisi@kernel.org>
+ <20230905104721.52199-3-lpieralisi@kernel.org>
+ <86msy0etul.wl-maz@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86msy0etul.wl-maz@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+On Tue, Sep 05, 2023 at 12:34:58PM +0100, Marc Zyngier wrote:
+> On Tue, 05 Sep 2023 11:47:21 +0100,
+> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
+> > 
+> > The GIC architecture specification defines a set of registers
+> > for redistributors and ITSes that control the sharebility and
+> > cacheability attributes of redistributors/ITSes initiator ports
+> > on the interconnect (GICR_[V]PROPBASER, GICR_[V]PENDBASER,
+> > GITS_BASER<n>).
+> > 
+> > Architecturally the GIC provides a means to drive shareability
+> > and cacheability attributes signals and related IWB/OWB/ISH barriers
+> > but it is not mandatory for designs to wire up the corresponding
+> > interconnect signals that control the cacheability/shareability
+> > of transactions.
+> > 
+> > Redistributors and ITSes interconnect ports can be connected to
+> > non-coherent interconnects that are not able to manage the
+> > shareability/cacheability attributes; this implicitly makes
+> > the redistributors and ITSes non-coherent observers.
+> > 
+> > So far, the GIC driver on probe executes a write to "probe" for
+> > the redistributors and ITSes registers shareability bitfields
+> > by writing a value (ie InnerShareable - the shareability domain the
+> > CPUs are in) and check it back to detect whether the value sticks or
+> > not; this hinges on a GIC programming model behaviour that predates the
+> > current specifications, that just define shareability bits as writeable
+> > but do not guarantee that writing certain shareability values
+> > enable the expected behaviour for the redistributors/ITSes
+> > memory interconnect ports.
+> > 
+> > To enable non-coherent GIC designs, introduce the "dma-noncoherent"
+> > device tree property to allow firmware to describe redistributors and
+> > ITSes as non-coherent observers on the memory interconnect and use the
+> > property to force the shareability attributes to be programmed into the
+> > redistributors and ITSes registers.
+> > 
+> > Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> > Cc: Robin Murphy <robin.murphy@arm.com>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: Marc Zyngier <maz@kernel.org>
+> > ---
+> >  drivers/irqchip/irq-gic-v3-its.c | 19 +++++++++++++++----
+> >  1 file changed, 15 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+> > index e0c2b10d154d..758ea3092305 100644
+> > --- a/drivers/irqchip/irq-gic-v3-its.c
+> > +++ b/drivers/irqchip/irq-gic-v3-its.c
+> > @@ -5056,7 +5056,8 @@ static int __init its_compute_its_list_map(struct resource *res,
+> >  }
+> >  
+> >  static int __init its_probe_one(struct resource *res,
+> > -				struct fwnode_handle *handle, int numa_node)
+> > +				struct fwnode_handle *handle, int numa_node,
+> > +				bool non_coherent)
+> >  {
+> >  	struct its_node *its;
+> >  	void __iomem *its_base;
+> > @@ -5148,7 +5149,7 @@ static int __init its_probe_one(struct resource *res,
+> >  	gits_write_cbaser(baser, its->base + GITS_CBASER);
+> >  	tmp = gits_read_cbaser(its->base + GITS_CBASER);
+> >  
+> > -	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE)
+> > +	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE || non_coherent)
+> >  		tmp &= ~GITS_CBASER_SHAREABILITY_MASK;
+> 
+> Please use the non_coherent attribute to set the flag, instead of
+> using it as some sideband signalling. Not having this information
+> stored in the its_node structure makes it harder to debug.
+> 
+> We have an over-engineered quirk framework, and it should be put to a
+> good use.
+> 
+> >  
+> >  	if ((tmp ^ baser) & GITS_CBASER_SHAREABILITY_MASK) {
+> > @@ -5356,11 +5357,19 @@ static const struct of_device_id its_device_id[] = {
+> >  	{},
+> >  };
+> >  
+> > +static void of_check_rdists_coherent(struct device_node *node)
+> > +{
+> > +	if (of_property_read_bool(node, "dma-noncoherent"))
+> > +		gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
+> > +}
+> > +
+> >  static int __init its_of_probe(struct device_node *node)
+> >  {
+> >  	struct device_node *np;
+> >  	struct resource res;
+> >  
+> > +	of_check_rdists_coherent(node);
+> 
+> It really feels that the flag should instead be communicated by the
+> base GIC driver, as it readily communicates the whole rdists structure
+> already.
+> 
+> > +
+> >  	/*
+> >  	 * Make sure *all* the ITS are reset before we probe any, as
+> >  	 * they may be sharing memory. If any of the ITS fails to
+> > @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_node *node)
+> >  			continue;
+> >  		}
+> >  
+> > -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
+> > +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
+> > +			      of_property_read_bool(np, "dma-noncoherent"));
+> >  	}
+> >  	return 0;
+> >  }
+> > @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
+> >  	}
+> >  
+> >  	err = its_probe_one(&res, dom_handle,
+> > -			acpi_get_its_numa_node(its_entry->translation_id));
+> > +			acpi_get_its_numa_node(its_entry->translation_id),
+> > +			false);
+> 
+> I came up with the following alternative approach, which is as usual
+> completely untested. It is entirely based on the quirk infrastructure,
+> and doesn't touch the ACPI path at all.
+> 
+> Thanks,
+> 
+> 	M.
+> 
+> diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
+> index 3db4592cda1c..00641e88aa38 100644
+> --- a/drivers/irqchip/irq-gic-common.h
+> +++ b/drivers/irqchip/irq-gic-common.h
+> @@ -29,4 +29,8 @@ void gic_enable_quirks(u32 iidr, const struct gic_quirk *quirks,
+>  void gic_enable_of_quirks(const struct device_node *np,
+>  			  const struct gic_quirk *quirks, void *data);
+>  
+> +#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
+> +#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
+> +#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
+> +
+>  #endif /* _IRQ_GIC_COMMON_H */
+> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+> index e0c2b10d154d..6edf59af757b 100644
+> --- a/drivers/irqchip/irq-gic-v3-its.c
+> +++ b/drivers/irqchip/irq-gic-v3-its.c
+> @@ -44,10 +44,6 @@
+>  #define ITS_FLAGS_WORKAROUND_CAVIUM_23144	(1ULL << 2)
+>  #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
+>  
+> -#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
+> -#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
+> -#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
+> -
+>  #define RD_LOCAL_LPI_ENABLED                    BIT(0)
+>  #define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
+>  #define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
+> @@ -4754,6 +4750,14 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
+>  	return true;
+>  }
+>  
+> +static bool its_set_non_coherent(void *data)
+> +{
+> +	struct its_node *its = data;
+> +
+> +	its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
+> +	return true;
+> +}
+> +
+>  static const struct gic_quirk its_quirks[] = {
+>  #ifdef CONFIG_CAVIUM_ERRATUM_22375
+>  	{
+> @@ -4808,6 +4812,11 @@ static const struct gic_quirk its_quirks[] = {
+>  		.init   = its_enable_rk3588001,
+>  	},
+>  #endif
+> +	{
+> +		.desc	= "ITS: non-coherent attribute",
+> +		.property = "dma-noncoherent",
+> +		.init	= its_set_non_coherent,
+> +	},
 
-Convert the PCF8523 bindings from text format to YAML.
+For the records, that requires adding a gic_enable_of_quirks() call for the
+ITS DT node that at the moment is not needed, something like this:
 
-The YAML format is preferred as it allows validation.
+-- >8 --
+diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
+index 25a12b46ce35..3ae3cb9aadd9 100644
+--- a/drivers/irqchip/irq-gic-v3-its.c
++++ b/drivers/irqchip/irq-gic-v3-its.c
+@@ -4826,6 +4826,10 @@ static void its_enable_quirks(struct its_node *its)
+ 	u32 iidr = readl_relaxed(its->base + GITS_IIDR);
+ 
+ 	gic_enable_quirks(iidr, its_quirks, its);
++
++	if (is_of_node(its->fwnode_handle))
++		gic_enable_of_quirks(to_of_node(its->fwnode_handle),
++				     its_quirks, its);
+ }
+ 
+ static int its_save_disable(void)
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- .../devicetree/bindings/rtc/nxp,pcf8523.txt   | 18 -------
- .../devicetree/bindings/rtc/nxp,pcf8523.yaml  | 48 +++++++++++++++++++
- 2 files changed, 48 insertions(+), 18 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
- create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
-
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
-deleted file mode 100644
-index 0b1080c60f63..000000000000
---- a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
-+++ /dev/null
-@@ -1,18 +0,0 @@
--* NXP PCF8523 Real Time Clock
--
--Required properties:
--- compatible: Should contain "nxp,pcf8523".
--- reg: I2C address for chip.
--
--Optional property:
--- quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
--  expressed in femto Farad (fF). Valid values are 7000 and 12500.
--  Default value (if no value is specified) is 12500fF.
--
--Example:
--
--pcf8523: rtc@68 {
--	compatible = "nxp,pcf8523";
--	reg = <0x68>;
--	quartz-load-femtofarads = <7000>;
--};
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
-new file mode 100644
-index 000000000000..111cb9938f8f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/nxp,pcf8523.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP PCF8523 Real Time Clock
-+
-+maintainers:
-+  - Sam Ravnborg <sam@ravnborg.org>
-+
-+allOf:
-+  - $ref: rtc.yaml#
-+
-+properties:
-+  compatible:
-+    const: nxp,pcf8523
-+
-+  reg:
-+    maxItems: 1
-+
-+  quartz-load-femtofarads:
-+    description:
-+      The capacitive load of the crystal, expressed in femto Farad (fF).
-+      Valid values are 7000 and 12500. The default value when this property
-+      is absent is 12500fF.
-+    enum: [ 7000, 12500 ]
-+
-+  wakeup-source: true
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@68 {
-+            compatible = "nxp,pcf8523";
-+            reg = <0x68>;
-+            quartz-load-femtofarads = <7000>;
-+        };
-+    };
--- 
-2.34.1
-
+>  	{
+>  	}
+>  };
+> diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
+> index eedfa8e9f077..7f518c0ae723 100644
+> --- a/drivers/irqchip/irq-gic-v3.c
+> +++ b/drivers/irqchip/irq-gic-v3.c
+> @@ -1857,6 +1857,14 @@ static bool gic_enable_quirk_arm64_2941627(void *data)
+>  	return true;
+>  }
+>  
+> +static bool rd_set_non_coherent(void *data)
+> +{
+> +	struct gic_chip_data *d = data;
+> +
+> +	d->rdists.flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
+> +	return true;
+> +}
+> +
+>  static const struct gic_quirk gic_quirks[] = {
+>  	{
+>  		.desc	= "GICv3: Qualcomm MSM8996 broken firmware",
+> @@ -1923,6 +1931,11 @@ static const struct gic_quirk gic_quirks[] = {
+>  		.mask	= 0xff0f0fff,
+>  		.init	= gic_enable_quirk_arm64_2941627,
+>  	},
+> +	{
+> +		.desc	= "GICv3: non-coherent attribute",
+> +		.property = "dma-noncoherent",
+> +		.init	= rd_set_non_coherent,
+> +	},
+>  	{
+>  	}
+>  };
+> 
+> -- 
+> Without deviation from the norm, progress is not possible.
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
