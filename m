@@ -2,57 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BB20793087
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FFA37930D4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 23:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244120AbjIEU6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 16:58:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55418 "EHLO
+        id S234191AbjIEVP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 17:15:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238667AbjIEU6D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:58:03 -0400
-X-Greylist: delayed 206 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Sep 2023 13:57:59 PDT
+        with ESMTP id S233308AbjIEVP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 17:15:27 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB92B137;
-        Tue,  5 Sep 2023 13:57:59 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AAE2C433CB;
-        Tue,  5 Sep 2023 20:54:31 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75423B8;
+        Tue,  5 Sep 2023 14:15:23 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06260C433C7;
+        Tue,  5 Sep 2023 21:15:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693947272;
-        bh=2byUuBnNYOniARqS3P7QGkHGois1QxSUoeI8B8+N+CI=;
+        s=k20201202; t=1693948523;
+        bh=1pdQsTvxS6GAHzbsLvraJ8XaQMyxfYiRxjVALwTCHOI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SVCOXQmRG4GMVnAt1C5TAdvwIgBnmUiz0mEeLLqjDLNkof5WT+6qaBcZIcSGah/KG
-         Y9M3ZTwgd+unKGgAMf7XD8vN9syyJ3oHV29s6N+gyGyRDxNLAgvA/6jeSXTT15XcWk
-         qeKMOOtvirOKQjf99Q/b2gNlIwO/NZxGpSmpPk7GeAcvyupjCJz77GiJDvJjOXdHDX
-         UbR3JPFbbW+1NpqUTJbk2pAziwQjrUDdIfPCooF7VtHM4JgC01hKhMMeHnYPvAXR8h
-         BcQ3L/rcH9I6moyVff22z0rlf7LoK9jWPPzbq81Ex1HSpwZUdl0+LAou5HU3L7ebZW
-         XbENyMKD64qPA==
-Received: (nullmailer pid 3998225 invoked by uid 1000);
-        Tue, 05 Sep 2023 20:54:30 -0000
-Date:   Tue, 5 Sep 2023 15:54:30 -0500
+        b=ippbUdejxKQ1jDq3bWA2SrVcrfPNp/UFkH8M37LZS2l3+QClFBWy9ja9nQTxYsWGf
+         /nXc7OGo1Yv5JFJ5THJQam+kHuqJH3CPKVYYDJcNklhOHcm+4QYzdt/7bWmmIpZ4gG
+         iYehm+LFFNQWuMbNhU3Z5AQrHZO41gQDmavifArbXTQGc1INcdN3qXG69QLVgKnNV0
+         /Os5OpjGqraWYeNjuAMDRwGEU8Co3h1SRgNu53G0w+VXAAVQ6IIFC/U+i/mXN+mknX
+         5mgRZx5vIX1dNJOlsI/e+lRFFnFymDsfyr0Z4ofE+C968pKSNW+yj5W3Dq094Z0Wyq
+         KQ1/j/h5YJyKw==
+Received: (nullmailer pid 4030509 invoked by uid 1000);
+        Tue, 05 Sep 2023 21:15:15 -0000
+Date:   Tue, 5 Sep 2023 16:15:15 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        linux-arm-msm@vger.kernel.org, Todor Tomov <todor.too@gmail.com>,
-        linux-media@vger.kernel.org, Robert Foss <rfoss@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
+To:     Raphael Gallais-Pou <rgallaispou@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
         Conor Dooley <conor.dooley@microchip.com>,
-        linux-i2c@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2] media: dt-bindings: Convert Omnivision OV7251 to DT
- schema
-Message-ID: <169394726845.3998146.13277420411193366338.robh@kernel.org>
-References: <20230817202713.2180195-1-robh@kernel.org>
+        Marc Zyngier <maz@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v4] dt-bindings: irqchip: convert st,stih407-irq-syscfg
+ to DT schema
+Message-ID: <169394850991.4030364.7708098240384382428.robh@kernel.org>
+References: <20230905072740.23859-1-rgallaispou@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230817202713.2180195-1-robh@kernel.org>
+In-Reply-To: <20230905072740.23859-1-rgallaispou@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -64,28 +58,30 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 17 Aug 2023 15:27:13 -0500, Rob Herring wrote:
-> Convert the OmniVision OV7251 Image Sensor binding to DT schema format.
+On Tue, 05 Sep 2023 09:27:40 +0200, Raphael Gallais-Pou wrote:
+> Convert deprecated format to DT schema format.
 > 
-> vddd-supply was listed as required, but the example and actual user
-> don't have it. Also, the data brief says it has an internal regulator,
-> so perhaps it is truly optional.
-> 
-> Add missing common "link-frequencies" which is used and required by the
-> Linux driver.
-> 
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
-> v2:
->  - Add link-frequencies which the driver requires
+> Changes in v2:
+> 	- Added Conor's r-by
+> 	- Removed quotes surrounding $refs
+> 	- Hardcoded 'st,invert-ext' possible values
+> 
+> Changes in v3:
+> 	- Fixed enum syntax warnings
+> 	- Removed reference to driver in favor of device
+> 
+> Changes in v4:
+> 	- Make clearer description for "st,invert-ext" property
+> 	- Handle better bitwise logic
 > ---
->  .../devicetree/bindings/i2c/qcom,i2c-cci.yaml |   1 +
->  .../devicetree/bindings/media/i2c/ov7251.txt  |  52 ---------
->  .../bindings/media/i2c/ovti,ov7251.yaml       | 109 ++++++++++++++++++
->  3 files changed, 110 insertions(+), 52 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov7251.txt
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
+>  .../st,sti-irq-syscfg.txt                     | 30 ---------
+>  .../st,stih407-irq-syscfg.yaml                | 65 +++++++++++++++++++
+>  2 files changed, 65 insertions(+), 30 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
 > 
 
 Applied, thanks!
