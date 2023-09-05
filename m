@@ -2,105 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70575792944
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E827C7927F0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351475AbjIEQZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:25:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39754 "EHLO
+        id S240252AbjIEQVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353990AbjIEJCu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 05:02:50 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6538FBF;
-        Tue,  5 Sep 2023 02:02:47 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (ftip006315900.acc1.colindale.21cn-nte.bt.net [81.134.214.249])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8CDDE128D;
-        Tue,  5 Sep 2023 11:01:19 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1693904479;
-        bh=i5xgoAvknUQnAeBrZlobtbTH4p/BfgvRHjqgFdrRzAo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mOHafGtT3Q36EEF7HniHebrGl8NFSP2+8LDoiWnYIVMmqAIhnixtIXnLXR5cQc8ut
-         1w+tfxF0njauRH3r2BNE5GvHe3n0pybRvFN97mj1wlB85q1LqHnnq8qPXNIOePtBzS
-         NN64tVqdxLSHqtJbpHR0azVqWOTCO2azMVlmxZVQ=
-Date:   Tue, 5 Sep 2023 12:02:58 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Alain Volmat <alain.volmat@foss.st.com>
-Cc:     Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S1353993AbjIEJDc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 05:03:32 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A7742CE;
+        Tue,  5 Sep 2023 02:03:27 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 573A011FB;
+        Tue,  5 Sep 2023 02:04:05 -0700 (PDT)
+Received: from [10.57.5.181] (unknown [10.57.5.181])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 578893F7F4;
+        Tue,  5 Sep 2023 02:03:25 -0700 (PDT)
+Message-ID: <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+Date:   Tue, 5 Sep 2023 10:03:20 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: Add io domain
+ properties
+Content-Language: en-GB
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Dan Scally <dan.scally@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/5] ARM: dts: stm32: add dcmipp support to stm32mp135
-Message-ID: <20230905090258.GC31594@pendragon.ideasonboard.com>
-References: <20230901155732.252436-1-alain.volmat@foss.st.com>
- <20230901155732.252436-5-alain.volmat@foss.st.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230901155732.252436-5-alain.volmat@foss.st.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+ <20230904115816.1237684-3-s.hauer@pengutronix.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20230904115816.1237684-3-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alain,
-
-Thank you for the patch.
-
-On Fri, Sep 01, 2023 at 05:57:23PM +0200, Alain Volmat wrote:
-> From: Hugues Fruchet <hugues.fruchet@foss.st.com>
+On 2023-09-04 12:58, Sascha Hauer wrote:
+> Add rockchip,io-domains property to the Rockchip pinctrl driver. This
+> list of phandles points to the IO domain device(s) the pins of the
+> pinctrl driver are supplied from.
 > 
-> Add dcmipp support to STM32MP135.
+> Also a rockchip,io-domain-boot-on property is added to pin groups
+> which can be used for pin groups which themselves are needed to access
+> the regulators an IO domain is driven from.
 > 
-> Signed-off-by: Hugues Fruchet <hugues.fruchet@foss.st.com>
-> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > ---
->  arch/arm/boot/dts/st/stm32mp135.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>   .../bindings/pinctrl/rockchip,pinctrl.yaml          | 13 ++++++++++++-
+>   1 file changed, 12 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/st/stm32mp135.dtsi b/arch/arm/boot/dts/st/stm32mp135.dtsi
-> index abf2acd37b4e..beee9ec7ed0d 100644
-> --- a/arch/arm/boot/dts/st/stm32mp135.dtsi
-> +++ b/arch/arm/boot/dts/st/stm32mp135.dtsi
-> @@ -8,5 +8,13 @@
->  
->  / {
->  	soc {
-> +		dcmipp: dcmipp@5a000000 {
-> +			compatible = "st,stm32mp13-dcmipp";
-> +			reg = <0x5a000000 0x400>;
-> +			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
-> +			resets = <&rcc DCMIPP_R>;
-> +			clocks = <&rcc DCMIPP_K>;
-> +			status = "disabled";
+> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> index 10c335efe619e..92075419d29cf 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> @@ -62,6 +62,11 @@ properties:
+>         Required for at least rk3188 and rk3288. On the rk3368 this should
+>         point to the PMUGRF syscon.
+>   
+> +  rockchip,io-domains:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      Phandles to io domains
+> +
+>     "#address-cells":
+>       enum: [1, 2]
+>   
+> @@ -137,7 +142,13 @@ additionalProperties:
+>               - description:
+>                   The phandle of a node contains the generic pinconfig options
+>                   to use as described in pinctrl-bindings.txt.
+> -
+> +      rockchip,io-domain-boot-on:
 
-This needs a port, as it's marked as required in the bindings. You can
-leave the endpoint out.
+I don't think "on" is a particularly descriptive or useful property name 
+for something that has no "off" state. Furthermore it's no help at all 
+if the DT consumer *is* the bootloader that's expected to configure this 
+in the first place. IMO it would seem a lot more sensible to have an 
+integer (or enum) property which describes the actual value for the 
+initial I/O domain setting. Then Linux can choose to assume the presence 
+of the property at all implies that the bootloader should have set it up 
+already, but also has the option of actively enforcing it as well if we 
+want to.
 
-With this fixed,
+> +        type: boolean
+> +        description:
+> +          If true assume that the io domain needed for this pin group has been
+> +          configured correctly by the bootloader. This is needed to break cyclic
+> +          dependencies introduced when a io domain needs a regulator that can be
+> +          accessed through pins configured here.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+This is describing a Linux implementation detail, not the binding 
+itself. There's no technical reason a DT consumer couldn't already 
+figure this much out from the existing topology (by observing that the 
+pinctrl consumer is a grandparent of the I/O domain's supply).
 
-> +		};
->  	};
->  };
+Thanks,
+Robin.
 
--- 
-Regards,
-
-Laurent Pinchart
+>   examples:
+>     - |
+>       #include <dt-bindings/interrupt-controller/arm-gic.h>
