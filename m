@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB5B792AF6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30182792BC7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237334AbjIEQpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:45:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59096 "EHLO
+        id S241953AbjIERAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 13:00:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238846AbjIEQgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:36:35 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E12C2469F
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 09:34:01 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2bd3f629c76so45198531fa.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 09:34:01 -0700 (PDT)
+        with ESMTP id S235708AbjIEQ54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:57:56 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92B6E3ABE
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 09:21:02 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-9936b3d0286so420585266b.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 09:21:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693931552; x=1694536352; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693930780; x=1694535580; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=trFwEkPHlkfNhWfOX9Zlwo/iFiG9jTiXGcKaA8Pa3TY=;
-        b=J/iTRYNOTWYYM+cTNz9h70R0401ZtA2bSZh24WQY2zhIfo+1Qq330hAJ1ZIMLUsK1t
-         NdEOFdnF1z0I1TFtJvncoUbxyb3swVuVnsWt+Zt+PrhN9RuAAPWZ69Shc/Sdsw5qMR3b
-         o0zLfZDBvrrgO6P8NBuzm9IH12JR+zSX84xMf6UyrITeUTN1IW8LY/k4IOC1DP9LiCcF
-         fL9yCQItl/yXE3FacCTVffdyrLMauq+K+0GBX1w2bS98U/YY5EWh/vmNeu/ejZOkvoor
-         62WTJoMiRcW5ksU084l9uwTUOO6wVMGJNHQSJ0DgapA/Pi6HHPMcyex89EcEXZyzCl2S
-         X7hw==
+        bh=wa8S3640iWUkpmAXcApvED+QJgBuG0siUdi8y84+QOg=;
+        b=zSThOYB2hTL/eUV+RF9pTbmJp1ssw6irK2KPJGGWRO/cqFE+h0AH8yrWH+ewbPB1LL
+         wLLfZrGVX9iKlcXhLM/2Hy/gvAk83Cdy3zpfdWJjnvx/VcsTuEdylG5Nl1GKtVjuygLr
+         q4kHebnzhg2Ti+h4M9dBYQMAF7IFcmGnFctITo7v3ECLtzvIPGt1NkHJvMHK1JaFpTps
+         wzW8DXUmo0iCJyB9wt3pK0Xykfbau2SRaIpbB7ivGq/fA1VhgAR50dN4dKEq14TIchrK
+         C5PZMVJc3NFLwOxga36CSZ32mJGUFJOA0FQpTJs27D+HpEq+lxarMwbgWQW573g4c4CS
+         n18w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693931552; x=1694536352;
+        d=1e100.net; s=20221208; t=1693930780; x=1694535580;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=trFwEkPHlkfNhWfOX9Zlwo/iFiG9jTiXGcKaA8Pa3TY=;
-        b=FGVRHlj6+n2opabTNJSJ0TxP1mevksF9+dljWk0jhsixUBNhgoKjbuJqkbGLK4TUs0
-         N1+BsxxKKSS4Vd4NOiM1EgOD2NOnw6se6hATUTbyre3ZgHeCxDmVcWuIJCUOypLIbyJ9
-         NpN+OQY3jqISfDlLpPLtRkxsFqVycx8uN5QT799v0wI+x94kbZlpx/a4aeXRI/qb/bQU
-         ztPWj//CCBLUL2BJ0mMoaaxdpzFc/DOh7xU3RlsdVafymCVQONcHp1nqBZHuBA7oBrla
-         uEIU1WtlRitWWTnDJVziEagQwAk/Df6aw/EicxIf1l6aw4OIy5PPfST67B5XcY7KMNuz
-         oQBA==
-X-Gm-Message-State: AOJu0Yz7Tk4ZbkA8x1JIK2/s7B+qorc6sIbFRSpMlnZ+Qr/JI2KQQ+oJ
-        cc8emVsteTUC1RT+vwTzYtqf4HMYN0EL48kbMj4=
-X-Google-Smtp-Source: AGHT+IEmQSd2edyvfFattJQO+ByTRQHwtfpRZPVH9fJSPo0gW/FR1OCbHCt1pdWtw63JsCDL0UuBEA==
-X-Received: by 2002:a17:907:789a:b0:9a5:b874:93d5 with SMTP id ku26-20020a170907789a00b009a5b87493d5mr254649ejc.76.1693930779404;
-        Tue, 05 Sep 2023 09:19:39 -0700 (PDT)
+        bh=wa8S3640iWUkpmAXcApvED+QJgBuG0siUdi8y84+QOg=;
+        b=JGtaPye6cMBRKt+DKRRiS48fq3s7efW79A84XuH9gkF791tXAQr/3omW0Kft3BBMHA
+         XAOHmEbLqjJ7Lb/cxbso58o72YBB0bG+qp54mt/ubyUtrXzpICD/ArDhsSuQQ8cmdkp4
+         o21q72/RFWeBkeaRXpeeNYP1nnV/saybZrbottpx3y1LJu5/NkhXwwWXlUAVJcL9VzyH
+         /JtuRJYn1BdVu7v8IyLjynvRs8DjHQTUfCXTVe0fbQmbf0yWqV5hGSDv7SxyuYRSeeyv
+         TfFzFuZuuku66pl2j2/yiJbV1/pGDeLKpXnUUKdsxpKApZLo7Ks5kmjHp5OFMzzSyGE4
+         c8yQ==
+X-Gm-Message-State: AOJu0YzRUyuiBy7nSSCPBBnZYanGHQg+uE56XRdXnWpI7k3iFOaAYxnC
+        lyC9MlvlL0IQCfED1u3vRyi4rA==
+X-Google-Smtp-Source: AGHT+IESfv2tKGY9sWI6xhuBrGlNmksCn2wXFYAMdyLFWK3lMFwDIQDIPWPCxfg7uX/4mXrqjrYqBA==
+X-Received: by 2002:a17:906:18aa:b0:9a1:d087:e0bf with SMTP id c10-20020a17090618aa00b009a1d087e0bfmr237260ejf.43.1693930780565;
+        Tue, 05 Sep 2023 09:19:40 -0700 (PDT)
 Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id v26-20020a170906489a00b0099cc36c4681sm7743165ejq.157.2023.09.05.09.19.38
+        by smtp.gmail.com with ESMTPSA id v26-20020a170906489a00b0099cc36c4681sm7743165ejq.157.2023.09.05.09.19.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Sep 2023 09:19:39 -0700 (PDT)
+        Tue, 05 Sep 2023 09:19:40 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -59,18 +59,17 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/12] arm64: dts: qcom: msm8998-oneplus: correct UFS pad supply
-Date:   Tue,  5 Sep 2023 18:19:18 +0200
-Message-Id: <20230905161920.252013-11-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 11/12] arm64: dts: qcom: msm8998-sagit: correct UFS pad supply
+Date:   Tue,  5 Sep 2023 18:19:19 +0200
+Message-Id: <20230905161920.252013-12-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230905161920.252013-1-krzysztof.kozlowski@linaro.org>
 References: <20230905161920.252013-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -95,18 +94,18 @@ similar, depending on the SoC) used by UFS controller.
 Bring back handling of this supply by using more appropriate regulator -
 UFS controller host supply.  This also fixes dtbs_check warning:
 
-  msm8998-oneplus-dumpling.dtb: phy@1da7000: 'vddp-ref-clk-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
+  msm8998-xiaomi-sagit.dtb: phy@1da7000: 'vddp-ref-clk-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-index 68e634f8212c..e6a69d942a4a 100644
---- a/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998-oneplus-common.dtsi
-@@ -534,6 +534,7 @@ &ufshc {
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts b/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
+index 437b30cc8bdc..0cac06f25a77 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
++++ b/arch/arm64/boot/dts/qcom/msm8998-xiaomi-sagit.dts
+@@ -667,6 +667,7 @@ &ufshc {
  	vcc-supply = <&vreg_l20a_2p95>;
  	vccq-supply = <&vreg_l26a_1p2>;
  	vccq2-supply = <&vreg_s4a_1p8>;
@@ -114,14 +113,14 @@ index 68e634f8212c..e6a69d942a4a 100644
  	vcc-max-microamp = <750000>;
  	vccq-max-microamp = <560000>;
  	vccq2-max-microamp = <750000>;
-@@ -544,7 +545,6 @@ &ufsphy {
- 
+@@ -676,7 +677,6 @@ &ufshc {
+ &ufsphy {
  	vdda-phy-supply = <&vreg_l1a_0p875>;
  	vdda-pll-supply = <&vreg_l2a_1p2>;
 -	vddp-ref-clk-supply = <&vreg_l26a_1p2>;
+ 	status = "okay";
  };
  
- &usb3 {
 -- 
 2.34.1
 
