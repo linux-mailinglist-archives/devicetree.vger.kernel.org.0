@@ -2,112 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B07792AFD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8BED792AFC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:02:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232463AbjIEQqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:46:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49058 "EHLO
+        id S236192AbjIEQqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356017AbjIEQbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:31:52 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17D2E1FDF;
-        Tue,  5 Sep 2023 09:29:08 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-26fe4997871so1337468a91.3;
-        Tue, 05 Sep 2023 09:29:08 -0700 (PDT)
+        with ESMTP id S242329AbjIEQed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:34:33 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E64130DF
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 09:33:14 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99357737980so417469266b.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 09:33:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693931278; x=1694536078; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0lXaZC4lJgr9JMdxNZHELcwQzbUjuJdgxkRaJXVL56E=;
-        b=dI1yIOJ7f/gKrBLYTC8kLvhDaiv45hoSjTOYqIUmfw8exnOouryHfzBsi0jH7/LRgE
-         zNe04XWrWluOz0gBMteD0jCEaWhdulvADUuFLMrnSqXXqpwuwfNPG80ZK/kQCdo1iUvA
-         x3bHHQuGsNsDo8mk2Kh8CH+xPM7StKt8XNL4kLz+9jI2uagzVOAIP16Ns9rT36pW//wP
-         TAswtbCgWiwnr1zOfk94l1XCPnGIbvF5BhgmdoBHkOGZmoUDxHtjhRJjrZviAhRlL2Jo
-         mexAdDGkn5iib+ZubMT7dM36ZptrQQHenJFbU8Xb/3LFHTYZSRmScSsHqJa8aY8tOqPQ
-         o8dA==
+        d=linaro.org; s=google; t=1693931465; x=1694536265; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7lliAJnjKGrKN2HdJy1Zp01oKeEF+jouNcZc6sxAEmg=;
+        b=AeaUwT+RZbntyjLvbbf2GnUCUDO1GNIdSqjXawsGuxfKVmGEF0ldsVOeYHuTo2koC5
+         GCLcxRNHBTEUG+k3cwrENbNG+Xy5TMyj537aFWdJXe+j1HH98XZgnhMRtcfE7/Gbo6RI
+         mMS1iJSGmXlSHewoiux0vLafQGXKOHmJRk/zBQTL0fw8s+ZAKEVQbe0Y0CuelE5NKgiv
+         c0hJoIQy3wSgrzuCawkruMH5o5pOlmyd1gAxtfZK6zEfspJAA9hHY6hhK2ECgHtr85LF
+         qG6AY/8vwrgIl9/o8RwBxjSxJTLABcn8qUAuq7jQFUL9x8j3tkTrPAKVdLnSWL9qO3yi
+         349w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693931278; x=1694536078;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0lXaZC4lJgr9JMdxNZHELcwQzbUjuJdgxkRaJXVL56E=;
-        b=ho7XILYpNDWDBPUmi7pwYl0c9+5FYGfPE0kK2KZbJSPDbo/HjHt8j8B6Zfc9RbaK46
-         8qElKLtBukEHgytDtX0CrigJ/IbtlsgVrQJv3ROV3xhONwf7VUqKLzd4oFx2+L2J+qKZ
-         XiLryrrzn/BIIQNjtOTWe9XXmZFxZ3BBVEeKIJkfNg1oONV9xV0ANAwcBpnGJN0oGA8+
-         6arNKOP9TNTKDvgFtNKE/8nDr6PyrVOHts+zZK3o1/tNJNSFyzi5TiB1RM8Vavy4RQL3
-         NtOf9HIFdEDHquLY6JUcPd2+1l2LmzeRXStAtE8UZmogd/Q/iNwyNB9hbzBXaE0LZ08I
-         Ew6w==
-X-Gm-Message-State: AOJu0YwyY8GjdozlGjx3r/sL7JijMWGoFCzTkuzuA4oeAkuOy6jQbSdI
-        9TgQykXyO6Tz4TrGxHManic=
-X-Google-Smtp-Source: AGHT+IHgQ4W+ASzS7VkGl3S7peWoxrNZhGjnSAhyH7Vq/Wl8souodszOsjfMAmTu9d1TJ/zDISXEMg==
-X-Received: by 2002:a17:90a:a684:b0:26d:3d3a:a198 with SMTP id d4-20020a17090aa68400b0026d3d3aa198mr9655941pjq.42.1693931277904;
-        Tue, 05 Sep 2023 09:27:57 -0700 (PDT)
-Received: from [172.16.116.58] ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id p10-20020a17090a868a00b00263f41a655esm9411178pjn.43.2023.09.05.09.27.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 09:27:57 -0700 (PDT)
-Message-ID: <1bbe7772-09f4-6c5a-8c4d-c88988b34c99@gmail.com>
-Date:   Tue, 5 Sep 2023 21:57:52 +0530
+        d=1e100.net; s=20221208; t=1693931465; x=1694536265;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7lliAJnjKGrKN2HdJy1Zp01oKeEF+jouNcZc6sxAEmg=;
+        b=BfobTv/CZSQ5bYWdNgB4o0bxTVwnteTM1cwAOtN75+MyHnwVd7DHU1bv4DQez9Kkkz
+         E+GCNfPbGkp3l/PmAff+lSDEeCiOvxhIHdRbMpmPQnbI8q7vRcZbSo3h4BWVnV6HDp+S
+         ODOjkeiOkqN3Dzu5S7JeAPv62g4SJCas6dDxNhM4a1VhhBiRr62HRbSlyV40RVRdmJoU
+         l14U+696QkMGbMU+iK7mXl/S9cZc3RW3wNHtBcJ2Ci9YkNCePR4p4STS3OtuL1vpCnO3
+         f61OjxF9PRvILYlmNsncL3pChbyIQjoXKvMOAei599vDQzdqT4jHhJJoClxLYXqY/HPk
+         tJxw==
+X-Gm-Message-State: AOJu0YwR1uls+8JlhJDcMVWS+w0pV2hdw40b6C5drYYQX4bsSip7Aigb
+        LsbjlkU6Xr64XOdSL4ujaxMkPg==
+X-Google-Smtp-Source: AGHT+IGc9ZoOkCPrWQHAvmzavnP932KKSQltJbJVFwE5KtY8VTlctUL6wrsqrWGa8tPg0SULxnh2RA==
+X-Received: by 2002:a17:906:3054:b0:9a6:8219:6e0b with SMTP id d20-20020a170906305400b009a682196e0bmr307473ejd.35.1693931465798;
+        Tue, 05 Sep 2023 09:31:05 -0700 (PDT)
+Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id g24-20020a170906395800b00992e265495csm7796187eje.212.2023.09.05.09.31.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Sep 2023 09:31:05 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sdx75-idp: align RPMh regulator nodes with bindings
+Date:   Tue,  5 Sep 2023 18:31:03 +0200
+Message-Id: <20230905163103.257412-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4 2/3] greybus: Add BeaglePlay Linux Driver
-To:     Krzysztof Kozlowski <krzk@kernel.org>, greybus-dev@lists.linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        gregkh@linuxfoundation.org,
-        Vaishnav M A <vaishnav@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Nishanth Menon <nm@ti.com>
-References: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
- <20230902182845.1840620-3-ayushdevel1325@gmail.com>
- <27a445d6-d904-244f-266c-ffb2d68d0e27@kernel.org>
-Content-Language: en-US
-From:   Ayush Singh <ayushdevel1325@gmail.com>
-In-Reply-To: <27a445d6-d904-244f-266c-ffb2d68d0e27@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> +static void hdlc_handle_rx_frame(struct gb_beagleplay *bg)
->> +{
->> +	u8 address = bg->rx_buffer[0];
->> +	char *buffer = &bg->rx_buffer[2];
->> +	size_t buffer_len = bg->rx_buffer_len - 4;
->> +
->> +	switch (address) {
->> +	case ADDRESS_DBG:
->> +		hdlc_handle_dbg_frame(bg, buffer, buffer_len);
->> +		break;
->> +	case ADDRESS_GREYBUS:
->> +		hdlc_handle_greybus_frame(bg, buffer, buffer_len);
->> +		break;
->> +	default:
->> +		dev_warn(&bg->serdev->dev, "Got Unknown Frame %u", address);
-> ratelimit
-> Probably as well in several places with possible flooding.
+Device node names should be generic and bindings expect certain pattern
+for RPMh regulator nodes:
 
-I don't think `hdlc_handle_rx_frame` is the correct place since it only 
-processes a single completed HDLC frame.  The more appropriate place 
-would be `hdlc_rx` if we want to limit based on the number of HDLC 
-frames or `gb_beagleplay_tty_receive` to limit based on the number of bytes.
+  sdx75-idp.dtb: rsc@17a00000: 'pmx75-rpmh-regulators' does not match any of the regexes: '^regulators(-[0-9])?$', 'pinctrl-[0-9]+'
 
-I would like to ask, though, why is rate limiting required here? Won't 
-`serdev_device_ops->receive_buf` already rate limit the number of bytes 
-somewhat? Or is it related to blocking in the 
-`serdev_device_ops->receive_buf` callback? In the case of latter, it 
-would probably make sense to ratelimit based on number of frames, I think.
+Fixes: 8a2dc39d1043 ("arm64: dts: qcom: sdx75-idp: Add regulator nodes")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
+---
 
-Ayush Singh
+Really, I can't believe I am still fixing this stuff. New boards bring
+the same mistakes we fixed half year ago. Or even earlier...
+---
+ arch/arm64/boot/dts/qcom/sdx75-idp.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+index 10d15871f2c4..a14e0650c4a8 100644
+--- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
++++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
+@@ -44,7 +44,7 @@ vreg_bob_3p3: pmx75-bob {
+ };
+ 
+ &apps_rsc {
+-	pmx75-rpmh-regulators {
++	regulators-0 {
+ 		compatible = "qcom,pmx75-rpmh-regulators";
+ 		qcom,pmic-id = "b";
+ 
+-- 
+2.34.1
 
