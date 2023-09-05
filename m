@@ -2,48 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FA27928D9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:46:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 591BA792883
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239117AbjIEQYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:24:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39524 "EHLO
+        id S234770AbjIEQWx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:22:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354621AbjIEM6P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 08:58:15 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B8BC0E9;
-        Tue,  5 Sep 2023 05:58:11 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 53B4211FB;
-        Tue,  5 Sep 2023 05:58:49 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 04A003F67D;
-        Tue,  5 Sep 2023 05:58:09 -0700 (PDT)
-Message-ID: <fd8022b1-9d62-4746-ff53-0f01f6f6b67f@arm.com>
-Date:   Tue, 5 Sep 2023 13:57:57 +0100
+        with ESMTP id S1354666AbjIENXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 09:23:36 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBF319B;
+        Tue,  5 Sep 2023 06:23:32 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6bb1133b063so298386a34.1;
+        Tue, 05 Sep 2023 06:23:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693920212; x=1694525012; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tAnyjNoEHzOtoWr8RZt8Z0B0PvJcndgHMjpREL+JJTc=;
+        b=BKfp3hMsq6pBIVCozL+NV4m3WSnJh85eG61DsCI6irpq9MxhaiLrh7NWjsPqfVB9Fn
+         9ZhRghXNv71ttQjrvWhuu4WHaaKy0KAKhrbHGUZ1TA9xUsHf4b3+xhx+ZHopZBPSzjdo
+         L0jLVwl/XRbcQFR1Pfm5zd0op5Sj5J0hUq6+m43hCFScVpzIAbJhqTMngtAwRMuMFnVm
+         hXuU7MDv9TVfAtuaDjuWZEV7m5a+7AewoxLdWlFvvJBMRRdDNvmA3XPyKrt0hu8hwdJ+
+         t7B4TCcZMLbe12jUPYsXCesrT0yIKrgpWYj9Q14L+vbMfzOPLvIsgZtCso7tRTZMf0Wk
+         AEjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693920212; x=1694525012;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tAnyjNoEHzOtoWr8RZt8Z0B0PvJcndgHMjpREL+JJTc=;
+        b=gqFq6K4hwr9N4kPTMtcSdtk6jy3U0VIpYZHgYqag0LqXsqEmjXF6z9IBJ2jAhkjfBS
+         H6rd9+hvbviHs/oyHF82x1cFz9scx6FMuYVJa8UMSjWrHnqLeQFSu7Kv8YkcTfJ1Slzs
+         Tnlfzqm/ipyqlz47dZBGVzrpXOzEFy3eAXhyfmdzQ34aVfsccR08pgNrUdXiHzPLAX5L
+         As8ZgpHq48SUzFY1aZRdY6tgfgGJ0jyi0vT2tdNZeWA6RX48CxsXP9bAli9TkWj88lTr
+         IwhSszyWFtJryr5jRJvLcNLjY1BP6LkgI804YppuF7b9M6IyThtSZKSxXohhB2atpxDe
+         pQrA==
+X-Gm-Message-State: AOJu0YytNPWH+H5hNNX/sbryXTzT/dl7C7njtX5Gz2IJqBWJdVif1bFN
+        OA4kjrdRbHCRPjOz1pLLbO0=
+X-Google-Smtp-Source: AGHT+IGzXHFvxkJru02iZ4T7UiUFfUmCbJBdZ7YcOEEj2J6kpE0YGf1LLj2iwpaTeIynToQfSlvAFQ==
+X-Received: by 2002:a05:6830:6a9b:b0:6bc:a6d0:ab7 with SMTP id da27-20020a0568306a9b00b006bca6d00ab7mr11675305otb.3.1693920212064;
+        Tue, 05 Sep 2023 06:23:32 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:ed1a:13f:d0c6:913b])
+        by smtp.gmail.com with ESMTPSA id e26-20020a9d63da000000b006b9d8c31e94sm5443062otl.39.2023.09.05.06.23.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Sep 2023 06:23:31 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     alexandre.belloni@bootlin.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, sam@ravnborg.or, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: rtc: pcf8523: Convert to YAML
+Date:   Tue,  5 Sep 2023 10:23:24 -0300
+Message-Id: <20230905132324.3146722-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: arm,gic-v3: Add
- dma-noncoherent property
-Content-Language: en-GB
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Fang Xiang <fangxiang3@xiaomi.com>,
-        Marc Zyngier <maz@kernel.org>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230905104721.52199-2-lpieralisi@kernel.org>
- <932355b4-7d43-a465-a2da-8dded8e2d069@arm.com> <ZPcdkob6L8RbUVP3@lpieralisi>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <ZPcdkob6L8RbUVP3@lpieralisi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,104 +70,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2023 1:22 pm, Lorenzo Pieralisi wrote:
-> On Tue, Sep 05, 2023 at 12:17:51PM +0100, Robin Murphy wrote:
->> On 05/09/2023 11:47 am, Lorenzo Pieralisi wrote:
->>> The GIC v3 specifications allow redistributors and ITSes interconnect
->>> ports used to access memory to be wired up in a way that makes the
->>> respective initiators/memory observers non-coherent.
->>>
->>> Add the standard dma-noncoherent property to the GICv3 bindings to
->>> allow firmware to describe the redistributors/ITSes components and
->>> interconnect ports behaviour in system designs where the redistributors
->>> and ITSes are not coherent with the CPU.
->>>
->>> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
->>> Cc: Rob Herring <robh@kernel.org>
->>> ---
->>>    .../bindings/interrupt-controller/arm,gic-v3.yaml         | 8 ++++++++
->>>    1 file changed, 8 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
->>> index 39e64c7f6360..0a81ae4519a6 100644
->>> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
->>> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
->>> @@ -106,6 +106,10 @@ properties:
->>>        $ref: /schemas/types.yaml#/definitions/uint32
->>>        maximum: 4096
->>> +  dma-noncoherent:
->>> +    description: |
->>> +      Present if the GIC redistributors are not cache coherent with the CPU.
->>
->> I wonder if it's worth being a bit more specific here, e.g. "if the GIC
->> {redistributors,ITS} permit programming cacheable inner-shareable memory
->> attributes, but are connected to a non-coherent downstream interconnect."
-> 
-> In my opinion it is and I wanted to elaborate on what I wrote but then I
-> thought that this is a standard DT property, I wasn't sure whether we
-> really need to explain what it is there for.
-> 
-> We are using the property to plug a hole so I agree with you, we should
-> be as clear as possible in the property definition but I will rely on
-> Rob/Marc's opinion, I don't know what's the DT policy for this.
-> 
->> That might help clarify why the negative property, which could seem a bit
->> backwards at first glance, and that it's not so important in the cases where
->> the GIC itself is fundamentally non-coherent anyway (which *is*
->> software-discoverable).
-> 
-> Is it ? Again, see above, are we defining "dma-noncoherent" to fix a bug
-> or to fix the specs ? The shareability bits are writeable and even a
-> fundamentally non-coherent GIC design could allow writing them, AFAIU.
+From: Fabio Estevam <festevam@denx.de>
 
-I mean the case on GIC-500 and earlier where the register bits could be 
-hard-wired. I'm not sure a GIC implementation which didn't even *try* to 
-honour the programmed attributes in what it emits would be considered 
-valid; it certainly couldn't be considered sensible :/
+Convert the PCF8523 bindings from text format to YAML.
 
-> I would avoid putting ourselves into a corner where we can't use
-> this property because the binding itself is too strict on what it is
-> solving.
+The YAML format is preferred as it allows validation.
 
-Really I'm just getting at the fact that if you do have a legacy GIC 
-with hard-wired attributes then whatever DT says is most likely 
-irrelevant anyway (unless the integrator has done something utterly 
-bonkers and tied off the interconnect input to *different* attributes, 
-but I would consider that beyond the bounds of fair reasoning...)
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../devicetree/bindings/rtc/nxp,pcf8523.txt   | 18 -------
+ .../devicetree/bindings/rtc/nxp,pcf8523.yaml  | 48 +++++++++++++++++++
+ 2 files changed, 48 insertions(+), 18 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
 
-Cheers,
-Robin.
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+deleted file mode 100644
+index 0b1080c60f63..000000000000
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* NXP PCF8523 Real Time Clock
+-
+-Required properties:
+-- compatible: Should contain "nxp,pcf8523".
+-- reg: I2C address for chip.
+-
+-Optional property:
+-- quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
+-  expressed in femto Farad (fF). Valid values are 7000 and 12500.
+-  Default value (if no value is specified) is 12500fF.
+-
+-Example:
+-
+-pcf8523: rtc@68 {
+-	compatible = "nxp,pcf8523";
+-	reg = <0x68>;
+-	quartz-load-femtofarads = <7000>;
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
+new file mode 100644
+index 000000000000..111cb9938f8f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf8523.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCF8523 Real Time Clock
++
++maintainers:
++  - Sam Ravnborg <sam@ravnborg.org>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    const: nxp,pcf8523
++
++  reg:
++    maxItems: 1
++
++  quartz-load-femtofarads:
++    description:
++      The capacitive load of the crystal, expressed in femto Farad (fF).
++      Valid values are 7000 and 12500. The default value when this property
++      is absent is 12500fF.
++    enum: [ 7000, 12500 ]
++
++  wakeup-source: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@68 {
++            compatible = "nxp,pcf8523";
++            reg = <0x68>;
++            quartz-load-femtofarads = <7000>;
++        };
++    };
+-- 
+2.34.1
 
->> Otherwise, this is the same approach that I like and have previously lobbied
->> for, so obviously I approve :)
->>
->> (plus I do think it's the right shape to be able to slot an equivalent field
->> into ACPI MADT entries without *too* much bother)
-> 
-> We are in agreement, let's see what others think.
-> 
-> Thanks,
-> Lorenzo
-> 
->>
->> Thanks,
->> Robin.
->>
->>> +
->>>      msi-controller:
->>>        description:
->>>          Only present if the Message Based Interrupt functionality is
->>> @@ -193,6 +197,10 @@ patternProperties:
->>>          compatible:
->>>            const: arm,gic-v3-its
->>> +      dma-noncoherent:
->>> +        description: |
->>> +          Present if the GIC ITS is not cache coherent with the CPU.
->>> +
->>>          msi-controller: true
->>>          "#msi-cells":
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
