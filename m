@@ -2,141 +2,420 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B170C7928A3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18087792817
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:42:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344630AbjIEQXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:23:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49266 "EHLO
+        id S1349868AbjIEQWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:22:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353907AbjIEIfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:35:21 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 745DACC7
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 01:35:17 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2bcc331f942so26832541fa.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 01:35:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693902916; x=1694507716; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=3LfDnYTHePLsAsYGK+DM6wWW+5RZk9c64DC8XRFDWYw=;
-        b=GmfVgNbE+ZqBRIIvcFeFjhXktdRjEyAUX+vhJ0ePs19IX6jc1azNrB5eyzA8SNFzHG
-         Vax0iAuUFE1EsAzw2yuNFRpvDdElmqU62kOxR8vtLEG1QYCgFLYTZJgVcQRWcJ/4LkYw
-         7duWfwji0VgRLOPZxxkjw0QvbVz6TOLJUstucD84hEfGiAARlHSqouo5YetcR0rgGwlf
-         Kt+E7SzCxZX/FURXjcwi9o1eMp1363L63BF8apd/cChWmTT41Z3s53fQ5ZMuVbK4L6+/
-         ogUoxekbBo8SN8rKEHTXb5ecQUT3yquBE/Ah5S8rpZpdOUfQJu4hWayl6y1STFh4Zsjq
-         d2Xg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693902916; x=1694507716;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3LfDnYTHePLsAsYGK+DM6wWW+5RZk9c64DC8XRFDWYw=;
-        b=HsiQgRpurWYMcrE3mK0axoVP9G75dNTWnTaYJRh2AAXLOW4LToxYm3ecbw6xHkvC0U
-         PktLQHVmBXG8guLVPlrWGV7Rs6cwx0mKb3qxz72b54uz/MsJSOIXVDlpAHvo28opOUBb
-         7YI40OzKPKQMdKtXCohSvHMmiQkoQ8Ty2xleTxQt5OLZZIt+mLMY/dXkQnDwWCzrm+Ua
-         KjANnuJxv353VqoWPLeegfpnc1EPxkAq5apNbaR3MwHE0xEBkoIi6ksKFWL+hWNrKXzm
-         7iUC+OTHUyGviO9FyRh+IfD6WXuUPvl6tzd0OZKkU24kwP+MiPa/N66xjt1UrMA6xidH
-         WuHw==
-X-Gm-Message-State: AOJu0YzUvn6Jpbfs3+F4W1CUmBbfBnuujVTbkKc0biFMEKLnfm0CjsyN
-        vT1Wp0pH8RCQEuS86q7glEoGNA==
-X-Google-Smtp-Source: AGHT+IHwXgo+HUZn38FPp3aXrfF2CLysPysBVI/MsXPeJ8t2wBJz9mPAUJ6CpcAMVniKqYqyPAfPhg==
-X-Received: by 2002:a2e:900e:0:b0:2b6:d0c1:7cd0 with SMTP id h14-20020a2e900e000000b002b6d0c17cd0mr4218307ljg.22.1693902915739;
-        Tue, 05 Sep 2023 01:35:15 -0700 (PDT)
-Received: from [192.168.1.101] (abxj43.neoplus.adsl.tpnet.pl. [83.9.3.43])
-        by smtp.gmail.com with ESMTPSA id z9-20020a2e8849000000b002b9415597d0sm2774957ljj.78.2023.09.05.01.35.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 01:35:15 -0700 (PDT)
-Message-ID: <b85245cc-868a-442e-8f27-ae6ee60d49cc@linaro.org>
-Date:   Tue, 5 Sep 2023 10:35:14 +0200
+        with ESMTP id S1353918AbjIEIhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:37:38 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60350CC7;
+        Tue,  5 Sep 2023 01:37:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id F2916B810D9;
+        Tue,  5 Sep 2023 08:37:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23C7FC433C9;
+        Tue,  5 Sep 2023 08:37:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693903051;
+        bh=QGLTwQmix6rRanJl/sGcF5yEISkww7AdkcJuyc5MWok=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=sXCYxEq6HBPQy+2VM0dY3qmalCsYkiQzM7lLEFTswz+gRtoq5AUFPxXNvQPpGCEdg
+         UM8AG+a6a6zNcOZCR/m+kEjuft6DwOTPG7CpMCR4UkawvudJSFBo/jDTril2lpN6Tz
+         0aQn9UqtzLM8mczwOyGVUjlh+KdBv/m6gcpa44b74NhgqHF0lh9RrJXDacIYDNqmdv
+         V8oR7RkY3Tik+0vIKF+l6O3gXbRpwU76eUdgBnrYXoSd4AF3bGqKnwhgMfxrYUV9lL
+         bJUcFxF81pjMS7PaShP9ynYzHcKunv2YUoqFbzOArb76z0qFWWTprkI4JUEmIMAOk5
+         WQSnluBSd1XeA==
+Date:   Tue, 5 Sep 2023 10:37:28 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Ying Liu <victor.liu@nxp.com>
+Cc:     "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "maarten.lankhorst@linux.intel.com" 
+        <maarten.lankhorst@linux.intel.com>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        Guido =?utf-8?Q?G=C3=BCnther?= <guido.gunther@puri.sm>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        "Laurentiu Palcu (OSS)" <laurentiu.palcu@oss.nxp.com>,
+        "robh@kernel.org" <robh@kernel.org>
+Subject: Re: [PATCH v14 RESEND 5/6] drm/imx: Introduce i.MX8qm/qxp DPU DRM
+Message-ID: <uqu5h3ai7jz5mgh67aip7bxmhygvqqzblr4yzc3npp67m47ggc@6kqnsqwhd4hd>
+References: <20230822085949.816844-1-victor.liu@nxp.com>
+ <20230822085949.816844-6-victor.liu@nxp.com>
+ <22parqvy44hkd2ypkglfwk6bafi5ov4qfhpvd6qnt36us7odec@iebwnwtwvnnf>
+ <AM7PR04MB704659DF09143D0C6777143098E8A@AM7PR04MB7046.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] remoteproc: qcom: pas: Add sc7180 adsp
-Content-Language: en-US
-To:     Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     David Wronek <davidwronek@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230905-sc7180-adsp-rproc-v1-0-dfea7699da7b@trvn.ru>
- <20230905-sc7180-adsp-rproc-v1-2-dfea7699da7b@trvn.ru>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230905-sc7180-adsp-rproc-v1-2-dfea7699da7b@trvn.ru>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <AM7PR04MB704659DF09143D0C6777143098E8A@AM7PR04MB7046.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5.09.2023 07:47, Nikita Travkin wrote:
-> sc7180 has a dedicated ADSP similar to the one found in sm8250.
-> Add it's compatible to the driver reusing the existing config so
-> the devices that use the adsp can probe it.
-> 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
->  drivers/remoteproc/qcom_q6v5_pas.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> index b5447dd2dd35..55fafc68200e 100644
-> --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> @@ -1161,6 +1161,7 @@ static const struct of_device_id adsp_of_match[] = {
->  	{ .compatible = "qcom,qcs404-adsp-pas", .data = &adsp_resource_init },
->  	{ .compatible = "qcom,qcs404-cdsp-pas", .data = &cdsp_resource_init },
->  	{ .compatible = "qcom,qcs404-wcss-pas", .data = &wcss_resource_init },
-> +	{ .compatible = "qcom,sc7180-adsp-pas", .data = &sm8250_adsp_resource},
-Should we use a fallback here, maybe?
+On Tue, Sep 05, 2023 at 03:32:47AM +0000, Ying Liu wrote:
+> > On Tue, Aug 22, 2023 at 04:59:48PM +0800, Liu Ying wrote:
+> > > +int dpu_cf_init(struct dpu_soc *dpu, unsigned int index,
+> > > +		unsigned int id, enum dpu_unit_type type,
+> > > +		unsigned long pec_base, unsigned long base)
+> > > +{
+> > > +	struct dpu_constframe *cf;
+> > > +
+> > > +	cf =3D devm_kzalloc(dpu->dev, sizeof(*cf), GFP_KERNEL);
+> > > +	if (!cf)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	dpu->cf_priv[index] =3D cf;
+> >=20
+> > You can't store structures related to KMS in a device managed structure.
+> > The DRM KMS device will stick around (and be accessible from userspace)
+> > after the device has been removed until the last application closed its
+> > file descriptor to the device.
+>=20
+> The DRM device is registered after component_bind_all() is called in
+> dpu_drm_bind().  The CRTC components' platform devices are created
+> in the dpu_core_probe() where the device managed resources are
+> created.   So, it looks those resources are safe because the DRM device
+> will be unregistered before those resources are freed.
 
-Konrad
+Not, it's not, because the KMS device isn't freed when devices will be
+unbound/removed, but when the last application closes its fd to it, and
+so you'll get dangling pointers.
+
+The general rule to get it right is to use drmm for anything but device
+resources (like clocks, regulators, memory mapping, etc.). You can
+deviate from the rule, of course, but you'll need a long and clear
+explanation on why it doesn't work, and why your new approach works.
+Your current approach doesn't though.
+
+> > This can be checked by enabling KASAN and manually unbinding the driver
+> > through sysfs.
+>=20
+> I enabled KASAN and manually unbound the dpu-core driver with command:
+>=20
+> echo 56180000.dpu > /sys/bus/platform/drivers/dpu-core/56180000.dpu/drive=
+r/unbind=20
+>=20
+> KASAN didin't report memory issue regarding those device managed
+> resources.  However, it did report another issue in dpu_drm_unbind(),
+> where drm_device should be got from drv_data->drm_dev instead of
+> dev_get_drvdata(dev).  I'll fix that in next version.
+>=20
+> BTW, the dpu-core driver was successfully bound again after unbinding with
+> command:
+>=20
+> echo  56180000.dpu > /sys/bus/platform/drivers/dpu-core/bind
+
+Guess you're lucky. That doesn't make it safe or right.
+
+> > > +	cf->pec_base =3D devm_ioremap(dpu->dev, pec_base, SZ_16);
+> > > +	if (!cf->pec_base)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	cf->base =3D devm_ioremap(dpu->dev, base, SZ_32);
+> > > +	if (!cf->base)
+> > > +		return -ENOMEM;
+> >=20
+> > For the same reason, you need to protect any access to a device managed
+> > resource (so clocks, registers, regulators, etc.) by a call to
+> > drm_dev_enter/drm_dev_exit and you need to call drm_dev_unplug instead
+> > of drm_dev_unregister.
+>=20
+> That's a good point. I've tried to do that, but it turns out that the
+> display controller cannot be enabled again after binding the dpu-core
+> driver manually again. It seems that the display controller requires a
+> proper disablement procedure, but the "driver instance overview " kdoc
+> mentions the shortcoming of no proper disablement if drm_dev_unplug()
+> is used:
+>=20
+> """
+> * Drivers that want to support device unplugging (USB, DT overlay unload)=
+ should
+>  * use drm_dev_unplug() instead of drm_dev_unregister(). The driver must =
+protect
+>  * regions that is accessing device resources to prevent use after they're
+>  * released. This is done using drm_dev_enter() and drm_dev_exit(). There=
+ is one
+>  * shortcoming however, drm_dev_unplug() marks the drm_device as unplugge=
+d before
+>  * drm_atomic_helper_shutdown() is called. This means that if the disable=
+ code
+>  * paths are protected, they will not run on regular driver module unload,
+>  * possibly leaving the hardware enabled.
+> """
+>
+> A DPU reset in dpu_core() might be helpful, but I'm not sure if there is =
+any
+> reset line provided by the embodying system.
+
+Generally speaking, you shouldn't rely on the device being in any
+particuliar state before your driver loads. So a reset at probe/bind
+time is a good idea.
+
+> Even if the reset works, the 2nd DPU instance in i.MX8qm would be a
+> problem, because it won't be reset or properly disabled if the 1st DPU
+> instance is unbound.
+
+Why it wouldn't be reset?
+
+> Although the two DPU instances could be wrapped by two DRM devices, I
+> tend not to do that because downstream bridges in future SoCs might be
+> able to mux to different DPU instances at runtime.
+>
+> Due to the disablement issue, can we set drm_dev_enter/exit/unplug
+> aside first?
+
+I'd rather have that figured out prior to merging.
+> >
+> > > +static int dpu_crtc_pm_runtime_put(struct dpu_crtc *dpu_crtc)
+> > > +{
+> > > +	int ret;
+> > > +
+> > > +	ret =3D pm_runtime_put(dpu_crtc->dev->parent);
+> > > +	if (ret < 0)
+> > > +		dpu_crtc_err(&dpu_crtc->base,
+> > > +			     "failed to put parent device RPM: %d\n", ret);
+> > > +
+> > > +	return ret;
+> > > +}
+> > > +
+> > > +static void dpu_crtc_mode_set_nofb(struct drm_crtc *crtc)
+> > > +{
+> > > +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
+> > > +	struct drm_display_mode *adj =3D &crtc->state->adjusted_mode;
+> > > +	enum dpu_link_id cf_link;
+> > > +
+> > > +	dpu_crtc_dbg(crtc, "mode " DRM_MODE_FMT "\n",
+> > DRM_MODE_ARG(adj));
+> > > +
+> > > +	/* request power-on when we start to set mode for CRTC */
+> > > +	dpu_crtc_pm_runtime_get_sync(dpu_crtc);
+> >=20
+> > From the drm_crtc_helper_funcs documentation:
+> >=20
+> > """
+> > 	 * Note that the display pipe is completely off when this function is
+> > 	 * called. Atomic drivers which need hardware to be running before
+> > they
+> > 	 * program the new display mode (e.g. because they implement
+> > runtime PM)
+> > 	 * should not use this hook. This is because the helper library calls
+> > 	 * this hook only once per mode change and not every time the display
+> > 	 * pipeline is suspended using either DPMS or the new "ACTIVE"
+> > property.
+> > 	 * Which means register values set in this callback might get reset
+> > when
+> > 	 * the CRTC is suspended, but not restored.  Such drivers should
+> > instead
+> > 	 * move all their CRTC setup into the @atomic_enable callback.
+> > """
+>=20
+> I can use drm_atomic_helper_commit_tail() but not
+> drm_atomic_helper_commit_tail_rpm() because the planes need to be
+> updated prior to modeset_enables(where trigger shadow registers in
+> plane's HW resources to take effect).   Using the former one means that
+> RPM needs to be get/put in drm_atomic_helper_commit_planes(), which
+> doesn't seem good because in some cases the power of the display controll=
+er
+> might be lost after RPM put and I'm not sure if the registers set there w=
+ill
+> be lost or not.   So, to avoid the issue the documentation mentions,
+> crtc_state->mode_changed is forced to be true in dpu_crtc_atomic_check()
+> if the CRTC is changed to active.  Is this acceptable?
+
+No, just move the crtc setup to atomic_enable like the doc suggests.
+
+> > > +static void dpu_crtc_atomic_enable(struct drm_crtc *crtc,
+> > > +				   struct drm_atomic_state *state)
+> > > +{
+> > > +	struct dpu_crtc *dpu_crtc =3D to_dpu_crtc(crtc);
+> > > +	unsigned long flags;
+> > > +
+> > > +	drm_crtc_vblank_on(crtc);
+> > > +
+> > > +	enable_irq(dpu_crtc->dec_shdld_irq);
+> > > +	enable_irq(dpu_crtc->ed_cont_shdld_irq);
+> > > +	enable_irq(dpu_crtc->ed_safe_shdld_irq);
+> > > +
+> > > +	dpu_fg_enable_clock(dpu_crtc->fg);
+> > > +	dpu_ed_pec_sync_trigger(dpu_crtc->ed_cont);
+> > > +	dpu_ed_pec_sync_trigger(dpu_crtc->ed_safe);
+> > > +	if (crtc->state->gamma_lut)
+> > > +		dpu_crtc_set_gammacor(dpu_crtc);
+> > > +	else
+> > > +		dpu_crtc_disable_gammacor(dpu_crtc);
+> > > +	dpu_fg_shdtokgen(dpu_crtc->fg);
+> > > +
+> > > +	/* don't relinquish CPU until TCON is set to operation mode */
+> > > +	local_irq_save(flags);
+> > > +	preempt_disable();
+> > > +	dpu_fg_enable(dpu_crtc->fg);
+> >=20
+> > That's super fishy. You shouldn't need that, at all. What is going on
+> > there?
+>=20
+> This aims to fully workaround the below errata recently released by
+> NXP.
+>=20
+> ERR010910: DC: Display Subsystem First Frame Programming Restriction
+> Link: https://www.nxp.com/docs/en/errata/IMX8_1N94W.pdf
+>=20
+> In short, to make sure the display controller can be enabled properly with
+> prefetch engine(DPRC + PRG), the TCON must be switch from bypass mode
+> to operation mode after FrameGen(FG) generates the first frame.
+>=20
+> Timing is critical here, so local irq and preemption are disabled during =
+the
+> switch procedure.
+>=20
+> BTW, the driver always use prefetch engines for KMS, although they can
+> be bypassed.
+
+Ok. So I think it would help your driver getting merged to split that
+workaround into a separate patch. It's hard to tell what are the
+implications of that workaround on your driver when it's lost in the
+middle of, well, the driver :)
+
+I guess it would be much easier for everyone if you submitted that
+driver without the errata handling, or with prefetch bypassed, at first.
+And then you can submit / rework the hard parts.
+
+> >=20
+> > > +
+> > > +	/*
+> > > +	 * TKT320590:
+> >=20
+> > Those are NXP internal references as far as as I can tell. They
+> > shouldn't be here.
+>=20
+> Ok, will change it to be ERR010910.
+
+A link to the errata description would be a good idea too.
+
+> > > +static void dpu_atomic_put_plane_state(struct drm_atomic_state *stat=
+e,
+> > > +				       struct drm_plane *plane)
+> > > +{
+> > > +	int index =3D drm_plane_index(plane);
+> > > +
+> > > +	plane->funcs->atomic_destroy_state(plane, state->planes[index].stat=
+e);
+> > > +	state->planes[index].ptr =3D NULL;
+> > > +	state->planes[index].state =3D NULL;
+> > > +	state->planes[index].old_state =3D NULL;
+> > > +	state->planes[index].new_state =3D NULL;
+> > > +
+> > > +	drm_modeset_unlock(&plane->mutex);
+> > > +
+> > > +	dpu_plane_dbg(plane, "put state\n");
+> > > +}
+> > > +
+> > > +static void dpu_atomic_put_crtc_state(struct drm_atomic_state *state,
+> > > +				      struct drm_crtc *crtc)
+> > > +{
+> > > +	int index =3D drm_crtc_index(crtc);
+> > > +
+> > > +	crtc->funcs->atomic_destroy_state(crtc, state->crtcs[index].state);
+> > > +	state->crtcs[index].ptr =3D NULL;
+> > > +	state->crtcs[index].state =3D NULL;
+> > > +	state->crtcs[index].old_state =3D NULL;
+> > > +	state->crtcs[index].new_state =3D NULL;
+> > > +
+> > > +	drm_modeset_unlock(&crtc->mutex);
+> > > +
+> > > +	dpu_crtc_dbg(crtc, "put state\n");
+> > > +}
+> > > +
+> > > +static void
+> > > +dpu_atomic_put_possible_states_per_crtc(struct drm_crtc_state
+> > *crtc_state)
+> > > +{
+> > > +	struct drm_atomic_state *state =3D crtc_state->state;
+> > > +	struct drm_crtc *crtc =3D crtc_state->crtc;
+> > > +	struct drm_plane *plane;
+> > > +	struct drm_plane_state *old_plane_state, *new_plane_state;
+> > > +	struct dpu_plane_state *old_dpstate, *new_dpstate;
+> > > +
+> > > +	drm_atomic_crtc_state_for_each_plane(plane, crtc_state) {
+> > > +		old_plane_state =3D drm_atomic_get_old_plane_state(state,
+> > plane);
+> > > +		new_plane_state =3D drm_atomic_get_new_plane_state(state,
+> > plane);
+> > > +
+> > > +		old_dpstate =3D to_dpu_plane_state(old_plane_state);
+> > > +		new_dpstate =3D to_dpu_plane_state(new_plane_state);
+> > > +
+> > > +		/* Should be enough to check the below HW plane resources.
+> > */
+> > > +		if (old_dpstate->stage.ptr !=3D new_dpstate->stage.ptr ||
+> > > +		    old_dpstate->source !=3D new_dpstate->source ||
+> > > +		    old_dpstate->blend !=3D new_dpstate->blend)
+> > > +			return;
+> > > +	}
+> > > +
+> > > +	drm_atomic_crtc_state_for_each_plane(plane, crtc_state)
+> > > +		dpu_atomic_put_plane_state(state, plane);
+> > > +
+> > > +	dpu_atomic_put_crtc_state(state, crtc);
+> > > +}
+> >=20
+> > That's super suspicious too. Are you really going around and dropping
+> > and destroying plane and crtc states in a global state?
+>=20
+> Yes.
+
+That's really not a good idea. Adding states are fine, dropping ones
+aren't.
+
+> >=20
+> > At the very least, you need to describe what this addresses and why you
+> > think it's a good solution.
+>=20
+> This is the solution to assign HW resources of a plane group to the two C=
+RTCs
+> in one DPU or one CRTC group _dynamically_ at runtime.  Dpu.h has some
+> comments which hint this:
+>=20
+> """
+> /*
+>  * fetchunit/scaler/layerblend resources of a plane group are
+>  * shared by the two CRTCs in a CRTC group
+>  */
+> """
+>=20
+> I can add a DPU display controller block diagram in dpu_kms.c to tell the=
+ HW
+> architecture and some SW architecture to clarify this more.
+
+It's not so much the diagram that I'm looking for, but an accurate
+description of the problem. What resource is there, why and how does it
+need to be shared, so we can understand what you are doing there, and
+possibly suggest other things.
+
+Maxime
