@@ -2,105 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F08A792837
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6827928C2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232584AbjIEQWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:22:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39488 "EHLO
+        id S1346178AbjIEQYJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:24:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1353892AbjIEIcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:32:55 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F23FCC7;
-        Tue,  5 Sep 2023 01:32:52 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id d9443c01a7336-1c0d5b16aacso12942405ad.1;
-        Tue, 05 Sep 2023 01:32:52 -0700 (PDT)
+        with ESMTP id S1353898AbjIEIdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 04:33:53 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D80ACDB
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 01:33:49 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcc4347d2dso32351351fa.0
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 01:33:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693902772; x=1694507572; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=/q6jNtHSwHERulydP7Pe8HQtoEZ+Uz8MhsR1d8WvTBE=;
-        b=gTC7z+PSa6Ovrc7+W1/5QQOURdvssFfWezhnQ7LG6sXs8cyrYKZtO1mMhG+HjrDgU9
-         7sqrfhZDKCzHXPPF4zGwRTNHGU9IAIyJS38fGQM12fa/4YOuuofbdsnlMz0RvdwMWdrt
-         b2GQO5rpOEQZ84bwX6GUAOEX9OEJB1VM5A5SQbk/WziwJKEQkvgwCKAJE8IP+bWpZ0DY
-         +dCdqILduM8C1oLga/Rb8mX+mGHYhVh6NjlrCAyUmiEbpH/r3CBwKK8SQJ5ImNB89ZGM
-         /DvE1ePx4phDqZwhVq6JOWitq4MuzqWgwSSCXuv0/0A9Brbgu3KRupJVDpklH6rEpX0r
-         UgNg==
+        d=linaro.org; s=google; t=1693902827; x=1694507627; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=fIa/MpEa51tsfHy6/cWnzhXG3DHHEf9vL3b6MO1snO8=;
+        b=OnMbdMB5vCjLqUhgBi8/PmJF5kMKSFUD9qb0WBLqyStKqKg3SNCcL8FD+c/FLqjTvf
+         DH/ka5TzWk0OSV5fbyGs09G3kDShcAa00sN6P+SPwGui7NeTXsEtKyDRZ4ra1zV+7uvH
+         3Tt3jXjJaEuKQevTbrXcjw8nuNDBS2TD3p7B/OOG2Nj7NyBtI9H8UshBlizacwrPDiJn
+         akufMpnzFMK86LeslMBsduQC0opMfbAItbmja2Lmm2NUkpRzIVAkdjhyD/8QJXOrGk3t
+         Hz29H7xyVMmmY9DfvXOudYzPHXpBcrRLItNX3KjAmJGjjw7ySLbP0SDLfwBCsxZsbfsm
+         niKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693902772; x=1694507572;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/q6jNtHSwHERulydP7Pe8HQtoEZ+Uz8MhsR1d8WvTBE=;
-        b=UMwL1U6d5GijSAjSLyQ1R9ZLicfNqdLIyuccJzekIEq09pFb1C7wY43C0DT5TRYu5W
-         41z3SwRtBdPX5tzvidFnMm0u7E0eOmW/NRYjjWonpE7cABbD1LfP6QRN1kWNWX1S69Wf
-         8FcHg8UmQQuLKJngMmRmwl/JeC0LX9WCi+uagKGFmhAj2ujZ9txgDbsUqypJWzGeqLXj
-         dBQuNpTyBY6ERn2YL3NgQiu+rrke5p60Q8YPqTSFo/Cqq4B23XVIZOFoEKcwq4brPgPJ
-         wjiEDR+MtaMdoqM2MZWF81s2ufCwgdksfc6hwGtNLyeSJYM7v3SMeD3J7YIrgBSZNu3i
-         HjjQ==
-X-Gm-Message-State: AOJu0YybfvTzZYTkYOWBEuokjHXiJ/auwJzorOy1aykV16ckJkiaB7/z
-        33Bjw6fa+O1cZyiQsllXxj8fHtJt+Lu4UvAiDmQ=
-X-Google-Smtp-Source: AGHT+IH4h9i51nym+jesGSU5cRAI7CLzMCSnpmF7Tm2RMwaqhuxJS4ZYXdyV4+Zf/xer1JLzDJQR1ws+UfCoShomFXA=
-X-Received: by 2002:a17:90a:e64a:b0:271:8195:8 with SMTP id
- ep10-20020a17090ae64a00b0027181950008mr8397207pjb.36.1693902771793; Tue, 05
- Sep 2023 01:32:51 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1693902827; x=1694507627;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fIa/MpEa51tsfHy6/cWnzhXG3DHHEf9vL3b6MO1snO8=;
+        b=DNdpLgClkDUecdpMa1Tcu6tRlx1bq28lQLzmDhn+xU+FaMdgGjV0TsjgTiKH3XjZXt
+         U2K3IbvX1FyMAv5hrLlE2tPxdy5q0bkKjzxR4SGZcBGKIgwU6UBHYYlCxotmtarwtT+7
+         16uowzF0CvlqtjW3E5HDSA9oPVyKM1qxmsbkqrat1Qm0jQsI16lZf8fhl6paW5qGIfyG
+         nJvKOlFV0Z7qa3VAjkJkO6Cp5zdFACAtKDL8fI+ZtAhnBshJLFQWAebMh2mhA2MlyfkD
+         pLeKhNi9THn8iWdYqHyUrS6a+C88UAyOiZLRFF0SbFILis27ybkMHbSCVs0wwhbX1MiF
+         0qzg==
+X-Gm-Message-State: AOJu0Yw4NPt/YRDZ0e+++ChkZBAQ/KnEz3w42UPFAcbRQJtEgRQsTKiF
+        9F+FyRY3hqO4WAl+XwykueZs3g==
+X-Google-Smtp-Source: AGHT+IERvRsqlyntQj4VnGYcehWf4fwbM2d9GauHcdKXaP7oVH8xT6P7pIWarRvWpuelwwxRKeA7rw==
+X-Received: by 2002:a2e:b6c2:0:b0:2bc:da3e:3bda with SMTP id m2-20020a2eb6c2000000b002bcda3e3bdamr7592956ljo.2.1693902827530;
+        Tue, 05 Sep 2023 01:33:47 -0700 (PDT)
+Received: from [192.168.1.101] (abxj43.neoplus.adsl.tpnet.pl. [83.9.3.43])
+        by smtp.gmail.com with ESMTPSA id z9-20020a2e8849000000b002b9415597d0sm2774957ljj.78.2023.09.05.01.33.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Sep 2023 01:33:47 -0700 (PDT)
+Message-ID: <879d42f0-acf7-441b-a820-3b6f67620eeb@linaro.org>
+Date:   Tue, 5 Sep 2023 10:33:45 +0200
 MIME-Version: 1.0
-References: <20230607151127.1542024-1-pavacic.p@gmail.com> <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
- <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
- <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
- <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
- <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
- <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
- <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
- <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
- <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de> <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
- <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de> <CAO9szn1QdB5WGshuyCOGqb0qbBWHqoikeiMkk+bNGhAF5TX5ew@mail.gmail.com>
- <45488dcc-226e-1e7c-c681-c1d9be17bcbb@denx.de> <CAO9szn3scWfrP3mB8QnvPewZegV0=6iD8PE2bOS09HuN6gywmg@mail.gmail.com>
- <ff5270e7-573d-2700-881f-1358683f2618@denx.de>
-In-Reply-To: <ff5270e7-573d-2700-881f-1358683f2618@denx.de>
-From:   Paulo <pavacic.p@gmail.com>
-Date:   Tue, 5 Sep 2023 10:32:39 +0200
-Message-ID: <CAO9szn2Y8GubEpxMBp__1eHYhL9UqqfxzPWL0oOQPTs6TZ2oOQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
-To:     Marek Vasut <marex@denx.de>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] crypto: qcom-rng: Add hwrng support
+To:     Om Prakash Singh <quic_omprsing@quicinc.com>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>
+Cc:     neil.armstrong@linaro.org, agross@kernel.org, andersson@kernel.org,
+        conor+dt@kernel.org, davem@davemloft.net,
+        devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        marijn.suijten@somainline.org, robh+dt@kernel.org, vkoul@kernel.org
+References: <20230901131502.1549809-1-quic_omprsing@quicinc.com>
+ <20230901144636.GP818859@hu-bjorande-lv.qualcomm.com>
+ <76bec0e9-3d80-469b-8666-06f1b639facb@quicinc.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <76bec0e9-3d80-469b-8666-06f1b639facb@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 5.09.2023 04:50, Om Prakash Singh wrote:
+> 
+> 
+> On 9/1/2023 8:16 PM, Bjorn Andersson wrote:
+>> On Fri, Sep 01, 2023 at 06:45:02PM +0530, Om Prakash Singh wrote:
+>>> This is follow patch on top of [1]
+>>
+>> This information does not add value to the git history, if you need to
+>> inform the maintainer that the patch should be applied after some
+>> in-flight dependency then state so after the "---" line below.
+>>
+>> But, this patch strictly conflicts with [1], so the statement won't make
+>> sense if this is merged.
+>>
+>>> to add hwrng support for newer platform with trng capability.
+>>
+>> Please rewrite this so that it's clear that the problem you're trying to
+>> solve with this patch (i.e. the problem description) is that newer
+>> platforms has trng. Describe how this relates to the existing driver
+>> (e.g. same/similar hardware interface). State that you purposefully kept
+>> the crypto interface in place for the new hardware as well (so that it's
+>> clear that this isn't an accident or oversight).
+>>
+>>>
+>>> [1] https://lore.kernel.org/lkml/20230824-topic-sm8550-rng-v2-4-dfcafbb16a3e@linaro.org/
+>>>
+>>> Signed-off-by: Om Prakash Singh <quic_omprsing@quicinc.com>
+>>> ---
+[...]
 
-> The latest 5.15.y is 5.15.120 , can you re-test on that version ?
->
+>>
+>> Can you please confirm that it's appropriate to name this "trng" without
+>> the "-ee" suffix. Should all trng instances (v2 and v3) skip
+>> initialization?
+> All trng supported platform needs to skip initialzation.
+> we don't need to have both "trng-ee" and "trng".
+> If "trng-ee" is prefer we shold update it in patch [1] it itself,
+Looking back at ba3ab6371cdd ("crypto: qcom-rng - Add support for prng-ee"),
+it was solved in a way that we would stray from today - nowadays
+we'd call it qcom,msm8996-prng or something.
 
-unfortunately it seems that I won't be able to do testing with
-5.15.120. I won't have
-access to hardware any more.
+The -ee part was only there to discern parts that were initialized
+by other software.
 
-> > [   20.255330] Hardware name: XXX i.MX8XX board:XXX (DT)
->
-> Is this some NXP downstream kernel fork with thousands of extra patches?
-> The version string 2.1.0 looks very much like NXP versioning scheme ...
+Since you said that all TRNGs need that, I'm also for dropping "-ee".
 
-Yes, this is NXP fork of the kernel.
-
->
-> [...]
-
-Best regards,
-Paulo
+Konrad
