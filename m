@@ -2,158 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D22C4792691
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBFBA7928B0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242757AbjIEQWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:22:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
+        id S243519AbjIEQXu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:23:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354357AbjIEK6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 06:58:46 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FE6199;
-        Tue,  5 Sep 2023 03:58:42 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 583A3660728C;
-        Tue,  5 Sep 2023 11:58:40 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1693911521;
-        bh=AWVZNq18PNoqeWFxoGKHOIFnvVBf8M/lxcWQmKKsNZY=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=YhMeneWjMwe+HasAhRS+NTtkEkoVqzpZ86/ipWJ1CbQitu1HcGcqIlrRsrhJgV+bP
-         2HM/K7exvm6+f1bMF3sc493w/ZrZckRY3VlAv1Jl3jadxH5Mnb71jBeLbjUPhCW/pi
-         5Az/Pi8/EPo/6H+e4sVh6dG/bYLStfbcjKtRUqE4C7E989nGolhoAGEg3Jgmfdntot
-         /uV1qCCiW1U6zJO2TzrygDWqPKN32FguNSBqNd9GbzgXuLoWTw7rX3TE/rqii9fPe3
-         SFKgJZIAPVou+pO0l/l471RqTAO76fAKMEr+3jdYJHcUEsTn0vwGhkCt92o6kTkEHT
-         FhFqO4yrYU2aw==
-Message-ID: <bf8394c6-5460-8696-f46b-0c39927aaf84@collabora.com>
-Date:   Tue, 5 Sep 2023 12:58:37 +0200
+        with ESMTP id S1354362AbjIELAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:00:39 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45C7B12A;
+        Tue,  5 Sep 2023 04:00:35 -0700 (PDT)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DC1F22000E;
+        Tue,  5 Sep 2023 11:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+        t=1693911633;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=vYzf4PHEoghXFdMmCHAIIQGECn1QD3BWvIxyh4qMpVg=;
+        b=b4qq1/Q1XTOsh7nK+KHIVbBxbzwl/avkrWEXgKOU2B+Pj2K6R2wBhChiSGk4Zu6IuZM9QG
+        JCkh12kBuPNaYmUpT+Auid5rRkeOQZIJWiOGxBeuI4uoU6BARODxPVO3OT2dFqeQohREd9
+        2LoT+xQwnHIyxXD//Skg6vsAXfBsChtx+E1yd2x9EN4X14piSf8DElXn19XSXTMoSIC4S7
+        7DaQqiu/W03BQK8ZqYHsYbZ+uXdcK7+sjJbuEuAc9sNu62H96AGoUDMYHHiECZ6FVFGjIP
+        HarvB3RK0ZrrkTB5/8oQ5V2y6C56O44zgBf/2JCfP+E8RdfZwaFYtaPjAoVv9w==
+Message-ID: <03d3341b-be77-4b25-bec2-fcae91a549d3@arinc9.com>
+Date:   Tue, 5 Sep 2023 14:00:21 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8395-evk
- board
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Macpaul Lin <macpaul.lin@mediatek.com>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>
-References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
- <e2e35d4d-7853-fccc-28c2-b8ecf309d6ec@linaro.org>
- <00f0a1cf-6246-92e9-13b0-cf31bb292a94@mediatek.com>
- <97b82a16-8710-9430-35c8-673381aaa417@linaro.org>
- <d5645707-bcb0-4d4b-1d94-d3cd17c042fb@mediatek.com>
- <ddbc2681-bbda-88a1-643c-54fcabc9b83a@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <ddbc2681-bbda-88a1-643c-54fcabc9b83a@linaro.org>
+References: <20230812091708.34665-3-arinc.unal@arinc9.com>
+ <abc44324-454c-4524-b05e-fe989755ea47@arinc9.com>
+ <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+ <20230814143601.mnpxtcm2zybnbvoh@skbuf>
+ <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
+ <20230827121235.zog4c3ehu2cyd3jy@skbuf>
+ <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+ <CAJq09z6eghuHY+b2y-kGmjKnLiEEOABXGKhjnB-PxJ=-GtYD4w@mail.gmail.com>
+Content-Language: en-US
+From:   =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <CAJq09z6eghuHY+b2y-kGmjKnLiEEOABXGKhjnB-PxJ=-GtYD4w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: arinc.unal@arinc9.com
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/09/23 12:36, Krzysztof Kozlowski ha scritto:
-> On 05/09/2023 11:36, Macpaul Lin wrote:
+On 5.09.2023 05:42, Luiz Angelo Daros de Luca wrote:
+>>> [1] ...this. The SMI-controlled and MDIO-controlled Realtek switches are
+>>> otherwise the same, right? So why would they have different dt-bindings?
 >>
+>> Honestly, I'm wondering the answer to this as well. For some reason, when
+>> probing the SMI controlled Realtek switches, instead of just letting
+>> dsa_switch_setup() populate ds->slave_mii_bus, on realtek_smi_setup_mdio()
+>> on realtek-smi.c:
 >>
->> On 9/4/23 20:11, Krzysztof Kozlowski wrote:
->>> 	
->>>
->>> External email : Please do not click links or open attachments until you
->>> have verified the sender or the content.
->>>
->>> On 04/09/2023 11:50, Macpaul Lin wrote:
->>>>
->>>>
->>>> On 9/4/23 17:33, Krzysztof Kozlowski wrote:
->>>>>
->>>>>
->>>>> External email : Please do not click links or open attachments until you
->>>>> have verified the sender or the content.
->>>>>
->>>>> On 04/09/2023 11:20, Macpaul Lin wrote:
->>>>>> Add bindings for the MediaTek mt8395-evk board.
->>>>>> The mt8359-evk board is also named as "Genio 1200-EVK".
->>>>>> MT8195 and MT8395 are the same family series SoC could share
->>>>>
->>>>> How can be the same and have different numbers? You sill need dedicated
->>>>> compatible.
->>>>>
->>>>
->>>> The SoCs mt8195 and mt8395 are designed for different market application
->>>> and physical characteristics, using different efuse values for
->>>> distinction. The booting flow and configurations are controllered by the
->>>> boot loaders, firmware, and TF-A. Therefore, the part numbers and
->>>> procurement channels are different. The detail information of these
->>>> efuse values is proprietary, so I cant disclose it futher. Hence the
->>>> most of peripheral drivers and base address are almost the same.
->>>
->>> 1. Drivers? So we talk about compatibility, not the same.
->>> 2. "almost the same" is not the same. Follow the guidelines for writing
->>> bindings.
->>>
->>
->> Thanks for the review.
->>
->> After internal confirmation and discussion, it can be confirmed that the
->> MT8195 and MT8395 are identical SoCs from to binding's perspective.
+>> - priv->slave_mii_bus is allocated.
+>> - mdio_np = of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
+>> - priv->slave_mii_bus->dev.of_node = mdio_np;
+>> - ds->slave_mii_bus = priv->slave_mii_bus;
 > 
-> I am sorry, but I really do not care what you internally discussed about
-> bindings. I do not think your internal review respect existing
-> guidelines. You talked about drivers, not "bindings perspective", so
-> your internal discussion is clearly discussing something else.
+> I might be able to help here. The Realtek SMI version created a custom
+> slave_mii driver because it was the only way to associate it with an
+> MDIO DT node. And that DT node was required to specify the interrupts
+> for each phy0.
+> It would work without that mdio node, letting DSA setup handle the
+> slave bus, but it would rely only on polling for port status.
 > 
->> MediaTek hope the mt8395 boards could directly use mt8195.dtsi, without
->> the need to create a separate mt8395.dtsi to include mt8195.dtsi.
->> Therefore, we hope to fully adopt the bindings of mt8195. However, I
->> will submit a revised patch for compatible since they are different boards.
+> As we only have a single internal MDIO, the compatible string
+> "realtek,smi-mdio" would not be necessary if the driver checks for a
+> "mdio"-named child node. Maybe the code was just inspired by another
+> DSA driver that uses more MDIO buses or external ones. The "mdio" name
+> is suggested by docs since it was committed
+> (https://www.kernel.org/doc/Documentation/devicetree/bindings/net/dsa/realtek-smi.txt).
+> That name was also kept in the YAML translation
+> (https://www.kernel.org/doc/Documentation/devicetree/bindings/net/dsa/realtek.yaml).
 > 
-> You can disagree but then I expect arguments from your side.
+> The Realtek MDIO driver was merged at the same release that included
+> the change that allows dsa_switch_setup() to reference the "mdio"
+> OF-node if present. That way, it could avoid creating a custom
+> slave_mii_bus driver.
 > 
+> I submitted a small series of patches to unify that behavior between
+> those two drivers:
+> 
+> https://lore.kernel.org/netdev/CAJq09z44SNGFkCi_BCpQ+3DuXhKfGVsMubRYE7AezJsGGOboVA@mail.gmail.com/
+> (This is my answer to the series opening message to include the first
+> paragraph ate by the editor)
+> 
+> There was some discussion but not NAC, ACK or RFC. It would have
+> dropped some lines of code. I can revive it if there is interest.
 
-In short - they're the same chip, as in, they behave the same on a *hardware*
-perspective; what changes is the bootchain (plus stricter security from TF-A)
-and allowable temperature ranges for operation, that's practically it...
+I'd like this to happen, thanks Luiz!
 
-...so yes the compatible for the "new soc" must be documented, but that's
-practically just a revision, *not a new soc* at all.
-
-(though, I agree that seeing a different name as in 1 -> 3 can be totally
-confusing)
-
-The drivers difference that Macpaul hinted to are about drivers needing some
-SMC calls instead of direct MMIO manipulation, so, something like two bindings
-for something like two drivers will need to add a 8395 compatible; speaking of
-what we would have in a devicetree for this SoC, that'd be exactly 99% identical
-to mt8195.dtsi.
-
-Anyway, drivers are drivers, bindings describe hardware - and the hw is, again,
-the same...
-
-Hope that this makes things clearer! :-)
-
-Cheers,
-Angelo
+Arınç
