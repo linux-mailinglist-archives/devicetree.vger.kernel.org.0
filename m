@@ -2,154 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9096679303B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23231793024
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:38:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241399AbjIEUr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 16:47:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56866 "EHLO
+        id S243833AbjIEUi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 16:38:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235485AbjIEUr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:47:27 -0400
-X-Greylist: delayed 551 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Sep 2023 13:47:24 PDT
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 746C0132;
-        Tue,  5 Sep 2023 13:47:24 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4AFBC433C8;
-        Tue,  5 Sep 2023 20:38:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693946293;
-        bh=ZdKKXxNVL93aojzTyABniVfuVm9QwnA2/7jIrE8SvO8=;
-        h=From:Date:Subject:To:Cc:From;
-        b=ktbG4NFZfPjXeyrBiFLg2RqCZhqdh6Qq0gXqdIgK+QGq+z0TxWDI5dkc7CZ0dOcu8
-         dKZSfWD0ZpAkKvn8qwRjR+mrrEwWmPCnyejA71JGhpM++Ni1EFWeOV2bUHA3cqc0Yd
-         rsi/6jzRiyOnLv12AmEIGBHq/feyyuJEWQeMnjIcTppHYw9RtuQfy7GkWgK9+nwFIR
-         nzW5B4J5hRAJZVHcZmnFVXV5BHXMyCxhS/v/qR6r5apJMn0ylxM+C+Y4/SqxjKp6it
-         hBOGtcU00V6dhocWdCy5p68tQjwVFZZXUwCk1fPtx6OOtudbvGrcVhvIDB2aTxjSYZ
-         V3CLFI8n6rWUA==
-From:   Nathan Chancellor <nathan@kernel.org>
-Date:   Tue, 05 Sep 2023 13:36:11 -0700
-Subject: [PATCH 5.15] of: kexec: Mark ima_{free,stable}_kexec_buffer() as
- __init
+        with ESMTP id S234175AbjIEUi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:38:58 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90EB0E6
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 13:38:53 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5280ef23593so3862929a12.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 13:38:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693946332; x=1694551132; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qISIWFWT+90Xd6ZFQOF4flQ0s4igN8yW6IgB7edRboU=;
+        b=EXUsCprzN/8aLF0Iu/mxNAx95RkFFRi84JZSccKHyfRknf3ADFEJyxJ1WO9tzF+spd
+         EiBJ4xkFWcdGMhdZWMzfR3bjm7LfOZ3VayL6AtkPl0qUzsD5P1OIMUWXiySg4xlTs1K+
+         beP4tIL/tLgoxCD5StNEOBXFR8rbEnDKy3eY3VmGLi9Jz5o9JDeQ4ufw9h3LTzih3KG3
+         17My8+VXp+IUb4xrzQ6C85RFp6Hmp4IRQw83p8kpRBhII3nGMGvIH3vmutsnX0RBRwHx
+         AOSlsiqRHfpLzE9Oxmco9A3wrlq70sbGNYt22OO4G/2+E3DXNur5xgQ1OwVJtpKEqdll
+         Ej6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693946332; x=1694551132;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qISIWFWT+90Xd6ZFQOF4flQ0s4igN8yW6IgB7edRboU=;
+        b=lfyceOmuzDbze6xMsE9eN/lLGfk91qB62kI0qXUrar5bgV+uB1mGLtZK9XtEgMXuvk
+         X1QIKJzvzMDY1A9W8bANEZCFfHntsUI9yBwTHS5b77qVWb4H17hCxWD7COW1jVvAUlm9
+         NQUNgJGeeQ/wVUMNBkfxw2n6vt06XTwWuT4oWfVW+lwzKF5qYZfCFKf7h0uT8kCqrZwO
+         SvLSSPfW6CkbScnto9lDsJKxyZ3Kt+vteuS8gz4E5IxvhkjG8JnFP3HNZBKnCSd8zZla
+         Ww/5Lu96ayC+6yqchr/lF8GHlfXX4KxIjZ2FKlazbeppncT86OYtwmtCUvF8q95aw8h9
+         dvOQ==
+X-Gm-Message-State: AOJu0YzVh+ap2f8xl9b3kXPvTXdaB7mM05LHVCX4gCyBcodiHY1PaKrM
+        Wa7bO1nx2ykVzZ1x1epQS9OnzQ==
+X-Google-Smtp-Source: AGHT+IEwOKhjqGOu2h/QRhHr/SAOH0IQAohqcX26Y4rMgNvLsbCvrMoYVYHzeWdQFLWTxxzvuqgoEQ==
+X-Received: by 2002:a17:906:5a70:b0:9a1:c370:1aef with SMTP id my48-20020a1709065a7000b009a1c3701aefmr695845ejc.55.1693946332043;
+        Tue, 05 Sep 2023 13:38:52 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id x10-20020a1709064a8a00b009937e7c4e54sm8001110eju.39.2023.09.05.13.38.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Sep 2023 13:38:51 -0700 (PDT)
+Message-ID: <8aefd8f9-cfe9-4011-a24b-ebb13d28faa0@linaro.org>
+Date:   Tue, 5 Sep 2023 23:38:50 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/5] phy: qcom-qmp-usb: Add Qualcomm SDX75 USB3 PHY
+ support
+Content-Language: en-GB
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
+        kishon@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, abel.vesa@linaro.org,
+        quic_wcheng@quicinc.com
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, kernel@quicinc.com
+References: <1693909838-6682-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1693909838-6682-6-git-send-email-quic_rohiagar@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <1693909838-6682-6-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230905-5-15-of-kexec-modpost-warning-v1-1-4138b2e96b4e@kernel.org>
-X-B4-Tracking: v=1; b=H4sIADqR92QC/x3MwQ5EMBAA0F+RORtpMbLrV8ShmDLZbCutIBH/r
- nF8l3dB5CAcoc0uCLxLFO8SdJ7BuBg3M8qUDKUqK/VVhISa0Fv88ckj/v20+rjhYYITN2NjmqH
- +2ErxYCEda2Ar5/t3QIUm6O/7AVpLx191AAAA
-To:     gregkh@linuxfoundation.org, sashal@kernel.org
-Cc:     stable@vger.kernel.org, robh+dt@kernel.org, frowand.list@gmail.com,
-        zohar@linux.ibm.com, dmitry.kasatkin@gmail.com,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org,
-        linux-security-module@vger.kernel.org,
-        Nathan Chancellor <nathan@kernel.org>
-X-Mailer: b4 0.13-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3423; i=nathan@kernel.org;
- h=from:subject:message-id; bh=ZdKKXxNVL93aojzTyABniVfuVm9QwnA2/7jIrE8SvO8=;
- b=owGbwMvMwCEmm602sfCA1DTG02pJDCnfJ265Msdk7j5jmS83suPC+sTj71kINK3/+Hoh043Cm
- d5WLvO0OkpZGMQ4GGTFFFmqH6seNzScc5bxxqlJMHNYmUCGMHBxCsBEfs1h+B9dO/mC1xd9vc4J
- 6yOSONlUvweZsRTU9omniz59Z5BjsJyR4c63ZYqR3wyckgod1mR/6Fxl8EtNjWPi0SfbbjsfPWT
- CyQgA
-X-Developer-Key: i=nathan@kernel.org; a=openpgp;
- fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit has no direct upstream equivalent.
+On 05/09/2023 13:30, Rohit Agarwal wrote:
+> Add support for USB3 QMP PHY found in SDX75 platform.
+> 
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+> ---
+>   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 158 ++++++++++++++++++++++++++++++++
+>   1 file changed, 158 insertions(+)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> index 0130bb8..57b8b5b 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> @@ -23,6 +23,7 @@
+>   #include "phy-qcom-qmp-pcs-misc-v3.h"
+>   #include "phy-qcom-qmp-pcs-usb-v4.h"
+>   #include "phy-qcom-qmp-pcs-usb-v5.h"
+> +#include "phy-qcom-qmp-pcs-usb-v6.h"
+>   
+>   /* QPHY_SW_RESET bit */
+>   #define SW_RESET				BIT(0)
+> @@ -858,6 +859,134 @@ static const struct qmp_phy_init_tbl sdx65_usb3_uniphy_rx_tbl[] = {
 
-After commit d48016d74836 ("mm,ima,kexec,of: use memblock_free_late from
-ima_free_kexec_buffer") in 5.15, there is a modpost warning for certain
-configurations:
+[skipped the tables]
 
-  WARNING: modpost: vmlinux.o(.text+0xb14064): Section mismatch in reference from the function ima_free_kexec_buffer() to the function .init.text:__memblock_free_late()
-  The function ima_free_kexec_buffer() references
-  the function __init __memblock_free_late().
-  This is often because ima_free_kexec_buffer lacks a __init
-  annotation or the annotation of __memblock_free_late is wrong.
+> @@ -1556,6 +1685,32 @@ static const struct qmp_phy_cfg sdx65_usb3_uniphy_cfg = {
+>   	.has_pwrdn_delay	= true,
+>   };
+>   
+> +static const struct qmp_phy_cfg sdx75_usb3_uniphy_cfg = {
+> +	.lanes			= 1,
+> +	.offsets		= &qmp_usb_offsets_v5,
 
-In mainline, there is no issue because ima_free_kexec_buffer() is marked
-as __init, which was done as part of commit b69a2afd5afc ("x86/kexec:
-Carry forward IMA measurement log on kexec") in 6.0, which is not
-suitable for stable.
+v6?
 
-Mark ima_free_kexec_buffer() and its single caller
-ima_load_kexec_buffer() as __init in 5.15, as ima_load_kexec_buffer() is
-only called from ima_init(), which is __init, clearing up the warning.
+> +
+> +	.serdes_tbl		= sdx75_usb3_uniphy_serdes_tbl,
+> +	.serdes_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_serdes_tbl),
+> +	.tx_tbl			= sdx75_usb3_uniphy_tx_tbl,
+> +	.tx_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_tx_tbl),
+> +	.rx_tbl			= sdx75_usb3_uniphy_rx_tbl,
+> +	.rx_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_rx_tbl),
+> +	.pcs_tbl		= sdx75_usb3_uniphy_pcs_tbl,
+> +	.pcs_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_pcs_tbl),
+> +	.pcs_usb_tbl		= sdx75_usb3_uniphy_pcs_usb_tbl,
+> +	.pcs_usb_tbl_num	= ARRAY_SIZE(sdx75_usb3_uniphy_pcs_usb_tbl),
+> +	.clk_list		= qmp_v4_sdx55_usbphy_clk_l,
+> +	.num_clks		= ARRAY_SIZE(qmp_v4_sdx55_usbphy_clk_l),
+> +	.reset_list		= msm8996_usb3phy_reset_l,
+> +	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
 
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- drivers/of/kexec.c                 | 2 +-
- include/linux/of.h                 | 2 +-
- security/integrity/ima/ima.h       | 2 +-
- security/integrity/ima/ima_kexec.c | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+Clocks and resets are gone in 
+https://lore.kernel.org/linux-phy/20230824211952.1397699-1-dmitry.baryshkov@linaro.org/
 
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 3a07cc58e7d7..d10fd54415c2 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -165,7 +165,7 @@ int ima_get_kexec_buffer(void **addr, size_t *size)
- /**
-  * ima_free_kexec_buffer - free memory used by the IMA buffer
-  */
--int ima_free_kexec_buffer(void)
-+int __init ima_free_kexec_buffer(void)
- {
- 	int ret;
- 	unsigned long addr;
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 140671cb746a..6f15e8b0f9d1 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -574,7 +574,7 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 				   unsigned long initrd_len,
- 				   const char *cmdline, size_t extra_fdt_size);
- int ima_get_kexec_buffer(void **addr, size_t *size);
--int ima_free_kexec_buffer(void);
-+int __init ima_free_kexec_buffer(void);
- #else /* CONFIG_OF */
- 
- static inline void of_core_init(void)
-diff --git a/security/integrity/ima/ima.h b/security/integrity/ima/ima.h
-index be965a8715e4..0afe413dda68 100644
---- a/security/integrity/ima/ima.h
-+++ b/security/integrity/ima/ima.h
-@@ -122,7 +122,7 @@ struct ima_kexec_hdr {
- extern const int read_idmap[];
- 
- #ifdef CONFIG_HAVE_IMA_KEXEC
--void ima_load_kexec_buffer(void);
-+void __init ima_load_kexec_buffer(void);
- #else
- static inline void ima_load_kexec_buffer(void) {}
- #endif /* CONFIG_HAVE_IMA_KEXEC */
-diff --git a/security/integrity/ima/ima_kexec.c b/security/integrity/ima/ima_kexec.c
-index f799cc278a9a..f3b10851bbbf 100644
---- a/security/integrity/ima/ima_kexec.c
-+++ b/security/integrity/ima/ima_kexec.c
-@@ -137,7 +137,7 @@ void ima_add_kexec_buffer(struct kimage *image)
- /*
-  * Restore the measurement list from the previous kernel.
-  */
--void ima_load_kexec_buffer(void)
-+void __init ima_load_kexec_buffer(void)
- {
- 	void *kexec_buffer = NULL;
- 	size_t kexec_buffer_size = 0;
+> +	.vreg_list		= qmp_phy_vreg_l,
+> +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
+> +	.regs			= qmp_v5_usb3phy_regs_layout,
 
----
-base-commit: 8f790700c974345ab78054e109beddd84539f319
-change-id: 20230905-5-15-of-kexec-modpost-warning-6a6b48f30ebf
+This must be v6, if the rest of the PHY is using v6 register names.
 
-Best regards,
+> +	.pcs_usb_offset		= 0x1000,
+> +
+> +	.has_pwrdn_delay	= true,
+> +};
+> +
+>   static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
+>   	.lanes			= 1,
+>   
+> @@ -2256,6 +2411,9 @@ static const struct of_device_id qmp_usb_of_match_table[] = {
+>   		.compatible = "qcom,sdx65-qmp-usb3-uni-phy",
+>   		.data = &sdx65_usb3_uniphy_cfg,
+>   	}, {
+> +		.compatible = "qcom,sdx75-qmp-usb3-uni-phy",
+> +		.data = &sdx75_usb3_uniphy_cfg,
+> +	}, {
+>   		.compatible = "qcom,sm6115-qmp-usb3-phy",
+>   		.data = &qcm2290_usb3phy_cfg,
+>   	}, {
+
 -- 
-Nathan Chancellor <nathan@kernel.org>
+With best wishes
+Dmitry
 
