@@ -2,81 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3CA792FDE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:23:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0136F792FF5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:28:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234649AbjIEUXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 16:23:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35302 "EHLO
+        id S231160AbjIEU2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 16:28:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231629AbjIEUXm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:23:42 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1428E;
-        Tue,  5 Sep 2023 13:23:39 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-991c786369cso459288666b.1;
-        Tue, 05 Sep 2023 13:23:38 -0700 (PDT)
+        with ESMTP id S240498AbjIEU2p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:28:45 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 127E1FA;
+        Tue,  5 Sep 2023 13:28:38 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3a9e89fa553so167643b6e.1;
+        Tue, 05 Sep 2023 13:28:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693945417; x=1694550217; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=W7FEvRnQff1RFIy6G/Scp5VfoqVl8Fl9R26EpZ41ssQ=;
-        b=lWrFnxMWH56mAAYRBqSP80rEP7abc/BGdgchUTeroB66ZQO1qonI0wom7R1AWUsWa5
-         x+3YlFyh0k32JBmjrSqBLoDg8QFoGzsk+28ELUekaM28Ka1llyut0lzXjHxaqc/cGV3X
-         iFzT+0mMogIfBdvY17+qZS3u3/Glf5q0Je6H6mN+w1aq123H3UPuj7wlul70WX0A4bBj
-         MxXkRx4XmuePuFw26OU1qHTDCBhNYjTaEvCGEhqJu0sy+QgHhIeGWLae7clGHPyQS/J3
-         jITdYSo04bZYQPxFnm49UeJ1iWxVfn6XXj60YlAgoPi08nrKZI13MC29XQxhQcl9tkwI
-         ixEQ==
+        d=gmail.com; s=20221208; t=1693945717; x=1694550517; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BTAlf1Pn0y/kznlJiOVRc19uOH2iY5h9kLD6cMbrGec=;
+        b=liOj2IIS8xlM/noLQncRlxHTaJFuzby7A0Z8wm6fRgFFzqB/hVh/EEm4QjLAPjXyNw
+         w8NSsz9RhIBS75XVPsr0lbFHJQ4EG3W4SiX79jF6krxB5vuUugkCASpKcMV62f59Qi2Q
+         iYWYnkKp66PJFtBiJzACESIoR6lYGV+0+9cyGFTfNqKzqgzWyI3aRpYLU+yqb8FUDdPB
+         /q7VRf8A1X9pDaGqGLnwD96zrl36q2JEafifdOKnhoEVmYDB5TJSwD2+wJCiKnr0v65F
+         hqVED9B6P8kIvUPu/woJoqkwpwsl3yLCRCbZF6SnnSTKLn8wlOqgsbWSFfkzPst8ZY1V
+         ar8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693945417; x=1694550217;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:subject:from:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W7FEvRnQff1RFIy6G/Scp5VfoqVl8Fl9R26EpZ41ssQ=;
-        b=QsJMO1b/znkhmMmCeMQm6WA7987qkVqKn5btexOM3i5tA2jZViO16219urPVmkW2o3
-         JInlp+8hPwOHcmQ/+vACM06boWHN8RdHbZlgi8Gw5ZDSDNXaSp4Z6ZbYe9ycFBTgWTeG
-         Fm8p3GDrA6+ET/DqSdD0q2lAfaqykj1QVNumuyd45JKjIDK0U39/N3Av9vQbOz/6inMG
-         fmdIgCU4H51s7t1lrV8czmXhccqdZ3vfDRdxxYE2xFUf5iucJglj2kVA2XmtxTqC64q/
-         v7QXvVBydbkddPkRSae4O79WxJGwPv9CTloyGeJtRkhVdxOzwtew/RGXyFWXJciuS4RL
-         TEMg==
-X-Gm-Message-State: AOJu0YwJ70+pPW4ZQ2FtIU7MnXVc1O+cP3aVSrLO/1ugwTgJUvZXKIFU
-        WY+dsMwn9e0hfya6JyH2jVbgEdXRNBCSgA==
-X-Google-Smtp-Source: AGHT+IG2mFnmzU6dZ1Lll+hMk7JV4ZmDPpxt54hgKUw+BKq9w4jCarie89LEsaJFEj3D1lcN6wDTcA==
-X-Received: by 2002:a17:907:b0a:b0:9a1:b705:75d1 with SMTP id h10-20020a1709070b0a00b009a1b70575d1mr579098ejl.51.1693945417163;
-        Tue, 05 Sep 2023 13:23:37 -0700 (PDT)
-Received: from ?IPV6:2a02:908:8b3:1840:5b7b:492a:c913:71fb? ([2a02:908:8b3:1840:5b7b:492a:c913:71fb])
-        by smtp.gmail.com with ESMTPSA id l18-20020a1709066b9200b0099bc08862b6sm8166003ejr.171.2023.09.05.13.23.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 13:23:26 -0700 (PDT)
-Message-ID: <755a2be4-6947-d756-2eee-0ba14086d781@gmail.com>
-Date:   Tue, 5 Sep 2023 22:23:16 +0200
+        d=1e100.net; s=20221208; t=1693945717; x=1694550517;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BTAlf1Pn0y/kznlJiOVRc19uOH2iY5h9kLD6cMbrGec=;
+        b=ep7F46B2oFW5qaJpOpDw2xWPOJC2MbBKZ777/TJnXIZKhdzJzev0+LeQxlI3XjGVGj
+         YCtIUaXCfR8inutA+Ap1tKoLvTrgFJSNmw+Wy59PYOJGxVYRTCSSDXfypkXyvZJdSgE7
+         gzu6r6k6mHEchD8YAzT5MrUgrMlZRTCjSHaR+h0TRI6Oi9fii/Co7a967NFiyhWZTKmX
+         vJk/X50QEFmzEtobN6x13kuJ9ZJV8xe7NzLwIFlRwAOBp0mt1BaMMFWoSXGQH9m3mesv
+         sGm8602/ftInEVMdLrU8UR7wmxIkSiXUoQX0DlIXSo/JfdLPiaLKHvZudIezYKwMrXjt
+         ywMw==
+X-Gm-Message-State: AOJu0YwnT8ZZQ892Z3jiqYmtnw8Uz/+WPxDEgDoooqpPq+RoSVz2s44m
+        uV+zLe42iIecXZjLNJqVJk5VmxlEc84=
+X-Google-Smtp-Source: AGHT+IE7x7EBKIFZ+qVuqswnyxIG2uwHjRUE1iT/ARHkwcvh5TxlyI8/qqrxmVug6W2kMtdDnkV0Vg==
+X-Received: by 2002:a05:6808:4443:b0:3a9:e40c:683c with SMTP id ep3-20020a056808444300b003a9e40c683cmr16061835oib.1.1693945717206;
+        Tue, 05 Sep 2023 13:28:37 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:2abb:b8c2:b1a6:d1ec])
+        by smtp.gmail.com with ESMTPSA id bf36-20020a056808192400b003a89019d5fesm6279419oib.51.2023.09.05.13.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Sep 2023 13:28:36 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     alexandre.belloni@bootlin.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, sam@ravnborg.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH v2] dt-bindings: rtc: pcf8523: Convert to YAML
+Date:   Tue,  5 Sep 2023 17:28:27 -0300
+Message-Id: <20230905202827.67212-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-From:   Maxim Schwalm <maxim.schwalm@gmail.com>
-Subject: Re: [PATCH v3 2/5] dt-bindings: display: tegra: nvidia,tegra20-dc:
- Add parallel RGB output port node
-To:     Rob Herring <robh@kernel.org>,
-        Svyatoslav Ryhel <clamor95@gmail.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230807143515.7882-1-clamor95@gmail.com>
- <20230807143515.7882-3-clamor95@gmail.com>
- <20230821161441.GA1743870-robh@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20230821161441.GA1743870-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -85,88 +70,100 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Fabio Estevam <festevam@denx.de>
 
-On 21.08.23 18:14, Rob Herring wrote:
-> On Mon, Aug 07, 2023 at 05:35:12PM +0300, Svyatoslav Ryhel wrote:
->> From: Maxim Schwalm <maxim.schwalm@gmail.com>
->>
->> Either this node, which is optional, or the nvidia,panel property can be
->> present.
->>
->> Signed-off-by: Maxim Schwalm <maxim.schwalm@gmail.com>
->> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
->> ---
->>  .../display/tegra/nvidia,tegra20-dc.yaml      | 31 +++++++++++++++++++
->>  1 file changed, 31 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml
->> index 69be95afd562..102304703062 100644
->> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml
->> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-dc.yaml
->> @@ -127,6 +127,37 @@ allOf:
->>                $ref: /schemas/types.yaml#/definitions/phandle
->>                description: phandle of a display panel
->>  
->> +            port:
->> +              $ref: /schemas/graph.yaml#/$defs/port-base
->> +              description: Parallel RGB output port
->> +
->> +              properties:
->> +                endpoint:
->> +                  $ref: /schemas/media/video-interfaces.yaml#
-> 
-> Just to make sure, what properties are you using from this? Usually 
-> we'll list them though not a hard requirement. If none, then you just 
-> need to ref graph.yaml#/properties/port instead and can drop the rest.
+Convert the PCF8523 bindings from text format to YAML.
 
-currently, just bus-width is used in devicetrees, but I don't think that
-it is needed at the moment. So perhaps the property can be dropped.
+The YAML format is preferred as it allows validation.
 
->> +                  unevaluatedProperties: false
->> +
->> +              unevaluatedProperties: false
-> 
-> In the indented cases, it's easier to read if this is before 
-> properties/patternProperties.
-> 
->> +
->> +          anyOf:
->> +            - if:
->> +                not:
->> +                  properties:
->> +                    nvidia,panel: false
->> +              then:
->> +                not:
->> +                  properties:
->> +                    port: true
->> +            - if:
->> +                not:
->> +                  properties:
->> +                    port: false
->> +              then:
->> +                not:
->> +                  properties:
->> +                    nvidia,panel: true
-> 
-> I would prefer to drop this and mark "nvidia,panel" as deprecated. 
-> Eventually I plan to add a mode to the tools to warn on using deprecated 
-> properties. Having both could be perfectly fine too. You have the 
-> "nvidia,panel" for compatibility with an old OS version and 'port' to 
-> work with newer users.
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+Changes since v1:
+- Add the default value for quartz-load-femtofarads. (Krzysztof)
+- Pass unevaluatedProperties: false. (Krzysztof)
+- Fixed a typo on Sam's email address.
 
-The reason for adding this was that just one of them can be utilized at
-the same time. Having both could potentially break the display output.
-I think that all the other nvidia,* properties could marked as
-deprecated as well because they don't seem to be doing much since commit
-d9f980ebcd01 ("drm/tegra: output: rgb: Wrap directly-connected panel
-into DRM bridge").
+ .../devicetree/bindings/rtc/nxp,pcf8523.txt   | 18 --------
+ .../devicetree/bindings/rtc/nxp,pcf8523.yaml  | 45 +++++++++++++++++++
+ 2 files changed, 45 insertions(+), 18 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
 
->> +
->> +          additionalProperties: false
-> 
-> Move this up too.
-> 
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
+deleted file mode 100644
+index 0b1080c60f63..000000000000
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-* NXP PCF8523 Real Time Clock
+-
+-Required properties:
+-- compatible: Should contain "nxp,pcf8523".
+-- reg: I2C address for chip.
+-
+-Optional property:
+-- quartz-load-femtofarads: The capacitive load of the quartz(x-tal),
+-  expressed in femto Farad (fF). Valid values are 7000 and 12500.
+-  Default value (if no value is specified) is 12500fF.
+-
+-Example:
+-
+-pcf8523: rtc@68 {
+-	compatible = "nxp,pcf8523";
+-	reg = <0x68>;
+-	quartz-load-femtofarads = <7000>;
+-};
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
+new file mode 100644
+index 000000000000..8d17b89fef5e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf8523.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCF8523 Real Time Clock
++
++maintainers:
++  - Sam Ravnborg <sam@ravnborg.org>
++
++allOf:
++  - $ref: rtc.yaml#
++
++properties:
++  compatible:
++    const: nxp,pcf8523
++
++  reg:
++    maxItems: 1
++
++  quartz-load-femtofarads:
++    description:
++      The capacitive load of the crystal, expressed in femto Farad (fF).
++    enum: [ 7000, 12500 ]
++    default: 7000
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rtc@68 {
++            compatible = "nxp,pcf8523";
++            reg = <0x68>;
++            quartz-load-femtofarads = <7000>;
++        };
++    };
+-- 
+2.34.1
 
-Best regards,
-Maxim
