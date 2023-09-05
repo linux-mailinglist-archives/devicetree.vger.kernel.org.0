@@ -2,79 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9F4792915
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87AA579274D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:35:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350863AbjIEQZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:25:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56328 "EHLO
+        id S1343572AbjIEQW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346864AbjIEEXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 00:23:06 -0400
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9529E1B6;
-        Mon,  4 Sep 2023 21:23:02 -0700 (PDT)
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-53482b44007so833111a12.2;
-        Mon, 04 Sep 2023 21:23:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693887782; x=1694492582;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CE7wOb4f3tQJ0IpYRUrURtk1HHBKDBeRdhJ1pSca2yY=;
-        b=OajjDja1Exlrml+zLtAlEQwTIANfGeXxM+jXzxEPCdnQrTOtoBzj+p99zYG+j53UQi
-         gHfNgzem2H+v2OJuAIRnC69iaxT8WqQuWU1wefvd3kM3o0XemUvQNg2AdgkuiKTSZKuX
-         oVs8e2lL1VwEq34HaJjn1VeJv5heF1Fft2fEd3VUeMpmKobt/n4uiin0VHkR9nNG1Td6
-         1J8/9JmAvRjDU5w1hQhfOukdUgmsrdpFtUrjPD2rzMLA3DlSU4jaEL7ee1tyAHhyQfX+
-         JUe2neIjDi2spiTZh24lJxmv78fimcIwFEw5D9TmfRGgfxzKqoYZaPWD4g0ElBLSEXPY
-         /TGA==
-X-Gm-Message-State: AOJu0YzK2Jl8TOappD95WzvY8776gWNT3pDYWoXLS5Yzc1yVv3rGcQrh
-        m/TvDfCm/nVLOipMmiqQR1c=
-X-Google-Smtp-Source: AGHT+IFc03AUpiWiy/oRZskvvaA5OqpDqcG8THI2I2F1zX9fnD1bics6NjU8YxO+SVhTfR8334u5bg==
-X-Received: by 2002:a17:90a:66c7:b0:26d:4ab3:fe11 with SMTP id z7-20020a17090a66c700b0026d4ab3fe11mr8299685pjl.24.1693887781945;
-        Mon, 04 Sep 2023 21:23:01 -0700 (PDT)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id m13-20020a17090a7f8d00b002609cadc56esm8153904pjl.11.2023.09.04.21.23.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Sep 2023 21:23:01 -0700 (PDT)
-Date:   Tue, 5 Sep 2023 13:22:59 +0900
-From:   Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     lpieralisi@kernel.org, robh@kernel.org, bhelgaas@google.com,
+        with ESMTP id S1348616AbjIEEoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 00:44:12 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2119CCC7;
+        Mon,  4 Sep 2023 21:44:09 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3854SVRs027202;
+        Tue, 5 Sep 2023 04:43:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id; s=qcppdkim1;
+ bh=+X5Uesm0llKqCoNL/0vF3pB+UsjNNWAzmz9Idy6g96c=;
+ b=TXxTZ3G5GznamcheUKDvfZzMH3msE27Zv76+tUkiBW8G/VbZ4IhG5zuYbUj/kVOlklIo
+ MnUUr1UwEmA57MLn8iyp2wMcWkkHFYe/8JfhotejqWKyFov3ZwDk1Nn9UqgFRbBOXjDC
+ Ylv3BcJG96boRJQbuPidCpL6QHjarpneOUP6EGYIENp9bb5H7aIHq+VQ/Psu1FE5H0EC
+ vbsy2Ieiib3wazhVvQyfG1a1MBf0Z9sajbRbuI5P781cMG3RUkFp+XxQgLXE0pEtjVQj
+ /c0+pgis4xecvxmN0FmyOmrSE8VI0GfGDmIMEdEr5iGljWHQj2F/ERo2Ud4dPNQFuDKX dQ== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3swpr6ggab-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 05 Sep 2023 04:43:55 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3854hp6b013087;
+        Tue, 5 Sep 2023 04:43:51 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3sux4kav14-1;
+        Tue, 05 Sep 2023 04:43:51 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3854hp9c013081;
+        Tue, 5 Sep 2023 04:43:51 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3854hp7P013080;
+        Tue, 05 Sep 2023 04:43:51 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
+        id 54FBE1D04; Tue,  5 Sep 2023 10:13:50 +0530 (+0530)
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        mani@kernel.org, marek.vasut+renesas@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: PCI: Revise dwc and rcar-gen4-pcie
-Message-ID: <20230905042259.GB1102453@rocinante>
-References: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230901131711.2861283-1-yoshihiro.shimoda.uh@renesas.com>
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+        gregkh@linuxfoundation.org, abel.vesa@linaro.org,
+        quic_wcheng@quicinc.com
+Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, kernel@quicinc.com,
+        Rohit Agarwal <quic_rohiagar@quicinc.com>
+Subject: [PATCH 0/5] Add USB Support on Qualcomm's SDX75 Platform
+Date:   Tue,  5 Sep 2023 10:13:43 +0530
+Message-Id: <1693889028-6485-1-git-send-email-quic_rohiagar@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: k84bsobKjY3Q1GS3RNdcdMaeK4nR1BTX
+X-Proofpoint-GUID: k84bsobKjY3Q1GS3RNdcdMaeK4nR1BTX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-05_02,2023-08-31_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0
+ impostorscore=0 mlxlogscore=432 clxscore=1011 adultscore=0
+ priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2308100000 definitions=main-2309050040
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi,
 
-> This patch series is based on pci.git / controller/rcar branch
-> to fix dt-bindings doc patches. Krzysztof mentioned that the paches
-> will be squashed everything later [1].
+This series adds support of USB3 PHY support for Qualcomm's SDX75 Platform.
 
-Applied and squashed against prior patches:
+Thanks,
+Rohit.
 
-  - https://git.kernel.org/pci/pci/c/554931ed3795
-  - https://git.kernel.org/pci/pci/c/d828097a0bef
-  - https://git.kernel.org/pci/pci/c/c1ff8c2d1a8c
+Rohit Agarwal (5):
+  dt-bindings: phy: qcom,snps-eusb2-phy: Add compatible for SDX75
+  dt-bindings: phy: Add qcom,sdx75-qmp-usb3-uni schema file
+  dt-bindings: usb: dwc3: Add missing SDX65 compatible
+  dt-bindings: usb: dwc3: Add SDX75 compatible
+  phy: qcom-qmp-usb: Add Qualcomm SDX75 USB3 PHY support
 
-Thank you, Shimoda-san!
+ .../bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.yaml  | 106 ++++++++++++++
+ .../bindings/phy/qcom,snps-eusb2-phy.yaml          |   7 +-
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   4 +
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c            | 160 +++++++++++++++++++++
+ 4 files changed, 276 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.yaml
 
-	Krzysztof
+-- 
+2.7.4
+
