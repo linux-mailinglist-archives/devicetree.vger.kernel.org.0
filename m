@@ -2,108 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CAAB792CFC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 20:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B104B792ED2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 21:26:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232281AbjIESBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 14:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40048 "EHLO
+        id S229451AbjIET0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 15:26:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236897AbjIER43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 13:56:29 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B583EA5E;
-        Tue,  5 Sep 2023 10:49:54 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 7E9F1CE1286;
-        Tue,  5 Sep 2023 17:48:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF86DC43397;
-        Tue,  5 Sep 2023 17:48:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693936133;
-        bh=RBAG8ZYYuvEXmzdeIKhCe4dQDTnUdRpxhlaQhZKuHLI=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=qjC562cgkOdXqEWXTtWkaQcHbRLvNVIaRWHl9pW6MecM9dh7mA7zhrIFGV9l/WCEe
-         XLvL6fira6Dj/9h7l8280L9aHBNuNqS2DUxNNb2cRBuXygxA2pydOC7Sogz+y4jlQA
-         qk2S8Ej+u5Rla1Oa4oMQUMycVx1w324CD/lFf/PpxUw3B9Xk2fnZzH6bao3FKWvVBF
-         6rrjVfRaEe1n5FAFeisVcdTGWJzrBr/arxb9nWcTehN/CXW2ya+7rVVi5gixa9qP2L
-         ytecjGb7MxI9p5jocvg8CcRTpXAIVKWUoZiNfW/Rua5A8KaiPs54zJzYO+mll4HR5m
-         LGh/6PDH/OECw==
-Received: (nullmailer pid 3654274 invoked by uid 1000);
-        Tue, 05 Sep 2023 17:48:50 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S240160AbjIETZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 15:25:59 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C2921709
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 12:25:29 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-401f68602a8so27940765e9.3
+        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 12:25:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693941926; x=1694546726; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ca2eAe6pvMNyR6imFqpBniy7ICyAfe/hANZLQ25/e0Y=;
+        b=efCeBcOqegql7z2PqQvmjHrcUU8YZG/WRM5DTNRPApkjut8woq3Vyo7YG/xhfUDe4B
+         iUvYoY4m9ewdhd9ayUzLnLEeerCXmSCHw2Ri9rYUJUXC6a/fMoxvhZfJg+OOpbq9sYJ5
+         1HnAhwwHnAtRe3DrLQ506YOhu34FzcJZdUPmKRjmT43Hm5tOEQYCreyJRk0UKFyduiFF
+         ourOam+orCgn6uoroOjU6//X+IlbCLVowhZqCs07zoK7bfRbjkwsCWlY3P2hssP8t32U
+         nKf8CUvRI2Kd6b/rfFEjoUcTHPUYgVOmLZeQGH1+Nctpwc2xbyCu7YosXj7UEn81V6Hc
+         PBKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693941926; x=1694546726;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ca2eAe6pvMNyR6imFqpBniy7ICyAfe/hANZLQ25/e0Y=;
+        b=QtWZLhbHlRgz8pfz/U1swH6/G4IypgnnWhPCDc32pEnSLy+Czcik/ZXvLYo8wjZWXu
+         vVYPaq6LzQYBdKC83RYiqjXcZ71KlSpPx8CAjwI3yDgqDmaxqqguYJ/CjIjasW1rjOGH
+         JOH2HSV4mJ6wkqrfE7dTZWbQL17mHBJ+DCbNnL8YXKh8gNVF2PCRK8yNp2KEcR1+suqv
+         OONu/aoQlTdVt83gP7xd9ooHYnYWSB95BRPiTQ/CuOSsnTOvcTDRX2KINdgJhXVhsMkT
+         N6UST0ssKCoKAPQgKB0fRt4ZIyl6e3odYElm64bZMWMNE2RJ4FcHMopVoQiJEHZLw596
+         gyTg==
+X-Gm-Message-State: AOJu0YwM2s+M28oocvnIHnBuDwjmCFRqEHH3lWDj0J2iefnP06Zjqaxr
+        qx8uXVTk0fjaBInkMD9VU3Kxp4PZ8Pe7hqXdIZo=
+X-Google-Smtp-Source: AGHT+IG+oCDVe1qnz0Eh4bx1Aac6LkewwnuG8hvHtmfCrkF0hc+vfTNz3AZGaXnbaYCTFMaA43jutg==
+X-Received: by 2002:a17:906:304a:b0:9a2:139:f45d with SMTP id d10-20020a170906304a00b009a20139f45dmr267866ejd.43.1693930768881;
+        Tue, 05 Sep 2023 09:19:28 -0700 (PDT)
+Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id v26-20020a170906489a00b0099cc36c4681sm7743165ejq.157.2023.09.05.09.19.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Sep 2023 09:19:28 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/12] arm64: dts: qcom: sm6125-sprout: drop incorrect UFS phy max current
+Date:   Tue,  5 Sep 2023 18:19:09 +0200
+Message-Id: <20230905161920.252013-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230905161920.252013-1-krzysztof.kozlowski@linaro.org>
+References: <20230905161920.252013-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, quic_wcheng@quicinc.com,
-        linux-usb@vger.kernel.org, konrad.dybcio@linaro.org,
-        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
-        linux-phy@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
-        andersson@kernel.org, kishon@kernel.org, kernel@quicinc.com,
-        conor+dt@kernel.org, agross@kernel.org, abel.vesa@linaro.org,
-        vkoul@kernel.org
-In-Reply-To: <1693889028-6485-3-git-send-email-quic_rohiagar@quicinc.com>
-References: <1693889028-6485-1-git-send-email-quic_rohiagar@quicinc.com>
- <1693889028-6485-3-git-send-email-quic_rohiagar@quicinc.com>
-Message-Id: <169393613081.3654258.4653148258731976775.robh@kernel.org>
-Subject: Re: [PATCH 2/5] dt-bindings: phy: Add qcom,sdx75-qmp-usb3-uni
- schema file
-Date:   Tue, 05 Sep 2023 12:48:50 -0500
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Neither bindings nor UFS phy driver use properties like
+'vdda-phy-max-microamp' and 'vdda-pll-max-microamp':
 
-On Tue, 05 Sep 2023 10:13:45 +0530, Rohit Agarwal wrote:
-> Add a dt-binding schema for SDX75 SoC.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
->  .../bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.yaml  | 106 +++++++++++++++++++++
->  1 file changed, 106 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.yaml
-> 
+  sm6125-xiaomi-laurel-sprout.dtb: phy@4807000: 'vdda-phy-max-microamp', 'vdda-pll-max-microamp' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts | 2 --
+ 1 file changed, 2 deletions(-)
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sdx75.h: No such file or directory
-   18 |         #include <dt-bindings/clock/qcom,gcc-sdx75.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1693889028-6485-3-git-send-email-quic_rohiagar@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+index 272bc85f1719..90b5f22ea9dc 100644
+--- a/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
++++ b/arch/arm64/boot/dts/qcom/sm6125-xiaomi-laurel-sprout.dts
+@@ -406,8 +406,6 @@ &ufs_mem_hc {
+ &ufs_mem_phy {
+ 	vdda-phy-supply = <&vreg_l4a>;
+ 	vdda-pll-supply = <&vreg_l10a>;
+-	vdda-phy-max-microamp = <51400>;
+-	vdda-pll-max-microamp = <14200>;
+ 	vddp-ref-clk-supply = <&vreg_l18a>;
+ 	status = "okay";
+ };
+-- 
+2.34.1
 
