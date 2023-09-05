@@ -2,215 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DA97928A6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B7F07928A4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230021AbjIEQXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:23:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54460 "EHLO
+        id S1344576AbjIEQXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:23:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354398AbjIELTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:19:51 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9F9A1AB;
-        Tue,  5 Sep 2023 04:19:46 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3859dRqR022051;
-        Tue, 5 Sep 2023 11:19:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=A5t1dlkYJ0wOotUEYyQn+vL7gadDWE9jXO6dxQeebf8=;
- b=pT5tYCH5Z0MV2uthVO76ZpxcV9gvNgS9n+qBRow17z8zjlN/+8KjJiqGYuDTvdjtMNbT
- tRjLjlwAxTiqLdoAxrhZHbPrvlCnUwHJfGPFo80DqSmfSJis3KIJN3IKNwyed/Apk7uS
- OsTr46SNlk8Ax9em87RG3ZAt26mynPGiCRow76F3674N3LDQmty2IiqLTP2nfiGb3/xv
- YPh7e+AiwkZ8yPMC296a44ollc1T2+TQxKrgarKP7oeC70idxvd1rMur0WCT27BZQFfW
- HypsQnMreN4RjSljwA/Frf677wjYofDL5oY/WBjWE6Em3R4WSws4ftXeutvn4GMfr7h8 Bg== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3swpr6h5fw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 Sep 2023 11:19:36 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 385BJZNH026931
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 5 Sep 2023 11:19:35 GMT
-Received: from [10.201.203.60] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 5 Sep
- 2023 04:19:31 -0700
-Message-ID: <7355fb0a-f2a7-1af6-3369-a5996610e9cc@quicinc.com>
-Date:   Tue, 5 Sep 2023 16:49:28 +0530
+        with ESMTP id S1354428AbjIELes (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:34:48 -0400
+Received: from s.wrqvtzvf.outbound-mail.sendgrid.net (s.wrqvtzvf.outbound-mail.sendgrid.net [149.72.126.143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A36C1AB
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 04:34:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+        h=mime-version:subject:references:from:in-reply-to:to:cc:content-type:
+        content-transfer-encoding:cc:content-type:from:subject:to;
+        s=s1; bh=8Oon+UZVxMzjsZmhyhxxf4Iok+yFxg7JUkPTPozzk2Y=;
+        b=UVXSHcpHRkuysgyXTlsLgYFD5G8Zf+7iKD2zhOY93EMero2+yHxox8SQCGOt52IQsbmu
+        LFG86tfIhEG9SBKzMcjTS87Wr08UHxaVaQogNfYs7JVvDqPhoreHTP9FFGnawws9df7mj6
+        gF8V2GOKOo4yTnmrUATsP1JSxx5YAuNK+YXHfODzvk9sOiMcr94AY+F+QBGTAdgWxhcRNT
+        AsyHlKVqRDA5sFQe5qbAYVDFozpAz+F0Lt2Dwgh1XdEHxPfb7SKwakXtZjVNg56Ge/gCgt
+        50ipMMb5phMrP8fQlWDiy+ziLLN0+hi5IxX27I4crpuV+ih+2LPFRUZYCHYmya9g==
+Received: by filterdrecv-7765c6879f-mrb57 with SMTP id filterdrecv-7765c6879f-mrb57-1-64F71232-5
+        2023-09-05 11:34:10.187704852 +0000 UTC m=+2232639.625816428
+Received: from [192.168.1.50] (unknown)
+        by geopod-ismtpd-8 (SG) with ESMTP
+        id jd1KlkDuTLa2t2toI-Tyqw
+        Tue, 05 Sep 2023 11:34:09.834 +0000 (UTC)
+Message-ID: <ca8d3730-dc32-0192-d812-82cc58700260@kwiboo.se>
+Date:   Tue, 05 Sep 2023 11:34:10 +0000 (UTC)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.8.0
-Subject: Re: [PATCH v3] arm64: dts: ipq5018: Correct uart1_pins pinconf
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 0/3] Make Rockchip IO domains dependency from other
+ devices explicit
 Content-Language: en-US
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Ziyang Huang <hzyitc@outlook.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <quic_gokulsri@quicinc.com>, <quic_varada@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <TYZPR01MB5556D24A77DAFA013F93B551C9E4A@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <b6fa8337-a5c0-172a-a41b-ab18de3f4f72@linaro.org>
- <TYZPR01MB555673C1E12A27DA8109DBEAC9EAA@TYZPR01MB5556.apcprd01.prod.exchangelabs.com>
- <c6f4b93c-aa80-e250-d06b-6b3bdfbfc64b@linaro.org>
-From:   Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <c6f4b93c-aa80-e250-d06b-6b3bdfbfc64b@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: tGCfYoTi52mR0a0gyY9FY5HTxnNHlmKn
-X-Proofpoint-GUID: tGCfYoTi52mR0a0gyY9FY5HTxnNHlmKn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-05_09,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
- lowpriorityscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- impostorscore=0 mlxlogscore=999 clxscore=1011 adultscore=0
- priorityscore=1501 mlxscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2308100000 definitions=main-2309050100
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+From:   Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+X-SG-EID: =?us-ascii?Q?TdbjyGynYnRZWhH+7lKUQJL+ZxmxpowvO2O9SQF5CwCVrYgcwUXgU5DKUU3QxA?=
+ =?us-ascii?Q?fZekEeQsTe+RrMu3cja6a0h8rKZkhjZNKspq1qu?=
+ =?us-ascii?Q?L4Ur5DSU6M7CKd5T0Kq7NrTwxkY0tJnRNwRv890?=
+ =?us-ascii?Q?ix6HcaePIYyKW9zxu6ZLyGrpetznd+vDyK7DODW?=
+ =?us-ascii?Q?zfga0myeRguOfqgI5zqUD6ebBdwqsmyRK79t4Ff?=
+ =?us-ascii?Q?QFFwB+yHb19fqgKWz6QhIywF7SeIia0UyONfPC?=
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+X-Entity-ID: P7KYpSJvGCELWjBME/J5tg==
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L3,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Sascha,
 
+On 2023-09-04 13:58, Sascha Hauer wrote:
+> This is a continuation of the patch posted by Quentin Schulz here [1]
+> 
+> This series aims to solve a problem with Rockchip IO domains. On many
+> Rockchip SoCs the pins are driven by external supplies normally
+> controlled by regulators of a PMIC. There are multiple voltages allowed
+> for the regulators; additionally the chosen voltage has to be programmed
+> into SoC registers. There already is a driver [2] handling setting these
+> registers. The driver works by registering a notifier on the regulators.
+> Whenever a regulator is about to change its voltage then the notifier will
+> program the IO domain registers suitably for the new voltage.
+> 
+> The problem is that there is no dependency between pins and the IO
+> domain driver which means that it can happen that a pin is used before
+> the IO domain driver has been probed. In that case the pin can end up
+> being non functional as neither the regulator has been configured
+> correctly nor the SoC registers have been adjusted to the regulators
+> voltage.
+> 
+> One way to ensure correct probing order is to defer probing of devices
+> in the pinctrl driver until the IO domain driver has been probed. We
+> can't do this for all devices though, as that would introduce a cyclic
+> dependency when for example the I2C port needed to access the PMIC for
+> the regulators is part of a IO domain itself.
+> 
+> This series solves these problems similarly to Quentins patch. With
+> Quentins patch we would have to add rockchip,io-domain properties for
+> all pin group nodes we wish to honor the IO domain dependency for. We
+> could put these properties into the board dts files which would mean
+> that we either only add the properties to nodes which actually byte us,
+> or that we would have to add the properties to all possible pin groups
+> except the ones needed to access the PMIC. We could also put these
+> properties into the dtsi files, but that would mean a board has to add a
+> /delete-property/ rockchip,io-domain to the pin groups needed to access
+> the PMIC to avoid circular dependencies.
+> 
+> The approach chosen here is slightly different. First of all this series
+> doesn't change the current behaviour without board specific dts changes.
+> To activate the IO domain dependency handling, a board has to add a
+> rockchip,io-domains property to the pinctrl node. When this property is
+> present all pins are assumed to need the IO domain driver. Pin groups
+> needed to access the PMIC can then be given a rockchip,io-domain-boot-on
+> property. When this property is given then the IO domain is assumed to
+> be correctly configured by the boot loader. It should be added to all
+> pin groups needed to access the PMIC to avoid cyclic dependencies. Patch
+> 3/3 contains a usage example for the Radxa Rock-3a.
 
-On 9/4/2023 6:27 AM, Bryan O'Donoghue wrote:
-> On 03/09/2023 14:02, Ziyang Huang wrote:
->> 在 2023/9/1 23:04, Bryan O'Donoghue 写道:
->>> <...>
->>>
->>> The assignment of pins 20 and 21 to blsp1_uart1 is not correct.
->>>
->>> The blspX_uartY in pinctrl should match what is in the dtsi so 
->>> assigning pins_a above to blsp1_uart1 is not right. The dts name and 
->>> pinctrl name should be the same.
->>>
->>> Your console is on blsp0_uart0.
->>>
->>> https://git.codelinaro.org/clo/qsdk/oss/boot/u-boot-2016/-/blob/5343739b4070bcec2fecd72f758c16adc31a3083/arch/arm/dts/ipq5018-mp03.3.dts#L33 
->>>
->>>
->>> So roughly speaking
->>>
->>> arch/arm64/boot/dts/qcom/ipq5018-rdp432-c2.dts
->>>
->>> aliases {
->>>      serial0 = &blsp0_uart0;
->>> };
->>>
->>> chosen {
->>>      stdout-path = "serial0:115200n8";
->>> };
->>>
->>> &blsp0_uart0 {
->>>          pinctrl-0 = <&uart0_pins>;
->>>          pinctrl-names = "default";
->>>          status = "okay";
->>> };
->>>
->>>
->>> arch/arm64/boot/dts/qcom/ipq5018.dtsi
->>>
->>> blsp0_uart0: serial@78af000
->>>
->>> either that or  blsp0_uart1 for pins28 and pins29 - you seem to 
->>> indicate pins_1 => blsp0_uart0.
->>>
->>> The two roots of the problem are
->>>
->>> 1. Mislabeling of the uart block in the dtsi
->>> 2. Invalid miscongiruation of pins for that misnamed block
->>>
->>> The fix should be
->>>
->>> 1. Fix the labeling of uart in the dtsi
->>> 2. Decide on which pins gpio20, gpio21 ? are the right ones to configure
->>>
->>> I thought you said in a previous email if you changed pins gpio28 and 
->>> gpio29 that the UART would fail if so that implies blsp0_uart1.
->>>
->>> Either way the pinctrl and dts should agree.
->>>
->>> ---
->>> bod
->>>
->>
->> No, please read my commit message carefully.
->>
->> The Y of pinctrl is the index of pinmux config. So it can't be used in 
->> the serial node definition.
->>
->> Please note that the physical port of first serial is configurable. It 
->> can use gpio20, gpio21 or/and gpio28,29. All of these pins are for the 
->> first serial.
->>
->> Let's take the second serial as an example. It has 3 configurable 
->> physical port groups - "blsp1_uart0" (pinconfig name, use GPIO 
->> 10,11,12,13), "blsp1_uart1" (gpio 31,32,33,34), "blsp1_uart2" (gpio 
->> 23,24,25,26).
->>
->> But the dts name of the second serial definition is "blsp1_uart2". 
->> Because it the second serial of the first BLSP block.
->>
->> Same logic. The dts name of the first serial definition is 
->> "blsp1_uart1". Because it the first serial of the first BLSP block.
->>
->> I think I need to introduce the architecture of these SoC. It has two 
->> BLSP block. Each BLSP block has several uart port.
->>
->> So the dts name of serial contains the BLSP index and the serial index 
->> inside BLSP. But pinconf name doesn't care about it. So it use global 
->> index. And due to the physical ports are configurable, it need pinmux 
->> index.
->>
->> The equation will be like this:
->>
->> dts name of serial definition: "blspX_uartY"
->> pinconf name: "blspU_uartV"
->> U = (uart_number_inside_each_blsp * (X - 1)) + (Y - 1)
-> 
-> I've checked the documentation for this chip.
-> 
-> gpio20, gpio21 = blsp0_uart0
-> gpio28, gpio29 = blsp0_uart0
-> 
-> These pins are muxed to UART0, I agree, the u-boot dts also indicates 
-> this also.
-> 
-> If we open the documentation further we see
-> 
-> 0x78AF000 = BLSP1_BLSP_UART0
-> 0x79b0000 = BLSP1_BLSP_UART1
-> 
-> So for starters the dtsi has the _wrong_ label.
-> 
-> Here/anseo
-> 
-> grep uart0: arch/arm64/boot/dts/qcom/*
-> arch/arm64/boot/dts/qcom/ipq5332.dtsi:        blsp1_uart0: serial@78af000 {
-> arch/arm64/boot/dts/qcom/ipq9574.dtsi:        blsp1_uart0: serial@78af000 {
-> 
-> That's how that label ought to be the main hint something is askance is 
-> assigning a pin named "blsp0_uart0" to a dts entry named "blsp1_uart1".
-> 
-> Please update the label in your next revision.
-> 
+FYI, I have sent out a series that ports the IO domain driver to U-Boot.
+This was needed to have working Ethernet on RK356x devices that use a
+1.8V PHY. Initially only RK356x support have been ported but support for
+other SoCs should follow in the future. Vendor U-Boot also initialize
+the IO domain configuration based on the voltage reported by the
+supplying regulator.
 
-   Agree here, both label (to blsp1_uart0) and pins needs to be updated
-    (as in this patch).
+So at least for the example board IO domains should be configured when
+entering linux while booting using a future version of mainline U-Boot.
+
+https://lore.kernel.org/u-boot/20230821223020.3918620-1-jonas@kwiboo.se/
 
 Regards,
-  Sricharan
+Jonas
+
+> 
+> Sascha
+> 
+> [1] https://lore.kernel.org/lkml/20220802095252.2486591-1-foss+kernel@0leil.net/
+> [2] drivers/soc/rockchip/io-domain.c
+> 
+> Sascha Hauer (3):
+>   pinctrl: rockchip: add support for io-domain dependency
+>   dt-bindings: pinctrl: rockchip: Add io domain properties
+>   arm64: dts: rockchip: rock-3a: add io domain properties
+> 
+>  .../bindings/pinctrl/rockchip,pinctrl.yaml    | 13 +++-
+>  .../boot/dts/rockchip/rk3568-rock-3a.dts      | 11 ++++
+>  drivers/pinctrl/pinctrl-rockchip.c            | 64 +++++++++++++++++++
+>  drivers/pinctrl/pinctrl-rockchip.h            |  3 +
+>  4 files changed, 90 insertions(+), 1 deletion(-)
+> 
+
