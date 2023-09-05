@@ -2,231 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD3079287F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:44:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4DEC792617
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238461AbjIEQWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:22:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52892 "EHLO
+        id S235045AbjIEQVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:21:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352453AbjIEFsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 01:48:23 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D29812E;
-        Mon,  4 Sep 2023 22:48:19 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id ECA5742444;
-        Tue,  5 Sep 2023 10:48:11 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1693892892; bh=wAuaJLhjPcRFdx6t9Gz0AhRtHiLNO8hfsMHaHITa5So=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-        b=YVElSKZjLW727lxP8uVtwgKmze3bpUkpnM1SCcAYY+5HZMeDnta7TgXVaha6rKdsJ
-         DrCO4ZqV7rPu3qFpGIH8GJzwd37S7gcoFUOFMTsY9vxs5G+rgEEN2qRpnVfBpksBPe
-         Axtxu1IGY7Tqn9yX/Np7JJADklr6dTwa7/r9nELknwfJ39yzAXddYvtz5IxO0veKpN
-         XlqYRb/1IvEp+5WDJJ3cqH49CLHTOlxdTUNYa+dVboQtj3ZuuzDRUEyMjjZwpRUoEq
-         f1ouxpkYjdJXEYMd8nLGruEReZkX4GmOYnuUW7jt/UmAhZK/Phy1sk/BPvhZoLLNSM
-         iECXRjwIP6lKw==
-From:   Nikita Travkin <nikita@trvn.ru>
-Date:   Tue, 05 Sep 2023 10:47:23 +0500
-Subject: [PATCH 4/4] arm64: dts: qcom: sc7180: Add ADSP
+        with ESMTP id S1352879AbjIEGDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 02:03:38 -0400
+Received: from out28-53.mail.aliyun.com (out28-53.mail.aliyun.com [115.124.28.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8240B1B6;
+        Mon,  4 Sep 2023 23:03:33 -0700 (PDT)
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07437018|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0078599-0.000796544-0.991344;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047194;MF=wangweidong.a@awinic.com;NM=1;PH=DS;RN=25;RT=25;SR=0;TI=SMTPD_---.UXsaVvi_1693893801;
+Received: from ubuntu-VirtualBox..(mailfrom:wangweidong.a@awinic.com fp:SMTPD_---.UXsaVvi_1693893801)
+          by smtp.aliyun-inc.com;
+          Tue, 05 Sep 2023 14:03:29 +0800
+From:   wangweidong.a@awinic.com
+To:     krzysztof.kozlowski@linaro.org
+Cc:     13916275206@139.com, alsa-devel@alsa-project.org,
+        broonie@kernel.org, ckeepax@opensource.cirrus.com,
+        colin.i.king@gmail.com, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, herve.codina@bootlin.com,
+        krzysztof.kozlowski+dt@linaro.org, lgirdwood@gmail.com,
+        linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
+        liweilei@awinic.com, perex@perex.cz, rdunlap@infradead.org,
+        rf@opensource.cirrus.com, robh+dt@kernel.org, ryans.lee@analog.com,
+        shumingf@realtek.com, tiwai@suse.com, trix@redhat.com,
+        wangweidong.a@awinic.com, yijiangtao@awinic.com,
+        zhangjianming@awinic.com
+Subject: Re: [PATCH V1 3/3] ASoC: codecs: Add aw87390 amplifier driver
+Date:   Tue,  5 Sep 2023 14:03:21 +0800
+Message-ID: <20230905060321.15849-1-wangweidong.a@awinic.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
+References: <5ea76d3f-c9dd-10f5-4f9a-7b32b535ab5c@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230905-sc7180-adsp-rproc-v1-4-dfea7699da7b@trvn.ru>
-References: <20230905-sc7180-adsp-rproc-v1-0-dfea7699da7b@trvn.ru>
-In-Reply-To: <20230905-sc7180-adsp-rproc-v1-0-dfea7699da7b@trvn.ru>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     David Wronek <davidwronek@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4272; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=wAuaJLhjPcRFdx6t9Gz0AhRtHiLNO8hfsMHaHITa5So=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBk9sETu7ptQNZMsIhrHe2sebPNY5ZWc8nampQd1
- MqDNP0vwOqJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZPbBEwAKCRBDHOzuKBm/
- dXgKD/sF0PRhjkDK5pa/Bq73qltDf6YNa4veyquiRzUDlIQbD8+mpocQUC1V8mrMk8b7WM99Jea
- SEB56pTz47IxmZRP2KTb0aPHws8ZWvtU2LiBam1HjUQJ/ZVcpd6qUdgUEURFtxErZsxOXNAyxZU
- pxYgBTLIPum0mQCCRX+jWYQYlUbj94E0uT5VKSPOpkBNOly5vFQnDbYnHgB8HevtQJcAg9tb48Z
- zxacix3nXaBtrZxOTy0bTfM0UoGgp31J0E9ObfO1FLTIydUWWEYq6M1qKgaRQ46gnkmnkDqPNwy
- N7i4XsR5zYmMz6bkiaXbqyefUEn4eGL0Tkr/OLSAwjfUMQMSxNwgQt389ztG/EOLnQC8SmKiaL5
- WtgvA269NyM9eSvzpdnA3icXZJlXDZZhoK44uB/tSm94Slr/JiA1MsHQheKYA/0zI06UVIEHNp/
- KI82iZEn9EOmIDht3gHpOVQO9E2WK4RQd+lmsdvt4GXEHqAeP03H7MNQJkspoiyavABi4vr5OHD
- la2Wq3rFmDnm9ZqcYs4U3xSFBh2JriUeXlyzE96Vd2ZVzttFT23n12FOSOUN1jb9cQdcJ/AqgXV
- lyVKn/OUyvBSwyfKNHAywpIfMc4WsJSlideTBPEugtNR56VUXPLpUWFse0AEyU/IzJZ11xL0Uvv
- AFwnMQSet4dFbXg==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sc7180 has an ADSP remoteproc that exclusively controls the audio
-hardware on devices that use Qualcomm firmware.
+Thank you very much. Here are some things I'd like to discuss with you.
 
-Add it along with the relevant audio services.
+On 05/09/2023 11:50, krzysztof.kozlowski@linaro.org wrote:
+> On 04/09/2023 13:46, wangweidong.a@awinic.com wrote:
+>> From: Weidong Wang <wangweidong.a@awinic.com>
+>> 
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 122 +++++++++++++++++++++++++++++++++++
- 1 file changed, 122 insertions(+)
+> ...
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 9f68b5ff0030..30c58186900a 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -20,6 +20,8 @@
- #include <dt-bindings/reset/qcom,sdm845-aoss.h>
- #include <dt-bindings/reset/qcom,sdm845-pdc.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+#include <dt-bindings/soc/qcom,apr.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
-@@ -3781,6 +3783,126 @@ wifi: wifi@18800000 {
- 			status = "disabled";
- 		};
- 
-+		remoteproc_adsp: remoteproc@62400000 {
-+			compatible = "qcom,sc7180-adsp-pas";
-+			reg = <0 0x62400000 0 0x100>;
-+
-+			interrupts-extended = <&intc GIC_SPI 162 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack";
-+
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "xo";
-+
-+			power-domains = <&rpmhpd SC7180_LCX>,
-+					<&rpmhpd SC7180_LMX>;
-+			power-domain-names = "lcx", "lmx";
-+
-+			qcom,qmp = <&aoss_qmp>;
-+			qcom,smem-states = <&adsp_smp2p_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
-+				label = "lpass";
-+				qcom,remote-pid = <2>;
-+				mboxes = <&apss_shared 8>;
-+
-+				apr {
-+					compatible = "qcom,apr-v2";
-+					qcom,glink-channels = "apr_audio_svc";
-+					qcom,apr-domain = <APR_DOMAIN_ADSP>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					apr-service@3 {
-+						reg = <APR_SVC_ADSP_CORE>;
-+						compatible = "qcom,q6core";
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+					};
-+
-+					q6afe: apr-service@4 {
-+						compatible = "qcom,q6afe";
-+						reg = <APR_SVC_AFE>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6afedai: dais {
-+							compatible = "qcom,q6afe-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+						};
-+
-+						q6afecc: cc {
-+							compatible = "qcom,q6afe-clocks";
-+							#clock-cells = <2>;
-+						};
-+					};
-+
-+					q6asm: apr-service@7 {
-+						compatible = "qcom,q6asm";
-+						reg = <APR_SVC_ASM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6asmdai: dais {
-+							compatible = "qcom,q6asm-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+							iommus = <&apps_smmu 0x1001 0x0>;
-+						};
-+					};
-+
-+					q6adm: apr-service@8 {
-+						compatible = "qcom,q6adm";
-+						reg = <APR_SVC_ADM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6routing: routing {
-+							compatible = "qcom,q6adm-routing";
-+							#sound-dai-cells = <0>;
-+						};
-+					};
-+				};
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1003 0x0>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1004 0x0>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1005 0x0>;
-+						qcom,nsessions = <5>;
-+					};
-+				};
-+			};
-+		};
-+
- 		lpasscc: clock-controller@62d00000 {
- 			compatible = "qcom,sc7180-lpasscorecc";
- 			reg = <0 0x62d00000 0 0x50000>,
+>> +static void aw87390_parse_channel_dt(struct aw87390 *aw87390)
+>> +{
+>> +	struct aw_device *aw_dev = aw87390->aw_pa;
+>> +	struct device_node *np = aw_dev->dev->of_node;
+>> +	u32 channel_value = AW87390_DEV_DEFAULT_CH;
+>> +
+>> +	of_property_read_u32(np, "sound-channel", &channel_value);
 
--- 
-2.41.0
+> NAK, there is no such property. It seems you already sneaked in such for
+> other codecs. Please do not repeat such patterns of work.
 
+> That's also why I expect full DTS example, not some reduced pieces.
+
+Thank you very much. I would like to add a sound-channel property to awinic,aw87390.yaml
+This property is used to distinguish between multiple PA's in order to 
+load different configurations for different PA's
+
+>> +
+>> +	aw_dev->channel = channel_value;
+>> +}
+>> +
+>> +static int aw87390_init(struct aw87390 **aw87390, struct i2c_client *i2c, struct regmap *regmap)
+>> +{
+>> +	struct aw_device *aw_dev;
+>> +	unsigned int chip_id;
+>> +	int ret;
+>> +
+>> +	/* read chip id */
+>> +	ret = regmap_read(regmap, AW87390_ID_REG, &chip_id);
+>> +	if (ret) {
+>> +		dev_err(&i2c->dev, "%s read chipid error. ret = %d\n", __func__, ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	if (chip_id != AW87390_CHIP_ID) {
+>> +		dev_err(&i2c->dev, "unsupported device\n");
+
+> Why? The compatible tells it cannot be anything else.
+
+>> +		return -ENXIO;
+>> +	}
+>> +
+>> +	dev_info(&i2c->dev, "chip id = 0x%x\n", chip_id);
+>> +
+>> +	aw_dev = devm_kzalloc(&i2c->dev, sizeof(*aw_dev), GFP_KERNEL);
+>> +	if (!aw_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	(*aw87390)->aw_pa = aw_dev;
+>> +	aw_dev->i2c = i2c;
+>> +	aw_dev->regmap = regmap;
+>> +	aw_dev->dev = &i2c->dev;
+>> +	aw_dev->chip_id = AW87390_CHIP_ID;
+>> +	aw_dev->acf = NULL;
+>> +	aw_dev->prof_info.prof_desc = NULL;
+>> +	aw_dev->prof_info.count = 0;
+>> +	aw_dev->prof_info.prof_type = AW88395_DEV_NONE_TYPE_ID;
+>> +	aw_dev->channel = AW87390_DEV_DEFAULT_CH;
+>> +	aw_dev->fw_status = AW87390_DEV_FW_FAILED;
+>> +	aw_dev->prof_index = AW87390_INIT_PROFILE;
+>> +	aw_dev->status = AW87390_DEV_PW_OFF;
+>> +
+>> +	aw87390_parse_channel_dt(*aw87390);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int aw87390_i2c_probe(struct i2c_client *i2c)
+>> +{
+>> +	struct aw87390 *aw87390;
+>> +	int ret;
+>> +
+>> +	ret = i2c_check_functionality(i2c->adapter, I2C_FUNC_I2C);
+>> +	if (!ret)
+>> +		return dev_err_probe(&i2c->dev, -ENXIO, "check_functionality failed\n");
+>> +
+>> +	aw87390 = devm_kzalloc(&i2c->dev, sizeof(*aw87390), GFP_KERNEL);
+>> +	if (!aw87390)
+>> +		return -ENOMEM;
+>> +
+>> +	mutex_init(&aw87390->lock);
+>> +
+>> +	i2c_set_clientdata(i2c, aw87390);
+>> +
+>> +	aw87390->regmap = devm_regmap_init_i2c(i2c, &aw87390_remap_config);
+>> +	if (IS_ERR(aw87390->regmap)) {
+>> +		ret = PTR_ERR(aw87390->regmap);
+
+> ret is not needed here, so just:
+> return dev_err_probe()
+
+Thank you very much. I will modify it to 
+"return dev_err_probe(&i2c->dev, PTR_ERR(aw87390->regmap), "failed to init regmap: %d\n", ret);"
+
+>> +		return dev_err_probe(&i2c->dev, ret, "failed to init regmap: %d\n", ret);
+>> +	}
+>> +
+>> +	/* aw pa init */
+>> +	ret = aw87390_init(&aw87390, i2c, aw87390->regmap);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = regmap_write(aw87390->regmap, AW87390_ID_REG, AW87390_SOFT_RESET_VALUE);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = devm_snd_soc_register_component(&i2c->dev,
+>> +				&soc_codec_dev_aw87390, NULL, 0);
+>> +	if (ret)
+>> +		dev_err(&i2c->dev, "failed to register aw87390: %d\n", ret);
+>> +
+>> +	return ret;
+>> +}
+
+
+Best regards,
+Weidong Wang
