@@ -2,108 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8BED792AFC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:02:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE35792B51
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:03:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236192AbjIEQqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:46:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47748 "EHLO
+        id S236150AbjIEQvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242329AbjIEQed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:34:33 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E64130DF
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 09:33:14 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-99357737980so417469266b.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 09:33:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693931465; x=1694536265; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7lliAJnjKGrKN2HdJy1Zp01oKeEF+jouNcZc6sxAEmg=;
-        b=AeaUwT+RZbntyjLvbbf2GnUCUDO1GNIdSqjXawsGuxfKVmGEF0ldsVOeYHuTo2koC5
-         GCLcxRNHBTEUG+k3cwrENbNG+Xy5TMyj537aFWdJXe+j1HH98XZgnhMRtcfE7/Gbo6RI
-         mMS1iJSGmXlSHewoiux0vLafQGXKOHmJRk/zBQTL0fw8s+ZAKEVQbe0Y0CuelE5NKgiv
-         c0hJoIQy3wSgrzuCawkruMH5o5pOlmyd1gAxtfZK6zEfspJAA9hHY6hhK2ECgHtr85LF
-         qG6AY/8vwrgIl9/o8RwBxjSxJTLABcn8qUAuq7jQFUL9x8j3tkTrPAKVdLnSWL9qO3yi
-         349w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693931465; x=1694536265;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7lliAJnjKGrKN2HdJy1Zp01oKeEF+jouNcZc6sxAEmg=;
-        b=BfobTv/CZSQ5bYWdNgB4o0bxTVwnteTM1cwAOtN75+MyHnwVd7DHU1bv4DQez9Kkkz
-         E+GCNfPbGkp3l/PmAff+lSDEeCiOvxhIHdRbMpmPQnbI8q7vRcZbSo3h4BWVnV6HDp+S
-         ODOjkeiOkqN3Dzu5S7JeAPv62g4SJCas6dDxNhM4a1VhhBiRr62HRbSlyV40RVRdmJoU
-         l14U+696QkMGbMU+iK7mXl/S9cZc3RW3wNHtBcJ2Ci9YkNCePR4p4STS3OtuL1vpCnO3
-         f61OjxF9PRvILYlmNsncL3pChbyIQjoXKvMOAei599vDQzdqT4jHhJJoClxLYXqY/HPk
-         tJxw==
-X-Gm-Message-State: AOJu0YwR1uls+8JlhJDcMVWS+w0pV2hdw40b6C5drYYQX4bsSip7Aigb
-        LsbjlkU6Xr64XOdSL4ujaxMkPg==
-X-Google-Smtp-Source: AGHT+IGc9ZoOkCPrWQHAvmzavnP932KKSQltJbJVFwE5KtY8VTlctUL6wrsqrWGa8tPg0SULxnh2RA==
-X-Received: by 2002:a17:906:3054:b0:9a6:8219:6e0b with SMTP id d20-20020a170906305400b009a682196e0bmr307473ejd.35.1693931465798;
-        Tue, 05 Sep 2023 09:31:05 -0700 (PDT)
-Received: from krzk-bin.. (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id g24-20020a170906395800b00992e265495csm7796187eje.212.2023.09.05.09.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Sep 2023 09:31:05 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
+        with ESMTP id S236939AbjIEQrl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 12:47:41 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F361F46B8;
+        Tue,  5 Sep 2023 09:38:25 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B90F260B99;
+        Tue,  5 Sep 2023 16:38:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7C59C433C8;
+        Tue,  5 Sep 2023 16:38:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693931904;
+        bh=j0OeAERZBXx25b1hoC5tIs/7DWLipKf6KPeTFzeNQqM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n2wjmcDbgPR3HVXF7xu8JC0qwJ7SOArNWbVujiPhOCLzDFlEFdYpQ/BDI0hiXEg9E
+         mP0uivQRa7BmpqmWaCpmIwc8wPSMRMZEnbnT53FnkYIQ094Yy9mhepJxqFXqY3Zb16
+         r6jaRvKXlYDDIgKNk4wD8uT1f95MLjWxKuDmmv7w0AOvIs+fXMJA2yy6o48O1EfhaO
+         MVMZ9d7dykmQkpeHt0sVqJycBmmkm481DcrkOfa+NYOcSpNwrv1Hxgmw38dSn4tgYe
+         MWD0+wQNRrLkn0B6ljWWY8TkJalLqRjL60tfyCzEzc9GbkaklxcmoGrIlYlrAV4oTW
+         u+fvGoaSrinNQ==
+Received: (nullmailer pid 3505213 invoked by uid 1000);
+        Tue, 05 Sep 2023 16:38:21 -0000
+Date:   Tue, 5 Sep 2023 11:38:21 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sdx75-idp: align RPMh regulator nodes with bindings
-Date:   Tue,  5 Sep 2023 18:31:03 +0200
-Message-Id: <20230905163103.257412-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        Abel Vesa <abel.vesa@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: phy: qcom,snps-eusb2-repeater: Add
+ magic tuning overrides
+Message-ID: <20230905163821.GA3500273-robh@kernel.org>
+References: <20230830-topic-eusb2_override-v1-0-ab23825385a8@linaro.org>
+ <20230830-topic-eusb2_override-v1-1-ab23825385a8@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230830-topic-eusb2_override-v1-1-ab23825385a8@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Device node names should be generic and bindings expect certain pattern
-for RPMh regulator nodes:
+On Wed, Aug 30, 2023 at 04:40:15AM +0200, Konrad Dybcio wrote:
+> The EUSB2 repeater requires some alterations to its init sequence,
+> depending on board design.
+> 
+> Add support for making the necessary changes to that sequence to make USB
+> functional on SM8550-based Xperia 1 V.
+> 
+> They all have lackluster description due to lack of information.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../bindings/phy/qcom,snps-eusb2-repeater.yaml      | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+> index 029569d5fcf3..83fd6f936bf9 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-eusb2-repeater.yaml
+> @@ -32,6 +32,27 @@ properties:
+>  
+>    vdd3-supply: true
+>  
+> +  qcom,tune-hsdisc-value:
 
-  sdx75-idp.dtb: rsc@17a00000: 'pmx75-rpmh-regulators' does not match any of the regexes: '^regulators(-[0-9])?$', 'pinctrl-[0-9]+'
+Is '-value' redundant?
 
-Fixes: 8a2dc39d1043 ("arm64: dts: qcom: sdx75-idp: Add regulator nodes")
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+'-thres' or '-threshold' would be more descriptive.
 
----
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    description: High-Speed disconnect threshold
+> +    minimum: 0
+> +    maximum: 7
+> +    default: 0
+> +
+> +  qcom,tune-iusb2-value:
 
-Really, I can't believe I am still fixing this stuff. New boards bring
-the same mistakes we fixed half year ago. Or even earlier...
----
- arch/arm64/boot/dts/qcom/sdx75-idp.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+-amplitude?
 
-diff --git a/arch/arm64/boot/dts/qcom/sdx75-idp.dts b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-index 10d15871f2c4..a14e0650c4a8 100644
---- a/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/sdx75-idp.dts
-@@ -44,7 +44,7 @@ vreg_bob_3p3: pmx75-bob {
- };
- 
- &apps_rsc {
--	pmx75-rpmh-regulators {
-+	regulators-0 {
- 		compatible = "qcom,pmx75-rpmh-regulators";
- 		qcom,pmic-id = "b";
- 
--- 
-2.34.1
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    description: High-Speed trasmit amplitude
+> +    minimum: 0
+> +    maximum: 15
+> +    default: 8
+> +
+> +  qcom,tune-usb2-preem-value:
 
+We have 'hs', 'iusb2', and 'usb2'. Can you be consistent?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint8
+> +    description: TX pre-emphasis tuning
+> +    minimum: 0
+> +    maximum: 7
+> +    default: 5
+> +
+>  required:
+>    - compatible
+>    - reg
+> 
+> -- 
+> 2.42.0
+> 
