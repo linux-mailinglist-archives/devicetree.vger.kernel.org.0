@@ -2,49 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A895F792F90
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C1FA792F80
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:08:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242698AbjIEUIs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 16:08:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41238 "EHLO
+        id S230465AbjIEUIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 16:08:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242637AbjIEUIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:08:44 -0400
+        with ESMTP id S231263AbjIEUIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:08:39 -0400
+X-Greylist: delayed 5118 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Sep 2023 13:08:36 PDT
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D6913E;
-        Tue,  5 Sep 2023 13:08:37 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4BD0C433AB;
-        Tue,  5 Sep 2023 18:23:21 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 453499C;
+        Tue,  5 Sep 2023 13:08:36 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52B80C433B9;
+        Tue,  5 Sep 2023 18:28:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693938202;
-        bh=f5XQvJk5/c9p3k+Qxl5FlmeLFvNUh3n8mq/IZU94fJM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gw97UJ3GEAtKV8c69QUg+iqlVSpKPc2+dI1OI3EsH0vmJxF5mNA5np+wr7r+Y/+XZ
-         9pWlIZrKoMrC9mF/tkdb3SChF5FpdBOmpcS/Z/WgMysa/pXaHkQg+lhpyKqsFXNbZK
-         Ths6hTai/Q3atThScl2ZHNmsYdCh8Ws9l7Pw+Jj5tH1LhIWgYtX1yXpxTZXjEz2QrE
-         NpHtNFP10ms39tJyLqpHtxvOx4Dhg9mz1FN6hPfu1ZI5rp4CJepcheGk94xMMdSGCj
-         cx/EytwRqPS1Zh4NCAjmJkTLhd5t1xUHxmn9iTp+/Xy2c9EmDf8LVkYs36/L7sAk2h
-         jD4+1KO0jHRBw==
-Received: (nullmailer pid 3751384 invoked by uid 1000);
-        Tue, 05 Sep 2023 18:23:20 -0000
-Date:   Tue, 5 Sep 2023 13:23:20 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Fang Xiang <fangxiang3@xiaomi.com>,
-        Marc Zyngier <maz@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: arm,gic-v3: Add
- dma-noncoherent property
-Message-ID: <20230905182320.GA3744871-robh@kernel.org>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230905104721.52199-2-lpieralisi@kernel.org>
+        s=k20201202; t=1693938541;
+        bh=HNwxnqVLcUvUgsEtkMxU0rL9+To5Mqbb2eXIaUG0S38=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=SfuVpe78aghB8DPNWXGfrTge0/smtp+UAk6OB8SWplYFRWLrpZ99hOBugQ0RDLIq6
+         toGyXtbytFqoZdQw5T0141yeHnGPx9trJQkZCK+hZpuZDalw0hnVwJ2ZKTz7Tj/b63
+         c1+bhVdRVswJzrOozTovGu0SEBDV82uuGQToq5iyz/QQEwsq7iCDR/kqTpcpsLtr1i
+         oPUhcJtpd+WUb8Zh0wnR0CYwyPxRoKFukWkvQJBgUlYwcLzoaGUVjC2kxX2vbuUsvU
+         ScCC0dtYeY2S2RtT0fQIN//Wf4EzSx2AIQlEdwCCqd5PN98sGa5NWDguDFrzGjRMHF
+         NQwv2PC9gln8g==
+Received: (nullmailer pid 3757330 invoked by uid 1000);
+        Tue, 05 Sep 2023 18:28:58 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230905104721.52199-2-lpieralisi@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     kernel@pengutronix.de, Andrew Lunn <andrew@lunn.ch>,
+        linux-kernel@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Eric Dumazet <edumazet@google.com>,
+        UNGLinuxDriver@microchip.com, Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+In-Reply-To: <20230905124340.4116542-1-o.rempel@pengutronix.de>
+References: <20230905124340.4116542-1-o.rempel@pengutronix.de>
+Message-Id: <169393853820.3757299.10173163628142492519.robh@kernel.org>
+Subject: Re: [RFC net-next v1 1/2] dt-bindings: net: dsa: microchip: Update
+ ksz device tree bindings for drive strength
+Date:   Tue, 05 Sep 2023 13:28:58 -0500
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -55,51 +64,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 05, 2023 at 12:47:20PM +0200, Lorenzo Pieralisi wrote:
-> The GIC v3 specifications allow redistributors and ITSes interconnect
-> ports used to access memory to be wired up in a way that makes the
-> respective initiators/memory observers non-coherent.
+
+On Tue, 05 Sep 2023 14:43:39 +0200, Oleksij Rempel wrote:
+> Extend device tree bindings to support drive strength configuration for the
+> ksz* switches. Introduced properties:
+> - microchip,hi-drive-strength-microamp: Controls the drive strength for
+>   high-speed interfaces like GMII/RGMII and more.
+> - microchip,lo-drive-strength-microamp: Governs the drive strength for
+>   low-speed interfaces such as LEDs, PME_N, and others.
 > 
-> Add the standard dma-noncoherent property to the GICv3 bindings to
-> allow firmware to describe the redistributors/ITSes components and
-> interconnect ports behaviour in system designs where the redistributors
-> and ITSes are not coherent with the CPU.
-> 
-> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 > ---
->  .../bindings/interrupt-controller/arm,gic-v3.yaml         | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  .../bindings/net/dsa/microchip,ksz.yaml          | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> index 39e64c7f6360..0a81ae4519a6 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> @@ -106,6 +106,10 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      maximum: 4096
->  
-> +  dma-noncoherent:
-> +    description: |
 
-Don't need the '|' if no formatting to preserve.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +      Present if the GIC redistributors are not cache coherent with the CPU.
-> +
->    msi-controller:
->      description:
->        Only present if the Message Based Interrupt functionality is
-> @@ -193,6 +197,10 @@ patternProperties:
->        compatible:
->          const: arm,gic-v3-its
->  
-> +      dma-noncoherent:
-> +        description: |
-> +          Present if the GIC ITS is not cache coherent with the CPU.
-> +
->        msi-controller: true
->  
->        "#msi-cells":
-> -- 
-> 2.34.1
-> 
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:54:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+./Documentation/devicetree/bindings/net/dsa/microchip,ksz.yaml:62:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
+
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230905124340.4116542-1-o.rempel@pengutronix.de
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
