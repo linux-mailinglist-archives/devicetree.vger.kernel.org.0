@@ -2,158 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5747927DE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:38:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B480792903
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349169AbjIEQVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:21:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
+        id S1350723AbjIEQY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:24:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354477AbjIEL7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:59:42 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 325051AE
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 04:59:39 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-52a250aa012so3333603a12.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 04:59:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693915177; x=1694519977; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MG0Nhg1W7b5wNWtTY+WBpN6gGjenK9zPawNVXiy4rFs=;
-        b=uo4JLLHxcpsZ+1k9YONkNmrTLgejPUYC2PYvYGbpNDFD60K331UgVGJzV/eILmautN
-         kTLaxlcpmGZMpGH0jPrHE5KIAq/7am2RgvT+BvQL3RN05zydfM+eaFYN97SjE5rN0c6U
-         uGAiN/yPR0mgDHXsB2D1dSEiLNEyxo5hqFgeTVP4bqdIa0Ax/r9Srcd4vULrNMuPznKS
-         Xmesb6BLCqyWDol6leWMyUg2ajXu2PtWH58O+nTVekR1H9xxwjc+25CMnSKFHsT4SUyh
-         QAvVyFktnsiyDjFGsLh7vntWrIlhYvTmaw/D2l32uNrqVoXWS2a78MNUr+TWffKvrAYW
-         UpUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693915177; x=1694519977;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MG0Nhg1W7b5wNWtTY+WBpN6gGjenK9zPawNVXiy4rFs=;
-        b=HmoQ1VdOyh/DA8zF+86YHUltYJ80mmSmeD94tmrI/I6k1wgXbf6cC+E5S1ve8gJgaU
-         sqoeaNJRNBoiii2CZqVetK1rD4XnH+YD7nIucQnAEYjDDY8jItuKHSD0Dzik3LTdy9SE
-         joGa7SiGh7DV/AbWtSO7O1B3Oh5ONmtE8LDPQf6RKOX/vGk3HYC5lji+ukbIlqh27kKI
-         l1CKdsyjJ8lX8Q+21cCxB7oQ9dV1fcpL0dmbdaQBQTGBRcdcSC1uMDsqS6xYXLBBxLFr
-         mFc7RPAkqHncDaOOKoLizFTpcwkY1WdnnL21l442OR6W3aPyKt0pHm7Bj97ZSDFOzaP6
-         gtCw==
-X-Gm-Message-State: AOJu0YzBNfkoVRNIsn8NFz4tkinhSwblUJxYJ8RUPDJJYT/sXdQzj+oq
-        rhox7YCVjkDL7qezPzkaVZOKxA==
-X-Google-Smtp-Source: AGHT+IE6a1ExoObFvqj+qBBtiUE9AGxJcNNshk+ae8fGtV99y3l1l23ej25irHxV/IdQfF3pH/iM+Q==
-X-Received: by 2002:a05:6402:327:b0:524:547b:59eb with SMTP id q7-20020a056402032700b00524547b59ebmr8950570edw.15.1693915177691;
-        Tue, 05 Sep 2023 04:59:37 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id f26-20020a056402069a00b0051e2670d599sm7112416edy.4.2023.09.05.04.59.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 04:59:37 -0700 (PDT)
-Message-ID: <3a4988ae-97d7-66ee-5787-294b1204b1e2@linaro.org>
-Date:   Tue, 5 Sep 2023 13:59:36 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [RFC PATCH 1/2] dt-bindings: PCI: ti,j721e-pci-*: Add
- "ti,syscon-pcie-refclk-out" property
-Content-Language: en-US
-To:     Achal Verma <a-verma1@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczy_ski <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S1354519AbjIEMOM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 08:14:12 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 283901AD;
+        Tue,  5 Sep 2023 05:14:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=CPf+YfFnjEQJOQ/RYkXxlg/l/+zr7prHRX9DUuuREfs=; b=RS8cG2jN8GlohFNVCaY4hqmwhN
+        iTtoH5cUEJDvqOm2yZ/zia4LU+wRduzI/1v78NoAJfTq2XeqGTS08+Yaa2w21nhVKeviXlqNenwN6
+        pIPgAPAP/g7YmveFDAJGei5cHgKxSg0sE0C72y/p/D2iSHMZxv/neKmH/GgKRK/Ab34k=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qdUwA-005nv7-E6; Tue, 05 Sep 2023 14:13:42 +0200
+Date:   Tue, 5 Sep 2023 14:13:42 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20230905114816.2993628-1-a-verma1@ti.com>
- <20230905114816.2993628-2-a-verma1@ti.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230905114816.2993628-2-a-verma1@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Message-ID: <033d3a71-783d-40b6-a972-2021ae17813a@lunn.ch>
+References: <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+ <20230814143601.mnpxtcm2zybnbvoh@skbuf>
+ <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
+ <20230827121235.zog4c3ehu2cyd3jy@skbuf>
+ <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+ <CAJq09z6eghuHY+b2y-kGmjKnLiEEOABXGKhjnB-PxJ=-GtYD4w@mail.gmail.com>
+ <20230905111127.hql3pjlrtqc7gybv@skbuf>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230905111127.hql3pjlrtqc7gybv@skbuf>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2023 13:48, Achal Verma wrote:
-> Added "ti,syscon-pcie-refclk-out" property to specify the ACSPCIE clock
-> buffer register offset in SYSCON, which would be used to enable serdes
-> reference clock output.
-> 
-> Signed-off-by: Achal Verma <a-verma1@ti.com>
-> ---
->  .../bindings/pci/ti,j721e-pci-host.yaml       | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> index a2c5eaea57f5..27bdc52282c4 100644
-> --- a/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> +++ b/Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml
-> @@ -44,6 +44,18 @@ properties:
->            - description: pcie_ctrl register offset within SYSCON
->      description: Specifier for configuring PCIe mode and link speed.
->  
-> +  ti,syscon-pcie-refclk-out:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: Phandle to the SYSCON entry
-> +          - description: lock2_kick0 register offset within SYSCON
-> +          - description: lock2_kick1 register offset within SYSCON
-> +          - description: acspcie_ctrl register offset within SYSCON
-> +          - description: pcie_refclk_clksel register offset within SYSCON
-> +          - description: clock source index to source ref clock
-> +    description: Specifier for enabling ACSPCIe clock buffer for reference clock output.
+> It is possible to set up PHY IRQs even if the MDIO bus is not OF-based.
+> I think that mv88e6xxx_g2_irq_mdio_setup() does that (sets bus->irq[]).
 
-No, syscon is not a way to avoid creating clock/reset/power controllers.
-NAK.
+Yes. It took me a while to realise you could do this, so there is
+probably some complexity in mv88e6xxx i might of been able to avoid if
+i had discovered this earlier.
 
-
->    power-domains:
->      maxItems: 1
->  
-> @@ -99,6 +111,7 @@ required:
->    - reg
->    - reg-names
->    - ti,syscon-pcie-ctrl
-> +  - ti,syscon-pcie-refclk-out
-
-So an ABI break?
-
->    - max-link-speed
->    - num-lanes
->    - power-domains
-> @@ -153,3 +166,43 @@ examples:
->              dma-ranges = <0x02000000 0x0 0x0 0x0 0x0 0x10000 0x0>;
->          };
->      };
-> +
-> +  -
-> +    #include <dt-bindings/mux/mux.h>
-> +    #include <dt-bindings/mux/ti-serdes.h>
-> +    #include <dt-bindings/phy/phy.h>
-> +    #include <dt-bindings/phy/phy-ti.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie1_rc: pcie@2910000 {
-> +                compatible = "ti,j784s4-pcie-host";
-> +                reg = <0x00 0x02910000 0x00 0x1000>,
-
-No need for new example. It's anyway wrongly formatted...
-
-
-Best regards,
-Krzysztof
-
+	Andrew
