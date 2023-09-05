@@ -2,166 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 581FD79259E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D22C4792691
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:28:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349554AbjIEQWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:22:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48708 "EHLO
+        id S242757AbjIEQWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354337AbjIEKrm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 06:47:42 -0400
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835C2199;
-        Tue,  5 Sep 2023 03:47:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S1354357AbjIEK6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 06:58:46 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FE6199;
+        Tue,  5 Sep 2023 03:58:42 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id AD2E1CE1178;
-        Tue,  5 Sep 2023 10:47:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1AA8C433A9;
-        Tue,  5 Sep 2023 10:47:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693910855;
-        bh=be3LTeFm799ZIVXUkbKCDmqLg5EZsxWtrrfYzGafTQ4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Kn2eZZwyL2WrmDC9u1LV85D4PdFEhtw9KkxYls2VcOJ2Yo5YjFuIJlGgulxVuvPra
-         wUc6CkhPD1ZV7DFJe348R2JAET0zkHfPX6h3CS/rx2IC54DEuvPd1Q5wHPFgF3rNo9
-         hC7IQr88u5L6Cz5LXpYaTnvBueqMQTWjTFPrtEEElSUmNeTdF8cP72MVF8ddZoPBo4
-         mvYv8Yor76j11jo4Jb13UrqWUyHpfvFSX3Ew5YJu/ryRtvi9X9z+SXOCJfzDrLFfvY
-         98WKpVK0lpoX6BgwGDci2DWb2UkybEtadDt8A21tDQnvYxmzyjGQeAFTqv20f0fwe1
-         whP6SGZ3DfxDA==
-From:   Lorenzo Pieralisi <lpieralisi@kernel.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Fang Xiang <fangxiang3@xiaomi.com>
-Subject: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent redistributors/ITSes probing
-Date:   Tue,  5 Sep 2023 12:47:21 +0200
-Message-Id: <20230905104721.52199-3-lpieralisi@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230905104721.52199-1-lpieralisi@kernel.org>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 583A3660728C;
+        Tue,  5 Sep 2023 11:58:40 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1693911521;
+        bh=AWVZNq18PNoqeWFxoGKHOIFnvVBf8M/lxcWQmKKsNZY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YhMeneWjMwe+HasAhRS+NTtkEkoVqzpZ86/ipWJ1CbQitu1HcGcqIlrRsrhJgV+bP
+         2HM/K7exvm6+f1bMF3sc493w/ZrZckRY3VlAv1Jl3jadxH5Mnb71jBeLbjUPhCW/pi
+         5Az/Pi8/EPo/6H+e4sVh6dG/bYLStfbcjKtRUqE4C7E989nGolhoAGEg3Jgmfdntot
+         /uV1qCCiW1U6zJO2TzrygDWqPKN32FguNSBqNd9GbzgXuLoWTw7rX3TE/rqii9fPe3
+         SFKgJZIAPVou+pO0l/l471RqTAO76fAKMEr+3jdYJHcUEsTn0vwGhkCt92o6kTkEHT
+         FhFqO4yrYU2aw==
+Message-ID: <bf8394c6-5460-8696-f46b-0c39927aaf84@collabora.com>
+Date:   Tue, 5 Sep 2023 12:58:37 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: dts: mediatek: Add mt8395-evk
+ board
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>
+References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
+ <e2e35d4d-7853-fccc-28c2-b8ecf309d6ec@linaro.org>
+ <00f0a1cf-6246-92e9-13b0-cf31bb292a94@mediatek.com>
+ <97b82a16-8710-9430-35c8-673381aaa417@linaro.org>
+ <d5645707-bcb0-4d4b-1d94-d3cd17c042fb@mediatek.com>
+ <ddbc2681-bbda-88a1-643c-54fcabc9b83a@linaro.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <ddbc2681-bbda-88a1-643c-54fcabc9b83a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GIC architecture specification defines a set of registers
-for redistributors and ITSes that control the sharebility and
-cacheability attributes of redistributors/ITSes initiator ports
-on the interconnect (GICR_[V]PROPBASER, GICR_[V]PENDBASER,
-GITS_BASER<n>).
+Il 05/09/23 12:36, Krzysztof Kozlowski ha scritto:
+> On 05/09/2023 11:36, Macpaul Lin wrote:
+>>
+>>
+>> On 9/4/23 20:11, Krzysztof Kozlowski wrote:
+>>> 	
+>>>
+>>> External email : Please do not click links or open attachments until you
+>>> have verified the sender or the content.
+>>>
+>>> On 04/09/2023 11:50, Macpaul Lin wrote:
+>>>>
+>>>>
+>>>> On 9/4/23 17:33, Krzysztof Kozlowski wrote:
+>>>>>
+>>>>>
+>>>>> External email : Please do not click links or open attachments until you
+>>>>> have verified the sender or the content.
+>>>>>
+>>>>> On 04/09/2023 11:20, Macpaul Lin wrote:
+>>>>>> Add bindings for the MediaTek mt8395-evk board.
+>>>>>> The mt8359-evk board is also named as "Genio 1200-EVK".
+>>>>>> MT8195 and MT8395 are the same family series SoC could share
+>>>>>
+>>>>> How can be the same and have different numbers? You sill need dedicated
+>>>>> compatible.
+>>>>>
+>>>>
+>>>> The SoCs mt8195 and mt8395 are designed for different market application
+>>>> and physical characteristics, using different efuse values for
+>>>> distinction. The booting flow and configurations are controllered by the
+>>>> boot loaders, firmware, and TF-A. Therefore, the part numbers and
+>>>> procurement channels are different. The detail information of these
+>>>> efuse values is proprietary, so I cant disclose it futher. Hence the
+>>>> most of peripheral drivers and base address are almost the same.
+>>>
+>>> 1. Drivers? So we talk about compatibility, not the same.
+>>> 2. "almost the same" is not the same. Follow the guidelines for writing
+>>> bindings.
+>>>
+>>
+>> Thanks for the review.
+>>
+>> After internal confirmation and discussion, it can be confirmed that the
+>> MT8195 and MT8395 are identical SoCs from to binding's perspective.
+> 
+> I am sorry, but I really do not care what you internally discussed about
+> bindings. I do not think your internal review respect existing
+> guidelines. You talked about drivers, not "bindings perspective", so
+> your internal discussion is clearly discussing something else.
+> 
+>> MediaTek hope the mt8395 boards could directly use mt8195.dtsi, without
+>> the need to create a separate mt8395.dtsi to include mt8195.dtsi.
+>> Therefore, we hope to fully adopt the bindings of mt8195. However, I
+>> will submit a revised patch for compatible since they are different boards.
+> 
+> You can disagree but then I expect arguments from your side.
+> 
 
-Architecturally the GIC provides a means to drive shareability
-and cacheability attributes signals and related IWB/OWB/ISH barriers
-but it is not mandatory for designs to wire up the corresponding
-interconnect signals that control the cacheability/shareability
-of transactions.
+In short - they're the same chip, as in, they behave the same on a *hardware*
+perspective; what changes is the bootchain (plus stricter security from TF-A)
+and allowable temperature ranges for operation, that's practically it...
 
-Redistributors and ITSes interconnect ports can be connected to
-non-coherent interconnects that are not able to manage the
-shareability/cacheability attributes; this implicitly makes
-the redistributors and ITSes non-coherent observers.
+...so yes the compatible for the "new soc" must be documented, but that's
+practically just a revision, *not a new soc* at all.
 
-So far, the GIC driver on probe executes a write to "probe" for
-the redistributors and ITSes registers shareability bitfields
-by writing a value (ie InnerShareable - the shareability domain the
-CPUs are in) and check it back to detect whether the value sticks or
-not; this hinges on a GIC programming model behaviour that predates the
-current specifications, that just define shareability bits as writeable
-but do not guarantee that writing certain shareability values
-enable the expected behaviour for the redistributors/ITSes
-memory interconnect ports.
+(though, I agree that seeing a different name as in 1 -> 3 can be totally
+confusing)
 
-To enable non-coherent GIC designs, introduce the "dma-noncoherent"
-device tree property to allow firmware to describe redistributors and
-ITSes as non-coherent observers on the memory interconnect and use the
-property to force the shareability attributes to be programmed into the
-redistributors and ITSes registers.
+The drivers difference that Macpaul hinted to are about drivers needing some
+SMC calls instead of direct MMIO manipulation, so, something like two bindings
+for something like two drivers will need to add a 8395 compatible; speaking of
+what we would have in a devicetree for this SoC, that'd be exactly 99% identical
+to mt8195.dtsi.
 
-Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Marc Zyngier <maz@kernel.org>
----
- drivers/irqchip/irq-gic-v3-its.c | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
+Anyway, drivers are drivers, bindings describe hardware - and the hw is, again,
+the same...
 
-diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-index e0c2b10d154d..758ea3092305 100644
---- a/drivers/irqchip/irq-gic-v3-its.c
-+++ b/drivers/irqchip/irq-gic-v3-its.c
-@@ -5056,7 +5056,8 @@ static int __init its_compute_its_list_map(struct resource *res,
- }
- 
- static int __init its_probe_one(struct resource *res,
--				struct fwnode_handle *handle, int numa_node)
-+				struct fwnode_handle *handle, int numa_node,
-+				bool non_coherent)
- {
- 	struct its_node *its;
- 	void __iomem *its_base;
-@@ -5148,7 +5149,7 @@ static int __init its_probe_one(struct resource *res,
- 	gits_write_cbaser(baser, its->base + GITS_CBASER);
- 	tmp = gits_read_cbaser(its->base + GITS_CBASER);
- 
--	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE)
-+	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE || non_coherent)
- 		tmp &= ~GITS_CBASER_SHAREABILITY_MASK;
- 
- 	if ((tmp ^ baser) & GITS_CBASER_SHAREABILITY_MASK) {
-@@ -5356,11 +5357,19 @@ static const struct of_device_id its_device_id[] = {
- 	{},
- };
- 
-+static void of_check_rdists_coherent(struct device_node *node)
-+{
-+	if (of_property_read_bool(node, "dma-noncoherent"))
-+		gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
-+}
-+
- static int __init its_of_probe(struct device_node *node)
- {
- 	struct device_node *np;
- 	struct resource res;
- 
-+	of_check_rdists_coherent(node);
-+
- 	/*
- 	 * Make sure *all* the ITS are reset before we probe any, as
- 	 * they may be sharing memory. If any of the ITS fails to
-@@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_node *node)
- 			continue;
- 		}
- 
--		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
-+		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
-+			      of_property_read_bool(np, "dma-noncoherent"));
- 	}
- 	return 0;
- }
-@@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
- 	}
- 
- 	err = its_probe_one(&res, dom_handle,
--			acpi_get_its_numa_node(its_entry->translation_id));
-+			acpi_get_its_numa_node(its_entry->translation_id),
-+			false);
- 	if (!err)
- 		return 0;
- 
--- 
-2.34.1
+Hope that this makes things clearer! :-)
 
+Cheers,
+Angelo
