@@ -2,272 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D30D792F00
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 21:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72B3C793032
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236466AbjIETdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 15:33:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33480 "EHLO
+        id S233818AbjIEUo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 16:44:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230363AbjIETdN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 15:33:13 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706A9113;
-        Tue,  5 Sep 2023 12:32:47 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 385HLeG4016177;
-        Tue, 5 Sep 2023 18:56:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=Fpz6H8ceq4vaOKU2N55mPxgBHzxv2t5ItUHtKZtfpSc=;
- b=j3OpZ2Yo8fHUpFiDJDRiz6/vPChj1xXPo7IHWwaDMMuL3Si7tFLrFCATgTT7VbnobAnR
- vW4Cc1dqN+YYA+MM8iQ5vowGRFWZ+55n0WYaU4S06iJgYQEngvVIdAyu7kTUN8fe5rOq
- WOBOGre9Sx2ChNvwtxkSblkNJolylp7421JEW3Bemyj+z2DlfjwRlFRg4KuLG8DkeI6d
- NJsql0yKETVnPSKcfprzw6DknQ3H8Zw/99gbY0z0qAiYFIQrXBb1brkaGKQ070Sdbj3F
- xH2mwE2T2cbztjb0wS05rVhqpvOU337rQqlWw4DrrquDA2C5Y41nKYlPYXFiEWkKxiH3 YA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3swtevj471-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 05 Sep 2023 18:56:48 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 385IuaTB024903
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 5 Sep 2023 18:56:36 GMT
-Received: from [10.216.3.103] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Tue, 5 Sep
- 2023 11:56:31 -0700
-Message-ID: <8550749b-b16f-c6ad-cf44-54d23c4cbb43@quicinc.com>
-Date:   Wed, 6 Sep 2023 00:26:28 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH V3 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support
- for SC7280
+        with ESMTP id S231228AbjIEUo4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:44:56 -0400
+X-Greylist: delayed 3599 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Sep 2023 13:44:48 PDT
+Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E20D81A3;
+        Tue,  5 Sep 2023 13:44:48 -0700 (PDT)
+Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
+        by mx08-00376f01.pphosted.com (8.17.1.22/8.17.1.22) with ESMTP id 385CvSej026731;
+        Tue, 5 Sep 2023 17:32:51 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
+        from:to:cc:subject:date:message-id:references:in-reply-to
+        :content-type:content-id:content-transfer-encoding:mime-version;
+         s=dk201812; bh=5wSZWrM04OBjRGSdQ1yi93lZudRHKhXhMY5cZs7VBQg=; b=
+        wkaLTlEk+4QmNxwCvOoQVpZocNGgBvmyxGeJUIOGv5ux49lH+nYDhbu49cHLmNwI
+        broAjuFbLT9nwur/0ZloWzyQzmjH7SlK6ZfJxoDBW/0h5Hq63c0S4fazjJm11wpn
+        Z94J9HGAEBaQ7/Gos5jgdXIU0XittO2yUZqQjw5tW4YiU58qbabAz4CV/5CSwEJl
+        619adZbDsGEz+CLd4KZ5yXnR+XnUNcTfy3ttrCdgSTn7ttGrlNbE4cXEJfPcSl2S
+        tQg5rYHEtbMmEaprxlNhT7qAiYf/aJDAHPippGbAa2UzQJIB9ZCEOEPJCkI6oYKY
+        azp8Iog0RR9gQk7hHycqAg==
+Received: from hhmail05.hh.imgtec.org ([217.156.249.195])
+        by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3suuantgch-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 05 Sep 2023 17:32:51 +0100 (BST)
+Received: from HHMAIL04.hh.imgtec.org (10.100.10.119) by
+ HHMAIL05.hh.imgtec.org (10.100.10.120) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.31; Tue, 5 Sep 2023 17:32:50 +0100
+Received: from GBR01-LO4-obe.outbound.protection.outlook.com (104.47.85.112)
+ by email.imgtec.com (10.100.10.121) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.31 via Frontend Transport; Tue, 5 Sep 2023 17:32:50 +0100
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GN0eKqnEeSOUnrNQp23+Gvpv8T40a3yYMTO40afOAbHEf54PX/ukm+yN5M4r/4uPwsjkHGZbvPVGsvW3jyeYGql/4AvovmB0wBGxSVfJyqhEPXQofnlBXmgEZKb142Z8A5HSY9S/oflhthervTwby3VABL+5xRzv9b1LJmxIaI0gTIFGbLyPv6KckitzWjCq3/h7Uh03mO+WV4OVyOZjjPa7cx3Jsif45tir9rB54vOQDZ3lm9a3SMwsCX/pwMzwZ0KJobtzIjj9W05A695y4DzsWCCEni29zHk0okeH8q7QJnyc5o+ZpGNzSg5idIE0bQE46jUWkzRCV47f6e+Ybw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5wSZWrM04OBjRGSdQ1yi93lZudRHKhXhMY5cZs7VBQg=;
+ b=BhTygxc2DnZQka9/lI1NqcmvsrBi7ZAlyqstVox6P+VV5bPG2MjJXaPouxmfBPtP1CY/q6x0CkZzYIweTUU6LAm34AwUlUsCCTFX7y9ca2+w9aYkavmXTgiwiMXKYeLjPK7mYr5YUNN4j363zUPueprOtATMfeec2AfdeSyyrWxaln0cbcKq6Csnni/wb8G8pvbyGnXDl4bSzO8Hjb81JsCPyFGZCUfMfbGuPzIc2B6Wt0NzBqR9MuiBOOAZTy0DWbFSYVyu0RmfjYfaMaHjcbF1FGj5/uPb1gwFsKolg1jUFhf/Jf9sQQvEIzRq0Mmb4GrIkcc9ih9GJ96FnrxFfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
+ dkim=pass header.d=imgtec.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5wSZWrM04OBjRGSdQ1yi93lZudRHKhXhMY5cZs7VBQg=;
+ b=G22OnD+3hOeD6av4cTTtkC/uv8AlIRriBodDr7YToin5oNNkq2mc5ESPTWxjTnQVbltSo0eEWe4errnHSut+q3jyfmIlfcxLsq+DMk1VwNLZBkfjqzyPhH0pWVpWAOUL6Ng8UyjWghEMPxcolCyIBkTUfTr+bNI8se7VziCDvSE=
+Received: from LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2a5::14)
+ by CWLP265MB5578.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1c2::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Tue, 5 Sep
+ 2023 16:32:49 +0000
+Received: from LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::285:7fcc:def4:7ee6]) by LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::285:7fcc:def4:7ee6%6]) with mapi id 15.20.6745.030; Tue, 5 Sep 2023
+ 16:32:49 +0000
+From:   Frank Binns <Frank.Binns@imgtec.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Sarah Walker <Sarah.Walker@imgtec.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "luben.tuikov@amd.com" <luben.tuikov@amd.com>,
+        "afd@ti.com" <afd@ti.com>,
+        "faith.ekstrand@collabora.com" <faith.ekstrand@collabora.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "matthew.brost@intel.com" <matthew.brost@intel.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dakr@redhat.com" <dakr@redhat.com>,
+        "hns@goldelico.com" <hns@goldelico.com>,
+        "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>,
+        "christian.koenig@amd.com" <christian.koenig@amd.com>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        Donald Robson <Donald.Robson@imgtec.com>
+Subject: Re: [PATCH v5 02/17] dt-bindings: gpu: Add Imagination Technologies
+ PowerVR GPU
+Thread-Topic: [PATCH v5 02/17] dt-bindings: gpu: Add Imagination Technologies
+ PowerVR GPU
+Thread-Index: AQHZ0BtUY58mVJiTlkugXma+7tUDfq/vzsIAgBy+PQA=
+Date:   Tue, 5 Sep 2023 16:32:49 +0000
+Message-ID: <fe71399487280a74a8fd05269e9734a3f7a516f6.camel@imgtec.com>
+References: <20230816082531.164695-1-sarah.walker@imgtec.com>
+         <20230816082531.164695-3-sarah.walker@imgtec.com>
+         <CACRpkda-XnS-DQE-5WXnTFdycwVnJwffhhR=V27gp8vnxkHTrA@mail.gmail.com>
+In-Reply-To: <CACRpkda-XnS-DQE-5WXnTFdycwVnJwffhhR=V27gp8vnxkHTrA@mail.gmail.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Manish Pandey <quic_mapa@quicinc.com>
-References: <20230823091757.31311-1-quic_nitirawa@quicinc.com>
- <20230823091757.31311-3-quic_nitirawa@quicinc.com>
-From:   Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <20230823091757.31311-3-quic_nitirawa@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mX3Fcfz8cc94YoKAbcuPtSzYUZlfm6ws
-X-Proofpoint-ORIG-GUID: mX3Fcfz8cc94YoKAbcuPtSzYUZlfm6ws
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-05_12,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- adultscore=0 impostorscore=0 priorityscore=1501 clxscore=1011 bulkscore=0
- lowpriorityscore=0 spamscore=0 mlxscore=0 phishscore=0 mlxlogscore=999
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2309050165
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,UPPERCASE_50_75
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.36.5-0ubuntu1 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LO6P265MB6032:EE_|CWLP265MB5578:EE_
+x-ms-office365-filtering-correlation-id: ec22db2f-033d-4349-a7dd-08dbae2dbe6d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: x3Y2v/DKrpEB8jKG5GXtwrGNU+brespXQTFXwb9+lxvJXWmCeKjz6PxRN6R5vpNjcIENMMv0O5ppvzqxM0VrxOtnFA42jXoy88NGdRbrZZH0VW4usDi3TDJmsRRgSBgjNfC170NS1czpERMH5OaDjVOj2gfpsACaOlzlAeetE2tnH3n1VrdjY0bH8S0CAFW26csbpWWagNoeSrO10hTITQo80jz5Qct7AdQEywvn0v5dj/MfwDRDZrzd0i7KnslkZFN7fA5tpIpN/uMW1bHSxCHTun9Uf9l/dxeXwpcAs1sm0lwLivpJ5nPvAWd2sdI2oNzhCtkSA2eFN7+HCjhRkmdAIxGvUaG/IOxXoKr8P+li7TEtUB+xpqdqj9ZpgV+2QyF0tl3i+FvV5mVox1e/KqxiEoIrwMrA+GQIe7fnlzh++IEzIMvOsJ8jXcTWJyzri3Z/WkoktVZsi8iUintfMobkmLpsvzCa7pFPBFYyS50T8jHVZEKTWaRHlnjxV9LzFYwZD6XUoquS36qxFH7BbLP2X2LYZDUGgOIWroTv18KGS8anNftKf1FOFwn9OtBbB4pT2x4SDWzT/RTF0jyulM/x7M16ZBJVlTjNG/mWzMY=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(346002)(396003)(136003)(366004)(39850400004)(376002)(451199024)(1800799009)(186009)(66556008)(2906002)(66446008)(36756003)(110136005)(316002)(76116006)(86362001)(66476007)(64756008)(54906003)(66946007)(8936002)(5660300002)(4326008)(8676002)(41300700001)(107886003)(6512007)(2616005)(38070700005)(26005)(83380400001)(38100700002)(7416002)(966005)(478600001)(122000001)(6486002)(53546011)(71200400001)(6506007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dkdVME1IWkFXbDZDVGxjM3Z3OWJJMWdvZDFNNHQ0ZWtvMEJ2Nmhxb1l5ZUVU?=
+ =?utf-8?B?TE56cU1yMm0vUEY1eEpnWWJ1aWs2eVBvc2dwaXI3OE95SWEySmRMWDF4dkF6?=
+ =?utf-8?B?R2VPN3V0NDJDazFXSzUyM0U5YmhKdXFTVVFFZFVTckhiY3lPZzh1MEgzYmJw?=
+ =?utf-8?B?WjNTa1JLeEYvL25MUnQwQUJRcUNhaVc4eVdPT2JqM2hqTlJXY1VoWHVGaHNa?=
+ =?utf-8?B?dU1ETGhrejIrVmJlRlNWcnpxZDZ3TERLdmxNWkZPcHc4VjdvcGVtUFRsYlRZ?=
+ =?utf-8?B?bWxGeFFhZjh3U3ZMazM2WVUzSnc5MldJVUZBUTdnKzRFYjJUeWNOK1lSUi9N?=
+ =?utf-8?B?eUtSMStOalU0TVFIdjZmQ2xrZ0R6MEhrSnc1d1pIUFVYU1B0T09qb0lTMUFa?=
+ =?utf-8?B?MDErWE0wSUJ5L3lCaEFLa3JFa0tFeUQzb0Z4NWRNUnZnT01SZUhmZzhMbjhr?=
+ =?utf-8?B?dWgzc296c3hrcVdESU9NR3JTQW9od3ZwY0laR2JhaEtIL0d6Y3laU2o5VFZy?=
+ =?utf-8?B?ZG42RHN6ZUV0UFJHQWhPNStkVW5FOGdaRno2bHNOZGNxcDZ1V29GYkxVcEYr?=
+ =?utf-8?B?MDJONSs2Q3VHbndtemJDWEp5a0ZRUUlnUzhiMGNKRmlQZ3Z3cVlRODBIbUJB?=
+ =?utf-8?B?cGZOMHdKTkxoYkt0RU1xalBXVFpxWEdKTnFYMXlWV2ZzZE5Ya0ZQdys0MWV3?=
+ =?utf-8?B?RHN2SmEvaHRkY1gzMHc0UXNJeWpPdDRENTJ5Z05GREc1eWlZeHd0U2t1WEIz?=
+ =?utf-8?B?ZDRwYWlIOGJHeWNHd1NRSWdvZkVKcjViTXhVSGNISHFhR1NsK1FiUG0zOEM0?=
+ =?utf-8?B?enNvempQT3luRXkwYlhlKzVielU5ZmZkUlR1NUVwZURWMGU5c1NMdUFYSHFq?=
+ =?utf-8?B?RndVQngzYXBSUTlYOVA3a2xMdlo2UnZ3STh3cS9ZUGFCMmpXbFZKcDcyMXBl?=
+ =?utf-8?B?dzN1WkFQa1gxd2FnVHVJNFVBRjlaN0RNQUE5ZTg0M1NNWWdjUUZvYVRhZ0Rx?=
+ =?utf-8?B?VUo2ekhncmFLT2NxUG1BUWZlbEk2ZnBEYWk4ZGpKaURNWDc0aUtsRTk3MEpa?=
+ =?utf-8?B?OGx4ZGRMVEdndklGSzQ0ZFU2WnhmVHkwMC9ySnlZUTRNODRTeHF5RE9HSTJq?=
+ =?utf-8?B?WnBsQ0tNVGI1Yk1pZlMyNVJyMnBndGVlNWozVFM3S29oa2RKd0YxTjdjK1g1?=
+ =?utf-8?B?bzJSWmlOQWtVMEdHN244YlVqei83U0VreEk2Y3BnNnZkTHdRYVhUREhsYlQx?=
+ =?utf-8?B?Q2FzQm90blhFdGw4ellDRnlkbW9tZnZOblZTWFpMZytEUk8vMXhTNTVVZHZU?=
+ =?utf-8?B?aU5Bb0g1WDZuL2xTU21HcEsrcm5GSGd1d0FoMjE1NGJRSWRDblRWZUNieitD?=
+ =?utf-8?B?NmsyWFRhZkEySk9PZnBNQUE3a2hGQWMxdkJDQVdyVUF6YmJNZFozVXA5WThr?=
+ =?utf-8?B?OUpva0xDbXRYalQ0NTJ2MGNHSHNMWjE0UUMrdVdsVFpUNmprR1BsVUk4VkpX?=
+ =?utf-8?B?bTVWSFNMOGlYTm85K2UzWVJIbGVzaXliWlZmK1dId3NvZmFhU21QcmNxNFlL?=
+ =?utf-8?B?UVhZSFg5ekpVc3A2UnkvOVhDMG1yNUd2K25WNmJ2RmpsTVlpVDRraTJtRloy?=
+ =?utf-8?B?dXpveFlOUE0vVnRDZHhMZWR4bi9BOGRXQjcxNmd2QVZsZHNFRGpuODQwdVRY?=
+ =?utf-8?B?eTYwMEtWSHlBS2N0ci9pdlVkbkdPcFlJcUs0Rmd5Q1Y5NHhZSG1sWDFWbG1t?=
+ =?utf-8?B?VDVQWFkwcFVTZnM1a3haL3VOckl2VGJPMEE3VnpWZHJrVDUzN0doS1d4b1ls?=
+ =?utf-8?B?N1hadndsakMwSUIwQ1BVZDQya3k4a2YwRk54OTkyQ08wM2lkZ2NWN1NGTUJI?=
+ =?utf-8?B?OEpqQ3MyWkprSDBqclR2ek5XMDdoclI0YklrSGEyRXFGNTFKQWNOQlU1eXpn?=
+ =?utf-8?B?VG1HdWNuTllQekZPRkRmMTBhRFB0T21tbmdoSG9HWVVxdVhaaUN5ZWtSREwx?=
+ =?utf-8?B?SnJqTFhxaWVkLzdrL2RIMVBxUE4wQ0h3WWl6aFJ5ZTE2REJ5WDBUZnp3bTRa?=
+ =?utf-8?B?N3BtTmpNSmo3N3lhaGdnTm5RV3U3SUJIU0FUdHBoZmJ2VXRGNnkyYlJjOVU2?=
+ =?utf-8?B?WmJnSElGM1Q0VHRLT1R3SkVyaHZHQnZ4QkNDejg0MGlySTBsSmZVYmxGaklY?=
+ =?utf-8?B?aGc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BDEA9BF45545C44A893D1DCD465CAF48@GBRP265.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec22db2f-033d-4349-a7dd-08dbae2dbe6d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2023 16:32:49.4413
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6GLVySzON5T9nhVa4fgP5D0EB5UXiPj4KIFBM+BCdjMmvq1koPTRFqcsKoeucSm2atwUZ0c3Ce7sNRutLemmLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB5578
+X-OriginatorOrg: imgtec.com
+X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
+X-Proofpoint-GUID: 42CMJe7sF-5FobBG0C43RckFMfi50Yfp
+X-Proofpoint-ORIG-GUID: 42CMJe7sF-5FobBG0C43RckFMfi50Yfp
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 8/23/2023 2:47 PM, Nitin Rawat wrote:
-> Add SC7280 specific register layout and table configs.
-> 
-> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
-> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 142 ++++++++++++++++++++++++
->   1 file changed, 142 insertions(+)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> index 3927eba8e468..514fa14df634 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> @@ -177,6 +177,111 @@ static const struct qmp_phy_init_tbl msm8996_ufsphy_rx[] = {
->   	QMP_PHY_INIT_CFG(QSERDES_RX_RX_EQU_ADAPTOR_CNTRL2, 0x0E),
->   };
-> 
-> +static const struct qmp_phy_init_tbl sc7280_ufsphy_tx[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_1_DIVIDER_BAND0_1, 0x06),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_2_DIVIDER_BAND0_1, 0x03),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_3_DIVIDER_BAND0_1, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_PWM_GEAR_4_DIVIDER_BAND0_1, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_LANE_MODE_1, 0x35),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_TX_TRAN_DRVR_EMP_EN, 0x0c),
-> +};
-> +
-> +static const struct qmp_phy_init_tbl sc7280_ufsphy_rx[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_LVL, 0x24),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x0f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_BAND, 0x18),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0xf1),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CTRL2, 0x80),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x0e),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_TERM_BW, 0x1b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x06),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x1d),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_MEASURE_TIME, 0x10),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0xc0),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x6d),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0x6d),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xed),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x3b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x3c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0xe0),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0xc8),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0xc8),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x3b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0xb1),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_LOW, 0xe0),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH, 0xc8),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH2, 0xc8),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH3, 0x3b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH4, 0xb1),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
-> +};
-> +
-> +static const struct qmp_phy_init_tbl sc7280_ufsphy_pcs[] = {
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_SIGDET_CTRL2, 0x6d),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0a),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_SMALL_AMP_DRV_LVL, 0x02),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_DEBUG_BUS_CLKSEL, 0x1f),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_MIN_HIBERN8_TIME, 0xff),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_PLL_CNTL, 0x03),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_MSB, 0x16),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TIMER_20US_CORECLK_STEPS_LSB, 0xd8),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_PWM_GEAR_BAND, 0xaa),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_HS_GEAR_BAND, 0x06),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x03),
-> +	QMP_PHY_INIT_CFG(QPHY_V4_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x03),
-> +};
-> +
-> +static const struct qmp_phy_init_tbl sc7280_ufsphy_hs_g4_rx[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_LVL, 0x24),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_CNTRL, 0x0f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_SIGDET_DEGLITCH_CNTRL, 0x1e),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_BAND, 0x18),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_FO_GAIN, 0x0a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x5a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CONTROLS, 0xf1),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FASTLOCK_COUNT_LOW, 0x80),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_PI_CTRL2, 0x81),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_FO_GAIN, 0x0e),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_UCDR_SO_GAIN, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_TERM_BW, 0x6f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL1, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL2, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL3, 0x09),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQU_ADAPTOR_CNTRL4, 0x07),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x17),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_OFFSET_ADAPTOR_CNTRL2, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_MEASURE_TIME, 0x20),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_LOW, 0x80),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_IDAC_TSETTLE_HIGH, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_LOW, 0x3f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH, 0xff),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH2, 0xff),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH3, 0x7f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_00_HIGH4, 0x2c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_LOW, 0x6d),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH, 0x6d),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH2, 0xed),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH3, 0x3b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_01_HIGH4, 0x3c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_LOW, 0xe0),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH, 0xc8),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH2, 0xc8),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH3, 0x3b),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_RX_MODE_10_HIGH4, 0xb1),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_DCC_CTRL1, 0x0c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V4_RX_GM_CAL, 0x0f),
-> +};
-> +
->   static const struct qmp_phy_init_tbl sm6115_ufsphy_serdes[] = {
->   	QMP_PHY_INIT_CFG(QSERDES_COM_CMN_CONFIG, 0x0e),
->   	QMP_PHY_INIT_CFG(QSERDES_COM_SYSCLK_EN_SEL, 0x14),
-> @@ -888,6 +993,40 @@ static const struct qmp_phy_cfg sa8775p_ufsphy_cfg = {
->   	.regs			= ufsphy_v5_regs_layout,
->   };
-> 
-> +static const struct qmp_phy_cfg sc7280_ufsphy_cfg = {
-> +	.lanes                  = 2,
-> +
-> +	.offsets                = &qmp_ufs_offsets,
-> +
-> +	.tbls = {
-> +		.serdes         = sm8150_ufsphy_serdes,
-> +		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
-> +		.tx             = sc7280_ufsphy_tx,
-> +		.tx_num         = ARRAY_SIZE(sc7280_ufsphy_tx),
-> +		.rx             = sc7280_ufsphy_rx,
-> +		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_rx),
-> +		.pcs            = sc7280_ufsphy_pcs,
-> +		.pcs_num        = ARRAY_SIZE(sc7280_ufsphy_pcs),
-> +	},
-> +	.tbls_hs_b = {
-> +		.serdes         = sm8150_ufsphy_hs_b_serdes,
-> +		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_hs_b_serdes),
-> +	},
-> +	.tbls_hs_g4 = {
-> +		.tx             = sm8250_ufsphy_hs_g4_tx,
-> +		.tx_num         = ARRAY_SIZE(sm8250_ufsphy_hs_g4_tx),
-> +		.rx             = sc7280_ufsphy_hs_g4_rx,
-> +		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_hs_g4_rx),
-> +		.pcs            = sm8150_ufsphy_hs_g4_pcs,
-> +		.pcs_num        = ARRAY_SIZE(sm8150_ufsphy_hs_g4_pcs),
-> +	},
-> +	.clk_list               = sm8450_ufs_phy_clk_l,
-> +	.num_clks               = ARRAY_SIZE(sm8450_ufs_phy_clk_l),
-> +	.vreg_list              = qmp_phy_vreg_l,
-> +	.num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
-> +	.regs                   = ufsphy_v4_regs_layout,
-> +};
-> +
->   static const struct qmp_phy_cfg sc8280xp_ufsphy_cfg = {
->   	.lanes			= 2,
-> 
-> @@ -1648,6 +1787,9 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
->   	}, {
->   		.compatible = "qcom,sa8775p-qmp-ufs-phy",
->   		.data = &sa8775p_ufsphy_cfg,
-> +	}, {
-> +		.compatible = "qcom,sc7280-qmp-ufs-phy",
-> +		.data = &sc7280_ufsphy_cfg,
->   	}, {
->   		.compatible = "qcom,sc8180x-qmp-ufs-phy",
->   		.data = &sm8150_ufsphy_cfg,
-> --
-> 2.17.1
-> 
-
-Gentle reminder, kindly let me know any further comments.
-
-Thanks,
-Nitin
+SGkgTGludXMsDQoNClRoYW5rIHlvdSBmb3IgeW91ciBmZWVkYmFjayAoY29tbWVudHMgYmVsb3cp
+Lg0KDQpPbiBGcmksIDIwMjMtMDgtMTggYXQgMTE6MzYgKzAyMDAsIExpbnVzIFdhbGxlaWogd3Jv
+dGU6DQo+IEhpIFNhcmFoLA0KPiANCj4gdGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiANCj4gUGF0
+Y2hlcyBhZGRpbmcgZGV2aWNlIHRyZWUgYmluZGluZ3MgbmVlZCB0byBiZSBDQzplZCB0bw0KPiBk
+ZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZw0KPiBhbmQgdGhlIERUIGJpbmRpbmcgbWFpbnRhaW5l
+cnMsIEkgaGF2ZSBhZGRlZCBpdCBmb3Igbm93Lg0KDQpUaGFuayB5b3UgLSBpdCBsb29rcyBsaWtl
+IHNvbWV0aGluZyB3ZW50IHdyb25nIHdoZW4gdGhlIHBhdGNoIHdhcyBzZW50Lg0KDQo+IA0KPiBP
+biBXZWQsIEF1ZyAxNiwgMjAyMyBhdCAxMDoyNuKAr0FNIFNhcmFoIFdhbGtlciA8c2FyYWgud2Fs
+a2VyQGltZ3RlYy5jb20+IHdyb3RlOg0KPiANCj4gPiBBZGQgdGhlIGRldmljZSB0cmVlIGJpbmRp
+bmcgZG9jdW1lbnRhdGlvbiBmb3IgdGhlIFNlcmllcyBBWEUgR1BVIHVzZWQgaW4NCj4gPiBUSSBB
+TTYyIFNvQ3MuDQo+ID4gDQo+ID4gQ28tZGV2ZWxvcGVkLWJ5OiBGcmFuayBCaW5ucyA8ZnJhbmsu
+YmlubnNAaW1ndGVjLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBGcmFuayBCaW5ucyA8ZnJhbmsu
+YmlubnNAaW1ndGVjLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBTYXJhaCBXYWxrZXIgPHNhcmFo
+LndhbGtlckBpbWd0ZWMuY29tPg0KPiAoLi4uKQ0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNv
+bXBhdGlibGU6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBlbnVtOg0KPiA+ICsgICAg
+ICAgICAgLSB0aSxhbTYyLWdwdQ0KPiA+ICsgICAgICAtIGNvbnN0OiBpbWcscG93ZXJ2ci1zZXJp
+ZXNheGUNCj4gDQo+IFNob3VsZCB0aGVyZSBub3QgYXQgbGVhc3QgYmUgYSBkYXNoIHRoZXJlPw0K
+PiANCj4gaW1nLHBvd2VydnItc2VyaWVzLWF4ZT8NCj4gDQo+IEl0IGlzIHNwZWxsZWQgaW4gdHdv
+IHdvcmRzIGluIHRoZSBjb21taXQgbWVzc2FnZSwNCj4gU2VyaWVzIEFYRSBub3QgU2VyaWVzQVhF
+Pw0KDQpXZSd2ZSBub3cgY2hhbmdlZCB0aGUgc3RyaW5nIHRvIGFkZHJlc3MgeW91ciBlYXJsaWVy
+IGZlZWRiYWNrIChzZWUgYmVsb3cpLg0KDQo+IA0KPiBNb3Jlb3ZlciwgaWYgdGhpcyBwZXJ0YWlu
+cyB0byB0aGUgQVhFLTEtMTYgYW5kIEFYRS0yLTE2IGl0IGlzIGtpbmQgb2YgYSB3aWxkY2FyZA0K
+PiBhbmQgd2UgdXN1YWxseSBkb24ndCBkbyB0aGF0LCBJIHdvdWxkIHVzZSB0aGUgZXhhY3QgdmVy
+c2lvbiBpbnN0ZWFkLA0KPiBzdWNoIGFzOg0KPiBjb25zdDogaW1nLHBvd2VydnItYXhlLTEtMTYN
+Cj4gYW55IHJlYXNvbiBub3QgdG8gZG8gdGhpcz8NCg0KVGhlIGV4YWN0IEdQVSBtb2RlbC9yZXZp
+c2lvbiBpcyBmdWxseSBkaXNjb3ZlcmFibGUgdmlhIGEgcmVnaXN0ZXIuIFdlIHNhdyB0aGUNCnNh
+bWUgaXMgYWxzbyB0cnVlIGZvciBNYWxpIEJpZnJvc3QsIHdoZXJlIHRoZXkgaGF2ZSBhIHNpbmds
+ZSBzdHJpbmcgY292ZXJpbmcNCm11bHRpcGxlIG1vZGVscyBbMV0sIHNvIHdlIHRvb2sgdGhlIHNh
+bWUgYXBwcm9hY2guIFdlJ2xsIGFkZCBhIGNvbW1lbnQgaW4gdjYNCmFsb25nIHRoZSBsaW5lcyBv
+ZiB0aGUgb25lIGluIHRoZSBNYWxpIEJpZnJvc3QgYmluZGluZ3MuDQoNCj4gDQo+IEkgYXNrZWQg
+YWJvdXQgdGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIHRoZXNlIHN0cmluZ3MgYW5kIHRoZSBwcm9k
+dWN0DQo+IGRlc2lnbmF0aW9ucyBlYXJsaWVyIEkgdGhpbmsgOi8NCg0KU29ycnkgYWJvdXQgdGhh
+dCwgSSBob25lc3RseSB0aG91Z2h0IHdlJ2QgYWRkcmVzc2VkIHRoYXQgYml0IG9mIGZlZWRiYWNr
+IGJ5DQpjaGFuZ2luZyB0aGUgY29tcGF0aWJpbGl0eSBzdHJpbmcsIGJ1dCBjbGVhcmx5IHdlIGhh
+ZG4ndCA6KCBUaGFuayB5b3UgZm9yDQpjYXRjaGluZyB0aGlzLg0KDQpXZSd2ZSBub3cgY2hhbmdl
+ZCB0aGUgc3RyaW5nIHRvICJpbWcsaW1nLWF4ZSIgdG8gYWxpZ24gd2l0aCB0aGUgbWFya2V0aW5n
+IG5hbWUsDQphbG9uZyB3aXRoIHVwZGF0aW5nIHRoZSBjb21taXQgbWVzc2FnZSBhbmQgdmFyaW91
+cyBvdGhlciBwbGFjZXMgdG8gcmVmZXIgdG8NClBvd2VyVlIgYW5kIElNRyBHUFVzICh0aGUgRFJN
+IGRyaXZlciBzdXBwb3J0aW5nIGJvdGgpLg0KDQpUaGFua3MNCkZyYW5rDQoNClsxXSANCmh0dHBz
+Oi8vZ2l0Lmtlcm5lbC5vcmcvcHViL3NjbS9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4
+LmdpdC90cmVlL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncHUvYXJtLG1hbGkt
+Ymlmcm9zdC55YW1sP2g9djYuNSNuMjkNCg0K
