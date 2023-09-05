@@ -2,164 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23231793024
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01D09793030
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:44:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243833AbjIEUi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 16:38:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60754 "EHLO
+        id S238883AbjIEUol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 16:44:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234175AbjIEUi6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:38:58 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90EB0E6
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 13:38:53 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5280ef23593so3862929a12.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 13:38:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693946332; x=1694551132; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qISIWFWT+90Xd6ZFQOF4flQ0s4igN8yW6IgB7edRboU=;
-        b=EXUsCprzN/8aLF0Iu/mxNAx95RkFFRi84JZSccKHyfRknf3ADFEJyxJ1WO9tzF+spd
-         EiBJ4xkFWcdGMhdZWMzfR3bjm7LfOZ3VayL6AtkPl0qUzsD5P1OIMUWXiySg4xlTs1K+
-         beP4tIL/tLgoxCD5StNEOBXFR8rbEnDKy3eY3VmGLi9Jz5o9JDeQ4ufw9h3LTzih3KG3
-         17My8+VXp+IUb4xrzQ6C85RFp6Hmp4IRQw83p8kpRBhII3nGMGvIH3vmutsnX0RBRwHx
-         AOSlsiqRHfpLzE9Oxmco9A3wrlq70sbGNYt22OO4G/2+E3DXNur5xgQ1OwVJtpKEqdll
-         Ej6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693946332; x=1694551132;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qISIWFWT+90Xd6ZFQOF4flQ0s4igN8yW6IgB7edRboU=;
-        b=lfyceOmuzDbze6xMsE9eN/lLGfk91qB62kI0qXUrar5bgV+uB1mGLtZK9XtEgMXuvk
-         X1QIKJzvzMDY1A9W8bANEZCFfHntsUI9yBwTHS5b77qVWb4H17hCxWD7COW1jVvAUlm9
-         NQUNgJGeeQ/wVUMNBkfxw2n6vt06XTwWuT4oWfVW+lwzKF5qYZfCFKf7h0uT8kCqrZwO
-         SvLSSPfW6CkbScnto9lDsJKxyZ3Kt+vteuS8gz4E5IxvhkjG8JnFP3HNZBKnCSd8zZla
-         Ww/5Lu96ayC+6yqchr/lF8GHlfXX4KxIjZ2FKlazbeppncT86OYtwmtCUvF8q95aw8h9
-         dvOQ==
-X-Gm-Message-State: AOJu0YzVh+ap2f8xl9b3kXPvTXdaB7mM05LHVCX4gCyBcodiHY1PaKrM
-        Wa7bO1nx2ykVzZ1x1epQS9OnzQ==
-X-Google-Smtp-Source: AGHT+IEwOKhjqGOu2h/QRhHr/SAOH0IQAohqcX26Y4rMgNvLsbCvrMoYVYHzeWdQFLWTxxzvuqgoEQ==
-X-Received: by 2002:a17:906:5a70:b0:9a1:c370:1aef with SMTP id my48-20020a1709065a7000b009a1c3701aefmr695845ejc.55.1693946332043;
-        Tue, 05 Sep 2023 13:38:52 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id x10-20020a1709064a8a00b009937e7c4e54sm8001110eju.39.2023.09.05.13.38.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 13:38:51 -0700 (PDT)
-Message-ID: <8aefd8f9-cfe9-4011-a24b-ebb13d28faa0@linaro.org>
-Date:   Tue, 5 Sep 2023 23:38:50 +0300
+        with ESMTP id S231228AbjIEUol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:44:41 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FD3E132;
+        Tue,  5 Sep 2023 13:44:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1693946677; x=1725482677;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ldRgTQqmEua8N5cJhViF6FB4LOCXO1IC3Kf5Kk1RTeM=;
+  b=N3eNrQ2Do9uMHdXBpsdMncRwfeBx26jiwR2LhKwTyJtywF9Yi9AKYUOp
+   pdFbMnPbeeWRWALxt9Ex6DpnLFuvCpCE58z766Ruvy7L2A0T6X7SqvOTQ
+   LrByfTenykFIwGH9PJQ7FPfVPzEVQttE2dywx63eu5Fw0WeXJQye/qZ+Q
+   HYJkSx8BUX5/3hceoW1ZD/s53hqsJrmEqTUaRMd6YoO6U0frDrwx4mNSo
+   YB1sTK8VhCK6BLFHl0MwXFfSWLPEq0gtFag1KU0CoDmuG9J2g9qWok4W3
+   8YN/QBT1YCFl5XsJbyl+JonZ/Tmkq5GWoJDZR5DogJWakfMiVlNlQXs4v
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="361928011"
+X-IronPort-AV: E=Sophos;i="6.02,230,1688454000"; 
+   d="scan'208";a="361928011"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2023 13:44:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="864886953"
+X-IronPort-AV: E=Sophos;i="6.02,230,1688454000"; 
+   d="scan'208";a="864886953"
+Received: from lkp-server02.sh.intel.com (HELO e0b2ea88afd5) ([10.239.97.151])
+  by orsmga004.jf.intel.com with ESMTP; 05 Sep 2023 13:44:33 -0700
+Received: from kbuild by e0b2ea88afd5 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qdcuV-00023o-1b;
+        Tue, 05 Sep 2023 20:44:31 +0000
+Date:   Wed, 6 Sep 2023 04:44:26 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Liam Beguin <liambeguin@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        Liam Beguin <liambeguin@gmail.com>
+Subject: Re: [PATCH 2/3] iio: adc: ltc2309: switch to new .probe()
+Message-ID: <202309060456.UYGqTIBd-lkp@intel.com>
+References: <20230824-ltc2309-v1-2-b87b4eb8030c@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 5/5] phy: qcom-qmp-usb: Add Qualcomm SDX75 USB3 PHY
- support
-Content-Language: en-GB
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, abel.vesa@linaro.org,
-        quic_wcheng@quicinc.com
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, kernel@quicinc.com
-References: <1693909838-6682-1-git-send-email-quic_rohiagar@quicinc.com>
- <1693909838-6682-6-git-send-email-quic_rohiagar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <1693909838-6682-6-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230824-ltc2309-v1-2-b87b4eb8030c@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2023 13:30, Rohit Agarwal wrote:
-> Add support for USB3 QMP PHY found in SDX75 platform.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
->   drivers/phy/qualcomm/phy-qcom-qmp-usb.c | 158 ++++++++++++++++++++++++++++++++
->   1 file changed, 158 insertions(+)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> index 0130bb8..57b8b5b 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> @@ -23,6 +23,7 @@
->   #include "phy-qcom-qmp-pcs-misc-v3.h"
->   #include "phy-qcom-qmp-pcs-usb-v4.h"
->   #include "phy-qcom-qmp-pcs-usb-v5.h"
-> +#include "phy-qcom-qmp-pcs-usb-v6.h"
->   
->   /* QPHY_SW_RESET bit */
->   #define SW_RESET				BIT(0)
-> @@ -858,6 +859,134 @@ static const struct qmp_phy_init_tbl sdx65_usb3_uniphy_rx_tbl[] = {
+Hi Liam,
 
-[skipped the tables]
+kernel test robot noticed the following build warnings:
 
-> @@ -1556,6 +1685,32 @@ static const struct qmp_phy_cfg sdx65_usb3_uniphy_cfg = {
->   	.has_pwrdn_delay	= true,
->   };
->   
-> +static const struct qmp_phy_cfg sdx75_usb3_uniphy_cfg = {
-> +	.lanes			= 1,
-> +	.offsets		= &qmp_usb_offsets_v5,
+[auto build test WARNING on a5e505a99ca748583dbe558b691be1b26f05d678]
 
-v6?
+url:    https://github.com/intel-lab-lkp/linux/commits/Liam-Beguin/iio-adc-add-ltc2309-support/20230825-005720
+base:   a5e505a99ca748583dbe558b691be1b26f05d678
+patch link:    https://lore.kernel.org/r/20230824-ltc2309-v1-2-b87b4eb8030c%40gmail.com
+patch subject: [PATCH 2/3] iio: adc: ltc2309: switch to new .probe()
+config: i386-randconfig-061-20230906 (https://download.01.org/0day-ci/archive/20230906/202309060456.UYGqTIBd-lkp@intel.com/config)
+compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230906/202309060456.UYGqTIBd-lkp@intel.com/reproduce)
 
-> +
-> +	.serdes_tbl		= sdx75_usb3_uniphy_serdes_tbl,
-> +	.serdes_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_serdes_tbl),
-> +	.tx_tbl			= sdx75_usb3_uniphy_tx_tbl,
-> +	.tx_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_tx_tbl),
-> +	.rx_tbl			= sdx75_usb3_uniphy_rx_tbl,
-> +	.rx_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_rx_tbl),
-> +	.pcs_tbl		= sdx75_usb3_uniphy_pcs_tbl,
-> +	.pcs_tbl_num		= ARRAY_SIZE(sdx75_usb3_uniphy_pcs_tbl),
-> +	.pcs_usb_tbl		= sdx75_usb3_uniphy_pcs_usb_tbl,
-> +	.pcs_usb_tbl_num	= ARRAY_SIZE(sdx75_usb3_uniphy_pcs_usb_tbl),
-> +	.clk_list		= qmp_v4_sdx55_usbphy_clk_l,
-> +	.num_clks		= ARRAY_SIZE(qmp_v4_sdx55_usbphy_clk_l),
-> +	.reset_list		= msm8996_usb3phy_reset_l,
-> +	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309060456.UYGqTIBd-lkp@intel.com/
 
-Clocks and resets are gone in 
-https://lore.kernel.org/linux-phy/20230824211952.1397699-1-dmitry.baryshkov@linaro.org/
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/adc/ltc2309.c:138:24: sparse: sparse: cast to restricted __be16
 
-> +	.vreg_list		= qmp_phy_vreg_l,
-> +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
-> +	.regs			= qmp_v5_usb3phy_regs_layout,
+vim +138 drivers/iio/adc/ltc2309.c
 
-This must be v6, if the rest of the PHY is using v6 register names.
-
-> +	.pcs_usb_offset		= 0x1000,
-> +
-> +	.has_pwrdn_delay	= true,
-> +};
-> +
->   static const struct qmp_phy_cfg sm8350_usb3_uniphy_cfg = {
->   	.lanes			= 1,
->   
-> @@ -2256,6 +2411,9 @@ static const struct of_device_id qmp_usb_of_match_table[] = {
->   		.compatible = "qcom,sdx65-qmp-usb3-uni-phy",
->   		.data = &sdx65_usb3_uniphy_cfg,
->   	}, {
-> +		.compatible = "qcom,sdx75-qmp-usb3-uni-phy",
-> +		.data = &sdx75_usb3_uniphy_cfg,
-> +	}, {
->   		.compatible = "qcom,sm6115-qmp-usb3-phy",
->   		.data = &qcm2290_usb3phy_cfg,
->   	}, {
+a967828958b014 Liam Beguin 2023-08-24  106  
+a967828958b014 Liam Beguin 2023-08-24  107  static int ltc2309_read_raw(struct iio_dev *indio_dev,
+a967828958b014 Liam Beguin 2023-08-24  108  			    struct iio_chan_spec const *chan, int *val,
+a967828958b014 Liam Beguin 2023-08-24  109  			    int *val2, long mask)
+a967828958b014 Liam Beguin 2023-08-24  110  {
+a967828958b014 Liam Beguin 2023-08-24  111  	struct ltc2309 *ltc2309 = iio_priv(indio_dev);
+a967828958b014 Liam Beguin 2023-08-24  112  	u16 buf;
+a967828958b014 Liam Beguin 2023-08-24  113  	int ret;
+a967828958b014 Liam Beguin 2023-08-24  114  	u8 din;
+a967828958b014 Liam Beguin 2023-08-24  115  
+a967828958b014 Liam Beguin 2023-08-24  116  	mutex_lock(&ltc2309->lock);
+a967828958b014 Liam Beguin 2023-08-24  117  
+a967828958b014 Liam Beguin 2023-08-24  118  	switch (mask) {
+a967828958b014 Liam Beguin 2023-08-24  119  	case IIO_CHAN_INFO_RAW:
+a967828958b014 Liam Beguin 2023-08-24  120  		din = FIELD_PREP(LTC2309_DIN_CH_MASK, chan->address & 0x0f) |
+a967828958b014 Liam Beguin 2023-08-24  121  			FIELD_PREP(LTC2309_DIN_UNI, 1) |
+a967828958b014 Liam Beguin 2023-08-24  122  			FIELD_PREP(LTC2309_DIN_SLEEP, 0);
+a967828958b014 Liam Beguin 2023-08-24  123  
+a967828958b014 Liam Beguin 2023-08-24  124  		ret = i2c_smbus_write_byte(ltc2309->client, din);
+a967828958b014 Liam Beguin 2023-08-24  125  		if (ret < 0) {
+a967828958b014 Liam Beguin 2023-08-24  126  			dev_err(ltc2309->dev, "i2c command failed: %pe\n",
+a967828958b014 Liam Beguin 2023-08-24  127  				ERR_PTR(ret));
+a967828958b014 Liam Beguin 2023-08-24  128  			goto out;
+a967828958b014 Liam Beguin 2023-08-24  129  		}
+a967828958b014 Liam Beguin 2023-08-24  130  
+a967828958b014 Liam Beguin 2023-08-24  131  		ret = i2c_master_recv(ltc2309->client, (char *)&buf, 2);
+a967828958b014 Liam Beguin 2023-08-24  132  		if (ret < 0) {
+a967828958b014 Liam Beguin 2023-08-24  133  			dev_err(ltc2309->dev, "i2c read failed: %pe\n",
+a967828958b014 Liam Beguin 2023-08-24  134  				ERR_PTR(ret));
+a967828958b014 Liam Beguin 2023-08-24  135  			goto out;
+a967828958b014 Liam Beguin 2023-08-24  136  		}
+a967828958b014 Liam Beguin 2023-08-24  137  
+a967828958b014 Liam Beguin 2023-08-24 @138  		*val = be16_to_cpu(buf) >> 4;
+a967828958b014 Liam Beguin 2023-08-24  139  
+a967828958b014 Liam Beguin 2023-08-24  140  		ret = IIO_VAL_INT;
+a967828958b014 Liam Beguin 2023-08-24  141  		break;
+a967828958b014 Liam Beguin 2023-08-24  142  	case IIO_CHAN_INFO_SCALE:
+a967828958b014 Liam Beguin 2023-08-24  143  		*val = ltc2309->vref_mv;
+a967828958b014 Liam Beguin 2023-08-24  144  		*val2 = LTC2309_ADC_RESOLUTION;
+a967828958b014 Liam Beguin 2023-08-24  145  		ret = IIO_VAL_FRACTIONAL_LOG2;
+a967828958b014 Liam Beguin 2023-08-24  146  		break;
+a967828958b014 Liam Beguin 2023-08-24  147  	default:
+a967828958b014 Liam Beguin 2023-08-24  148  		ret = -EINVAL;
+a967828958b014 Liam Beguin 2023-08-24  149  		break;
+a967828958b014 Liam Beguin 2023-08-24  150  	}
+a967828958b014 Liam Beguin 2023-08-24  151  
+a967828958b014 Liam Beguin 2023-08-24  152  out:
+a967828958b014 Liam Beguin 2023-08-24  153  	mutex_unlock(&ltc2309->lock);
+a967828958b014 Liam Beguin 2023-08-24  154  	return ret;
+a967828958b014 Liam Beguin 2023-08-24  155  }
+a967828958b014 Liam Beguin 2023-08-24  156  
 
 -- 
-With best wishes
-Dmitry
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
