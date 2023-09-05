@@ -2,161 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A3BB792F6E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F880792FDA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 22:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234800AbjIEUEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 16:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
+        id S242776AbjIEUWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 16:22:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239600AbjIEUEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:04:13 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 768A2FA
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 13:04:08 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52713d2c606so4134942a12.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 13:04:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693944247; x=1694549047; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QBRdKdZ5WjyqUvk4N5iiue5qAMVDhesOYviouHViHm8=;
-        b=TUHm+qjovsdPN2E3Adwo/yktErFumDH6P6f/f40ijMLcZXyfbEG/vyHHGTuW4/gDIs
-         6K0uhfoeaj1BeWJDj8dtkrG4pzRBC5r5k/wVC43xTuSbvvdMqaxXuqHqCoKs7BQYjtqd
-         1bhpvdFspGK74V5ObAdT3aYNZIVexZMfUJnzS+B2Ly84hIqmDM6o43N+RMdjsdES4JDA
-         dp/P5McKZSLeidDMpmHWO80Ua6Ap5Wm2QfvsolUyFPIZxbFiFt0Nm7Ya/BImw3NAdK6y
-         HI9G24UurrkgXIPBRCxvSbXuRatAd2kNTLMfqYc6xTcj66G5fI+wC8+vuTjkvEXFrAkM
-         FJEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693944247; x=1694549047;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QBRdKdZ5WjyqUvk4N5iiue5qAMVDhesOYviouHViHm8=;
-        b=e35k2rhJd/PjermIRqJ2xDeszchm6edowQKbe0HoPWnmM3UG2/jOXQIzmsRS88YX6D
-         gO2vFiZQIe74B81OIgZ6kYArU9Xy+vFHSq/Xk+2l2KvmBbzTmGXUf+MgNsnmZwQeIy00
-         chDeP7HxvUARDnB/W+IxeZqlWDNS73aatCtVfslKHIbCf7FRsIv7x7tDg2xxy04oAJSF
-         Y5F9t4g3bA6fT4b5yJyzEq/DlIPtyaJAGsSJ8HxxJ52L83NsxejjHpW5kFZeBF2DSban
-         VSnMXM2RsZG0jWfSrDQH+4xljxKi8ChD+vK8kKOaHI1oKA1apvPIYDQvNjhea3pM/33S
-         NB2Q==
-X-Gm-Message-State: AOJu0YzjnFrkCNtrF/D6wE3e0B4SFMmbkS2vbODe9NPvGLhDyKpPgDzK
-        Ih+EJ/kG3vjnQhxT57go9ZMR0g==
-X-Google-Smtp-Source: AGHT+IGhdAXPegcUWCc02b5OC+h0Y/iNRrXwmMGd44XlfKvdJU2O+zod90kkDBW2NHAgsqakJsk5ow==
-X-Received: by 2002:aa7:dcd2:0:b0:52c:164:efe5 with SMTP id w18-20020aa7dcd2000000b0052c0164efe5mr566620edu.39.1693944246854;
-        Tue, 05 Sep 2023 13:04:06 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id w26-20020a50fa9a000000b0052a401d8ef6sm7562829edr.71.2023.09.05.13.04.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 13:04:06 -0700 (PDT)
-Message-ID: <24cff590-c71f-4a30-9b80-fa9a0bd27957@linaro.org>
-Date:   Tue, 5 Sep 2023 23:04:05 +0300
+        with ESMTP id S242451AbjIEUWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 16:22:32 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFD36CC;
+        Tue,  5 Sep 2023 13:22:28 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D96C6C433C7;
+        Tue,  5 Sep 2023 20:22:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693945348;
+        bh=EwBNwGfu/aekwrpRYA2HuNjlbP3dI7qlSwSX24HdBH4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MAnGdh75NZWTic5epmiLnEJaFYVt1gHg+Gfj3s73jOOlJAEVjwtz1kwsq0ueNtcX0
+         8ep2D9IwY234tjy95Y0PPKYaPFE2pxuQRuqg1AfA65VkgfbmvIkJUM+y6ZeAlYeA9J
+         NMDchGLKnx5MH9Vyz1W5j+A6rn83quSfNoZpdaO/At607Kb4o1V2SztakMgOParC9s
+         HlPlSpq5A1D2pB1OG1fCd/CFBCH7p2QYD25k6wAGY59v0VhW4ZPmkD0bOt2sBCgt5b
+         3HP2oBavJvgjEL3IdsCfApTIJKtXudpvV16KxyevJYXYZfusIfKLCDbXA2TuV3adCD
+         Uw4uTj0fnzogg==
+Received: (nullmailer pid 3962578 invoked by uid 1000);
+        Tue, 05 Sep 2023 20:22:26 -0000
+Date:   Tue, 5 Sep 2023 15:22:26 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee@kernel.org>, devicetree@vger.kernel.org,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mfd: Revert "dt-bindings: mfd:
+ maxim,max77693: Add USB connector"
+Message-ID: <169394534588.3962519.17804734822796231896.robh@kernel.org>
+References: <20230905075558.21219-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 2/2] phy: qcom-qmp-ufs: Add Phy Configuration support
- for SC7280
-Content-Language: en-GB
-To:     Nitin Rawat <quic_nitirawa@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org,
-        kishon@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Manish Pandey <quic_mapa@quicinc.com>
-References: <20230823091757.31311-1-quic_nitirawa@quicinc.com>
- <20230823091757.31311-3-quic_nitirawa@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230823091757.31311-3-quic_nitirawa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230905075558.21219-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 12:17, Nitin Rawat wrote:
-> Add SC7280 specific register layout and table configs.
+
+On Tue, 05 Sep 2023 09:55:58 +0200, Krzysztof Kozlowski wrote:
+> This reverts commit da7ee30ae6662f016f28a9ef090b2132b3c0fb48.
 > 
-> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
-> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Commit da7ee30ae666 ("dt-bindings: mfd: maxim,max77693: Add USB
+> connector") was an earlier version of my patch adding the connector,
+> later superseded by commit 789c9ce9b46f ("dt-bindings: mfd:
+> maxim,max77693: Add USB connector").
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
 > ---
->   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c | 142 ++++++++++++++++++++++++
->   1 file changed, 142 insertions(+)
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> index 3927eba8e468..514fa14df634 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
-
-[skipped tables programming]
-
-4),
-> @@ -888,6 +993,40 @@ static const struct qmp_phy_cfg sa8775p_ufsphy_cfg = {
->   	.regs			= ufsphy_v5_regs_layout,
->   };
-> 
-> +static const struct qmp_phy_cfg sc7280_ufsphy_cfg = {
-> +	.lanes                  = 2,
-> +
-> +	.offsets                = &qmp_ufs_offsets,
-> +
-> +	.tbls = {
-> +		.serdes         = sm8150_ufsphy_serdes,
-> +		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_serdes),
-> +		.tx             = sc7280_ufsphy_tx,
-> +		.tx_num         = ARRAY_SIZE(sc7280_ufsphy_tx),
-> +		.rx             = sc7280_ufsphy_rx,
-> +		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_rx),
-> +		.pcs            = sc7280_ufsphy_pcs,
-> +		.pcs_num        = ARRAY_SIZE(sc7280_ufsphy_pcs),
-> +	},
-> +	.tbls_hs_b = {
-> +		.serdes         = sm8150_ufsphy_hs_b_serdes,
-> +		.serdes_num     = ARRAY_SIZE(sm8150_ufsphy_hs_b_serdes),
-> +	},
-> +	.tbls_hs_g4 = {
-> +		.tx             = sm8250_ufsphy_hs_g4_tx,
-> +		.tx_num         = ARRAY_SIZE(sm8250_ufsphy_hs_g4_tx),
-> +		.rx             = sc7280_ufsphy_hs_g4_rx,
-> +		.rx_num         = ARRAY_SIZE(sc7280_ufsphy_hs_g4_rx),
-> +		.pcs            = sm8150_ufsphy_hs_g4_pcs,
-> +		.pcs_num        = ARRAY_SIZE(sm8150_ufsphy_hs_g4_pcs),
-> +	},
-> +	.clk_list               = sm8450_ufs_phy_clk_l,
-> +	.num_clks               = ARRAY_SIZE(sm8450_ufs_phy_clk_l),
-
-This doesn't correspond to the bindings. This array has 3 enries, while 
-in the bindings you have opted for two clocks for this PHY.
-
-> +	.vreg_list              = qmp_phy_vreg_l,
-> +	.num_vregs              = ARRAY_SIZE(qmp_phy_vreg_l),
-> +	.regs                   = ufsphy_v4_regs_layout,
-> +};
-> +
->   static const struct qmp_phy_cfg sc8280xp_ufsphy_cfg = {
->   	.lanes			= 2,
-> 
-> @@ -1648,6 +1787,9 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
->   	}, {
->   		.compatible = "qcom,sa8775p-qmp-ufs-phy",
->   		.data = &sa8775p_ufsphy_cfg,
-> +	}, {
-> +		.compatible = "qcom,sc7280-qmp-ufs-phy",
-> +		.data = &sc7280_ufsphy_cfg,
->   	}, {
->   		.compatible = "qcom,sc8180x-qmp-ufs-phy",
->   		.data = &sm8150_ufsphy_cfg,
-> --
-> 2.17.1
+> Fix for v6.6-rc1.
+> ---
+>  Documentation/devicetree/bindings/mfd/maxim,max77693.yaml | 4 ----
+>  1 file changed, 4 deletions(-)
 > 
 
--- 
-With best wishes
-Dmitry
+Reviewed-by: Rob Herring <robh@kernel.org>
 
