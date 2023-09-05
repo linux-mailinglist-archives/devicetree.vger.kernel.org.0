@@ -2,273 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8784B792719
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC8A37926ED
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:34:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231266AbjIEQVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:21:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42956 "EHLO
+        id S232174AbjIEQVw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:21:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354520AbjIEMOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 08:14:19 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8806012A;
-        Tue,  5 Sep 2023 05:14:14 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4FD1E11FB;
-        Tue,  5 Sep 2023 05:14:52 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 327123F67D;
-        Tue,  5 Sep 2023 05:14:13 -0700 (PDT)
-Message-ID: <c069085b-3686-c36e-615b-0783af71a252@arm.com>
-Date:   Tue, 5 Sep 2023 13:14:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent
- redistributors/ITSes probing
-Content-Language: en-GB
-To:     Marc Zyngier <maz@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Fang Xiang <fangxiang3@xiaomi.com>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230905104721.52199-3-lpieralisi@kernel.org> <86msy0etul.wl-maz@kernel.org>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <86msy0etul.wl-maz@kernel.org>
+        with ESMTP id S1354531AbjIEMVs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 08:21:48 -0400
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2082.outbound.protection.outlook.com [40.107.96.82])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738561A8;
+        Tue,  5 Sep 2023 05:21:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F33mDBmxG76z2J37NN77eh+0Y7ZHWF5EcTPhsLJle9Ub32Gw55IdnBzC+nyAY7RbGqBhup9zlvYDJPfDZkdJXBBXlX1/Evg3mYJL6AGJynZPrQ446cPHpnufOOkef6Fzy80LfynEVYGjL2mrwD81CqVQjLurcw+JBRQ0sblzjm1Rl6worgf/cgQnV9/av36YIuHsVkvLuIBTlB7YeYXj+xhtLXs7pNqNmLxr07+zxyyeujIeLdqoq3AL+wQDf2NZVDneIie1LuVmg/okO+QlPYrl1PfTolGf3o4MHRVilLXOdbptMEri9v/GdOz3DrVmf0zDnbLL0lo4W4tylicu7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hsENG1o+fhOjfq+5Qo8+9Zn64RSORuO0XroinhaIGDI=;
+ b=Yrd+o+rjKL8OSeh2UIvZRsdy5+I1lE2kOQGsvRTj7S3BIPZ4sQq8UYmhGX6Gy7bldiuUWUOmuhmTE+oMHUE168MsnebCcLKDPR/ogiBSorI1WFjHPFRcXLBeNIDsc0oUAyNLGEG5QoJPWdgwDN0A/nMPS56YyXnSywFMAZR2jqAEYbyABx0j9QjlXOyX3S4sjkhnKuVmXXzZFQRx0XgM2JqeK4b5e660C2VcZGU7umURb5MyiGavgOMQR6EOwnTekFnLi6epDMTDNn6n0Uhd6kOFcSMP2z8+EN2pqe6RtevBMQpTd9fqxwiLneMBtuFvH/aRDY5O1qS59A0ehVK+Pg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hsENG1o+fhOjfq+5Qo8+9Zn64RSORuO0XroinhaIGDI=;
+ b=HuHhSxUjQ5PA0LDcFv/dmEk/bkmLjz92f1St6C71ui7epdNcBoFmB30E5abJ7K4me+CvGGMrgXHCqSr0cs2A5INiF+1dBKi8qRI7ab7sIQ+pMntZtBGdlUDslMIIDICcUXx9Vd8e9poE/a3kIEaunJpmTQqawWz7CdnyMh6d36lkEZEezzV9TNCBAd9qRLMYo6KzIcE88hEwhGX19oyADQRik/5teZDgxpqPDKI3+Nzj9fqJakKzANnxmFlDyazKZZL7s5cnVCB+0bQrye2qSyoOA/ILxZAfp4ERPnGYzaMzyi4BpwnqvjsUshGTWmbDzxLRCa6hP626UTHptyurew==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ DM6PR12MB4076.namprd12.prod.outlook.com (2603:10b6:5:213::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6745.33; Tue, 5 Sep 2023 12:21:39 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::1d1b:2ca4:1600:a865]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::1d1b:2ca4:1600:a865%4]) with mapi id 15.20.6745.030; Tue, 5 Sep 2023
+ 12:21:39 +0000
+Message-ID: <056cbb5d-c7f5-a163-8903-3da81a573e1b@nvidia.com>
+Date:   Tue, 5 Sep 2023 13:21:32 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH V2 1/4] dt-bindings: hwmon: ina3221: Convert to
+ json-schema
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Ninad Malwade <nmalwade@nvidia.com>, jdelvare@suse.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, thierry.reding@gmail.com,
+        linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, Thierry Reding <treding@nvidia.com>
+References: <20230825164249.22860-1-nmalwade@nvidia.com>
+ <20230825164249.22860-2-nmalwade@nvidia.com>
+ <05c115cc-ce7a-747a-2f91-045bb87db706@linaro.org>
+ <00faf6d0-e84b-20f6-1c8b-8e0e8d610f16@nvidia.com>
+ <20f55b16-f4df-4bdf-ba60-0c6c64efadee@roeck-us.net>
+From:   Jon Hunter <jonathanh@nvidia.com>
+In-Reply-To: <20f55b16-f4df-4bdf-ba60-0c6c64efadee@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ClientProxiedBy: LO6P265CA0014.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:339::12) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO6PR12MB5444:EE_|DM6PR12MB4076:EE_
+X-MS-Office365-Filtering-Correlation-Id: 56bf0382-277c-4eb0-0410-08dbae0aa804
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rKQvEu9vWejphcenw4uOItRaKJy5bIZTRmYYj/aejJNqAXXBAy2wPTM57pbeHaB9ou8cribCTyW9XI8cW8k61OjhvKEJ88GM0+JtDkH7BhT0XDJ1pmFzmd7IDQGPSo/i23hwwJaFqtheExZqJ1ZBmrZxtL5ozlTcXAPihCz7yMrquyTA6LIXBnmHmANygqFePQSuICTFSUgYSZvBY4Cpbbc7A/1xdWGraCCcRiN6TP1miNuaN+CD4MnlQftCtIarX2QMyOA7cvHgwoXV0Cdu7l66hz9DK3BH3ETorEk1PMhUWq/sd6cFNqO8cRVhLQo+42ktO4msuCTbGGTnuya7LoB2/aUXtb8cchKWOaLy4xwJJXSkD5n41Wx0eu0J0gH93vg4h93t4dOwtiAAN+1D/x1CUnSoebty8E8OKPe6sZ0QlbCX18hIvHYR7qCpxQpVYpiGQLbu25hhXbEJ9rcna6KGG8ps0A3MHA+koL8XKxsrM4Lrem4NllbV9LtDudndG2KsfsWHPFMKrjyqggBCdxAKaATlLRcpMkoxrsl5gKTRSnq6WHv+IKdGNyWLlfeyyEpxMTn1dTAZddhUg+Z6FTFd+4vDeQAYZQ/+DB7uWOQrHIG7j75csV2Iaw032EH8tZtDevzSb+4Rpb8JaTGFCw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(346002)(136003)(376002)(366004)(39860400002)(1800799009)(186009)(451199024)(26005)(5660300002)(2616005)(107886003)(8676002)(4326008)(8936002)(7416002)(2906002)(31696002)(83380400001)(86362001)(38100700002)(36756003)(6506007)(6486002)(55236004)(53546011)(6666004)(6916009)(66946007)(66556008)(54906003)(66476007)(478600001)(31686004)(6512007)(41300700001)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGs5U0ZSNXdrK2JORUVIdXNSbnhWMHhscnZ3b3puQ0RDamFOVzFtU1dSRmNX?=
+ =?utf-8?B?U0xwWlhXUVBQc1RHTHc0cWZHTDhXQXFUV0FQdDYycmlrWEt0Q2xNay9aQ3ov?=
+ =?utf-8?B?c3VKU1ZreFpUUFkvRGtGbERjTDI0WHZVUUozUllOSThSZVZCRE53VnVRZCts?=
+ =?utf-8?B?SlZzcHdSK0ZJWTFiOGp6RXpYaWdTT3RoK0JORkhqNjExL2hUOU1YUkJEUWhP?=
+ =?utf-8?B?U2JXdE50S09PRk51K0c5Mzc3WmtQSUljSDJxVmJmUXJMMDhuTW1PQXlyU3U2?=
+ =?utf-8?B?NzlGY3ZnVnl4ZW5lREZkdVZLaEtMamNndzBWQy9xRjV4UXdWeVBXbFNCd05F?=
+ =?utf-8?B?dnlXU1hWejhpUWlBWkk4NFlRdStZNnRrNjJjRXplR0J2d2R3VmtqNGFUbWNr?=
+ =?utf-8?B?M2FrWDhDeFh6NG9CUE0wa3BGOEtqOWlSMzdGSkcrS0lMNkMyUWU4aFVDT3RP?=
+ =?utf-8?B?Nk94UGdvaXZFM3NUOStZTUVhYjRsV3M3TFNSOU54cTJEZUdPOVVwSmVpWUR6?=
+ =?utf-8?B?N1UzYmdSR2MzZEV1aVFCTzU5WjhETHV4QzZRb2s1V0FzL2g5cTRwU2ZDYk42?=
+ =?utf-8?B?eHdHQml2TTMrUGdpRkdWMm9YZkQwR1JrZW5vc3lDemU2TFhLTDRLM3IzbGZR?=
+ =?utf-8?B?RTg1VGVyMnpQdTZmc240a0pYZ1FYeFBqRUJRS0xWUDlwcXhaYkR1TkV4TTZX?=
+ =?utf-8?B?VDZvZEN5N2VSZTZhRVF0Z1MzQXd3T3NhQTNVQUNvcUJnR2I5aFVyRE9sM3F6?=
+ =?utf-8?B?MnBPbEU0VXZqcytEYXdOMTJFYlptWHdpNmxwS2lvdVlNa0dob0NNYzBHQ3VX?=
+ =?utf-8?B?Tjc2UXhYSzhNN0NuTHRTWWp4MW4vWi8rSEI2bktDV0pXalNUR1Vwd2Q0SDBH?=
+ =?utf-8?B?SzRSWlkxZi9Pb3pDVVJuKzFzeFQ0alhjUVFvbVRhcTlYcXBqS3R3bmRPSmwx?=
+ =?utf-8?B?VDFZMlNnWlBmNlUwaklHclA0VXJaR3VrTS9pQlpPZ1dkRFNibTJWWk5uSEkv?=
+ =?utf-8?B?TDU1LzZlL252L1VvNFRUbGdZbHZZUTZuRGRtQ0YrenVUS1p4M3JMSS9jcmZL?=
+ =?utf-8?B?RVFtc1NIUncxQjhYTWd1NVFwUkVsZ0EyUXY1QUR2WGtpZzUrVFRJYk5UNFhn?=
+ =?utf-8?B?bVgveVljKytnNEJaYVNBVDd4UUNEM2t3TWg0Qlh0Y3RFNU5xemFyVldHaVVw?=
+ =?utf-8?B?VGxPT1NLSWd5ZzYxa2xhQkhvTG5RUkNpN1h6K1RLeGw1cXp6b1pnWUFGeWhj?=
+ =?utf-8?B?K09FUUpzWWFZVERVT2ptRWtHTVFyVm5vWEVnL205QVNucUxWNEszSCt2aUdI?=
+ =?utf-8?B?eTZGVWdmL2NUb2EzVWFSSnI0WExBVkV6VGE2V1puY1pCeGc0QmNVYVpqNEVP?=
+ =?utf-8?B?cG1XU1VucmhiVWlCSnU3NGhWN0l2ZnZQSHJtVVV0WkhiZEtPQUtYbHROTmth?=
+ =?utf-8?B?MHIzZEtzWWhSaDA0U2dhYlkwVnN0MTl2RHFZYnJhR0lyRHZSQTFDVXVyNXpz?=
+ =?utf-8?B?WXVXTWhCVE16SGdFRzY2Y01qRmJvZ3krRlJIWXVQVG4rU2dQQ1JXbWVJT1Vq?=
+ =?utf-8?B?R3dhTmg5ZUNjdGJwN2Rkdm9EL1lpanRFbGpKOWErMWtlVGlkaUtyY3hDbG5w?=
+ =?utf-8?B?dmhZcHFWbjVPUERSRkkvUzMzMkF6bjdaUjMwQkZhM0VIR0h1MjBZRzlJTTdm?=
+ =?utf-8?B?ZVQ5SUYxSFZIVndaWG54T1Y2cnlZUnBRbzAzTW1IdU8zUVF2NUtWRlNReDdo?=
+ =?utf-8?B?eGxKOFFpbTltZUs5SVE1cWRCSUtsQk9HLzZzVWk3RTVtZmZ2RzVLai90c2dz?=
+ =?utf-8?B?YWlFL25IblYxbWQzSTZTT2dqUVorMGdwWUowYjg3U2JCUzJoWFA0eFdQNjBy?=
+ =?utf-8?B?cDdVU2ViNDlST2U4Rm8vSlJqTlNtalB5SHBFSGRocmY2eUI3R0NTNHpHc0F2?=
+ =?utf-8?B?YkF6QVFhek4vWXpaL1d3L0doQVdIOUoxazRsbTBuQXdiYTBiblNvcXEvTjFv?=
+ =?utf-8?B?N3ZxNVJzRWpXR0FZcU1XM3pFZ2ZERVAyM0VUYWdkWm1xV0NmU2hrckN5ZHR2?=
+ =?utf-8?B?NkJzZ21IaDVjS1VOMTV1M3ZsMG9OTFJuTGt3am5WY1htQUt6ZjVENTJTQ2pt?=
+ =?utf-8?Q?Kd47he/wJZIcg2VvYOEO8huJm?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56bf0382-277c-4eb0-0410-08dbae0aa804
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2023 12:21:39.7366
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: VZvoSHVx8/5ePWZkwhJSk0NmwpUbukUbBvwKPoGguR2E26EVfzBE8+m2GeIqP20QDdoUAwrlergJcP2IvyVD/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4076
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/09/2023 12:34 pm, Marc Zyngier wrote:
-> On Tue, 05 Sep 2023 11:47:21 +0100,
-> Lorenzo Pieralisi <lpieralisi@kernel.org> wrote:
->>
->> The GIC architecture specification defines a set of registers
->> for redistributors and ITSes that control the sharebility and
->> cacheability attributes of redistributors/ITSes initiator ports
->> on the interconnect (GICR_[V]PROPBASER, GICR_[V]PENDBASER,
->> GITS_BASER<n>).
->>
->> Architecturally the GIC provides a means to drive shareability
->> and cacheability attributes signals and related IWB/OWB/ISH barriers
->> but it is not mandatory for designs to wire up the corresponding
->> interconnect signals that control the cacheability/shareability
->> of transactions.
->>
->> Redistributors and ITSes interconnect ports can be connected to
->> non-coherent interconnects that are not able to manage the
->> shareability/cacheability attributes; this implicitly makes
->> the redistributors and ITSes non-coherent observers.
->>
->> So far, the GIC driver on probe executes a write to "probe" for
->> the redistributors and ITSes registers shareability bitfields
->> by writing a value (ie InnerShareable - the shareability domain the
->> CPUs are in) and check it back to detect whether the value sticks or
->> not; this hinges on a GIC programming model behaviour that predates the
->> current specifications, that just define shareability bits as writeable
->> but do not guarantee that writing certain shareability values
->> enable the expected behaviour for the redistributors/ITSes
->> memory interconnect ports.
->>
->> To enable non-coherent GIC designs, introduce the "dma-noncoherent"
->> device tree property to allow firmware to describe redistributors and
->> ITSes as non-coherent observers on the memory interconnect and use the
->> property to force the shareability attributes to be programmed into the
->> redistributors and ITSes registers.
->>
->> Signed-off-by: Lorenzo Pieralisi <lpieralisi@kernel.org>
->> Cc: Robin Murphy <robin.murphy@arm.com>
->> Cc: Mark Rutland <mark.rutland@arm.com>
->> Cc: Marc Zyngier <maz@kernel.org>
->> ---
->>   drivers/irqchip/irq-gic-v3-its.c | 19 +++++++++++++++----
->>   1 file changed, 15 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
->> index e0c2b10d154d..758ea3092305 100644
->> --- a/drivers/irqchip/irq-gic-v3-its.c
->> +++ b/drivers/irqchip/irq-gic-v3-its.c
->> @@ -5056,7 +5056,8 @@ static int __init its_compute_its_list_map(struct resource *res,
->>   }
->>   
->>   static int __init its_probe_one(struct resource *res,
->> -				struct fwnode_handle *handle, int numa_node)
->> +				struct fwnode_handle *handle, int numa_node,
->> +				bool non_coherent)
->>   {
->>   	struct its_node *its;
->>   	void __iomem *its_base;
->> @@ -5148,7 +5149,7 @@ static int __init its_probe_one(struct resource *res,
->>   	gits_write_cbaser(baser, its->base + GITS_CBASER);
->>   	tmp = gits_read_cbaser(its->base + GITS_CBASER);
->>   
->> -	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE)
->> +	if (its->flags & ITS_FLAGS_FORCE_NON_SHAREABLE || non_coherent)
->>   		tmp &= ~GITS_CBASER_SHAREABILITY_MASK;
-> 
-> Please use the non_coherent attribute to set the flag, instead of
-> using it as some sideband signalling. Not having this information
-> stored in the its_node structure makes it harder to debug.
-> 
-> We have an over-engineered quirk framework, and it should be put to a
-> good use.
-> 
->>   
->>   	if ((tmp ^ baser) & GITS_CBASER_SHAREABILITY_MASK) {
->> @@ -5356,11 +5357,19 @@ static const struct of_device_id its_device_id[] = {
->>   	{},
->>   };
->>   
->> +static void of_check_rdists_coherent(struct device_node *node)
->> +{
->> +	if (of_property_read_bool(node, "dma-noncoherent"))
->> +		gic_rdists->flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
->> +}
->> +
->>   static int __init its_of_probe(struct device_node *node)
->>   {
->>   	struct device_node *np;
->>   	struct resource res;
->>   
->> +	of_check_rdists_coherent(node);
-> 
-> It really feels that the flag should instead be communicated by the
-> base GIC driver, as it readily communicates the whole rdists structure
-> already.
-> 
->> +
->>   	/*
->>   	 * Make sure *all* the ITS are reset before we probe any, as
->>   	 * they may be sharing memory. If any of the ITS fails to
->> @@ -5396,7 +5405,8 @@ static int __init its_of_probe(struct device_node *node)
->>   			continue;
->>   		}
->>   
->> -		its_probe_one(&res, &np->fwnode, of_node_to_nid(np));
->> +		its_probe_one(&res, &np->fwnode, of_node_to_nid(np),
->> +			      of_property_read_bool(np, "dma-noncoherent"));
->>   	}
->>   	return 0;
->>   }
->> @@ -5533,7 +5543,8 @@ static int __init gic_acpi_parse_madt_its(union acpi_subtable_headers *header,
->>   	}
->>   
->>   	err = its_probe_one(&res, dom_handle,
->> -			acpi_get_its_numa_node(its_entry->translation_id));
->> +			acpi_get_its_numa_node(its_entry->translation_id),
->> +			false);
-> 
-> I came up with the following alternative approach, which is as usual
-> completely untested. It is entirely based on the quirk infrastructure,
-> and doesn't touch the ACPI path at all.
 
-FWIW I think I agree that looks a bit easier to follow overall, and 
-especially since we already have the SoC-based Rockchip variant of this 
-using a quirk, having two different ways of carrying the same underlying 
-information through certain paths does seem a bit icky.
+On 01/09/2023 17:44, Guenter Roeck wrote:
+> On Fri, Sep 01, 2023 at 05:34:00PM +0100, Jon Hunter wrote:
+>>
+>> On 26/08/2023 09:53, Krzysztof Kozlowski wrote:
+>>> On 25/08/2023 18:42, Ninad Malwade wrote:
+>>>> Convert the TI INA3221 bindings from the free-form text format to
+>>>> json-schema.
+>>>>
+>>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>>>> Signed-off-by: Ninad Malwade <nmalwade@nvidia.com>
+>>
+>> ...
+>>
+>>>> +            compatible = "ti,ina3221";
+>>>> +            reg = <0x40>;
+>>>> +            #address-cells = <1>;
+>>>> +            #size-cells = <0>;
+>>>> +
+>>>> +            input@0 {
+>>>> +                reg = <0x0>;
+>>>> +                status = "disabled";
+>>>
+>>> Why is this node present? Binding said nodes are optional, so I assume
+>>> it can be just skipped. If all children must be there, then you should
+>>> actually require them in the binding (and mention it briefly in commit msg).
+>>
+>>
+>> I have taken a look at this and if the 'input@0' is omitted above the driver
+>> still enables it. It only disables it or marks as disconnected if the node
+>> is present but no enabled. So we can mark these as required.
+>>
+>> Is there a better way to mark them as required apart from listing all input
+>> channels under required?
+>>
+> 
+> Channels should by default be enabled because they are enabled by default
+> in the chip. Requiring that all nodes be listed in devicetree just to
+> select the default behavior would be overkill.
+> 
+> Jusat because the chip has the ability to disable channels, that should
+> really not be made the default.
 
-Cheers,
-Robin.
 
-> 
-> Thanks,
-> 
-> 	M.
-> 
-> diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
-> index 3db4592cda1c..00641e88aa38 100644
-> --- a/drivers/irqchip/irq-gic-common.h
-> +++ b/drivers/irqchip/irq-gic-common.h
-> @@ -29,4 +29,8 @@ void gic_enable_quirks(u32 iidr, const struct gic_quirk *quirks,
->   void gic_enable_of_quirks(const struct device_node *np,
->   			  const struct gic_quirk *quirks, void *data);
->   
-> +#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
-> +#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
-> +#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
-> +
->   #endif /* _IRQ_GIC_COMMON_H */
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index e0c2b10d154d..6edf59af757b 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -44,10 +44,6 @@
->   #define ITS_FLAGS_WORKAROUND_CAVIUM_23144	(1ULL << 2)
->   #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
->   
-> -#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
-> -#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
-> -#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
-> -
->   #define RD_LOCAL_LPI_ENABLED                    BIT(0)
->   #define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
->   #define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
-> @@ -4754,6 +4750,14 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
->   	return true;
->   }
->   
-> +static bool its_set_non_coherent(void *data)
-> +{
-> +	struct its_node *its = data;
-> +
-> +	its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
-> +	return true;
-> +}
-> +
->   static const struct gic_quirk its_quirks[] = {
->   #ifdef CONFIG_CAVIUM_ERRATUM_22375
->   	{
-> @@ -4808,6 +4812,11 @@ static const struct gic_quirk its_quirks[] = {
->   		.init   = its_enable_rk3588001,
->   	},
->   #endif
-> +	{
-> +		.desc	= "ITS: non-coherent attribute",
-> +		.property = "dma-noncoherent",
-> +		.init	= its_set_non_coherent,
-> +	},
->   	{
->   	}
->   };
-> diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
-> index eedfa8e9f077..7f518c0ae723 100644
-> --- a/drivers/irqchip/irq-gic-v3.c
-> +++ b/drivers/irqchip/irq-gic-v3.c
-> @@ -1857,6 +1857,14 @@ static bool gic_enable_quirk_arm64_2941627(void *data)
->   	return true;
->   }
->   
-> +static bool rd_set_non_coherent(void *data)
-> +{
-> +	struct gic_chip_data *d = data;
-> +
-> +	d->rdists.flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
-> +	return true;
-> +}
-> +
->   static const struct gic_quirk gic_quirks[] = {
->   	{
->   		.desc	= "GICv3: Qualcomm MSM8996 broken firmware",
-> @@ -1923,6 +1931,11 @@ static const struct gic_quirk gic_quirks[] = {
->   		.mask	= 0xff0f0fff,
->   		.init	= gic_enable_quirk_arm64_2941627,
->   	},
-> +	{
-> +		.desc	= "GICv3: non-coherent attribute",
-> +		.property = "dma-noncoherent",
-> +		.init	= rd_set_non_coherent,
-> +	},
->   	{
->   	}
->   };
-> 
+Yes and that is fine. What we are trying to sort out here is what should 
+the example contain in the dt-binding doc? The original example from the 
+text binding doc was replicated to the yaml version and based upon the 
+above that seems like a valid example.
+
+What I could do is add an extra comment under the 'input' property that 
+"Input channels default to enabled in the chip. Unless channels are 
+explicitly disabled in device-tree, input channels will be enabled".
+
+Jon
+
+-- 
+nvpublic
