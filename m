@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06DE379262B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:26:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB3957929AD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:53:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347988AbjIEQVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:21:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57326 "EHLO
+        id S244410AbjIEQXI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:23:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354373AbjIELFT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:05:19 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193A3132;
-        Tue,  5 Sep 2023 04:05:16 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-99bf3f59905so360146366b.3;
-        Tue, 05 Sep 2023 04:05:16 -0700 (PDT)
+        with ESMTP id S1354383AbjIELLg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:11:36 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91961AB;
+        Tue,  5 Sep 2023 04:11:32 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4ff8f2630e3so3963806e87.1;
+        Tue, 05 Sep 2023 04:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1693911914; x=1694516714; darn=vger.kernel.org;
+        d=gmail.com; s=20221208; t=1693912291; x=1694517091; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kV2u1LJ/AQQMdTka+tApDVxIh+Eo+L4Z4u7wlv+3woU=;
-        b=XFBBphpAskDiNvzPrd+HOMtz4E9T0kAeEMxpwzEaJO6Q6+G6CZuLsofywWA7oxSlYq
-         TlCm6UNEke/ZC2/NdlbZge/RamgtQAvawKMhYXQyZaUau/w9ntY/I7VL2nnviYLFZbMB
-         g+xN9Z9baQQQlQo/2FtzPAX6g+8vkF83mMNb76lILz4a1I+jhyGg6gWzpOOljneaX8BI
-         u0PYG2P+NPo1bKYN7otd/wH6vOpuGr96/NtYvy/gUanInH0c2neXcFS89htvKH8W3fMk
-         NDnXiMXIMcsfqn3oyPwZvDq5Z27PiaJSl19VTC6eyhA0sDZfALWslUxwrlKGHOOhYc6i
-         2flw==
+        bh=5WLoQn7be1D72ekzhEmbPr89HcwylHXzc0OOTYnEBNg=;
+        b=GHqwV/nAlGEvzxapC3D4nNwu5/sRUKvtR/lwA94tFov33/uZX6UlX71w51IFXfEqGW
+         LFeEdVru3kusTP+U8f2HAd+w3IWgTtUb3ZsTkcLLkQHm7/VeEYoOjIGGNrp5Ig5jUtJY
+         2Enqn2KkJ0q509EJcDI/Q9cx+86Ghcu3YbM/91drYDDM03cizx7dbOV4pN29Y4aUNsAF
+         EwrmY/L1N0ZIbwu3m2JDNF3SH8kqZ9ilMxwh7cKAGxkOg4/6CtPCtUKE54MnjSK1a4h7
+         it6T98vOBMylbUa4lBlbjd0dVUBBgiUot/czrMp0k8JzsbqCYc9vmZDvLBnrhLkXJ1xW
+         asog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693911914; x=1694516714;
+        d=1e100.net; s=20221208; t=1693912291; x=1694517091;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kV2u1LJ/AQQMdTka+tApDVxIh+Eo+L4Z4u7wlv+3woU=;
-        b=PHGw8gEjLDDuksH7ncXJNttWY6Miyw/XmNz2YgbIPgCPjDY/Yt9AUhOGZzhKfeIN6g
-         24cDc18DD4xnMsyGsADDr4CfByRkvggWujToZ3Mn5eNwi5mrCaEH6/8c4XUef0pa/IY7
-         cH7P4PAOKZSYuo0ja2FTgCh992iZipKg92l/ctSRLmw2Ebzt9971rQZG8+0iWUvuuokg
-         ld+ZwlcsWhSogZt41wwMYA5hzvSql2ZkbqIuZ7f6SoEywLW51ghwYacO72+DtXkd3ERN
-         h4s4n6jskQP+OWXVdYWEsisPgFDecgCGG+nG2oWvkAOv5tFMeahinBka/oONkDFVMX9r
-         iVxA==
-X-Gm-Message-State: AOJu0YwsRmqR9tbxTB6lZfK9RiJrHzC86BjpaPKupakrkFRnQGEcA4Iv
-        TPXD8TjomZH33P7/8dip/Vs=
-X-Google-Smtp-Source: AGHT+IGrI66p2CBlDOcMK2yKRkeShj590QUDA31D8xucis1MBr3Sx1jck3yAeoVNwtjgdsXFZ3lyyQ==
-X-Received: by 2002:a17:906:1bb2:b0:9a6:69bf:fa5a with SMTP id r18-20020a1709061bb200b009a669bffa5amr2412702ejg.63.1693911914444;
-        Tue, 05 Sep 2023 04:05:14 -0700 (PDT)
+        bh=5WLoQn7be1D72ekzhEmbPr89HcwylHXzc0OOTYnEBNg=;
+        b=kP0ElZPcSiWAJrsDfrlZnhntz33PJLNPypJkAmai5qtmvx8bWkHcHzlaO6ZETBeL20
+         fLLDxemTuTEMz44JPkCfis20mMmOn2VmgsGuh4pji+XqmhEAy67cJm0Bktcd8lP/+YfJ
+         OSiQHKOUIHxjWq9mPRD7m0pa75tP3v72167nl7WnyGQUhZ3fZAKsikF5A5PFa0fdvYlj
+         1RJC3xgMhf3WuRjR7klVP/Up8SOUyFTtSYuD1pOihgklwYlI7FHUV/KZzP732z1XWc5D
+         azb/ysieQcN/ytVt8wssP+NEt44O948v0kWjvIAAZWvyLuB7ewk9P1watiS4GBDJ4+to
+         U0ig==
+X-Gm-Message-State: AOJu0Yyr0zRrT+ZBtZ0rjwllJ9fAQ5c9bqnmhuwjszMVYN8ueoURydlF
+        Uj6cc4XFyJidwfhzXEsffaw=
+X-Google-Smtp-Source: AGHT+IFZm+YJ8szZjnCXx4iZ0+YwTJu1WFmNIfkcFqME64Z4ABDlhajbiXLHXOiOLFRXmKQmrQl7dA==
+X-Received: by 2002:a05:6512:3990:b0:500:9734:b415 with SMTP id j16-20020a056512399000b005009734b415mr9696436lfu.30.1693912290677;
+        Tue, 05 Sep 2023 04:11:30 -0700 (PDT)
 Received: from skbuf ([188.26.57.165])
-        by smtp.gmail.com with ESMTPSA id t20-20020a1709063e5400b0099ccee57ac2sm7408438eji.194.2023.09.05.04.05.12
+        by smtp.gmail.com with ESMTPSA id l26-20020a056402125a00b00525c01f91b0sm6961365edw.42.2023.09.05.04.11.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Sep 2023 04:05:14 -0700 (PDT)
-Date:   Tue, 5 Sep 2023 14:05:11 +0300
+        Tue, 05 Sep 2023 04:11:30 -0700 (PDT)
+Date:   Tue, 5 Sep 2023 14:11:27 +0300
 From:   Vladimir Oltean <olteanv@gmail.com>
 To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
 Cc:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
@@ -77,7 +77,7 @@ Cc:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org
 Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230905110511.hyap7grnomzwqj6d@skbuf>
+Message-ID: <20230905111127.hql3pjlrtqc7gybv@skbuf>
 References: <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
  <20230813112026.ohsx6srbt2staxma@skbuf>
  <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
@@ -94,7 +94,7 @@ Content-Disposition: inline
 In-Reply-To: <CAJq09z6eghuHY+b2y-kGmjKnLiEEOABXGKhjnB-PxJ=-GtYD4w@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,17 +103,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, Sep 04, 2023 at 11:42:19PM -0300, Luiz Angelo Daros de Luca wrote:
-> I submitted a small series of patches to unify that behavior between
-> those two drivers:
+> > > [1] ...this. The SMI-controlled and MDIO-controlled Realtek switches are
+> > > otherwise the same, right? So why would they have different dt-bindings?
+> >
+> > Honestly, I'm wondering the answer to this as well. For some reason, when
+> > probing the SMI controlled Realtek switches, instead of just letting
+> > dsa_switch_setup() populate ds->slave_mii_bus, on realtek_smi_setup_mdio()
+> > on realtek-smi.c:
+> >
+> > - priv->slave_mii_bus is allocated.
+> > - mdio_np = of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
+> > - priv->slave_mii_bus->dev.of_node = mdio_np;
+> > - ds->slave_mii_bus = priv->slave_mii_bus;
 > 
-> https://lore.kernel.org/netdev/CAJq09z44SNGFkCi_BCpQ+3DuXhKfGVsMubRYE7AezJsGGOboVA@mail.gmail.com/
-> (This is my answer to the series opening message to include the first
-> paragraph ate by the editor)
-> 
-> There was some discussion but not NAC, ACK or RFC. It would have
-> dropped some lines of code. I can revive it if there is interest.
+> I might be able to help here. The Realtek SMI version created a custom
+> slave_mii driver because it was the only way to associate it with an
+> MDIO DT node. And that DT node was required to specify the interrupts
+> for each phy0.
+> It would work without that mdio node, letting DSA setup handle the
+> slave bus, but it would rely only on polling for port status.
 
-There was no Ack or Nack from me because I didn't manage to understand
-what bothers you if the unified dt-binding has a "compatible" string for
-the "mdio" node, which the driver simply ignores.
-https://lore.kernel.org/netdev/20220706152923.mhc7vw7xkr7xkot4@skbuf/
+It is possible to set up PHY IRQs even if the MDIO bus is not OF-based.
+I think that mv88e6xxx_g2_irq_mdio_setup() does that (sets bus->irq[]).
