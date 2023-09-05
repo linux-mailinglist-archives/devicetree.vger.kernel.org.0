@@ -2,212 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD65F7928FE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 424E879288E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 18:45:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350557AbjIEQYy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 12:24:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38754 "EHLO
+        id S234152AbjIEQXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 12:23:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354453AbjIELsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:48:37 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5020B1AD;
-        Tue,  5 Sep 2023 04:48:32 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 385BmMkh103769;
-        Tue, 5 Sep 2023 06:48:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1693914502;
-        bh=/iPn0yREcHMFWliXICPndWnFxV56aW4OXQpn08OE5mY=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=DXB+AQ9akhiFeX9N1vc5Jl4qDySFY6M0rguw7ZRGEGgenpYHdwC5lj16fZxp9UiZ7
-         huSvmPmwCVU6rSIlJwIPPCCsbn4daZ9f2C5pMgddxzYSr5kYLljjjEyvCUZfLf0LiL
-         XVIRKmEs7D5g12taU7/8Hv7wMXS2+FaRU4T2x64s=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 385BmMQE054158
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 5 Sep 2023 06:48:22 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 5
- Sep 2023 06:48:20 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 5 Sep 2023 06:48:21 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 385BmKNJ046722;
-        Tue, 5 Sep 2023 06:48:20 -0500
-From:   Achal Verma <a-verma1@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof Wilczy_ski <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        with ESMTP id S1354473AbjIELzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 07:55:37 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1921AD;
+        Tue,  5 Sep 2023 04:55:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1693914933; x=1725450933;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/cTDMMGwDXqGrvj5wts+NYLjOYzxjei9B4vYLZWvOR0=;
+  b=m4MIBKoiPBgQTE54zvHPp8kcyxzD3ladLowAL+2VMTSqwzXvyzCZiZE+
+   4wMKNY7aow/77tDEkZiL6cz0IgfSOwDrPNf24AJBUiaH521UuBLjIEkAf
+   RBPUxbOcVXa+83u/cnbjU8WOawh+AkzUAXhVBeXcBcVYf1QGbcqK+QoQX
+   qc2hwaE4DcQcr3SvFqKCGgLn5s97FfZVUFMtB/yspQhtx461pGa8uNL4+
+   2FtmOL+JxtjxGHqKmo4Xtpt7nlLJoOLrfm6yiCUfD4iBs0HJ08bYTrEsL
+   iwbl07w7f1RKIYB/a6Hq/97ZW2zPU7oBcCNzNKEnrP5hwBYzc5RqqBPUA
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="440751289"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; 
+   d="scan'208";a="440751289"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2023 04:55:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="884290537"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; 
+   d="scan'208";a="884290537"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.54])
+  by fmsmga001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2023 04:55:17 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qdUeN-006fwq-2t;
+        Tue, 05 Sep 2023 14:55:19 +0300
+Date:   Tue, 5 Sep 2023 14:55:19 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Ryan Chen <ryan_chen@aspeedtech.com>
+Cc:     "jk@codeconstruct.com.au" <jk@codeconstruct.com.au>,
+        Brendan Higgins <brendan.higgins@linux.dev>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-pci@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wolfram Sang <wsa@kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jean Delvare <jdelvare@suse.de>,
+        William Zhang <william.zhang@broadcom.com>,
+        Tyrone Ting <kfting@nuvoton.com>,
+        Tharun Kumar P <tharunkumar.pasumarthi@microchip.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Achal Verma <a-verma1@ti.com>
-Subject: [RFC PATCH 2/2] pci: j721e: Enable reference clock output from serdes
-Date:   Tue, 5 Sep 2023 17:18:16 +0530
-Message-ID: <20230905114816.2993628-3-a-verma1@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230905114816.2993628-1-a-verma1@ti.com>
-References: <20230905114816.2993628-1-a-verma1@ti.com>
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "=linux-kernel@vger.kernel.org" <=linux-kernel@vger.kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Subject: Re: [PATCH v12 2/2] i2c: aspeed: support ast2600 i2c new register
+ mode driver
+Message-ID: <ZPcXJ4adUNMv4LDr@smile.fi.intel.com>
+References: <20230714074522.23827-1-ryan_chen@aspeedtech.com>
+ <20230714074522.23827-3-ryan_chen@aspeedtech.com>
+ <ZLENe5B3gi/oNTQp@smile.fi.intel.com>
+ <SEZPR06MB5269831E049E2267661F181FF2E8A@SEZPR06MB5269.apcprd06.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <SEZPR06MB5269831E049E2267661F181FF2E8A@SEZPR06MB5269.apcprd06.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PCIe1 in J7AHP EVM has EP side connector reference clock connection from
-serdes named SOC_SERDES0_REFCLK(PCIE_REFCLK_OUT) unlike PCIe0 which has
-reference clock connection from on-board serdes. To enable this reference
-clock out, ACSPCIE clock buffer pads have to be enabled.
+On Tue, Sep 05, 2023 at 06:52:37AM +0000, Ryan Chen wrote:
+> > From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> > Sent: Friday, July 14, 2023 4:55 PM
+> > On Fri, Jul 14, 2023 at 03:45:22PM +0800, Ryan Chen wrote:
 
-This change enables ACSPCIE clock buffer pads and select clock source for
-reference clock output.
+...
 
-Signed-off-by: Achal Verma <a-verma1@ti.com>
----
- .../pci/controller/cadence/pci-j721e-host.c   | 96 +++++++++++++++++++
- 1 file changed, 96 insertions(+)
+> > > +#define AST2600_I2CC_GET_RX_BUFF(x)			(((x) >> 8) &
+> > GENMASK(7, 0))
+> > 
+> > > +#define AST2600_I2CC_GET_RX_BUF_LEN(x)		(((x) >> 24) &
+> > GENMASK(5, 0))
+> > 
+> > > +#define AST2600_I2CC_GET_TX_BUF_LEN(x)		((((x) >> 8) &
+> > GENMASK(4, 0)) + 1)
+> > 
+> > With right shifts it's better to have GENMASK to be applied first, it will show
+> > exact MSB of the bitfield.
+> > 
+> > (Ditto for other cases similar to these)
 
-diff --git a/drivers/pci/controller/cadence/pci-j721e-host.c b/drivers/pci/controller/cadence/pci-j721e-host.c
-index af47aa090159..106472920f68 100644
---- a/drivers/pci/controller/cadence/pci-j721e-host.c
-+++ b/drivers/pci/controller/cadence/pci-j721e-host.c
-@@ -10,10 +10,21 @@
- #include <linux/gpio/consumer.h>
- #include <linux/delay.h>
- #include <linux/of_device.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/regmap.h>
- 
- #include "pcie-cadence.h"
- #include "pci-j721e.h"
- 
-+#define CTRL_MMR_LOCK2_MASK		0xFFFFFFFF
-+#define CTRL_MMR_LOCK2_KICK0_UNLOCK_VAL	0x68EF3490
-+#define CTRL_MMR_LOCK2_KICK1_UNLOCK_VAL	0xD172BC5A
-+#define CTRL_MMR_LOCK_KICK_LOCK_VAL	0xFFFFFFFF
-+#define CTRL_MMR_ACSPCIE_PAD_MASK	0xFFFFFFFF
-+#define CTRL_MMR_ACSPCIE_PAD_EN		0x01000000
-+#define PCIE_REFCLK_CLKSEL_OUT_EN	BIT(8)
-+#define PCIE_REFCLK_CLKSEL_MASK	GENMASK(1, 0)
-+
- static int cdns_ti_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
- 				    int where, int size, u32 *value)
- {
-@@ -79,6 +90,84 @@ static const struct of_device_id of_j721e_pcie_host_match[] = {
- };
- MODULE_DEVICE_TABLE(of, of_j721e_pcie_host_match);
- 
-+static int j721e_enable_acspcie(struct j721e_pcie *pcie)
-+{
-+	struct device *dev = pcie->cdns_pcie->dev;
-+	struct device_node *node = dev->of_node;
-+	struct of_phandle_args args;
-+	unsigned int lock2_kick0_offset, lock2_kick1_offset;
-+	unsigned int acspcie_pad_offset, refclk_clksel_offset;
-+	unsigned int refclk_clksel_source;
-+	struct regmap *syscon;
-+	u32 val = 0, mask = 0;
-+	int ret;
-+
-+	/*
-+	 * If property ti,syscon-pcie-refclk-out exists, believe PCIe connector
-+	 * requires PCIe ref clock from Serdes, so enable ACSPCIE pads and mux
-+	 * to source out PCIe ref clock else ref clock has to be supplied from
-+	 * on-board clock generator.
-+	 */
-+	syscon = syscon_regmap_lookup_by_phandle(node, "ti,syscon-pcie-refclk-out");
-+	if (IS_ERR(syscon))
-+		return 0;
-+
-+	ret = of_parse_phandle_with_fixed_args(node, "ti,syscon-pcie-refclk-out", 5,
-+						0, &args);
-+	if (ret) {
-+		dev_err(dev, "Failed to read ti,syscon-pcie-refclk-out property\n");
-+		return ret;
-+	}
-+
-+	lock2_kick0_offset = args.args[0];
-+	lock2_kick1_offset = args.args[1];
-+	acspcie_pad_offset = args.args[2];
-+	refclk_clksel_offset = args.args[3];
-+	refclk_clksel_source = args.args[4];
-+
-+	/* Un-lock Partition 2 : 8000h to 9FFFh */
-+	mask = CTRL_MMR_LOCK2_MASK;
-+	val = CTRL_MMR_LOCK2_KICK0_UNLOCK_VAL;
-+	ret = regmap_update_bits(syscon, lock2_kick0_offset, mask, val);
-+	if (ret)
-+		goto err;
-+
-+	val = CTRL_MMR_LOCK2_KICK1_UNLOCK_VAL;
-+	ret = regmap_update_bits(syscon, lock2_kick1_offset, mask, val);
-+	if (ret)
-+		goto err;
-+
-+	/* Enable ACSPCIe PADS  */
-+	mask = CTRL_MMR_ACSPCIE_PAD_MASK;
-+	val = CTRL_MMR_ACSPCIE_PAD_EN;
-+	ret = regmap_update_bits(syscon, acspcie_pad_offset, mask, val);
-+	if (ret)
-+		goto err;
-+
-+	/* PCIE_REFCLKx_CLKSEL : EN + ref_clk_source */
-+	mask = PCIE_REFCLK_CLKSEL_OUT_EN | PCIE_REFCLK_CLKSEL_MASK;
-+	val = PCIE_REFCLK_CLKSEL_OUT_EN | refclk_clksel_source;
-+	ret = regmap_update_bits(syscon, refclk_clksel_offset, mask, val);
-+	if (ret)
-+		goto err;
-+
-+	/* Re-lock Partition 2 : 8000h to 9FFFh */
-+	mask = CTRL_MMR_LOCK_KICK_LOCK_VAL;
-+	val = CTRL_MMR_LOCK_KICK_LOCK_VAL;
-+	ret = regmap_update_bits(syscon, lock2_kick0_offset, mask, val);
-+	if (ret)
-+		goto err;
-+
-+	ret = regmap_update_bits(syscon, lock2_kick1_offset, mask, val);
-+	if (ret)
-+		goto err;
-+
-+	return 0;
-+err:
-+	dev_err(dev, "Failed to enable ref clock out\n");
-+	return ret;
-+}
-+
- static int j721e_pcie_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-@@ -121,6 +210,13 @@ static int j721e_pcie_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	/*
-+	 * Enable ACSPCIe clock buffer to source out reference clock for EP
-+	 */
-+	ret = j721e_enable_acspcie(pcie);
-+	if (ret < 0)
-+		return ret;
-+
- 	pcie->perst_gpiod = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
- 	if (IS_ERR(pcie->perst_gpiod)) {
- 		ret = PTR_ERR(pcie->perst_gpiod);
+> It will update next version.
+> #define AST2600_I2CC_GET_RX_BUF_LEN(x)      (((x) & GENMASK(29, 24)) >> 24)
+> #define AST2600_I2CC_GET_TX_BUF_LEN(x)      ((((x) & GENMASK(12, 8)) >> 8) + 1)
+
+Note, these were just an example, check _all_ of the similar cases.
+
+In general any reviewer's comment should be considered for the entire code where
+it makes sense.
+
+...
+
+> 			divisor = DIV_ROUND_UP(base_clk[3], i2c_bus->timing_info.bus_freq_hz);
+> 			for_each_set_bit(divisor, &divisor, 32) {
+
+This is wrong.
+
+> 				if ((divisor + 1) <= 32)
+> 					break;
+
+> 				divisor >>= 1;
+
+And this.
+
+> 				baseclk_idx++;
+
+> 			}
+
+for_each_set_bit() should use two different variables.
+
+> 		} else {
+> 			baseclk_idx = i + 1;
+> 			divisor = DIV_ROUND_UP(base_clk[i], i2c_bus->timing_info.bus_freq_hz);
+> 		}
+> 	}
+
+...
+
+> 	divisor = min_t(unsigned long, divisor, 32);
+
+Can't you use min()? min_t is a beast with some subtle corner cases.
+
+...
+
+> Sorry I don't catch this split slave out to separate change?
+> Do you mean go for another file name example ast2600_i2c_slave.c ?
+
+No, I mean
+
+ patch 1: Introduce the driver with only master support
+ patch 2: Add slave capability (all what is under ifdeffery for I2C_SLAVE)
+
+...
+
+> static int ast2600_i2c_do_start(struct ast2600_i2c_bus *i2c_bus)
+> {
+> 	struct i2c_msg *msg = &i2c_bus->msgs[i2c_bus->msgs_index];
+
+> 	int ret;
+
+This is not needed, you may return directly.
+
+> 	/* send start */
+> 	dev_dbg(i2c_bus->dev, "[%d] %sing %d byte%s %s 0x%02x\n",
+> 		i2c_bus->msgs_index, str_read_write(msg->flags & I2C_M_RD),
+> 		msg->len, msg->len > 1 ? "s" : "",
+> 		msg->flags & I2C_M_RD ? "from" : "to", msg->addr);
+> 
+> 	i2c_bus->master_xfer_cnt = 0;
+> 	i2c_bus->buf_index = 0;
+
+> 	if (msg->flags & I2C_M_RD) {
+> 		if (i2c_bus->mode == DMA_MODE)
+> 			ret = ast2600_i2c_setup_dma_rx(i2c_bus);
+
+			return ...;
+		if ...
+
+
+> 		else if (i2c_bus->mode == BUFF_MODE)
+> 			ret = ast2600_i2c_setup_buff_rx(i2c_bus);
+> 		else
+> 			ret = ast2600_i2c_setup_byte_rx(i2c_bus);
+
+> 	} else {
+> 		if (i2c_bus->mode == DMA_MODE)
+> 			ret = ast2600_i2c_setup_dma_tx(AST2600_I2CM_START_CMD, i2c_bus);
+> 		else if (i2c_bus->mode == BUFF_MODE)
+> 			ret = ast2600_i2c_setup_buff_tx(AST2600_I2CM_START_CMD, i2c_bus);
+> 		else
+> 			ret = ast2600_i2c_setup_byte_tx(AST2600_I2CM_START_CMD, i2c_bus);
+
+Same way.
+
+> 	}
+> 
+> 	return ret;
+> }
+
+...
+
+> > Wrong memory accessors. You should use something from asm/byteorder.h
+> > which includes linux/byteorder/generic.h.
+> 
+> Sorry, about these parts. I quit no idea.
+> This is chip register limited, it only support dword write, not support byte write.
+> So the only way I have is use get_unaligned_le32 function get the byte buffer to align dword write.
+> Or I may need your help point me a good way.
+
+>  	for (i = 0; i < xfer_len; i++) {
+>  		wbuf[i % 4] = msg->buf[i2c_bus->master_xfer_cnt + i];
+>  		if (i % 4 == 3) {
+>  			wbuf_dword = get_unaligned_le32(wbuf);
+>  			writel(wbuf_dword, i2c_bus->buf_base + i - 3);
+>  		}
+>  	}
+>  
+>  	if (--i % 4 != 3) {
+>  		wbuf_dword = get_unaligned_le32(wbuf);
+>  		writel(wbuf_dword, i2c_bus->buf_base + i - (i % 4));
+>  	} 
+
+Something like that. The most problematic part in your original code is
+dereferencing byte memory as 32-bit memory with all possible problems behind.
+With this code it's gone. The code itself might be improved even more,
+you can think about it, you still have time (we are now in v6.7 cycle).
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
