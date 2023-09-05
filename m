@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 203C0792C91
-	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 19:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CAAB792CFC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Sep 2023 20:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230061AbjIERjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 13:39:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33206 "EHLO
+        id S232281AbjIESBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 14:01:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239978AbjIERjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 13:39:35 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC55395DE;
-        Tue,  5 Sep 2023 10:15:10 -0700 (PDT)
+        with ESMTP id S236897AbjIER43 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 13:56:29 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B583EA5E;
+        Tue,  5 Sep 2023 10:49:54 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 14762B815B4;
-        Tue,  5 Sep 2023 17:07:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9F2FC433C7;
-        Tue,  5 Sep 2023 17:07:36 +0000 (UTC)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 7E9F1CE1286;
+        Tue,  5 Sep 2023 17:48:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF86DC43397;
+        Tue,  5 Sep 2023 17:48:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693933658;
-        bh=wvydTW5tlFfjmX77STi/JFlf00/5kzHytlOiPmKMEV0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=uXlbNU97DMqwAC9ZNu5M7ajd6mDymvsmtCU7vrn1VzmDTcTpbt0vvMp1v641v2IQZ
-         SgVsL37pQLJ/Gp4U5eQffjkCedFKhKlriLxtQAh7m7RFlWBXj13W1YVwXqPfOmfJZF
-         vx1JCiQ4Ylx48/d2kHSiqhU93FzLfhAIaKFUhqGmoddtVvktDjJGF3LkiQJlVL++Q0
-         1zVL4u23WIIDcAaP3kxgwZwe32m2/F5Uh6SiFLBZWOUUp8D3ZxzkN+s25HRuMfDEpX
-         VwMPqEwD8llmszk0BL/HJOAZevfkwn64EsM4CTipbwOMQo+5pLTtFrkQYZhoHcNMIG
-         IRFBOOwr4tiIA==
-Received: (nullmailer pid 3568796 invoked by uid 1000);
-        Tue, 05 Sep 2023 17:07:35 -0000
-Date:   Tue, 5 Sep 2023 12:07:35 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Billy Tsai <billy_tsai@aspeedtech.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net,
-        krzysztof.kozlowski+dt@linaro.org, joel@jms.id.au, andrew@aj.id.au,
-        corbet@lwn.net, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-        naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-        BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Subject: Re: [PATCH v8 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Message-ID: <20230905170735.GA3528724-robh@kernel.org>
-References: <20230830123202.3408318-1-billy_tsai@aspeedtech.com>
- <20230830123202.3408318-3-billy_tsai@aspeedtech.com>
+        s=k20201202; t=1693936133;
+        bh=RBAG8ZYYuvEXmzdeIKhCe4dQDTnUdRpxhlaQhZKuHLI=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=qjC562cgkOdXqEWXTtWkaQcHbRLvNVIaRWHl9pW6MecM9dh7mA7zhrIFGV9l/WCEe
+         XLvL6fira6Dj/9h7l8280L9aHBNuNqS2DUxNNb2cRBuXygxA2pydOC7Sogz+y4jlQA
+         qk2S8Ej+u5Rla1Oa4oMQUMycVx1w324CD/lFf/PpxUw3B9Xk2fnZzH6bao3FKWvVBF
+         6rrjVfRaEe1n5FAFeisVcdTGWJzrBr/arxb9nWcTehN/CXW2ya+7rVVi5gixa9qP2L
+         ytecjGb7MxI9p5jocvg8CcRTpXAIVKWUoZiNfW/Rua5A8KaiPs54zJzYO+mll4HR5m
+         LGh/6PDH/OECw==
+Received: (nullmailer pid 3654274 invoked by uid 1000);
+        Tue, 05 Sep 2023 17:48:50 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230830123202.3408318-3-billy_tsai@aspeedtech.com>
+From:   Rob Herring <robh@kernel.org>
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, quic_wcheng@quicinc.com,
+        linux-usb@vger.kernel.org, konrad.dybcio@linaro.org,
+        devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+        linux-phy@lists.infradead.org, krzysztof.kozlowski+dt@linaro.org,
+        andersson@kernel.org, kishon@kernel.org, kernel@quicinc.com,
+        conor+dt@kernel.org, agross@kernel.org, abel.vesa@linaro.org,
+        vkoul@kernel.org
+In-Reply-To: <1693889028-6485-3-git-send-email-quic_rohiagar@quicinc.com>
+References: <1693889028-6485-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1693889028-6485-3-git-send-email-quic_rohiagar@quicinc.com>
+Message-Id: <169393613081.3654258.4653148258731976775.robh@kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: phy: Add qcom,sdx75-qmp-usb3-uni
+ schema file
+Date:   Tue, 05 Sep 2023 12:48:50 -0500
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -65,111 +64,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 08:32:01PM +0800, Billy Tsai wrote:
-> Document the compatible for aspeed,ast2600-pwm-tach device, which can
-> support up to 16 PWM outputs and 16 fan tach input.
+
+On Tue, 05 Sep 2023 10:13:45 +0530, Rohit Agarwal wrote:
+> Add a dt-binding schema for SDX75 SoC.
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 > ---
->  .../bindings/hwmon/aspeed,g6-pwm-tach.yaml    | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
+>  .../bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.yaml  | 106 +++++++++++++++++++++
+>  1 file changed, 106 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> new file mode 100644
-> index 000000000000..95bac5588c04
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/aspeed,g6-pwm-tach.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2021 Aspeed, Inc.
 
-A few years out of date.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/aspeed,g6-pwm-tach.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED G6 PWM and Fan Tach controller device driver
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |
-> +  The ASPEED PWM controller can support up to 16 PWM outputs.
-> +  The ASPEED Fan Tacho controller can support up to 16 fan tach input.
+yamllint warnings/errors:
 
-Are PWM and tach channels independent? Would be useful to know here.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sdx75.h: No such file or directory
+   18 |         #include <dt-bindings/clock/qcom,gcc-sdx75.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/phy/qcom,sdx75-qmp-usb3-uni-phy.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-pwm-tach
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +patternProperties:
-> +  "^fan[0-9a-f]_hwmon+$":
+doc reference errors (make refcheckdocs):
 
-Drop 'hwmon'. Standard practice for naming without 'reg' is 
-'^fan-[0-9]+$'.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1693889028-6485-3-git-send-email-quic_rohiagar@quicinc.com
 
-> +    $ref: fan-common.yaml#
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-       unevaluatedProperties: false
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +    required:
-> +      - tach-ch
-> +
-> +required:
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - "#pwm-cells"
-> +  - compatible
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +    pwm_tach: pwm-tach-controller@1e610000 {
-> +      compatible = "aspeed,ast2600-pwm-tach";
-> +      reg = <0x1e610000 0x100>;
-> +      clocks = <&syscon ASPEED_CLK_AHB>;
-> +      resets = <&syscon ASPEED_RESET_PWM>;
-> +      #pwm-cells = <3>;
+pip3 install dtschema --upgrade
 
-Blank line.
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-> +      fan0_hwmon {
-> +        tach-ch = <0x0>;
-
-Don't you need 'pwms'?
-
-> +      };
-
-Blank line.
-
-> +      fan1_hwmon {
-> +        tach-ch = <0x1>;
-> +      };
-> +      fan2_hwmon {
-> +        tach-ch = <0x2>;
-> +      };
-> +    };
-> -- 
-> 2.25.1
-> 
