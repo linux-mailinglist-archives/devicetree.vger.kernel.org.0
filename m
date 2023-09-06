@@ -2,92 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44FE0793C79
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ADD5793C9C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:26:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236548AbjIFMTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 08:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48282 "EHLO
+        id S237608AbjIFM0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 08:26:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231493AbjIFMTo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:19:44 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3314BF9;
-        Wed,  6 Sep 2023 05:19:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
- s=s31663417; t=1694002754; x=1694607554; i=frank-w@public-files.de;
- bh=e0081cInfBKzI1JPOJchcZQctsDgMNVHwcQcjiRNKTg=;
- h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:Referenc
- es;
- b=n+FHE74GGs7iQQExFGT8fTlcQFlNWq7/pGkA1VAdENDlztHWxBjU7bEYfh7Wy/5TRc4Pljx
- E5DVV6SLJ4Ym9esjAQVJOzVgKnBbiyfo1Q7bwsJxyhlWgoXlQ0z1RgigwlxET/pxqmziBccB4
- pL52oYSQrcG8W/Lm3hoS18P8ZI+zZFWdsoezJwNe2hnts8PVfOmQigB5+BV9t9ejWgqfBrccC
- zi0GXALJQQ9f9CFTk3EOZp3d69o1cxPSlR4h7VvCpI4vYhsWTiWsCOYAI+KghRoiZ3uXg8Pe5
- fKpHL9Due/HqYr3ZwiJwP1xzqq1U67WKDzyTAJjmFmqK5gisPzyA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [IPv6:::1] ([80.187.71.204]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MtOKc-1pmZMS1k8k-00uqpI; Wed, 06
- Sep 2023 14:19:14 +0200
-Date:   Wed, 06 Sep 2023 14:19:11 +0200
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?ISO-8859-1?Q?Bernhard_Rosenkr=E4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_1/2=5D_dt-bindings=3A_arm64?= =?US-ASCII?Q?=3A_dts=3A_mediatek=3A_add_mt8395-evk_board?=
-User-Agent: K-9 Mail for Android
-Reply-to: frank-w@public-files.de
-In-Reply-To: <c951f693-b219-4745-be20-a8e1fee0099d@mediatek.com>
-References: <20230904092043.5157-1-macpaul.lin@mediatek.com> <20230906092527.18281-1-macpaul.lin@mediatek.com> <fbad941f-232b-9f56-5de3-98a16a8c4d89@linaro.org> <c3ddf00c-235a-2d23-db60-c998a67a3fcd@mediatek.com> <f343b6e2-6106-47eb-71cb-f391aff6cb7f@collabora.com> <50f7fbdd-8592-7a47-b2d8-a1af8ed93b92@linaro.org> <c951f693-b219-4745-be20-a8e1fee0099d@mediatek.com>
-Message-ID: <E3DEDA34-C203-4560-B07D-8BCB44204FF3@public-files.de>
+        with ESMTP id S232760AbjIFM0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:26:20 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 635C71717
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 05:26:16 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-564b6276941so2470594a12.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 05:26:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694003176; x=1694607976; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=kjnnzDLUDo2+D27D03H2YWRaB12AVyK4xgoDBE0WK78=;
+        b=ygKQwRjKCVD+dfLm+tbjGg/m8JA3TgLbpihCkjPju/ASPe+/AAtsmJgtTfN2xDnFaH
+         rf9ZmF592F9sLZFZ4U1HFk5W00934PS7JqDSCp9FYht50eLhOI/nO02bcbYfK7e15UrE
+         RpgAzOWDZKQXXLFNwwcc0xUDGb0J41md5yvpgiSiL3oe1Bie5I/kw8e18qjUMkQZrWE5
+         W1r0C5fddqUqLgdIIL7S6wfh31CnqbmXjy8bzNEWZHsJ884vrglbSouXYCPIBRcG2SmK
+         gVI3HOdw1V1wCk9qaGDAk2sqw7C+eij4cOoMq8cvYO9ne/ovjY9nWMV3D192iSFPXiWL
+         ZB7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694003176; x=1694607976;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kjnnzDLUDo2+D27D03H2YWRaB12AVyK4xgoDBE0WK78=;
+        b=L7NQf9IrWvcwJ4HvEPugXc6CsnDlavkWXqEDvPsWV5o6ksMZLDldhrze/TqCuqdulA
+         puqKVIhrxvvSxRA56ltKkAxTFSrvseBFo3PlU++YdtnKkgkT/31xsbidlFdkkjeOYlR3
+         bJHpjSedtLVzSuex53vzft3dedo1p88JvUbPIamhzeOSZd+GAC0PiM09GhKz0RGmyi8T
+         8IwxpIeO6F4CH/ttuS6s5LpxlgoPD9Gi0t4FP3IK6B5jCLLGbvl5rQa619qfX95jUZ++
+         oGRLEH//nSznjbVtHrYYFFYyOlpfrxQ3s6BqnRC5ipmoQ+tSbYRC5j30Ot3tuAovJs5w
+         eqRA==
+X-Gm-Message-State: AOJu0Yw5YgRxcQwucK3ThtR8hhz0r5RzlZvu5RKc01N8HvvVfoMT+9AM
+        FvsWt75dPpbbZ4olaYCL9Snu
+X-Google-Smtp-Source: AGHT+IFRy+f9cPt6hImhbeLHiudZgHv2ne6+5hiV0JlI5JP4oipQdy+eixxMA2W/+788/8cEth4xNw==
+X-Received: by 2002:a17:90b:fc8:b0:26f:2c5a:bbb3 with SMTP id gd8-20020a17090b0fc800b0026f2c5abbb3mr14027269pjb.40.1694003175797;
+        Wed, 06 Sep 2023 05:26:15 -0700 (PDT)
+Received: from thinkpad ([120.138.12.139])
+        by smtp.gmail.com with ESMTPSA id 25-20020a17090a199900b002693505391csm13493081pji.37.2023.09.06.05.26.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Sep 2023 05:26:15 -0700 (PDT)
+Date:   Wed, 6 Sep 2023 17:56:05 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Frank Li <Frank.li@nxp.com>
+Cc:     tglx@linutronix.de, aisheng.dong@nxp.com, bhelgaas@google.com,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
+        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
+        ntb@lists.linux.dev, peng.fan@nxp.com, robh+dt@kernel.org,
+        s.hauer@pengutronix.de, shawnguo@kernel.org
+Subject: Re: [PATCH 1/3] PCI: endpoint: Add RC-to-EP doorbell support using
+ platform MSI controller
+Message-ID: <20230906122605.GB5930@thinkpad>
+References: <20230426203436.1277307-1-Frank.Li@nxp.com>
+ <20230426203436.1277307-2-Frank.Li@nxp.com>
+ <20230902045214.GA2913@thinkpad>
+ <20230902045328.GB2913@thinkpad>
+ <ZPf/EkffMC51iLQ/@lizhi-Precision-Tower-5810>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:O/pBamwEeOol5A2BT1I7ZdcnXSsAYQXRMcNrEL6HiXWgdfa1QVO
- Ss66XXOehHOACvDffgmThSn5M+rlr5/PLEgFCmUu9111ZdKdZfKainTtc8OxiGDPION4KiK
- UJ+KZNe5oLx1q/+ebykxqgeoqE+MdqF0uWVh5YIqU+bMARn8pGobL0iThqpb9tKCQAD5Ubc
- 5LBgiudCKYEGk9urriwRA==
-UI-OutboundReport: notjunk:1;M01:P0:E8Xc5Uvy3ng=;T+94gWu53WDA87IePiH/JBNpwDo
- VuP9OrqBwGjTaiiOY9KR0FN+QLAQFYQs32HJmOZbWjyj/4Hi1xNeYvNonaMC/WO3fyFtq5od8
- zmbalYdW4WcZiDm6TzDjEhzpF7bPXoRaGER/vIZwrzHjH/6+CZBbi2u6BCosvfKVKT3ltdLDN
- W21txCnhzHmdqnVdEmbEt5mVK4ybq5ek/vWoJBGzIu53SzVzoI3a9nAM8Dqr7jGUmn4mcafVK
- JuBevjuDNF02NW1dAE009nUZf5j2c74A032Uxsyh5qo4DZPWGM0eRapDbdcXC9LUceHHY1YkE
- TG6F2wbcGoqGUi3qoxG0zRDUyt4oGUACkRvXqCna3fo/L10XeerUzFNe/pOxjrv3+fRk/k4xb
- YvK1szY/ui0TNxHdKioL/8YBT42BD+xtOpuzlR5uBaqkE9lfTnPC5hT0IQa2Bi5Ksv+/9bBmJ
- 0M7V5u7ay9wmNwmG9pOP4gSCDsISthNelCzV3w++CEk2SX+ssTpEM7P/sb2IbxRcpHTQJrKm1
- UbPMvyDZgbEioe/VJU1q4XOZ701tnafSvdbEWdYv4wLy1m37H/nu1Trft52ApiMjTitnKrH8O
- FIlvR66uFYXiD58VPeZq8kVaYXDALf1t8u7WkD1HtUJm5y4p7hMbckFr8tiUtOHR/l2cZ0Vof
- GqTd0omc31nrD0Jy6VXEDwIWo1D9pX0OvCykpxI59/gR3HbJ7olQp5e/G8khRZhEz34gK7Ghe
- IeJmB73NIV9HhCXmys14zf61/Y5W1GRflNKEYcxTqXg2NDh4YG9MOZwFW63qFo7eC6hLZPIEZ
- ZghiH4Oe+XgIb5EzzpuUAgfW2tUps53N/vtoYwTQHHJjv0f3EVTU/nPH7nFntkW4x7PDiCzNO
- ++L6PVzwqevWvgdUhNVDJ1+zHBhlOILW8ItlaTXtzhuX9duSrEp6n/dFQXYCWkTi9q8BSvAaX
- XpfYVaC4iFG7sKw9+w7iv4PDWqw=
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZPf/EkffMC51iLQ/@lizhi-Precision-Tower-5810>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Can you please only target Reviewers/Maintainers and mailinglists reported =
-by get_maintainers script?
+On Wed, Sep 06, 2023 at 12:24:50AM -0400, Frank Li wrote:
+> On Sat, Sep 02, 2023 at 10:23:28AM +0530, Manivannan Sadhasivam wrote:
+> > On Sat, Sep 02, 2023 at 10:22:25AM +0530, Manivannan Sadhasivam wrote:
+> > > On Wed, Apr 26, 2023 at 04:34:34PM -0400, Frank Li wrote:
+> > > > This commit introduces a common method for sending messages from the Root Complex
+> > > > (RC) to the Endpoint (EP) by utilizing the platform MSI interrupt controller,
+> > > > such as ARM GIC, as an EP doorbell. Maps the memory assigned for the BAR region
+> > > > by the PCI host to the message address of the platform MSI interrupt controller
+> > > > in the PCI EP. As a result, when the PCI RC writes to the BAR region, it triggers
+> > > > an IRQ at the EP. This implementation serves as a common method for all endpoint
+> > > > function drivers.
+> > > > 
+> > > > However, it currently supports only one EP physical function due to limitations
+> > > > in ARM MSI/IMS readiness.
+> > > > 
+> > > 
+> > > I've provided generic comments below, but I will do one more thorough review
+> > > after seeing epf-test driver patch.
+> > > 
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > >  drivers/pci/endpoint/pci-epf-core.c | 109 ++++++++++++++++++++++++++++
+> > > >  include/linux/pci-epf.h             |  16 ++++
+> > > >  2 files changed, 125 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/pci/endpoint/pci-epf-core.c b/drivers/pci/endpoint/pci-epf-core.c
+> > > > index 355a6f56fcea..94ac82bf84c5 100644
+> > > > --- a/drivers/pci/endpoint/pci-epf-core.c
+> > > > +++ b/drivers/pci/endpoint/pci-epf-core.c
+> > > > @@ -6,10 +6,12 @@
+> > > >   * Author: Kishon Vijay Abraham I <kishon@ti.com>
+> > > >   */
+> > > >  
+> > > > +#include <linux/irqreturn.h>
+> > > 
+> > > Why is this needed?
+> > > 
+> > > >  #include <linux/device.h>
+> > > >  #include <linux/dma-mapping.h>
+> > > >  #include <linux/slab.h>
+> > > >  #include <linux/module.h>
+> > > > +#include <linux/msi.h>
+> > > >  
+> > > >  #include <linux/pci-epc.h>
+> > > >  #include <linux/pci-epf.h>
+> > > > @@ -300,6 +302,113 @@ void *pci_epf_alloc_space(struct pci_epf *epf, size_t size, enum pci_barno bar,
+> > > >  }
+> > > >  EXPORT_SYMBOL_GPL(pci_epf_alloc_space);
+> > > >  
+> > > > +static enum irqreturn pci_epf_interrupt_handler(int irq, void *data)
+> > > 
+> > > static irqreturn_t
+> > > 
+> > > s/pci_epf_interrupt_handler/pci_epf_doorbell_handler
+> > > 
+> > > > +{
+> > > > +	struct pci_epf *epf = data;
+> > > > +
+> > > > +	if (epf->event_ops && epf->event_ops->doorbell)
+> > > > +		epf->event_ops->doorbell(epf, irq - epf->virq_base);
+> > > > +
+> > > > +	return IRQ_HANDLED;
+> > > > +}
+> > > > +
+> > > > +static void pci_epf_write_msi_msg(struct msi_desc *desc, struct msi_msg *msg)
+> > > > +{
+> > > > +	struct pci_epc *epc = container_of(desc->dev, struct pci_epc, dev);
+> > > > +	struct pci_epf *epf;
+> > > > +
+> > > > +	/* Todo: Need check correct epf if multi epf supported */
+> > > > +	list_for_each_entry(epf, &epc->pci_epf, list) {
+> > > > +		if (epf->msg && desc->msi_index < epf->num_msgs)
+> > > > +			epf->msg[desc->msi_index] = *msg;
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 num_msgs)
+> > > > +{
+> > > > +	struct irq_domain *domain;
+> > > > +	struct pci_epc *epc;
+> > > > +	struct device *dev;
+> > > > +	int virq;
+> > > > +	int ret;
+> > > > +	int i;
+> > > > +
+> > > > +	epc = epf->epc;
+> > > > +	dev = &epc->dev;
+> > > 
+> > > "epc_dev" to make it explicit
+> 
+> All other place use 'dev', I think better keep the consistent.
+> 
+> Frank
+> > > 
+> > > > +
+> > > > +	/*
+> > > > +	 * Current only support 1 function.
+> > > 
+> > > What does this mean exactly? Even a single EPC can support multiple EPFs
+> > > 
+> > 
+> > Please ignore above comment.
+> > 
+> > - Mani
+> > 
+> > > > +	 * PCI IMS(interrupt message store) ARM support have not been
+> > > > +	 * ready yet.
+> > > 
+> > > No need to mention platform irq controller name.
+> 
+> what's means?
+> 
 
-I have only sent patches for mediatek and did some tests=2E So i'm not int=
-erested in patches for hardware i do not have here :)=2E I guess i'm not al=
-one=2E=2E=2E
-regards Frank
+"PCI IMS ARM support" is not needed. Just say that only one EPF is supported.
+
+> > > 
+> > > > +	 */
+> > > > +	if (epc->function_num_map != 1)
+> > > 
+> > > Why can't you use, epf->func_no?
+> > > 
+> > > > +		return -EOPNOTSUPP;
+> > > > +
+> > > > +	domain = dev_get_msi_domain(dev->parent);
+> > > > +	if (!domain)
+> > > > +		return -EOPNTSUPP;
+> > > 
+> > > Newline
+> > > 
+> > > > +	dev_set_msi_domain(dev, domain);
+> > > > +
+> > > > +	/* use parent of_node to get device id information */
+> > > > +	dev->of_node = dev->parent->of_node;
+> > > > +
+> > > 
+> > > Why do you need of_node assignment inside EPF core?
+> 
+> GIC need it to allocate a MSI irq to platform devices.
+> I think it may improve if IMS support.
+> 
+
+Can't you assign it in the EPF driver itself? I do not want any OF reference in
+the EPF core since it has no OF support.
+
+- Mani
+
+> Frank
+> 
+> > > 
+> > > > +	epf->msg = kcalloc(num_msgs, sizeof(struct msi_msg), GFP_KERNEL);
+> > > > +	if (!epf->msg)
+> > > > +		return -ENOMEM;
+> > > > +
+> > > > +	epf->num_msgs = num_msgs;
+> > > > +
+> > > 
+> > > Move this to the start of the function, after checks.
+> > > 
+> > > > +	ret = platform_msi_domain_alloc_irqs(dev, num_msgs, pci_epf_write_msi_msg);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "Can't allocate MSI from system MSI controller\n");
+> > > 
+> > > "Failed to allocate MSI"
+> > > 
+> > > > +		goto err_mem;
+> > > 
+> > > err_free_mem
+> > > 
+> > > > +	}
+> > > > +
+> > > > +	for (i = 0; i < num_msgs; i++) {
+> > > > +		virq = msi_get_virq(dev, i);
+> > > > +		if (i == 0)
+> > > > +			epf->virq_base = virq;
+> > > > +
+> > > > +		ret = request_irq(virq, pci_epf_interrupt_handler, 0,
+> > > > +				  "pci-epf-doorbell", epf);
+> > > 
+> > > IRQ name should have an index, otherwise all of them will have the same name.
+> > > 
+> > > > +
+> > > > +		if (ret) {
+> > > > +			dev_err(dev, "Failure request doorbell IRQ\n");
+> > > 
+> > > "Failed to request doorbell"
+> > > 
+> > > > +			goto err_irq;
+> > > 
+> > > err_free_irq
+> > > 
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	epf->num_msgs = num_msgs;
+> > > 
+> > > Newline
+> > > 
+> > > > +	return ret;
+> > > > +
+> > > > +err_irq:
+> > > > +	platform_msi_domain_free_irqs(dev);
+> > > > +err_mem:
+> > > > +	kfree(epf->msg);
+> > > > +	epf->msg = NULL;
+> > > > +	epf->num_msgs = 0;
+> > > > +
+> > > > +	return ret;
+> > > > +}
+> > > > +EXPORT_SYMBOL_GPL(pci_epf_alloc_doorbell);
+> > > > +
+> > > > +void pci_epf_free_doorbell(struct pci_epf *epf)
+> > > > +{
+> > > > +	struct pci_epc *epc;
+> > > > +	int i;
+> > > > +
+> > > > +	epc = epf->epc;
+> > > > +
+> > > > +	for (i = 0; i < epf->num_msgs; i++)
+> > > > +		free_irq(epf->virq_base + i, epf);
+> > > > +
+> > > > +	platform_msi_domain_free_irqs(&epc->dev);
+> > > > +	kfree(epf->msg);
+> > > > +	epf->msg = NULL;
+> > > > +	epf->num_msgs = 0;
+> > > > +}
+> > > > +EXPORT_SYMBOL_GPL(pci_epf_free_doorbell);
+> > > > +
+> > > >  static void pci_epf_remove_cfs(struct pci_epf_driver *driver)
+> > > >  {
+> > > >  	struct config_group *group, *tmp;
+> > > > diff --git a/include/linux/pci-epf.h b/include/linux/pci-epf.h
+> > > > index b8441db2fa52..e187e3ee48d2 100644
+> > > > --- a/include/linux/pci-epf.h
+> > > > +++ b/include/linux/pci-epf.h
+> > > > @@ -75,6 +75,7 @@ struct pci_epf_ops {
+> > > >  struct pci_epc_event_ops {
+> > > >  	int (*core_init)(struct pci_epf *epf);
+> > > >  	int (*link_up)(struct pci_epf *epf);
+> > > > +	int (*doorbell)(struct pci_epf *epf, int index);
+> > > >  };
+> > > >  
+> > > >  /**
+> > > > @@ -173,6 +174,9 @@ struct pci_epf {
+> > > >  	unsigned long		vfunction_num_map;
+> > > >  	struct list_head	pci_vepf;
+> > > >  	const struct pci_epc_event_ops *event_ops;
+> > > > +	struct msi_msg *msg;
+> > > > +	u16 num_msgs;
+> > > > +	int virq_base;
+> > > >  };
+> > > >  
+> > > >  /**
+> > > > @@ -216,4 +220,16 @@ int pci_epf_bind(struct pci_epf *epf);
+> > > >  void pci_epf_unbind(struct pci_epf *epf);
+> > > >  int pci_epf_add_vepf(struct pci_epf *epf_pf, struct pci_epf *epf_vf);
+> > > >  void pci_epf_remove_vepf(struct pci_epf *epf_pf, struct pci_epf *epf_vf);
+> > > > +int pci_epf_alloc_doorbell(struct pci_epf *epf, u16 nums);
+> > > > +void pci_epf_free_doorbell(struct pci_epf *epf);
+> > > > +
+> > > > +static inline struct msi_msg *epf_get_msg(struct pci_epf *epf)
+> > > > +{
+> > > > +	return epf->msg;
+> > > > +}
+> > > > +
+> > > > +static inline u16 epf_get_msg_num(struct pci_epf *epf)
+> > > > +{
+> > > > +	return epf->num_msgs;
+> > > > +}
+> > > 
+> > > I don't see a need for these two functions as they are doing just dereferences.
+> > > 
+> > > - Mani
+> > > 
+> > > >  #endif /* __LINUX_PCI_EPF_H */
+> > > > -- 
+> > > > 2.34.1
+> > > > 
+> > > 
+> > > -- 
+> > > மணிவண்ணன் சதாசிவம்
+> > 
+> > -- 
+> > மணிவண்ணன் சதாசிவம்
+
+-- 
+மணிவண்ணன் சதாசிவம்
