@@ -2,127 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19B65793B45
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:30:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53E7D793B5C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:33:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239843AbjIFLaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 07:30:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46434 "EHLO
+        id S238628AbjIFLdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 07:33:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239781AbjIFLaf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:30:35 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D5CD10C9
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 04:30:04 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99bdcade7fbso511987166b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 04:30:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693999772; x=1694604572; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S8gwvV5pEjtC83ZzYbE6TNkDWEwZfjSVgnN8XiDwZX8=;
-        b=DhGlahxP4K7IXAWHNBiKjHJyk/CNPP2pRWB1rT8WU9nVpbBXd8mXNyadb8hreMThEA
-         mBif4i9Ods2ETQ2Z2GJ7reKmR988m1Ry/WkLT9rBNm081rXb9fggpuP43yFx5nWWXVCH
-         Dl/78wVw8uFxuK9aGLpZq3PEMcwi5qGkJKUmvPjnLFiS9GkjomiZmtfI7+SFuCkM94/w
-         pLKgZXhmibJySPb9SZlVKmiYxxN1xnOklnkb/g4ckbG8hbIys92CaxIrU9VWVvxL7N50
-         yyr8iKj9L7AI7kLapuwfB0eUF3Y7pAJEsTNHmQRHOTV+jQjM8CiD4UQaq/D4Q1NkKsdA
-         dctw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693999772; x=1694604572;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S8gwvV5pEjtC83ZzYbE6TNkDWEwZfjSVgnN8XiDwZX8=;
-        b=D/9pZDytF90Zw20TuW47QoSklI5aO5CdC9uYRRD6mLHWUiadK/DY8qkFY5wCtrV5TL
-         lZ6tD6oiv92Xxn1kAthyTONxAtE2VDZuWY+AyfwvH827HFJvdIuxjhhObXz1gzJ8PXQX
-         uptSeKEzMKOteenBX5KkfGML2jUYVna1yuCtTRslIeIy1Xq2MGdv69ns8/ye5ehSCiPI
-         X3znH4rwoNGR2KxP02oI/RQJF2Zb6yFokwWsEUfnEofB5Ydb6nEgCs63FyWx2Sj0DHrp
-         Maj9T5d0O3lXJEt+hTar9ilWfcR/yymwQ4meiCq/o4NbPPLkuvVM2Sw14iyOdk/slOIY
-         uflA==
-X-Gm-Message-State: AOJu0YxJLQV4i/PBrZ8Uq4p5WeFmRKlP37qOXaajnuzZtu5Sd/hPhz4z
-        hqSUOZJoCwKbLZWt0VNnMD5DOA==
-X-Google-Smtp-Source: AGHT+IF01pPLIglLUJ7iWmuELyzBiT9qVi+KgWqlz61RcZKrYQ1BiDUQUXAoISfDZrEF+pr35sGMEw==
-X-Received: by 2002:a17:906:5a6c:b0:99d:dd43:d427 with SMTP id my44-20020a1709065a6c00b0099ddd43d427mr1956205ejc.10.1693999772491;
-        Wed, 06 Sep 2023 04:29:32 -0700 (PDT)
-Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id lt20-20020a170906fa9400b009a193a5acffsm8770546ejb.121.2023.09.06.04.29.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 04:29:32 -0700 (PDT)
-Message-ID: <745d70c2-dc6a-46b7-8a25-8aa5993b81ec@linaro.org>
-Date:   Wed, 6 Sep 2023 13:29:31 +0200
+        with ESMTP id S238572AbjIFLdB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:33:01 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6CD1734;
+        Wed,  6 Sep 2023 04:32:25 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28719C433C7;
+        Wed,  6 Sep 2023 11:32:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1693999921;
+        bh=gY6yuQsGYBUPwDr9MeYAHXj+FeYbykc4igmyd6IpcLY=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=HlNMzfMGP9osgqtfU0VLYL9Y6cPbRqTLxOwgxOME6sMezlh86l/MwdG79pKSRQFgp
+         FeJpkzel1s7QrQMcT4p2ca2PQLFgcWas7qD58hCS5McJWyLggd+d8hdnhWJD2bbDB1
+         oFkU198xfVT5XcLkXatYNkgf5DOkHxr+7mgPmprp6bkjCTgYi+F/FDFNssF03bc9Om
+         4Jh0DOiM+5wB01U58Uk0FnsfDlOKIIICCiyGU4EYfZ/Dphi4LbfEG9DapycXQJQpDy
+         cHcN5Aw+w0TPgwuHgQKZotdVVuyD+Qb5J1r6k8Ce2+wHEVQVp54s9Guoapq4gk9MXH
+         ZtutRz0CSNVOQ==
+Received: (nullmailer pid 1001423 invoked by uid 1000);
+        Wed, 06 Sep 2023 11:31:59 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] arm64: dts: qcom: sm8450-hdk: add UFS host controller
- supply
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+From:   Rob Herring <robh@kernel.org>
+To:     Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc:     Emil Bartczak <emilbart@gmail.com>, linux-rtc@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230906104744.163479-1-krzysztof.kozlowski@linaro.org>
- <20230906104744.163479-3-krzysztof.kozlowski@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230906104744.163479-3-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Josef Gajdusek <atx@atx.name>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org
+In-Reply-To: <20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com>
+References: <20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com>
+Message-Id: <169399991900.1001400.3348200070313324495.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: rtc: mcp795: convert to YAML
+Date:   Wed, 06 Sep 2023 06:31:59 -0500
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.09.2023 12:47, Krzysztof Kozlowski wrote:
-> According to schematics the L9B regulator supplies VCCQ (already in DTS)
-> and the UFS controller pads (VDD_PX10, missing vdd-hba).  Add the
-> missing supply for full hardware description, even though it should not
-> have functional impact.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
+On Wed, 06 Sep 2023 12:23:10 +0200, Javier Carrasco wrote:
+> Convert the MCP795 bindings from text to YAML format to support bindings
+> validation.
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> ---
+> YAML is the preferred format for dt-bindings, which allows validation.
+> ---
+>  .../devicetree/bindings/rtc/maxim,mcp795.txt       | 11 -------
+>  .../devicetree/bindings/rtc/maxim,mcp795.yaml      | 35 ++++++++++++++++++++++
+>  2 files changed, 35 insertions(+), 11 deletions(-)
+> 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dts:20.13-23: Warning (reg_format): /example-0/rtc@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
+Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
