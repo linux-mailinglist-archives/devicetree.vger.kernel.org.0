@@ -2,69 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43B30793C4D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59ED0793C6C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:14:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240506AbjIFMHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 08:07:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60240 "EHLO
+        id S231842AbjIFMOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 08:14:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240533AbjIFMHX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:07:23 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EC1171F
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 05:07:15 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bf3f59905so548043166b.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 05:07:15 -0700 (PDT)
+        with ESMTP id S229791AbjIFMOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:14:22 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48703E71
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 05:14:18 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdcade7fbso519056066b.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 05:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694002034; x=1694606834; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1694002457; x=1694607257; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NnXZK7G3N6W5WyThyMa0p5lEgdQRD6e4ANxXLv6S350=;
-        b=IZC1GBzsQrE+HSV+JUrln9qAAO98QU5Czj+G9lXn24EOfdIlJlJHWutxuU+627Hl+4
-         Nxi08Pj9fWmHicXSR5tnLNXTWwmS9XOeHtH5krGbC3NV+CaOoEED0MxXkKIesgia2iZb
-         fjGfqqIsWHODJg3STnPw3farCZdtEKgfBhFip1VdttUCECfBoSLqDH8fmp9BT4Z4GWum
-         ICv+DTAnPkRcfc96wRLTDRtIepw1HhSUmjw7pjC05Gvmvj7rU98RaPKEKuzAiVD4kblD
-         FBARpguWeXMYp8z7t3YxcfpTF2UmQQXdROP3WR/0qF3qv7eh5eEofk+Lq2mhHM7w9Lp1
-         gfhQ==
+        bh=I9Bg/dVDxo6+g7+rfRY3uAFK7nbPJavtKsvDCjgO83M=;
+        b=SWORc7IVDuFZ3ZAJTGAQxrFg4mRJ/KVbZEbqpVmBvHne+SJkBuEEnybAKLRsl254IY
+         U0OF2lquiYUpPrEbna05Px1KfsURKF5H5sF+WPd7jiCfNKqJ928R7UF72TtvDC9wWF7f
+         N6srf/GR1fe4GLMO6Jt1H9UvpBF2VsGNr9oBD9ArZUB7jHOol2Cs7zCyHWrojvulR1iy
+         FoNntshOix+cA0qKIWj5iBatAhUmemETiKqiv7JiXI7MdTlpUlVwz5hRTfDZRDabfUAW
+         iGIYGbeZ3JZ4K9j0s/Sn/TCzErZHUZHkON0//tDZWwCRwoZLIRDT8ICV3CEQ/xdMYKTg
+         qeuA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694002034; x=1694606834;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1694002457; x=1694607257;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NnXZK7G3N6W5WyThyMa0p5lEgdQRD6e4ANxXLv6S350=;
-        b=Y8RBjTkrWR+bA5PAnAU0ncZ6es38y9zTl6SXQiPruiH6MnIhqGlTgzRw79qduuv6l0
-         06VfWFuB+N0UL5NPAECIk8KcXYgr+dFwf1dT2Gf2mKjreO9V0xnl8pGfq0g0T52qFLzp
-         D8XuX1Ix/t5kCzciFrp+R4N4nGkPyf+Qo35FG8XX0FYq+Driyn95yRlZac6A5jmPvqKF
-         wf82QWot5bWEmea/4KcuAATNpij/i9BhqDPDc0r7XUVIZkQOqNmYdfJnmBxVlmI89fb/
-         jFLDC7H+On/ts0yQtFUERHHJr2Z/pPd7PATPq4uAvBbFc3brTsuyEi/Xlvo8dlzIX6Mi
-         n5Mg==
-X-Gm-Message-State: AOJu0YzKf/TFzgqBA8QCOTKA8dmkY4GZNb/rDPEU58Fw2BpdMnP8PxJ+
-        GNGzmWBYSt7Oswg2uIlG1QZP4w==
-X-Google-Smtp-Source: AGHT+IGSd1leuvgjczcvIx48FNz4/SbABwo7UMxwTpTGbOs6LFVMRd3aiGoOH+8+Z8QLWf53epKqsA==
-X-Received: by 2002:a17:907:7817:b0:9a6:1446:852c with SMTP id la23-20020a170907781700b009a61446852cmr1977457ejc.27.1694002034223;
-        Wed, 06 Sep 2023 05:07:14 -0700 (PDT)
+        bh=I9Bg/dVDxo6+g7+rfRY3uAFK7nbPJavtKsvDCjgO83M=;
+        b=XoZPWlNvJgW46GqwzfgiBUD8PSuyi2Rj/QksJn7EILCOeSpn3QJIOe8OTOq0HKRDrH
+         EUd2h9AJkCjYjrmy4WvYTkVTFu+lWCpuWELJEJcSPJjYzgbdh9OM2+QRAQl13NJRqrNv
+         Ppta79aFR5wZYnBnxJt9YmDgJw56v3mYbR6VbxIObK5+bGA5kn4KQvyeJOcDgun+XJv0
+         sjs/XHL3JbfbIkrfz0T23zeB6B64qZyTcNGbh5sEfQhwhuAsrEnwKXQp3xqFcsaszKio
+         B1hxpn230HrAkl/PiCIojpgoPpEhWfCgZrpGBsL3wdRzwTAHQgLsZBqC2qNN8kXWQeG8
+         YP5w==
+X-Gm-Message-State: AOJu0YwFthmG+yk9JbeMhXa718qmPWwEFDQgPRNY5qJ+tLQf5fSx9Kcf
+        f6GUMrVCo6EuiepJKsIJSBmPng==
+X-Google-Smtp-Source: AGHT+IH1I047qgp4y+1te3h85OCKarvoSoPFP7FaNdo0dTzZvZK0rxlW12L/JPkfB2o/sYR65Beq3A==
+X-Received: by 2002:a17:906:5dae:b0:9a1:c659:7c62 with SMTP id n14-20020a1709065dae00b009a1c6597c62mr2058303ejv.66.1694002456757;
+        Wed, 06 Sep 2023 05:14:16 -0700 (PDT)
 Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id c11-20020a170906924b00b009929ab17be0sm8919427ejx.162.2023.09.06.05.07.12
+        by smtp.gmail.com with ESMTPSA id rn5-20020a170906d92500b0099cc402d3ddsm8800515ejb.202.2023.09.06.05.14.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 05:07:13 -0700 (PDT)
-Message-ID: <2cfdcf96-a298-42c4-88b5-1652c472e01a@linaro.org>
-Date:   Wed, 6 Sep 2023 14:07:12 +0200
+        Wed, 06 Sep 2023 05:14:16 -0700 (PDT)
+Message-ID: <10520827-dc01-475c-b09a-35cefc9e0a62@linaro.org>
+Date:   Wed, 6 Sep 2023 14:14:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] arm64: dts: qcom: sm8550-qrd: use correct UFS supply
+Subject: Re: [PATCH 00/53] icc-rpmh multi-RSC voting groundwork
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Mike Tipton <quic_mdtipton@quicinc.com>,
+        Georgi Djakov <djakov@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230906104744.163479-1-krzysztof.kozlowski@linaro.org>
- <20230906104744.163479-2-krzysztof.kozlowski@linaro.org>
+        cros-qcom-dts-watchers@chromium.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
+ <c067a45f-9629-d516-9e56-36538e4ff6db@kernel.org>
+ <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -101,26 +105,79 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230906104744.163479-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.09.2023 12:47, Krzysztof Kozlowski wrote:
-> According to schematics the VCCQ2 supply is not connected and the L3G
-> regulator instead powers up the controller pads (VDD_PX10).  Use correct
-> supply vdd-hba and drop unsupported current limit for the vdd-hba.
+On 7.08.2023 23:57, Mike Tipton wrote:
+> On Thu, Aug 03, 2023 at 07:48:08PM +0300, Georgi Djakov wrote:
+>> Hi Konrad,
+>>
+>> On 11.07.23 15:17, Konrad Dybcio wrote:
+>>> Many parts of Qualcomm SoCs are entirely independent of each other and can
+>>> run when the other parts are off. The RPMh system architecture embraces
+>>> this by giving each (loosely defined) subsystem its own connection (as in,
+>>> physical wires) to the AOSS, terminated by per-subsystem RSCs (Resource
+>>> State Coordinators) that barter for power, bandwidth etc.
+>>>
+>>> This series introduces the groundwork necessary for voting for resources
+>>> through non-APPS RSCs. It should allow for lower-latency vote adjustments
+>>> (e.g. for very high bandwidth / multiple displays) and could potentially
+>>> allow for full APSS collapse while keeping e.g. MDSS operating (say
+>>> refreshing an image from a RAM buffer).
+>>
+>> This is good stuff. Thanks for working on it! Actually the path tagging,
+>> that have been introduced some time ago could be used for supporting the
+>> multiple RSCs. Today we can get the tags from DT, and tag the path with
+>> some DISP_RSC flag (for example) and avoid the qcom,bcm-voter-idx property.
+>>
+>> Mike has been also looking into this, so maybe he can share his thoughts.
+>>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Yeah, the current way we've been supporting multiple voters (e.g. RSCs)
+> doesn't scale. We currently duplicate the topology for any path that
+> requires a secondary, non-APSS voter. Which means we have duplicates
+> nodes and bindings for each hop in those paths, even though there's only
+> a single logical path.
+> 
+> For example, in qcom/sm8550.c, each node and BCM ending with _disp,
+> _ife_0, _ife_1, or _ife_2 is a duplicate. The only reason they exist is
+> to allow clients to target their votes to the non-APPS voters. And to
+> provide separate, voter-specific buckets of aggregation. But everything
+> else about them is 100% identical to their default APPS counterparts.
+> For sm8550, this amounts to roughly 643 extra lines of code.
+> 
+> Initially there was only the one secondary display voter, so the scaling
+> problem wasn't a huge issue. But sm8550 has four voters. And future SOCs
+> will have even more.
+> 
+> We should only define the logical topology once. The ratio of NOC ports
+> to interconnect nodes should be 1:1, rather than 1:N where N is the
+> number of voters that care about them.
+> 
+> The general idea is that we could use tags for this. So, instead of...
+> 
+>   path = icc_get(dev, MASTER_MDP_DISP, SLAVE_EBI1_DISP);
+> 
+> it would be...
+> 
+>   path = icc_get(dev, MASTER_MDP, SLAVE_EBI1);
+>   icc_set_tag(path, QCOM_ICC_TAG_VOTER_DISP);
+> 
+> I have an early prototype with basic testing already. I can hopefully
+> clean it up and post for review in the next couple of weeks.
+I was initially not very happy with this approach (overloading tags
+with additional information), but it grew on me over time.
+
+My only concern is that if we reserve say bits 16-31 for path tags
+(remember, dt-bindings are ABI), we may eventually run out of them.
 
 Konrad
