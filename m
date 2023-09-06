@@ -2,169 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF079793A89
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D93793A8F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:02:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236711AbjIFLBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 07:01:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37874 "EHLO
+        id S237026AbjIFLCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 07:02:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236772AbjIFLB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:01:28 -0400
-Received: from outboundhk.mxmail.xiaomi.com (outboundhk.mxmail.xiaomi.com [118.143.206.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6D9FAF9;
-        Wed,  6 Sep 2023 04:01:23 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.02,231,1688400000"; 
-   d="scan'208";a="64525730"
-Date:   Wed, 6 Sep 2023 19:01:06 +0800
-From:   Fang Xiang <fangxiang3@xiaomi.com>
-To:     Lorenzo Pieralisi <lpieralisi@kernel.org>
-CC:     Marc Zyngier <maz@kernel.org>, <linux-kernel@vger.kernel.org>,
-        "Robin Murphy" <robin.murphy@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, "Rob Herring" <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/2] irqchip/gic-v3: Enable non-coherent
- redistributors/ITSes probing
-Message-ID: <ZPhb8vw+/7mNd1gA@oa-fangxiang3.localdomain>
-References: <20230905104721.52199-1-lpieralisi@kernel.org>
- <20230905104721.52199-3-lpieralisi@kernel.org>
- <86msy0etul.wl-maz@kernel.org>
- <ZPc6M6Of/dGl4kIT@lpieralisi>
+        with ESMTP id S236772AbjIFLCC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:02:02 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5688A1BB;
+        Wed,  6 Sep 2023 04:01:48 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8E58610FC;
+        Wed,  6 Sep 2023 13:00:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1693998019;
+        bh=N42PrMhNFpBpVcotTxriEP2qoUFpOMZJHFS7+bFjaok=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=SbEUUI5pMyrnXwxJU2xkWGB3vQ9UYQV+etGxjYlcPOicAP8wxjjuhmJVpuAwShP0P
+         insCddr5SyORhex+i/cBhj/ab6frUvXj32AYwauuM7NJD9lkKwYaQOROz3ipbOVZkq
+         as2PDOk7YKPIXjBau6fIXyVdcaBAU4Ag979FcxfU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZPc6M6Of/dGl4kIT@lpieralisi>
-X-Originating-IP: [10.237.8.18]
-X-ClientProxiedBy: BJ-MBX13.mioffice.cn (10.237.8.133) To BJ-MBX15.mioffice.cn
- (10.237.8.135)
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_SOFTFAIL,SPF_PASS autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20230906093531.GO7971@pendragon.ideasonboard.com>
+References: <20230905233118.183140-1-paul.elder@ideasonboard.com> <20230905233118.183140-4-paul.elder@ideasonboard.com> <502fc7b1-a32d-6901-3a45-d2aa0e0c3849@linaro.org> <20230906083237.GL7971@pendragon.ideasonboard.com> <a3ed9856-a87b-5cf6-26b5-ff2b19234a8a@linaro.org> <20230906090058.GB17308@pendragon.ideasonboard.com> <59e07c6a-6f1b-0cc7-dddc-96d2a4050843@linaro.org> <20230906093531.GO7971@pendragon.ideasonboard.com>
+Subject: Re: [PATCH 3/3] arm64: dts: mediatek: mt8365-pumpkin: Add overlays for thp7312 cameras
+From:   Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Date:   Wed, 06 Sep 2023 12:01:43 +0100
+Message-ID: <169399810391.277971.691693692840899613@ping.linuxembedded.co.uk>
+User-Agent: alot/0.10
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 05, 2023 at 04:24:51PM +0200, Lorenzo Pieralisi wrote:
-> On Tue, Sep 05, 2023 at 12:34:58PM +0100, Marc Zyngier wrote:
-> > 
-> > I came up with the following alternative approach, which is as usual
-> > completely untested. It is entirely based on the quirk infrastructure,
-> > and doesn't touch the ACPI path at all.
-> > 
-> > Thanks,
-> > 
-> > 	M.
-> > 
-> > diff --git a/drivers/irqchip/irq-gic-common.h b/drivers/irqchip/irq-gic-common.h
-> > index 3db4592cda1c..00641e88aa38 100644
-> > --- a/drivers/irqchip/irq-gic-common.h
-> > +++ b/drivers/irqchip/irq-gic-common.h
-> > @@ -29,4 +29,8 @@ void gic_enable_quirks(u32 iidr, const struct gic_quirk *quirks,
-> >  void gic_enable_of_quirks(const struct device_node *np,
-> >  			  const struct gic_quirk *quirks, void *data);
-> >  
-> > +#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
-> > +#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
-> > +#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
-> > +
-> >  #endif /* _IRQ_GIC_COMMON_H */
-> > diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> > index e0c2b10d154d..6edf59af757b 100644
-> > --- a/drivers/irqchip/irq-gic-v3-its.c
-> > +++ b/drivers/irqchip/irq-gic-v3-its.c
-> > @@ -44,10 +44,6 @@
-> >  #define ITS_FLAGS_WORKAROUND_CAVIUM_23144	(1ULL << 2)
-> >  #define ITS_FLAGS_FORCE_NON_SHAREABLE		(1ULL << 3)
-> >  
-> > -#define RDIST_FLAGS_PROPBASE_NEEDS_FLUSHING	(1 << 0)
-> > -#define RDIST_FLAGS_RD_TABLES_PREALLOCATED	(1 << 1)
-> > -#define RDIST_FLAGS_FORCE_NON_SHAREABLE		(1 << 2)
-> > -
-> >  #define RD_LOCAL_LPI_ENABLED                    BIT(0)
-> >  #define RD_LOCAL_PENDTABLE_PREALLOCATED         BIT(1)
-> >  #define RD_LOCAL_MEMRESERVE_DONE                BIT(2)
-> > @@ -4754,6 +4750,14 @@ static bool __maybe_unused its_enable_rk3588001(void *data)
-> >  	return true;
-> >  }
-> >  
-> > +static bool its_set_non_coherent(void *data)
-> > +{
-> > +	struct its_node *its = data;
-> > +
-> > +	its->flags |= ITS_FLAGS_FORCE_NON_SHAREABLE;
-> > +	return true;
-> > +}
-> > +
-> >  static const struct gic_quirk its_quirks[] = {
-> >  #ifdef CONFIG_CAVIUM_ERRATUM_22375
-> >  	{
-> > @@ -4808,6 +4812,11 @@ static const struct gic_quirk its_quirks[] = {
-> >  		.init   = its_enable_rk3588001,
-> >  	},
-> >  #endif
-> > +	{
-> > +		.desc	= "ITS: non-coherent attribute",
-> > +		.property = "dma-noncoherent",
-> > +		.init	= its_set_non_coherent,
-> > +	},
-> 
-> For the records, that requires adding a gic_enable_of_quirks() call for the
-> ITS DT node that at the moment is not needed, something like this:
-> 
-> -- >8 --
-> diff --git a/drivers/irqchip/irq-gic-v3-its.c b/drivers/irqchip/irq-gic-v3-its.c
-> index 25a12b46ce35..3ae3cb9aadd9 100644
-> --- a/drivers/irqchip/irq-gic-v3-its.c
-> +++ b/drivers/irqchip/irq-gic-v3-its.c
-> @@ -4826,6 +4826,10 @@ static void its_enable_quirks(struct its_node *its)
->  	u32 iidr = readl_relaxed(its->base + GITS_IIDR);
->  
->  	gic_enable_quirks(iidr, its_quirks, its);
-> +
-> +	if (is_of_node(its->fwnode_handle))
-> +		gic_enable_of_quirks(to_of_node(its->fwnode_handle),
-> +				     its_quirks, its);
->  }
->  
->  static int its_save_disable(void)
-> 
-> >  	{
-> >  	}
-> >  };
-> > diff --git a/drivers/irqchip/irq-gic-v3.c b/drivers/irqchip/irq-gic-v3.c
-> > index eedfa8e9f077..7f518c0ae723 100644
-> > --- a/drivers/irqchip/irq-gic-v3.c
-> > +++ b/drivers/irqchip/irq-gic-v3.c
-> > @@ -1857,6 +1857,14 @@ static bool gic_enable_quirk_arm64_2941627(void *data)
-> >  	return true;
-> >  }
-> >  
-> > +static bool rd_set_non_coherent(void *data)
-> > +{
-> > +	struct gic_chip_data *d = data;
-> > +
-> > +	d->rdists.flags |= RDIST_FLAGS_FORCE_NON_SHAREABLE;
-> > +	return true;
-> > +}
-> > +
-> >  static const struct gic_quirk gic_quirks[] = {
-> >  	{
-> >  		.desc	= "GICv3: Qualcomm MSM8996 broken firmware",
-> > @@ -1923,6 +1931,11 @@ static const struct gic_quirk gic_quirks[] = {
-> >  		.mask	= 0xff0f0fff,
-> >  		.init	= gic_enable_quirk_arm64_2941627,
-> >  	},
-> > +	{
-> > +		.desc	= "GICv3: non-coherent attribute",
-> > +		.property = "dma-noncoherent",
-> > +		.init	= rd_set_non_coherent,
-> > +	},
-> >  	{
-> >  	}
-> >  };
+Quoting Laurent Pinchart (2023-09-06 10:35:31)
+> On Wed, Sep 06, 2023 at 11:21:31AM +0200, Krzysztof Kozlowski wrote:
+> > On 06/09/2023 11:00, Laurent Pinchart wrote:
+> > >>> has a regulator@0. There are similar instances for clocks.
+> > >>>
+> > >>> I understand why it may not be a good idea, and how the root node is
+> > >>> indeed not a bus. In some cases, those regulators and clocks are gr=
+ouped
+> > >>> in a regulators or clocks node that has a "simple-bus" compatible. =
+I'm
+> > >>> not sure if that's a good idea, but at least it should validate.
+> > >>>
+> > >>> What's the best practice for discrete board-level clocks and regula=
+tors
+> > >>> in overlays ? How do we ensure that their node name will not confli=
+ct
+> > >>> with the board to which the overlay is attached ?
+> > >>
+> > >> Top-level nodes (so under /) do not have unit addresses. If they hav=
+e -
+> > >> it's an error, because it is not a bus. Also, unit address requires =
+reg.
+> > >> No reg? No unit address. DTC reports this as warnings as well.
+> > >=20
+> > > I agree with all that, but what's the recommended practice to add
+> > > top-level clocks and regulators in overlays, in a way that avoids
+> > > namespace clashes with the base board ?
+> >=20
+> > Whether you use regulator@0 or regulator-0, you have the same chances of
+> > clash.
+>=20
+> No disagreement there. My question is whether there's a recommended
+> practice to avoid clashes, or if it's an unsolved problem that gets
+> ignored for now because there's only 36h in a day and there are more
+> urgent things to do.
 
-I have tested this patch above on my deivce and it works well. Looking forward the official release.
+Should an overlay add these items to a simple-bus specific to that
+overlay/device that is being supported?
+
+That would 'namespace' the added fixed-clocks/fixed-regulators etc...
+
+But maybe it's overengineering or mis-using the simple-bus.
+
+And the items are still not on a 'bus' with an address - they just exist
+on a presumably externally provided board....
+
+--
+Kieran
