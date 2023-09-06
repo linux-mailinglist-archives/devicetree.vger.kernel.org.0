@@ -2,300 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A92793700
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 10:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A16AC793709
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 10:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235018AbjIFIRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 04:17:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35548 "EHLO
+        id S232222AbjIFIUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 04:20:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229590AbjIFIRE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 04:17:04 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2057.outbound.protection.outlook.com [40.107.92.57])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32B5BE75;
-        Wed,  6 Sep 2023 01:16:50 -0700 (PDT)
+        with ESMTP id S231691AbjIFIUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 04:20:39 -0400
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2077.outbound.protection.outlook.com [40.107.15.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D75B7CE4;
+        Wed,  6 Sep 2023 01:20:33 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lPWcrFN6KPKJd55uOwyd56vXK2ycX6c5I01iUaB1tmtGjZFCIno2puYJ1zchnuV3QckJ/mKjEYiltVu0yVPv7hfNpwYoVU8Nh+vEZs2XfaIuQrtnkIJDYfbh+FjA9DneEKr6JlbNza9l9GUmKnd9zxYwF/+FoD3o5aNEl2DkM294SA2Ld837+VYWZY+diJCouMnhBVCh4qUezMw1/5y5YFBQGsI1/w0BS/+lHSPeNeUbg0OMKzbW29K1J8r93UlUu3Em2lMkQxG0Agrskhxqf9/fKIA5rNhH++lsTuOzQ80bNIGHeHCH+OL7pi+CxL1TFwPvsVTIgnTBeMCKztkX4A==
+ b=CwWPDsfYfCGFfI7b+MZ2rNI5ExHaYSifqEAryZmPOqKaqDVlVAOyQfIkjfAJ/bMURIk+UJC+nNlhXjvsWg08AT+veJ5VnsIBfI/l7Y6JAmDtGmLhtEwDFxSftE4rxFT5DS8XjXykBmjQxeNcBF+SFn+LzKKPu9lxHvIPEjaJ2catMP3AdU0sYNeSaoxoHSrSdvTLrS9SeRsBJIkN8KeR3FtK7QEbUi/iYHB/V+ZMy21in/vFx2snZk5v4gKg9d7VQbwobFsLS6HjgI1Y+paHPh+OxPF5uXNqQK6V1HpEso+ZZ4wincYTzSyxdPYa/smOS5HDaYJj/33bbJ91nrNG6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p+e+hJd2j+okOf1mfEo1+jD5r/GwNqpwzzPEGoGxtoY=;
- b=D+seWjbjL9+qvmWLUjeLuw19D8YAMunyq7H4CA6N/g3C9lnF50b12Qwa0200DV2JuI+bnYcahtsBGWNkSxLWN5bQLrpHnTE3Q3hlA//0bT9yqG1ShguisecrW5syzGWasA4U7OZj1bdY2oYEMR2olL+QzL9LjktAtjgsPr/tda2IeMi3ZtX1oFSTklnQMEsrWoZkbEMEDL2OmL0tpoiG1wljRwLW3PHVAcqAtInf+Ils7cJMi6WzEg8abRpBjVpBIYNFQq9UCv92Dt3GdsF/HqI65ucFC9XtCggThc4ScF9Kjeedn3ox6Qy7HIDg84znVrnQQSvbut8rnizf03oxDw==
+ bh=WW376MCurHW1qI39VCF/XEShUx/xRMVmmj6Ob2azx4c=;
+ b=bxPxNAg0aKAXyzAEUHWfPtU+m1Wj6/7tQtrmCeG90Kf7Ztgzni1zOV1Cllvp0y5GEfZgWUzvoJ/d6mnplTJ8gZq8m6z1qOL9CWU/nY6Ol+TocvtD6La8mZ/7LL3i7iPLaC9s+wiaVCofrgzOCdlXQ4OCp4fR39pmsZf1eHTD3xYeNa//xtZmgulZPvNVPM/V6LlM3bKEo+rlTMPJkjnaq7CXuzTaA+ZLpPvkZ7Tx6FWip1CYzA5Kvyf0kgGu90+VJun3YAotnjUt2+A36xK4QAAGciNaixmfYA0XpbizmNrkaS2/ZuFQiiTAiXyp79qtboPpij8sRkRUeLYtdpBAWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ smtp.mailfrom=theobroma-systems.com; dmarc=pass action=none
+ header.from=theobroma-systems.com; dkim=pass header.d=theobroma-systems.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=theobroma-systems.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p+e+hJd2j+okOf1mfEo1+jD5r/GwNqpwzzPEGoGxtoY=;
- b=ewtg2TjhrtiH4buvpj8H8lOQRP6fJe5xgEhjAFoCouEtmHxjsR3Si4xZWALfGhgCSjmCuOa8S64LJqIYH26q+JTCGlDCDyCOOarPrSJ6+l5IyPdbJCtQ34TpLe2+YlW0VVFWwXTdAH7VyRO3LIIwAGzvs/LIMQgPrR6wOqctQpU=
-Received: from SN7PR12MB7201.namprd12.prod.outlook.com (2603:10b6:806:2a8::22)
- by CH3PR12MB8401.namprd12.prod.outlook.com (2603:10b6:610:130::14) with
+ bh=WW376MCurHW1qI39VCF/XEShUx/xRMVmmj6Ob2azx4c=;
+ b=ajL+tTxvebTgepLcYbVuHdiVE2QdOTK6RuF0agVknPi8dvLgtVXSg+qODfrzRLMvRRffTyf04826iAXpMpmXU2azoUU/WR2ej81nQ6p/EQ/77vQOg5blc3WolJf1wbgMRYdL27E0h9I2QGXFkyodIPLLcnw5jH8viJfzybLXp5S8j+lqdrHfr0coJgA3Nk27O4B48tAszlMAesuApFeIyeSkX88MW4NRm/mj0WD0GlLDjUQC7Qm40s7nAbXH6GrSKhUKm41C/UtF6hIK/pvx8AuLjjvS3oMlRhgah0VDJD+vurGbCIzOVYaBRJn4gBJWRGg4lbYNTi7637/XR7BuVQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=theobroma-systems.com;
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com (2603:10a6:10:2d7::10)
+ by PAXPR04MB9376.eurprd04.prod.outlook.com (2603:10a6:102:2b2::15) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
- 2023 08:16:47 +0000
-Received: from SN7PR12MB7201.namprd12.prod.outlook.com
- ([fe80::2525:9c2a:5446:7605]) by SN7PR12MB7201.namprd12.prod.outlook.com
- ([fe80::2525:9c2a:5446:7605%6]) with mapi id 15.20.6745.030; Wed, 6 Sep 2023
- 08:16:46 +0000
-From:   "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>
-To:     "Havalige, Thippeswamy" <thippeswamy.havalige@amd.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
-CC:     "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "Simek, Michal" <michal.simek@amd.com>,
-        "Gogada, Bharat Kumar" <bharat.kumar.gogada@amd.com>
-Subject: RE: [PATCH v7 1/3] PCI: xilinx-cpm: Move interrupt bit definitions to
- common header
-Thread-Topic: [PATCH v7 1/3] PCI: xilinx-cpm: Move interrupt bit definitions
- to common header
-Thread-Index: AQHZ2yFqEgtNHLTSA0i/r1WrzFF1XbANfoyw
-Date:   Wed, 6 Sep 2023 08:16:46 +0000
-Message-ID: <SN7PR12MB7201AC85590CB85F6EE00CCA8BEFA@SN7PR12MB7201.namprd12.prod.outlook.com>
-References: <20230830090707.278136-1-thippeswamy.havalige@amd.com>
- <20230830090707.278136-2-thippeswamy.havalige@amd.com>
-In-Reply-To: <20230830090707.278136-2-thippeswamy.havalige@amd.com>
-Accept-Language: en-US
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.34; Wed, 6 Sep
+ 2023 08:20:29 +0000
+Received: from DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::5c00:6152:6ce:72b6]) by DU2PR04MB8536.eurprd04.prod.outlook.com
+ ([fe80::5c00:6152:6ce:72b6%6]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
+ 08:20:29 +0000
+Message-ID: <5166ca75-5454-8f64-4f61-fcc0f7a4c235@theobroma-systems.com>
+Date:   Wed, 6 Sep 2023 10:20:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: Add io domain
+ properties
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SN7PR12MB7201:EE_|CH3PR12MB8401:EE_
-x-ms-office365-filtering-correlation-id: becbe0f1-302c-4b32-0f46-08dbaeb19cc2
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2GUBTUH5uI+5NXSHf4UdE7+4B0AJ/dZ4hR6KplSfilrUY+RZaCCf4tw5eUIvQ6Vh0b68Lj88WoB8/DA4Y157w8Ka0P8HfGgxd0j1ySs7W95RjijzfHWsKlF8mnxt7TO90aVojUl+skPD31bQcfiphaDM/oJMIcWuT7EqHAKLxHlH2or6GQSMOYYTNWAMcrc0KtgMX7cqYMXDd4g7pg26jQO9jC8sNbBUU6bCHnlZHCKNlTdkdB3KzcrHa4qXlBczmu/1CRru5kCcvS5EN9ZRvV3Bqlg9Cu3gF4BTnsBjSmV2sDP2afs9AzMx9QMYgkUm9ncBaGq7bt0AmAXr25vz13FUK/4WR/z0H588PDiGeuFGURONoerzpXXpo1b2yvkW+0e+RUElLcgYfXZJz7omJsPxeXVheoAEq8OcXGK9W52wTEnUSrxZIow2G0i0EVSOFI0k3hzcwupu6e5BuV8QX951AWXgCs0u2kElqqEXl3tgPnUPY56nXl/1/caCL5NYlVxvImjnqUhMfDA7HHGJyzDK+XYcCX4nN88uFhmg9rGPu2iud8OCdrKPAmg6U6/GydLJL16LPXFEV60odDwfCt1T487nBOUmgrsn5NkY1avNTITKAzUtsO7FzemNpYYu
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN7PR12MB7201.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(136003)(376002)(396003)(39860400002)(366004)(1800799009)(451199024)(186009)(41300700001)(71200400001)(478600001)(122000001)(33656002)(86362001)(38100700002)(83380400001)(38070700005)(26005)(9686003)(6506007)(7696005)(53546011)(55016003)(76116006)(66446008)(2906002)(66476007)(64756008)(316002)(110136005)(54906003)(66556008)(66946007)(8936002)(5660300002)(4326008)(8676002)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?klKlozpPNuFDU2YBLfK69eGTETqXIy0VlnkaBOgjQ5wr4L2TqSEBh7bvcDMO?=
- =?us-ascii?Q?FAHPJty6hkmpHnHct4vvDXP1i7hrM1mc7YKSezmCBVJUq80Y0lDQxXVsl4Gy?=
- =?us-ascii?Q?kwE4o4fAyi3iL3d8qKGCtOhJDucrfWq72eiVwc+E5TOU1wjjopL+Xi0FCZhP?=
- =?us-ascii?Q?I/unZcRRILhqV8h9Tv1idNn0e8x0gwxHVXQYBJAt/VSGwVQk833VJ70rtv/e?=
- =?us-ascii?Q?W9frzBSevclcqTG8447uGuNyDIoV/+HHKIKkFyLYV61WgJmPPTi9050r4M7V?=
- =?us-ascii?Q?JiX6wv9I6DP8KTYrY7CY0hRi8dvzU3+UJRqWKMr1mftl8LBzbkTaNBgnU+ZS?=
- =?us-ascii?Q?msMET+fopZXGNpXfXVW43f9FTJsOuwjaK5dX48uQrEfONE3E0oC9b+dlI+4r?=
- =?us-ascii?Q?4dBrPkTCH48Dqosge2iFtJ8ClO77MfL9bws5Mvp1N1OU/ffJoimDo+eIlunc?=
- =?us-ascii?Q?ORk+dCRxGCrtpu5NxNJWHYYXaThI5jLGGISK5/GME657fzAtf6Hejnu26wek?=
- =?us-ascii?Q?poCbizmCC8ZQqmOY6eW75+biW1PHXglhOfDVrIIlIypGl6hZU4//QSkopGiX?=
- =?us-ascii?Q?GRQ9U0kWBAWTpXM47GE070K3ZXRlmUPp0wwwVsS5uALu/JFdccCCuAuP+ljl?=
- =?us-ascii?Q?ysGCGRkb4BOHm7yEPeMU6UoL/qKSkvc9CPMdhqBXBClzDRBrt5wE7ZevBYrF?=
- =?us-ascii?Q?Uz0bA4x/onu0t4dPQWBttFSHU36o/DvvILNzD1xAvKhobdWsrQAxxEb+Kjbc?=
- =?us-ascii?Q?nQ1/WhWEz8oJmRK1zoFPA0rT28cmB8XIffzRGVDJuj2cp2pIaHvceEnFRqvL?=
- =?us-ascii?Q?23p2Y0pg4vnVZ6uVpauC/1NfsLp/qQz80JV0L3gzNHGRPZGW/Un5tXlW2N4i?=
- =?us-ascii?Q?BbBEuGkm467qA1P2DNzfNm9H3VQ1kkEgQPjSXUahVJwR0uTaG9eGclHmiJ3R?=
- =?us-ascii?Q?LS9WOCA2L4ck9wHURbVBRJ2i+K+ce62yvx4aB+KNp6OdtCLCaXX2vrZYaED6?=
- =?us-ascii?Q?iKRwJYNSEmfxf0pJjrPgQfrHjzkiHe9Lc8B9zfL1LORIhjktvqERJX7w7NRI?=
- =?us-ascii?Q?D9wVoQKhCRyPTGRX7rQIVCEzHs7NSnwHrc+VwsBPQbKz0pKwzCJtHr4ZG0oh?=
- =?us-ascii?Q?N2stk7SBomAfx5J64MeeocQhtLLAlV22PMDQS/7EnH2nNUyeLHK6le84+iJq?=
- =?us-ascii?Q?3SmnO6JhM16TttJbTy2RwQXjGZylRfO6ruU7uIYtq8cL0F9/jaBquT4q9cSb?=
- =?us-ascii?Q?DrG8F9gIvx3iGciAeXIxjgCUQ/7ZRzbIROHCXac95HhwTzT1PnO48UBXlDMn?=
- =?us-ascii?Q?RD/r3oMz9mbX/cCPrRupEI8ooOu1s3Vhg9oWGk70XAekAo00X7m32R0pzMtf?=
- =?us-ascii?Q?9m2fa7BTl2FUfF7k79uQxwCLF8nIs6tl1DWSCDNl/+qgtWqThkeHFfBZzd47?=
- =?us-ascii?Q?YDgp37BlX1lbtEGkrG7SVJVx8X7KNlPlPF+DM5i8dDot3UCzWk/yFCy177Jq?=
- =?us-ascii?Q?HTCMPMjoHbmRsIWb8J4yJP3DOx5utPAKeqIWEhiR6gljdFTRHJuMgXKXNVbd?=
- =?us-ascii?Q?/zs6329UjDne0Cu4HSw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+ <20230904115816.1237684-3-s.hauer@pengutronix.de>
+ <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+From:   Quentin Schulz <quentin.schulz@theobroma-systems.com>
+In-Reply-To: <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0147.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:98::12) To DU2PR04MB8536.eurprd04.prod.outlook.com
+ (2603:10a6:10:2d7::10)
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8536:EE_|PAXPR04MB9376:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8facc75c-293d-4773-b037-08dbaeb2216e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9u2xZv/+HDFMNhnJBHvgJ6NSZ/ZX5lgkwzRpYWT0t8cn0KAE3VGfGXVEG804LxqbJYdHWf/7uPAu0cvqWCmEec8Gq67lwvqsMh9sXT5C7FeHs5/KTnHeUGMnGjxemYi6RrRwT8I+SlwDBUama26+mQZQ/boxSK3i6r/EZe9DsPoKi9YmXjfLMY1p8YA++5tjOqMReLgveVjAq/hmRbpf1uShvams81IL4eOiQzYnKC0k/PMnDP0ZPQ/cBRqdlAmiJBN5pZwGMDyTF3KG1YSwrfY1gqeZD50/A8JmEGlxbWLAOofNY4VY5D4tNIAerKX7P+ONh5atcqGtDtN3fkR0rVyU1+A5UbqMfE4vcdAQZurdMtnRfCFwRpOJHgbFDY5a5XErAHEfIn6ty6GvZ3s8q1qS95tTDWdfFt5mJekanQvLa0RC2he876jzC9m6G4k5mU8W5ZVqfEm3XGUa8NFiYXeht8DSS53ExJoKy0p79AS6tJNCnD+6HZKJVX7W6XRCIcGI1srvYh4WIKsVh/RDMD1isA0uc5FuxeqjKIFDTM1EVFNYU0X/Vy9Dyh4E0mH9i4N+lungEbAfqEki50IbszzShk4MI5N/TgwyXTOtD8qRMVcRCYsmiNmF9tk0Nf6m2M4v4IZKGyjQpzu8gNJkWg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8536.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(39850400004)(396003)(366004)(376002)(346002)(136003)(451199024)(186009)(1800799009)(6486002)(6506007)(6666004)(53546011)(6512007)(966005)(478600001)(83380400001)(2616005)(26005)(2906002)(7416002)(44832011)(54906003)(66476007)(66556008)(66946007)(316002)(41300700001)(110136005)(5660300002)(4326008)(8676002)(8936002)(36756003)(31696002)(86362001)(38100700002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVZHNi9vV21ZNDdrNHVJcE0vTjZOM0pWZnFyZW1RMWZNMmw3QWNjWU9wcENp?=
+ =?utf-8?B?WWNneGRtZnRFMm8vbERvZkdvSVBvRUFoS1lmcGIwdWNheVovN0dBZzVKRUE3?=
+ =?utf-8?B?ODVrditCdTE2aVR6TnQwK2RvU1JSZENHd25vTzZzZXlrWUNKWVhsNzl3Zml6?=
+ =?utf-8?B?RXBRWWVVb0QxTGtxQXRFcngxaEVnaElQdS9uNEtxUjAvdTh4dGwwVE9iUDU0?=
+ =?utf-8?B?aC92TFc2UHR5b21zQmIxcU5PQndpbkdhWmZhbFZORThoRThGWTV4WUJUNU9H?=
+ =?utf-8?B?ZUgySUE2Q2NrZVJRblNOdllLR25oQ29KTGNPWjJsNi8rU1FRZGRpbVZhVTVx?=
+ =?utf-8?B?bURDa3lFT0JBaXpCR3ZKeE9MdlFkYUtRSjhTQ0h6SnlLU1p6eFhwTE5VYTRJ?=
+ =?utf-8?B?N3NoZ0pULzcvaC9wMWNTSU9vLzFRaGVuc0ZsRTZ0djNpODhLVmROakdIY3Nq?=
+ =?utf-8?B?R29ZaTM0aDFpdDhKODRpczRtazMrSUlCaGxQWC9ZaERCSjBSdGR0b0RjMU9s?=
+ =?utf-8?B?WVJCbU9Qa0VMVklHa09jWVZQYndpN2poYm9RVWNvZ2NxeWlEWmVVVEhoVzEy?=
+ =?utf-8?B?SE9KaU81YnZaVGRBMno1aGxGOEw1WE5YY1RpOXhOdEY4RVErMVp4dFJNV1NK?=
+ =?utf-8?B?Uk9WY3ljYTFMVVBPZTZITHNUNHd6ZTZ1Vm9PUXp4VTU0akJwVVhqTXN6SmdT?=
+ =?utf-8?B?TWoxYnYzeXJETG94SFFad2JrWWtWRTJndmNQN0FVTmtSK0U0QmpuL1hFWCs1?=
+ =?utf-8?B?MEVpS0Izd1BPTTVDdVF5WGVwY3M3ZnhvaEpDWGdSc1ZkaTJmZXE2YW13SVZh?=
+ =?utf-8?B?RCs3clRjUUhuOFk3a0xpRjVOUnVGWnFqT2JyNE9wc1VKaU5qZWJ3MXkrRU85?=
+ =?utf-8?B?aXBnNzBCY2xQTlhXKzJsTFVGKzdYSmNOWVNEUlEybmF5cFU1bHYxckkyd2Nt?=
+ =?utf-8?B?WU8zbGhvTGJ0L04rcFRKQ21UZVpHL29HVTFYMk9zYnNHZnJ6OHdMN3pGeXlZ?=
+ =?utf-8?B?ZkFjSGVma0lNTWpuV2hyNnZJUlNGcVlOQlJ3NjJJK0NTdzJJUmZzTVNWdWFx?=
+ =?utf-8?B?K0FhTW9kZkhSWmh5VDBPU3o1TnkwZUFnYzNwMzFvL1R2RGtVMXZESUlNRWdn?=
+ =?utf-8?B?VXpzcit3cEtJcjdPbStWbW1qKzhWNS9taSt5U09VU2txcUJ1RDNUb0dhMEFI?=
+ =?utf-8?B?TUZCNHVyaktSdW9FWVd4MUM0b2NpWkJ4OHhnZXQ4MkxveTQ4TUNVMy8xaVBq?=
+ =?utf-8?B?QXRrbUxVWGNMSDh4NDFDMGgrcUFUeDJ0Z0FKdFhMY1M3aWhOYXJHNzZFMUc2?=
+ =?utf-8?B?VnJnUFJHaTN1VmNxL3BHRlh1a0FUVk5sS1JPOVNGZ0FMckpkWGpUV0ZibU5X?=
+ =?utf-8?B?c2JGb1B3T1ROS21uY2xxa2RFZHRsZFd3em1KTEQybEtGUHZyenRwbmpXeTkw?=
+ =?utf-8?B?QW1MeVIxbkZJZlhKNjdaS2hhN2lrakZUcVk4Mzd4L0ZuQk8zSjVFNWxoM1pE?=
+ =?utf-8?B?NVZ6dTR2a2g2WFUvSGw4cnE1QVhlZUhzRzl0ZEhRbXE0dUh1UzVqNDVKenpB?=
+ =?utf-8?B?ZEc1Z3BJTlp1dHM5UnhpYnZmK0R3dWZ5SXgydXp4Z1BXbFhZS21LZmIvNWIx?=
+ =?utf-8?B?RXFwQUJQUGZTakEyV3Y5SVZTNTVFa3dtYWtmbXp3RWpqN08zemV6N0FNYVlB?=
+ =?utf-8?B?NDVwajc2QjZBRUFySnB2Uy9KMituaE5pK0tDR01vVjRvQjl5dm5tS0t2aHIy?=
+ =?utf-8?B?SlhwaE9mUDVNay9tRFJ5b0R5Z01SK1RVcFhIaDBmQ3FSMTNqbGRabXNMRE9T?=
+ =?utf-8?B?dEs0aXVUamFLWjVzVm1uZUkyMFo1UXF6UmQvMEFBQ3o4cU5pRnNOQVc5UHJS?=
+ =?utf-8?B?T1YxNmNrL2J4d1NwSEE5R2xzdmpZblk5MEhSWmhaT01rZ2NveThwTmVNdnR6?=
+ =?utf-8?B?RFlDUngrYmNoS2RCblBUOCsybG42anJ0WkN3OUZ3U1RuWk1VM2RDekFXSVBs?=
+ =?utf-8?B?SzNDUXh3ZE9mOFV4RS9TQVorUUdjZk04cWdpYTRNQ0pPc0E2cVBRNkUyRjBZ?=
+ =?utf-8?B?cE5TR1lUeTRoTGV0MVpXdjRhdHBYbTNadHluL01xNkFmclcvOG5MRnZlaWxQ?=
+ =?utf-8?B?MldncTBuTXFFLzJ0ZitGSGdDMGxjSmN6anYwSGJqVHZTdFBYVHhjblBLcFhB?=
+ =?utf-8?Q?imzGnBPzpC41e/KOZjWlvmM=3D?=
+X-OriginatorOrg: theobroma-systems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8facc75c-293d-4773-b037-08dbaeb2216e
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8536.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB7201.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: becbe0f1-302c-4b32-0f46-08dbaeb19cc2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Sep 2023 08:16:46.5219
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 08:20:29.5624
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: MKzG+YjL5MyzJZNQ4siY4egp9l6o2W+iullKm2LS3LEBsntHax5D/nyTJk5UzNprO02j9uLsXvi4PCxhEYUBPg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8401
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rnMl7CCGrnLopdJA4d/mOrY83jLeTTGI5MlyIvGzOAesqd3lj6aZCgByxjI6EQ/G+obDZ0MvnwwfN/GWjY5UANdSBfjFWFEuenGGbL6ymPcibOICEjrSb8Ex8YdyGIkS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9376
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+Sascha, Robin,
 
-Please provide update on this patch.
+On 9/5/23 11:03, Robin Murphy wrote:
+> [You don't often get email from robin.murphy@arm.com. Learn why this is 
+> important at https://aka.ms/LearnAboutSenderIdentification ]
+> 
+> On 2023-09-04 12:58, Sascha Hauer wrote:
+>> Add rockchip,io-domains property to the Rockchip pinctrl driver. This
+>> list of phandles points to the IO domain device(s) the pins of the
+>> pinctrl driver are supplied from.
+>>
+>> Also a rockchip,io-domain-boot-on property is added to pin groups
+>> which can be used for pin groups which themselves are needed to access
+>> the regulators an IO domain is driven from.
+>>
+>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>> ---
+>>   .../bindings/pinctrl/rockchip,pinctrl.yaml          | 13 ++++++++++++-
+>>   1 file changed, 12 insertions(+), 1 deletion(-)
+>>
+>> diff --git 
+>> a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml 
+>> b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+>> index 10c335efe619e..92075419d29cf 100644
+>> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+>> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+>> @@ -62,6 +62,11 @@ properties:
+>>         Required for at least rk3188 and rk3288. On the rk3368 this 
+>> should
+>>         point to the PMUGRF syscon.
+>>
+>> +  rockchip,io-domains:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +    description:
+>> +      Phandles to io domains
+>> +
+>>     "#address-cells":
+>>       enum: [1, 2]
+>>
+>> @@ -137,7 +142,13 @@ additionalProperties:
+>>               - description:
+>>                   The phandle of a node contains the generic pinconfig 
+>> options
+>>                   to use as described in pinctrl-bindings.txt.
+>> -
+>> +      rockchip,io-domain-boot-on:
+> 
+> I don't think "on" is a particularly descriptive or useful property name
+> for something that has no "off" state. Furthermore it's no help at all
+> if the DT consumer *is* the bootloader that's expected to configure this
+> in the first place. IMO it would seem a lot more sensible to have an
+> integer (or enum) property which describes the actual value for the
+> initial I/O domain setting. Then Linux can choose to assume the presence
+> of the property at all implies that the bootloader should have set it up
+> already, but also has the option of actively enforcing it as well if we
+> want to.
+> 
 
-Regards,
-Thippeswamy H
+This is actually highly misleading. Whether the bootloader handles IO 
+domains for pinctrl or not absolutely doesn't matter to the kernel since 
+the kernel is required to handle IO domain for pinctrl as well. They're 
+not exclusive, they are not complementary.
 
-> -----Original Message-----
-> From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> Sent: Wednesday, August 30, 2023 2:37 PM
-> To: linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> bhelgaas@google.com; krzysztof.kozlowski+dt@linaro.org;
-> devicetree@vger.kernel.org; linux-pci@vger.kernel.org
-> Cc: lpieralisi@kernel.org; robh@kernel.org; conor+dt@kernel.org; Simek,
-> Michal <michal.simek@amd.com>; Gogada, Bharat Kumar
-> <bharat.kumar.gogada@amd.com>; Havalige, Thippeswamy
-> <thippeswamy.havalige@amd.com>
-> Subject: [PATCH v7 1/3] PCI: xilinx-cpm: Move interrupt bit definitions t=
-o
-> common header
->=20
-> Rename Xilinx interrupt bit definitions so they are not CPM-specific. Mov=
-e the
-> definitions to pcie-xilinx-common.h where they can be shared between pcie=
--
-> xilinx-cpm and the new xilinx-xdma driver.
->=20
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
-> ---
-> changes in v7:
-> - None
-> changes in v6:
-> -  subject line and commit message
-> changes in v5:
-> - None
-> changes in v4:
-> - None
-> changes in v3:
-> - changed licensing year to 2023
-> ---
->  drivers/pci/controller/pcie-xilinx-common.h | 30 +++++++++++++++++++++++
->  drivers/pci/controller/pcie-xilinx-cpm.c    | 38 ++++++-----------------=
-------
->  2 files changed, 37 insertions(+), 31 deletions(-)  create mode 100644
-> drivers/pci/controller/pcie-xilinx-common.h
->=20
-> diff --git a/drivers/pci/controller/pcie-xilinx-common.h
-> b/drivers/pci/controller/pcie-xilinx-common.h
-> new file mode 100644
-> index 0000000..e97d272
-> --- /dev/null
-> +++ b/drivers/pci/controller/pcie-xilinx-common.h
-> @@ -0,0 +1,30 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * (C) Copyright 2023, Xilinx, Inc.
-> + */
-> +
-> +#include <linux/pci.h>
-> +#include <linux/pci-ecam.h>
-> +#include <linux/platform_device.h>
-> +
-> +/* Interrupt registers definitions */
-> +#define XILINX_PCIE_INTR_LINK_DOWN		0
-> +#define XILINX_PCIE_INTR_HOT_RESET		3
-> +#define XILINX_PCIE_INTR_CFG_PCIE_TIMEOUT	4
-> +#define XILINX_PCIE_INTR_CFG_TIMEOUT		8
-> +#define XILINX_PCIE_INTR_CORRECTABLE		9
-> +#define XILINX_PCIE_INTR_NONFATAL		10
-> +#define XILINX_PCIE_INTR_FATAL			11
-> +#define XILINX_PCIE_INTR_CFG_ERR_POISON		12
-> +#define XILINX_PCIE_INTR_PME_TO_ACK_RCVD	15
-> +#define XILINX_PCIE_INTR_INTX			16
-> +#define XILINX_PCIE_INTR_PM_PME_RCVD		17
-> +#define XILINX_PCIE_INTR_SLV_UNSUPP		20
-> +#define XILINX_PCIE_INTR_SLV_UNEXP		21
-> +#define XILINX_PCIE_INTR_SLV_COMPL		22
-> +#define XILINX_PCIE_INTR_SLV_ERRP		23
-> +#define XILINX_PCIE_INTR_SLV_CMPABT		24
-> +#define XILINX_PCIE_INTR_SLV_ILLBUR		25
-> +#define XILINX_PCIE_INTR_MST_DECERR		26
-> +#define XILINX_PCIE_INTR_MST_SLVERR		27
-> +#define XILINX_PCIE_INTR_SLV_PCIE_TIMEOUT	28
-> diff --git a/drivers/pci/controller/pcie-xilinx-cpm.c
-> b/drivers/pci/controller/pcie-xilinx-cpm.c
-> index 4a787a9..a0f5e1d 100644
-> --- a/drivers/pci/controller/pcie-xilinx-cpm.c
-> +++ b/drivers/pci/controller/pcie-xilinx-cpm.c
-> @@ -16,11 +16,9 @@
->  #include <linux/of_address.h>
->  #include <linux/of_pci.h>
->  #include <linux/of_platform.h>
-> -#include <linux/pci.h>
-> -#include <linux/platform_device.h>
-> -#include <linux/pci-ecam.h>
->=20
->  #include "../pci.h"
-> +#include "pcie-xilinx-common.h"
->=20
->  /* Register definitions */
->  #define XILINX_CPM_PCIE_REG_IDR		0x00000E10
-> @@ -38,29 +36,7 @@
->  #define XILINX_CPM_PCIE_IR_ENABLE       0x000002A8
->  #define XILINX_CPM_PCIE_IR_LOCAL        BIT(0)
->=20
-> -/* Interrupt registers definitions */
-> -#define XILINX_CPM_PCIE_INTR_LINK_DOWN		0
-> -#define XILINX_CPM_PCIE_INTR_HOT_RESET		3
-> -#define XILINX_CPM_PCIE_INTR_CFG_PCIE_TIMEOUT	4
-> -#define XILINX_CPM_PCIE_INTR_CFG_TIMEOUT	8
-> -#define XILINX_CPM_PCIE_INTR_CORRECTABLE	9
-> -#define XILINX_CPM_PCIE_INTR_NONFATAL		10
-> -#define XILINX_CPM_PCIE_INTR_FATAL		11
-> -#define XILINX_CPM_PCIE_INTR_CFG_ERR_POISON	12
-> -#define XILINX_CPM_PCIE_INTR_PME_TO_ACK_RCVD	15
-> -#define XILINX_CPM_PCIE_INTR_INTX		16
-> -#define XILINX_CPM_PCIE_INTR_PM_PME_RCVD	17
-> -#define XILINX_CPM_PCIE_INTR_SLV_UNSUPP		20
-> -#define XILINX_CPM_PCIE_INTR_SLV_UNEXP		21
-> -#define XILINX_CPM_PCIE_INTR_SLV_COMPL		22
-> -#define XILINX_CPM_PCIE_INTR_SLV_ERRP		23
-> -#define XILINX_CPM_PCIE_INTR_SLV_CMPABT		24
-> -#define XILINX_CPM_PCIE_INTR_SLV_ILLBUR		25
-> -#define XILINX_CPM_PCIE_INTR_MST_DECERR		26
-> -#define XILINX_CPM_PCIE_INTR_MST_SLVERR		27
-> -#define XILINX_CPM_PCIE_INTR_SLV_PCIE_TIMEOUT	28
-> -
-> -#define IMR(x) BIT(XILINX_CPM_PCIE_INTR_ ##x)
-> +#define IMR(x) BIT(XILINX_PCIE_INTR_ ##x)
->=20
->  #define XILINX_CPM_PCIE_IMR_ALL_MASK			\
->  	(						\
-> @@ -323,7 +299,7 @@ static void xilinx_cpm_pcie_event_flow(struct
-> irq_desc *desc)  }
->=20
->  #define _IC(x, s)                              \
-> -	[XILINX_CPM_PCIE_INTR_ ## x] =3D { __stringify(x), s }
-> +	[XILINX_PCIE_INTR_ ## x] =3D { __stringify(x), s }
->=20
->  static const struct {
->  	const char      *sym;
-> @@ -359,9 +335,9 @@ static irqreturn_t xilinx_cpm_pcie_intr_handler(int i=
-rq,
-> void *dev_id)
->  	d =3D irq_domain_get_irq_data(port->cpm_domain, irq);
->=20
->  	switch (d->hwirq) {
-> -	case XILINX_CPM_PCIE_INTR_CORRECTABLE:
-> -	case XILINX_CPM_PCIE_INTR_NONFATAL:
-> -	case XILINX_CPM_PCIE_INTR_FATAL:
-> +	case XILINX_PCIE_INTR_CORRECTABLE:
-> +	case XILINX_PCIE_INTR_NONFATAL:
-> +	case XILINX_PCIE_INTR_FATAL:
->  		cpm_pcie_clear_err_interrupts(port);
->  		fallthrough;
->=20
-> @@ -466,7 +442,7 @@ static int xilinx_cpm_setup_irq(struct xilinx_cpm_pci=
-e
-> *port)
->  	}
->=20
->  	port->intx_irq =3D irq_create_mapping(port->cpm_domain,
-> -					    XILINX_CPM_PCIE_INTR_INTX);
-> +					    XILINX_PCIE_INTR_INTX);
->  	if (!port->intx_irq) {
->  		dev_err(dev, "Failed to map INTx interrupt\n");
->  		return -ENXIO;
-> --
-> 1.8.3.1
+The point is that the voltage of the IO domain **can** change at 
+runtime, at any point in time. We could theoretically have the 
+bootloader require the regulator to be running at 1.8V and then the 
+kernel at 3.3V, both should work (can't think of anything that would 
+work like that but why not, the kernel IO domain driver is supposed to 
+handle that within the kernel runtime even).
 
+The issue here is that we want to avoid a cyclic dependency, where the 
+pinctrl is needed for the IO domain regulator that we're trying to add 
+as a dependency of the same pinctrl. There needs to be either some smart 
+detection or a property to specify that the IO domain dependency needs 
+to be ignored. This seems unfortunately to be for working around how 
+Linux handles dependencies between devices and doesn't allow cyclic 
+dependencies. At the same time, I do not know if there's anyway to not 
+work around it?
+
+>> +        type: boolean
+>> +        description:
+>> +          If true assume that the io domain needed for this pin group 
+>> has been
+>> +          configured correctly by the bootloader. This is needed to 
+>> break cyclic
+>> +          dependencies introduced when a io domain needs a regulator 
+>> that can be
+>> +          accessed through pins configured here.
+> 
+> This is describing a Linux implementation detail, not the binding
+> itself. There's no technical reason a DT consumer couldn't already
+> figure this much out from the existing topology (by observing that the
+> pinctrl consumer is a grandparent of the I/O domain's supply).
+> 
+
+I am guessing you're suggesting to have some complex handling in the 
+driver to detect those cyclic dependencies and ignore the IO domain 
+dependency for the pinctrl pins where this happens?
+
+This can actually be quite difficult to detect reliably:
+We need to go through the phandle in pinctrl to the IO domain DT node, 
+then check all phandles there to other DT node (likely regulators), then 
+we need to look into the pinctrl-0 (actually, the one for "default" 
+maybe, but what about the other states of pinctrl?) phandles and then 
+parse the pinctrt DT nodes to see if they're pointing to the same DT 
+node as the one we're trying to use. Here, we also do not know if the 
+regulator DT node has other dependencies that needs to be accounted for.
+
+I haven't put too much thoughts into it so maybe it's easier/harder than 
+what I'm saying here (or maybe I'm completely off too...).
+
+One of the issues we're having here too is that we lose granularity. 
+There are multiple domains inside an IO domain device and here we make 
+the whole pinctrl device depend on all domains from one IO domain device 
+(there can be multiple ones) while it is factually (on the HW level) 
+only dependent on one domain. Considering (if I remember correctly) 
+Heiko highly suggested we think about adding child nodes to the IO 
+domain devices to have a DT node per domain in the IO domain device, how 
+would this work with the suggested DT binding?
+
+Cheers,
+Quentin
