@@ -2,155 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F3157941AD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 18:47:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 764A87941C7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 18:59:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238771AbjIFQr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 12:47:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48274 "EHLO
+        id S241869AbjIFQ6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 12:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236925AbjIFQr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 12:47:59 -0400
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837A91738;
-        Wed,  6 Sep 2023 09:47:55 -0700 (PDT)
-Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-565e395e7a6so69818a12.0;
-        Wed, 06 Sep 2023 09:47:55 -0700 (PDT)
+        with ESMTP id S241755AbjIFQ6x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 12:58:53 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D08D199B
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 09:58:48 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a40cf952dso5531391a12.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 09:58:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694018875; x=1694623675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1694019527; x=1694624327; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YVuYrvdAZmiakwnUrTCNPT76uwDHc4nkNKfw/tN0vVQ=;
-        b=INvoQ3TCO89d3d8+DLamiuspLRMZ7VMMzh7S+N1tdhN1PYmCtoGXH5D2CTt4x2xEK7
-         0vaoAwbOJBOp8O4Hg9DjWo68HOthHnn+Lg+4MJD5UcgohH8N1L7tjFrNa5BfGizPHDIW
-         CE68oTQPOpfRuOSHtB4kcSYqvHbyV53GXwYgJUY7faJQSbmQvno3oiPzuDJzWpnCbz5p
-         eQ40bWXyzx0BAr2jaIJ4iwe6TI0BWJ+JoMOVo/eypXO7JIJEbSnfv2N823v3DBYdr2Pw
-         2xxYy/UcyH0tuKT7hvZ04ZK9jXsocQ16J8paYxZV83Y0vblYJbYUbDyalAb+SldNF5Tv
-         a3hA==
+        bh=+YZuuq224HVhWlxgKlSWCn+foZqdm/dLAWCsSmU0DN0=;
+        b=F8AYBQRi5Dl+ycOI9VCcGHKmv1gbYi9lAfiGrORTR6rtP2pshYE7ee4vdNRz8R7Z7L
+         lWEKoAyegnwJlqeN5OnMaSnoiLAnS9QfT2vUDO/tO53UxCNCntiZxgdaURGYjb8xYApa
+         az1l8bXHwJSwCM9w9WbVvUfkRSJoKzLxQ2zEj5LEIZsvmdF3c3cGMPOFCeR0YnwHN2Po
+         pOV34dmhtv2yCa4PSw3n4mnG530tVHKTYUom+0V/sJHWiZuttE54wTuP79xq3IoYZoIu
+         95WWMAUEe6pe9ea7caKraLkrL0kmlemqwagT21Dci2wTzuGLnUWYvFk4jApTSlbHC7Uo
+         55yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694018875; x=1694623675;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1694019527; x=1694624327;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YVuYrvdAZmiakwnUrTCNPT76uwDHc4nkNKfw/tN0vVQ=;
-        b=LuE7c+C7G9/lHymzdmyi/LoaFddWyqm1IdOYp7I4IDJKA0Jn3kknSLWw1wEP2QeS3N
-         AapMszeyncBo4NCX02WLH7S/hkCwqKc+WRG4BtUP3De47xC3Ky7GAFHaS59OfV3Zy22L
-         dyjAE97ovk7RXEx+UJMgZ39WZPA+qLxJBiHwoZduE04+zZx+tMMhbSvthEY5ZPB4hS/Q
-         VISXKd2vWYPjZoqL+BefVA42I3PLlv1aAR4CHNcHHL9j4DItnYJChivGeBB7oqxuJqiF
-         Zqf4G5X0bagntC2cVeJW+tijt3iAdelAllQfS9J6hUCd8cZqkzQ76M9kgo/m9cVxBlgA
-         tpLg==
-X-Gm-Message-State: AOJu0Yw4Rn00bq8hxrz1FGwZXuEC3yv2+j0FU1TwQdtL5ZnCypBXF67W
-        u+dpZ2eJYT3KIfA64W2HN0I=
-X-Google-Smtp-Source: AGHT+IGwiyMi44H17BEmu2LD+jihfhYG50dvi+Awsyh+gYS13Uz0l7Gp0RELkeYJpELupfsdcC2ZUw==
-X-Received: by 2002:a05:6a21:a105:b0:14d:29f6:18c3 with SMTP id aq5-20020a056a21a10500b0014d29f618c3mr12270887pzc.20.1694018874768;
-        Wed, 06 Sep 2023 09:47:54 -0700 (PDT)
-Received: from [172.16.116.58] ([103.15.228.93])
-        by smtp.gmail.com with ESMTPSA id h3-20020a63b003000000b0056c466b09a4sm11455647pgf.59.2023.09.06.09.47.52
+        bh=+YZuuq224HVhWlxgKlSWCn+foZqdm/dLAWCsSmU0DN0=;
+        b=i+4A9xI2llUmRtpoqJuwsFt3pIWc0vUqFh2R4jI+TABYnVWLbdR+TXVtZ0GX9wSbUL
+         iBcBbo5AGTOKm9WNMNHwKD3t5VfYERHncz3zHnyf2vArj8YQ1kXUgxezCO7brJCcErey
+         mgWFPuE/b24JaWP9DBEaP7HtU7dMSLk00f9y0N1ihIeXBlawSI+PLSnuLCkOVnEEyi/J
+         nTP790l+iDxPff78wwt+juBJLcQoNdQVhRdtdOJ4OPUfgK0nPWehXgnGtf5o6nGWBLG5
+         rwvG1aK8faJoDu/rVRCl8+iJYUY+qC+II0vOpmRoiDDhMyeXGoDOBFEbqnL3qLCoPDrS
+         fdeQ==
+X-Gm-Message-State: AOJu0Yx7PxO8jgYExhTUoAl4CwI/I1595qIoJV7NhA3BZ/NxYof2vkM/
+        D2QNE3DJFGkOJQE0JJ8LRBo6ug==
+X-Google-Smtp-Source: AGHT+IErMKReDgCn8zpILAzX10QNjbEeDts6tXmpyzlyQCIwbVZWS2IwN4jXXGR9FdXh9Q814c7JNQ==
+X-Received: by 2002:a50:ef17:0:b0:522:1e24:afb6 with SMTP id m23-20020a50ef17000000b005221e24afb6mr3027095eds.0.1694019526822;
+        Wed, 06 Sep 2023 09:58:46 -0700 (PDT)
+Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
+        by smtp.gmail.com with ESMTPSA id i14-20020aa7dd0e000000b0052bcdbe263esm8727242edv.36.2023.09.06.09.58.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 09:47:54 -0700 (PDT)
-Message-ID: <8c4717f1-36f3-96dc-2335-ec323e3f46df@gmail.com>
-Date:   Wed, 6 Sep 2023 22:17:49 +0530
+        Wed, 06 Sep 2023 09:58:46 -0700 (PDT)
+Message-ID: <f19fa545-0ccb-4670-af77-7c034b1016ef@linaro.org>
+Date:   Wed, 6 Sep 2023 18:58:43 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4 1/3] dt-bindings: Add beaglecc1352
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 13/13] arm64: dts: qcom: sa8540-ride: Enable first
+ port of tertiary usb controller
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>, greybus-dev@lists.linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        gregkh@linuxfoundation.org,
-        Vaishnav M A <vaishnav@beagleboard.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Nishanth Menon <nm@ti.com>
-References: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
- <20230902182845.1840620-2-ayushdevel1325@gmail.com>
- <937ea540-09e1-65f2-7165-662bbee2542b@kernel.org>
-From:   Ayush Singh <ayushdevel1325@gmail.com>
-In-Reply-To: <937ea540-09e1-65f2-7165-662bbee2542b@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Johan Hovold <johan@kernel.org>,
+        Mathias Nyman <mathias.nyman@intel.com>
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com, ahalaney@redhat.com,
+        quic_shazhuss@quicinc.com
+References: <20230828133033.11988-1-quic_kriskura@quicinc.com>
+ <20230828133033.11988-14-quic_kriskura@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20230828133033.11988-14-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/4/23 12:44, Krzysztof Kozlowski wrote:
-> On 02/09/2023 20:28, Ayush Singh wrote:
->> Add DT bindings for BeagleCC1352 co-processor UART.
-> This does not look like UART controller.
->
->
->> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
->> ---
->>   .../bindings/serial/beaglecc1352.yaml         | 25 +++++++++++++++++++
-> It's not a serial driver. Don't put it in unrelated directory.
->
->> @@ -0,0 +1,25 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/serial/beaglecc1352.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: BeaglePlay CC1352 serial UART
-> How is this serial UART? Of what? The SoC? Do not describe interface but
-> the device.
->
->> +
->> +maintainers:
->> +  - Ayush Singh <ayushdevel1325@gmail.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: beagle,cc1352
-> No resources? This does not seem useful... Put it then only in trivial
-> devices if your hardware - hardware, not driver - does not have any
-> pins, interrupts or other resources.
->
->> +
->> +required:
->> +  - compatible
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    beaglecc1352 {
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
->
-> Best regards,
-> Krzysztof
+On 28.08.2023 15:30, Krishna Kurapati wrote:
+> From: Andrew Halaney <ahalaney@redhat.com>
+> 
+> There is now support for the multiport USB controller this uses so
+> enable it.
+> 
+> The board only has a single port hooked up (despite it being wired up to
+> the multiport IP on the SoC). There's also a USB 2.0 mux hooked up,
+> which by default on boot is selected to mux properly. Grab the gpio
+> controlling that and ensure it stays in the right position so USB 2.0
+> continues to be routed from the external port to the SoC.
+> 
+> Co-developed-by: Andrew Halaney <ahalaney@redhat.com>
+> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> [Krishna: Rebased on top of usb-next]
+> Co-developed-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+Is there any benefit to removing the other ports?
 
-I would like to get some help on how to tackle this particular device 
-since I cannot seem to find anything similar to this setup. First let me 
-go over the setup.
+i.e. are ports 1-3 not parked properly by the dwc3 driver if
+they're never connected to anything?
 
-The BeaglePlay board has 2 processors. AM625 processor which is the main 
-processor. This runs the main Linux system. This processor does not have 
-direct access to SubG.
-
-It also contains a CC1352P7 MCU with it's own flash program memory, ROM 
-and SRAM. This processor has SubG antenna. It runs it's own OS (Zephyr 
-by default).
-
-The only way for CC1352P7 and AM625 to communicate is by using that 
-particular UART which is just a standard 8250 UART. The setup pretty 
-much looks like 2 boards connected over UART except the UART will always 
-be static.
-
-I guess it would make most sense to write a CC1352P7 binding in this 
-case? However, I am not sure how accurate that is since anything from 
-the Linux side will be interacting with the Zephyr application, and not 
-the processor. So in all actuality, the processor itself does not matter 
-at all.
-
-
-Ayush Singh
-
+Konrad
