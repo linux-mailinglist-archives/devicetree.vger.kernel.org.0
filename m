@@ -2,126 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6BEF793534
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 08:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BEC4793542
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 08:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240009AbjIFGUb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 02:20:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49642 "EHLO
+        id S229614AbjIFG06 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Sep 2023 02:26:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234236AbjIFGUa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 02:20:30 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 200ED197
-        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 23:20:25 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-522bd411679so4682545a12.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Sep 2023 23:20:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693981223; x=1694586023; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=adh+U84otDp6D2XjrT9VmlnQv1geqMIUW73SkaICVTU=;
-        b=RHiU0c/T8651V3YbqBCkdFm4/VeEvValgC1+E/2wCWMocevxzZsyQGUUcOaaGwSDZK
-         ev8ExlKb7GNBqCQF8S9JgGoDVLWCLSMfyCGJhAbpcxUhhc6iW4YuLhzCQ45xmI7/wFzn
-         IFEurR96XuXJsW3agD+O+rQga7qSP3UDLBSMlNFbMTOfv/J/fZdB4xdvVNh1LKdqTe2I
-         DxyUlFrlYiotTxQt+6iv1VkaryeM+HHdioYHimeHZH9NChqifjngcGNS0h7sYJfK9a+W
-         bjCWJyS/BHW7bqqCg06D5By+wzw5ztbimVrFhGZeWtS6esL8fMH9cWNgtgwCWlzxr+0Y
-         6BRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693981223; x=1694586023;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=adh+U84otDp6D2XjrT9VmlnQv1geqMIUW73SkaICVTU=;
-        b=dGr+shxS6P9SroFljX+cuAmHhaJZ8RwVGSg8ur3NEqn4k4wACVBH7kjvmLqdaUL5mE
-         YKo/d30NaQtIc90GmhgbnrBDxp7cUry+x5V5IZlsXYnMCWdrPtchHYrVpbKRRuq2vykY
-         31pdb88vP7eQCq4spXorZINGDiBBnu9XQE6ZgejvpxWuQyYaAB1OZqSdkD/dELE5E2I6
-         gh7yC5YRdKVS3RP7F8QakGVi31TFf7jJvSVJQCRyQW9mE/4Gxva9/46ftkkiILSejRO2
-         zBqQL/hsg77j4FNYM9atYBVY2NxFD7eGaJMwPFC/w6rWH8q0mK9EoGbaBQdVnc30WeMB
-         5T2A==
-X-Gm-Message-State: AOJu0Yw+ZbGBhFWITZpbBfjlASLoPh34M6gwTudlvsr9Qhwp4zpE4eai
-        Ulk6JzDl8C443X9eSiDui+07Xg==
-X-Google-Smtp-Source: AGHT+IG4ETI87Rghtciw0SPzGjlGgvKSQBl+bWvP8rr+LeMJJnzkKCMyApg0Q/K4wLu/0o/HhY43kg==
-X-Received: by 2002:a17:906:8a4c:b0:9a5:d657:47ec with SMTP id gx12-20020a1709068a4c00b009a5d65747ecmr1332932ejc.64.1693981222918;
-        Tue, 05 Sep 2023 23:20:22 -0700 (PDT)
-Received: from [192.168.69.115] (cou50-h01-176-172-51-223.dsl.sta.abo.bbox.fr. [176.172.51.223])
-        by smtp.gmail.com with ESMTPSA id i7-20020a170906850700b00993664a9987sm8503328ejx.103.2023.09.05.23.20.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Sep 2023 23:20:22 -0700 (PDT)
-Message-ID: <dc5d4145-770f-3318-b026-5ce29483d384@linaro.org>
-Date:   Wed, 6 Sep 2023 08:20:19 +0200
+        with ESMTP id S233881AbjIFG05 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 02:26:57 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8AB197
+        for <devicetree@vger.kernel.org>; Tue,  5 Sep 2023 23:26:53 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1qdlzh-0003BQ-Jy; Wed, 06 Sep 2023 08:26:29 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1qdlzf-004MiR-BI; Wed, 06 Sep 2023 08:26:27 +0200
+Received: from pza by lupine with local (Exim 4.96)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1qdlze-0003WN-36;
+        Wed, 06 Sep 2023 08:26:26 +0200
+Message-ID: <a0894d3dece496f6d2d8bf4e5379794369d48a9e.camel@pengutronix.de>
+Subject: Re: [RFC PATCH 0/3] Introduce reset driver for T-HEAD th1520 SoC
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Kwanghoon Son <k.son@samsung.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jszhang@kernel.org, guoren@kernel.org, wefu@redhat.com,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, inki.dae@samsung.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Date:   Wed, 06 Sep 2023 08:26:26 +0200
+In-Reply-To: <20230904042559.2322997-1-k.son@samsung.com>
+References: <CGME20230904042603epcas1p40f732a0ac7871371126d229945cc0849@epcas1p4.samsung.com>
+         <20230904042559.2322997-1-k.son@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.15.0
-Subject: Re: [PATCH v4 3/3] remoteproc: zynqmp: get TCM from device-tree
-Content-Language: en-US
-To:     Tanmay Shah <tanmay.shah@amd.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michal Simek <michal.simek@amd.com>
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>,
-        Ben Levinsky <ben.levinsky@amd.com>
-References: <20230829181900.2561194-1-tanmay.shah@amd.com>
- <20230829181900.2561194-4-tanmay.shah@amd.com>
- <f6943509-25c5-b4fe-2218-638cc06a4e04@linaro.org>
- <a88a0240-30a2-4c99-baeb-091b44e4c2b7@amd.com>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <a88a0240-30a2-4c99-baeb-091b44e4c2b7@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5/9/23 23:48, Tanmay Shah wrote:
-> 
-> On 9/4/23 2:50 AM, Philippe Mathieu-Daudé wrote:
->> Hi,
->>
->> On 29/8/23 20:19, Tanmay Shah wrote:
->>> Use new dt bindings to get TCM address and size
->>> information. Also make sure that driver stays
->>> compatible with previous device-tree bindings.
->>> So, if TCM information isn't available in device-tree
->>> for zynqmp platform, hard-coded address of TCM will
->>> be used.
->>>
->>> New platforms that are compatible with this
->>> driver must add TCM support in device-tree as per new
->>> bindings.
->>>
->>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
->>> ---
->>>    drivers/remoteproc/xlnx_r5_remoteproc.c | 279 +++++++++++++++++++-----
->>>    1 file changed, 221 insertions(+), 58 deletions(-)
->>
->>
->>>    /**
->>> @@ -75,11 +79,17 @@ struct mbox_info {
->>>     * Hardcoded TCM bank values. This will be removed once TCM bindings are
->>>     * accepted for system-dt specifications and upstreamed in linux kernel
->>
->> Just curious, for how long this fall back code has to be maintained?
->> (When/how will we know we can remove it?)
-> 
-> 
-> I believe we should never remove it. It's important that driver works with old bindings as well.
+Hi,
 
-Do you mind posting a followup patch updating the comment,
-to clarify?
+On Mo, 2023-09-04 at 04:25 +0000, Kwanghoon Son wrote:
+> This patchset adds initial support for reset driver.
 
-Thanks,
+what is meant by "initial support"? Are there just more resets than the
+two watchdog resets, or is there other functionality that might require
+describing in the device tree? Is the dt-binding document complete?
+Is this the only reset controller on TH1520? In the thead-kernel.git it
+looks like there are at least two different ones.
 
-Phil.
+regards
+Philipp
