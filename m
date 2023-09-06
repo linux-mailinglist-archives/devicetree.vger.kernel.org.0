@@ -2,55 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8EE57937C2
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 11:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F1F7937F5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 11:21:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235769AbjIFJJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 05:09:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45630 "EHLO
+        id S236434AbjIFJVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 05:21:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236219AbjIFJJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 05:09:49 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 75610E4D;
-        Wed,  6 Sep 2023 02:09:43 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B16411063;
-        Wed,  6 Sep 2023 02:10:20 -0700 (PDT)
-Received: from [10.57.92.132] (unknown [10.57.92.132])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC51B3F7C5;
-        Wed,  6 Sep 2023 02:09:39 -0700 (PDT)
-Message-ID: <ec5a3945-14b8-c768-3c30-ba422233b28e@arm.com>
-Date:   Wed, 6 Sep 2023 10:09:38 +0100
+        with ESMTP id S236411AbjIFJVj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 05:21:39 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFEC8E4D
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 02:21:34 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977e0fbd742so491594666b.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 02:21:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1693992093; x=1694596893; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mosQA1Z8AMW4TgZ1FXhqGU5ILwvCqddYrUv5k/pOamA=;
+        b=IOd6v58ZPrtHsqjUprMVsvMiR5zJ17qkyC1G8K7JLTNvofbDVSxRheg9aSD/SgyrOe
+         SzbAD65CMsOo+8DT1K5OhZPV2IIkLJQdQZGJyod/zjMROB788+xK7F41XEKIDgicB25o
+         rr2eswa1qkkMNt91uA3KUgWl9PeZwZ1g4a9ihmgJxAZ2L8om34paZibyAdVJc+4euIm9
+         NiFIFde3OSEIU7U8weqUajOF6/ChoFB/BARSvng16Dkoasf+E8xiJt6etTbQnKoeuH6V
+         PR9u3f/JxFMgKriNkO2BXt0cnzwwnZGopw0GggvZPcVG3taXQHc1tSWlAki0NdtuPVDw
+         /arQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693992093; x=1694596893;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mosQA1Z8AMW4TgZ1FXhqGU5ILwvCqddYrUv5k/pOamA=;
+        b=egzFa4/i9XLtRqfkIlhCh7d1a+bp29HnYLuAXx1ERb1Y66w/nrgqE2X2a0Phf1nKrE
+         84ZL6YZLc3FLMUzZcrgdDcWQrQUNq17qyXhp3pxhPvGkCYQD9JAyDaDfKF7IGqXlgcxS
+         apVQ/LiZTjM5Z6/zTPDr78axeyTNasj1w24Tgk8xumumzQfncmQJB0jplZuyOYVeuqSh
+         KIYBcK+MGZ0yZXbLV/sO2uZuRgfMP79NLZnQ/OYDiy7xHjWZuFVNZsGpYFM6PzX7EPBd
+         U9ajRDtQgy/M5XBQdykYeukMcJM1Okwzwaa6VaA9R6orDAsWuXxxCkDGppI9MLxU1MOY
+         FMgA==
+X-Gm-Message-State: AOJu0Yy4v3PDqyzNmVBYogyhZNtHwSCmhnuYrRcijzbnOOnY6Htmlz88
+        f/DYco+D8UdMowGevV+unP5tNQ==
+X-Google-Smtp-Source: AGHT+IEqN8yumUMQ6iPTk72w0/+TSYnLcyYvOBAXXX38lgfTKbtqWsQSEHcxbrabVrpvOooKpQNTig==
+X-Received: by 2002:a17:906:846a:b0:99c:fb44:d4a9 with SMTP id hx10-20020a170906846a00b0099cfb44d4a9mr1493075ejc.77.1693992093387;
+        Wed, 06 Sep 2023 02:21:33 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id z7-20020a1709060ac700b0098d2d219649sm8882459ejf.174.2023.09.06.02.21.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Sep 2023 02:21:32 -0700 (PDT)
+Message-ID: <59e07c6a-6f1b-0cc7-dddc-96d2a4050843@linaro.org>
+Date:   Wed, 6 Sep 2023 11:21:31 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.15.0
-Subject: Re: [PATCH v8 11/13] coresight-tpdm: Add nodes for timestamp request
-To:     Tao Zhang <quic_taozha@quicinc.com>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 3/3] arm64: dts: mediatek: mt8365-pumpkin: Add overlays
+ for thp7312 cameras
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-References: <1692681973-20764-1-git-send-email-quic_taozha@quicinc.com>
- <1692681973-20764-12-git-send-email-quic_taozha@quicinc.com>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <1692681973-20764-12-git-send-email-quic_taozha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230905233118.183140-1-paul.elder@ideasonboard.com>
+ <20230905233118.183140-4-paul.elder@ideasonboard.com>
+ <502fc7b1-a32d-6901-3a45-d2aa0e0c3849@linaro.org>
+ <20230906083237.GL7971@pendragon.ideasonboard.com>
+ <a3ed9856-a87b-5cf6-26b5-ff2b19234a8a@linaro.org>
+ <20230906090058.GB17308@pendragon.ideasonboard.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230906090058.GB17308@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,399 +88,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2023 06:26, Tao Zhang wrote:
-> Add nodes to configure the timestamp request based on input
-> pattern match. Each TPDM that support DSB subunit has maximum of
-> n(n<7) TPR registers to configure value for timestamp request
-> based on input pattern match. Eight 32 bit registers providing
-> DSB interface timestamp request  pattern match comparison. And
-> each TPDM that support DSB subunit has maximum of m(m<7) TPMR
-> registers to configure pattern mask for timestamp request. Eight
-> 32 bit registers providing DSB interface timestamp request
-> pattern match mask generation. Add nodes to enable/disable
-> pattern timestamp and set pattern timestamp type.
+On 06/09/2023 11:00, Laurent Pinchart wrote:
+>>> has a regulator@0. There are similar instances for clocks.
+>>>
+>>> I understand why it may not be a good idea, and how the root node is
+>>> indeed not a bus. In some cases, those regulators and clocks are grouped
+>>> in a regulators or clocks node that has a "simple-bus" compatible. I'm
+>>> not sure if that's a good idea, but at least it should validate.
+>>>
+>>> What's the best practice for discrete board-level clocks and regulators
+>>> in overlays ? How do we ensure that their node name will not conflict
+>>> with the board to which the overlay is attached ?
+>>
+>> Top-level nodes (so under /) do not have unit addresses. If they have -
+>> it's an error, because it is not a bus. Also, unit address requires reg.
+>> No reg? No unit address. DTC reports this as warnings as well.
 > 
-> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> ---
->   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  40 ++++++-
->   drivers/hwtracing/coresight/coresight-tpdm.c       | 133 ++++++++++++++++++++-
->   drivers/hwtracing/coresight/coresight-tpdm.h       |  24 ++++
->   3 files changed, 191 insertions(+), 6 deletions(-)
+> I agree with all that, but what's the recommended practice to add
+> top-level clocks and regulators in overlays, in a way that avoids
+> namespace clashes with the base board ?
+
+Whether you use regulator@0 or regulator-0, you have the same chances of
+clash.
+
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> index f5cd302..46a5535 100644
-> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> @@ -123,4 +123,42 @@ KernelVersion	6.5
->   Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
->   Description:
->   		(RW) Set/Get the mask of the trigger pattern for the DSB
-> -		subunit TPDM.
-> \ No newline at end of file
-> +		subunit TPDM.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpr[0:7]
-> +Date:		March 2023
-> +KernelVersion	6.5
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(RW) Set/Get the value of the pattern for the DSB subunit TPDM.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpmr[0:7]
-> +Date:		March 2023
-> +KernelVersion	6.5
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(RW) Set/Get the mask of the pattern for the DSB subunit TPDM.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_ts
+>>>>> +		orientation = <0>;
+>>>>> +		rotation = <0>;
+>>>>> +
+>>>>> +		thine,rx,data-lanes = <4 1 3 2>;
+>>>>
+>>>> NAK for this property.
+>>>
+>>> Please explain why. You commented very briefly in the bindings review,
+>>> and it wasn't clear to me if you were happy or not with the property,
+>>> and if not, why.
+>>
+>> Because it is duplicating endpoint. At least from the description.
+> 
+> The THP7312 is an external ISP. At the hardware level, it has an input
+> side, with a CSI-2 receiver and an I2C master controller, and an output
+> side, with a CSI-2 transmitter and an I2C slave controller. A raw camera
+> sensor is connected on the input side, transmitting image data to the
+> THP7312, and being controlled over I2C by the firmware running on the
+> THP7312. From a Linux point of view, only the output side of the THP7312
+> is visible, and the combination of the raw camera sensor and the THP7312
+> acts as a smart camera sensor, producing YUV images.
 
-Given we have a dedicated "group" for dsb_patt, could we move this to 
-dsb_patt and name this "enable_timestamp"
+None of this was explained in the device description or property field.
+I probably judged to fast but it just looked like duplicated property.
+Then shouldn't it have two ports, even if camera side is not visible for
+the Linux?
 
-i.e.,
+> 
+> As there are two CSI-2 buses, the data lanes configuration needs to be
+> specified for both sides. On the output side, connected to the SoC and
+> visible to Linux, the bindings use a port node with an endpoint and the
+> standard data-lanes property. On the input side, which is invisible to
+> Linux, the bindings use the vendor-specific thine,rx,data-lanes
+> property. Its semantics is identical to the standard data-lanes
+> property, but it's not located in an endpoint as there's no port for the
+> input side.
 
-		tpdm-name/dsb_patt/enable_timestamp
+And how does the property support multiple sensors? What if they data
+lanes are also different between each other?
 
-> +Date:		March 2023
-> +KernelVersion	6.5
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the pattern timestamp of DSB tpdm. Read
-> +		the pattern timestamp of DSB tpdm.
-> +
-> +		Accepts only one of the 2 values -  0 or 1.
-> +		0 : Disable DSB pattern timestamp.
-> +		1 : Enable DSB pattern timestamp.
-> +
-> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_type
-
-Similarly here.
-
-> +Date:		March 2023
-> +KernelVersion	6.5
-> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> +Description:
-> +		(Write) Set the pattern type of DSB tpdm. Read
-> +		the pattern type of DSB tpdm.
-> +
-> +		Accepts only one of the 2 values -  0 or 1.
-> +		0 : Set the DSB pattern type to value.
-> +		1 : Set the DSB pattern type to toggle.
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-> index 6521019..9b0e060 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-> @@ -45,6 +45,12 @@ static ssize_t tpdm_simple_dataset_show(struct device *dev,
->   	case DSB_TRIG_PATT_MASK:
->   		return sysfs_emit(buf, "0x%x\n",
->   				drvdata->dsb->trig_patt_mask[tpdm_attr->idx]);
-> +	case DSB_PATT:
-> +		return sysfs_emit(buf, "0x%x\n",
-> +				drvdata->dsb->patt_val[tpdm_attr->idx]);
-> +	case DSB_PATT_MASK:
-> +		return sysfs_emit(buf, "0x%x\n",
-> +				drvdata->dsb->patt_mask[tpdm_attr->idx]);
->   	default:
->   		return -EINVAL;
->   	}
-> @@ -72,6 +78,12 @@ static ssize_t tpdm_simple_dataset_store(struct device *dev,
->   	case DSB_TRIG_PATT_MASK:
->   		drvdata->dsb->trig_patt_mask[tpdm_attr->idx] = val;
->   		break;
-> +	case DSB_PATT:
-> +		drvdata->dsb->patt_val[tpdm_attr->idx] = val;
-> +		break;
-> +	case DSB_PATT_MASK:
-> +		drvdata->dsb->patt_mask[tpdm_attr->idx] = val;
-> +		break;
->   	default:
->   		spin_unlock(&drvdata->spinlock);
->   		return -EINVAL;
-> @@ -129,6 +141,27 @@ static void set_dsb_mode(struct tpdm_drvdata *drvdata, u32 *val)
->   		*val &= ~TPDM_DSB_CR_MODE;
->   }
->   
-> +static void set_dsb_tier(struct tpdm_drvdata *drvdata, u32 *val)
-> +{
-
-Could we not Write to the DSB_TIER register from this function ?
-There are no other users of this function and keeping the
-read and write operations in the caller doesn't make much
-sense.
-
-
-> +	/* Set pattern timestamp type and enablement */
-> +	if (drvdata->dsb->patt_ts) {
-> +		*val |= TPDM_DSB_TIER_PATT_TSENAB;
-> +		if (drvdata->dsb->patt_type)
-> +			*val |= TPDM_DSB_TIER_PATT_TYPE;
-> +		else
-> +			*val &= ~TPDM_DSB_TIER_PATT_TYPE;
-> +	} else {
-> +		*val &= ~TPDM_DSB_TIER_PATT_TSENAB;
-> +	}
-> +
-> +	/* Set trigger timestamp */
-> +	if (drvdata->dsb->trig_ts)
-> +		*val |= TPDM_DSB_TIER_XTRIG_TSENAB;
-> +	else
-> +		*val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;
-
-minor nit:
-Does it make sense to clear everything in one shot and set the
-required fields based on the fields ? That makes it a bit more
-reader friendly.
-
-{
-	u32 val = readl_relaxed(drvdata.., TPDM_DSB_TIER);
-
-	/* Clear all relevant fields */
-	val &= ~(TPDM_DSB_TIER_PATT_TSENAB | TPDM_DSB_TIER_PATT_TYPE |\
-		 TPDM_DSB_TIER_XTRIG_TSENAB)
-
-	/* Set the required fields */
-	if (drvdata->dsb->patt_ts) {
-		val |= TPDM_DSB_TIER_PATT_TSENAB;
-		if (drvdata->dsb->patt_type)
-			val |= TPDM_DSB_TIER_PATT_TYPE;
-	}
-
-	if (drvdata->dsb->trig_ts)
-		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
-
-	writel_relaxed(val, ... TPDM_DSB_TIER);	
-}
-
-> +
-> +}
-> +
->   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->   {
->   	u32 val, i;
-> @@ -140,17 +173,17 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
->   		writel_relaxed(drvdata->dsb->edge_ctrl_mask[i],
->   			   drvdata->base + TPDM_DSB_EDCMR(i));
->   	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
-> +		writel_relaxed(drvdata->dsb->patt_val[i],
-> +			    drvdata->base + TPDM_DSB_TPR(i));
-> +		writel_relaxed(drvdata->dsb->patt_mask[i],
-> +			    drvdata->base + TPDM_DSB_TPMR(i));
->   		writel_relaxed(drvdata->dsb->trig_patt[i],
->   			    drvdata->base + TPDM_DSB_XPR(i));
->   		writel_relaxed(drvdata->dsb->trig_patt_mask[i],
->   			    drvdata->base + TPDM_DSB_XPMR(i));
->   	}
->   	val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
-> -	/* Set trigger timestamp */
-> -	if (drvdata->dsb->trig_ts)
-> -		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
-> -	else
-> -		val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;
-> +	set_dsb_tier(drvdata, &val);
->   	writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
-
-See above
-
->   
->   	val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
-> @@ -471,6 +504,67 @@ static ssize_t ctrl_mask_store(struct device *dev,
->   }
->   static DEVICE_ATTR_WO(ctrl_mask);
->   
-> +static ssize_t dsb_patt_ts_show(struct device *dev,
-> +				   struct device_attribute *attr,
-> +				   char *buf)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%u\n",
-> +			 (unsigned int)drvdata->dsb->patt_ts);
-> +}
-> +
-> +/*
-> + * value 1: Enable/Disable DSB pattern timestamp
-> + */
-> +static ssize_t dsb_patt_ts_store(struct device *dev,
-> +				   struct device_attribute *attr,
-> +				   const char *buf,
-> +				   size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned long val;
-> +
-> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	drvdata->dsb->patt_ts = !!val;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_patt_ts);
-> +
-> +static ssize_t dsb_patt_type_show(struct device *dev,
-> +					  struct device_attribute *attr,
-> +					  char *buf)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +
-> +	return sysfs_emit(buf, "%u\n",
-> +			 (unsigned int)drvdata->dsb->patt_type);
-> +}
-> +
-> +/*
-> + * value 1: Set DSB pattern type
-> + */
-> +static ssize_t dsb_patt_type_store(struct device *dev,
-> +					  struct device_attribute *attr,
-> +					  const char *buf, size_t size)
-> +{
-> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> +	unsigned long val;
-> +
-> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
-> +		return -EINVAL;
-> +
-> +	spin_lock(&drvdata->spinlock);
-> +	drvdata->dsb->patt_type = val;
-> +	spin_unlock(&drvdata->spinlock);
-> +	return size;
-> +}
-> +static DEVICE_ATTR_RW(dsb_patt_type);
-> +
->   static ssize_t dsb_trig_type_show(struct device *dev,
->   		  struct device_attribute *attr, char *buf)
->   {
-> @@ -593,8 +687,30 @@ static struct attribute *tpdm_dsb_trig_patt_attrs[] = {
->   	NULL,
->   };
->   
-> +static struct attribute *tpdm_dsb_patt_attrs[] = {
-> +	DSB_PATT_ATTR(0),
-> +	DSB_PATT_ATTR(1),
-> +	DSB_PATT_ATTR(2),
-> +	DSB_PATT_ATTR(3),
-> +	DSB_PATT_ATTR(4),
-> +	DSB_PATT_ATTR(5),
-> +	DSB_PATT_ATTR(6),
-> +	DSB_PATT_ATTR(7),
-> +	DSB_PATT_MASK_ATTR(0),
-> +	DSB_PATT_MASK_ATTR(1),
-> +	DSB_PATT_MASK_ATTR(2),
-> +	DSB_PATT_MASK_ATTR(3),
-> +	DSB_PATT_MASK_ATTR(4),
-> +	DSB_PATT_MASK_ATTR(5),
-> +	DSB_PATT_MASK_ATTR(6),
-> +	DSB_PATT_MASK_ATTR(7),
-> +	NULL,
-> +};
-> +
->   static struct attribute *tpdm_dsb_attrs[] = {
->   	&dev_attr_dsb_mode.attr,
-
-> +	&dev_attr_dsb_patt_ts.attr,
-> +	&dev_attr_dsb_patt_type.attr,
-
-As mentioned above, could we move the above two to the dsb_patt_attrs ?
-
-Suzuki
-
->   	&dev_attr_dsb_trig_ts.attr,
->   	&dev_attr_dsb_trig_type.attr,
->   	NULL,
-> @@ -617,11 +733,18 @@ static struct attribute_group tpdm_dsb_trig_patt_grp = {
->   	.name = "dsb_trig_patt",
->   };
->   
-> +static struct attribute_group tpdm_dsb_patt_grp = {
-> +	.attrs = tpdm_dsb_patt_attrs,
-> +	.is_visible = tpdm_dsb_is_visible,
-> +	.name = "dsb_patt",
-> +};
-> +
->   static const struct attribute_group *tpdm_attr_grps[] = {
->   	&tpdm_attr_grp,
->   	&tpdm_dsb_attrs_grp,
->   	&tpdm_dsb_edge_grp,
->   	&tpdm_dsb_trig_patt_grp,
-> +	&tpdm_dsb_patt_grp,
->   	NULL,
->   };
->   
-> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
-> index 9e1b0a4..9173e80 100644
-> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
-> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
-> @@ -12,6 +12,8 @@
->   /* DSB Subunit Registers */
->   #define TPDM_DSB_CR		(0x780)
->   #define TPDM_DSB_TIER		(0x784)
-> +#define TPDM_DSB_TPR(n)		(0x788 + (n * 4))
-> +#define TPDM_DSB_TPMR(n)	(0x7A8 + (n * 4))
->   #define TPDM_DSB_XPR(n)		(0x7C8 + (n * 4))
->   #define TPDM_DSB_XPMR(n)	(0x7E8 + (n * 4))
->   #define TPDM_DSB_EDCR(n)	(0x808 + (n * 4))
-> @@ -28,8 +30,12 @@
->   /* Data bits for DSB test mode */
->   #define TPDM_DSB_CR_TEST_MODE		GENMASK(10, 9)
->   
-> +/* Enable bit for DSB subunit pattern timestamp */
-> +#define TPDM_DSB_TIER_PATT_TSENAB		BIT(0)
->   /* Enable bit for DSB subunit trigger timestamp */
->   #define TPDM_DSB_TIER_XTRIG_TSENAB		BIT(1)
-> +/* Bit for DSB subunit pattern type */
-> +#define TPDM_DSB_TIER_PATT_TYPE		BIT(2)
->   
->   /* DSB programming modes */
->   /* DSB mode bits mask */
-> @@ -122,14 +128,26 @@
->   		tpdm_simple_dataset_rw(xpmr##nr,		\
->   		DSB_TRIG_PATT_MASK, nr, TPDM_DSB_MAX_PATT)
->   
-> +#define DSB_PATT_ATTR(nr)						\
-> +		tpdm_simple_dataset_rw(tpr##nr,			\
-> +		DSB_PATT, nr, TPDM_DSB_MAX_PATT)
-> +
-> +#define DSB_PATT_MASK_ATTR(nr)					\
-> +		tpdm_simple_dataset_rw(tpmr##nr,		\
-> +		DSB_PATT_MASK, nr, TPDM_DSB_MAX_PATT)
-> +
->   /**
->    * struct dsb_dataset - specifics associated to dsb dataset
->    * @mode:             DSB programming mode
->    * @edge_ctrl_idx     Index number of the edge control
->    * @edge_ctrl:        Save value for edge control
->    * @edge_ctrl_mask:   Save value for edge control mask
-> + * @patt_val:         Save value for pattern
-> + * @patt_mask:        Save value for pattern mask
->    * @trig_patt:        Save value for trigger pattern
->    * @trig_patt_mask:   Save value for trigger pattern mask
-> + * @patt_ts:          Enable/Disable pattern timestamp
-> + * @patt_type:        Set pattern type
->    * @trig_ts:          Enable/Disable trigger timestamp.
->    * @trig_type:        Enable/Disable trigger type.
->    */
-> @@ -138,8 +156,12 @@ struct dsb_dataset {
->   	u32				edge_ctrl_idx;
->   	u32				edge_ctrl[TPDM_DSB_MAX_EDCR];
->   	u32				edge_ctrl_mask[TPDM_DSB_MAX_EDCMR];
-> +	u32				patt_val[TPDM_DSB_MAX_PATT];
-> +	u32				patt_mask[TPDM_DSB_MAX_PATT];
->   	u32				trig_patt[TPDM_DSB_MAX_PATT];
->   	u32				trig_patt_mask[TPDM_DSB_MAX_PATT];
-> +	bool			patt_ts;
-> +	bool			patt_type;
->   	bool			trig_ts;
->   	bool			trig_type;
->   };
-> @@ -171,6 +193,8 @@ enum dataset_mem {
->   	DSB_EDGE_CTRL_MASK,
->   	DSB_TRIG_PATT,
->   	DSB_TRIG_PATT_MASK,
-> +	DSB_PATT,
-> +	DSB_PATT_MASK,
->   };
->   
->   /**
+Best regards,
+Krzysztof
 
