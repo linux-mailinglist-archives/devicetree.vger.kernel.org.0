@@ -2,137 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EB877938CB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 11:48:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499787938E8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 11:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237765AbjIFJsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 05:48:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46348 "EHLO
+        id S237815AbjIFJwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 05:52:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236661AbjIFJsR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 05:48:17 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24DDE1717
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 02:48:13 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bf1f632b8so534723166b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 02:48:13 -0700 (PDT)
+        with ESMTP id S237772AbjIFJwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 05:52:35 -0400
+Received: from mail-io1-xd32.google.com (mail-io1-xd32.google.com [IPv6:2607:f8b0:4864:20::d32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41AB41982;
+        Wed,  6 Sep 2023 02:52:28 -0700 (PDT)
+Received: by mail-io1-xd32.google.com with SMTP id ca18e2360f4ac-7928dc54896so132277639f.3;
+        Wed, 06 Sep 2023 02:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693993691; x=1694598491; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7l5e5jrLFPB+I4LFDv0nRUzADbay4Tp8MYv24l9aPn0=;
-        b=TDhblc9SRZ5wA07f3XbvULGkO0KqJ7jg1S6hMnPiLWW9xfx2un2c7GsN3k1yuypvAT
-         lPdIIVEK17BqX+yWfMQLV9jmZ/6xclE0b6g2JWih/F77uy9H3AhBUyTWvDW2eQ2QoYSb
-         VnOudYOHcf4QoH37ULM5tnxs5HN7s4DW1QXLaut1PMvAR7T6FfdV5vMxtY0JPORUE4O2
-         O+C9OzOvnhsKjTc2Qf1tzC3/XAjXfoiBgIs4XnsgUEVKiHNIOsLL7BaMcshMHV52mKR6
-         lfACWszgC+m5lpclKQSsy19YXe/XWfUf2C2KTPe+M4VDVJc4iDXEpV3NK3+OOLNlQb8K
-         tw2A==
+        d=gmail.com; s=20221208; t=1693993947; x=1694598747; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0LsnxtJChRuEyVRG9ko08TVlT1rSSwwc12RXGyr/Ymo=;
+        b=UscDoiEax0oaXrQIGMNKp7dsA0K7NdyhrilY7gUYqnuZmaajjzmJ8fROx8p4kI3uYo
+         HhnCM4WyuV8b50Cu5kUfNk3BZ5oOKCdNM4+Sz7QOeToFt0M0uLCvEc23vgorbNTt07HI
+         Yd/b86Yq9RAUUvpfdorUsV3gwu6X320B6462XcOGHZHl6Yqonb7TX7oe5x1EuVNfqda0
+         A1RAPXUxuUG1kRS/eYKJU02tvnkqFK2U+JSsoS7516E6gFqZlMDK0PaKDFlQK4GoLuh6
+         UEWTT5LsOiu/AMnp9YcVgZ9G/iiJonPM8YpaICPbYQSlNTBkZZolFZtyy/uoewTBy+JG
+         Ymvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693993691; x=1694598491;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7l5e5jrLFPB+I4LFDv0nRUzADbay4Tp8MYv24l9aPn0=;
-        b=SYXCb3rRwBbpR8mGDLDQrkLfK3uYW/diw0sVUVTMwySRpmGaslogZSdlEIfwyZDhNP
-         wpt8gi/Z3rDNC19qgyyM4lrGbdbW8nkxG4wLRs9Lh2rN6YK+Zm64h/DDxOjUkkS5RKbV
-         +VvkznQq5p7jfuvlYYEagx8qAaEpjFdwQHm+MgOBiWos02FssSGdFmHs26P2zVlMqz1N
-         +BwPjTmd5PQVlYd1ZLTV2loAY/QccaNVueMnoIBXF2iUX8mp4FL5Ns7GPcoKmZCfGwlx
-         5Pg40RMXYPmH6TXtvVc84GmkTFNdT68gC+MYeCpSuxk+OERBHb+SXhFtphoCMAarFQMA
-         MmCw==
-X-Gm-Message-State: AOJu0YxjlH+OmRprRZWiIUIpjbOtX8jFu5SzIZuPygS24ntcMKpBI9Bc
-        z35TIXnDY+cS4glOw0BC/MCdJiRW7c+CiMOH5W7CbA==
-X-Google-Smtp-Source: AGHT+IF5SVq/Lc90motqQuAQR3TsxE76OkjJENkCNUVAmo760B595MKCYdCqPwQTmQzogj2343lTUg==
-X-Received: by 2002:a17:907:3f99:b0:9a5:cab0:b061 with SMTP id hr25-20020a1709073f9900b009a5cab0b061mr1898538ejc.51.1693993691683;
-        Wed, 06 Sep 2023 02:48:11 -0700 (PDT)
-Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id hb26-20020a170906b89a00b009931a3adf64sm8948845ejb.17.2023.09.06.02.48.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 02:48:11 -0700 (PDT)
-Message-ID: <9848b712-e06e-4333-a260-928832962746@linaro.org>
-Date:   Wed, 6 Sep 2023 11:48:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/12] arm64: dts: qcom: sm6125-sprout: drop incorrect UFS
- phy max current
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        d=1e100.net; s=20221208; t=1693993947; x=1694598747;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0LsnxtJChRuEyVRG9ko08TVlT1rSSwwc12RXGyr/Ymo=;
+        b=Qad46r1F8Aj0QT7CpQ3CSa1EtpyDy18Y61tPWr2TxBdASIp4nI7ypolg5nVmHuVbLZ
+         oBSWrdvkFL28putZpdqAZLCqMqwmQRu+DgwySV6rXpmD4BB4GJEP26tGFgpveh937mzf
+         NgC7AtvaX7ZZVHZ8qqt0uWXL5BcMwGyAs7qr1kqa9U9ASVx5WvH1Hmxrc4eIDBC24Syv
+         izyv5fIRqy8SVkfUDnkuOjz64ytRETgDnbfCRiJTwTwD6ivitKxN/aoGA9jj3nXb4I4b
+         TNu8O7h4E+7vauZSfBVRQLHqRo7s0ro0iQBaYR1TNNdnbvow8YVMiWv+KbR/Wu81eR+W
+         hp+Q==
+X-Gm-Message-State: AOJu0Yz1ddrHEhSBpcSPI3Jk/u/2kucYMVPHxzlaWTALKsYd6nOAMT1p
+        RCbRUqoSGyMWWfa5xhLXsvY2Y0Imx2Y=
+X-Google-Smtp-Source: AGHT+IGM8yoIsIbDbOiurHN299qtQHq27Z7zBM/Q22b3U9VWVOKETLQ0SXTeR9mi5otFEEf8j8VdAA==
+X-Received: by 2002:a6b:680b:0:b0:795:183b:1e3 with SMTP id d11-20020a6b680b000000b00795183b01e3mr16612042ioc.6.1693993947107;
+        Wed, 06 Sep 2023 02:52:27 -0700 (PDT)
+Received: from aford-B741.lan ([2601:447:d001:897f:b68d:99e6:78c9:f0e6])
+        by smtp.gmail.com with ESMTPSA id i23-20020a5d9e57000000b007836a9ca101sm4794744ioi.22.2023.09.06.02.52.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Sep 2023 02:52:26 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-omap@vger.kernel.org
+Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230905161920.252013-1-krzysztof.kozlowski@linaro.org>
- <20230905161920.252013-2-krzysztof.kozlowski@linaro.org>
- <e5c218a6-5b71-4887-b79a-9fd2dfb85009@linaro.org>
- <2104ccc8-8d71-f867-f3e1-2d4d02acb8ca@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
- BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
- HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
- TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
- zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
- MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
- t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
- UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
- aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
- kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
- Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
- R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
- BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
- yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
- xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
- 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
- GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
- mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
- x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
- BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
- mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
- Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
- xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
- AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
- 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
- jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
- cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
- jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
- cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
- bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
- YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
- bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
- nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
- izWDgYvmBE8=
-In-Reply-To: <2104ccc8-8d71-f867-f3e1-2d4d02acb8ca@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH 1/2] net: ethernet: davinci_emac: Use MAC Address from Device Tree
+Date:   Wed,  6 Sep 2023 04:51:42 -0500
+Message-Id: <20230906095143.99806-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.09.2023 11:45, Krzysztof Kozlowski wrote:
-> On 06/09/2023 11:40, Konrad Dybcio wrote:
->> On 5.09.2023 18:19, Krzysztof Kozlowski wrote:
->>> Neither bindings nor UFS phy driver use properties like
->>> 'vdda-phy-max-microamp' and 'vdda-pll-max-microamp':
->>>
->>>   sm6125-xiaomi-laurel-sprout.dtb: phy@4807000: 'vdda-phy-max-microamp', 'vdda-pll-max-microamp' do not match any of the regexes: 'pinctrl-[0-9]+'
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> ---
->> ufshcd_populate_vreg uses this, but looks like nobody added it
->> to bindings.
-> 
-> That's UFS controller, not phy. I do not see any usage of it in the phy.
-Oh right..
+Currently there is a device tree entry called "local-mac-address"
+which can be filled by the bootloader or manually set.This is
+useful when the user does not want to use the MAC address
+programmed into the SoC.
 
-Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Currently, the davinci_emac reads the MAC from the DT, copies
+it from pdata->mac_addr to priv->mac_addr, then blindly overwrites
+it by reading from registers in the SoC, and falls back to a
+random MAC if it's still not valid.  This completely ignores any
+MAC address in the device tree.
 
-Konrad
+In order to use the local-mac-address, check to see if the contents
+of priv->mac_addr are valid before falling back to reading from the
+SoC when the MAC address is not valid.
+
+Signed-off-by: Adam Ford <aford173@gmail.com>
+
+diff --git a/drivers/net/ethernet/ti/davinci_emac.c b/drivers/net/ethernet/ti/davinci_emac.c
+index 2eb9d5a32588..994ddd756782 100644
+--- a/drivers/net/ethernet/ti/davinci_emac.c
++++ b/drivers/net/ethernet/ti/davinci_emac.c
+@@ -1934,18 +1934,20 @@ static int davinci_emac_probe(struct platform_device *pdev)
+ 		goto err_free_rxchan;
+ 	ndev->irq = rc;
+ 
+-	rc = davinci_emac_try_get_mac(pdev, res_ctrl ? 0 : 1, priv->mac_addr);
+-	if (!rc)
+-		eth_hw_addr_set(ndev, priv->mac_addr);
+-
++	/* If the MAC address is not present, read the registers from the SoC */
+ 	if (!is_valid_ether_addr(priv->mac_addr)) {
+-		/* Use random MAC if still none obtained. */
+-		eth_hw_addr_random(ndev);
+-		memcpy(priv->mac_addr, ndev->dev_addr, ndev->addr_len);
+-		dev_warn(&pdev->dev, "using random MAC addr: %pM\n",
+-			 priv->mac_addr);
++		rc = davinci_emac_try_get_mac(pdev, res_ctrl ? 0 : 1, priv->mac_addr);
++		if (!rc)
++			eth_hw_addr_set(ndev, priv->mac_addr);
++
++		if (!is_valid_ether_addr(priv->mac_addr)) {
++			/* Use random MAC if still none obtained. */
++			eth_hw_addr_random(ndev);
++			memcpy(priv->mac_addr, ndev->dev_addr, ndev->addr_len);
++			dev_warn(&pdev->dev, "using random MAC addr: %pM\n",
++				 priv->mac_addr);
++		}
+ 	}
+-
+ 	ndev->netdev_ops = &emac_netdev_ops;
+ 	ndev->ethtool_ops = &ethtool_ops;
+ 	netif_napi_add(ndev, &priv->napi, emac_poll);
+-- 
+2.39.2
+
