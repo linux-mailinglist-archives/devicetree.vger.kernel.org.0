@@ -2,114 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C33FF7939AF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 12:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C48727939B7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 12:23:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236357AbjIFKUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 06:20:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50026 "EHLO
+        id S233028AbjIFKXU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 06:23:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235898AbjIFKUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 06:20:16 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7280610C8
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 03:20:12 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-99de884ad25so539334266b.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 03:20:12 -0700 (PDT)
+        with ESMTP id S229824AbjIFKXT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 06:23:19 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C9E10C7;
+        Wed,  6 Sep 2023 03:23:15 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99c93638322so165423066b.1;
+        Wed, 06 Sep 2023 03:23:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693995611; x=1694600411; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bq5VaCN58woKfHlu27g2JEDxXsqU8G37VcS/uYaOtG0=;
-        b=AlKmqOwhhBr2V67YG9Z20CkK5bWFizanI2oRm1PWqnTkoLTZPyGZiPFawSHcdhvpEv
-         D3L/lUizrrPEUa3UYQ27F2BWLr56ngf35RN6BflDjYOXNV+BW1SbFnhrJumIlUtoq5m3
-         /4oeVgRd3bI2gIED3A/UnLgvS6oGEVsZK44zoTFSx4q0G3mAyvB+cwUgabAE3sNyLkys
-         avP3LNxxpy9YBjmMr+nNV0djXQvdtlxP26qBLV0+RzbgDs/9OkLUo1RAlmSBnajrW0Ti
-         fx5mnpoHBNUPhvS3hf7UYjiMltKWvjX/ebmQUQPFgu7nJ/6iE8t4duCO2RyqpdzddvPe
-         U3KQ==
+        d=gmail.com; s=20221208; t=1693995794; x=1694600594; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0ZWBPxhVCOsxoJcgbv+qtk7+SgbhMxfWQyvWdVO7bh8=;
+        b=FFK76u+uQ0nQc67Jn821N38zlxT1DSLVN1jNtWzATH5zFUjBqaqL4oqj2m7svhhf/h
+         +XhY+vf2iZtLtF4njm6b0cF7x5YNW7/6q0PTjJleSE9hKBizLGq6WecmCVSGWydqzjCV
+         CgHc1tvESSKXZkRmzHdJa5EF1twAWALswVx3ckDbCRBIMvR/gSTpa9QQw01GiW+eBvij
+         Natjl6WAkHgNrR0l5aXsHXXPx9FC5ldI7iHPgAuJZSYT8OgkbRVBBU/uGLUEeiefk8SW
+         IisP2qUmbZTmg+oLTLhKIQBghSqZYRDsbzmzdvdE0gKoWTME1tK7uKmvIrHSOw5cWdq6
+         7umg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693995611; x=1694600411;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bq5VaCN58woKfHlu27g2JEDxXsqU8G37VcS/uYaOtG0=;
-        b=QHiPevsUqUrx7tJZmFxUvQIQa2dv366m0UwpkFINMyXfxyejF4Ll9Oikm/pFgD/4Vr
-         VdLJAtQyJngF9yy/+yZowtpaKz8/ecEcuY/Sjz9HSWj6yRYrSQJyb9avkC5MJgI4eG/+
-         +jm5qvILKP69AwFiTP27haQytRprUWq53c8DlwRVfH/y1E7bTfCxQn/B6BuMWVV164H+
-         QlU4LPn842xbmEGfStRd56+myjWfG1yzwt4zPJRMMQtOxqIxCh79PzebCRjThibiUec2
-         pTyKtbRm7+oUZhw1nAKfx4857Ak6LxHjc9Fsk9v4BPSDfW5wcCSgpJqhS/71Hr9TMyVl
-         GP7g==
-X-Gm-Message-State: AOJu0YzfpnlCL0y+8CC9hM4gVtOMJzg2JE+O6R0YyJdxh9Krw3mdjqdi
-        3tONPkT6SzAc/wxGqt4+BogEFQ==
-X-Google-Smtp-Source: AGHT+IECInaTz8AGdtzkKqE3txhHtVT5HkkOVMm7zF06XwaR9R8LGP/zSAC3l08RLFTjiI82UIK5ew==
-X-Received: by 2002:a17:906:cd1:b0:9a2:232f:6f79 with SMTP id l17-20020a1709060cd100b009a2232f6f79mr1652416ejh.25.1693995610974;
-        Wed, 06 Sep 2023 03:20:10 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id hb26-20020a170906b89a00b009931a3adf64sm8986930ejb.17.2023.09.06.03.20.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 03:20:10 -0700 (PDT)
-Message-ID: <145f9a3e-af61-c62f-1752-2abb7663d7a3@linaro.org>
-Date:   Wed, 6 Sep 2023 12:20:09 +0200
+        d=1e100.net; s=20221208; t=1693995794; x=1694600594;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0ZWBPxhVCOsxoJcgbv+qtk7+SgbhMxfWQyvWdVO7bh8=;
+        b=PnPpwdV+kbuyct7R3UKnnngpFouu8A+hq+7Ziw+luKQXr7bstTNN3sdhbTkwpUNteJ
+         owqfEWHSnj7jB/XO3P8XB41viv8DarkzsC3y/SYL1zrCSbtsaoNluaKJ7JqiB2BEtKFb
+         zDaHyRITQlO8Ubs4LyKxZDX3PKS2t+hODZ/Fyqo0bqGUa/mGWFIRMLo4txReJaNHwU2l
+         Vj9W+2Gtt/W31OQLcxk+yoF53bvTM/AfHyRLIMPrnTfw2u6lltbbH655q1NO4d+lcLiu
+         NGV+9CSz1+5mjj2kJ4lwDjK9ei0QYj0ZrxEDcpxHy0a1+UzaU9esWgSdZ69uBefx6BTp
+         nr6w==
+X-Gm-Message-State: AOJu0YylVwvoRtRRHxYSZr6oaUJd7t3w3Cw9ejRZgrpEI/7W17PeFeL+
+        ZJvRKDthqfZofacvQY+1oB4=
+X-Google-Smtp-Source: AGHT+IFx0mC4Xbco4rlZ7XByuON+00iGUoAFXkzjRIL77gf564Gt1kOErv2MaeY+irDmq6jBu+D8QQ==
+X-Received: by 2002:a17:906:3003:b0:9a1:eb4f:56f with SMTP id 3-20020a170906300300b009a1eb4f056fmr2743807ejz.13.1693995794050;
+        Wed, 06 Sep 2023 03:23:14 -0700 (PDT)
+Received: from [127.0.1.1] (91-118-163-37.static.upcbusiness.at. [91.118.163.37])
+        by smtp.gmail.com with ESMTPSA id ti10-20020a170907c20a00b0099ba3438554sm8796283ejc.191.2023.09.06.03.23.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Sep 2023 03:23:13 -0700 (PDT)
+From:   Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date:   Wed, 06 Sep 2023 12:23:10 +0200
+Subject: [PATCH] dt-bindings: rtc: mcp795: convert to YAML
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: add device-tree for Genio
- 1200 EVK board
-Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAA1T+GQC/x2N0QrCMAwAf2Xk2UA7mVp/RWR0aXSBrivplI2xf
+ 7f4eAfH7VBYhQvcmx2Uv1JkThXsqQEafXozSqgMrWnPxpkLLnMWQl2onyhfXddvfoporelu7Fw
+ IPkBtB18YB/WJxlqnT4xVZuWXrP/Z43kcP0Wwq0V8AAAA
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>, Ben Lok <ben.lok@mediatek.com>
-References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
- <20230906092527.18281-1-macpaul.lin@mediatek.com>
- <20230906092527.18281-2-macpaul.lin@mediatek.com>
- <2cb8069a-976b-0af4-a427-1e63ba4e7870@linaro.org>
- <951e34bc-dda3-f9d4-b251-7f0fd02052ee@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <951e34bc-dda3-f9d4-b251-7f0fd02052ee@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Emil Bartczak <emilbart@gmail.com>,
+        Josef Gajdusek <atx@atx.name>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1693995793; l=2042;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=9ko05aqIIjfOvWPhUwKxVzx6c+panpqNTxCBtlFb5Gk=;
+ b=J9Wm3ocyg3hoVNa3uW/4O8NAfho6vm2xY+gQvzrtb6GtRwp3AIFLZu6giQZBKeWbBJz4yQKrG
+ 7ssnUC5FlFTDj4cm5s7XYkCoe3vhggCG9XTVRQYj/E9N8qnZcXaUWPu
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2023 12:15, Macpaul Lin wrote:
->>> +
->>> +wifi_3v3: wifi-3v3-regulator {
->>
->> This is a friendly reminder during the review process.
->>
->> It seems my previous comments were not fully addressed. Maybe my
->> feedback got lost between the quotes, maybe you just forgot to apply it.
->> Please go back to the previous discussion and either implement all
->> requested changes or keep discussing them.
-> 
-> 
-> This keeps a format with -regulator is because I've found some other use 
-> cases. It seems "-regulator" or "regulator-" could be arbitrary. I'm not 
-> sure if it is a new guideline for regulator's node. If there is in the 
-> devicetree document, maybe I just missed it?
+Convert the MCP795 bindings from text to YAML format to support bindings
+validation.
 
-What is the point to name in the same DTS some of the regulators
-"regulator-foo" and some "foo-regulator"?
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+YAML is the preferred format for dt-bindings, which allows validation.
+---
+ .../devicetree/bindings/rtc/maxim,mcp795.txt       | 11 -------
+ .../devicetree/bindings/rtc/maxim,mcp795.yaml      | 35 ++++++++++++++++++++++
+ 2 files changed, 35 insertions(+), 11 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/rtc/maxim,mcp795.txt b/Documentation/devicetree/bindings/rtc/maxim,mcp795.txt
+deleted file mode 100644
+index a59fdd8c236d..000000000000
+--- a/Documentation/devicetree/bindings/rtc/maxim,mcp795.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-* Maxim MCP795		SPI Serial Real-Time Clock
+-
+-Required properties:
+-- compatible: Should contain "maxim,mcp795".
+-- reg: SPI address for chip
+-
+-Example:
+-	mcp795: rtc@0 {
+-		compatible = "maxim,mcp795";
+-		reg = <0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/rtc/maxim,mcp795.yaml b/Documentation/devicetree/bindings/rtc/maxim,mcp795.yaml
+new file mode 100644
+index 000000000000..77e465747d43
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/maxim,mcp795.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/maxim,mcp795.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MCP795 SPI Serial Real Time Clock
++
++allOf:
++  - $ref: rtc.yaml#
++
++maintainers:
++  - Josef Gajdusek <atx@atx.name>
++
++properties:
++  compatible:
++    enum:
++      - maxim,mcp795
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    rtc@0 {
++        compatible = "maxim,mcp795";
++        reg = <0>;
++    };
++...
+
+---
+base-commit: 2dde18cd1d8fac735875f2e4987f11817cc0bc2c
+change-id: 20230906-topic-rtc_mcp795_yaml-11058e99ddad
 
 Best regards,
-Krzysztof
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
