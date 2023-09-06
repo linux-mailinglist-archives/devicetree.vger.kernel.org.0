@@ -2,154 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D0179418E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 18:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F3157941AD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 18:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242977AbjIFQhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 12:37:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50246 "EHLO
+        id S238771AbjIFQr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 12:47:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231196AbjIFQhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 12:37:12 -0400
-Received: from pandora.armlinux.org.uk (unknown [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C923C1738;
-        Wed,  6 Sep 2023 09:37:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=kC/adOmPdO89VH7yR1A+ieJSp6e/4jhkrzrqxAYoq4Q=; b=ZY0B0RFpQ9y8GWbA9R1g80J8/y
-        hq2amJhTIfAWWLb6RhZOQ5JA0WTlW/XesbFOKLHVntcVrs0tNjeOdAEWFTx5/fmLKbMQsi8CwIgPr
-        K6R/e0qNrDNLyPh/E8TdRgvBikMlyhvgty0NVpQ/Rang/PEgjJM1/co4cnipew1rHxi80ZKnLM/vY
-        dZ7/fxDY02anS2XW9XTymJELpm7I+xMMWDCYvlbW/X16N9ZNctFKNuZ1zoYVpfuajY6J0FJgsYDAl
-        JOUb1EQYzNnpe49NJQRoVa2m+6rSuJ86VuqVp5mRnmmqxnv4kBCfO+ESkwxUJNkF3kcFMRI4JWnGr
-        tnuPALbw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54168)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.96)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1qdvWL-0000pm-0k;
-        Wed, 06 Sep 2023 17:36:49 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1qdvWJ-0004vb-TO; Wed, 06 Sep 2023 17:36:47 +0100
-Date:   Wed, 6 Sep 2023 17:36:47 +0100
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org
-Subject: Re: [RFC net-next v2 2/2] net: dsa: microchip: Add drive strength
- configuration
-Message-ID: <ZPiqn94YbJXCqpT8@shell.armlinux.org.uk>
-References: <20230906105904.1477021-1-o.rempel@pengutronix.de>
- <20230906105904.1477021-3-o.rempel@pengutronix.de>
+        with ESMTP id S236925AbjIFQr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 12:47:59 -0400
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 837A91738;
+        Wed,  6 Sep 2023 09:47:55 -0700 (PDT)
+Received: by mail-pg1-x52d.google.com with SMTP id 41be03b00d2f7-565e395e7a6so69818a12.0;
+        Wed, 06 Sep 2023 09:47:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694018875; x=1694623675; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YVuYrvdAZmiakwnUrTCNPT76uwDHc4nkNKfw/tN0vVQ=;
+        b=INvoQ3TCO89d3d8+DLamiuspLRMZ7VMMzh7S+N1tdhN1PYmCtoGXH5D2CTt4x2xEK7
+         0vaoAwbOJBOp8O4Hg9DjWo68HOthHnn+Lg+4MJD5UcgohH8N1L7tjFrNa5BfGizPHDIW
+         CE68oTQPOpfRuOSHtB4kcSYqvHbyV53GXwYgJUY7faJQSbmQvno3oiPzuDJzWpnCbz5p
+         eQ40bWXyzx0BAr2jaIJ4iwe6TI0BWJ+JoMOVo/eypXO7JIJEbSnfv2N823v3DBYdr2Pw
+         2xxYy/UcyH0tuKT7hvZ04ZK9jXsocQ16J8paYxZV83Y0vblYJbYUbDyalAb+SldNF5Tv
+         a3hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694018875; x=1694623675;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YVuYrvdAZmiakwnUrTCNPT76uwDHc4nkNKfw/tN0vVQ=;
+        b=LuE7c+C7G9/lHymzdmyi/LoaFddWyqm1IdOYp7I4IDJKA0Jn3kknSLWw1wEP2QeS3N
+         AapMszeyncBo4NCX02WLH7S/hkCwqKc+WRG4BtUP3De47xC3Ky7GAFHaS59OfV3Zy22L
+         dyjAE97ovk7RXEx+UJMgZ39WZPA+qLxJBiHwoZduE04+zZx+tMMhbSvthEY5ZPB4hS/Q
+         VISXKd2vWYPjZoqL+BefVA42I3PLlv1aAR4CHNcHHL9j4DItnYJChivGeBB7oqxuJqiF
+         Zqf4G5X0bagntC2cVeJW+tijt3iAdelAllQfS9J6hUCd8cZqkzQ76M9kgo/m9cVxBlgA
+         tpLg==
+X-Gm-Message-State: AOJu0Yw4Rn00bq8hxrz1FGwZXuEC3yv2+j0FU1TwQdtL5ZnCypBXF67W
+        u+dpZ2eJYT3KIfA64W2HN0I=
+X-Google-Smtp-Source: AGHT+IGwiyMi44H17BEmu2LD+jihfhYG50dvi+Awsyh+gYS13Uz0l7Gp0RELkeYJpELupfsdcC2ZUw==
+X-Received: by 2002:a05:6a21:a105:b0:14d:29f6:18c3 with SMTP id aq5-20020a056a21a10500b0014d29f618c3mr12270887pzc.20.1694018874768;
+        Wed, 06 Sep 2023 09:47:54 -0700 (PDT)
+Received: from [172.16.116.58] ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id h3-20020a63b003000000b0056c466b09a4sm11455647pgf.59.2023.09.06.09.47.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Sep 2023 09:47:54 -0700 (PDT)
+Message-ID: <8c4717f1-36f3-96dc-2335-ec323e3f46df@gmail.com>
+Date:   Wed, 6 Sep 2023 22:17:49 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230906105904.1477021-3-o.rempel@pengutronix.de>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_NONE,SPF_NONE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 1/3] dt-bindings: Add beaglecc1352
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>, greybus-dev@lists.linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org,
+        Vaishnav M A <vaishnav@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Nishanth Menon <nm@ti.com>
+References: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
+ <20230902182845.1840620-2-ayushdevel1325@gmail.com>
+ <937ea540-09e1-65f2-7165-662bbee2542b@kernel.org>
+From:   Ayush Singh <ayushdevel1325@gmail.com>
+In-Reply-To: <937ea540-09e1-65f2-7165-662bbee2542b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 06, 2023 at 12:59:04PM +0200, Oleksij Rempel wrote:
-> +static void ksz9477_drive_strength_error(struct ksz_device *dev, int milliamp)
-> +{
-> +	size_t array_size = ARRAY_SIZE(ksz9477_drive_strengths);
-> +	char supported_values[100];
-> +	int i;
-> +
-> +	for (i = 0; i < array_size; i++) {
-> +		if (i == 0)
-> +			snprintf(supported_values, sizeof(supported_values),
-> +				 "%d", ksz9477_drive_strengths[i].milliamp);
-> +		else
-> +			snprintf(supported_values, sizeof(supported_values),
-> +				 "%s, %d", supported_values,
-> +				 ksz9477_drive_strengths[i].milliamp);
+On 9/4/23 12:44, Krzysztof Kozlowski wrote:
+> On 02/09/2023 20:28, Ayush Singh wrote:
+>> Add DT bindings for BeagleCC1352 co-processor UART.
+> This does not look like UART controller.
+>
+>
+>> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
+>> ---
+>>   .../bindings/serial/beaglecc1352.yaml         | 25 +++++++++++++++++++
+> It's not a serial driver. Don't put it in unrelated directory.
+>
+>> @@ -0,0 +1,25 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/serial/beaglecc1352.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: BeaglePlay CC1352 serial UART
+> How is this serial UART? Of what? The SoC? Do not describe interface but
+> the device.
+>
+>> +
+>> +maintainers:
+>> +  - Ayush Singh <ayushdevel1325@gmail.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: beagle,cc1352
+> No resources? This does not seem useful... Put it then only in trivial
+> devices if your hardware - hardware, not driver - does not have any
+> pins, interrupts or other resources.
+>
+>> +
+>> +required:
+>> +  - compatible
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    beaglecc1352 {
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>
+> Best regards,
+> Krzysztof
 
-That's an interesting way to append... I note that snprintf(3) has a
-note about this, suggesting that (a) the standards make this undefined
-and (b) that depending on the gcc version used, this may not produce
-the expected results. Taking both together seems sufficient
-justification to stay away from attempting this method of appending
-a string.
+I would like to get some help on how to tackle this particular device 
+since I cannot seem to find anything similar to this setup. First let me 
+go over the setup.
 
-> +static int ksz9477_drive_strength_write(struct ksz_device *dev,
-> +					struct ksz_driver_strength_prop *props,
-> +					int num_props)
-> +{
-> +	int i, ret, reg;
-> +	u8 val;
-	u8 val, mask;
+The BeaglePlay board has 2 processors. AM625 processor which is the main 
+processor. This runs the main Linux system. This processor does not have 
+direct access to SubG.
 
-> +
-> +	if (props[KSZ_DRIVER_STRENGTH_IO].value != -1)
-> +		dev_warn(dev->dev, "%s is not supported by this chip variant\n",
-> +			 props[KSZ_DRIVER_STRENGTH_IO].name);
-> +
-> +	if (dev->chip_id == KSZ8795_CHIP_ID ||
-> +	    dev->chip_id == KSZ8794_CHIP_ID ||
-> +	    dev->chip_id == KSZ8765_CHIP_ID)
-> +		reg = KSZ8795_REG_SW_CTRL_20;
-> +	else
-> +		reg = KSZ9477_REG_SW_IO_STRENGTH;
-> +
+It also contains a CC1352P7 MCU with it's own flash program memory, ROM 
+and SRAM. This processor has SubG antenna. It runs it's own OS (Zephyr 
+by default).
 
-> +	ret = ksz_read8(dev, reg, &val);
-> +	if (ret)
-> +		return ret;
-> +
-Remote this.
+The only way for CC1352P7 and AM625 to communicate is by using that 
+particular UART which is just a standard 8250 UART. The setup pretty 
+much looks like 2 boards connected over UART except the UART will always 
+be static.
 
-	val = mask = 0;
-
-> +	for (i = 0; i < num_props; i++) {
-> +		if (props[i].value == -1)
-> +			continue;
-> +
-> +		ret = ksz9477_drive_strength_to_reg(props[i].value);
-> +		if (ret < 0) {
-> +			ksz9477_drive_strength_error(dev, props[i].value);
-> +			return ret;
-> +		}
-> +
-> +		val &= ~(SW_DRIVE_STRENGTH_M << props[i].offset);
-
-		mask |= SW_DRIVE_STRENGTH_M << props[i].offset;
-
-> +		val |= ret << props[i].offset;
-
-		val |= ret << props[i].offset;
-
-> +	}
-> +
-> +	return ksz_write8(dev, reg, val);
-
-	return ksz_rmw8(dev, reg, mask, val);
-
-maybe safer?
+I guess it would make most sense to write a CC1352P7 binding in this 
+case? However, I am not sure how accurate that is since anything from 
+the Linux side will be interacting with the Zephyr application, and not 
+the processor. So in all actuality, the processor itself does not matter 
+at all.
 
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Ayush Singh
+
