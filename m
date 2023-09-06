@@ -2,61 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97CFC793BD3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:55:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5627793BD4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239530AbjIFLzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 07:55:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53378 "EHLO
+        id S239543AbjIFLzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 07:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229839AbjIFLzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:55:03 -0400
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B53F2CE6
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 04:54:59 -0700 (PDT)
-Received: by mail-ot1-x329.google.com with SMTP id 46e09a7af769-6bc9353be9bso704306a34.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 04:54:59 -0700 (PDT)
+        with ESMTP id S229839AbjIFLzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:55:06 -0400
+Received: from mail-ot1-x32d.google.com (mail-ot1-x32d.google.com [IPv6:2607:f8b0:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E236BF
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 04:55:02 -0700 (PDT)
+Received: by mail-ot1-x32d.google.com with SMTP id 46e09a7af769-6bca018afe8so1049502a34.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 04:55:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694001299; x=1694606099; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Knde3yeY5pZ7W0tqxn8uElHkAEeLRAsdTukA5SxVufI=;
-        b=Vz9WzGuQ2f+MSgqoCfAcxMjQ+2BwyFKDOVU88sjkp6mbn57lBLlqWzEnwo/wpx6yJY
-         TTcUC5mCzxVCaGPpGRBmiXMVAnSnVPz80Aq0Eyz8Kcdx/ZvKi8VwOpc5X7BLhPB/itHO
-         rrc6uF/xOGeSG9lmVTCZb2oLLepKSIbO43ZYncWHDvQNyg+We+KPoXGfKJVBWD2uAJK9
-         wxl4wozVormFGpuhm87zbHDIKckyG1DCe+tmsalHRo1gZH470IBibcFIrN3MuIQRKPEw
-         Ag4LfWl0pu1BGRH2AHe/KuUE7xcs76D/N1LPnSu53+3/OHURwJR8K/dXlzjTwaibEXXX
-         2JjQ==
+        d=gmail.com; s=20221208; t=1694001302; x=1694606102; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KZvOe92Pck1yHqHcbbHGxSZdtZe/Mh5Keoxk8BqOdiQ=;
+        b=LYZIBk6/HRVH9aESDoKAZ+N6vY5bync2ahrTI5CvxnXKMicFaBqEzNG5+g3aOKB+6I
+         rOa6s4OoMlJuU+jnaJWttgiTpYrb96Ztehj5kPYuXZ2vNkzOf0DkYFnz2hUeLAu0M04R
+         /CukAhdTyEV9ca5mrYCH9buuwEs8Z6rZcNAXnAtUbtdIMqEN1G4m2z7Ji+i9fYuQl2b/
+         PzZRIe03iNoKPLJu4Zu/IU9mK/cb3KGhM62RGG94V25bSP8kEKJlo/WK+qDLYzs1xIuy
+         jc8ud4x8Zxp+7tmzDyMhHGGr7puxdRUZIsVy3iUg4TSYopVGIJmD2YVoF1cxT279VWCj
+         P6Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694001299; x=1694606099;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Knde3yeY5pZ7W0tqxn8uElHkAEeLRAsdTukA5SxVufI=;
-        b=LpQbndew1ns54QUqqUotThFfBUGKR3Is41FrzWn6fO19oZFoL1lKq9VNcAAjx6vUND
-         p7fty8jILw2pg3VDyLZMLamhlkfg1IPAczEjHyzP8DGsWLs1/8JpfYYO5EBqaXxTJPcZ
-         +lspCmZcXylcDrFo9eaueFDeJfLVZOutB5eV16ayR3W+i+kpiB/zi0XOCt3E77XiPgL0
-         Rh3YmY9SMZnLyZISPUWK4Sjh/LJrrvid4fk7EDz+g132HkGn4gQb+bSM1kcG3pwYeAJS
-         gPAKzqspYc3zoqc0lVwkzyP7hq0ku+uF8C2MCQgMTurkaOjzu4L5VqE5MBYYvk9hwLZd
-         o/HQ==
-X-Gm-Message-State: AOJu0YxzIzj4ROmwvXBouzoPdPsvfUK2P6MSZ6xnu+ronQgCrkEsEQTj
-        flAEitspEOu/oXY/4GgO7AvbILek3GA=
-X-Google-Smtp-Source: AGHT+IHUUKFGWR/M/uleBz12kuVmmUs00d2YG2JG7KUgrhzdY8O6uKpJAIZn5PrbCBAQ/y00QKW2fg==
-X-Received: by 2002:a05:6830:46a3:b0:6bd:9d65:fce with SMTP id ay35-20020a05683046a300b006bd9d650fcemr15354319otb.2.1694001298814;
-        Wed, 06 Sep 2023 04:54:58 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1694001302; x=1694606102;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KZvOe92Pck1yHqHcbbHGxSZdtZe/Mh5Keoxk8BqOdiQ=;
+        b=iLJriapdQxD1LoJvbQx2kLPz83ZZgDAxM9E2lzUQ840T0TuzW1N1sKULwvGwemnRwr
+         UR8LT3DrT/W6Tyd0VbV9kM+lw+OC3lQBC2EfK2/e5LybhtOfBW9fadStmriDBjlmb4U1
+         OPG67ma8zfiwIW/UR0RqZvKGPNdLrbGaH7ba0R7DDGW2qSDC8WkwBgJxMRXWqo9HqxX/
+         Rue5dsKAfP1RR71umQcuX+O6tf3wSPmVHmVrOaODgNC/FTBFntTz/XcvNKfhu+HRCHyW
+         YYHvCKZbqFNPxOlYvPnJiQ8EJ7Fr+Fo08b2lw9ideG8cFNtz7hGeyZjrOMzpjqgMwhG7
+         ZqIQ==
+X-Gm-Message-State: AOJu0YyF99fSGiSs/jvu/QoKd4Iv/I2jsnCYQD+SWrmAut4BoqN6HK3G
+        4NIPQlHqhDfCAbCeQiBM0dE=
+X-Google-Smtp-Source: AGHT+IHTTkfKBB3PaiGWPb5zSXFj7B556Sk4EnEvYfBf/BnTY8TtkNaQDcMvh7TQGd8zPfVpl5Ox/A==
+X-Received: by 2002:a05:6830:4507:b0:6b9:db20:4d25 with SMTP id i7-20020a056830450700b006b9db204d25mr14726526otv.1.1694001301738;
+        Wed, 06 Sep 2023 04:55:01 -0700 (PDT)
 Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:9f6e:bfa3:9410:ae3f])
-        by smtp.gmail.com with ESMTPSA id s27-20020a0568301e1b00b006af7580c84csm6330127otr.60.2023.09.06.04.54.56
+        by smtp.gmail.com with ESMTPSA id s27-20020a0568301e1b00b006af7580c84csm6330127otr.60.2023.09.06.04.54.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Sep 2023 04:54:58 -0700 (PDT)
+        Wed, 06 Sep 2023 04:55:01 -0700 (PDT)
 From:   Fabio Estevam <festevam@gmail.com>
 To:     shawnguo@kernel.org
 Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         conor+dt@kernel.org, Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 1/2] arm64: dts: imx8mp: Move funnel outside from soc
-Date:   Wed,  6 Sep 2023 08:54:43 -0300
-Message-Id: <20230906115444.189664-1-festevam@gmail.com>
+Subject: [PATCH 2/2] arm64: dts: imx8mq: Move funnel outside from soc
+Date:   Wed,  6 Sep 2023 08:54:44 -0300
+Message-Id: <20230906115444.189664-2-festevam@gmail.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230906115444.189664-1-festevam@gmail.com>
+References: <20230906115444.189664-1-festevam@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,15 +80,15 @@ simple-bus.yaml.
 
 Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 107 +++++++++++-----------
- 1 file changed, 54 insertions(+), 53 deletions(-)
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 106 +++++++++++-----------
+ 1 file changed, 53 insertions(+), 53 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 6f2f50e1639c..ee92043a4052 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -202,6 +202,60 @@ clk_ext4: clock-ext4 {
- 		clock-output-names = "clk_ext4";
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 35f07dfb4ca8..4b1ce9fc1758 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -225,6 +225,59 @@ opp-1500000000 {
+ 		};
  	};
  
 +	funnel {
@@ -126,7 +129,7 @@ index 6f2f50e1639c..ee92043a4052 100644
 +			port@3 {
 +				reg = <3>;
 +
-+					ca_funnel_in_port3: endpoint {
++				ca_funnel_in_port3: endpoint {
 +					remote-endpoint = <&etm3_out_port>;
 +				};
 +			};
@@ -134,7 +137,6 @@ index 6f2f50e1639c..ee92043a4052 100644
 +
 +		out-ports {
 +			port {
-+
 +				ca_funnel_out_port0: endpoint {
 +					remote-endpoint = <&hugo_funnel_in_port0>;
 +				};
@@ -142,10 +144,10 @@ index 6f2f50e1639c..ee92043a4052 100644
 +		};
 +	};
 +
- 	reserved-memory {
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -368,59 +422,6 @@ etm3_out_port: endpoint {
+ 	pmu {
+ 		compatible = "arm,cortex-a53-pmu";
+ 		interrupts = <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+@@ -394,59 +447,6 @@ etm3_out_port: endpoint {
  			};
  		};
  
