@@ -2,104 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F065793F95
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 16:52:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 194D6793FA4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 16:54:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242149AbjIFOwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 10:52:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45486 "EHLO
+        id S242053AbjIFOyP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 10:54:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjIFOwl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 10:52:41 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D40C10D0;
-        Wed,  6 Sep 2023 07:52:37 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id D1F54408E8;
-        Wed,  6 Sep 2023 19:52:33 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1694011954; bh=Bs4cf6Y5eP51WAQLneeZZUCkgqz/OE09oKhzHfI9xyE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HvqWgZi8v5EuPKIMOTpJAaVpLKRvIPqjpc8FMfqHEzdPhlbH0ZHT57212ouWBrQ/d
-         5ZT5p3RfG+CCnCWRB4lcdbKujkC5HlalRrPJr1lEyfdDd+hgSPEM/Z2hrNke6MeqUB
-         P+LJ+K1BPj418KGYiKZEMy/cXE4a1rEuBzuz9NcO6fh0hMphT72YLILlPPLJ3hFfwY
-         1Io3MOLr2gMgaK+r/iUF9B39p2knI8wf+o5PgBAUsPOBWtuxMViO9Qb6n/wqDE3UKY
-         9lZViI4s3nOT9Q5MhN0800tcxC5mVWr84IOnHCODJP+/RudP0SVhjc9oWYQZ+ytZ0/
-         Hb+3QqzmoyEwg==
+        with ESMTP id S242017AbjIFOyP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 10:54:15 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E215173C
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 07:53:58 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-99357737980so578776966b.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 07:53:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1694012036; x=1694616836; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=heM2WIdgYwpyKdVMhVOdDsIpHChYmeGvTy53ja7Lcs8=;
+        b=NVu3aiVSNwsiuMGcWf46Q0G524zWPLodMAuIBESuvi6HAUEA8FzyGoExHYXRA9MGsM
+         oj2DkfMAgRT7eC2dGW2l/NVw4DTyWkABQytrQJ1UQ295T7cmtKoxOPHgnlJGTAEFXcyw
+         pTjNmeafQykd0FlYVQMXDzIpCQelyKrJWlOr0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694012036; x=1694616836;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=heM2WIdgYwpyKdVMhVOdDsIpHChYmeGvTy53ja7Lcs8=;
+        b=BbL0Fc6rViAwSWMlslSpcC9gmS3m0TBhnfZhuQiSdBHVF6fBiuWCK33tul4qa6o/ts
+         uOuX4mFO1uR1SvtGjv1F+c7qtdfcfz+1Pwv/+rzaamD/3J8kP27ziomP1igoiR5otqKk
+         ktwz6KwWthiM7SqkC8ePvn/OtvQlZfEQ7uGyDX8gqbCBUPA1RPP7psfD2fe2ZZeFZ719
+         6xDwgkCa4vbx0BCJURGZQ/oU3pYvV3HWopcAK6uLDRBWyDPUXI5UXBBWHcmECx5TOIHH
+         LNg/KFL1pY7T9vuwq5mpfaNW9ccb6ZRYx3GV45ULzACaSJxhTr7IPAs+r2OsE29BwMKJ
+         j5rg==
+X-Gm-Message-State: AOJu0Yw2JC7L03n9LXnXoiPqXe6+IFttPoyFnluvRmG0+TK5pHOuMXJK
+        NjUXfqFRPq/A4ZWnq0tE9hiPo0paiEcUxzTCL7XpvqI77MyIRN4AZILq/g==
+X-Google-Smtp-Source: AGHT+IEU5UffRYUvDwA0NQm7JOuEQu6yerz5z3/Mhzsxu8B4Hq3armkLEjFFu6wwdpmajrU9Sup7CUTnJTt9lIFlQHI=
+X-Received: by 2002:a17:906:10c:b0:9a5:bce9:ffb7 with SMTP id
+ 12-20020a170906010c00b009a5bce9ffb7mr2596750eje.19.1694012036398; Wed, 06 Sep
+ 2023 07:53:56 -0700 (PDT)
 MIME-Version: 1.0
-Date:   Wed, 06 Sep 2023 19:52:32 +0500
-From:   Nikita Travkin <nikita@trvn.ru>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        David Wronek <davidwronek@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc7180: Add ADSP
-In-Reply-To: <4202b582-c0a0-ce13-7561-f5185fe1930a@linaro.org>
-References: <20230905-sc7180-adsp-rproc-v2-0-8ab7f299600a@trvn.ru>
- <20230905-sc7180-adsp-rproc-v2-4-8ab7f299600a@trvn.ru>
- <4202b582-c0a0-ce13-7561-f5185fe1930a@linaro.org>
-Message-ID: <2caf25a10f8d97dd3694ec57ca0dad36@trvn.ru>
-X-Sender: nikita@trvn.ru
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230830231758.2561402-1-sjg@chromium.org> <20230830231758.2561402-3-sjg@chromium.org>
+ <CAMj1kXG5-aqoOtKdPFEdm=_5SdvgUTOhcDOBP1zdARAvKphJtg@mail.gmail.com> <CAL_JsqLx0KnXxFc8mFyT_RmA2qeBEutMXj_3nKo_g==cuSeYuQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLx0KnXxFc8mFyT_RmA2qeBEutMXj_3nKo_g==cuSeYuQ@mail.gmail.com>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Wed, 6 Sep 2023 08:53:44 -0600
+Message-ID: <CAPnjgZ1U+Gy0Q_Sc63p0ixkWF9iJEEBLhV8-N9-sh7OGNy-OmQ@mail.gmail.com>
+Subject: Re: [PATCH v5 3/4] schemas: Add some common reserved-memory usages
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ard Biesheuvel <ardb@kernel.org>, devicetree@vger.kernel.org,
+        Maximilian Brune <maximilian.brune@9elements.com>,
+        ron minnich <rminnich@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        Dhaval Sharma <dhaval@rivosinc.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        linux-acpi@vger.kernel.org, Gua Guo <gua.guo@intel.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>,
+        Guo Dong <guo.dong@intel.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski писал(а) 06.09.2023 18:36:
-> On 05/09/2023 12:41, Nikita Travkin wrote:
->> sc7180 has an ADSP remoteproc that exclusively controls the audio
->> hardware on devices that use Qualcomm firmware.
-> 
-> 
->> +					q6afe: service@4 {
->> +						compatible = "qcom,q6afe";
->> +						reg = <APR_SVC_AFE>;
->> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
->> +
->> +						q6afedai: dais {
->> +							compatible = "qcom,q6afe-dais";
->> +							#address-cells = <1>;
->> +							#size-cells = <0>;
->> +							#sound-dai-cells = <1>;
->> +						};
->> +
->> +						q6afecc: cc {
-> 
-> 
-> No improvements.
-> 
-> You need to add ADSP to your board and then test it. Otherwise you won't
-> see errors and we do not want incorrect, even if disabled, nodes in DTSI.
-> 
+Hi Rob, Ard,
 
-Ah, didn't think the check would (partially) ignore disabled nodes...
+On Wed, 6 Sept 2023 at 08:34, Rob Herring <robh@kernel.org> wrote:
+>
+> On Tue, Sep 5, 2023 at 4:44=E2=80=AFPM Ard Biesheuvel <ardb@kernel.org> w=
+rote:
+> >
+> > On Thu, 31 Aug 2023 at 01:18, Simon Glass <sjg@chromium.org> wrote:
+> > >
+> > > The Devicetree specification skips over handling of a logical view of
+> > > the memory map, pointing users to the UEFI specification.
+> > >
+> > > It is common to split firmware into 'Platform Init', which does the
+> > > initial hardware setup and a "Payload" which selects the OS to be boo=
+ted.
+> > > Thus an handover interface is required between these two pieces.
+> > >
+> > > Where UEFI boot-time services are not available, but UEFI firmware is
+> > > present on either side of this interface, information about memory us=
+age
+> > > and attributes must be presented to the "Payload" in some form.
+> > >
+> >
+> > I don't think the UEFI references are needed or helpful here.
+> >
+> > > This aims to provide an small schema addition for this mapping.
+> > >
+> > > For now, no attempt is made to create an exhaustive binding, so there=
+ are
+> > > some example types listed. More can be added later.
+> > >
+> > > The compatible string is not included, since the node name is enough =
+to
+> > > indicate the purpose of a node, as per the existing reserved-memory
+> > > schema.
+>
+> Node names reflect the 'class', but not what's specifically in the
+> node. So really, all reserved-memory nodes should have the same name,
+> but that ship already sailed for existing users. 'compatible' is the
+> right thing here. As to what the node name should be, well, we haven't
+> defined that. I think we just used 'memory' on some platforms.
 
-Is there any simple way to instruct the checker to ignore disabled
-status and test anyway? I'd like to be able to test the "clean"
-series as-to-be-sent to have less places for error (and manual action
-I guess...)
+OK
 
-I will make sure to fix that for v3
+>
+> > > This binding does not include a binding for the memory 'attribute'
+> > > property, defined by EFI_BOOT_SERVICES.GetMemoryMap(). It may be usef=
+ul
+> > > to have that as well, but perhaps not as a bit mask.
+> > >
+> > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > ---
+> > >
+> > > Changes in v5:
+> > > - Drop the memory-map node (should have done that in v4)
+> > > - Tidy up schema a bit
+> > >
+> > > Changes in v4:
+> > > - Make use of the reserved-memory node instead of creating a new one
+> > >
+> > > Changes in v3:
+> > > - Reword commit message again
+> > > - cc a lot more people, from the FFI patch
+> > > - Split out the attributes into the /memory nodes
+> > >
+> > > Changes in v2:
+> > > - Reword commit message
+> > >
+> > >  .../reserved-memory/common-reserved.yaml      | 53 +++++++++++++++++=
+++
+> > >  1 file changed, 53 insertions(+)
+> > >  create mode 100644 dtschema/schemas/reserved-memory/common-reserved.=
+yaml
+> > >
+> > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml b/=
+dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > new file mode 100644
+> > > index 0000000..d1b466b
+> > > --- /dev/null
+> > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > @@ -0,0 +1,53 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/reserved-memory/common-reserved.y=
+aml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Common memory reservations
+> > > +
+> > > +description: |
+> > > +  Specifies that the reserved memory region can be used for the purp=
+ose
+> > > +  indicated by its node name.
+> > > +
+> > > +  Clients may reuse this reserved memory if they understand what it =
+is for.
+> > > +
+> > > +maintainers:
+> > > +  - Simon Glass <sjg@chromium.org>
+> > > +
+> > > +allOf:
+> > > +  - $ref: reserved-memory.yaml
+> > > +
+> > > +properties:
+> > > +  $nodename:
+> > > +    enum:
+> > > +      - acpi-reclaim
+> > > +      - acpi-nvs
+> > > +      - boot-code
+> > > +      - boot-data
+> > > +      - runtime-code
+> > > +      - runtime-data
+> > > +
+> >
+> > These types are used by firmware to describe the nature of certain
+> > memory regions to the OS. Boot code and data can be discarded, as well
+> > as ACPI reclaim after its contents have been consumed. Runtime code
+> > and data need to be mapped for runtime features to work.
+> >
+> > When one firmware phase communicates the purpose of a certain memory
+> > reservation to another, it is typically not limited to whether its
+> > needs to be preserved and when it needs to be mapped (and with which
+> > attributes). I'd expect a memory reservation appearing under this node
+> > to have a clearly defined purpose, and the subsequent phases need to
+> > be able to discover this information.
+> >
+> > For example, a communication buffer for secure<->non-secure
+> > communication or a page with spin tables used by PSCI. None of the
+> > proposed labels are appropriate for this, and I'd much rather have a
+> > compatible string or some other property that clarifies the nature in
+> > a more suitable way. Note that 'no-map' already exists to indicate
+> > that the CPU should not map this memory unless it does so for the
+> > specific purpose that the reservation was made for.
+>
+> I agree. I think compatible is the better approach. Some property like
+> 'discard' may not be sufficient information if the OS needs to consume
+> the region first and then discard it. Better to state exactly what's
+> there and then the OS can imply the rest.
 
-Nikita
+OK, so what sort of compatible strings?
 
-> Best regards,
-> Krzysztof
+How about:
+"acpi-reclaim" - holds ACPI tables; memory can be reclaimed once the
+tables are read and no-longer needed
+"boot-code" - holds boot code; memory can be reclaimed once the boot
+phase is complete
+"runtime-code" - holds runtime code; memory can be reclaimed only if
+this code will not be used from that point
+
+etc. We can then have more specific compatibles, like:
+
+"psci-spin-table" - holds PSCI spin tables
+
+so you could do:
+
+compatible =3D "runtime-code", "psci-spin-table";
+
+Regards,
+Simon
