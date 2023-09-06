@@ -2,498 +2,455 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08ED97937A0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 11:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8EE57937C2
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 11:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229606AbjIFJC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 05:02:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43798 "EHLO
+        id S235769AbjIFJJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 05:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230157AbjIFJC4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 05:02:56 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49B2D197;
-        Wed,  6 Sep 2023 02:02:50 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (ftip006315900.acc1.colindale.21cn-nte.bt.net [81.134.214.249])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 73D14E45;
-        Wed,  6 Sep 2023 11:01:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1693990881;
-        bh=FEqLJt1SLh9q/upoErDonLlDQYQfZBgbNazhSJd65yo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jVW0vLoy2eEk59N2hDqpZvHtnUvp4ELgmOjTtX5BgeUeefLAZqWOrcdBQ0wnKEP+G
-         +EYfgXTq85OxUb2LH0Sj8h2gY+e8a2Q77atc0as2ruBKdGXqD+5BBH83mcy+TCRkgm
-         mejUfNkAlPKRo+LXzrb9ezG4Hze3pDHWgzpeSyB4=
-Date:   Wed, 6 Sep 2023 12:03:01 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Paul Elder <paul.elder@ideasonboard.com>,
-        linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/3] media: i2c: Add driver for THine THP7312
-Message-ID: <20230906090301.GM7971@pendragon.ideasonboard.com>
-References: <20230905233118.183140-1-paul.elder@ideasonboard.com>
- <20230905233118.183140-3-paul.elder@ideasonboard.com>
- <569755e5-7cce-7077-3078-36c2d1422f97@linaro.org>
+        with ESMTP id S236219AbjIFJJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 05:09:49 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 75610E4D;
+        Wed,  6 Sep 2023 02:09:43 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B16411063;
+        Wed,  6 Sep 2023 02:10:20 -0700 (PDT)
+Received: from [10.57.92.132] (unknown [10.57.92.132])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC51B3F7C5;
+        Wed,  6 Sep 2023 02:09:39 -0700 (PDT)
+Message-ID: <ec5a3945-14b8-c768-3c30-ba422233b28e@arm.com>
+Date:   Wed, 6 Sep 2023 10:09:38 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <569755e5-7cce-7077-3078-36c2d1422f97@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.15.0
+Subject: Re: [PATCH v8 11/13] coresight-tpdm: Add nodes for timestamp request
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1692681973-20764-1-git-send-email-quic_taozha@quicinc.com>
+ <1692681973-20764-12-git-send-email-quic_taozha@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <1692681973-20764-12-git-send-email-quic_taozha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 06, 2023 at 09:25:02AM +0200, Krzysztof Kozlowski wrote:
-> On 06/09/2023 01:31, Paul Elder wrote:
-> > Add driver for the THine THP7312 ISP.
-> > 
-> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> > ---
+On 22/08/2023 06:26, Tao Zhang wrote:
+> Add nodes to configure the timestamp request based on input
+> pattern match. Each TPDM that support DSB subunit has maximum of
+> n(n<7) TPR registers to configure value for timestamp request
+> based on input pattern match. Eight 32 bit registers providing
+> DSB interface timestamp request  pattern match comparison. And
+> each TPDM that support DSB subunit has maximum of m(m<7) TPMR
+> registers to configure pattern mask for timestamp request. Eight
+> 32 bit registers providing DSB interface timestamp request
+> pattern match mask generation. Add nodes to enable/disable
+> pattern timestamp and set pattern timestamp type.
 > 
-> ...
+> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+> ---
+>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  40 ++++++-
+>   drivers/hwtracing/coresight/coresight-tpdm.c       | 133 ++++++++++++++++++++-
+>   drivers/hwtracing/coresight/coresight-tpdm.h       |  24 ++++
+>   3 files changed, 191 insertions(+), 6 deletions(-)
 > 
-> > +
-> > +static int thp7312_change_mode(struct thp7312_isp_dev *isp_dev,
-> > +			       enum thp7312_mode mode)
-> > +{
-> > +	struct i2c_client *client = isp_dev->i2c_client;
-> > +	u8 reg_val = 0;
-> > +	struct reg_value *reg_data;
-> > +	int i;
-> > +	int ret;
-> > +	struct thp7312_mode_info *info = &thp7312_mode_info_data[mode];
-> > +
-> > +	ret = thp7312_read_poll_timeout(isp_dev, THP7312_REG_CAMERA_STATUS, reg_val,
-> 
-> This and many other palces do not look like wrapped according to Linux
-> coding style, so at 80. And please do not use argument "but checkpatch",
-> but read the Coding Style.
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> index f5cd302..46a5535 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+> @@ -123,4 +123,42 @@ KernelVersion	6.5
+>   Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+>   Description:
+>   		(RW) Set/Get the mask of the trigger pattern for the DSB
+> -		subunit TPDM.
+> \ No newline at end of file
+> +		subunit TPDM.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpr[0:7]
+> +Date:		March 2023
+> +KernelVersion	6.5
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(RW) Set/Get the value of the pattern for the DSB subunit TPDM.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt/tpmr[0:7]
+> +Date:		March 2023
+> +KernelVersion	6.5
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(RW) Set/Get the mask of the pattern for the DSB subunit TPDM.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_ts
 
-Linus has blessed increasing line lengths to 100 columns. I tend to
-still go for 80 columns personally, with an occasional exception when
-strict wrapping at 80 columns makes the code less readable. At the end
-of the day, unless it contradicts a system-wide policy, I think it's up
-to the driver maintainer.
+Given we have a dedicated "group" for dsb_patt, could we move this to 
+dsb_patt and name this "enable_timestamp"
 
-In this specific case, wrapping wouldn't be too bad:
+i.e.,
 
-	ret = thp7312_read_poll_timeout(isp_dev, THP7312_REG_CAMERA_STATUS,
-					reg_val, reg_val == 0x80, 20000,
-					200000);
+		tpdm-name/dsb_patt/enable_timestamp
 
-> > +					reg_val == 0x80, 20000, 200000);
-> > +	if (ret < 0) {
-> > +		dev_err(&client->dev, "%s(): failed to poll ISP: %d\n",
-> > +			__func__, ret);
-> > +		return ret;
-> > +	}
-> > +
-> 
-> 
-> > +static int thp7312_reset(struct thp7312_isp_dev *isp_dev)
-> > +{
-> > +	struct device *dev = &isp_dev->i2c_client->dev;
-> > +	u8 camera_status = -1;
-> > +	int ret;
-> > +
-> > +	gpiod_set_value_cansleep(isp_dev->reset_gpio, 1);
-> > +	
-> > +	fsleep(10000);
-> > +	
-> > +	gpiod_set_value_cansleep(isp_dev->reset_gpio, 0);
-> > +	
-> > +	fsleep(300000);
-> > +
-> > +	while (camera_status != 0x80) {
-> > +		ret = thp7312_read_reg(isp_dev, 0xF001, &camera_status);
-> > +		if (ret < 0) {
-> > +			dev_err(dev, "Failed to read camera status register\n");
-> > +			return ret;
-> > +		}
-> > +
-> > +		if (camera_status == 0x00) {
-> > +			dev_info(dev, "Camera initializing...");
-> 
-> That's a debug at most.
-> 
-> > +		} else if (camera_status == 0x80) {
-> > +			dev_info(dev, "Camera initialization done");
-> 
-> dev_dbg
-> 
-> > +			break;
-> > +		} else {
-> > +			dev_err(dev,
-> > +				"Camera Status field incorrect; camera_status=%x\n",
-> > +				camera_status);
-> > +		}
-> > +
-> > +		usleep_range(70000, 80000);
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int thp7312_set_power_on(struct device *dev)
-> > +{
-> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > +	struct thp7312_isp_dev *isp_dev = to_thp7312_dev(sd);
-> > +
-> > +	int ret;
-> > +
-> > +	ret = regulator_bulk_enable(THP7312_NUM_SUPPLIES, isp_dev->supplies);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	ret = clk_prepare_enable(isp_dev->iclk);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "clk prepare enable failed\n");
-> > +		goto error_pwdn;
-> > +	}
-> > +
-> > +	/*
-> > +	 * We cannot assume that turning off and on again will reset, so do a
-> > +	 * software reset on power up. While at it, reprogram the MIPI lanes,
-> > +	 * in case they get cleared when powered off.
-> > +	 */
-> > +	ret = thp7312_reset(isp_dev);
-> > +	if (ret < 0)
-> > +		goto error_clk_disable;
-> > +
-> > +	ret = thp7312_set_mipi_lanes(isp_dev);
-> > +	if (ret < 0)
-> > +		goto error_clk_disable;
-> > +
-> > +	return 0;
-> > +
-> > +error_clk_disable:
-> > +	clk_disable_unprepare(isp_dev->iclk);
-> > +error_pwdn:
-> > +	regulator_bulk_disable(THP7312_NUM_SUPPLIES, isp_dev->supplies);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int thp7312_set_power_off(struct device *dev)
-> > +{
-> > +	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-> > +	struct thp7312_isp_dev *isp_dev = to_thp7312_dev(sd);
-> > +
-> > +	isp_dev->streaming = false;
-> > +
-> > +	regulator_bulk_disable(THP7312_NUM_SUPPLIES, isp_dev->supplies);
-> > +	clk_disable_unprepare(isp_dev->iclk);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int thp7312_get_regulators(struct thp7312_isp_dev *isp_dev)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i = 0; i < THP7312_NUM_SUPPLIES; i++)
-> > +		isp_dev->supplies[i].supply = thp7312_supply_name[i];
-> > +
-> > +	return devm_regulator_bulk_get(&isp_dev->i2c_client->dev,
-> > +				       THP7312_NUM_SUPPLIES,
-> > +				       isp_dev->supplies);
-> > +}
-> 
-> 
-> ...
-> 
-> > +	case V4L2_CID_POWER_LINE_FREQUENCY:
-> > +		if (ctrl->val == V4L2_CID_POWER_LINE_FREQUENCY_60HZ) {
-> > +			value = THP7312_AE_FLICKER_MODE_60;
-> > +		} else if (ctrl->val==V4L2_CID_POWER_LINE_FREQUENCY_50HZ) {
-> > +			value = THP7312_AE_FLICKER_MODE_50;
-> > +		} else {
-> > +			if (isp_dev->fw_major_version == 40 && isp_dev->fw_minor_version == 03) {
-> > +				/* THP7312_AE_FLICKER_MODE_DISABLE is not supported */
-> > +				value = THP7312_AE_FLICKER_MODE_50; 
-> > +			} else {
-> > +				value = THP7312_AE_FLICKER_MODE_DISABLE;
-> > +			}
-> > +		}
-> > +		ret = thp7312_write_reg(isp_dev, THP7312_REG_AE_FLICKER_MODE, value);
-> > +		break;
-> > +		
-> > +	case V4L2_CID_SATURATION:
-> > +		ret = thp7312_write_reg(isp_dev, THP7312_REG_SATURATION, ctrl->val);
-> > +		break;
-> > +		
-> > +	case V4L2_CID_CONTRAST:
-> > +		ret = thp7312_write_reg(isp_dev, THP7312_REG_CONTRAST, ctrl->val);
-> > +		break;
-> > +		
-> > +	case V4L2_CID_SHARPNESS:
-> > +		ret = thp7312_write_reg(isp_dev, THP7312_REG_SHARPNESS, ctrl->val);
-> > +		break;
-> > +		
-> > +	default:
-> > +		dev_err(dev, "unsupported control id: %d\n", ctrl->id);
-> > +		break;
-> > +	}
-> > +
-> > +	pm_runtime_put(&client->dev);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static const struct v4l2_ctrl_ops thp7312_ctrl_ops = {
-> > +	.s_ctrl = thp7312_s_ctrl,
-> > +};
-> > +
-> > +static const struct v4l2_ctrl_config thp7312_v4l2_ctrls_custom[] = {
-> > +	{
-> > +		.ops = &thp7312_ctrl_ops,
-> > +		.id = V4L2_CID_THINE_LOW_LIGHT_COMPENSATION,
-> > +		.name = "Low Light Compensation",
-> > +		.type = V4L2_CTRL_TYPE_BOOLEAN,
-> > +		.min = 0,
-> > +		.def = 1,
-> > +		.max = 1,
-> > +		.step = 1,
-> > +	},
-> > +		
-> > +	{
-> 
-> }, {
-> 
-> 
-> ...
-> 
-> > +
-> > +static int thp7312_parse_dt(struct thp7312_isp_dev *isp_dev)
-> > +{
-> > +	struct fwnode_handle *endpoint;
-> > +	struct device *dev = &isp_dev->i2c_client->dev;
-> > +	int ret;
-> > +
-> > +	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
-> > +	if (!endpoint) {
-> > +		dev_err(dev, "endpoint node not found\n");
-> > +		return -EINVAL;
-> 
-> return dev_err_probe
-> 
-> > +	}
-> > +
-> > +	ret = v4l2_fwnode_endpoint_parse(endpoint, &isp_dev->ep);
-> > +	fwnode_handle_put(endpoint);
-> > +	if (ret) {
-> > +		dev_err(dev, "Could not parse endpoint\n");
-> > +		return ret;
-> 
-> return dev_err_probe
-> 
-> > +	}
-> > +
-> > +	if (isp_dev->ep.bus_type != V4L2_MBUS_CSI2_DPHY) {
-> > +		dev_err(dev, "Unsupported bus type %d\n", isp_dev->ep.bus_type);
-> > +		return -EINVAL;
-> 
-> return dev_err_probe
-> 
-> 
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int thp7312_probe(struct i2c_client *client)
-> > +{
-> > +	struct device *dev = &client->dev;
-> > +	struct thp7312_isp_dev *isp_dev;
-> > +	int ret;
-> > +
-> > +	dev_info(dev, "Start of probe %s:%d", __func__, __LINE__);
-> 
-> No, no silly tracing messages. Never.
-> 
-> > +	isp_dev = devm_kzalloc(dev, sizeof(*isp_dev), GFP_KERNEL);
-> > +	if (!isp_dev)
-> > +		return -ENOMEM;
-> > +	isp_dev->i2c_client = client;
-> > +
-> > +	thp7312_init_fmt(isp_dev);
-> > +
-> > +	isp_dev->current_mode =
-> > +		(struct thp7312_mode_info *)thp7312_find_mode(isp_dev,
-> > +							      isp_dev->current_fr,
-> > +							      isp_dev->fmt.width,
-> > +							      isp_dev->fmt.height,
-> > +							      true);
-> > +
-> > +	/* TODO fix firmware */
-> > +	/* update mode hardcoded at 0 for now */
-> > +	isp_dev->fw_update_mode = 0;
-> > +	isp_dev->fw_major_version = 0;
-> > +	isp_dev->fw_minor_version = 0;
-> > +	isp_dev->thp7312_register_rw_address = 61440;
-> > +
-> > +	ret = thp7312_parse_dt(isp_dev);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Failed to parse DT: %d\n", ret);
-> 
-> Why do you print errors twice?
-> 
-> > +		return ret;
-> 
-> > +	}
-> > +
-> > +	ret = thp7312_get_regulators(isp_dev);
-> > +	if (ret) {
-> > +		dev_err(dev, "Failed to get regulators: %d\n", ret);
-> 
-> return dev_err_probe
-> 
-> > +		return ret;
-> > +	}
-> > +
-> > +	isp_dev->iclk = devm_clk_get(dev, NULL);
-> > +	if (IS_ERR(isp_dev->iclk)) {
-> > +		dev_err(dev, "Failed to get iclk\n");
-> 
-> return dev_err_probe
-> 
-> > +		return PTR_ERR(isp_dev->iclk);
-> > +	}
-> > +
-> > +	/* request reset pin */
-> > +	isp_dev->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> > +	if (IS_ERR(isp_dev->reset_gpio)) {
-> > +		dev_err(dev, "Failed to get reset gpio\n");
-> 
-> Please start from a new driver as base for your code, so all such
-> trivialities do not have to be repeated over and over
+> +Date:		March 2023
+> +KernelVersion	6.5
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(Write) Set the pattern timestamp of DSB tpdm. Read
+> +		the pattern timestamp of DSB tpdm.
+> +
+> +		Accepts only one of the 2 values -  0 or 1.
+> +		0 : Disable DSB pattern timestamp.
+> +		1 : Enable DSB pattern timestamp.
+> +
+> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_patt_type
 
-Krzysztof, while your review comments are technically right, and
-appreciated for that, I find the tone borderline aggressive in places
-:-( I wish there was a perfect driver that everybody could look at as an
-example, but the reality is that APIs and best practices evolve all the
-time.
+Similarly here.
 
-> return dev_err_probe
-> 
-> > +		return PTR_ERR(isp_dev->reset_gpio);
-> > +	}
-> > +
-> > +	v4l2_i2c_subdev_init(&isp_dev->sd, client, &thp7312_subdev_ops);
-> > +	isp_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE | V4L2_SUBDEV_FL_HAS_EVENTS;
-> > +	isp_dev->pad.flags = MEDIA_PAD_FL_SOURCE;
-> > +	isp_dev->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> > +
-> > +	mutex_init(&isp_dev->lock);
-> > +
-> > +	ret = media_entity_pads_init(&isp_dev->sd.entity, 1, &isp_dev->pad);
-> > +	if (ret)
-> > +		goto mutex_destroy;
-> > +
-> > +	ret = thp7312_set_power_on(dev);
-> > +	if (ret)
-> > +		goto entity_cleanup;
-> > +
-> > +	ret = thp7312_read_firmware_version(isp_dev);
-> > +	if (ret < 0) {
-> > +		dev_warn(dev, "Camera is not found\n");
-> > +		goto power_off;
-> > +	}
-> > +
-> > +	dev_info(dev, "THP7312 firmware version = %02d.%02d",
-> > +		 isp_dev->fw_major_version, isp_dev->fw_minor_version);
-> > +
-> > +	ret = thp7312_init_controls(isp_dev);
-> > +	if (ret)
-> > +		goto power_off;
-> > +
-> > +	isp_dev->sd.ctrl_handler = &isp_dev->ctrl_handler;
-> > +
-> > +	ret = v4l2_async_register_subdev(&isp_dev->sd);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "Subdev registeration failed");
-> > +		goto free_ctrls;
-> > +	}
-> > +
-> > +	pm_runtime_set_active(dev);
-> > +	pm_runtime_enable(dev);
-> > +
-> > +	dev_info(dev, "v4l2 async register subdev done");
-> 
-> Drop.
-> 
-> > +
-> > +	return 0;
-> > +
-> > +free_ctrls:
-> > +	v4l2_ctrl_handler_free(&isp_dev->ctrl_handler);
-> > +power_off:
-> > +	thp7312_set_power_off(dev);
-> > +entity_cleanup:
-> > +	media_entity_cleanup(&isp_dev->sd.entity);
-> > +mutex_destroy:
-> > +	mutex_destroy(&isp_dev->lock);
-> > +	return ret;
-> > +}
-> > +
-> > +static void thp7312_remove(struct i2c_client *client)
-> > +{
-> > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > +	struct thp7312_isp_dev *isp_dev = to_thp7312_dev(sd);
-> > +
-> > +	v4l2_async_unregister_subdev(&isp_dev->sd);
-> > +	v4l2_ctrl_handler_free(&isp_dev->ctrl_handler);
-> > +	media_entity_cleanup(&isp_dev->sd.entity);
-> > +	v4l2_device_unregister_subdev(sd);
-> > +	pm_runtime_disable(&client->dev);
-> > +	mutex_destroy(&isp_dev->lock);
-> > +}
-> > +
-> > +static const struct i2c_device_id thp7312_id[] = {
-> > +	{"thp7312", 0},
-> > +	{},
-> > +};
-> > +MODULE_DEVICE_TABLE(i2c, thp7312_id);
-> > +
-> > +static const struct of_device_id thp7312_dt_ids[] = {
-> > +	{ .compatible = "thine,thp7312" },
-> > +	{ /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, thp7312_dt_ids);
-> > +
-> > +static const struct dev_pm_ops thp7312_pm_ops = {
-> > +	SET_RUNTIME_PM_OPS(thp7312_set_power_off, thp7312_set_power_on, NULL)
-> > +};
-> > +
-> > +static struct i2c_driver thp7312_i2c_driver = {
-> > +	.driver = {
-> > +		.name  = "thp7312",
-> > +		.of_match_table	= thp7312_dt_ids,
-> > +	},
-> > +	.id_table = thp7312_id,
-> > +	.probe_new = thp7312_probe,
-> 
-> probe
-> 
-> > +	.remove   = thp7312_remove,
-> > +};
-> > +
-> > +module_i2c_driver(thp7312_i2c_driver);
-> > +
-> > +MODULE_DESCRIPTION("THP7312 MIPI Camera Subdev Driver");
-> > +MODULE_LICENSE("GPL");
+> +Date:		March 2023
+> +KernelVersion	6.5
+> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+> +Description:
+> +		(Write) Set the pattern type of DSB tpdm. Read
+> +		the pattern type of DSB tpdm.
+> +
+> +		Accepts only one of the 2 values -  0 or 1.
+> +		0 : Set the DSB pattern type to value.
+> +		1 : Set the DSB pattern type to toggle.
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
+> index 6521019..9b0e060 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
+> @@ -45,6 +45,12 @@ static ssize_t tpdm_simple_dataset_show(struct device *dev,
+>   	case DSB_TRIG_PATT_MASK:
+>   		return sysfs_emit(buf, "0x%x\n",
+>   				drvdata->dsb->trig_patt_mask[tpdm_attr->idx]);
+> +	case DSB_PATT:
+> +		return sysfs_emit(buf, "0x%x\n",
+> +				drvdata->dsb->patt_val[tpdm_attr->idx]);
+> +	case DSB_PATT_MASK:
+> +		return sysfs_emit(buf, "0x%x\n",
+> +				drvdata->dsb->patt_mask[tpdm_attr->idx]);
+>   	default:
+>   		return -EINVAL;
+>   	}
+> @@ -72,6 +78,12 @@ static ssize_t tpdm_simple_dataset_store(struct device *dev,
+>   	case DSB_TRIG_PATT_MASK:
+>   		drvdata->dsb->trig_patt_mask[tpdm_attr->idx] = val;
+>   		break;
+> +	case DSB_PATT:
+> +		drvdata->dsb->patt_val[tpdm_attr->idx] = val;
+> +		break;
+> +	case DSB_PATT_MASK:
+> +		drvdata->dsb->patt_mask[tpdm_attr->idx] = val;
+> +		break;
+>   	default:
+>   		spin_unlock(&drvdata->spinlock);
+>   		return -EINVAL;
+> @@ -129,6 +141,27 @@ static void set_dsb_mode(struct tpdm_drvdata *drvdata, u32 *val)
+>   		*val &= ~TPDM_DSB_CR_MODE;
+>   }
+>   
+> +static void set_dsb_tier(struct tpdm_drvdata *drvdata, u32 *val)
+> +{
 
--- 
-Regards,
+Could we not Write to the DSB_TIER register from this function ?
+There are no other users of this function and keeping the
+read and write operations in the caller doesn't make much
+sense.
 
-Laurent Pinchart
+
+> +	/* Set pattern timestamp type and enablement */
+> +	if (drvdata->dsb->patt_ts) {
+> +		*val |= TPDM_DSB_TIER_PATT_TSENAB;
+> +		if (drvdata->dsb->patt_type)
+> +			*val |= TPDM_DSB_TIER_PATT_TYPE;
+> +		else
+> +			*val &= ~TPDM_DSB_TIER_PATT_TYPE;
+> +	} else {
+> +		*val &= ~TPDM_DSB_TIER_PATT_TSENAB;
+> +	}
+> +
+> +	/* Set trigger timestamp */
+> +	if (drvdata->dsb->trig_ts)
+> +		*val |= TPDM_DSB_TIER_XTRIG_TSENAB;
+> +	else
+> +		*val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;
+
+minor nit:
+Does it make sense to clear everything in one shot and set the
+required fields based on the fields ? That makes it a bit more
+reader friendly.
+
+{
+	u32 val = readl_relaxed(drvdata.., TPDM_DSB_TIER);
+
+	/* Clear all relevant fields */
+	val &= ~(TPDM_DSB_TIER_PATT_TSENAB | TPDM_DSB_TIER_PATT_TYPE |\
+		 TPDM_DSB_TIER_XTRIG_TSENAB)
+
+	/* Set the required fields */
+	if (drvdata->dsb->patt_ts) {
+		val |= TPDM_DSB_TIER_PATT_TSENAB;
+		if (drvdata->dsb->patt_type)
+			val |= TPDM_DSB_TIER_PATT_TYPE;
+	}
+
+	if (drvdata->dsb->trig_ts)
+		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
+
+	writel_relaxed(val, ... TPDM_DSB_TIER);	
+}
+
+> +
+> +}
+> +
+>   static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   {
+>   	u32 val, i;
+> @@ -140,17 +173,17 @@ static void tpdm_enable_dsb(struct tpdm_drvdata *drvdata)
+>   		writel_relaxed(drvdata->dsb->edge_ctrl_mask[i],
+>   			   drvdata->base + TPDM_DSB_EDCMR(i));
+>   	for (i = 0; i < TPDM_DSB_MAX_PATT; i++) {
+> +		writel_relaxed(drvdata->dsb->patt_val[i],
+> +			    drvdata->base + TPDM_DSB_TPR(i));
+> +		writel_relaxed(drvdata->dsb->patt_mask[i],
+> +			    drvdata->base + TPDM_DSB_TPMR(i));
+>   		writel_relaxed(drvdata->dsb->trig_patt[i],
+>   			    drvdata->base + TPDM_DSB_XPR(i));
+>   		writel_relaxed(drvdata->dsb->trig_patt_mask[i],
+>   			    drvdata->base + TPDM_DSB_XPMR(i));
+>   	}
+>   	val = readl_relaxed(drvdata->base + TPDM_DSB_TIER);
+> -	/* Set trigger timestamp */
+> -	if (drvdata->dsb->trig_ts)
+> -		val |= TPDM_DSB_TIER_XTRIG_TSENAB;
+> -	else
+> -		val &= ~TPDM_DSB_TIER_XTRIG_TSENAB;
+> +	set_dsb_tier(drvdata, &val);
+>   	writel_relaxed(val, drvdata->base + TPDM_DSB_TIER);
+
+See above
+
+>   
+>   	val = readl_relaxed(drvdata->base + TPDM_DSB_CR);
+> @@ -471,6 +504,67 @@ static ssize_t ctrl_mask_store(struct device *dev,
+>   }
+>   static DEVICE_ATTR_WO(ctrl_mask);
+>   
+> +static ssize_t dsb_patt_ts_show(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   char *buf)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +
+> +	return sysfs_emit(buf, "%u\n",
+> +			 (unsigned int)drvdata->dsb->patt_ts);
+> +}
+> +
+> +/*
+> + * value 1: Enable/Disable DSB pattern timestamp
+> + */
+> +static ssize_t dsb_patt_ts_store(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   const char *buf,
+> +				   size_t size)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	unsigned long val;
+> +
+> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
+> +		return -EINVAL;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	drvdata->dsb->patt_ts = !!val;
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RW(dsb_patt_ts);
+> +
+> +static ssize_t dsb_patt_type_show(struct device *dev,
+> +					  struct device_attribute *attr,
+> +					  char *buf)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +
+> +	return sysfs_emit(buf, "%u\n",
+> +			 (unsigned int)drvdata->dsb->patt_type);
+> +}
+> +
+> +/*
+> + * value 1: Set DSB pattern type
+> + */
+> +static ssize_t dsb_patt_type_store(struct device *dev,
+> +					  struct device_attribute *attr,
+> +					  const char *buf, size_t size)
+> +{
+> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +	unsigned long val;
+> +
+> +	if ((kstrtoul(buf, 0, &val)) || (val & ~1UL))
+> +		return -EINVAL;
+> +
+> +	spin_lock(&drvdata->spinlock);
+> +	drvdata->dsb->patt_type = val;
+> +	spin_unlock(&drvdata->spinlock);
+> +	return size;
+> +}
+> +static DEVICE_ATTR_RW(dsb_patt_type);
+> +
+>   static ssize_t dsb_trig_type_show(struct device *dev,
+>   		  struct device_attribute *attr, char *buf)
+>   {
+> @@ -593,8 +687,30 @@ static struct attribute *tpdm_dsb_trig_patt_attrs[] = {
+>   	NULL,
+>   };
+>   
+> +static struct attribute *tpdm_dsb_patt_attrs[] = {
+> +	DSB_PATT_ATTR(0),
+> +	DSB_PATT_ATTR(1),
+> +	DSB_PATT_ATTR(2),
+> +	DSB_PATT_ATTR(3),
+> +	DSB_PATT_ATTR(4),
+> +	DSB_PATT_ATTR(5),
+> +	DSB_PATT_ATTR(6),
+> +	DSB_PATT_ATTR(7),
+> +	DSB_PATT_MASK_ATTR(0),
+> +	DSB_PATT_MASK_ATTR(1),
+> +	DSB_PATT_MASK_ATTR(2),
+> +	DSB_PATT_MASK_ATTR(3),
+> +	DSB_PATT_MASK_ATTR(4),
+> +	DSB_PATT_MASK_ATTR(5),
+> +	DSB_PATT_MASK_ATTR(6),
+> +	DSB_PATT_MASK_ATTR(7),
+> +	NULL,
+> +};
+> +
+>   static struct attribute *tpdm_dsb_attrs[] = {
+>   	&dev_attr_dsb_mode.attr,
+
+> +	&dev_attr_dsb_patt_ts.attr,
+> +	&dev_attr_dsb_patt_type.attr,
+
+As mentioned above, could we move the above two to the dsb_patt_attrs ?
+
+Suzuki
+
+>   	&dev_attr_dsb_trig_ts.attr,
+>   	&dev_attr_dsb_trig_type.attr,
+>   	NULL,
+> @@ -617,11 +733,18 @@ static struct attribute_group tpdm_dsb_trig_patt_grp = {
+>   	.name = "dsb_trig_patt",
+>   };
+>   
+> +static struct attribute_group tpdm_dsb_patt_grp = {
+> +	.attrs = tpdm_dsb_patt_attrs,
+> +	.is_visible = tpdm_dsb_is_visible,
+> +	.name = "dsb_patt",
+> +};
+> +
+>   static const struct attribute_group *tpdm_attr_grps[] = {
+>   	&tpdm_attr_grp,
+>   	&tpdm_dsb_attrs_grp,
+>   	&tpdm_dsb_edge_grp,
+>   	&tpdm_dsb_trig_patt_grp,
+> +	&tpdm_dsb_patt_grp,
+>   	NULL,
+>   };
+>   
+> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.h b/drivers/hwtracing/coresight/coresight-tpdm.h
+> index 9e1b0a4..9173e80 100644
+> --- a/drivers/hwtracing/coresight/coresight-tpdm.h
+> +++ b/drivers/hwtracing/coresight/coresight-tpdm.h
+> @@ -12,6 +12,8 @@
+>   /* DSB Subunit Registers */
+>   #define TPDM_DSB_CR		(0x780)
+>   #define TPDM_DSB_TIER		(0x784)
+> +#define TPDM_DSB_TPR(n)		(0x788 + (n * 4))
+> +#define TPDM_DSB_TPMR(n)	(0x7A8 + (n * 4))
+>   #define TPDM_DSB_XPR(n)		(0x7C8 + (n * 4))
+>   #define TPDM_DSB_XPMR(n)	(0x7E8 + (n * 4))
+>   #define TPDM_DSB_EDCR(n)	(0x808 + (n * 4))
+> @@ -28,8 +30,12 @@
+>   /* Data bits for DSB test mode */
+>   #define TPDM_DSB_CR_TEST_MODE		GENMASK(10, 9)
+>   
+> +/* Enable bit for DSB subunit pattern timestamp */
+> +#define TPDM_DSB_TIER_PATT_TSENAB		BIT(0)
+>   /* Enable bit for DSB subunit trigger timestamp */
+>   #define TPDM_DSB_TIER_XTRIG_TSENAB		BIT(1)
+> +/* Bit for DSB subunit pattern type */
+> +#define TPDM_DSB_TIER_PATT_TYPE		BIT(2)
+>   
+>   /* DSB programming modes */
+>   /* DSB mode bits mask */
+> @@ -122,14 +128,26 @@
+>   		tpdm_simple_dataset_rw(xpmr##nr,		\
+>   		DSB_TRIG_PATT_MASK, nr, TPDM_DSB_MAX_PATT)
+>   
+> +#define DSB_PATT_ATTR(nr)						\
+> +		tpdm_simple_dataset_rw(tpr##nr,			\
+> +		DSB_PATT, nr, TPDM_DSB_MAX_PATT)
+> +
+> +#define DSB_PATT_MASK_ATTR(nr)					\
+> +		tpdm_simple_dataset_rw(tpmr##nr,		\
+> +		DSB_PATT_MASK, nr, TPDM_DSB_MAX_PATT)
+> +
+>   /**
+>    * struct dsb_dataset - specifics associated to dsb dataset
+>    * @mode:             DSB programming mode
+>    * @edge_ctrl_idx     Index number of the edge control
+>    * @edge_ctrl:        Save value for edge control
+>    * @edge_ctrl_mask:   Save value for edge control mask
+> + * @patt_val:         Save value for pattern
+> + * @patt_mask:        Save value for pattern mask
+>    * @trig_patt:        Save value for trigger pattern
+>    * @trig_patt_mask:   Save value for trigger pattern mask
+> + * @patt_ts:          Enable/Disable pattern timestamp
+> + * @patt_type:        Set pattern type
+>    * @trig_ts:          Enable/Disable trigger timestamp.
+>    * @trig_type:        Enable/Disable trigger type.
+>    */
+> @@ -138,8 +156,12 @@ struct dsb_dataset {
+>   	u32				edge_ctrl_idx;
+>   	u32				edge_ctrl[TPDM_DSB_MAX_EDCR];
+>   	u32				edge_ctrl_mask[TPDM_DSB_MAX_EDCMR];
+> +	u32				patt_val[TPDM_DSB_MAX_PATT];
+> +	u32				patt_mask[TPDM_DSB_MAX_PATT];
+>   	u32				trig_patt[TPDM_DSB_MAX_PATT];
+>   	u32				trig_patt_mask[TPDM_DSB_MAX_PATT];
+> +	bool			patt_ts;
+> +	bool			patt_type;
+>   	bool			trig_ts;
+>   	bool			trig_type;
+>   };
+> @@ -171,6 +193,8 @@ enum dataset_mem {
+>   	DSB_EDGE_CTRL_MASK,
+>   	DSB_TRIG_PATT,
+>   	DSB_TRIG_PATT_MASK,
+> +	DSB_PATT,
+> +	DSB_PATT_MASK,
+>   };
+>   
+>   /**
+
