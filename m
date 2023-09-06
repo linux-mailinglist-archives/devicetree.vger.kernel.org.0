@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 838FF793B20
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3361A793B22
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:27:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236267AbjIFL1x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 07:27:53 -0400
+        id S236506AbjIFL1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 07:27:54 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235578AbjIFL1w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:27:52 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998A919B6
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 04:27:09 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-52a250aa012so5071638a12.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 04:27:09 -0700 (PDT)
+        with ESMTP id S235455AbjIFL1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:27:53 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D172019BD
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 04:27:10 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99c3c8adb27so533992566b.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 04:27:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693999613; x=1694604413; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1693999620; x=1694604420; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Nc2UzmhYFvyz0DWch/D/9FsGtOz/O5Zkd3qroAxACJE=;
-        b=YkdWGyDaelzcTwyP5NjGas4MSMNy5Tdv6JqlT0DvnuJhbiqVoLcoraDB6lUQthNtrx
-         ARSFFocqqJQO8uu8QTRrY0SQ8v19r57uLlo4N8dj+IC16kQ8kTajRbCnrVbSdZ8T+Buf
-         GBilTXsJvwgvBa+OdJHHHfRA2xlVR2++5y0GEnbMxOA1WhB0marh/3vZYJOyAdY1ROcL
-         Ql2AzrFMPpfD3csWq17YtqpiC6QKQ3S+Aeqdc+VfkP97Mu/MuEi4v5ygzh+ltFnsj76G
-         aZYdEl5Nnw0pxRsKbiRuxrScOw9QCbmQcp+wFPZu8OQTnRqLh0J/Ng5ENjO2dhDw/kGZ
-         cXIg==
+        bh=GOM33DXd3Sk7ndVLCHFEfmNlQYtoykW8EnX2/+VMqsg=;
+        b=UntdfvAat0HwOxkiNAwDKU+GDS4kPqJwXUG/ahTXSae+JKVpvn3XRR1BMnT/rf4BqM
+         9qS+Fmh8+NibDvUbJebLgRhDfpt2WWQj9kWY9yufqiYuqixObIDaaWduodJbk8/tUIso
+         QSEZvEl9/4INjo9huUJlmaRLNnzgTZzovN+3S4g0EqfErbZFh14DHZ/9PvCkGKspPdZn
+         riVGHngh2FRiMsXeVlv+XbkCGQakp1DoMYGR6Tq9IhPRtdWDdT+O4uZbYyOFrgG7ehrm
+         8Gue+a6mZKu8icUl56oeD1LCmQ1v1JMqRzpNinEWEetdwid5XT9JUifGndGBrqNpiNgQ
+         /Lvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693999613; x=1694604413;
+        d=1e100.net; s=20221208; t=1693999620; x=1694604420;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nc2UzmhYFvyz0DWch/D/9FsGtOz/O5Zkd3qroAxACJE=;
-        b=DgCW0gcryPFuYmI7gcbCNYqA3spZmLI0ZIdkChsmC33PVyREVa/UtoNVkElr6gjPlj
-         fIJ3m2kp7j4PoBPFpDQQv7dXtnUBGwJxmngm8A5kpzHuh3Wp/7IDhe7BlmNiF5T4H+Gp
-         4jb7jUwyVx6abQ/c/YFbgN2LXTlunPV7X8UBnZE0Pm34uNdMP2uVCzrJS0vJDzrUG/0z
-         fHUCHVaPZz9SxSZvhb2+S9e0OfhlxDtUWn4ESUma65EfdqCVAc/TWUrWEWmZyUdOlbAV
-         ONwv//jXGEBB4KEkg5dOnRymX4vc+zkvqsFTzRnmD6L1YzqEzdtDZZjJxw1iofyiFGaP
-         9X8g==
-X-Gm-Message-State: AOJu0YywxfwiOyZMV8+2H0YZcrK9BRnnb7cn5BGPZ/TA8xhrhyqOQFEe
-        92wWN2l/f02URNsjGZMBS1BILA==
-X-Google-Smtp-Source: AGHT+IEvAwzVs9BQEzfStjDNk57pZE3k/Cw6JFk+ya+gsHL6us8tqdS1pIY5Z+9/BEcPGY6B4Af9fw==
-X-Received: by 2002:a17:906:3152:b0:992:a836:a194 with SMTP id e18-20020a170906315200b00992a836a194mr2319709eje.59.1693999612783;
-        Wed, 06 Sep 2023 04:26:52 -0700 (PDT)
+        bh=GOM33DXd3Sk7ndVLCHFEfmNlQYtoykW8EnX2/+VMqsg=;
+        b=fbBJKChHxJC2enBG6E81HRE+EdveaOQ6sb1fiMGq1R7Jj+Kb8+3bb80P//duGIPG6m
+         03t8/EBTe24FqZ2XGA0rEBe48RYVN01/Dw+3bSWVJ31wu+wE9GfQq2W+mOB92x9agSBu
+         zvRLyyGg2kPZJU3S2n7ZmaseF0X3I58H5raiz0L24Bl8sTT6C082fBRfQMeKxvR59xYu
+         IP9bgTRFjyeoi4nlqN7qTVOEVN6a1o6n5MLOGfb/uBgrQ8mQHWpixwRuKOJmBzh+tL0n
+         Or0wg5oOwymN4exu28w0fKrJl8rW/9DhCZVv1ScQ1XstgsYdpuPXTHVj9aMroUtxY9d2
+         c8/Q==
+X-Gm-Message-State: AOJu0YzXvL6Ajf33gBNbpGs2J48n9dH+GKAv4U0EpJ9aQ4dLN2O66yco
+        xr/DPeZrCBoeFbdBSMCkkRblSA==
+X-Google-Smtp-Source: AGHT+IEV7duPYAJVA64fvgeFJr+zjvONpH2hUiZb+f+qtTNJ/gM3WrpmPA3dXrLxqQ7pFAKak/3SNA==
+X-Received: by 2002:a17:906:cd2:b0:9a2:c5a:6c9a with SMTP id l18-20020a1709060cd200b009a20c5a6c9amr2205081ejh.45.1693999620169;
+        Wed, 06 Sep 2023 04:27:00 -0700 (PDT)
 Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id lt20-20020a170906fa9400b009a193a5acffsm8770546ejb.121.2023.09.06.04.26.50
+        by smtp.gmail.com with ESMTPSA id lt20-20020a170906fa9400b009a193a5acffsm8770546ejb.121.2023.09.06.04.26.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 04:26:52 -0700 (PDT)
-Message-ID: <ba8faa45-d097-4301-8583-f724013a8589@linaro.org>
-Date:   Wed, 6 Sep 2023 13:26:49 +0200
+        Wed, 06 Sep 2023 04:26:59 -0700 (PDT)
+Message-ID: <a96ec24f-1992-4d8b-b3fd-30dfe106f5d4@linaro.org>
+Date:   Wed, 6 Sep 2023 13:26:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: ipq5332: Fix hwlock index for
+Subject: Re: [PATCH v2 2/4] arm64: dts: qcom: ipq6018: Fix hwlock index for
  SMEM
 Content-Language: en-US
 To:     Vignesh Viswanathan <quic_viswanat@quicinc.com>, agross@kernel.org,
@@ -65,9 +65,7 @@ Cc:     quic_kathirav@quicinc.com, quic_anusha@quicinc.com,
         quic_sjaganat@quicinc.com, quic_srichara@quicinc.com,
         quic_varada@quicinc.com, stable@vger.kernel.org
 References: <20230904172516.479866-1-quic_viswanat@quicinc.com>
- <20230904172516.479866-2-quic_viswanat@quicinc.com>
- <c3880fac-7ed4-4981-87a5-8243a81f7342@linaro.org>
- <11a37c52-51fd-40ec-8613-9c87a03cbd5a@quicinc.com>
+ <20230904172516.479866-3-quic_viswanat@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -104,7 +102,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <11a37c52-51fd-40ec-8613-9c87a03cbd5a@quicinc.com>
+In-Reply-To: <20230904172516.479866-3-quic_viswanat@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -117,28 +115,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.09.2023 13:23, Vignesh Viswanathan wrote:
+On 4.09.2023 19:25, Vignesh Viswanathan wrote:
+> SMEM uses lock index 3 of the TCSR Mutex hwlock for allocations
+> in SMEM region shared by the Host and FW.
 > 
+> Fix the SMEM hwlock index to 3 for IPQ6018.
 > 
-> On 9/6/2023 3:22 PM, Konrad Dybcio wrote:
->> On 4.09.2023 19:25, Vignesh Viswanathan wrote:
->>> SMEM uses lock index 3 of the TCSR Mutex hwlock for allocations
->>> in SMEM region shared by the Host and FW.
->>>
->>> Fix the SMEM hwlock index to 3 for IPQ5332.
->>>
->>> Cc: stable@vger.kernel.org
->>> Fixes: d56dd7f935e1 ("arm64: dts: qcom: ipq5332: add SMEM support")
->>> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
->>> ---
->> Your downstream says otherwise [1]. Perhaps you need to fix it there
->> as well?
->>
-> 
-> Yes, the fix is already merged in the downstream branch but CLO is not
-> updated date yet.
-Ok
-
+> Cc: stable@vger.kernel.org
+> Fixes: 5bf635621245 ("arm64: dts: ipq6018: Add a few device nodes")
+> Signed-off-by: Vignesh Viswanathan <quic_viswanat@quicinc.com>
+> ---
 Acked-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
