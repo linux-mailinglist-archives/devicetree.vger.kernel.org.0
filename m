@@ -2,62 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 21D30793979
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 12:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A0D47939A0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 12:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230461AbjIFKGd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 06:06:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50518 "EHLO
+        id S229935AbjIFKQK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 06:16:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231759AbjIFKG2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 06:06:28 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 798B61733
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 03:05:48 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99c136ee106so529559666b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 03:05:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693994745; x=1694599545; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7tKSKwBQVJKDaycrv4wlK1AbEjFOCJ/VVVw+I8g0nGI=;
-        b=OGGvPgR/BGfFhvXkOtmyminynoXM4BVTqXvnPHePT4aZLOK/9fHxprWiUw/hytpNvK
-         iXvE4RpSOeSNSXwYh8NikXVYzORZt8CpJX8nqegvDT0TyXTSeBm939sYuSLyXLemddaS
-         mT/31LrrlXS79ox8thi557bsHXCbTyfzyA0F5JjxBHhUCZ/bOK6hh+4+Id2x+1WhiJKG
-         1HZnIdV/AM+qf9LhA16eM/MKElnte60QySwKZmeoNoeB9NrBTSi+g4fSQ7mkzPZ11pst
-         QN6GDyA+sunlcXmU56F2vWCsWoyvcOWziPfWHeKsq+y2q/wuUqqA0x/lMtHwHxwM6oUH
-         qVVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693994745; x=1694599545;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7tKSKwBQVJKDaycrv4wlK1AbEjFOCJ/VVVw+I8g0nGI=;
-        b=LLsEm3wBdQOz0LF50z14TokDizwLaBj8VnR4wd5xtXkSSOChPOH6V9s61BrNYN5ZEj
-         MLWjL7ElyTw/2ivh5mqPO8Ww/xNcq6jYTdiF1ot4cL05BJRi4G+CpvJ9UyNOWNfMaP+X
-         5LDewE9vEQhXZPPLVFbEFKTHsqSkR6Q6IPJri7mMMIUeqQ9UnJjK+qylz6cwy46qrFAJ
-         h1DllJAxWzfb72/5GETd+CVm5XINjdppRR1Bdxu1tftltksAawMlyzfj2jyJOYa1v9LR
-         F0NhfrPt/mO9d9spFt2j2/viYysY/wjxRkiYZYrmYylVV0uSgltLtSk6rJMonL2S+1hE
-         NNYw==
-X-Gm-Message-State: AOJu0Yz7KsjVstmgIrBiEUDhKB44ZmRRU0qr2BZoLly9K3voQ/cv3XNs
-        YM+vlmTICFdUMyjNoh6btG7DBg==
-X-Google-Smtp-Source: AGHT+IEpRMvEFs2ZXroiFAbWtiUkVoWLxloTk4Lnh3qMYc6HU6F1RXvTuILRkfk3ScVp4BKkj9bzmg==
-X-Received: by 2002:a17:906:9e:b0:9a1:eb67:c0ce with SMTP id 30-20020a170906009e00b009a1eb67c0cemr1953939ejc.50.1693994744740;
-        Wed, 06 Sep 2023 03:05:44 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id o21-20020a1709062e9500b009a13fdc139fsm8824751eji.183.2023.09.06.03.05.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 03:05:44 -0700 (PDT)
-Message-ID: <5ee0ab7f-0250-accb-83bb-0704ea9074e1@linaro.org>
-Date:   Wed, 6 Sep 2023 12:05:43 +0200
+        with ESMTP id S229584AbjIFKQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 06:16:09 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E05FD10C6;
+        Wed,  6 Sep 2023 03:15:56 -0700 (PDT)
+X-UUID: 5b01d9b24c9e11eea33bb35ae8d461a2-20230906
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=0ALVwmZJ1kapyejtzca1mMacgnD8PCnrO+/uBoh3Afc=;
+        b=WcTuei81P3B7Fw1GFmQl1sMe4Soz1R46sqoHbzswwIcj3sHaU1kqFprMSW+M8jzbr0gmNNBwMjhAcuTffmRoOAcWYUy1e4mMvgV88WmC70un8kg5IPFZRGU7EAXx7EfAsTg4BBXpdSWGNNcAH6hLKC/wcGa0zEa9VDHkFlYJWqc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:a48b2ff4-70c6-4fe6-8f8b-40649c20828b,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:378b2f20-33fd-4aaa-bb43-d3fd68d9d5ae,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 5b01d9b24c9e11eea33bb35ae8d461a2-20230906
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 26976305; Wed, 06 Sep 2023 18:15:51 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 6 Sep 2023 18:15:49 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 6 Sep 2023 18:15:49 +0800
+Message-ID: <951e34bc-dda3-f9d4-b251-7f0fd02052ee@mediatek.com>
+Date:   Wed, 6 Sep 2023 18:15:47 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm64: dts: mediatek: add mt8395-evk
- board
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: add device-tree for Genio
+ 1200 EVK board
 Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -66,97 +58,123 @@ To:     Macpaul Lin <macpaul.lin@mediatek.com>,
         <angelogioacchino.delregno@collabora.com>,
         Frank Wunderlich <frank-w@public-files.de>,
         =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
         Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
+        Macpaul Lin <macpaul@gmail.com>, Ben Lok <ben.lok@mediatek.com>
 References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
  <20230906092527.18281-1-macpaul.lin@mediatek.com>
- <fbad941f-232b-9f56-5de3-98a16a8c4d89@linaro.org>
- <c3ddf00c-235a-2d23-db60-c998a67a3fcd@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c3ddf00c-235a-2d23-db60-c998a67a3fcd@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
+ <20230906092527.18281-2-macpaul.lin@mediatek.com>
+ <2cb8069a-976b-0af4-a427-1e63ba4e7870@linaro.org>
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <2cb8069a-976b-0af4-a427-1e63ba4e7870@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2023 11:53, Macpaul Lin wrote:
-> 
-> 
-> On 9/6/23 17:32, Krzysztof Kozlowski wrote:
->> 	
->>
->> External email : Please do not click links or open attachments until you 
->> have verified the sender or the content.
->>
->> On 06/09/2023 11:25, Macpaul Lin wrote:
->>> 1. Add compatible for MT8395.
->>> 2. Add bindings for the MediaTek mt8395-evk board, also known
->>> as the "Genio 1200-EVK".
->>>
->>> The MT8195 and MT8395 belong to the same SoC family,
->>> with only minor differences in their physical characteristics.
->>> They utilize unique efuse values for differentiation.
->>>
->>> The booting process and configurations are managed by boot
->>> loaders, firmware, and TF-A. Consequently, the part numbers
->>> and procurement channels vary.
->>>
->>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->>> ---
->>>  Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>
->> Do not attach (thread) your patchsets to some other threads (unrelated
->> or older versions). This buries them deep in the mailbox and might
->> interfere with applying entire sets.
->>
->>>
->>> Changes for v2:
->>>  - add more detail description for mt8395.
->>>  - add bindings for mt8395, and mt8395-evk.
->>>
->>> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> index ae12b1cab9fb..d7a20df640d7 100644
->>> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
->>> @@ -248,6 +248,11 @@ properties:
->>>            - enum:
->>>                - mediatek,mt8365-evk
->>>            - const: mediatek,mt8365
->>> +      - description: MediaTek Genio 1200 Boards (Genio 1200 EVK)
->>> +        items:
->>> +          - enum:
->>> +              - mediatek,mt8395-evk
->>> +          - const: mediatek,mt8395
->>
->>
->> I don't understand. You said last time this is fully compatible with
->> mt8195, so why it's not here?
->>
-> 
-> Yes, mt8395 is fully compatible with mt8195.
-> 
-> But after reading Angelo's comment, we thought it is necessary to create 
-> a new compatible to avoid confusion for users.
-> https://lore.kernel.org/lkml/bf8394c6-5460-8696-f46b-0c39927aaf84@collabora.com/
-> 
 
-New compatible is a requirement, you got clear comments from me on this
-as well. However we did not ask to remove a compatible of compatible
-devices. You also need it. Otherwise how your compatibility is going to
-work?
 
-Best regards,
-Krzysztof
+On 9/6/23 17:34, Krzysztof Kozlowski wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On 06/09/2023 11:25, Macpaul Lin wrote:
+>> +edp_panel_fixed_12v: regulator-1 {
+>> +compatible = "regulator-fixed";
+>> +regulator-name = "edp_backlight_12v";
+>> +regulator-min-microvolt = <12000000>;
+>> +regulator-max-microvolt = <12000000>;
+>> +enable-active-high;
+>> +gpio = <&pio 96 GPIO_ACTIVE_HIGH>;
+>> +pinctrl-names = "default";
+>> +pinctrl-0 = <&edp_panel_12v_en_pins>;
+>> +};
+>> +
+>> +backlight_lcd0: backlight-lcd0 {
+>> +compatible = "pwm-backlight";
+>> +pwms = <&disp_pwm0 0 500000>;
+>> +enable-gpios = <&pio 47 GPIO_ACTIVE_HIGH>;
+>> +brightness-levels = <0 1023>;
+>> +num-interpolated-steps = <1023>;
+>> +default-brightness-level = <576>;
+>> +};
+>> +
+>> +backlight_lcd1: backlight-lcd1 {
+>> +compatible = "pwm-backlight";
+>> +pwms = <&disp_pwm1 0 500000>;
+>> +enable-gpios = <&pio 46 GPIO_ACTIVE_HIGH>;
+>> +brightness-levels = <0 1023>;
+>> +num-interpolated-steps = <1023>;
+>> +default-brightness-level = <576>;
+>> +};
+>> +
+>> +keys: gpio-keys {
+>> +compatible = "gpio-keys";
+>> +
+>> +button-volume-up {
+>> +wakeup-source;
+>> +debounce-interval = <100>;
+>> +gpios = <&pio 106 GPIO_ACTIVE_LOW>;
+>> +label = "volume_up";
+>> +linux,code = <KEY_VOLUMEUP>;
+>> +};
+>> +};
+>> +
+>> +can_clk: can-clk {
+>> +compatible = "fixed-clock";
+>> +#clock-cells = <0>;
+>> +clock-frequency = <20000000>;
+>> +clock-output-names = "can-clk";
+>> +};
+>> +
+>> +wifi_3v3: wifi-3v3-regulator {
+> 
+> This is a friendly reminder during the review process.
+> 
+> It seems my previous comments were not fully addressed. Maybe my
+> feedback got lost between the quotes, maybe you just forgot to apply it.
+> Please go back to the previous discussion and either implement all
+> requested changes or keep discussing them.
 
+
+This keeps a format with -regulator is because I've found some other use 
+cases. It seems "-regulator" or "regulator-" could be arbitrary. I'm not 
+sure if it is a new guideline for regulator's node. If there is in the 
+devicetree document, maybe I just missed it?
+
+However if this is for the purpose of keeping the DTS format tidy, I 
+will update it in the next version, also fix another 
+"usb-otg-vbus-regulator" node.
+
+arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+a1d3281450ab2 (Christopher Obbard 2023-01-09 16:58:01 +0100  46) 
+vcc5v0_sys: vcc5v0-sys-regulator {
+
+arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
+523adb553573d (Chris Morgan 2022-09-06 16:03:24 -0500 256) 
+vcc_wifi: regulator-vcc-wifi {
+
+
+> Thank you.
+> 
+> Best regards,
+> Krzysztof
+
+
+Thanks.
+Macpaul Lin
+> 
+> 
