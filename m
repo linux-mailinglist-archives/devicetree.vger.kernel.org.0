@@ -2,212 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D5F3793CE8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C67AA793CF7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240727AbjIFMoH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 08:44:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47812 "EHLO
+        id S238048AbjIFMs1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 08:48:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240207AbjIFMoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:44:04 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BBD01723
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 05:43:59 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4ff09632194so6182420e87.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 05:43:59 -0700 (PDT)
+        with ESMTP id S238324AbjIFMs0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:48:26 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3450E1733;
+        Wed,  6 Sep 2023 05:48:20 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52bcb8b199aso5207240a12.3;
+        Wed, 06 Sep 2023 05:48:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694004238; x=1694609038; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SZjPlBqgnDQzIPB5KuAwzX6y/nfJycbmx8H+lJxBo78=;
-        b=ri/F0L/fo2e2r+1K7sP1+QtDiGO4oZbCfC0XH1I2fVXDoWmRDmIWZ8cykRfYgoBm5F
-         P36AzB2jAarNxNB1DSP85TtKgHdmfP0vLaBVRsDMOLeofGTqrNP41mTpdyZ+FpPfs73R
-         1f0mdJFfy5XafL7Rj9YzlT9qBi4bPIHRwqt4QiOYeJsqq4g4oLFbkG7RlV7C5j2rlfTf
-         1vCAMYZ5JaOuarF2/TDXptr5qEq3O4fmc41a12nRfsoAt/blmE8j3YwSxFqfCFmoKDyf
-         FuRZHgb8DnzRg75aUstdrYP6oR84WURHK08NqA/Y8fYCoGptOCCEaSRhvizFgcCvmXxo
-         jK9Q==
+        d=gmail.com; s=20221208; t=1694004498; x=1694609298; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=rsE1sJuhI3+vAPSDY8OreHubYHG2pVwPaUCCeIf6A3c=;
+        b=Cf14bEvLFIrit+rPL20H1ksAD5qcSkzUPjjRg6t025knet9SkvDCvihXPRO35C9aBu
+         hPoL0seiy0YwKILr51I4AzrKnEaSmgr1gaVtoMthvwqPDeVTvGpiwewdgIm6cs6ftFJM
+         U21BhgyiNv5ArSyyyIWSk9i9j29EVJycm5vLTAg7+KNNwJTa1iYRMNpEdxk12u/ZM5U6
+         35GRrCnlHrFDCjicT4sXGz6VHLgKnLgr5DhfDZd3B+1r38jiS5Lp7DFnb8hyoS5tf+sp
+         3wCtjwUbv8i/Qxj7A19L1GklMx7X/+qqpgtqTH4euJiRlL5AAMEadWvIAQqp9mBmfFxB
+         zGkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694004238; x=1694609038;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SZjPlBqgnDQzIPB5KuAwzX6y/nfJycbmx8H+lJxBo78=;
-        b=D82hC0woppzOxdmffYFy4DeIyYYls/IQZsyN2CO0/E9rOzGPc9d4c0ADVOFYH+ugks
-         tgk1HuPh8/Sew6DC3PUsqtcoRQNqOJf9Uw6GIjzf558qWk4iWbQTOThJxY9USK7F0aAK
-         1xnaPX0Wtxhs8MXyMDcfy0qOeU2/yYcbbFk+sQN4qc2ESY8ZWpy0QoxK5yxuuDguEo4G
-         CB1OXhuv1NZSY3NRVcnna+DkmLgq/NKhHCCKbMt7/T941M5YCT6p0HOFYWqCR+lMnboU
-         ZxEUvnqwdnG+FeaSm+tCwDwVTO7I/Aq6+DUGUSQwQPdgCDOPcfzP1Pnqz2K2+xImJ25i
-         uHzQ==
-X-Gm-Message-State: AOJu0YyQCyzKykV1ar6gRz6CS+wQVgqCM914E0ZSqyHsdkzL8Pk6augZ
-        eb5WYo+IPcTdrBrhAJFjCsR7Sg==
-X-Google-Smtp-Source: AGHT+IFRWlzlHNwcMzhjaCekHtz8y2GT5557IniLJLUxSqX4REkvEuvBZ/WhKLTSC9YTYVzWnzvPyQ==
-X-Received: by 2002:ac2:5457:0:b0:4fb:8948:2b8e with SMTP id d23-20020ac25457000000b004fb89482b8emr2271482lfn.8.1694004237744;
-        Wed, 06 Sep 2023 05:43:57 -0700 (PDT)
-Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id ko18-20020a170907987200b0099de082442esm9022170ejc.70.2023.09.06.05.43.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 05:43:57 -0700 (PDT)
-Message-ID: <77f3e252-5209-44e8-83ed-2a578c5a94d4@linaro.org>
-Date:   Wed, 6 Sep 2023 14:43:54 +0200
+        d=1e100.net; s=20221208; t=1694004498; x=1694609298;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=rsE1sJuhI3+vAPSDY8OreHubYHG2pVwPaUCCeIf6A3c=;
+        b=IqL8h7409RT2dWL5v18SZ4Syi54iNeNVD0KMUumjBwfcQ02m3td8pHQ6o0RXLhLR5w
+         CXQXsU2kZoeU1llUxOmrwg/I0oEgSbqNyz9KuGm4tnS+nP2sClYtdIWZoI31uD3CYk6J
+         1/ubksLyjsc6KoPR1DR99NsGPOE0XhO81jm5vk1sWbZHh6nxmAYsrozY7FfRAMeDS+GH
+         7Ll2N+Dxqmoct52nfPydFOPK117jujh4+rS8KBkFWSgkNYiK95GF2foMskHNKGam8Ogl
+         C+0XZkdXymvQHatQBjzjjCxwywQZaDwhxVkxeQU6sOqf596ye7DQnTD1sT0oXfAeADbn
+         zMNg==
+X-Gm-Message-State: AOJu0Yx+knYeGoRM/jGclV+DLm+QFXoSCK0WYjBW+D5mwvvK2Vw32iPQ
+        muQxWKI/eJx0utDwKn6yUqs=
+X-Google-Smtp-Source: AGHT+IGUTzqcn12Bjvfufbj0dyXJDiPt8h1wWAslBvMpwzaDQMx7ryWqXpsFVbPl48RjKNUgVQIl3w==
+X-Received: by 2002:a17:906:4e:b0:9a5:a0c6:9e8d with SMTP id 14-20020a170906004e00b009a5a0c69e8dmr2273405ejg.5.1694004498166;
+        Wed, 06 Sep 2023 05:48:18 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41b4-ce80-9ba7-86a5-b5ba-d267.cable.dynamic.v6.surfer.at. [2a02:8389:41b4:ce80:9ba7:86a5:b5ba:d267])
+        by smtp.gmail.com with ESMTPSA id se22-20020a170906ce5600b009a1dbf55665sm8972496ejb.161.2023.09.06.05.48.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Sep 2023 05:48:17 -0700 (PDT)
+From:   Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Date:   Wed, 06 Sep 2023 14:48:16 +0200
+Subject: [PATCH v2] dt-bindings: rtc: mcp795: move to trivial-rtc
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 02/53] dt-bindings: interconnect: qcom,bcm-voter: Add
- qcom,bcm-voter-idx
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230906-topic-rtc_mcp795_yaml-v2-1-f9bef40c99b9@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAA91+GQC/4WNSwrCMBQAryJZG0laYowr7yGl5PNsH+RTklosp
+ Xc39gIuZ2CYjRTICIXcTxvJsGDBFCs05xOxo44DUHSVScOalil2pXOa0NI82z7YSSrRrzp4yjk
+ TN1DKOe1IbY0uQE3W0Y61jm/vq5wyvPBzzJ5d5RHLnPJ6vBf+s/82C6ecOpDCtlIaYdhjCBr9x
+ aZAun3fv6orsHfPAAAA
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Mike Tipton <quic_mdtipton@quicinc.com>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
- <20230708-topic-rpmh_icc_rsc-v1-2-b223bd2ac8dd@linaro.org>
- <68fb8e22-dd23-d4bf-eda0-444039fd8e26@linaro.org>
- <9201cb8d-845a-b5dc-02a5-9633572b5877@linaro.org>
- <f393324f-c9ec-1572-fb15-1856cef9d846@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <f393324f-c9ec-1572-fb15-1856cef9d846@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Emil Bartczak <emilbart@gmail.com>,
+        Josef Gajdusek <atx@atx.name>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1694004496; l=2370;
+ i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
+ bh=zChXtySttk/deFixIOur9hQARtSdvouNz1smwQEmocY=;
+ b=mcXKZze19ECtyzc8zDaf3IGATW+DWDRMVd79bz1zHSdn9SlujT1Bs4ACgBuYPHvNyHxXwmU1u
+ RS56uMwiUr4BbeE5jFqQZUxFYCn711TbxhgsP8Cl/u3Fii8pd0VRHRr
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 5.08.2023 23:21, Krzysztof Kozlowski wrote:
-> On 15/07/2023 17:09, Konrad Dybcio wrote:
->> On 12.07.2023 22:43, Krzysztof Kozlowski wrote:
->>> On 11/07/2023 14:18, Konrad Dybcio wrote:
->>>> In order to (at least partially) untangle the global BCM voter lookup
->>>> (as again, they are shared throughout the entire system and not bound to
->>>> individual buses/providers), introduce a new required property to assign
->>>> a unique identifier to each BCM voter.
->>>>
->>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>>> ---
->>>>  .../devicetree/bindings/interconnect/qcom,bcm-voter.yaml       | 10 ++++++++++
->>>>  1 file changed, 10 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
->>>> index eec987640b37..09321c1918bf 100644
->>>> --- a/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
->>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.yaml
->>>> @@ -38,8 +38,14 @@ properties:
->>>>  
->>>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>>  
->>>> +  qcom,bcm-voter-idx:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>> +    description:
->>>> +      A globally unique predefined discrimnator, identifying each BCM voter.
->>>
->>> s/each/this/ ?
->> Right, this makes more sense
->>
->>> If I understand correctly, there might be more than one instance. The
->>> problem is that I cannot find such case in upstream sources.
->> I don't think there can be more than one per RSC.
->>
->> SM8550 splits some RSCs into "channels" and these channels have their
->> individual voters, however they would still be attached to these
->> channel subnodes/subdevices and no, we don't support that yet.
-> 
-> Then shouldn't this be one number, not an array?
-> 
->>
->>>
->>>
->>>> +
->>>>  required:
->>>>    - compatible
->>>> +  - qcom,bcm-voter-idx
->>>
->>> This should not be really required, because it affects the ABI.
->> Hm.. can I deprecate lack of it somehow?
-> 
-> In general: no. Anyway, it depends how much you need it. Breaking ABI
-> might be justified, but I just did not get such need from the commit
-> msg. Your commit msg looks to me closer to a cleanup.
-+ Mike
+The current mcp795 bindings in text format do not support validation and
+are missing the optional interrupt property that is currently supported.
 
-Yes and no. But mostly yes.
+Adding the missing property makes the bindings identical to the existing
+trivial-rtc bindings.
 
-The current way of depicting the BCM voter as a child of the RSC
-is rather stupid. Think of the discussion that we had with
-Bartosz about adding child devices to SCM only to bind Linux
-drivers.
+Add maxim,mcp795 to the trivial-rtc bindings and delete current .txt
+bindings
 
-The "voters" are totally a Linux software construct - there is a
-piece of hw called BCM (Bus Clock Manager) to which you send votes
-through the RSC (Resource State Coordinator). Each major subsystem
-has its own RSC (APPS, display, pcie on newer/compute, camera
-starting from 8550 etc.) that you submit these through.
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+The current mcp795 bindings in text format do not support validation and
+are missing the optional interrupt property that is currently supported.
 
-Currently the bcm-voter driver provides a structure where vote data
-is stored and everything is concluded with a pair of rpmh_write_batch
-(one for wake-only and one for sleep buckets).
+Adding the missing property makes the bindings identical to the existing
+trivial-rtc bindings.
 
-After reading what I just wrote, maybe we can just reference the RSC
-directly. Or in the aforementioned case of 8550 CAMSS RSC having
-multiple channels per RSC, its subchannel.
+Add maxim,mcp795 to the trivial-rtc bindings and delete current .txt
+bindings
+---
+Changes in v2:
+- Move mcp795 to trivial-rtc
+- Link to v1: https://lore.kernel.org/r/20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com
+---
+ Documentation/devicetree/bindings/rtc/maxim,mcp795.txt | 11 -----------
+ Documentation/devicetree/bindings/rtc/trivial-rtc.yaml |  2 ++
+ 2 files changed, 2 insertions(+), 11 deletions(-)
 
-Perhaps this cleanup should be extended to get rid of this subnode.
-Or maybe even the driver, or part of it.
+diff --git a/Documentation/devicetree/bindings/rtc/maxim,mcp795.txt b/Documentation/devicetree/bindings/rtc/maxim,mcp795.txt
+deleted file mode 100644
+index a59fdd8c236d..000000000000
+--- a/Documentation/devicetree/bindings/rtc/maxim,mcp795.txt
++++ /dev/null
+@@ -1,11 +0,0 @@
+-* Maxim MCP795		SPI Serial Real-Time Clock
+-
+-Required properties:
+-- compatible: Should contain "maxim,mcp795".
+-- reg: SPI address for chip
+-
+-Example:
+-	mcp795: rtc@0 {
+-		compatible = "maxim,mcp795";
+-		reg = <0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+index 9af77f21bb7f..ae4792bbde92 100644
+--- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
++++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
+@@ -49,6 +49,8 @@ properties:
+       - isil,isl12022
+       # Real Time Clock Module with I2C-Bus
+       - microcrystal,rv3029
++      # SPI-BUS INTERFACE REAL TIME CLOCK MODULE
++      - maxim,mcp795
+       # Real Time Clock
+       - microcrystal,rv8523
+       # Real-time Clock Module
 
-Actually, I need to think about this a bit more, as we also need to
-reuse half of BCM voter logic in the Adreno code (to shove the
-generated RPMh commands into the GPU Management Unit which pokes at
-RPMh on its own)...
+---
+base-commit: 2dde18cd1d8fac735875f2e4987f11817cc0bc2c
+change-id: 20230906-topic-rtc_mcp795_yaml-11058e99ddad
 
-I think Mike should comment on this rather incoherent monologue of
-mine..
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
-Konrad
