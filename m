@@ -2,50 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53E7D793B5C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA7CD793B6F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:35:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238628AbjIFLdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 07:33:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
+        id S239859AbjIFLfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 07:35:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238572AbjIFLdB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:33:01 -0400
+        with ESMTP id S239842AbjIFLfo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:35:44 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6CD1734;
-        Wed,  6 Sep 2023 04:32:25 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28719C433C7;
-        Wed,  6 Sep 2023 11:32:00 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 264E995;
+        Wed,  6 Sep 2023 04:35:41 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638CEC433C7;
+        Wed,  6 Sep 2023 11:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1693999921;
-        bh=gY6yuQsGYBUPwDr9MeYAHXj+FeYbykc4igmyd6IpcLY=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=HlNMzfMGP9osgqtfU0VLYL9Y6cPbRqTLxOwgxOME6sMezlh86l/MwdG79pKSRQFgp
-         FeJpkzel1s7QrQMcT4p2ca2PQLFgcWas7qD58hCS5McJWyLggd+d8hdnhWJD2bbDB1
-         oFkU198xfVT5XcLkXatYNkgf5DOkHxr+7mgPmprp6bkjCTgYi+F/FDFNssF03bc9Om
-         4Jh0DOiM+5wB01U58Uk0FnsfDlOKIIICCiyGU4EYfZ/Dphi4LbfEG9DapycXQJQpDy
-         cHcN5Aw+w0TPgwuHgQKZotdVVuyD+Qb5J1r6k8Ce2+wHEVQVp54s9Guoapq4gk9MXH
-         ZtutRz0CSNVOQ==
-Received: (nullmailer pid 1001423 invoked by uid 1000);
-        Wed, 06 Sep 2023 11:31:59 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        s=k20201202; t=1694000140;
+        bh=R8cX6KBAOR46kqNyWM5gSlQFjpzLIdHBLmnmWEd82Cg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tpiWsu7HogmInxaMLnRjvlJgp1n/vNaB9C7CnsCWxJs5ThTRQ/IM3708Vht7shtCK
+         jOU6ITZ6+Ml9yRqXds4l8H0hFoEaICnZMi9hm86XtUyOGWdCqC1Zngmbw52bqHk3Vi
+         ZPSBhM7R1AcYL4DI0VFHCC6bjD6tLo+jo6tXubr55pMtq9TgLk2W5yFbcgijor0lFq
+         2Bk5/psx8VBPsEu7arDV0JW3bGGby1ew4lNS9upVJCQZF+HZiW4peKp1HI7EG11ZUX
+         LVwSKUlFQQU+78OYbsWkuunBTQhM42XaaIWpyG7YExvFzAHyADVolEMN/xb8jWgC9G
+         2ZBlnPJPXSpUQ==
+Date:   Wed, 6 Sep 2023 13:35:37 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Sarah Walker <sarah.walker@imgtec.com>
+Cc:     dri-devel@lists.freedesktop.org, frank.binns@imgtec.com,
+        donald.robson@imgtec.com, boris.brezillon@collabora.com,
+        airlied@gmail.com, daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
+        corbet@lwn.net, christian.koenig@amd.com, linus.walleij@linaro.org,
+        matt.coster@imgtec.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        faith.ekstrand@collabora.com, afd@ti.com, hns@goldelico.com,
+        matthew.brost@intel.com, luben.tuikov@amd.com, dakr@redhat.com
+Subject: Re: [PATCH v6 02/20] drm/gpuva_mgr: Helper to get range of unmap
+ from a remap op.
+Message-ID: <7z6t4sudgits372e26f37gydfxxonsduiajurr7ztgvmh3crch@mbeb66xwin5s>
+References: <20230906095542.3280699-1-sarah.walker@imgtec.com>
+ <20230906095542.3280699-3-sarah.walker@imgtec.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc:     Emil Bartczak <emilbart@gmail.com>, linux-rtc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Josef Gajdusek <atx@atx.name>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org
-In-Reply-To: <20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com>
-References: <20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com>
-Message-Id: <169399991900.1001400.3348200070313324495.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: rtc: mcp795: convert to YAML
-Date:   Wed, 06 Sep 2023 06:31:59 -0500
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="kgq6kck2vs7tqvol"
+Content-Disposition: inline
+In-Reply-To: <20230906095542.3280699-3-sarah.walker@imgtec.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -57,46 +60,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed, 06 Sep 2023 12:23:10 +0200, Javier Carrasco wrote:
-> Convert the MCP795 bindings from text to YAML format to support bindings
-> validation.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> ---
-> YAML is the preferred format for dt-bindings, which allows validation.
-> ---
->  .../devicetree/bindings/rtc/maxim,mcp795.txt       | 11 -------
->  .../devicetree/bindings/rtc/maxim,mcp795.yaml      | 35 ++++++++++++++++++++++
->  2 files changed, 35 insertions(+), 11 deletions(-)
-> 
+--kgq6kck2vs7tqvol
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hi Sarah,
 
-yamllint warnings/errors:
+On Wed, Sep 06, 2023 at 10:55:24AM +0100, Sarah Walker wrote:
+> From: Donald Robson <donald.robson@imgtec.com>
+>=20
+> Signed-off-by: Donald Robson <donald.robson@imgtec.com>
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dts:20.13-23: Warning (reg_format): /example-0/rtc@0:reg: property has invalid length (4 bytes) (#address-cells == 1, #size-cells == 1)
-Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-Documentation/devicetree/bindings/rtc/maxim,mcp795.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Sorry, this applied to your previous versions too but I only caught it
+right now. When you submit a patch on someone else's behalf, you need to
+add your Signed-off-by. That's also true when you're the committer of a
+patch you didn't write.
 
-doc reference errors (make refcheckdocs):
+This one, and patch 1, are affected.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230906-topic-rtc_mcp795_yaml-v1-1-de75c377b5b0@gmail.com
+Also, generally speaking, it's a good to write a commit log for a patch
+to at least provide some context on what you want to achieve.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Maxime
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+--kgq6kck2vs7tqvol
+Content-Type: application/pgp-signature; name="signature.asc"
 
-pip3 install dtschema --upgrade
+-----BEGIN PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZPhkCQAKCRDj7w1vZxhR
+xXXKAP9f8E7gk6BdQrqtOlP19X5C2PDO24NNYUt53ReNjMx1IQEAvg2g5mAfgBOv
+7sh6wvmMaiVlRQbQiibMAh1kOMIXYAQ=
+=qF9D
+-----END PGP SIGNATURE-----
 
+--kgq6kck2vs7tqvol--
