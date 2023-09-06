@@ -2,99 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D88A7936CA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 10:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D967936F8
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 10:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233919AbjIFIGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 04:06:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52016 "EHLO
+        id S234892AbjIFIPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 04:15:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233837AbjIFIGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 04:06:23 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06C7ACF0
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 01:06:19 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52a5c0d949eso4624474a12.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 01:06:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693987577; x=1694592377; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N6rX866dZWeyzbwrDmGLylNXIPdDEierfj+vUzSrXHo=;
-        b=OpMftCNYvMQ+JX4HPuHRdIFb38miZd91DdOI3N/Ld6RtW2c/lv4p5MMNFcpzE7JccN
-         qWQIu/LtmocXSUYM/4rBYjhULtYLL8yw/674zROjMM6y2cZ/JXIaEn3I5OqK0h0t34qI
-         OMuyuH43IRou5PHTNrf64n5rF02DVYOoiW9Dhv12NECcj1NCOF1LZqX0/oL6IMjOIOHx
-         juVjHVa/JGjVHf/goJjB/Vg6SogQO6caoZ5RZuWz4tkdxb/CGyZyibtVM+qjYkIbLQSu
-         1c5seF0GQQP6KKhi1z4xZgp1j8V2RQijBYfq+hFlB3xH1csRBQzlhOrpug6POQnJx6VB
-         lvtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693987577; x=1694592377;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=N6rX866dZWeyzbwrDmGLylNXIPdDEierfj+vUzSrXHo=;
-        b=F0uVEBZWDL4iupz/fmndwb8QObB5frysedYhwyP+c/Z2Uwu9hJZbISFshgyv0PTrLb
-         vdM044Xpk95UZS8OfV4L0OLGfZNJ4L7Y8DLpq3KyKLMEeheumEkIJBceVpl/Z9S/xA1m
-         HByyBcBxfvTclrJsJaS+fNnguETgd/cMMyvTW08+UdhJY3SApaDIp+eqiI4piW5Fd/va
-         vz5k1fAtQocSGo/lv2i2fENOEyX8l0HvwyswswDXwNIGWnfYxgWDkq1Xn8cd59xm7OTL
-         K0/h+LjqVkpqzyUIL5QXlwrGPs8xvjiDAI+jIGBG4xRdfqQaW2o/hjLU/nUc4CXd+Oa4
-         jq0A==
-X-Gm-Message-State: AOJu0YwM/EsfE7O7VbQiEA0cotAiCFz3maiZNZWDyO5QfuG8WysU90TY
-        NuDM8H+IYZu7lRrUrPOTnxwwow==
-X-Google-Smtp-Source: AGHT+IGAd+DD8OLZo0kvehoHFC2Eczx87NK8Bkhpv9Weu6nYexYG43coH+qot4a4ptKUU/3kIRogPA==
-X-Received: by 2002:a17:906:cc4e:b0:9a2:292d:ea63 with SMTP id mm14-20020a170906cc4e00b009a2292dea63mr1488410ejb.37.1693987577410;
-        Wed, 06 Sep 2023 01:06:17 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id h5-20020a1709062dc500b009a2235ed496sm8871288eji.141.2023.09.06.01.06.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 01:06:16 -0700 (PDT)
-Message-ID: <9df52150-f18b-cebd-11a8-a1c9dece09f0@linaro.org>
-Date:   Wed, 6 Sep 2023 10:06:15 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH RESEND 5/7] dt-bindings: mailbox: qcom: add one more clock
- provider for IPQ mailbox
-Content-Language: en-US
-To:     Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
+        with ESMTP id S232339AbjIFIPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 04:15:07 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 086C5BF;
+        Wed,  6 Sep 2023 01:15:03 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (ftip006315900.acc1.colindale.21cn-nte.bt.net [81.134.214.249])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC249AF2;
+        Wed,  6 Sep 2023 10:13:33 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1693988014;
+        bh=/0bTu6ntLw63tswqWG2jr5IbV1FKxhpcd5U0g6Hektk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KJABeteYF+2dqCxTb80URjTzcom0QzKorGHAp8OBslDrQ0aIXkJly7RUVlGLVRbMW
+         wNp7aisT5fVeX9+6OSf2UO965UVyseHEcsvEX5Qo3EoI1jvMO99bgPNaaRgrisDkpp
+         NUa+HocLXj21eyC9Y8SV1RFNVG6qvR58Ov6Uk5hE=
+Date:   Wed, 6 Sep 2023 11:15:13 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        Anusha Rao <quic_anusha@quicinc.com>,
-        Devi Priya <quic_devipriy@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230904-gpll_cleanup-v1-0-de2c448f1188@quicinc.com>
- <20230904-gpll_cleanup-v1-5-de2c448f1188@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230904-gpll_cleanup-v1-5-de2c448f1188@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: media: Add THine THP7312 ISP
+Message-ID: <20230906081513.GK7971@pendragon.ideasonboard.com>
+References: <20230905233118.183140-1-paul.elder@ideasonboard.com>
+ <20230905233118.183140-2-paul.elder@ideasonboard.com>
+ <f023767c-aa74-87ca-d333-3dba8a481cb6@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <f023767c-aa74-87ca-d333-3dba8a481cb6@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2023 06:56, Kathiravan Thirumoorthy wrote:
-> Mailbox controller present in the IPQ SoCs takes the GPLL0 clock also as
-> an input. Document the same.
+On Wed, Sep 06, 2023 at 09:18:30AM +0200, Krzysztof Kozlowski wrote:
+> On 06/09/2023 01:31, Paul Elder wrote:
+> > Add bindings for the THine THP7312 ISP.
+> > 
+> > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > ---
+> > Since the THP7312 supports multiple sensors, thine,rx-data-lanes alone
+> > might not be enough. I was consdering using sensor nodes like what the
+> > AP1302 does [1]. This way we can also move the power supplies that only
+> > concern the sensor in there as well. I was wondering what to do about
+> > the model name, though, as the thp7312 completely isolates that from the 
+> > rest of the system.
+> > 
+> > I'm planning to add sensor nodes in somehow in a v2.
+> > 
+> > [1] https://lore.kernel.org/linux-media/20211006113254.3470-2-anil.mamidala@xilinx.com/
+> > 
+> >  .../bindings/media/thine,thp7312.yaml         | 170 ++++++++++++++++++
+> >  1 file changed, 170 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/thine,thp7312.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/thine,thp7312.yaml
+> > new file mode 100644
+> > index 000000000000..e8d203dcda81
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/thine,thp7312.yaml
+> > @@ -0,0 +1,170 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (c) 2023 Ideas on Board
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/thine,thp7312.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: THine THP7312
+> > +
+> > +maintainers:
+> > +  - Paul Elder <paul.elder@@ideasonboard.com>
+> > +
+> > +description:
+> > +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
+> > +  various image processing and correction functions, including 3A control. It
+> > +  can be connected to CMOS image sensors from various vendors, supporting both
+> > +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
+> > +  or parallel. The hardware is capable of transmitting and receiving MIPI
+> > +  interlaved data strams with data types or multiple virtual channel
+> > +  identifiers.
+> > +
+> > +allOf:
+> > +  - $ref: ../video-interface-devices.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: thine,thp7312
+> > +
+> > +  reg:
+> > +    description: I2C device address
 > 
+> You can skip description. It is obvious.
+> 
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +      - description: CLKI clock input
+> 
+> This was absolutely never tested.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Paul, before sending DT bindings, please test them. The procedure
+involves running `make dt_binding_check` as described towards the end of
+Documentation/devicetree/bindings/writing-schema.rst. There's an
+environment variable that you can use to restrict the test to a
+particular binding file.
 
-Best regards,
-Krzysztof
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +    description: |-
+> > +      Reference to the GPIO connected to the RESET_N pin, if any.
+> > +      Must be released (set high) after all supplies are applied.
+> > +
+> > +  vddcore-supply:
+> > +    description:
+> > +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
+> > +
+> > +  vhtermnx-supply:
+> > +    description:
+> > +      Supply for input (rx). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > +
+> > +  vddtx-supply:
+> > +    description:
+> > +      Supply for output (tx). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > +
+> > +  vddhost-supply:
+> > +    description:
+> > +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
+> > +
+> > +  vddcmos-supply:
+> > +    description:
+> > +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
+> > +
+> > +  vddgpio_0-supply:
+> 
+> No, underscores are not allowed in names.
+> 
+> > +    description:
+> > +      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
+> > +
+> > +  vddgpio_1-supply:
+> > +    description:
+> > +      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
+> > +
+> > +  DOVDD-supply:
+> 
+> lowercase. Look at your other supplies. VDD is spelled there "vdd", so
+> do not introduce random style.
+> 
+> > +    description:
+> > +      Digital I/O (1.8V) supply for image sensor.
+> > +
+> > +  AVDD-supply:
+> 
+> lowercase
+> 
+> > +    description:
+> > +      Analog (2.8V) supply for image sensor.
+> > +
+> > +  DVDD-supply:
+> 
+> lowercase
+> 
+> > +    description:
+> > +      Digital Core (1.2V) supply for image sensor.
 
+Are those three supplies required ? It looks like the vdd* supplies are
+all you need.
+
+> > +
+> > +  orientation: true
+> > +  rotation: true
+> > +
+> > +  thine,rx,data-lanes:
+> 
+> Why are you duplicating properties? With wrong name? No, that's not a
+> property of a device node, but endpoint.
+> 
+> > +    minItems: 4
+> > +    maxItems: 4
+> > +    $ref: /schemas/media/video-interfaces.yaml#data-lanes
+> > +    description: |-
+> 
+> Drop |- where not needed.
+> 
+> > +      This property is for lane reordering between the THP7312 and the imaging
+> > +      sensor that it is connected to.
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > +    additionalProperties: false
+> > +
+> > +    properties:
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
+> > +
+> > +        properties:
+> > +          data-lanes:
+> > +            description: |-
+> > +              The sensor supports either two-lane, or four-lane operation.
+> > +              This property is for lane reordering between the THP7312 and
+> > +              the SoC. If this property is omitted four-lane operation is
+> > +              assumed. For two-lane operation the property must be set to <1 2>.
+> > +            minItems: 2
+> > +            maxItems: 4
+> > +            items:
+> > +              maximum: 4
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reset-gpios
+> > +  - clocks
+> > +  - vddcore-supply
+> > +  - vhtermrx-supply
+> > +  - vddtx-supply
+> > +  - vddhost-supply
+> > +  - vddcmos-supply
+> > +  - vddgpio_0-supply
+> > +  - vddgpio_1-supply
+> > +  - DOVDD-supply
+> > +  - AVDD-supply
+> > +  - DVDD-supply
+> > +  - thine,rx,data-lanes
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        camera@61 {
+> > +            compatible = "thine,thp7312";
+> > +            reg = <0x61>;
+> > +
+> > +            pinctrl-names = "default";
+> > +            pinctrl-0 = <&cam1_pins_default>;
+> > +
+> > +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
+> > +            clocks = <&camera61_clk>;
+> > +
+> > +            vddcore-supply = <&vsys_v4p2>;
+> > +            AVDD-supply = <&vsys_v4p2>;
+> > +            DVDD-supply = <&vsys_v4p2>;
+> 
+> Srlsy, test it before sending. Look how many supplies you require and
+> what is provided here. How any of this could possibly work?
+
+-- 
+Regards,
+
+Laurent Pinchart
