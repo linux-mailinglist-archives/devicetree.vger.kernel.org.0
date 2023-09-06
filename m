@@ -2,157 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D324E79412D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 18:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37E98794133
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 18:09:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233045AbjIFQJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 12:09:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45898 "EHLO
+        id S237886AbjIFQJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 12:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231783AbjIFQJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 12:09:00 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36A78CE2;
-        Wed,  6 Sep 2023 09:08:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694016505; x=1725552505;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OzLF5wEtqk1sfQVJ8OcWXgZIS7Ouwn48FOTinl06s6Q=;
-  b=gHMGLiqAjH91S1lzILfMDzsVJ/cOzYqgFQIItzbsa8i/vQHgaQZF2W/j
-   eNRTmmtH9owpzh36xfTCxXhDZBYc2fI95DW9IuB/h9ED8GZmGYT8tkhus
-   odqTvNsod0RY5650K0f3/oH0VrHD8oxWD+XeGVZPtcIAVYiaHRhs8+hIC
-   +lkLd4Yw4xUNVpAurKtC3kpNKjABoecNEPY2yzblkmpDTuVcbuRPLK+In
-   PLIdq0jrV9nls9ZwNYX81qCFGj+iFS+pEAinfqZLOLDi66A3Oc2Lvl4E3
-   StuA/SCY/1akDkAECawFN7ZM0dON5ZtHsFYilMyObAVlneGoqIBou75wn
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="376008453"
-X-IronPort-AV: E=Sophos;i="6.02,232,1688454000"; 
-   d="scan'208";a="376008453"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2023 09:03:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="741604970"
-X-IronPort-AV: E=Sophos;i="6.02,232,1688454000"; 
-   d="scan'208";a="741604970"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2023 09:03:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1qduzu-006z6D-0F;
-        Wed, 06 Sep 2023 19:03:18 +0300
-Date:   Wed, 6 Sep 2023 19:03:17 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Matti Vaittinen <mazziesaccount@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Mehdi Djait <mehdi.djait.k@gmail.com>,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v8 6/7] iio: accel: kionix-kx022a: Add a function to
- retrieve number of bytes in buffer
-Message-ID: <ZPiixW6CiR+z8s/r@smile.fi.intel.com>
-References: <eb47d0c9-9144-c947-f91e-d487c6ec9c45@gmail.com>
- <ZOdddZ0Zpk5CknH8@smile.fi.intel.com>
- <CAFukWp2Z0OCrJdTy+wzVs9jdCm70YNR-66q06=xoyGhaHg=aog@mail.gmail.com>
- <ZOdfeaW6AxE4eeqw@smile.fi.intel.com>
- <CAFukWp0ubncNcMiw-s_h5GoP1_RsjTaw3XxayGMuaeJJJneBow@mail.gmail.com>
- <ZOdrtNQijmhN9RAx@smile.fi.intel.com>
- <20230827190732.5e2215d0@jic23-huawei>
- <61247547-690c-fb8b-3a45-cd60754836a7@gmail.com>
- <ZOx8rAFBXMylgNzm@smile.fi.intel.com>
- <7ca3b60f-e59f-b578-7c22-48487663cfa7@gmail.com>
+        with ESMTP id S237777AbjIFQJh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 12:09:37 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04F21997;
+        Wed,  6 Sep 2023 09:09:03 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B970C433C7;
+        Wed,  6 Sep 2023 16:08:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694016539;
+        bh=JdR56YlXcpyvtRpoamjz0Pk7Vfmcc9MGNe0qBgrNBMY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=for6qEhUxv1FtRLPOwopQHgZtefqRxJAhdHXf4s5bIw4M4KXBYUxkBgRPEX7POOtg
+         rzXfRyS3IXhUqLVmPPArwULcNDVpzPvhzgiQoHKMtqApychXnb7R7twqpMLiGIn4lB
+         wcVcxsnSHmqMugIOgLSDPVHCfFCmcPPJ+NzGa3Zsx42Zq1mlFnSdwZyRsk7+PoLfqB
+         DyS6a0HzTGg6PewNIEesO0N/A46ADc0qgrWmGn1H5W1Lo6FOdp7AeFZIiLXzc8RT+w
+         SnJWXOVipaIoEBXH8STAp9mC3eVMgYzUZv9WVcQ8bxvuz3u3VcSKJNXvyHTpnmNIXU
+         70/R5+Q4xTlGQ==
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-4ff09632194so6606369e87.2;
+        Wed, 06 Sep 2023 09:08:59 -0700 (PDT)
+X-Gm-Message-State: AOJu0YyPUZ6uG+7gaLXzMQ35SRcV61c1BC8wtvWynAwMn11odUYu1ZEi
+        uH0yypHxf8BFuNArT0hpmZBLTrw6EOLm8I5qehg=
+X-Google-Smtp-Source: AGHT+IHJ7l1KOz/r1QQF049O4yuAb8C5zJaW2+brtp2HPScOtjbv+MaizDWk8MjokSuO1ZSIUWqAchFVMKiS0l6xEB4=
+X-Received: by 2002:a19:6555:0:b0:4fd:d470:203b with SMTP id
+ c21-20020a196555000000b004fdd470203bmr2328593lfj.69.1694016537219; Wed, 06
+ Sep 2023 09:08:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7ca3b60f-e59f-b578-7c22-48487663cfa7@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+References: <20230830231758.2561402-1-sjg@chromium.org> <20230830231758.2561402-3-sjg@chromium.org>
+ <CAMj1kXG5-aqoOtKdPFEdm=_5SdvgUTOhcDOBP1zdARAvKphJtg@mail.gmail.com>
+ <CAL_JsqLx0KnXxFc8mFyT_RmA2qeBEutMXj_3nKo_g==cuSeYuQ@mail.gmail.com> <CAPnjgZ1U+Gy0Q_Sc63p0ixkWF9iJEEBLhV8-N9-sh7OGNy-OmQ@mail.gmail.com>
+In-Reply-To: <CAPnjgZ1U+Gy0Q_Sc63p0ixkWF9iJEEBLhV8-N9-sh7OGNy-OmQ@mail.gmail.com>
+From:   Ard Biesheuvel <ardb@kernel.org>
+Date:   Wed, 6 Sep 2023 18:08:46 +0200
+X-Gmail-Original-Message-ID: <CAMj1kXG9vM0haSOu19j7ujQCBEN6CBeXVAH96nm+gixt9FmMrA@mail.gmail.com>
+Message-ID: <CAMj1kXG9vM0haSOu19j7ujQCBEN6CBeXVAH96nm+gixt9FmMrA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/4] schemas: Add some common reserved-memory usages
+To:     Simon Glass <sjg@chromium.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Maximilian Brune <maximilian.brune@9elements.com>,
+        ron minnich <rminnich@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        Dhaval Sharma <dhaval@rivosinc.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        linux-acpi@vger.kernel.org, Gua Guo <gua.guo@intel.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>,
+        Guo Dong <guo.dong@intel.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 29, 2023 at 09:33:27AM +0300, Matti Vaittinen wrote:
-> On 8/28/23 13:53, Andy Shevchenko wrote:
-> > On Mon, Aug 28, 2023 at 09:24:25AM +0300, Matti Vaittinen wrote:
-> > > On 8/27/23 21:09, Jonathan Cameron wrote:
+On Wed, 6 Sept 2023 at 16:54, Simon Glass <sjg@chromium.org> wrote:
+>
+> Hi Rob, Ard,
+>
+> On Wed, 6 Sept 2023 at 08:34, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Tue, Sep 5, 2023 at 4:44=E2=80=AFPM Ard Biesheuvel <ardb@kernel.org>=
+ wrote:
+> > >
+> > > On Thu, 31 Aug 2023 at 01:18, Simon Glass <sjg@chromium.org> wrote:
+> > > >
+> > > > The Devicetree specification skips over handling of a logical view =
+of
+> > > > the memory map, pointing users to the UEFI specification.
+> > > >
+> > > > It is common to split firmware into 'Platform Init', which does the
+> > > > initial hardware setup and a "Payload" which selects the OS to be b=
+ooted.
+> > > > Thus an handover interface is required between these two pieces.
+> > > >
+> > > > Where UEFI boot-time services are not available, but UEFI firmware =
+is
+> > > > present on either side of this interface, information about memory =
+usage
+> > > > and attributes must be presented to the "Payload" in some form.
+> > > >
+> > >
+> > > I don't think the UEFI references are needed or helpful here.
+> > >
+> > > > This aims to provide an small schema addition for this mapping.
+> > > >
+> > > > For now, no attempt is made to create an exhaustive binding, so the=
+re are
+> > > > some example types listed. More can be added later.
+> > > >
+> > > > The compatible string is not included, since the node name is enoug=
+h to
+> > > > indicate the purpose of a node, as per the existing reserved-memory
+> > > > schema.
+> >
+> > Node names reflect the 'class', but not what's specifically in the
+> > node. So really, all reserved-memory nodes should have the same name,
+> > but that ship already sailed for existing users. 'compatible' is the
+> > right thing here. As to what the node name should be, well, we haven't
+> > defined that. I think we just used 'memory' on some platforms.
+>
+> OK
+>
+> >
+> > > > This binding does not include a binding for the memory 'attribute'
+> > > > property, defined by EFI_BOOT_SERVICES.GetMemoryMap(). It may be us=
+eful
+> > > > to have that as well, but perhaps not as a bit mask.
+> > > >
+> > > > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > > > ---
+> > > >
+> > > > Changes in v5:
+> > > > - Drop the memory-map node (should have done that in v4)
+> > > > - Tidy up schema a bit
+> > > >
+> > > > Changes in v4:
+> > > > - Make use of the reserved-memory node instead of creating a new on=
+e
+> > > >
+> > > > Changes in v3:
+> > > > - Reword commit message again
+> > > > - cc a lot more people, from the FFI patch
+> > > > - Split out the attributes into the /memory nodes
+> > > >
+> > > > Changes in v2:
+> > > > - Reword commit message
+> > > >
+> > > >  .../reserved-memory/common-reserved.yaml      | 53 +++++++++++++++=
+++++
+> > > >  1 file changed, 53 insertions(+)
+> > > >  create mode 100644 dtschema/schemas/reserved-memory/common-reserve=
+d.yaml
+> > > >
+> > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.yaml =
+b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > new file mode 100644
+> > > > index 0000000..d1b466b
+> > > > --- /dev/null
+> > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
+> > > > @@ -0,0 +1,53 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/reserved-memory/common-reserved=
+.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Common memory reservations
+> > > > +
+> > > > +description: |
+> > > > +  Specifies that the reserved memory region can be used for the pu=
+rpose
+> > > > +  indicated by its node name.
+> > > > +
+> > > > +  Clients may reuse this reserved memory if they understand what i=
+t is for.
+> > > > +
+> > > > +maintainers:
+> > > > +  - Simon Glass <sjg@chromium.org>
+> > > > +
+> > > > +allOf:
+> > > > +  - $ref: reserved-memory.yaml
+> > > > +
+> > > > +properties:
+> > > > +  $nodename:
+> > > > +    enum:
+> > > > +      - acpi-reclaim
+> > > > +      - acpi-nvs
+> > > > +      - boot-code
+> > > > +      - boot-data
+> > > > +      - runtime-code
+> > > > +      - runtime-data
+> > > > +
+> > >
+> > > These types are used by firmware to describe the nature of certain
+> > > memory regions to the OS. Boot code and data can be discarded, as wel=
+l
+> > > as ACPI reclaim after its contents have been consumed. Runtime code
+> > > and data need to be mapped for runtime features to work.
+> > >
+> > > When one firmware phase communicates the purpose of a certain memory
+> > > reservation to another, it is typically not limited to whether its
+> > > needs to be preserved and when it needs to be mapped (and with which
+> > > attributes). I'd expect a memory reservation appearing under this nod=
+e
+> > > to have a clearly defined purpose, and the subsequent phases need to
+> > > be able to discover this information.
+> > >
+> > > For example, a communication buffer for secure<->non-secure
+> > > communication or a page with spin tables used by PSCI. None of the
+> > > proposed labels are appropriate for this, and I'd much rather have a
+> > > compatible string or some other property that clarifies the nature in
+> > > a more suitable way. Note that 'no-map' already exists to indicate
+> > > that the CPU should not map this memory unless it does so for the
+> > > specific purpose that the reservation was made for.
+> >
+> > I agree. I think compatible is the better approach. Some property like
+> > 'discard' may not be sufficient information if the OS needs to consume
+> > the region first and then discard it. Better to state exactly what's
+> > there and then the OS can imply the rest.
+>
+> OK, so what sort of compatible strings?
+>
+> How about:
+> "acpi-reclaim" - holds ACPI tables; memory can be reclaimed once the
+> tables are read and no-longer needed
 
-Sorry it took a bit of time to reply on this.
+ACPI reclaim is a policy, not a purpose. This memory could contain
+many different things.
 
-...
+> "boot-code" - holds boot code; memory can be reclaimed once the boot
+> phase is complete
+> "runtime-code" - holds runtime code; memory can be reclaimed only if
+> this code will not be used from that point
+>
 
-> > > I think that people who work on a driver like this should guess what this is
-> > > for.
-> > 
-> > _This_ is the result of what people always forgot to think about, i.e. newcomers.
-> 
-> Thanks Andy. This was a good heads-up for me. I do also see the need for
-> fresh blood here - we aren't getting any younger.
-> 
-> > What _if_ the newcomer starts with this code and already being puzzled enough on
-> > what the heck the function does. With all ambiguity we rise the threshold for the
-> > newcomers and make the kernel project not attractive to start with
-> 
-> I really appreciate you making a point about attracting newcomers (and there
-> is no sarcasm in this statement). I however don't think we're rising the bar
-> here. If a newcomer wants to work on a device-driver, the _first_ thing to
-> do is to be familiar with the device. Without prior experience of this kind
-> of devices it is really a must to get the data-sheet and see how the device
-> operates before jumping into reading the code. I would say that after
-> reading the fifo lvl description from data-sheet this should be obvious -
-> and no, I don't think we should replicate the data-sheet documentation in
-> the drivers for parts that aren't very peculiar.
+These are also policies. They can be inferred from the purpose.
 
-There are (at least?) two approaches on the contribution:
-1) generic / library wise;
-2) specific hardware wise.
+> etc. We can then have more specific compatibles, like:
+>
+> "psci-spin-table" - holds PSCI spin tables
+>
+> so you could do:
+>
+> compatible =3D "runtime-code", "psci-spin-table";
+>
 
-You are talking about 2), while my remark is about both. I can imagine a newcomer
-who possess a hardware that looks similar to what this driver is for. Now, they
-would like to write a new driver (note, that compatibility can be checked by
-reading the RTL definitions, so no need to dive into the code) and use this as
-a (nice) reference. With that in mind, they can read a function named
-get_fifo_bytes() with not so extensive documentation nor fully self-explanatory
-name. One may mistakenly though about this as a function for something that
-returns FIFO capacity, but in the reality it is current amount of valid / data
-bytes in the FIFO for the ongoing communication with the device.
+I understand that this binding targets firmware<->firmware rather than
+firmware<->OS, which makes it much more difficult to keep it both
+generic and sufficiently descriptive.
 
-> But the question how to attract newcomers to kernel is very valid and I
-> guess that not too many of us is thinking of it. Actually, I think we should
-> ask from the newcomers we have that what has been the most repulsive part of
-> the work when they have contributed.
-
-> (besides the
-> > C language which is already considered as mastodon among youngsters).
-> 
-> I think this is at least partially the truth. However, I think that in many
-> cases one of the issues goes beyond the language - many younger generation
-> people I know aren't really interested in _why_ things work, they just want
-> to get things working in any way they can - and nowadays when you can find a
-> tutorial for pretty much anything - one really can just look up instruction
-> about how a "foobar can be made to buzz" instead of trying to figure out
-> what makes a "foobar to buzz" in order to make it to buzz. So, I don't blame
-> people getting used to take a different approach. (Not sure this makes sense
-> - don't really know how to express my thoughts about this in a clear way -
-> besides, it may not even matter).
-
-Yeah, I share your frustration and agree that people are loosing the feel of
-curiosity. Brave New World in front of us...
-
-> Anyways, I am pretty sure that - as with any community - the way people are
-> treated and how their contribution is appreciated is the key to make them
-> feel good and like the work. I think that in some cases it may include
-> allowing new contributors to get their code merged when it has reached "good
-> enough" state - even if it was not perfect. (Sure, when things are good
-> enough is subject to greater minds than me to ponder) ;)
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+However, I still feel that all the overlap with UEFI memory types is
+not what we want here. UEFI knows how to manage its own memory map,
+what it needs to know is what memory is already in use and for which
+exact purpose. Whether or not that implies that the memory can be
+freed at some point or can be mapped or not should follow from that.
