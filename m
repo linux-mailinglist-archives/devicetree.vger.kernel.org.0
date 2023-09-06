@@ -2,182 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59ED0793C6C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44FE0793C79
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231842AbjIFMOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 08:14:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55046 "EHLO
+        id S236548AbjIFMTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 08:19:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229791AbjIFMOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:14:22 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48703E71
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 05:14:18 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99bdcade7fbso519056066b.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 05:14:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694002457; x=1694607257; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I9Bg/dVDxo6+g7+rfRY3uAFK7nbPJavtKsvDCjgO83M=;
-        b=SWORc7IVDuFZ3ZAJTGAQxrFg4mRJ/KVbZEbqpVmBvHne+SJkBuEEnybAKLRsl254IY
-         U0OF2lquiYUpPrEbna05Px1KfsURKF5H5sF+WPd7jiCfNKqJ928R7UF72TtvDC9wWF7f
-         N6srf/GR1fe4GLMO6Jt1H9UvpBF2VsGNr9oBD9ArZUB7jHOol2Cs7zCyHWrojvulR1iy
-         FoNntshOix+cA0qKIWj5iBatAhUmemETiKqiv7JiXI7MdTlpUlVwz5hRTfDZRDabfUAW
-         iGIYGbeZ3JZ4K9j0s/Sn/TCzErZHUZHkON0//tDZWwCRwoZLIRDT8ICV3CEQ/xdMYKTg
-         qeuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694002457; x=1694607257;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I9Bg/dVDxo6+g7+rfRY3uAFK7nbPJavtKsvDCjgO83M=;
-        b=XoZPWlNvJgW46GqwzfgiBUD8PSuyi2Rj/QksJn7EILCOeSpn3QJIOe8OTOq0HKRDrH
-         EUd2h9AJkCjYjrmy4WvYTkVTFu+lWCpuWELJEJcSPJjYzgbdh9OM2+QRAQl13NJRqrNv
-         Ppta79aFR5wZYnBnxJt9YmDgJw56v3mYbR6VbxIObK5+bGA5kn4KQvyeJOcDgun+XJv0
-         sjs/XHL3JbfbIkrfz0T23zeB6B64qZyTcNGbh5sEfQhwhuAsrEnwKXQp3xqFcsaszKio
-         B1hxpn230HrAkl/PiCIojpgoPpEhWfCgZrpGBsL3wdRzwTAHQgLsZBqC2qNN8kXWQeG8
-         YP5w==
-X-Gm-Message-State: AOJu0YwFthmG+yk9JbeMhXa718qmPWwEFDQgPRNY5qJ+tLQf5fSx9Kcf
-        f6GUMrVCo6EuiepJKsIJSBmPng==
-X-Google-Smtp-Source: AGHT+IH1I047qgp4y+1te3h85OCKarvoSoPFP7FaNdo0dTzZvZK0rxlW12L/JPkfB2o/sYR65Beq3A==
-X-Received: by 2002:a17:906:5dae:b0:9a1:c659:7c62 with SMTP id n14-20020a1709065dae00b009a1c6597c62mr2058303ejv.66.1694002456757;
-        Wed, 06 Sep 2023 05:14:16 -0700 (PDT)
-Received: from [192.168.37.154] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id rn5-20020a170906d92500b0099cc402d3ddsm8800515ejb.202.2023.09.06.05.14.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 05:14:16 -0700 (PDT)
-Message-ID: <10520827-dc01-475c-b09a-35cefc9e0a62@linaro.org>
-Date:   Wed, 6 Sep 2023 14:14:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/53] icc-rpmh multi-RSC voting groundwork
-Content-Language: en-US
-To:     Mike Tipton <quic_mdtipton@quicinc.com>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S231493AbjIFMTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:19:44 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3314BF9;
+        Wed,  6 Sep 2023 05:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+ s=s31663417; t=1694002754; x=1694607554; i=frank-w@public-files.de;
+ bh=e0081cInfBKzI1JPOJchcZQctsDgMNVHwcQcjiRNKTg=;
+ h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:Referenc
+ es;
+ b=n+FHE74GGs7iQQExFGT8fTlcQFlNWq7/pGkA1VAdENDlztHWxBjU7bEYfh7Wy/5TRc4Pljx
+ E5DVV6SLJ4Ym9esjAQVJOzVgKnBbiyfo1Q7bwsJxyhlWgoXlQ0z1RgigwlxET/pxqmziBccB4
+ pL52oYSQrcG8W/Lm3hoS18P8ZI+zZFWdsoezJwNe2hnts8PVfOmQigB5+BV9t9ejWgqfBrccC
+ zi0GXALJQQ9f9CFTk3EOZp3d69o1cxPSlR4h7VvCpI4vYhsWTiWsCOYAI+KghRoiZ3uXg8Pe5
+ fKpHL9Due/HqYr3ZwiJwP1xzqq1U67WKDzyTAJjmFmqK5gisPzyA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [IPv6:::1] ([80.187.71.204]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MtOKc-1pmZMS1k8k-00uqpI; Wed, 06
+ Sep 2023 14:19:14 +0200
+Date:   Wed, 06 Sep 2023 14:19:11 +0200
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230708-topic-rpmh_icc_rsc-v1-0-b223bd2ac8dd@linaro.org>
- <c067a45f-9629-d516-9e56-36538e4ff6db@kernel.org>
- <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230807215739.GA9621@hu-mdtipton-lv.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        =?ISO-8859-1?Q?Bernhard_Rosenkr=E4nzer?= <bero@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_1/2=5D_dt-bindings=3A_arm64?= =?US-ASCII?Q?=3A_dts=3A_mediatek=3A_add_mt8395-evk_board?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <c951f693-b219-4745-be20-a8e1fee0099d@mediatek.com>
+References: <20230904092043.5157-1-macpaul.lin@mediatek.com> <20230906092527.18281-1-macpaul.lin@mediatek.com> <fbad941f-232b-9f56-5de3-98a16a8c4d89@linaro.org> <c3ddf00c-235a-2d23-db60-c998a67a3fcd@mediatek.com> <f343b6e2-6106-47eb-71cb-f391aff6cb7f@collabora.com> <50f7fbdd-8592-7a47-b2d8-a1af8ed93b92@linaro.org> <c951f693-b219-4745-be20-a8e1fee0099d@mediatek.com>
+Message-ID: <E3DEDA34-C203-4560-B07D-8BCB44204FF3@public-files.de>
+MIME-Version: 1.0
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:O/pBamwEeOol5A2BT1I7ZdcnXSsAYQXRMcNrEL6HiXWgdfa1QVO
+ Ss66XXOehHOACvDffgmThSn5M+rlr5/PLEgFCmUu9111ZdKdZfKainTtc8OxiGDPION4KiK
+ UJ+KZNe5oLx1q/+ebykxqgeoqE+MdqF0uWVh5YIqU+bMARn8pGobL0iThqpb9tKCQAD5Ubc
+ 5LBgiudCKYEGk9urriwRA==
+UI-OutboundReport: notjunk:1;M01:P0:E8Xc5Uvy3ng=;T+94gWu53WDA87IePiH/JBNpwDo
+ VuP9OrqBwGjTaiiOY9KR0FN+QLAQFYQs32HJmOZbWjyj/4Hi1xNeYvNonaMC/WO3fyFtq5od8
+ zmbalYdW4WcZiDm6TzDjEhzpF7bPXoRaGER/vIZwrzHjH/6+CZBbi2u6BCosvfKVKT3ltdLDN
+ W21txCnhzHmdqnVdEmbEt5mVK4ybq5ek/vWoJBGzIu53SzVzoI3a9nAM8Dqr7jGUmn4mcafVK
+ JuBevjuDNF02NW1dAE009nUZf5j2c74A032Uxsyh5qo4DZPWGM0eRapDbdcXC9LUceHHY1YkE
+ TG6F2wbcGoqGUi3qoxG0zRDUyt4oGUACkRvXqCna3fo/L10XeerUzFNe/pOxjrv3+fRk/k4xb
+ YvK1szY/ui0TNxHdKioL/8YBT42BD+xtOpuzlR5uBaqkE9lfTnPC5hT0IQa2Bi5Ksv+/9bBmJ
+ 0M7V5u7ay9wmNwmG9pOP4gSCDsISthNelCzV3w++CEk2SX+ssTpEM7P/sb2IbxRcpHTQJrKm1
+ UbPMvyDZgbEioe/VJU1q4XOZ701tnafSvdbEWdYv4wLy1m37H/nu1Trft52ApiMjTitnKrH8O
+ FIlvR66uFYXiD58VPeZq8kVaYXDALf1t8u7WkD1HtUJm5y4p7hMbckFr8tiUtOHR/l2cZ0Vof
+ GqTd0omc31nrD0Jy6VXEDwIWo1D9pX0OvCykpxI59/gR3HbJ7olQp5e/G8khRZhEz34gK7Ghe
+ IeJmB73NIV9HhCXmys14zf61/Y5W1GRflNKEYcxTqXg2NDh4YG9MOZwFW63qFo7eC6hLZPIEZ
+ ZghiH4Oe+XgIb5EzzpuUAgfW2tUps53N/vtoYwTQHHJjv0f3EVTU/nPH7nFntkW4x7PDiCzNO
+ ++L6PVzwqevWvgdUhNVDJ1+zHBhlOILW8ItlaTXtzhuX9duSrEp6n/dFQXYCWkTi9q8BSvAaX
+ XpfYVaC4iFG7sKw9+w7iv4PDWqw=
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,T_SPF_TEMPERROR autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7.08.2023 23:57, Mike Tipton wrote:
-> On Thu, Aug 03, 2023 at 07:48:08PM +0300, Georgi Djakov wrote:
->> Hi Konrad,
->>
->> On 11.07.23 15:17, Konrad Dybcio wrote:
->>> Many parts of Qualcomm SoCs are entirely independent of each other and can
->>> run when the other parts are off. The RPMh system architecture embraces
->>> this by giving each (loosely defined) subsystem its own connection (as in,
->>> physical wires) to the AOSS, terminated by per-subsystem RSCs (Resource
->>> State Coordinators) that barter for power, bandwidth etc.
->>>
->>> This series introduces the groundwork necessary for voting for resources
->>> through non-APPS RSCs. It should allow for lower-latency vote adjustments
->>> (e.g. for very high bandwidth / multiple displays) and could potentially
->>> allow for full APSS collapse while keeping e.g. MDSS operating (say
->>> refreshing an image from a RAM buffer).
->>
->> This is good stuff. Thanks for working on it! Actually the path tagging,
->> that have been introduced some time ago could be used for supporting the
->> multiple RSCs. Today we can get the tags from DT, and tag the path with
->> some DISP_RSC flag (for example) and avoid the qcom,bcm-voter-idx property.
->>
->> Mike has been also looking into this, so maybe he can share his thoughts.
->>
-> 
-> Yeah, the current way we've been supporting multiple voters (e.g. RSCs)
-> doesn't scale. We currently duplicate the topology for any path that
-> requires a secondary, non-APSS voter. Which means we have duplicates
-> nodes and bindings for each hop in those paths, even though there's only
-> a single logical path.
-> 
-> For example, in qcom/sm8550.c, each node and BCM ending with _disp,
-> _ife_0, _ife_1, or _ife_2 is a duplicate. The only reason they exist is
-> to allow clients to target their votes to the non-APPS voters. And to
-> provide separate, voter-specific buckets of aggregation. But everything
-> else about them is 100% identical to their default APPS counterparts.
-> For sm8550, this amounts to roughly 643 extra lines of code.
-> 
-> Initially there was only the one secondary display voter, so the scaling
-> problem wasn't a huge issue. But sm8550 has four voters. And future SOCs
-> will have even more.
-> 
-> We should only define the logical topology once. The ratio of NOC ports
-> to interconnect nodes should be 1:1, rather than 1:N where N is the
-> number of voters that care about them.
-> 
-> The general idea is that we could use tags for this. So, instead of...
-> 
->   path = icc_get(dev, MASTER_MDP_DISP, SLAVE_EBI1_DISP);
-> 
-> it would be...
-> 
->   path = icc_get(dev, MASTER_MDP, SLAVE_EBI1);
->   icc_set_tag(path, QCOM_ICC_TAG_VOTER_DISP);
-> 
-> I have an early prototype with basic testing already. I can hopefully
-> clean it up and post for review in the next couple of weeks.
-I was initially not very happy with this approach (overloading tags
-with additional information), but it grew on me over time.
+Can you please only target Reviewers/Maintainers and mailinglists reported =
+by get_maintainers script?
 
-My only concern is that if we reserve say bits 16-31 for path tags
-(remember, dt-bindings are ABI), we may eventually run out of them.
-
-Konrad
+I have only sent patches for mediatek and did some tests=2E So i'm not int=
+erested in patches for hardware i do not have here :)=2E I guess i'm not al=
+one=2E=2E=2E
+regards Frank
