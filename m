@@ -2,353 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1324B7939C0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 12:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 878EF7939F7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 12:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238819AbjIFKYv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 6 Sep 2023 06:24:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S232109AbjIFKdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 06:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230389AbjIFKYv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 06:24:51 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7B09610C8;
-        Wed,  6 Sep 2023 03:24:46 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 18C8A1063;
-        Wed,  6 Sep 2023 03:25:23 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 998233F67D;
-        Wed,  6 Sep 2023 03:24:38 -0700 (PDT)
-Date:   Wed, 6 Sep 2023 11:24:34 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-Cc:     Martin Botka <martin.botka@somainline.org>,
-        Martin Botka <martin.botka1@gmail.com>,
-        Martin Botka <martin@biqu3d.com>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Jami Kettunen <jamipkettunen@somainline.org>,
-        Paul Bouchara <paul.bouchara@somainline.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Samuel Holland <samuel@sholland.org>,
-        Ludwig Kormann <ludwig.kormann@ict42.de>,
-        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi
- support
-Message-ID: <20230906112434.460b46c4@donnerap.manchester.arm.com>
-In-Reply-To: <1909632.taCxCBeP46@archlinux>
-References: <20230807145349.2220490-1-martin@biqu3d.com>
-        <ZBNDZR.IENEPBA0KL4D2@somainline.org>
-        <KSXWZR.LZT0IYKM7IPF@somainline.org>
-        <1909632.taCxCBeP46@archlinux>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S229927AbjIFKdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 06:33:19 -0400
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5E00CE2;
+        Wed,  6 Sep 2023 03:33:12 -0700 (PDT)
+Received: by mail-pj1-x102c.google.com with SMTP id 98e67ed59e1d1-26fe4997871so1902570a91.3;
+        Wed, 06 Sep 2023 03:33:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693996392; x=1694601192; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=dZQ8wt1OcjisCZpLbfzFz5n18+5fQLoWCA+NTtpxCgE=;
+        b=YSrPFXclH1rEG9v5awuCgn0YvzkOfdFj9Hjp+eFbzFtqWPq/yQS2CnkyL0DAj1ibOC
+         YUxHP2KYCdIV/OgAZ2btxH+vFW6VpjAccR/YnYANF2R6TM8zKM0Ng+D09U39cKqyL2lC
+         ZH9mbctLFpyKiL4M4ORlX377picL7RodKnCAlH+JXUH+ayVgbaZsBw+sq1ecxhnU1IUB
+         rvGXL/H2+hWMZtTXitypp0U81mw2rwdX1MMDeTxxIcvRKZZkbbMFoV8LbhhRBiQT/Gq4
+         NzpXRhFIJW10sAxgH57jo6zo347HtfOX/fj08Kv3p50p1tRbgyx68Y/rb7eeUgEX7an+
+         C4yg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693996392; x=1694601192;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=dZQ8wt1OcjisCZpLbfzFz5n18+5fQLoWCA+NTtpxCgE=;
+        b=OiSr0sr0BWmUFRUX0GsMhNnkLO8MnGWYEcHrWQaZSugZU+CWiELaQXXhTRDHQdq1YR
+         MwYirH/Cm0BZl68arBSZIph5USb+sxQLj4ybaQSMzu+1dY2YQn1QbRvpbu4RQNGJCUar
+         MKVBC5mYMyh//Zgpx8lQzCZ0GLe6vI59esdRfjk3WaM1VSkMbGhN4SySVVhvVkJoAZBN
+         XIcJivlXyLNAS8T/Qgp8UczdYmYbg3m5fvFHraH+DB6Pfr3k9c8QvbqLfas33Yq9TvER
+         v3q6t/eKA8i1OSQkvk1zUd/BSPK8BNph2P7L+r+c/qsUz+2q99B8cKgtUdaHdlzMwUcb
+         fmZw==
+X-Gm-Message-State: AOJu0Yyqe/LXBGkrFd/ofSU9DW+tabyuYZ1+wDf6XcHEmQ/7LhYSPSWc
+        cxX492Rhzcqw+MnEK2hXNZg=
+X-Google-Smtp-Source: AGHT+IEvmMcrChGZLiPN933WjYKZmL8PyeTwmMitOCF5itYlCF4stuJmLKQ1uC6Qg+XXTvzQWSo3dw==
+X-Received: by 2002:a17:90b:11d1:b0:26d:1986:f7ec with SMTP id gv17-20020a17090b11d100b0026d1986f7ecmr12223211pjb.1.1693996392056;
+        Wed, 06 Sep 2023 03:33:12 -0700 (PDT)
+Received: from [172.16.116.58] ([103.15.228.93])
+        by smtp.gmail.com with ESMTPSA id l19-20020a17090aec1300b0026b26181ac9sm12167302pjy.14.2023.09.06.03.33.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Sep 2023 03:33:11 -0700 (PDT)
+Message-ID: <2746d50a-5658-5058-4369-1a1b34f85710@gmail.com>
+Date:   Wed, 6 Sep 2023 16:03:06 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 2/3] greybus: Add BeaglePlay Linux Driver
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>, greybus-dev@lists.linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org,
+        Vaishnav M A <vaishnav@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Nishanth Menon <nm@ti.com>
+References: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
+ <20230902182845.1840620-3-ayushdevel1325@gmail.com>
+ <27a445d6-d904-244f-266c-ffb2d68d0e27@kernel.org>
+ <1bbe7772-09f4-6c5a-8c4d-c88988b34c99@gmail.com>
+ <608ddca9-4ab8-1aef-767f-92a90e7e0970@kernel.org>
+From:   Ayush Singh <ayushdevel1325@gmail.com>
+In-Reply-To: <608ddca9-4ab8-1aef-767f-92a90e7e0970@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 05 Sep 2023 22:45:27 +0200
-Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
+On 9/6/23 15:29, Krzysztof Kozlowski wrote:
 
-Hi,
-
-> On Thursday, August 24, 2023 10:48:20 PM CEST Martin Botka wrote:
-> > On Mon, Aug 14 2023 at 12:47:59 PM +02:00:00, Martin Botka
-> > 
-> > <martin.botka@somainline.org> wrote:  
-> > > On Mon, Aug 14 2023 at 12:26:07 PM +02:00:00, Jernej Škrabec
-> > > 
-> > > <jernej.skrabec@gmail.com> wrote:  
-> > >> Dne nedelja, 13. avgust 2023 ob 18:22:49 CEST je Martin Botka
-> > >> 
-> > >> napisal(a):  
-> > >>>  On Sun, Aug 13 2023 at 05:55:35 PM +02:00:00, Jernej Škrabec
-> > >>>  
-> > >>>  <jernej.skrabec@gmail.com> wrote:  
-> > >>>  > Dne ponedeljek, 07. avgust 2023 ob 16:53:24 CEST je Martin Botka
-> > >>>  > 
-> > >>>  > napisal(a):  
-> > >>>  >>  The BigTreeTech Pi is an H616 based board based on CB1.
-> > >>>  >>  Just in Rpi format board.
-> > >>>  >>  
-> > >>>  >>  It features the same internals as BTT CB1 but adds:
-> > >>>  >>      - Fan port
-> > >>>  >>      - IR receiver
-> > >>>  >>      - ADXL345 Accelerometer connector via SPI
-> > >>>  >>      - 24V DC power supply via terminal plugs
-> > >>>  >>      - USB to CAN module connector (The actual USB to CAN  
-> > >>> 
-> > >>> happens on
-> > >>>   
-> > >>>  >> the
-> > >>>  >> 
-> > >>>  >>  external module)
-> > >>>  >>  
-> > >>>  >>  List of currently working things is same as BTT CB1 but also:
-> > >>>  >>      - IR receiver
-> > >>>  >>      - ADXL345 connector
-> > >>>  >>  
-> > >>>  >>  Signed-off-by: Martin Botka <martin@biqu3d.com>
-> > >>>  >>  Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-> > >>>  >>  ---
-> > >>>  >>  
-> > >>>  >>  Changes in V2:
-> > >>>  >>      - Add UART alongside aliases and chosen for it
-> > >>>  >>      - Add model string
-> > >>>  >>      - Enable IR receiver
-> > >>>  >>      - Enable SPI0 for ADXL345 connector
-> > >>>  >>  
-> > >>>  >>  Changes in V3:
-> > >>>  >>      - Add missing semicolons
-> > >>>  >>      - Add pinctrl for SPI0
-> > >>>  >>   
-> > >>>  >>   arch/arm64/boot/dts/allwinner/Makefile        |  1 +
-> > >>>  >>   .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 70
-> > >>>  >> 
-> > >>>  >> +++++++++++++++++++
-> > >>>  >> 
-> > >>>  >>   2 files changed, 71 insertions(+)
-> > >>>  >>   create mode 100644
-> > >>>  >>  
-> > >>>  >>  arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-> > >>>  >>  
-> > >>>  >>  diff --git a/arch/arm64/boot/dts/allwinner/Makefile
-> > >>>  >>  b/arch/arm64/boot/dts/allwinner/Makefile index
-> > >>>  >> 
-> > >>>  >> 7b386428510b..0b6232a7f328
-> > >>>  >> 
-> > >>>  >>  100644
-> > >>>  >>  --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > >>>  >>  +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > >>>  >>  @@ -39,5 +39,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=
-> > >>>  >> 
-> > >>>  >> sun50i-h6-pine-h64-model-b.dtb
-> > >>>  >> 
-> > >>>  >>  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6.dtb
-> > >>>  >>  
-> > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-tanix-tx6-mini.dtb
-> > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) +=  
-> > >>> 
-> > >>> sun50i-h616-bigtreetech-cb1-manta.dtb
-> > >>>   
-> > >>>  >>  +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-bigtreetech-pi.dtb
-> > >>>  >>  
-> > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-orangepi-zero2.dtb
-> > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h616-x96-mate.dtb
-> > >>>  >>  
-> > >>>  >>  diff --git
-> > >>>  >> 
-> > >>>  >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-> > >>>  >> 
-> > >>>  >>  b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts  
-> > >>> 
-> > >>> new
-> > >>>   
-> > >>>  >> file
-> > >>>  >> 
-> > >>>  >>  mode 100644
-> > >>>  >>  index 000000000000..b0d0386e8f13
-> > >>>  >>  --- /dev/null
-> > >>>  >>  +++  
-> > >>> 
-> > >>> b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
-> > >>>   
-> > >>>  >>  @@ -0,0 +1,70 @@
-> > >>>  >>  +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > >>>  >>  +/*
-> > >>>  >>  + * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
-> > >>>  >>  + */
-> > >>>  >>  +
-> > >>>  >>  +/dts-v1/;
-> > >>>  >>  +
-> > >>>  >>  +#include "sun50i-h616-bigtreetech-cb1.dtsi"
-> > >>>  >>  +
-> > >>>  >>  +/ {
-> > >>>  >>  +	model = "BigTreeTech Pi";
-> > >>>  >>  +	compatible = "bigtreetech,pi", "allwinner,sun50i-h616";
-> > >>>  >>  +
-> > >>>  >>  +	aliases {
-> > >>>  >>  +		serial0 = &uart0;
-> > >>>  >>  +	};
-> > >>>  >>  +
-> > >>>  >>  +	chosen {
-> > >>>  >>  +		stdout-path = "serial0:115200n8";
-> > >>>  >>  +	};
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ehci0 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ehci1 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ehci2 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ehci3 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ir {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ohci0 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ohci1 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ohci2 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&ohci3 {
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&spi0 {
-> > >>>  >>  +	/* SPI connection for onboard connector for ADXL345  
-> > >>> 
-> > >>> accelerometer
-> > >>>   
-> > >>>  > */
-> > >>>  >   
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +	pinctrl-names = "default";
-> > >>>  >>  +	pinctrl-0 = <&spi0_pins>, <&spi0_cs0_pin>;  
-> > >>>  > 
-> > >>>  > Driver and compatible for ADXL345 already exists, why don't you  
-> > >>> 
-> > >>> add
-> > >>>   
-> > >>>  > child node
-> > >>>  > for it?
-> > >>>  > 
-> > >>>  > Best regards,
-> > >>>  > Jernej  
-> > >>>  
-> > >>>  Ah. So the ADXL345 actually wont be driven by kernel.  
-> > >> 
-> > >> DT is hardware description, it's not concerned what is done on
-> > >> software side,
-> > >> either kernel or user space.  
-> > > 
-> > > Im aware. But this is not a device that is on the board. Its simply a
-> > > connector for the device.
-> > > Like Rpi has connectors for camera module :)  
-> 
-> Actually it matters only if this other board is firmly connected with base 
-> board. If it is not, then SPI node should be dropped and be handled with DT 
-> overlays.
-
-So I do understand the reasoning behind not describing those generic pin
-header connectors, where people could hook up anything, and use it as a
-GPIO or as a special function device, but just wanted to check on this
-situation:
-Don't we even describe pins dedicated to those custom connectors,
-especially if there is an "obvious" external device to connect to? Is it
-the same situation like with these FPC camera connectors?
-
-Cheers,
-Andre
-
-> > >>>  The SPI connection is enabled so that klipper (3d printer
-> > >>> 
-> > >>> firmware) can
-> > >>> 
-> > >>>  be told to look for ADXL345 at this SPI and use it on its own.
-> > >>>  
-> > >>>  Klipper will initialize and communicate with the ADXL on its own.  
-> > >> 
-> > >> What do you mean by firmware? User space app? In this case I suppose
-> > >> you'll use
-> > >> direct SPI commands from user space? AFAIK that's less and less
-> > >> supported by
-> > >> kernel (in contrast to I2C).  
-> > > 
-> > > Firmware as in 3d printer firmware. Klipper runs on the board (CB1 or
-> > > BTT Pi) and is indeed an userspace app.
-> > > And indeed uses direct SPI commands to the device.
-> > > 
-> > > The reason for this is the flexibility.
-> > > If Klipper read the values from kernel or well from the files the
-> > > ADXL driver would create
-> > > then it would be unable to communicate with ADXL that is on toolhead
-> > > board. Or would have to have
-> > > direct initialization either way for those. Thus it just controls the
-> > > ADXL itself :)
-> > > 
-> > > I understand that this may be bit confusing. If there is still
-> > > something not clear im more then happy to explain in
-> > > full detail how the userspace and 3D printer communicate :)  
-> 
-> As I said, DT doesn't care about implementation. DT is HW description, so 
-> either if it's fixed connection (soldered wires), then describe in full, 
-> otherwise it's considered addon board and thus non-essential, so it should be 
-> handled with DT overlays.
-> 
-> Can be CB1 bought separately from 3D printer package and thus used without 
-> ADXL sensor?
-> 
-> > > 
-> > > Cheers,
-> > > Martin.  
-> > 
-> > Hello,
-> > Jernej any comments on this ?
-> > I would like to resolve this conversation :)
-> > We do have a bunch of time before the new cycle but never hurts to get
-> > it figured out ahead of time :)  
-> 
-> Sorry, not enough free time over summer.
-> 
+> On 05/09/2023 18:27, Ayush Singh wrote:
+>>>> +static void hdlc_handle_rx_frame(struct gb_beagleplay *bg)
+>>>> +{
+>>>> +	u8 address = bg->rx_buffer[0];
+>>>> +	char *buffer = &bg->rx_buffer[2];
+>>>> +	size_t buffer_len = bg->rx_buffer_len - 4;
+>>>> +
+>>>> +	switch (address) {
+>>>> +	case ADDRESS_DBG:
+>>>> +		hdlc_handle_dbg_frame(bg, buffer, buffer_len);
+>>>> +		break;
+>>>> +	case ADDRESS_GREYBUS:
+>>>> +		hdlc_handle_greybus_frame(bg, buffer, buffer_len);
+>>>> +		break;
+>>>> +	default:
+>>>> +		dev_warn(&bg->serdev->dev, "Got Unknown Frame %u", address);
+>>> ratelimit
+>>> Probably as well in several places with possible flooding.
+>> I don't think `hdlc_handle_rx_frame` is the correct place since it only
+>> processes a single completed HDLC frame.  The more appropriate place
+>> would be `hdlc_rx` if we want to limit based on the number of HDLC
+>> frames or `gb_beagleplay_tty_receive` to limit based on the number of bytes.
+>>
+>> I would like to ask, though, why is rate limiting required here? Won't
+>> `serdev_device_ops->receive_buf` already rate limit the number of bytes
+>> somewhat? Or is it related to blocking in the
+>> `serdev_device_ops->receive_buf` callback? In the case of latter, it
+>> would probably make sense to ratelimit based on number of frames, I think.
+> My comment might not be accurate, so I do not insist. The name of the
+> function suggested something being called very often (on every frame),
+> thus you would print warning also very often.
+>
 > Best regards,
-> Jernej
-> 
-> > 
-> > Cheers,
-> > Martin
-> >   
-> > >> Best regards,
-> > >> Jernej
-> > >>   
-> > >>>  >>  +};
-> > >>>  >>  +
-> > >>>  >>  +&uart0 {
-> > >>>  >>  +	pinctrl-names = "default";
-> > >>>  >>  +	pinctrl-0 = <&uart0_ph_pins>;
-> > >>>  >>  +	status = "okay";
-> > >>>  >>  +};  
-> 
-> 
-> 
-> 
-> 
+> Krzysztof
+>
+Rate limiting the logs is not a bad idea. Initially I was not aware you 
+meant about logging, hence the question. With proper firmware in CC1352, 
+the warning will never be printed. But maybe it can cause problem with 
+improper firmware.
+
+
+Ayush Singh
 
