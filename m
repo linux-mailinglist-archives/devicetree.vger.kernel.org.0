@@ -2,132 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB6E793332
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 03:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EADFD793356
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 03:23:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233453AbjIFBPO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 5 Sep 2023 21:15:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45238 "EHLO
+        id S239517AbjIFBXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 5 Sep 2023 21:23:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbjIFBPO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 21:15:14 -0400
-X-Greylist: delayed 905 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 05 Sep 2023 18:15:11 PDT
-Received: from sender3-op-o18.zoho.com (sender3-op-o18.zoho.com [136.143.184.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 077E51AB;
-        Tue,  5 Sep 2023 18:15:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1693961972; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=PTsiRQmrah1gDkhUYWtB4ZVarVqK4rq+9vvpMqm0u6DUzUGR3DwCViasK1YLOQ+yJgWbV46xFVrOqE5ZbcUd3UBaFtjReUMRypetVcRt6NkygX7axQ4R9Mj8yFwoGYAY8JEuD/PRw2LJIon1SOqRxdi7X2GIpouy6fGBvfE+5p4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1693961972; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-        bh=3Bb0HPghGP1Pis7m6aZLpfrMCwk6EyrDCWLxlIPlTSc=; 
-        b=M6tc5QYngmVRNXAfzgxDit4mCzmclJLTf/MjVHRQrqVffONw5qLeF1+5JBYi2CYNn2N0I9Qzk5V+249+/99WmZ66MFG+hpImH+COHbWl+7ZPakiZq5icMR3Y3WhsVGIWhnt+rOEW3q5Qb36RUXBrcWI53ZhYZ2xBugqDhAxE83A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=icenowy.me;
-        spf=pass  smtp.mailfrom=uwu@icenowy.me;
-        dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1693961972;
-        s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-        h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-        bh=3Bb0HPghGP1Pis7m6aZLpfrMCwk6EyrDCWLxlIPlTSc=;
-        b=fjfou6jMO/sh3ooxjTbSyoFPogvE2k05ANatt0ugI6yXQUysjTap69dcdK3dR/Sr
-        NCa6ZLQOHsa6cb9rp54ys5FbQzzV9nE+bvoiv0qK4lqRxER7rfozzmUqfbvnkjgjnLG
-        LmgzeIC0ubaSN9wYPwm21jGtjcjnWiJs8PS2LqKO2nTzSC99BeXLosm/PUOCq0UXk/c
-        dmQA5I8yzA44Nr6rA/i29ULwYRWKWPa1POSpv2wSKqiUgpwokcRFxWrx0uaMOFRwKv4
-        3T6M66eBtlKj+8R2XUFq0+PKyQ3EdJX9/CuYAZWbAESUUDEe4QpL85uwq+4fTe+/bm5
-        h7X4e7RqZg==
-Received: from edelgard.fodlan.icenowy.me (120.85.99.236 [120.85.99.236]) by mx.zohomail.com
-        with SMTPS id 1693961971610137.58133627753386; Tue, 5 Sep 2023 17:59:31 -0700 (PDT)
-Message-ID: <82d294b75cbb9cfb168ea276b2d587b5fc989572.camel@icenowy.me>
-Subject: Re: [PATCH 2/6] cpufreq: dt-platdev: Blocklist allwinner,h616 SoC
-From:   Icenowy Zheng <uwu@icenowy.me>
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Martin Botka <martin.botka@somainline.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Yangtao Li <tiny.windzz@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-sunxi@lists.linux.dev,
-        devicetree@vger.kernel.org, Alan Ma <tech@biqu3d.com>,
-        Luke Harrison <bttuniversity@biqu3d.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rogerio Goncalves <rogerlz@gmail.com>,
-        Martin Botka <martin@biqu3d.com>
-Date:   Wed, 06 Sep 2023 08:59:24 +0800
-In-Reply-To: <20230904214018.0a8f12e2@slackpad.lan>
-References: <20230904-cpufreq-h616-v1-0-b8842e525c43@somainline.org>
-         <20230904-cpufreq-h616-v1-2-b8842e525c43@somainline.org>
-         <20230904214018.0a8f12e2@slackpad.lan>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+        with ESMTP id S235494AbjIFBXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 5 Sep 2023 21:23:43 -0400
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B513CCEA;
+        Tue,  5 Sep 2023 18:23:37 -0700 (PDT)
+Received: by mail-qv1-xf2c.google.com with SMTP id 6a1803df08f44-6515d44b562so19038796d6.3;
+        Tue, 05 Sep 2023 18:23:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1693963417; x=1694568217; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RapfmVejinWEGSWwAMyr8+8Hm8y5i5je9CAT5StOZ74=;
+        b=nTH5GBGj8KYtNhEn3eY0m953tVKHBOC0oC8CCm4b29oh2iPvNB0VwzSVws0sDsX8A5
+         K+KWmynw0O+Q7pxWimdBy0sOQ/bWHvmE8WYXd2LM48hQjDn0jUDWoZIh9GZ+1gZL7Zn3
+         qsomsmuRUfLaMtONztpOrLScoWiQbdfngBqH5YS5h5l4SpSRfvCcjC22dkiZHxC8Bsuu
+         N+I/8ibaOHcXRiCQ11sgxwSwz96tOonqO3SD7bOJx3iftIddIlYnoC9iQqczuCwZX8y2
+         AA53yzvBQED55Spu3sNFNJZTL7of9/wKQspHfWp+KjgY3dLL+DtVs3rxGxPTiyxgxMaK
+         zxlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1693963417; x=1694568217;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RapfmVejinWEGSWwAMyr8+8Hm8y5i5je9CAT5StOZ74=;
+        b=eCHrviMldiDrDUP6L6JuwkwS2hq8s4Y1UZSU8FhcMka0DB84A1jiJ26hnM6jk+1XKZ
+         CblIj8TnvVHH8TItWoLsxqvYTGBDnT7KgZtshSOhBxVJ/9hY/DjxIbLc955nsDuzXHzs
+         ewxNmw68Zhtc1MOxNPFnPEGxqM9JtGMfgeJ/Bw9vBb64MJJ8wnZvYOt6rQnuDwLrcWEW
+         VtZcVpr8p//7VS1pi66TGao0YMbDx0VWbesrNtu/HMLrTV407UrIJGNx+O1Xuu+NRMG5
+         uzNHf1dmhXf3hfl5OtL718E8cErF0IVIe4PLVUdMQ6fAxcD7XOLvTkG5OXOE7YtBP6BI
+         XJwQ==
+X-Gm-Message-State: AOJu0YzBNYdx3RpLEZdyVW4H/xcVwX06qzIw1hrRXIzpZwcm+xthRHys
+        rSlxRCBHYfEZlz6CcGJoTzo=
+X-Google-Smtp-Source: AGHT+IGbLiVoXNQNH8QyFJrTt8supNUMGFKkdBCP1NrhvTCDaGevlKEOdtzrg0ZBfgvJuoVn9ZR+Iw==
+X-Received: by 2002:a0c:b21c:0:b0:63c:66ec:e03c with SMTP id x28-20020a0cb21c000000b0063c66ece03cmr14794383qvd.27.1693963416745;
+        Tue, 05 Sep 2023 18:23:36 -0700 (PDT)
+Received: from localhost.localdomain (cpe-107-15-246-199.nc.res.rr.com. [107.15.246.199])
+        by smtp.gmail.com with ESMTPSA id r18-20020a0cb292000000b0064f5daff23fsm4995609qve.15.2023.09.05.18.23.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Sep 2023 18:23:36 -0700 (PDT)
+From:   John Clark <inindev@gmail.com>
+To:     "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        linux-rockchip@lists.infradead.org
+Cc:     "Thomas McKahan" <tmckahan@singleboardsolutions.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, John Clark <inindev@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Add NanoPC T6 PCIe e-key support
+Date:   Wed,  6 Sep 2023 01:23:05 +0000
+Message-Id: <20230906012305.7113-1-inindev@gmail.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,URIBL_BLACK
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=E5=9C=A8 2023-09-04=E6=98=9F=E6=9C=9F=E4=B8=80=E7=9A=84 21:40 +0100=EF=BC=
-=8CAndre Przywara=E5=86=99=E9=81=93=EF=BC=9A
-> On Mon, 04 Sep 2023 17:57:02 +0200
-> Martin Botka <martin.botka@somainline.org> wrote:
->=20
-> > The AllWinner H616 uses H6 cpufreq driver.
-> > Add it to blocklist so its not created twice
->=20
-> That looks alright, but I think needs to be squashed into the patch
-> that enables the H616 driver operation, to avoid regressions during
-> bisecting.
+before
+~~~~
+0000:00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:20:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:21:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+0004:40:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0004:41:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
 
-Well I think if it's before the H616 enablement, it could be just okay.
+after
+~~~
+0000:00:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:20:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0002:21:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
+0003:30:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0003:31:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8822CE 802.11ac PCIe Wireless Network Adapter
+0004:40:00.0 PCI bridge: Rockchip Electronics Co., Ltd RK3588 (rev 01)
+0004:41:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
 
->=20
-> Cheers,
-> Andre
->=20
-> >=20
-> > Signed-off-by: Martin Botka <martin.botka@somainline.org>
-> > ---
-> > =C2=A0drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
-> > =C2=A01 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c
-> > b/drivers/cpufreq/cpufreq-dt-platdev.c
-> > index e2b20080de3a..51818cef8979 100644
-> > --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> > +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> > @@ -104,6 +104,7 @@ static const struct of_device_id allowlist[]
-> > __initconst =3D {
-> > =C2=A0 */
-> > =C2=A0static const struct of_device_id blocklist[] __initconst =3D {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "allw=
-inner,sun50i-h6", },
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "allwinner=
-,sun50i-h616", },
-> > =C2=A0
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0{ .compatible =3D "appl=
-e,arm-platform", },
-> > =C2=A0
-> >=20
->=20
->=20
+Signed-off-by: John Clark <inindev@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dts    | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+index 0bd80e515754..97af4f912828 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dts
+@@ -137,6 +137,18 @@ vbus5v0_typec: vbus5v0-typec-regulator {
+ 		vin-supply = <&vcc5v0_sys>;
+ 	};
+ 
++	vcc3v3_pcie2x1l0: vcc3v3-pcie2x1l0-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio4 RK_PC2 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pcie_m2_1_pwren>;
++		regulator-name = "vcc3v3_pcie2x1l0";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
+ 	vcc3v3_pcie30: vcc3v3-pcie30-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+@@ -421,6 +433,14 @@ &pcie2x1l0 {
+ 	status = "okay";
+ };
+ 
++&pcie2x1l1 {
++	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
++	vpcie3v3-supply = <&vcc3v3_pcie2x1l0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_1_rst>;
++	status = "okay";
++};
++
+ &pcie2x1l2 {
+ 	reset-gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc_3v3_pcie20>;
+@@ -467,6 +487,10 @@ pcie2_0_rst: pcie2-0-rst {
+ 			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
++		pcie2_1_rst: pcie2-1-rst {
++			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
+ 		pcie2_2_rst: pcie2-2-rst {
+ 			rockchip,pins = <4 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+@@ -474,6 +498,10 @@ pcie2_2_rst: pcie2-2-rst {
+ 		pcie_m2_0_pwren: pcie-m20-pwren {
+ 			rockchip,pins = <2 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
++
++		pcie_m2_1_pwren: pcie-m21-pwren {
++			rockchip,pins = <4 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
+ 	};
+ 
+ 	usb {
+-- 
+2.40.1
 
