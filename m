@@ -2,70 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AF03793B7D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDA0E793B8E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 13:39:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239932AbjIFLgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 07:36:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58412 "EHLO
+        id S234452AbjIFLjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 07:39:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235315AbjIFLgb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:36:31 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7B3D171C;
-        Wed,  6 Sep 2023 04:36:21 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E168CC433C7;
-        Wed,  6 Sep 2023 11:36:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694000181;
-        bh=XvZQw/D6OS4nurgc67PWjQY0smNSqPLGy1z+2Y7iLEE=;
-        h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
-        b=RvDQJ04t9UEd4Oi2krSltHz7ad7T65t3srpDJPL7Fzli6KXVBDFqHYPd5o+Cvyt9F
-         9I0AYTcjn/A3TLM/Ae6RN+h5D9JfdHJL9cpe5oR1QSWSSHpgu7ukLoMer/bZvpdtSH
-         +i6288tsyUsCa4e+p5heEEejhKTR08PSKhlzwzIo+KqlsWoW55n7O58rWS6U3x74ot
-         rCvBA8WDFug3IXzRne6dxavXHvr7IGS2vyecXnM0zuuLlmZYExwxl2fCc8dsfwm604
-         JLXmmkRf3vt3++bXM6kbEO5Vugzsac0xupKSByP4eh4yyeomwxY5Btj08y91dY2EId
-         HTWyOrDlpNksA==
-Message-ID: <b15931f26e229fd13e4d27fd582940f7.mripard@kernel.org>
-Date:   Wed, 06 Sep 2023 11:36:18 +0000
-From:   "Maxime Ripard" <mripard@kernel.org>
-To:     "Sarah Walker" <sarah.walker@imgtec.com>
-Subject: Re: [PATCH v6 03/20] dt-bindings: gpu: Add Imagination Technologies
- PowerVR/IMG GPU
-In-Reply-To: <20230906095542.3280699-4-sarah.walker@imgtec.com>
-References: <20230906095542.3280699-4-sarah.walker@imgtec.com>
-Cc:     afd@ti.com, airlied@gmail.com, boris.brezillon@collabora.com,
-        christian.koenig@amd.com, conor+dt@kernel.org, corbet@lwn.net,
-        dakr@redhat.com, daniel@ffwll.ch, devicetree@vger.kernel.org,
-        donald.robson@imgtec.com, dri-devel@lists.freedesktop.org,
-        faith.ekstrand@collabora.com, frank.binns@imgtec.com,
-        hns@goldelico.com, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, luben.tuikov@amd.com,
-        maarten.lankhorst@linux.intel.com, matt.coster@imgtec.com,
-        matthew.brost@intel.com, mripard@kernel.org, robh+dt@kernel.org,
-        tzimmermann@suse.de
+        with ESMTP id S229523AbjIFLjy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 07:39:54 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C61695
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 04:39:49 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9a5be3166a2so503857466b.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 04:39:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694000388; x=1694605188; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=i6139+D6DWYBEQFbYVRHbB1M+9Vyz8rmHNEFxByoPP0=;
+        b=DXrpyxS4HGSMeCegmtzGkdl4q6nVFlGI1LTKrueU/a8DLUjT2ElkB7bKAunLydCGGL
+         tf3UiaBy3DPaKQg5RNGCf9IjJkiEdASztwWrnAdjHv24Mei6gE4jrwqdEufRWkq1lwOG
+         XL38ovyvnxC8Nn6ILYM2PN+smLaWlb+896nG0x5/1Hwy1+w05C+tRY5Qe0dHxfNy7FM2
+         3j5qoeS4czLTSG6l0AYyoniquVPDEye9eh/roxIMNC8IylXHFALZpYZkMK3GrZmqoVNE
+         ZN5QgeB7/hX2LQ+d+Vii0bwLArJ1JzRYAxBYFfFO3soHOypBOydOlxj9sRsxgg6D98TI
+         P+aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694000388; x=1694605188;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=i6139+D6DWYBEQFbYVRHbB1M+9Vyz8rmHNEFxByoPP0=;
+        b=Hs6UztgHHkhbCRsEapdKuXWTDrpgQ5Gbtj5xq+nEiZeZNlttPKcYtTJO6RFhUq5sWB
+         W11vHCDCZJPM66AmuVRHxKsmOnzaLPtYb2TUBdc670Knn1w7eVAgMCVt8bKMRNtiV4XY
+         Tgoy2kFSKCh0oo/dI62xGpgz/xYj30QCDgf6Ug+Oc/CBf6bgnRv3L46TBQpeWDkf0UOl
+         sCjeb5yre/snheBaWTzH6/ey+NUxIYc4o5pbjLq6922rsyUEzBTQfLGuiO14ihEOZtPj
+         ZAHlGphVtU2a0XNLovnQ61uKb7SVPFToHEjEqvQwrqa7Q1jEmwIONm8MS5k4gzq92ABi
+         iHPw==
+X-Gm-Message-State: AOJu0Yxy9UUAMpO8T0vrywq9Z9uNeksTOuu0MoZ21efSj7gXA2CFGHrh
+        S9/EODHsurNzbRZbdgz7MDdx6w==
+X-Google-Smtp-Source: AGHT+IGqFj+iPyflVwiAkrWZiS4zdN6+gwVCT2jc689Q3pjrCCMR5l4L0szRSVolWGaS5u8WlpXQZQ==
+X-Received: by 2002:a17:906:3149:b0:9a1:be5b:f499 with SMTP id e9-20020a170906314900b009a1be5bf499mr1663852eje.24.1694000388047;
+        Wed, 06 Sep 2023 04:39:48 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id qx12-20020a170906fccc00b0099bd86f9248sm8871714ejb.63.2023.09.06.04.39.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Sep 2023 04:39:47 -0700 (PDT)
+Message-ID: <fe346849-cd0f-aee5-9ab9-ea581025329b@linaro.org>
+Date:   Wed, 6 Sep 2023 13:39:46 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8550-mtp: use correct UFS supply
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230906104744.163479-1-krzysztof.kozlowski@linaro.org>
+ <9c7fae56-85a2-4691-8192-24237761d25c@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <9c7fae56-85a2-4691-8192-24237761d25c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 6 Sep 2023 10:55:25 +0100, Sarah Walker wrote:
-> Add the device tree binding documentation for the IMG AXE GPU used in
-> TI AM62 SoCs.
-> 
-> Co-developed-by: Frank Binns <frank.binns@imgtec.com>
-> Signed-off-by: Frank Binns <frank.binns@imgtec.com>
-> 
-> [ ... ]
+On 06/09/2023 13:28, Konrad Dybcio wrote:
+> On 6.09.2023 12:47, Krzysztof Kozlowski wrote:
+>> According to schematics the VCCQ2 supply is not connected and the L3G
+>> regulator instead powers up the controller pads (VDD_PX10).  Use correct
+>> supply vdd-hba and drop unsupported current limit for the vdd-hba.
+> Why is it unsupported?
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
+Maybe I was here not precise. I move the regulator from vccq2 to
+vdd-hba. vccq2 has control of current in UFS core driver. Bindings also
+allow it.
 
-Thanks!
-Maxime
+vdd-hba does not have current control in UFS (ignored) and bindings do
+not allow such max-microamp property. Why? I don't know. That's how it
+is done.
+
+Best regards,
+Krzysztof
+
