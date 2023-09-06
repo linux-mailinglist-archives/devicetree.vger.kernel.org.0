@@ -2,75 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB193793C2D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0EC9793C38
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 14:06:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232499AbjIFMEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 08:04:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48526 "EHLO
+        id S240482AbjIFMGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 08:06:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231668AbjIFMEj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:04:39 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CBEC1A7;
-        Wed,  6 Sep 2023 05:04:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=GkO4FAH+vLcSKa25UlU07Qdpovvjfob67l1nKTYAyh4=; b=vsFQu6lvOuWfagPq8+8dzm91Ss
-        qLJ4irVvzD4uWwaGzaushWYh6X6vwMP7bUlztSKwi/i5yPlWcvIVYKxomKqYdGzhySMCD/Olp72DF
-        FCt/7nIPXs6sRiERmer/Mwh9kmRK/QGyckTzR10BRbUUOxIE+28vW01QJS90QgLZJ+Vg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qdrGb-005toK-GR; Wed, 06 Sep 2023 14:04:17 +0200
-Date:   Wed, 6 Sep 2023 14:04:17 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        Arun Ramadoss <arun.ramadoss@microchip.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        UNGLinuxDriver@microchip.com,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC net-next v2 2/2] net: dsa: microchip: Add drive strength
- configuration
-Message-ID: <21648487-20b8-49d8-844b-ebd8c40c0831@lunn.ch>
-References: <20230906105904.1477021-1-o.rempel@pengutronix.de>
- <20230906105904.1477021-3-o.rempel@pengutronix.de>
+        with ESMTP id S231668AbjIFMGF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 08:06:05 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA69F137
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 05:06:01 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9a9cd066db5so75383966b.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 05:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694001960; x=1694606760; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=RnE6ybsHsRfqbSRiCw65bve3WZBj9PBmcz+92cU9XrM=;
+        b=knL5qik6NiYr5I53PINcNJvrmf7iiLLSv0ae5a6a6/7uJIe5/gQDBEKfgascIPAzSx
+         9komCTibr68F1JXJ+psZdfysILGLwzED3EOaTe0qerBNWfUV5XjFGX2sIrLKUgwZj9He
+         NJWSTbEqyxdXAnVGi3fg3DX+b0+1Yh9xNe67U5pic2xMKXe2wliVYUDHH9BrD5DvxJaS
+         Huk/CL0yfZbRV/7w9pDlvLBOEuGkpuDnXTJc/fkWLQJB7pkMkBxpsGVo44HtZTFOKagh
+         VOdVPqN0XfBuQny46QTMUSVXGPZlTmrskY8AoFiibL882yBTHscrdWhDCsChRZ7Pv7cT
+         4Apg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694001960; x=1694606760;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RnE6ybsHsRfqbSRiCw65bve3WZBj9PBmcz+92cU9XrM=;
+        b=LzYIIlt88KaP8pU2EthO3ru3ZEqkUEZVBhwoSvFEXdZf5Y+35NQpSWAk7fA7Q+Vipt
+         qeA4TOd9kaUn+diTiK7rOSe4Abme0plaQLUSS0QN3sdGZarJCIoAzUluifPT+QX38bAJ
+         qIOI+BzZMtQC72OeBz+j44gZJNb2vBGQK6y6yeMq3FaOp4CUHXRcPhM5AGKVFLNhPB0x
+         teuRuht7kBfAByO18/gRJ7cVfmXPqptCJv01YdD1Qf7n2NCFV7bUbSvg6y5FQIeG9/fG
+         vb4fp1XLZKBaOZgs3ZhuQb+oDCPc7/koW8RmDvjp/oxc70mf72ztmWhrF5Koth1KqSBD
+         L4Sg==
+X-Gm-Message-State: AOJu0YxQS4DijM2hjCQSceiLeriReunbZjNzzwcu8I8Tt6ycnnayhgic
+        ilXXIop/2b2eLGae+U+ol56bEQ==
+X-Google-Smtp-Source: AGHT+IEiAMNpbcOFOpt36HtSQySzO+1jdqRMZEEUzJ5mkpptv2P8p6BykXjwWZrtEZ0bZ119cYn5Zg==
+X-Received: by 2002:a17:907:75e4:b0:9a3:c4f4:12dc with SMTP id jz4-20020a17090775e400b009a3c4f412dcmr2276409ejc.7.1694001960235;
+        Wed, 06 Sep 2023 05:06:00 -0700 (PDT)
+Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
+        by smtp.gmail.com with ESMTPSA id j6-20020a170906278600b00992b50fbbe9sm8950596ejc.90.2023.09.06.05.05.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Sep 2023 05:05:59 -0700 (PDT)
+Message-ID: <8197d5c6-bd05-ff16-59d5-ba3eb06a5921@linaro.org>
+Date:   Wed, 6 Sep 2023 14:05:58 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230906105904.1477021-3-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 1/6] arm64: dts: qcom: sm8550-mtp: use correct UFS supply
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230906104744.163479-1-krzysztof.kozlowski@linaro.org>
+ <9c7fae56-85a2-4691-8192-24237761d25c@linaro.org>
+ <fe346849-cd0f-aee5-9ab9-ea581025329b@linaro.org>
+ <91f74079-1be3-4c66-9942-cb02c96c8848@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <91f74079-1be3-4c66-9942-cb02c96c8848@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 06, 2023 at 12:59:04PM +0200, Oleksij Rempel wrote:
-> Add device tree based drive strength configuration support. It is needed to
-> pass EMI validation on our hardware.
+On 06/09/2023 13:50, Konrad Dybcio wrote:
+> On 6.09.2023 13:39, Krzysztof Kozlowski wrote:
+>> On 06/09/2023 13:28, Konrad Dybcio wrote:
+>>> On 6.09.2023 12:47, Krzysztof Kozlowski wrote:
+>>>> According to schematics the VCCQ2 supply is not connected and the L3G
+>>>> regulator instead powers up the controller pads (VDD_PX10).  Use correct
+>>>> supply vdd-hba and drop unsupported current limit for the vdd-hba.
+>>> Why is it unsupported?
+>>
+>> Maybe I was here not precise. I move the regulator from vccq2 to
+>> vdd-hba. vccq2 has control of current in UFS core driver. Bindings also
+>> allow it.
+> Looks like the bindings are out of sync with the driver.
 > 
-> Configuration values are based on the vendor's reference driver.
-> 
-> Tested on KSZ9563R.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ufshcd_populate_vreg() which parses current is used for both vccq2
+> and vdd-hba.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Just for convenience. The current is not used for vdd-hba. Also:
 
-    Andrew
+https://lore.kernel.org/all/20230906113302.201888-1-krzysztof.kozlowski@linaro.org/
+
+Best regards,
+Krzysztof
+
