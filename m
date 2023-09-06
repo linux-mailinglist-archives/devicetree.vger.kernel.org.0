@@ -2,135 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D87279407C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 17:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E4179408C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 17:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242327AbjIFPgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 11:36:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55842 "EHLO
+        id S234397AbjIFPkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 11:40:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242127AbjIFPgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 11:36:46 -0400
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-db5eur01on2085.outbound.protection.outlook.com [40.107.15.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97B4C1724;
-        Wed,  6 Sep 2023 08:36:42 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HkCKRGrKP83+VTQP/w95iABZb/coGCAOlF/bUT2TRKCOYhMLZL5NRaXyzETj0bMuDudaJSj3cCW3oLJp3BfcM/+LL5xUge2DyJiUhbq18ZsgrKveAjKjAe0BP0DFPraJLLJ2hHjrd4AlC2Nbb7S9RedPxKqkF0Q6mEdXIaxfMqAispKUK1eZ4cn8r+JTH+BZf5MDpraBjT1ZJl+M9HczHS6ETXbxVIHuEsvDt2Lt9zUOniFqiq2Hlvh/I5iDpJzXDJD6fNNxVPjm9OF62vGXjdEvOEYiCyguKcrbPtuJ1k59HEMZD9AmDujnWihMgHkVif+yexiwrg7OyYmfxJW9YQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Xv2cU0NeRL9oU80ZsDEt8XZGBnwonjhTuNxen1PVkUw=;
- b=CSQlNlb3L4mw0xiqIKsCEkl8sfcWeer5e+1SM4w5Td1jSt/9KRoFZI+tYFPvN1gs/QShyLJNfRoiq34TyXimaFqeMdyuEXgm7z9diM7HdbUUzdIDrWd9DLOyOgUgvirJpyt4Dn9CV+DUrxBtz0teDK5yGcLEfCdN6ulchjunvioWKCH5znAAFXPQpUr+ceeZ+8PIp0vsXIkiiC5Br/Oi6B0wRCUnQ4sxxAeTzokYDgYJnqNrPxU9/J4FYDPEAMbECbIZBQQYTF1WPl131YIxNp2qdPG99cLFxadXifkiy0UpZxME7XEcME1bY5m+3+VEDHSId/5MF2dgAQQ5JlRyZQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Xv2cU0NeRL9oU80ZsDEt8XZGBnwonjhTuNxen1PVkUw=;
- b=jYkfX1RKgDdmWAndRLhG5QOIR/sisE0UJkdIxNVy0yqCj5vEyM4Kta0FpLqmtCEFUk7zXCY8qQhAhonkpnVN8kqK2gFTAo0TA3IsCpXkJl9RF+/HiegWDwQQXu5dfEoByQE2cTjoaB5WnzcNiDy44amERCxt0Tm4Vm8gZQMzYYo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by PA4PR04MB7792.eurprd04.prod.outlook.com (2603:10a6:102:c0::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.34; Wed, 6 Sep
- 2023 15:36:40 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::aa90:117d:c1d0:346a]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::aa90:117d:c1d0:346a%3]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
- 15:36:40 +0000
-Date:   Wed, 6 Sep 2023 11:36:25 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     tglx@linutronix.de, aisheng.dong@nxp.com, bhelgaas@google.com,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
-        kishon@ti.com, krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
-        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
-        ntb@lists.linux.dev, peng.fan@nxp.com, robh+dt@kernel.org,
-        s.hauer@pengutronix.de, shawnguo@kernel.org
-Subject: Re: [PATCH 1/3] PCI: endpoint: Add RC-to-EP doorbell support using
- platform MSI controller
-Message-ID: <ZPiceT2SidayOwDk@lizhi-Precision-Tower-5810>
-References: <20230426203436.1277307-1-Frank.Li@nxp.com>
- <20230426203436.1277307-2-Frank.Li@nxp.com>
- <20230902045214.GA2913@thinkpad>
- <20230902045328.GB2913@thinkpad>
- <ZPf/EkffMC51iLQ/@lizhi-Precision-Tower-5810>
- <20230906122605.GB5930@thinkpad>
- <ZPiNwQg3rDQMRA/6@lizhi-Precision-Tower-5810>
- <20230906145227.GC5930@thinkpad>
- <ZPiT/LJGpNbCRDZk@lizhi-Precision-Tower-5810>
- <20230906152704.GD5930@thinkpad>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230906152704.GD5930@thinkpad>
-X-ClientProxiedBy: SJ0PR05CA0106.namprd05.prod.outlook.com
- (2603:10b6:a03:334::21) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S234160AbjIFPkN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 11:40:13 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC621724;
+        Wed,  6 Sep 2023 08:40:06 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2bce552508fso220271fa.1;
+        Wed, 06 Sep 2023 08:40:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694014805; x=1694619605; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m/HPucnlC02KhI0SeMm2PgbrX3vHL5Q/olvC4crY43c=;
+        b=reUUNFobDpRDRbQaf4BCbd5n6zL5RkSqvMDrpx4aF7qvuO03tdF+R7dHZp5/TwaRZA
+         e+pV9UnJ0u23nuu7GeP8Nrjdath38bUN3M6dGWXc+w1nQCis2ovDXOllZSjyRDgli5hp
+         sqSkr3jSR+gRKpim3zA7VtCkHuApNncoUtnEHPCiObyTnhkLpD10NBZtudzVMeQOYrvU
+         9k3Z3CKVARtzeZm5GG1WyZjDiHPecp2rHs1J5kskT7DoDp/2SbXKj9HDDfTolbBOIXLX
+         DZGfDhhkTHXyU8A9aVlGPK0N9LftlcMJzGHWMmiGGCXDl9J+/tX10u4cc9he4mc87w2E
+         tVQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694014805; x=1694619605;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m/HPucnlC02KhI0SeMm2PgbrX3vHL5Q/olvC4crY43c=;
+        b=f2zkbHxIyrk1fpJm49zch7QFoDsky9kmzM23AZ5I07GkFtyWUfyMrgkQDCNcJbD/aY
+         rTz+QT5gBgdI36JMXnlx2TXzXZsAtTzlSUeeN8C6mw3Q9CxVIxBlup9qGRssG5WdsZPp
+         /l4gR23Xke3ikXz6db/5Oowf/kfOL38g94Tyk21d438vb0TJswXDe5/ruUu9GrHXRPaZ
+         89s8oxu7bWWOistBLPYaJNBHpq4hbkJgK9b4xuWHMnV14C5TRsJERuP613FrLpCz/0e3
+         qSeY0HDY/3rvFCQ50FKPNLTWvOxDX0tpY7v4xDrhlF17JGAdOorQsQCsr1WrONCfRH41
+         1Buw==
+X-Gm-Message-State: AOJu0Ywt7+Q3Whuw2TX4uWd/9JDfDIfCL5H9P6QbX6m8a3p6s4huB9t6
+        qpwSOJqpu2jdS8qF51TYQ00=
+X-Google-Smtp-Source: AGHT+IHCnMGf52dMqIogIESmHIXmUwUyrQBgjv0g5Mn/v/6vJ7Xj8XnHckyDdvsromuU5o4bDp+zFw==
+X-Received: by 2002:a2e:8898:0:b0:2b9:e93e:65e6 with SMTP id k24-20020a2e8898000000b002b9e93e65e6mr2430913lji.35.1694014804552;
+        Wed, 06 Sep 2023 08:40:04 -0700 (PDT)
+Received: from jernej-laptop.localnet (82-149-12-148.dynamic.telemach.net. [82.149.12.148])
+        by smtp.gmail.com with ESMTPSA id lu7-20020a170906fac700b0099bcf1c07c6sm9175356ejb.138.2023.09.06.08.40.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Sep 2023 08:40:03 -0700 (PDT)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Martin Botka <martin.botka@somainline.org>,
+        Martin Botka <martin.botka1@gmail.com>,
+        Martin Botka <martin@biqu3d.com>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Jami Kettunen <jamipkettunen@somainline.org>,
+        Paul Bouchara <paul.bouchara@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Samuel Holland <samuel@sholland.org>,
+        Ludwig Kormann <ludwig.kormann@ict42.de>,
+        Andrew Lunn <andrew@lunn.ch>, Icenowy Zheng <uwu@icenowy.me>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] arm64: dts: allwinner: h616: Add BigTreeTech Pi support
+Date:   Wed, 06 Sep 2023 17:39:59 +0200
+Message-ID: <4511281.LvFx2qVVIh@jernej-laptop>
+In-Reply-To: <20230906112434.460b46c4@donnerap.manchester.arm.com>
+References: <20230807145349.2220490-1-martin@biqu3d.com> <1909632.taCxCBeP46@archlinux>
+ <20230906112434.460b46c4@donnerap.manchester.arm.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|PA4PR04MB7792:EE_
-X-MS-Office365-Filtering-Correlation-Id: 83dce2ae-7048-4e0a-b611-08dbaeef106a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: C6vBhVYujDK3oZfgkwWP1FOsFIcOLllduR5szOSM/b8ySxWnd2D16Yfkkt3sILRfJAKLGivC0MR7OhnGVkHpPDBHdQB/xLMX2sLkEevv05bQGlYHGkF+dSz5QQTQeJ7yUZxMaNMaU6HGnELDxIimT+rL1Vhf2NxiQ3yGe/tXc0GUpwwtFYGAcmO/4vKPIgUjt1NySLPrKYkQWYpBgNG4TDLok00wbTab621WORnEci+ngDpvh7ZJwqLEjDx7oJnbKRlHCmJHeB3YchdIn4joMmLkGmw+inJa2iR/Kpf+yiWdVOEvAgm1CA4oPuHVpv1vF2zZ7eFPer4iBPcYAWkaqFXD20X8L+jY1tSytNA9jspqrXKIvn4qHCwxgLsH9wRuqwTKz49icm4Y/JzC5fFqfGkS/rGaP5BHKulcoqa/pexYw3LqZiXq2PCF3wJfW58XQ6Sx98GdP/FDjCsBv8SFoHb2H4PHBBgeRCExYslpqO7oFgl+qEBCNd+msuzq7Dbv2No71TlU2HKRE8Y/X9kzQEPQIKRdjj6+GwqjJMM7/NkhfubmDSPaMBZ5Qj6OmID74IWbc7v/r4XtjbUZnu95obKHoa9vejqsc00ZS9rwpcxguYkBOwVaTghbalKTAY2I
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7916004)(136003)(346002)(396003)(39860400002)(376002)(366004)(451199024)(186009)(1800799009)(6486002)(6506007)(9686003)(52116002)(6666004)(6512007)(478600001)(83380400001)(2906002)(26005)(7416002)(66476007)(33716001)(6916009)(41300700001)(66556008)(316002)(66946007)(4326008)(5660300002)(8676002)(38350700002)(86362001)(38100700002)(8936002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V0t4dkMwZ2dsL3QwdWtxWjR3WUtYMFpGaXc2bVVKL3pmYnJaTTgvZTRoSGNX?=
- =?utf-8?B?bU8wNzRVZ1ZTTE1qRmFSK3pFQlhtZVRVR3NYemxXbm92WEFkK25kendhL1Fh?=
- =?utf-8?B?aGlGRll6Mm9OdGVnSUtiZWNYRmptK1VhdldmSzh6azBUbmw0RlN0WjU5NTJv?=
- =?utf-8?B?OHNGY1B6V2hiQ3VobEVXYmpVWmg0bm1OMzV2MUNkN3VZa2tPZXhrL2JCZW4x?=
- =?utf-8?B?clM1NHhFV1pYeHJ1K0liWG0vU3B1bTVxNWtzYVozVW5sQWNzSmVQYWx5N3Bz?=
- =?utf-8?B?WmcrbjNjMlViREd1OExkdnNjUnVmRytSTWF2N3A5WjU3ams1WDFhanVvY2R0?=
- =?utf-8?B?TVVsdnh6enFqMUxJVkEwcnp6dFdhUVFwbnlrUEZLQ0g5MCtJbTBwcUk4a2oz?=
- =?utf-8?B?ckllRitQUFBFNkgrQnUyMFdyWDJaVHpneU9wUFFrdlZnS2Y5ZWFmUzEvOVdP?=
- =?utf-8?B?Yk1DVktvWFlQUmM1dVhWRFZDenlpOVZpTEdYOVM2QzRmZ0pNeWlsMWlVSklY?=
- =?utf-8?B?NkMrVDhjK2oxMGlwUSsrV3VGeG1DSGRIWDdDZzFBczFvTjhLZWh3aVFFWHlS?=
- =?utf-8?B?SHQ2anMyKy8weGdLRVYzSVNwYXZOUWJoSjJDbUdjNnZXakhERlhPNndOUk5H?=
- =?utf-8?B?TjR6M2hOamFVaExONldQaHlvVWx3eFY3TStkQkZ1SkJTY0F4SE1SZk1NazUv?=
- =?utf-8?B?Z0lMZnlYWFdkOSsrQnJQdE9ESzhoMkxwRktCUGs3QU9Pb0dKVGc3bW10U0hR?=
- =?utf-8?B?bTlZR290U3ArS29DYU5xR2lNaFpTUXVNVEVTU1dydWpyd2o5ZVl6RDA0czVS?=
- =?utf-8?B?VXplcDIwV1QrUmZ3bnhjNlpud0dCaEpFQXd3Snpyc0RrbVd0a3ZLSXZRZ1VX?=
- =?utf-8?B?QzFVaU5YUENGYnZLVld6QThueWwycVdFNWMwSUtiYVFwRllZVElFdTZyekE2?=
- =?utf-8?B?TlY0WEcrQ2tmSkpPY2p6UVNvODNXWjgzc3B3ZFl6dHJieXNCVnhYQ2JDVlZK?=
- =?utf-8?B?UkVnSjNkOFN1ckZvRmJyeDJic3dqakx3SkoxeTFQYnNvQ0dIbkJXeUUvcVEw?=
- =?utf-8?B?cFFJbXoyWEpKZFRSNEtzY2UrWUZGaWJrb2RURGFCSlFtVFhBT3d6WlpTRHFJ?=
- =?utf-8?B?bUpHR0U4ZEZjSFFrMVdHNk1nb2xXVE4wcS84VlovTUFLeGF4NjZYMnJQSEMr?=
- =?utf-8?B?UUYvVms1anlGZlo3c3RQc1MvZ05BeHpmd0tjMVhXMTVDYTg5ZjRhY0R1eFpX?=
- =?utf-8?B?M29henhLQXBnMUtNWlo2cHAzanZ1cjVPYlNXVUJTZUFqLzltL0d5OXNJaDIz?=
- =?utf-8?B?OWdqSCt2bXFQS2xVNnZud1BMWW44b0hQSzZYdHN5Y1RGUkJvTXJLTHUyWUEv?=
- =?utf-8?B?UVoyZzV4TlFxcXNXVUxPVTNhQ1FMaXRWWlNGK1R5Yk12Y21mMm9PVDdpM1Fv?=
- =?utf-8?B?SGd3T0JYMjdncmhNR1lmTFVVdU9mMzdOVnhVQ0xCUiswdVkwTk1SMEIrYVN1?=
- =?utf-8?B?V1FQT1E5SlhvQkpyQ2RoL2ZPR01BQzdRME5ObDBxd2tsSlR1U3NybXJWMlc4?=
- =?utf-8?B?bHhIVkU2NnJMdGVrOWF6L2lEY2xzQUN2eDl5TVBBcmZZVXFmbDF2K204SWs2?=
- =?utf-8?B?ZlE1NjVvL1U3TmtiSkhkZlhUSmxDRnJUWElZNHRyZjJHVkJLdXk5SGxtdzRN?=
- =?utf-8?B?RkJqQUI3ZTdFWjM2MWVYZ3lMZDMvNWQrNi9FTkQxOHZEWlV4eUNEazBLenBK?=
- =?utf-8?B?UU9NMU1NK1prTzJOeTJDZXRDc1lDQVlzS2F4YnNrNEFqRW14Ykt4eFYvL2lt?=
- =?utf-8?B?Rzh0dkxqcUduRTAvL1NzYjAzdUREU3hxczNtcVdmdzZpN29VVFhaWGhCR0Nx?=
- =?utf-8?B?VmZBTTlBWTdYYkRrY2ZGcFBKNDlkQmRON0g3dXJVdDR4Y1crUFB2Rld6cnJ1?=
- =?utf-8?B?My9QSFREWGI2MTJQU3NpQ0dTcVJ4bkgyRkNIQUh0SW1xWnN2eVczVGpPcFV0?=
- =?utf-8?B?Sk5hZm5LNThBVXNuSkwvSEZ1ZW1VMjlUL1ZueHNpTG1DZWsxQWYyNEF4Q1BR?=
- =?utf-8?B?K05HWGpGNHV2QndQNWlMNk9ZdkNNRVp3d3pQVm9PMjg4d0RiK0ZNbkZyVTNx?=
- =?utf-8?Q?eNyxVihiPMrxPi5LUYFzCiynP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 83dce2ae-7048-4e0a-b611-08dbaeef106a
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 15:36:40.0882
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ei6VGU4XCgeOCgj0tSXOhmMYTcpICBfSO6vnev2LPrg4m13i+BfTwOuGFS7NUuSz/s6aYV+kqqGRgN+bkZ4rXA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7792
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -138,46 +94,305 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 06, 2023 at 08:57:04PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Sep 06, 2023 at 11:00:12AM -0400, Frank Li wrote:
-> > On Wed, Sep 06, 2023 at 08:22:27PM +0530, Manivannan Sadhasivam wrote:
-> > > > > 
-> > > > > Can't you assign it in the EPF driver itself? I do not want any OF reference in
-> > > > > the EPF core since it has no OF support.
-> > > > 
-> > > > If that, Each EPF driver need do duplicate work. 
-> > > > 
-> > > 
-> > > Yes, and that's how it should be. EPF core has no job in supplying the of_node.
-> > > It is the responsibility of the EPF drivers as they depend on OF for platform
-> > > support.
-> > 
-> > EPF driver still not depend on OF. such pci-epf-test, which was probed by
-> > configfs.
-> > 
-> 
-> Hmm, yeah. Then it should be part of the EPC driver.
-> 
-> Sorry for the confusion.
+Dne sreda, 06. september 2023 ob 12:24:34 CEST je Andre Przywara napisal(a):
+> On Tue, 05 Sep 2023 22:45:27 +0200
+> Jernej =C5=A0krabec <jernej.skrabec@gmail.com> wrote:
+>=20
+> Hi,
+>=20
+> > On Thursday, August 24, 2023 10:48:20 PM CEST Martin Botka wrote:
+> > > On Mon, Aug 14 2023 at 12:47:59 PM +02:00:00, Martin Botka
+> > >=20
+> > > <martin.botka@somainline.org> wrote:
+> > > > On Mon, Aug 14 2023 at 12:26:07 PM +02:00:00, Jernej =C5=A0krabec
+> > > >=20
+> > > > <jernej.skrabec@gmail.com> wrote:
+> > > >> Dne nedelja, 13. avgust 2023 ob 18:22:49 CEST je Martin Botka
+> > > >>=20
+> > > >> =7Fnapisal(a):
+> > > >>>  On Sun, Aug 13 2023 at 05:55:35 PM +02:00:00, Jernej =C5=A0krabec
+> > > >>> =20
+> > > >>>  <jernej.skrabec@gmail.com> wrote:
+> > > >>>  > Dne ponedeljek, 07. avgust 2023 ob 16:53:24 CEST je Martin Bot=
+ka
+> > > >>>  >=20
+> > > >>>  > napisal(a):
+> > > >>>  >>  The BigTreeTech Pi is an H616 based board based on CB1.
+> > > >>>  >>  Just in Rpi format board.
+> > > >>>  >> =20
+> > > >>>  >>  It features the same internals as BTT CB1 but adds:
+> > > >>>  >>      - Fan port
+> > > >>>  >>      - IR receiver
+> > > >>>  >>      - ADXL345 Accelerometer connector via SPI
+> > > >>>  >>      - 24V DC power supply via terminal plugs
+> > > >>>  >>      - USB to CAN module connector (The actual USB to CAN
+> > > >>>=20
+> > > >>> =7F=7Fhappens on
+> > > >>>=20
+> > > >>>  >> the
+> > > >>>  >>=20
+> > > >>>  >>  external module)
+> > > >>>  >> =20
+> > > >>>  >>  List of currently working things is same as BTT CB1 but also:
+> > > >>>  >>      - IR receiver
+> > > >>>  >>      - ADXL345 connector
+> > > >>>  >> =20
+> > > >>>  >>  Signed-off-by: Martin Botka <martin@biqu3d.com>
+> > > >>>  >>  Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> > > >>>  >>  ---
+> > > >>>  >> =20
+> > > >>>  >>  Changes in V2:
+> > > >>>  >>      - Add UART alongside aliases and chosen for it
+> > > >>>  >>      - Add model string
+> > > >>>  >>      - Enable IR receiver
+> > > >>>  >>      - Enable SPI0 for ADXL345 connector
+> > > >>>  >> =20
+> > > >>>  >>  Changes in V3:
+> > > >>>  >>      - Add missing semicolons
+> > > >>>  >>      - Add pinctrl for SPI0
+> > > >>>  >>  =20
+> > > >>>  >>   arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+> > > >>>  >>   .../allwinner/sun50i-h616-bigtreetech-pi.dts  | 70
+> > > >>>  >>=20
+> > > >>>  >> +++++++++++++++++++
+> > > >>>  >>=20
+> > > >>>  >>   2 files changed, 71 insertions(+)
+> > > >>>  >>   create mode 100644
+> > > >>>  >> =20
+> > > >>>  >>  arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> > > >>>  >> =20
+> > > >>>  >>  diff --git a/arch/arm64/boot/dts/allwinner/Makefile
+> > > >>>  >>  b/arch/arm64/boot/dts/allwinner/Makefile index
+> > > >>>  >>=20
+> > > >>>  >> 7b386428510b..0b6232a7f328
+> > > >>>  >>=20
+> > > >>>  >>  100644
+> > > >>>  >>  --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > > >>>  >>  +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > > >>>  >>  @@ -39,5 +39,6 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D
+> > > >>>  >>=20
+> > > >>>  >> sun50i-h6-pine-h64-model-b.dtb
+> > > >>>  >>=20
+> > > >>>  >>  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-tanix-tx6.dtb
+> > > >>>  >> =20
+> > > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-tanix-tx6-mini.dtb
+> > > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D
+> > > >>>=20
+> > > >>> =7F=7Fsun50i-h616-bigtreetech-cb1-manta.dtb
+> > > >>>=20
+> > > >>>  >>  +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-bigtreetech-pi.dtb
+> > > >>>  >> =20
+> > > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-orangepi-zero2.dtb
+> > > >>>  >>   dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h616-x96-mate.dtb
+> > > >>>  >> =20
+> > > >>>  >>  diff --git
+> > > >>>  >>=20
+> > > >>>  >> a/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.dts
+> > > >>>  >>=20
+> > > >>>  >>  b/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.d=
+ts
+> > > >>>=20
+> > > >>> =7F=7Fnew
+> > > >>>=20
+> > > >>>  >> file
+> > > >>>  >>=20
+> > > >>>  >>  mode 100644
+> > > >>>  >>  index 000000000000..b0d0386e8f13
+> > > >>>  >>  --- /dev/null
+> > > >>>  >>  +++
+> > > >>>=20
+> > > >>> =7F=7Fb/arch/arm64/boot/dts/allwinner/sun50i-h616-bigtreetech-pi.=
+dts
+> > > >>>=20
+> > > >>>  >>  @@ -0,0 +1,70 @@
+> > > >>>  >>  +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > > >>>  >>  +/*
+> > > >>>  >>  + * Copyright (C) 2023 Martin Botka <martin@biqu3d.com>.
+> > > >>>  >>  + */
+> > > >>>  >>  +
+> > > >>>  >>  +/dts-v1/;
+> > > >>>  >>  +
+> > > >>>  >>  +#include "sun50i-h616-bigtreetech-cb1.dtsi"
+> > > >>>  >>  +
+> > > >>>  >>  +/ {
+> > > >>>  >>  +	model =3D "BigTreeTech Pi";
+> > > >>>  >>  +	compatible =3D "bigtreetech,pi", "allwinner,sun50i-
+h616";
+> > > >>>  >>  +
+> > > >>>  >>  +	aliases {
+> > > >>>  >>  +		serial0 =3D &uart0;
+> > > >>>  >>  +	};
+> > > >>>  >>  +
+> > > >>>  >>  +	chosen {
+> > > >>>  >>  +		stdout-path =3D "serial0:115200n8";
+> > > >>>  >>  +	};
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ehci0 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ehci1 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ehci2 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ehci3 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ir {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ohci0 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ohci1 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ohci2 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&ohci3 {
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&spi0 {
+> > > >>>  >>  +	/* SPI connection for onboard connector for ADXL345
+> > > >>>=20
+> > > >>> =7F=7Faccelerometer
+> > > >>>=20
+> > > >>>  > */
+> > > >>>  >=20
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +	pinctrl-names =3D "default";
+> > > >>>  >>  +	pinctrl-0 =3D <&spi0_pins>, <&spi0_cs0_pin>;
+> > > >>>  >=20
+> > > >>>  > Driver and compatible for ADXL345 already exists, why don't you
+> > > >>>=20
+> > > >>> =7F=7Fadd
+> > > >>>=20
+> > > >>>  > child node
+> > > >>>  > for it?
+> > > >>>  >=20
+> > > >>>  > Best regards,
+> > > >>>  > Jernej
+> > > >>> =20
+> > > >>>  Ah. So the ADXL345 actually wont be driven by kernel.
+> > > >>=20
+> > > >> DT is hardware description, it's not concerned what is done on
+> > > >> =7Fsoftware side,
+> > > >> either kernel or user space.
+> > > >=20
+> > > > Im aware. But this is not a device that is on the board. Its simply=
+ a
+> > > > connector for the device.
+> > > > Like Rpi has connectors for camera module :)
+> >=20
+> > Actually it matters only if this other board is firmly connected with b=
+ase
+> > board. If it is not, then SPI node should be dropped and be handled with
+> > DT
+> > overlays.
+>=20
+> So I do understand the reasoning behind not describing those generic pin
+> header connectors, where people could hook up anything, and use it as a
+> GPIO or as a special function device, but just wanted to check on this
+> situation:
+> Don't we even describe pins dedicated to those custom connectors,
+> especially if there is an "obvious" external device to connect to? Is it
+> the same situation like with these FPC camera connectors?
 
-EPC can't get epf->msg data. It is too long time. I can't remember the
-detail.
+I would say yes. SPI connector can still be used as GPIOs or anything else,=
+=20
+since there is no device soldered directly to it.
 
-Let try to move to epc again. 
+Best regards,
+Jernej
 
-> 
-> - Mani
-> 
-> > Frank 
-> > 
-> > > 
-> > > - Mani
-> > > 
-> > > > IMS will support per-device MSI domain, then we can implement customized
-> > > > MSI irq allocated. But so far, it is simplest solution, we can update it
-> > > > after IMS implementation at kernel. Only one place need be changed.
-> > > > 
-> > > மணிவண்ணன் சதாசிவம்
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+>=20
+> Cheers,
+> Andre
+>=20
+> > > >>>  The SPI connection is enabled so that klipper (3d printer
+> > > >>>=20
+> > > >>> firmware) =7F=7Fcan
+> > > >>>=20
+> > > >>>  be told to look for ADXL345 at this SPI and use it on its own.
+> > > >>> =20
+> > > >>>  Klipper will initialize and communicate with the ADXL on its own.
+> > > >>=20
+> > > >> What do you mean by firmware? User space app? In this case I suppo=
+se
+> > > >> =7Fyou'll use
+> > > >> direct SPI commands from user space? AFAIK that's less and less
+> > > >> =7Fsupported by
+> > > >> kernel (in contrast to I2C).
+> > > >=20
+> > > > Firmware as in 3d printer firmware. Klipper runs on the board (CB1 =
+or
+> > > > BTT Pi) and is indeed an userspace app.
+> > > > And indeed uses direct SPI commands to the device.
+> > > >=20
+> > > > The reason for this is the flexibility.
+> > > > If Klipper read the values from kernel or well from the files the
+> > > > ADXL driver would create
+> > > > then it would be unable to communicate with ADXL that is on toolhead
+> > > > board. Or would have to have
+> > > > direct initialization either way for those. Thus it just controls t=
+he
+> > > > ADXL itself :)
+> > > >=20
+> > > > I understand that this may be bit confusing. If there is still
+> > > > something not clear im more then happy to explain in
+> > > > full detail how the userspace and 3D printer communicate :)
+> >=20
+> > As I said, DT doesn't care about implementation. DT is HW description, =
+so
+> > either if it's fixed connection (soldered wires), then describe in full,
+> > otherwise it's considered addon board and thus non-essential, so it sho=
+uld
+> > be handled with DT overlays.
+> >=20
+> > Can be CB1 bought separately from 3D printer package and thus used with=
+out
+> > ADXL sensor?
+> >=20
+> > > > Cheers,
+> > > > Martin.
+> > >=20
+> > > Hello,
+> > > Jernej any comments on this ?
+> > > I would like to resolve this conversation :)
+> > > We do have a bunch of time before the new cycle but never hurts to get
+> > > it figured out ahead of time :)
+> >=20
+> > Sorry, not enough free time over summer.
+> >=20
+> > Best regards,
+> > Jernej
+> >=20
+> > > Cheers,
+> > > Martin
+> > >=20
+> > > >> Best regards,
+> > > >> Jernej
+> > > >>=20
+> > > >>>  >>  +};
+> > > >>>  >>  +
+> > > >>>  >>  +&uart0 {
+> > > >>>  >>  +	pinctrl-names =3D "default";
+> > > >>>  >>  +	pinctrl-0 =3D <&uart0_ph_pins>;
+> > > >>>  >>  +	status =3D "okay";
+> > > >>>  >>  +};
+
+
+
+
