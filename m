@@ -2,299 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 009D9793615
-	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 09:18:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F097E79361A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Sep 2023 09:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231924AbjIFHSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 6 Sep 2023 03:18:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49348 "EHLO
+        id S231967AbjIFHVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 6 Sep 2023 03:21:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231806AbjIFHSo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 03:18:44 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 832F3E79
-        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 00:18:33 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-52a1ce529fdso4623276a12.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Sep 2023 00:18:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1693984712; x=1694589512; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oLm2367PlhquFXyjm9J/YZ+I5YhSOsfpDD/zxOTDh8g=;
-        b=ao8XhLS3nUQD9s0CyP8+KvqoCXylpsv6MMBCvNXMBJqusNr/bgWA8e+DmuD6lnUXsc
-         zjsDDpum9EWNUh075RgjDkfyNK5sQP/aHfqOtdM6jkY5CILrpmq+TrZ/KbILGE5QOzO0
-         fI09NiLIco+sJ4lMfm+XdzB7h262ko71gc17iPAodF1IWUotsSzqzuZnNvh9Nz+S7iWA
-         1GVq0LM1kAEYZEaIRhFs5bMBr3zNxCCv9tPgeMVleAKamhGL2vPKowaTfqeHmWp5kydZ
-         HXh/5df36CxZiOnSGb1q1uKStQDx3EvG0OIYJ8AYKkKG0zydLX1HhGU0gaBAxGIloEkI
-         77Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1693984712; x=1694589512;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oLm2367PlhquFXyjm9J/YZ+I5YhSOsfpDD/zxOTDh8g=;
-        b=BOF819tYv3A7dU5oAeTXD8CszELOcdUwZ6fZvIA62obQi8ds0PesXgz/8Bb9XRFCle
-         0Jyu3p3qR8Crw7SmcRvDQdMEw1+7nPhFfJGb8wH2tO26v1KokYqWsHYP5oSetrcwr/FZ
-         RsmKE5AjtR/b+jTVjLYzStBTJnFdnJM3AR2PYbz7biZtBdNx+BO6QIApUIpkn0bHCGQI
-         FE5C3ybPDsj+X/eaDbq6tadKsYEZrzkTEyl8BP3SwG8HXHvJjeqKlaakYqJTkKckhQXC
-         les8tXoAfoPOU/lngZk+ZnKYRzZ8/CLUgh07rDwTooccos48r6NKTjdzGsOHUr9HtTNU
-         ppeQ==
-X-Gm-Message-State: AOJu0YyJVJu8U97gT2dBylxyC0lrkHlHWoq6XxPNhgc9DYeM0vf7wg/V
-        DI9itKINr2+Yhj3jSN5P4WBjrg==
-X-Google-Smtp-Source: AGHT+IEvxoAnhF13chZ5o/eiquJE4qnqbe1HVkX75JuWXAOxtXn742h0McKt1VlcDCa6KNR2xMRZOA==
-X-Received: by 2002:a17:906:30c1:b0:99c:a2ca:4f54 with SMTP id b1-20020a17090630c100b0099ca2ca4f54mr1678013ejb.34.1693984711657;
-        Wed, 06 Sep 2023 00:18:31 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id la20-20020a170906ad9400b0099caf5bed64sm8616547ejb.57.2023.09.06.00.18.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 00:18:31 -0700 (PDT)
-Message-ID: <f023767c-aa74-87ca-d333-3dba8a481cb6@linaro.org>
-Date:   Wed, 6 Sep 2023 09:18:30 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/3] dt-bindings: media: Add THine THP7312 ISP
-To:     Paul Elder <paul.elder@ideasonboard.com>,
-        linux-media@vger.kernel.org
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229552AbjIFHVe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 6 Sep 2023 03:21:34 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 584EACFF
+        for <devicetree@vger.kernel.org>; Wed,  6 Sep 2023 00:21:30 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1qdmqp-0005ue-Kw; Wed, 06 Sep 2023 09:21:23 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <sha@pengutronix.de>)
+        id 1qdmqo-004NIR-6Z; Wed, 06 Sep 2023 09:21:22 +0200
+Received: from sha by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1qdmqn-0025Qy-Tt; Wed, 06 Sep 2023 09:21:21 +0200
+Date:   Wed, 6 Sep 2023 09:21:21 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230905233118.183140-1-paul.elder@ideasonboard.com>
- <20230905233118.183140-2-paul.elder@ideasonboard.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230905233118.183140-2-paul.elder@ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: Add io domain
+ properties
+Message-ID: <20230906072121.GA492117@pengutronix.de>
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+ <20230904115816.1237684-3-s.hauer@pengutronix.de>
+ <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2023 01:31, Paul Elder wrote:
-> Add bindings for the THine THP7312 ISP.
+On Tue, Sep 05, 2023 at 10:03:20AM +0100, Robin Murphy wrote:
+> On 2023-09-04 12:58, Sascha Hauer wrote:
+> > Add rockchip,io-domains property to the Rockchip pinctrl driver. This
+> > list of phandles points to the IO domain device(s) the pins of the
+> > pinctrl driver are supplied from.
+> > 
+> > Also a rockchip,io-domain-boot-on property is added to pin groups
+> > which can be used for pin groups which themselves are needed to access
+> > the regulators an IO domain is driven from.
+> > 
+> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > ---
+> >   .../bindings/pinctrl/rockchip,pinctrl.yaml          | 13 ++++++++++++-
+> >   1 file changed, 12 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> > index 10c335efe619e..92075419d29cf 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+> > @@ -62,6 +62,11 @@ properties:
+> >         Required for at least rk3188 and rk3288. On the rk3368 this should
+> >         point to the PMUGRF syscon.
+> > +  rockchip,io-domains:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    description:
+> > +      Phandles to io domains
+> > +
+> >     "#address-cells":
+> >       enum: [1, 2]
+> > @@ -137,7 +142,13 @@ additionalProperties:
+> >               - description:
+> >                   The phandle of a node contains the generic pinconfig options
+> >                   to use as described in pinctrl-bindings.txt.
+> > -
+> > +      rockchip,io-domain-boot-on:
 > 
-> Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
-> ---
-> Since the THP7312 supports multiple sensors, thine,rx-data-lanes alone
-> might not be enough. I was consdering using sensor nodes like what the
-> AP1302 does [1]. This way we can also move the power supplies that only
-> concern the sensor in there as well. I was wondering what to do about
-> the model name, though, as the thp7312 completely isolates that from the 
-> rest of the system.
-> 
-> I'm planning to add sensor nodes in somehow in a v2.
-> 
-> [1] https://lore.kernel.org/linux-media/20211006113254.3470-2-anil.mamidala@xilinx.com/
-> 
->  .../bindings/media/thine,thp7312.yaml         | 170 ++++++++++++++++++
->  1 file changed, 170 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/thine,thp7312.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/thine,thp7312.yaml
-> new file mode 100644
-> index 000000000000..e8d203dcda81
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/thine,thp7312.yaml
-> @@ -0,0 +1,170 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (c) 2023 Ideas on Board
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/thine,thp7312.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: THine THP7312
-> +
-> +maintainers:
-> +  - Paul Elder <paul.elder@@ideasonboard.com>
-> +
-> +description:
-> +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
-> +  various image processing and correction functions, including 3A control. It
-> +  can be connected to CMOS image sensors from various vendors, supporting both
-> +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
-> +  or parallel. The hardware is capable of transmitting and receiving MIPI
-> +  interlaved data strams with data types or multiple virtual channel
-> +  identifiers.
-> +
-> +allOf:
-> +  - $ref: ../video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: thine,thp7312
-> +
-> +  reg:
-> +    description: I2C device address
+> I don't think "on" is a particularly descriptive or useful property name for
+> something that has no "off" state.
 
-You can skip description. It is obvious.
+In fact it has an "off" state. A IO Domain can be disabled in the SoC
+registers and also the corresponding regulator can be disabled.
 
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +      - description: CLKI clock input
+> Furthermore it's no help at all if the DT
+> consumer *is* the bootloader that's expected to configure this in the first
+> place. IMO it would seem a lot more sensible to have an integer (or enum)
+> property which describes the actual value for the initial I/O domain
+> setting.
 
-This was absolutely never tested.
+I agree though that a particular setting instead of a boolean is better
+and could help the bootloader.
 
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: |-
-> +      Reference to the GPIO connected to the RESET_N pin, if any.
-> +      Must be released (set high) after all supplies are applied.
-> +
-> +  vddcore-supply:
-> +    description:
-> +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
-> +
-> +  vhtermnx-supply:
-> +    description:
-> +      Supply for input (rx). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> +
-> +  vddtx-supply:
-> +    description:
-> +      Supply for output (tx). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
-> +
-> +  vddhost-supply:
-> +    description:
-> +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
-> +
-> +  vddcmos-supply:
-> +    description:
-> +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
-> +
-> +  vddgpio_0-supply:
+> Then Linux can choose to assume the presence of the property at all
+> implies that the bootloader should have set it up already, but also has the
+> option of actively enforcing it as well if we want to.
 
-No, underscores are not allowed in names.
+Ok.
 
-> +    description:
-> +      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
-> +
-> +  vddgpio_1-supply:
-> +    description:
-> +      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
-> +
-> +  DOVDD-supply:
+Thanks,
+ Sascha
 
-lowercase. Look at your other supplies. VDD is spelled there "vdd", so
-do not introduce random style.
-
-
-> +    description:
-> +      Digital I/O (1.8V) supply for image sensor.
-> +
-> +  AVDD-supply:
-
-lowercase
-
-> +    description:
-> +      Analog (2.8V) supply for image sensor.
-> +
-> +  DVDD-supply:
-
-lowercase
-
-> +    description:
-> +      Digital Core (1.2V) supply for image sensor.
-> +
-> +  orientation: true
-> +  rotation: true
-> +
-> +  thine,rx,data-lanes:
-
-Why are you duplicating properties? With wrong name? No, that's not a
-property of a device node, but endpoint.
-
-> +    minItems: 4
-> +    maxItems: 4
-> +    $ref: /schemas/media/video-interfaces.yaml#data-lanes
-> +    description: |-
-
-Drop |- where not needed.
-
-> +      This property is for lane reordering between the THP7312 and the imaging
-> +      sensor that it is connected to.
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            description: |-
-> +              The sensor supports either two-lane, or four-lane operation.
-> +              This property is for lane reordering between the THP7312 and
-> +              the SoC. If this property is omitted four-lane operation is
-> +              assumed. For two-lane operation the property must be set to <1 2>.
-> +            minItems: 2
-> +            maxItems: 4
-> +            items:
-> +              maximum: 4
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reset-gpios
-> +  - clocks
-> +  - vddcore-supply
-> +  - vhtermrx-supply
-> +  - vddtx-supply
-> +  - vddhost-supply
-> +  - vddcmos-supply
-> +  - vddgpio_0-supply
-> +  - vddgpio_1-supply
-> +  - DOVDD-supply
-> +  - AVDD-supply
-> +  - DVDD-supply
-> +  - thine,rx,data-lanes
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@61 {
-> +            compatible = "thine,thp7312";
-> +            reg = <0x61>;
-> +
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&cam1_pins_default>;
-> +
-> +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
-> +            clocks = <&camera61_clk>;
-> +
-> +            vddcore-supply = <&vsys_v4p2>;
-> +            AVDD-supply = <&vsys_v4p2>;
-> +            DVDD-supply = <&vsys_v4p2>;
-
-Srlsy, test it before sending. Look how many supplies you require and
-what is provided here. How any of this could possibly work?
-
-
-
-Best regards,
-Krzysztof
-
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
