@@ -2,161 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1345D797356
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:24:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9140797548
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231572AbjIGPXH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 11:23:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49682 "EHLO
+        id S232831AbjIGPqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 11:46:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234976AbjIGPW4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:22:56 -0400
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2117.outbound.protection.outlook.com [40.107.117.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A40061716;
-        Thu,  7 Sep 2023 08:22:38 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=U2dzY5m6BF6ZOLJhBZlRrkcv3/fY0WoD/8BRAdI17+a56TLCBVue2WuHYyf0tyQg6o4W9yd862woDX+iW/RsZ/+m+6o6aw5XyvdlnnMeWAiXGE8dGq2vxJY3DGF+TZXFpfj85Ui6SQ/v4DAZuGIA3C4VpPr/VqtG9vBBE4nQy7MyZJHXzSenlKx7OEJo7esoKpUlopfsKBqRInFABj8lT9+STWBdHwx8dSyM//fvnxVD3RNz94xJrcflVfLaCRFu7xOzvoenlKCPVXJrLVDoPQxM0XsYJQAvTPlecnA31J9uaRso/RU10v+Tyo+T5kuQ/Xolt3S0URp1eZBlw3MjPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NxTLc5Dvxkf2F33/rb3bvJy7VuNTg288G5SlQBiMfdk=;
- b=kYo+byUqoczPk8w2eASBydv6iuiYv5KXn35oX4eOa6TByWZz9JeS2XjPduPAtXb8SasMNDaQcmSKDsNeY9hJpKjiPNoUDL/tsmiz+COPbxS1V3WtJ3pz4UchG4TYu+GkzcDgwqYZWBLs53VOA7LnXq3cuUp/IqVmvPM4L6kVo2bdTwdiLSKqxhkoYH22YwFZvJBVrxVd27gWTPe9WLTt8i+Aa+KLwXFFa0b/MTN2cBl/MJtGNxvNSarTSlPYzGb/o0JPh2S2y1wFXtamn3EGTAbvNEckkegaQ+SVBi1/cWc5/ti6HZ8FA7CiZ61bwFlfwZEqfBSI98KrkTdP4JcDrA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NxTLc5Dvxkf2F33/rb3bvJy7VuNTg288G5SlQBiMfdk=;
- b=Har3VgFvwtx5gcBzU2KASWfkXMxgrro+O18g+JWHYuGp/Lg7JcZQbNn5ttsZT6uqEJdt4uea3gE0qI6lgIfF2FkV/EEwx14dG2fw3jayZevvnP11qzw8a9APXHqfZSqpYsRIqhfvPSWreA426UW9+LH6LxtHz1zm7XvJRMs0YYyEn98LkdhRI2U/KdFPoJRfUXWdaU1V6yWom6styXkExuwMO6mx/QwHuxXF89KmmTPPiKfqj48hz39ub1di4Pj9A9llb+DElIn1NYWts93kHxWnHT8bL67HUSz2V3ELnV5ZO6LI9hrNYhJMu/scJ0yOBPOXcjhloai3+o9m14ghuA==
-Received: from SG2PR06MB3365.apcprd06.prod.outlook.com (2603:1096:4:69::12) by
- SEYPR06MB5038.apcprd06.prod.outlook.com (2603:1096:101:52::11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6745.34; Thu, 7 Sep 2023 07:24:56 +0000
-Received: from SG2PR06MB3365.apcprd06.prod.outlook.com
- ([fe80::791a:38e8:18cf:d205]) by SG2PR06MB3365.apcprd06.prod.outlook.com
- ([fe80::791a:38e8:18cf:d205%5]) with mapi id 15.20.6745.030; Thu, 7 Sep 2023
- 07:24:56 +0000
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "jdelvare@suse.com" <jdelvare@suse.com>,
-        "linux@roeck-us.net" <linux@roeck-us.net>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "joel@jms.id.au" <joel@jms.id.au>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "naresh.solanki@9elements.com" <naresh.solanki@9elements.com>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        BMC-SW <BMC-SW@aspeedtech.com>,
-        "patrick@stwcx.xyz" <patrick@stwcx.xyz>
-Subject: Re: [PATCH v8 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Thread-Topic: [PATCH v8 2/3] dt-bindings: hwmon: Support Aspeed g6 PWM TACH
- Control
-Thread-Index: AQHZ2z4BCgYXyLFfhU2TpGaED9fRsbAMgHKAgAKBe+4=
-Date:   Thu, 7 Sep 2023 07:24:56 +0000
-Message-ID: <SG2PR06MB3365982279825C98859FF1768BEEA@SG2PR06MB3365.apcprd06.prod.outlook.com>
-References: <20230830123202.3408318-1-billy_tsai@aspeedtech.com>
- <20230830123202.3408318-3-billy_tsai@aspeedtech.com>
- <20230905170735.GA3528724-robh@kernel.org>
-In-Reply-To: <20230905170735.GA3528724-robh@kernel.org>
-Accept-Language: en-US, zh-TW
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-msip_labels: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SG2PR06MB3365:EE_|SEYPR06MB5038:EE_
-x-ms-office365-filtering-correlation-id: 0478c14c-c563-4c09-5b06-08dbaf73894f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: v0ivBwBj9/ddv3jhq+VyRpmP1EwFSq9Lu0ctkjWkMnSnluP92uazF+4SQEzZs0avdWUiBQ4xmibyUjxAwyfBqkrkJl5FBNCoODS/6cqrdtffyf9Zrn79gXzzMH4mrMr7aDxeGy+h7pxgHvRa/y0fvBtyZbNgyma409GfIjfgLi8nsx7LcnhVFOlh73jkOFd6CtDqQCYQcXnvhX9nTXeg2/K9/LcoyvhsdtXM0mzPPo23aUMmu73AMOViARO2XZ5GQ69W7jKYmbf6cEEwq3YVHGhQul1iMc3s9fjCZ08O4vowYmQ9+D8Zp1DIT5bSgSaYWMLtrexx7MtMErJN0NB5PtgyIZSK84+NVwHY1MoJt+q3Yw/7MtYzi/8gO18sTwJCHeY9Ukh/XDdGV8rAo5SLH1OU+Qdi3d1P1tlZ8lvbImWIBt3Ys5wC48Vbo7k25GWE/p1pGnHRrrPbVfn+Ydxw8in+9L36UynO/8fOOvqSAGn/mj4/lyZrne4CgymmCHrDXvkhnCUf4S5shIXzBWbGZftCmFX3Yys8D+KeJu68rdztEY1shp6LLnGIkiZWo98CTI+cMlPiICbI4Z/At3pDhIa1YpM/4VV1anxvIJJuioH6uO91Sy1Uy6NrYPC+2Y+v
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR06MB3365.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(396003)(39850400004)(376002)(346002)(136003)(451199024)(1800799009)(186009)(4326008)(52536014)(8676002)(8936002)(6916009)(316002)(2906002)(66476007)(91956017)(4744005)(64756008)(66446008)(54906003)(66946007)(76116006)(66556008)(5660300002)(41300700001)(7416002)(26005)(55016003)(6506007)(9686003)(7696005)(55236004)(38100700002)(122000001)(71200400001)(38070700005)(478600001)(86362001)(83380400001)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?o2Hg9QJyumXkMfa8NUshFscUB9EMoPRhu62KFNYGg0hvOg5vITJT2iu4xm?=
- =?iso-8859-1?Q?yK8MYfOct8gxwY3jgI6iu9ZuglZgKhf86Lb6kbcwMIc1jHLVFrEN+OzBaD?=
- =?iso-8859-1?Q?KSkZFrwDmoyFzk+3qzCodKxE0TZBTtw7dbhEBkY4X1RBUUOrEha/Kzw6pD?=
- =?iso-8859-1?Q?gZ0N9+V0CUwiy+A5Sz7R6Lul7tryo0WKeBDwFBGkP3Oj4VsuMWI9FwDlWN?=
- =?iso-8859-1?Q?91f+2JMofKN0AxbfNRROYHrDNi466DhdlqUmKClVKyk8v0huUlat1++8Y0?=
- =?iso-8859-1?Q?obiMhMY4R9MimxRdjY+GutWaWdsCAm+2GmDhdS+FzwWErwIYRqKpnEEg28?=
- =?iso-8859-1?Q?uUC34LueFIicnoe83o3VVOBHNBZfws5NGhyipofDxTQC0j8/VT0/Bd/WxS?=
- =?iso-8859-1?Q?3hVQO7PlIlXphjX8zWnI4pNncGmXDYFJ5BTjoIaSiTU8rWGnbhhPPYQulq?=
- =?iso-8859-1?Q?buK6tT0QoWAqMicv6Xlsb5BaOGxHcBdBmFOpeeinfxTUUgVWKdKsM9tiEJ?=
- =?iso-8859-1?Q?rdoXcEaJAdE0kQIZ/UHmr8JYGPlWXJO7aLGzrzbTJhiwB3G8cyIfwyffbz?=
- =?iso-8859-1?Q?jTTRhReOlRYk5mKjXz85sreowOPXmdB+oppQztUXirx9a1XbqtjA29Rzik?=
- =?iso-8859-1?Q?aHDDXyBmZ4rz3R1bMJrJ/U9+lytNIq15G84NPSqWJhR5ZWUMViJLPnRfzh?=
- =?iso-8859-1?Q?w6BJ06IoVThiCaWEVPolXJ+YWv23SX2K/DmQJDHcvlvuhr3DhNm6wZW8u/?=
- =?iso-8859-1?Q?/4gcIdutg9lSQYjXZrQq9zZKWKj+SwquntRR8Dgzwt6LscZCd6GrC6llsE?=
- =?iso-8859-1?Q?G2+z8GwtFEkKUWdqkSNm7Bm+3Zlo3LfKfCQl44CwXK5gboJy1jEMX0dW5Q?=
- =?iso-8859-1?Q?SwsC9k1XdKiJgqk06tprxFKzXruxyHi32bqQTdqwXosJYILsisGIdxjhJF?=
- =?iso-8859-1?Q?st59TLjWMjYWiSjjKXYTcZ54w6EmurgzbyyQp8hs7JF7RMZnc7VH2Uyyfz?=
- =?iso-8859-1?Q?t7wNv9/U5mCHLJA+jvuUTAKX+7fwWEtePsDpPVFCr9w0FT4DKgzSkcDB3I?=
- =?iso-8859-1?Q?CVKizVsyjcOvOBg6JCjqkLFgjALVmPS7VGCgOooNWImIgT/0iqxKfneSRM?=
- =?iso-8859-1?Q?LURvyZ8w/N2iU21Q8sPfl06dnG1BXte3IOw96Dr/K2yksPZVhNfSKXc99P?=
- =?iso-8859-1?Q?YnwHYFMN6+8Opqdn8VZKBGeBYJsTe59Ggqv86zCG8bIrR8HuaX+yPcKtEl?=
- =?iso-8859-1?Q?IKK/kukLuPIT0NLfmalh/AlkXu/KGcY9ColcGF6+8RkJ2JR2bKntxB5ktv?=
- =?iso-8859-1?Q?08b3ztkrMKoVAjciqEz9CbvYA1JjdKFdKhEGIx4G1pN+U//EkBbhBgCvvl?=
- =?iso-8859-1?Q?/HKEOHeaHsvZf2DHS2efWlUu6Ur4ScRz7B82c9UCymFZ729qAyqIWGpBry?=
- =?iso-8859-1?Q?hOtJaY46Mf5AoBujDq18rJ7UEWo5IES089AzY7/PSTyx9Md9ltPD09bEdM?=
- =?iso-8859-1?Q?0btODF7tkSPyqaC5NxES0LLXJ2v8orWPxKTKfdQOvlBlFcf14x78I0su0o?=
- =?iso-8859-1?Q?vuZc4L6IXiASuEnP2eHwXx1kSLWkg+spnhMX7xR4pImkZu+9/27CLPJy93?=
- =?iso-8859-1?Q?2l8teYECabgd6eFskRhSNv/MDG5CmODMNJ?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S245444AbjIGP3c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:29:32 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49AF01BC7
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 08:29:05 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-40037db2fe7so12079495e9.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 08:29:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694100496; x=1694705296; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9cqyTbMBftf/joQMRKfMkLzU0Opm2y7wHA3eqP28zpI=;
+        b=YccKY9yQKu0dqjzAHs9ahpYK5Ujco+K3rrjeUxCAcL5vTDle96MrHoXIVPRiksdcm3
+         ckV08an7+VtZkL7Kr4j6etNA364IMuQ1JnZBOVc/HgDS0VyrnAQr5SQo2VwAJDZoJHYt
+         gIp8iu3PeesdzZmcQuAaygW2pG+GY7sGMTTX0NGictY/RsX46tSZ8aAnbKeiPI2SOmrx
+         RiSyYcaA9bUBbz6rIojEI8wCLbrAFxFK5Ln7ihmLzAnjouxZbzkYCDa6wk3LUOg8X0jL
+         c3YZdBU+aB0pQG60hQm5wDg3dxK3vxDLVzvDLrdse134nVIGUs3q/HE4lNMyv1IL2jAh
+         TRbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694100496; x=1694705296;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9cqyTbMBftf/joQMRKfMkLzU0Opm2y7wHA3eqP28zpI=;
+        b=E4z6DojMzTu/jtaQ2o4/PWvqd2O6P1iKQxWoQcmsvTyevtfAy0W3ZWjl/WqrJTFJsR
+         RwbxTqAENf4+jGg6ID8FxVjqwoxBJqqcm3mg2NWORZMX8m/51Naa1AnzSluLY9XQSc7c
+         +sxqmgKTfVmrquTa6OAl7wrtYLfsLBTPoZGTYshBgXjd3g68/UQL6BrR06oj1xMbtouk
+         QJwPsu6JjW3anQu13d5g4D5hrys4eKWedFCNa9/C6kWqjb1FEiYdTvCtzCuEcwmh8T91
+         1kXLCe78xjxi9lP9MvoVCpPzksG33FhLkUwppPoGRRPAjwvlVdSzzaiwNBoOCghgX/NE
+         CbBQ==
+X-Gm-Message-State: AOJu0YxA+K/fvskwknBt1kibA+KIfKF7CXPM6ZxujVoTC56ZcmrdQ22F
+        MHbC18OO2ZRZ54ZaxKf8junxGWVoxA4uZEhh/0PHXA==
+X-Google-Smtp-Source: AGHT+IElMhH6SZyz3Q6I00GiHi9+hHjfTot2J8HBhVaHsG4aeOjUaubp+sXD76/MBLaMZ8727VrnoQ==
+X-Received: by 2002:a17:906:73ce:b0:9a1:edb0:2a8c with SMTP id n14-20020a17090673ce00b009a1edb02a8cmr3878447ejl.39.1694075088243;
+        Thu, 07 Sep 2023 01:24:48 -0700 (PDT)
+Received: from [192.168.37.232] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
+        by smtp.gmail.com with ESMTPSA id lu7-20020a170906fac700b00992e14af9b9sm9949024ejb.134.2023.09.07.01.24.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Sep 2023 01:24:47 -0700 (PDT)
+Message-ID: <4f51bd22-0f7d-4e94-8d84-98091fc2dd53@linaro.org>
+Date:   Thu, 7 Sep 2023 10:24:44 +0200
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR06MB3365.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0478c14c-c563-4c09-5b06-08dbaf73894f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Sep 2023 07:24:56.2281
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DmuBSMn1LhFFJi9Jq/amSVdDtXco2AUOO9myfwwZERvL36+l+5Yb4+LjRQSOhXWLgrbLwMgtZeHO25Yxw42SlTmitQlLvdLalcGXbTo3oEs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5038
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 01/10] clk: qcom: clk-alpha-pll: introduce stromer plus
+ ops
+Content-Language: en-US
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
+        ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
+        rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <cover.1693996662.git.quic_varada@quicinc.com>
+ <18a3bc0c5b371deec5c4bbe6ceacf8afcf0bc640.1693996662.git.quic_varada@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <18a3bc0c5b371deec5c4bbe6ceacf8afcf0bc640.1693996662.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->> +=0A=
->> +examples:=0A=
->> +  - |=0A=
->> +    #include <dt-bindings/clock/aspeed-clock.h>=0A=
->> +    pwm_tach: pwm-tach-controller@1e610000 {=0A=
->> +      compatible =3D "aspeed,ast2600-pwm-tach";=0A=
->> +      reg =3D <0x1e610000 0x100>;=0A=
->> +      clocks =3D <&syscon ASPEED_CLK_AHB>;=0A=
->> +      resets =3D <&syscon ASPEED_RESET_PWM>;=0A=
->> +      #pwm-cells =3D <3>;=0A=
-=0A=
-> Blank line.=0A=
-=0A=
->> +      fan0_hwmon {=0A=
->> +        tach-ch =3D <0x0>;=0A=
-=0A=
-> Don't you need 'pwms'?=0A=
-=0A=
-Yes, I only want to create the fan monitor without fan control.=0A=
-=0A=
-> +      };=
+On 7.09.2023 07:21, Varadarajan Narayanan wrote:
+> Stromer plus APSS PLL does not support dynamic frequency scaling.
+> To switch between frequencies, we have to shut down the PLL,
+> configure the L and ALPHA values and turn on again. So introduce the
+> separate set of ops for Stromer Plus PLL.
+> 
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+[...]
+
+> +
+> +	/* Wait five micro seconds or more */
+> +	udelay(5);
+> +	regmap_update_bits(pll->clkr.regmap, PLL_MODE(pll), PLL_RESET_N,
+> +			   PLL_RESET_N);
+> +
+> +	/* The lock time should be less than 50 micro seconds worst case */
+> +	udelay(50);
+https://www.kernel.org/doc/Documentation/timers/timers-howto.txt
+
+> +
+> +	ret = wait_for_pll_enable_lock(pll);
+> +	if (ret) {
+> +		pr_err("alpha pll running in 800 MHz with source GPLL0\n");
+> +		return ret;
+> +	}
+Would that not be SoC-specific information?
+
+Konrad
