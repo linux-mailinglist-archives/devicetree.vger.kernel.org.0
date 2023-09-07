@@ -2,45 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECD22797C05
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C436F797C24
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239636AbjIGSgY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 14:36:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56474 "EHLO
+        id S1344265AbjIGSmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 14:42:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344194AbjIGSgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:36:23 -0400
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4081119AF;
-        Thu,  7 Sep 2023 11:36:16 -0700 (PDT)
-Received: from [134.238.52.102] (helo=rainbowdash)
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1qeHcf-004U1S-Fc; Thu, 07 Sep 2023 17:12:49 +0100
-Received: from ben by rainbowdash with local (Exim 4.96)
-        (envelope-from <ben@rainbowdash>)
-        id 1qeHcd-000HVE-2x;
-        Thu, 07 Sep 2023 17:12:47 +0100
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-To:     linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ben.dooks@codethink.co.uk, u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-Subject: [PATCH v9 6/6] pwm: dwc: add of/platform support
-Date:   Thu,  7 Sep 2023 17:12:42 +0100
-Message-Id: <20230907161242.67190-7-ben.dooks@codethink.co.uk>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
-References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
+        with ESMTP id S1344278AbjIGSmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:42:00 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5B2E41703;
+        Thu,  7 Sep 2023 11:41:55 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E310F1007;
+        Thu,  7 Sep 2023 09:36:12 -0700 (PDT)
+Received: from [10.1.26.33] (010265703453.arm.com [10.1.26.33])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B2EA3F67D;
+        Thu,  7 Sep 2023 09:35:32 -0700 (PDT)
+Message-ID: <5165d26f-d5fe-13e9-7940-b73e27b2bea7@arm.com>
+Date:   Thu, 7 Sep 2023 17:35:26 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: Add io domain
+ properties
+Content-Language: en-GB
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+ <20230904115816.1237684-3-s.hauer@pengutronix.de>
+ <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+ <20230906072121.GA492117@pengutronix.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20230906072121.GA492117@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.7 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -48,232 +57,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dwc pwm controller can be used in non-PCI systems, so allow
-either platform or OF based probing.
+On 2023-09-06 08:21, Sascha Hauer wrote:
+> On Tue, Sep 05, 2023 at 10:03:20AM +0100, Robin Murphy wrote:
+>> On 2023-09-04 12:58, Sascha Hauer wrote:
+>>> Add rockchip,io-domains property to the Rockchip pinctrl driver. This
+>>> list of phandles points to the IO domain device(s) the pins of the
+>>> pinctrl driver are supplied from.
+>>>
+>>> Also a rockchip,io-domain-boot-on property is added to pin groups
+>>> which can be used for pin groups which themselves are needed to access
+>>> the regulators an IO domain is driven from.
+>>>
+>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>> ---
+>>>    .../bindings/pinctrl/rockchip,pinctrl.yaml          | 13 ++++++++++++-
+>>>    1 file changed, 12 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+>>> index 10c335efe619e..92075419d29cf 100644
+>>> --- a/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+>>> +++ b/Documentation/devicetree/bindings/pinctrl/rockchip,pinctrl.yaml
+>>> @@ -62,6 +62,11 @@ properties:
+>>>          Required for at least rk3188 and rk3288. On the rk3368 this should
+>>>          point to the PMUGRF syscon.
+>>> +  rockchip,io-domains:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +    description:
+>>> +      Phandles to io domains
+>>> +
+>>>      "#address-cells":
+>>>        enum: [1, 2]
+>>> @@ -137,7 +142,13 @@ additionalProperties:
+>>>                - description:
+>>>                    The phandle of a node contains the generic pinconfig options
+>>>                    to use as described in pinctrl-bindings.txt.
+>>> -
+>>> +      rockchip,io-domain-boot-on:
+>>
+>> I don't think "on" is a particularly descriptive or useful property name for
+>> something that has no "off" state.
+> 
+> In fact it has an "off" state. A IO Domain can be disabled in the SoC
+> registers
 
-Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
----
-v9:
- - add clk_rate_exclusive_get() to lock clock rate for now
- - fix email address from sifive to codethink
- - fix module namespace
-v8:
- - add compile test for of-case
- - add module namespace
- - move later in the series
-v7:
- - fixup kconfig from previous pcie changes
-v5:
- - fix missing " in kconfig
- - remove .remove method, devm already sorts this.
- - merge pwm-number code
- - split the of code out of the core
- - get bus clock
-v4:
- - moved the compile test code earlier
- - fixed review comments
- - used NS_PER_SEC
- - use devm_clk_get_enabled
- - ensure we get the bus clock
-v3:
- - changed compatible name
----
- drivers/pwm/Kconfig        | 10 ++++
- drivers/pwm/Makefile       |  1 +
- drivers/pwm/pwm-dwc-core.c |  6 +++
- drivers/pwm/pwm-dwc-of.c   | 93 ++++++++++++++++++++++++++++++++++++++
- drivers/pwm/pwm-dwc.c      |  1 +
- drivers/pwm/pwm-dwc.h      |  1 +
- 6 files changed, 112 insertions(+)
- create mode 100644 drivers/pwm/pwm-dwc-of.c
+Oh, is that a thing on newer SoCs? At least in the RK3399 TRM the only 
+I/O-domain-related control I can find is the 1.8V/3.0V logic level 
+threshold in GRF_IO_VSEL (plus the one outlier in PMUGRF_SOC_CON0).
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 507c8b8547a5..22d58cb334e7 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -205,6 +205,16 @@ config PWM_DWC
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-dwc.
- 
-+config PWM_DWC_OF
-+	tristate "DesignWare PWM Controller (OF bus)"
-+	depends on HAS_IOMEM && (OF || COMPILE_TEST)
-+	select PWM_DWC_CORE
-+	help
-+	  PWM driver for Synopsys DWC PWM Controller on an OF bus.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-dwc-of.
-+
- config PWM_EP93XX
- 	tristate "Cirrus Logic EP93xx PWM support"
- 	depends on ARCH_EP93XX || COMPILE_TEST
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index c5ec9e168ee7..e3c867cb13d1 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -17,6 +17,7 @@ obj-$(CONFIG_PWM_CRC)		+= pwm-crc.o
- obj-$(CONFIG_PWM_CROS_EC)	+= pwm-cros-ec.o
- obj-$(CONFIG_PWM_DWC_CORE)	+= pwm-dwc-core.o
- obj-$(CONFIG_PWM_DWC)		+= pwm-dwc.o
-+obj-$(CONFIG_PWM_DWC_OF)	+= pwm-dwc-of.o
- obj-$(CONFIG_PWM_EP93XX)	+= pwm-ep93xx.o
- obj-$(CONFIG_PWM_FSL_FTM)	+= pwm-fsl-ftm.o
- obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
-diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
-index 6358e3345210..8b4d96d655c7 100644
---- a/drivers/pwm/pwm-dwc-core.c
-+++ b/drivers/pwm/pwm-dwc-core.c
-@@ -16,6 +16,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/clk.h>
- #include <linux/pm_runtime.h>
- #include <linux/pwm.h>
- 
-@@ -44,6 +45,9 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
- 	u32 high;
- 	u32 low;
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
-+
- 	/*
- 	 * Calculate width of low and high period in terms of input clock
- 	 * periods and check are the result within HW limits between 1 and
-@@ -128,6 +132,8 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	pm_runtime_get_sync(chip->dev);
- 
-+	if (dwc->clk)
-+		dwc->clk_rate = clk_get_rate(dwc->clk);
- 	clk_rate = dwc->clk_rate;
- 
- 	ctrl = dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
-diff --git a/drivers/pwm/pwm-dwc-of.c b/drivers/pwm/pwm-dwc-of.c
-new file mode 100644
-index 000000000000..30b860484895
---- /dev/null
-+++ b/drivers/pwm/pwm-dwc-of.c
-@@ -0,0 +1,93 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * DesignWare PWM Controller driver OF
-+ *
-+ * Copyright (C) 2022 SiFive, Inc.
-+ */
-+
-+#define DEFAULT_MODULE_NAMESPACE dwc_pwm
-+
-+#include <linux/bitops.h>
-+#include <linux/export.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/pwm.h>
-+#include <linux/io.h>
-+
-+#include "pwm-dwc.h"
-+
-+static int dwc_pwm_plat_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct dwc_pwm *dwc;
-+	struct clk *bus;
-+	u32 nr_pwm;
-+	int ret;
-+
-+	dwc = dwc_pwm_alloc(dev);
-+	if (!dwc)
-+		return -ENOMEM;
-+
-+	if (!device_property_read_u32(dev, "snps,pwm-number", &nr_pwm)) {
-+		if (nr_pwm > DWC_TIMERS_TOTAL)
-+			dev_err(dev, "too many PWMs (%d) specified, capping at %d\n",
-+				nr_pwm, dwc->chip.npwm);
-+		else
-+			dwc->chip.npwm = nr_pwm;
-+	}
-+
-+	dwc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(dwc->base))
-+		return PTR_ERR(dwc->base);
-+
-+	bus = devm_clk_get_enabled(dev, NULL);
-+	if (IS_ERR(bus))
-+		return dev_err_probe(dev, PTR_ERR(bus),
-+				     "failed to get clock\n");
-+
-+	dwc->clk = devm_clk_get_enabled(dev, "timer");
-+	if (IS_ERR(dwc->clk))
-+		return dev_err_probe(dev, PTR_ERR(dwc->clk),
-+				     "failed to get timer clock\n");
-+
-+	ret = clk_rate_exclusive_get(dwc->clk);
-+	if (ret)
-+		return dev_err_probe(dev, ret,
-+				     "clk_rate_exclusive_get() failed\n");
-+
-+	dwc->clk_rate = clk_get_rate(dwc->clk);
-+	return devm_pwmchip_add(dev, &dwc->chip);
-+}
-+
-+static int dwc_pwm_plat_remove(struct platform_device *pdev)
-+{
-+	struct dwc_pwm *dwc = dev_get_drvdata(&pdev->dev);
-+
-+	clk_rate_exclusive_put(dwc->clk);
-+	return 0;
-+}
-+
-+static const struct of_device_id dwc_pwm_dt_ids[] = {
-+	{ .compatible = "snps,dw-apb-timers-pwm2" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, dwc_pwm_dt_ids);
-+
-+static struct platform_driver dwc_pwm_plat_driver = {
-+	.driver = {
-+		.name		= "dwc-pwm",
-+		.of_match_table  = dwc_pwm_dt_ids,
-+	},
-+	.probe	= dwc_pwm_plat_probe,
-+	.remove = dwc_pwm_plat_remove,
-+};
-+
-+module_platform_driver(dwc_pwm_plat_driver);
-+
-+MODULE_ALIAS("platform:dwc-pwm-of");
-+MODULE_AUTHOR("Ben Dooks <ben.dooks@codethink.co.uk>");
-+MODULE_DESCRIPTION("DesignWare PWM Controller");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
-index bd9cadb497d7..7c32bd06ed33 100644
---- a/drivers/pwm/pwm-dwc.c
-+++ b/drivers/pwm/pwm-dwc.c
-@@ -20,6 +20,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/pci.h>
-+#include <linux/clk.h>
- #include <linux/pm_runtime.h>
- #include <linux/pwm.h>
- 
-diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
-index e0a940fd6e87..18e98c2c07d7 100644
---- a/drivers/pwm/pwm-dwc.h
-+++ b/drivers/pwm/pwm-dwc.h
-@@ -42,6 +42,7 @@ struct dwc_pwm_ctx {
- struct dwc_pwm {
- 	struct pwm_chip chip;
- 	void __iomem *base;
-+	struct clk *clk;
- 	unsigned long clk_rate;
- 	struct dwc_pwm_ctx ctx[DWC_TIMERS_TOTAL];
- };
--- 
-2.40.1
+> and also the corresponding regulator can be disabled.
 
+...which is clearly a property of the regulator, not of its consumers ;)
+
+However it's also not a meaningful state in this context anyway, since 
+if the supply was actually off, and thus we were unable to communicate 
+with the PMIC to turn it on... oh dear.
+
+Cheers,
+Robin.
+
+>> Furthermore it's no help at all if the DT
+>> consumer *is* the bootloader that's expected to configure this in the first
+>> place. IMO it would seem a lot more sensible to have an integer (or enum)
+>> property which describes the actual value for the initial I/O domain
+>> setting.
+> 
+> I agree though that a particular setting instead of a boolean is better
+> and could help the bootloader.
+> 
+>> Then Linux can choose to assume the presence of the property at all
+>> implies that the bootloader should have set it up already, but also has the
+>> option of actively enforcing it as well if we want to.
+> 
+> Ok.
+> 
+> Thanks,
+>   Sascha
+> 
