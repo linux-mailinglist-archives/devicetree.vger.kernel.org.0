@@ -2,442 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51AD4797715
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:21:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC416797876
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:47:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241284AbjIGQVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:21:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51878 "EHLO
+        id S238693AbjIGQrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:47:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241511AbjIGQUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:20:55 -0400
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5F052132
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 09:17:23 -0700 (PDT)
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-52c9be5e6f0so1470063a12.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 09:17:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694103070; x=1694707870; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1JN+Qao8IdvyNSWvDm5vhSmhNPjf4gx2dY5//ckJMUw=;
-        b=BBhtLDNr9Cs/A74Yo9sUP2pkeoWqvSl6zTfXrgvw5z4ZHW8TxJkT6lz+2diIMzWwsb
-         I8/3kNUaxrOVD8wjl/ICSD2vlSFSxnPKfEakXJp60Mnbjgs70XokaHur8Fu6DAC1HFFa
-         acD+3vVljNr+tEQczi1B0d3BwDS34xcxTY6wA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694103070; x=1694707870;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1JN+Qao8IdvyNSWvDm5vhSmhNPjf4gx2dY5//ckJMUw=;
-        b=CdYuE+pF3CQorZvk7COEDdDklLZfFL4ZumA++D40ugFA1iikDP3Gi6P4YLt0Kg2HTr
-         3YqkrXIOEUSoRRbSDp2SQ073I5ez2ObzAxt5sxqrwk4rv6SLpI4DtsqFiIB/bGUzgPah
-         EmQPRU6ZPRzJyehGog7WF2nSY0BLGK2D9QS1kResntHdj30jLhFKn3s3YjwoZPghPWlE
-         iuU+uyXSqF3D9S0LDmktFdd91C58T2tBzKKgQ9WqFNsEqeoLh65gsFW712uJNk2WM/D1
-         mZ9yUlZL8uhRjTn1mHd46U9AlFi6atkUhTGze17gJmIqwEDEEQVmjAVSzYTPbn7KBWS5
-         K0rA==
-X-Gm-Message-State: AOJu0YxgdmSYkwC1PRcFcdxABDmLgBycgRooR+9y9b289y+j/MsTfM0D
-        WAXZaWj7lh6zSPQdJU8MB5NAXkwV8rpLTLZHSEu9F9/0v3yMptmZpRI=
-X-Google-Smtp-Source: AGHT+IGKYHUOwu4XGYcybpijSZ0JznJv7+Gh4Hl56ZWHPkAdzWLM3X+6tE/P1NiSyW/cwzz+UlzCUK6gEy03EY7aOO0=
-X-Received: by 2002:a17:906:518d:b0:9a1:f81f:d0d5 with SMTP id
- y13-20020a170906518d00b009a1f81fd0d5mr4617047ejk.54.1694102215719; Thu, 07
- Sep 2023 08:56:55 -0700 (PDT)
+        with ESMTP id S234303AbjIGQqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:46:38 -0400
+Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 418401FD5;
+        Thu,  7 Sep 2023 09:46:10 -0700 (PDT)
+Received: from [134.238.52.102] (helo=rainbowdash)
+        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1qeHce-0052RD-DX; Thu, 07 Sep 2023 17:12:48 +0100
+Received: from ben by rainbowdash with local (Exim 4.96)
+        (envelope-from <ben@rainbowdash>)
+        id 1qeHcd-000HUl-2N;
+        Thu, 07 Sep 2023 17:12:47 +0100
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+To:     linux-pwm@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ben.dooks@codethink.co.uk, u.kleine-koenig@pengutronix.de,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: [PATCH v9 0/6] designware pwm driver updates
+Date:   Thu,  7 Sep 2023 17:12:36 +0100
+Message-Id: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-References: <20230830231758.2561402-1-sjg@chromium.org> <20230830231758.2561402-3-sjg@chromium.org>
- <CAMj1kXG5-aqoOtKdPFEdm=_5SdvgUTOhcDOBP1zdARAvKphJtg@mail.gmail.com>
- <CAL_JsqLx0KnXxFc8mFyT_RmA2qeBEutMXj_3nKo_g==cuSeYuQ@mail.gmail.com>
- <CAPnjgZ1U+Gy0Q_Sc63p0ixkWF9iJEEBLhV8-N9-sh7OGNy-OmQ@mail.gmail.com>
- <CAMj1kXG9vM0haSOu19j7ujQCBEN6CBeXVAH96nm+gixt9FmMrA@mail.gmail.com>
- <CAPnjgZ1oGF0Ni3RhK4fv6mJk40YjqyFVJxt6FfS9AW2rkcs9iA@mail.gmail.com>
- <CAMj1kXEZ4fDvbtgXKjF+L7si-=C-5E0XcjutoEF8pU9a-BGN-g@mail.gmail.com>
- <CAPnjgZ0vv+s00xvY2FqP+Fxb12tHuVWg-nwyWTrvuG+Mo4PaWg@mail.gmail.com>
- <CAMj1kXHGpCt8qkd6XYQF8mMdivQkTnEWjv6NzsFK=+N72LAn=Q@mail.gmail.com>
- <CAPnjgZ1vBaXfBa+FWvASi15=Py0DLbEK5XsRHLrJc02K2Yr_RQ@mail.gmail.com> <CAMj1kXFjVPwnu226R8bHbo0i0LZ7jQE+vLPNQa6cvrCYqGD+YA@mail.gmail.com>
-In-Reply-To: <CAMj1kXFjVPwnu226R8bHbo0i0LZ7jQE+vLPNQa6cvrCYqGD+YA@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Thu, 7 Sep 2023 09:56:37 -0600
-Message-ID: <CAPnjgZ1fVJE=ar_rB_So+vjkOZ_pDjaO5wwPn3pMKe=n3MmBeg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/4] schemas: Add some common reserved-memory usages
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Devicetree Discuss <devicetree@vger.kernel.org>,
-        Maximilian Brune <maximilian.brune@9elements.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Dhaval Sharma <dhaval@rivosinc.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        linux-acpi@vger.kernel.org, Gua Guo <gua.guo@intel.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>,
-        Guo Dong <guo.dong@intel.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ard,
+This series is an update for the DesignWare PWM driver to add support for
+OF (and split the PCI bits out if aynone else wants them). This is mostly
+the same as the v8 series, but with code moved around and module-namespace
+added, plus review comments processed.
 
-On Thu, 7 Sept 2023 at 09:07, Ard Biesheuvel <ardb@kernel.org> wrote:
->
-> On Thu, 7 Sept 2023 at 16:50, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Ard,
-> >
-> > On Thu, 7 Sept 2023 at 08:12, Ard Biesheuvel <ardb@kernel.org> wrote:
-> > >
-> > > On Thu, 7 Sept 2023 at 15:56, Simon Glass <sjg@chromium.org> wrote:
-> > > >
-> > > > Hi Ard,
-> > > >
-> > > > On Thu, 7 Sept 2023 at 07:31, Ard Biesheuvel <ardb@kernel.org> wrot=
-e:
-> > > > >
-> > > > > On Wed, 6 Sept 2023 at 18:50, Simon Glass <sjg@chromium.org> wrot=
-e:
-> > > > > >
-> > > > > > Hi Ard,
-> > > > > >
-> > > > > > On Wed, Sep 6, 2023, 10:09 Ard Biesheuvel <ardb@kernel.org> wro=
-te:
-> > > > > >>
-> > > > > >> On Wed, 6 Sept 2023 at 16:54, Simon Glass <sjg@chromium.org> w=
-rote:
-> > > > > >> >
-> > > > > >> > Hi Rob, Ard,
-> > > > > >> >
-> > > > > >> > On Wed, 6 Sept 2023 at 08:34, Rob Herring <robh@kernel.org> =
-wrote:
-> > > > > >> > >
-> > > > > >> > > On Tue, Sep 5, 2023 at 4:44=E2=80=AFPM Ard Biesheuvel <ard=
-b@kernel.org> wrote:
-> > > > > >> > > >
-> > > > > >> > > > On Thu, 31 Aug 2023 at 01:18, Simon Glass <sjg@chromium.=
-org> wrote:
-> > > > > >> > > > >
-> > > > > >> > > > > The Devicetree specification skips over handling of a =
-logical view of
-> > > > > >> > > > > the memory map, pointing users to the UEFI specificati=
-on.
-> > > > > >> > > > >
-> > > > > >> > > > > It is common to split firmware into 'Platform Init', w=
-hich does the
-> > > > > >> > > > > initial hardware setup and a "Payload" which selects t=
-he OS to be booted.
-> > > > > >> > > > > Thus an handover interface is required between these t=
-wo pieces.
-> > > > > >> > > > >
-> > > > > >> > > > > Where UEFI boot-time services are not available, but U=
-EFI firmware is
-> > > > > >> > > > > present on either side of this interface, information =
-about memory usage
-> > > > > >> > > > > and attributes must be presented to the "Payload" in s=
-ome form.
-> > > > > >> > > > >
-> > > > > >> > > >
-> > > > > >> > > > I don't think the UEFI references are needed or helpful =
-here.
-> > > > > >> > > >
-> > > > > >> > > > > This aims to provide an small schema addition for this=
- mapping.
-> > > > > >> > > > >
-> > > > > >> > > > > For now, no attempt is made to create an exhaustive bi=
-nding, so there are
-> > > > > >> > > > > some example types listed. More can be added later.
-> > > > > >> > > > >
-> > > > > >> > > > > The compatible string is not included, since the node =
-name is enough to
-> > > > > >> > > > > indicate the purpose of a node, as per the existing re=
-served-memory
-> > > > > >> > > > > schema.
-> > > > > >> > >
-> > > > > >> > > Node names reflect the 'class', but not what's specificall=
-y in the
-> > > > > >> > > node. So really, all reserved-memory nodes should have the=
- same name,
-> > > > > >> > > but that ship already sailed for existing users. 'compatib=
-le' is the
-> > > > > >> > > right thing here. As to what the node name should be, well=
-, we haven't
-> > > > > >> > > defined that. I think we just used 'memory' on some platfo=
-rms.
-> > > > > >> >
-> > > > > >> > OK
-> > > > > >> >
-> > > > > >> > >
-> > > > > >> > > > > This binding does not include a binding for the memory=
- 'attribute'
-> > > > > >> > > > > property, defined by EFI_BOOT_SERVICES.GetMemoryMap().=
- It may be useful
-> > > > > >> > > > > to have that as well, but perhaps not as a bit mask.
-> > > > > >> > > > >
-> > > > > >> > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> > > > > >> > > > > ---
-> > > > > >> > > > >
-> > > > > >> > > > > Changes in v5:
-> > > > > >> > > > > - Drop the memory-map node (should have done that in v=
-4)
-> > > > > >> > > > > - Tidy up schema a bit
-> > > > > >> > > > >
-> > > > > >> > > > > Changes in v4:
-> > > > > >> > > > > - Make use of the reserved-memory node instead of crea=
-ting a new one
-> > > > > >> > > > >
-> > > > > >> > > > > Changes in v3:
-> > > > > >> > > > > - Reword commit message again
-> > > > > >> > > > > - cc a lot more people, from the FFI patch
-> > > > > >> > > > > - Split out the attributes into the /memory nodes
-> > > > > >> > > > >
-> > > > > >> > > > > Changes in v2:
-> > > > > >> > > > > - Reword commit message
-> > > > > >> > > > >
-> > > > > >> > > > >  .../reserved-memory/common-reserved.yaml      | 53 ++=
-+++++++++++++++++
-> > > > > >> > > > >  1 file changed, 53 insertions(+)
-> > > > > >> > > > >  create mode 100644 dtschema/schemas/reserved-memory/c=
-ommon-reserved.yaml
-> > > > > >> > > > >
-> > > > > >> > > > > diff --git a/dtschema/schemas/reserved-memory/common-r=
-eserved.yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> > > > > >> > > > > new file mode 100644
-> > > > > >> > > > > index 0000000..d1b466b
-> > > > > >> > > > > --- /dev/null
-> > > > > >> > > > > +++ b/dtschema/schemas/reserved-memory/common-reserved=
-.yaml
-> > > > > >> > > > > @@ -0,0 +1,53 @@
-> > > > > >> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clau=
-se
-> > > > > >> > > > > +%YAML 1.2
-> > > > > >> > > > > +---
-> > > > > >> > > > > +$id: http://devicetree.org/schemas/reserved-memory/co=
-mmon-reserved.yaml#
-> > > > > >> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml=
-#
-> > > > > >> > > > > +
-> > > > > >> > > > > +title: Common memory reservations
-> > > > > >> > > > > +
-> > > > > >> > > > > +description: |
-> > > > > >> > > > > +  Specifies that the reserved memory region can be us=
-ed for the purpose
-> > > > > >> > > > > +  indicated by its node name.
-> > > > > >> > > > > +
-> > > > > >> > > > > +  Clients may reuse this reserved memory if they unde=
-rstand what it is for.
-> > > > > >> > > > > +
-> > > > > >> > > > > +maintainers:
-> > > > > >> > > > > +  - Simon Glass <sjg@chromium.org>
-> > > > > >> > > > > +
-> > > > > >> > > > > +allOf:
-> > > > > >> > > > > +  - $ref: reserved-memory.yaml
-> > > > > >> > > > > +
-> > > > > >> > > > > +properties:
-> > > > > >> > > > > +  $nodename:
-> > > > > >> > > > > +    enum:
-> > > > > >> > > > > +      - acpi-reclaim
-> > > > > >> > > > > +      - acpi-nvs
-> > > > > >> > > > > +      - boot-code
-> > > > > >> > > > > +      - boot-data
-> > > > > >> > > > > +      - runtime-code
-> > > > > >> > > > > +      - runtime-data
-> > > > > >> > > > > +
-> > > > > >> > > >
-> > > > > >> > > > These types are used by firmware to describe the nature =
-of certain
-> > > > > >> > > > memory regions to the OS. Boot code and data can be disc=
-arded, as well
-> > > > > >> > > > as ACPI reclaim after its contents have been consumed. R=
-untime code
-> > > > > >> > > > and data need to be mapped for runtime features to work.
-> > > > > >> > > >
-> > > > > >> > > > When one firmware phase communicates the purpose of a ce=
-rtain memory
-> > > > > >> > > > reservation to another, it is typically not limited to w=
-hether its
-> > > > > >> > > > needs to be preserved and when it needs to be mapped (an=
-d with which
-> > > > > >> > > > attributes). I'd expect a memory reservation appearing u=
-nder this node
-> > > > > >> > > > to have a clearly defined purpose, and the subsequent ph=
-ases need to
-> > > > > >> > > > be able to discover this information.
-> > > > > >> > > >
-> > > > > >> > > > For example, a communication buffer for secure<->non-sec=
-ure
-> > > > > >> > > > communication or a page with spin tables used by PSCI. N=
-one of the
-> > > > > >> > > > proposed labels are appropriate for this, and I'd much r=
-ather have a
-> > > > > >> > > > compatible string or some other property that clarifies =
-the nature in
-> > > > > >> > > > a more suitable way. Note that 'no-map' already exists t=
-o indicate
-> > > > > >> > > > that the CPU should not map this memory unless it does s=
-o for the
-> > > > > >> > > > specific purpose that the reservation was made for.
-> > > > > >> > >
-> > > > > >> > > I agree. I think compatible is the better approach. Some p=
-roperty like
-> > > > > >> > > 'discard' may not be sufficient information if the OS need=
-s to consume
-> > > > > >> > > the region first and then discard it. Better to state exac=
-tly what's
-> > > > > >> > > there and then the OS can imply the rest.
-> > > > > >> >
-> > > > > >> > OK, so what sort of compatible strings?
-> > > > > >> >
-> > > > > >> > How about:
-> > > > > >> > "acpi-reclaim" - holds ACPI tables; memory can be reclaimed =
-once the
-> > > > > >> > tables are read and no-longer needed
-> > > > > >>
-> > > > > >> ACPI reclaim is a policy, not a purpose. This memory could con=
-tain
-> > > > > >> many different things.
-> > > > > >>
-> > > > > >> > "boot-code" - holds boot code; memory can be reclaimed once =
-the boot
-> > > > > >> > phase is complete
-> > > > > >> > "runtime-code" - holds runtime code; memory can be reclaimed=
- only if
-> > > > > >> > this code will not be used from that point
-> > > > > >> >
-> > > > > >>
-> > > > > >> These are also policies. They can be inferred from the purpose=
-.
-> > > > > >>
-> > > > > >> > etc. We can then have more specific compatibles, like:
-> > > > > >> >
-> > > > > >> > "psci-spin-table" - holds PSCI spin tables
-> > > > > >> >
-> > > > > >> > so you could do:
-> > > > > >> >
-> > > > > >> > compatible =3D "runtime-code", "psci-spin-table";
-> > > > > >> >
-> > > > > >>
-> > > > > >> I understand that this binding targets firmware<->firmware rat=
-her than
-> > > > > >> firmware<->OS, which makes it much more difficult to keep it b=
-oth
-> > > > > >> generic and sufficiently descriptive.
-> > > > > >>
-> > > > > >> However, I still feel that all the overlap with UEFI memory ty=
-pes is
-> > > > > >> not what we want here. UEFI knows how to manage its own memory=
- map,
-> > > > > >> what it needs to know is what memory is already in use and for=
- which
-> > > > > >> exact purpose. Whether or not that implies that the memory can=
- be
-> > > > > >> freed at some point or can be mapped or not should follow from=
- that.
-> > > > > >
-> > > > > >
-> > > > > > Can you please make a suggestion? I am unsure what you are look=
-ing for.
-> > > > > >
-> > > > >
-> > > > > I'm happy to help flesh this out, but you still have not provided=
- us
-> > > > > with an actual use case, so I can only draw from my own experienc=
-e
-> > > > > putting together firmware for virtual and physical ARM machines.
-> > > >
-> > > > I did explain that this is needed when Tianocore is on both sides o=
-f
-> > > > the interface, since Platform Init places some things in memory and
-> > > > the Payload needs to preserve them there, and/or know where they ar=
-e.
-> > > >
-> > > > I think the problem might be that you don't agree with that, but it
-> > > > seems to be a fact, so I am not sure how I can alter it.
-> > > >
-> > > > Please can you clearly explain which part of the use case you are m=
-issing.
-> > > >
-> > >
-> > > 'Tianocore on both sides of the interface' means that Tianocore runs
-> > > as the platform init code, and uses a bespoke DT based protocol to
-> > > launch another instance of Tianocore as the payload, right?
-> >
-> > Not another instance, no. Just the other half of Tianocore. The first
-> > half does platform init and the second half does the loading of the
-> > OS.
-> >
->
-> That doesn't make any sense to me.
->
-> > >
-> > > Tianocore/EDK2 already implements methods to reinvoke itself if neede=
-d
-> > > (e.g., during a firmware update), and does so by launching a new DXE
-> > > core. So the boot sequence looks like
-> > >
-> > > SEC -> PEI -> DXE -> BDS -> app that invokes UpdateCapsule() -> DXE -=
->
-> > > firmware update
-> > >
-> > > So please elaborate on how this Tianocore on both sides of the
-> > > interface is put together when it uses this DT based handover. We
-> > > really need a better understanding of this in order to design a DT
-> > > binding that meets its needs.
-> >
-> > Are you familiar with building Tianocore as a coreboot payload, for
-> > example? That shows Tianocore running as just the Payload, with
-> > coreboot doing the platform init. So the use case I am talking about
-> > is similar to that.
-> >
->
-> Yes I am familiar with that, and it is a completely different thing.
+We no longer have access to the hardware to test any further modifications.
 
-Right, but that is my use case.
+I've not added the tested-by tags as there have been alterations to this
+series.
 
->
-> As i explained before, there is already prior art for this in
-> Tianocore, i.e., launching a Tianocore build based on a DT description
-> of the platform, including /memory and /reserved-memory nodes.
+Note, the dt binding seems to have already been applied.
 
-By prior art do you mean code, or an existing binding? In either case,
-can you please point me to it? Is this a generic binding used on x86
-as well, or just for ARM?
+The lengthy changelog:
 
-My goal here is to augment the binding.
+v9:
+  - fix multi-line comment issue
+  - changed rounding in calc-rate code
+  - changed email addresses to codethink one
+  - fix spelling mistake(s)
+  - add clk_rate_exclusive_get() to lock clock rate for now
+v8:
+ - updated reviewed tags
+ - fix module name for pci version
+ - fix config symbol bug in makefile
+ - remove pci compile-test (mostly not used for pci)
+ - push the compile-test into the platform/of driver
+v7:
+ - fixup kconfig from previous pcie changes
+ - re-order kconfig to make dwc core be selected by PCI driver
+ - move clk variable to patch it is used in
+v6:
+ - fix removal ordering of DWC_PERIOD_NS
+v5:
+ - fixed kconfig string error
+ - merged pwm-nr into main of code
+ - split of code from pci code
+ - updated pwm-nr capping
+ - fix duplicate error reporting in of-code
+ - fix return in of-probe
+ - remove unecessary remove function as devm_ functions sort this
+ - fixed ordering of properties
+ - added missing reg item
+ - fixed missing split of the two clock sources.
+ - get bus clock in of code
+v4:
+ - split pci and of into new modules
+ - fixup review comments
+ - fix typos in dt-bindings
+v3:
+- change the compatible name
+- squash down pwm count patch
+- fixup patch naming
+v2:
+- fix #pwm-cells count to be 3
+- fix indetation 
+- merge the two clock patches
+- add HAS_IOMEM as a config dependency
 
->
-> I argued that Tianocore never consumes memory reservations with UEFI
-> semantics, given that it supplants whatever UEFI functionality the
-> previous stage may have provided. But it shouldn't step on the code
-> and data regions used by the previous stage if it is still running in
-> the background (e.g., OS at EL1 and PSCI at EL2 on ARM)
->
-> So this brings me back to the things I proposed in my previous reply:
-> - memory reservations should be described in detail so the consumer
-> knows what to do with it
+Ben Dooks (6):
+  pwm: dwc: split pci out of core driver
+  pwm: dwc: make timer clock configurable
+  pwm: dwc: add PWM bit unset in get_state call
+  pwm: dwc: use clock rate in hz to avoid rounding issues
+  pwm: dwc: round rate divisions up
+  pwm: dwc: add of/platform support
 
-Yes I can add more detail, if that is all that is needed. But we seem
-to still not be aligned on the goal.
+ drivers/pwm/Kconfig        |  24 ++++-
+ drivers/pwm/Makefile       |   2 +
+ drivers/pwm/pwm-dwc-core.c | 197 ++++++++++++++++++++++++++++++++++++
+ drivers/pwm/pwm-dwc-of.c   |  93 +++++++++++++++++
+ drivers/pwm/pwm-dwc.c      | 198 +------------------------------------
+ drivers/pwm/pwm-dwc.h      |  61 ++++++++++++
+ 6 files changed, 380 insertions(+), 195 deletions(-)
+ create mode 100644 drivers/pwm/pwm-dwc-core.c
+ create mode 100644 drivers/pwm/pwm-dwc-of.c
+ create mode 100644 drivers/pwm/pwm-dwc.h
 
+-- 
+2.40.1
 
-> - memory reservations should have attributes that describe how the
-> memory may be used if not for the described purpose
->
-> I still don't see a reason for things like runtime-code and
-> runtime-data etc based on the above. If stage N describes the memory
-> it occupies itself as system memory, it should reserve it as well if
-> it needs to be preserved after stage N+1 has taken over, so perhaps it
-> should be described as a discardable memory reservation but I don't
-> think it necessarily needs a type in that case.
-
-Well if you can find another way to do this in the DT, that is fine.
-
-Regards,
-Simon
