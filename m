@@ -2,159 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A33D17975B5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD4779756C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232512AbjIGPyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 11:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36148 "EHLO
+        id S235250AbjIGPrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 11:47:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243224AbjIGPu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:50:27 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA91C59CC;
-        Thu,  7 Sep 2023 08:40:51 -0700 (PDT)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 387DtEDL004974;
-        Thu, 7 Sep 2023 14:20:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=t0M+lC4rAAagaeLRUqBbxq9Tce0AeCSEV2tAjKZ6dY8=;
- b=Jwdnhl850xaIrfI9nDU2q0MLnU79ixvnWamUIsjgcX9xmiXN6ErU9xpYydt/t5AkxhbK
- H/C0Ox1QI4Zu2i57/0KSDQWeOySn8FASWLDgmd/Hq+W2VuEMbOn0y9tup4nn0HlFMlJl
- Z7SSXjG+FNlTJg3QF1ETM7r3fC8ihvcPUe82WI8B3A2Fp+Nu59JMuturi7+YXXeU7l47
- l/Vw3c1oBAirI/svlRvNlgVkr0BvAh7T6EGeBTSySrEXnKuaq/9oxDpEuI0QyCOGD5ek
- dUpn6SRTdwz+wqFWqd9Xqr5F+X6D0b6SH08HmNouZ3i3lU0L9G3CMzD8gqLVjG6HNAQ6 LQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sy4bqhftn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Sep 2023 14:20:02 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 387EK1GB011421
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 7 Sep 2023 14:20:01 GMT
-Received: from [10.110.56.75] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 7 Sep
- 2023 07:20:00 -0700
-Message-ID: <d79fe150-9930-d351-f096-7d2216526587@quicinc.com>
-Date:   Thu, 7 Sep 2023 07:20:00 -0700
+        with ESMTP id S242721AbjIGP3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:29:04 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2412F184;
+        Thu,  7 Sep 2023 08:28:34 -0700 (PDT)
+Received: from pyrite.rasen.tech (h175-177-042-159.catv02.itscom.jp [175.177.42.159])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CA8E98C2;
+        Thu,  7 Sep 2023 16:48:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1694098121;
+        bh=mwT/YTlALEgoSnoEMtAp9n01verTpq/QG6x65B4wxZI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SRNMps/BQCM5fq91KXzRxUuXv1VToF19Wu6UHdGQD488qe6rKSwjbF9nrLgTS2knO
+         I4FQRFjFgU841vaYWoapwUGlxWrCStM2KWk6wCkroG/1llVXJVLNpfS8xBLl2YGoYM
+         RHeac7y0FKP15eatm1bWHoTdksK0T93tDMUKfqgI=
+Date:   Thu, 7 Sep 2023 23:49:57 +0900
+From:   Paul Elder <paul.elder@ideasonboard.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: media: Add THine THP7312 ISP
+Message-ID: <ZPnjFf4f1yX8ZZ/s@pyrite.rasen.tech>
+References: <20230905233118.183140-1-paul.elder@ideasonboard.com>
+ <20230905233118.183140-2-paul.elder@ideasonboard.com>
+ <f023767c-aa74-87ca-d333-3dba8a481cb6@linaro.org>
+ <20230906081513.GK7971@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 0/3] Add qcom hvc/shmem transport
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20230718160833.36397-1-quic_nkela@quicinc.com>
- <20230811175719.28378-1-quic_nkela@quicinc.com>
- <3342d8bf-5281-c082-cb9a-7a027b413237@quicinc.com>
- <f5b05cfa-f12c-4f4d-a801-3aa76d843d6d@linaro.org>
- <20230907103619.2kqh7tfivwdfm5rd@bogus>
-Content-Language: en-US
-From:   Nikunj Kela <quic_nkela@quicinc.com>
-In-Reply-To: <20230907103619.2kqh7tfivwdfm5rd@bogus>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: weVwHyWYPHpU_KGtnAQ4_EN4Hk8UIdIE
-X-Proofpoint-ORIG-GUID: weVwHyWYPHpU_KGtnAQ4_EN4Hk8UIdIE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-07_07,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
- priorityscore=1501 lowpriorityscore=0 malwarescore=0 suspectscore=0
- phishscore=0 spamscore=0 mlxlogscore=999 mlxscore=0 impostorscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309070127
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230906081513.GK7971@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 06, 2023 at 11:15:13AM +0300, Laurent Pinchart wrote:
+> On Wed, Sep 06, 2023 at 09:18:30AM +0200, Krzysztof Kozlowski wrote:
+> > On 06/09/2023 01:31, Paul Elder wrote:
+> > > Add bindings for the THine THP7312 ISP.
+> > > 
+> > > Signed-off-by: Paul Elder <paul.elder@ideasonboard.com>
+> > > ---
+> > > Since the THP7312 supports multiple sensors, thine,rx-data-lanes alone
+> > > might not be enough. I was consdering using sensor nodes like what the
+> > > AP1302 does [1]. This way we can also move the power supplies that only
+> > > concern the sensor in there as well. I was wondering what to do about
+> > > the model name, though, as the thp7312 completely isolates that from the 
+> > > rest of the system.
+> > > 
+> > > I'm planning to add sensor nodes in somehow in a v2.
+> > > 
+> > > [1] https://lore.kernel.org/linux-media/20211006113254.3470-2-anil.mamidala@xilinx.com/
+> > > 
+> > >  .../bindings/media/thine,thp7312.yaml         | 170 ++++++++++++++++++
+> > >  1 file changed, 170 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/thine,thp7312.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/thine,thp7312.yaml b/Documentation/devicetree/bindings/media/thine,thp7312.yaml
+> > > new file mode 100644
+> > > index 000000000000..e8d203dcda81
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/thine,thp7312.yaml
+> > > @@ -0,0 +1,170 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +# Copyright (c) 2023 Ideas on Board
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/thine,thp7312.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: THine THP7312
+> > > +
+> > > +maintainers:
+> > > +  - Paul Elder <paul.elder@@ideasonboard.com>
+> > > +
+> > > +description:
+> > > +  The THP7312 is a standalone ISP controlled over i2c, and is capable of
+> > > +  various image processing and correction functions, including 3A control. It
+> > > +  can be connected to CMOS image sensors from various vendors, supporting both
+> > > +  MIPI CSI-2 and parallel interfaces. It can also output on either MIPI CSI-2
+> > > +  or parallel. The hardware is capable of transmitting and receiving MIPI
+> > > +  interlaved data strams with data types or multiple virtual channel
+> > > +  identifiers.
+> > > +
+> > > +allOf:
+> > > +  - $ref: ../video-interface-devices.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: thine,thp7312
+> > > +
+> > > +  reg:
+> > > +    description: I2C device address
+> > 
+> > You can skip description. It is obvious.
+> > 
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +      - description: CLKI clock input
+> > 
+> > This was absolutely never tested.
+> 
+> Paul, before sending DT bindings, please test them. The procedure
+> involves running `make dt_binding_check` as described towards the end of
+> Documentation/devicetree/bindings/writing-schema.rst. There's an
+> environment variable that you can use to restrict the test to a
+> particular binding file.
+> 
 
-On 9/7/2023 3:36 AM, Sudeep Holla wrote:
-> On Tue, Sep 05, 2023 at 06:37:14PM +0200, Krzysztof Kozlowski wrote:
->> On 05/09/2023 18:06, Nikunj Kela wrote:
->>> On 8/11/2023 10:57 AM, Nikunj Kela wrote:
->>>> This change introduce a new transport channel for Qualcomm virtual
->>>> platforms. The transport is mechanically similar to ARM_SCMI_TRANSPORT_SMC.
->>>> The difference between the two transports is that a parameter is passed in
->>>> the hypervisor call to identify which doorbell to assert. This parameter is
->>>> dynamically generated at runtime on the device and insuitable to pass via
->>>> the devicetree.
->>>>
->>>> The function ID and parameter are stored by firmware in the shmem region.
->>>>
->>>> This has been tested on ARM64 virtual Qualcomm platform.
->>>>
->>>> ---
->>>> v3 -> fix the compilation error reported by the test bot,
->>>>         add support for polling based instances
->>>>
->>>> v2 -> use allOf construct in dtb schema,
->>>>         remove wrappers from mutexes,
->>>>         use architecture independent channel layout
->>>>
->>>> v1 -> original patches
->>>>
->>>> Nikunj Kela (3):
->>>>     dt-bindings: arm: convert nested if-else construct to allOf
->>>>     dt-bindings: arm: Add qcom specific hvc transport for SCMI
->>>>     firmware: arm_scmi: Add qcom hvc/shmem transport
->>>>
->>>>    .../bindings/firmware/arm,scmi.yaml           |  67 ++---
->>>>    drivers/firmware/arm_scmi/Kconfig             |  13 +
->>>>    drivers/firmware/arm_scmi/Makefile            |   2 +
->>>>    drivers/firmware/arm_scmi/common.h            |   3 +
->>>>    drivers/firmware/arm_scmi/driver.c            |   4 +
->>>>    drivers/firmware/arm_scmi/qcom_hvc.c          | 232 ++++++++++++++++++
->>>>    6 files changed, 293 insertions(+), 28 deletions(-)
->>>>    create mode 100644 drivers/firmware/arm_scmi/qcom_hvc.c
->>> Gentle Ping!
-> Pong !
->
->> It's third ping these two weeks from Qualcomm. Folks, it is merge
->> window. What do you think will happen with your ping during this time?
->>
-> +1
->
-> Okay, here is the deal with this patch set. As you are aware that a previous
-> merged solution was abandoned by Qcom in a single kernel release cycle. So
-> I decided to ignore this for one or 2 kernel release cycle to make sure
-> Qcom makes up their mind on the design and then we can see how to proceed.
-> Qcom must understand upstream kernel is not a playground to push their
-> design which they might decided to drop support for in such short period.
-> Please understand the upstream kernel supports platforms that are more than
-> few decades old. It is not like the mobile platforms that are hardly supported
-> for couple of years. And similarly, we push core support if and only if we
-> know for sure it will be used on some platform. I trusted Qcom with the
-> previous extension of SMC/HVC transport but I was proven wrong.
->
-> Also, I definitely don't like the way you have copied the whole smc.c
-> and changed it to Qcom's need and made it qcom_hvc.c. Just add the required
-> changes in smc.c.
->
-> --
+ack
+
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +    description: |-
+> > > +      Reference to the GPIO connected to the RESET_N pin, if any.
+> > > +      Must be released (set high) after all supplies are applied.
+> > > +
+> > > +  vddcore-supply:
+> > > +    description:
+> > > +      1.2V supply for core, PLL, MIPI rx and MIPI tx.
+> > > +
+> > > +  vhtermnx-supply:
+> > > +    description:
+> > > +      Supply for input (rx). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > > +
+> > > +  vddtx-supply:
+> > > +    description:
+> > > +      Supply for output (tx). 1.8V for MIPI, or 1.8/2.8/3.3V for parallel.
+> > > +
+> > > +  vddhost-supply:
+> > > +    description:
+> > > +      Supply for host interface. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  vddcmos-supply:
+> > > +    description:
+> > > +      Supply for sensor interface. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  vddgpio_0-supply:
+> > 
+> > No, underscores are not allowed in names.
+> > 
+> > > +    description:
+> > > +      Supply for GPIO_0. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  vddgpio_1-supply:
+> > > +    description:
+> > > +      Supply for GPIO_1. 1.8V, 2.8V, or 3.3V.
+> > > +
+> > > +  DOVDD-supply:
+> > 
+> > lowercase. Look at your other supplies. VDD is spelled there "vdd", so
+> > do not introduce random style.
+> > 
+> > > +    description:
+> > > +      Digital I/O (1.8V) supply for image sensor.
+> > > +
+> > > +  AVDD-supply:
+> > 
+> > lowercase
+> > 
+> > > +    description:
+> > > +      Analog (2.8V) supply for image sensor.
+> > > +
+> > > +  DVDD-supply:
+> > 
+> > lowercase
+> > 
+> > > +    description:
+> > > +      Digital Core (1.2V) supply for image sensor.
+> 
+> Are those three supplies required ? It looks like the vdd* supplies are
+> all you need.
+
+The THSCG101 camera module has these connected to the connector
+connected to the sensor. Which don't even match with the supplies that
+are in the imx258 bindings, so I'm not sure how to express these;
+they're not part of the thp7312 but they're technically necessary for
+the camera module, but they're also not part of the sensor that the ISP
+is connected to.
+
+
+Paul
+
+> 
+> > > +
+> > > +  orientation: true
+> > > +  rotation: true
+> > > +
+> > > +  thine,rx,data-lanes:
+> > 
+> > Why are you duplicating properties? With wrong name? No, that's not a
+> > property of a device node, but endpoint.
+> > 
+> > > +    minItems: 4
+> > > +    maxItems: 4
+> > > +    $ref: /schemas/media/video-interfaces.yaml#data-lanes
+> > > +    description: |-
+> > 
+> > Drop |- where not needed.
+> > 
+> > > +      This property is for lane reordering between the THP7312 and the imaging
+> > > +      sensor that it is connected to.
+> > > +
+> > > +  port:
+> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      endpoint:
+> > > +        $ref: /schemas/media/video-interfaces.yaml#
+> > > +        unevaluatedProperties: false
+> > > +
+> > > +        properties:
+> > > +          data-lanes:
+> > > +            description: |-
+> > > +              The sensor supports either two-lane, or four-lane operation.
+> > > +              This property is for lane reordering between the THP7312 and
+> > > +              the SoC. If this property is omitted four-lane operation is
+> > > +              assumed. For two-lane operation the property must be set to <1 2>.
+> > > +            minItems: 2
+> > > +            maxItems: 4
+> > > +            items:
+> > > +              maximum: 4
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reset-gpios
+> > > +  - clocks
+> > > +  - vddcore-supply
+> > > +  - vhtermrx-supply
+> > > +  - vddtx-supply
+> > > +  - vddhost-supply
+> > > +  - vddcmos-supply
+> > > +  - vddgpio_0-supply
+> > > +  - vddgpio_1-supply
+> > > +  - DOVDD-supply
+> > > +  - AVDD-supply
+> > > +  - DVDD-supply
+> > > +  - thine,rx,data-lanes
+> > > +  - port
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/gpio/gpio.h>
+> > > +
+> > > +    i2c {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +
+> > > +        camera@61 {
+> > > +            compatible = "thine,thp7312";
+> > > +            reg = <0x61>;
+> > > +
+> > > +            pinctrl-names = "default";
+> > > +            pinctrl-0 = <&cam1_pins_default>;
+> > > +
+> > > +            reset-gpios = <&pio 119 GPIO_ACTIVE_LOW>;
+> > > +            clocks = <&camera61_clk>;
+> > > +
+> > > +            vddcore-supply = <&vsys_v4p2>;
+> > > +            AVDD-supply = <&vsys_v4p2>;
+> > > +            DVDD-supply = <&vsys_v4p2>;
+> > 
+> > Srlsy, test it before sending. Look how many supplies you require and
+> > what is provided here. How any of this could possibly work?
+> 
+> -- 
 > Regards,
-> Sudeep
-
-Completely understand your concerns and extending my apologies once 
-again on the patch that was abandoned. I will rework the patch to 
-include changes in smc.c. Thanks so much for your response!
-
+> 
+> Laurent Pinchart
