@@ -2,63 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 049687976CD
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5433C79776B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:25:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240326AbjIGQQt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:16:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42140 "EHLO
+        id S237756AbjIGQZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:25:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238457AbjIGQQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:16:22 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96F76AD3A;
-        Thu,  7 Sep 2023 09:15:20 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id C3BE066072FC;
-        Thu,  7 Sep 2023 11:49:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694083754;
-        bh=OFLJjkH0n3nuvjKy5n4yw1ihmDQMqgkN8jJdfrUz49c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PZUAyQIL3eLgRZ1dsWDYci/fuecgDE+LjOI4plnfUOCi9rOXqGJz/zsk/vlrgKsuf
-         XvQ4AnOIR7T+VtEsgTIgTj0q2WWtUQ0nL3QGkg0EMZGLhviDz3OFgn6vVDjY5N5yg5
-         sGvFnai2PknMLqVPU94uQKS5NGU71U4qw0YyKYs0sEOIF+7taVf5jo+ALoybRJYElc
-         CKkvzDnbLWu8ZTOgbrvgzRBql0KM9+TpQ2V+2ubdK2+X4wD8o1MkX8aQFMDUSi67te
-         l1LLbHMwz6o63UciiQZ9qMwEVgqEI8kloAqSc2xjxKeA7A5d6qAqWukik1R0zNCRQx
-         asT6oy6p10otw==
-Message-ID: <ebf80e22-77c4-8f8d-6e98-e8b33949e6e1@collabora.com>
-Date:   Thu, 7 Sep 2023 12:49:11 +0200
+        with ESMTP id S240939AbjIGQYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:24:06 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A503C272B;
+        Thu,  7 Sep 2023 09:21:12 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 001EAC116D6;
+        Thu,  7 Sep 2023 11:30:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1694086232;
+        bh=BQqmAsnKsYCURZdBUxzJ5oq3xlzAgdnhH5VorW6j2es=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r6lYQANfxUUFWoyZp/V5KNiQHdM+KGxHUGVv4pBcJQhRwOn4+5pLAvcr3hecL4Ucm
+         nSg2sGI4ndAzw8OGj7Eb+6ZKbKjlRgaDPgZXIzgENndX8qklFZbFfz3Vv0QA2YGdTv
+         edRhLRXleubbSps3JiKxCVXgJ8r6e62wLhHU06hA=
+Date:   Thu, 7 Sep 2023 12:30:29 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Nathan Chancellor <nathan@kernel.org>, stable@vger.kernel.org,
+        linux-security-module@vger.kernel.org, devicetree@vger.kernel.org,
+        frowand.list@gmail.com, robh+dt@kernel.org, sashal@kernel.org,
+        dmitry.kasatkin@gmail.com, linux-integrity@vger.kernel.org,
+        zohar@linux.ibm.com
+Subject: Re: [PATCH 5.15] of: kexec: Mark ima_{free,stable}_kexec_buffer() as
+ __init
+Message-ID: <2023090723-mocha-overfed-f6df@gregkh>
+References: <20230905-5-15-of-kexec-modpost-warning-v1-1-4138b2e96b4e@kernel.org>
+ <169403211998.243709.4772468997015448407.robh@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v17 05/14] remoteproc: mediatek: Extract SCP common
- registers
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230901080935.14571-1-tinghan.shen@mediatek.com>
- <20230901080935.14571-6-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230901080935.14571-6-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <169403211998.243709.4772468997015448407.robh@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,14 +50,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 01/09/23 10:09, Tinghan Shen ha scritto:
-> This is the 1st preliminary steps for probing multi-core SCP.
-> The registers of config and l1tcm are common on single-core SCP
-> and multi-core SCP. Extract these registers out to reduce duplicated
-> fields in mtk_scp when multiple SCP instances are created.
+On Wed, Sep 06, 2023 at 03:28:51PM -0500, Rob Herring wrote:
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> On Tue, 05 Sep 2023 13:36:11 -0700, Nathan Chancellor wrote:
+> > This commit has no direct upstream equivalent.
+> > 
+> > After commit d48016d74836 ("mm,ima,kexec,of: use memblock_free_late from
+> > ima_free_kexec_buffer") in 5.15, there is a modpost warning for certain
+> > configurations:
+> > 
+> >   WARNING: modpost: vmlinux.o(.text+0xb14064): Section mismatch in reference from the function ima_free_kexec_buffer() to the function .init.text:__memblock_free_late()
+> >   The function ima_free_kexec_buffer() references
+> >   the function __init __memblock_free_late().
+> >   This is often because ima_free_kexec_buffer lacks a __init
+> >   annotation or the annotation of __memblock_free_late is wrong.
+> > 
+> > In mainline, there is no issue because ima_free_kexec_buffer() is marked
+> > as __init, which was done as part of commit b69a2afd5afc ("x86/kexec:
+> > Carry forward IMA measurement log on kexec") in 6.0, which is not
+> > suitable for stable.
+> > 
+> > Mark ima_free_kexec_buffer() and its single caller
+> > ima_load_kexec_buffer() as __init in 5.15, as ima_load_kexec_buffer() is
+> > only called from ima_init(), which is __init, clearing up the warning.
+> > 
+> > Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+> > ---
+> >  drivers/of/kexec.c                 | 2 +-
+> >  include/linux/of.h                 | 2 +-
+> >  security/integrity/ima/ima.h       | 2 +-
+> >  security/integrity/ima/ima_kexec.c | 2 +-
+> >  4 files changed, 4 insertions(+), 4 deletions(-)
+> > 
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Now queued up, thanks.
 
-
+greg k-h
