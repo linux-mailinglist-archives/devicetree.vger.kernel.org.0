@@ -2,135 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57E8879773F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 992A4797888
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:48:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240851AbjIGQYG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:24:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
+        id S240996AbjIGQsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:48:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244055AbjIGQXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:23:22 -0400
-Received: from mail-ua1-x92b.google.com (mail-ua1-x92b.google.com [IPv6:2607:f8b0:4864:20::92b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ECEB1FCA;
-        Thu,  7 Sep 2023 09:13:01 -0700 (PDT)
-Received: by mail-ua1-x92b.google.com with SMTP id a1e0cc1a2514c-791b8525b59so455780241.1;
-        Thu, 07 Sep 2023 09:13:01 -0700 (PDT)
+        with ESMTP id S242364AbjIGQsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:48:20 -0400
+Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B191BF1
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 09:47:57 -0700 (PDT)
+Received: by mail-vs1-xe31.google.com with SMTP id ada2fe7eead31-44e8984b724so664741137.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 09:47:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694103096; x=1694707896; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yBbG/89WwsARwO9cDG6ZrnKutfGNLaFwpYJJxWQTWZs=;
-        b=b0vQ4D1mQ3kgqLuEJrXWtcFCHI5Fab6K8w6MX+iTwP4/6dpOYnIbghxpErxgGXmfdm
-         xdMABYv6ezxLVSLwGR1+/5cipYCr1fYqGF0zmM5OjfdVHFC9Q//fb+01Pw2gcN6ocuS3
-         EzgkLCBjWluobmjdFWYxy4slQYM7FmACRBhETD1QCEvW/wq4sn04c/lDOIYvkLvmKjlT
-         u4iv2it/HImD+miwGl9oaRpUUv9SH7ZKJ5lU+lMk5ouu5B3Xm+uMV0NQeJ+kHZUQkK6f
-         tyWIFzBqDcrJpZyBeRohhnIvPTSIeQeQoIuMkfrDfn9wqpiiGixCIel74rXxbX+QAEBG
-         gDOQ==
+        d=linaro.org; s=google; t=1694105205; x=1694710005; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=40rylBcMTDXR7i4w8TksqV00SNZY2PfZiThjPzEVKjU=;
+        b=x3FZyc9iQi+IFxIQ3bqSYd6lhMUXr8+tU3h9AF0QbXgkz9XhuzjhixTN8ZzfHGKHNl
+         AMnggegHV5mQ87i3ctkes85MNOsuMOcchwGYWoj/Qf0v5Bq6Jj9Gql9NjMF29HR00NG5
+         pMxO2b9cjnm/TgDEeFD7c+jedjl8r1reagz5kL40hOctqbC34u/0Q6pKEwgOdqG8vi0z
+         vMrw5Zvs5pUZZRnw0BtLePPhez51dzoZ+uWY1XPtQMgI3O1b8YT8s9MdlKweakmTp80Y
+         oCDnGBquOlmacIuUNBtnmEQ2McZM00sJL75lzJdIsoJDn59fWIdyUTsnsY1M7sKj5TAV
+         67sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694103096; x=1694707896;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yBbG/89WwsARwO9cDG6ZrnKutfGNLaFwpYJJxWQTWZs=;
-        b=OeGUGyat+QwIj46Hul/zlsY02WX3jUfBUyFhphz3EOY2w6gSKeoMCcb4ApzDJkUIZT
-         Ew1lXhzdJJXXIk/I0bujhluRnM3vwxot0ur7f1HNDOl3WMhMTJUIA4fgTlcaKok+wqs6
-         sW6E+tM2G+Gcj36CaZN3chWTLhKbYs4f0RZXf7bxal41FNSdfqYuQpFw8vwkTqkuRRbi
-         +NLkp8DfWZhq3Q5fgvMO9DxbBCbMW1WYvxtmAyvi/pXieiYLqLiATfAMjVqkLqCmAh14
-         yQzJhqq7YAxjZZfTznJpXGhGTIAZIZCJ0J1WX0vm2ivB1xShw8VNYo2n82RGgfiRUy2l
-         YZAA==
-X-Gm-Message-State: AOJu0Yw7KDHEENFthOi39/fz4YBzaYfQxYbYghhjUK355onyA06cacvk
-        YSqc9+LDOkDUqmc4lesX4joYnh0i8QM=
-X-Google-Smtp-Source: AGHT+IEsTDjlEJFvmqN1jWfGRQV26ABBTlqdZtz+qVwfZnqDHmSJNz8WWRbKq21PTU6/3PBfwQkKYQ==
-X-Received: by 2002:a17:90a:49cd:b0:268:5431:f2a7 with SMTP id l13-20020a17090a49cd00b002685431f2a7mr16515868pjm.28.1694093797142;
-        Thu, 07 Sep 2023 06:36:37 -0700 (PDT)
-Received: from debian.me ([103.124.138.83])
-        by smtp.gmail.com with ESMTPSA id 10-20020a17090a01ca00b00263dfe9b972sm1623144pjd.0.2023.09.07.06.36.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Sep 2023 06:36:36 -0700 (PDT)
-Received: by debian.me (Postfix, from userid 1000)
-        id C775B8F4C13A; Thu,  7 Sep 2023 20:36:32 +0700 (WIB)
-Date:   Thu, 7 Sep 2023 20:36:32 +0700
-From:   Bagas Sanjaya <bagasdotme@gmail.com>
-To:     Raul Piper <raulpblooper@gmail.com>,
-        <kernelnewbies@kernelnewbies.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux Devicetree <devicetree@vger.kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Subject: Re: Debugging i2c : i2cdetect cant detect a device on i2c line
-Message-ID: <ZPnR4Cx6_Hh3weEl@debian.me>
-References: <CAEwN+MCorDCS7EhN40Qgja_nY+SFc3G61Zd6yntqAS+w26YO9Q@mail.gmail.com>
+        d=1e100.net; s=20230601; t=1694105205; x=1694710005;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=40rylBcMTDXR7i4w8TksqV00SNZY2PfZiThjPzEVKjU=;
+        b=HRVeaNo/s1/nO2cnr42xvFjGXqHDAhQqyl/tXrwA4DU1wl6e50ZHVIk3TZPojNasuB
+         sQW1B1C6hz5Nx+LOXt6Sf6X2cLcvlyQdHuxdkwAHEpIS0eIaN6zZFfcHoybiDz8CZv2X
+         Jb6NXEZiUu3ySXit6T7xHIME+xRoGt11TC/tMrLn7+xLQbELu8tBzUwL7OWNi24k35re
+         OWP2CGgbzrHChx3UL8o3SejDiLbcOp6WDYzAT/aRSxtQD86Fd5M3jkI+r1jHf0PV1cue
+         fJ+0A2w9LCbE7sRauFuWQhb+6ELnhOFLRpCze8ZucWUUWB+Nwg3H9Z6Bqa0KWo4dn9rl
+         G6rQ==
+X-Gm-Message-State: AOJu0Yzc38n16BNMOm0kchmX9o+o6iOw0MOSOWhOJlFegSCxfGm6juvU
+        BN98PXg9AmBiBY1zVVP0+v1Vlc0lUFi4TvF1TofPjlkbs9dEKgZS
+X-Google-Smtp-Source: AGHT+IETdhddPzANTZg932/q6SiIInI1A+ozTRz+mJHbAWbdsy/mtMdePXNFfT+4SqFLkAAkJW11kVd7upfsHv7Zxng=
+X-Received: by 2002:a25:1e0a:0:b0:d1c:876d:2c7d with SMTP id
+ e10-20020a251e0a000000b00d1c876d2c7dmr3250628ybe.13.1694094907900; Thu, 07
+ Sep 2023 06:55:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="H1/cJnQLbHBLXKRp"
-Content-Disposition: inline
-In-Reply-To: <CAEwN+MCorDCS7EhN40Qgja_nY+SFc3G61Zd6yntqAS+w26YO9Q@mail.gmail.com>
+References: <cover.1693996662.git.quic_varada@quicinc.com> <5e3c29df2b42cceb8072b00546a78e1b99b2d374.1693996662.git.quic_varada@quicinc.com>
+In-Reply-To: <5e3c29df2b42cceb8072b00546a78e1b99b2d374.1693996662.git.quic_varada@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 7 Sep 2023 16:54:56 +0300
+Message-ID: <CAA8EJppXxiX7+6nhfKyJYDU0i2pkBzXL5J3EQUapLJXxx3b=HA@mail.gmail.com>
+Subject: Re: [PATCH v1 04/10] clk: qcom: apss-ipq6018: ipq5332: add safe
+ source switch for a53pll
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 7 Sept 2023 at 08:22, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
+>
+> Stromer Plus PLL found on IPQ53xx doesn't support dynamic
+> frequency scaling. To achieve the same, we need to park the APPS
+> PLL source to GPLL0, re configure the PLL and then switch the
+> source to APSS_PLL_EARLY.
+>
+> To support this, register a clock notifier to get the PRE_RATE
+> and POST_RATE notification. Change the APSS PLL source to GPLL0
+> when PRE_RATE notification is received, then configure the PLL
+> and then change back the source to APSS_PLL_EARLY.
 
---H1/cJnQLbHBLXKRp
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This means that we are changing the parents behind the back of CCF,
+which is not great.
 
-[also Cc: devicetree and ARM folks]
+>
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  drivers/clk/qcom/apss-ipq6018.c | 54 ++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 53 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
+> index 4e13a08..ffb6ab5 100644
+> --- a/drivers/clk/qcom/apss-ipq6018.c
+> +++ b/drivers/clk/qcom/apss-ipq6018.c
+> @@ -9,8 +9,11 @@
+>  #include <linux/clk-provider.h>
+>  #include <linux/regmap.h>
+>  #include <linux/module.h>
+> +#include <linux/clk.h>
+> +#include <linux/soc/qcom/smem.h>
+>
+>  #include <dt-bindings/clock/qcom,apss-ipq.h>
+> +#include <dt-bindings/arm/qcom,ids.h>
+>
+>  #include "common.h"
+>  #include "clk-regmap.h"
+> @@ -84,15 +87,64 @@ static const struct qcom_cc_desc apss_ipq6018_desc = {
+>         .num_clks = ARRAY_SIZE(apss_ipq6018_clks),
+>  };
+>
+> +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long action,
+> +                               void *data)
+> +{
+> +       u8 index;
+> +       int err;
+> +
+> +       if (action == PRE_RATE_CHANGE)
+> +               index = P_GPLL0;
 
-On Thu, Sep 07, 2023 at 08:21:44AM +0530, Raul Piper wrote:
-> Hello ,
-> I am trying to detect an i2c device A on i2c1 line on  one of the Arm
-> Cortex A7 platform but not able to see any device on a given address (
-> 0x3d) .
->=20
-> Is there any parameters of i2c which i can change like rise/fall time
-> , timeout etc in a device tree or kernel source and re test it?
-> I have tried changing the i2c speed from 100KHz to 400 KHz  but no succes=
-s.
-> I have even tried removing the 1.5K pull ups on the i2c lines but no resu=
-lt.
->=20
-> So I wanted to know on what factors i2cdetect may not probe the device
-> or show it on the hex dump.
-> What parameters of i2c driver i can tinker and where? Is Platform dts
-> is the only file i can modify and test with?
-> Kernel is 5.51 .
+I don't see P_GPLL0 being supported in the ipq6018 driver.
 
-Do you mean v5.15.y stable series?
+> +       else if (action == POST_RATE_CHANGE)
+> +               index = P_APSS_PLL_EARLY;
 
-> There are other 2-3 devices on the same lines which responds to
-> i2cdetect with correct address but not this device (0x3D) .
-> Its i2c address is also different from the current devices.
->=20
+You also have to handle ABORT_RATE_CHANGE here.
 
-Specifically, what device do you have this issue with?
+> +       else
+> +               return 0;
+> +
+> +       err = clk_rcg2_mux_closest_ops.set_parent(&apcs_alias0_clk_src.clkr.hw,
+> +                                                 index);
+> +
+> +       return notifier_from_errno(err);
+> +}
+> +
+> +static struct notifier_block cpu_clk_notifier = {
+> +       .notifier_call = cpu_clk_notifier_fn,
+> +};
+> +
+>  static int apss_ipq6018_probe(struct platform_device *pdev)
+>  {
+>         struct regmap *regmap;
+> +       u32 soc_id;
+> +       int ret;
+> +
+> +       ret = qcom_smem_get_soc_id(&soc_id);
+> +       if (ret)
+> +               return ret;
+>
+>         regmap = dev_get_regmap(pdev->dev.parent, NULL);
+>         if (!regmap)
+>                 return -ENODEV;
+>
+> -       return qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
+> +       ret = qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
+> +       if (ret)
+> +               return ret;
+> +
+> +       switch (soc_id) {
+> +       /*
+> +        * Only below variants of IPQ53xx support scaling
+> +        */
+> +       case QCOM_ID_IPQ5332:
+> +       case QCOM_ID_IPQ5322:
+> +       case QCOM_ID_IPQ5300:
 
-Confused...
+Please use compat strings instead of using the soc-id.
 
---=20
-An old man doll... just what I always wanted! - Clara
+> +               ret = clk_notifier_register(apcs_alias0_clk_src.clkr.hw.clk,
+> +                                               &cpu_clk_notifier);
+> +               if (ret)
+> +                       return ret;
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       return 0;
+>  }
+>
+>  static struct platform_driver apss_ipq6018_driver = {
+> --
+> 2.7.4
+>
 
---H1/cJnQLbHBLXKRp
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+--
+With best wishes
 
-iHUEABYKAB0WIQSSYQ6Cy7oyFNCHrUH2uYlJVVFOowUCZPnR3AAKCRD2uYlJVVFO
-oyWCAP9+/SOZwrNMjfRhCDMh3l0obDG00/bTTq/q77PhjjA7rgD+NsH4fEEZCONi
-2HKCHPJtDXAGeViGmvQbTqhp/EFcsAw=
-=irVf
------END PGP SIGNATURE-----
-
---H1/cJnQLbHBLXKRp--
+Dmitry
