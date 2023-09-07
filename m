@@ -2,66 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81DC9797BA9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B560797BAB
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:26:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233900AbjIGS0O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 14:26:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        id S234666AbjIGS0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 14:26:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbjIGS0O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:26:14 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49EEDBC
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 11:26:03 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 44F6B86940;
-        Thu,  7 Sep 2023 20:26:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1694111161;
-        bh=1sZCMdXaxm4dBNIGqpOt7CdLCUyjkrgjWTCfMYNWUmM=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HeoD4q+CR/UMlrP9If1yLm6OPTjFGW/wvlZqQb3SvW8dKLgUTbT1cg4XGEqbU1G1F
-         LODY+ub7m4wo/WkpaJAIpz2tKcjqXKzmpE7Rw+fcEBRrCXCn4kh7kXwec7BPWB94N9
-         HDsZS07FRRLDJqGmv+9BZiuGKXMZrL38cn7F4pmO7S2VG6k4L4ikyQoYEGWNdfSp6p
-         X9XFQWJxxpRHEibK/WrMIhkHRvg5SjNqoHoDBezH9YXs52tFT0GtdAG8rcVq8dILsL
-         fYVwz5HljaSUIuUwAJOoXBDH02dYi+emKI36moCpZvwQh885O0aT3FdBzROqqYKY/2
-         xSJa8gJwYs1SQ==
-Message-ID: <f534c9c2-cd05-9c7d-8921-81ee0bda3013@denx.de>
-Date:   Thu, 7 Sep 2023 20:25:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/4] arm64: dts: imx8mp: Describe VDD_ARM run and standby
- voltage for DH i.MX8M Plus DHCOM SoM
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S234912AbjIGS0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:26:30 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FA31121;
+        Thu,  7 Sep 2023 11:26:26 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25AD6C433C8;
+        Thu,  7 Sep 2023 18:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694111185;
+        bh=eywdKgsN2Rnh78DdkWhf1HSrTzraQpsNaEQDF5/a48Q=;
+        h=Date:From:To:Cc:Subject:From;
+        b=e0TA0XoUZedn2aNokK6GCs//9lS4S26E4pSOb4ef11rlST6a07tINRGZgfAQmxLaO
+         xDj8W675aZqFeKAn6wU5VT3To9brHvW0ClfpXtWO9qCcYhqa+KB3GqDACYWy5yZeL5
+         Tj9BwbyhFhzhlDMyIDB6KHXWvo9QlBrNH91ybYCEtITyqJVZ00zq4Hqw21NZyD6B7i
+         yPl3vr0xqbPI5O5wBXo8Zip9/h9crT7G9zbYnMMulhQFeSl7X8o5l9cklXHQRyYcUH
+         xMZVzhE36QVH5hGp0/AMbhruAyz5Ke85VsXYTj+v8geQWLbrcPLegDRsfao83hLT+x
+         MoBCnFTCRGwWA==
+Received: (nullmailer pid 1982726 invoked by uid 1000);
+        Thu, 07 Sep 2023 18:26:24 -0000
+Date:   Thu, 7 Sep 2023 13:26:24 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>
-References: <20230831182020.154863-1-marex@denx.de>
- <20230907154545.m3ofqncpwt6yitqu@pengutronix.de>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20230907154545.m3ofqncpwt6yitqu@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [GIT PULL] Devicetree fixes for v6.6, take 1
+Message-ID: <20230907182624.GA1977731-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -70,58 +50,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/7/23 17:45, Marco Felsch wrote:
-> Hi Marek,
+Linus,
 
-Hi,
+Please pull. A couple of conversions which didn't get picked up by the  
+subsystems and 1 fix.
 
-> On 23-08-31, Marek Vasut wrote:
->> Describe VDD_ARM (BUCK2) run and standby voltage in DT.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
->> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->> Cc: Magnus Damm <magnus.damm@gmail.com>
->> Cc: Marek Vasut <marex@denx.de>
->> Cc: NXP Linux Team <linux-imx@nxp.com>
->> Cc: Peng Fan <peng.fan@nxp.com>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-arm-kernel@lists.infradead.org
->> ---
->>   arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
->> index cb1953d14aa90..1644b56c3953d 100644
->> --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
->> @@ -293,6 +293,8 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
->>   			};
->>   
->>   			buck2: BUCK2 {	/* VDD_ARM */
->> +				nxp,dvs-run-voltage = <950000>;
-> 
-> Why do we need to set the "nxp,dvs-run-voltage"? If I read the driver
-> correctly, then nxp,dvs-run-voltage and regulator-min/max-microvolt are
-> touching the same register.
+Rob
 
-My understanding is that the nxp,dvs-run-voltage selects the default 
-regulator voltage which is configured early on once the regulator is 
-detected in DT (see of_parse_cb callback in the PCA9450 regulator 
-driver) and may be higher than regulator-min-microvolt, while later on 
-DVFS can adjust the regulator in range of regulator-min-microvolt to 
-regulator-max-microvolt .
 
->> +				nxp,dvs-standby-voltage = <850000>;
->>   				regulator-min-microvolt = <850000>;
->>   				regulator-max-microvolt = <1000000>;
+The following changes since commit 75cc186739805a5e8abe133be04692b36e7a5257:
 
-[...]
+  dt-bindings: usb: Add V3s compatible string for OHCI (2023-08-28 16:36:52 -0500)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.6-1
+
+for you to fetch changes up to 591b00cc4fcfcb4532e4b85b5b2e67bbcf4973a0:
+
+  dt-bindings: irqchip: convert st,stih407-irq-syscfg to DT schema (2023-09-05 16:15:09 -0500)
+
+----------------------------------------------------------------
+Devicetree fixes for v6.6, part 1:
+
+- Convert st,stih407-irq-syscfg and Omnivision OV7251 bindings to DT
+  schema
+
+- Merge Omnivision OV5695 into OV5693 binding
+
+- Fix of_overlay_fdt_apply prototype when !CONFIG_OF_OVERLAY
+
+----------------------------------------------------------------
+Pavel Pisa (1):
+      of: overlay: Fix of_overlay_fdt_apply prototype when !CONFIG_OF_OVERLAY
+
+Raphael Gallais-Pou (1):
+      dt-bindings: irqchip: convert st,stih407-irq-syscfg to DT schema
+
+Rob Herring (2):
+      media: dt-bindings: Merge OV5695 into OV5693 binding
+      media: dt-bindings: Convert Omnivision OV7251 to DT schema
+
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |   1 +
+ .../interrupt-controller/st,sti-irq-syscfg.txt     |  30 ------
+ .../st,stih407-irq-syscfg.yaml                     |  65 ++++++++++++
+ .../devicetree/bindings/media/i2c/ov5695.txt       |  41 --------
+ .../devicetree/bindings/media/i2c/ov7251.txt       |  52 ----------
+ .../devicetree/bindings/media/i2c/ovti,ov5693.yaml |  31 ++++--
+ .../devicetree/bindings/media/i2c/ovti,ov7251.yaml | 109 +++++++++++++++++++++
+ .../devicetree/bindings/media/rockchip-isp1.yaml   |   1 +
+ include/linux/of.h                                 |   4 +-
+ 9 files changed, 202 insertions(+), 132 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,sti-irq-syscfg.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/st,stih407-irq-syscfg.yaml
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov5695.txt
+ delete mode 100644 Documentation/devicetree/bindings/media/i2c/ov7251.txt
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
