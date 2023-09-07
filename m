@@ -2,76 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88866797949
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 639E07979C9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240946AbjIGRJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:09:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56058 "EHLO
+        id S239800AbjIGRUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 13:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240852AbjIGRJx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:09:53 -0400
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E7151717;
-        Thu,  7 Sep 2023 10:09:21 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57354433a7dso689481eaf.1;
-        Thu, 07 Sep 2023 10:09:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694106504; x=1694711304; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QiLf3uNcgpAG/VlEyrfKIhMwh6HWTY51ql5QMlDoomc=;
-        b=IjkkyQxZNLhbX2MbbuZ1MoN1jJOAxAjLGSD0y+szqHEnmKxFCD6/zE9FkvIWzI+LZh
-         iV1FeBo3j684RuTCaGUBuwwOoBPCGMR4uXikaKiOptNspec8Yt4FMOVzyfH00IGDgO4J
-         t04nBcMBOzje5JHNQIjKBNsiym8uacYSy5VHxvRJWuZh5BDUSZr0cs57jW1k4IC/39M3
-         ucfBwiMTmKrzBfL8emAHqF5EfNw1vGYfL5srnOG0JbLXM2sIdJprmAMyV2s2muhprzGe
-         tyqMfWThNedlgR/Mv5FVYYkRuDcDJyIQw/aNqSl3bSKDvkJOWcvKaJGdEUDafJQ2uZ8z
-         k/dA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694106504; x=1694711304;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QiLf3uNcgpAG/VlEyrfKIhMwh6HWTY51ql5QMlDoomc=;
-        b=XLKUDDy3RPOGX+r7ZOC8+nP1kHBtDXe0SBsp1+UxFE48nLW+kgHg1i72a2B3m4jLoB
-         MggfjWqh8dnwPJ0+9hwbVkeNkjdiCRINfCMgmDHumhb++PEqY4r2D+/BZboEhm9YNNoa
-         1FoFeck9zvyANz66yk+9f3RLJKmBQT8npEWlsA3fzGnVhcDRdcGC2Xj8//t06LIYqlj2
-         JDY3V06J2qA6ZQU60g3jusZ1bQ6zlrUL5mYuG7k2kFmr/feOC3LObJ2TV6p9BAeCV2Kg
-         PhNITC7Um/SBTOfQU13mTkK52djv/jbt3/P5vXD90XtlEU1+UFRzW0KDTjyUVRgA9gnY
-         K5yw==
-X-Gm-Message-State: AOJu0Yzt7zYHoXPy8pzJauJrcMcdonv6rQDmDdSOxJNcfGtzORi8uxB3
-        aw7G/FI6FS6qvHdFo3MmJIuZDNpM3c1Yu1SXzj0=
-X-Google-Smtp-Source: AGHT+IFK9cveQPqw6uw7m0RaAlVH54NgqS7eB/Xf2/i7HYl5lAD2mx7mV1DCJ7P3cb8TLnN7G3v8hGn5vDHx3AT62p4=
-X-Received: by 2002:a05:6808:2394:b0:3a9:e8e2:57a7 with SMTP id
- bp20-20020a056808239400b003a9e8e257a7mr198349oib.53.1694106503725; Thu, 07
- Sep 2023 10:08:23 -0700 (PDT)
+        with ESMTP id S243118AbjIGRUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:20:49 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 013171997;
+        Thu,  7 Sep 2023 10:20:27 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86BAFC433BA;
+        Thu,  7 Sep 2023 17:19:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694107178;
+        bh=PDYzKzKBiT+TNRB0Vx9DGh637mV1YPZ7MK8eR9exGSM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JMkXUvGT/Y966Dbf7awJ/2xSLEzBMKgM2X9b5kTlxjxVl5sVC6scLZDEq69QyshBv
+         MPNfAjyRobt7/cKZhggS1TQ1E5gZ4sMU22/F6OboC086P6ANUtmX5TM1AmSN4eD4JT
+         DjA99JZd5+p9lwJF7ntmpu7RNgVfTyXBIPubtW3NXuR/wCfC1AOLp0fYn47glSHuSg
+         dFO5+D/MvNUaFHh2PMqpx8YaLPe7qf4Mv0VSDqhVR6eLZhVkiVAwfFezotmKNTcFGz
+         yIv0smcgHsTQbBZecI1B8q9oVf4jbxjSLXDOjCgigAU3U5vz8ByvUDTRpMUjwcF9oA
+         nyozRGnecgqaA==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2b962c226ceso20790601fa.3;
+        Thu, 07 Sep 2023 10:19:38 -0700 (PDT)
+X-Gm-Message-State: AOJu0YxQLZWJVMrvW4SZCTny3ZiBk5HWocTCS/bBhFT50cFn4+pjXd5h
+        aD6Uq5G0LVCo6tq9pzKDr9uzsDYFv4z31OV/tw==
+X-Google-Smtp-Source: AGHT+IHwjbAmkZ5Ec05zBPZFrd7GQGZKn4oCw4jlv8sjHh+612eF77vIQwMOoqyB67ypCSbg/TV0tjClokFnPf/SQgg=
+X-Received: by 2002:a2e:9303:0:b0:2bc:f252:6cc4 with SMTP id
+ e3-20020a2e9303000000b002bcf2526cc4mr4293480ljh.10.1694107176462; Thu, 07 Sep
+ 2023 10:19:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEwN+MCorDCS7EhN40Qgja_nY+SFc3G61Zd6yntqAS+w26YO9Q@mail.gmail.com>
- <ZPnR4Cx6_Hh3weEl@debian.me> <ZPnWb15ucCotffav@shell.armlinux.org.uk> <CAJX_Q+0-v=oadJ697VDawyEhDSPBAS_oqakZFHWVUfsnbCanMA@mail.gmail.com>
-In-Reply-To: <CAJX_Q+0-v=oadJ697VDawyEhDSPBAS_oqakZFHWVUfsnbCanMA@mail.gmail.com>
-From:   Raul Piper <raulpblooper@gmail.com>
-Date:   Thu, 7 Sep 2023 22:38:10 +0530
-Message-ID: <CAEwN+MAtQSSwDLiERG4uEhv5YpS6EZrL4FER3wxVx+e3paxz4w@mail.gmail.com>
-Subject: Re: Debugging i2c : i2cdetect cant detect a device on i2c line
-To:     tanure@linux.com
-Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Linux Devicetree <devicetree@vger.kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        kernelnewbies <kernelnewbies@kernelnewbies.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
+References: <20230907091058.125630-1-minda.chen@starfivetech.com> <20230907091058.125630-12-minda.chen@starfivetech.com>
+In-Reply-To: <20230907091058.125630-12-minda.chen@starfivetech.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 7 Sep 2023 12:19:24 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+TeDK0Lh7Yf9CwLPDPfvuv9C8A6dKDEBVxMtncyuzQQg@mail.gmail.com>
+Message-ID: <CAL_Jsq+TeDK0Lh7Yf9CwLPDPfvuv9C8A6dKDEBVxMtncyuzQQg@mail.gmail.com>
+Subject: Re: [PATCH v5 11/11] riscv: dts: starfive: add PCIe dts configuration
+ for JH7110
+To:     Minda Chen <minda.chen@starfivetech.com>
+Cc:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,86 +73,225 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 7, 2023 at 9:47=E2=80=AFPM Lucas Tanure <tanure@linux.com> wrot=
-e:
+On Thu, Sep 7, 2023 at 4:11=E2=80=AFAM Minda Chen <minda.chen@starfivetech.=
+com> wrote:
 >
+> Add PCIe dts configuraion for JH7110 SoC platform.
 >
+> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-2.dtsi         | 64 ++++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 86 +++++++++++++++++++
+>  2 files changed, 150 insertions(+)
 >
-> On Thu, 7 Sept 2023, 14:56 Russell King (Oracle), <linux@armlinux.org.uk>=
- wrote:
->>
->> On Thu, Sep 07, 2023 at 08:36:32PM +0700, Bagas Sanjaya wrote:
->> > [also Cc: devicetree and ARM folks]
->> >
->> > On Thu, Sep 07, 2023 at 08:21:44AM +0530, Raul Piper wrote:
->> > > Hello ,
->> > > I am trying to detect an i2c device A on i2c1 line on  one of the Ar=
-m
->> > > Cortex A7 platform but not able to see any device on a given address=
- (
->> > > 0x3d) .
->> > >
->> > > Is there any parameters of i2c which i can change like rise/fall tim=
-e
->> > > , timeout etc in a device tree or kernel source and re test it?
->> > > I have tried changing the i2c speed from 100KHz to 400 KHz  but no s=
-uccess.
->> > > I have even tried removing the 1.5K pull ups on the i2c lines but no=
- result.
->>
->> Honestly, from this description, I'm wondering if this posting is a joke=
-.
->>
->> I2C is entirely _reliant_ on pull-ups. It's a wire-or bus, and the
->> logic 1 state is created by no device pulling the signal low, thereby
->> allowing the pull-up resistor to pull the line to the logic 1 state.
->>
->> The pull-up must be the correct strength for the devices on the bus.
->> If it is too strong, then a driver may not be able to pull the signal
->> sufficiently low for other devices to register it as a logic 0.
->>
->> Conversely, the pull-up must be strong enough so that the rise-time
->> of the signal is sufficient to register as a logic 1.
->>
->> If it's a problem with the rise time, then increasing the clock rate
->> will just make the situation worse.
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
+si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index de0f40a8be93..4dd61e2fec7d 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -15,6 +15,8 @@
+>                 i2c2 =3D &i2c2;
+>                 i2c5 =3D &i2c5;
+>                 i2c6 =3D &i2c6;
+> +               pcie0 =3D &pcie0;
+> +               pcie1 =3D &pcie1;
 
-Where can I change this time? Can you please provide example of some
-device/device tree?
+That's not a defined alias. We already have "linux,pci-domain" if you
+need to number PCI host bridges.
 
->>
->> So, if other devices work on the bus, it could be that the Vil
->> threshold of this device is not being achieved, whereas the other
->> devices are happy. Therefore, I would suggest you study the data
->> sheets of the device that isn't being detected.
-What Vil threshold? I checked the power supply to this device and it
-is ~3.3 V as expected.
-
->>
->> Lastly, if the undetectable device has a reset line, it's possible
->> that the device isn't responding because it's being held in reset.
-The device is fine, I am sure about it. As the device provides data on
-USART as well and I am getting it.
+>                 serial0 =3D &uart0;
+>         };
 >
-> Please try to use an logic analyser like saleae logic.
-> Probe the i2c bus, reset line, power lines, pins that set the i2c address=
- for the device.
-> Can tell us which device it is?
-
-Its a GPS sensor(still under development) .Logic Analyser gives NACK
-on the given address.
-I may be using the wrong pull ups value which i am checking.But from
-software point of view is there a Device tree setting to enable the
-internal pull ups or adjust the rise/fall time as said above.
-
+> @@ -208,6 +210,54 @@
+>                 };
+>         };
 >
+> +       pcie0_pins: pcie0-0 {
+> +               wake-pins {
+> +                       pinmux =3D <GPIOMUX(32, GPOUT_LOW,
+> +                                             GPOEN_DISABLE,
+> +                                             GPI_NONE)>;
+> +                       bias-pull-up;
+> +                       drive-strength =3D <2>;
+> +                       input-enable;
+> +                       input-schmitt-disable;
+> +                       slew-rate =3D <0>;
+> +               };
+> +
+> +               clkreq-pins {
+> +                       pinmux =3D <GPIOMUX(27, GPOUT_LOW,
+> +                                             GPOEN_DISABLE,
+> +                                             GPI_NONE)>;
+> +                       bias-pull-down;
+> +                       drive-strength =3D <2>;
+> +                       input-enable;
+> +                       input-schmitt-disable;
+> +                       slew-rate =3D <0>;
+> +               };
+> +       };
+> +
+> +       pcie1_pins: pcie1-0 {
+> +               wake-pins {
+> +                       pinmux =3D <GPIOMUX(21, GPOUT_LOW,
+> +                                             GPOEN_DISABLE,
+> +                                             GPI_NONE)>;
+> +                       bias-pull-up;
+> +                       drive-strength =3D <2>;
+> +                       input-enable;
+> +                       input-schmitt-disable;
+> +                       slew-rate =3D <0>;
+> +               };
+> +
+> +               clkreq-pins {
+> +                       pinmux =3D <GPIOMUX(29, GPOUT_LOW,
+> +                                             GPOEN_DISABLE,
+> +                                             GPI_NONE)>;
+> +                       bias-pull-down;
+> +                       drive-strength =3D <2>;
+> +                       input-enable;
+> +                       input-schmitt-disable;
+> +                       slew-rate =3D <0>;
+> +               };
+> +       };
+> +
+>         uart0_pins: uart0-0 {
+>                 tx-pins {
+>                         pinmux =3D <GPIOMUX(5, GPOUT_SYS_UART0_TX,
+> @@ -233,6 +283,20 @@
+>         };
+>  };
 >
+> +&pcie0 {
+> +       pinctrl-names =3D "default";
+> +       perst-gpios =3D <&sysgpio 26 GPIO_ACTIVE_LOW>;
+> +       pinctrl-0 =3D <&pcie0_pins>;
+> +       status =3D "okay";
+> +};
+> +
+> +&pcie1 {
+> +       pinctrl-names =3D "default";
+> +       perst-gpios =3D <&sysgpio 28 GPIO_ACTIVE_LOW>;
+> +       pinctrl-0 =3D <&pcie1_pins>;
+> +       status =3D "okay";
+> +};
+> +
+>  &uart0 {
+>         pinctrl-names =3D "default";
+>         pinctrl-0 =3D <&uart0_pins>;
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
+ts/starfive/jh7110.dtsi
+> index 02354e642c44..7a5dc43cf63c 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -629,5 +629,91 @@
+>                         #reset-cells =3D <1>;
+>                         power-domains =3D <&pwrc JH7110_PD_VOUT>;
+>                 };
+> +
+> +               pcie0: pcie@940000000 {
+> +                       compatible =3D "starfive,jh7110-pcie";
+> +                       reg =3D <0x9 0x40000000 0x0 0x1000000>,
+> +                             <0x0 0x2b000000 0x0 0x100000>;
+> +                       reg-names =3D "cfg", "apb";
+> +                       #address-cells =3D <3>;
+> +                       #size-cells =3D <2>;
+> +                       #interrupt-cells =3D <1>;
+> +                       ranges =3D <0x82000000  0x0 0x30000000  0x0 0x300=
+00000 0x0 0x08000000>,
+> +                                <0xc3000000  0x9 0x00000000  0x9 0x00000=
+000 0x0 0x40000000>;
+> +                       interrupts =3D <56>;
+> +                       interrupt-parent =3D <&plic>;
+> +                       interrupt-map-mask =3D <0x0 0x0 0x0 0x7>;
+> +                       interrupt-map =3D <0x0 0x0 0x0 0x1 &pcie_intc0 0x=
+1>,
+> +                                       <0x0 0x0 0x0 0x2 &pcie_intc0 0x2>=
+,
+> +                                       <0x0 0x0 0x0 0x3 &pcie_intc0 0x3>=
+,
+> +                                       <0x0 0x0 0x0 0x4 &pcie_intc0 0x4>=
+;
+> +                       msi-controller;
+> +                       device_type =3D "pci";
+> +                       starfive,stg-syscon =3D <&stg_syscon>;
+> +                       bus-range =3D <0x0 0xff>;
+> +                       clocks =3D <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI=
+>,
+> +                                <&stgcrg JH7110_STGCLK_PCIE0_TL>,
+> +                                <&stgcrg JH7110_STGCLK_PCIE0_AXI_MST0>,
+> +                                <&stgcrg JH7110_STGCLK_PCIE0_APB>;
+> +                       clock-names =3D "noc", "tl", "axi_mst0", "apb";
+> +                       resets =3D <&stgcrg JH7110_STGRST_PCIE0_AXI_MST0>=
+,
+> +                                <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV0>,
+> +                                <&stgcrg JH7110_STGRST_PCIE0_AXI_SLV>,
+> +                                <&stgcrg JH7110_STGRST_PCIE0_BRG>,
+> +                                <&stgcrg JH7110_STGRST_PCIE0_CORE>,
+> +                                <&stgcrg JH7110_STGRST_PCIE0_APB>;
+> +                       reset-names =3D "mst0", "slv0", "slv", "brg",
+> +                                     "core", "apb";
+> +                       status =3D "disabled";
+> +
+> +                       pcie_intc0: interrupt-controller {
+> +                               #address-cells =3D <0>;
+> +                               #interrupt-cells =3D <1>;
+> +                               interrupt-controller;
+> +                       };
+> +               };
+> +
+> +               pcie1: pcie@9c0000000 {
+> +                       compatible =3D "starfive,jh7110-pcie";
+> +                       reg =3D <0x9 0xc0000000 0x0 0x1000000>,
+> +                             <0x0 0x2c000000 0x0 0x100000>;
+> +                       reg-names =3D "cfg", "apb";
+> +                       #address-cells =3D <3>;
+> +                       #size-cells =3D <2>;
+> +                       #interrupt-cells =3D <1>;
+> +                       ranges =3D <0x82000000  0x0 0x38000000  0x0 0x380=
+00000 0x0 0x08000000>,
+> +                                <0xc3000000  0x9 0x80000000  0x9 0x80000=
+000 0x0 0x40000000>;
+> +                       interrupts =3D <57>;
+> +                       interrupt-parent =3D <&plic>;
+> +                       interrupt-map-mask =3D <0x0 0x0 0x0 0x7>;
+> +                       interrupt-map =3D <0x0 0x0 0x0 0x1 &pcie_intc1 0x=
+1>,
+> +                                       <0x0 0x0 0x0 0x2 &pcie_intc1 0x2>=
+,
+> +                                       <0x0 0x0 0x0 0x3 &pcie_intc1 0x3>=
+,
+> +                                       <0x0 0x0 0x0 0x4 &pcie_intc1 0x4>=
+;
+> +                       msi-controller;
+> +                       device_type =3D "pci";
+> +                       starfive,stg-syscon =3D <&stg_syscon>;
+> +                       bus-range =3D <0x0 0xff>;
+> +                       clocks =3D <&syscrg JH7110_SYSCLK_NOC_BUS_STG_AXI=
+>,
+> +                                <&stgcrg JH7110_STGCLK_PCIE1_TL>,
+> +                                <&stgcrg JH7110_STGCLK_PCIE1_AXI_MST0>,
+> +                                <&stgcrg JH7110_STGCLK_PCIE1_APB>;
+> +                       clock-names =3D "noc", "tl", "axi_mst0", "apb";
+> +                       resets =3D <&stgcrg JH7110_STGRST_PCIE1_AXI_MST0>=
+,
+> +                                <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV0>,
+> +                                <&stgcrg JH7110_STGRST_PCIE1_AXI_SLV>,
+> +                                <&stgcrg JH7110_STGRST_PCIE1_BRG>,
+> +                                <&stgcrg JH7110_STGRST_PCIE1_CORE>,
+> +                                <&stgcrg JH7110_STGRST_PCIE1_APB>;
+> +                       reset-names =3D "mst0", "slv0", "slv", "brg",
+> +                                     "core", "apb";
+> +                       status =3D "disabled";
+> +
+> +                       pcie_intc1: interrupt-controller {
+> +                               #address-cells =3D <0>;
+> +                               #interrupt-cells =3D <1>;
+> +                               interrupt-controller;
+> +                       };
+> +               };
+>         };
+>  };
+> --
+> 2.17.1
 >
->> --
->> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
->> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
->>
->> _______________________________________________
->> Kernelnewbies mailing list
->> Kernelnewbies@kernelnewbies.org
->> https://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
