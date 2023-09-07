@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9982797673
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:09:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0951797A3D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:34:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233787AbjIGQJn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:09:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54748 "EHLO
+        id S231908AbjIGReX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 13:34:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236559AbjIGQIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:08:55 -0400
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B34D14905
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 09:02:57 -0700 (PDT)
-Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-402d0eda361so13459135e9.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 09:02:57 -0700 (PDT)
+        with ESMTP id S244417AbjIGReX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:34:23 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B031199F
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 10:33:57 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-523100882f2so1638022a12.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 10:33:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694102509; x=1694707309; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694108024; x=1694712824; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ay34GXxNUofxhAc81/JeevPO+3hm2Cch8I1vOjYowqU=;
-        b=us1H5P2B6hX3+HxFIX/ZaV70ER/68tnBhynEPRVAQfcG99ahGSTOd4/O/vch382fmG
-         dlvq1ldI0KjebqVgpKXwwW4HubsWZYzbdSQtWBfkKrnIpuG3iqzMmGiDh2IR4J1nx7NZ
-         Jhlni2TLnDF2PSeFKUZjNDNxRHjaSNNpXSoLGpOUT/jdYblG98qmE4KV3Rbylg9NkNI/
-         +V+7jXJAaEYO0PIgUo0XJ7zQ3IBu/RHNJDzeH7ho7NiQheKwSPdBefKd7gjuPbH8nwbx
-         mmUFaN0OLIcGjq6s0nM75aVdeaJKHQ7/mujIHUEXkU7nIjauyZ3TL+ScpnK/Do5CZexs
-         N7Sw==
+        bh=tqSwv2PaV4uvcYy04tKu3DoxY/FfR9LQpL/5rW5UGIU=;
+        b=P1psATd5ds5DI0D2QRaZRnksdSGhC3TOnP2Ef++/Qm1DFdX90l5ZNbQ8meJiIjPHsB
+         KzW/1pSwgVjb+pmlzifRsRjggqFnrhsDzYAD1QPEdGWwc5Pyis7vRJxxPrBfhuBwTEXt
+         /roQe3NwIQ4SDMTp7MnGDRh2YqHSh6xYaMMBzRf2OaYeV3L/+Nk8bpRghQ5afuH726fZ
+         fFy1TgtlpfUr5zTGEEoj3YqyKUx5Vr61UmcoOQk1KCpx8Sh79XWXGoLBDoZ/atdvPsKi
+         YyJRhEGXyFI9f53ivXllloiwuDoCPIRD/4zsBiLHmWNLnpuBP7NXkrhoaoLGmEypnAHH
+         WaRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694102509; x=1694707309;
+        d=1e100.net; s=20221208; t=1694108024; x=1694712824;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ay34GXxNUofxhAc81/JeevPO+3hm2Cch8I1vOjYowqU=;
-        b=CwgWok2EC9699Fr/QR2StVh0i3WGLyIctJzajb8LlalxQlRBDCq446sIXm6w5lvmc9
-         FktXe6DkK8RSQPMWhCeLRXSBFsW5GMWW1MoeoG+lAWksITOOEB60AAmSahQsyZqkyKcw
-         QxOVV2eSP9KR7slOqwWFfZk8jrQktKruaiA+PAKS0my5LOZxO4JUJRMTotyoo94j8b9z
-         TgSbzcogGqRjTG7QMhRykYlKHB02SGgNEPS32+OlrMfiLWmT1w0lmjoh3ecPxumrM6A5
-         7IIAKNOuEicBudqdeZQC1Pb8hpg4hvmX5EFNDnpF6vmgbn24B4OCqjtaBV7gr3riXVk3
-         m7ug==
-X-Gm-Message-State: AOJu0YwTt5+/18m2T5a93Qim/X7jPOiTYDoJp75ByBbn25s8Mmtc+TVf
-        FmAYgsosgrpFZaxcuPVGlHI/q058aItr2fIyWuxiGQ==
-X-Google-Smtp-Source: AGHT+IEiKc5oozjVZRkGlfk27r1RulB7w0fpD+yatMRdkajGPq2JHqn9PrHpLF0yOAqbtvdnc8mC+Q==
-X-Received: by 2002:a17:906:9bd6:b0:9a9:e735:f621 with SMTP id de22-20020a1709069bd600b009a9e735f621mr585811ejc.15.1694082332395;
-        Thu, 07 Sep 2023 03:25:32 -0700 (PDT)
+        bh=tqSwv2PaV4uvcYy04tKu3DoxY/FfR9LQpL/5rW5UGIU=;
+        b=j6XETH3LQjdhp8P+Sl5eGWQyb5z/Oz77NPXYvs2P/wM6f/3i3VTZhbRBsr7PvdtFm7
+         X8axd4+dSkA9pqpquLUKqbtRStLgm8dafJgrkkXo2wtKAeyBKskUzMN2+dlOwagkuQJU
+         rxr1omrJ98mEFPofmzuLO8lfSxo6m6ISlQ/5ebxPThN7x+l+CE4WuTCxRVA+eKvjyLxT
+         cxSvi9DASCwhjUgV7m2B4/Rs48kPtW/vJW8RKjTq28NWclrtKlo+5Rj5CUBv+HCPys4Z
+         fo6KHlTSq4l55xKQ26k74xni2slgfjjgWS9pcLSRkoF+jdZERumYxO/cyh2W2MS2ZErC
+         vV2g==
+X-Gm-Message-State: AOJu0YxWooFG4TdiT735DQWy3JZP9Kvqbk7Ql30DbFgWGJ6QrPsuCbGP
+        qh11/wlBP3SwIWUFgtoJCzi/eMLCUx5vfzUYh6pjRQ==
+X-Google-Smtp-Source: AGHT+IHzFowHPzuz+xrWiHrylgjnQtYjrvd6hQfqFJWiSw6xL5CNO9tWZMaZJ5Y0VFwN+MHeV1c2wQ==
+X-Received: by 2002:a2e:7e11:0:b0:2bc:f2d7:f6ce with SMTP id z17-20020a2e7e11000000b002bcf2d7f6cemr3970577ljc.49.1694082534284;
+        Thu, 07 Sep 2023 03:28:54 -0700 (PDT)
 Received: from [192.168.37.232] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id x24-20020a170906805800b009894b476310sm10206104ejw.163.2023.09.07.03.25.30
+        by smtp.gmail.com with ESMTPSA id qc8-20020a170906d8a800b009944e955e19sm10176379ejb.30.2023.09.07.03.28.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Sep 2023 03:25:32 -0700 (PDT)
-Message-ID: <d3ccfb3f-c793-4a9d-bac1-da05d37cd00b@linaro.org>
-Date:   Thu, 7 Sep 2023 12:25:29 +0200
+        Thu, 07 Sep 2023 03:28:53 -0700 (PDT)
+Message-ID: <6545fd47-5334-44b1-9f0f-1c60f8b2d814@linaro.org>
+Date:   Thu, 7 Sep 2023 12:28:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sc7180: Add tertiary mi2s
- pinctrl
+Subject: Re: [PATCH v5 2/5] arm64: dts: qcom: sm8450: Add opp table support to
+ PCIe
 Content-Language: en-US
-To:     Nikita Travkin <nikita@trvn.ru>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     David Wronek <davidwronek@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+To:     Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org
+Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, rafael@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230907-sc7180-adsp-rproc-v3-0-6515c3fbe0a3@trvn.ru>
- <20230907-sc7180-adsp-rproc-v3-3-6515c3fbe0a3@trvn.ru>
+        linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
+        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+        quic_ramkri@quicinc.com, quic_parass@quicinc.com
+References: <1694066433-8677-1-git-send-email-quic_krichai@quicinc.com>
+ <1694066433-8677-3-git-send-email-quic_krichai@quicinc.com>
+ <38f64349-5139-4207-91eb-cd39fabd4496@linaro.org>
+ <347293d1-15e5-5412-9695-01be768283ad@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -106,25 +107,57 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20230907-sc7180-adsp-rproc-v3-3-6515c3fbe0a3@trvn.ru>
+In-Reply-To: <347293d1-15e5-5412-9695-01be768283ad@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7.09.2023 12:02, Nikita Travkin wrote:
-> Some devices use tertiary mi2s to connect external audio codec.
-> Add it near the other two i2s pinctrl definitions so the devices don't
-> have to duplicate it.
+On 7.09.2023 11:56, Krishna Chaitanya Chundru wrote:
 > 
-> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
-> ---
+> On 9/7/2023 2:34 PM, Konrad Dybcio wrote:
+>> On 7.09.2023 08:00, Krishna chaitanya chundru wrote:
+>>> PCIe needs to choose the appropriate performance state of RPMH power
+>>> domain based up on the PCIe gen speed.
+>>>
+>>> So let's add the OPP table support to specify RPMH performance states.
+>>>
+>>> Use opp-level for the PCIe gen speed for easier use.
+>>>
+>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>>> ---
+>> [...]
+>>
+>>> +
+>>> +            pcie1_opp_table: opp-table {
+>>> +                compatible = "operating-points-v2";
+>>> +
+>>> +                opp-1 {
+>>> +                    opp-level = <1>;
+>>> +                    required-opps = <&rpmhpd_opp_low_svs>;
+>>> +                };
+>>> +
+>>> +                opp-2 {
+>>> +                    opp-level = <2>;
+>>> +                    required-opps = <&rpmhpd_opp_low_svs>;
+>>> +                };
+>>> +
+>>> +                opp-3 {
+>>> +                    opp-level = <3>;
+>>> +                    required-opps = <&rpmhpd_opp_low_svs>;
+>> Is gen3 not supposed to require nom like on pcie0?
+> This particular controller instance can operate at low svs for GEN3.
+>> Also, can all non-maximum OPPs run at just low_svs?
+> This depends on the hardware capability, for this instance expect GEN4 remaining can operate in LOW svs. It varies from controller instance to instance and also from target to target.
+Ok, thanks for confirming
+
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
