@@ -2,106 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47AB779797F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:15:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E25E797AF4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:58:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238840AbjIGRPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:15:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34764 "EHLO
+        id S232494AbjIGR6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 13:58:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241156AbjIGRPt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:15:49 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4FC11FE5;
-        Thu,  7 Sep 2023 10:15:27 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id D181E66072E3;
-        Thu,  7 Sep 2023 09:30:04 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694075405;
-        bh=EdQ9ASI8+iF8t5u8HGmRUqDa9g/nGIlcPEp4NR/29MA=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Cfkdhopb2O4/2hTFhZZuemvDZx5NWOEZ/XtEtWECmev2t3Ss2FaIJXXLASntsQXFX
-         gs/GQP6qP8CUdiGz+DdX/PpKOJ2OoTVPqq8lBysVuruhA68lkhBxNGHupKvbUDT6wD
-         /2feRHQ0EJRHs49z+kigbY1kwR+KEJA43JM3dSueXYX+uBn7DYQMeVJb4VoUg8ifup
-         7shMyDx2ny1PDi3Yoxh+GiFEUyvUB6HYDEZGcKfFTRpvI/UUN1nNI+v5+lcArOjSc+
-         s0NkDt2WFsJQu4z0C2zz4u+/qF1wUPdz4BkFE+F39lCmwql+fg3jCeST2RmpQ8lU2h
-         MromValbfAwAQ==
-Message-ID: <0470ab6d-7bf9-8c21-6e34-19b4f9023f10@collabora.com>
-Date:   Thu, 7 Sep 2023 10:30:02 +0200
+        with ESMTP id S245586AbjIGR6b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:58:31 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9AF71FE9
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 10:58:00 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so5091722a12.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 10:58:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694109479; x=1694714279; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mDoUjvYQ5hLp90NpvOpciamYswy5+ILruLlYsWMAII8=;
+        b=bWybG7oCGJs/deL1Mzykv0nZM8l9DHi1VKl/4n85oJzKwqe50FYybmPAXokDVEZmi3
+         GVKrZhCkHurNc0RrzzcSWczJQcL+rtWBFP4eG/5N516PKuWmGJr8NwUh3763wBrWqLno
+         3PDgHnHBLFbUATj5chRng7ydR5VUKAazZCNC797+oXCgY1kX5NQZ/404nrgN2nVfmIHk
+         Bfc2cmWtn/Zs3nc8VcLsVZSdp09HR/LUSK/OKCUXqs217nuia+rbPgSv4qnai8Ys0ny6
+         +Xnag4tDatVCamAGAe7fKz3Zi4FeAnuLYQoEEG0gM7ja0qvNxvJjFc3Qj1K2EwngNczm
+         STbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694109479; x=1694714279;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mDoUjvYQ5hLp90NpvOpciamYswy5+ILruLlYsWMAII8=;
+        b=WplR/ic14v4fXV7FZo2VqCDpizOiDZt0W0tVmolUxmOC4SNdWDMcS+1rBpa8tkj3bN
+         HcDtMXaufIy7n2Xul9/3ad9ADk/+e123cUjPg4l5hybrUhzdZZunzgYfx33k9GsR1vnX
+         9a26NAGAu5pDjIKva2Hc0G4XTwwVF8vzSyBjAjnJAoUxt4erkhNbI+spWS80z/8o5fht
+         mZPH7un+9s15FykbeJCFPlXKPWC9uMe7xwSSkcLSzdH71qAFaxkP3WlN6oqcfrMOCXvo
+         NUY8p1813PDh8Y1Tl3L1lZvxdvIXlRnewp3ZFSCfS64DWK2oGE+SISREAPt01EX+AUg/
+         forQ==
+X-Gm-Message-State: AOJu0YxG1/mTDGSkT8FxsIO8jC9xXnFGfbIlCoVuzLLW8TfrhD8Zg3bi
+        cK/GEdpFKEZOu3oaFxLH+iU7VhzcLPsVjMFYYaDgFA==
+X-Google-Smtp-Source: AGHT+IFvxabhPY7oNJR7yHmojbvgWgbazhQtpCoLLsasYPzm8UdBiLSJ/NE+FoR8Wyv0Yf2YrLLe5g==
+X-Received: by 2002:a17:907:6e87:b0:9a1:c69c:9388 with SMTP id sh7-20020a1709076e8700b009a1c69c9388mr2016148ejc.37.1694075690953;
+        Thu, 07 Sep 2023 01:34:50 -0700 (PDT)
+Received: from [192.168.37.232] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
+        by smtp.gmail.com with ESMTPSA id f25-20020a170906495900b0099d9dee8108sm10215498ejt.149.2023.09.07.01.34.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Sep 2023 01:34:50 -0700 (PDT)
+Message-ID: <f7c2f7dd-dcc7-4f3a-9c04-e370ba608de5@linaro.org>
+Date:   Thu, 7 Sep 2023 10:34:48 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt7622: fix memory node warning
- check
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 06/10] cpufreq: qti: Enable cpufreq for ipq53xx
 Content-Language: en-US
-To:     Eugen Hristev <eugen.hristev@collabora.com>,
-        linux-mediatek@lists.infradead.org
-Cc:     krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
-        kernel@collabora.com
-References: <20230814065042.4973-1-eugen.hristev@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230814065042.4973-1-eugen.hristev@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
+        ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
+        rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <cover.1693996662.git.quic_varada@quicinc.com>
+ <558c6b70090ea7220bfb0b6e7d81828025018376.1693996662.git.quic_varada@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <558c6b70090ea7220bfb0b6e7d81828025018376.1693996662.git.quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 14/08/23 08:50, Eugen Hristev ha scritto:
-> dtbs_check throws a warning at the memory node:
-> Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
+On 7.09.2023 07:21, Varadarajan Narayanan wrote:
+> IPQ53xx have different OPPs available for the CPU based on
+> SoC variant. This can be determined through use of an eFuse
+> register present in the silicon.
 > 
-> fix by adding the address into the node name.
+> Added support for ipq53xx on nvmem driver which helps to
+> determine OPPs at runtime based on the eFuse register which
+> has the CPU frequency limits. opp-supported-hw dt binding
+> can be used to indicate the available OPPs for each limit.
 > 
-> Fixes: 0b6286dd96c0 ("arm64: dts: mt7622: add bananapi BPI-R64 board")
-> Signed-off-by: Eugen Hristev <eugen.hristev@collabora.com>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
+> nvmem driver also creates the "cpufreq-dt" platform_device after
+> passing the version matching data to the OPP framework so that the
+> cpufreq-dt handles the actual cpufreq implementation.
+> 
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
 > ---
->   arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts | 2 +-
->   arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts             | 2 +-
->   2 files changed, 2 insertions(+), 2 deletions(-)
+>  drivers/cpufreq/cpufreq-dt-platdev.c |  1 +
+>  drivers/cpufreq/qcom-cpufreq-nvmem.c | 15 +++++++++++++++
+>  2 files changed, 16 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> index e4605d23fdc8..8220a4fd6319 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
-> @@ -73,7 +73,7 @@ led-1 {
->   		};
->   	};
->   
-> -	memory {
-> +	memory@40000000 {
->   		reg = <0 0x40000000 0 0x40000000>;
->   	};
->   
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
-> index dad8e683aac5..c435984ca767 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt7622-rfb1.dts
-> @@ -55,7 +55,7 @@ key-wps {
->   		};
->   	};
->   
-> -	memory {
-> +	memory@40000000 {
->   		reg = <0 0x40000000 0 0x20000000>;
->   	};
->   
+> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+> index 02ec58a..f0c45d4 100644
+> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+Viresh probably picks up patches for both files, so it should
+be fine, but I'd say it's 'eeeh' to edit 2 separate drivers at
+once.
 
+> @@ -178,6 +178,7 @@ static const struct of_device_id blocklist[] __initconst = {
+>  	{ .compatible = "ti,am625", },
+>  	{ .compatible = "ti,am62a7", },
+>  
+> +	{ .compatible = "qcom,ipq5332", },
+>  	{ .compatible = "qcom,ipq8064", },
+>  	{ .compatible = "qcom,apq8064", },
+>  	{ .compatible = "qcom,msm8974", },
+> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> index 84d7033..49d21b0 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> @@ -146,6 +146,20 @@ static int qcom_cpufreq_kryo_name_version(struct device *cpu_dev,
+>  		return PTR_ERR(speedbin);
+>  
+>  	switch (msm_id) {
+> +	case QCOM_ID_IPQ5332:
+> +	case QCOM_ID_IPQ5322:
+> +	case QCOM_ID_IPQ5312:
+> +	case QCOM_ID_IPQ5302:
+> +	case QCOM_ID_IPQ5300:
+> +		/* Fuse Value    Freq    BIT to set
+> +		 * ---------------------------------
+> +		 *   2’b00     No Limit     BIT(0)
+> +		 *   2’b01     1.5 GHz      BIT(1)
+> +		 *   2’b10     1.2 Ghz      BIT(2)
+> +		 *   2’b11     1.0 GHz      BIT(3)
+I think the last column is a bit excessive, it says exactly
+the same as the line below.
 
+Actually, with this data being present in the devicetree, perhaps
+this comment could be entirely skipped.
+
+Konrad
+> +		 */
+> +		drv->versions = 1 << (unsigned int)(*speedbin);
+> +		break;
+>  	case QCOM_ID_MSM8996:
+>  	case QCOM_ID_APQ8096:
+>  		drv->versions = 1 << (unsigned int)(*speedbin);
+> @@ -359,6 +373,7 @@ static const struct of_device_id qcom_cpufreq_match_list[] __initconst = {
+>  	{ .compatible = "qcom,apq8096", .data = &match_data_kryo },
+>  	{ .compatible = "qcom,msm8996", .data = &match_data_kryo },
+>  	{ .compatible = "qcom,qcs404", .data = &match_data_qcs404 },
+> +	{ .compatible = "qcom,ipq5332", .data = &match_data_kryo },
+>  	{ .compatible = "qcom,ipq8064", .data = &match_data_krait },
+>  	{ .compatible = "qcom,apq8064", .data = &match_data_krait },
+>  	{ .compatible = "qcom,msm8974", .data = &match_data_krait },
