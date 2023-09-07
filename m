@@ -2,90 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5433C79776B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:25:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E01FC79785B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237756AbjIGQZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:25:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55272 "EHLO
+        id S243225AbjIGQqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:46:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240939AbjIGQYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:24:06 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A503C272B;
-        Thu,  7 Sep 2023 09:21:12 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 001EAC116D6;
-        Thu,  7 Sep 2023 11:30:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1694086232;
-        bh=BQqmAsnKsYCURZdBUxzJ5oq3xlzAgdnhH5VorW6j2es=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r6lYQANfxUUFWoyZp/V5KNiQHdM+KGxHUGVv4pBcJQhRwOn4+5pLAvcr3hecL4Ucm
-         nSg2sGI4ndAzw8OGj7Eb+6ZKbKjlRgaDPgZXIzgENndX8qklFZbFfz3Vv0QA2YGdTv
-         edRhLRXleubbSps3JiKxCVXgJ8r6e62wLhHU06hA=
-Date:   Thu, 7 Sep 2023 12:30:29 +0100
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Nathan Chancellor <nathan@kernel.org>, stable@vger.kernel.org,
-        linux-security-module@vger.kernel.org, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, robh+dt@kernel.org, sashal@kernel.org,
-        dmitry.kasatkin@gmail.com, linux-integrity@vger.kernel.org,
-        zohar@linux.ibm.com
-Subject: Re: [PATCH 5.15] of: kexec: Mark ima_{free,stable}_kexec_buffer() as
- __init
-Message-ID: <2023090723-mocha-overfed-f6df@gregkh>
-References: <20230905-5-15-of-kexec-modpost-warning-v1-1-4138b2e96b4e@kernel.org>
- <169403211998.243709.4772468997015448407.robh@kernel.org>
+        with ESMTP id S236693AbjIGQqU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:46:20 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AEF7683;
+        Thu,  7 Sep 2023 09:20:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694103600; x=1725639600;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=DBrL4mS557cxBvRouvwV9QF+iy39q5mSe7MPFfBAAyY=;
+  b=lfdlF99KklkzalsqntVN6PKzyH0ow+w0VQACqIar0NT6NHtTXD9DM89u
+   y4/rNSXkpy7fnGUQb+gEXAOrp0rLGDajdtaV+SJW9eXAVoG5KlzA/OmeJ
+   CztiZMrVmqnEA3cQgIyJlj+RpIB6exyUvDjoiM3Q3gpDJ/eVr5qIo7txc
+   kdIFkreJGQD0nOhXfdweFSh0LJRWm9Q4/ywY1k3xUbus2dgycbJ+8HCnf
+   lJKafiXQGZJ4xVLQ2Qb9uJRsNAEx9HmvnEQhL3eq4tycCVi4g6d4qslDH
+   WWFL8hwaE4hp4b/sUIUHVb2M93dB3GaYnOTKBLXb+Jx7KXJBDWgSGsgMB
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="441323679"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
+   d="scan'208";a="441323679"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 05:14:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="807515912"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
+   d="scan'208";a="807515912"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 05:14:16 -0700
+From:   Jani Nikula <jani.nikula@linux.intel.com>
+To:     Sarah Walker <sarah.walker@imgtec.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     linux-doc@vger.kernel.org, hns@goldelico.com,
+        krzysztof.kozlowski+dt@linaro.org, matthew.brost@intel.com,
+        corbet@lwn.net, luben.tuikov@amd.com, dakr@redhat.com,
+        donald.robson@imgtec.com, devicetree@vger.kernel.org,
+        conor+dt@kernel.org, mripard@kernel.org, matt.coster@imgtec.com,
+        robh+dt@kernel.org, faith.ekstrand@collabora.com,
+        linux-kernel@vger.kernel.org, afd@ti.com,
+        boris.brezillon@collabora.com, tzimmermann@suse.de,
+        christian.koenig@amd.com
+Subject: Re: [PATCH v6 02/20] drm/gpuva_mgr: Helper to get range of unmap
+ from a remap op.
+In-Reply-To: <20230906095542.3280699-3-sarah.walker@imgtec.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230906095542.3280699-1-sarah.walker@imgtec.com>
+ <20230906095542.3280699-3-sarah.walker@imgtec.com>
+Date:   Thu, 07 Sep 2023 15:14:14 +0300
+Message-ID: <87a5tygoyx.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <169403211998.243709.4772468997015448407.robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 06, 2023 at 03:28:51PM -0500, Rob Herring wrote:
-> 
-> On Tue, 05 Sep 2023 13:36:11 -0700, Nathan Chancellor wrote:
-> > This commit has no direct upstream equivalent.
-> > 
-> > After commit d48016d74836 ("mm,ima,kexec,of: use memblock_free_late from
-> > ima_free_kexec_buffer") in 5.15, there is a modpost warning for certain
-> > configurations:
-> > 
-> >   WARNING: modpost: vmlinux.o(.text+0xb14064): Section mismatch in reference from the function ima_free_kexec_buffer() to the function .init.text:__memblock_free_late()
-> >   The function ima_free_kexec_buffer() references
-> >   the function __init __memblock_free_late().
-> >   This is often because ima_free_kexec_buffer lacks a __init
-> >   annotation or the annotation of __memblock_free_late is wrong.
-> > 
-> > In mainline, there is no issue because ima_free_kexec_buffer() is marked
-> > as __init, which was done as part of commit b69a2afd5afc ("x86/kexec:
-> > Carry forward IMA measurement log on kexec") in 6.0, which is not
-> > suitable for stable.
-> > 
-> > Mark ima_free_kexec_buffer() and its single caller
-> > ima_load_kexec_buffer() as __init in 5.15, as ima_load_kexec_buffer() is
-> > only called from ima_init(), which is __init, clearing up the warning.
-> > 
-> > Signed-off-by: Nathan Chancellor <nathan@kernel.org>
-> > ---
-> >  drivers/of/kexec.c                 | 2 +-
-> >  include/linux/of.h                 | 2 +-
-> >  security/integrity/ima/ima.h       | 2 +-
-> >  security/integrity/ima/ima_kexec.c | 2 +-
-> >  4 files changed, 4 insertions(+), 4 deletions(-)
-> > 
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-> 
+On Wed, 06 Sep 2023, Sarah Walker <sarah.walker@imgtec.com> wrote:
+> From: Donald Robson <donald.robson@imgtec.com>
+>
+> Signed-off-by: Donald Robson <donald.robson@imgtec.com>
+> ---
+>  include/drm/drm_gpuva_mgr.h | 27 +++++++++++++++++++++++++++
+>  1 file changed, 27 insertions(+)
+>
+> diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
+> index ed8d50200cc3..be7b3a6d7e67 100644
+> --- a/include/drm/drm_gpuva_mgr.h
+> +++ b/include/drm/drm_gpuva_mgr.h
+> @@ -703,4 +703,31 @@ void drm_gpuva_remap(struct drm_gpuva *prev,
+>  
+>  void drm_gpuva_unmap(struct drm_gpuva_op_unmap *op);
+>  
+> +/**
+> + * drm_gpuva_op_remap_get_unmap_range() - Helper to get the start and range of
+> + * the unmap stage of a remap op.
+> + * @op: Remap op.
+> + * @start_addr: Output pointer for the start of the required unmap.
+> + * @range: Output pointer for the length of the required unmap.
+> + *
+> + * These parameters can then be used by the caller to unmap memory pages that
+> + * are no longer required.
+> + */
+> +static __always_inline void
 
-Now queued up, thanks.
+IMO __always_inline *always* requires a justification in the commit
+message.
 
-greg k-h
+BR,
+Jani.
+
+
+> +drm_gpuva_op_remap_get_unmap_range(const struct drm_gpuva_op_remap *op,
+> +				   u64 *start_addr, u64 *range)
+> +{
+> +	const u64 va_start = op->prev ?
+> +			     op->prev->va.addr + op->prev->va.range :
+> +			     op->unmap->va->va.addr;
+> +	const u64 va_end = op->next ?
+> +			   op->next->va.addr :
+> +			   op->unmap->va->va.addr + op->unmap->va->va.range;
+> +
+> +	if (start_addr)
+> +		*start_addr = va_start;
+> +	if (range)
+> +		*range = va_end - va_start;
+> +}
+> +
+>  #endif /* __DRM_GPUVA_MGR_H__ */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
