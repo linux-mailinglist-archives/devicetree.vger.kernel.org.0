@@ -2,78 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C889C797C18
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20731797B2B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:06:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240051AbjIGSkf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 14:40:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57120 "EHLO
+        id S235180AbjIGSGL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 14:06:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232847AbjIGSkf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:40:35 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F750B4
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 11:40:28 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52a49a42353so1749440a12.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 11:40:28 -0700 (PDT)
+        with ESMTP id S243536AbjIGSGK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:06:10 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D7D01FF1
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 11:05:44 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2bd0d135ca3so22498761fa.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 11:05:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694112026; x=1694716826; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1694109942; x=1694714742; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=a51rbBUhl2yVMBaRWJfNm+10uIGnQdsMPdqet6PAES4=;
-        b=BAcOFqjO1SPbdyZzGrYAqP+VoFUibYr3+JPaxzDVJiZO7qcrDn/iCbKNHKJ3cyf92Y
-         p3PswxiazHyD7zCofH1AEJCd7E05xBxnn/ZvNLZCplWzLK2mEXaIgtWEjAcv4tctIlem
-         uGyoC1pXRakIygIl5HuSU/RNaV8g1ywDCdyG0PSX+Hr9M+eADXB/o1H8L48l6n1JniWC
-         d3gZ7cKJ3s8USc/HiGeCzJ8L1xKIUB5QMzC++peJQaHoR2WasAb+iJ0kTU+jX6kIDZHZ
-         wRzIll+O48Og/3T5xS30t/ZGypmngn63SX0iYGb2285Wgul32fag0JSXABCA8yvXG1pY
-         w79g==
+        bh=Q2mDdOoUtMj+G7MqUHaJG2Oe4r73+j5wUSjZ+K/6r1M=;
+        b=OZoYUk1g3lPnCbSFhgobAHmR+5XNqO5IIh5NUXv7aM+BifVIXdpkPAGxe0kmnLccac
+         xlCmrgHm9A1ruMwJJc9ibBunAQTiOTwjtm7/lfZ1LCLImUv+qfVVXRH8w5qiM+0QCnnU
+         IfYXqrF26Zx7+ZVeXR0ZsQG05Ee/N/VII55ckz7whb9EYmr/KUkb6YSnRYXs0uUZ9iq7
+         mTfrQ5p1fOuFmZJTAwIOO30noCzzmw5V5tlDivMVLIpf7Y5emvkKa2ZPvcvCU9y9Q5NQ
+         f22ZUAfwi6bPOTxhbuxHog0Etcp8V/tA9YmlXxYPqfodhgp8nYPkE2Ai8EwX9TZyNgF4
+         9LoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694112026; x=1694716826;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20230601; t=1694109942; x=1694714742;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a51rbBUhl2yVMBaRWJfNm+10uIGnQdsMPdqet6PAES4=;
-        b=UKNOZ0BvCu37p9R1r6GgQxOpFWBmWXCJjfYvDIK4f7f2y6D8AdDFFLTbgxeuB6Wn9O
-         BFp6IMucTH+KsjHrO3zhikW01nOPAu9/S5ti3bGMsZHVzjkdnG93pJLhHNG3Pv3Nd9bO
-         dT6rtd2JHC2Cey4OuXVPtnBDyg5XKCs/a5TrRbyOOmRbE0U1lLDIDZ/9xvmSoE5NuoRG
-         L38l1+b9+G1Zhyk+amNZqUxpofutpWEGOkomO8kiWeqxw5c4C1gJspboKtL83ujhgvkW
-         QUSvuBJw2kXF7KYH7o/3PxzpzLQAZPvt07bnrpuQrv8B0A7pl/Xbqr11peqb+npLPOIK
-         +eNA==
-X-Gm-Message-State: AOJu0Yx2Qy8HuQBBTHwvHPDnmIaJICveuOvvpHHmAyrVUQ0DgiWlqLI1
-        JzChJZDkTRdg6varWVqJJNavmG0BaXYK+hC/BqNZbg==
-X-Google-Smtp-Source: AGHT+IFlXAmlomGcmhe6S0hUGMXYE4sEpDzId5svN/29k+3GVd9pMgSG9ox0ZZbhaW0oXLRASeVmdQ==
-X-Received: by 2002:a17:906:24b:b0:9a5:ebfd:79a3 with SMTP id 11-20020a170906024b00b009a5ebfd79a3mr3449605ejl.29.1694066582736;
-        Wed, 06 Sep 2023 23:03:02 -0700 (PDT)
-Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id a1-20020a170906684100b009920e9a3a73sm9946636ejs.115.2023.09.06.23.03.01
+        bh=Q2mDdOoUtMj+G7MqUHaJG2Oe4r73+j5wUSjZ+K/6r1M=;
+        b=L6g1sE5J3JK+88I4OlKz/Kva6+q8QomSJTzYJqmTAR7DHxdxBXO28jbcWjFwg1OwXU
+         6i2OYai7OhWRE5BIpgh91zqKKcZFKcWm5vHIlt1hOnRwSi80148zefX+gvmtcgdjL6Lw
+         ZzaLEKF8p0CNACkKBrmJLGhHSaKRyQKRthLd0+IIyquE5WfadcjCOXds26UoxgFdc3VH
+         MepsTXi5MHgx9GAdNtiuIjU5VklLVi52L17v5qd2eOvR/ih17Cahe2SUwxql2AuEn2J+
+         hT9XXQXwMs6W4XeFpbUUda+3so/dAz6HtUfDpOPE7SFq5iyPJp1xzFY77DXSIGTam78l
+         4PXA==
+X-Gm-Message-State: AOJu0Yxg6SCRJpvPjb43udVlvK0WstpCPciZEU9Ewoc/HFyoclFK+6H1
+        Hn8nm4AxA3pdo7c4bunwzRJVHvElghffX3qD2HLukQ==
+X-Google-Smtp-Source: AGHT+IGL3X4jnE8aHxmeAy21FcPDQXKVfwcbk30P7hctEGcYhjE/lblNUGOm9FkXIpnKlicHb8htXQ==
+X-Received: by 2002:a17:907:b18:b0:9a1:e231:67ec with SMTP id h24-20020a1709070b1800b009a1e23167ecmr3903209ejl.61.1694075133580;
+        Thu, 07 Sep 2023 01:25:33 -0700 (PDT)
+Received: from [192.168.37.232] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
+        by smtp.gmail.com with ESMTPSA id lu7-20020a170906fac700b00992e14af9b9sm9949024ejb.134.2023.09.07.01.25.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 23:03:02 -0700 (PDT)
-Message-ID: <d822da46-b6c0-6932-6ed6-8806fbeee51d@linaro.org>
-Date:   Thu, 7 Sep 2023 08:03:00 +0200
+        Thu, 07 Sep 2023 01:25:33 -0700 (PDT)
+Message-ID: <667b49cc-dc12-4cee-8865-6b098a9928e0@linaro.org>
+Date:   Thu, 7 Sep 2023 10:25:31 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v1 07/10] arm64: dts: qcom: ipq5332: populate the opp
- table based on the eFuse
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 03/10] clk: qcom: apss-ipq-pll: Fix 'l' value for
+ ipq5332_pll_config
 Content-Language: en-US
 To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
         ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org,
+        rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         mturquette@baylibre.com, sboyd@kernel.org,
         quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 References: <cover.1693996662.git.quic_varada@quicinc.com>
- <a6d12e3b253d6a55d85f66979ba8b7d9c9ff6072.1693996662.git.quic_varada@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a6d12e3b253d6a55d85f66979ba8b7d9c9ff6072.1693996662.git.quic_varada@quicinc.com>
+ <543183ecfba929683c1b8d7ff24d75df489ef0cf.1693996662.git.quic_varada@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
+ BB/OmIWU6X+LZW6P88ZmHe+KeyABLMP5s1tJNK1j4ntT7mECcWZDzafPWF4F6m4WJOG27kTJ
+ HGWdmtO+RvadOVi6CoUDqALsmfS3MUG5Pj2Ne9+0jRg4hEnB92AyF9rW2G3qisFcwPgvatt7
+ TXD5E38mLyOPOUyXNj9XpDbt1hNwKQfiidmPh5e7VNAWRnW1iCMMoKqzM1Anzq7e5Afyeifz
+ zRcQPLaqrPjnKqZGL2BKQSZDh6NkI5ZLRhhHQf61fkWcUpTp1oDC6jWVfT7hwRVIQLrrNj9G
+ MpPzrlN4YuAqKeIer1FMt8cq64ifgTzxHzXsMcUdclzq2LTk2RXaPl6Jg/IXWqUClJHbamSk
+ t1bfif3SnmhA6TiNvEpDKPiT3IDs42THU6ygslrBxyROQPWLI9IL1y8S6RtEh8H+NZQWZNzm
+ UQ3imZirlPjxZtvz1BtnnBWS06e7x/UEAguj7VHCuymVgpl2Za17d1jj81YN5Rp5L9GXxkV1
+ aUEwONM3eCI3qcYm5JNc5X+JthZOWsbIPSC1Rhxz3JmWIwP1udr5E3oNRe9u2LIEq+wH/toH
+ kpPDhTeMkvt4KfE5m5ercid9+ZXAqoaYLUL4HCEw+HW0DXcKDwARAQABzShLb25yYWQgRHli
+ Y2lvIDxrb25yYWQuZHliY2lvQGxpbmFyby5vcmc+wsGOBBMBCAA4FiEEU24if9oCL2zdAAQV
+ R4cBcg5dfFgFAmQ5bqwCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQR4cBcg5dfFjO
+ BQ//YQV6fkbqQCceYebGg6TiisWCy8LG77zV7DB0VMIWJv7Km7Sz0QQrHQVzhEr3trNenZrf
+ yy+o2tQOF2biICzbLM8oyQPY8B///KJTWI2khoB8IJSJq3kNG68NjPg2vkP6CMltC/X3ohAo
+ xL2UgwN5vj74QnlNneOjc0vGbtA7zURNhTz5P/YuTudCqcAbxJkbqZM4WymjQhe0XgwHLkiH
+ 5LHSZ31MRKp/+4Kqs4DTXMctc7vFhtUdmatAExDKw8oEz5NbskKbW+qHjW1XUcUIrxRr667V
+ GWH6MkVceT9ZBrtLoSzMLYaQXvi3sSAup0qiJiBYszc/VOu3RbIpNLRcXN3KYuxdQAptacTE
+ mA+5+4Y4DfC3rUSun+hWLDeac9z9jjHm5rE998OqZnOU9aztbd6zQG5VL6EKgsVXAZD4D3RP
+ x1NaAjdA3MD06eyvbOWiA5NSzIcC8UIQvgx09xm7dThCuQYJR4Yxjd+9JPJHI6apzNZpDGvQ
+ BBZzvwxV6L1CojUEpnilmMG1ZOTstktWpNzw3G2Gis0XihDUef0MWVsQYJAl0wfiv/0By+XK
+ mm2zRR+l/dnzxnlbgJ5pO0imC2w0TVxLkAp0eo0LHw619finad2u6UPQAkZ4oj++iIGrJkt5
+ Lkn2XgB+IW8ESflz6nDY3b5KQRF8Z6XLP0+IEdLOOARkOW7yEgorBgEEAZdVAQUBAQdAwmUx
+ xrbSCx2ksDxz7rFFGX1KmTkdRtcgC6F3NfuNYkYDAQgHwsF2BBgBCAAgFiEEU24if9oCL2zd
+ AAQVR4cBcg5dfFgFAmQ5bvICGwwACgkQR4cBcg5dfFju1Q//Xta1ShwL0MLSC1KL1lXGXeRM
+ 8arzfyiB5wJ9tb9U/nZvhhdfilEDLe0jKJY0RJErbdRHsalwQCrtq/1ewQpMpsRxXzAjgfRN
+ jc4tgxRWmI+aVTzSRpywNahzZBT695hMz81cVZJoZzaV0KaMTlSnBkrviPz1nIGHYCHJxF9r
+ cIu0GSIyUjZ/7xslxdvjpLth16H27JCWDzDqIQMtg61063gNyEyWgt1qRSaK14JIH/DoYRfn
+ jfFQSC8bffFjat7BQGFz4ZpRavkMUFuDirn5Tf28oc5ebe2cIHp4/kajTx/7JOxWZ80U70mA
+ cBgEeYSrYYnX+UJsSxpzLc/0sT1eRJDEhI4XIQM4ClIzpsCIN5HnVF76UQXh3a9zpwh3dk8i
+ bhN/URmCOTH+LHNJYN/MxY8wuukq877DWB7k86pBs5IDLAXmW8v3gIDWyIcgYqb2v8QO2Mqx
+ YMqL7UZxVLul4/JbllsQB8F/fNI8AfttmAQL9cwo6C8yDTXKdho920W4WUR9k8NT/OBqWSyk
+ bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
+ nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
+ izWDgYvmBE8=
+In-Reply-To: <543183ecfba929683c1b8d7ff24d75df489ef0cf.1693996662.git.quic_varada@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,27 +115,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2023 07:21, Varadarajan Narayanan wrote:
-> IPQ53xx have different OPPs available for the CPU based on
-> SoC variant. This can be determined through use of an eFuse
-> register present in the silicon.
+On 7.09.2023 07:21, Varadarajan Narayanan wrote:
+> The earlier 'l' value of 0x3e is for 1.5GHz. Not all SKUs support
+> this frequency. Hence set it to 0x2d to get 1.1GHz which is
+> supported in all SKUs.
 > 
-> Add support to read the eFuse and populate the OPPs based on it.
-> 
+> Fixes: c7ef7fbb1ccf ("clk: qcom: apss-ipq-pll: add support for IPQ5332")
 > Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-
->  	};
-> @@ -150,6 +173,11 @@
->  			reg = <0x000a4000 0x721>;
->  			#address-cells = <1>;
->  			#size-cells = <1>;
-> +
-> +			cpu_speed_bin: cpu_speed_bin@1d {
-
-No underscores in node names. I am pretty sure I repeated it multiple
-times already...
-
-Best regards,
-Krzysztof
-
+Konrad
