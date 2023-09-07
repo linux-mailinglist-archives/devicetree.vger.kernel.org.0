@@ -2,127 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78AAF797511
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509DD797520
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:47:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232134AbjIGPpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 11:45:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37446 "EHLO
+        id S233799AbjIGPqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 11:46:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45184 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344756AbjIGPdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:33:45 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5623CE49;
-        Thu,  7 Sep 2023 08:33:21 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (ftip006315900.acc1.colindale.21cn-nte.bt.net [81.134.214.249])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DC01831B9;
-        Thu,  7 Sep 2023 17:03:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1694098987;
-        bh=Tu+mxxpH015oWyJsbCEuUxhFMyaqhb+/X6gaqeEsbwg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oOvU/38KLai0fMlQ+LtyaAWZAT/ZTbDaShtN+HYmdnM9UJCAherctnVcG4dY+shSf
-         5lfCWRyXTOMkthsUqE8/QPfwwyv596Xv6zntZ/ErZ8QcHM3p7c/wTFeaOZq4DkL+c3
-         iHzUolfCJeNpZcM4HSKBw56qOH0sYULK5VmhSPHE=
-Date:   Thu, 7 Sep 2023 18:04:48 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Paul Elder <paul.elder@ideasonboard.com>
-Cc:     Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242660AbjIGP0q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:26:46 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5F8170F;
+        Thu,  7 Sep 2023 08:26:26 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-401b5516104so12098135e9.2;
+        Thu, 07 Sep 2023 08:26:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694100367; x=1694705167; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HfJRvGG1+8tzxY0msM4PeR5IqsDQRVgMRK4cu1iRcR4=;
+        b=Z3Fp5b6Pv3wogacYHVnytBpaKZ725LQZTNw4aoICPmepWJxVixYdv4LhdF4kQBvd0b
+         d9M0SCbDSAeqkJS3j3qxnBnQj+qtg/h2vxdu/btwvu5RYcbzATUkMmVBEyXdyD04/ivM
+         k2P5mhX2dc9Bk1w4fm/jiK9vFeURQ2CwIigp8UL/Nndn1G8n9htIuXlYsKLxeObHbyWq
+         RDH+yuyJlrTKoCwFdOw5II+BGynDM0QLOI3IWP+cDLezBGFEZq6w1K+gHfvq9iYjoFUs
+         rFlW0sUBkM01TpkRm5zUPg5IRNwUYyUU8nLgEuclsgGL0spHTiPMCm7LxqKMdhAIRPl5
+         Yqeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694100367; x=1694705167;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HfJRvGG1+8tzxY0msM4PeR5IqsDQRVgMRK4cu1iRcR4=;
+        b=Jo+ljEs6PnAlkxpLSyxggX1QWvS33714nKwuUF7fVXfw6nA1KsM6JiNds0f7XOQr0O
+         OPNyV+7EAZXpZz369qLXk2aD6Kv8x5tZizk8ADlikDm3lSnHJAitWjC0XTO34EsPH0qP
+         S08j8Y0itcQAJKH0DobH7lEP3FXRFwXZT4phK3zb+IRhC8/nCPTvHhWIjAACVTEgFvpP
+         CXqa4cTvELA0PdSXVZ/Rv07D8d+xNl3kgnX31gQx2Rk81PDZpFAQnLteaG4J0f4lzBHS
+         cliZp9BFv0+wNMu637LyiBu/NgY4KtR1HjzkXtn2MSQgy00TrPgnxa6F/DSWLZoQG6vN
+         nx4A==
+X-Gm-Message-State: AOJu0YzC5Z23aYjx/lhUkDzSaXS0m/C0NyxM5FwNJN+PMucCSZxdwKIQ
+        1LYJg9RFNt9zXt1MjSoFGeLrTBAsLYPutQ==
+X-Google-Smtp-Source: AGHT+IEWg4FplZCvEqhV5FF+ef0iLgRk5TOFXN3+CPcXJLIjMTAIazbHqeW6H02I5cYNKK/M1AKx3Q==
+X-Received: by 2002:a5d:6846:0:b0:319:8a21:6f9a with SMTP id o6-20020a5d6846000000b003198a216f9amr4825426wrw.63.1694099884935;
+        Thu, 07 Sep 2023 08:18:04 -0700 (PDT)
+Received: from opti3050-1.lan (ip092042140082.rev.nessus.at. [92.42.140.82])
+        by smtp.gmail.com with ESMTPSA id l16-20020adfe9d0000000b00317e77106dbsm23511973wrn.48.2023.09.07.08.18.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Sep 2023 08:18:04 -0700 (PDT)
+From:   Jakob Unterwurzacher <jakobunt@gmail.com>
+X-Google-Original-From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
+        Ermin Sunj <ermin.sunj@theobroma-systems.com>,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc:     stable@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 3/3] arm64: dts: mediatek: mt8365-pumpkin: Add overlays
- for thp7312 cameras
-Message-ID: <20230907150448.GD17610@pendragon.ideasonboard.com>
-References: <502fc7b1-a32d-6901-3a45-d2aa0e0c3849@linaro.org>
- <20230906083237.GL7971@pendragon.ideasonboard.com>
- <a3ed9856-a87b-5cf6-26b5-ff2b19234a8a@linaro.org>
- <20230906090058.GB17308@pendragon.ideasonboard.com>
- <59e07c6a-6f1b-0cc7-dddc-96d2a4050843@linaro.org>
- <20230906093531.GO7971@pendragon.ideasonboard.com>
- <169399810391.277971.691693692840899613@ping.linuxembedded.co.uk>
- <20230906111429.GC17308@pendragon.ideasonboard.com>
- <ZPnkUVmDZYb0ysu0@pyrite.rasen.tech>
- <20230907150408.GC17610@pendragon.ideasonboard.com>
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] arm64: dts: rockchip: use codec as clock master on px30-ringneck-haikou
+Date:   Thu,  7 Sep 2023 17:17:15 +0200
+Message-Id: <20230907151725.198347-1-jakob.unterwurzacher@theobroma-systems.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230907150408.GC17610@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 07, 2023 at 06:04:09PM +0300, Laurent Pinchart wrote:
-> On Thu, Sep 07, 2023 at 11:55:13PM +0900, Paul Elder wrote:
-> > On Wed, Sep 06, 2023 at 02:14:29PM +0300, Laurent Pinchart wrote:
-> > > On Wed, Sep 06, 2023 at 12:01:43PM +0100, Kieran Bingham wrote:
-> > > > Quoting Laurent Pinchart (2023-09-06 10:35:31)
-> > > > > On Wed, Sep 06, 2023 at 11:21:31AM +0200, Krzysztof Kozlowski wrote:
-> > > > > > On 06/09/2023 11:00, Laurent Pinchart wrote:
-> > > > > > >>> has a regulator@0. There are similar instances for clocks.
-> > > > > > >>>
-> > > > > > >>> I understand why it may not be a good idea, and how the root node is
-> > > > > > >>> indeed not a bus. In some cases, those regulators and clocks are grouped
-> > > > > > >>> in a regulators or clocks node that has a "simple-bus" compatible. I'm
-> > > > > > >>> not sure if that's a good idea, but at least it should validate.
-> > > > > > >>>
-> > > > > > >>> What's the best practice for discrete board-level clocks and regulators
-> > > > > > >>> in overlays ? How do we ensure that their node name will not conflict
-> > > > > > >>> with the board to which the overlay is attached ?
-> > > > > > >>
-> > > > > > >> Top-level nodes (so under /) do not have unit addresses. If they have -
-> > > > > > >> it's an error, because it is not a bus. Also, unit address requires reg.
-> > > > > > >> No reg? No unit address. DTC reports this as warnings as well.
-> > > > > > > 
-> > > > > > > I agree with all that, but what's the recommended practice to add
-> > > > > > > top-level clocks and regulators in overlays, in a way that avoids
-> > > > > > > namespace clashes with the base board ?
-> > > > > > 
-> > > > > > Whether you use regulator@0 or regulator-0, you have the same chances of
-> > > > > > clash.
-> > > > > 
-> > > > > No disagreement there. My question is whether there's a recommended
-> > > > > practice to avoid clashes, or if it's an unsolved problem that gets
-> > > > > ignored for now because there's only 36h in a day and there are more
-> > > > > urgent things to do.
-> > > > 
-> > > > Should an overlay add these items to a simple-bus specific to that
-> > > > overlay/device that is being supported?
-> > > > 
-> > > > That would 'namespace' the added fixed-clocks/fixed-regulators etc...
-> > > > 
-> > > > But maybe it's overengineering or mis-using the simple-bus.
-> > > 
-> > > You would still need to name the node that groups the regulators and
-> > > clocks in a way that wouldn't clash between multiple overlays and the
-> > > base board. It would be nice to have nodes that are "private" to an
-> > > overlay.
-> > 
-> > What's the best solution to this then :/
-> 
-> It seems we don't have a good solution. For now, I'd recommend just
-> picking a name for the regulator that has a high chance to be unique,
-> like reg-thp7312-1v2 for instance.
+From: Ermin Sunj <ermin.sunj@theobroma-systems.com>
 
-Or reg-cam-1v2, or ... The name doesn't matter much really, as long as
-it's not extremely generic with a high risk of conflict.
+If the codec is not the clock master, the MCLK needs to be
+synchronous to both I2S_SCL ans I2S_LRCLK. We do not have that
+on Haikou, causing distorted audio.
 
-> > > > And the items are still not on a 'bus' with an address - they just exist
-> > > > on a presumably externally provided board....
+Before:
 
+ Running an audio test script on Ringneck, 1kHz
+ output sine wave is not stable and shows distortion.
+
+After:
+
+ 10h audio test script loop failed only one time.
+ That is 0.00014% failure rate.
+
+Cc: stable@vger.kernel.org
+Fixes: c484cf93f61b ("arm64: dts: rockchip: add PX30-µQ7 (Ringneck) SoM with Haikou baseboard")
+Signed-off-by: Ermin Sunj <ermin.sunj@theobroma-systems.com>
+Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+---
+
+Notes:
+    v1: https://lore.kernel.org/lkml/20230823122000.585787-1-jakob.unterwurzacher@theobroma-systems.com/
+    v2: https://lore.kernel.org/lkml/20230823131651.586934-1-jakob.unterwurzacher@theobroma-systems.com/
+
+ arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
+index 08a3ad3e7ae9..8792fae50257 100644
+--- a/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
++++ b/arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts
+@@ -68,15 +68,15 @@ i2s0-sound {
+ 		simple-audio-card,format = "i2s";
+ 		simple-audio-card,name = "Haikou,I2S-codec";
+ 		simple-audio-card,mclk-fs = <512>;
++		simple-audio-card,frame-master = <&sgtl5000_codec>;
++		simple-audio-card,bitclock-master = <&sgtl5000_codec>;
+ 
+-		simple-audio-card,codec {
++		sgtl5000_codec: simple-audio-card,codec {
+ 			clocks = <&sgtl5000_clk>;
+ 			sound-dai = <&sgtl5000>;
+ 		};
+ 
+ 		simple-audio-card,cpu {
+-			bitclock-master;
+-			frame-master;
+ 			sound-dai = <&i2s0_8ch>;
+ 		};
+ 	};
 -- 
-Regards,
+2.39.2
 
-Laurent Pinchart
