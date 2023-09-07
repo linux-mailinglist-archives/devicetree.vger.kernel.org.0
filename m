@@ -2,108 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA288797DBF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 23:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E341E797DD4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 23:15:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240959AbjIGVJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 17:09:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43366 "EHLO
+        id S236849AbjIGVPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 17:15:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240650AbjIGVJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 17:09:28 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1744C1BCA;
-        Thu,  7 Sep 2023 14:09:21 -0700 (PDT)
-Received: from pps.filterd (m0150242.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 387H1xMs006282;
-        Thu, 7 Sep 2023 21:09:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references; s=pps0720;
- bh=GTxw/jfcBQkTByCYP+2APEihQLyx72ewkGzUOdjpTds=;
- b=iMFliCXOGHlNvxoiTy7/jXTgx8L+lkybP1RChlhX2qrb9ARiAJTDg1eIi0Vs/1SyDZQb
- 6tN1r4oV8T6CcI8rD5zbsnISyTzOt9yltpUa024XgFXe6GINao+Zd53Ffy84iSKUqNM8
- qjdPNmWLIi7xxZG6474D6/nhrDUNr0dGCJJ5OUnAkJ3U2PPEr/f2MyQKy1FU+utQVEKB
- 3vohNe5suqxmVTxJqM9/TgrKTy2t9kfTQ5m9rJfxWRO1iZrKAabjXlWT5JeFzTHPYa/S
- o4fQk+H3CEZj4p1ln9T0i+K1k40rj0LA7KOnWN3pq7T/+F31TgXmiUHPLELQWCFe4KpI Yw== 
-Received: from p1lg14879.it.hpe.com ([16.230.97.200])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3syavw6tbv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 07 Sep 2023 21:09:07 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14879.it.hpe.com (Postfix) with ESMTPS id 9AC5C13185;
-        Thu,  7 Sep 2023 21:09:04 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.39])
-        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id 1BC5A80B3BA;
-        Thu,  7 Sep 2023 21:09:04 +0000 (UTC)
-From:   richard.yu@hpe.com
-To:     verdun@hpe.com, nick.hawkins@hpe.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, richard.yu@hpe.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] MAINTAINERS: add USB HUB support for GXP
-Date:   Thu,  7 Sep 2023 16:06:01 -0500
-Message-Id: <20230907210601.25284-4-richard.yu@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230907210601.25284-1-richard.yu@hpe.com>
-References: <20230907210601.25284-1-richard.yu@hpe.com>
-X-Proofpoint-GUID: _qUHJu7mtFnHlD8IE_utZx5-ID8CdkmE
-X-Proofpoint-ORIG-GUID: _qUHJu7mtFnHlD8IE_utZx5-ID8CdkmE
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-07_13,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- suspectscore=0 bulkscore=0 phishscore=0 spamscore=0 clxscore=1015
- lowpriorityscore=0 adultscore=0 priorityscore=1501 mlxlogscore=536
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309070187
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231204AbjIGVPP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 17:15:15 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B0692
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 14:15:11 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qeMLD-0003S0-M5; Thu, 07 Sep 2023 23:15:07 +0200
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qeMLB-004jmk-Oc; Thu, 07 Sep 2023 23:15:05 +0200
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1qeMLA-00HHgS-VR; Thu, 07 Sep 2023 23:15:04 +0200
+Date:   Thu, 7 Sep 2023 23:15:04 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Ben Dooks <ben.dooks@codethink.co.uk>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com,
+        William Salmon <william.salmon@sifive.com>,
+        Jude Onyenegecha <jude.onyenegecha@sifive.com>
+Subject: Re: [PATCH v9 1/6] pwm: dwc: split pci out of core driver
+Message-ID: <20230907211504.xfummvycltdj6bii@pengutronix.de>
+References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
+ <20230907161242.67190-2-ben.dooks@codethink.co.uk>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="4mbcshatni2opzdo"
+Content-Disposition: inline
+In-Reply-To: <20230907161242.67190-2-ben.dooks@codethink.co.uk>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Richard Yu <richard.yu@hpe.com>
 
-Add the usb hub driver and dt-bindinng documents.
+--4mbcshatni2opzdo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Richard Yu <richard.yu@hpe.com>
+Hello,
 
----
+On Thu, Sep 07, 2023 at 05:12:37PM +0100, Ben Dooks wrote:
+> Moving towards adding non-pci support for the driver, move the pci
+> parts out of the core into their own module. This is partly due to
+> the module_driver() code only being allowed once in a module and also
+> to avoid a number of #ifdef if we build a single file in a system
+> without pci support.
+>=20
+> Signed-off-by: Ben Dooks <ben.dooks@codethink.co.uk>
 
-v2:
- *Changed file to hpe,gxp-hub.yaml
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Great you continue here even though your commercial interest already
+ended!
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 27ef11624748..e16b8b39d47f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2245,6 +2245,7 @@ F:	Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
- F:	Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
- F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
- F:	Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
-+F:	Documentation/devicetree/bindings/usb/hpe,gxp-hub.yaml
- F:	Documentation/hwmon/gxp-fan-ctrl.rst
- F:	arch/arm/boot/dts/hpe-bmc*
- F:	arch/arm/boot/dts/hpe-gxp*
-@@ -2253,6 +2254,7 @@ F:	drivers/clocksource/timer-gxp.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
- F:	drivers/spi/spi-gxp.c
-+F:	drivers/usb/gadget/udc/gxp-udc.c
- F:	drivers/watchdog/gxp-wdt.c
- 
- ARM/IGEP MACHINE SUPPORT
--- 
-2.17.1
+This series conflicts with my lifetime series[1], but I guess we can
+sort that one when at least one of these two series is applied.
 
+[1] https://lore.kernel.org/linux-pwm/20230808171931.944154-1-u.kleine-koen=
+ig@pengutronix.de/
+
+> [...]
+> diff --git a/drivers/pwm/pwm-dwc.c b/drivers/pwm/pwm-dwc.c
+> index 3bbb26c862c3..bd9cadb497d7 100644
+> --- a/drivers/pwm/pwm-dwc.c
+> +++ b/drivers/pwm/pwm-dwc.c
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  /*
+> - * DesignWare PWM Controller driver
+> + * DesignWare PWM Controller driver (PCI part)
+>   *
+>   * Copyright (C) 2018-2020 Intel Corporation
+>   *
+> @@ -13,6 +13,8 @@
+>   *   periods are one or more input clock periods long.
+>   */
+> =20
+> +#define DEFAULT_MOUDLE_NAMESPACE dwc_pwm
+> +
+
+There is no exported symbol in this driver, so this #define is unused.
+
+>  #include <linux/bitops.h>
+>  #include <linux/export.h>
+>  #include <linux/kernel.h>
+
+Otherwise looks fine:
+
+Acked-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+(with or without dropping DEFAULT_MOUDLE_NAMESPACE from pwm-dwc.c)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--4mbcshatni2opzdo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmT6PVgACgkQj4D7WH0S
+/k5PYAf/YeQFqnvpoY7iWcuk9PXBxXqVrErEwC8OiNTb50bRykRsJZsT77jxmbyT
+vzEQhNp/uqaX738pyzLrwrtoyj9UHxeyR0knrTcz8oNje5ilZQvkdVep5j17fuhP
+UbkPIdqmQOVeu4YFARhbJwdgvy80Zajs/kUDP268mSBFLYZwZLHb3QOtr6JIaaLE
+ccPveTHybu4sCma7dtleSjapPgOaKXKIfiy4tKqk9Joeps6O1VCzB/3NDgs1agHg
+wDeVYGMGtTF+QbomZCfswxSYWcqIgOo3dEFzoRsYInA3l6VrToJMm9G7MmWoKTAj
+3c82wRNAwt3YaUjVJwj3Pef5jFdIeQ==
+=bYu6
+-----END PGP SIGNATURE-----
+
+--4mbcshatni2opzdo--
