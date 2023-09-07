@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA33797576
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9DC79750E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:45:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232761AbjIGPrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 11:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42290 "EHLO
+        id S230173AbjIGPpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 11:45:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233197AbjIGPl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:41:58 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DA1530D0
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 08:38:04 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9a5dff9d2d9so133919166b.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 08:38:04 -0700 (PDT)
+        with ESMTP id S241242AbjIGPZS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:25:18 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED4B610E9
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 08:25:01 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-402c1407139so12488225e9.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 08:25:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694101032; x=1694705832; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1694100290; x=1694705090; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=y7Y6zFmhlb8oBiHulr6SNzDGIOTaQJEEOwxmUItsSBI=;
-        b=X5O1sAdFcpzEB23XEX0nyFKg+6rVkYQxzDuYzWOulJ4Rox/U3D6+KoxkZlM8DqHqAI
-         Ng7vbH2oZP/PjRGFANK7RTXQyzSWG4Jf2S6g2ge/jbiQnzCOwMb6xcopDnDWgcNipOHa
-         IkOoGd31CklWNYc9I9FB3r+MGcKLc8ySZcs6zHxnzXGPmlPvSh21qqu+PFcxz9XGrWHd
-         lHHQzYoQ5TOWuftUCNmDssfqbZWdyqQNaet18Tq6nCtZIzNVVosD9Ijax9cCYSgcfLH2
-         EE0V1ycH+NOIHHkM9/MnwbHfDg2/ulUOk7xeIHK/cYeA4A6Oig/3nPMCNcF5w5ySKOd5
-         qxxQ==
+        bh=3O3RNcMeBxjQQhA0dbRmngWyitShsXqfun7LC7NYjS8=;
+        b=Mi4nVGC9n6qfgtewLRCeJb48aX31pqh9pWGFDGGLKmHzPSXkXVKnymY2aojY2yadAU
+         JI3LrNHth8U7iLv63wR+S8lGICF+Y0jWPMiaSq+VeCTVMry7YmEGPRtWaUMb0gnaObdq
+         hWL7ydKxGXp2CASBqAgMtF5FsocggVmlEyKPZLF1spkKAjWHUjKVoD31MhOPA0L2IFCp
+         zDlome9QpLCGhdcpxsyPPKjNM6dJoUpDHx66OtvE7rB6ET2g60s6e8OAToqIoph7p7aY
+         Qq05VKGrJS0TP18SZHl7dxvEwNW92qGGxs9xBAz5r4MiGrtpFCOMK5wvXCzq/lbbn9tl
+         5uJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694101032; x=1694705832;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1694100290; x=1694705090;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y7Y6zFmhlb8oBiHulr6SNzDGIOTaQJEEOwxmUItsSBI=;
-        b=YibrTfDYBKRcut9wsq3wBwkx+aP+kk2fEcHXPmhjofbNp7EHkJlAardj4cFFiPhzED
-         wApWyWktUi+r0m2bDOWpf8GfhasZk08ZyL7mERQl1bD8D2rumRy0BS2DQxDBfpfjwgfs
-         ugAbVIDzKFDbqqQhxag2fdtgrdRdY5ATeXQDcl3deyUitKDvHXRNZW1qvYB6fzSPagyt
-         PPac63Bf82A7HTFNver40/RPCnE1oS2tF2+dO+BBuakBkErZhrf9Mqjc8ufmLREkkRLM
-         gx+f2pvUeQvpXvhiSYJdq6QxTDxI4seeHFLKHP7tJ+ZLarmPNqyf/2i0diTI3p2TSb0l
-         ugjA==
-X-Gm-Message-State: AOJu0YxYxQCSfq6Giv8zI7q08iTstFfp1ZKWtf6nPabL3ab8SXLbK0wp
-        Yd9yPlWIBz0rRi2v/AqpWi8keQEBt+575RkrAXY=
-X-Google-Smtp-Source: AGHT+IEKmnSNSlUtiCWpMx5epfLO+Rm4w2bJrzAa6Be3omHD0KXp967h3WlCKIuq9OnSAsdvXE+3AA==
-X-Received: by 2002:a05:6402:3c2:b0:522:2dcc:afb6 with SMTP id t2-20020a05640203c200b005222dccafb6mr3798766edw.7.1694066597001;
-        Wed, 06 Sep 2023 23:03:17 -0700 (PDT)
+        bh=3O3RNcMeBxjQQhA0dbRmngWyitShsXqfun7LC7NYjS8=;
+        b=T3Pc+O0Y7jOW6Zr+9asK2FZZulWTwUTMAvmSroOE7gtEDfRAJmkbZN8YXzJqsmf6oe
+         e/59ZjYmNRg7g1jlibrgikQ3OPcskAP+SLLtN3uwlhLhu8wtR9fDRvxSJu+iNGGLrufd
+         qq4eSvFCrfitAMa5Le1MJfW7sC7gtJUrm93ROANYY1zAvfZosczV2AZToxUd5a3Hl7b0
+         +XmKbgvWHuQMOL9/2jRPJdM5x/MGgSFh4AKsbP1dWqaEqQ+vjjlhd8lHRoyTanfdbA42
+         mJKLhxJ5kS/QJPRPt8nM2yt/X2bOr6gq7hlkTQ98q/lUaz+BRgnJlsIYxbZLoFT/gJDp
+         uQXA==
+X-Gm-Message-State: AOJu0YzvhSN5GxPg5PpviRLJz/0Hfm4zKe4PRjBasSlFMbwwiLz8MonM
+        L1Hw9L+Pp2sijfChT+3GJQ7wADSWfxf9UpCNRCM=
+X-Google-Smtp-Source: AGHT+IHTRWxWv8Q4u0fzUOsy1juZlGxj/UwfMeS4tSxa+9HNW5R8xUt9SALZq24RvaBvGYkAQcp1Kg==
+X-Received: by 2002:a17:906:9bed:b0:9a5:b95a:1179 with SMTP id de45-20020a1709069bed00b009a5b95a1179mr3482874ejc.77.1694066930742;
+        Wed, 06 Sep 2023 23:08:50 -0700 (PDT)
 Received: from [192.168.0.22] (77-252-46-238.static.ip.netia.com.pl. [77.252.46.238])
-        by smtp.gmail.com with ESMTPSA id t3-20020aa7d4c3000000b0051bed21a635sm9237337edr.74.2023.09.06.23.03.15
+        by smtp.gmail.com with ESMTPSA id n16-20020a1709061d1000b0097404f4a124sm9903735ejh.2.2023.09.06.23.08.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Sep 2023 23:03:16 -0700 (PDT)
-Message-ID: <3f68d3bf-3273-2339-ea41-3362ced3c91b@linaro.org>
-Date:   Thu, 7 Sep 2023 08:03:14 +0200
+        Wed, 06 Sep 2023 23:08:50 -0700 (PDT)
+Message-ID: <5eee2990-5fa6-d4c2-a877-a48afc916198@linaro.org>
+Date:   Thu, 7 Sep 2023 08:08:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v1 05/10] dt-bindings: cpufreq: qcom-cpufreq-nvmem:
- document IPQ5332
+Subject: Re: [PATCH 1/2] dt-bindings: display: Add st7735s driver
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1693996662.git.quic_varada@quicinc.com>
- <8fe23b5401362e214078648926a00f7ceefaa542.1693996662.git.quic_varada@quicinc.com>
+To:     Stefan x Nilsson <stefan.x.nilsson@axis.com>,
+        David Lechner <david@lechnology.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@axis.com
+References: <20230906-st7735s-v1-0-add92677c190@axis.com>
+ <20230906-st7735s-v1-1-add92677c190@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8fe23b5401362e214078648926a00f7ceefaa542.1693996662.git.quic_varada@quicinc.com>
+In-Reply-To: <20230906-st7735s-v1-1-add92677c190@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,13 +81,142 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2023 07:21, Varadarajan Narayanan wrote:
-> Document IPQ5332 compatible for Qcom NVMEM CPUFreq driver.
-> 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
+On 06/09/2023 18:22, Stefan x Nilsson wrote:
+> Add bindings for a driver for Sitronix st7735s display controller, as
+> well as for a Winstar wf0096atyaa3dnn0 0.96" 80x160 TFT panel.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Commit msg and subject: if by "driver" you mean Linux driver, then drop
+these references and focus on the hardware.
+
+> 
+> Signed-off-by: Stefan x Nilsson <stefan.x.nilsson@axis.com>
+> ---
+>  .../bindings/display/sitronix,st7735s.yaml         | 81 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  6 ++
+>  2 files changed, 87 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/sitronix,st7735s.yaml b/Documentation/devicetree/bindings/display/sitronix,st7735s.yaml
+> new file mode 100644
+> index 000000000000..36234ec22fe2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/sitronix,st7735s.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/sitronix,st7735s.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sitronix ST7735S Display Panels
+> +
+> +maintainers:
+> +  - Stefan x Nilsson <stefan.x.nilsson@axis.com>
+> +
+> +description:
+> +  This binding is for display panels using a Sitronix ST7735S
+> +  controller in SPI mode.
+
+Drop: "This binding is for". Describe the hardware instead.
+
+> +
+> +allOf:
+> +  - $ref: panel/panel-common.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+You do not have multiple choices here, so why oneOf? Do you expect it to
+grow very soon?
+
+> +      - description:
+> +          Winstar WF0096ATYAA3DNN0 0.96" 80x160 Color TFT
+> +        items:
+> +          - enum:
+> +              - winstar,wf0096atyaa3dnn0
+> +          - const: sitronix,st7735s
+> +
+> +  dc-gpios:
+> +    maxItems: 1
+> +    description: Display data/command selection (D/CX)
+> +
+> +  backlight: true
+> +  reg: true
+> +  spi-max-frequency: true
+> +  reset-gpios: true
+> +  rotation: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - dc-gpios
+> +
+> +additionalProperties: true
+
+This cannot be true. From where did you get such code as example?
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    backlight: backlight {
+> +            compatible = "gpio-backlight";
+> +            gpios = <&gpio 44 GPIO_ACTIVE_HIGH>;
+> +    };
+
+Drop node, not related.
+
+> +
+> +    regdisplay: regulatordisplay {
+> +            compatible = "regulator-fixed";
+> +            regulator-name = "display";
+> +            regulator-min-microvolt = <3300000>;
+> +            regulator-max-microvolt = <3300000>;
+> +            regulator-enable-ramp-delay = <100000>;
+> +            enable-active-high;
+
+Drop node, not related. Again: from where did you get such example?
+
+> +    };
+> +
+> +    spi {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            display@0 {
+> +                    compatible = "winstar,wf0096atyaa3dnn0","sitronix,st7735s";
+
+You need to fix formatting. Missing space after ,. Wrong indentation.
+
+Use 4 spaces for example indentation.
+
+> +                    reg = <0>;
+> +                    spi-max-frequency = <12000000>;
+> +                    dc-gpios = <&gpio 43 GPIO_ACTIVE_HIGH>;
+> +                    reset-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
+> +                    backlight = <&backlight>;
+> +                    power-supply = <&regdsiplay>;
+> +                    rotation = <270>;
+> +            };
+> +    };
+> +
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6308efa121e1..c00b2b9086f2 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -6728,6 +6728,12 @@ T:	git git://anongit.freedesktop.org/drm/drm-misc
+>  F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
+>  F:	drivers/gpu/drm/tiny/st7735r.c
+>  
+> +DRM DRIVER FOR SITRONIX ST7735S PANELS
+> +M:	Stefan x Nilsson <stefan.x.nilsson@axis.com>
+> +S:	Maintained
+> +T:	git git://anongit.freedesktop.org/drm/drm-misc
+
+Do you have the push rights to this repo? If not, then don't add it.
 
 Best regards,
 Krzysztof
