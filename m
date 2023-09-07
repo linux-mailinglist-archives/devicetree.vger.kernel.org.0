@@ -2,364 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 602A979791E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 161DB79793C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:08:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230112AbjIGRDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:03:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43966 "EHLO
+        id S236033AbjIGRIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 13:08:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41946 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237144AbjIGRDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:03:08 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 601A5198E
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 10:02:40 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-52a250aa012so1614613a12.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 10:02:40 -0700 (PDT)
+        with ESMTP id S232218AbjIGRIQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:08:16 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A144D92
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 10:07:45 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6bc9c01e154so1183466a34.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 10:07:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694106093; x=1694710893; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694106396; x=1694711196; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Knh9a76TzJatawFXuxlKAvAZyiT05+Kr5wsD+gCCT50=;
-        b=S7wcl08POw2wYjHbTi4TXhPIQUq3Lbvj1YtDkhjfnyiNauRF3/wyfyUbjB+9yRlezF
-         q8sniiafJwtj/eTyXEQeQ9YzvwmeDdIyGACk6quQrI5I9C7dFLju/hl6veslAy0Gaddf
-         MDpDDjKX8RhDmDHIZ5434lhZ4CiqBXRn46A4U=
+        bh=EWjc9Tq24L0z9SehMarme94KIq1a0OWmKWnWsMLtL6w=;
+        b=a5Jk0OjWIFGZKGjqOtjCo56jZR37mD7H/Njh7NviSwDNViKF3myrqCrU692QBeub/g
+         b9iAi9vj8ZRvmCe4govvgrjbVhFccG0sMhTFXALqhoVqfeDyeLSwq96MdZUB+tUG1E+C
+         C2wvFE9TosBgEFhLP0h4z6poaoT7fIY98nkjIxz5rFXOekVDgn9/tpgEJptpr9lkLx+r
+         Tn5XKGUU386X+Ceb8CT8RuGiTrppIRcygFTBrsoNOBR8qVo5RSuFzD8likluSqU0GAnD
+         xhnC60eBQOnMhgH26J+pMGTutuEpR50d0HywcJruRt+LoFwFSPQsI4uMl8Wq1jbOq5no
+         h7Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694106093; x=1694710893;
+        d=1e100.net; s=20221208; t=1694106396; x=1694711196;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Knh9a76TzJatawFXuxlKAvAZyiT05+Kr5wsD+gCCT50=;
-        b=DeuYMEf7PPx39PqBN2g8kHKjDYi5w2r2a6pBsTtbaeLWuEB1PXpx09DSLzOYDB/5xx
-         JODDJgKO8EJc7/GlF2lq+jnKL9fFI0mMqnq9pYWvF1z6Tb8wPejYn0dNMA3Hcz2DSrMY
-         WfKcHn9rXPfsUBfuFYPTbRpctWnEoPHQq/fFGB40EGFUTz3hZjEkFxf7MVkq1Vpx39jg
-         YwRL1ArPdp3PuxChb0A43VZkYPS1syFHJsURDVxbdPDhm7o0mV3ZG5k16sb1Z0xjBe2t
-         YPMIRznTfRs+ZeQb+gvhMv8zTIRgfy8L/l1gGF/l8aYnPYv6s3tJDjoMQz615fna+t0J
-         UfAA==
-X-Gm-Message-State: AOJu0YxMGV14qrzBWcAqD+kGl6GPGMMeOLEjAvmTM/Hvt3CMbqE8xwl9
-        kAoGLe7OVJXLMsedsUdP47SvcyqkF7BFbVqIPQWA++b0X+Fo5afFH9w=
-X-Google-Smtp-Source: AGHT+IETdVICQDqLbQlGN1y6SsCAxQthLAdWJHW+NoJoQ+1wg2YaYYe2M/S6cATjIDe4kv6ijxuWCTpyCj/K02u5IBo=
-X-Received: by 2002:a17:906:5a59:b0:9a4:dd49:da3e with SMTP id
- my25-20020a1709065a5900b009a4dd49da3emr5402038ejc.68.1694094990646; Thu, 07
- Sep 2023 06:56:30 -0700 (PDT)
+        bh=EWjc9Tq24L0z9SehMarme94KIq1a0OWmKWnWsMLtL6w=;
+        b=Lj6QNBMm9/Gh12FNfGL6FWDZ+lLjS2iddYjZYrsN/cTdQDBOq6KlBHTR0iLTvVehg5
+         VwvZ0JhO7H6RbznsiX0jk/5kIojxBiOq3w5/db+GAU3mpssF6o6KQlF0N6xFjQ72RDMN
+         VI36PDqex5jZRUu11gmp4CJXWlTwUZMQx+xRw/S940l7HnZnTBxvpxbSzZF1C4UkEEDe
+         BUMXM9fsCmh6DgqTgZiIXQPG5mAECLL/ProXvaHwB9ikyyf2KUwsplryfmMs8OpBF9WL
+         uYAnUuzJ0n3iWTT+v8fPFSLrjVAZTARPwFoIIrlG2z5f/kDNCzg/4crYhLwmBHldAFmM
+         tsXQ==
+X-Gm-Message-State: AOJu0YzhBGDHtUM4OouWytwvKpRJMEMn5HNYSdcx/uxX8C+51P4rSu6f
+        8+o+XMx92uInrChxXBv/lweYMYwhPWeD5vJ2/BhOwItNkezhw6k5sF0=
+X-Google-Smtp-Source: AGHT+IEfYqhUFJ1cVabsx1fK7bxKAay+z3MPpC0vnndLwwN0XFbr3Qb0Xl2nmJ3y7ZRnqy/9qAjqB1Ntotany1k2aKs=
+X-Received: by 2002:a25:32cd:0:b0:d78:3b67:ef3 with SMTP id
+ y196-20020a2532cd000000b00d783b670ef3mr3182735yby.12.1694095033559; Thu, 07
+ Sep 2023 06:57:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230830231758.2561402-1-sjg@chromium.org> <20230830231758.2561402-3-sjg@chromium.org>
- <CAMj1kXG5-aqoOtKdPFEdm=_5SdvgUTOhcDOBP1zdARAvKphJtg@mail.gmail.com>
- <CAL_JsqLx0KnXxFc8mFyT_RmA2qeBEutMXj_3nKo_g==cuSeYuQ@mail.gmail.com>
- <CAPnjgZ1U+Gy0Q_Sc63p0ixkWF9iJEEBLhV8-N9-sh7OGNy-OmQ@mail.gmail.com>
- <CAMj1kXG9vM0haSOu19j7ujQCBEN6CBeXVAH96nm+gixt9FmMrA@mail.gmail.com>
- <CAPnjgZ1oGF0Ni3RhK4fv6mJk40YjqyFVJxt6FfS9AW2rkcs9iA@mail.gmail.com> <CAMj1kXEZ4fDvbtgXKjF+L7si-=C-5E0XcjutoEF8pU9a-BGN-g@mail.gmail.com>
-In-Reply-To: <CAMj1kXEZ4fDvbtgXKjF+L7si-=C-5E0XcjutoEF8pU9a-BGN-g@mail.gmail.com>
-From:   Simon Glass <sjg@chromium.org>
-Date:   Thu, 7 Sep 2023 07:56:12 -0600
-Message-ID: <CAPnjgZ0vv+s00xvY2FqP+Fxb12tHuVWg-nwyWTrvuG+Mo4PaWg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/4] schemas: Add some common reserved-memory usages
-To:     Ard Biesheuvel <ardb@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Devicetree Discuss <devicetree@vger.kernel.org>,
-        Maximilian Brune <maximilian.brune@9elements.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Dhaval Sharma <dhaval@rivosinc.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        linux-acpi@vger.kernel.org, Gua Guo <gua.guo@intel.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>,
-        Guo Dong <guo.dong@intel.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>
+References: <cover.1693996662.git.quic_varada@quicinc.com> <558c6b70090ea7220bfb0b6e7d81828025018376.1693996662.git.quic_varada@quicinc.com>
+In-Reply-To: <558c6b70090ea7220bfb0b6e7d81828025018376.1693996662.git.quic_varada@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Thu, 7 Sep 2023 16:57:02 +0300
+Message-ID: <CAA8EJprUgcmqFeNeuFgnRkk=XUr8NjNMMzd0y7sVhOnGUnn2qA@mail.gmail.com>
+Subject: Re: [PATCH v1 06/10] cpufreq: qti: Enable cpufreq for ipq53xx
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc:     ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, rafael@kernel.org,
+        viresh.kumar@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.7 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,USER_IN_DEF_SPF_WL autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ard,
-
-On Thu, 7 Sept 2023 at 07:31, Ard Biesheuvel <ardb@kernel.org> wrote:
+On Thu, 7 Sept 2023 at 08:23, Varadarajan Narayanan
+<quic_varada@quicinc.com> wrote:
 >
-> On Wed, 6 Sept 2023 at 18:50, Simon Glass <sjg@chromium.org> wrote:
-> >
-> > Hi Ard,
-> >
-> > On Wed, Sep 6, 2023, 10:09 Ard Biesheuvel <ardb@kernel.org> wrote:
-> >>
-> >> On Wed, 6 Sept 2023 at 16:54, Simon Glass <sjg@chromium.org> wrote:
-> >> >
-> >> > Hi Rob, Ard,
-> >> >
-> >> > On Wed, 6 Sept 2023 at 08:34, Rob Herring <robh@kernel.org> wrote:
-> >> > >
-> >> > > On Tue, Sep 5, 2023 at 4:44=E2=80=AFPM Ard Biesheuvel <ardb@kernel=
-.org> wrote:
-> >> > > >
-> >> > > > On Thu, 31 Aug 2023 at 01:18, Simon Glass <sjg@chromium.org> wro=
-te:
-> >> > > > >
-> >> > > > > The Devicetree specification skips over handling of a logical =
-view of
-> >> > > > > the memory map, pointing users to the UEFI specification.
-> >> > > > >
-> >> > > > > It is common to split firmware into 'Platform Init', which doe=
-s the
-> >> > > > > initial hardware setup and a "Payload" which selects the OS to=
- be booted.
-> >> > > > > Thus an handover interface is required between these two piece=
-s.
-> >> > > > >
-> >> > > > > Where UEFI boot-time services are not available, but UEFI firm=
-ware is
-> >> > > > > present on either side of this interface, information about me=
-mory usage
-> >> > > > > and attributes must be presented to the "Payload" in some form=
-.
-> >> > > > >
-> >> > > >
-> >> > > > I don't think the UEFI references are needed or helpful here.
-> >> > > >
-> >> > > > > This aims to provide an small schema addition for this mapping=
-.
-> >> > > > >
-> >> > > > > For now, no attempt is made to create an exhaustive binding, s=
-o there are
-> >> > > > > some example types listed. More can be added later.
-> >> > > > >
-> >> > > > > The compatible string is not included, since the node name is =
-enough to
-> >> > > > > indicate the purpose of a node, as per the existing reserved-m=
-emory
-> >> > > > > schema.
-> >> > >
-> >> > > Node names reflect the 'class', but not what's specifically in the
-> >> > > node. So really, all reserved-memory nodes should have the same na=
-me,
-> >> > > but that ship already sailed for existing users. 'compatible' is t=
-he
-> >> > > right thing here. As to what the node name should be, well, we hav=
-en't
-> >> > > defined that. I think we just used 'memory' on some platforms.
-> >> >
-> >> > OK
-> >> >
-> >> > >
-> >> > > > > This binding does not include a binding for the memory 'attrib=
-ute'
-> >> > > > > property, defined by EFI_BOOT_SERVICES.GetMemoryMap(). It may =
-be useful
-> >> > > > > to have that as well, but perhaps not as a bit mask.
-> >> > > > >
-> >> > > > > Signed-off-by: Simon Glass <sjg@chromium.org>
-> >> > > > > ---
-> >> > > > >
-> >> > > > > Changes in v5:
-> >> > > > > - Drop the memory-map node (should have done that in v4)
-> >> > > > > - Tidy up schema a bit
-> >> > > > >
-> >> > > > > Changes in v4:
-> >> > > > > - Make use of the reserved-memory node instead of creating a n=
-ew one
-> >> > > > >
-> >> > > > > Changes in v3:
-> >> > > > > - Reword commit message again
-> >> > > > > - cc a lot more people, from the FFI patch
-> >> > > > > - Split out the attributes into the /memory nodes
-> >> > > > >
-> >> > > > > Changes in v2:
-> >> > > > > - Reword commit message
-> >> > > > >
-> >> > > > >  .../reserved-memory/common-reserved.yaml      | 53 ++++++++++=
-+++++++++
-> >> > > > >  1 file changed, 53 insertions(+)
-> >> > > > >  create mode 100644 dtschema/schemas/reserved-memory/common-re=
-served.yaml
-> >> > > > >
-> >> > > > > diff --git a/dtschema/schemas/reserved-memory/common-reserved.=
-yaml b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> >> > > > > new file mode 100644
-> >> > > > > index 0000000..d1b466b
-> >> > > > > --- /dev/null
-> >> > > > > +++ b/dtschema/schemas/reserved-memory/common-reserved.yaml
-> >> > > > > @@ -0,0 +1,53 @@
-> >> > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >> > > > > +%YAML 1.2
-> >> > > > > +---
-> >> > > > > +$id: http://devicetree.org/schemas/reserved-memory/common-res=
-erved.yaml#
-> >> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> > > > > +
-> >> > > > > +title: Common memory reservations
-> >> > > > > +
-> >> > > > > +description: |
-> >> > > > > +  Specifies that the reserved memory region can be used for t=
-he purpose
-> >> > > > > +  indicated by its node name.
-> >> > > > > +
-> >> > > > > +  Clients may reuse this reserved memory if they understand w=
-hat it is for.
-> >> > > > > +
-> >> > > > > +maintainers:
-> >> > > > > +  - Simon Glass <sjg@chromium.org>
-> >> > > > > +
-> >> > > > > +allOf:
-> >> > > > > +  - $ref: reserved-memory.yaml
-> >> > > > > +
-> >> > > > > +properties:
-> >> > > > > +  $nodename:
-> >> > > > > +    enum:
-> >> > > > > +      - acpi-reclaim
-> >> > > > > +      - acpi-nvs
-> >> > > > > +      - boot-code
-> >> > > > > +      - boot-data
-> >> > > > > +      - runtime-code
-> >> > > > > +      - runtime-data
-> >> > > > > +
-> >> > > >
-> >> > > > These types are used by firmware to describe the nature of certa=
-in
-> >> > > > memory regions to the OS. Boot code and data can be discarded, a=
-s well
-> >> > > > as ACPI reclaim after its contents have been consumed. Runtime c=
-ode
-> >> > > > and data need to be mapped for runtime features to work.
-> >> > > >
-> >> > > > When one firmware phase communicates the purpose of a certain me=
-mory
-> >> > > > reservation to another, it is typically not limited to whether i=
-ts
-> >> > > > needs to be preserved and when it needs to be mapped (and with w=
-hich
-> >> > > > attributes). I'd expect a memory reservation appearing under thi=
-s node
-> >> > > > to have a clearly defined purpose, and the subsequent phases nee=
-d to
-> >> > > > be able to discover this information.
-> >> > > >
-> >> > > > For example, a communication buffer for secure<->non-secure
-> >> > > > communication or a page with spin tables used by PSCI. None of t=
-he
-> >> > > > proposed labels are appropriate for this, and I'd much rather ha=
-ve a
-> >> > > > compatible string or some other property that clarifies the natu=
-re in
-> >> > > > a more suitable way. Note that 'no-map' already exists to indica=
-te
-> >> > > > that the CPU should not map this memory unless it does so for th=
-e
-> >> > > > specific purpose that the reservation was made for.
-> >> > >
-> >> > > I agree. I think compatible is the better approach. Some property =
-like
-> >> > > 'discard' may not be sufficient information if the OS needs to con=
-sume
-> >> > > the region first and then discard it. Better to state exactly what=
-'s
-> >> > > there and then the OS can imply the rest.
-> >> >
-> >> > OK, so what sort of compatible strings?
-> >> >
-> >> > How about:
-> >> > "acpi-reclaim" - holds ACPI tables; memory can be reclaimed once the
-> >> > tables are read and no-longer needed
-> >>
-> >> ACPI reclaim is a policy, not a purpose. This memory could contain
-> >> many different things.
-> >>
-> >> > "boot-code" - holds boot code; memory can be reclaimed once the boot
-> >> > phase is complete
-> >> > "runtime-code" - holds runtime code; memory can be reclaimed only if
-> >> > this code will not be used from that point
-> >> >
-> >>
-> >> These are also policies. They can be inferred from the purpose.
-> >>
-> >> > etc. We can then have more specific compatibles, like:
-> >> >
-> >> > "psci-spin-table" - holds PSCI spin tables
-> >> >
-> >> > so you could do:
-> >> >
-> >> > compatible =3D "runtime-code", "psci-spin-table";
-> >> >
-> >>
-> >> I understand that this binding targets firmware<->firmware rather than
-> >> firmware<->OS, which makes it much more difficult to keep it both
-> >> generic and sufficiently descriptive.
-> >>
-> >> However, I still feel that all the overlap with UEFI memory types is
-> >> not what we want here. UEFI knows how to manage its own memory map,
-> >> what it needs to know is what memory is already in use and for which
-> >> exact purpose. Whether or not that implies that the memory can be
-> >> freed at some point or can be mapped or not should follow from that.
-> >
-> >
-> > Can you please make a suggestion? I am unsure what you are looking for.
-> >
+> IPQ53xx have different OPPs available for the CPU based on
+> SoC variant. This can be determined through use of an eFuse
+> register present in the silicon.
 >
-> I'm happy to help flesh this out, but you still have not provided us
-> with an actual use case, so I can only draw from my own experience
-> putting together firmware for virtual and physical ARM machines.
-
-I did explain that this is needed when Tianocore is on both sides of
-the interface, since Platform Init places some things in memory and
-the Payload needs to preserve them there, and/or know where they are.
-
-I think the problem might be that you don't agree with that, but it
-seems to be a fact, so I am not sure how I can alter it.
-
-Please can you clearly explain which part of the use case you are missing.
-
+> Added support for ipq53xx on nvmem driver which helps to
+> determine OPPs at runtime based on the eFuse register which
+> has the CPU frequency limits. opp-supported-hw dt binding
+> can be used to indicate the available OPPs for each limit.
 >
-> All the ACPI and UEFI lingo needs to be dropped. This is relevant only
-> to the OS, and only if the prior stage exposes UEFI interfaces, in
-> which case it does not need this binding.
-
-OK I can drop those from the commit message.
-
+> nvmem driver also creates the "cpufreq-dt" platform_device after
+> passing the version matching data to the OPP framework so that the
+> cpufreq-dt handles the actual cpufreq implementation.
 >
-> So on one side, there is the requirement for each memory reservation
-> to be described with sufficient detail so that a subsequent boot stage
-> (firmware or OS) can use it for its intended purpose, provided that
-> this boot stage is aware of its purpose (i.e., it has a driver that
-> matches on the compatible string in question, and actually maps/uses
-> the memory)
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  drivers/cpufreq/cpufreq-dt-platdev.c |  1 +
+>  drivers/cpufreq/qcom-cpufreq-nvmem.c | 15 +++++++++++++++
+>  2 files changed, 16 insertions(+)
 >
-> On the other side, we need to describe how a memory reservation should
-> be treated if the boot stage doesn't know its purpose, has no interest
-> in using it or has consumed the contents and has no longer a need for
-> the region. We already have no-map to describe that the memory should
-> never be mapped (and this may be disregarded by an actual driver for
-> the region). I imagine we might add 'discardable' as a boolean DT
-> property, meaning that stage N may use the memory whichever way it
-> wants if it is not going to use it for its intended purpose, provided
-> that it deletes the node from the DT before passing it on to stage
-> N+1.
-
-OK. For now I think that everything is discardable, so long as the
-Payload knows the purpose and that it not needed. That is what Rob
-seemed to be saying. If we add 'discardable', does that mean that
-things default to non-discardable? Would that not be a change of
-behaviour for existing users?
-
+> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufr=
+eq-dt-platdev.c
+> index 02ec58a..f0c45d4 100644
+> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> @@ -178,6 +178,7 @@ static const struct of_device_id blocklist[] __initco=
+nst =3D {
+>         { .compatible =3D "ti,am625", },
+>         { .compatible =3D "ti,am62a7", },
 >
-> One thing that needs to be clarified is how this binding interacts
-> with /memory nodes. I assume that currently, /reserved-memory is
-> independent, i.e., it could describe mappable memory that is not
-> covered by /memory at all. If this is the case, we have to decide
-> whether or not discardable regions can be treated in the same way, or
-> whether we should require that discardable regions are covered by
-> /memory.
+> +       { .compatible =3D "qcom,ipq5332", },
+>         { .compatible =3D "qcom,ipq8064", },
+>         { .compatible =3D "qcom,apq8064", },
+>         { .compatible =3D "qcom,msm8974", },
+> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-=
+cpufreq-nvmem.c
+> index 84d7033..49d21b0 100644
+> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+> @@ -146,6 +146,20 @@ static int qcom_cpufreq_kryo_name_version(struct dev=
+ice *cpu_dev,
+>                 return PTR_ERR(speedbin);
+>
+>         switch (msm_id) {
+> +       case QCOM_ID_IPQ5332:
+> +       case QCOM_ID_IPQ5322:
+> +       case QCOM_ID_IPQ5312:
+> +       case QCOM_ID_IPQ5302:
+> +       case QCOM_ID_IPQ5300:
 
-I would expect all memory to be described in /memory nodes. What is
-the use case for omitting it? Are you thinking of SRAM, etc?
+msm8996 was bad enough. Can we use compat strings instead? Or make
+this a default for qcom_cpufreq_kryo_name_version()?
 
-Regards,
-Simon
+> +               /* Fuse Value    Freq    BIT to set
+> +                * ---------------------------------
+> +                *   2=E2=80=99b00     No Limit     BIT(0)
+> +                *   2=E2=80=99b01     1.5 GHz      BIT(1)
+> +                *   2=E2=80=99b10     1.2 Ghz      BIT(2)
+> +                *   2=E2=80=99b11     1.0 GHz      BIT(3)
+> +                */
+> +               drv->versions =3D 1 << (unsigned int)(*speedbin);
+> +               break;
+>         case QCOM_ID_MSM8996:
+>         case QCOM_ID_APQ8096:
+>                 drv->versions =3D 1 << (unsigned int)(*speedbin);
+> @@ -359,6 +373,7 @@ static const struct of_device_id qcom_cpufreq_match_l=
+ist[] __initconst =3D {
+>         { .compatible =3D "qcom,apq8096", .data =3D &match_data_kryo },
+>         { .compatible =3D "qcom,msm8996", .data =3D &match_data_kryo },
+>         { .compatible =3D "qcom,qcs404", .data =3D &match_data_qcs404 },
+> +       { .compatible =3D "qcom,ipq5332", .data =3D &match_data_kryo },
+>         { .compatible =3D "qcom,ipq8064", .data =3D &match_data_krait },
+>         { .compatible =3D "qcom,apq8064", .data =3D &match_data_krait },
+>         { .compatible =3D "qcom,msm8974", .data =3D &match_data_krait },
+> --
+> 2.7.4
+>
+
+
+--=20
+With best wishes
+Dmitry
