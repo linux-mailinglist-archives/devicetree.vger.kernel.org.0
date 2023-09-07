@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DFF7797745
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39ACB79776F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:26:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239870AbjIGQYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:24:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
+        id S239342AbjIGQ0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:26:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242397AbjIGQWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:22:47 -0400
+        with ESMTP id S238865AbjIGQ0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:26:03 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B72D5256;
-        Thu,  7 Sep 2023 09:20:24 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0889BC32785;
-        Thu,  7 Sep 2023 12:20:06 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C055FDB;
+        Thu,  7 Sep 2023 09:22:02 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E63C32786;
+        Thu,  7 Sep 2023 12:24:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694089210;
-        bh=/knj0cY9pD418AkfsvYT3H54+KzQoQzdGurHAgnQcsQ=;
+        s=k20201202; t=1694089465;
+        bh=Pkcfr8cX6Y8Y4W+ikfkq4Yg6DoN+IDDSD7x6YH7QLvY=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=j3YQcBv+nTe637rwvoD9/L7K8cUFoWNS1cRLESGlkHLvhVBpU9nC/hPjHDr0/cNP4
-         qGtSeu4IdTAM/K2tZ+pcQw7MqLbujx3gBTemGFImJYF2XNzou/WX7y4tdy/PG3zN0w
-         77UStc42wrE6d8sfgn6oxKpOQBoi44KB0kn2m+cw7si0OLLzPpDxd79zxYk1a3Bks6
-         bt/9zVQkskhX18x8ibrskrsCb0ONjbiMmFV7wUYAIlwnz42+OavIuwfXpinjL4eLmP
-         iuXTkZExF+eyuEwjg4vPc72jA0Ip2GwjoyaQv6zoX5vd3z+EaiGWsFbkq5dzqhmG/y
-         1EvMSi8AuIe5w==
-Message-ID: <5f762b3b-c4f2-d0e8-aba7-2cd184465d12@kernel.org>
-Date:   Thu, 7 Sep 2023 15:20:04 +0300
+        b=oTjQx0aAFot+wAOzKzYzqionLh7GbDYYitwmqmPY6NF/n4TrY9KdvZNQAw/VsjfpB
+         RL/s7VsTxFK7Nk3PQgakOlW0D3TFTI5FlZk3KKaysVONLp+ynBIvxZ+tfs6i41zM/8
+         FzCp7/Nkukq/ME6MNuzQ4FneDTWS9JuFxlmlEJYGui7GPqNxYZbu3UZh8gT07wrc7F
+         5s+QpLlINpKH1Nd7+qsxsfZPRBFMkPsRk3dfZXTjWCyMzTXNlbbPoc+FNBiA1/ecZw
+         bjrVKGzOSPvYm5te6aRU+SoAKw6BOe30tZS3sKgzfCcwv1q7NUm0A2p4Qad2m9ucQk
+         pCb5Ub+gHj9cQ==
+Message-ID: <f4d7981d-0cff-ddaf-26ad-f29f914813e2@kernel.org>
+Date:   Thu, 7 Sep 2023 15:24:17 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [RFC PATCH net-next 0/2] Add Half Duplex support for ICSSG Driver
+Subject: Re: [RFC PATCH net-next 0/2] Add support for ICSSG on AM64x EVM
 Content-Language: en-US
 To:     MD Danish Anwar <danishanwar@ti.com>, Andrew Lunn <andrew@lunn.ch>,
         Vignesh Raghavendra <vigneshr@ti.com>,
@@ -46,9 +46,9 @@ To:     MD Danish Anwar <danishanwar@ti.com>, Andrew Lunn <andrew@lunn.ch>,
         "David S. Miller" <davem@davemloft.net>
 Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
-References: <20230830113134.1226970-1-danishanwar@ti.com>
+References: <20230830113724.1228624-1-danishanwar@ti.com>
 From:   Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20230830113134.1226970-1-danishanwar@ti.com>
+In-Reply-To: <20230830113724.1228624-1-danishanwar@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -63,20 +63,12 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 30/08/2023 14:31, MD Danish Anwar wrote:
-> This series adds support for half duplex operation for ICSSG driver.
+On 30/08/2023 14:37, MD Danish Anwar wrote:
+> This series adds support for ICSSG driver on AM64x EVM.
 > 
-> In order to support half-duplex operation at 10M and 100M link speeds, the
-> PHY collision detection signal (COL) should be routed to ICSSG
-> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
-> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
-> property, "ti,half-duplex-capable" is introduced for this purpose in the
-> first patch of the series. If board has PHY COL pin conencted to
-> PRGx_PRU1_GPIO10, this DT property can be added to eth node of ICSSG, MII
-> port to support half duplex operation at that port.
-> 
-> Second patch of the series configures driver to support half-duplex
-> operation if the DT property "ti,half-duplex-capable" is enabled.
+> First patch of the series adds compatible for AM64x EVM in icssg-prueth
+> dt binding. Second patch adds support for AM64x compatible in the ICSSG 
+> driver.
 > 
 > This series depends on [1] which is posted as RFC.
 > 
@@ -86,16 +78,13 @@ On 30/08/2023 14:31, MD Danish Anwar wrote:
 > Md Danish Anwar
 > 
 > MD Danish Anwar (2):
->   dt-bindings: net: Add documentation for Half duplex support.
->   net: ti: icssg-prueth: Add support for half duplex operation
-> 
->  .../bindings/net/ti,icssg-prueth.yaml           |  7 +++++++
->  drivers/net/ethernet/ti/icssg/icssg_config.c    | 14 ++++++++++++++
->  drivers/net/ethernet/ti/icssg/icssg_prueth.c    | 17 +++++++++++++++--
->  drivers/net/ethernet/ti/icssg/icssg_prueth.h    |  2 ++
->  4 files changed, 38 insertions(+), 2 deletions(-)
-> 
+>   dt-bindings: net: Add compatible for AM64x in ICSSG
+>   net: ti: icssg-prueth: Add AM64x icssg support
 
 For this series:
 
 Reviewed-by: Roger Quadros <rogerq@kernel.org>
+
+-- 
+cheers,
+-roger
