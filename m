@@ -2,137 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DC1C7979B5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:19:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32EE79763C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235615AbjIGRTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:19:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36858 "EHLO
+        id S234546AbjIGQFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:05:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233274AbjIGRTQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:19:16 -0400
-Received: from mail-oi1-x232.google.com (mail-oi1-x232.google.com [IPv6:2607:f8b0:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1EDF10F6;
-        Thu,  7 Sep 2023 10:18:52 -0700 (PDT)
-Received: by mail-oi1-x232.google.com with SMTP id 5614622812f47-3a9f88b657eso776460b6e.3;
-        Thu, 07 Sep 2023 10:18:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694107066; x=1694711866; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TvxU3Tg/CrzSJAWHMozvHTDat1C3xfXUwj0L4NkG344=;
-        b=PWdnes7qxWc+/RWSL1aJmjOh5COh7DExcpzcRiLxd7dyVTEHqgZNhKHRSK+q3HIOr+
-         J6Bvj2ltOHs4gsOJRJQAheVbUpWx5s7rsmIUCpwrzOQa21Xh9+jWSh3KuKF/8tE7iJ97
-         7EsCe2C66iGStVy5T/uimuoNyGNYdj7BdrUf23Wjiy4ynOF3SOW+i6Jz/PFHMPg4Lp0m
-         OU+wxbc1H+f/msDe9s2QCoCyQp3r0KBJ0S0IkTGAwRIzTbq2QLKU3Xsumxvt5z1rh67s
-         jcgdXS6e96bHJQQddzOHDEnHdDjaAg5vQmghfcFejsBdqT1q4lbkDKvDcycUWy/Lres1
-         Fr3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694107066; x=1694711866;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TvxU3Tg/CrzSJAWHMozvHTDat1C3xfXUwj0L4NkG344=;
-        b=hhhwR6zYYeMZPHJZksk04UhOkaUXFTC18jh7dZ1OFOc6G8X97BLDHPlVVYFNGdxblF
-         GrstNHU3uk8BrO5+hCKlEoPWObpkcuMY8yjcwP4h6KeuzqY+7L8gFljRKZxxfnLGlpJT
-         lcOmK7esT7YjCgZ9CdLUcReTC425IfqlfW/ww/SLtynyk7+IMRzzUWHjN8hs3fTIGeb+
-         CyI1LWywYRwpvzbv8mOvKPTohrrbUTSRKrbagJlOFpJ0fsQ65UdS6GDinNu1YR+6BGlb
-         9qP+7Obp+4ifz0WDR6Dg+BQ3K6kNItCjyxG6wQlCiKd3T9lwp6a3b6sIhjnajQfNwiEr
-         lFzw==
-X-Gm-Message-State: AOJu0YwpBm985GufegeZDQ74A802wpTmaIUph1gv9nK+fdtpkKNbMvb9
-        m926hrHZWZ3rLkj7TXGaiMRDtKft1ECtFexiNDEiWXXo
-X-Google-Smtp-Source: AGHT+IGhGyja7JD0MILhyMnfb4uAWq/A6tIDT6hRMJY+Vj2r/9PRBAmGOG8xJK+z2l778SBxTYGVV74yNZ5yITlb47c=
-X-Received: by 2002:a25:50c5:0:b0:d77:e0d4:5ef8 with SMTP id
- e188-20020a2550c5000000b00d77e0d45ef8mr18796215ybb.54.1694091977388; Thu, 07
- Sep 2023 06:06:17 -0700 (PDT)
+        with ESMTP id S236859AbjIGQEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:04:33 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BD8F6A76;
+        Thu,  7 Sep 2023 08:53:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694102023; x=1725638023;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=4Zc2NSQczgzpNCTjAeZ+vgoDDV24z7zZmEzSqmTWoV8=;
+  b=UdfaggH2VB5SmzXi54f6JDs0yVt0a/jKfSP4xHqye9vADx4Kr3u8pl4e
+   2s3kgggxgOE9fiEerRwc/BjSXHuvhgvg+h71NJKRD6jpIR7bkzi7QymOp
+   jfqlPN/rn57HrUVze4IQDcGiFuNopiowLupxs8uV8FQDWGVHJdi4Snvu6
+   gbwVQ+f7nkW1HpaoZ3mM2ViWukJZq6GrjhLuyv90WrFiSEg+wDDJaQ1WM
+   +yCPNGZaZqlC7A+kTSTKR67A6fp7aU5yoB+y0jLmFoySzrqD2cbbkcZ32
+   FkFQZQpPe59/A0o0/FiFfUi5NXd1tp7AJ60NvGjlE5oYIs+cQJh94ZWhm
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="356825430"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
+   d="scan'208";a="356825430"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 06:16:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="691782245"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
+   d="scan'208";a="691782245"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 06:16:00 -0700
+From:   Jani Nikula <jani.nikula@linux.intel.com>
+To:     Donald Robson <Donald.Robson@imgtec.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Sarah Walker <Sarah.Walker@imgtec.com>
+Cc:     "corbet@lwn.net" <corbet@lwn.net>,
+        "luben.tuikov@amd.com" <luben.tuikov@amd.com>,
+        "christian.koenig@amd.com" <christian.koenig@amd.com>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "tzimmermann@suse.de" <tzimmermann@suse.de>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "matthew.brost@intel.com" <matthew.brost@intel.com>,
+        "afd@ti.com" <afd@ti.com>, "hns@goldelico.com" <hns@goldelico.com>,
+        Matt Coster <Matt.Coster@imgtec.com>,
+        "boris.brezillon@collabora.com" <boris.brezillon@collabora.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "dakr@redhat.com" <dakr@redhat.com>,
+        "faith.ekstrand@collabora.com" <faith.ekstrand@collabora.com>
+Subject: Re: [PATCH v6 02/20] drm/gpuva_mgr: Helper to get range of unmap
+ from a remap op.
+In-Reply-To: <5b7f431f26eea296193d9e49ea85e0377e6ebcf0.camel@imgtec.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230906095542.3280699-1-sarah.walker@imgtec.com>
+ <20230906095542.3280699-3-sarah.walker@imgtec.com>
+ <87a5tygoyx.fsf@intel.com>
+ <5b7f431f26eea296193d9e49ea85e0377e6ebcf0.camel@imgtec.com>
+Date:   Thu, 07 Sep 2023 16:15:57 +0300
+Message-ID: <877cp2gm42.fsf@intel.com>
 MIME-Version: 1.0
-References: <20230907010159.330555-1-aford173@gmail.com> <56334793-3d21-1f2c-2f5c-01ba2f306813@linaro.org>
-In-Reply-To: <56334793-3d21-1f2c-2f5c-01ba2f306813@linaro.org>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Thu, 7 Sep 2023 08:06:05 -0500
-Message-ID: <CAHCN7x+c76w61BDO_xLrnrYGX7Vnb6tEifectbgo+g2_CT48rQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm:dts: am3517-evm: Fix LED3/4 pinmux
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-omap@vger.kernel.org, aford@beaconembedded.com,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Derald D. Woods" <woods.technical@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.3 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 7, 2023 at 1:11=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Thu, 07 Sep 2023, Donald Robson <Donald.Robson@imgtec.com> wrote:
+> On Thu, 2023-09-07 at 15:14 +0300, Jani Nikula wrote:
+>> On Wed, 06 Sep 2023, Sarah Walker <sarah.walker@imgtec.com> wrote:
+>> > From: Donald Robson <donald.robson@imgtec.com>
+>> > 
+>> > Signed-off-by: Donald Robson <donald.robson@imgtec.com>
+>> > ---
+>> >  include/drm/drm_gpuva_mgr.h | 27 +++++++++++++++++++++++++++
+>> >  1 file changed, 27 insertions(+)
+>> > 
+>> > diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
+>> > index ed8d50200cc3..be7b3a6d7e67 100644
+>> > --- a/include/drm/drm_gpuva_mgr.h
+>> > +++ b/include/drm/drm_gpuva_mgr.h
+>> > @@ -703,4 +703,31 @@ void drm_gpuva_remap(struct drm_gpuva *prev,
+>> >  
+>> >  void drm_gpuva_unmap(struct drm_gpuva_op_unmap *op);
+>> >  
+>> > +/**
+>> > + * drm_gpuva_op_remap_get_unmap_range() - Helper to get the start and range of
+>> > + * the unmap stage of a remap op.
+>> > + * @op: Remap op.
+>> > + * @start_addr: Output pointer for the start of the required unmap.
+>> > + * @range: Output pointer for the length of the required unmap.
+>> > + *
+>> > + * These parameters can then be used by the caller to unmap memory pages that
+>> > + * are no longer required.
+>> > + */
+>> > +static __always_inline void
+>> 
+>> IMO __always_inline *always* requires a justification in the commit
+>> message.
+>> 
+>> BR,
+>> Jani.
 >
-> On 07/09/2023 03:01, Adam Ford wrote:
-> > The pinmux for LED3 and LED4 are incorrectly attached to the
-> > omap3_pmx_core when they should be connected to the omap3_pmx_wkup
-> > pin mux.  This was likely masked by the fact that the bootloader
-> > used to do all the pinmuxing.
-> >
-> > Fixes: 0dbf99542caf ("ARM: dts: am3517-evm: Add User LEDs and Pushbutto=
-n")
-> > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > ---
-> > This likely cannot apply to the original series, because the file has
-> > moved.  I can generate a separate patch for the pre-move device trees
-> > if necesssary.  The original location was:
-> >   arch/arm/boot/dts/am3517-evm.dts
-> >
-> > diff --git a/arch/arm/boot/dts/ti/omap/am3517-evm.dts b/arch/arm/boot/d=
-ts/ti/omap/am3517-evm.dts
-> > index af9df15274be..738189ddc8d5 100644
-> > --- a/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-> > +++ b/arch/arm/boot/dts/ti/omap/am3517-evm.dts
-> > @@ -271,13 +271,6 @@ OMAP3_CORE1_IOPAD(0x21c4, PIN_INPUT_PULLUP | MUX_M=
-ODE0)  /* i2c3_sda */
-> >               >;
-> >       };
-> >
-> > -     leds_pins: leds-pins {
-> > -             pinctrl-single,pins =3D <
-> > -                     OMAP3_WKUP_IOPAD(0x2a24, PIN_OUTPUT_PULLUP | MUX_=
-MODE4) /* jtag_emu0.gpio_11 */
-> > -                     OMAP3_WKUP_IOPAD(0x2a26, PIN_OUTPUT_PULLUP | MUX_=
-MODE4) /* jtag_emu1.gpio_31 */
-> > -             >;
-> > -     };
-> > -
-> >       mmc1_pins: mmc1-pins {
-> >               pinctrl-single,pins =3D <
-> >                       OMAP3_CORE1_IOPAD(0x2144, PIN_INPUT_PULLUP | MUX_=
-MODE0) /* sdmmc1_clk.sdmmc1_clk */
-> > @@ -355,3 +348,12 @@ OMAP3430_CORE2_IOPAD(0x25e2, PIN_INPUT | MUX_MODE3=
-)      /* etk_d3.hsusb1_data7 */
-> >               >;
-> >       };
-> >  };
-> > +
-> > +&omap3_pmx_wkup {
-> > +     leds_pins: pinmux_leds_pins {
->
-> Come on... why moving it and changing the name to incorrect one? Isn't a
-> move cut-paste?
+> Hi Jani,
+> I went with __always_inline because I can't see this being used more than once per driver.
+> I can add that to the commit message, but is that suitable justification? I could move
+> it to the source file or make it a macro if you prefer.
 
-I applied a patch from an older branch, so I didn't notice the name
-convention changed.  Sorry about that.  I'll re-spin both patches with
-the pin-mux naming conventions fixed.
+My personal opinion is that static inlines in general should always have
+a performance justification. If there isn't one, it should be a regular
+function. Static inlines leak the abstractions and often make the header
+dependencies worse.
 
-adam
->
-> Best regards,
-> Krzysztof
->
+Not everyone agrees, of course.
+
+More than anything I was looking for justification on __always_inline
+rather than just inline, though.
+
+
+BR,
+Jani.
+
+
+
+> Thanks,
+> Donald
+>> 
+>> 
+>> > +drm_gpuva_op_remap_get_unmap_range(const struct drm_gpuva_op_remap *op,
+>> > +				   u64 *start_addr, u64 *range)
+>> > +{
+>> > +	const u64 va_start = op->prev ?
+>> > +			     op->prev->va.addr + op->prev->va.range :
+>> > +			     op->unmap->va->va.addr;
+>> > +	const u64 va_end = op->next ?
+>> > +			   op->next->va.addr :
+>> > +			   op->unmap->va->va.addr + op->unmap->va->va.range;
+>> > +
+>> > +	if (start_addr)
+>> > +		*start_addr = va_start;
+>> > +	if (range)
+>> > +		*range = va_end - va_start;
+>> > +}
+>> > +
+>> >  #endif /* __DRM_GPUVA_MGR_H__ */
+
+-- 
+Jani Nikula, Intel Open Source Graphics Center
