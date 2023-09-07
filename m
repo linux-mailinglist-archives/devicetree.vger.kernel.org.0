@@ -2,153 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8984797CA0
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 21:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3495D797BE7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229767AbjIGTTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 15:19:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43208 "EHLO
+        id S1344136AbjIGSao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 14:30:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229562AbjIGTTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 15:19:54 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B6CB2
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 12:19:50 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bccda76fb1so23455541fa.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 12:19:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694114389; x=1694719189; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rcotZ+hgpp+nJjrDi+TbpAmdclq7uqg53xwk2Tf+VDQ=;
-        b=nFcm83aNMug7GRC3gb9snaVBPxeJ+gXSpM0jsw0rBVMOIOBmsPO1SRez+6AHWT4E4k
-         FnVDVs3/X8p9kaErGyHo9Y8vnAP6TemkJUn+SHpN8kYhM/Gr+6qdJ/YR/HuE9CnNewpE
-         Br+mD3dCxU+1qNUIMpnGq4dvaHD5lUwbFu8sZ4Xf990QMU2mZ+3rpbKNAnxLri/KUo2S
-         YJLm4ftVYA3/4CI6mnAIEuq3knGviFeToEQlDX6hmJfjj7daOKaVB2vOaziMHGJwrJbm
-         RlzKBdIrhNf23CQO8EWIwkJ2tThawTzZFWWpEr8g9er1sdhoZM0CoWfhzMGNVY1VteGT
-         V9Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694114389; x=1694719189;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rcotZ+hgpp+nJjrDi+TbpAmdclq7uqg53xwk2Tf+VDQ=;
-        b=XpM32pyY7TtAJU4DkzvPLRfnkwiFVNSlYTnAk1nYB9DDrWN9Les26uiyXzRkGdt5wv
-         0Y4TPeQRIhjWzUFVWl2sMwiaPr7V3CVgRcnO3iu14V514dXPUGVjqMa+IPNFNRc/rUhl
-         wJ4qlgh08Qw4YUkqRX6BSqpwJoHrhtG9X1xVMz0hx37ySpiawuCIvXBsBIbKngLuC88h
-         8FZa6dqtYU4gjFw5D9cNkYRv2YcW/458noknHc2ZHWOC9cJliaNG3Iw1J8k43og2MFe3
-         D751tJ/npxQcRCpuKw2ZpjyCdRFkKfjP+P72zFafdS8l+vtp3NHJMILEEd2Hjgz6cY+G
-         HC5w==
-X-Gm-Message-State: AOJu0YxdwrRZO065rQR/eyH5qMVQjHXzgL11bdpJhlC8iPnKS3Y4uEEH
-        wiHHoXt39cks5rf5nMa8Neziga5BxDfd+nqEaRQfpQ==
-X-Google-Smtp-Source: AGHT+IEYdFV7oLh32TP8ca2WTxd7wx7Xnds+jA/Gd0dYkjQWZHyvzOW22/tp5BWYDJKXFOGQ72iT1g==
-X-Received: by 2002:a50:fb0f:0:b0:522:3d36:ff27 with SMTP id d15-20020a50fb0f000000b005223d36ff27mr4306806edq.31.1694077443110;
-        Thu, 07 Sep 2023 02:04:03 -0700 (PDT)
-Received: from [192.168.37.232] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id f2-20020a056402150200b0052a3b212157sm9384251edw.63.2023.09.07.02.04.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Sep 2023 02:04:02 -0700 (PDT)
-Message-ID: <38f64349-5139-4207-91eb-cd39fabd4496@linaro.org>
-Date:   Thu, 7 Sep 2023 11:04:00 +0200
+        with ESMTP id S241633AbjIGSam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:30:42 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 957D51BD3;
+        Thu,  7 Sep 2023 11:30:10 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4639B24E1DE;
+        Thu,  7 Sep 2023 17:11:01 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Sep
+ 2023 17:11:01 +0800
+Received: from ubuntu.localdomain (113.72.144.73) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Thu, 7 Sep
+ 2023 17:11:00 +0800
+From:   Minda Chen <minda.chen@starfivetech.com>
+To:     Daire McNamara <daire.mcnamara@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-pci@vger.kernel.org>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mason Huo <mason.huo@starfivetech.com>,
+        Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+        Kevin Xie <kevin.xie@starfivetech.com>,
+        Minda Chen <minda.chen@starfivetech.com>
+Subject: [PATCH v5 0/11] Refactoring Microchip PCIe driver and add StarFive PCIe
+Date:   Thu, 7 Sep 2023 17:10:47 +0800
+Message-ID: <20230907091058.125630-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/5] arm64: dts: qcom: sm8450: Add opp table support to
- PCIe
-Content-Language: en-US
-To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org
-Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-        bhelgaas@google.com, rafael@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
-        quic_ramkri@quicinc.com, quic_parass@quicinc.com
-References: <1694066433-8677-1-git-send-email-quic_krichai@quicinc.com>
- <1694066433-8677-3-git-send-email-quic_krichai@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <1694066433-8677-3-git-send-email-quic_krichai@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [113.72.144.73]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7.09.2023 08:00, Krishna chaitanya chundru wrote:
-> PCIe needs to choose the appropriate performance state of RPMH power
-> domain based up on the PCIe gen speed.
-> 
-> So let's add the OPP table support to specify RPMH performance states.
-> 
-> Use opp-level for the PCIe gen speed for easier use.
-> 
-> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-> ---
-[...]
+This patchset final purpose is add PCIe driver for StarFive JH7110 SoC.
+JH7110 using PLDA XpressRICH PCIe IP. Microchip PolarFire Using the
+same IP and have commit their codes, which are mixed with PLDA
+controller codes and Microchip platform codes.
 
-> +
-> +			pcie1_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-1 {
-> +					opp-level = <1>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-2 {
-> +					opp-level = <2>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-> +				};
-> +
-> +				opp-3 {
-> +					opp-level = <3>;
-> +					required-opps = <&rpmhpd_opp_low_svs>;
-Is gen3 not supposed to require nom like on pcie0?
+For re-use the PLDA controller codes, I request refactoring microchip
+codes, move PLDA common codes to PLDA files.
+Desigware and Cadence is good example for refactoring codes.
 
-Also, can all non-maximum OPPs run at just low_svs?
+So first step is extract the PLDA common codes from microchip, and
+refactoring the microchip codes.(patch1 - 8)
+Then, add Starfive codes. (patch9 - 11)
 
-Konrad
+This patchset is base on v6.5
+
+The patch is base on Daire microchip commit,(accepted, not merge in mainline now)
+https://patchwork.kernel.org/project/linux-pci/cover/20230728131401.1615724-1-daire.mcnamara@microchip.com/
+patch11 dts patch base on stg clk patchset and syscon patch(these will be merged in 6.6-rcx).
+https://patchwork.kernel.org/project/linux-riscv/cover/20230713113902.56519-1-xingyu.wu@starfivetech.com/
+https://patchwork.kernel.org/project/linux-riscv/patch/20230717023040.78860-7-xingyu.wu@starfivetech.com/
+
+patch1 is move PLDA XpressRICH PCIe host common properties dt-binding
+       docs from microchip,pcie-host.yaml
+patch2 is move PolarFire codes to PLDA directory.
+patch3 is move PLDA IP register macros to plda-pcie.h
+patch4 is rename data structure setup and IRQ functions in microchip codes.
+patch5 is move the patch4 functions to common file pcie-plda-host.c
+patch6 is Add PLDA event interrupt codes and IRQ domain ops.
+patch7 is rename IRQ init function in microchip codes, prepare to move
+the common file pcie-plda-host.c,
+patch8 is move IRQ init functions and other functions to pcie-plda-host.c
+patch9 is add StarFive JH7110 PCIe dt-binding doc.
+patch10 is add StarFive JH7110 Soc PCIe codes.
+patch11 is Starfive dts config
+
+previous version:
+v1:https://patchwork.kernel.org/project/linux-pci/cover/20230719102057.22329-1-minda.chen@starfivetech.com/
+v2:https://patchwork.kernel.org/project/linux-pci/cover/20230727103949.26149-1-minda.chen@starfivetech.com/
+v3:https://patchwork.kernel.org/project/linux-pci/cover/20230814082016.104181-1-minda.chen@starfivetech.com/
+v4:https://patchwork.kernel.org/project/linux-pci/cover/20230825090129.65721-1-minda.chen@starfivetech.com/
+
+change:
+  v5:
+    patch 6 -8:
+    	- Some variables names changed (evt->event).
+    	- plda_handle_event() using a unify callback function to get events
+num.
+	- Add plda_event_ops data structure.
+    patch 10:
+	plda_event_ops changed which is related to patch 6- 8 changed.
+
+  v4:
+    patch 3:
+    	Copy the interrupt events macros to pcie-plda-host.c
+    patch 7 - 8:
+    	get_events() change in patch 7. Patch 8 is just move the codes.
+    other change:
+	All the functions in commit message add (). 
+  v3:
+    patch 2- 8:
+      - splite refactoring patches to multiple patch.
+      - rename plda_pcie to plda_pcie_rp. Maybe other vendor will
+        upstream PLDA ep codes.
+    patch 9:
+      - Remove the redundant reference.
+      - move the offset value to codes in starfive,stg-syscon
+      - change reset-gpio to prest-gpio.
+    patch10:
+      - Add 100ms delay after preset for PCIe 6.0 spec.
+      - stg-syscon related modification.
+    patch11:
+      - Add dts configure.
+  v2:
+    patch1:
+      - squash dt-bindings patches to patch1
+      - add 'required' list. 
+      - plda doc rename to plda,xpressrich-axi-common.yaml
+    patch2 - 8:
+      - squash the microchip modification patch.
+    patch9:
+      - remove the plda common required property.
+    patch10:
+      - Sync the hide rc bar ops with config read function.
+      - Revert the T_PVPERL to 100ms and add comments for the source.
+      - Replace the link check function by the standard link ops.
+      - Convert to new pm ops marcos.
+      - Some formats modification.
+      - pcie-plda-host modification merge to patch4.
+    other:
+      - remove the pcie-plda-plat.c
+      - remove the starfive dts patch first. for it depends on
+        stg clock and syscon setting.
+
+Minda Chen (11):
+  dt-bindings: PCI: Add PLDA XpressRICH PCIe host common properties
+  PCI: microchip: Move pcie-microchip-host.c to plda directory
+  PCI: microchip: Move PLDA IP register macros to pcie-plda.h
+  PCI: microchip: Rename data structure and functions
+  PCI: plda: Move the common functions to pcie-plda-host.c
+  PCI: plda: Add event interrupt codes and IRQ domain ops
+  PCI: microchip: Rename IRQ init function
+  PCI: microchip: Move IRQ init functions to pcie-plda-host.c
+  dt-bindings: PCI: Add StarFive JH7110 PCIe controller
+  PCI: starfive: Add JH7110 PCIe controller
+  riscv: dts: starfive: add PCIe dts configuration for JH7110
+
+ .../bindings/pci/microchip,pcie-host.yaml     |  55 +-
+ .../pci/plda,xpressrich3-axi-common.yaml      |  75 ++
+ .../bindings/pci/starfive,jh7110-pcie.yaml    | 120 ++++
+ MAINTAINERS                                   |  17 +-
+ .../jh7110-starfive-visionfive-2.dtsi         |  64 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  86 +++
+ drivers/pci/controller/Kconfig                |   9 +-
+ drivers/pci/controller/Makefile               |   2 +-
+ drivers/pci/controller/plda/Kconfig           |  30 +
+ drivers/pci/controller/plda/Makefile          |   4 +
+ .../{ => plda}/pcie-microchip-host.c          | 605 ++--------------
+ drivers/pci/controller/plda/pcie-plda-host.c  | 656 ++++++++++++++++++
+ drivers/pci/controller/plda/pcie-plda.h       | 239 +++++++
+ drivers/pci/controller/plda/pcie-starfive.c   | 460 ++++++++++++
+ 14 files changed, 1817 insertions(+), 605 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/plda,xpressrich3-axi-common.yaml
+ create mode 100644 Documentation/devicetree/bindings/pci/starfive,jh7110-pcie.yaml
+ create mode 100644 drivers/pci/controller/plda/Kconfig
+ create mode 100644 drivers/pci/controller/plda/Makefile
+ rename drivers/pci/controller/{ => plda}/pcie-microchip-host.c (54%)
+ create mode 100644 drivers/pci/controller/plda/pcie-plda-host.c
+ create mode 100644 drivers/pci/controller/plda/pcie-plda.h
+ create mode 100644 drivers/pci/controller/plda/pcie-starfive.c
+
+
+base-commit: 2dde18cd1d8fac735875f2e4987f11817cc0bc2c
+-- 
+2.17.1
+
