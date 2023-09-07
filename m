@@ -2,160 +2,379 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 161DB79793C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4951C79782B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236033AbjIGRIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41946 "EHLO
+        id S242735AbjIGQmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:42:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232218AbjIGRIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:08:16 -0400
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A144D92
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 10:07:45 -0700 (PDT)
-Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6bc9c01e154so1183466a34.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 10:07:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694106396; x=1694711196; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EWjc9Tq24L0z9SehMarme94KIq1a0OWmKWnWsMLtL6w=;
-        b=a5Jk0OjWIFGZKGjqOtjCo56jZR37mD7H/Njh7NviSwDNViKF3myrqCrU692QBeub/g
-         b9iAi9vj8ZRvmCe4govvgrjbVhFccG0sMhTFXALqhoVqfeDyeLSwq96MdZUB+tUG1E+C
-         C2wvFE9TosBgEFhLP0h4z6poaoT7fIY98nkjIxz5rFXOekVDgn9/tpgEJptpr9lkLx+r
-         Tn5XKGUU386X+Ceb8CT8RuGiTrppIRcygFTBrsoNOBR8qVo5RSuFzD8likluSqU0GAnD
-         xhnC60eBQOnMhgH26J+pMGTutuEpR50d0HywcJruRt+LoFwFSPQsI4uMl8Wq1jbOq5no
-         h7Rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1694106396; x=1694711196;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EWjc9Tq24L0z9SehMarme94KIq1a0OWmKWnWsMLtL6w=;
-        b=Lj6QNBMm9/Gh12FNfGL6FWDZ+lLjS2iddYjZYrsN/cTdQDBOq6KlBHTR0iLTvVehg5
-         VwvZ0JhO7H6RbznsiX0jk/5kIojxBiOq3w5/db+GAU3mpssF6o6KQlF0N6xFjQ72RDMN
-         VI36PDqex5jZRUu11gmp4CJXWlTwUZMQx+xRw/S940l7HnZnTBxvpxbSzZF1C4UkEEDe
-         BUMXM9fsCmh6DgqTgZiIXQPG5mAECLL/ProXvaHwB9ikyyf2KUwsplryfmMs8OpBF9WL
-         uYAnUuzJ0n3iWTT+v8fPFSLrjVAZTARPwFoIIrlG2z5f/kDNCzg/4crYhLwmBHldAFmM
-         tsXQ==
-X-Gm-Message-State: AOJu0YzhBGDHtUM4OouWytwvKpRJMEMn5HNYSdcx/uxX8C+51P4rSu6f
-        8+o+XMx92uInrChxXBv/lweYMYwhPWeD5vJ2/BhOwItNkezhw6k5sF0=
-X-Google-Smtp-Source: AGHT+IEfYqhUFJ1cVabsx1fK7bxKAay+z3MPpC0vnndLwwN0XFbr3Qb0Xl2nmJ3y7ZRnqy/9qAjqB1Ntotany1k2aKs=
-X-Received: by 2002:a25:32cd:0:b0:d78:3b67:ef3 with SMTP id
- y196-20020a2532cd000000b00d783b670ef3mr3182735yby.12.1694095033559; Thu, 07
- Sep 2023 06:57:13 -0700 (PDT)
+        with ESMTP id S235391AbjIGQmA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:42:00 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF8AA269A;
+        Thu,  7 Sep 2023 09:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694102913; x=1725638913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7CHvxDHCHPtOuBCQWw9gx4GqYSPc7pMh1YaZILhTDkk=;
+  b=mFDRC5xcsROPUpyNTYsgGvxNkUJiv6pBu/s+Fw7EItP7vBPAutXGSAXE
+   myZ+oMrAGlSNAIYBKT4ojk97EFD9A4Dktl8VY6joGgXN7+eH2hu44Luvl
+   ZjvommVLOUROBJnzdtWjX/ktRDT1uF8Th+0bBcwlB31hz19pjOJQbl/Zp
+   tA6e4eQ4TG8wrSRBfJE+pEMyVLVv/MgROO9xmungiwPl04JcDtIMeMYkn
+   zjxM6JI4n48yRZpPtzFZkeiCLqYi9mI9v8ddNFh7XK34oZTnXc+35hcmn
+   jy20FDy4Cs9Oy+3LO8hmVN19b2IOf/PjN4SsmmDJu/Q1XFH6naE9yK8N2
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="380093378"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
+   d="scan'208";a="380093378"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 06:57:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="771291695"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
+   d="scan'208";a="771291695"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 06:57:55 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qeFW4-007K8K-0c;
+        Thu, 07 Sep 2023 16:57:52 +0300
+Date:   Thu, 7 Sep 2023 16:57:51 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: pressure: Support ROHM BU1390
+Message-ID: <ZPnW38eO6by1NjIr@smile.fi.intel.com>
+References: <cover.1694001462.git.mazziesaccount@gmail.com>
+ <08f7085ba1af2fae21c942f6c20a94c237df53ba.1694001462.git.mazziesaccount@gmail.com>
+ <ZPifWlRvX5hLFPvG@smile.fi.intel.com>
+ <4d8e2873-49bc-8314-ee16-dd327a92898d@gmail.com>
 MIME-Version: 1.0
-References: <cover.1693996662.git.quic_varada@quicinc.com> <558c6b70090ea7220bfb0b6e7d81828025018376.1693996662.git.quic_varada@quicinc.com>
-In-Reply-To: <558c6b70090ea7220bfb0b6e7d81828025018376.1693996662.git.quic_varada@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 7 Sep 2023 16:57:02 +0300
-Message-ID: <CAA8EJprUgcmqFeNeuFgnRkk=XUr8NjNMMzd0y7sVhOnGUnn2qA@mail.gmail.com>
-Subject: Re: [PATCH v1 06/10] cpufreq: qti: Enable cpufreq for ipq53xx
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc:     ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, rafael@kernel.org,
-        viresh.kumar@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,DATE_IN_PAST_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4d8e2873-49bc-8314-ee16-dd327a92898d@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 7 Sept 2023 at 08:23, Varadarajan Narayanan
-<quic_varada@quicinc.com> wrote:
->
-> IPQ53xx have different OPPs available for the CPU based on
-> SoC variant. This can be determined through use of an eFuse
-> register present in the silicon.
->
-> Added support for ipq53xx on nvmem driver which helps to
-> determine OPPs at runtime based on the eFuse register which
-> has the CPU frequency limits. opp-supported-hw dt binding
-> can be used to indicate the available OPPs for each limit.
->
-> nvmem driver also creates the "cpufreq-dt" platform_device after
-> passing the version matching data to the OPP framework so that the
-> cpufreq-dt handles the actual cpufreq implementation.
->
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  drivers/cpufreq/cpufreq-dt-platdev.c |  1 +
->  drivers/cpufreq/qcom-cpufreq-nvmem.c | 15 +++++++++++++++
->  2 files changed, 16 insertions(+)
->
-> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufr=
-eq-dt-platdev.c
-> index 02ec58a..f0c45d4 100644
-> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
-> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
-> @@ -178,6 +178,7 @@ static const struct of_device_id blocklist[] __initco=
-nst =3D {
->         { .compatible =3D "ti,am625", },
->         { .compatible =3D "ti,am62a7", },
->
-> +       { .compatible =3D "qcom,ipq5332", },
->         { .compatible =3D "qcom,ipq8064", },
->         { .compatible =3D "qcom,apq8064", },
->         { .compatible =3D "qcom,msm8974", },
-> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-=
-cpufreq-nvmem.c
-> index 84d7033..49d21b0 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> @@ -146,6 +146,20 @@ static int qcom_cpufreq_kryo_name_version(struct dev=
-ice *cpu_dev,
->                 return PTR_ERR(speedbin);
->
->         switch (msm_id) {
-> +       case QCOM_ID_IPQ5332:
-> +       case QCOM_ID_IPQ5322:
-> +       case QCOM_ID_IPQ5312:
-> +       case QCOM_ID_IPQ5302:
-> +       case QCOM_ID_IPQ5300:
+On Thu, Sep 07, 2023 at 08:57:17AM +0300, Matti Vaittinen wrote:
+> On 9/6/23 18:48, Andy Shevchenko wrote:
+> > On Wed, Sep 06, 2023 at 03:37:48PM +0300, Matti Vaittinen wrote:
 
-msm8996 was bad enough. Can we use compat strings instead? Or make
-this a default for qcom_cpufreq_kryo_name_version()?
+...
 
-> +               /* Fuse Value    Freq    BIT to set
-> +                * ---------------------------------
-> +                *   2=E2=80=99b00     No Limit     BIT(0)
-> +                *   2=E2=80=99b01     1.5 GHz      BIT(1)
-> +                *   2=E2=80=99b10     1.2 Ghz      BIT(2)
-> +                *   2=E2=80=99b11     1.0 GHz      BIT(3)
-> +                */
-> +               drv->versions =3D 1 << (unsigned int)(*speedbin);
-> +               break;
->         case QCOM_ID_MSM8996:
->         case QCOM_ID_APQ8096:
->                 drv->versions =3D 1 << (unsigned int)(*speedbin);
-> @@ -359,6 +373,7 @@ static const struct of_device_id qcom_cpufreq_match_l=
-ist[] __initconst =3D {
->         { .compatible =3D "qcom,apq8096", .data =3D &match_data_kryo },
->         { .compatible =3D "qcom,msm8996", .data =3D &match_data_kryo },
->         { .compatible =3D "qcom,qcs404", .data =3D &match_data_qcs404 },
-> +       { .compatible =3D "qcom,ipq5332", .data =3D &match_data_kryo },
->         { .compatible =3D "qcom,ipq8064", .data =3D &match_data_krait },
->         { .compatible =3D "qcom,apq8064", .data =3D &match_data_krait },
->         { .compatible =3D "qcom,msm8974", .data =3D &match_data_krait },
-> --
-> 2.7.4
->
+> > > +struct bm1390_data {
+> > > +	int64_t timestamp, old_timestamp;
+> > 
+> > Out of a sudden int64_t instead of u64?
+> 
+> Judging the iio_push_to_buffers_with_timestamp() and iio_get_time_ns(), IIO
+> operates with signed timestamps. One being s64, the other int64_t.
+> 
+> > > +	struct iio_trigger *trig;
+> > > +	struct regmap *regmap;
+> > > +	struct device *dev;
+> > > +	struct bm1390_data_buf buf;
+> > > +	int irq;
+> > > +	unsigned int state;
+> > > +	bool trigger_enabled;
+> > 
+> > > +	u8 watermark;
+> > 
+> > Or u8 instead of uint8_t?
+> 
+> So, uint8_t is preferred? I don't really care all that much which of these
+> to use - which may even show up as a lack of consistency... I think I did
+> use uint8_t when I learned about it - but at some point someone somewhere
+> asked me to use u8 instead.. This somewhere might have been u-boot though...
+> 
+> So, are you Suggesting I should replace u8 with uint8_t? Can do if it
+> matters.
+
+Consistency matters, since I do not know the intention behind, I suggest use
+either, but be consistent in the entire code. However, uXX are specific Linux
+kernel internal types and some maintainers prefer them. Also you may grep for
+the frequency of intXX_t vs. sXX or their unsigned counterparts.
+
+> > > +	/* Prevent accessing sensor during FIFO read sequence */
+> > > +	struct mutex mutex;
+> > > +};
+
+...
+
+> > > +static int bm1390_read_temp(struct bm1390_data *data, int *temp)
+> > > +{
+> > > +	u8 temp_reg[2] __aligned(2);
+> > 
+> > Why?! Just use proper bitwise type.
+> 
+> What is the proper bitwise type in this case?
+> 
+> I'll explain my reasoning:
+> What we really have in hardware (BM1390) and read from it is 8bit registers.
+> This is u8 to me. And as we read two consecutive registers, we use u8
+> arr[2]. In my eyes it describes the data perfectly well, right?
+
+Two different registers?! Why bulk is used in that case?
+To me looks like you are reading 16-bit (or one that fits in 16-bit) register
+in BE notation.
+
+> > > +	__be16 *temp_raw;
+> > > +	int ret;
+> > > +	s16 val;
+> > > +	bool negative;
+> > > +
+> > > +	ret = regmap_bulk_read(data->regmap, BM1390_REG_TEMP_HI, &temp_reg,
+> > > +			       sizeof(temp_reg));
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	if (temp_reg[0] & 0x80)
+> > > +		negative = true;
+> > > +	else
+> > > +		negative = false;
+> > 
+> > > +	temp_raw = (__be16 *)&temp_reg[0];
+> > 
+> > Heck no. Make temp_reg be properly typed.
+> 
+> As I explained above, to me it seems ur arr[2} is _the_ proper type to
+> represent data we read from the device.
+> 
+> What we need to do is to convert the 16bits of data to an integer we can
+> give to the rest of the system. And, we happen to know how to 'manipulate'
+> the data to get it in format of understandable integer. As we have these 16
+> bits in memory, aligned to 2 byte boundary - why shouldn't we just
+> 'manipulate' the data and say - here we have your integer, please be my
+> guest and use it?
+
+Because it smell like a hack and is a hack here.
+Either it's a single BE16 register, or it's two different registers that by
+very unknown reason you are reading in a bulk. The code in this form is no
+go.
+
+> Well, I am keen to learn the 'correct bitwise type' you talk about - can you
+> please explain me what this correct type for two 8bit integers is? Maybe I
+> can improve.
+
+If the registers are not of the same nature the bulk access is wrong.
+Use one by one reads.
+
+> > > +	val = be16_to_cpu(*temp_raw);
+> > > +
+> > > +	if (negative) {
+> > > +		/*
+> > > +		 * Two's complement. I am not sure if all supported
+> > > +		 * architectures actually use 2's complement represantation of
+> > > +		 * signed ints. If yes, then we could just do the endianes
+> > > +		 * conversion and say this is the s16 value. However, as I
+> > > +		 * don't know, and as the conversion is pretty simple. let's
+> > > +		 * just convert the signed 2's complement to absolute value and
+> > > +		 * multiply by -1.
+> > > +		 */
+> > > +		val = ~val + 1;
+> > > +		val *= -1;
+> > > +	}
+> > > +
+> > > +	*temp = val;
+> > > +
+> > > +	return 0;
+> > > +}
+
+...
+
+> > > +static int bm1390_pressure_read(struct bm1390_data *data, u32 *pressure)
+> > > +{
+> > > +	int ret;
+> > > +	u8 raw[3];
+> > > +
+> > > +	ret = regmap_bulk_read(data->regmap, BM1390_REG_PRESSURE_BASE,
+> > > +			       &raw[0], sizeof(raw));
+
+&raw[0] --> raw
+
+> > > +	if (ret < 0)
+> > > +		return ret;
+> > > +
+> > > +	*pressure = (u32)(raw[2] >> 2 | raw[1] << 6 | raw[0] << 14);
+
+This, btw, looks like le24, but I'm puzzled with right shift.
+I need to read datasheet carefully to understand this.
+
+> > > +	return 0;
+> > > +}
+
+...
+
+> > > + /* The enum values map directly to register bits */
+> > 
+> > In this case assign _all_ values explicitly. Currently it's prone to errors
+> > if somebody squeezed a value in between.
+> 
+> Agree. This is a good practice. Thanks. (although, it shouldn't really
+> matter here as nobody really should squeeze a value in between as enum is
+> short and we have this just comment above).
+
+Right, but code can be done more robust against these. I do not see any
+argument against this. It's cheap and correct to add assignments and
+then we do not care about the sequence, even if somebody messes it up.
+
+> > > +enum bm1390_meas_mode {
+> > > +	BM1390_MEAS_MODE_STOP = 0x0,
+> > > +	BM1390_MEAS_MODE_1SHOT,
+> > > +	BM1390_MEAS_MODE_CONTINUOUS,
+> > > +};
+
+...
+
+> > > +	mutex_lock(&data->mutex);
+> > 
+> > Wouldn't you like to start using cleanup.h?
+> 
+> The new macro "thingee" for C++ destructor like constructs?
+
+I was talking about these: guard() / scoped_guard().
+
+> TBH, I am not really in a rush with it for two reasons.
+> 1) The syntax looks very alien to me. I would like to get some time to get
+> used to it before voluntarily ending up maintaining a code using it. (I
+> don't like practicing things upstream as practicing tends to include making
+> more errors).
+> 
+> 2. Related to 1). I am not (yet) convinced incorporating changes in stuff
+> using these cleanups is easy. I'm a bit reserved and would like to see how
+> things play out.
+> 
+> 3. I expect I will get a few requests to backport the code to some older
+> kernels used by some big customers. (I've been doing plenty of extra work
+> when backporting my kernel improvements like regmap_irq stuff, linear
+> ranges, regulator pickable ranges, gts-helpers to customer kernels to get my
+> drivers working - or working around the lack of thiose features. I have been
+> willing to pay this prize to get those helpers upstream for everyone to use.
+> The cleanup.h however is there so it does not _need_ new users. I don't
+> think _all_ existing drivers will be converted to use it so one more should
+> probably not hurt. I think that in a year at least some customers will be
+> using kernel containing the cleanup.h - so by latest then it is time for me
+> to jump on that train. I hope I am used to reading those macros by then).
+
+OK.
+
+...
+
+> > > +	case IIO_CHAN_INFO_SCALE:
+> > > +		if (chan->type == IIO_TEMP) {
+> > > +			*val = 31;
+> > > +			*val2 = 250000;
+> > > +
+> > > +			return IIO_VAL_INT_PLUS_MICRO;
+> > > +		} else if (chan->type == IIO_PRESSURE) {
+> > > +			*val = 0;
+> > > +			/*
+> > > +			 * pressure in hPa is register value divided by 2048.
+> > > +			 * This means kPa is 1/20480 times the register value,
+> > > +			 * which equals to 48828.125 * 10 ^ -9
+> > > +			 * This is 48828.125 nano kPa.
+> > > +			 *
+> > > +			 * When we scale this using IIO_VAL_INT_PLUS_NANO we
+> > > +			 * get 48828 - which means we lose some accuracy. Well,
+> > > +			 * let's try to live with that.
+> > > +			 */
+> > > +			*val2 = 48828;
+> > > +
+> > > +			return IIO_VAL_INT_PLUS_NANO;
+> > > +		}
+> > > +
+> > > +		return -EINVAL;
+> > 
+> > Why not switch-case like other drivers do?
+> 
+> In my eyes avoiding the very simple if - else if does not warrant nested
+> switches which look ugly to me.
+
+Okay, yet another disagreement.
+
+> > > +	case IIO_CHAN_INFO_RAW:
+> > > +		ret = iio_device_claim_direct_mode(idev);
+> > > +		if (ret)
+> > > +			return ret;
+> > > +
+> > > +		ret = bm1390_read_data(data, chan, val, val2);
+> > > +		iio_device_release_direct_mode(idev);
+> > 
+> > > +		if (!ret)
+> > > +			return IIO_VAL_INT;
+> > > +
+> > > +		return ret;
+> > 
+> > Why not usual pattern?
+> > 
+> > 		if (ret)
+> > 			return ret;
+> 
+> I see your point, ok.
+> 
+> > > +	default:
+> > > +		return -EINVAL;
+> > > +	}
+
+...
+
+> > > +	smp_lvl = FIELD_GET(BM1390_MASK_FIFO_LVL, smp_lvl);
+> > 
+> > > +
+> > 
+> > Unneeded blank line.
+> > 
+> > > +	if (smp_lvl > 4) {
+> > > +		/*
+> > > +		 * Valid values should be 0, 1, 2, 3, 4 - rest are probably
+> > > +		 * bit errors in I2C line. Don't overflow if this happens.
+> > > +		 */
+> > > +		dev_err(data->dev, "bad FIFO level %d\n", smp_lvl);
+> > > +		smp_lvl = 4;
+> > > +	}
+> > 
+> > > +	if (!smp_lvl)
+> > > +		return ret;
+> > 
+> > This can be checked first as it's and error condition
+> 
+> I wouldn't say it is an error condition.
+
+Returning ret suggests otherwise.
+
+> It just means there was no samples
+> collected in buffer.
+
+But as you explained below, the code is actually 0 there.
+In any case bailing out conditionals are better to be first.
+
+>  and previous branch has
+> > no side effects on this. Also, wouldn't be better to use error code explicitly?
+> 
+> Yes. For the clarity we definitely should explicitly do "return 0" here.
+> Thanks.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
---=20
-With best wishes
-Dmitry
