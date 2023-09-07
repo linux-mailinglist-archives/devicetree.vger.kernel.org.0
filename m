@@ -2,66 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12258797616
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:01:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A536797350
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 17:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235945AbjIGQBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:01:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55788 "EHLO
+        id S229769AbjIGPXB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 11:23:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36806 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244391AbjIGP77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:59:59 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 861B64EE0;
-        Thu,  7 Sep 2023 08:50:21 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 128E466072EE;
-        Thu,  7 Sep 2023 10:15:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694078113;
-        bh=Rxr9wSnatrcikI+JJAyDpY5hrb72I1tP/ucCHPKp+4U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=oAnhasf8H14BX1NPjT3BsrDvEucrf2ZGAoLRd5zQlOXr2R0oZIJjohj6HyskepAZO
-         Y2CLeVG9KcJ2d641YVHNYos39QTXEJOQkclRgbDNhxuBSMkQcamneh5PUmIXF+0vuJ
-         o9KbG1RvRDyJLh/4RJ9VB0bTM240n1lUcoLAIe0iuQrkgGq0vNZC7GFupZHUPZeYmp
-         lHQoVPQYl+B9+YPIUUIZDq1Cy3K6XIu/ePkByJXIN/CxpHv2GExeT35w0BMlCZpsoc
-         WbAgNLd3wGJDhH/5s2ljSs5qYw0z87wfXz+opNESPPgUHCoKrLSzN8LxUyyLqdX9Ye
-         52ifx7/NZ5jYg==
-Message-ID: <99510f2c-82cb-a3ed-764f-9411a16cac09@collabora.com>
-Date:   Thu, 7 Sep 2023 11:15:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v3 1/2] arm64: dts: mediatek: mt8195-demo: fix the memory
- size to 8GB
-Content-Language: en-US
-To:     Macpaul Lin <macpaul.lin@mediatek.com>,
-        Alexandre Mergnat <amergnat@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
+        with ESMTP id S232817AbjIGPWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 11:22:24 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id BDFB71BF7;
+        Thu,  7 Sep 2023 08:21:53 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B8F381576;
+        Thu,  7 Sep 2023 03:37:01 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CBA573F67D;
+        Thu,  7 Sep 2023 03:36:21 -0700 (PDT)
+Date:   Thu, 7 Sep 2023 11:36:19 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Nikunj Kela <quic_nkela@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        cristian.marussi@arm.com, Sudeep Holla <sudeep.holla@arm.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Cc:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>, stable@vger.kernel.org
-References: <20230825114623.16884-1-macpaul.lin@mediatek.com>
- <20230905034511.11232-1-macpaul.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230905034511.11232-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v3 0/3] Add qcom hvc/shmem transport
+Message-ID: <20230907103619.2kqh7tfivwdfm5rd@bogus>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230811175719.28378-1-quic_nkela@quicinc.com>
+ <3342d8bf-5281-c082-cb9a-7a027b413237@quicinc.com>
+ <f5b05cfa-f12c-4f4d-a801-3aa76d843d6d@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f5b05cfa-f12c-4f4d-a801-3aa76d843d6d@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,34 +49,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/09/23 05:45, Macpaul Lin ha scritto:
-> The onboard dram of mt8195-demo board is 8GB.
-> 
-> Cc: stable@vger.kernel.org      # 6.1, 6.4, 6.5
-> Fixes: 6147314aeedc ("arm64: dts: mediatek: Add device-tree for MT8195 Demo board")
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+On Tue, Sep 05, 2023 at 06:37:14PM +0200, Krzysztof Kozlowski wrote:
+> On 05/09/2023 18:06, Nikunj Kela wrote:
+> > 
+> > On 8/11/2023 10:57 AM, Nikunj Kela wrote:
+> >> This change introduce a new transport channel for Qualcomm virtual
+> >> platforms. The transport is mechanically similar to ARM_SCMI_TRANSPORT_SMC.
+> >> The difference between the two transports is that a parameter is passed in
+> >> the hypervisor call to identify which doorbell to assert. This parameter is
+> >> dynamically generated at runtime on the device and insuitable to pass via
+> >> the devicetree.
+> >>
+> >> The function ID and parameter are stored by firmware in the shmem region.
+> >>
+> >> This has been tested on ARM64 virtual Qualcomm platform.
+> >>
+> >> ---
+> >> v3 -> fix the compilation error reported by the test bot,
+> >>        add support for polling based instances
+> >>
+> >> v2 -> use allOf construct in dtb schema,
+> >>        remove wrappers from mutexes,
+> >>        use architecture independent channel layout
+> >>
+> >> v1 -> original patches
+> >>
+> >> Nikunj Kela (3):
+> >>    dt-bindings: arm: convert nested if-else construct to allOf
+> >>    dt-bindings: arm: Add qcom specific hvc transport for SCMI
+> >>    firmware: arm_scmi: Add qcom hvc/shmem transport
+> >>
+> >>   .../bindings/firmware/arm,scmi.yaml           |  67 ++---
+> >>   drivers/firmware/arm_scmi/Kconfig             |  13 +
+> >>   drivers/firmware/arm_scmi/Makefile            |   2 +
+> >>   drivers/firmware/arm_scmi/common.h            |   3 +
+> >>   drivers/firmware/arm_scmi/driver.c            |   4 +
+> >>   drivers/firmware/arm_scmi/qcom_hvc.c          | 232 ++++++++++++++++++
+> >>   6 files changed, 293 insertions(+), 28 deletions(-)
+> >>   create mode 100644 drivers/firmware/arm_scmi/qcom_hvc.c
+> > Gentle Ping!
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Pong !
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt8195-demo.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> Changes for v2:
-> Changes for v3:
->   - No change.
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> index b2485ddfd33b..ff363ab925e9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
-> @@ -48,7 +48,7 @@
->   
->   	memory@40000000 {
->   		device_type = "memory";
-> -		reg = <0 0x40000000 0 0x80000000>;
-> +		reg = <0 0x40000000 0x2 0x00000000>;
->   	};
->   
->   	reserved-memory {
+>
+> It's third ping these two weeks from Qualcomm. Folks, it is merge
+> window. What do you think will happen with your ping during this time?
+>
 
++1
+
+Okay, here is the deal with this patch set. As you are aware that a previous
+merged solution was abandoned by Qcom in a single kernel release cycle. So
+I decided to ignore this for one or 2 kernel release cycle to make sure
+Qcom makes up their mind on the design and then we can see how to proceed.
+Qcom must understand upstream kernel is not a playground to push their
+design which they might decided to drop support for in such short period.
+Please understand the upstream kernel supports platforms that are more than
+few decades old. It is not like the mobile platforms that are hardly supported
+for couple of years. And similarly, we push core support if and only if we
+know for sure it will be used on some platform. I trusted Qcom with the
+previous extension of SMC/HVC transport but I was proven wrong.
+
+Also, I definitely don't like the way you have copied the whole smc.c
+and changed it to Qcom's need and made it qcom_hvc.c. Just add the required
+changes in smc.c.
+
+--
+Regards,
+Sudeep
