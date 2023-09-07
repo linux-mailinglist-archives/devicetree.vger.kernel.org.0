@@ -2,233 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2832D797AAE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F7579768B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245492AbjIGRsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41894 "EHLO
+        id S233092AbjIGQNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:13:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245660AbjIGRsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:48:00 -0400
-Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C9F1A1FFC;
-        Thu,  7 Sep 2023 10:47:40 -0700 (PDT)
-Received: from authenticated-user (box.trvn.ru [194.87.146.52])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by box.trvn.ru (Postfix) with ESMTPSA id DC57B4245A;
-        Thu,  7 Sep 2023 15:03:09 +0500 (+05)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
-        t=1694080990; bh=StFemIF/2ACZvZh/Pxi85yeBz6CK2ME+JWLfl5kUCzw=;
-        h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-        b=f30AMxqbk0xdk+4TMKvlx5bJI2pcI93dY8gIwoTAdmuKrWOEPpCM3CngiMIIKVEJK
-         8mObrrMSKoMUr9kdiNJbQFijLj0qziTT5EIVYmOVYjN55NGOy4jycWx+1p7tuLSfbN
-         1oc+3SYWs3tlRpOGow2zT9UR+mTh47PPfLP+5uM2UxhGV0GaXHgvuvK3mf8pBzZwuB
-         Esy0UEmH15dAzSwRL1IwoNBGXvf+RFA7U4oDUv0F4pfs3e/utQUXL14fF41J6JXs8i
-         71I6uMOMRgEAgXV5R8MyvXoRJBc49kzLbcTmRnQ2b3IXpoQapDl+1Ka8GliaUwEp/I
-         YBZWvHVnxRwVg==
-From:   Nikita Travkin <nikita@trvn.ru>
-Date:   Thu, 07 Sep 2023 15:02:37 +0500
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sc7180: Add ADSP
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230907-sc7180-adsp-rproc-v3-4-6515c3fbe0a3@trvn.ru>
-References: <20230907-sc7180-adsp-rproc-v3-0-6515c3fbe0a3@trvn.ru>
-In-Reply-To: <20230907-sc7180-adsp-rproc-v3-0-6515c3fbe0a3@trvn.ru>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        with ESMTP id S238680AbjIGQMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:12:44 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DEA0B32C;
+        Thu,  7 Sep 2023 09:09:50 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2BAEC433BD;
+        Thu,  7 Sep 2023 10:08:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694081320;
+        bh=dQri/2DWuR9JAYOqjTr0UMKQHoPS125OeefglwyHSOA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rxBXfAQvGgpOclbJJ0FU7bDBYrz9OFJ4AdjlP9wEaNFPcM/lRjHdlRILhTohwBlRj
+         hY/LUf2vjajj4Tn/J5SOn2pDzCi46sL/LraJHGt2EVeLv1fo4Yhj2Ma5VdEkm0okwt
+         a16aLnaw5FaP8GgSseTqwGr+BKvGjbbYYzmWLyuw0ijip2U7PhQwGw32L5S1BnHCnh
+         LxXYyNkg+utAxZH3BOfpbXXvGUJjLwNFtRoj/It7uS7Rj+zbIJUxBtee8NUD+mw65/
+         JoLSibwPKzPLXtrweKsCufKtg4zhtGjUC1FOcxUjURfnf/f0Liu7kr07mYtVu1WO1U
+         untDSoP31xZhA==
+Date:   Thu, 7 Sep 2023 11:08:33 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Matti Vaittinen <mazziesaccount@gmail.com>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org
-Cc:     David Wronek <davidwronek@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Nikita Travkin <nikita@trvn.ru>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4341; i=nikita@trvn.ru;
- h=from:subject:message-id; bh=StFemIF/2ACZvZh/Pxi85yeBz6CK2ME+JWLfl5kUCzw=;
- b=owEBbQKS/ZANAwAIAUMc7O4oGb91AcsmYgBk+Z/XXACb1HQKlfdqcudVWbdURrRzfhFbQvUWq
- VfnEkqxIfqJAjMEAAEIAB0WIQTAhK9UUj+qg34uxUdDHOzuKBm/dQUCZPmf1wAKCRBDHOzuKBm/
- dbkMD/4hGWIxQrkM2fnC2ef1yMyx8LWMltMVgtwmULrymGHd76pRuIH1Ecra8sCFayqiV/Q5mFk
- /9XIxv/RMMlwtVuLD82MsAC+btLCWeELNhTyDMj2wD2nC4aab/sHGbLv3mwCw0rtGnN7ehB4aq5
- kzsgVMNBweT6ese3thUdNwSw9NPmbgnVkWDeGNMyj8AtNzl17697FYotkjS27CBcSp5Z34zFXEM
- HeRxrB9Fu/1TH66SPNvx8njJ9mWn2iDQ3oi4Ze5A6quXmJq+18nrkgj/yv99jR6eAclXDtF2n70
- eBF5iXoAPI95b9qDZH4Y6l3oRI5vZ4FihMlg2B/dfhpf3bRaJMyPv0RmK2q8nLAoWdYMGHKvozE
- dYBUCYh3TfB3VOC/rlz9wBfSQsqRjih6OKU5DLZAZq/xNh+GmlKv4GaLWXunet6tdoHBh2bQ1En
- JkNrUlQwNIwOihxpifpGU5VJ1VIIj+llSyrIyos3SSUKJwg6OrpM/zsAs/ahC5egRivDuiChV48
- Qta3QA6XRrHxMOyzuLFmnAtW0iT9FDAOlUk8B9G4QuaDfpwDY3k3BvkeyNHQ5e8lUlSUvOa7a4C
- 6gF8pdoY6TYQKjMLknZsfRM86d+rSgtyKRnThmYTANqI7oI6w+Wi+I7MjmMO3KKs2UblsWwh8Te
- qQ3xsLEZMhRxT5Q==
-X-Developer-Key: i=nikita@trvn.ru; a=openpgp;
- fpr=C084AF54523FAA837E2EC547431CECEE2819BF75
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        Angel Iglesias <ang.iglesiasg@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andreas Klinger <ak@it-klinger.de>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: Add ROHM BM1390 pressure sensor
+Message-ID: <20230907-e9e5cdcef1e6c88c1f6afbdd@fedora>
+References: <cover.1694001462.git.mazziesaccount@gmail.com>
+ <55e59e66824f75ce8ffe58d3463a9cbca56e25ac.1694001462.git.mazziesaccount@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="E4qdq8M9IN4HLNi4"
+Content-Disposition: inline
+In-Reply-To: <55e59e66824f75ce8ffe58d3463a9cbca56e25ac.1694001462.git.mazziesaccount@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-sc7180 has an ADSP remoteproc that exclusively controls the audio
-hardware on devices that use Qualcomm firmware.
 
-Add it along with the relevant audio services.
+--E4qdq8M9IN4HLNi4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Nikita Travkin <nikita@trvn.ru>
----
-v2: rename service nodes according to the schema, reorder properties
----
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 122 +++++++++++++++++++++++++++++++++++
- 1 file changed, 122 insertions(+)
+On Wed, Sep 06, 2023 at 03:37:19PM +0300, Matti Vaittinen wrote:
+> BM1390GLV-Z is a pressure sensor which performs internal temperature
+> compensation for the MEMS. Pressure range is from 300 hPa to 1300 hPa
+> and sample averaging and IIR filtering is built in sensor. Temperature
+> measurement is also supported.
+>=20
+> Add dt-bindings for the sensor.
+>=20
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> ---
+>  .../bindings/iio/pressure/rohm,bm1390.yaml    | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/pressure/rohm,b=
+m1390.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/pressure/rohm,bm1390.y=
+aml b/Documentation/devicetree/bindings/iio/pressure/rohm,bm1390.yaml
+> new file mode 100644
+> index 000000000000..d681fdd0f5ea
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/pressure/rohm,bm1390.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/pressure/rohm,bm1390.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ROHM BM1390 pressure sensor
+> +
+> +maintainers:
+> +  - Matti Vaittinen <mazziesaccount@gmail.com>
+> +
+> +description: |
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 322fa478515f..eca1c34d2306 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -20,6 +20,8 @@
- #include <dt-bindings/reset/qcom,sdm845-aoss.h>
- #include <dt-bindings/reset/qcom,sdm845-pdc.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+#include <dt-bindings/soc/qcom,apr.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/thermal/thermal.h>
- 
- / {
-@@ -3781,6 +3783,126 @@ wifi: wifi@18800000 {
- 			status = "disabled";
- 		};
- 
-+		remoteproc_adsp: remoteproc@62400000 {
-+			compatible = "qcom,sc7180-adsp-pas";
-+			reg = <0 0x62400000 0 0x100>;
-+
-+			interrupts-extended = <&intc GIC_SPI 162 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-+					      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "wdog",
-+					  "fatal",
-+					  "ready",
-+					  "handover",
-+					  "stop-ack";
-+
-+			clocks = <&rpmhcc RPMH_CXO_CLK>;
-+			clock-names = "xo";
-+
-+			power-domains = <&rpmhpd SC7180_LCX>,
-+					<&rpmhpd SC7180_LMX>;
-+			power-domain-names = "lcx", "lmx";
-+
-+			qcom,qmp = <&aoss_qmp>;
-+			qcom,smem-states = <&adsp_smp2p_out 0>;
-+			qcom,smem-state-names = "stop";
-+
-+			status = "disabled";
-+
-+			glink-edge {
-+				interrupts = <GIC_SPI 156 IRQ_TYPE_EDGE_RISING>;
-+				label = "lpass";
-+				qcom,remote-pid = <2>;
-+				mboxes = <&apss_shared 8>;
-+
-+				apr {
-+					compatible = "qcom,apr-v2";
-+					qcom,glink-channels = "apr_audio_svc";
-+					qcom,domain = <APR_DOMAIN_ADSP>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					service@3 {
-+						compatible = "qcom,q6core";
-+						reg = <APR_SVC_ADSP_CORE>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+					};
-+
-+					q6afe: service@4 {
-+						compatible = "qcom,q6afe";
-+						reg = <APR_SVC_AFE>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6afedai: dais {
-+							compatible = "qcom,q6afe-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+						};
-+
-+						q6afecc: clock-controller {
-+							compatible = "qcom,q6afe-clocks";
-+							#clock-cells = <2>;
-+						};
-+					};
-+
-+					q6asm: service@7 {
-+						compatible = "qcom,q6asm";
-+						reg = <APR_SVC_ASM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6asmdai: dais {
-+							compatible = "qcom,q6asm-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+							iommus = <&apps_smmu 0x1001 0x0>;
-+						};
-+					};
-+
-+					q6adm: service@8 {
-+						compatible = "qcom,q6adm";
-+						reg = <APR_SVC_ADM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+
-+						q6routing: routing {
-+							compatible = "qcom,q6adm-routing";
-+							#sound-dai-cells = <0>;
-+						};
-+					};
-+				};
-+
-+				fastrpc {
-+					compatible = "qcom,fastrpc";
-+					qcom,glink-channels = "fastrpcglink-apps-dsp";
-+					label = "adsp";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					compute-cb@3 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <3>;
-+						iommus = <&apps_smmu 0x1003 0x0>;
-+					};
-+
-+					compute-cb@4 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <4>;
-+						iommus = <&apps_smmu 0x1004 0x0>;
-+					};
-+
-+					compute-cb@5 {
-+						compatible = "qcom,fastrpc-compute-cb";
-+						reg = <5>;
-+						iommus = <&apps_smmu 0x1005 0x0>;
-+						qcom,nsessions = <5>;
-+					};
-+				};
-+			};
-+		};
-+
- 		lpasscc: clock-controller@62d00000 {
- 			compatible = "qcom,sc7180-lpasscorecc";
- 			reg = <0 0x62d00000 0 0x50000>,
+You've got no formatting to preserve the | is not needed.
 
--- 
-2.41.0
+> +  BM1390GLV-Z is a pressure sensor which performs internal temperature
+> +  compensation for the MEMS. Pressure range is from 300 hPa to 1300 hPa
+> +  and sample averaging and IIR filtering is built in sensor.
 
+nit: "built in to the sensor." or just "built-in."
+
+Otherwise this seems alright to me,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+> Temperature
+> +  measurement is also supported.
+> +
+> +properties:
+> +  compatible:
+> +    const: rohm,bm1390glv-z
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  vdd-supply: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +        pressure-sensor@5d {
+> +            compatible =3D "kionix,kx022a";
+> +            reg =3D <0x5d>;
+> +
+> +            interrupt-parent =3D <&gpio1>;
+> +            interrupts =3D <29 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +            vdd-supply =3D <&vdd>;
+> +        };
+> +    };
+> --=20
+> 2.41.0
+>=20
+>=20
+> --=20
+> Matti Vaittinen, Linux device drivers
+> ROHM Semiconductors, Finland SWDC
+> Kiviharjunlenkki 1E
+> 90220 OULU
+> FINLAND
+>=20
+> ~~~ "I don't think so," said Rene Descartes. Just then he vanished ~~~
+> Simon says - in Latin please.
+> ~~~ "non cogito me" dixit Rene Descarte, deinde evanescavit ~~~
+> Thanks to Simon Glass for the translation =3D]=20
+
+
+
+--E4qdq8M9IN4HLNi4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZPmhIAAKCRB4tDGHoIJi
+0sFfAP4pJNv9hR6rflrFMwoAsSA1yKyN+RQ5LPWfSuaVDOfUlgD/aximGsBCt/J4
+4Pw2ixhrYmw68QTXBPRbEuJpeGyQkQY=
+=NZh8
+-----END PGP SIGNATURE-----
+
+--E4qdq8M9IN4HLNi4--
