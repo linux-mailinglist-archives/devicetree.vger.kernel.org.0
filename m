@@ -2,125 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E01FC79785B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:46:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6541D7976D0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:16:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243225AbjIGQqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:46:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38126 "EHLO
+        id S236673AbjIGQQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:16:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236693AbjIGQqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:46:20 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5AEF7683;
-        Thu,  7 Sep 2023 09:20:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694103600; x=1725639600;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=DBrL4mS557cxBvRouvwV9QF+iy39q5mSe7MPFfBAAyY=;
-  b=lfdlF99KklkzalsqntVN6PKzyH0ow+w0VQACqIar0NT6NHtTXD9DM89u
-   y4/rNSXkpy7fnGUQb+gEXAOrp0rLGDajdtaV+SJW9eXAVoG5KlzA/OmeJ
-   CztiZMrVmqnEA3cQgIyJlj+RpIB6exyUvDjoiM3Q3gpDJ/eVr5qIo7txc
-   kdIFkreJGQD0nOhXfdweFSh0LJRWm9Q4/ywY1k3xUbus2dgycbJ+8HCnf
-   lJKafiXQGZJ4xVLQ2Qb9uJRsNAEx9HmvnEQhL3eq4tycCVi4g6d4qslDH
-   WWFL8hwaE4hp4b/sUIUHVb2M93dB3GaYnOTKBLXb+Jx7KXJBDWgSGsgMB
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="441323679"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
-   d="scan'208";a="441323679"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 05:14:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="807515912"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; 
-   d="scan'208";a="807515912"
-Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Sep 2023 05:14:16 -0700
-From:   Jani Nikula <jani.nikula@linux.intel.com>
-To:     Sarah Walker <sarah.walker@imgtec.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     linux-doc@vger.kernel.org, hns@goldelico.com,
-        krzysztof.kozlowski+dt@linaro.org, matthew.brost@intel.com,
-        corbet@lwn.net, luben.tuikov@amd.com, dakr@redhat.com,
-        donald.robson@imgtec.com, devicetree@vger.kernel.org,
-        conor+dt@kernel.org, mripard@kernel.org, matt.coster@imgtec.com,
-        robh+dt@kernel.org, faith.ekstrand@collabora.com,
-        linux-kernel@vger.kernel.org, afd@ti.com,
-        boris.brezillon@collabora.com, tzimmermann@suse.de,
-        christian.koenig@amd.com
-Subject: Re: [PATCH v6 02/20] drm/gpuva_mgr: Helper to get range of unmap
- from a remap op.
-In-Reply-To: <20230906095542.3280699-3-sarah.walker@imgtec.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230906095542.3280699-1-sarah.walker@imgtec.com>
- <20230906095542.3280699-3-sarah.walker@imgtec.com>
-Date:   Thu, 07 Sep 2023 15:14:14 +0300
-Message-ID: <87a5tygoyx.fsf@intel.com>
+        with ESMTP id S236685AbjIGQQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:16:28 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C298551A2;
+        Thu,  7 Sep 2023 09:15:35 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58B19C32784;
+        Thu,  7 Sep 2023 12:16:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694089010;
+        bh=bZ4uLbhRoZOPWAEmsqNOnRz9+u/PupzleFxvX2AobWs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ghoNWzMkYYeE0rUfRIj004rJCEncEEyUTO5LYa1DBfOsgluQFHHealltp3/Hx4K/E
+         0G4AW80xlHB+UBd84Nn90nFRRfwu5fmmGkRLtGFh/hBwrnXuK+T0HRJ7CrUvY/q+Pk
+         aSF7LCNEJncPplg3MIIExgCXiPYh6IW8QWuU0F7Ip+BfAu9OKkZYjgdZWIHRc9x05K
+         U6qhyt85rBUkEgOfI9ecb9ZMmt6s3XUVgP9CC2N+xuoboYyD5w8i9GAR2wDt0rPFwH
+         EnN16SRpz+J/qjpTxFMyR9Lf1RHMXFC0Lz6Tv1PSVm1Cac1QL+Ll4kMQ5Tx6g1lf/9
+         unufpWzVTbKAw==
+Message-ID: <f4431158-c177-8d09-4125-3fb01062f1fd@kernel.org>
+Date:   Thu, 7 Sep 2023 15:16:43 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [RFC PATCH net-next 1/2] dt-bindings: net: Add documentation for
+ Half duplex support.
+Content-Language: en-US
+To:     Md Danish Anwar <a0501179@ti.com>, Rob Herring <robh@kernel.org>,
+        MD Danish Anwar <danishanwar@ti.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Simon Horman <horms@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, srk@ti.com, r-gunasekaran@ti.com
+References: <20230830113134.1226970-1-danishanwar@ti.com>
+ <20230830113134.1226970-2-danishanwar@ti.com>
+ <20230831181636.GA2484338-robh@kernel.org>
+ <90669794-2fc1-bff1-104b-cf1daa2e9998@ti.com>
+From:   Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <90669794-2fc1-bff1-104b-cf1daa2e9998@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 06 Sep 2023, Sarah Walker <sarah.walker@imgtec.com> wrote:
-> From: Donald Robson <donald.robson@imgtec.com>
->
-> Signed-off-by: Donald Robson <donald.robson@imgtec.com>
-> ---
->  include/drm/drm_gpuva_mgr.h | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
-> index ed8d50200cc3..be7b3a6d7e67 100644
-> --- a/include/drm/drm_gpuva_mgr.h
-> +++ b/include/drm/drm_gpuva_mgr.h
-> @@ -703,4 +703,31 @@ void drm_gpuva_remap(struct drm_gpuva *prev,
->  
->  void drm_gpuva_unmap(struct drm_gpuva_op_unmap *op);
->  
-> +/**
-> + * drm_gpuva_op_remap_get_unmap_range() - Helper to get the start and range of
-> + * the unmap stage of a remap op.
-> + * @op: Remap op.
-> + * @start_addr: Output pointer for the start of the required unmap.
-> + * @range: Output pointer for the length of the required unmap.
-> + *
-> + * These parameters can then be used by the caller to unmap memory pages that
-> + * are no longer required.
-> + */
-> +static __always_inline void
-
-IMO __always_inline *always* requires a justification in the commit
-message.
-
-BR,
-Jani.
 
 
-> +drm_gpuva_op_remap_get_unmap_range(const struct drm_gpuva_op_remap *op,
-> +				   u64 *start_addr, u64 *range)
-> +{
-> +	const u64 va_start = op->prev ?
-> +			     op->prev->va.addr + op->prev->va.range :
-> +			     op->unmap->va->va.addr;
-> +	const u64 va_end = op->next ?
-> +			   op->next->va.addr :
-> +			   op->unmap->va->va.addr + op->unmap->va->va.range;
-> +
-> +	if (start_addr)
-> +		*start_addr = va_start;
-> +	if (range)
-> +		*range = va_end - va_start;
-> +}
-> +
->  #endif /* __DRM_GPUVA_MGR_H__ */
+On 01/09/2023 08:21, Md Danish Anwar wrote:
+> Hi Rob,
+> 
+> On 31/08/23 11:46 pm, Rob Herring wrote:
+>> On Wed, Aug 30, 2023 at 05:01:33PM +0530, MD Danish Anwar wrote:
+>>> In order to support half-duplex operation at 10M and 100M link speeds, the
+>>> PHY collision detection signal (COL) should be routed to ICSSG
+>>> GPIO pin (PRGx_PRU0/1_GPI10) so that firmware can detect collision signal
+>>> and apply the CSMA/CD algorithm applicable for half duplex operation. A DT
+>>> property, "ti,half-duplex-capable" is introduced for this purpose. If
+>>> board has PHY COL pin conencted to PRGx_PRU1_GPIO10, this DT property can
+>>> be added to eth node of ICSSG, MII port to support half duplex operation at
+>>> that port.
+>>
+>> I take it the GPIO here is not visble to the OS and that's why it's not 
+>> described in DT?
+>>  
+> 
+> Yes the GPIO here is not visible in the OS and we need to indicate whether the
+> PHY COL signal is routed to PRGx_PRU0/1_GPI10 pin or not by setting the
+> property "ti,half-duplex-capable" as true.
+> 
+>>>
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml | 7 +++++++
+>>>  1 file changed, 7 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>>> index 13371159515a..59da9aeaee7e 100644
+>>> --- a/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/ti,icssg-prueth.yaml
+>>> @@ -107,6 +107,13 @@ properties:
+>>>                phandle to system controller node and register offset
+>>>                to ICSSG control register for RGMII transmit delay
+>>>  
+>>> +          ti,half-duplex-capable:
+>>
+>> capable or...
+>>
+>>> +            type: boolean
+>>> +            description:
+>>> +              Enable half duplex operation on ICSSG MII port. This requires
+>>
+>> enable the mode?
+>>
+> 
+> I think capable is good here. The property "ti,half-duplex-capable" indicates
+> that the board is capable of half duplex operation. This doesn't necessarily
+> means we have to enable the half duplex mode. The user can modify the duplex
+> settings from ethtool and enable / disable is controlled by the user. This
+> property basically let's the driver know that it can support half duplex
+> operations and when user enables half duplex mode through ethtool, the driver
+> can do the necessary configurations.
+> 
+> When this property is false, half duplex is not supported. If user still wants
+> to change the duplex mode, it will get an error saying half duplex is not
+> supported.
+> 
+> So the property "ti,half-duplex-capable" let's the driver know whether half
+> duplex is supported or not. Enable / disable is controlled by user through ethtool.
+> 
+>> Maybe too late if it's already been assumed not supported, but shouldn't 
+>> supporting half duplex be the default? I guess half duplex isn't too 
+>> common any more.
+>>
+> 
+> Unfortunately ICSSG doesn't support half duplex by default. Routing the PHY COL
+> signal is necessary.
+
+But the half-duplex advertising is always enabled by default. Whether it gets
+used or not will depend on negotiation with link partner.
+
+That's why you had to explicitly disable them in your next patch with
+
++	if (!emac->half_duplex) {
++		dev_dbg(prueth->dev, "half duplex mode is not supported\n");
++		phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
++		phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
++	}
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+cheers,
+-roger
