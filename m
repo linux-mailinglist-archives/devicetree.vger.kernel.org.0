@@ -2,66 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38E55797903
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88866797949
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:09:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241102AbjIGRAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 13:00:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
+        id S240946AbjIGRJy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 13:09:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240202AbjIGRAQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:00:16 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663C51FFA;
-        Thu,  7 Sep 2023 09:59:38 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7020EC433BF;
-        Thu,  7 Sep 2023 16:58:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694105901;
-        bh=9H8krLtYfLzgGeA5i0zuj9qgIuh5eWibHtX4rliuuxQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HZSOww+G/B17lm44Q4pK901JIvTJ+z2HSd8QVDZnTmfMHtw4A/FdMMdg0G9fWUG8n
-         VgwoarbRzt5ypjQeRKWF1UtKEO/iIScBixMwuctbelX+fXPN7iNwDDQkBf/gnAUYkx
-         mf6r1j0bJ0GDOXTs7goJT5QasJ1jlDe/wPpJKZAcuzxHRagM7PMKEn32dCanO0a57H
-         BtndR0lM1QbhEN3hLC1d6wDNm0i/GQHtxpbo5HFx1mhzL5rO/aiEqNINT5VrCu3Wi8
-         xES8vBcm83QU9L+UKQa6B4ed3Ba6vkmpyDuJT0GGJXIAZvb3mgxws/PkYis79hfx4E
-         V0qByRzTyJTSg==
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so20219491fa.2;
-        Thu, 07 Sep 2023 09:58:21 -0700 (PDT)
-X-Gm-Message-State: AOJu0Yw95Z9lY3YgVvxcddr3uL29CEkVHg8KuUKJ8n1JDUln1Rz0g6yB
-        asx6LKCtsna8AI/lpTpCt1CdsT+pyTtnaWMbfQ==
-X-Google-Smtp-Source: AGHT+IHLKsGi67L1BWMr0evQdFmmKrCxPICw4WCCL86IJN0XnEYKyZyPOVddUmJXTpGASiUH1k4Vzk7Q+KRVgc7tkH4=
-X-Received: by 2002:a2e:965a:0:b0:2bc:b815:d64d with SMTP id
- z26-20020a2e965a000000b002bcb815d64dmr5383234ljh.30.1694105899386; Thu, 07
- Sep 2023 09:58:19 -0700 (PDT)
+        with ESMTP id S240852AbjIGRJx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:09:53 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E7151717;
+        Thu,  7 Sep 2023 10:09:21 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-57354433a7dso689481eaf.1;
+        Thu, 07 Sep 2023 10:09:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694106504; x=1694711304; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QiLf3uNcgpAG/VlEyrfKIhMwh6HWTY51ql5QMlDoomc=;
+        b=IjkkyQxZNLhbX2MbbuZ1MoN1jJOAxAjLGSD0y+szqHEnmKxFCD6/zE9FkvIWzI+LZh
+         iV1FeBo3j684RuTCaGUBuwwOoBPCGMR4uXikaKiOptNspec8Yt4FMOVzyfH00IGDgO4J
+         t04nBcMBOzje5JHNQIjKBNsiym8uacYSy5VHxvRJWuZh5BDUSZr0cs57jW1k4IC/39M3
+         ucfBwiMTmKrzBfL8emAHqF5EfNw1vGYfL5srnOG0JbLXM2sIdJprmAMyV2s2muhprzGe
+         tyqMfWThNedlgR/Mv5FVYYkRuDcDJyIQw/aNqSl3bSKDvkJOWcvKaJGdEUDafJQ2uZ8z
+         k/dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1694106504; x=1694711304;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QiLf3uNcgpAG/VlEyrfKIhMwh6HWTY51ql5QMlDoomc=;
+        b=XLKUDDy3RPOGX+r7ZOC8+nP1kHBtDXe0SBsp1+UxFE48nLW+kgHg1i72a2B3m4jLoB
+         MggfjWqh8dnwPJ0+9hwbVkeNkjdiCRINfCMgmDHumhb++PEqY4r2D+/BZboEhm9YNNoa
+         1FoFeck9zvyANz66yk+9f3RLJKmBQT8npEWlsA3fzGnVhcDRdcGC2Xj8//t06LIYqlj2
+         JDY3V06J2qA6ZQU60g3jusZ1bQ6zlrUL5mYuG7k2kFmr/feOC3LObJ2TV6p9BAeCV2Kg
+         PhNITC7Um/SBTOfQU13mTkK52djv/jbt3/P5vXD90XtlEU1+UFRzW0KDTjyUVRgA9gnY
+         K5yw==
+X-Gm-Message-State: AOJu0Yzt7zYHoXPy8pzJauJrcMcdonv6rQDmDdSOxJNcfGtzORi8uxB3
+        aw7G/FI6FS6qvHdFo3MmJIuZDNpM3c1Yu1SXzj0=
+X-Google-Smtp-Source: AGHT+IFK9cveQPqw6uw7m0RaAlVH54NgqS7eB/Xf2/i7HYl5lAD2mx7mV1DCJ7P3cb8TLnN7G3v8hGn5vDHx3AT62p4=
+X-Received: by 2002:a05:6808:2394:b0:3a9:e8e2:57a7 with SMTP id
+ bp20-20020a056808239400b003a9e8e257a7mr198349oib.53.1694106503725; Thu, 07
+ Sep 2023 10:08:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230830231758.2561402-1-sjg@chromium.org> <20230830231758.2561402-4-sjg@chromium.org>
-In-Reply-To: <20230830231758.2561402-4-sjg@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 7 Sep 2023 11:58:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKEbqUtWHpHXmiDSZBY7-Nw4-fLs23BEqomBevSDNBprQ@mail.gmail.com>
-Message-ID: <CAL_JsqKEbqUtWHpHXmiDSZBY7-Nw4-fLs23BEqomBevSDNBprQ@mail.gmail.com>
-Subject: Re: [PATCH v5 4/4] memory: Add ECC properties
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        Maximilian Brune <maximilian.brune@9elements.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Dhaval Sharma <dhaval@rivosinc.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        linux-acpi@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>,
-        Gua Guo <gua.guo@intel.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>,
-        Guo Dong <guo.dong@intel.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>
+References: <CAEwN+MCorDCS7EhN40Qgja_nY+SFc3G61Zd6yntqAS+w26YO9Q@mail.gmail.com>
+ <ZPnR4Cx6_Hh3weEl@debian.me> <ZPnWb15ucCotffav@shell.armlinux.org.uk> <CAJX_Q+0-v=oadJ697VDawyEhDSPBAS_oqakZFHWVUfsnbCanMA@mail.gmail.com>
+In-Reply-To: <CAJX_Q+0-v=oadJ697VDawyEhDSPBAS_oqakZFHWVUfsnbCanMA@mail.gmail.com>
+From:   Raul Piper <raulpblooper@gmail.com>
+Date:   Thu, 7 Sep 2023 22:38:10 +0530
+Message-ID: <CAEwN+MAtQSSwDLiERG4uEhv5YpS6EZrL4FER3wxVx+e3paxz4w@mail.gmail.com>
+Subject: Re: Debugging i2c : i2cdetect cant detect a device on i2c line
+To:     tanure@linux.com
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Linux Devicetree <devicetree@vger.kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        kernelnewbies <kernelnewbies@kernelnewbies.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,92 +79,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 6:18=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
+On Thu, Sep 7, 2023 at 9:47=E2=80=AFPM Lucas Tanure <tanure@linux.com> wrot=
 e:
 >
-> Some memories provide ECC detection and/or correction. For software which
-> wants to check memory, it is helpful to see which regions provide this
-> feature.
 >
-> Add this as a property of the /memory nodes, since it presumably follows
-> the hardware-level memory system.
 >
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
+> On Thu, 7 Sept 2023, 14:56 Russell King (Oracle), <linux@armlinux.org.uk>=
+ wrote:
+>>
+>> On Thu, Sep 07, 2023 at 08:36:32PM +0700, Bagas Sanjaya wrote:
+>> > [also Cc: devicetree and ARM folks]
+>> >
+>> > On Thu, Sep 07, 2023 at 08:21:44AM +0530, Raul Piper wrote:
+>> > > Hello ,
+>> > > I am trying to detect an i2c device A on i2c1 line on  one of the Ar=
+m
+>> > > Cortex A7 platform but not able to see any device on a given address=
+ (
+>> > > 0x3d) .
+>> > >
+>> > > Is there any parameters of i2c which i can change like rise/fall tim=
+e
+>> > > , timeout etc in a device tree or kernel source and re test it?
+>> > > I have tried changing the i2c speed from 100KHz to 400 KHz  but no s=
+uccess.
+>> > > I have even tried removing the 1.5K pull ups on the i2c lines but no=
+ result.
+>>
+>> Honestly, from this description, I'm wondering if this posting is a joke=
+.
+>>
+>> I2C is entirely _reliant_ on pull-ups. It's a wire-or bus, and the
+>> logic 1 state is created by no device pulling the signal low, thereby
+>> allowing the pull-up resistor to pull the line to the logic 1 state.
+>>
+>> The pull-up must be the correct strength for the devices on the bus.
+>> If it is too strong, then a driver may not be able to pull the signal
+>> sufficiently low for other devices to register it as a logic 0.
+>>
+>> Conversely, the pull-up must be strong enough so that the rise-time
+>> of the signal is sufficient to register as a logic 1.
+>>
+>> If it's a problem with the rise time, then increasing the clock rate
+>> will just make the situation worse.
+
+Where can I change this time? Can you please provide example of some
+device/device tree?
+
+>>
+>> So, if other devices work on the bus, it could be that the Vil
+>> threshold of this device is not being achieved, whereas the other
+>> devices are happy. Therefore, I would suggest you study the data
+>> sheets of the device that isn't being detected.
+What Vil threshold? I checked the power supply to this device and it
+is ~3.3 V as expected.
+
+>>
+>> Lastly, if the undetectable device has a reset line, it's possible
+>> that the device isn't responding because it's being held in reset.
+The device is fine, I am sure about it. As the device provides data on
+USART as well and I am getting it.
 >
-> Changes in v5:
-> - Redo to make this property specific to ECC
-> - Provide properties both for detection and correction
+> Please try to use an logic analyser like saleae logic.
+> Probe the i2c bus, reset line, power lines, pins that set the i2c address=
+ for the device.
+> Can tell us which device it is?
+
+Its a GPS sensor(still under development) .Logic Analyser gives NACK
+on the given address.
+I may be using the wrong pull ups value which i am checking.But from
+software point of view is there a Device tree setting to enable the
+internal pull ups or adjust the rise/fall time as said above.
+
 >
-> Changes in v3:
-> - Add new patch to update the /memory nodes
 >
->  dtschema/schemas/memory.yaml | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
 >
-> diff --git a/dtschema/schemas/memory.yaml b/dtschema/schemas/memory.yaml
-> index 1d74410..944aa9f 100644
-> --- a/dtschema/schemas/memory.yaml
-> +++ b/dtschema/schemas/memory.yaml
-> @@ -34,7 +34,37 @@ patternProperties:
->          description:
->            For the purpose of identification, each NUMA node is associate=
-d with
->            a unique token known as a node id.
-> +      ecc-detection:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        enum:
-> +          - none
-> +          - single-bit
-> +          - multi-bit
-> +        description: |
-> +          If present, this inidcates the type of memory errors which can=
- be
-
-typo
-
-> +          detected and reported by the Error-Correction Code (ECC) memor=
-y
-> +          subsystem:
->
-> +            none       - No error detection is possible
-> +            single-bit - Detects and reports single-bit ECC errors
-> +            multi-bit  - Detects and reports multiple-bit ECC errors
-
-I don't think 'multi' is specific enough. Perhaps this should be an
-int instead with how many bits. (And '-bits' is a standard unit suffix
-so a type isn't needed)
-
-> +
-> +          If not present, this is equivalent to 'none'.
-
-Can be expressed as schema:
-
-default: none
-
-Though if that's the default why have it as a value? (It's fine though)
-
-> +      ecc-correction:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        enum:
-> +          - none
-> +          - single-bit
-> +          - multi-bit
-> +        description: |
-> +          If present, this inidcates the type of memory errors which can=
- be
-
-typo
-
-> +          corrected by the Error-Correction Code (ECC) memory subsystem:
-> +
-> +            none       - No error correction is possible
-> +            single-bit - Corrects single-bit ECC errors
-> +            multi-bit  - Corrects multiple-bit ECC errors
-> +
-> +          If not present, this is equivalent to 'none'.
-
-One issue is with 2 properties nonsensical combinations are allowed.
-Not really any way to handle that in the schema though.
-
-Rob
+>> --
+>> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+>> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+>>
+>> _______________________________________________
+>> Kernelnewbies mailing list
+>> Kernelnewbies@kernelnewbies.org
+>> https://lists.kernelnewbies.org/mailman/listinfo/kernelnewbies
