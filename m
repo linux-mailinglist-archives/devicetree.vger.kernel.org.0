@@ -2,129 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37710796F7D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 06:07:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54ECD796FD6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 07:22:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbjIGEH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 00:07:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33000 "EHLO
+        id S230329AbjIGFWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 01:22:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35466 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240213AbjIGEHs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 00:07:48 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEFE8199A;
-        Wed,  6 Sep 2023 21:07:39 -0700 (PDT)
-X-UUID: 12bd62de4d3411eea33bb35ae8d461a2-20230907
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=C/+fmgeuErAUmUURu6+eSlmaEzlVyX07VG9PJZuuB9c=;
-        b=CpwojtPiB3tOws/E2ouIFZZ+cakca/p/N3urbGAxdTPyH+EA+7zyr6oz2jv0lN9CMTJLQBUdybvM4tkN6QsT3qOHo1Zej/x3uOJtdi+aV3DrkKW9iXq9oMX2PMtjE4BqB99muPBxNrHRShc7he+G4hmc/vlqnHovoW81SsLGdPs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:052d709b-b95d-4f4b-90f2-18b35ce4b5ab,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:18e33620-33fd-4aaa-bb43-d3fd68d9d5ae,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-        NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 12bd62de4d3411eea33bb35ae8d461a2-20230907
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 987898152; Thu, 07 Sep 2023 12:07:34 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+        with ESMTP id S232136AbjIGFWN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 01:22:13 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBB7B1BC8;
+        Wed,  6 Sep 2023 22:22:09 -0700 (PDT)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3874eYRM002090;
+        Thu, 7 Sep 2023 05:22:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=/glwYH93Y0K6Bek2UTnfUcSS7ubb+aHyiNYyfZDDVbY=;
+ b=d+0FiJMNwxaW1FVpixwiOJC3uLx36+XAw6S37BsmGepBKo8+IFyVbhHhqXheMXXs5BM1
+ dgeQlde4oJ8/sMPjE6u9OTjZ7d5gm3Nf/rr+06BovF9HfACqk6ibEC/yaUMc6bM7jWGE
+ WX5AIyI7q44WoazWAJyIk3yNGV5IsLAKaT3GZeS9ShcQdWFuSGIFDL1zF4iiCHoBLy8T
+ uidOgbwDIzsm4Cc13cHraO9CFY0b5ZxgrW7dvBYrBkRPjtvKbpfyD3OPSVU3BCMjgyBh
+ AjfaaANM/jo9QFLgEnxU/H3v+y7ysH8xJviauYjLDnUDBPwAF8u2jKgdHyEsGS3OiHyF Xg== 
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sy4bqgeb1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 07 Sep 2023 05:22:01 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3875M0fS015535
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 7 Sep 2023 05:22:00 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Thu, 7 Sep 2023 12:07:33 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n1.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Thu, 7 Sep 2023 12:07:32 +0800
-Message-ID: <8db8823d-8313-5515-78ca-effc8d6bc47f@mediatek.com>
-Date:   Thu, 7 Sep 2023 12:07:29 +0800
+ 15.2.1118.36; Wed, 6 Sep 2023 22:21:55 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <ilia.lin@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <quic_kathirav@quicinc.com>, <linux-pm@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v1 00/10] Enable cpufreq for IPQ5332 & IPQ9574
+Date:   Thu, 7 Sep 2023 10:51:35 +0530
+Message-ID: <cover.1693996662.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm64: dts: mediatek: add mt8395-evk
- board
-Content-Language: en-US
-To:     <frank-w@public-files.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230904092043.5157-1-macpaul.lin@mediatek.com>
- <20230906092527.18281-1-macpaul.lin@mediatek.com>
- <fbad941f-232b-9f56-5de3-98a16a8c4d89@linaro.org>
- <c3ddf00c-235a-2d23-db60-c998a67a3fcd@mediatek.com>
- <f343b6e2-6106-47eb-71cb-f391aff6cb7f@collabora.com>
- <50f7fbdd-8592-7a47-b2d8-a1af8ed93b92@linaro.org>
- <c951f693-b219-4745-be20-a8e1fee0099d@mediatek.com>
- <E3DEDA34-C203-4560-B07D-8BCB44204FF3@public-files.de>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <E3DEDA34-C203-4560-B07D-8BCB44204FF3@public-files.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UzzUtKkr_1-zs2rg33FL-Vh9NvDlSW6u
+X-Proofpoint-ORIG-GUID: UzzUtKkr_1-zs2rg33FL-Vh9NvDlSW6u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-06_12,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1011
+ priorityscore=1501 lowpriorityscore=0 malwarescore=0 suspectscore=0
+ phishscore=0 spamscore=0 mlxlogscore=983 mlxscore=0 impostorscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309070045
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Depends On:
+https://lore.kernel.org/linux-arm-msm/1693474133-10467-1-git-send-email-quic_varada@quicinc.com/
+https://lore.kernel.org/linux-arm-msm/20230904-gpll_cleanup-v1-0-de2c448f1188@quicinc.com/
 
+This patch series aims to enable cpufreq for IPQ5332 and IPQ9574.
+For IPQ5332, a minor enhancement to Stromer Plus ops and a safe
+source switch is needed before cpu freq can be enabled.
 
-On 9/6/23 20:19, Frank Wunderlich wrote:
-> 	
-> 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
-> 
-> Can you please only target Reviewers/Maintainers and mailinglists reported by get_maintainers script?
-> 
-> I have only sent patches for mediatek and did some tests. So i'm not interested in patches for hardware i do not have here :). I guess i'm not alone...
-> regards Frank
+These are also included in this series. Posting this as a single
+series. Please let me know if this is not correct, will split in
+the subsequent revisions.
 
-I'm sorry for bothering you and other contributors.
-I've indeed run get_maintainers.sh script for these 2 patches.
-Here's the result.
+Passed the following DT related validations
+make W=1 ARCH=arm64 -j16 DT_CHECKER_FLAGS='-v -m' dt_binding_check DT_SCHEMA_FILES=qcom
+make W=1 ARCH=arm64 -j16 CHECK_DTBS=y DT_SCHEMA_FILES=qcom dtbs_check
 
-Rob Herring <robh+dt@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED 
-DEVICE TREE BINDINGS)
-Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org> (maintainer:OPEN 
-FIRMWARE AND FLATTENED DEVICE TREE BINDINGS,commit_signer:3/4=75%)
-Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND 
-FLATTENED DEVICE TREE BINDINGS)
-Matthias Brugger <matthias.bgg@gmail.com> (maintainer:ARM/Mediatek SoC 
-support,commit_signer:3/4=75%,in file)
-...
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> 
-(reviewer:ARM/Mediatek SoC 
-support,commit_signer:2/4=50%,authored:1/4=25%,added_lines:1/12=8%)
-Frank Wunderlich <frank-w@public-files.de> 
-(commit_signer:1/4=25%,authored:1/4=25%,added_lines:1/12=8%)
-...
-[striped...]
+For IPQ5332:
+~~~~~~~~~~~
+	* This patch series introduces stromer plus ops which
+	  builds on stromer ops and implements a different
+	  set_rate and determine_rate.
 
-You've contributed the similar percentage as Angelo for these files.
-So I think both of you could be important reviewers.
-I'll try to skip contributors who add lines less then 10% next time and see
-if this will help.
+	  A different set_rate is needed since stromer plus PLLs
+	  do not support dynamic frequency scaling. To switch
+	  between frequencies, we have to shut down the PLL,
+	  configure the L and ALPHA values and turn on again. So
+	  introduce the separate set of ops for Stromer Plus PLL.
 
-Thanks!
-Macpaul Lin
+	* Update ipq_pll_stromer_plus to use clk_alpha_pll_stromer_plus_ops
+	  instead of clk_alpha_pll_stromer_ops.
+
+	* Set 'l' value to a value that is supported on all SKUs.
+
+	* Provide safe source switch for a53pll
+
+	* Include IPQ5332 in cpufreq nvmem framework
+
+	* Add OPP details to device tree
+
+For IPQ9574:
+~~~~~~~~~~~
+	* Include IPQ9574 in cpufreq nvmem framework
+
+	* Add OPP details to device tree
+
+Varadarajan Narayanan (10):
+  clk: qcom: clk-alpha-pll: introduce stromer plus ops
+  clk: qcom: apss-ipq-pll: Use stromer plus ops for stromer plus pll
+  clk: qcom: apss-ipq-pll: Fix 'l' value for ipq5332_pll_config
+  clk: qcom: apss-ipq6018: ipq5332: add safe source switch for a53pll
+  dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ5332
+  cpufreq: qti: Enable cpufreq for ipq53xx
+  arm64: dts: qcom: ipq5332: populate the opp table based on the eFuse
+  dt-bindings: cpufreq: qcom-cpufreq-nvmem: document IPQ9574
+  cpufreq: qti: Introduce cpufreq for ipq95xx
+  arm64: dts: qcom: ipq9574: populate the opp table based on the eFuse
+
+ .../bindings/cpufreq/qcom-cpufreq-nvmem.yaml       |  2 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              | 34 ++++++++++-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi              | 38 +++++++++++-
+ drivers/clk/qcom/apss-ipq-pll.c                    |  4 +-
+ drivers/clk/qcom/apss-ipq6018.c                    | 54 ++++++++++++++++-
+ drivers/clk/qcom/clk-alpha-pll.c                   | 68 ++++++++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.h                   |  1 +
+ drivers/cpufreq/cpufreq-dt-platdev.c               |  2 +
+ drivers/cpufreq/qcom-cpufreq-nvmem.c               | 35 +++++++++++
+ 9 files changed, 231 insertions(+), 7 deletions(-)
+
+-- 
+2.7.4
+
