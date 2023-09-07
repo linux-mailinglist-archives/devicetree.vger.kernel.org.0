@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5122C797C32
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 20:46:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8984797CA0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 21:19:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236609AbjIGSqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 14:46:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49154 "EHLO
+        id S229767AbjIGTTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 15:19:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43208 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236590AbjIGSqN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 14:46:13 -0400
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D13EA92
-        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 11:46:09 -0700 (PDT)
-Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4e6so1757164a12.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 11:46:09 -0700 (PDT)
+        with ESMTP id S229562AbjIGTTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 15:19:54 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98B6CB2
+        for <devicetree@vger.kernel.org>; Thu,  7 Sep 2023 12:19:50 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2bccda76fb1so23455541fa.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Sep 2023 12:19:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694112368; x=1694717168; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1694114389; x=1694719189; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=n+7VyO9HJQgcCdV1oziXjEck+bwNvVutHKF259s+mUE=;
-        b=jkK6C/sUvGuWR2rc3HeEhi4Yqxk8m8058sGpIxvi7eGMHnO6phAT9hI2qyE4SUQpSW
-         KsH9CT2cli3j6DYVajQYFrUqLiQ9qH+yKy8BZTSIGRgebnS0cTEaoJYrvlwLNDG0yAlE
-         gSJ1tUmmkRUFKOpxjbJU4CgBpTKPd3aex/JHdj3I8ZiOc9t2JtYdWnvq89yRAJiIT9mF
-         0uzPxwiDFCRpfq0J2EuR5/iDXvKzaV3TfvPD7HrAZx3UnAjRLtvNPvV/P4/PQ54GHC2O
-         V0NJreFsbOm6xYrxFfOsZiKEsymMz6KDBzOm9GcSw2FlTaYLNA3UIuZeCo0kcLYuDPyO
-         Xtiw==
+        bh=rcotZ+hgpp+nJjrDi+TbpAmdclq7uqg53xwk2Tf+VDQ=;
+        b=nFcm83aNMug7GRC3gb9snaVBPxeJ+gXSpM0jsw0rBVMOIOBmsPO1SRez+6AHWT4E4k
+         FnVDVs3/X8p9kaErGyHo9Y8vnAP6TemkJUn+SHpN8kYhM/Gr+6qdJ/YR/HuE9CnNewpE
+         Br+mD3dCxU+1qNUIMpnGq4dvaHD5lUwbFu8sZ4Xf990QMU2mZ+3rpbKNAnxLri/KUo2S
+         YJLm4ftVYA3/4CI6mnAIEuq3knGviFeToEQlDX6hmJfjj7daOKaVB2vOaziMHGJwrJbm
+         RlzKBdIrhNf23CQO8EWIwkJ2tThawTzZFWWpEr8g9er1sdhoZM0CoWfhzMGNVY1VteGT
+         V9Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694112368; x=1694717168;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1694114389; x=1694719189;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n+7VyO9HJQgcCdV1oziXjEck+bwNvVutHKF259s+mUE=;
-        b=GitnpNnusVDAfw5/8Ss54FkITjY12WdtDNjPCXPBKjbkZgbel/9PWVPEyg1w6DDJic
-         369rkB/y1l+B/cx3q1CXPpPLr2H0sRXUUNDI3sQzvjXa2Cbh/dFayolY59p0VLmrMrcV
-         jsgrOqcWM6I23ndEliVYks37rCt3NHFsNZstcplV6Blizk715wLeQYnYwK1SMAaJXNg3
-         pB1ovfCEk38PiCf+fCWQesG4DFYUY3YsUK+51LwJ+EVjnOm+ugnjFPRvIJNkvtVM7tV9
-         fWI8C2g6l4thfBtcJSpjFOQWH0+v4JNCGA8Gw3hJMjZksXMHoRF3HBH9Uuw/c+nimNgl
-         aEVg==
-X-Gm-Message-State: AOJu0YwpGP0SilY/65VvBHabSKDmg2u+Z0Y/Nchn5Jzfv2znTz5ACpD0
-        2HcJOYUjsAERDEVoi8a03p/BsK9h/o+JKgQY0oLmnw==
-X-Google-Smtp-Source: AGHT+IH+CwVwCl1iJM6DtJhr1qBDbMzFIn3otLkKPSG2M+l5DaLO/pmOhn61jKGup+8AtmrqTLUZag==
-X-Received: by 2002:a19:7710:0:b0:500:bd75:77d1 with SMTP id s16-20020a197710000000b00500bd7577d1mr3079574lfc.63.1694075519864;
-        Thu, 07 Sep 2023 01:31:59 -0700 (PDT)
+        bh=rcotZ+hgpp+nJjrDi+TbpAmdclq7uqg53xwk2Tf+VDQ=;
+        b=XpM32pyY7TtAJU4DkzvPLRfnkwiFVNSlYTnAk1nYB9DDrWN9Les26uiyXzRkGdt5wv
+         0Y4TPeQRIhjWzUFVWl2sMwiaPr7V3CVgRcnO3iu14V514dXPUGVjqMa+IPNFNRc/rUhl
+         wJ4qlgh08Qw4YUkqRX6BSqpwJoHrhtG9X1xVMz0hx37ySpiawuCIvXBsBIbKngLuC88h
+         8FZa6dqtYU4gjFw5D9cNkYRv2YcW/458noknHc2ZHWOC9cJliaNG3Iw1J8k43og2MFe3
+         D751tJ/npxQcRCpuKw2ZpjyCdRFkKfjP+P72zFafdS8l+vtp3NHJMILEEd2Hjgz6cY+G
+         HC5w==
+X-Gm-Message-State: AOJu0YxdwrRZO065rQR/eyH5qMVQjHXzgL11bdpJhlC8iPnKS3Y4uEEH
+        wiHHoXt39cks5rf5nMa8Neziga5BxDfd+nqEaRQfpQ==
+X-Google-Smtp-Source: AGHT+IEYdFV7oLh32TP8ca2WTxd7wx7Xnds+jA/Gd0dYkjQWZHyvzOW22/tp5BWYDJKXFOGQ72iT1g==
+X-Received: by 2002:a50:fb0f:0:b0:522:3d36:ff27 with SMTP id d15-20020a50fb0f000000b005223d36ff27mr4306806edq.31.1694077443110;
+        Thu, 07 Sep 2023 02:04:03 -0700 (PDT)
 Received: from [192.168.37.232] (178235177204.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.204])
-        by smtp.gmail.com with ESMTPSA id a9-20020aa7d749000000b005257da6be23sm9555588eds.75.2023.09.07.01.31.56
+        by smtp.gmail.com with ESMTPSA id f2-20020a056402150200b0052a3b212157sm9384251edw.63.2023.09.07.02.04.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Sep 2023 01:31:59 -0700 (PDT)
-Message-ID: <b0508a69-130d-4b05-9dfc-399e482dc2ae@linaro.org>
-Date:   Thu, 7 Sep 2023 10:31:55 +0200
+        Thu, 07 Sep 2023 02:04:02 -0700 (PDT)
+Message-ID: <38f64349-5139-4207-91eb-cd39fabd4496@linaro.org>
+Date:   Thu, 7 Sep 2023 11:04:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 04/10] clk: qcom: apss-ipq6018: ipq5332: add safe
- source switch for a53pll
+Subject: Re: [PATCH v5 2/5] arm64: dts: qcom: sm8450: Add opp table support to
+ PCIe
 Content-Language: en-US
-To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
-        ilia.lin@kernel.org, agross@kernel.org, andersson@kernel.org,
-        rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
+To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        quic_kathirav@quicinc.com, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <cover.1693996662.git.quic_varada@quicinc.com>
- <5e3c29df2b42cceb8072b00546a78e1b99b2d374.1693996662.git.quic_varada@quicinc.com>
+        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org, mani@kernel.org
+Cc:     lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+        bhelgaas@google.com, rafael@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, quic_vbadigan@quicinc.com,
+        quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
+        quic_ramkri@quicinc.com, quic_parass@quicinc.com
+References: <1694066433-8677-1-git-send-email-quic_krichai@quicinc.com>
+ <1694066433-8677-3-git-send-email-quic_krichai@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -102,7 +105,7 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <5e3c29df2b42cceb8072b00546a78e1b99b2d374.1693996662.git.quic_varada@quicinc.com>
+In-Reply-To: <1694066433-8677-3-git-send-email-quic_krichai@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -115,113 +118,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7.09.2023 07:21, Varadarajan Narayanan wrote:
-> Stromer Plus PLL found on IPQ53xx doesn't support dynamic
-> frequency scaling. To achieve the same, we need to park the APPS
-> PLL source to GPLL0, re configure the PLL and then switch the
-> source to APSS_PLL_EARLY.
+On 7.09.2023 08:00, Krishna chaitanya chundru wrote:
+> PCIe needs to choose the appropriate performance state of RPMH power
+> domain based up on the PCIe gen speed.
 > 
-> To support this, register a clock notifier to get the PRE_RATE
-> and POST_RATE notification. Change the APSS PLL source to GPLL0
-> when PRE_RATE notification is received, then configure the PLL
-> and then change back the source to APSS_PLL_EARLY.
+> So let's add the OPP table support to specify RPMH performance states.
 > 
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Use opp-level for the PCIe gen speed for easier use.
+> 
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 > ---
->  drivers/clk/qcom/apss-ipq6018.c | 54 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 53 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/qcom/apss-ipq6018.c b/drivers/clk/qcom/apss-ipq6018.c
-> index 4e13a08..ffb6ab5 100644
-> --- a/drivers/clk/qcom/apss-ipq6018.c
-> +++ b/drivers/clk/qcom/apss-ipq6018.c
-> @@ -9,8 +9,11 @@
->  #include <linux/clk-provider.h>
->  #include <linux/regmap.h>
->  #include <linux/module.h>
-> +#include <linux/clk.h>
-> +#include <linux/soc/qcom/smem.h>
->  
->  #include <dt-bindings/clock/qcom,apss-ipq.h>
-> +#include <dt-bindings/arm/qcom,ids.h>
->  
->  #include "common.h"
->  #include "clk-regmap.h"
-> @@ -84,15 +87,64 @@ static const struct qcom_cc_desc apss_ipq6018_desc = {
->  	.num_clks = ARRAY_SIZE(apss_ipq6018_clks),
->  };
->  
-> +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long action,
-> +				void *data)
-> +{
-> +	u8 index;
-> +	int err;
-> +
-> +	if (action == PRE_RATE_CHANGE)
-> +		index = P_GPLL0;
-> +	else if (action == POST_RATE_CHANGE)
-> +		index = P_APSS_PLL_EARLY;
-> +	else
-> +		return 0;
-> +
-> +	err = clk_rcg2_mux_closest_ops.set_parent(&apcs_alias0_clk_src.clkr.hw,
-> +						  index);
-Adding a variable for clk_hw within the apcs_alias0 clock would
-make this easier to digest, I think.
-
-And if we wanna be even less error-prone, you can reference the
-ops of this clock in an indirect way.
+[...]
 
 > +
-> +	return notifier_from_errno(err);
-> +}
+> +			pcie1_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
 > +
-> +static struct notifier_block cpu_clk_notifier = {
-> +	.notifier_call = cpu_clk_notifier_fn,
-> +};
+> +				opp-1 {
+> +					opp-level = <1>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
 > +
->  static int apss_ipq6018_probe(struct platform_device *pdev)
->  {
->  	struct regmap *regmap;
-> +	u32 soc_id;
-> +	int ret;
+> +				opp-2 {
+> +					opp-level = <2>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
 > +
-> +	ret = qcom_smem_get_soc_id(&soc_id);
-> +	if (ret)
-> +		return ret;
->  
->  	regmap = dev_get_regmap(pdev->dev.parent, NULL);
->  	if (!regmap)
->  		return -ENODEV;
->  
-> -	return qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
-> +	ret = qcom_cc_really_probe(pdev, &apss_ipq6018_desc, regmap);
-> +	if (ret)
-> +		return ret;
-> +
-> +	switch (soc_id) {
-> +	/*
-> +	 * Only below variants of IPQ53xx support scaling
-> +	 */
-1. /* Keep this in a 1-line comment */
+> +				opp-3 {
+> +					opp-level = <3>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+Is gen3 not supposed to require nom like on pcie0?
 
-2. why? explain the reasoning in the commit message
+Also, can all non-maximum OPPs run at just low_svs?
 
 Konrad
-> +	case QCOM_ID_IPQ5332:
-> +	case QCOM_ID_IPQ5322:
-> +	case QCOM_ID_IPQ5300:
-> +		ret = clk_notifier_register(apcs_alias0_clk_src.clkr.hw.clk,
-> +						&cpu_clk_notifier);
-> +		if (ret)
-> +			return ret;
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return 0;
->  }
->  
->  static struct platform_driver apss_ipq6018_driver = {
