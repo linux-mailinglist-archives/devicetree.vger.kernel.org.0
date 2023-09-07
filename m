@@ -2,130 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E54E3797815
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 543A37976E4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239587AbjIGQlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:41:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54364 "EHLO
+        id S232465AbjIGQSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:18:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237104AbjIGQl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:41:28 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5895335AFC;
-        Thu,  7 Sep 2023 08:56:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1694102186;
-  x=1725638186;
-  h=message-id:date:subject:to:cc:references:from:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=Uod+QW1rqqmCmu4+B2vjNdF8rve/S1mg+NZwFW+SwJo=;
-  b=PUQSjqw8uwfg4gpjplA0E27xfctJLwq8825N2OgQihpN/q2k40iRBD0W
-   K8xUZa3Srn+bp0/QD3WxLpj6CXX0c02wufNZEiVg/j/XXW79Dk+IJeI0o
-   B+nTLfakzwF3qNiPbXKboByHg7Jqb1FuM9EIjZpLsdAPAB/kPa28N3fQf
-   wKrT6iKvRXyOpta6imTvQRxgsVZgr+2UEYybhKSfE7AKvVAfkPC3ueJzp
-   A9xN3Qpr5lPCrryXDRu5hFmm+oV+Cna/9aGxtejzgqDnhjbkX0du+7wPg
-   HMxepE9sLc7KLhAcSWXHEqYc353ieXGN9siSFiAAIra1gjG+qhS1Tdx6R
-   g==;
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FXQtpNatlWps+4pc3DQNbYiMfY18Gg4KORuXwHDCdJaH8gtXxPGgB2MFmGFiAaBqryiy1DjbIAVGCBnUh6rUv1agBBuA/YG1ESNEtp6dAoqt+HheapQbaoZUnll+HoI3bYu3hSfU4ZT7+FMNj/tlq3dILOa67mHytJd/IllTCEVVEYPssHNCpP9bUn7WcUcYBlfiYJ1jedH8vJhMIcd7HkFHunS4yUc6RCRAjcNA59YBz2q2U7I/Ow16h/eJVSorGHiRLGO0Kso4v5zzLc7htLf1uA0J1KISkEfr1uLO7llvEnWRCp2UZ+gEshO7FV1sEfH3DlepbWFAzmCGOkhiXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Uod+QW1rqqmCmu4+B2vjNdF8rve/S1mg+NZwFW+SwJo=;
- b=aO/exoE+H80GgBlwVQetd72lkpnNkPrwsYkVUOInzBb5Et8LWCFu6N9OmI2AI1+n0ZicVrbtl0qsGi9I0kGjdBc5DGhdtrbNL9eUtzpI0Ew5Ah/XjlPcY3tTwhJZI7cjfPnRl0PE0rQd/GfMgFxyh5AfIG2ScPadCcYrFwffesgz5Emgu8x/686eyiv6rmLd1w/mb95s1RBuTjBd4Eo7D5jaei1Nzl6bC26YDIM21ZV+zPtkyO+nucWVYV9cDbEZHvbpTLgfDlNZhzOYIWqrCsaXCLpLunn4p4KuCqWXTCYPqq8aY755sy3SfUWZTBc1q4dePG+qfsAKdtlmYZozWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=axis.com; dmarc=pass action=none header.from=axis.com;
- dkim=pass header.d=axis.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axis.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Uod+QW1rqqmCmu4+B2vjNdF8rve/S1mg+NZwFW+SwJo=;
- b=IBfR12EteA/EYEthmMYww9CbF1DlQ04S6K/gBsmKSptMT+ThrKGTAEDGIfjjxiKQFhhSybItGSjQiyVTIv2ovELLcDg2scOGS7B5XKNuMmxjaaoD+AC5mMVRiFkCOfSso/qB59jFsklgS0XoKXKKLGANtVLRnxNaULsOSh93IKA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axis.com;
-Message-ID: <310c6236-b231-e66c-1c9f-d2dfc5ab3ad5@axis.com>
-Date:   Thu, 7 Sep 2023 11:42:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.14.0
-Subject: Re: [PATCH 0/2] Add st7735s drm driver and Winstar panel
-Content-Language: sv-FI
-To:     David Lechner <david@lechnology.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@axis.com>
-References: <20230906-st7735s-v1-0-add92677c190@axis.com>
- <bf1b80c1-0499-ebf8-969c-7d9c40538c65@lechnology.com>
-From:   Stefan x Nilsson <stefan.x.nilsson@axis.com>
-In-Reply-To: <bf1b80c1-0499-ebf8-969c-7d9c40538c65@lechnology.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MM0P280CA0020.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:190:a::15) To DB5PR02MB10072.eurprd02.prod.outlook.com
- (2603:10a6:10:48b::20)
+        with ESMTP id S242985AbjIGQSP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:18:15 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3DF059F3;
+        Thu,  7 Sep 2023 09:04:03 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3879swWG020769;
+        Thu, 7 Sep 2023 09:56:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=JJN2an9C7cmZNdVoHcnWUPhZpuiuA4IshU4Q+93acDg=;
+ b=krTLe3BVzK1kwTO4z/hdANOSKIW7Wnt8yVUzH5P+yZl6MK040hpCyHCvGCvd3rkxoZgw
+ CuGyuIENjG4CNA8ssmIaWcjNOw/9vrIDK2EChJyIGgHiOeU3P/4y9dkMs2FsV4U+Up7A
+ 8WHmAYERTgVsevoY/PBagE4KVxByQbS7HX4pH+XFXDSEbgYvKdhMNqkTOWEbYL9Case5
+ 6TjMF5pnczV0TbV6hjL7/oHgB2/+sh2AN6eRALFKfJmB7O/v6Q+WrKS8Devj+lCRpUpI
+ 67v3ArK0HBrAjiaNft7vCCMWsaftQvpaFgfpn9Wxsf4WSPLMK4ki1UaKfLmsb5vclKsO uQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3syaad087m-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 07 Sep 2023 09:56:58 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3879uudp008519
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 7 Sep 2023 09:56:57 GMT
+Received: from [10.216.2.98] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Thu, 7 Sep
+ 2023 02:56:48 -0700
+Message-ID: <347293d1-15e5-5412-9695-01be768283ad@quicinc.com>
+Date:   Thu, 7 Sep 2023 15:26:45 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB5PR02MB10072:EE_|AS8PR02MB7383:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2d6cd3c6-43f7-4747-4a07-08dbaf86c2df
-X-LD-Processed: 78703d3c-b907-432f-b066-88f7af9ca3af,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0BiMDdyBRLSVG3jLMbN+InH+wpslEJH9RO5K+pxLD3y01FL2v0G4+/tml/qjdXm6eCpoCkmkv8E/eZhf7YFG/3rb8fnoFtc1fmRPhyEF2qJBcIbNnYZ+mPZVK5B5AZ9hzP+zucTNAPOUOCR7qDYn93ciqWanPoVyz18c8Wd4hw2eDZNcUKbubJcpN8EiAPPIbDUQco6Zi94BbrbuGBu84SXQ+w4uDY/e4XpGwNrm+nvw8boN23uGE8Gkxam7FdPcsbCZ/FBA5FveUFccXAKgcuPKMa6hZlgpS+efzouqjgSMyQsbCs4iQmSj1Y/w3LjrAIXiNZPACTwfO0jE0BX2j7+FK6QGm0RuYsPzBlkcDcDmqJ/qd/CGdzE6h4Z840uI/yC20XEHKe+mnGlM7U1PKEDn+Rpg+K6Z/uEBvyBX9W6I8M+j2M9SaBweWl5RbSOAcAq+BufT282FiLDwwoIkLiIZqdhnWBWRHlz9w9NrqDKWrDABT2d+XaK0gXIC9L2h/kpetM7GEOCxRGAyltM3NGZLdq6x+UFn8m+ljTvLHoB4ongZIp9URcjhZk6CZxGQIZp3mjdNJIckrZ+tRiEee+sKDDDOraNUpjUK5q//cWrCkPQVn5C5QutgU5BWirLpRC9rIHARY4gwKL5rJ+m4aQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB5PR02MB10072.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(396003)(376002)(39860400002)(346002)(366004)(136003)(1800799009)(186009)(451199024)(2906002)(66556008)(4744005)(6486002)(6506007)(316002)(66946007)(66476007)(110136005)(5660300002)(966005)(26005)(478600001)(107886003)(53546011)(4326008)(8676002)(41300700001)(6512007)(2616005)(8936002)(36756003)(38100700002)(86362001)(31696002)(31686004)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OFAzN3pWT21vSVAyQ2Q3Mkkvd0dhVmZ3dFRlQzRYNEVhVnJRSVhxTWxaN3VG?=
- =?utf-8?B?ejJPaUpSTnFxemRaYktka3orSWhYTnIweGZUN0cxZStLU0hkTlJ0bmxOTnc0?=
- =?utf-8?B?VXl0aEhsdzlpb3dxWkdteE1yaVkrNHpmRWRoLzNjNHlSOFBoVnNRTzNScTcz?=
- =?utf-8?B?bFZHcnpyY3ZrVEZ0SU9rNU84SGV3ZkJpVC92YXkycmRhUzA4MUxxbHAwTDVp?=
- =?utf-8?B?cVY3SVd1ak1TdFVPcHhwK3ovT1QyTzZnMGFwTk5oeFEzUTUrTlRPVm9jN2hK?=
- =?utf-8?B?T3VBWHA5V2dac1ZDZ1Y2bms4N080OVRLc29GL0Nudm9MRUg1UGsvSXl2QTZ4?=
- =?utf-8?B?ZU9RVnVCU2YyMHl0bUtZTDhqRUhtdHBtSFllVGdXV2MxL2d2U0pKZHVCZlR4?=
- =?utf-8?B?NEZtb0FNTXU2T3ZMdW5PWmJwS3U3bjgxMGt3Wm5kbUdrQXIrejFJemtwaEtu?=
- =?utf-8?B?ODRqRGpYdEVLQk5RTVlJSERSOWVOY09sTXNNN05ib3Q1TjNPcTduZExLemQ0?=
- =?utf-8?B?M2VLK0ZPeUVuWUw5WitoMjI4VUdKS1NTOGtsbDhpMUx3a0FoU0FZNzFKSEho?=
- =?utf-8?B?VFVPMHhIL0VlWW1FMWpTTlR5ei9tamFBTXJvMFJYeXlHZlZRKzhzRzM2djlj?=
- =?utf-8?B?UEdDUVpoY3FCNURlR3VzYnZ0RmM4b212R1V6cHlCNVMwNHJjQ1VjZDREZDFy?=
- =?utf-8?B?cHBCRExoWFRsUjJuYW5UbkNaYXVZL2RHYXlLYlVSNHVqSzVkTHdWWkpsU3RJ?=
- =?utf-8?B?ODlEd0hsdklRMVBsam9FemY1YTNLd3hnQkZwVW9OMkYrL01vNTZRNlZ3WHF1?=
- =?utf-8?B?Y1pQbmQ2ZXJNUzJrUzJMYUxLTlo4aURTZlJlYjVNb0VwK3RlQTB4VUZKSnNv?=
- =?utf-8?B?VFB1ZXZCVVVXRHN2ZHd6N08rZ3JLRTYzRmZwdEN5ZDZBTytJM1VIR1ZQTUtL?=
- =?utf-8?B?UVBHWHhQR1kyMmNZdE5rSnB6UDBzTnYzaXJXalNuMlhyWnhhY1kydERQNTRW?=
- =?utf-8?B?YWk3YjJLNFVTU1FaNDFuZUk0bGNYT2k1Lys5ZUcxRFVPSzVNbGFva0I4QjJO?=
- =?utf-8?B?TXFhVkh0Sy84VndjRjUxSHQyV3VoK29aTmpLS1NPTVF2UHVrT3ZkY1d0ellv?=
- =?utf-8?B?a1M4bE0vR1c3WmlvTDRmd1VlZnNuVjA1eVdLUGJNZmJYa3h4ayt4U3lJdUlJ?=
- =?utf-8?B?Y1R4eVQ0eTlFaG5pSlRrYkhoblFURTZ0Z0FGSnp3OHRXRStTUzJ2ajhoTTlG?=
- =?utf-8?B?OTZzTmRTY0NCWDc4U3VrSHpFVk9IaGNrSGttd002OUEyOVZIZnA2ODI4RGg3?=
- =?utf-8?B?VGc2NW9GVFprMG5FMWVlTEd0SWhxeEs3Tzc4bGY4QlpKNnNTMEtFSStGdWpx?=
- =?utf-8?B?Ky9OUXR0UXBDMVFldXlHWVNMYllIcmlRcWJIVlNGSXAzT0FyK2trR1ova1l0?=
- =?utf-8?B?NllHMWprTERBNnJtZ1pGMjlENmlPYkVvUmRFNXo0MW9NZ3NQMFRmQlZ0MG9Z?=
- =?utf-8?B?NklQeXVzR25Mc2sxS2NUYXJFRERHUGY2b3FjSXBFZ0YyVlkzMUZMQXMzMUNS?=
- =?utf-8?B?SzNta1V2aWI1dVFSRGQxQ2hpRTBuQ2IrdnR1bml0L3A5S2FXc0Q4QllkQ2V3?=
- =?utf-8?B?OWxQWVg1bjg3UUIrSk9Va1pxcTR0VmliZG9MVXlENm0vdnVwRFI2U0QwVHpE?=
- =?utf-8?B?QnV4QlFoRW1CUFEyS1daRS96b1hsa2dKc3FFbFlVZ21Halc2RUI0US9oZGlO?=
- =?utf-8?B?cnB2clBNa1hyRVpHZy9Za0JkdEhKdEVaR0l6Mjg5M0FPbDhxcldnVEpBYXpy?=
- =?utf-8?B?YjBEN2RwVG15WTRlNlY3cjRta1BzUkk5TU5zTnBwWkZDTzRuZmRNeUNXVnpV?=
- =?utf-8?B?a3lwdW1ZZVRsRFlMMlpqaUIrMXpveVBpWkk5TVhJUDdFUmFNbnVnZkU2VEhW?=
- =?utf-8?B?T01acFJzMnFjTGFMNmxKOTNmZ2paM0UydkMyRitRYlJkdTIyaWZudmlzbEF6?=
- =?utf-8?B?STRwTEJLQWxRajQvSlliUGRPMzYweHhLNzZRZTRiWEx3dzQ4MGh1RGg2eW4r?=
- =?utf-8?B?dXRtUFowVEpJNFJUZDY3Tng5dUQ4bk9KVkRUMHR4dGpHazhXZmlxTGZwVlZw?=
- =?utf-8?Q?Z0mNc7VvOaFQJLg6cCES64+jZ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2d6cd3c6-43f7-4747-4a07-08dbaf86c2df
-X-MS-Exchange-CrossTenant-AuthSource: DB5PR02MB10072.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Sep 2023 09:42:33.5547
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 78703d3c-b907-432f-b066-88f7af9ca3af
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Agle2d8+iuE+qxOkaRe30hWsCG7Hl1HeOp3JfTaP2/KSa93Ij4pcLLzxfJuf04PYll+k+3bsleTNWEIIB60hrQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR02MB7383
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v5 2/5] arm64: dts: qcom: sm8450: Add opp table support to
+ PCIe
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
+        <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <vireshk@kernel.org>, <nm@ti.com>,
+        <sboyd@kernel.org>, <mani@kernel.org>
+CC:     <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <rafael@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <quic_vbadigan@quicinc.com>,
+        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
+        <quic_ramkri@quicinc.com>, <quic_parass@quicinc.com>
+References: <1694066433-8677-1-git-send-email-quic_krichai@quicinc.com>
+ <1694066433-8677-3-git-send-email-quic_krichai@quicinc.com>
+ <38f64349-5139-4207-91eb-cd39fabd4496@linaro.org>
+From:   Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <38f64349-5139-4207-91eb-cd39fabd4496@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zu2wqzDPrSeflYuDgfDtMYFS5isYnDnA
+X-Proofpoint-GUID: zu2wqzDPrSeflYuDgfDtMYFS5isYnDnA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-07_02,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 suspectscore=0 clxscore=1015 mlxlogscore=634
+ adultscore=0 phishscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309070087
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -133,28 +89,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/7/23 01:29, David Lechner wrote:
-> On 9/6/23 11:22 AM, Stefan x Nilsson wrote:
->> Add a new driver for the Sitronix st7735s display controller
->> together with a 0.96" 80x160 color TFT display by Winstar.
+
+On 9/7/2023 2:34 PM, Konrad Dybcio wrote:
+> On 7.09.2023 08:00, Krishna chaitanya chundru wrote:
+>> PCIe needs to choose the appropriate performance state of RPMH power
+>> domain based up on the PCIe gen speed.
 >>
->> The driver is very similar to the st7735r driver, but uses a
->> different pipe_enable sequence and also allows for an
->> optional regulator to be specified using devicetree.
+>> So let's add the OPP table support to specify RPMH performance states.
 >>
-> 
-> Can this panel be used with the generic "panel-mipi-dbi-spi" driver?
-> 
-> more info: https://github.com/notro/panel-mipi-dbi/wiki
-> 
+>> Use opp-level for the PCIe gen speed for easier use.
+>>
+>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+>> ---
+> [...]
+>
+>> +
+>> +			pcie1_opp_table: opp-table {
+>> +				compatible = "operating-points-v2";
+>> +
+>> +				opp-1 {
+>> +					opp-level = <1>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +				};
+>> +
+>> +				opp-2 {
+>> +					opp-level = <2>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+>> +				};
+>> +
+>> +				opp-3 {
+>> +					opp-level = <3>;
+>> +					required-opps = <&rpmhpd_opp_low_svs>;
+> Is gen3 not supposed to require nom like on pcie0?
+This particular controller instance can operate at low svs for GEN3.
+> Also, can all non-maximum OPPs run at just low_svs?
+This depends on the hardware capability, for this instance expect GEN4 
+remaining can operate in LOW svs. It varies from controller instance to 
+instance and also from target to target.
+> Konrad
 
-That looks like an excellent suggestion David!
+- KC
 
-Looks like a very convenient driver. It was not available on my 5.4 
-vendor kernel for my hardware so I missed it completely. Will try to 
-backport that driver to my 5.4 kernel instead.
-
-So lets drop these patches. Thanks for your input.
-
-Best Regards
-Stefan x Nilsson
