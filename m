@@ -2,55 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06DD579788E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E55797903
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 19:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242847AbjIGQs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:48:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47396 "EHLO
+        id S241102AbjIGRAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 13:00:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242173AbjIGQs6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:48:58 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C03DF1BFD;
-        Thu,  7 Sep 2023 09:48:34 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ECB891042;
-        Thu,  7 Sep 2023 09:48:17 -0700 (PDT)
-Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2540E3F67D;
-        Thu,  7 Sep 2023 09:47:38 -0700 (PDT)
-Message-ID: <b34a6196-6c24-a664-611b-6055480880ee@arm.com>
-Date:   Thu, 7 Sep 2023 17:47:33 +0100
+        with ESMTP id S240202AbjIGRAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 13:00:16 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 663C51FFA;
+        Thu,  7 Sep 2023 09:59:38 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7020EC433BF;
+        Thu,  7 Sep 2023 16:58:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694105901;
+        bh=9H8krLtYfLzgGeA5i0zuj9qgIuh5eWibHtX4rliuuxQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=HZSOww+G/B17lm44Q4pK901JIvTJ+z2HSd8QVDZnTmfMHtw4A/FdMMdg0G9fWUG8n
+         VgwoarbRzt5ypjQeRKWF1UtKEO/iIScBixMwuctbelX+fXPN7iNwDDQkBf/gnAUYkx
+         mf6r1j0bJ0GDOXTs7goJT5QasJ1jlDe/wPpJKZAcuzxHRagM7PMKEn32dCanO0a57H
+         BtndR0lM1QbhEN3hLC1d6wDNm0i/GQHtxpbo5HFx1mhzL5rO/aiEqNINT5VrCu3Wi8
+         xES8vBcm83QU9L+UKQa6B4ed3Ba6vkmpyDuJT0GGJXIAZvb3mgxws/PkYis79hfx4E
+         V0qByRzTyJTSg==
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2b9c907bc68so20219491fa.2;
+        Thu, 07 Sep 2023 09:58:21 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yw95Z9lY3YgVvxcddr3uL29CEkVHg8KuUKJ8n1JDUln1Rz0g6yB
+        asx6LKCtsna8AI/lpTpCt1CdsT+pyTtnaWMbfQ==
+X-Google-Smtp-Source: AGHT+IHLKsGi67L1BWMr0evQdFmmKrCxPICw4WCCL86IJN0XnEYKyZyPOVddUmJXTpGASiUH1k4Vzk7Q+KRVgc7tkH4=
+X-Received: by 2002:a2e:965a:0:b0:2bc:b815:d64d with SMTP id
+ z26-20020a2e965a000000b002bcb815d64dmr5383234ljh.30.1694105899386; Thu, 07
+ Sep 2023 09:58:19 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: Add io domain
- properties
-Content-Language: en-GB
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        Quentin Schulz <quentin.schulz@theobroma-systems.com>
-Cc:     linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-        kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
- <20230904115816.1237684-3-s.hauer@pengutronix.de>
- <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
- <5166ca75-5454-8f64-4f61-fcc0f7a4c235@theobroma-systems.com>
- <20230906101909.GB492117@pengutronix.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20230906101909.GB492117@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+References: <20230830231758.2561402-1-sjg@chromium.org> <20230830231758.2561402-4-sjg@chromium.org>
+In-Reply-To: <20230830231758.2561402-4-sjg@chromium.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 7 Sep 2023 11:58:07 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKEbqUtWHpHXmiDSZBY7-Nw4-fLs23BEqomBevSDNBprQ@mail.gmail.com>
+Message-ID: <CAL_JsqKEbqUtWHpHXmiDSZBY7-Nw4-fLs23BEqomBevSDNBprQ@mail.gmail.com>
+Subject: Re: [PATCH v5 4/4] memory: Add ECC properties
+To:     Simon Glass <sjg@chromium.org>
+Cc:     devicetree@vger.kernel.org,
+        Maximilian Brune <maximilian.brune@9elements.com>,
+        ron minnich <rminnich@gmail.com>,
+        Tom Rini <trini@konsulko.com>,
+        Dhaval Sharma <dhaval@rivosinc.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        linux-acpi@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>,
+        Gua Guo <gua.guo@intel.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>,
+        Guo Dong <guo.dong@intel.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Chiu Chasel <chasel.chiu@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,78 +69,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2023 11:19 am, Sascha Hauer wrote:
-> On Wed, Sep 06, 2023 at 10:20:26AM +0200, Quentin Schulz wrote:
->> Sascha, Robin,
->>
->> On 9/5/23 11:03, Robin Murphy wrote:
->>> [You don't often get email from robin.murphy@arm.com. Learn why this is
->>> important at https://aka.ms/LearnAboutSenderIdentification ]
->>>
->>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œ type: boolean
->>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œ description:
->>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ If true assume that the io domain needed for this pin
->>>> group has been
->>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ configured correctly by the bootloader. This is needed to
->>>> break cyclic
->>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ dependencies introduced when a io domain needs a
->>>> regulator that can be
->>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ accessed through pins configured here.
->>>
->>> This is describing a Linux implementation detail, not the binding
->>> itself. There's no technical reason a DT consumer couldn't already
->>> figure this much out from the existing topology (by observing that the
->>> pinctrl consumer is a grandparent of the I/O domain's supply).
->>>
->>
->> I am guessing you're suggesting to have some complex handling in the driver
->> to detect those cyclic dependencies and ignore the IO domain dependency for
->> the pinctrl pins where this happens?
-> 
-> I haven't read this as a suggestion, but only as an argument to make it
-> clear that I should describe the binding rather than anticipating
-> how it should be used.
-> 
-> I may have misunderstood it though.
+On Wed, Aug 30, 2023 at 6:18=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
+e:
+>
+> Some memories provide ECC detection and/or correction. For software which
+> wants to check memory, it is helpful to see which regions provide this
+> feature.
+>
+> Add this as a property of the /memory nodes, since it presumably follows
+> the hardware-level memory system.
+>
+> Signed-off-by: Simon Glass <sjg@chromium.org>
+> ---
+>
+> Changes in v5:
+> - Redo to make this property specific to ECC
+> - Provide properties both for detection and correction
+>
+> Changes in v3:
+> - Add new patch to update the /memory nodes
+>
+>  dtschema/schemas/memory.yaml | 30 ++++++++++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>
+> diff --git a/dtschema/schemas/memory.yaml b/dtschema/schemas/memory.yaml
+> index 1d74410..944aa9f 100644
+> --- a/dtschema/schemas/memory.yaml
+> +++ b/dtschema/schemas/memory.yaml
+> @@ -34,7 +34,37 @@ patternProperties:
+>          description:
+>            For the purpose of identification, each NUMA node is associate=
+d with
+>            a unique token known as a node id.
+> +      ecc-detection:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum:
+> +          - none
+> +          - single-bit
+> +          - multi-bit
+> +        description: |
+> +          If present, this inidcates the type of memory errors which can=
+ be
 
-Indeed it was more about the definition itself - an extra property isn't 
-*needed* to break the cycle since the cycle is already fully described 
-in DT, so anyone who can parse parents and phandles already has 
-sufficient information to detect it and break it at any point they 
-choose. However, as mentioned subsequently, breaking the cycle alone 
-isn't enough to guarantee that things will actually work in general.
+typo
 
-AFAICS what we fundamentally need to know is the initial voltage of the 
-supply regulator, to be able to short-circuit requiring the I/O domain 
-in order to query it from the regulator itself, and instead just 
-initialise the I/O domain directly. However that would still represent a 
-bunch of fiddly extra DT parsing, so for practical purposes it seems 
-reasonable to then short-cut that into directly describing the initial 
-setting of the I/O domain on the node itself, such that the consumer of 
-the binding can easily handle it all in a self-contained manner.
+> +          detected and reported by the Error-Correction Code (ECC) memor=
+y
+> +          subsystem:
+>
+> +            none       - No error detection is possible
+> +            single-bit - Detects and reports single-bit ECC errors
+> +            multi-bit  - Detects and reports multiple-bit ECC errors
 
-Cheers,
-Robin
+I don't think 'multi' is specific enough. Perhaps this should be an
+int instead with how many bits. (And '-bits' is a standard unit suffix
+so a type isn't needed)
 
->> One of the issues we're having here too is that we lose granularity. There
->> are multiple domains inside an IO domain device and here we make the whole
->> pinctrl device depend on all domains from one IO domain device (there can be
->> multiple ones) while it is factually (on the HW level) only dependent on one
->> domain. Considering (if I remember correctly) Heiko highly suggested we
->> think about adding child nodes to the IO domain devices to have a DT node
->> per domain in the IO domain device, how would this work with the suggested
->> DT binding?
-> 
-> I started implementing that. I have moved the IO domains into subnodes
-> of the IO domain controller and started adding phandles from the pin
-> groups in rk3568-pinctrl.dtsi to the corresponding IO domains. After a
-> couple of hours I had phandles for around a quarter of the existing
-> groups of only one SoC, so doing this for all SoCs would really be a
-> cumbersome job.
-> 
-> In the end I realized this doesn't solve any problem. Also adding the
-> properties I suggested doesn't prevent us from adding the more specific
-> dependencies from the pins to their actual IO domains later.
-> 
-> Sascha
-> 
+> +
+> +          If not present, this is equivalent to 'none'.
+
+Can be expressed as schema:
+
+default: none
+
+Though if that's the default why have it as a value? (It's fine though)
+
+> +      ecc-correction:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        enum:
+> +          - none
+> +          - single-bit
+> +          - multi-bit
+> +        description: |
+> +          If present, this inidcates the type of memory errors which can=
+ be
+
+typo
+
+> +          corrected by the Error-Correction Code (ECC) memory subsystem:
+> +
+> +            none       - No error correction is possible
+> +            single-bit - Corrects single-bit ECC errors
+> +            multi-bit  - Corrects multiple-bit ECC errors
+> +
+> +          If not present, this is equivalent to 'none'.
+
+One issue is with 2 properties nonsensical combinations are allowed.
+Not really any way to handle that in the schema though.
+
+Rob
