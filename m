@@ -2,66 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 662E47978EC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:58:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06DD579788E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Sep 2023 18:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239561AbjIGQ6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 7 Sep 2023 12:58:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S242847AbjIGQs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 7 Sep 2023 12:48:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236814AbjIGQ6y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:58:54 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8897110CF;
-        Thu,  7 Sep 2023 09:58:23 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F4AFC116A2;
-        Thu,  7 Sep 2023 16:41:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694104882;
-        bh=TcXlCdBwAdhvSY29Gk4U6YRFj3oqsCMGTaUu7DO7ABc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ER06lwSM/j1xnFBQOrUJerziPgcpI5gDKNTqDixQjhU0k8PiCru4SwlOiLg0ImvO/
-         kEl2QkM+/7urjlYrzxPn1a8a1ZCkKhzzM8HypyK/+JghUgI3OsD+X4qRpOf9w0w2ud
-         K9Dp7IOFdNfiBgJcfKNJsRDaKud6Z9tI6+OY2bZa7Y0P6V8dNJpLmHShL8JqTYeGoW
-         mOODtbz272BFtKswS1WP6lEktZ106QkwAwa+Ag4bzzUqiM0KMPvw/7g9cUlUzd6iyd
-         kt9RhoKcdRgV5l2w4Q9WhMRyEXIhDJHAr9j4tVqUCpFDNWVtVVTW6jLSnZrRJfkwKk
-         2NJKmzlChFiyA==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2b974031aeaso21275601fa.0;
-        Thu, 07 Sep 2023 09:41:22 -0700 (PDT)
-X-Gm-Message-State: AOJu0YxbHfliM/B982PbsbV5AnwcW3HBXR2UZ3IYfDzwyr4OKSpHe1H9
-        GXArBySVwkE79+ixzrAcXTHzMTBJaDu5bh9EnA==
-X-Google-Smtp-Source: AGHT+IG23bFGvQrEWMPrUuiNiXfBfSQ2nV8yCIxtgarBdJYaaWK6UgdiyOScuIdqPU/mpa09cy/VQ6TL5hv239G+U08=
-X-Received: by 2002:a2e:3a18:0:b0:2bc:bdbd:1542 with SMTP id
- h24-20020a2e3a18000000b002bcbdbd1542mr5251425lja.11.1694104880149; Thu, 07
- Sep 2023 09:41:20 -0700 (PDT)
+        with ESMTP id S242173AbjIGQs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 7 Sep 2023 12:48:58 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C03DF1BFD;
+        Thu,  7 Sep 2023 09:48:34 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ECB891042;
+        Thu,  7 Sep 2023 09:48:17 -0700 (PDT)
+Received: from [10.1.196.40] (e121345-lin.cambridge.arm.com [10.1.196.40])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2540E3F67D;
+        Thu,  7 Sep 2023 09:47:38 -0700 (PDT)
+Message-ID: <b34a6196-6c24-a664-611b-6055480880ee@arm.com>
+Date:   Thu, 7 Sep 2023 17:47:33 +0100
 MIME-Version: 1.0
-References: <20230830231758.2561402-1-sjg@chromium.org>
-In-Reply-To: <20230830231758.2561402-1-sjg@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 7 Sep 2023 11:41:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJFyuHfJ1t1gKfDFp1yGuNB_FhVCnY1Tk9iBzvchHwEOw@mail.gmail.com>
-Message-ID: <CAL_JsqJFyuHfJ1t1gKfDFp1yGuNB_FhVCnY1Tk9iBzvchHwEOw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/4] Add reserved-memory
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        Maximilian Brune <maximilian.brune@9elements.com>,
-        ron minnich <rminnich@gmail.com>,
-        Tom Rini <trini@konsulko.com>,
-        Dhaval Sharma <dhaval@rivosinc.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        linux-acpi@vger.kernel.org, Ard Biesheuvel <ardb@kernel.org>,
-        Gua Guo <gua.guo@intel.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>,
-        Guo Dong <guo.dong@intel.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Chiu Chasel <chasel.chiu@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: rockchip: Add io domain
+ properties
+Content-Language: en-GB
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Cc:     linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230904115816.1237684-1-s.hauer@pengutronix.de>
+ <20230904115816.1237684-3-s.hauer@pengutronix.de>
+ <b4017947-9e16-7d97-a7b1-3e6964a1f7a9@arm.com>
+ <5166ca75-5454-8f64-4f61-fcc0f7a4c235@theobroma-systems.com>
+ <20230906101909.GB492117@pengutronix.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20230906101909.GB492117@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,23 +58,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 30, 2023 at 6:18=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
-e:
->
-> Bring in this file from Linux v6.5
->
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
->
-> (no changes since v4)
->
-> Changes in v4:
-> - New patch
->
->  .../reserved-memory/reserved-memory.yaml      | 181 ++++++++++++++++++
->  1 file changed, 181 insertions(+)
->  create mode 100644 dtschema/schemas/reserved-memory/reserved-memory.yaml
+On 06/09/2023 11:19 am, Sascha Hauer wrote:
+> On Wed, Sep 06, 2023 at 10:20:26AM +0200, Quentin Schulz wrote:
+>> Sascha, Robin,
+>>
+>> On 9/5/23 11:03, Robin Murphy wrote:
+>>> [You don't often get email from robin.murphy@arm.com. Learn why this is
+>>> important at https://aka.ms/LearnAboutSenderIdentification ]
+>>>
+>>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œ type: boolean
+>>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œ description:
+>>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ If true assume that the io domain needed for this pin
+>>>> group has been
+>>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ configured correctly by the bootloader. This is needed to
+>>>> break cyclic
+>>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ dependencies introduced when a io domain needs a
+>>>> regulator that can be
+>>>> +ï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œï¿œ accessed through pins configured here.
+>>>
+>>> This is describing a Linux implementation detail, not the binding
+>>> itself. There's no technical reason a DT consumer couldn't already
+>>> figure this much out from the existing topology (by observing that the
+>>> pinctrl consumer is a grandparent of the I/O domain's supply).
+>>>
+>>
+>> I am guessing you're suggesting to have some complex handling in the driver
+>> to detect those cyclic dependencies and ignore the IO domain dependency for
+>> the pinctrl pins where this happens?
+> 
+> I haven't read this as a suggestion, but only as an argument to make it
+> clear that I should describe the binding rather than anticipating
+> how it should be used.
+> 
+> I may have misunderstood it though.
 
-I've applied this one and patch 2.
+Indeed it was more about the definition itself - an extra property isn't 
+*needed* to break the cycle since the cycle is already fully described 
+in DT, so anyone who can parse parents and phandles already has 
+sufficient information to detect it and break it at any point they 
+choose. However, as mentioned subsequently, breaking the cycle alone 
+isn't enough to guarantee that things will actually work in general.
 
-Rob
+AFAICS what we fundamentally need to know is the initial voltage of the 
+supply regulator, to be able to short-circuit requiring the I/O domain 
+in order to query it from the regulator itself, and instead just 
+initialise the I/O domain directly. However that would still represent a 
+bunch of fiddly extra DT parsing, so for practical purposes it seems 
+reasonable to then short-cut that into directly describing the initial 
+setting of the I/O domain on the node itself, such that the consumer of 
+the binding can easily handle it all in a self-contained manner.
+
+Cheers,
+Robin
+
+>> One of the issues we're having here too is that we lose granularity. There
+>> are multiple domains inside an IO domain device and here we make the whole
+>> pinctrl device depend on all domains from one IO domain device (there can be
+>> multiple ones) while it is factually (on the HW level) only dependent on one
+>> domain. Considering (if I remember correctly) Heiko highly suggested we
+>> think about adding child nodes to the IO domain devices to have a DT node
+>> per domain in the IO domain device, how would this work with the suggested
+>> DT binding?
+> 
+> I started implementing that. I have moved the IO domains into subnodes
+> of the IO domain controller and started adding phandles from the pin
+> groups in rk3568-pinctrl.dtsi to the corresponding IO domains. After a
+> couple of hours I had phandles for around a quarter of the existing
+> groups of only one SoC, so doing this for all SoCs would really be a
+> cumbersome job.
+> 
+> In the end I realized this doesn't solve any problem. Also adding the
+> properties I suggested doesn't prevent us from adding the more specific
+> dependencies from the pins to their actual IO domains later.
+> 
+> Sascha
+> 
