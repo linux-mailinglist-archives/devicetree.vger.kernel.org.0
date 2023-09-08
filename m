@@ -2,91 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E6037987E8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 15:32:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C438C79884A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 16:09:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234593AbjIHNdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 09:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45014 "EHLO
+        id S235086AbjIHOJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 10:09:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229498AbjIHNdA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 09:33:00 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CAB91BC1
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 06:32:56 -0700 (PDT)
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3AF043F639
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 13:32:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1694179974;
-        bh=zqnhyZNLywg0xbvkm1uHFRR58gPTiCIAHqj9eCxtNas=;
-        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=dXXtwiZMalpJJNutx/AOuIn1L75t0RF+uF5ce5DgEnXFXIsLVX2McomXzJSCx0Bas
-         i2vKn1cNQ8xvZKjPl++VOuHcS7lbyPMpR3oyoH7sukXtIOJZgPPY7wgksbzBSd/DtH
-         razKroJBBVUXnvu5G+MvTMdY76LbLeIhrbpFlkeMWiftFYoTKxB2/3uDf+fXrbtBmA
-         32rtOHze/9YKpYtWq8p6RMfX5MYPdHjjZi27SQ6Yx9RHdcS+Le1nhG2iS17TKxxKn6
-         cQ1wWwEzYkjCs7FveGz2NE9vEO8u7vBxJPkYX2+reo4C4p7rebc6gSGDbUccw0MWWU
-         wkC8qnvhLL69w==
-Received: by mail-lf1-f69.google.com with SMTP id 2adb3069b0e04-500b5dbf113so2164301e87.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 06:32:54 -0700 (PDT)
+        with ESMTP id S233484AbjIHOJg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 10:09:36 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31D0213E
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 07:09:32 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id 006d021491bc7-56cae50792fso252404eaf.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 07:09:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694182171; x=1694786971; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=caQzbRb6FH27SdC/OAyGyk73pRUH2oGs6GXHL2oV8fA=;
+        b=Mu4MbvL8OxtngqRvX9MTnFi4MEjQ7bnXO76VrQZRIm6Ku3VHVJbHs+aq4vSS1PzMAG
+         xqQWSiHdTUFx5LXWJbt3fMQF9UIoriAkg3TyZWZZ4ZCxPP/b7wV11i1QXgrWOmBqQXdR
+         gWTAQN5Eyb8MG+15sEWRFeLLGk+8xnB0S9Z5WdYyZL55418MAIdjOL/TZn1uK5XugUVT
+         MFdXI0bQcYM+QyKlBqshHzhR1fHsRUT3ELoH7z7CB+SZ1FN2nl8bErkXb5DAM6W07ncD
+         lT1+qtA0DNlfyBqILdN0Pd0UuD1UmLkJRiZBtuDm4NV0Z0GZxTKYTj/XQt6XOPaoWKfb
+         DWpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694179973; x=1694784773;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zqnhyZNLywg0xbvkm1uHFRR58gPTiCIAHqj9eCxtNas=;
-        b=Iun4Se7s6rZ7+8NUkLC6OgZcZ/rWqGH937oWtG2VmPClq4Y1wr7m1zKPLZeHq9IwqI
-         k2TSAIReoMcelw3G/tQSSk0+zNnOIl/W4n6HLcYRaFMdjAdCI3jzT5ibmlexYvdndBi2
-         U9nbFuxWLQG6KBdZXjMRvFUTHVXewNDpVSN7AAanoh40m8N0+aYTH3EMcG/gj55/qYrK
-         k2pKExoxfG5ZyW5YCXLsd0iBYFuC98sBMYC4zk25jFqrS2Wwyumo45rVlVqO84fAY8Yj
-         VufmpVeTy/+9sBmlNMz9DBkOLMCwSLXsbDeLjj1Ad1pXJGm4Wg8E1EMCKDvMZtAqx3ZM
-         wAQg==
-X-Gm-Message-State: AOJu0Yw9KV34VEwKZCAo38BH+UAIxGs4n0N8RYTNJJDL1K7mhkQSYGvN
-        nPT4bb8lEqigzFqKNj6NukAYswQPbDuLZ7VWtQX7ceA7uOUs31sOTuFks7HcCWh7itxYHVfG55v
-        vLoQb9RpoPWewhHmGP1//T/5KkCwZJ1GShVFgLi6xutLyy9EHFCFvs/w=
-X-Received: by 2002:a05:6512:3082:b0:4f9:586b:dba1 with SMTP id z2-20020a056512308200b004f9586bdba1mr2492963lfd.4.1694179973656;
-        Fri, 08 Sep 2023 06:32:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGQebtOEBXNF4XxOrD/m0xqiyvOa6CRhaA5PweNX/oEc3iI8U1qvOKmWus5LBiJh9SF87AJkxS4IXLdALU1FgM=
-X-Received: by 2002:a05:6512:3082:b0:4f9:586b:dba1 with SMTP id
- z2-20020a056512308200b004f9586bdba1mr2492928lfd.4.1694179973237; Fri, 08 Sep
- 2023 06:32:53 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1694182171; x=1694786971;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=caQzbRb6FH27SdC/OAyGyk73pRUH2oGs6GXHL2oV8fA=;
+        b=OPbVE6H2gASynh4LN/a8WKp56nE5QvlEpUGBGrNSZ7YWxU53DTtE8D8+jSWcBE6FiW
+         bBSu664EzDN3cqqZ0y0tFOg9tZHCL6ZQ14Cr041ywVB/3eAhG1Wxhtgkp6K5Gh46Z82c
+         +e7rMtOqR3fAaYj8IdW/T7BzfIjdax98KWnMzUxYXyZ3oaXvl11hnWQyRLEdNCLCDOuG
+         GU/xVKabOBWQZcWTiSI74oLOL9TBw1Tdpa5XdraruE0Sy9h+CS3bmyJ0gA7VdGy6dgea
+         ydgzB/eIwPym595o8O8uR8hajnnnd79ksWPxcfMPypsLRxIXhaRQAr7uFS1D5bQ3LZvX
+         BVfA==
+X-Gm-Message-State: AOJu0Yz+Y+qVD5tvUzJ29FPrfHN/lRGx4hMGuIG1OgnyIe+ynxhMRWt0
+        XG1rWv5aXjgtO+0oIAZ7ZqI=
+X-Google-Smtp-Source: AGHT+IG6O3DuTFxAoCLa5/YeFaucbi3DrIMZuSNptCmbzcm5iiEJ6JekWqEAX0Q6Vu/4tR0BsVvCUQ==
+X-Received: by 2002:a05:6820:a0e:b0:56e:94ed:c098 with SMTP id ch14-20020a0568200a0e00b0056e94edc098mr2563335oob.0.1694182171323;
+        Fri, 08 Sep 2023 07:09:31 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:71e9:644b:bd6f:e558])
+        by smtp.gmail.com with ESMTPSA id i10-20020a4aab0a000000b0054f85f67f31sm662669oon.46.2023.09.08.07.09.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Sep 2023 07:09:30 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, mirela.rabulea@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] dt-bindings: imx8-jpeg: Add clocks entries
+Date:   Fri,  8 Sep 2023 11:08:49 -0300
+Message-Id: <20230908140850.642001-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20230830031846.127957-1-william.qiu@starfivetech.com>
- <20230830031846.127957-2-william.qiu@starfivetech.com> <20230830-commence-trickery-40eaa193cb15@wendy>
- <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org> <20230830-procedure-frostbite-56c751f7c276@wendy>
- <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com> <20230901-remold-sublease-a1ddb1fc6348@spud>
- <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com> <20230901-affected-wanting-ab517791a870@spud>
- <dd63bb4f-a59b-0323-08fb-03f8cc048b6e@starfivetech.com>
-In-Reply-To: <dd63bb4f-a59b-0323-08fb-03f8cc048b6e@starfivetech.com>
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Date:   Fri, 8 Sep 2023 15:32:36 +0200
-Message-ID: <CAJM55Z8XowmB-Hfzr+hBtWu+SGL2v7jya6Nx5_rATf8=5qA4Fg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        linux-mmc@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -95,91 +70,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 8 Sept 2023 at 12:03, William Qiu <william.qiu@starfivetech.com> wr=
-ote:
-> On 2023/9/2 1:43, Conor Dooley wrote:
-> > On Fri, Sep 01, 2023 at 06:20:38PM +0100, Jessica Clarke wrote:
-> >> On 1 Sep 2023, at 16:42, Conor Dooley <conor@kernel.org> wrote:
-> >> >
-> >> > On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
-> >> >>
-> >> >>
-> >> >> On 2023/8/30 16:34, Conor Dooley wrote:
-> >> >>> On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski wrot=
-e:
-> >> >>>> On 30/08/2023 08:50, Conor Dooley wrote:
-> >> >>>>> On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
-> >> >>>>>> Due to the change of tuning implementation, it's no longer nece=
-ssary to
-> >> >>>>>> use the "starfive,sysreg" property in dts, so drop the relevant
-> >> >>>>>> description in dt-bindings here.
-> >> >>>>>
-> >> >>>>> How does changing your software implantation invalidate a descri=
-ption of
-> >> >>>>> the hardware?
-> >> >>>>>
-> >> >>>>
-> >> >>>> Which is kind of proof that this syscon was just to substitute
-> >> >>>> incomplete hardware description (e.g. missing clocks and phys). W=
-e
-> >> >>>> should have rejected it. Just like we should reject them in the f=
-uture.
-> >> >>>
-> >> >>> :s I dunno what to do with this... I'm inclined to say not to remo=
-ve it
-> >> >>> from the binding or dts at all & only change the software.
-> >> >>>
-> >> >>>> There are just few cases where syscon is reasonable. All others i=
-s just
-> >> >>>> laziness. It's not only starfivetech, of course. Several other
-> >> >>>> contributors do the same.
-> >> >>>
-> >> >>> I'm not sure if laziness is fair, lack of understanding is usually=
- more
-> >> >>> likely.
-> >> >>
-> >> >> For this, I tend to keep it in binding, but remove it from required=
-. Because
-> >> >> we only modify the tuning implementation, it doesn't mean that this=
- property
-> >> >> need to be removed, it's just no longer be the required one.
-> >> >
-> >> > Please only remove it from required if the current driver doesn't br=
-eak
-> >> > if the regmap is removed.
-> >>
-> >> Either way please make sure the documentation clearly states =E2=80=9C=
-never use
-> >> this, if you=E2=80=99re using it you=E2=80=99re doing it wrong, this o=
-nly exists
-> >> because it was wrongly used in the past=E2=80=9D. Otherwise people wri=
-ting
-> >> drivers for other OSes will probably use it too thinking they need to.
-> >
-> > Maybe we should just delete it if the impact is going to be negligible,
-> > sounds like you're not using it in FreeBSD, which was part of what I wa=
-s
-> > worried about. Guess it depends on what Emil & the distro heads think.
-> Hi Conor,
->
-> After discussing it with our colleagues, we decided that deleting it was =
-the best
-> course of action. Since there will no longer be a related implementation =
-of
-> "starfive,sysreg" in future drivers, even if the dt-binding is described,=
- it will
-> be "never use", so I think it should be deleted.
->
-> What do you think?
+From: Fabio Estevam <festevam@denx.de>
 
-The device tree should be a description of the hardware and there
-really is a 'u0_sdio_data_strobe_phase_ctrl' field in the sysreg
-registers[1] on the JH7110 that seems to do _something_ related to the
-sdio interface. So I don't think the fact that the Linux driver no
-longer uses it is a good reason to remove it, but if there are some
-other pragmatic reasons to do so then I'm fine with it. Removing it
-from the list of required properties should be fine though.
+The JPEG decoder/encoder present in iMX8QXP and iMX8QM SoCs need
+the PER and IPG clocks to be functional, so add the clock entries.
 
-/Emil
+This also fixes the following schema warning: 
 
-[1]: https://doc-en.rvspace.org/JH7110/TRM/JH7110_TRM/sys_syscon.html
+imx8qm-apalis-eval.dtb: jpegdec@58400000: 'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/media/nxp,imx8-jpeg.yaml#
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ .../bindings/media/nxp,imx8-jpeg.yaml           | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+index 3d9d1db37040..7899e17aff3a 100644
+--- a/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
++++ b/Documentation/devicetree/bindings/media/nxp,imx8-jpeg.yaml
+@@ -31,6 +31,14 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: per
++      - const: ipg
++
+   interrupts:
+     description: |
+       There are 4 slots available in the IP, which the driver may use
+@@ -49,6 +57,8 @@ properties:
+ required:
+   - compatible
+   - reg
++  - clocks
++  - clock-names
+   - interrupts
+   - power-domains
+ 
+@@ -56,12 +66,16 @@ additionalProperties: false
+ 
+ examples:
+   - |
++    #include <dt-bindings/clock/imx8-lpcg.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
+     #include <dt-bindings/firmware/imx/rsrc.h>
+ 
+     jpegdec: jpegdec@58400000 {
+         compatible = "nxp,imx8qxp-jpgdec";
+         reg = <0x58400000 0x00050000 >;
++        clocks = <&img_jpeg_dec_lpcg IMX_LPCG_CLK_0>,
++                 <&img_jpeg_dec_lpcg IMX_LPCG_CLK_4>;
++        clock-names = "per", "ipg";
+         interrupts = <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 310 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 311 IRQ_TYPE_LEVEL_HIGH>,
+@@ -76,6 +90,9 @@ examples:
+     jpegenc: jpegenc@58450000 {
+         compatible = "nxp,imx8qm-jpgenc", "nxp,imx8qxp-jpgenc";
+         reg = <0x58450000 0x00050000 >;
++        clocks = <&img_jpeg_enc_lpcg IMX_LPCG_CLK_0>,
++                 <&img_jpeg__lpcg IMX_LPCG_CLK_4>;
++        clock-names = "per", "ipg";
+         interrupts = <GIC_SPI 305 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 306 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
+-- 
+2.34.1
+
