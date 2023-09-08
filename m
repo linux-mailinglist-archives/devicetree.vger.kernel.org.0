@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45A6879840C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 10:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E00079845A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 10:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231618AbjIHI2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 04:28:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33918 "EHLO
+        id S236372AbjIHIpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 04:45:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235746AbjIHI2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 04:28:39 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C686D1BE6
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 01:28:33 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2ba1e9b1fa9so31619901fa.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 01:28:33 -0700 (PDT)
+        with ESMTP id S234286AbjIHIpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 04:45:24 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 941761BDA
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 01:45:19 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4c0so3827574a12.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 01:45:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694161712; x=1694766512; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694162718; x=1694767518; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RTQvX0l1l8YjMN32TFjMcal8vJX1jxa9/xk94KVFs0k=;
-        b=zxkGRqeu2ogQemmBa1NcwC8LzmDKDbOsjX5FiHy5EBiEMOwNdfWXtIQmLOBtsPkDib
-         k9+VQylhdth4LZi2dP7gCRoOMW7teTl8v9ofCRTgGN4vDP4NR8kKLfxxCGcVQVwKb7jo
-         S6FbcPYRd/xtui9dNwJmO71YtilqiZFMkYGwZFdn4uGyDbl43v6moj0WMnOAtzKTpt52
-         pRTE7w6g/2rkpc7owPqbN/uvpwBRtnR/niBk5v21mjm0Aig4Nf3cmjNf+vWoa1PhsRxI
-         yFwUg3iiHAC6oRBbvcdVvfmyG9aNDjG0I0//0ThMSQU8cWrC1YGKWxBja5DyCsPHUx9l
-         +BRw==
+        bh=3WUNiLVD++qm82FWP5F8dE4ZgUSonnEZgMZ3dOtWEkk=;
+        b=htzIm4TaGFbU24/iWWKJfkDXL7eV22TNTKxOTHL4tLUMR8xQHIgH0sPvglPkgdTau4
+         uzAPHAf4H8MojN0lpPeO8C4X2ojmVewdVjDeLV5w9725IrKSRJ1hYkkusRNk62L/OLb8
+         TCP8373lg4FAuIEgj5OmQvQ3wo68Wd6Xn/MOJwh5wY7P2x+n1vcfD7ozIf/kyK4qI1eB
+         gaQIHHJ0AWsAawr1gwNRorMUvfQYg/fsQFFHJXCIpuXyG2oBMgwwmetI2EcbC/3liFbc
+         pTRyUQDk3JvG+hYiSyD3QfPC9Q91pDoB2luDHaSifJ6HNfosH8jRLhvRvJmyprGcdDFf
+         xpYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694161712; x=1694766512;
+        d=1e100.net; s=20230601; t=1694162718; x=1694767518;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RTQvX0l1l8YjMN32TFjMcal8vJX1jxa9/xk94KVFs0k=;
-        b=UrcwH3OekTG8ELvcNslq2plzhhgq57FCGThQ51dunbSahWJ0ymYYDsharRCI08dUoe
-         IqBbcwR8c+zydhwwFHJPO2BKVWKhmlLTrlU0nXVf2nt7SOSOGORDj030HQ3SC0cN5cwY
-         p5a9GiTV5UEYmnTBIr/PDFm34zspdGWj+b2e8ND9rKMnrChbmzxJQS5KPBARg36ZX43K
-         APusGgaXJvi+SmjcBZfRrL9SlXYMjDTdizhKhhcqhw0EGMyDsTPq030+tvLwT/APzva1
-         oN2oOHg3bIi3JMrRblQ56p+n99hjENdVUD+oiVqXbwtWeZnxrBhnt6Qs59ZZ36Zb3/Nh
-         qRXg==
-X-Gm-Message-State: AOJu0YyTED7xwkg0ky8vSMgBqS3q028DgHadoqpY2isaiQUj1Rjwx46c
-        mDE0SiaHu42EZPJN4hEPX2VbBQ==
-X-Google-Smtp-Source: AGHT+IHRiwhrH9Jh2MiuihFGwsr2A6/gozx5vuf7KVVzfh0ftGP/iAbRwvSBTx9qHwCylO/9S8VTjQ==
-X-Received: by 2002:a05:6512:3447:b0:500:a694:46f with SMTP id j7-20020a056512344700b00500a694046fmr1148636lfr.19.1694161711960;
-        Fri, 08 Sep 2023 01:28:31 -0700 (PDT)
-Received: from [192.168.37.45] (178235177197.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.197])
-        by smtp.gmail.com with ESMTPSA id f15-20020aa7d84f000000b005255f5735adsm717340eds.24.2023.09.08.01.28.29
+        bh=3WUNiLVD++qm82FWP5F8dE4ZgUSonnEZgMZ3dOtWEkk=;
+        b=Z8ZklZUsWIDxc93yKNHt2nvlp3ujacrzHLlLu+cXgndvHZRU5soSSO1lzUkUDOhvNO
+         uek8WDCdggugIjbrMDrHE8sTqUraDdWnbri6/f5FYg6DvYxToCUv95ksgwQ4vqHpLoY2
+         MZCbda6v4iOFfj0nmt33GqWCk18JVWm/Q7YqXkEySzGxCTTYdeBMSd3Z7KKreBzsVJD7
+         fm7IWlPAXqv8yESnHpV/GeUmd2xFAfKfxwLVy9MF2zmAjcCuS590OSu342Jp1Oyd1Vqw
+         /JM9yrbgXD8dI1RbHqL+JKZ2qy834gpW1K4avMViPIe128XX0L7s4hB5ppg+xPuUhhd/
+         l//w==
+X-Gm-Message-State: AOJu0YwsnzSPiAuPHG+ylrA3cgCpX/pcM/yBgXqTfVVdIXvGuVpy50Dz
+        dkdWK5yJsWGUFgGIcC7CymNJqQ==
+X-Google-Smtp-Source: AGHT+IHqZy4xk8TsnArgjHAFrCdwQ96Tz1rGFJJ7vCeFdpApJuwicPC1Cy+jgNAB+bFB6dWsisFXpQ==
+X-Received: by 2002:aa7:d7cd:0:b0:525:b29d:8dc8 with SMTP id e13-20020aa7d7cd000000b00525b29d8dc8mr2298677eds.5.1694162718077;
+        Fri, 08 Sep 2023 01:45:18 -0700 (PDT)
+Received: from [192.168.37.232] (178235177197.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.197])
+        by smtp.gmail.com with ESMTPSA id l9-20020aa7c309000000b0052a19a75372sm726329edq.90.2023.09.08.01.45.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 01:28:31 -0700 (PDT)
-Message-ID: <cdf51ad9-d342-4a9c-a55d-384e04bd8754@linaro.org>
-Date:   Fri, 8 Sep 2023 10:28:28 +0200
+        Fri, 08 Sep 2023 01:45:17 -0700 (PDT)
+Message-ID: <d0d6825a-97f7-405b-910e-772100c325a9@linaro.org>
+Date:   Fri, 8 Sep 2023 10:45:14 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/7] leds: rgb: leds-qcom-lpg: Update PMI632 lpg_data
- to support PPG
+Subject: Re: [PATCH 2/3] pinctrl: qcom: Add SM4450 pinctrl driver
 Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
-        lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
+To:     Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, linus.walleij@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org
-Cc:     luca.weiss@fairphone.com, u.kleine-koenig@pengutronix.de,
-        quic_subbaram@quicinc.com, quic_gurus@quicinc.com,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org, kernel@quicinc.com
-References: <20230830180600.1865-2-quic_amelende@quicinc.com>
- <20230830180600.1865-8-quic_amelende@quicinc.com>
- <951a2f24-931a-4a25-a3b7-c3009e135d7d@linaro.org>
- <ca451c20-57c1-6fb4-8c8e-b3446944a0f6@quicinc.com>
- <ab237850-4724-48a8-bea8-f1287445358f@linaro.org>
- <83f88e88-5624-4ffd-b2df-f58c6988c649@linaro.org>
- <2321f4e9-5db2-126a-c5ab-fc18cc507822@quicinc.com>
+        catalin.marinas@arm.com, will@kernel.org
+Cc:     arnd@arndb.de, geert+renesas@glider.be, nfraprado@collabora.com,
+        rafal@milecki.pl, peng.fan@nxp.com, linux-arm-msm@vger.kernel.org,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+        kernel@quicinc.com
+References: <20230908063843.26835-1-quic_tengfan@quicinc.com>
+ <20230908063843.26835-3-quic_tengfan@quicinc.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -108,76 +105,43 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <2321f4e9-5db2-126a-c5ab-fc18cc507822@quicinc.com>
+In-Reply-To: <20230908063843.26835-3-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8.09.2023 02:30, Anjelique Melendez wrote:
+On 8.09.2023 08:38, Tengfei Fan wrote:
+> Add pinctrl driver for TLMM block found in SM4450 SoC.
 > 
-> 
-> On 9/7/2023 1:31 PM, Konrad Dybcio wrote:
->> On 7.09.2023 22:26, Konrad Dybcio wrote:
->>> On 7.09.2023 21:54, Anjelique Melendez wrote:
->>>>
->>>>
->>>> On 8/30/2023 11:34 AM, Konrad Dybcio wrote:
->>>>> On 30.08.2023 20:06, Anjelique Melendez wrote:
->>>>>> Update the pmi632 lpg_data struct so that pmi632 devices use PPG
->>>>>> for LUT pattern.
->>>>>>
->>>>>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
->>>>>> ---
->>>>>>  drivers/leds/rgb/leds-qcom-lpg.c | 9 ++++++---
->>>>>>  1 file changed, 6 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/leds/rgb/leds-qcom-lpg.c b/drivers/leds/rgb/leds-qcom-lpg.c
->>>>>> index 90dc27d5eb7c..0b37d3b539f8 100644
->>>>>> --- a/drivers/leds/rgb/leds-qcom-lpg.c
->>>>>> +++ b/drivers/leds/rgb/leds-qcom-lpg.c
->>>>>> @@ -1672,11 +1672,14 @@ static const struct lpg_data pm8994_lpg_data = {
->>>>>>  static const struct lpg_data pmi632_lpg_data = {
->>>>>>  	.triled_base = 0xd000,
->>>>>>  
->>>>>> +	.lut_size = 64,
->>>>>> +	.lut_sdam_base = 0x80,
->>>>> Is that a predefined space for use with LPG?
->>>>>
->>>>> Or can it be reclaimed for something else?
->>>>>
->>>>> Konrad
->>>> Yes, this is a predefined space for use with LPG
->>> We represent the SDAM as a NVMEM device, generally it would
->>> be nice to add all regions within it as subnodes in the devicetree.
->> Wait hmm.. we already get it as a nvmem cell.. Or at least that's
->> how I understand it (lut_sdam_base == lpg_chan_nvmem->start, pseudocode)
->>
->> Why don't we access it through the nvmem r/w ops then?
->>
->> Konrad
-> I think I might be a little confused on what you are asking so please let
-> me know if this does not answer your question.
-> 
-> lut_sdam_base is the offset where lut pattern begins in the SDAM. So when we are writing back
-> our LED pattern we end up calling nvmem_device_write(lpg_chan_nvmem, lut_sdam_base + offset, 1, brightness).
-> So far for every single SDAM PPG devices we have seen the lpg_sdam_base be 0x80 and every
-> LUT SDAM PPG devices (pm8350c) we have seen lpg_sdam_base be 0x45, which is why we 
-> included this value in the lpg_data rather than as a devicetree property since it has
-> been consistent across a few pmics.
-> 
-> I am ok if you would like the lut_sdam_base to be moved to a devicetree property.
-So.. we have a slice of SDAM represented as an NVMEM cell (and that
-part of SDAM is reserved solely for LPG), and then within that cell,
-we need to add an additional offset to get to what we want. Correct?
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+[...]
 
-What's in LPG_NVMEM_CELL[0:offset-1] then?
+> +/* Every pin is maintained as a single group, and missing or non-existing pin
+/*
+ * Every pin
+
+> + * would be maintained as dummy group to synchronize pin group index with
+> + * pin descriptor registered with pinctrl core.
+> + * Clients would not be able to request these dummy pin groups.
+> + */
+[...]
+
+> +static const int sm4450_acpi_reserved_gpios[] = {
+> +	0, 1, 2, 3, 136, -1
+> +};
+Are you ever going to boot with ACPI on this platform?
+
+Why reserve UFS_RESET?
+
+Why are 0-3 reserved? FP reader? Please leave a comment. Or
+delete this.
 
 Konrad
