@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBAB6798624
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 12:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C7EC798626
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 12:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238438AbjIHKt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 06:49:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60238 "EHLO
+        id S229604AbjIHKt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 06:49:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232229AbjIHKt5 (ORCPT
+        with ESMTP id S231464AbjIHKt5 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 06:49:57 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F0EB1BF0
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 03:49:52 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bbbda48904so32370141fa.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 03:49:52 -0700 (PDT)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DBF81BF4
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 03:49:53 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5007abb15e9so3277896e87.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 03:49:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694170190; x=1694774990; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694170191; x=1694774991; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1vzCZEwPNr7Ag8FayuSyK2O3/B460AqQ5RqOT23N1fw=;
-        b=tlJM0fcZeV+J4m/o0RA5D2Tz7AKbirRh/nglcj5VTpAmR3kn8wapoKHUM/Mf35k8yl
-         9HmVbYmTvke5uXsMa0C+aCeoDIeuouU+0PHwlZHCKkX1GO63ULbiYJluv8lIBN54jqU9
-         LCpAbooNYZ1MvNvUFBbCyEOzU5zbMpVr2JI1FQyigV7Atmazi5EqRIsJBRmAUgZnj1m0
-         TLx9HD2NWg0h61IFktcnNVwMY1BmQmti7PfLa3dnUcQ+lV4Truz8aquLmxOfB8kJ2KAP
-         prx3xBl26ZsDfSO1eOsP7YXkxX7lTPAnSEoWZVkBR8i5JKEkDR8unbtN6MuyLngourUC
-         LStA==
+        bh=3f5qLUYHSj8oeYz4Th2usJC3BZwZBpvuKh12o/V+/Ws=;
+        b=dMjNSDAwBV3an2m9HdPddHCfUD1Yd/9Fu9+MxLpC3HBC+rw+IYX3g7STjloVnAW3dL
+         Pamkxae7RZWb/f1GqNMBfvNQ205b0pdfUfX8FLgcN7WTdSrrPxwB3JNDrw5fQNPPtq5r
+         wKCkjsHHN6OQ0oRxJ0wiFJOnB5x5yw9aKQMNyq+LooZsMDkJSKCC4yxqMVpGtDLBn4pL
+         IMUzV04PfguHIf/XdpBTpM8nVPFbOd/zzuwEn2662G53nHdUnA3Cy8BiwX21VKsK1oh1
+         zSfzdTogwAT0wtsptpeiqU0Cmy/ROJPHqZgyX4oEhweHF8Ho4B1BlRE78yR46sKJJ9o7
+         QmBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694170190; x=1694774990;
+        d=1e100.net; s=20230601; t=1694170191; x=1694774991;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1vzCZEwPNr7Ag8FayuSyK2O3/B460AqQ5RqOT23N1fw=;
-        b=CqfTRm5VNJxRODJxWKiUdejlKZrIrh59SJz9tdFCU54f6vDOxE7MBT8jNxgyyCKHpY
-         uYgb6TauGHUc75SDzLL9GzYBWW0aCoDNwGR84mSqXvGYZiO0MLcFzjFiQKHNywqd0QXf
-         XgZZtBysYUqmQiiCPBOwGEw9QLVWtsHv4cVotBuzjQxtq940WPftnbToSglZYC06xxF2
-         +gCJyMH5L/G6xmBn4PpGi0vApWHBoeeIwXVIi5WEH/J7+7dXFA5UTDsTchiRpT/IqobT
-         yPoD7GSyKc3LMEVXwR1fJhGYmeluzK6WOKh8vA+SH43Lpcy7DGiqA+wHyiDZAB6VQQUG
-         zPAg==
-X-Gm-Message-State: AOJu0YzFeAFD2uYIcgJ3iDDtGrPRqidME52KKqsUjtTRsZbQy5G8pt12
-        aQ8+hlLTnXeY12Lp9wdW4cLIyw==
-X-Google-Smtp-Source: AGHT+IEw4p+dgbfZBhiOwmB+9Ck6P7rI8sfTPPIGE6s4cE2XLLX6ycEE6rZLPcditjzBrX06wCFeAw==
-X-Received: by 2002:a05:6512:2216:b0:500:acf1:b42f with SMTP id h22-20020a056512221600b00500acf1b42fmr1586363lfu.53.1694170190635;
-        Fri, 08 Sep 2023 03:49:50 -0700 (PDT)
+        bh=3f5qLUYHSj8oeYz4Th2usJC3BZwZBpvuKh12o/V+/Ws=;
+        b=cc6TKBP93mBNXcQtWh1szzug++ivNM9BDu+xOZ+gsbuo5TdIJ5MtYwr9q2bYq8NQCd
+         7iSa93sB7X0uc1k54H5rNNNyO9QyPdM1UBgy1KnfhSbn3E85FPscu9tve490YcZfBO6q
+         B2gNjtW6oEz5RXgD06ykWRA03MeP1ESwm/3UrsEUx6mi8i4+pwlTU0RkL6xWbHuFpvEX
+         Ub+1nWXRekhR//WJI5ZkJXwVh+f66E6kEwMLUWkuzJCxFoKyKqlWjax92h0T100+82qy
+         R0le1CnoocFh6qQNH1DuhHVPvZGZ8FiXwewPmVR/RVa5XQR5LsBhSyX/5vJMcB9FVNdv
+         kdlA==
+X-Gm-Message-State: AOJu0YwmED9+Ja7f0Y7vZqC9X4YlNOrmxhTfsb9x4qUD5F0YcD9IbHHs
+        UV+kvKfmMPoAdMtAEBJUiYBNmw==
+X-Google-Smtp-Source: AGHT+IFtNorHnHtd+HAXeiKT49c5jnsqc7uyi8vlt1znsjoQU3bWjIK9Wjw8rwOmPld42mFUjSI+sw==
+X-Received: by 2002:a05:6512:63:b0:4fe:629:9265 with SMTP id i3-20020a056512006300b004fe06299265mr1419124lfo.20.1694170191574;
+        Fri, 08 Sep 2023 03:49:51 -0700 (PDT)
 Received: from [192.168.1.2] (c-05d8225c.014-348-6c756e10.bbcust.telenor.se. [92.34.216.5])
-        by smtp.gmail.com with ESMTPSA id y15-20020ac255af000000b0050089b26eb0sm243321lfg.132.2023.09.08.03.49.49
+        by smtp.gmail.com with ESMTPSA id y15-20020ac255af000000b0050089b26eb0sm243321lfg.132.2023.09.08.03.49.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Sep 2023 03:49:50 -0700 (PDT)
+        Fri, 08 Sep 2023 03:49:51 -0700 (PDT)
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 08 Sep 2023 12:49:48 +0200
-Subject: [PATCH 1/2] ARM: dts: ixp4xx-nslu2: Enable write on flash
+Date:   Fri, 08 Sep 2023 12:49:49 +0200
+Subject: [PATCH 2/2] ARM: dts: ixp4xx: Use right restart keycode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230908-ixp4xx-dts-v1-1-98d36264ed6d@linaro.org>
+Message-Id: <20230908-ixp4xx-dts-v1-2-98d36264ed6d@linaro.org>
 References: <20230908-ixp4xx-dts-v1-0-98d36264ed6d@linaro.org>
 In-Reply-To: <20230908-ixp4xx-dts-v1-0-98d36264ed6d@linaro.org>
 To:     Linus Walleij <linusw@kernel.org>, Imre Kaloz <kaloz@openwrt.org>,
@@ -69,35 +69,77 @@ Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To upgrade the firmware and similar, the flash needs write
-access.
+The "reset" key on a few IXP4xx routers were sending KEY_ESC
+but what we want to send is KEY_RESTART which will make
+OpenWrt and similar userspace do a controlled reboot.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/intel/ixp/intel-ixp42x-dlink-dsm-g600.dts | 2 +-
+ arch/arm/boot/dts/intel/ixp/intel-ixp42x-freecom-fsg-3.dts  | 2 +-
+ arch/arm/boot/dts/intel/ixp/intel-ixp42x-iomega-nas100d.dts | 2 +-
+ arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts  | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
+diff --git a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-dlink-dsm-g600.dts b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-dlink-dsm-g600.dts
+index b9d46eb06507..fa133c913606 100644
+--- a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-dlink-dsm-g600.dts
++++ b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-dlink-dsm-g600.dts
+@@ -57,7 +57,7 @@ gpio_keys {
+ 
+ 		button-reset {
+ 			wakeup-source;
+-			linux,code = <KEY_ESC>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
+ 		};
+diff --git a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-freecom-fsg-3.dts b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-freecom-fsg-3.dts
+index 5a5e16cc7335..73d3c11dd0d4 100644
+--- a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-freecom-fsg-3.dts
++++ b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-freecom-fsg-3.dts
+@@ -44,7 +44,7 @@ button-sync {
+ 		};
+ 		button-reset {
+ 			wakeup-source;
+-			linux,code = <KEY_ESC>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			gpios = <&gpio0 9 GPIO_ACTIVE_LOW>;
+ 		};
+diff --git a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-iomega-nas100d.dts b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-iomega-nas100d.dts
+index 8da6823e1dbe..26f02dad6a54 100644
+--- a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-iomega-nas100d.dts
++++ b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-iomega-nas100d.dts
+@@ -63,7 +63,7 @@ button-power {
+ 		};
+ 		button-reset {
+ 			wakeup-source;
+-			linux,code = <KEY_ESC>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			gpios = <&gpio0 4 GPIO_ACTIVE_LOW>;
+ 		};
 diff --git a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts
-index da1e93212b86..706ba531faf0 100644
+index 706ba531faf0..2eec5f63d399 100644
 --- a/arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts
 +++ b/arch/arm/boot/dts/intel/ixp/intel-ixp42x-linksys-nslu2.dts
-@@ -101,6 +101,8 @@ bus@c4000000 {
- 			flash@0,0 {
- 				compatible = "intel,ixp4xx-flash", "cfi-flash";
- 				bank-width = <2>;
-+				/* Enable writes on the expansion bus */
-+				intel,ixp4xx-eb-write-enable = <1>;
- 				/*
- 				 * 8 MB of Flash in 0x20000 byte blocks
- 				 * mapped in at CS0.
+@@ -65,7 +65,7 @@ button-power {
+ 		};
+ 		button-reset {
+ 			wakeup-source;
+-			linux,code = <KEY_ESC>;
++			linux,code = <KEY_RESTART>;
+ 			label = "reset";
+ 			gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
+ 		};
 
 -- 
 2.41.0
