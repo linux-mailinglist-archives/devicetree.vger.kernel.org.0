@@ -2,140 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2499A7984D7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 11:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4E8B7984D9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 11:32:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239204AbjIHJbz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 8 Sep 2023 05:31:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53290 "EHLO
+        id S237572AbjIHJcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 05:32:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229644AbjIHJbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 05:31:52 -0400
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1B0311B;
-        Fri,  8 Sep 2023 02:31:48 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-58dce1f42d6so41465407b3.0;
-        Fri, 08 Sep 2023 02:31:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694165508; x=1694770308;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7In3jR24QqYcvy6RjXqyS7E+iqbgjrxBTgClw17SH70=;
-        b=nq2dorLvSPIABtLMNGQWWjWNl8kZVvFj94DJccgDjfpvtPhuwZjXwCSdoJQoSCemgp
-         Su/aZ5rh8ouIuHuLUheWzUmgIIzplbpnl8kQ0SxDiiaa4IjDP8R2gOY2m/kzHo4QHjBL
-         5RcKV+TZK5a6/bPesdD36CsXdGZ/3W4R4vjTwVeTTw4fm1ehL5+jV2V46e5ZDSBZwnqJ
-         CQHQbsdzNeagz4uGUNxV2GSyfEMo0SVOmjL/zrGXWIq77stZ0eMdSj0B43r2jnS65Twh
-         GE6CraDnDOjNey6NCUrU5p9SbIC6xuacpPJonvPM+ksBbViY/OgkIHxnV7i6hxJz80w+
-         tFdw==
-X-Gm-Message-State: AOJu0YwERo0Z3IpwXJ3yMc+0hqdRPoh92syQrQmk9YfKowxBhMUzBcy/
-        WuwD7Kgwjn6oYnJdKamJ0lLXb71KLbFhRric
-X-Google-Smtp-Source: AGHT+IEoNrLwZvpSekGIl9JE3t0jLTjGytmc3FyOCEjVNnC+moEkI+hbYGIaZxvpx+LeJL6/FxTXpA==
-X-Received: by 2002:a25:ab26:0:b0:d7b:9b3c:7388 with SMTP id u35-20020a25ab26000000b00d7b9b3c7388mr2169078ybi.6.1694165507791;
-        Fri, 08 Sep 2023 02:31:47 -0700 (PDT)
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com. [209.85.219.174])
-        by smtp.gmail.com with ESMTPSA id y18-20020a25bb92000000b00d7e08d9972asm281895ybg.11.2023.09.08.02.31.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 02:31:47 -0700 (PDT)
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-d7830c5b20aso2538422276.0;
-        Fri, 08 Sep 2023 02:31:46 -0700 (PDT)
-X-Received: by 2002:a25:ad10:0:b0:d40:3069:b3b1 with SMTP id
- y16-20020a25ad10000000b00d403069b3b1mr5512491ybi.17.1694165506752; Fri, 08
- Sep 2023 02:31:46 -0700 (PDT)
+        with ESMTP id S234150AbjIHJcn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 05:32:43 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D9FA311B
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 02:32:39 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 70E84D75;
+        Fri,  8 Sep 2023 02:33:17 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A8733F64C;
+        Fri,  8 Sep 2023 02:32:36 -0700 (PDT)
+Date:   Fri, 8 Sep 2023 10:32:34 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chris Morgan <macroalpha82@gmail.com>
+Cc:     linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+        airlied@gmail.com, conor+dt@kernel.org, daniel@ffwll.ch,
+        heiko@sntech.de, jagan@edgeble.ai, jernej.skrabec@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, mripard@kernel.org,
+        neil.armstrong@linaro.org, noralf@tronnes.org, robh+dt@kernel.org,
+        sam@ravnborg.org, samuel@sholland.org, uwu@icenowy.me,
+        wens@csie.org, Chris Morgan <macromorgan@hotmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH V4 4/8] dt-bindings: usb: Add V3s compatible string for
+ EHCI
+Message-ID: <20230908103234.6a78275c@donnerap.manchester.arm.com>
+In-Reply-To: <20230828181941.1609894-5-macroalpha82@gmail.com>
+References: <20230828181941.1609894-1-macroalpha82@gmail.com>
+        <20230828181941.1609894-5-macroalpha82@gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-References: <20220722151155.21100-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20220722151155.21100-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <8735eqdbav.wl-maz@kernel.org> <CAMuHMdVj7J442iMr0PN5jxMhLv1U22+G9jNXLWFzLYkS0JTf5A@mail.gmail.com>
-In-Reply-To: <CAMuHMdVj7J442iMr0PN5jxMhLv1U22+G9jNXLWFzLYkS0JTf5A@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 8 Sep 2023 11:31:35 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW_d5isU5Y2p6ne6_9j1-uqWnRY=Qw34SqR5EC0CndG+Q@mail.gmail.com>
-Message-ID: <CAMuHMdW_d5isU5Y2p6ne6_9j1-uqWnRY=Qw34SqR5EC0CndG+Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: interrupt-controller:
- renesas,rzg2l-irqc: Update description for '#interrupt-cells' property
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+On Mon, 28 Aug 2023 13:19:37 -0500
+Chris Morgan <macroalpha82@gmail.com> wrote:
 
-On Thu, Aug 11, 2022 at 4:50 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Sun, Jul 24, 2022 at 1:01 PM Marc Zyngier <maz@kernel.org> wrote:
-> > On Fri, 22 Jul 2022 16:11:54 +0100,
-> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > >
-> > > Update description for '#interrupt-cells' property to utilize the
-> > > RZG2L_{NMI,IRQX} for the first cell defined in the
-> > > include/dt-bindings/interrupt-controller/irqc-rzg2l.h file.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > ---
-> > > v3:
-> > > * New patch
->
-> > > --- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
-> > > @@ -31,8 +31,9 @@ properties:
-> > >        - const: renesas,rzg2l-irqc
-> > >
-> > >    '#interrupt-cells':
-> > > -    description: The first cell should contain external interrupt number (IRQ0-7) and the
-> > > -                 second cell is used to specify the flag.
-> > > +    description: The first cell should contain a macro RZG2L_{NMI,IRQX} included in the
-> > > +                 include/dt-bindings/interrupt-controller/irqc-rzg2l.h and the second
-> > > +                 cell is used to specify the flag.
-> >
-> > I think a binding should be self describing, and not rely on an opaque
-> > macro. Mentioning that there is a macro that encodes it is fine, but
-> > the values are what matter, specially when considering that other OSs
-> > could (and should be able to) write their own DTs from scratch without
-> > depending on something that is very much Linux-specific.
->
-> The macros are not Linux-specific, and are part of the bindings.
-> But the only hard dependency on <dt-bindings/interrupt-controller/irqc-rzg2l.h>
-> is the DT source file describing the board.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> The Allwinner V3s uses a generic EHCI and OHCI for USB host
+> communication and the MUSB controller for OTG mode. Add compatible
+> strings for the EHCI node.
+> 
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Looks like this fell through the cracks?
-The two other patches from this series were applied in v6.1.
+That looks alright, but you can squash this and the next patch into one -
+but only in case you need to re-send anyway.
 
-Note that the current DT bindings are incorrect, as they do not take into
-account that the value of zero is used to represent the NMI.
+Cheers,
+Andre
 
-Fixes: 96fed779d3d4cb3c ("dt-bindings: interrupt-controller: Add
-Renesas RZ/G2L Interrupt Controller")
+> ---
+>  Documentation/devicetree/bindings/usb/generic-ehci.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/generic-ehci.yaml b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> index b956bb5fada7..f37191f21501 100644
+> --- a/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> +++ b/Documentation/devicetree/bindings/usb/generic-ehci.yaml
+> @@ -38,6 +38,7 @@ properties:
+>                - allwinner,sun8i-a83t-ehci
+>                - allwinner,sun8i-h3-ehci
+>                - allwinner,sun8i-r40-ehci
+> +              - allwinner,sun8i-v3s-ehci
+>                - allwinner,sun9i-a80-ehci
+>                - allwinner,sun20i-d1-ehci
+>                - aspeed,ast2400-ehci
 
-Should we resend instead?
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
