@@ -2,135 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE0F179833D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BE62798347
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:34:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234618AbjIHHaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 03:30:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
+        id S232317AbjIHHeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 03:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232310AbjIHHaE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:30:04 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8119E1BC8;
-        Fri,  8 Sep 2023 00:30:00 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3887BkCg002871;
-        Fri, 8 Sep 2023 07:29:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=tjETNQR7Qbjn8moY75mNH7bm6GbWzUOROl2QSxDzkM8=;
- b=FlXK3zMAFWE3UBbqZG2G/8XA1MqkVsBl/i+kUsQtrFpx1R1r53PahOUtq9jMa/MhHWeP
- 4OAzQyWk57JptAkAKJ7FbP4HjoqKu9VHztmOZmZv1dtCoAb81Xil21yyAajsBLROr631
- DV02gJiztYRuESmW64UoxrsK0MRhxDdk0YTR+iii2oFZNwcZD/60AWxnrz84cJBwtx2q
- B+PoA6Uc23ZtmOqpBRiSpQ+aW+iPozTk15kRf1ZvpZno5TYyk8ZDU5sJqNnAkz6/NHpV
- OYa+B8blXkGojQoXN53l1WOGvlJPyVinx+Po0zrjqslAuOJXlI/sFaIfZj1B0LkGnnCM 3Q== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3sy7m0k20s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 08 Sep 2023 07:29:26 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3887T7tt006191
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 8 Sep 2023 07:29:07 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Fri, 8 Sep
- 2023 00:28:58 -0700
-Message-ID: <1407c2f0-3abf-4cb0-93c0-e19f821ff2fb@quicinc.com>
-Date:   Fri, 8 Sep 2023 15:28:55 +0800
+        with ESMTP id S230300AbjIHHeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:34:19 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B6D61BD2
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 00:34:15 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qeW0L-0002GU-8n; Fri, 08 Sep 2023 09:34:13 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qeW0J-004pSO-T2; Fri, 08 Sep 2023 09:34:11 +0200
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qeW0J-003E0p-JQ; Fri, 08 Sep 2023 09:34:11 +0200
+Date:   Fri, 8 Sep 2023 09:34:11 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 1/4] arm64: dts: imx8mp: Describe VDD_ARM run and standby
+ voltage for DH i.MX8M Plus DHCOM SoM
+Message-ID: <20230908073411.yf6mxhpzasu5ftm6@pengutronix.de>
+References: <20230831182020.154863-1-marex@denx.de>
+ <20230907154545.m3ofqncpwt6yitqu@pengutronix.de>
+ <f534c9c2-cd05-9c7d-8921-81ee0bda3013@denx.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: qcom: Add SM4450 pinctrl
-To:     Rob Herring <robh@kernel.org>
-CC:     <quic_tingweiz@quicinc.com>,
-        <linux-arm-kernel@lists.infradead.org>, <rafal@milecki.pl>,
-        <conor+dt@kernel.org>, <nfraprado@collabora.com>,
-        <devicetree@vger.kernel.org>, <catalin.marinas@arm.com>,
-        <quic_kaushalk@quicinc.com>, <andersson@kernel.org>,
-        <quic_shashim@quicinc.com>, <linus.walleij@linaro.org>,
-        <quic_tsoni@quicinc.com>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <geert+renesas@glider.be>,
-        <peng.fan@nxp.com>, <quic_tdas@quicinc.com>,
-        <konrad.dybcio@linaro.org>, <arnd@arndb.de>, <will@kernel.org>,
-        <robh+dt@kernel.org>, <agross@kernel.org>,
-        <quic_aiquny@quicinc.com>, <kernel@quicinc.com>
-References: <20230908063843.26835-1-quic_tengfan@quicinc.com>
- <20230908063843.26835-2-quic_tengfan@quicinc.com>
- <169415774033.3172287.2910545525997528344.robh@kernel.org>
-From:   Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <169415774033.3172287.2910545525997528344.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: G0yg3CgXkxq4nOWlY_DqugIkk635XNFq
-X-Proofpoint-ORIG-GUID: G0yg3CgXkxq4nOWlY_DqugIkk635XNFq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-08_03,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- lowpriorityscore=0 adultscore=0 mlxlogscore=875 spamscore=0 malwarescore=0
- suspectscore=0 mlxscore=0 bulkscore=0 priorityscore=1501 clxscore=1011
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
- definitions=main-2309080068
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f534c9c2-cd05-9c7d-8921-81ee0bda3013@denx.de>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23-09-07, Marek Vasut wrote:
+> On 9/7/23 17:45, Marco Felsch wrote:
+> > Hi Marek,
+> 
+> Hi,
+> 
+> > On 23-08-31, Marek Vasut wrote:
+> > > Describe VDD_ARM (BUCK2) run and standby voltage in DT.
+> > > 
+> > > Signed-off-by: Marek Vasut <marex@denx.de>
+> > > ---
+> > > Cc: Conor Dooley <conor+dt@kernel.org>
+> > > Cc: Fabio Estevam <festevam@gmail.com>
+> > > Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
+> > > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> > > Cc: Magnus Damm <magnus.damm@gmail.com>
+> > > Cc: Marek Vasut <marex@denx.de>
+> > > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > > Cc: Peng Fan <peng.fan@nxp.com>
+> > > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > Cc: devicetree@vger.kernel.org
+> > > Cc: linux-arm-kernel@lists.infradead.org
+> > > ---
+> > >   arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 2 ++
+> > >   1 file changed, 2 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+> > > index cb1953d14aa90..1644b56c3953d 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
+> > > @@ -293,6 +293,8 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
+> > >   			};
+> > >   			buck2: BUCK2 {	/* VDD_ARM */
+> > > +				nxp,dvs-run-voltage = <950000>;
+> > 
+> > Why do we need to set the "nxp,dvs-run-voltage"? If I read the driver
+> > correctly, then nxp,dvs-run-voltage and regulator-min/max-microvolt are
+> > touching the same register.
+> 
+> My understanding is that the nxp,dvs-run-voltage selects the default
+> regulator voltage which is configured early on once the regulator is
+> detected in DT (see of_parse_cb callback in the PCA9450 regulator driver)
+> and may be higher than regulator-min-microvolt, while later on DVFS can
+> adjust the regulator in range of regulator-min-microvolt to
+> regulator-max-microvolt .
 
+Right, albeit I think that the bootloader already did the
+initialization once. Anyway the change lgtm:
 
-在 9/8/2023 3:22 PM, Rob Herring 写道:
-> 
-> On Fri, 08 Sep 2023 14:38:41 +0800, Tengfei Fan wrote:
->> Add device tree binding Documentation details for Qualcomm SM4450
->> TLMM device.
->>
->> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->> ---
->>   .../bindings/pinctrl/qcom,sm4450-tlmm.yaml    | 129 ++++++++++++++++++
->>   1 file changed, 129 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>
-> 
-> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml:
-> Error in referenced schema matching $id: http://devicetree.org/schemas/pinctrl/qcom,tlmm-common.yaml
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230908063843.26835-2-quic_tengfan@quicinc.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema
-> 
-Thanks review this change detailly, do update env and do verify again.
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
 
--- 
-Thx and BRs,
-Tengfei Fan
+> > > +				nxp,dvs-standby-voltage = <850000>;
+> > >   				regulator-min-microvolt = <850000>;
+> > >   				regulator-max-microvolt = <1000000>;
+> 
+> [...]
+> 
