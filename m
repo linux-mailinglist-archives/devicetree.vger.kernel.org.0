@@ -2,72 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4688279877C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6037987E8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 15:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243375AbjIHM7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 08:59:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45818 "EHLO
+        id S234593AbjIHNdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 09:33:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbjIHM7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:59:18 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E8D91BFF;
-        Fri,  8 Sep 2023 05:59:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694177953; x=1725713953;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=VrPMYgQ16pTtZlBVSNm737aoWB5stO3oQMVdp8PvDig=;
-  b=OBwppJDQkoU/VA5cpiprCP6KfbYOBQBycXn4Dc5kSrT+GDIWDYLyYCDW
-   Ah8CVFr8n+e69lyURwi6KKOiQMsO6Ido9sKeLJM2pio09M7jdjmLmW5nF
-   ymzB2GftZz3wZr4wNDIki8gvxetD3Gsw5+nPxKVI+CK1NQVYsilYl79Jf
-   Vz1tm8xnLCmgBWhTh9vZGFBkRiGpQ4Iu7phhGW0njzqtG5U2+csuxeNt3
-   rweH8naoUGmoitesxyQXIK9kEpdLZipe4T7c69zmjDwpXvx4qyGL+Ktn1
-   IlYgNNeFNOz5OLOO3jXx3utxK/6XzR+uf4yF50GFXQwaDjVO5Hj8TFJZA
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="357943100"
-X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; 
-   d="scan'208";a="357943100"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2023 05:59:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="916165808"
-X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; 
-   d="scan'208";a="916165808"
-Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
-  by orsmga005.jf.intel.com with ESMTP; 08 Sep 2023 05:59:07 -0700
-Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qeb4j-0002Gx-02;
-        Fri, 08 Sep 2023 12:59:05 +0000
-Date:   Fri, 8 Sep 2023 20:58:49 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, lee@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, robimarko@gmail.com,
-        quic_gurus@quicinc.com, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
-        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
-        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
-        kernel@quicinc.com, quic_bjorande@quicinc.com,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Tengfei Fan <quic_tengfan@quicinc.com>
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm4450: Add RPMH and Global clock
- controller
-Message-ID: <202309082044.62LHUCGY-lkp@intel.com>
-References: <20230908065847.28382-6-quic_tengfan@quicinc.com>
+        with ESMTP id S229498AbjIHNdA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 09:33:00 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CAB91BC1
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 06:32:56 -0700 (PDT)
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3AF043F639
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 13:32:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1694179974;
+        bh=zqnhyZNLywg0xbvkm1uHFRR58gPTiCIAHqj9eCxtNas=;
+        h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+         To:Cc:Content-Type;
+        b=dXXtwiZMalpJJNutx/AOuIn1L75t0RF+uF5ce5DgEnXFXIsLVX2McomXzJSCx0Bas
+         i2vKn1cNQ8xvZKjPl++VOuHcS7lbyPMpR3oyoH7sukXtIOJZgPPY7wgksbzBSd/DtH
+         razKroJBBVUXnvu5G+MvTMdY76LbLeIhrbpFlkeMWiftFYoTKxB2/3uDf+fXrbtBmA
+         32rtOHze/9YKpYtWq8p6RMfX5MYPdHjjZi27SQ6Yx9RHdcS+Le1nhG2iS17TKxxKn6
+         cQ1wWwEzYkjCs7FveGz2NE9vEO8u7vBxJPkYX2+reo4C4p7rebc6gSGDbUccw0MWWU
+         wkC8qnvhLL69w==
+Received: by mail-lf1-f69.google.com with SMTP id 2adb3069b0e04-500b5dbf113so2164301e87.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 06:32:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694179973; x=1694784773;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zqnhyZNLywg0xbvkm1uHFRR58gPTiCIAHqj9eCxtNas=;
+        b=Iun4Se7s6rZ7+8NUkLC6OgZcZ/rWqGH937oWtG2VmPClq4Y1wr7m1zKPLZeHq9IwqI
+         k2TSAIReoMcelw3G/tQSSk0+zNnOIl/W4n6HLcYRaFMdjAdCI3jzT5ibmlexYvdndBi2
+         U9nbFuxWLQG6KBdZXjMRvFUTHVXewNDpVSN7AAanoh40m8N0+aYTH3EMcG/gj55/qYrK
+         k2pKExoxfG5ZyW5YCXLsd0iBYFuC98sBMYC4zk25jFqrS2Wwyumo45rVlVqO84fAY8Yj
+         VufmpVeTy/+9sBmlNMz9DBkOLMCwSLXsbDeLjj1Ad1pXJGm4Wg8E1EMCKDvMZtAqx3ZM
+         wAQg==
+X-Gm-Message-State: AOJu0Yw9KV34VEwKZCAo38BH+UAIxGs4n0N8RYTNJJDL1K7mhkQSYGvN
+        nPT4bb8lEqigzFqKNj6NukAYswQPbDuLZ7VWtQX7ceA7uOUs31sOTuFks7HcCWh7itxYHVfG55v
+        vLoQb9RpoPWewhHmGP1//T/5KkCwZJ1GShVFgLi6xutLyy9EHFCFvs/w=
+X-Received: by 2002:a05:6512:3082:b0:4f9:586b:dba1 with SMTP id z2-20020a056512308200b004f9586bdba1mr2492963lfd.4.1694179973656;
+        Fri, 08 Sep 2023 06:32:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGQebtOEBXNF4XxOrD/m0xqiyvOa6CRhaA5PweNX/oEc3iI8U1qvOKmWus5LBiJh9SF87AJkxS4IXLdALU1FgM=
+X-Received: by 2002:a05:6512:3082:b0:4f9:586b:dba1 with SMTP id
+ z2-20020a056512308200b004f9586bdba1mr2492928lfd.4.1694179973237; Fri, 08 Sep
+ 2023 06:32:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230908065847.28382-6-quic_tengfan@quicinc.com>
+References: <20230830031846.127957-1-william.qiu@starfivetech.com>
+ <20230830031846.127957-2-william.qiu@starfivetech.com> <20230830-commence-trickery-40eaa193cb15@wendy>
+ <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org> <20230830-procedure-frostbite-56c751f7c276@wendy>
+ <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com> <20230901-remold-sublease-a1ddb1fc6348@spud>
+ <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com> <20230901-affected-wanting-ab517791a870@spud>
+ <dd63bb4f-a59b-0323-08fb-03f8cc048b6e@starfivetech.com>
+In-Reply-To: <dd63bb4f-a59b-0323-08fb-03f8cc048b6e@starfivetech.com>
+From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Date:   Fri, 8 Sep 2023 15:32:36 +0200
+Message-ID: <CAJM55Z8XowmB-Hfzr+hBtWu+SGL2v7jya6Nx5_rATf8=5qA4Fg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
+To:     William Qiu <william.qiu@starfivetech.com>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-mmc@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,42 +95,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tengfei,
+On Fri, 8 Sept 2023 at 12:03, William Qiu <william.qiu@starfivetech.com> wr=
+ote:
+> On 2023/9/2 1:43, Conor Dooley wrote:
+> > On Fri, Sep 01, 2023 at 06:20:38PM +0100, Jessica Clarke wrote:
+> >> On 1 Sep 2023, at 16:42, Conor Dooley <conor@kernel.org> wrote:
+> >> >
+> >> > On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
+> >> >>
+> >> >>
+> >> >> On 2023/8/30 16:34, Conor Dooley wrote:
+> >> >>> On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski wrot=
+e:
+> >> >>>> On 30/08/2023 08:50, Conor Dooley wrote:
+> >> >>>>> On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
+> >> >>>>>> Due to the change of tuning implementation, it's no longer nece=
+ssary to
+> >> >>>>>> use the "starfive,sysreg" property in dts, so drop the relevant
+> >> >>>>>> description in dt-bindings here.
+> >> >>>>>
+> >> >>>>> How does changing your software implantation invalidate a descri=
+ption of
+> >> >>>>> the hardware?
+> >> >>>>>
+> >> >>>>
+> >> >>>> Which is kind of proof that this syscon was just to substitute
+> >> >>>> incomplete hardware description (e.g. missing clocks and phys). W=
+e
+> >> >>>> should have rejected it. Just like we should reject them in the f=
+uture.
+> >> >>>
+> >> >>> :s I dunno what to do with this... I'm inclined to say not to remo=
+ve it
+> >> >>> from the binding or dts at all & only change the software.
+> >> >>>
+> >> >>>> There are just few cases where syscon is reasonable. All others i=
+s just
+> >> >>>> laziness. It's not only starfivetech, of course. Several other
+> >> >>>> contributors do the same.
+> >> >>>
+> >> >>> I'm not sure if laziness is fair, lack of understanding is usually=
+ more
+> >> >>> likely.
+> >> >>
+> >> >> For this, I tend to keep it in binding, but remove it from required=
+. Because
+> >> >> we only modify the tuning implementation, it doesn't mean that this=
+ property
+> >> >> need to be removed, it's just no longer be the required one.
+> >> >
+> >> > Please only remove it from required if the current driver doesn't br=
+eak
+> >> > if the regmap is removed.
+> >>
+> >> Either way please make sure the documentation clearly states =E2=80=9C=
+never use
+> >> this, if you=E2=80=99re using it you=E2=80=99re doing it wrong, this o=
+nly exists
+> >> because it was wrongly used in the past=E2=80=9D. Otherwise people wri=
+ting
+> >> drivers for other OSes will probably use it too thinking they need to.
+> >
+> > Maybe we should just delete it if the impact is going to be negligible,
+> > sounds like you're not using it in FreeBSD, which was part of what I wa=
+s
+> > worried about. Guess it depends on what Emil & the distro heads think.
+> Hi Conor,
+>
+> After discussing it with our colleagues, we decided that deleting it was =
+the best
+> course of action. Since there will no longer be a related implementation =
+of
+> "starfive,sysreg" in future drivers, even if the dt-binding is described,=
+ it will
+> be "never use", so I think it should be deleted.
+>
+> What do you think?
 
-kernel test robot noticed the following build errors:
+The device tree should be a description of the hardware and there
+really is a 'u0_sdio_data_strobe_phase_ctrl' field in the sysreg
+registers[1] on the JH7110 that seems to do _something_ related to the
+sdio interface. So I don't think the fact that the Linux driver no
+longer uses it is a good reason to remove it, but if there are some
+other pragmatic reasons to do so then I'm fine with it. Removing it
+from the list of required properties should be fine though.
 
-[auto build test ERROR on a47fc304d2b678db1a5d760a7d644dac9b067752]
+/Emil
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tengfei-Fan/dt-bindings-firmware-document-Qualcomm-SM4450-SCM/20230908-150308
-base:   a47fc304d2b678db1a5d760a7d644dac9b067752
-patch link:    https://lore.kernel.org/r/20230908065847.28382-6-quic_tengfan%40quicinc.com
-patch subject: [PATCH 5/6] arm64: dts: qcom: sm4450: Add RPMH and Global clock controller
-config: arm64-defconfig (https://download.01.org/0day-ci/archive/20230908/202309082044.62LHUCGY-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230908/202309082044.62LHUCGY-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309082044.62LHUCGY-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from arch/arm64/boot/dts/qcom/sm4450-qrd.dts:8:
->> arch/arm64/boot/dts/qcom/sm4450.dtsi:7:10: fatal error: dt-bindings/clock/qcom,sm4450-gcc.h: No such file or directory
-       7 | #include <dt-bindings/clock/qcom,sm4450-gcc.h>
-         |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   compilation terminated.
-
-
-vim +7 arch/arm64/boot/dts/qcom/sm4450.dtsi
-
-   > 7	#include <dt-bindings/clock/qcom,sm4450-gcc.h>
-     8	#include <dt-bindings/gpio/gpio.h>
-     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
-    10	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-    11	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+[1]: https://doc-en.rvspace.org/JH7110/TRM/JH7110_TRM/sys_syscon.html
