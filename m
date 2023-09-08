@@ -2,210 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A90D7985AE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 12:20:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A0AF7985FF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 12:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231803AbjIHKU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 06:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34098 "EHLO
+        id S232562AbjIHKlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 06:41:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243017AbjIHKUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 06:20:25 -0400
-Received: from mail-pl1-x630.google.com (mail-pl1-x630.google.com [IPv6:2607:f8b0:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDBA2681
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 03:19:48 -0700 (PDT)
-Received: by mail-pl1-x630.google.com with SMTP id d9443c01a7336-1bdbf10333bso15481345ad.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 03:19:48 -0700 (PDT)
+        with ESMTP id S240778AbjIHKlS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 06:41:18 -0400
+Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A3F1BEE
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 03:41:13 -0700 (PDT)
+Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-58cbdf3eecaso18889007b3.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 03:41:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1694168312; x=1694773112; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8DsptAslDdlTxfrgf4lCQnXF79qxRqm7dAzKkGdY2bw=;
-        b=LUDas5Sm5MRxwT7D1Z9GbJY6elhDJB9kR+4zkP5aari16kzT2e7dOHi2ap8loEM4lA
-         khJVNsKamWimnlUFw2U5pDBnQ8mCovPb/Q7gg1l/kaQwUMrp2LEgd9cp8TfN/dOj3W+Q
-         RXPxKlwy6prTnoO9v+oTSGWjtljLtbEvSak+Q=
+        d=sifive.com; s=google; t=1694169673; x=1694774473; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YGzW1Gsz6nFeulWPUu5AH12nWhKzRRmn3Tj1YKt22hc=;
+        b=kFN7NPKKLUPaw9sa8GJ9ta0yj+eIYLE/f7miHdy9iVFF6GvbwCjxrQyjhWZ/fMYEgE
+         yU7exxON6pczDfKvaMzEStDjQ9xCittF5BP2tLBfbRPn0ZTKQC0eIRriRj2Pt4yWKVf3
+         BHMpWYO+E2RLnD29oIF6AFHP/4llrKhBI+qvTrHLI/0Bzd25uhCqcm4nArDjYM1bBVDZ
+         Y4hiFPu74RaSwXEpUuHij8BWoIRyG8Uj9bdDiZUJ17O2h5KtdhsEpqP6GjXQUzadgnqs
+         YUqDozLHaWQgPrs4aiCBFYwH1km2PZ3Qrro2KLMpDOA6eSVNnhKrxGzXPJgBTarB+ZHl
+         kLzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694168312; x=1694773112;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8DsptAslDdlTxfrgf4lCQnXF79qxRqm7dAzKkGdY2bw=;
-        b=BGKj/I65lX+u2c6JEIeyjoQBgsN1SnczO+R2vvJlSW45x77GP3dbVwoUjFLi90sasA
-         bViZnKLTKb34bc51KzGRXzZMc65KGeBklXzX76W6bA/36FSJNjEfE8rIcpXzJSkIVvP1
-         BUMPb8ZuUfofD0APLAhwWy5jknRTh5O7vpEH3cPy9XwPWMw1l80k5ItZjn5k/47IXUup
-         YmKLlpqOHlp9Vio45oFaZnDLtSVKIEywn5EP2KgX1xrqriO4S7nv9SUeozR51XxdKl36
-         sA08Vah0e8LSf0L0IkZxc4+j/O9341UZX+6MozDkJ4PqB5vNrVbUdCym3llD9o4QnO9Z
-         C2WQ==
-X-Gm-Message-State: AOJu0Yxjvev9tZNZCrqxBpk5NmamljIsU2buQOUnHV3fwt8D0aK6mK3i
-        UnLdVPvmHX65V8A2syDtlB6nWQ==
-X-Google-Smtp-Source: AGHT+IHvuiOLPrK2BdW00qx+uwEAKmSUYpUPesps8W+sHECkKB7IIkWZvx3+RTxkXGIM0VHDNNBLWg==
-X-Received: by 2002:a17:903:41c2:b0:1bd:ae9e:62ea with SMTP id u2-20020a17090341c200b001bdae9e62eamr2680906ple.8.1694168312099;
-        Fri, 08 Sep 2023 03:18:32 -0700 (PDT)
-Received: from yich.tpe.corp.google.com ([2401:fa00:1:17:c536:91e7:7087:81ab])
-        by smtp.gmail.com with ESMTPSA id j3-20020a170902c08300b001c1f016015esm1252302pld.84.2023.09.08.03.18.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Sep 2023 03:18:31 -0700 (PDT)
-From:   Yi Chou <yich@chromium.org>
-X-Google-Original-From: Yi Chou <yich@google.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     devicetree@vger.kernel.org, devicetree-spec@vger.kernel.org,
-        yich@google.com, jens.wiklander@linaro.org, chenyian@google.com,
-        jkardatzke@google.com, jwerner@chromium.org, sjg@chromium.org
-Subject: [PATCH] dt-bindings: Add Google Widevine initialization parameters
-Date:   Fri,  8 Sep 2023 18:15:39 +0800
-Message-ID: <20230908101539.2622864-1-yich@google.com>
-X-Mailer: git-send-email 2.42.0.283.g2d96d420d3-goog
+        d=1e100.net; s=20230601; t=1694169673; x=1694774473;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YGzW1Gsz6nFeulWPUu5AH12nWhKzRRmn3Tj1YKt22hc=;
+        b=LmCF+H5JbonLNMqJFqbX+ZY+XHB/NJXgOgVoZvDDf7ks5EWZZgfpNdZNHb3+jUjbRr
+         kYzz7fB9jwFNdevJQgkSG/6zi1SxduG7h/cGoRZPQOmUHeDQmZlpBm8Kn8t71Zl+tcdF
+         hB+MTXLkOZr+a9m0iKkFYWVyPcbXoydwr63ZRb2QaJ4PkO97Ti7zeEnCuelsrabIpXIy
+         hpuFcU88eqoksBWXS02DV6yFG1O2U8bM5xc31a1vBOjXMsv+fasczBdJe+8ZbM/pKpjc
+         Ai0IvR8fbJ/GjJxZU76xSAw/v4G5eduZA37TQEdr8kDaOL/LjVr+Ekqe5zfXxHICneUx
+         p2vA==
+X-Gm-Message-State: AOJu0YxWOYLGdF3Y0DLGwWeeEUyVgE2zZOXdfuTPcBjDEcahy+MdbAbX
+        Uf2WHV/x+z6Gg2bHupB8QP+Sl3o0PmwELezmKKij/g==
+X-Google-Smtp-Source: AGHT+IF6rwnNU+XqC+wcXUFyvM1oC64hNO07qjBFEtIkD2cenu0xbaTRBvPawtOx+Jz8TQCmLbUd8CK9kX8IPGIgmns=
+X-Received: by 2002:a81:5f8b:0:b0:59b:a28:389d with SMTP id
+ t133-20020a815f8b000000b0059b0a28389dmr2617270ywb.19.1694169672736; Fri, 08
+ Sep 2023 03:41:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230130093229.27489-1-nylon.chen@sifive.com> <20230130093229.27489-3-nylon.chen@sifive.com>
+ <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
+In-Reply-To: <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
+From:   Nylon Chen <nylon.chen@sifive.com>
+Date:   Fri, 8 Sep 2023 18:41:00 +0800
+Message-ID: <CAHh=Yk8R02NXK33aogQeJQB6x88B_gpbnjHj9wRrJEbDQf67Aw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED algorithm
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
+        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The necessary fields to initialize the widevine related functions in
-OP-TEE.
+Hi Uwe,
 
-Signed-off-by: Yi Chou <yich@google.com>
-Reviewed-by: Simon Glass <sjg@chromium.org>
----
- .../bindings/options/google,widevine.yaml     | 124 ++++++++++++++++++
- 1 file changed, 124 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/options/google,widevine.yaml
+Sorry it's so long ago.
 
-diff --git a/Documentation/devicetree/bindings/options/google,widevine.yaml b/Documentation/devicetree/bindings/options/google,widevine.yaml
-new file mode 100644
-index 0000000000000..bf2b834cb1454
---- /dev/null
-+++ b/Documentation/devicetree/bindings/options/google,widevine.yaml
-@@ -0,0 +1,124 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/options/google,widevine.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Google Widevine initialization parameters.
-+
-+maintainers:
-+  - Jeffrey Kardatzke <jkardatzke@chromium.org>
-+  - Yi Chou <yich@chromium.org>
-+
-+description:
-+  The necessary fields to initialize the widevine related functions in
-+  OP-TEE. This node does not represent a real device, but serves as a
-+  place for passing data between firmware and OP-TEE.
-+  The public fields (e.g. tpm-auth-public-key & root-of-trust-cert) can
-+  be ignored because it's safe to pass the public information with the
-+  other methods(e.g. userland OP-TEE plugins).
-+
-+properties:
-+  compatible:
-+    const: google,widevine
-+
-+  hardware-unique-key:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      The hardware-unique key of the Widevine OP-TEE. It will be used
-+      to derive the secure storage key. The length should be 32 bytes.
-+      For more information, please reference:
-+      https://optee.readthedocs.io/en/latest/architecture/porting_guidelines.html#hardware-unique-key
-+
-+  tpm-auth-public-key:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      The TPM auth public key. Used to communicate the TPM from OP-TEE.
-+      The format of data should be TPM2B_PUBLIC.
-+      For more information, please reference the 12.2.5 section:
-+      https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part2_Structures_pub.pdf
-+
-+  root-of-trust:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      The Widevine root of trust secret. Used to sign the widevine
-+      request in OP-TEE. The length should be 32 bytes. The value
-+      is an ECC NIST P-256 scalar.
-+      For more information, please reference the G.1.2 section:
-+      https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-186.pdf
-+
-+  root-of-trust-cert:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description: |
-+      The X.509 certificate of the Widevine root of trust on this
-+      device. Used to provision the device status with the Widevine
-+      server in OP-TEE.
-+      For more information, please reference:
-+      https://www.itu.int/rec/T-REC-X.509
-+
-+required:
-+  - compatible
-+  - hardware-unique-key
-+  - root-of-trust
-+
-+additionalProperties: false
-+
-+examples:
-+  - |+
-+    options {
-+      widevine {
-+        compatible = "google,widevine";
-+        hardware-unique-key = [
-+          12 f7 98 d2 0e d2 85 92 a5 82 bf 98 b8 99 2b c0
-+          c6 6f 19 85 79 86 65 18 55 eb ff 9b 6c c0 ac 27
-+        ];
-+        tpm-auth-public-key = [
-+          00 76 00 23 00 0b 00 02 04 b2 00 20 e1 47 bf 27
-+          e1 74 30 c8 16 ab 72 4d 5c 77 e1 5c 61 2d 56 81
-+          b3 35 cd 9d eb 67 41 37 69 f0 32 41 00 10 00 10
-+          00 03 00 10 00 20 70 9a df 50 f9 0f d5 f4 40 e0
-+          ea 2c e8 f2 26 9f 0e 5c 02 70 16 c3 6c c1 83 03
-+          2d 04 10 bd 85 7a 00 20 83 03 c2 66 6e 01 32 34
-+          5c 5e 80 22 c7 48 24 3c 70 6b b8 e4 24 42 74 a9
-+          cf fc ab f8 30 e9 de 51
-+        ];
-+        root-of-trust = [
-+          ac 0d 86 c3 d7 b5 b7 a2 6f c3 d9 93 f7 de bc bb
-+          d5 c4 25 9b 21 5f 36 af b5 dd 6d 29 9d 08 c0 10
-+        ];
-+        root-of-trust-cert = [
-+          30 82 01 f4 30 82 01 9b a0 03 02 01 02 02 10 11
-+          01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f 30
-+          0a 06 08 2a 86 48 ce 3d 04 03 02 30 0f 31 0d 30
-+          0b 06 03 55 04 03 0c 04 54 69 35 30 30 22 18 0f
-+          32 30 30 30 30 31 30 31 30 30 30 30 30 30 5a 18
-+          0f 32 30 39 39 31 32 33 31 32 33 35 39 35 39 5a
-+          30 0f 31 0d 30 0b 06 03 55 04 03 0c 04 54 69 35
-+          30 30 59 30 13 06 07 2a 86 48 ce 3d 02 01 06 08
-+          2a 86 48 ce 3d 03 01 07 03 42 00 04 ec ef cb 0c
-+          68 7e 30 f4 d5 8f 2c 88 16 f4 7f b5 8b 5b 06 77
-+          d7 47 fe 1e 91 4c a3 c5 a1 54 f5 40 9c f8 a5 4e
-+          85 a0 fa 05 1a 01 98 da e4 b1 e5 ff 95 0d cf 8f
-+          d9 c1 ce 28 0f 91 75 ca 06 e4 91 3b a3 81 d4 30
-+          81 d1 30 1a 06 0a 2b 06 01 04 01 d6 79 02 01 21
-+          04 0c 5a 53 5a 56 a5 ac a5 a9 7f 7f 00 00 30 0f
-+          06 0a 2b 06 01 04 01 d6 79 02 01 22 04 01 21 30
-+          2e 06 0a 2b 06 01 04 01 d6 79 02 01 23 04 20 23
-+          e1 4d d9 bb 51 a5 0e 16 91 1f 7e 11 df 1e 1a af
-+          0b 17 13 4d c7 39 c5 65 36 07 a1 ec 8d d3 7a 30
-+          2e 06 0a 2b 06 01 04 01 d6 79 02 01 24 04 20 00
-+          00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-+          00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 30
-+          2e 06 0a 2b 06 01 04 01 d6 79 02 01 25 04 20 00
-+          00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-+          00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 30
-+          12 06 0a 2b 06 01 04 01 d6 79 02 01 26 04 04 00
-+          00 00 00 30 0a 06 08 2a 86 48 ce 3d 04 03 02 03
-+          47 00 30 44 02 20 62 a8 d3 23 db 1e 9c 64 91 49
-+          45 5e b3 49 8d cc 1a ae 76 70 e3 12 d2 25 65 69
-+          df f1 7e bc 4b d8 02 20 25 99 7c 36 cb b3 fd ce
-+          6e 84 ee d7 ea eb 05 cf 69 cf 72 75 20 f3 ba 7f
-+          8b 9f 06 f3 e4 11 bc cd
-+        ];
-+      };
-+    };
--- 
-2.42.0.283.g2d96d420d3-goog
+I have completed the implementation of the new version, but there is
+one thing about this letter that I still don't quite understand.
 
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=E5=B9=
+=B41=E6=9C=8830=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:17=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+>
+> On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
+> > The `frac` variable represents the pulse inactive time, and the result =
+of
+> > this algorithm is the pulse active time. Therefore, we must reverse the
+> > result.
+> >
+> > The reference is SiFive FU740-C000 Manual[0].
+> >
+> > [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8=
+b16acba_fu740-c000-manual-v1p6.pdf
+> >
+> > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> > ---
+> >  drivers/pwm/pwm-sifive.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
+> > index 62b6acc6373d..a5eda165d071 100644
+> > --- a/drivers/pwm/pwm-sifive.c
+> > +++ b/drivers/pwm/pwm-sifive.c
+> > @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, =
+struct pwm_device *pwm,
+> >       frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+> >       /* The hardware cannot generate a 100% duty cycle */
+> >       frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
+> > +     frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
+>
+> The same problem exists in pwm_sifive_get_state(), doesn't it?
+>
+> As fixing this is an interruptive change anyhow, this is the opportunity
+> to align the driver to the rules tested by PWM_DEBUG.
+>
+> The problems I see in the driver (only checked quickly, so I might be
+> wrong):
+>
+>  - state->period !=3D ddata->approx_period isn't necessarily a problem. I=
+f
+>    state->period > ddata->real_period that's fine and the driver should
+>    continue
+>
+I still don=E2=80=99t quite understand the description of this paragraph.
+
+state->period !=3D ddate->approx_period seems to be used to compare the
+results of the previous and next two times.
+
+I'm unsure what to do if I replace the conditional expression with
+something else.
+
+In addition, I don't understand the meaning of this.
+"if state->period > ddata->real_period that's fine, and the driver
+should continue"
+
+At present, my new version of the implementation has passed the test
+of the pwm_apply_state_debug() function.
+
+Would you suggest I send the new implementation version before
+continuing the discussion?
+
+Thank you again for everything you=E2=80=99ve done.
+
+>  - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+>    is wrong for two reasons:
+>    it should round down and use the real period.
+>
+> Best regards
+> Uwe
+>
+> --
+> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
+     |
+> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
+|
