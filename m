@@ -2,187 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1545C798931
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 16:49:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39B2079894F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 16:55:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239846AbjIHOuB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 10:50:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34354 "EHLO
+        id S234372AbjIHOz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 10:55:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239737AbjIHOuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 10:50:00 -0400
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6454F1BF1
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 07:49:56 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qecnr-0000rL-8z; Fri, 08 Sep 2023 16:49:47 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qecno-004tzA-BR; Fri, 08 Sep 2023 16:49:44 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qecnn-00HTuj-3Z; Fri, 08 Sep 2023 16:49:43 +0200
-Date:   Fri, 8 Sep 2023 16:49:42 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Nylon Chen <nylon.chen@sifive.com>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED
- algorithm
-Message-ID: <20230908144942.d3feisuyctppfb3l@pengutronix.de>
-References: <20230130093229.27489-1-nylon.chen@sifive.com>
- <20230130093229.27489-3-nylon.chen@sifive.com>
- <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
- <CAHh=Yk8R02NXK33aogQeJQB6x88B_gpbnjHj9wRrJEbDQf67Aw@mail.gmail.com>
+        with ESMTP id S240124AbjIHOz2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 10:55:28 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49E341FC1;
+        Fri,  8 Sep 2023 07:55:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694184916; x=1725720916;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hRPta3ptzMNjQT7WswU+lJMeajZApy8eHTToKWyCnrg=;
+  b=ni1J1s3emKWzYX2GVe7EgTWHDOlJtxlAg28MmntIn1failtywlofoLuk
+   UuAI0Q2fBsjYa/nKENa6Z8P6Z6URPZT4VDXUYL+ypagqqXKWyg6zo7Cst
+   W8E06/3ZArfxAgRNQIScRFBsWT+Oa3MJq/eGoR0+Tjar1kNjkIK2lWRg/
+   qv2iciD1jbk8WyE7nVbSMvw7ctHNL7Rt35h4OliaC+kc+TePs0LGwcaf8
+   Ax3NAfzATMIfPhAI0pJCoVp9cN5z3zR+/gDvN9deoolyYYohNj73Sv3ba
+   5bsWdalwBXk8SRngrfwRhBYtOD1pRbjK/clxtydprMrWwoCjzP2kG6dQk
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="357969728"
+X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; 
+   d="scan'208";a="357969728"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2023 07:55:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="1073339873"
+X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; 
+   d="scan'208";a="1073339873"
+Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
+  by fmsmga005.fm.intel.com with ESMTP; 08 Sep 2023 07:55:10 -0700
+Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qect2-0002Mq-27;
+        Fri, 08 Sep 2023 14:55:08 +0000
+Date:   Fri, 8 Sep 2023 22:55:04 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, lee@kernel.org
+Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+        robimarko@gmail.com, quic_gurus@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_tsoni@quicinc.com,
+        quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
+        quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
+        quic_aiquny@quicinc.com, kernel@quicinc.com,
+        quic_bjorande@quicinc.com, Ajit Pandey <quic_ajipan@quicinc.com>,
+        Tengfei Fan <quic_tengfan@quicinc.com>
+Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm4450: Add RPMH and Global clock
+ controller
+Message-ID: <202309082243.JImHPFSN-lkp@intel.com>
+References: <20230908065847.28382-6-quic_tengfan@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="sko3m4welni3xxse"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHh=Yk8R02NXK33aogQeJQB6x88B_gpbnjHj9wRrJEbDQf67Aw@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230908065847.28382-6-quic_tengfan@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Tengfei,
 
---sko3m4welni3xxse
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build errors:
 
-Hello,
+[auto build test ERROR on a47fc304d2b678db1a5d760a7d644dac9b067752]
 
-On Fri, Sep 08, 2023 at 06:41:00PM +0800, Nylon Chen wrote:
-> Sorry it's so long ago.
->=20
-> I have completed the implementation of the new version, but there is
-> one thing about this letter that I still don't quite understand.
->=20
-> Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=E5=
-=B9=B41=E6=9C=8830=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:17=E5=AF=
-=AB=E9=81=93=EF=BC=9A
-> >
-> > On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
-> > > The `frac` variable represents the pulse inactive time, and the resul=
-t of
-> > > this algorithm is the pulse active time. Therefore, we must reverse t=
-he
-> > > result.
-> > >
-> > > The reference is SiFive FU740-C000 Manual[0].
-> > >
-> > > [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86e=
-d8b16acba_fu740-c000-manual-v1p6.pdf
-> > >
-> > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > > ---
-> > >  drivers/pwm/pwm-sifive.c | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > > index 62b6acc6373d..a5eda165d071 100644
-> > > --- a/drivers/pwm/pwm-sifive.c
-> > > +++ b/drivers/pwm/pwm-sifive.c
-> > > @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip=
-, struct pwm_device *pwm,
-> > >       frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> > >       /* The hardware cannot generate a 100% duty cycle */
-> > >       frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> > > +     frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
-> >
-> > The same problem exists in pwm_sifive_get_state(), doesn't it?
-> >
-> > As fixing this is an interruptive change anyhow, this is the opportunity
-> > to align the driver to the rules tested by PWM_DEBUG.
-> >
-> > The problems I see in the driver (only checked quickly, so I might be
-> > wrong):
-> >
-> >  - state->period !=3D ddata->approx_period isn't necessarily a problem.=
- If
-> >    state->period > ddata->real_period that's fine and the driver should
-> >    continue
->
-> I still don=E2=80=99t quite understand the description of this paragraph.
->=20
-> state->period !=3D ddate->approx_period seems to be used to compare the
-> results of the previous and next two times.
+url:    https://github.com/intel-lab-lkp/linux/commits/Tengfei-Fan/dt-bindings-firmware-document-Qualcomm-SM4450-SCM/20230908-150308
+base:   a47fc304d2b678db1a5d760a7d644dac9b067752
+patch link:    https://lore.kernel.org/r/20230908065847.28382-6-quic_tengfan%40quicinc.com
+patch subject: [PATCH 5/6] arm64: dts: qcom: sm4450: Add RPMH and Global clock controller
+config: arm64-randconfig-r024-20230908 (https://download.01.org/0day-ci/archive/20230908/202309082243.JImHPFSN-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230908/202309082243.JImHPFSN-lkp@intel.com/reproduce)
 
-There are two things to consider:
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309082243.JImHPFSN-lkp@intel.com/
 
- - usually the hardware doesn't support all requestable states because
-   the hardware's quantum is > 1 ns. That is, it might for example
-   support periods in the form (160 ns * i / 3) for i in 1 .. 1023.
+All errors (new ones prefixed by >>):
 
-   If this hardware runs with i =3D 500 (that is period ~=3D 26666.66
-   ns) because the first channel is configured to run with period =3D
-   26667, and .request is called for the 2nd channel with .period =3D
-   26700 ns, there is no need to refuse that, because 26666.66 is the
-   best possible approximation for 26700 ns anyhow.
+   In file included from arch/arm64/boot/dts/qcom/sm4450-qrd.dts:8:
+>> arch/arm64/boot/dts/qcom/sm4450.dtsi:7:10: fatal error: 'dt-bindings/clock/qcom,sm4450-gcc.h' file not found
+   #include <dt-bindings/clock/qcom,sm4450-gcc.h>
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   1 error generated.
 
- - .apply is supposed to implement the highest possible period that
-   isn't bigger than the requested period. So in the above case even if
-   the hardware runs at 26666.66 ns without the possibility to change
-   that, a request to configure for period =3D 30000 ns could succeed (and
-   keep 26666.66 ns).
 
-> Would you suggest I send the new implementation version before
-> continuing the discussion?
+vim +7 arch/arm64/boot/dts/qcom/sm4450.dtsi
 
-Note that the above implements the optimal behaviour for a driver.
-(For some definition of "optimal" that admittedly also yields strange
-behaviour at times. The reasoning for this to the be thing to implement
-is, that's the corner cases are easier to implement, idempotency is
-possible and it's easier to work with than rounding to the nearest
-possible value.)
+   > 7	#include <dt-bindings/clock/qcom,sm4450-gcc.h>
+     8	#include <dt-bindings/gpio/gpio.h>
+     9	#include <dt-bindings/interrupt-controller/arm-gic.h>
+    10	#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+    11	
 
-While I'd like to see the sifive driver to implement this optimal
-behaviour, it's not mandatory that you convert the driver to that
-behaviour. Just make sure to not make it worse.
-
-So to answer your question: If you understood what I wrote above and are
-motivated to improve the driver, it would be great to do that before the
-next review round.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig         =
-   |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---sko3m4welni3xxse
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmT7NIYACgkQj4D7WH0S
-/k7+OQf/aB4uHhJdqYMAfP5Rn5iRxbBRaaQLJXyjJR+bimx8Ifz0f8kzeyYTS25Z
-TL/+jlQhpkbjafGdXzxd85LaVch+7shaSohfzWs824wO85zDRk1CgjQ7q69mmdtN
-A7lecYRDNxIT5/bYV9E/xizIs2RMWJ7o21mrFJiJxwY4B95CP/BSpIqAURkRN7KQ
-35yVWF/KxFrKKkJ4xgvt/g6AzAlqqphRrjLNugi8AMY19w0kiIqCifrnMkgNZ71c
-9fZqHhqo5x/dxm0pbOMoMvEkK8ZcEdS6bfV9P5iaiXUvnehkKnQnrj9yr3hOqGAm
-XshPrgtNxkkPdbH++33xOMQZ7tNd/g==
-=ZZNC
------END PGP SIGNATURE-----
-
---sko3m4welni3xxse--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
