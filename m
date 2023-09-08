@@ -2,73 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 516A4798711
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34EA9798727
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:36:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242829AbjIHMed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 08:34:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35100 "EHLO
+        id S234869AbjIHMhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 08:37:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236814AbjIHMec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:34:32 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD431BF9
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:34:26 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401d24f1f27so22524085e9.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:34:26 -0700 (PDT)
+        with ESMTP id S230428AbjIHMhA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:37:00 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426461BF1
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:36:55 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40078c4855fso21731275e9.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176465; x=1694781265; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694176614; x=1694781414; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
-        b=vNx9Y3158MV+bbxaQ4yJIDiPWcBJXzcjKm0dqJrD6l6M0CcmxUk/NQcxD9FQIKWCyc
-         HqTm4aYH30j/qe+q5rrCKeZ/upLTK62+693y7tlEKLHG7IPRzQBxnZZPhNQeCDyXR7Ow
-         DHFM3nq3c1VwxJtSvqzgc73Kc+snxop46ab8ROz3Wbiir8CInqo+V9cAfKGeDu3w8H3b
-         QLgm1nciuKkVhdXOHucwqfXMr2Uw53HZFUc9joq+gLNlz4lGNlIp2o/V3Bz/pJIUn9LT
-         0lL9jK6NV3+pfxitAu2UwkLeBhWZ4MqPq2sRp0Z4/8u/AUWlqf37Qbjsz60Y/x6myliP
-         sY2w==
+        bh=Be2k1ZgrDZKG3iK8uhCg66l2zxTQVwhjYtA2BDkGIDQ=;
+        b=qQ8h0XpKkLGML5wEMy3uoMnOIA5XZa1VT+v+sBKfNA3xbl4ISQN0f5PHN+siWLNtds
+         dbvd7Ku8OCIuJ+fy4ZTRjFdTOxg3AWrccVmFRVmmntDxAP4MINdIU8TPvwSxiFhxIzqL
+         CdsAExFp34hHkN17RPidnVlN0A7/PbH6Z/4s098H/UznF05I2pm1zJKUjpd64dphQy6I
+         ck5INxU0Zg9tztxvkvn/GsIR0SqBvMZ7yru3O+VXxa3Ws3keMRCNoudIXtYMfMW9sH0m
+         Mhn/q9vI0EU4bL3OGAHbqOf4cl9Pan3n2fFljLJbzBj6g6zTGB0dLrH7+EgNZhvRhMdM
+         TZUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176465; x=1694781265;
+        d=1e100.net; s=20230601; t=1694176614; x=1694781414;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
-        b=xEWeyf0GNJbkm92zqBqkBvbBloRu+zmgWw9wgfvboGyRUkCFtr6pYsRogV0cpk/6qT
-         6UEbLT255gdtT8kPgeIK0Zj5qrUQ3X0Fap8l8FG9bxLkXMkm3Q3dlejPLcg11KSoi81O
-         p50VKT/D1n+FhdeHomGMADdyoyQqjHmiITCVWw+DDimso7pwP9lR2oI7+P68FWUxmWuU
-         4Dw+nJ667OA3uZseD9UfDzGhgaKMaUxh9lmS32vWKgEwdrw+U6xa+Y1OJuKq6fxdNfPv
-         9sVJNcg9YWbFeKe4tKJSGcOv9Y9rt2a3risxU0KHUWOIY7K5Q5EEY61ukwV2zIy2P4oK
-         lcIA==
-X-Gm-Message-State: AOJu0YwdopAM+Ybq0Z2hD8W3G9Wr3t1dG8Vbdjoj1iDyl1SccBr3W8l6
-        wG+ychvrmapkO19eAf16Lw9rdw==
-X-Google-Smtp-Source: AGHT+IHAIoDqQVvm/1vJfqGAmJ4KhDdS1U6swBfoIErsJPNuBVgp4MAMC1y77kixIzj4YFLKwzkv+Q==
-X-Received: by 2002:a7b:ce14:0:b0:3ff:233f:2cfb with SMTP id m20-20020a7bce14000000b003ff233f2cfbmr1944897wmc.23.1694176464796;
-        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
+        bh=Be2k1ZgrDZKG3iK8uhCg66l2zxTQVwhjYtA2BDkGIDQ=;
+        b=U+9ET1IUL0/Nq87EdSisPEGmpGQ6LY2+7/CemTfU1VqDcT+jg9hP+gmL8SR54K/14E
+         bEr1o0X7G7vycuTInm0+k0N3dn2Gw3ln45E1xupucwE/rk43hLOZKcULFbGyG0oxpfXh
+         OllU21zn9mTHUvg1PXy5GTPyi9JHJXcxzGZVLNqxlv2qyqb16X7KS8MfFZlKU6GaMmsx
+         MpddqpmjAB4CNncz4kgLs9anpbo7nXgvlwM7SYtU6oDiUHdxhd65VPEEQku9T3zIZ+Ff
+         +lf15Po3mbeRg7RNKBSR17aYNsYhjQ7J3My67Ri/OP58aXdQ9weyxdzCmrNa05WnXxPC
+         q4gQ==
+X-Gm-Message-State: AOJu0Ywd0DJcp7iXv9ouXKkIDW1MqL/Vp1xYMt4bc6NS3IxD+e8fYHQM
+        U20CxkFHpxvyw+ACTirK/M35aQ==
+X-Google-Smtp-Source: AGHT+IG9qMiw25Y/hia5vITBIkDc4lQt9y53sSYzYWNjS0uYR1XAAv0nZni37xL449zcerxOyCM/pA==
+X-Received: by 2002:a5d:560d:0:b0:31d:cd33:b30e with SMTP id l13-20020a5d560d000000b0031dcd33b30emr2058224wrv.4.1694176613583;
+        Fri, 08 Sep 2023 05:36:53 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id n4-20020a05600c294400b003fbdbd0a7desm5097730wmd.27.2023.09.08.05.34.23
+        by smtp.gmail.com with ESMTPSA id v3-20020a5d6103000000b00316eb7770b8sm2023056wrt.5.2023.09.08.05.36.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
-Message-ID: <83819915-d957-4c8f-927a-d32f7963c532@linaro.org>
-Date:   Fri, 8 Sep 2023 14:34:23 +0200
+        Fri, 08 Sep 2023 05:36:53 -0700 (PDT)
+Message-ID: <12521b44-edba-49af-9011-b7850c39b35e@linaro.org>
+Date:   Fri, 8 Sep 2023 14:36:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From:   neil.armstrong@linaro.org
+From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 00/15] arm64: dts: meson: a1: introduce several
- peripheral IPs
+Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-axg: Meson NAND node
 Content-Language: en-US, fr
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>, jbrunet@baylibre.com,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com, conor+dt@kernel.org
-Cc:     kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru,
-        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
+To:     Arseniy Krasnov <avkrasnov@salutedevices.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     oxffffaa@gmail.com, kernel@sberdevices.ru,
+        Liang Yang <liang.yang@amlogic.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -94,7 +96,7 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -107,82 +109,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2023 23:36, Dmitry Rokosov wrote:
-> This patch series introduces device tree declarations for various
-> peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
-> USB, SPI Flash Controller, SDIO, and UART_AO:
->      - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
->        CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
->        controllers are currently supported.
->      - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
->        divided into 32 128-bit blocks, and data is accessed using the APB
->        bus through software or the Key-ladder integrated with the EFUSE
->        block.
->      - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
->        supporting both HOST and DEVICE modes for OTG.
->      - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
->        controller.
->      - SDIO: for WiFi/IEEE802.11 connection.
->      - UART_AO: for Bluetooth connection.
->      - HWRNG: hardware random generator integrated into SoC.
->      - AO SECURE: board info registers.
+On 28/08/2023 15:36, Arseniy Krasnov wrote:
+> Add description of the Meson NAND controller node.
 > 
-> The above peripherals are integrated to new AD402 board device tree.
+> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 13 +++++++++++++
+>   1 file changed, 13 insertions(+)
 > 
-> Changes v2 since v1 at [1]:
->      - reorder meson-a1 dtsi includes to keep them sorted
->      - remove extra empty lines
->      - purge the unnecessary 'okay' status
->      - reorder all device tree nodes (existing and new) sorted by 'reg'
->        values
->      - introduce new saradc definition
->      - add hwrng dts node
->      - provide ao secure dts node with board info registers
->      - include all changes to new AD402 board device tree
->      - add AD402 board to bindings
-> 
-> Links:
->      [1] https://lore.kernel.org/all/20230607201641.20982-1-ddrokosov@sberdevices.ru/
-> 
-> Alexey Romanov (3):
->    arm64: dts: meson: a1: enable efuse controller and setup its clk
->    arm64: dts: meson: a1: add hw rng node
->    arm64: dts: meson: a1: add ao secure node
-> 
-> Dmitry Rokosov (8):
->    arm64: dts: meson: a1: reorder includes to keep them sorted
->    arm64: dts: meson: a1: remove extra empty line before reset node
->    arm64: dts: meson: a1: remove the unnecessary 'okay' status pwrc value
->    arm64: dts: meson: a1: reorder gpio_intc node definition
->    arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
->    arm64: dts: meson: a1: support USB controller in OTG mode
->    arm64: dts: introduce Amlogic AD402 reference board based on A113L SoC
->    dt-bindings: arm: amlogic: add Amlogic AD402 bindings
-> 
-> George Stark (1):
->    arm64: dts: meson: a1: add saradc definition
-> 
-> Jan Dakinevich (1):
->    arm64: dts: meson: a1: add eMMC controller and its pins
-> 
-> Martin Kurbanov (1):
->    arm64: dts: meson: a1: introduce SPI Flash Controller
-> 
-> Oleg Lyovin (1):
->    arm64: dts: meson: a1: introduce UART_AO mux definitions
-> 
->   .../devicetree/bindings/arm/amlogic.yaml      |   1 +
->   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->   .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 145 ++++++++++++
->   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 213 +++++++++++++++++-
->   4 files changed, 348 insertions(+), 12 deletions(-)
->   create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
-> 
-
-For the whole serie:
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> index 768d0ed78dbe..a49aa62e3f9f 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+> @@ -1908,6 +1908,19 @@ sd_emmc_c: mmc@7000 {
+>   				resets = <&reset RESET_SD_EMMC_C>;
+>   			};
+>   
+> +			nfc: nand-controller@7800 {
+> +				compatible = "amlogic,meson-axg-nfc";
+> +				reg = <0x0 0x7800 0x0 0x100>,
+> +				      <0x0 0x7000 0x0 0x800>;
+> +				reg-names = "nfc", "emmc";
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
+> +				clocks = <&clkc CLKID_SD_EMMC_C>,
+> +					 <&clkc CLKID_FCLK_DIV2>;
+> +				clock-names = "core", "device";
+> +			};
+> +
+>   			usb2_phy1: phy@9020 {
+>   				compatible = "amlogic,meson-gxl-usb2-phy";
+>   				#phy-cells = <0>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
-
-Thanks !
-
-Neil
