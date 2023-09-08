@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 502BD7983B6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 10:09:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9BAA7983B8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 10:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240201AbjIHIJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 04:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36978 "EHLO
+        id S239959AbjIHIKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 04:10:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239556AbjIHIJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 04:09:45 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5681BF1
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 01:09:39 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9a9f139cd94so114611066b.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 01:09:39 -0700 (PDT)
+        with ESMTP id S232809AbjIHIKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 04:10:21 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADF241BD8
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 01:10:17 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2bcb89b4767so30072081fa.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 01:10:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694160578; x=1694765378; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694160616; x=1694765416; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cetrW0aO/DqUan7YxONhy9yIk4uiWneu47zfXJU1pZc=;
-        b=rs0WNdJCS0Zi5W9EBMOOYCqAlXq5PllnPBLJ54ylNhxmUp1ZlMVfTbR7ftpjxJCm3e
-         wULtKJuc+MvrGKihDLQBGT4utZdl1Hf0+7QRufALZrBs54Uf+qGBdQpUJqbRYf/gcUV2
-         qmoxScHg6rkeZI0XtFq0as1a6jDXKOH61PlM9WSRrpr6fXsIxr/kAIR+16Y4Za4YPNlw
-         VRSgbFJ/lRdeXF9Euj8bfnYj6jwhWCVeiS5hoLu+d6CsaCZmg0YAOh9liGmq84cWC9bp
-         JgVrZiYDsM6LYVOWTl5goqXAIrY7VNoiCmC/avrg1J/+PJPjBhFuamwvnTh6kFEVOy8j
-         jGSQ==
+        bh=TOWQ2ESsosOqw5vvZj/k+8ICArSpB+tBiMgWjf414VE=;
+        b=GdwbFDBwU7kYPWc8Ny3nUhBv8ByczhIvP7HcGaSybyxOLv156VdRRS8DERInpx68LT
+         Gg6xD1DZYfzcEZr3i8gE12oPeyGT00aiBawCoOcKqK+e9ymbwYHKLOdnDEqPlXiteRqK
+         zjjisCDE9tc8JkXoGdvuJ0uyL558b3TX1qMATa3YG/Ss8XBBqN7cXFAcCR52BH6MHlT4
+         ZcWJ/k0U7RULiOzHOAIpGSE5XtJ4VY/4zPs2YKPRRn88VhRDXC89Xv5pscGD4d8ottVq
+         u9VgqkAo4qfCFUzSuKRLi+Bvu225sJ09pFAwsjyFZn1ggMPA7VC05SaipS219+C8iX0O
+         uJLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694160578; x=1694765378;
+        d=1e100.net; s=20230601; t=1694160616; x=1694765416;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cetrW0aO/DqUan7YxONhy9yIk4uiWneu47zfXJU1pZc=;
-        b=biecaE0dndoyLyIAfVOSaOErHBeRDGtn6XIP+CbaxGaIf91UbwbfJeDJn4rQjGE178
-         bD6mD+6dm4uSqQltQt7l5z6eOh029OrUEJuznvBGysDI9WMFLw4cviwyHyd+wPE9ZVa3
-         YqjkYenJ+c2t+cSdOJbFcjsXJhA89A95GHIA6OXc/8TO1lz+qZ1tz05QKKs2TUBwm7Kk
-         knBU8AjCAN/cyJtSX1zSVmACpvZqisZNIa7uocoj0HAsFBEl5boFEesdhDplkEUXaIHZ
-         QEWW9wULchDvMsDG0raV4FbCNwiGk5NuM0HRUnpiu/E8kPWYjoVWkMXlPJn1h53uLtLq
-         H/5Q==
-X-Gm-Message-State: AOJu0Yyh3tWNYRKypTXN7WOKaBVgEAhSSFGW+tVxEZkHYTUZaGBNqElw
-        qKQTsNLR8hAQZ2z4tFbt6DhBkA==
-X-Google-Smtp-Source: AGHT+IFkZVbjEwrZrqOgkla2rGbwmHwld7r/S3G8XlAkLjzU7+cvGb5LQpye0D0qUkkSWxxofK6JWA==
-X-Received: by 2002:a17:906:769a:b0:9a9:e3be:1310 with SMTP id o26-20020a170906769a00b009a9e3be1310mr1140918ejm.53.1694160577883;
-        Fri, 08 Sep 2023 01:09:37 -0700 (PDT)
+        bh=TOWQ2ESsosOqw5vvZj/k+8ICArSpB+tBiMgWjf414VE=;
+        b=XOffJsc44m+g9RMbci4sFonQH/iAwDxu1GNdTfg5JFNZG3jwJ25krvWhoMOuYmsRTY
+         bPdcQ6DZHUPTlajYEzB6tYCior8qMDZiJq8+wcEw6fXWwrIO2xAP2ELBQK4TVnpHQV0z
+         hj+5ocZmRW85cDBHMODAQr7zaZlT5kUAfRdUZ+pHrQlF1iF6MBx0MRvOrH5da+DwjWiS
+         FHJOM3JG6D8+AEvESOWxlXHBm7q1fWUA44quZ49ZRbjfE7HsHuZo5OfEtwrEM1j8c1SR
+         GBhIwoq4+LBtQ98OdGm0JjKkiRRBCDRYwH21aYh0XKIEiTgqtN4I2DgcCc5PgjbJ+icJ
+         i+yQ==
+X-Gm-Message-State: AOJu0YyejpWGcIOzjRsDdu3VDbTxqdQzP56YOcD7dBpt07z+DKSlmtdV
+        +/btJQ1ZcHw+SWXLqy+hpXpTUQ==
+X-Google-Smtp-Source: AGHT+IGYaS8a3hgXz1ASZAnOXKbQ2NNqou9IH3AWLjI5UBthZque247+3f6pMjJyfv/HrQakyEjJUA==
+X-Received: by 2002:a05:651c:201:b0:2b6:eb68:fe76 with SMTP id y1-20020a05651c020100b002b6eb68fe76mr1151251ljn.25.1694160615888;
+        Fri, 08 Sep 2023 01:10:15 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id k12-20020a17090646cc00b0099caf5bed64sm681121ejs.57.2023.09.08.01.09.35
+        by smtp.gmail.com with ESMTPSA id mb18-20020a170906eb1200b00997cce73cc7sm675164ejb.29.2023.09.08.01.10.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 01:09:37 -0700 (PDT)
-Message-ID: <27645200-3d1e-0a2d-45ba-178e1a16e010@linaro.org>
-Date:   Fri, 8 Sep 2023 10:09:34 +0200
+        Fri, 08 Sep 2023 01:10:15 -0700 (PDT)
+Message-ID: <59626d1b-8407-9370-21ab-bf15853f24c0@linaro.org>
+Date:   Fri, 8 Sep 2023 10:10:12 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH 3/6] dt-bindings: interrupt-controller: qcom,pdc: document
- qcom,sm4450-pdc
+Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db
+ node
 Content-Language: en-US
 To:     Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
@@ -67,16 +67,16 @@ Cc:     robimarko@gmail.com, quic_gurus@quicinc.com,
         quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
         quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
         quic_aiquny@quicinc.com, kernel@quicinc.com,
-        quic_bjorande@quicinc.com
+        quic_bjorande@quicinc.com, Ajit Pandey <quic_ajipan@quicinc.com>
 References: <20230908065847.28382-1-quic_tengfan@quicinc.com>
- <20230908065847.28382-4-quic_tengfan@quicinc.com>
+ <20230908065847.28382-5-quic_tengfan@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230908065847.28382-4-quic_tengfan@quicinc.com>
+In-Reply-To: <20230908065847.28382-5-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,12 +85,65 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08/09/2023 08:58, Tengfei Fan wrote:
-> Add SM4450 PDC, which will used in SM4450 DTS.
+> From: Ajit Pandey <quic_ajipan@quicinc.com>
 > 
+> Add apps_rsc node and cmd_db memory region for sm4450.
+> 
+> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
 > Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 > ---
+>  arch/arm64/boot/dts/qcom/sm4450.dtsi | 34 ++++++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> index c4e5b33f5169..eb544d875806 100644
+> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
+> @@ -5,6 +5,7 @@
+>  
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
+>  
+>  / {
+>  	interrupt-parent = <&intc>;
+> @@ -328,6 +329,18 @@
+>  		};
+>  	};
+>  
+> +	reserved_memory: reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		aop_cmd_db_mem: cmd-db@80860000 {
+> +			compatible = "qcom,cmd-db";
+> +			reg = <0x0 0x80860000 0x0 0x20000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+>  	soc: soc@0 {
+>  		#address-cells = <2>;
+>  		#size-cells = <2>;
+> @@ -335,6 +348,27 @@
+>  		dma-ranges = <0 0 0 0 0x10 0>;
+>  		compatible = "simple-bus";
+>  
+> +		apps_rsc: rsc@17a00000 {
+> +			label = "apps_rsc";
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			compatible = "qcom,rpmh-rsc";
+
+compatible is always the first property. reg/reg-names/ranges follow.
+
+
 
 Best regards,
 Krzysztof
