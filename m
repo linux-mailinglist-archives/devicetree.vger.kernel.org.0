@@ -2,147 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B23A97984DF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 11:35:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7EC37984EB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 11:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240428AbjIHJfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 05:35:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
+        id S235414AbjIHJjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 05:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239470AbjIHJfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 05:35:53 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1011BEA
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 02:35:49 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31c63cd4ec2so1749783f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 02:35:49 -0700 (PDT)
+        with ESMTP id S231948AbjIHJjY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 05:39:24 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B1C211B;
+        Fri,  8 Sep 2023 02:39:20 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2ba1e9b1fa9so32670121fa.3;
+        Fri, 08 Sep 2023 02:39:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694165747; x=1694770547; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
-         :references:cc:to:content-language:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MDWO1CprarscYiMO7KIO/3r5MOCUC0rXrTfcuABCa8E=;
-        b=CxDV/aai0g0AyfolvPTjrgDApQUOr0JtJAkeDDBqOI4t4UDSgckxLbUol8zdQQD+hO
-         ozRRKiCVn13rEDEnD9rRpdD8SzCbaUD5Vq8ifJyhNaUQO11MjA8ZARYexwZrhzG9M10L
-         3CdLEYnU4y43YzrHYPdaspqmcMXR8qG7Mfoj4LlE9AAhDoTroQKVuIdsqtJuFlWjADZN
-         wUQDgKc/yna+yQblhjeSR1zsRQTrfJrTdkHxt9ub6zqjfwbK0WC90BAdEf6dZ8G3vmLY
-         g6OiOzW2F7JhfgK2npFBXizEmC/wOHyDwMqnA4gzPWeRbN9aUaRjMpvvB0rgF6fwwNjU
-         BkQQ==
+        d=gmail.com; s=20221208; t=1694165959; x=1694770759; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gmNsFLpdzT7HD0s5ZXq/w5dV3nJ64Nz1IklRYrFXDFk=;
+        b=sLiYYawHkMLUmsw1rFuniHXuVxRaeb8Z1uaFDCWB/ScmzAWRfluD64BL/JahHVU5f5
+         mDO5I9OHm2p2DG3Sq9Shwf51K8C1CoYNMSBnazrXlV6WzbfBPycXNC4Jd51XsH/lspfL
+         GOrVeSTwC9Yn/yNAcX28ONLPvB6VkD8rwSgz+DdABGl2u3WaqVGCLU02DY8VQQc7bpTE
+         etpwjLauI9uK8GblgOxayhxyTcIMlK8T4frLRCT9xwvoNPAoiWejyXHPTu4pIxNBEgxD
+         GY/M3J6h9Fey17jec8sFHV71VZrtxrdExZEDiyzz2K/UOJ7YREtuMuEaEYklFyX+WyYy
+         oKkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694165747; x=1694770547;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt:from
-         :references:cc:to:content-language:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MDWO1CprarscYiMO7KIO/3r5MOCUC0rXrTfcuABCa8E=;
-        b=PzcWrgQJGVWWOplpxvkHCB8pzTqHljmg3cBGaiVhdAlNu1d5lbNiEMhHrAAW15ocul
-         rP5e+n3d0246mZEwef0dZp0gz0evNDvqL/dLq9RBcLzpE7dYQI7nCqhK9tcADm0HQ3kF
-         cAvFneP7I15Ffvv82kvYnmcp51RAAonzQ/V/jJnj2YlBxoJj7D+MrLEBYXSfxR1Hk8G4
-         Ayz9XyEY9E5qapQadSwsjYNoYyQdHycr3+S2Zk4CLsP2HWsv8WA8mNQh9CLwr+1GjKSc
-         /VftVRQ80ORs5Gz5l3QCaKebTbOS2pn+n3f8JsYG5EzG3ViZLH/AyDZdrlHW+nRNA15Z
-         mG0g==
-X-Gm-Message-State: AOJu0Yy5WVdtqnVoN4cM3N1O+TwwZZysDMrmm4usEf1jl/2C/cHyZdmc
-        UPYSGrc5vCxo+1yeDvfolDc1Og==
-X-Google-Smtp-Source: AGHT+IG4h17WeD3lNsGPG2k5F6+NcDioFo8R/AhRZDoLB8HkhB8Kbdgh9YBWmLOi8C3EnX4o7d2Q/g==
-X-Received: by 2002:adf:f48e:0:b0:31a:e73f:3fe7 with SMTP id l14-20020adff48e000000b0031ae73f3fe7mr1663036wro.3.1694165747480;
-        Fri, 08 Sep 2023 02:35:47 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id x8-20020a05600c21c800b003fed78b03b4sm1490491wmj.20.2023.09.08.02.35.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 02:35:47 -0700 (PDT)
-Message-ID: <861a1baa-bbdb-49c2-b732-35c16f5e927e@linaro.org>
-Date:   Fri, 8 Sep 2023 11:35:44 +0200
+        d=1e100.net; s=20230601; t=1694165959; x=1694770759;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gmNsFLpdzT7HD0s5ZXq/w5dV3nJ64Nz1IklRYrFXDFk=;
+        b=HHz5R3eb7P1zUU5jxZHvCSxkYG6JpiVcdtfRM2BbeYuqleCqwEsgPLFPTorLq3s5M8
+         7AU1F7sqDAFFqCzb7+Qai05M4RNOi0gXLQwVAN6wteIV4GPRb6V3IAiAwq7zFLYWrwJ9
+         fjcrBhpEPd1/jE1AYvcK/F4OsaCexC459+nFgRltUUZXa0v5un/hkiHlWwMuYqSA8P25
+         IT5FQjXW11S4uMKescn5BQ8kWnESjiR0xFh9Qn/511RiBfbaHcMrgvLKA+7VY9Gd5Jqy
+         2kftbRnhEkaUkHRdXVv/rirW6xiqRQfpjiiI0eZhqepHGTf2Q/SZkZmtD40qHaWSia5v
+         5AVg==
+X-Gm-Message-State: AOJu0Yz0Mc19hzcQBPEFO1Qh6q6iOVwD1ARBCavIYTWvF/rr1DRNSlre
+        IFqEaEPAS3eKODGvJZSPIr/JGbko6N4oawJI0/0=
+X-Google-Smtp-Source: AGHT+IFjfGA9NdJS6OhiKH64cF2dg48YPknpqmQwImslm67FtorC5iz65zDqt4aJedeew0m5WTNkHCX1TLGmUzaOvdw=
+X-Received: by 2002:a2e:9b4b:0:b0:2bd:d34:f892 with SMTP id
+ o11-20020a2e9b4b000000b002bd0d34f892mr1397188ljj.3.1694165958609; Fri, 08 Sep
+ 2023 02:39:18 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] scsi: ufs: qcom: dt-bindings: Add MCQ ESI property
-Content-Language: en-US, fr
-To:     Ziqi Chen <quic_ziqichen@quicinc.com>, quic_asutoshd@quicinc.com,
-        quic_cang@quicinc.com, bvanassche@acm.org, mani@kernel.org,
-        adrian.hunter@intel.com, beanhuo@micron.com, avri.altman@wdc.com,
-        junwoo80.lee@samsung.com, martin.petersen@oracle.com,
-        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com
-Cc:     linux-scsi@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <1694163203-39123-1-git-send-email-quic_ziqichen@quicinc.com>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <1694163203-39123-1-git-send-email-quic_ziqichen@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20230907214012.74978-1-sjg@chromium.org> <20230907214012.74978-2-sjg@chromium.org>
+In-Reply-To: <20230907214012.74978-2-sjg@chromium.org>
+From:   Peter Robinson <pbrobinson@gmail.com>
+Date:   Fri, 8 Sep 2023 10:39:07 +0100
+Message-ID: <CALeDE9NwvFRoq7_WQdYAPcurRwOpenEsYt+PKrckaR6asB2TdQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] schemas: memory: Add ECC properties
+To:     Simon Glass <sjg@chromium.org>
+Cc:     devicetree@vger.kernel.org, Dhaval Sharma <dhaval@rivosinc.com>,
+        Guo Dong <guo.dong@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-acpi@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Maximilian Brune <maximilian.brune@9elements.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Tom Rini <trini@konsulko.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>,
+        Gua Guo <gua.guo@intel.com>, ron minnich <rminnich@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu, Sep 7, 2023 at 11:57=E2=80=AFPM Simon Glass <sjg@chromium.org> wrot=
+e:
+>
+> Some memories provide ECC detection and/or correction. For software which
+> wants to check memory, it is helpful to see which regions provide this
+> feature.
+>
+> Add this as a property of the /memory nodes, since it presumably follows
+> the hardware-level memory system.
 
-On 08/09/2023 10:53, Ziqi Chen wrote:
-> Document the description for the qcom,esi-affinity-mask.
+Have these been accepted upstream? A grep of bindings in the upstream
+kernel I don't see them.
 
-Do you plan to add all the other MCQ and ESI properties ? (reg, reg-names, msi-parent)
-
-Thanks,
-Neil
-
-> 
-> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+> Signed-off-by: Simon Glass <sjg@chromium.org>
 > ---
->   Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index bdfa86a..323595f 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -97,6 +97,10 @@ properties:
->       description:
->         GPIO connected to the RESET pin of the UFS memory device.
->   
-> +  qcom,esi-affinity-mask:
-> +    description:
-> +       UFS MCQ ESI affinity mask. Affine ESI on registration according to this CPU mask.
-> +
->   required:
->     - compatible
->     - reg
-
+>
+> Changes in v6:
+> - Use a number of bits instead of a string property
+> - Fix inidcates typo
+>
+> Changes in v5:
+> - Redo to make this property specific to ECC
+> - Provide properties both for detection and correction
+>
+> Changes in v3:
+> - Add new patch to update the /memory nodes
+>
+>  dtschema/schemas/memory.yaml | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+>
+> diff --git a/dtschema/schemas/memory.yaml b/dtschema/schemas/memory.yaml
+> index 1d74410..1a48b1c 100644
+> --- a/dtschema/schemas/memory.yaml
+> +++ b/dtschema/schemas/memory.yaml
+> @@ -31,10 +31,21 @@ patternProperties:
+>
+>        numa-node-id:
+>          $ref: types.yaml#/definitions/uint32
+> -        description:
+> +        description: |
+>            For the purpose of identification, each NUMA node is associate=
+d with
+>            a unique token known as a node id.
+> -
+> +      ecc-detection-bits:
+> +        default: 0
+> +        description: |
+> +          If present, this indicates the number of bits of memory error =
+which
+> +          can be detected and reported by the Error-Correction Code (ECC=
+) memory
+> +          subsystem (typically 0, 1 or 2).
+> +      ecc-correction-bits:
+> +        default: 0
+> +        description: |
+> +          If present, this indicates the number of bits of memory error =
+which
+> +          can be corrected by the Error-Correction Code (ECC) memory sub=
+system
+> +          (typically 0, 1 or 2).
+>
+>      required:
+>        - device_type
+> --
+> 2.42.0.283.g2d96d420d3-goog
+>
