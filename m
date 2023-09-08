@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE69A798AC5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 18:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8802798AC6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 18:42:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbjIHQmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 12:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53146 "EHLO
+        id S244579AbjIHQmL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 12:42:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240246AbjIHQmK (ORCPT
+        with ESMTP id S243809AbjIHQmK (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 12:42:10 -0400
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E171FCD
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC8D01FD5
         for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 09:42:06 -0700 (PDT)
-Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3a5a7e7cd61so1168307b6e.0
+Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-6bf01bcb1aeso1684196a34.3
         for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 09:42:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694191325; x=1694796125; darn=vger.kernel.org;
+        d=gmail.com; s=20221208; t=1694191326; x=1694796126; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
-        b=qNxzfRsKpvftRnKgaYgcLtm+NeQgMHQb4lrguGK+y/oAffYLKfYCWD9P+zaJZx1q9f
-         Q+51jmL0T6KImlm0g9ibmnxQTxGn+F2maDzXwQSLIUFLOjWKONsU6tt7GsLDR/ppBbzD
-         pRIMOPUjh90zchql/7msLR5KBTgk/fCdGzFqSa3mBFxV+sQkkTz+01A4CkcfN3JTlaK/
-         FAgEVhDMmZis066g4wspQ2PkSTXcXW/RQDipIEAbOaolmGCIt3Oj3lXxYn31d2YaWfwX
-         /kBbuklUgcU7/eZZtNfwy5XwggX6SsF2Nq3ukcQgsIcJEdKandQvPpwm/jg/CgkgYtG+
-         GG+w==
+        bh=O6IXreXlyeceU3AH7Yf5LWKhoPgVW8gHUfj1oR637g0=;
+        b=KFTlSnFCbalJKfv4qfTxzeHv6O7rj79ZxZzU6ZcH/kf0vx1V/qkH8WAzTbrbMcAdOF
+         z3PF5XZqPpJPVm0TA00Qwy1hDHxktjUgP9jwpfqEX0bRpLeHvkTaKbeB5oZkfrdgLkr/
+         pLfgBtv2QhKEFdPg7sndk4RIYDz14pETTgDnCI51egm5Fg4gE08vE7o4aPDsvbgtQHHU
+         rKigKaSMB0FPgEicNz1B8QZoP8D8Rf9aosEm3C/QqFpIyutV3fADO8/TbuEsqfUna72e
+         /7VEqJ9pKNHjSV4uY1/oBKmLR+4KLgF51GQ4LEquUpcyK9z3P8aYO5//0ZxZGMJLOgYR
+         ft4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694191325; x=1694796125;
+        d=1e100.net; s=20230601; t=1694191326; x=1694796126;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
-        b=FK2b2BVm9Bkzeg02hlD0vfnHDElMMBGJGKtkZFBXofHgfkyNHtE072eznAe9x6isos
-         P8BJfVI5TxU1jha06dz99i0tDCn/S92H0a8+zToKqnioTehe0geTd9ZPH5Kb2ETKvBdu
-         cG45PnzeuBpaMhxZuRU8nTPFuxJLrrV+rcyzXlDgJOIitsKMTb7QODbxqlbD4VIVrThJ
-         FO6WApSIB/1f3h9gtbsdjHkD6I6Apyof5EQ9n7KvCJ0fKTWQuwUcJZFb7URJeaGFpBJS
-         DRdSuH+ERdtw5ZrFKeaBzO0Pwv4XQxjTMl3C1wcJCktO1RNLBo9uQRSt217+XUCpHvsm
-         gjyw==
-X-Gm-Message-State: AOJu0Yy7MMfEcW0hWgJDYLjJAJP8zAGYhaY6hBeDRXK+/HMi39h1NIp1
-        /mrNdyUKx+XKTMLsY8F7gYYhr0v47ZmtWw==
-X-Google-Smtp-Source: AGHT+IF6Lpd+NS4yfIzJuWjERArKjnYsYK+0QZitLPztEyoOHyum17h8Irht+MCMyWQc4JRyZ3htig==
-X-Received: by 2002:a05:6808:152b:b0:3ab:7142:a5f2 with SMTP id u43-20020a056808152b00b003ab7142a5f2mr949103oiw.25.1694191325406;
-        Fri, 08 Sep 2023 09:42:05 -0700 (PDT)
+        bh=O6IXreXlyeceU3AH7Yf5LWKhoPgVW8gHUfj1oR637g0=;
+        b=di97oyNnCcOW8K7ZeL1uNxLSll5TiQLlSEFyBqZTL3kVW/GDMVZZN859qGd9fpxlQN
+         A6PGS7wE24ADvycnxCaLItYFWqQzGdyPe/P/vKpb+wHkmLYLzmc+gc/Fh6mkUG6lWXzV
+         KE35cTD7nMdHqBuO9FGZTSXUvUmmwjv+c6W56UJsM1Qib6Sw4QtbTFTz+duQlASNhFE7
+         zOqU7tLAPV8seiCwy7tc2HJTBhxwxEVi1puO0EKIrsHaPoazQEckmPI78Ed5bWtBTXrC
+         qs1MFryQreMS1TM1hFvcPXpdS4g0p5/NLF8qgsapc4xYs3fRQzvveIZNZAqXDTHtF3tn
+         pi3Q==
+X-Gm-Message-State: AOJu0Yw0SytvRcSKggEmlqtMmsvCbrHVdwP+iiQ0h1/HgEyJzit5uGW5
+        zcF+1oSgGtHyHWxevvElu3OluQXuaS7zOQ==
+X-Google-Smtp-Source: AGHT+IEyiJGlVUrfYNhf0bUCf9ra7RfpOB5794VOAFNK99G6Th7EXQq01Ve/4kXKoHw2cfGWmQ923g==
+X-Received: by 2002:a9d:6a11:0:b0:6bc:88da:af44 with SMTP id g17-20020a9d6a11000000b006bc88daaf44mr3280303otn.6.1694191326042;
+        Fri, 08 Sep 2023 09:42:06 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
-        by smtp.gmail.com with ESMTPSA id d14-20020a05683018ee00b006b8c277be12sm839485otf.8.2023.09.08.09.42.04
+        by smtp.gmail.com with ESMTPSA id d14-20020a05683018ee00b006b8c277be12sm839485otf.8.2023.09.08.09.42.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 08 Sep 2023 09:42:05 -0700 (PDT)
 From:   Chris Morgan <macroalpha82@gmail.com>
@@ -55,9 +55,9 @@ Cc:     linux-rockchip@lists.infradead.org, jagan@edgeble.ai,
         heiko@sntech.de, conor+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 2/3] arm64: dts: rockchip: add USB2 to rk3588s-indiedroid
-Date:   Fri,  8 Sep 2023 11:41:55 -0500
-Message-Id: <20230908164156.2846-3-macroalpha82@gmail.com>
+Subject: [PATCH 3/3] arm64: dts: rockchip: Add saradc node to rk3588s-indiedroid-nova
+Date:   Fri,  8 Sep 2023 11:41:56 -0500
+Message-Id: <20230908164156.2846-4-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230908164156.2846-1-macroalpha82@gmail.com>
 References: <20230908164156.2846-1-macroalpha82@gmail.com>
@@ -75,11 +75,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Enable USB2 (EHCI and OCHI mode) support for the Indiedroid Nova. This
-adds support for USB for the 4 full size USB-A ports. Note that USB 3
-(the two blue full-size USB-A ports) is still outstanding, as is
-support for USB on the USB-C ports. The controller is not yet supported
-for these ports.
+Add ADC support for the Indiedroid Nova, as well as the two ADC buttons
+found on the device. The buttons are documented as "boot" and
+"recovery". The boot button is used by the bootloader to boot into USB
+recovery mode. The recovery button use is currently unknown.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
@@ -87,54 +86,64 @@ Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
  1 file changed, 34 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index 646f49cc9e53..1e2336d3065b 100644
+index 1e2336d3065b..4c2d662d9c97 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -751,6 +751,24 @@ &tsadc {
- 	status = "okay";
- };
+@@ -3,6 +3,7 @@
+ /dts-v1/;
  
-+&u2phy2 {
-+	status = "okay";
-+};
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/pinctrl/rockchip.h>
+ #include <dt-bindings/usb/pd.h>
+ #include "rk3588s.dtsi"
+@@ -11,6 +12,34 @@ / {
+ 	model = "Indiedroid Nova";
+ 	compatible = "indiedroid,nova", "rockchip,rk3588s";
+ 
++	adc_keys0 {
++		compatible = "adc-keys";
++		io-channel-names = "buttons";
++		io-channels = <&saradc 0>;
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
 +
-+&u2phy2_host {
-+	phy-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
++		button-boot {
++			label = "boot";
++			linux,code = <KEY_PROG1>;
++			press-threshold-microvolt = <18000>;
++		};
++	};
 +
-+&u2phy3 {
-+	status = "okay";
-+};
++	adc_keys1 {
++		compatible = "adc-keys";
++		io-channel-names = "buttons";
++		io-channels = <&saradc 1>;
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
 +
-+&u2phy3_host {
-+	phy-supply = <&vcc5v0_usb>;
-+	status = "okay";
-+};
++		button-recovery {
++			label = "recovery";
++			linux,code = <KEY_PROG2>;
++			press-threshold-microvolt = <18000>;
++		};
++	};
 +
- &uart2 {
- 	pinctrl-0 = <&uart2m0_xfer>;
- 	status = "okay";
-@@ -775,3 +793,19 @@ bluetooth {
- 		pinctrl-names = "default";
+ 	aliases {
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+@@ -410,6 +439,11 @@ typec5v_pwren: typec5v-pwren {
  	};
  };
-+
-+&usb_host0_ehci {
+ 
++&saradc {
++	vref-supply = <&vcca_1v8_s0>;
 +	status = "okay";
 +};
 +
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
+ /* HS400 modes seemed to cause io errors. */
+ &sdhci {
+ 	bus-width = <8>;
 -- 
 2.34.1
 
