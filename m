@@ -2,63 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADA17798693
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 13:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39583798704
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241518AbjIHLqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 07:46:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60202 "EHLO
+        id S236849AbjIHMal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 08:30:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239825AbjIHLqB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 07:46:01 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B961BE7;
-        Fri,  8 Sep 2023 04:45:58 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0F1DC43395;
-        Fri,  8 Sep 2023 11:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694173557;
-        bh=aODHL6mbNW0WLyQo2/gZhYlzuWIMAbhDYth1ivLfiJs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BPEtcWZrdC/o+gbIBKtuvpPZ1GJmKxqF8z7Tz15gNxu4UNu+zchX6c78qd3GRiBv6
-         4admkoRJfGJ1JRASdiZVyzOAzbVD15sV9Au+hZXXr1Ki+RGk0otXyHn9GIHe3tpviv
-         xuPclUkDl/eHCxBguoAm9ALCQdoAtY9kgQ3qOjO8bNIkVsaB9sHidwYoSs3pIYqzHs
-         hFPvYxIicGPwDlT3cylZmTxfyJ8t+rJsH+XXd6eM9sKjPP7N42uE9LdASVzOz/1lMI
-         MWVhybkcBY41VIQkAT5IOwzG0RmDpCZ6nw4VpoSnrr6ETXoZhycu+mxWc/zEOPAXj3
-         tH2as6Q8nzqZA==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2bd0d19a304so34742501fa.1;
-        Fri, 08 Sep 2023 04:45:57 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzGCHJqf/4IVog+SPJODWRYYakHzojvldIfx+9pjAHGoZVUAJR+
-        SeHzsKekjc90+GApEWdh8ynhnt9DZbcmoAdqYA==
-X-Google-Smtp-Source: AGHT+IGGKjJmemgNHpyI56G1+q2fUiJV4ppgzoy9LEO/x9T0+wAy75B+QGXgy5XYMiqRpu3pH/RANsVfOlTDWayxIDc=
-X-Received: by 2002:a2e:7801:0:b0:2bc:b0c3:9e8d with SMTP id
- t1-20020a2e7801000000b002bcb0c39e8dmr1610795ljc.41.1694173555929; Fri, 08 Sep
- 2023 04:45:55 -0700 (PDT)
+        with ESMTP id S232080AbjIHMak (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:30:40 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14C01BF1
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:30:36 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31f7400cb74so1286923f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:30:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694176235; x=1694781035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
+        b=DPMdLKwOxJ4W+SGlkdJIWEfaxIKK2Esw9VqiW/faIlehU4HC1R4q7+OWHaMqBvbSE8
+         1jBeZoZ4f5EEMum7u8/q5xEPTAE/a7W9v0utaOZHyVIh4bfW063VNandEEMXAMdEo3Ll
+         ch4akW3IWwpMCJnL79z4kFtTg6pf3OQCuMTniYuBlVhVcDam8VvICueaMYHwm2Sd0Rx4
+         ATjx7va19AvUiMCB4ynRw5RQ2G0dGoyYH+DCQwDDN4hksUOZuRtJ5TSYcSthApqgCQru
+         ZVuDDkY9LWaPDiVddJTaWs3YbAZUbvHx6fTiNB8gNNriaApHxhPnIZaTXn7nWzXSv6Rt
+         BZJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694176235; x=1694781035;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
+        b=MoEj3SsURfnpVO9wv6HANVtQCfE4ofZFaFDoW2EYZmaJpngK+ru7fjmJFZt6SUrik9
+         w+x7oYWVN2blvQknye2c25CkA+CBF3FZVqXV1dFX0B+dtfjRjaUt2NoxuzDoGJyEONCv
+         g4Isae9XxJmlg0zrr5+D6h79WIBoWO0JITAeFlbTIhuZiqdeA/FPFc70D3bUJp9NMQFc
+         9hY0Cdizk9dgKdWpg00skMJGK3Zhey5jAb88nzzq5HGQJglhYb7kUbCUo0FFhESqlP/9
+         Ii552oz2M4B4uVTR2jEkp8Be7EC0Xu7IIUzBygfGqZdCAWR7y3kH8KJn5bHsZ0Q0068b
+         NRcA==
+X-Gm-Message-State: AOJu0YyHH66ebx3GYc1CQJD7De1OHc6KRMretRrQugx+F84kWqUQWA3U
+        2Ow972Y1EQsyhy/5urpcMl0LHw==
+X-Google-Smtp-Source: AGHT+IGfiprw2HlOSI7C7qrMQSp2u5C9t9PCNm2p6AHs9JBK00uKP0Ve+a8f9jOa1yEkdzsQTDLAIQ==
+X-Received: by 2002:adf:f8d2:0:b0:31c:81ef:f90a with SMTP id f18-20020adff8d2000000b0031c81eff90amr1715968wrq.47.1694176235144;
+        Fri, 08 Sep 2023 05:30:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
+        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0031c71693449sm2031144wrm.1.2023.09.08.05.30.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Sep 2023 05:30:34 -0700 (PDT)
+Message-ID: <00436bd2-5f3c-4fd6-9db8-799c541c6a33@linaro.org>
+Date:   Fri, 8 Sep 2023 14:30:33 +0200
 MIME-Version: 1.0
-References: <20230907214012.74978-1-sjg@chromium.org> <20230907214012.74978-2-sjg@chromium.org>
-In-Reply-To: <20230907214012.74978-2-sjg@chromium.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 8 Sep 2023 06:45:43 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+N1=XuZqFsVEgBeVpJzTBJRJ+w76roOUBtbP2Y8f3bEw@mail.gmail.com>
-Message-ID: <CAL_Jsq+N1=XuZqFsVEgBeVpJzTBJRJ+w76roOUBtbP2Y8f3bEw@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] schemas: memory: Add ECC properties
-To:     Simon Glass <sjg@chromium.org>
-Cc:     devicetree@vger.kernel.org, Dhaval Sharma <dhaval@rivosinc.com>,
-        Guo Dong <guo.dong@intel.com>,
-        U-Boot Mailing List <u-boot@lists.denx.de>,
-        Yunhui Cui <cuiyunhui@bytedance.com>,
-        Chiu Chasel <chasel.chiu@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-acpi@vger.kernel.org,
-        Maximilian Brune <maximilian.brune@9elements.com>,
-        Ard Biesheuvel <ardb@kernel.org>,
-        Tom Rini <trini@konsulko.com>,
-        Lean Sheng Tan <sheng.tan@9elements.com>,
-        Gua Guo <gua.guo@intel.com>, ron minnich <rminnich@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla Thunderbird
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+Content-Language: en-US, fr
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230815092751.1791195-1-christianshewitt@gmail.com>
+ <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,74 +106,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 7, 2023 at 4:40=E2=80=AFPM Simon Glass <sjg@chromium.org> wrote=
-:
->
-> Some memories provide ECC detection and/or correction. For software which
-> wants to check memory, it is helpful to see which regions provide this
-> feature.
->
-> Add this as a property of the /memory nodes, since it presumably follows
-> the hardware-level memory system.
->
-> Signed-off-by: Simon Glass <sjg@chromium.org>
-> ---
->
-> Changes in v6:
-> - Use a number of bits instead of a string property
-> - Fix inidcates typo
->
-> Changes in v5:
-> - Redo to make this property specific to ECC
-> - Provide properties both for detection and correction
->
-> Changes in v3:
-> - Add new patch to update the /memory nodes
->
->  dtschema/schemas/memory.yaml | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
->
-> diff --git a/dtschema/schemas/memory.yaml b/dtschema/schemas/memory.yaml
-> index 1d74410..1a48b1c 100644
-> --- a/dtschema/schemas/memory.yaml
-> +++ b/dtschema/schemas/memory.yaml
-> @@ -31,10 +31,21 @@ patternProperties:
->
->        numa-node-id:
->          $ref: types.yaml#/definitions/uint32
-> -        description:
-> +        description: |
+Hi,
 
-Why? '|' is not needed for any of these.
+On 15/08/2023 11:37, Jerome Brunet wrote:
+> 
+> On Tue 15 Aug 2023 at 09:27, Christian Hewitt <christianshewitt@gmail.com> wrote:
+> 
+>> This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
+>> reference boards. Few people likely have the original reference boards which have
+>> extra audio capabilities, but the device-trees are widely [ab]used by users with
+>> Android set-top boxes whose hardware is copy/pasted from the reference designs to
+>> get working installs. Adding basic audio support does no harm to the real boards
+>> and helps the secondary cause.
+> 
+> Still, this is something you have not tested on the u200 reference
+> design. I believe this was already discussed in the past.
+> 
+> The u200 is far more complex when it comes to audio and certainly would
+> not work on this no-name android device. These device are heavily
+> "inspired" by the reference, but trimmed down in many aspect including
+> audio capabilities - NOT copied.
 
->            For the purpose of identification, each NUMA node is associate=
-d with
->            a unique token known as a node id.
-> -
+I understand you point, but those changes only adds "internal" audio & basic spdif
+capabilities so it won't affect the on-board audio electronics in any way.
 
-blank line between properties.
+> 
+> People abusing the u200 or p200 DT does make the patchset valid
 
-I can fix these up when applying.
+This is a reality, but still I think this patchset is valid and I'll
+pick those since they are used for years out-of-tree and probably works
+very fine in the reference design boards.
 
-> +      ecc-detection-bits:
-> +        default: 0
-> +        description: |
-> +          If present, this indicates the number of bits of memory error =
-which
-> +          can be detected and reported by the Error-Correction Code (ECC=
-) memory
-> +          subsystem (typically 0, 1 or 2).
-> +      ecc-correction-bits:
-> +        default: 0
-> +        description: |
-> +          If present, this indicates the number of bits of memory error =
-which
-> +          can be corrected by the Error-Correction Code (ECC) memory sub=
-system
-> +          (typically 0, 1 or 2).
->
->      required:
->        - device_type
-> --
-> 2.42.0.283.g2d96d420d3-goog
->
+Neil
+
+> 
+>>
+>> Christian Hewitt (3):
+>>    arm64: dts: meson: add audio playback to p200
+>>    arm64: dts: meson: add audio playback to p201
+>>    arm64: dts: meson: add audio playback to u200
+>>
+>>   .../boot/dts/amlogic/meson-g12a-u200.dts      | 129 ++++++++++++++++++
+>>   .../boot/dts/amlogic/meson-gxbb-p200.dts      |  60 ++++++++
+>>   .../boot/dts/amlogic/meson-gxbb-p201.dts      |  39 ++++++
+>>   3 files changed, 228 insertions(+)
+> 
+
