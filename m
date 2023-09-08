@@ -2,161 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A0AF7985FF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 12:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4303679860B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 12:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232562AbjIHKlT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 06:41:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52862 "EHLO
+        id S238350AbjIHKp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 06:45:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240778AbjIHKlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 06:41:18 -0400
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com [IPv6:2607:f8b0:4864:20::1129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A3F1BEE
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 03:41:13 -0700 (PDT)
-Received: by mail-yw1-x1129.google.com with SMTP id 00721157ae682-58cbdf3eecaso18889007b3.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 03:41:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1694169673; x=1694774473; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YGzW1Gsz6nFeulWPUu5AH12nWhKzRRmn3Tj1YKt22hc=;
-        b=kFN7NPKKLUPaw9sa8GJ9ta0yj+eIYLE/f7miHdy9iVFF6GvbwCjxrQyjhWZ/fMYEgE
-         yU7exxON6pczDfKvaMzEStDjQ9xCittF5BP2tLBfbRPn0ZTKQC0eIRriRj2Pt4yWKVf3
-         BHMpWYO+E2RLnD29oIF6AFHP/4llrKhBI+qvTrHLI/0Bzd25uhCqcm4nArDjYM1bBVDZ
-         Y4hiFPu74RaSwXEpUuHij8BWoIRyG8Uj9bdDiZUJ17O2h5KtdhsEpqP6GjXQUzadgnqs
-         YUqDozLHaWQgPrs4aiCBFYwH1km2PZ3Qrro2KLMpDOA6eSVNnhKrxGzXPJgBTarB+ZHl
-         kLzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694169673; x=1694774473;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YGzW1Gsz6nFeulWPUu5AH12nWhKzRRmn3Tj1YKt22hc=;
-        b=LmCF+H5JbonLNMqJFqbX+ZY+XHB/NJXgOgVoZvDDf7ks5EWZZgfpNdZNHb3+jUjbRr
-         kYzz7fB9jwFNdevJQgkSG/6zi1SxduG7h/cGoRZPQOmUHeDQmZlpBm8Kn8t71Zl+tcdF
-         hB+MTXLkOZr+a9m0iKkFYWVyPcbXoydwr63ZRb2QaJ4PkO97Ti7zeEnCuelsrabIpXIy
-         hpuFcU88eqoksBWXS02DV6yFG1O2U8bM5xc31a1vBOjXMsv+fasczBdJe+8ZbM/pKpjc
-         Ai0IvR8fbJ/GjJxZU76xSAw/v4G5eduZA37TQEdr8kDaOL/LjVr+Ekqe5zfXxHICneUx
-         p2vA==
-X-Gm-Message-State: AOJu0YxWOYLGdF3Y0DLGwWeeEUyVgE2zZOXdfuTPcBjDEcahy+MdbAbX
-        Uf2WHV/x+z6Gg2bHupB8QP+Sl3o0PmwELezmKKij/g==
-X-Google-Smtp-Source: AGHT+IF6rwnNU+XqC+wcXUFyvM1oC64hNO07qjBFEtIkD2cenu0xbaTRBvPawtOx+Jz8TQCmLbUd8CK9kX8IPGIgmns=
-X-Received: by 2002:a81:5f8b:0:b0:59b:a28:389d with SMTP id
- t133-20020a815f8b000000b0059b0a28389dmr2617270ywb.19.1694169672736; Fri, 08
- Sep 2023 03:41:12 -0700 (PDT)
+        with ESMTP id S229604AbjIHKp3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 06:45:29 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.65.254])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E79481BC6;
+        Fri,  8 Sep 2023 03:45:23 -0700 (PDT)
+X-QQ-mid: bizesmtp80t1694169918tbzdih2r
+Received: from localhost.localdomain ( [221.226.144.218])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Fri, 08 Sep 2023 18:45:17 +0800 (CST)
+X-QQ-SSF: 01200000000000B0B000000A0000000
+X-QQ-FEAT: +ynUkgUhZJlvTaar5ynbaN+YgYzMmbUdQ02O1U3/wK5rnjfdU3lCgnxHq1KSh
+        2uYb4IfLddN/iLAHzZs2HA7vVrF2kjUV7smG4FvrvT68BHAshGCf9uHqml1ZeUsHAtrZUhH
+        hfKMeCyLgJgslljOcpIPfFtqGPqaTcqZDlTXLdLrpIPnDECWGjYkjW2rNbwzhkkB/wDA5Du
+        XO2GFfrYdVvZuGKuxLi/CXhD2mQeuyjmNHq1Z3qIkGhrN38AiHTf5g60lfY7SVzAFt+qDu4
+        krD8GX0cCe616kffi2HA8Q+u4qmHRc2H7Bn9wR3sgnT+V0NEx3wPD/nmY2EmDYpl0dKN1oM
+        Q4AGcBR9n7UrgteQl3l474MikW7SPZ8Ta+YgeGD
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4282646312144880661
+From:   Song Shuai <songshuaishuai@tinylab.org>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Song Shuai <songshuaishuai@tinylab.org>
+Subject: [PATCH] of/kexec: Omit kaslr-seed when kexecing with nokaslr
+Date:   Fri,  8 Sep 2023 18:44:58 +0800
+Message-Id: <20230908104458.775740-1-songshuaishuai@tinylab.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20230130093229.27489-1-nylon.chen@sifive.com> <20230130093229.27489-3-nylon.chen@sifive.com>
- <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
-In-Reply-To: <20230130101707.pdvabl3na2wpwxqu@pengutronix.de>
-From:   Nylon Chen <nylon.chen@sifive.com>
-Date:   Fri, 8 Sep 2023 18:41:00 +0800
-Message-ID: <CAHh=Yk8R02NXK33aogQeJQB6x88B_gpbnjHj9wRrJEbDQf67Aw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED algorithm
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
-        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
-        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, devicetree@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
-        zong.li@sifive.com, greentime.hu@sifive.com,
-        vincent.chen@sifive.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:tinylab.org:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+The chosen node always adds the kaslr-seed property which is needless
+for the kernels kexeced with the cmdline contained "nokaslr".
 
-Sorry it's so long ago.
+So omit the kaslr-seed when kexecing with nokaslr.
 
-I have completed the implementation of the new version, but there is
-one thing about this letter that I still don't quite understand.
+Signed-off-by: Song Shuai <songshuaishuai@tinylab.org>
+---
+ drivers/of/kexec.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
 
-Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=E5=B9=
-=B41=E6=9C=8830=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:17=E5=AF=AB=
-=E9=81=93=EF=BC=9A
->
-> On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
-> > The `frac` variable represents the pulse inactive time, and the result =
-of
-> > this algorithm is the pulse active time. Therefore, we must reverse the
-> > result.
-> >
-> > The reference is SiFive FU740-C000 Manual[0].
-> >
-> > [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-86ed8=
-b16acba_fu740-c000-manual-v1p6.pdf
-> >
-> > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
-> > ---
-> >  drivers/pwm/pwm-sifive.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
-> > index 62b6acc6373d..a5eda165d071 100644
-> > --- a/drivers/pwm/pwm-sifive.c
-> > +++ b/drivers/pwm/pwm-sifive.c
-> > @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *chip, =
-struct pwm_device *pwm,
-> >       frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
-> >       /* The hardware cannot generate a 100% duty cycle */
-> >       frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
-> > +     frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
->
-> The same problem exists in pwm_sifive_get_state(), doesn't it?
->
-> As fixing this is an interruptive change anyhow, this is the opportunity
-> to align the driver to the rules tested by PWM_DEBUG.
->
-> The problems I see in the driver (only checked quickly, so I might be
-> wrong):
->
->  - state->period !=3D ddata->approx_period isn't necessarily a problem. I=
-f
->    state->period > ddata->real_period that's fine and the driver should
->    continue
->
-I still don=E2=80=99t quite understand the description of this paragraph.
+diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+index f26d2ba8a371..c0d53b10cb70 100644
+--- a/drivers/of/kexec.c
++++ b/drivers/of/kexec.c
+@@ -19,6 +19,7 @@
+ #include <linux/random.h>
+ #include <linux/slab.h>
+ #include <linux/types.h>
++#include <linux/string.h>
+ 
+ #define RNG_SEED_SIZE		128
+ 
+@@ -263,6 +264,14 @@ static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
+ }
+ #endif /* CONFIG_IMA_KEXEC */
+ 
++static bool is_nokaslr_cmdline(const char *cmdline)
++{
++	char *str;
++
++	str = strstr(cmdline, "nokaslr");
++	return str == cmdline || (str > cmdline && *(str - 1) == ' ');
++}
++
+ /*
+  * of_kexec_alloc_and_setup_fdt - Alloc and setup a new Flattened Device Tree
+  *
+@@ -429,15 +438,15 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+ 	else if (ret)
+ 		goto out;
+ 
+-	if (rng_is_initialized()) {
++	if (!is_nokaslr_cmdline(cmdline) && rng_is_initialized()) {
+ 		u64 seed = get_random_u64();
+ 
+ 		ret = fdt_setprop_u64(fdt, chosen_node, "kaslr-seed", seed);
+ 		if (ret)
+ 			goto out;
+ 	} else {
+-		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
+-			  "kaslr-seed");
++		pr_notice("RNG is not initialised or Kexec with nokaslr:"
++			  " omitting \"%s\" property\n", "kaslr-seed");
+ 	}
+ 
+ 	/* add rng-seed */
+-- 
+2.20.1
 
-state->period !=3D ddate->approx_period seems to be used to compare the
-results of the previous and next two times.
-
-I'm unsure what to do if I replace the conditional expression with
-something else.
-
-In addition, I don't understand the meaning of this.
-"if state->period > ddata->real_period that's fine, and the driver
-should continue"
-
-At present, my new version of the implementation has passed the test
-of the pwm_apply_state_debug() function.
-
-Would you suggest I send the new implementation version before
-continuing the discussion?
-
-Thank you again for everything you=E2=80=99ve done.
-
->  - frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
->    is wrong for two reasons:
->    it should round down and use the real period.
->
-> Best regards
-> Uwe
->
-> --
-> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
-     |
-> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
-|
