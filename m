@@ -2,161 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B60798304
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7414679830B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239801AbjIHHDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 03:03:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53740 "EHLO
+        id S242444AbjIHHEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 03:04:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233659AbjIHHDa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:03:30 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56E3719AE
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 00:03:26 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-52c74a2e8edso2345877a12.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 00:03:26 -0700 (PDT)
+        with ESMTP id S232354AbjIHHD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:03:59 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73A419B5
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 00:03:55 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401f68602a8so18423475e9.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 00:03:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694156605; x=1694761405; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1694156634; x=1694761434; darn=vger.kernel.org;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=okcWD7N3Q16flP7KKKhZ6wDq8bzIw+Eq1LknpxTrajc=;
-        b=Xb8mgAw0cy9Mc/8iO6MqZK5UeZpvo3PxdQzrSpIr9S5WhJZ4XfoGB9r9DuEw+chWOz
-         k8T9S8GORJ1Klqt9dgadcF2Jf2U4p74BnhvYKcZKE17EMZIC2ZMT11hXbumcG6Gs8My4
-         fMD+D50PI+Hmon72Gh2SM8n7b28P5+omxzYmyw2vGMxzBSaKaIAF6Tdj1RUGym5JvIl3
-         m+bgzFw/icG6Lk1WTb9MtTzxh3OeqIYdo91VXw0gBZ6jfSzIf1Clq23Zu6jncL8wqqHY
-         BqzHlVI402KmUzDVml6XwjhwPX1PDVUAXKGAxOG/ZI5boNnAvQeS84bvBD730lEDOoYx
-         xeMg==
+        bh=+oF38aHwbiQ0hNIfHRnBks+J8uIKvy2uRm6xWV5PYSI=;
+        b=BylgXa14UrUH3AjyONTOjiL4G34AQd0NixsIW9p8inOOdmkGWgkKBzlcscjia9ELB6
+         anm2LSFoOgUD3gWhPzXtdxPWKcFUeIuzqy+TDRSSkaogU+Lj/GOoBoBUZ06bE1c6qr78
+         /1i0uLr/W2dzt63c+67G+51FDXNs0/USzpCBIhCShcMUkEOq5gk184PIZl9uAPi5CV5y
+         ec0k5URQwSd1qLQhVMYqxGU24+I2LO5N8Dl7Re3+yExyN6V8kugXHS/6i3qaTQPExUtL
+         DjLsA+WBP2DaJ3qW6hEhgcoc7pe2c4jW4nHIl9n2Yhdwu/Zvm+7lNFwz/1cIHPhNtrR/
+         euOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694156605; x=1694761405;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1694156634; x=1694761434;
+        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=okcWD7N3Q16flP7KKKhZ6wDq8bzIw+Eq1LknpxTrajc=;
-        b=WhKKr41xPgTSToxsuIFFtCfTvErd9yARxr0Ydybk2wGdrwZSgLsQv5xNRjiVdE+Din
-         HKFpR2m8kyOYyAXVmuwWB6XcowmPB2Blo3Ak5onrbNIZb1ajyWKBCEtl7LipxEXo+AQZ
-         4fAVEn3WduwHQjGvYMpOJWn8YbQayP7vUOFxhszqrrgo5c47Ne66Gs5CiM3iMhsY8FlI
-         V2jKkmdyZ+3X6sGwi1g+Q3OdvGebn28VA16DlhgEVecm+b+dVynl2r2Q7NTH5i9WlXOL
-         7hDsKAg72V6ptOMi3lBmonIf8tGWIWK8OBYpqvkroS/yhdPdEDrqR3zC9DNNgvSg0G55
-         RFDA==
-X-Gm-Message-State: AOJu0YyEAvuUzMw4juFKQra/ePWZx5N6ZHNOfuKVhp0OMGG+TI2GSj37
-        NY0cahFc26JtVzBAJaqOdjV2cw==
-X-Google-Smtp-Source: AGHT+IF+CDiY8E89/dSN/nzzvPEsXUmsQ3bNw5qeJKEf3xCYuG9FhNc6Voc1ovYxm99eozXLXHKEJg==
-X-Received: by 2002:aa7:d34b:0:b0:524:24dc:c455 with SMTP id m11-20020aa7d34b000000b0052424dcc455mr861175edr.42.1694156604782;
-        Fri, 08 Sep 2023 00:03:24 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z12-20020aa7d40c000000b0052241b8fd0bsm625745edq.29.2023.09.08.00.03.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 00:03:24 -0700 (PDT)
-Message-ID: <5cc6b461-0a19-429c-ba06-7df73a48c46c@linaro.org>
-Date:   Fri, 8 Sep 2023 10:03:22 +0300
+        bh=+oF38aHwbiQ0hNIfHRnBks+J8uIKvy2uRm6xWV5PYSI=;
+        b=eIp/MTEKlASaeZ6fSlGsUGxKApiVD9jN97rDOcMn/Iu/VkMcwJJ5Ttu6THQvOHUTCf
+         wNPMxXCrBA5qFQWRBorLBiYtoUyK/jp7n1ugHH+7sXA77vLOa7TfRaUWpR3762637r4d
+         2UjFiY2lmNz/2Fi1pZs2pONwzDDZbESCYXT2+xj9wdWCLXdt1FcDq763pnKvWirhBV2R
+         elchjbppglb5e4WsGzxO8BSmAkMN7gMiZMDrljQpbmaHLu8F59LUS0LYs/6fWhDbOIve
+         IwSyWsxzgKT1tklVPBO2h7un9keYC6fZShrlGNsK5MRvLOCIZggBuZa2gRfLPND5TSUQ
+         iAqA==
+X-Gm-Message-State: AOJu0YzCmdKXuohPM4esGCOxGEmucPpWo7mfuLjxJeypJRXjW1xJhX38
+        wgp8tkB50sWUHAnNEq8uLdK7vg==
+X-Google-Smtp-Source: AGHT+IGK2O222KZD2kNm5+Uw1HhQuahUQ+tfcDyX1t6hrrbY6nsHCIIplz9dtQCcch+hrpHLRz75Pw==
+X-Received: by 2002:a7b:cc96:0:b0:401:b504:b698 with SMTP id p22-20020a7bcc96000000b00401b504b698mr1267388wma.17.1694156634140;
+        Fri, 08 Sep 2023 00:03:54 -0700 (PDT)
+Received: from localhost ([102.36.222.112])
+        by smtp.gmail.com with ESMTPSA id y12-20020a1c4b0c000000b003fee9cdf55esm1156816wma.14.2023.09.08.00.03.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Sep 2023 00:03:53 -0700 (PDT)
+Date:   Fri, 8 Sep 2023 10:03:50 +0300
+From:   Dan Carpenter <dan.carpenter@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel-janitors@vger.kernel.org
+Subject: [PATCH] of: dynamic: Fix potential memory leak in
+ of_changeset_action()
+Message-ID: <7dfaf999-30ad-491c-9615-fb1138db121c@moroto.mountain>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/6] arm64: dts: qcom: sm4450: Add apps_rsc and cmd_db
- node
-Content-Language: en-GB
-To:     Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, lee@kernel.org
-Cc:     robimarko@gmail.com, quic_gurus@quicinc.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_tsoni@quicinc.com,
-        quic_shashim@quicinc.com, quic_kaushalk@quicinc.com,
-        quic_tdas@quicinc.com, quic_tingweiz@quicinc.com,
-        quic_aiquny@quicinc.com, kernel@quicinc.com,
-        quic_bjorande@quicinc.com, Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230908065847.28382-1-quic_tengfan@quicinc.com>
- <20230908065847.28382-5-quic_tengfan@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230908065847.28382-5-quic_tengfan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Mailer: git-send-email haha only kidding
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2023 09:58, Tengfei Fan wrote:
-> From: Ajit Pandey <quic_ajipan@quicinc.com>
-> 
-> Add apps_rsc node and cmd_db memory region for sm4450.
-> 
-> Signed-off-by: Ajit Pandey <quic_ajipan@quicinc.com>
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/sm4450.dtsi | 34 ++++++++++++++++++++++++++++
->   1 file changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm4450.dtsi b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> index c4e5b33f5169..eb544d875806 100644
-> --- a/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm4450.dtsi
-> @@ -5,6 +5,7 @@
->   
->   #include <dt-bindings/gpio/gpio.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
->   
->   / {
->   	interrupt-parent = <&intc>;
-> @@ -328,6 +329,18 @@
->   		};
->   	};
->   
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		aop_cmd_db_mem: cmd-db@80860000 {
+Smatch complains that the error path where "action" is invalid leaks
+the "ce" allocation:
+    drivers/of/dynamic.c:935 of_changeset_action()
+    warn: possible memory leak of 'ce'
 
-Judging from sm8550, this should be aop-cmd-db-region@....
+Fix this by doing the validation before the allocation.
 
-> +			compatible = "qcom,cmd-db";
-> +			reg = <0x0 0x80860000 0x0 0x20000>;
-> +			no-map;
-> +		};
-> +	};
-> +
->   	soc: soc@0 {
->   		#address-cells = <2>;
->   		#size-cells = <2>;
-> @@ -335,6 +348,27 @@
->   		dma-ranges = <0 0 0 0 0x10 0>;
->   		compatible = "simple-bus";
->   
-> +		apps_rsc: rsc@17a00000 {
-> +			label = "apps_rsc";
-> +			compatible = "qcom,rpmh-rsc";
-> +			reg = <0 0x17a00000 0 0x10000>,
-> +			      <0 0x17a10000 0 0x10000>,
-> +			      <0 0x17a20000 0 0x10000>;
-> +			reg-names = "drv-0", "drv-1", "drv-2";
-> +			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +			qcom,tcs-offset = <0xd00>;
-> +			qcom,drv-id = <2>;
-> +			qcom,tcs-config = <ACTIVE_TCS    2>, <SLEEP_TCS     3>,
-> +					  <WAKE_TCS      3>, <CONTROL_TCS   0>;
-> +			power-domains = <&CLUSTER_PD>;
-> +
-> +			apps_bcm_voter: bcm-voter {
-> +				compatible = "qcom,bcm-voter";
-> +			};
-> +		};
-> +
->   		tcsr_mutex: hwlock@1f40000 {
->   			compatible = "qcom,tcsr-mutex";
->   			reg = <0x0 0x01f40000 0x0 0x40000>;
+Fixes: 914d9d831e61 ("of: dynamic: Refactor action prints to not use "%pOF" inside devtree_lock")
+Reported-by: kernel test robot <lkp@intel.com>
+Closes: https://lore.kernel.org/r/202309011059.EOdr4im9-lkp@intel.com/
+Signed-off-by: Dan Carpenter <dan.carpenter@linaro.org>
+---
+ drivers/of/dynamic.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
+index 0a3483e247a8..f63250c650ca 100644
+--- a/drivers/of/dynamic.c
++++ b/drivers/of/dynamic.c
+@@ -890,13 +890,13 @@ int of_changeset_action(struct of_changeset *ocs, unsigned long action,
+ {
+ 	struct of_changeset_entry *ce;
+ 
++	if (WARN_ON(action >= ARRAY_SIZE(action_names)))
++		return -EINVAL;
++
+ 	ce = kzalloc(sizeof(*ce), GFP_KERNEL);
+ 	if (!ce)
+ 		return -ENOMEM;
+ 
+-	if (WARN_ON(action >= ARRAY_SIZE(action_names)))
+-		return -EINVAL;
+-
+ 	/* get a reference to the node */
+ 	ce->action = action;
+ 	ce->np = of_node_get(np);
 -- 
-With best wishes
-Dmitry
+2.39.2
 
