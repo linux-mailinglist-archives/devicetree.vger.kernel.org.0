@@ -2,43 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA750798F1E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 21:29:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB01E798F7B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 21:32:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344554AbjIHT3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 15:29:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34474 "EHLO
+        id S1344875AbjIHTcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 15:32:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344586AbjIHT3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 15:29:30 -0400
+        with ESMTP id S1344883AbjIHTcv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 15:32:51 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A56A198E;
-        Fri,  8 Sep 2023 12:29:11 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31737C4339A;
-        Fri,  8 Sep 2023 19:29:09 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D97E6CF2;
+        Fri,  8 Sep 2023 12:32:23 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27D62C433B6;
+        Fri,  8 Sep 2023 19:31:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694201350;
-        bh=KAxRxmf76xobp3nJQ9Gg018tYI40m8FGiQEWeOD+PoE=;
+        s=k20201202; t=1694201496;
+        bh=MeJBmanSzRQXQdCXdRWMUe75M2AepYvwjwJik8VLxsQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Wrj2rw32qHZkgCFVzGTwXDOC4bS0Q4vgbPre+1ypNNg2r+a4L7NrcSufBl+VdTbdo
-         15udJMWXC6ceTTWtLQoVQ9tuaFgTa/1EZHAzqyhOTWDe7RGd29cQ3fAMDt1VkykbNv
-         RpI1eSqL6AtzgtcyWoiedivl0VD2UIsW6h3Sev83gcpFZEgL1kC0EObO8GtX8rwh8H
-         c2aihdbnqbsJfZnh6OChVD3N+SRCZjGYc+3ddZRHYSU74tJzFWgWtdDbNpYLx888WX
-         nL0EcAW4sXVubfaTB4y4PQB9Y+FvNGYdQeHQX+ZAvksw2vZfJnZu3dHxYShRV50f0X
-         GOpMei+h/1Bhg==
+        b=LoWdCdnr+C0AmhK5BjrzcrRiUZ6ehbN4g/8N0aukxybRFZ5XqzmZKHA+Qoy5iEPMd
+         D39b96J1t8J3tzN2Ws1SGXGG5epKjreWyfiFGMjoIxswlMNpvgcsrfh4J6qzgGpsJi
+         Z74vASae0p1a442BHuBbooHhevN7PkPo7/BvXwZxelq2/LcNWEuFz/MSzQPOo2495t
+         MF1ddjd5W3KSnLJNl88oBQPisnOrbSBSsVGfRGrPpJmoFag2l4VJoOUSzJrfznfgX6
+         7PWs/VowJXRscOK8JCzq/S1E2bksjk8bfE53j97zVyNN1HhFGI7GNPTJop2tllwZNU
+         ajLVcW8+O3FaQ==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Sasha Levin <sashal@kernel.org>, agross@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, keescook@chromium.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-hardening@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.5 09/36] arm64: dts: qcom: sm8250-edo: correct ramoops pmsg-size
-Date:   Fri,  8 Sep 2023 15:28:20 -0400
-Message-Id: <20230908192848.3462476-9-sashal@kernel.org>
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.5 30/36] arm64: dts: qcom: sc8280xp-x13s: Add camera activity LED
+Date:   Fri,  8 Sep 2023 15:28:41 -0400
+Message-Id: <20230908192848.3462476-30-sashal@kernel.org>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230908192848.3462476-1-sashal@kernel.org>
 References: <20230908192848.3462476-1-sashal@kernel.org>
@@ -56,37 +54,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-[ Upstream commit 7dc3606f91427414d00a2fb09e6e0e32c14c2093 ]
+[ Upstream commit 1c63dd1c5fdafa8854526d7d60d2b741c813678d ]
 
-There is no 'msg-size' property in ramoops, so assume intention was for
-'pmsg-size':
+Disappointigly, the camera activity LED is implemented in software.
+Hook it up as a gpio-led and (until we have camera *and* a "camera on"
+LED trigger) configure it as a panic indicator.
 
-  sm8250-sony-xperia-edo-pdx206.dtb: ramoops@ffc00000: Unevaluated properties are not allowed ('msg-size' was unexpected)
-
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Link: https://lore.kernel.org/r/20230618114442.140185-7-krzysztof.kozlowski@linaro.org
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Link: https://lore.kernel.org/r/20230805-topic-x13s_cam_led-v1-1-443d752158c4@linaro.org
 Signed-off-by: Bjorn Andersson <andersson@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts   | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index 8ab82bacba81f..9f3ea8d8d7989 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -112,7 +112,7 @@ ramoops@ffc00000 {
- 			reg = <0x0 0xffc00000 0x0 0x100000>;
- 			record-size = <0x1000>;
- 			console-size = <0x40000>;
--			msg-size = <0x20000 0x20000>;
-+			pmsg-size = <0x20000>;
- 			ecc-size = <16>;
- 			no-map;
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index 7cc3028440b64..92f1d6d13435c 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -12,6 +12,7 @@
+ #include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
+ #include <dt-bindings/input/gpio-keys.h>
+ #include <dt-bindings/input/input.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ 
+ #include "sc8280xp.dtsi"
+@@ -78,6 +79,21 @@ switch-lid {
  		};
+ 	};
+ 
++	leds {
++		compatible = "gpio-leds";
++
++		led-camera-indicator {
++			label = "white:camera-indicator";
++			function = LED_FUNCTION_INDICATOR;
++			color = <LED_COLOR_ID_WHITE>;
++			gpios = <&tlmm 28 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "none";
++			default-state = "off";
++			/* Reuse as a panic indicator until we get a "camera on" trigger */
++			panic-indicator;
++		};
++	};
++
+ 	pmic-glink {
+ 		compatible = "qcom,sc8280xp-pmic-glink", "qcom,pmic-glink";
+ 
 -- 
 2.40.1
 
