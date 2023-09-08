@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34EA9798727
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:36:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2710A79872E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234869AbjIHMhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 08:37:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40258 "EHLO
+        id S242001AbjIHMkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 08:40:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230428AbjIHMhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:37:00 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 426461BF1
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:36:55 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-40078c4855fso21731275e9.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:36:55 -0700 (PDT)
+        with ESMTP id S241750AbjIHMkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:40:18 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C8481BF9
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:40:13 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401d6f6b2e0so20619025e9.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:40:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176614; x=1694781414; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694176812; x=1694781612; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Be2k1ZgrDZKG3iK8uhCg66l2zxTQVwhjYtA2BDkGIDQ=;
-        b=qQ8h0XpKkLGML5wEMy3uoMnOIA5XZa1VT+v+sBKfNA3xbl4ISQN0f5PHN+siWLNtds
-         dbvd7Ku8OCIuJ+fy4ZTRjFdTOxg3AWrccVmFRVmmntDxAP4MINdIU8TPvwSxiFhxIzqL
-         CdsAExFp34hHkN17RPidnVlN0A7/PbH6Z/4s098H/UznF05I2pm1zJKUjpd64dphQy6I
-         ck5INxU0Zg9tztxvkvn/GsIR0SqBvMZ7yru3O+VXxa3Ws3keMRCNoudIXtYMfMW9sH0m
-         Mhn/q9vI0EU4bL3OGAHbqOf4cl9Pan3n2fFljLJbzBj6g6zTGB0dLrH7+EgNZhvRhMdM
-         TZUw==
+        bh=AU2+QV4aODXtVs7q5YHeaRMbqDNd55USgbN27DWq/do=;
+        b=vD/tOaFEYAEvFksnWJlFuD7XEM7Wr5Cq1Y4UbrPDVKBr8gFWS1zssmRfJWZKrxV7BJ
+         1mxf3KbdkPhDFS4Sq2MauVhBeJhlcKs3GGWQADOGmYgGOggyrPWdZ6X4KBAgGhn+Wvla
+         BlsCr5MRVNpnWslVGSAWNw0bhm+Yb8vb2HNDlGCmXYSQ3pGoB3OSQyZaD2vbtHmymNPL
+         Ii2eBPrFWAQxBAy7QZj59vMrcU0yZm+P2nWb8i7CkKZMeTATGxzkVRGQL4VoVePajnRI
+         MXD+dqZ+Hx5AEXtIIK0q7Br5O0wzkzv5lnaBig5SuuaZ2pR+y/Qa/iWy7v0f4rqVoUvy
+         Q8FQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176614; x=1694781414;
+        d=1e100.net; s=20230601; t=1694176812; x=1694781612;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Be2k1ZgrDZKG3iK8uhCg66l2zxTQVwhjYtA2BDkGIDQ=;
-        b=U+9ET1IUL0/Nq87EdSisPEGmpGQ6LY2+7/CemTfU1VqDcT+jg9hP+gmL8SR54K/14E
-         bEr1o0X7G7vycuTInm0+k0N3dn2Gw3ln45E1xupucwE/rk43hLOZKcULFbGyG0oxpfXh
-         OllU21zn9mTHUvg1PXy5GTPyi9JHJXcxzGZVLNqxlv2qyqb16X7KS8MfFZlKU6GaMmsx
-         MpddqpmjAB4CNncz4kgLs9anpbo7nXgvlwM7SYtU6oDiUHdxhd65VPEEQku9T3zIZ+Ff
-         +lf15Po3mbeRg7RNKBSR17aYNsYhjQ7J3My67Ri/OP58aXdQ9weyxdzCmrNa05WnXxPC
-         q4gQ==
-X-Gm-Message-State: AOJu0Ywd0DJcp7iXv9ouXKkIDW1MqL/Vp1xYMt4bc6NS3IxD+e8fYHQM
-        U20CxkFHpxvyw+ACTirK/M35aQ==
-X-Google-Smtp-Source: AGHT+IG9qMiw25Y/hia5vITBIkDc4lQt9y53sSYzYWNjS0uYR1XAAv0nZni37xL449zcerxOyCM/pA==
-X-Received: by 2002:a5d:560d:0:b0:31d:cd33:b30e with SMTP id l13-20020a5d560d000000b0031dcd33b30emr2058224wrv.4.1694176613583;
-        Fri, 08 Sep 2023 05:36:53 -0700 (PDT)
+        bh=AU2+QV4aODXtVs7q5YHeaRMbqDNd55USgbN27DWq/do=;
+        b=Z7P+ewd2vlRj+AKPYrWvuE1+rbVB4jR00RGuDpwfxmZk8E18Uzmq0fftImIoXnOgOA
+         UxefMLWzqtP8jjI1l82S/4JXnV88KUocskGvg7x60nqWgI7Gn9f1KTz/HuLNaekQUypG
+         gjCwfuNS6OGH3PPNNDdoDGHvdZIflIzCrnD6ysRLkaUiWoJXfjQFhdKGUQQE/bMWgYHq
+         Jlc/3/XbxDN+VNx7jCTPlqvFUAaMsG5gtW8WF5GcfGeCQeDEaWmX3BixwUsemhv5vXgT
+         5GpqyRmZGbhttqMdS2QkO6RkMWpnUc87eIbIdWnN1paIBa1TJwALROH0/4p2HQ6wLg8W
+         kXkQ==
+X-Gm-Message-State: AOJu0YzT7dv21knwsAOMPznjlY+p2zT5z/N9CNWRyvvgGInaz23t3O2+
+        OCsO1l22OqYkW1fSrLyrou1vrw==
+X-Google-Smtp-Source: AGHT+IEn1A3t/Z31ElsOIiIsqnkGtN+Eg1q91yWkXBCHpOTFYwJBqaz03nsf2vXzeiEMpEAs1KYQ7A==
+X-Received: by 2002:adf:e54e:0:b0:31d:db2d:27c6 with SMTP id z14-20020adfe54e000000b0031ddb2d27c6mr4534802wrm.30.1694176811908;
+        Fri, 08 Sep 2023 05:40:11 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id v3-20020a5d6103000000b00316eb7770b8sm2023056wrt.5.2023.09.08.05.36.52
+        by smtp.gmail.com with ESMTPSA id o3-20020a5d4083000000b0031c6581d55esm1988726wrp.91.2023.09.08.05.40.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:36:53 -0700 (PDT)
-Message-ID: <12521b44-edba-49af-9011-b7850c39b35e@linaro.org>
-Date:   Fri, 8 Sep 2023 14:36:51 +0200
+        Fri, 08 Sep 2023 05:40:11 -0700 (PDT)
+Message-ID: <82001107-3e72-4cc7-b7d4-8ca1a840b508@linaro.org>
+Date:   Fri, 8 Sep 2023 14:40:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v1] arm64: dts: amlogic: meson-axg: Meson NAND node
+Subject: Re: [PATCH V3 0/6] Power: T7: add power domain driver
 Content-Language: en-US, fr
-To:     Arseniy Krasnov <avkrasnov@salutedevices.com>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Ulf Hansson <ulf.hansson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     oxffffaa@gmail.com, kernel@sberdevices.ru,
-        Liang Yang <liang.yang@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
+        Kevin Hilman <khilman@baylibre.com>, linux-pm@vger.kernel.org
+References: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -96,7 +93,7 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <20230828133647.3712644-1-avkrasnov@salutedevices.com>
+In-Reply-To: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -109,37 +106,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2023 15:36, Arseniy Krasnov wrote:
-> Add description of the Meson NAND controller node.
-> 
-> Signed-off-by: Arseniy Krasnov <avkrasnov@salutedevices.com>
-> ---
->   arch/arm64/boot/dts/amlogic/meson-axg.dtsi | 13 +++++++++++++
->   1 file changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> index 768d0ed78dbe..a49aa62e3f9f 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
-> @@ -1908,6 +1908,19 @@ sd_emmc_c: mmc@7000 {
->   				resets = <&reset RESET_SD_EMMC_C>;
->   			};
->   
-> +			nfc: nand-controller@7800 {
-> +				compatible = "amlogic,meson-axg-nfc";
-> +				reg = <0x0 0x7800 0x0 0x100>,
-> +				      <0x0 0x7000 0x0 0x800>;
-> +				reg-names = "nfc", "emmc";
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +				interrupts = <GIC_SPI 34 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&clkc CLKID_SD_EMMC_C>,
-> +					 <&clkc CLKID_FCLK_DIV2>;
-> +				clock-names = "core", "device";
-> +			};
-> +
->   			usb2_phy1: phy@9020 {
->   				compatible = "amlogic,meson-gxl-usb2-phy";
->   				#phy-cells = <0>;
+Hi,
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+On 29/08/2023 04:03, Xianwei Zhao wrote:
+> First patch is that remove C3 some power domain ALWAYS_ON property.
+> Second patch is that add driver to support power parent node.
+> Third patch is that turn on power if initial power domain with
+> "AWAY_ON" property state is off.
+> 
+> Other patchs adds power controller driver support for Amlogic T7 SoC.
+
+Please re-send to Ulf Hansson <ulf.hansson@linaro.org> and
+linux-pm@vger.kernel.org since this driver has moved to the
+GENERIC PM DOMAIN PROVIDERS subsystem.
+
+I'll take the DT patch since bindings patch was reviewed.
+
+Thanks,
+Neil
+
+> 
+> Changes Since v2:
+>   -Modify subject.
+>   -Define PWRC_NO_PARENT UINT_MAX
+>   -Remove modification that transform is_off into 1 or 0 using !!
+> 
+> Changes Since v1:
+>   -Fix license from "GPL-2.0-only OR .*" to "GPL-2.0-only OR MIT".
+>   -Modify T7_NIC flag  "ALWAYS_ON"
+> 
+> xianwei.zhao (6):
+>    genpd: amlogic: modify some power domains property
+>    genpd: amlogic: add driver to support power parent node
+>    genpd: amlogic: init power domain state
+>    dt-bindings: power: add Amlogic T7 power domains
+>    genpd: amlogic: Add support for T7 power domains controller
+>    arm64: dts: amlogic: t7: add power domain controller node
+> 
+>   .../power/amlogic,meson-sec-pwrc.yaml         |   3 +-
+>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   6 +
+>   drivers/genpd/amlogic/meson-secure-pwrc.c     | 127 ++++++++++++++++--
+>   include/dt-bindings/power/amlogic,t7-pwrc.h   |  63 +++++++++
+>   4 files changed, 185 insertions(+), 14 deletions(-)
+>   create mode 100644 include/dt-bindings/power/amlogic,t7-pwrc.h
+> 
+> 
+> base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
+
