@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59A50798AC4
+	by mail.lfdr.de (Postfix) with ESMTP id AE69A798AC5
 	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 18:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243785AbjIHQmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S231775AbjIHQmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 8 Sep 2023 12:42:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53128 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231775AbjIHQmJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 12:42:09 -0400
-Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F471FCF
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 09:42:05 -0700 (PDT)
-Received: by mail-ot1-x32b.google.com with SMTP id 46e09a7af769-6bd04558784so1509844a34.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 09:42:05 -0700 (PDT)
+        with ESMTP id S240246AbjIHQmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 12:42:10 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58E171FCD
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 09:42:06 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-3a5a7e7cd61so1168307b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 09:42:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20221208; t=1694191325; x=1694796125; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=fOcE1gEVv8k+1mKB0BOnHrQMjIkGHZfrQmU9eoEzouw=;
-        b=Bgb6wYma2s1pKowyWrncYNYlnLtqZIsPcQAwaEIVqi5RE4DesodHLUtLD3++RPnsyZ
-         9u3RD8QzvzLzj8OXXMb4BuatOTWgsifqUCTz1NQtDRcB2U6wJsskiiq5+KpfzQdhFF3Y
-         +O7hA67spa6+51+k36rNQGsp1QkXxZqL8i73wt5MgTIz+OcbSGAiM1R5BotLZkmUO+Fn
-         xbPb5x6RV/Ee33k1jyKELoNf5zIHw8jOsww5XQZ1TECaiNHpCfVXEOM+XjFSZlpi0GYV
-         cftCqRo7SdGG1usv1LgdQhSFawx+hW9wexr07vpluGbL2wqeElPBgpzCs0ZPTYCjaXB8
-         5eKw==
+        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
+        b=qNxzfRsKpvftRnKgaYgcLtm+NeQgMHQb4lrguGK+y/oAffYLKfYCWD9P+zaJZx1q9f
+         Q+51jmL0T6KImlm0g9ibmnxQTxGn+F2maDzXwQSLIUFLOjWKONsU6tt7GsLDR/ppBbzD
+         pRIMOPUjh90zchql/7msLR5KBTgk/fCdGzFqSa3mBFxV+sQkkTz+01A4CkcfN3JTlaK/
+         FAgEVhDMmZis066g4wspQ2PkSTXcXW/RQDipIEAbOaolmGCIt3Oj3lXxYn31d2YaWfwX
+         /kBbuklUgcU7/eZZtNfwy5XwggX6SsF2Nq3ukcQgsIcJEdKandQvPpwm/jg/CgkgYtG+
+         GG+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1694191325; x=1694796125;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=fOcE1gEVv8k+1mKB0BOnHrQMjIkGHZfrQmU9eoEzouw=;
-        b=hgbvSQ8HP64x2xAXjVvpTJ+jkTbPFylse4PZ2UVEPwqVxxOL4iClqEnw9wleFQELp7
-         xSXm0jSO+Dk1CgrG8VGfx/6ht52JxwzXNdr6W5Kr/sV20Sl0YCEQaibRnhR0gaxKbpDG
-         LEA6/5Vdfxkiq42SeodLfhFLVgqVB4R66N6P1CAeclltZbTxtXtsQL7mvoDiFlVzlxvC
-         LwX20F05PWidCC7weMECXM8Dwwuqk8M8esXPElQuZFke4ayFdHGuYr57YyAekFus+JyD
-         bxnRllQOgbPPaXhVuWBVNAen5PO3QfBxIC9t0xphY9ANWInKfn9drLdTqGRoS4f3HirB
-         f0FQ==
-X-Gm-Message-State: AOJu0YyRaRHQCyidoVnP6miqVh4L5CbZY6/RKrcsRrVWQbeDt4M4iA+E
-        M6K1Vh8iWtzvKjJ6iQOxV2Ul+wuUdT1TVw==
-X-Google-Smtp-Source: AGHT+IET4mmN2Idlz+iOML30+xfvBysG5kiH18eLSaLbf6y/AmlHftf1oyazh8wyiG0o2Ucjv/Q8PQ==
-X-Received: by 2002:a9d:4d84:0:b0:6b7:5086:2f59 with SMTP id u4-20020a9d4d84000000b006b750862f59mr2975951otk.23.1694191324773;
-        Fri, 08 Sep 2023 09:42:04 -0700 (PDT)
+        bh=23RWTA42oeiWyX/+9q0UPnX5CmGzLdzzX40DGM4ZYYo=;
+        b=FK2b2BVm9Bkzeg02hlD0vfnHDElMMBGJGKtkZFBXofHgfkyNHtE072eznAe9x6isos
+         P8BJfVI5TxU1jha06dz99i0tDCn/S92H0a8+zToKqnioTehe0geTd9ZPH5Kb2ETKvBdu
+         cG45PnzeuBpaMhxZuRU8nTPFuxJLrrV+rcyzXlDgJOIitsKMTb7QODbxqlbD4VIVrThJ
+         FO6WApSIB/1f3h9gtbsdjHkD6I6Apyof5EQ9n7KvCJ0fKTWQuwUcJZFb7URJeaGFpBJS
+         DRdSuH+ERdtw5ZrFKeaBzO0Pwv4XQxjTMl3C1wcJCktO1RNLBo9uQRSt217+XUCpHvsm
+         gjyw==
+X-Gm-Message-State: AOJu0Yy7MMfEcW0hWgJDYLjJAJP8zAGYhaY6hBeDRXK+/HMi39h1NIp1
+        /mrNdyUKx+XKTMLsY8F7gYYhr0v47ZmtWw==
+X-Google-Smtp-Source: AGHT+IF6Lpd+NS4yfIzJuWjERArKjnYsYK+0QZitLPztEyoOHyum17h8Irht+MCMyWQc4JRyZ3htig==
+X-Received: by 2002:a05:6808:152b:b0:3ab:7142:a5f2 with SMTP id u43-20020a056808152b00b003ab7142a5f2mr949103oiw.25.1694191325406;
+        Fri, 08 Sep 2023 09:42:05 -0700 (PDT)
 Received: from localhost.localdomain ([75.28.21.198])
         by smtp.gmail.com with ESMTPSA id d14-20020a05683018ee00b006b8c277be12sm839485otf.8.2023.09.08.09.42.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Sep 2023 09:42:04 -0700 (PDT)
+        Fri, 08 Sep 2023 09:42:05 -0700 (PDT)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     devicetree@vger.kernel.org
 Cc:     linux-rockchip@lists.infradead.org, jagan@edgeble.ai,
         heiko@sntech.de, conor+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
         Chris Morgan <macromorgan@hotmail.com>
-Subject: [PATCH 1/3] arm64: dts: rockchip: add PCIe to rk3588s-indiedroid-nova
-Date:   Fri,  8 Sep 2023 11:41:54 -0500
-Message-Id: <20230908164156.2846-2-macroalpha82@gmail.com>
+Subject: [PATCH 2/3] arm64: dts: rockchip: add USB2 to rk3588s-indiedroid
+Date:   Fri,  8 Sep 2023 11:41:55 -0500
+Message-Id: <20230908164156.2846-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230908164156.2846-1-macroalpha82@gmail.com>
 References: <20230908164156.2846-1-macroalpha82@gmail.com>
@@ -75,55 +75,66 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-Add the necessary nodes to the Indiedroid Nova to activate the PCI
-express port that is used by the RTL8111 ethernet controller.
+Enable USB2 (EHCI and OCHI mode) support for the Indiedroid Nova. This
+adds support for USB for the 4 full size USB-A ports. Note that USB 3
+(the two blue full-size USB-A ports) is still outstanding, as is
+support for USB on the USB-C ports. The controller is not yet supported
+for these ports.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 ---
- .../dts/rockchip/rk3588s-indiedroid-nova.dts     | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../dts/rockchip/rk3588s-indiedroid-nova.dts  | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-index d1503a4b233a..646f49cc9e53 100644
+index 646f49cc9e53..1e2336d3065b 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3588s-indiedroid-nova.dts
-@@ -109,6 +109,10 @@ vcc5v0_usbdcin: vcc5v0-usbdcin-regulator {
- 	};
+@@ -751,6 +751,24 @@ &tsadc {
+ 	status = "okay";
  };
  
-+&combphy0_ps {
++&u2phy2 {
 +	status = "okay";
 +};
 +
- &cpu_l0 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
- };
-@@ -348,6 +352,12 @@ i2s0_8ch_p0_0: endpoint {
- 	};
- };
- 
-+&pcie2x1l2 {
-+	pinctrl-0 = <&rtl8111_perstb>;
-+	pinctrl-names = "default";
++&u2phy2_host {
++	phy-supply = <&vcc5v0_usb>;
 +	status = "okay";
 +};
 +
- &pinctrl {
- 	bluetooth-pins {
- 		bt_reset: bt-reset {
-@@ -366,6 +376,12 @@ bt_wake_host: bt-wake-host {
- 		};
- 	};
- 
-+	ethernet-pins {
-+		rtl8111_perstb: rtl8111-perstb {
-+			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
++&u2phy3 {
++	status = "okay";
++};
 +
- 	hym8563 {
- 
- 		hym8563_int: hym8563-int {
++&u2phy3_host {
++	phy-supply = <&vcc5v0_usb>;
++	status = "okay";
++};
++
+ &uart2 {
+ 	pinctrl-0 = <&uart2m0_xfer>;
+ 	status = "okay";
+@@ -775,3 +793,19 @@ bluetooth {
+ 		pinctrl-names = "default";
+ 	};
+ };
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
 -- 
 2.34.1
 
