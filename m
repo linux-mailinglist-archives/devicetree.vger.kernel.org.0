@@ -2,107 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CBD66798357
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:42:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CE4D79838F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:53:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233639AbjIHHmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 03:42:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43498 "EHLO
+        id S233988AbjIHHxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 03:53:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231440AbjIHHmg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:42:36 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807C31BDA;
-        Fri,  8 Sep 2023 00:42:27 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B64EDC433C9;
-        Fri,  8 Sep 2023 07:42:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694158947;
-        bh=b0W2vlY4CgJqt1HiR9SSVt08ChzyrdUmrFpWJeUBUwM=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=L2sgO/dmZOmaI8oqFoM6BaTr5d0fzf1dPzytCdMuvjy8V/VC4BL6pmIp9QMF6gflO
-         0ymS9cWGMvPZRSX18OEYIXpgKPbFBm7Hl9BuIl5fVjMeqBisKBcU22HG100iVGzyrT
-         O9TNntRVx4P4BenWtUL9OuByx2xYdye4ypd4ZtcfgmnydTZhmTq5sBzpk5riywP/hQ
-         lAnWp68ECQkc2R6mj90YJMLG23wNCuEqN7tRWJx2F1e75hTgKrZBR8M8KA6niEUugG
-         Gclmw1wpEuHOFxfLcL7Lq7Em0TB6o7EnXnqvlTmep4jbysPj1sbe9F9EzG4HTmTgTr
-         H4COtm0l2yWyw==
-Received: (nullmailer pid 3239586 invoked by uid 1000);
-        Fri, 08 Sep 2023 07:42:23 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S229715AbjIHHxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:53:06 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5CE01997;
+        Fri,  8 Sep 2023 00:53:01 -0700 (PDT)
+X-UUID: b8fa0dc64e1c11eea33bb35ae8d461a2-20230908
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=3JxP94D/+bV+WcBfTgzOlKtCY2haFLhGxhBTcxKPKB4=;
+        b=tNRv8MxMF2jWSUNY6RkXIkhTfxFNQrJKCM1YMcaFYbZU2tfIfHdxh6eWKVPrEyTKeSW3ILFHmFZIhgliNm1dIxXrPxm460UT6LI5eplYyFLLD/jx+dwAH1ZcbqmHh3wqUK+WfW2OuIZIwrwyB5nbQM/5OoXcuh4jmXpfjrrsDpo=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:8dd31b98-866c-406d-8747-4c43738eabe8,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:0ad78a4,CLOUDID:7c40cbc2-1e57-4345-9d31-31ad9818b39f,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: b8fa0dc64e1c11eea33bb35ae8d461a2-20230908
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+        (envelope-from <shuijing.li@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 474986151; Fri, 08 Sep 2023 15:52:56 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 8 Sep 2023 15:52:55 +0800
+Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 8 Sep 2023 15:52:54 +0800
+From:   Shuijing Li <shuijing.li@mediatek.com>
+To:     <chunfeng.yun@mediatek.com>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <matthias.bgg@gmail.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>
+CC:     <linux-phy@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <jitao.shi@mediatek.com>, Shuijing Li <shuijing.li@mediatek.com>
+Subject: [PATCH v3] dt-bindings: phy: Add compatible for Mediatek MT8188
+Date:   Fri, 8 Sep 2023 15:53:10 +0800
+Message-ID: <20230908075310.17825-1-shuijing.li@mediatek.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Tengfei Fan <quic_tengfan@quicinc.com>
-Cc:     will@kernel.org, arnd@arndb.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_kaushalk@quicinc.com,
-        peng.fan@nxp.com, kernel@quicinc.com, catalin.marinas@arm.com,
-        rafal@milecki.pl, krzysztof.kozlowski+dt@linaro.org,
-        nfraprado@collabora.com, quic_shashim@quicinc.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
-        linux-pm@vger.kernel.org, quic_tsoni@quicinc.com,
-        geert+renesas@glider.be, andersson@kernel.org, conor+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, agross@kernel.org,
-        quic_tdas@quicinc.com, djakov@kernel.org, konrad.dybcio@linaro.org
-In-Reply-To: <20230908064427.26999-2-quic_tengfan@quicinc.com>
-References: <20230908064427.26999-1-quic_tengfan@quicinc.com>
- <20230908064427.26999-2-quic_tengfan@quicinc.com>
-Message-Id: <169415894359.3239551.14338430937225080028.robh@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add Qualcomm SM4450
-Date:   Fri, 08 Sep 2023 02:42:23 -0500
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add dt-binding documentation of dsi-phy for MediaTek MT8188 SoC.
 
-On Fri, 08 Sep 2023 14:44:25 +0800, Tengfei Fan wrote:
-> The Qualcomm SM4450 SoC has several bus fabrics that could be controlled
-> and tuned dynamically according to the bandwidth demand.
-> 
-> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
-> ---
->  .../interconnect/qcom,sm4450-rpmh.yaml        | 133 ++++++++++++++
->  .../dt-bindings/interconnect/qcom,sm4450.h    | 163 ++++++++++++++++++
->  2 files changed, 296 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.yaml
->  create mode 100644 include/dt-bindings/interconnect/qcom,sm4450.h
-> 
+Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+---
+Changes in v3:
+After upstreaming the basic version of mt8188.dtsi, we will add the
+following mipi node in mt8188.dtsi:
+mipi_tx_config0: mipi_dphy0@11c80000 {
+			compatible = "mediatek,mt8188-mipi-tx",
+				     "mediatek,mt8183-mipi-tx";
+			reg = <0 0x11c80000 0 0x1000>;
+			clocks = <&clk26m>;
+			#clock-cells = <0>;
+			#phy-cells = <0>;
+			clock-output-names = "mipi_tx0_pll";
+			status = "disabled";
+		};
+per suggestion from the previous thread:
+https://lore.kernel.org/all/0a6d3d14-33f0-92d2-b42f-e4d336c8cd91@linaro.org/
+Changes in v2:
+Adjust mt8188 position.
+---
+ Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sm4450.h: No such file or directory
-   18 |         #include <dt-bindings/clock/qcom,gcc-sm4450.h>
-      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-compilation terminated.
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230908064427.26999-2-quic_tengfan@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+index a63b20dfa4a5..6703689fcdbe 100644
+--- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+@@ -30,6 +30,7 @@ properties:
+           - const: mediatek,mt8173-mipi-tx
+       - items:
+           - enum:
++              - mediatek,mt8188-mipi-tx
+               - mediatek,mt8365-mipi-tx
+           - const: mediatek,mt8183-mipi-tx
+       - const: mediatek,mt2701-mipi-tx
+-- 
+2.40.1
 
