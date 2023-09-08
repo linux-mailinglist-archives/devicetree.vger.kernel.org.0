@@ -2,62 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E9B079920D
-	for <lists+devicetree@lfdr.de>; Sat,  9 Sep 2023 00:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C6EE799215
+	for <lists+devicetree@lfdr.de>; Sat,  9 Sep 2023 00:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241142AbjIHWNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 18:13:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42350 "EHLO
+        id S244458AbjIHWRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 18:17:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57856 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243926AbjIHWNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 18:13:45 -0400
+        with ESMTP id S244489AbjIHWRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 18:17:43 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69FBD19B4;
-        Fri,  8 Sep 2023 15:13:41 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DFF3C433C9;
-        Fri,  8 Sep 2023 22:13:41 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75F331FC9;
+        Fri,  8 Sep 2023 15:17:39 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C803C433CC;
+        Fri,  8 Sep 2023 22:17:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694211221;
-        bh=EhV7aq6l8cffyJEnGd90vbqDmbbpCcFDQb/v/HDeZcY=;
+        s=k20201202; t=1694211459;
+        bh=ZS+mNN5cXqMzb7kw7Nj273kzsWjUis3gy7zjEWHBFiw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=G+ddOzO5T/u0fCFiCPMNbrFLgdtL1nNNqfq0dxja5oSMJwXEJK82bsk35VaRdE2tS
-         YtxYyWycVZgGSSQwt8FIMYqwyeojkfUSpkT5sRhUJUfRE8o2GVfKMwlkmvQcZWfcEH
-         pbx93T7x3fGQFsHf4xbbs5RK87y4UksLHapRf9NrghyRTEbs1UQtyOCf1Wj2Tsg/aD
-         YvXCRa+G4mjClraLKCetCDaH1Sfr6rmgo0V673qSyd7rAvucCE/sgr1LNzhEKzS8CV
-         tR2IxbUCAb8m9L4aSeA0NLKNXxQnr4mwOpyKFFtsfc1ZmBJ2Bz5oa4SpaSpGkMoHBD
-         I2KhLcQUGZDjg==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-50078eba7afso4369489e87.0;
-        Fri, 08 Sep 2023 15:13:40 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzG0JUL3D3IYU8NlcYQOzuY/2t8ea+B9p4E8Xc/OOvrs9AmKsiL
-        FXGu3evBa1bKv+W35fE/Or+NQVnFKWHEtZuulA==
-X-Google-Smtp-Source: AGHT+IFOcDuM/RrciNdg4GYNfpTR0hXLXVRX/pv2D/1YHz85dgHViYZ5GukNJpXClFTV9LGvScME+sBle69muAptStQ=
-X-Received: by 2002:a05:6512:5cc:b0:4fb:741f:75bf with SMTP id
- o12-20020a05651205cc00b004fb741f75bfmr2667800lfo.16.1694211219298; Fri, 08
- Sep 2023 15:13:39 -0700 (PDT)
+        b=rNV7Em1N0RwPwuwyP+D56zIMxHNnvcLqnlXgUbj6DZXdVRV2qxKNCBYJ/d9qUOfJE
+         tNb6iPUXgZiVYnNeBadhCLMb6336LGyhZxrYK3xie5R1QygS/xuUtJHK6Y0QnYbl2W
+         93BE0OiuTJP16VOx3EL3ciPp3Y2EE7WGoDiTDFyBI1lJbRHHNxZkuLDCxHugtMYq7g
+         kbUEiuGzA020xG07zfJJ+A1PXkqdoiJa7CsiVGOpIi/HVYrns2bnXfi1KEBd2ezwpW
+         rWLD9IXm1XoUIceAdLhm+9VA6/m3Bb0a0Bf/U3ACzRuNOn9Y9gAmI3ylguCqf92wMr
+         rBex/dpe4j45A==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-501bd6f7d11so4156530e87.1;
+        Fri, 08 Sep 2023 15:17:39 -0700 (PDT)
+X-Gm-Message-State: AOJu0YyOZAIeAr832XiZ23zdkAy/yu+R5/9a1D3wjGQPV4P0pyhBDDVH
+        HwGDwBWf8qPU41Y8fbLmtMIGr+62+QEyvf7McA==
+X-Google-Smtp-Source: AGHT+IH7vn1So58Aq1vuOF4o+jPLa7AVZRiANt517FCp958fWfI3EOY9w4caA06oNJjMdcq+x8INKUuLSKz6HjWMEzs=
+X-Received: by 2002:ac2:498f:0:b0:500:a7c8:1847 with SMTP id
+ f15-20020ac2498f000000b00500a7c81847mr2684836lfl.66.1694211457327; Fri, 08
+ Sep 2023 15:17:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230809084559.17322-1-a-bhatia1@ti.com> <20230809084559.17322-5-a-bhatia1@ti.com>
-In-Reply-To: <20230809084559.17322-5-a-bhatia1@ti.com>
+References: <20230726065407.378455-1-s-vadapalli@ti.com> <20230726065407.378455-3-s-vadapalli@ti.com>
+In-Reply-To: <20230726065407.378455-3-s-vadapalli@ti.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 8 Sep 2023 17:13:27 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+GR3hP6hFvFn2z5aXvSXnh9butD3aKZ-y_XJgx0_YPTw@mail.gmail.com>
-Message-ID: <CAL_Jsq+GR3hP6hFvFn2z5aXvSXnh9butD3aKZ-y_XJgx0_YPTw@mail.gmail.com>
-Subject: Re: [PATCH v5 4/6] arm64: dts: ti: am62x-sk: Add overlay for HDMI audio
-To:     Aradhya Bhatia <a-bhatia1@ti.com>
-Cc:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Will Deacon <will@kernel.org>,
-        Francesco Dolcini <francesco@dolcini.it>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Linux ARM Kernel List <linux-arm-kernel@lists.infradead.org>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jai Luthra <j-luthra@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
+Date:   Fri, 8 Sep 2023 17:17:25 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ7zHHMiZiSfM+Du3d-rG9VetkEvbBXHYN5=JUcg2irAA@mail.gmail.com>
+Message-ID: <CAL_JsqJ7zHHMiZiSfM+Du3d-rG9VetkEvbBXHYN5=JUcg2irAA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable
+ main CPSW2G with GESI
+To:     Siddharth Vadapalli <s-vadapalli@ti.com>
+Cc:     nm@ti.com, vigneshr@ti.com, kristo@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, afd@ti.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, r-gunasekaran@ti.com,
+        srk@ti.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -70,39 +61,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 9, 2023 at 3:46=E2=80=AFAM Aradhya Bhatia <a-bhatia1@ti.com> wr=
-ote:
+On Wed, Jul 26, 2023 at 1:54=E2=80=AFAM Siddharth Vadapalli <s-vadapalli@ti=
+.com> wrote:
 >
-> From: Jai Luthra <j-luthra@ti.com>
+> From: Kishon Vijay Abraham I <kishon@ti.com>
 >
-> Enable audio output over HDMI instead of the 3.5mm jack.
+> The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GE=
+SI
+> Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
+> to enable this.
 >
-> A FET switch (U65) on the EVM muxes serial audio lines coming from McASP
-> between the codec (tlv320aic3106) and the HDMI bridge (sii9022).
+> Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
+> directly from U-Boot.
 >
-> By default it uses the codec, but it can be toggled to use the HDMI
-> bridge by shorting a (J24) header on the board.
->
-> Signed-off-by: Jai Luthra <j-luthra@ti.com>
-> [a-bhatia1: Cosmetic changes]
-> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
 > ---
->  arch/arm64/boot/dts/ti/Makefile               |  3 ++
->  .../boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso   | 40 +++++++++++++++++++
->  2 files changed, 43 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-am62x-sk-hdmi-audio.dtso
+>  arch/arm64/boot/dts/ti/Makefile               |  2 +
+>  .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 85 +++++++++++++++++++
+>  2 files changed, 87 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.d=
+tso
 >
 > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Mak=
 efile
-> index 437a3d7e8e3a..e3eadf69d43b 100644
+> index 6dd7b6f1d6ab..019a8be19b93 100644
 > --- a/arch/arm64/boot/dts/ti/Makefile
 > +++ b/arch/arm64/boot/dts/ti/Makefile
-> @@ -19,6 +19,7 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-dahlia.=
-dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-dev.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am625-verdin-wifi-yavia.dtb
->  dtb-$(CONFIG_ARCH_K3) +=3D k3-am62-lp-sk.dtb
-> +dtb-$(CONFIG_ARCH_K3) +=3D k3-am62x-sk-hdmi-audio.dtbo
+> @@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_K3) +=3D k3-j721e-sk.dtb
+>  # Boards with J721s2 SoC
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-am68-sk-base-board.dtb
+>  dtb-$(CONFIG_ARCH_K3) +=3D k3-j721s2-common-proc-board.dtb
+> +dtb-$(CONFIG_ARCH_K3) +=3D k3-j721s2-evm-gesi-exp-board.dtbo
 
 Overlays need to be applied to something. That's done like this:
 
