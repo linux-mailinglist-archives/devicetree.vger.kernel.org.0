@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39583798704
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 516A4798711
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 14:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236849AbjIHMal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 08:30:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44098 "EHLO
+        id S242829AbjIHMed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 08:34:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232080AbjIHMak (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:30:40 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C14C01BF1
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:30:36 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31f7400cb74so1286923f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:30:36 -0700 (PDT)
+        with ESMTP id S236814AbjIHMec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 08:34:32 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD431BF9
+        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 05:34:26 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401d24f1f27so22524085e9.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Sep 2023 05:34:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694176235; x=1694781035; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694176465; x=1694781265; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
-        b=DPMdLKwOxJ4W+SGlkdJIWEfaxIKK2Esw9VqiW/faIlehU4HC1R4q7+OWHaMqBvbSE8
-         1jBeZoZ4f5EEMum7u8/q5xEPTAE/a7W9v0utaOZHyVIh4bfW063VNandEEMXAMdEo3Ll
-         ch4akW3IWwpMCJnL79z4kFtTg6pf3OQCuMTniYuBlVhVcDam8VvICueaMYHwm2Sd0Rx4
-         ATjx7va19AvUiMCB4ynRw5RQ2G0dGoyYH+DCQwDDN4hksUOZuRtJ5TSYcSthApqgCQru
-         ZVuDDkY9LWaPDiVddJTaWs3YbAZUbvHx6fTiNB8gNNriaApHxhPnIZaTXn7nWzXSv6Rt
-         BZJg==
+        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
+        b=vNx9Y3158MV+bbxaQ4yJIDiPWcBJXzcjKm0dqJrD6l6M0CcmxUk/NQcxD9FQIKWCyc
+         HqTm4aYH30j/qe+q5rrCKeZ/upLTK62+693y7tlEKLHG7IPRzQBxnZZPhNQeCDyXR7Ow
+         DHFM3nq3c1VwxJtSvqzgc73Kc+snxop46ab8ROz3Wbiir8CInqo+V9cAfKGeDu3w8H3b
+         QLgm1nciuKkVhdXOHucwqfXMr2Uw53HZFUc9joq+gLNlz4lGNlIp2o/V3Bz/pJIUn9LT
+         0lL9jK6NV3+pfxitAu2UwkLeBhWZ4MqPq2sRp0Z4/8u/AUWlqf37Qbjsz60Y/x6myliP
+         sY2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694176235; x=1694781035;
+        d=1e100.net; s=20230601; t=1694176465; x=1694781265;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:to:content-language:subject:reply-to:from:user-agent
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=PM2w2IzcLgzoOPeUzfKRLbjxESAa2w9XyRzVdDC8nNA=;
-        b=MoEj3SsURfnpVO9wv6HANVtQCfE4ofZFaFDoW2EYZmaJpngK+ru7fjmJFZt6SUrik9
-         w+x7oYWVN2blvQknye2c25CkA+CBF3FZVqXV1dFX0B+dtfjRjaUt2NoxuzDoGJyEONCv
-         g4Isae9XxJmlg0zrr5+D6h79WIBoWO0JITAeFlbTIhuZiqdeA/FPFc70D3bUJp9NMQFc
-         9hY0Cdizk9dgKdWpg00skMJGK3Zhey5jAb88nzzq5HGQJglhYb7kUbCUo0FFhESqlP/9
-         Ii552oz2M4B4uVTR2jEkp8Be7EC0Xu7IIUzBygfGqZdCAWR7y3kH8KJn5bHsZ0Q0068b
-         NRcA==
-X-Gm-Message-State: AOJu0YyHH66ebx3GYc1CQJD7De1OHc6KRMretRrQugx+F84kWqUQWA3U
-        2Ow972Y1EQsyhy/5urpcMl0LHw==
-X-Google-Smtp-Source: AGHT+IGfiprw2HlOSI7C7qrMQSp2u5C9t9PCNm2p6AHs9JBK00uKP0Ve+a8f9jOa1yEkdzsQTDLAIQ==
-X-Received: by 2002:adf:f8d2:0:b0:31c:81ef:f90a with SMTP id f18-20020adff8d2000000b0031c81eff90amr1715968wrq.47.1694176235144;
-        Fri, 08 Sep 2023 05:30:35 -0700 (PDT)
+        bh=gwlYp2Ret+PHUOy/+lpD5lWplu3GLSy3wqa3Tr7W/eM=;
+        b=xEWeyf0GNJbkm92zqBqkBvbBloRu+zmgWw9wgfvboGyRUkCFtr6pYsRogV0cpk/6qT
+         6UEbLT255gdtT8kPgeIK0Zj5qrUQ3X0Fap8l8FG9bxLkXMkm3Q3dlejPLcg11KSoi81O
+         p50VKT/D1n+FhdeHomGMADdyoyQqjHmiITCVWw+DDimso7pwP9lR2oI7+P68FWUxmWuU
+         4Dw+nJ667OA3uZseD9UfDzGhgaKMaUxh9lmS32vWKgEwdrw+U6xa+Y1OJuKq6fxdNfPv
+         9sVJNcg9YWbFeKe4tKJSGcOv9Y9rt2a3risxU0KHUWOIY7K5Q5EEY61ukwV2zIy2P4oK
+         lcIA==
+X-Gm-Message-State: AOJu0YwdopAM+Ybq0Z2hD8W3G9Wr3t1dG8Vbdjoj1iDyl1SccBr3W8l6
+        wG+ychvrmapkO19eAf16Lw9rdw==
+X-Google-Smtp-Source: AGHT+IHAIoDqQVvm/1vJfqGAmJ4KhDdS1U6swBfoIErsJPNuBVgp4MAMC1y77kixIzj4YFLKwzkv+Q==
+X-Received: by 2002:a7b:ce14:0:b0:3ff:233f:2cfb with SMTP id m20-20020a7bce14000000b003ff233f2cfbmr1944897wmc.23.1694176464796;
+        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4? ([2a01:e0a:982:cbb0:5f1a:ed04:d131:cda4])
-        by smtp.gmail.com with ESMTPSA id z7-20020adfe547000000b0031c71693449sm2031144wrm.1.2023.09.08.05.30.34
+        by smtp.gmail.com with ESMTPSA id n4-20020a05600c294400b003fbdbd0a7desm5097730wmd.27.2023.09.08.05.34.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Sep 2023 05:30:34 -0700 (PDT)
-Message-ID: <00436bd2-5f3c-4fd6-9db8-799c541c6a33@linaro.org>
-Date:   Fri, 8 Sep 2023 14:30:33 +0200
+        Fri, 08 Sep 2023 05:34:24 -0700 (PDT)
+Message-ID: <83819915-d957-4c8f-927a-d32f7963c532@linaro.org>
+Date:   Fri, 8 Sep 2023 14:34:23 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From:   Neil Armstrong <neil.armstrong@linaro.org>
+From:   neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+Subject: Re: [PATCH v2 00/15] arm64: dts: meson: a1: introduce several
+ peripheral IPs
 Content-Language: en-US, fr
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230815092751.1791195-1-christianshewitt@gmail.com>
- <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, conor+dt@kernel.org
+Cc:     kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru,
+        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -94,61 +94,95 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro Developer Services
-In-Reply-To: <1jh6p0vdyj.fsf@starbuckisacylon.baylibre.com>
+In-Reply-To: <20230823213630.12936-1-ddrokosov@sberdevices.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 23/08/2023 23:36, Dmitry Rokosov wrote:
+> This patch series introduces device tree declarations for various
+> peripheral IPs of the A1 SoC family, including clock controllers, EFUSE,
+> USB, SPI Flash Controller, SDIO, and UART_AO:
+>      - CLK: A1 SoC has four types on the board, namely PLL, Peripherals,
+>        CPU, and Audio, but only Amlogic A1 PLL and Peripherals clock
+>        controllers are currently supported.
+>      - EFUSE: consists of a 4k bit One Time Programmable (OTP) memory
+>        divided into 32 128-bit blocks, and data is accessed using the APB
+>        bus through software or the Key-ladder integrated with the EFUSE
+>        block.
+>      - USB: only one USB 2.0 high-speed port is available in the A1 SoC,
+>        supporting both HOST and DEVICE modes for OTG.
+>      - SPI Flash Controller: 4-bit QPI/SPI NOR Flash or NAND FLASH
+>        controller.
+>      - SDIO: for WiFi/IEEE802.11 connection.
+>      - UART_AO: for Bluetooth connection.
+>      - HWRNG: hardware random generator integrated into SoC.
+>      - AO SECURE: board info registers.
+> 
+> The above peripherals are integrated to new AD402 board device tree.
+> 
+> Changes v2 since v1 at [1]:
+>      - reorder meson-a1 dtsi includes to keep them sorted
+>      - remove extra empty lines
+>      - purge the unnecessary 'okay' status
+>      - reorder all device tree nodes (existing and new) sorted by 'reg'
+>        values
+>      - introduce new saradc definition
+>      - add hwrng dts node
+>      - provide ao secure dts node with board info registers
+>      - include all changes to new AD402 board device tree
+>      - add AD402 board to bindings
+> 
+> Links:
+>      [1] https://lore.kernel.org/all/20230607201641.20982-1-ddrokosov@sberdevices.ru/
+> 
+> Alexey Romanov (3):
+>    arm64: dts: meson: a1: enable efuse controller and setup its clk
+>    arm64: dts: meson: a1: add hw rng node
+>    arm64: dts: meson: a1: add ao secure node
+> 
+> Dmitry Rokosov (8):
+>    arm64: dts: meson: a1: reorder includes to keep them sorted
+>    arm64: dts: meson: a1: remove extra empty line before reset node
+>    arm64: dts: meson: a1: remove the unnecessary 'okay' status pwrc value
+>    arm64: dts: meson: a1: reorder gpio_intc node definition
+>    arm64: dts: meson: a1: introduce PLL and Peripherals clk controllers
+>    arm64: dts: meson: a1: support USB controller in OTG mode
+>    arm64: dts: introduce Amlogic AD402 reference board based on A113L SoC
+>    dt-bindings: arm: amlogic: add Amlogic AD402 bindings
+> 
+> George Stark (1):
+>    arm64: dts: meson: a1: add saradc definition
+> 
+> Jan Dakinevich (1):
+>    arm64: dts: meson: a1: add eMMC controller and its pins
+> 
+> Martin Kurbanov (1):
+>    arm64: dts: meson: a1: introduce SPI Flash Controller
+> 
+> Oleg Lyovin (1):
+>    arm64: dts: meson: a1: introduce UART_AO mux definitions
+> 
+>   .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+>   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>   .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 145 ++++++++++++
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 213 +++++++++++++++++-
+>   4 files changed, 348 insertions(+), 12 deletions(-)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad402.dts
+> 
 
-On 15/08/2023 11:37, Jerome Brunet wrote:
-> 
-> On Tue 15 Aug 2023 at 09:27, Christian Hewitt <christianshewitt@gmail.com> wrote:
-> 
->> This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
->> reference boards. Few people likely have the original reference boards which have
->> extra audio capabilities, but the device-trees are widely [ab]used by users with
->> Android set-top boxes whose hardware is copy/pasted from the reference designs to
->> get working installs. Adding basic audio support does no harm to the real boards
->> and helps the secondary cause.
-> 
-> Still, this is something you have not tested on the u200 reference
-> design. I believe this was already discussed in the past.
-> 
-> The u200 is far more complex when it comes to audio and certainly would
-> not work on this no-name android device. These device are heavily
-> "inspired" by the reference, but trimmed down in many aspect including
-> audio capabilities - NOT copied.
+For the whole serie:
 
-I understand you point, but those changes only adds "internal" audio & basic spdif
-capabilities so it won't affect the on-board audio electronics in any way.
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> 
-> People abusing the u200 or p200 DT does make the patchset valid
-
-This is a reality, but still I think this patchset is valid and I'll
-pick those since they are used for years out-of-tree and probably works
-very fine in the reference design boards.
+Thanks !
 
 Neil
-
-> 
->>
->> Christian Hewitt (3):
->>    arm64: dts: meson: add audio playback to p200
->>    arm64: dts: meson: add audio playback to p201
->>    arm64: dts: meson: add audio playback to u200
->>
->>   .../boot/dts/amlogic/meson-g12a-u200.dts      | 129 ++++++++++++++++++
->>   .../boot/dts/amlogic/meson-gxbb-p200.dts      |  60 ++++++++
->>   .../boot/dts/amlogic/meson-gxbb-p201.dts      |  39 ++++++
->>   3 files changed, 228 insertions(+)
-> 
-
