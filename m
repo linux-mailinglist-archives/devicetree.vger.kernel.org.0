@@ -2,63 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BE62798347
-	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBD66798357
+	for <lists+devicetree@lfdr.de>; Fri,  8 Sep 2023 09:42:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232317AbjIHHeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 8 Sep 2023 03:34:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
+        id S233639AbjIHHmh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 8 Sep 2023 03:42:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230300AbjIHHeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:34:19 -0400
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B6D61BD2
-        for <devicetree@vger.kernel.org>; Fri,  8 Sep 2023 00:34:15 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qeW0L-0002GU-8n; Fri, 08 Sep 2023 09:34:13 +0200
-Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qeW0J-004pSO-T2; Fri, 08 Sep 2023 09:34:11 +0200
-Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1qeW0J-003E0p-JQ; Fri, 08 Sep 2023 09:34:11 +0200
-Date:   Fri, 8 Sep 2023 09:34:11 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 1/4] arm64: dts: imx8mp: Describe VDD_ARM run and standby
- voltage for DH i.MX8M Plus DHCOM SoM
-Message-ID: <20230908073411.yf6mxhpzasu5ftm6@pengutronix.de>
-References: <20230831182020.154863-1-marex@denx.de>
- <20230907154545.m3ofqncpwt6yitqu@pengutronix.de>
- <f534c9c2-cd05-9c7d-8921-81ee0bda3013@denx.de>
+        with ESMTP id S231440AbjIHHmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 8 Sep 2023 03:42:36 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807C31BDA;
+        Fri,  8 Sep 2023 00:42:27 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B64EDC433C9;
+        Fri,  8 Sep 2023 07:42:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694158947;
+        bh=b0W2vlY4CgJqt1HiR9SSVt08ChzyrdUmrFpWJeUBUwM=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=L2sgO/dmZOmaI8oqFoM6BaTr5d0fzf1dPzytCdMuvjy8V/VC4BL6pmIp9QMF6gflO
+         0ymS9cWGMvPZRSX18OEYIXpgKPbFBm7Hl9BuIl5fVjMeqBisKBcU22HG100iVGzyrT
+         O9TNntRVx4P4BenWtUL9OuByx2xYdye4ypd4ZtcfgmnydTZhmTq5sBzpk5riywP/hQ
+         lAnWp68ECQkc2R6mj90YJMLG23wNCuEqN7tRWJx2F1e75hTgKrZBR8M8KA6niEUugG
+         Gclmw1wpEuHOFxfLcL7Lq7Em0TB6o7EnXnqvlTmep4jbysPj1sbe9F9EzG4HTmTgTr
+         H4COtm0l2yWyw==
+Received: (nullmailer pid 3239586 invoked by uid 1000);
+        Fri, 08 Sep 2023 07:42:23 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f534c9c2-cd05-9c7d-8921-81ee0bda3013@denx.de>
-User-Agent: NeoMutt/20180716
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+From:   Rob Herring <robh@kernel.org>
+To:     Tengfei Fan <quic_tengfan@quicinc.com>
+Cc:     will@kernel.org, arnd@arndb.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_kaushalk@quicinc.com,
+        peng.fan@nxp.com, kernel@quicinc.com, catalin.marinas@arm.com,
+        rafal@milecki.pl, krzysztof.kozlowski+dt@linaro.org,
+        nfraprado@collabora.com, quic_shashim@quicinc.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+        linux-pm@vger.kernel.org, quic_tsoni@quicinc.com,
+        geert+renesas@glider.be, andersson@kernel.org, conor+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, agross@kernel.org,
+        quic_tdas@quicinc.com, djakov@kernel.org, konrad.dybcio@linaro.org
+In-Reply-To: <20230908064427.26999-2-quic_tengfan@quicinc.com>
+References: <20230908064427.26999-1-quic_tengfan@quicinc.com>
+ <20230908064427.26999-2-quic_tengfan@quicinc.com>
+Message-Id: <169415894359.3239551.14338430937225080028.robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add Qualcomm SM4450
+Date:   Fri, 08 Sep 2023 02:42:23 -0500
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -67,64 +60,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-09-07, Marek Vasut wrote:
-> On 9/7/23 17:45, Marco Felsch wrote:
-> > Hi Marek,
-> 
-> Hi,
-> 
-> > On 23-08-31, Marek Vasut wrote:
-> > > Describe VDD_ARM (BUCK2) run and standby voltage in DT.
-> > > 
-> > > Signed-off-by: Marek Vasut <marex@denx.de>
-> > > ---
-> > > Cc: Conor Dooley <conor+dt@kernel.org>
-> > > Cc: Fabio Estevam <festevam@gmail.com>
-> > > Cc: Frieder Schrempf <frieder.schrempf@kontron.de>
-> > > Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-> > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > > Cc: Magnus Damm <magnus.damm@gmail.com>
-> > > Cc: Marek Vasut <marex@denx.de>
-> > > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > > Cc: Peng Fan <peng.fan@nxp.com>
-> > > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
-> > > Cc: Shawn Guo <shawnguo@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > Cc: linux-arm-kernel@lists.infradead.org
-> > > ---
-> > >   arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi | 2 ++
-> > >   1 file changed, 2 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> > > index cb1953d14aa90..1644b56c3953d 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-som.dtsi
-> > > @@ -293,6 +293,8 @@ buck1: BUCK1 {	/* VDD_SOC (dual-phase with BUCK3) */
-> > >   			};
-> > >   			buck2: BUCK2 {	/* VDD_ARM */
-> > > +				nxp,dvs-run-voltage = <950000>;
-> > 
-> > Why do we need to set the "nxp,dvs-run-voltage"? If I read the driver
-> > correctly, then nxp,dvs-run-voltage and regulator-min/max-microvolt are
-> > touching the same register.
-> 
-> My understanding is that the nxp,dvs-run-voltage selects the default
-> regulator voltage which is configured early on once the regulator is
-> detected in DT (see of_parse_cb callback in the PCA9450 regulator driver)
-> and may be higher than regulator-min-microvolt, while later on DVFS can
-> adjust the regulator in range of regulator-min-microvolt to
-> regulator-max-microvolt .
 
-Right, albeit I think that the bootloader already did the
-initialization once. Anyway the change lgtm:
-
-Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
-
-> > > +				nxp,dvs-standby-voltage = <850000>;
-> > >   				regulator-min-microvolt = <850000>;
-> > >   				regulator-max-microvolt = <1000000>;
+On Fri, 08 Sep 2023 14:44:25 +0800, Tengfei Fan wrote:
+> The Qualcomm SM4450 SoC has several bus fabrics that could be controlled
+> and tuned dynamically according to the bandwidth demand.
 > 
-> [...]
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>  .../interconnect/qcom,sm4450-rpmh.yaml        | 133 ++++++++++++++
+>  .../dt-bindings/interconnect/qcom,sm4450.h    | 163 ++++++++++++++++++
+>  2 files changed, 296 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.yaml
+>  create mode 100644 include/dt-bindings/interconnect/qcom,sm4450.h
 > 
+
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sm4450.h: No such file or directory
+   18 |         #include <dt-bindings/clock/qcom,gcc-sm4450.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: dt_binding_check] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230908064427.26999-2-quic_tengfan@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
