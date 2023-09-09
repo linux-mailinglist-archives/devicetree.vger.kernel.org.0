@@ -2,97 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B775799B4F
-	for <lists+devicetree@lfdr.de>; Sat,  9 Sep 2023 23:16:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D7D3799BF3
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 00:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240514AbjIIVQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Sep 2023 17:16:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33898 "EHLO
+        id S240465AbjIIWkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 9 Sep 2023 18:40:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239398AbjIIVQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Sep 2023 17:16:41 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52666131;
-        Sat,  9 Sep 2023 14:16:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=Zt6OrCismPf+aycVIJ+FicoSu1Q1+BGOLqCiYwahFl8=; b=coKzf3opw1nK9pbEe4bFgAR6Lf
-        AcLRY6jlcfWy5v+CNsR7DaCMqlDaCfDALWhQILBbx+sTVkzO8DrN6F4y4s/e3UATN38JM+WMaPvk0
-        jJ2VbbEMEKKJ+JqHChsqm6lVfDp5TFl2FP1C9sGXT9bHln5wHM45FameMSFKrepR/nW8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qf5JF-0064b4-2c; Sat, 09 Sep 2023 23:16:05 +0200
-Date:   Sat, 9 Sep 2023 23:16:05 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <71f7c475-e111-4e4b-9e8f-4c8a6bf6bc34@lunn.ch>
-References: <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
- <20230813112026.ohsx6srbt2staxma@skbuf>
- <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
- <20230813190157.4y3zoro53qsz43pe@skbuf>
- <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
- <20230814143601.mnpxtcm2zybnbvoh@skbuf>
- <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
- <20230827121235.zog4c3ehu2cyd3jy@skbuf>
- <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
+        with ESMTP id S237024AbjIIWkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Sep 2023 18:40:40 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA77B19F
+        for <devicetree@vger.kernel.org>; Sat,  9 Sep 2023 15:40:35 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so4147119a12.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Sep 2023 15:40:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1694299234; x=1694904034; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HH/+pshZkTpZv3Y+FJdhNHQVmmCQFNeFe7HWpElLmzU=;
+        b=nVRUAXc1Tl4G3o2d+Aue8ZeCVVUMIzAB3IN+/AqiY+UBdtk/GY+3QiccsluytsLDCR
+         nL93cYVaSU6G8aV7W7sN8mmaKhUYATAtEKWdfxAHP6kCad0HwxM1xpHC+NKmXRSkxPJc
+         2Nhe+Ja0DTey6aH5C926mQ3t3JPNIUT6UZnd4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694299234; x=1694904034;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HH/+pshZkTpZv3Y+FJdhNHQVmmCQFNeFe7HWpElLmzU=;
+        b=lduKc4j22hdo156aDxHU6bx1gLLsV4+jAXyBO2r/e+eNrdF5psLjObFiE4DoSnXCRC
+         iTij5PcvT0jKtRLhJWvYtQ/4c1crYG6pjIxLk7gMXTRzZH9UAVnrasJyYxaQQHdbiIz/
+         wZYG5L5PnD4WhUnx3LK8H1h+vBnaFgrcxn3qi1GRwoaugPrlx5CHXkH7CmxIhBBPp16X
+         PJEDvFRidQnXYcFPwZ43WAk893s3DgXvq7tT2Oxb7fw+OHE9a7bLnuS1haBEPA7nJpgw
+         kEYX4LXk3hqnKQWg6zgvJqfvsPKyTfMw+JDb6a1TH+Af+TtvinFKA85OlkSo0c78OE/+
+         j0Mg==
+X-Gm-Message-State: AOJu0YwIjVNCSLa3eJe20ZiDl+PoFUPJmCDv3KCWljiiR1f8aWUQac2I
+        Ay+Ly5lC2FexAny1O4sMsukRrkgX8ISgbjh7f+I9Sg==
+X-Google-Smtp-Source: AGHT+IFrWRpLbl5VBDOHv1Jgv+ESvlzO8fGQiu6W79llnlicsuRBSroLYNnBj0sNU7nbGU/xUQ4DSmg87aO838h2YZM=
+X-Received: by 2002:aa7:ce05:0:b0:523:3853:e01a with SMTP id
+ d5-20020aa7ce05000000b005233853e01amr4473909edv.36.1694299234153; Sat, 09 Sep
+ 2023 15:40:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+References: <20230907214012.74978-1-sjg@chromium.org> <20230907214012.74978-2-sjg@chromium.org>
+ <CAL_Jsq+N1=XuZqFsVEgBeVpJzTBJRJ+w76roOUBtbP2Y8f3bEw@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+N1=XuZqFsVEgBeVpJzTBJRJ+w76roOUBtbP2Y8f3bEw@mail.gmail.com>
+From:   Simon Glass <sjg@chromium.org>
+Date:   Sat, 9 Sep 2023 16:40:22 -0600
+Message-ID: <CAPnjgZ1eE6s_07OAdNeWYEDVbPg-tz7S5jk15i0OJhHTrwBaMQ@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] schemas: memory: Add ECC properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Dhaval Sharma <dhaval@rivosinc.com>,
+        Guo Dong <guo.dong@intel.com>,
+        U-Boot Mailing List <u-boot@lists.denx.de>,
+        Yunhui Cui <cuiyunhui@bytedance.com>,
+        Chiu Chasel <chasel.chiu@intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-acpi@vger.kernel.org,
+        Maximilian Brune <maximilian.brune@9elements.com>,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Tom Rini <trini@konsulko.com>,
+        Lean Sheng Tan <sheng.tan@9elements.com>,
+        Gua Guo <gua.guo@intel.com>, ron minnich <rminnich@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-9.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,USER_IN_DEF_SPF_WL
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Please trim the text when replying.
+Hi Rob,
 
+On Fri, 8 Sept 2023 at 05:46, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Sep 7, 2023 at 4:40=E2=80=AFPM Simon Glass <sjg@chromium.org> wro=
+te:
+> >
+> > Some memories provide ECC detection and/or correction. For software whi=
+ch
+> > wants to check memory, it is helpful to see which regions provide this
+> > feature.
+> >
+> > Add this as a property of the /memory nodes, since it presumably follow=
+s
+> > the hardware-level memory system.
+> >
+> > Signed-off-by: Simon Glass <sjg@chromium.org>
+> > ---
+> >
+> > Changes in v6:
+> > - Use a number of bits instead of a string property
+> > - Fix inidcates typo
+> >
+> > Changes in v5:
+> > - Redo to make this property specific to ECC
+> > - Provide properties both for detection and correction
+> >
+> > Changes in v3:
+> > - Add new patch to update the /memory nodes
+> >
+> >  dtschema/schemas/memory.yaml | 15 +++++++++++++--
+> >  1 file changed, 13 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/dtschema/schemas/memory.yaml b/dtschema/schemas/memory.yam=
+l
+> > index 1d74410..1a48b1c 100644
+> > --- a/dtschema/schemas/memory.yaml
+> > +++ b/dtschema/schemas/memory.yaml
+> > @@ -31,10 +31,21 @@ patternProperties:
+> >
+> >        numa-node-id:
+> >          $ref: types.yaml#/definitions/uint32
+> > -        description:
+> > +        description: |
+>
+> Why? '|' is not needed for any of these.
+>
+> >            For the purpose of identification, each NUMA node is associa=
+ted with
+> >            a unique token known as a node id.
+> > -
+>
+> blank line between properties.
+>
+> I can fix these up when applying.
 
-> I'm writing below as a mix of patch log and discussion.
-> 
-> Phylink bindings are required for ports that are controlled by OF-based
-> buses. DSA, like any other driver utilising the Linux MDIO infrastructure,
-> can register a bus. If I understand correctly, non-OF-based registration of
-> OpenFirmware MDIO buses is a feature specific to DSA which certain DSA
-> subdrivers make use of.
+OK thank you.
 
-This is not really DSA specific. Any MAC driver, or MDIO driver, can
-call mdiobus_regsiter(), or of_mdiobus_register() and pass a NULL
-pointer if there is no OF node available. It then requires that the
-MAC driver uses an function like phy_find_first(), or knows via other
-means what address the PHY uses on the bus. For DSA, that other means
-is assuming a 1:1 mapping between port number and bus address.
+>
+> > +      ecc-detection-bits:
+> > +        default: 0
+> > +        description: |
+> > +          If present, this indicates the number of bits of memory erro=
+r which
+> > +          can be detected and reported by the Error-Correction Code (E=
+CC) memory
+> > +          subsystem (typically 0, 1 or 2).
+> > +      ecc-correction-bits:
+> > +        default: 0
+> > +        description: |
+> > +          If present, this indicates the number of bits of memory erro=
+r which
+> > +          can be corrected by the Error-Correction Code (ECC) memory s=
+ubsystem
+> > +          (typically 0, 1 or 2).
+> >
+> >      required:
+> >        - device_type
+> > --
+> > 2.42.0.283.g2d96d420d3-goog
+> >
 
-   Andrew
+Regards,
+Simon
