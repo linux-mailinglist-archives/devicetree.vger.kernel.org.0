@@ -2,112 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C157799E69
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 14:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854A1799E6F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 15:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346538AbjIJM5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 08:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36424 "EHLO
+        id S233421AbjIJNQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 09:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233336AbjIJM5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 08:57:49 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C47DBCCD;
-        Sun, 10 Sep 2023 05:57:45 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1a2dd615ddcso1126650fac.0;
-        Sun, 10 Sep 2023 05:57:45 -0700 (PDT)
+        with ESMTP id S229930AbjIJNQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 09:16:28 -0400
+Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A2DCCD
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 06:16:22 -0700 (PDT)
+Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-591ba8bd094so33036127b3.3
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 06:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694350665; x=1694955465; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=sifive.com; s=google; t=1694351782; x=1694956582; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sgwfLaYSJ5WLNmQQVlnmctv4wdhVxz6XAmlsUYvHCyU=;
-        b=kAs2YlizvrT7+AhqbtYHN8ypbGj0lHSRUjexb4OT4ollPzGGkQlOuLmeaHr7auZ/DA
-         w62zZqBW16TvhPo8QxplU/t3oXudROdQbeo4GAekAdKPFdR0WVOR2aCQm6CU7vPvTbvL
-         nu55DQj5qW7aXhXl9/zo6ufLcbeWwxRUwcL7L6GQsD2h/rz85G3zB1aIOWBXVuV4TvlL
-         mnapSlI/iBJNHPAqjdaSr6igCtm9bqj9V00l8P/9/yK1tI97foA0LFyo6mxpEg3F/N6g
-         ggoRUM7efQxAf/2Oll4+xCQ5bFnKohLsQLdFzS8FgwF4jukjHC7xDQCoEPAat7DcQ+xA
-         ALwg==
+        bh=HjN8Of+pjWX2CIVjsxXC9mGE1z6Iz0B/xqCqiSzzvAM=;
+        b=f8gJp92hUB5JuKVo9palR3Aerpd2bdVR4MneqqSNR8YU7djH7qXfrIR9qnprJPnzOB
+         hzpf8m5OGJjHq0/iI8lq+4uUJmrceZN0mgQtFzp0ZviLmYYkVPML0zvIdyjk/9zeyToi
+         Ligilr6BfzvaqfRNTJ3g1wmRxdNmuP/xKqUDdBXn9fI0Nnnsfbt5s61mBR+YfTKIji4v
+         1PIP37QWZ9hxMSRrzsWYnr23BeqONv77Dsy2JPhX0YdjbhsM4LHnV/jSm1ERRYktGc0G
+         n0RcbFC5GNmwiInqysGuzo/hW95CxGMJFR5DQEKmUfcnWrIGL70+yTEZAN4OoYjv8+l2
+         V9+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694350665; x=1694955465;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1694351782; x=1694956582;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sgwfLaYSJ5WLNmQQVlnmctv4wdhVxz6XAmlsUYvHCyU=;
-        b=ZLAbVB7dWdgpNNPu8XwXDR1DkfEHO+51Z8BIdXSvyhiyh7NWfhzNCQzBJe7wy/hlFm
-         6UyBobzlf166NfdCYD3SXcbfoA6ZilaqlsCWB8suqWtlh2siFb3uGMfinZ2SAaOPAukI
-         ZjemaJTYDMT7f/w+SJhigQbeSz+8ZdnWNUULZc1vAnjBs+afrAoHBNaMMilbe/O8xrd9
-         +wVd7JQ3221aG8u8WrjH6vcJem+ms8uy4nYE7dW2jutKd8k76hoHj/BhlomuvIGKBAuy
-         YFiUFIQKiY3squTXzXdMbD1YmVDs1TluL7nNEuBj69mSCBPr5JFUQSOcwzh+K+HpxikU
-         MoTw==
-X-Gm-Message-State: AOJu0Yx7BZ/BRkMX8zi9y2pqGFKS9YPToZKWbMo1ij+p6x9qk86LmFtk
-        Iw6rKuskT1+eFhMV1CvNBEU=
-X-Google-Smtp-Source: AGHT+IGQYCYevNYPYqdUE8fLe1mdOJ2joHXFt0x+hbNSkhZOhcio0Q1nFxqVJzMl5p0v01YSKVGXWQ==
-X-Received: by 2002:a05:6870:970f:b0:1bf:9fa2:bfa3 with SMTP id n15-20020a056870970f00b001bf9fa2bfa3mr7252379oaq.1.1694350664922;
-        Sun, 10 Sep 2023 05:57:44 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8ae8:e729:67d1:f8d9])
-        by smtp.gmail.com with ESMTPSA id y2-20020a056870e3c200b001c4ede43955sm3003140oad.31.2023.09.10.05.57.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Sep 2023 05:57:44 -0700 (PDT)
-From:   Fabio Estevam <festevam@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, linux-imx@nxp.com,
-        Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 2/2] dt-bindings: thermal: qoriq-thermal: Adjust fsl,tmu-range maxItems
-Date:   Sun, 10 Sep 2023 09:57:26 -0300
-Message-Id: <20230910125726.1243652-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230910125726.1243652-1-festevam@gmail.com>
-References: <20230910125726.1243652-1-festevam@gmail.com>
+        bh=HjN8Of+pjWX2CIVjsxXC9mGE1z6Iz0B/xqCqiSzzvAM=;
+        b=FovZpzEy6W/yfVD+lb8/vnKFbTUiC5DG69o6P6VFM93Ds59MHaZVxsU5znU/TUST5J
+         iDKVqKXA+s6bdXRPS2QI4Ao+AmDOYIGAJuqZsFJ7tnq4RFo7X3T9zX9bc95bm2GqPTUC
+         qp1fwWDc2A4f8Pc8UqFMj4D94mOnoPCJ9U8arQmYRVhjAaRQPgqCrR5DhQrAcfP/EnQm
+         8obkbrCcrO35utcQHeuJNLibsTZ3KHLYQQOEPvJ54Ulm5sZCEPJcUZyAfYDSTTZUfR2o
+         5JMRPUe58CWxzRWhgKJh2v4T7FVyg4kv29bmhXRcgarA1PSskI9tFHkIsjbjnVqka3ds
+         Ahvg==
+X-Gm-Message-State: AOJu0YwwfpY9PgIqz65OmUzsqOzFwegWEgKwIGHvimi8G0i2Xez/YB3X
+        mhut3lZ8hv7jzMXBJcjxSA6a7AzqfqwxtesHZj6NAA==
+X-Google-Smtp-Source: AGHT+IEdl77algUKJuww50Wn5JRJSRoXn8xdxcz8+JHG/Ps8qzQnbLkhisoVtUzAvd4QI8dp5BFqrRqOymoPVtvG7R4=
+X-Received: by 2002:a0d:ddcf:0:b0:586:a684:e7b6 with SMTP id
+ g198-20020a0dddcf000000b00586a684e7b6mr8360407ywe.9.1694351781945; Sun, 10
+ Sep 2023 06:16:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230130093229.27489-1-nylon.chen@sifive.com> <20230130093229.27489-3-nylon.chen@sifive.com>
+ <20230130101707.pdvabl3na2wpwxqu@pengutronix.de> <CAHh=Yk8R02NXK33aogQeJQB6x88B_gpbnjHj9wRrJEbDQf67Aw@mail.gmail.com>
+ <20230908144942.d3feisuyctppfb3l@pengutronix.de>
+In-Reply-To: <20230908144942.d3feisuyctppfb3l@pengutronix.de>
+From:   Nylon Chen <nylon.chen@sifive.com>
+Date:   Sun, 10 Sep 2023 21:16:10 +0800
+Message-ID: <CAHh=Yk9EU74aeG2P1Sd0JG8hQdvkQpL3QE4VhZ9DmMN+JV2xHQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pwm: sifive: change the PWM controlled LED algorithm
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     aou@eecs.berkeley.edu, conor@kernel.org,
+        emil.renner.berthing@canonical.com, geert+renesas@glider.be,
+        heiko@sntech.de, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com, robh+dt@kernel.org,
+        thierry.reding@gmail.com, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, nylon7717@gmail.com,
+        zong.li@sifive.com, greentime.hu@sifive.com,
+        vincent.chen@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabio Estevam <festevam@denx.de>
+Hi Uwe
 
-imx93 has a maximum of seven entries for fsl,tmu-range.
+I'm glad the example was helpful to you. I will double-check and
+verify my implementation once again.
 
-Change it accordingly.
+Thank you for your assistance.
 
-This fixes the following schema warning:
-
-imx93-11x11-evk.dtb: tmu@44482000: fsl,tmu-range: 'oneOf' conditional failed, one must be fixed:
-	[2147483866, 2147483881, 2147483906, 2147483946, 2147484006, 2147484071, 2147484086] is too long
-
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Reduce the context of the schema warning in the commit log.
-
- Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-index 145744027234..d3734fc66f78 100644
---- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-+++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.yaml
-@@ -33,7 +33,8 @@ properties:
-     description: |
-       The values to be programmed into TTRnCR, as specified by the SoC
-       reference manual. The first cell is TTR0CR, the second is TTR1CR, etc.
--    maxItems: 4
-+    minItems: 4
-+    maxItems: 7
- 
-   fsl,tmu-calibration:
-     $ref: /schemas/types.yaml#/definitions/uint32-matrix
--- 
-2.34.1
-
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=E5=B9=
+=B49=E6=9C=888=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:50=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+>
+> Hello,
+>
+> On Fri, Sep 08, 2023 at 06:41:00PM +0800, Nylon Chen wrote:
+> > Sorry it's so long ago.
+> >
+> > I have completed the implementation of the new version, but there is
+> > one thing about this letter that I still don't quite understand.
+> >
+> > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de> =E6=96=BC 2023=
+=E5=B9=B41=E6=9C=8830=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=886:17=E5=
+=AF=AB=E9=81=93=EF=BC=9A
+> > >
+> > > On Mon, Jan 30, 2023 at 05:32:29PM +0800, Nylon Chen wrote:
+> > > > The `frac` variable represents the pulse inactive time, and the res=
+ult of
+> > > > this algorithm is the pulse active time. Therefore, we must reverse=
+ the
+> > > > result.
+> > > >
+> > > > The reference is SiFive FU740-C000 Manual[0].
+> > > >
+> > > > [0]: https://sifive.cdn.prismic.io/sifive/1a82e600-1f93-4f41-b2d8-8=
+6ed8b16acba_fu740-c000-manual-v1p6.pdf
+> > > >
+> > > > Signed-off-by: Nylon Chen <nylon.chen@sifive.com>
+> > > > ---
+> > > >  drivers/pwm/pwm-sifive.c | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/drivers/pwm/pwm-sifive.c b/drivers/pwm/pwm-sifive.c
+> > > > index 62b6acc6373d..a5eda165d071 100644
+> > > > --- a/drivers/pwm/pwm-sifive.c
+> > > > +++ b/drivers/pwm/pwm-sifive.c
+> > > > @@ -158,6 +158,7 @@ static int pwm_sifive_apply(struct pwm_chip *ch=
+ip, struct pwm_device *pwm,
+> > > >       frac =3D DIV64_U64_ROUND_CLOSEST(num, state->period);
+> > > >       /* The hardware cannot generate a 100% duty cycle */
+> > > >       frac =3D min(frac, (1U << PWM_SIFIVE_CMPWIDTH) - 1);
+> > > > +     frac =3D (1U << PWM_SIFIVE_CMPWIDTH) - 1 - frac;
+> > >
+> > > The same problem exists in pwm_sifive_get_state(), doesn't it?
+> > >
+> > > As fixing this is an interruptive change anyhow, this is the opportun=
+ity
+> > > to align the driver to the rules tested by PWM_DEBUG.
+> > >
+> > > The problems I see in the driver (only checked quickly, so I might be
+> > > wrong):
+> > >
+> > >  - state->period !=3D ddata->approx_period isn't necessarily a proble=
+m. If
+> > >    state->period > ddata->real_period that's fine and the driver shou=
+ld
+> > >    continue
+> >
+> > I still don=E2=80=99t quite understand the description of this paragrap=
+h.
+> >
+> > state->period !=3D ddate->approx_period seems to be used to compare the
+> > results of the previous and next two times.
+>
+> There are two things to consider:
+>
+>  - usually the hardware doesn't support all requestable states because
+>    the hardware's quantum is > 1 ns. That is, it might for example
+>    support periods in the form (160 ns * i / 3) for i in 1 .. 1023.
+>
+>    If this hardware runs with i =3D 500 (that is period ~=3D 26666.66
+>    ns) because the first channel is configured to run with period =3D
+>    26667, and .request is called for the 2nd channel with .period =3D
+>    26700 ns, there is no need to refuse that, because 26666.66 is the
+>    best possible approximation for 26700 ns anyhow.
+>
+>  - .apply is supposed to implement the highest possible period that
+>    isn't bigger than the requested period. So in the above case even if
+>    the hardware runs at 26666.66 ns without the possibility to change
+>    that, a request to configure for period =3D 30000 ns could succeed (an=
+d
+>    keep 26666.66 ns).
+>
+> > Would you suggest I send the new implementation version before
+> > continuing the discussion?
+>
+> Note that the above implements the optimal behaviour for a driver.
+> (For some definition of "optimal" that admittedly also yields strange
+> behaviour at times. The reasoning for this to the be thing to implement
+> is, that's the corner cases are easier to implement, idempotency is
+> possible and it's easier to work with than rounding to the nearest
+> possible value.)
+>
+> While I'd like to see the sifive driver to implement this optimal
+> behaviour, it's not mandatory that you convert the driver to that
+> behaviour. Just make sure to not make it worse.
+>
+> So to answer your question: If you understood what I wrote above and are
+> motivated to improve the driver, it would be great to do that before the
+> next review round.
+>
+> Best regards
+> Uwe
+>
+> --
+> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
+     |
+> Industrial Linux Solutions                 | https://www.pengutronix.de/ =
+|
