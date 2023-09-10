@@ -2,47 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 396EA799D85
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 11:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8250799D87
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 11:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346568AbjIJJjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 05:39:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37154 "EHLO
+        id S1346569AbjIJJki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 05:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239000AbjIJJjr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 05:39:47 -0400
+        with ESMTP id S239000AbjIJJki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 05:40:38 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BD95CC9
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 02:39:43 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83C6CC433C8;
-        Sun, 10 Sep 2023 09:39:40 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7229FCC9;
+        Sun, 10 Sep 2023 02:40:34 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96EF5C433C7;
+        Sun, 10 Sep 2023 09:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694338783;
-        bh=ysgPsq9QspCHPdVZ1NaI1wqrQYbL59Pa0hwTYZh34Nk=;
+        s=k20201202; t=1694338834;
+        bh=jLtGOqox7MJX7EormqHEUu+Ks0UsdUWX+SnzA6zN8gU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=T3i5HiRGNxsKaTMRC+nDxaeScpBzQq2QvqVKltUakavvPuMPRD8hp82/gdKep768f
-         S7omkx2VlYsBPhWdmbCgIRVEwPfsQkZxCEcBOYYJbhfkx3anVlHgXSDgy/upQY23F2
-         f0SbrOOc7v/H9zLOHoxM3sg88rhmJHbV/658hNtsxI30jJtoDyRHw7Jr4ha6Ksh7Ud
-         y5OJl+X/RFb9pnHqDkoS/Z7Mx1BaAf/Dg0JV6cjP4kPkgh/3Vrz4hkQ1evME/SPWfC
-         KxIu+9XFxu7tWBgEhzvKiNQoq4CaQ04SAnY4kgixGGBkFZDm8s4Mjb0bYhxBMFXUm5
-         NuvAaUogKpa/A==
-Date:   Sun, 10 Sep 2023 10:39:38 +0100
+        b=IeG9lPcJ0IYIef8emoCjw6630u4trREQM3bdU0sLMltnc74KkmXsrGS+2dntfryPG
+         8E++qMFdSaDDdLwm3Hm1RHH5pIJOXFTuzaiEB4tDuVXTmDC6ya/gsA9BLp+/ItgRYb
+         mmmOGnN2psGTw7fnf61nMaMZEu5lV2F86L7z8Ts6l20FRO360N0+1cpvV5uErYYpfr
+         42XRy2I9o6mBFN783JKzyj836uiMTFu5mAmdL1204HOc2GCsOmNQupgI5mATqO6Veo
+         zwqQu/m/QSK6ewknMvrrfz9WX/IsfT0e4pV9j2NflUo8H5YBPUCUQackgtdc5B/4WJ
+         iX3r71mUEB8Pw==
+Date:   Sun, 10 Sep 2023 10:40:28 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     shawnguo@kernel.org, wei.fang@nxp.com, shenwei.wang@nxp.com,
-        xiaoning.wang@nxp.com, kuba@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH 1/2] dt-bindings: net: fec: Add imx8dxl description
-Message-ID: <20230910-isotope-uncured-53d69b025137@spud>
-References: <20230909123107.1048998-1-festevam@gmail.com>
+To:     Shuijing Li <shuijing.li@mediatek.com>
+Cc:     chunfeng.yun@mediatek.com, vkoul@kernel.org, kishon@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com, chunkuang.hu@kernel.org,
+        p.zabel@pengutronix.de, linux-phy@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        jitao.shi@mediatek.com
+Subject: Re: [PATCH v3] dt-bindings: phy: Add compatible for Mediatek MT8188
+Message-ID: <20230910-say-kebab-b6968c44809d@spud>
+References: <20230908075310.17825-1-shuijing.li@mediatek.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="i7DpLp73U/PzOMoT"
+        protocol="application/pgp-signature"; boundary="usyFpcbg56OVilwN"
 Content-Disposition: inline
-In-Reply-To: <20230909123107.1048998-1-festevam@gmail.com>
+In-Reply-To: <20230908075310.17825-1-shuijing.li@mediatek.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
@@ -53,54 +56,70 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---i7DpLp73U/PzOMoT
+--usyFpcbg56OVilwN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Sep 09, 2023 at 09:31:06AM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Fri, Sep 08, 2023 at 03:53:10PM +0800, Shuijing Li wrote:
+> Add dt-binding documentation of dsi-phy for MediaTek MT8188 SoC.
 >=20
-> The imx8dl FEC has the same programming model as the one on the imx8qxp.
->=20
-> Add the imx8dl compatible string.
->=20
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
 Conor.
 
 > ---
->  Documentation/devicetree/bindings/net/fsl,fec.yaml | 1 +
+> Changes in v3:
+> After upstreaming the basic version of mt8188.dtsi, we will add the
+> following mipi node in mt8188.dtsi:
+> mipi_tx_config0: mipi_dphy0@11c80000 {
+> 			compatible =3D "mediatek,mt8188-mipi-tx",
+> 				     "mediatek,mt8183-mipi-tx";
+> 			reg =3D <0 0x11c80000 0 0x1000>;
+> 			clocks =3D <&clk26m>;
+> 			#clock-cells =3D <0>;
+> 			#phy-cells =3D <0>;
+> 			clock-output-names =3D "mipi_tx0_pll";
+> 			status =3D "disabled";
+> 		};
+> per suggestion from the previous thread:
+> https://lore.kernel.org/all/0a6d3d14-33f0-92d2-b42f-e4d336c8cd91@linaro.o=
+rg/
+> Changes in v2:
+> Adjust mt8188 position.
+> ---
+>  Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/net/fsl,fec.yaml b/Documen=
-tation/devicetree/bindings/net/fsl,fec.yaml
-> index b494e009326e..8948a11c994e 100644
-> --- a/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> +++ b/Documentation/devicetree/bindings/net/fsl,fec.yaml
-> @@ -59,6 +59,7 @@ properties:
->            - const: fsl,imx6sx-fec
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml =
+b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> index a63b20dfa4a5..6703689fcdbe 100644
+> --- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
+> @@ -30,6 +30,7 @@ properties:
+>            - const: mediatek,mt8173-mipi-tx
 >        - items:
 >            - enum:
-> +              - fsl,imx8dxl-fec
->                - fsl,imx8qxp-fec
->            - const: fsl,imx8qm-fec
->            - const: fsl,imx6sx-fec
+> +              - mediatek,mt8188-mipi-tx
+>                - mediatek,mt8365-mipi-tx
+>            - const: mediatek,mt8183-mipi-tx
+>        - const: mediatek,mt2701-mipi-tx
 > --=20
-> 2.34.1
+> 2.40.1
 >=20
 
---i7DpLp73U/PzOMoT
+--usyFpcbg56OVilwN
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZP2O2gAKCRB4tDGHoIJi
-0jpyAP0dvclFyo0iMw+7wMHdalTWBEOGqHTHl9OEZMugJPfSGgD/UmJBuWlsafdS
-Tx9lrExixAw10OvS1Ygi/Wl7VGduQQM=
-=dscV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZP2PDAAKCRB4tDGHoIJi
+0pFIAP9jrgL8n+v3mPL3S1wh1wd48GwQVMGsnmrG6WeVsQI/5QD/ZtNCfHkVx9lM
+r4VnXPQ1uUnAjilJIX5m0w9Bp6N30QM=
+=d8a5
 -----END PGP SIGNATURE-----
 
---i7DpLp73U/PzOMoT--
+--usyFpcbg56OVilwN--
