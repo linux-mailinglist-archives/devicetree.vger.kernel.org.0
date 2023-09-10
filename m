@@ -2,124 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8250799D87
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 11:40:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11511799D8B
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 11:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346569AbjIJJki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 05:40:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33098 "EHLO
+        id S1346582AbjIJJmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 05:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239000AbjIJJki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 05:40:38 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7229FCC9;
-        Sun, 10 Sep 2023 02:40:34 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96EF5C433C7;
-        Sun, 10 Sep 2023 09:40:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694338834;
-        bh=jLtGOqox7MJX7EormqHEUu+Ks0UsdUWX+SnzA6zN8gU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IeG9lPcJ0IYIef8emoCjw6630u4trREQM3bdU0sLMltnc74KkmXsrGS+2dntfryPG
-         8E++qMFdSaDDdLwm3Hm1RHH5pIJOXFTuzaiEB4tDuVXTmDC6ya/gsA9BLp+/ItgRYb
-         mmmOGnN2psGTw7fnf61nMaMZEu5lV2F86L7z8Ts6l20FRO360N0+1cpvV5uErYYpfr
-         42XRy2I9o6mBFN783JKzyj836uiMTFu5mAmdL1204HOc2GCsOmNQupgI5mATqO6Veo
-         zwqQu/m/QSK6ewknMvrrfz9WX/IsfT0e4pV9j2NflUo8H5YBPUCUQackgtdc5B/4WJ
-         iX3r71mUEB8Pw==
-Date:   Sun, 10 Sep 2023 10:40:28 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Shuijing Li <shuijing.li@mediatek.com>
-Cc:     chunfeng.yun@mediatek.com, vkoul@kernel.org, kishon@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, linux-phy@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        jitao.shi@mediatek.com
-Subject: Re: [PATCH v3] dt-bindings: phy: Add compatible for Mediatek MT8188
-Message-ID: <20230910-say-kebab-b6968c44809d@spud>
-References: <20230908075310.17825-1-shuijing.li@mediatek.com>
+        with ESMTP id S239000AbjIJJmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 05:42:21 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6279DCCF
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 02:42:14 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-401d2e11dacso28542395e9.0
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 02:42:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694338933; x=1694943733; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NZYlliDbp6ONDZ+/JtQ8wHgHLQWxnEO9jLvO0k1fgCs=;
+        b=WCXEY2QI2eM+7ZsocYCn6Xs41sez8KzaUvnvk50wftARiOnlY9Ut+27telbF/nY7S8
+         TeTchVoGVC+IvVxjGDXAOHtvfEHIiYVUjU5cvrsOSIEZo3OcFu1FIPK+55U853H3SJfC
+         Te4KzNU6hYuPtUmeUocoEOgAqsbBVcRCMfjvAXaZ+J7qVgVAQODmszsAmHN3CsX3dwHV
+         2a3UvWnfj189cSm3tqh8KaMRO3u97PyjTwb7TJZwq4ZmH/ayFeDIL7dHn5BBVPeeQ3vy
+         WZh55GAODlLTR2V25ic6kG9TvN6h1Iisze2OJpfVluhrFhnTHqK+AVe9boMOkLkpmp7J
+         Ga1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694338933; x=1694943733;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NZYlliDbp6ONDZ+/JtQ8wHgHLQWxnEO9jLvO0k1fgCs=;
+        b=MRfHcyzR2eDuklYdPhyaKlhwpQUHysOaDklpDpgXu1+VjdA3KwHPe72WddJfdR1E5f
+         FBBfbrS4vLvdli6Fj4aCec+2/8/kVk4ykwrNdR+40rp46wQcQ+sUJApFiLFw53ATQZ/w
+         hElOvYKfN9CMGfaFKZNR3HsY6XZfsygMcmCb+1BTV31DtOXE81mMhMULwsNjmO3/uTdr
+         uoeQlisLH5y524whgsXlqgBJC+nif6CQthoDd1nMxTpnUdqD3vYFH1qggixbzFWphYWV
+         KwhyuEP9Mxa2tZ35fPoQ+grwE7ojawZr4IfPiYB+Rynh6IuYMR9ERCeZEBbadMdjf4NI
+         85Vw==
+X-Gm-Message-State: AOJu0YzTye9PS+WZPm+leJOrPLvaxR9NN5L2Ym67n6rYe5uRWVxsLUsw
+        sAmP3H9aAxDP3CStA8SRFeuHi4r622w0G9q6mNk=
+X-Google-Smtp-Source: AGHT+IHYi3pkOMaR0aTCulpZ89o0cibEZNHObjK6hjLqBOL9uPmdkYyGl6SPyM4N2oJBAEGpdP/aHQ==
+X-Received: by 2002:a05:600c:4817:b0:3ff:a95b:9751 with SMTP id i23-20020a05600c481700b003ffa95b9751mr7271888wmo.7.1694338932883;
+        Sun, 10 Sep 2023 02:42:12 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id 23-20020a05600c231700b003fed4fa0c19sm10094526wmo.5.2023.09.10.02.42.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Sep 2023 02:42:12 -0700 (PDT)
+Message-ID: <d05d7692-ca95-2f65-1319-82892b53949a@linaro.org>
+Date:   Sun, 10 Sep 2023 11:42:10 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="usyFpcbg56OVilwN"
-Content-Disposition: inline
-In-Reply-To: <20230908075310.17825-1-shuijing.li@mediatek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] arm64: dts: imx8dxl-ss-adma: Fix i2c compatible entries
+Content-Language: en-US
+To:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc:     linux-imx@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        Fabio Estevam <festevam@denx.de>
+References: <20230909164403.1084032-1-festevam@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230909164403.1084032-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 09/09/2023 18:44, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Per i2c-imx-lpi2c.yaml, the imx8dxl lpi2c compatible should be:
+> 
+> compatible = "fsl,imx8dxl-lpi2c", "fsl,imx7ulp-lpi2c";
+> 
+> Change it accordingly to fix the following schema warning:
 
---usyFpcbg56OVilwN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 08, 2023 at 03:53:10PM +0800, Shuijing Li wrote:
-> Add dt-binding documentation of dsi-phy for MediaTek MT8188 SoC.
->=20
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Best regards,
+Krzysztof
 
-Thanks,
-Conor.
-
-> ---
-> Changes in v3:
-> After upstreaming the basic version of mt8188.dtsi, we will add the
-> following mipi node in mt8188.dtsi:
-> mipi_tx_config0: mipi_dphy0@11c80000 {
-> 			compatible =3D "mediatek,mt8188-mipi-tx",
-> 				     "mediatek,mt8183-mipi-tx";
-> 			reg =3D <0 0x11c80000 0 0x1000>;
-> 			clocks =3D <&clk26m>;
-> 			#clock-cells =3D <0>;
-> 			#phy-cells =3D <0>;
-> 			clock-output-names =3D "mipi_tx0_pll";
-> 			status =3D "disabled";
-> 		};
-> per suggestion from the previous thread:
-> https://lore.kernel.org/all/0a6d3d14-33f0-92d2-b42f-e4d336c8cd91@linaro.o=
-rg/
-> Changes in v2:
-> Adjust mt8188 position.
-> ---
->  Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml =
-b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> index a63b20dfa4a5..6703689fcdbe 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,dsi-phy.yaml
-> @@ -30,6 +30,7 @@ properties:
->            - const: mediatek,mt8173-mipi-tx
->        - items:
->            - enum:
-> +              - mediatek,mt8188-mipi-tx
->                - mediatek,mt8365-mipi-tx
->            - const: mediatek,mt8183-mipi-tx
->        - const: mediatek,mt2701-mipi-tx
-> --=20
-> 2.40.1
->=20
-
---usyFpcbg56OVilwN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZP2PDAAKCRB4tDGHoIJi
-0pFIAP9jrgL8n+v3mPL3S1wh1wd48GwQVMGsnmrG6WeVsQI/5QD/ZtNCfHkVx9lM
-r4VnXPQ1uUnAjilJIX5m0w9Bp6N30QM=
-=d8a5
------END PGP SIGNATURE-----
-
---usyFpcbg56OVilwN--
