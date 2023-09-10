@@ -2,134 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 158CE799C04
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 01:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C53A9799CD2
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 08:29:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345189AbjIIXXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 9 Sep 2023 19:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55122 "EHLO
+        id S1345151AbjIJG3Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 02:29:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345176AbjIIXXt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 9 Sep 2023 19:23:49 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91C8B1A5
-        for <devicetree@vger.kernel.org>; Sat,  9 Sep 2023 16:23:44 -0700 (PDT)
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 3EBE13F661
-        for <devicetree@vger.kernel.org>; Sat,  9 Sep 2023 23:23:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1694301823;
-        bh=g38mnsqH2vU/74bmC9caLvWkHP+AyVA0JTu2qX2Y3fc=;
-        h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-         To:Cc:Content-Type;
-        b=Sy4cnsrk55+5F31kzQ6FhxWUB3RSbeTHxpqKVHZsMhrHLkqPblIUoYsYWZohzTbjD
-         hgdbCZxhqYk/1bfp/rJanwvFKJoVxuW9rN3GIu43bPOvuD4SOC24mR/xH361oE5u36
-         TFMn4Z1gQi+lRZdxH6WD7S9gOGxgeD0Z6QIkJDnl7pRmaJ3c146jsoIrqeUYaZyzJv
-         tC2i9Npy8QC6xR02jujv+ZEvx/yjG9YfUGZnXq93TJdRYtdwYp14YOXLHqrXpUiiRg
-         y/3A1UlFJfYxMcJZZDNkeznqfymDuyokB6qGfZC6F15pyKVJRME4FjbIjMVnLGaHpE
-         Ai8ss4mNtXRzA==
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-41362ffd32aso38254501cf.3
-        for <devicetree@vger.kernel.org>; Sat, 09 Sep 2023 16:23:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694301821; x=1694906621;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g38mnsqH2vU/74bmC9caLvWkHP+AyVA0JTu2qX2Y3fc=;
-        b=Z02UjwSimm9jsowey7xNGcmEwJPr3jOQmHPO9aauqOYedi1M3P+HJlz9hf2Md46YE+
-         T50el/4qFVSNTuBz0UzHG2E1HwXljBaUrHO/E65Rvkw8Ab6aESID7lcpeKyrrp8ojzQ8
-         VYP+14uFxzz3ECBzGy1weN4PxlsIVe6DxWRIYsktxUB1y+UhpuQ4TcL544MVz16sD1tt
-         QCV3hiv86LLLMXbw1mE7nJUPUgIBkMxwbDV4YpLp63136XTOokzf2Xsle9cGDHnCFbSY
-         1V3mknrv/aza1WCmPYA2qhe/gSHC0J5uS1hODs3KkLnluqqnWjZie8LJQxnd57HLY2B3
-         lbFw==
-X-Gm-Message-State: AOJu0YzXXMpbOq+y8KbWHQWMDOv/uwEVG0Iuy0gTohlG5qi9/RV3EtUX
-        gzeC1/4gym0e40faDGiZJEUv7/8Hhxpt92kDOGboHXotNM/pkZ/Iw0hUWZAiYeTA8vigP+A5LWH
-        S6ZTaO/zTu6aq+I3lLgaEZS6iSYE8R0aVwy7O7uK3/l81gQTHrov0ZCU=
-X-Received: by 2002:ac8:5fd1:0:b0:403:3583:68eb with SMTP id k17-20020ac85fd1000000b00403358368ebmr8328327qta.19.1694301821761;
-        Sat, 09 Sep 2023 16:23:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEligNCMo7eGYPMSQx5GN7uRZvx7+f7h9gFSFY5WF33IvudVpZLJQrGFnyPQi+7GeUnGV3ayeuhZMSG/0dtB0o=
-X-Received: by 2002:ac8:5fd1:0:b0:403:3583:68eb with SMTP id
- k17-20020ac85fd1000000b00403358368ebmr8328310qta.19.1694301821519; Sat, 09
- Sep 2023 16:23:41 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Sat, 9 Sep 2023 16:23:41 -0700
-From:   Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20230907053742.250444-4-xingyu.wu@starfivetech.com>
-References: <20230907053742.250444-1-xingyu.wu@starfivetech.com> <20230907053742.250444-4-xingyu.wu@starfivetech.com>
-Mime-Version: 1.0
-Date:   Sat, 9 Sep 2023 16:23:41 -0700
-Message-ID: <CAJM55Z9VkLLN9y=1ZBb7g+23vWomgJHKpGe0o9sSv0UEQsdJRg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] riscv: dts: jh7110: starfive: Add timer node
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Walker Chen <walker.chen@starfivetech.com>
-Cc:     linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1344138AbjIJG3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 02:29:16 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EDEB1B5;
+        Sat,  9 Sep 2023 23:29:05 -0700 (PDT)
+X-UUID: 53ad1fb64fa311eea33bb35ae8d461a2-20230910
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=Na0bNQ07Pbi0T3mA7P1dPLXkKdZzoSfnCnc1dSDx5go=;
+        b=Ki1magPMn/MBr8pXBsGyEoKbSd2NOfNDFfRj4x+W+3iYHpr/NM9zIQILa5KaLV3wqRqNU9rzv4SioVhHygqUVzL9lhUvF4OCLXQuQGH2F9TbpLAWTGrBtG7hChyNiINdR7+rJIaZUVjh3nKUvpkgr4SlCo8Twmo+mfyMu52e87A=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:9c198f7e-2cff-400c-a9d6-fed4c1df5297,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:8049d8c2-1e57-4345-9d31-31ad9818b39f,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 53ad1fb64fa311eea33bb35ae8d461a2-20230910
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1323206990; Sun, 10 Sep 2023 14:28:59 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sun, 10 Sep 2023 14:28:58 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sun, 10 Sep 2023 14:28:58 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+Subject: [PATCH] dt-bindings: arm64: dts: mediatek: add description for mt8365-evk board
+Date:   Sun, 10 Sep 2023 14:28:52 +0800
+Message-ID: <20230910062852.15415-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Xingyu Wu wrote:
-> Add the timer node for the Starfive JH7110 SoC.
->
+Fix the missing description for Mediatek mt8365-evk board.
 
-Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Fixes: 4f5fc078ac6f ("dt-bindings: arm64: dts: mediatek: Add mt8365-evk board")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-> Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index ec2e70011a73..84bb9717be13 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -502,6 +502,26 @@ sysgpio: pinctrl@13040000 {
->  			#gpio-cells = <2>;
->  		};
->
-> +		timer@13050000 {
-> +			compatible = "starfive,jh7110-timer";
-> +			reg = <0x0 0x13050000 0x0 0x10000>;
-> +			interrupts = <69>, <70>, <71> ,<72>;
-> +			clocks = <&syscrg JH7110_SYSCLK_TIMER_APB>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER0>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER1>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER2>,
-> +				 <&syscrg JH7110_SYSCLK_TIMER3>;
-> +			clock-names = "apb", "ch0", "ch1",
-> +				      "ch2", "ch3";
-> +			resets = <&syscrg JH7110_SYSRST_TIMER_APB>,
-> +				 <&syscrg JH7110_SYSRST_TIMER0>,
-> +				 <&syscrg JH7110_SYSRST_TIMER1>,
-> +				 <&syscrg JH7110_SYSRST_TIMER2>,
-> +				 <&syscrg JH7110_SYSRST_TIMER3>;
-> +			reset-names = "apb", "ch0", "ch1",
-> +				      "ch2", "ch3";
-> +		};
-> +
->  		watchdog@13070000 {
->  			compatible = "starfive,jh7110-wdt";
->  			reg = <0x0 0x13070000 0x0 0x10000>;
-> --
-> 2.25.1
->
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index c2935e99626b..3ce39a346fb1 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -248,7 +248,8 @@ properties:
+           - enum:
+               - mediatek,mt8183-pumpkin
+           - const: mediatek,mt8183
+-      - items:
++      - description: MediaTek Genio 350 Boards (Genio 350 EVK)
++        items:
+           - enum:
+               - mediatek,mt8365-evk
+           - const: mediatek,mt8365
+-- 
+2.18.0
+
