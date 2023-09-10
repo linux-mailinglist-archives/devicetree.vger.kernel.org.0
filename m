@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6F34799E21
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 14:32:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91FF2799E63
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 14:52:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243449AbjIJMcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 08:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43432 "EHLO
+        id S237000AbjIJMw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 08:52:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233336AbjIJMcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 08:32:07 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C812613D;
-        Sun, 10 Sep 2023 05:32:02 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-99cce6f7de2so440180066b.3;
-        Sun, 10 Sep 2023 05:32:02 -0700 (PDT)
+        with ESMTP id S233336AbjIJMw5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 08:52:57 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AF52CCC;
+        Sun, 10 Sep 2023 05:52:52 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id 46e09a7af769-6b9cd6876bbso1010843a34.1;
+        Sun, 10 Sep 2023 05:52:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694349121; x=1694953921; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2aHt2wJGVKYehW9g8eCfO0PCFN1e2YpLnVjYFEJ3Aw8=;
-        b=jW6YkEDF2df+1Eek3nOMFGIH1DyDCCw8xkNCGUFWeE5+xWlUqeuUroukCbIu+suM+I
-         N/URyo8v4qZwW+gj47RY4zRleCkDouiG2/9wMkA3UJNM7kYOy20vJ+1BgZZ8zdiMa8tY
-         qxDiDYmNz5ACHfT9xGAYoVT1WPUups3JXnhBE+GKPhppwf/2DN+bMRQBT1TrJObarCQS
-         bpFgcuYjIT7XZcFaO8iCuQcbfDaWT+KUa9RuNHf3NXDff4jdSIaQuuGw5dg9oXqYY6Jr
-         HyP1t2TS172uU1dXpdPTi1rW2Mj7zRs/bD92UU4o/IMKNqgtBZ4vZuGhgCA5mi24hfZN
-         8ezg==
+        d=gmail.com; s=20221208; t=1694350371; x=1694955171; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HAvTvLohe9TB635fRBSatAf9eavmCCemddZkbMItGg0=;
+        b=pLlmYXGmkckMTFH3xNOlqMKYaIQIoj77uWLfJD/CswgJO5c6yKG1rkukEzZCJ4BUzz
+         lWSgzAnI9oaouIBBasZz3QtsTcSRH1jvD7OY2qn3yY3Ho5367fOUFabLeZur8L6UEf0/
+         2+uGTCoHW7vmTZLNzto+FGUg1APbXSHFZCAEmNRYtAP4zNRcVZ8jXTRWCnh+PrDctAef
+         JlozvgLQ3aTMYr9BV5VxKdf6gJDVwx9Yj81CM+/7jIRLHn5NYBO4NNju2nveIrqJOqJ4
+         B6XQZAGir3hFZCsC/Pb/uyiDqxMzsM5mEzPTwL6sHR1R4iO6QXaUX9XuRenLmwZm/j+X
+         lTWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694349121; x=1694953921;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2aHt2wJGVKYehW9g8eCfO0PCFN1e2YpLnVjYFEJ3Aw8=;
-        b=d65umNwNE6kllQOmCM0tjryWHL9Mi3PyLriZWUnDSMTgEaEEOaIPsBoSgf9UI8TDqb
-         g2yVK57dpk/nbixSffxdH8R+t65jrW2U6zlwedFod3bAipIcyoUjqQKmWGDznS4SyqkA
-         G+Lskk9ArVVhm7BC2llfgHUmKuDK2BA1eHYAcqHEH2yc0eNYqTvbRBO0TRM1t3ji7TC5
-         0HSY0GssdZ9w1di1M0E0sK/03/Y4yrF2Megdm6yxYQmm7Bg657Re4bGea8pZFhJW2hfL
-         P19iEejyskkgEawJ0awKym+fNl2562b/YUFluExj3iLmvwAGzBCKtaqYq/wzZmtm/LmK
-         FA+g==
-X-Gm-Message-State: AOJu0YyLV7OZhFiYZJu6K9V+uFnrPkMS7jzc6KPgYItKTQCW9+XKcujh
-        vgvFdX93F+rwze+fGrZSQMI4xYaroXIgKwvO
-X-Google-Smtp-Source: AGHT+IEJJ3M2264wERDzszL7hkM33Qm98hWsyXNTSgfiKm1hExK5tkshxwpkBuk6DeGQNZgUHi6sdQ==
-X-Received: by 2002:a17:906:c:b0:9a6:75b7:ed49 with SMTP id 12-20020a170906000c00b009a675b7ed49mr5265434eja.77.1694349120998;
-        Sun, 10 Sep 2023 05:32:00 -0700 (PDT)
-Received: from [172.18.166.233] (ip-185-104-138-31.ptr.icomera.net. [185.104.138.31])
-        by smtp.gmail.com with ESMTPSA id y5-20020a170906070500b0099bcbaa242asm3755510ejb.9.2023.09.10.05.31.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 05:31:59 -0700 (PDT)
-Message-ID: <f3b675d0-721f-78f5-826e-26141150e655@gmail.com>
-Date:   Sun, 10 Sep 2023 14:31:44 +0200
+        d=1e100.net; s=20230601; t=1694350371; x=1694955171;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HAvTvLohe9TB635fRBSatAf9eavmCCemddZkbMItGg0=;
+        b=eryQxCzgqdam1X+GxF8vsOJH97UR4pZLFXhi9BKwYPHv78sThVqrznsjwuy7VRjkBx
+         5qDoOj3h6PC5kw3722u/KKGTBaZVYq48cIp+4bD2bAkQhdXIeJAGMWub1L/YHjYaWGia
+         DJsNj6mD7iaBDY4VHczHQ3tkvvXWUjOyv/sarQ/tgXgapixU0DqL/L18eUon7m5Fdsaq
+         6wI3t6G4SvZq6O1qoMCx4/RcT+NsAQ4ig6DyJOTuOGsS1zBoC/XO6FI3eHhIvMOdbxNf
+         ip1SgveMamb1CGqvkMJ/eNNFZN3uloTB7A+0aqQ/MQu0S6twj+4ttWjgcAJc8/DW1VC2
+         Gyrw==
+X-Gm-Message-State: AOJu0Yz0cRFLbn9DBsfMt/5YiN0udL3sIZB9oECFWFyabDPxFkYgof1J
+        jmTRUNSLxBYn5wwj+9fwXVA=
+X-Google-Smtp-Source: AGHT+IG/HKjsdSfIiZKBB6CVUriBl+xQx/S12XScDSCnxf4upOTi/6euM+wpcYRvcVG1pbbY6g9FNA==
+X-Received: by 2002:a05:6870:170d:b0:1d5:53c0:c1fe with SMTP id h13-20020a056870170d00b001d553c0c1femr7534222oae.3.1694350371412;
+        Sun, 10 Sep 2023 05:52:51 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8ae8:e729:67d1:f8d9])
+        by smtp.gmail.com with ESMTPSA id li9-20020a05687c354900b001d4de767807sm2972308oac.28.2023.09.10.05.52.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Sep 2023 05:52:50 -0700 (PDT)
+From:   Fabio Estevam <festevam@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
+        daniel.lezcano@linaro.org, amitk@kernel.org,
+        linux-pm@vger.kernel.org, linux-imx@nxp.com,
+        Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] arm64: dts: imx93: Add the TMU interrupt
+Date:   Sun, 10 Sep 2023 09:52:42 -0300
+Message-Id: <20230910125243.1242722-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: rtc: pcf2123: convert to YAML
-Content-Language: en-US
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chris Verges <chrisv@cyberswitching.com>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
- <202309101217447eae4bc4@mail.local>
-From:   Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <202309101217447eae4bc4@mail.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,119 +72,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandre,
+From: Fabio Estevam <festevam@denx.de>
 
-On 10.09.23 14:17, Alexandre Belloni wrote:
-> On 10/09/2023 13:00:27+0200, Javier Carrasco wrote:
->> Convert the existing txt binding to the preferred YAML format.
->>
->> The pcf2123 node may contain SPI settings such as spi-cs-high and
->> spi-max-frequency, which keeps it from being added to the trivial-rtc
->> binding with its current definition. Add a reference to
->> spi-peripheral-props.yaml to account for that.
->>
->> The "interrupts" property was missing in the binding although it is
->> already supported. Add the missing property in the new binding.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
->> ---
->>  .../devicetree/bindings/rtc/nxp,pcf2123.yaml       | 45 ++++++++++++++++++++++
->>  .../devicetree/bindings/rtc/nxp,rtc-2123.txt       | 17 --------
->>  2 files changed, 45 insertions(+), 17 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml
->> new file mode 100644
->> index 000000000000..013e5e5dc0ae
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml
->> @@ -0,0 +1,45 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/rtc/nxp,pcf2123.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: NXP PCF2123 SPI Real Time Clock
->> +
->> +maintainers:
->> +  - Chris Verges <chrisv@cyberswitching.com>
-> 
-> Is Chris willing to maintain the binding?
-> 
-I added the driver's author as the binding's maintainer because I
-thought it makes sense and it would be more consistent if the driver
-gets new additions. But I did not consider that the driver's maintainer
-might not be willing to be the driver binding's maintainer. If that is
-the case, sorry for the assumption! I can add myself as a maintainer and
-send a v2.
-Chris is in cc as well so I will wait for his opinion.
->> +
->> +allOf:
->> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->> +  - $ref: rtc.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - nxp,pcf2123
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    spi {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        rtc@3 {
->> +            compatible = "nxp,pcf2123";
->> +            reg = <3>;
->> +            spi-cs-high;
->> +        };
->> +    };
->> +...
->> diff --git a/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt b/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt
->> deleted file mode 100644
->> index 7371f525a687..000000000000
->> --- a/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt
->> +++ /dev/null
->> @@ -1,17 +0,0 @@
->> -NXP PCF2123 SPI Real Time Clock
->> -
->> -Required properties:
->> -- compatible: should be: "nxp,pcf2123"
->> -                      or "microcrystal,rv2123"
->> -- reg: should be the SPI slave chipselect address
->> -
->> -Optional properties:
->> -- spi-cs-high: PCF2123 needs chipselect high
->> -
->> -Example:
->> -
->> -pcf2123: rtc@3 {
->> -	compatible = "nxp,pcf2123"
->> -	reg = <3>
->> -	spi-cs-high;
->> -};
->>
->> ---
->> base-commit: 535a265d7f0dd50d8c3a4f8b4f3a452d56bd160f
->> change-id: 20230907-topic-pcf2123_yaml-2ce57f4e77d7
->>
->> Best regards,
->> -- 
->> Javier Carrasco <javier.carrasco.cruz@gmail.com>
->>
-> 
-Best regards,
-Javier Carrasco
+The Thermal Monitoring Unit (TMU) interrupt is number 83.
+
+Describe it in the devicetree to fix the following schema warning:
+
+imx93-11x11-evk.dtb: tmu@44482000: 'oneOf' conditional failed, one must be fixed:
+	'interrupts' is a required property
+	'interrupts-extended' is a required property
+	from schema $id: http://devicetree.org/schemas/thermal/qoriq-thermal.yaml#
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+---
+ arch/arm64/boot/dts/freescale/imx93.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+index 6f85a05ee7e1..5d36b7a5bbd5 100644
+--- a/arch/arm64/boot/dts/freescale/imx93.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+@@ -385,6 +385,7 @@ anatop: anatop@44480000 {
+ 			tmu: tmu@44482000 {
+ 				compatible = "fsl,qoriq-tmu";
+ 				reg = <0x44482000 0x1000>;
++				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&clk IMX93_CLK_TMC_GATE>;
+ 				little-endian;
+ 				fsl,tmu-range = <0x800000da 0x800000e9
+-- 
+2.34.1
+
