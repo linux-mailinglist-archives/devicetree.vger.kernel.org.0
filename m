@@ -2,186 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B2B78799DCA
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 13:01:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 550C9799DE2
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 13:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242499AbjIJLBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 07:01:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49238 "EHLO
+        id S1344757AbjIJL30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 07:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232378AbjIJLBm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 07:01:42 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DA48CCC;
-        Sun, 10 Sep 2023 04:01:37 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b95d5ee18dso60635121fa.1;
-        Sun, 10 Sep 2023 04:01:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694343696; x=1694948496; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HBkpEqUb+78mNZeKD0UcDWXhyqQzEoqyYm5VM9b2Bq0=;
-        b=o7RhsfKknjbiAwXeeXgYbjCzcQVFtxerzPODUJvutlXTHU51ZA2P57fTGRrHqrrq42
-         fUb2JJCv9fnDxJyvhGV5dGVyYlZk2Ayvs6fugOWiyfAVhTVCh6SKYa/fBacdIGq+Ajfa
-         fn5ONSPXISe7rf7wUks1IjbPE7h3BMkbSpV1Jt4Lu4W+60xjSJluXGXtHEM1Zy3GBgLE
-         5iD71+D2R27riY44toRBs2i0aIQKjAtIw0qidW0tp9kfiLtCZdjfQU0s3cranG0uh8da
-         s/WCBzYO7TuJdBv4Deaqn5nUushmzKhcGW/JtwnbQpUngNP3DrOhzSNJ1j2QTbQYl5MU
-         /sOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694343696; x=1694948496;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HBkpEqUb+78mNZeKD0UcDWXhyqQzEoqyYm5VM9b2Bq0=;
-        b=Z/L96y23H+bYZaSdVF1wV306DmsDFI1CuVRd2u8KOAfgUiFjS0sVcIPV2zRHcIMN/2
-         IwXSxsfijjmKyG0iblqNB8LnsjYjnC5mg1tLLJAlZ3o/7Zi7Buj+p8LfQUFiX46KRaka
-         rNqp1lEYgR80+SL0mGB/2bjWxLg35j4xIyAN4w3w80gfVDyN22oJBpxJat3iVogmOoUP
-         HsGKgn1oXGpN8zBxwWmvlc/W0LACNP4lSfgPBhj26POP3nFTK+w/5tWzgxzTWlSWto/z
-         4cvsSrLRCmWgZoDcbvzSzniDQMB6Q1+zdvz0pS2jTKKh5I0IUqFd52QA6WlA9HY7dTZA
-         8jVQ==
-X-Gm-Message-State: AOJu0YwbBsPPbtVS8FprGMjqYr5UsduuPOdeDYKp2DMaqmvMNpYHWhYW
-        rWoyGR79JNxbTRtxnj2HFsc=
-X-Google-Smtp-Source: AGHT+IGOXs+af2H/WM6i72c3ovfgngRuyQhC73lGFtAS5Zrg3rPugKF1E13QWMEBTCRSMkndrQlO4g==
-X-Received: by 2002:a2e:b247:0:b0:2b9:c046:8617 with SMTP id n7-20020a2eb247000000b002b9c0468617mr4917864ljm.5.1694343695412;
-        Sun, 10 Sep 2023 04:01:35 -0700 (PDT)
-Received: from [127.0.1.1] (ip-185-104-138-31.ptr.icomera.net. [185.104.138.31])
-        by smtp.gmail.com with ESMTPSA id o6-20020a17090637c600b00991e2b5a27dsm3651710ejc.37.2023.09.10.04.00.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Sep 2023 04:01:34 -0700 (PDT)
-From:   Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date:   Sun, 10 Sep 2023 13:00:27 +0200
-Subject: [PATCH] dt-bindings: rtc: pcf2123: convert to YAML
+        with ESMTP id S238186AbjIJL30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 07:29:26 -0400
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99095CD5
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 04:29:20 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qfIci-00087k-4n; Sun, 10 Sep 2023 13:29:04 +0200
+Received: from [2a0a:edc0:2:b01:1d::c0] (helo=ptx.whiteo.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qfIch-005J5N-6b; Sun, 10 Sep 2023 13:29:03 +0200
+Received: from mfe by ptx.whiteo.stw.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qfIcg-004RCb-Ir; Sun, 10 Sep 2023 13:29:02 +0200
+Date:   Sun, 10 Sep 2023 13:29:02 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Fabio Estevam <festevam@denx.de>
+Subject: Re: [PATCH] arm64: dts: imx8mp-debix-som-a-bmb: Fix EEPROM
+ #size-cells
+Message-ID: <20230910112902.2iardwma5ojxc77j@pengutronix.de>
+References: <20230909013547.958134-1-festevam@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
-X-B4-Tracking: v=1; b=H4sIAMqh/WQC/x2N0QrCMAwAf2Xk2UDXKUF/RWR0WeoCrivNEGXs3
- +18PI7jNjApKga3ZoMibzVdUoX21ABPIT0FdawM3vnOXR3humRlzBx967v+G+YXepYLxbMQjQQ
- 1HIIJDiUkno50DrZKOUQuEvXzv90f+/4DSG6k3X0AAAA=
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chris Verges <chrisv@cyberswitching.com>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1694343655; l=2678;
- i=javier.carrasco.cruz@gmail.com; s=20230509; h=from:subject:message-id;
- bh=tdwkiF5gV6ILncjzIuPpYriuqRSejpFZSQyqazCIw5s=;
- b=VFJXtuw2LwhPo0MUvkIDPH2ip7Ft/WHz0YtAyksfg1RZpQ0/yVAt7I0HKpCLhlmVjyBuF0QNU
- ezqow81GuXjCAZRFR+bMZxF8/w5dNd0dg8eVSAkc+GC+mzVYOC5oSvo
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
-X-Spam-Status: No, score=1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_SBL_CSS,SPF_HELO_NONE,SPF_PASS
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Level: *
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230909013547.958134-1-festevam@gmail.com>
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the existing txt binding to the preferred YAML format.
+Hi Fabio,
 
-The pcf2123 node may contain SPI settings such as spi-cs-high and
-spi-max-frequency, which keeps it from being added to the trivial-rtc
-binding with its current definition. Add a reference to
-spi-peripheral-props.yaml to account for that.
+thanks for the fix.
 
-The "interrupts" property was missing in the binding although it is
-already supported. Add the missing property in the new binding.
+On 23-09-08, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> The mac-address is passed as a subnode of the eeprom and its 'reg'
+> property describe a range of addresses in the eeprom.
+> 
+> Therefore, #size-cells should be set to 1 instead of 0.
+> 
+> This fixes the following schema warnings:
+> 
+> imx8mp-debix-som-a-bmb-08.dtb: eeprom@52: #size-cells:0:0: 1 was expected
+> 	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
+> imx8mp-debix-som-a-bmb-08.dtb: eeprom@52: mac-address@0:reg: [[0], [12]] is too long
+> 	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
+> imx8mp-debix-som-a-bmb-08.dtb: eeprom@52: mac-address@c:reg: [[12], [12]] is too long
+> 	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
+> imx8mp-debix-som-a-bmb-08.dtb: eeprom@52: Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'mac-address@0', 'mac-address@c' were unexpected)
+> 	from schema $id: http://devicetree.org/schemas/eeprom/at24.yaml#
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- .../devicetree/bindings/rtc/nxp,pcf2123.yaml       | 45 ++++++++++++++++++++++
- .../devicetree/bindings/rtc/nxp,rtc-2123.txt       | 17 --------
- 2 files changed, 45 insertions(+), 17 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml
-new file mode 100644
-index 000000000000..013e5e5dc0ae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2123.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/nxp,pcf2123.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP PCF2123 SPI Real Time Clock
-+
-+maintainers:
-+  - Chris Verges <chrisv@cyberswitching.com>
-+
-+allOf:
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+  - $ref: rtc.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,pcf2123
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        rtc@3 {
-+            compatible = "nxp,pcf2123";
-+            reg = <3>;
-+            spi-cs-high;
-+        };
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt b/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt
-deleted file mode 100644
-index 7371f525a687..000000000000
---- a/Documentation/devicetree/bindings/rtc/nxp,rtc-2123.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--NXP PCF2123 SPI Real Time Clock
--
--Required properties:
--- compatible: should be: "nxp,pcf2123"
--                      or "microcrystal,rv2123"
--- reg: should be the SPI slave chipselect address
--
--Optional properties:
--- spi-cs-high: PCF2123 needs chipselect high
--
--Example:
--
--pcf2123: rtc@3 {
--	compatible = "nxp,pcf2123"
--	reg = <3>
--	spi-cs-high;
--};
-
----
-base-commit: 535a265d7f0dd50d8c3a4f8b4f3a452d56bd160f
-change-id: 20230907-topic-pcf2123_yaml-2ce57f4e77d7
-
-Best regards,
--- 
-Javier Carrasco <javier.carrasco.cruz@gmail.com>
-
+Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
