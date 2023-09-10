@@ -2,76 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03D16799DBE
-	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 12:55:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3530799DC3
+	for <lists+devicetree@lfdr.de>; Sun, 10 Sep 2023 12:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234263AbjIJKz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 06:55:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53374 "EHLO
+        id S1346618AbjIJK5K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 06:57:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230456AbjIJKz5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 06:55:57 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B085CD6
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 03:55:53 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99bdeae1d0aso441007966b.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 03:55:53 -0700 (PDT)
+        with ESMTP id S239145AbjIJK5K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 06:57:10 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFA84CD1
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 03:57:04 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-5007616b756so5689921e87.3
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 03:57:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694343352; x=1694948152; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694343423; x=1694948223; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=IeB+N3WcU8ZB3iIjHrTen1Ywk3DzscLepUtpPK7KYFU=;
-        b=eK/bA1G4SHuERl8nEor0tUdtKM/jLqtVrLBzdl/+4+1nldkN1u/5eRh2IJ/h/xCntj
-         x9GFk8vLLiy6nYsIjqWNIiNa+8raziTeaXBhshWg+k2NALAOQon5uvtBkF+7jIR94+ge
-         KcBLNnbZUg/oMuWfycnI4lgzv04h7uGhVCybfgFRMGSA07qozXy1l/pUUbFPPku7atOl
-         7TDf4JQ7GyoAYaX0GF/aVMrzsebsnxgr5erOaEMutaS/EESZ+36RoE88mtP2SHufpstE
-         tjcD8IPu95+kp08PHWSOgtwPZz2GWrQLJni6Pf9fPv0QJ+YKMolvlvUxy1Igh+rTSRxf
-         ISpA==
+        bh=NHuepiwfpiT5E2m84O/h2coQFZ+OoqbWElsLLeZ4r84=;
+        b=nojQzmAXQvH5QclV0iztyq1J1kKeCe/qlHUQQC9b+MuR7CyxbLuXJ37QJnjzyMrkJ6
+         o4W2utBtiE2gtx2rp8IgCYEdgtmVQjhsq/VDtQ9dFc5YOGZilvuUXPnREsrZQbbWW6Ai
+         KFQsE+EeTh3uRyNEBP9E3Y+DQxKbrn+i4L0FSxZl/aZCTd5GJoV6CURYCyfX2qolGbv9
+         R0RLsivuX8YY8YfsLyFbPcxxYtkMlTU6VmQRzuSYsAfW/EU+wNdRQQ+HAm8NQNAig7VB
+         SntxvsoLlAJaVyJWtPhJigLFOFD5aIXUw4mmVLC0r/W528Ima9/0ezldsqyJkxPf8QCQ
+         3i4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694343352; x=1694948152;
+        d=1e100.net; s=20230601; t=1694343423; x=1694948223;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IeB+N3WcU8ZB3iIjHrTen1Ywk3DzscLepUtpPK7KYFU=;
-        b=WM1R1zDPvN8Nk3LYzSI/QFmOGprr5VIMEAtwA2UZyJR1xQRrAlaTV6Hplr31oYAwTW
-         PfPnKuRWjn4qhm6W8U+9R6kV01EPLfYJ23VKUX3s0XvVQVheK7Ln4mq+MYaJVFSKy3LH
-         4bWVRedrdu2e0ENmzlZwyyKQ4s09B/3wynHwzVDi3+kZXumcF5QFpa1NOqxRE9T01YeM
-         UhAdAUxuSqxapfdMTaxColSePVIPe04Nmm/ylmlOuU8vQrF8sS2VB74YhaohZpl3le9W
-         B3W9sanmn4RB6tEb+ko+umLUsaiiNUHpiD9nWP03BtO625X2+nh61oG3dbVwiq/Tw9Yz
-         OC8w==
-X-Gm-Message-State: AOJu0YzyypOIcTz8OK/syXLw1WxELvOcFh2re4ZM7zvHL9C879O2XH6G
-        3cvBLKZMy+TCPiTivpW5hNKexw==
-X-Google-Smtp-Source: AGHT+IEtlK6pD6SAm1xa6VHOQmOUl0ygy8p84MgTWmEPdv60Cc5CbO6und2cQ+jM2C8A71j2VvjCZQ==
-X-Received: by 2002:a17:906:7393:b0:9aa:1e32:46da with SMTP id f19-20020a170906739300b009aa1e3246damr1818685ejl.37.1694343351858;
-        Sun, 10 Sep 2023 03:55:51 -0700 (PDT)
+        bh=NHuepiwfpiT5E2m84O/h2coQFZ+OoqbWElsLLeZ4r84=;
+        b=GgvHmevrmihbiusm5zTuc/01ZodCwOIKrsxvgvKx10XwYsnTRA2EFPofI1vaXzkV72
+         /YNRbX6q9n11qyd7D1xwUi+lAleB0r9piWltJEeL0zCGPBjY/Avd9wqDPVOWHaoTb7bs
+         uV3mxqHJKdTIyoL7MJIwDN4sMmi9G0tGGRq5Zzy0A7k7r+CA7fjNB566TxK5Uq/SYsEG
+         5lcHZ3Dfpq6LJwaUniko4nxrDSDtdqfvCm91ujpT4VczM3i2YormTkZZAsq21aFasYM/
+         hQDyADB1aECT9ImcQiZc+YDHVksZye+4zqOIKYgWn8ykJQy4oioRgYrSMTu0dWYo5zJF
+         qClA==
+X-Gm-Message-State: AOJu0Yxfz2S+7xusepZiMg7OYejYi6R/7BHdJdXJJxQDisiaDh5k0xNH
+        C1ZoPRCt6ZvtWe+bpqas093Bwq/I/CO39yXqrrg=
+X-Google-Smtp-Source: AGHT+IENYOcIOKUXqh4Gp3/XzUedAb32p3g3zQAcg4rTgFr6JX7zn+UYrGyIuCNVk7/QwuvbUY26uQ==
+X-Received: by 2002:a05:6512:14a:b0:4fd:d470:203b with SMTP id m10-20020a056512014a00b004fdd470203bmr5440584lfo.69.1694343422475;
+        Sun, 10 Sep 2023 03:57:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id d16-20020a17090694d000b00982be08a9besm3692965ejy.172.2023.09.10.03.55.49
+        by smtp.gmail.com with ESMTPSA id va17-20020a17090711d100b009929ab17be0sm3628305ejb.162.2023.09.10.03.57.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 03:55:51 -0700 (PDT)
-Message-ID: <eef69aa5-73c2-9789-9f6d-c3300553c44d@linaro.org>
-Date:   Sun, 10 Sep 2023 12:55:48 +0200
+        Sun, 10 Sep 2023 03:57:01 -0700 (PDT)
+Message-ID: <2318be3d-5687-8b6c-3669-1d2ae1c94d2c@linaro.org>
+Date:   Sun, 10 Sep 2023 12:56:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [RFC PATCH net-next 0/6] Add support for OPEN Alliance 10BASE-T1x
- MACPHY Serial Interface
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm64: dts: mediatek: add mt8395-evk
+ board
 Content-Language: en-US
-To:     Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        corbet@lwn.net, steen.hegelund@microchip.com,
-        rdunlap@infradead.org, horms@kernel.org, casper.casan@gmail.com,
-        andrew@lunn.ch
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        horatiu.vultur@microchip.com, Woojung.Huh@microchip.com,
-        Nicolas.Ferre@microchip.com, UNGLinuxDriver@microchip.com,
-        Thorsten.Kummermehr@microchip.com
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+References: <20230909132819.21626-1-macpaul.lin@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
+In-Reply-To: <20230909132819.21626-1-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,15 +86,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/09/2023 16:29, Parthiban Veerasooran wrote:
-> This patch series contain the below updates,
-> - Adds support for OPEN Alliance 10BASE-T1x MACPHY Serial Interface in the
->   net/ethernet/oa_tc6.c.
-> - Adds driver support for Microchip LAN8650/1 Rev.B0 10BASE-T1S MACPHY
->   Ethernet driver in the net/ethernet/microchip/lan865x.c.
+On 09/09/2023 15:28, Macpaul Lin wrote:
+> 1. Add compatible for MT8395.
+> 2. Add bindings for the MediaTek mt8395-evk board, also known
+> as the "Genio 1200-EVK".
+> 
+> The MT8195 and MT8395 belong to the same SoC family,
+> with only minor differences in their physical characteristics.
+> They utilize unique efuse values for differentiation.
+> 
+> The booting process and configurations are managed by boot
+> loaders, firmware, and TF-A. Consequently, the part numbers
+> and procurement channels vary.
+> 
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-And why is this RFC? Do you mean by that it is buggy and not finished,
-so we should not review?
+Confusing. You just sent a patch changing the same hunk - adding
+description, without any explanation.
 
 Best regards,
 Krzysztof
