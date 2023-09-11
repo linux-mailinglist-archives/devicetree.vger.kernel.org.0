@@ -2,204 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC19179C0B7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B451D79B6A8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:05:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbjIKUue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:50:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39078 "EHLO
+        id S230131AbjIKUwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242602AbjIKPy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:54:29 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E5F1AB;
-        Mon, 11 Sep 2023 08:54:25 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:bae9::7a9])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: nicolas)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 61C656606F85;
-        Mon, 11 Sep 2023 16:54:22 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694447663;
-        bh=eWLSPASCjyGijVC47zrvGFOyHTG4k8kAENH0R7NxTcM=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=UyUfrPOVxFRaJigHjAhHDgT1CbGBXybqfMEDdYaT3Hv2y4xqCxeNgrNq/JIXeZCus
-         HxU10jMMUA+9csM0/B2DoJGtwrkueHQgReK1bR27lL1TjoKVAY/xtCRdo+YHbyYxZF
-         MkaenK5FjSalz2bQXtzqc31ON5vGgD7iJFQyzMLL2f90Np2jTFlrlCB0gfJem9ffoY
-         S05FJUfDe5H9MQr73CuruZqS9aAIZ4CXQ6bf4gsQpC/iGdpNf6rkwuUTGQQBoJNc+K
-         6iQBCc+rSSr81habwkSz1reaM9LOUnRkAPeehadIIiV4x2MV0hioDvWmVoeR9ijV1n
-         KCrVd/15Hxh5w==
-Message-ID: <1df3e79b84933dda0313d0d9719220dbc06c9022.camel@collabora.com>
-Subject: Re: [PATCH 12/14] media: medkatek: vcodec: set secure mode to
- decoder driver
-From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado" 
-        <nfraprado@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Nathan Hebert <nhebert@chromium.org>
-Cc:     Chen-Yu Tsai <wenst@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Mon, 11 Sep 2023 11:54:14 -0400
-In-Reply-To: <20230911125936.10648-13-yunfei.dong@mediatek.com>
-References: <20230911125936.10648-1-yunfei.dong@mediatek.com>
-         <20230911125936.10648-13-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        with ESMTP id S242609AbjIKP4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:56:11 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63C0E12A
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:56:07 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-4013454fa93so52736005e9.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694447766; x=1695052566; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GP/eP8jDYXQ289unHUdgYKQAZk5IRHf3RfjCHo6X25s=;
+        b=YzwCXRsJD5Rwuq1JPnDGZwR64nWwmSJFBrPdvuuXI0UPr/0Diz9XclA2zIVrT8hpl9
+         vIfmN26zlT+pqF5SDQRYt88BzjW40RqqkJ9SLj8vlJu0tzBO63WsLCyS4PuwiWBYEsv8
+         L4l9O5SUq447wDLkLQfJJNiFDt5UKh0U6pN/iHPCULWf36+TXR+GiqG3xbPS5orUZF6w
+         KwiMlIhD+c5GAk1jRI7IMm/1bx/Kqz5KEC4g1nEROxfvj6SzKWt+KaUdnEDihwPk7lJ8
+         wyWAnBkgVcAK2wRE6M9oEjB5fc9fX/oJGsI96+2vQzPlVEPGNlwUyXtD0w7NldRK6jFu
+         pOUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694447766; x=1695052566;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GP/eP8jDYXQ289unHUdgYKQAZk5IRHf3RfjCHo6X25s=;
+        b=QEY2xr4tYk1aEj1Mn+MZifdTUfptLZNyCLKiFfu8r4sjVTg7tJoqxvkyrgFdlkZdxq
+         2FFrXO3kz9LWTKreLQrGPEPdCKBuRp9XYlhB4eJArtTiE2Y6WHfGWdAfT2PUxkQX6fLW
+         KgPneBDY8e8vFQUsi9j8QiC82CpwObPr4WADca/l9YozDHPPMhdKpQYdXW+lJ7ZkrHlj
+         z9AqfXNlgY8D3+Tnj+E/vn3CvdTPURwclJP7jpHRhf5KhqDmGEzIuqu5UppDZiQwVD4A
+         Ev77d+S8WX1EhpRhH6Bxw73iI43vOb817ClPb3cHcpLMxVEKIL2WmN+2WUqdUnXKeP86
+         CF4w==
+X-Gm-Message-State: AOJu0YxVEKTORLQVeUYfaf+rkfcrLlchhkc8NF57QaJN9peEeTTDsBtJ
+        e11NbHrdwQWcN+KzK95xi7ZotQ==
+X-Google-Smtp-Source: AGHT+IEkFcMfdK3cHPbfayqFmuBT7sJyfrGNzvvJusP8Zhs4Fgi4D1oLDfLEtlFjqtfNeGMrgNcMtQ==
+X-Received: by 2002:a05:600c:24c:b0:3fe:dcd0:2e32 with SMTP id 12-20020a05600c024c00b003fedcd02e32mr8331633wmj.19.1694447765769;
+        Mon, 11 Sep 2023 08:56:05 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id c25-20020a05600c0ad900b003fee567235bsm13713079wmr.1.2023.09.11.08.56.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 08:56:04 -0700 (PDT)
+Message-ID: <eedc9787-06b7-bac5-a1f5-ba07d23f4ac7@linaro.org>
+Date:   Mon, 11 Sep 2023 17:56:03 +0200
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 5/5] arm64: dts: meson: u200: add onboard devices
+Content-Language: en-US
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+References: <20230911154541.471484-1-jbrunet@baylibre.com>
+ <20230911154541.471484-6-jbrunet@baylibre.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230911154541.471484-6-jbrunet@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Le lundi 11 septembre 2023 =C3=A0 20:59 +0800, Yunfei Dong a =C3=A9crit=C2=
-=A0:
-> Setting secure mode flag to kernel when trying to play secure video,
-> then decoder driver will initialize tee related interface to support
-> svp.
-
-
-This is not what the patch is doing, please rework. This patch is an vendor=
- API
-addition introducing V4L2_CID_MPEG_MTK_SET_SECURE_MODE. I should not have t=
-o
-read your patch to understand this.
-
->=20
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+On 11/09/2023 17:45, Jerome Brunet wrote:
+> Add missing audio devices found on the u200 PCB. This includes
+> * Lineout connected to the internal DAC
+> * SPDIF input connected to a coaxial socket
+> * TDM input decoders allowing output loopback
+> * TDM A and B output encoders and interfaces
+> 
+> TDM A and B link format is set by the related external codec.
+> Internal audio DAC can hook to any TDM output.
+> 
+> This change does not include support necessary the optional the speaker and
+> PDM Mic headers
+> 
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 > ---
->  .../vcodec/decoder/mtk_vcodec_dec_stateless.c     | 15 ++++++++++++++-
->  drivers/media/v4l2-core/v4l2-ctrls-defs.c         |  5 +++++
->  include/uapi/linux/v4l2-controls.h                |  1 +
->  3 files changed, 20 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_de=
-c_stateless.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_d=
-ec_stateless.c
-> index d2b09ce9f1cf..a981178c25d9 100644
-> --- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
-less.c
-> +++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_state=
-less.c
-> @@ -535,6 +535,17 @@ static int mtk_vdec_s_ctrl(struct v4l2_ctrl *ctrl)
->  		ctrl->val =3D mtk_dma_contig_get_secure_handle(ctx, ctrl->val);
->  		mtk_v4l2_vdec_dbg(3, ctx, "get secure handle: %d =3D> 0x%x", sec_fd, c=
-trl->val);
->  		break;
-> +	case V4L2_CID_MPEG_MTK_SET_SECURE_MODE:
+>  .../boot/dts/amlogic/meson-g12a-u200.dts      | 228 +++++++++++++++++-
+>  1 file changed, 218 insertions(+), 10 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> index da66e2e1dffb..9abe37b5b227 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+> @@ -9,6 +9,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +#include <dt-bindings/sound/meson-g12a-toacodec.h>
+>  
+>  / {
+>  	compatible = "amlogic,u200", "amlogic,g12a";
+> @@ -19,6 +20,22 @@ aliases {
+>  		ethernet0 = &ethmac;
+>  	};
+>  
+> +	dioo2133: audio-amplifier-0 {
+> +		#sound-dai-cells = <0>;
+> +		compatible = "simple-audio-amplifier";
 
-Stepping back a little and focusing on the API, what makes your driver so
-special that it should be the only one having a "secure mode" ? We are touc=
-hing
-in gap in the media pipeline in Linux, and this should come with considerat=
-ion
-of the global API.
+compatible is by convention first property. Do you have different style
+in Amlogic/Meson?
 
-Why is this API better then let's say Google Android one, were they expose =
-2
-device nodes in their fork of the MFC driver (a secure and a non secure one=
-) ?
+> +		status = "okay";
 
-regards,
-Nicolas
+status is by default.
 
-p.s. you forgot to document your control in the RST doc, please do in follo=
-wing
-release.
 
-> +		ctx->is_svp_mode =3D ctrl->val;
-> +
-> +		if (ctx->is_svp_mode) {
-> +			ret =3D mtk_vcodec_dec_optee_open(ctx->dev->optee_private);
-> +			if (ret)
-> +				mtk_v4l2_vdec_err(ctx, "open secure mode failed.");
-> +			else
-> +				mtk_v4l2_vdec_dbg(3, ctx, "decoder in secure mode: %d", ctrl->val);
-> +		}
-> +		break;
->  	default:
->  		mtk_v4l2_vdec_dbg(3, ctx, "Not supported to set ctrl id: 0x%x\n", hdr_=
-ctrl->id);
->  		return ret;
-> @@ -573,7 +584,7 @@ static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcod=
-ec_dec_ctx *ctx)
->  	unsigned int i;
->  	struct v4l2_ctrl *ctrl;
-> =20
-> -	v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS + 1);
-> +	v4l2_ctrl_handler_init(&ctx->ctrl_hdl, NUM_CTRLS + 2);
->  	if (ctx->ctrl_hdl.error) {
->  		mtk_v4l2_vdec_err(ctx, "v4l2_ctrl_handler_init failed\n");
->  		return ctx->ctrl_hdl.error;
-> @@ -592,6 +603,8 @@ static int mtk_vcodec_dec_ctrls_setup(struct mtk_vcod=
-ec_dec_ctx *ctx)
-> =20
->  	ctrl =3D v4l2_ctrl_new_std(&ctx->ctrl_hdl, &mtk_vcodec_dec_ctrl_ops,
->  				 V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE, 0, 65535, 1, 0);
-> +	ctrl =3D v4l2_ctrl_new_std(&ctx->ctrl_hdl, &mtk_vcodec_dec_ctrl_ops,
-> +				 V4L2_CID_MPEG_MTK_SET_SECURE_MODE, 0, 65535, 1, 0);
-> =20
->  	v4l2_ctrl_handler_setup(&ctx->ctrl_hdl);
-> =20
-> diff --git a/drivers/media/v4l2-core/v4l2-ctrls-defs.c b/drivers/media/v4=
-l2-core/v4l2-ctrls-defs.c
-> index d8cf01f76aab..a507045a3f30 100644
-> --- a/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> +++ b/drivers/media/v4l2-core/v4l2-ctrls-defs.c
-> @@ -1042,6 +1042,7 @@ const char *v4l2_ctrl_get_name(u32 id)
->  	case V4L2_CID_MPEG_VIDEO_REF_NUMBER_FOR_PFRAMES:	return "Reference Fram=
-es for a P-Frame";
->  	case V4L2_CID_MPEG_VIDEO_PREPEND_SPSPPS_TO_IDR:		return "Prepend SPS an=
-d PPS to IDR";
->  	case V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE:		return "MediaTek Decoder get=
- secure handle";
-> +	case V4L2_CID_MPEG_MTK_SET_SECURE_MODE:			return "MediaTek Decoder set =
-secure mode";
-> =20
->  	/* AV1 controls */
->  	case V4L2_CID_MPEG_VIDEO_AV1_PROFILE:			return "AV1 Profile";
-> @@ -1442,6 +1443,10 @@ void v4l2_ctrl_fill(u32 id, const char **name, enu=
-m v4l2_ctrl_type *type,
->  		*type =3D V4L2_CTRL_TYPE_INTEGER;
->  		*flags |=3D V4L2_CTRL_FLAG_WRITE_ONLY;
->  		break;
-> +	case V4L2_CID_MPEG_MTK_SET_SECURE_MODE:
-> +		*type =3D V4L2_CTRL_TYPE_INTEGER;
-> +		*flags |=3D V4L2_CTRL_FLAG_WRITE_ONLY;
-> +		break;
->  	case V4L2_CID_USER_CLASS:
->  	case V4L2_CID_CAMERA_CLASS:
->  	case V4L2_CID_CODEC_CLASS:
-> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2=
--controls.h
-> index 7b3694985366..88e90d943e38 100644
-> --- a/include/uapi/linux/v4l2-controls.h
-> +++ b/include/uapi/linux/v4l2-controls.h
-> @@ -957,6 +957,7 @@ enum v4l2_mpeg_mfc51_video_force_frame_type {
->  /*  MPEG-class control IDs specific to the MediaTek Decoder driver as de=
-fined by V4L2 */
->  #define V4L2_CID_MPEG_MTK_BASE			(V4L2_CTRL_CLASS_CODEC | 0x2000)
->  #define V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE	(V4L2_CID_MPEG_MTK_BASE+8)
-> +#define V4L2_CID_MPEG_MTK_SET_SECURE_MODE	(V4L2_CID_MPEG_MTK_BASE+9)
-> =20
->  /*  Camera class control IDs */
-> =20
+Best regards,
+Krzysztof
 
