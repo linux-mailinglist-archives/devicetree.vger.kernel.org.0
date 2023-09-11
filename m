@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F185E79BD0E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:15:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B82579B8B2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235434AbjIKUtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35050 "EHLO
+        id S238186AbjIKUxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:53:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236912AbjIKLji (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:39:38 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68239CDD
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-52a49a42353so5663614a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
+        with ESMTP id S236914AbjIKLjk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:39:40 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EFECDD
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:36 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so5548957a12.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694432373; x=1695037173; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694432374; x=1695037174; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CNTfpAlLwJmILsM2ML8AYXqOfMhJFlBtfc+NKYRir1U=;
-        b=ghEBbB1urKJGeO8Bdy6HofhhQiZ1S9/1NhPG7BsncRMDGG0s5wlXonQOGlxx3mCzEp
-         TilWMdnEyOCs0gkiHJmjCkgpyd7ExzLF/Tu34fhN8/6+VnBwsxwCzeWgexmuIvBaMw8Z
-         dJ82hwi84usc0wlEKfbGtWoTaNixYew8o60dxoh0hKzNbt9GXjAKhoJTD/+sQdS8BdUS
-         d3ZU+GHBp4Vlq1QX7zPgn44yoRm1EpADc37AqjLbxRr1uhgKl1FBR4lg4ahRVeRfWtZz
-         9+FRq50oD3WMRi4cIC8zBX2iQY5tOmdmeVnRLUW9Fn7kwgZ7sPR2rb45+qfElWJ2n8v5
-         qPQA==
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NH52jm7IMEAL8WOz6GO3ZaoQovB8Mynr78vb+JMDDFY=;
+        b=dlsaDdLmTnO+W0e37aC6HgwwgZarPRRgTspzC1fN4w5DgQ+0cFNdeMzDxbS72s0Huk
+         3JZEVJwZqj4hcWLx6lHYojIuAXmSWTZNHoUAQEXIi1Vb8Bektaz2aZy/28ikywNUTBvP
+         JHblECpaQ6B+l6Yw53krsMwk52pHAhoxXCPfgaEsqxVNOcNAPbP0dF96FQXxG8kI/c+D
+         M9lg1uVpqUpEfm6afMhjQHOCX8QkzBBKSLYDMOu+B+vwv1ps9EP/Cj942BpuS+Lei3nG
+         MXdQX8FtVPt0WSrkvs2pr5AKU40908hFHgAY3lObRCsATw5MOjLdz/3BmQSaTY21uGN5
+         DK1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694432373; x=1695037173;
+        d=1e100.net; s=20230601; t=1694432374; x=1695037174;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CNTfpAlLwJmILsM2ML8AYXqOfMhJFlBtfc+NKYRir1U=;
-        b=Eeeo9ccEzi8W7JqsGho6eEtuxom7DOIZycUaEOeRPjoHtSCOSoHKsv2yH11D99t9Fe
-         DpISCF6hCaEz6jsHR5p/OKQnxlJk7tMxOpDFMKFV1MMzW96dK/8M/kyl1mI5gDbr2uCY
-         1ajP0yVct6Iuati5vf5sGMi8TGiOx70DMWfmoEi8MoqWJ2GxMRt/SOMvDLVyv1rzx2EM
-         Ojkvrldw+MmjybBenj2RIITWHMYAph794tOQwtbZVWZFQOV1p82NJ7t12KKZVP8HuStf
-         Cpvubt1cQ8OL4LolJbtFIsjNHmC0LB69dDH+FZdQ6ERU0uWisIdiDP+P92TcTP/7gw/Z
-         4iag==
-X-Gm-Message-State: AOJu0Yyf3yEU1hnTD/vTAtmaDfbmVKkMnvbSkamX4ggpRYzdkbagfnkZ
-        1qy73xgjCqm26akop37/GYpBlg==
-X-Google-Smtp-Source: AGHT+IHwEnPhO+VHQG0S+VrfAHaLii+tG8XXkAqNaOPbo0YVPvNOqmH3dpTLzyBvYyQwoxAyv+FnFA==
-X-Received: by 2002:a05:6402:1254:b0:522:3ef1:b10 with SMTP id l20-20020a056402125400b005223ef10b10mr7390345edw.6.1694432373037;
-        Mon, 11 Sep 2023 04:39:33 -0700 (PDT)
+        bh=NH52jm7IMEAL8WOz6GO3ZaoQovB8Mynr78vb+JMDDFY=;
+        b=gWCU3WryS5lcfEbAKPZydaAZikhQzDNsy5Ub78HkNjpJY48SVFTV88KU5QeydzqLeB
+         F7eSeJOELF6MuQdEo4ECKQAlRTD5pUPY41ampIx5+TooB49jLSgoJQYYkiKgiWmN+l/x
+         Ady3qO/n93NzuMcEapc6dRSMG5ASeRPFYjCoPIVgOFM8EjSfNpsmyybyV6enJYOMV8G/
+         zUIo+Ffh6s+fAGDhUfe4v+BuFMn3aCmOyGZxaJ7Mx57b9cnH9Un+2nvyVpACzoW5Bwk3
+         PZ0AMD14z+pQV4DgtSkT3iwzOESvUYpos0+YW2disNCD4sro37iYvewZs1jqCwDJEAih
+         DyYg==
+X-Gm-Message-State: AOJu0YxpjmyPxoGVjdejlyKxGwV+TxFvgABcz+i445YLOBc4YKaoi/DV
+        TAI1/1QokWNqJD1eaeYsweufcQ==
+X-Google-Smtp-Source: AGHT+IHQzJx0OOWqneHLnfwmUEWkbPQlTh6C51/9DolgrjBu0no1cVmvFHk2fPX1jxefFnGnxXt14A==
+X-Received: by 2002:aa7:d054:0:b0:522:b112:6254 with SMTP id n20-20020aa7d054000000b00522b1126254mr7592357edo.4.1694432374700;
+        Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id g15-20020a056402180f00b00523b1335618sm4431003edy.97.2023.09.11.04.39.31
+        by smtp.gmail.com with ESMTPSA id g15-20020a056402180f00b00523b1335618sm4431003edy.97.2023.09.11.04.39.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 04:39:32 -0700 (PDT)
+        Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: defconfig: enable syscon-poweroff driver
-Date:   Mon, 11 Sep 2023 13:39:24 +0200
-Message-Id: <169443234708.34398.6225536362107834291.b4-ty@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        JaeHun Jung <jh0801.jung@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] arm64: dts: exynos: Enable USB for E850-96 board
+Date:   Mon, 11 Sep 2023 13:39:25 +0200
+Message-Id: <169443234709.34398.2292674968084168960.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
-References: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230825215445.28309-1-semen.protsenko@linaro.org>
+References: <20230825215445.28309-1-semen.protsenko@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -76,16 +79,25 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 01 Sep 2023 13:57:32 +0200, Krzysztof Kozlowski wrote:
-> Enable the generic syscon-poweroff driver used on all Exynos ARM64 SoCs
-> (e.g. Exynos5433) and few APM SoCs.
+On Fri, 25 Aug 2023 16:54:43 -0500, Sam Protsenko wrote:
+> This patch series enables USB gadget, USB host and Ethernet support for
+> E850-96 board. The most major change was done in USB PHY driver, as the
+> register layout of PHY block in Exynos850 is very different from
+> Exynos5 one.
 > 
+> Changes in v2:
+>   - Removed already applied patches from the patch series
+>   - Rebased on top of latest linux-next
+>   - Put ranges after compatible in usbdrd node (patch #1)
 > 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: defconfig: enable syscon-poweroff driver
-      https://git.kernel.org/krzk/linux/c/471eed5ad217fc8e83089e708d5cf5a1d0b205f7
+[1/2] arm64: dts: exynos: Enable USB in Exynos850
+      https://git.kernel.org/krzk/linux/c/2f911ca41e519dc5986f9483d3e15df4802b64f5
+[2/2] arm64: dts: exynos: Enable USB support on E850-96 board
+      https://git.kernel.org/krzk/linux/c/f2951ee8f7bcdb3844ffe6e54b0601ad8fa58640
 
 Best regards,
 -- 
