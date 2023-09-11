@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62D7B79AD45
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:39:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D341E79B59E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:03:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237070AbjIKUvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44282 "EHLO
+        id S235935AbjIKUte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242715AbjIKQMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:12:25 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5F2ACC3
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 09:12:19 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id 6a1803df08f44-6491907dbc3so30600996d6.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 09:12:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1694448739; x=1695053539; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=2Fm3Bafxaxq7OSAQ9sLz+uyVn20YSYfcySqL/LZ4QTY=;
-        b=xVoNK0QImeLqDCKRcU2xdLyyzVSwQ1SLU0z2IoV3hZPfoWgY4mSAq5oVhrIZQ1iF8m
-         V+tN2tVKcrE2bnNbH3EiCAykqcyfNlQEEUri3xHrNKQD7+Gd8DzDHGM2DO4CsCMNGecr
-         jVctEEq12U3kCHNsu/I+zRLLIxdnkhh4HyDNncnjTpt96TNoAV6Qu10hlL4g74611e0+
-         reikrBecMJT3kiWE6JSxDPO1IUFdRXVQb5k06gO56C9RKegU73kFL1RPkvenXQp/GW3h
-         Ju1+ftVUIqVUXZDQ6qUNtrFx5pMalb5+kwQpNlvmZeXCE7QMlkhTj1qc9fOy36khfZxh
-         5adA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694448739; x=1695053539;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2Fm3Bafxaxq7OSAQ9sLz+uyVn20YSYfcySqL/LZ4QTY=;
-        b=j5mKPUzKot2vGXcN1gCOtzzMGWYaCo73Fd+H/Bwa/D9nkvCy0fS5K2EVKyRQMfqOeb
-         QU809Is5ERuKhSeYDD85pwhQXk3QXcSWUD7GOu4aa1bI72DIaMbqV0HUau764CbaXhyf
-         lMC4V/qP8nkjBjj8sndoxPawmBzzbhku5PdaCdo0REFnYyu0jBB2L1ljPIkLzAzPhSrf
-         zq5/atq1ap5d4at9maV8hQRQDmABbdxPnJYqutQRFc5Tbhh5yXsJiGxHY9unsohNjHIA
-         PMcF8iOQ8V1AvikkPCbYcXRfYblZ1uzL8HUJTlnV+3oAFzyfBg7DfPVwy6bqIVau+9ah
-         s07Q==
-X-Gm-Message-State: AOJu0YxIq9QhcgqOsDWBGO4XDOKQunVZLLKH/RCu10MMjnxNfMdvORMQ
-        7NWaHULLvRsMFOFzTCJu9jw2Zw==
-X-Google-Smtp-Source: AGHT+IHfJzEj3YN+IDLa6c5OoOh5gMCnU53CNkVDYUfVOD27Y4SNqPHEBMqIhlGup6+WHXcBbS4pwQ==
-X-Received: by 2002:a05:6214:12da:b0:64f:43b9:fe4c with SMTP id s26-20020a05621412da00b0064f43b9fe4cmr10140146qvv.47.1694448738736;
-        Mon, 11 Sep 2023 09:12:18 -0700 (PDT)
-Received: from nicolas-tpx395.localdomain ([2606:6d00:15:bae9::7a9])
-        by smtp.gmail.com with ESMTPSA id e12-20020a0ce3cc000000b0063d30c10f1esm3038666qvl.70.2023.09.11.09.12.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 09:12:18 -0700 (PDT)
-Message-ID: <827b859e3ff8176ef0b18c29bc17481b4105e368.camel@ndufresne.ca>
-Subject: Re: [PATCH 3/9] dma-heap: Provide accessors so that in-kernel
- drivers can allocate dmabufs from specific heaps
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S242741AbjIKQOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:14:33 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B5C3CC3;
+        Mon, 11 Sep 2023 09:14:28 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 939CCC433C7;
+        Mon, 11 Sep 2023 16:14:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694448868;
+        bh=lE4TUKpHsfE3kl2liyLgZhjxv/jCQAFAHS5mAxa9Jio=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gRRONGH1gay49bPcuwG9oModMIeyhqPitP5tKtepnu+JNihIfre6G4mq3muSRgAT5
+         ztXNlEp6cTei0aSI4yyAANEbo5UDSEhxjtAUXYsskp86tJNViykzrlNlnkJhNs9Tvb
+         FBIr/xw68CKFK/7o/XJt5LS0V9FRx9oS1FQJZPzENlJCONJrCv/suxFzJtfdF3ET2B
+         wIt10bC626FlyUqagfq9y8bvo3A7RJ2v5CofcN2UfnD33gd09vF+C9V8kGxSGCCucu
+         AcI8vumcVeNXNZzynqBNRyStwUGhuLs7OM1EJYu+QrqiIExSI1Vz/R1TWlEl51P5rR
+         evZ1N4yKQ3hJA==
+Date:   Mon, 11 Sep 2023 17:14:22 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc:     William Qiu <william.qiu@starfivetech.com>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-mmc@vger.kernel.org, Emil Renner Berthing <kernel@esmil.dk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaehoon Chung <jh80.chung@samsung.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Brian Starkey <Brian.Starkey@arm.com>,
-        John Stultz <jstultz@google.com>, tjmercier@google.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linaro-mm-sig@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, jianjiao.zeng@mediatek.com,
-        kuohong.wang@mediatek.com
-Date:   Mon, 11 Sep 2023 12:12:17 -0400
-In-Reply-To: <20230911023038.30649-4-yong.wu@mediatek.com>
-References: <20230911023038.30649-1-yong.wu@mediatek.com>
-         <20230911023038.30649-4-yong.wu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 (3.48.4-1.fc38) 
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [PATCH v1 1/3] dt-bindings: mmc: Drop unused properties
+Message-ID: <20230911-implosive-shrill-506d18d9bde2@spud>
+References: <20230830031846.127957-2-william.qiu@starfivetech.com>
+ <20230830-commence-trickery-40eaa193cb15@wendy>
+ <b375b88c-0d9c-30a9-21f6-283083cf3880@linaro.org>
+ <20230830-procedure-frostbite-56c751f7c276@wendy>
+ <efab6f52-4d7f-ea3c-0fc3-4e3ad03c14c7@starfivetech.com>
+ <20230901-remold-sublease-a1ddb1fc6348@spud>
+ <9EF26965-10E5-4BCA-AC5E-93C5AA55A0DF@jrtc27.com>
+ <20230901-affected-wanting-ab517791a870@spud>
+ <dd63bb4f-a59b-0323-08fb-03f8cc048b6e@starfivetech.com>
+ <CAJM55Z8XowmB-Hfzr+hBtWu+SGL2v7jya6Nx5_rATf8=5qA4Fg@mail.gmail.com>
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="oTmTZUPS0C6vLYk7"
+Content-Disposition: inline
+In-Reply-To: <CAJM55Z8XowmB-Hfzr+hBtWu+SGL2v7jya6Nx5_rATf8=5qA4Fg@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,215 +72,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Le lundi 11 septembre 2023 =C3=A0 10:30 +0800, Yong Wu a =C3=A9crit=C2=A0:
-> From: John Stultz <jstultz@google.com>
+--oTmTZUPS0C6vLYk7
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Sep 08, 2023 at 03:32:36PM +0200, Emil Renner Berthing wrote:
+> On Fri, 8 Sept 2023 at 12:03, William Qiu <william.qiu@starfivetech.com> =
+wrote:
+> > On 2023/9/2 1:43, Conor Dooley wrote:
+> > > On Fri, Sep 01, 2023 at 06:20:38PM +0100, Jessica Clarke wrote:
+> > >> On 1 Sep 2023, at 16:42, Conor Dooley <conor@kernel.org> wrote:
+> > >> >
+> > >> > On Fri, Sep 01, 2023 at 10:33:13AM +0800, William Qiu wrote:
+> > >> >>
+> > >> >>
+> > >> >> On 2023/8/30 16:34, Conor Dooley wrote:
+> > >> >>> On Wed, Aug 30, 2023 at 09:29:20AM +0200, Krzysztof Kozlowski wr=
+ote:
+> > >> >>>> On 30/08/2023 08:50, Conor Dooley wrote:
+> > >> >>>>> On Wed, Aug 30, 2023 at 11:18:44AM +0800, William Qiu wrote:
+> > >> >>>>>> Due to the change of tuning implementation, it's no longer ne=
+cessary to
+> > >> >>>>>> use the "starfive,sysreg" property in dts, so drop the releva=
+nt
+> > >> >>>>>> description in dt-bindings here.
+> > >> >>>>>
+> > >> >>>>> How does changing your software implantation invalidate a desc=
+ription of
+> > >> >>>>> the hardware?
+> > >> >>>>>
+> > >> >>>>
+> > >> >>>> Which is kind of proof that this syscon was just to substitute
+> > >> >>>> incomplete hardware description (e.g. missing clocks and phys).=
+ We
+> > >> >>>> should have rejected it. Just like we should reject them in the=
+ future.
+> > >> >>>
+> > >> >>> :s I dunno what to do with this... I'm inclined to say not to re=
+move it
+> > >> >>> from the binding or dts at all & only change the software.
+> > >> >>>
+> > >> >>>> There are just few cases where syscon is reasonable. All others=
+ is just
+> > >> >>>> laziness. It's not only starfivetech, of course. Several other
+> > >> >>>> contributors do the same.
+> > >> >>>
+> > >> >>> I'm not sure if laziness is fair, lack of understanding is usual=
+ly more
+> > >> >>> likely.
+> > >> >>
+> > >> >> For this, I tend to keep it in binding, but remove it from requir=
+ed. Because
+> > >> >> we only modify the tuning implementation, it doesn't mean that th=
+is property
+> > >> >> need to be removed, it's just no longer be the required one.
+> > >> >
+> > >> > Please only remove it from required if the current driver doesn't =
+break
+> > >> > if the regmap is removed.
+> > >>
+> > >> Either way please make sure the documentation clearly states =E2=80=
+=9Cnever use
+> > >> this, if you=E2=80=99re using it you=E2=80=99re doing it wrong, this=
+ only exists
+> > >> because it was wrongly used in the past=E2=80=9D. Otherwise people w=
+riting
+> > >> drivers for other OSes will probably use it too thinking they need t=
+o.
+> > >
+> > > Maybe we should just delete it if the impact is going to be negligibl=
+e,
+> > > sounds like you're not using it in FreeBSD, which was part of what I =
+was
+> > > worried about. Guess it depends on what Emil & the distro heads think.
+> > Hi Conor,
+> >
+> > After discussing it with our colleagues, we decided that deleting it wa=
+s the best
+> > course of action. Since there will no longer be a related implementatio=
+n of
+> > "starfive,sysreg" in future drivers, even if the dt-binding is describe=
+d, it will
+> > be "never use", so I think it should be deleted.
+> >
+> > What do you think?
 >=20
-> This allows drivers who don't want to create their own
-> DMA-BUF exporter to be able to allocate DMA-BUFs directly
-> from existing DMA-BUF Heaps.
->=20
-> There is some concern that the premise of DMA-BUF heaps is
-> that userland knows better about what type of heap memory
-> is needed for a pipeline, so it would likely be best for
-> drivers to import and fill DMA-BUFs allocated by userland
-> instead of allocating one themselves, but this is still
-> up for debate.
+> The device tree should be a description of the hardware and there
+> really is a 'u0_sdio_data_strobe_phase_ctrl' field in the sysreg
+> registers[1] on the JH7110 that seems to do _something_ related to the
+> sdio interface. So I don't think the fact that the Linux driver no
+> longer uses it is a good reason to remove it, but if there are some
+> other pragmatic reasons to do so then I'm fine with it. Removing it
+> from the list of required properties should be fine though.
 
+SGTM. Can you update the patch to do that please William?
 
-Would be nice for the reviewers to provide the information about the user o=
-f
-this new in-kernel API. I noticed it because I was CCed, but strangely it d=
-idn't
-make it to the mailing list yet and its not clear in the cover what this is=
- used
-with.=20
+Thanks,
+Conor.
 
-I can explain in my words though, my read is that this is used to allocate =
-both
-user visible and driver internal memory segments in MTK VCODEC driver.
+--oTmTZUPS0C6vLYk7
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I'm somewhat concerned that DMABuf objects are used to abstract secure memo=
-ry
-allocation from tee. For framebuffers that are going to be exported and sha=
-red
-its probably fair use, but it seems that internal shared memory and codec
-specific reference buffers also endup with a dmabuf fd (often called a secu=
-re fd
-in the v4l2 patchset) for data that is not being shared, and requires a 1:1
-mapping to a tee handle anyway. Is that the design we'd like to follow ? Ca=
-n't
-we directly allocate from the tee, adding needed helper to make this as sim=
-ple
-as allocating from a HEAP ?
+-----BEGIN PGP SIGNATURE-----
 
-Nicolas
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZP883gAKCRB4tDGHoIJi
+0iUbAQCcScPVjZ1Kbsf7RH2A+sX+vGqYaNxM2OgYs4g0lowZegEA8ZTFom4Gt2p3
+Ov4GOL7DPFANOjsSHPDE7w4pEWoR2Aw=
+=xCY5
+-----END PGP SIGNATURE-----
 
->=20
-> Signed-off-by: John Stultz <jstultz@google.com>
-> Signed-off-by: T.J. Mercier <tjmercier@google.com>
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> [Yong: Fix the checkpatch alignment warning]
-> ---
->  drivers/dma-buf/dma-heap.c | 60 ++++++++++++++++++++++++++++----------
->  include/linux/dma-heap.h   | 25 ++++++++++++++++
->  2 files changed, 69 insertions(+), 16 deletions(-)
->=20
-> diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
-> index dcc0e38c61fa..908bb30dc864 100644
-> --- a/drivers/dma-buf/dma-heap.c
-> +++ b/drivers/dma-buf/dma-heap.c
-> @@ -53,12 +53,15 @@ static dev_t dma_heap_devt;
->  static struct class *dma_heap_class;
->  static DEFINE_XARRAY_ALLOC(dma_heap_minors);
-> =20
-> -static int dma_heap_buffer_alloc(struct dma_heap *heap, size_t len,
-> -				 unsigned int fd_flags,
-> -				 unsigned int heap_flags)
-> +struct dma_buf *dma_heap_buffer_alloc(struct dma_heap *heap, size_t len,
-> +				      unsigned int fd_flags,
-> +				      unsigned int heap_flags)
->  {
-> -	struct dma_buf *dmabuf;
-> -	int fd;
-> +	if (fd_flags & ~DMA_HEAP_VALID_FD_FLAGS)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	if (heap_flags & ~DMA_HEAP_VALID_HEAP_FLAGS)
-> +		return ERR_PTR(-EINVAL);
-> =20
->  	/*
->  	 * Allocations from all heaps have to begin
-> @@ -66,9 +69,20 @@ static int dma_heap_buffer_alloc(struct dma_heap *heap=
-, size_t len,
->  	 */
->  	len =3D PAGE_ALIGN(len);
->  	if (!len)
-> -		return -EINVAL;
-> +		return ERR_PTR(-EINVAL);
-> =20
-> -	dmabuf =3D heap->ops->allocate(heap, len, fd_flags, heap_flags);
-> +	return heap->ops->allocate(heap, len, fd_flags, heap_flags);
-> +}
-> +EXPORT_SYMBOL_GPL(dma_heap_buffer_alloc);
-> +
-> +static int dma_heap_bufferfd_alloc(struct dma_heap *heap, size_t len,
-> +				   unsigned int fd_flags,
-> +				   unsigned int heap_flags)
-> +{
-> +	struct dma_buf *dmabuf;
-> +	int fd;
-> +
-> +	dmabuf =3D dma_heap_buffer_alloc(heap, len, fd_flags, heap_flags);
->  	if (IS_ERR(dmabuf))
->  		return PTR_ERR(dmabuf);
-> =20
-> @@ -106,15 +120,9 @@ static long dma_heap_ioctl_allocate(struct file *fil=
-e, void *data)
->  	if (heap_allocation->fd)
->  		return -EINVAL;
-> =20
-> -	if (heap_allocation->fd_flags & ~DMA_HEAP_VALID_FD_FLAGS)
-> -		return -EINVAL;
-> -
-> -	if (heap_allocation->heap_flags & ~DMA_HEAP_VALID_HEAP_FLAGS)
-> -		return -EINVAL;
-> -
-> -	fd =3D dma_heap_buffer_alloc(heap, heap_allocation->len,
-> -				   heap_allocation->fd_flags,
-> -				   heap_allocation->heap_flags);
-> +	fd =3D dma_heap_bufferfd_alloc(heap, heap_allocation->len,
-> +				     heap_allocation->fd_flags,
-> +				     heap_allocation->heap_flags);
->  	if (fd < 0)
->  		return fd;
-> =20
-> @@ -205,6 +213,7 @@ const char *dma_heap_get_name(struct dma_heap *heap)
->  {
->  	return heap->name;
->  }
-> +EXPORT_SYMBOL_GPL(dma_heap_get_name);
-> =20
->  struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_inf=
-o)
->  {
-> @@ -290,6 +299,24 @@ struct dma_heap *dma_heap_add(const struct dma_heap_=
-export_info *exp_info)
->  	kfree(heap);
->  	return err_ret;
->  }
-> +EXPORT_SYMBOL_GPL(dma_heap_add);
-> +
-> +struct dma_heap *dma_heap_find(const char *name)
-> +{
-> +	struct dma_heap *h;
-> +
-> +	mutex_lock(&heap_list_lock);
-> +	list_for_each_entry(h, &heap_list, list) {
-> +		if (!strcmp(h->name, name)) {
-> +			kref_get(&h->refcount);
-> +			mutex_unlock(&heap_list_lock);
-> +			return h;
-> +		}
-> +	}
-> +	mutex_unlock(&heap_list_lock);
-> +	return NULL;
-> +}
-> +EXPORT_SYMBOL_GPL(dma_heap_find);
-> =20
->  static void dma_heap_release(struct kref *ref)
->  {
-> @@ -315,6 +342,7 @@ void dma_heap_put(struct dma_heap *h)
->  	kref_put(&h->refcount, dma_heap_release);
->  	mutex_unlock(&heap_list_lock);
->  }
-> +EXPORT_SYMBOL_GPL(dma_heap_put);
-> =20
->  static char *dma_heap_devnode(const struct device *dev, umode_t *mode)
->  {
-> diff --git a/include/linux/dma-heap.h b/include/linux/dma-heap.h
-> index f3c678892c5c..59e70f6c7a60 100644
-> --- a/include/linux/dma-heap.h
-> +++ b/include/linux/dma-heap.h
-> @@ -64,10 +64,35 @@ const char *dma_heap_get_name(struct dma_heap *heap);
->   */
->  struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_inf=
-o);
-> =20
-> +/**
-> + * dma_heap_find - get the heap registered with the specified name
-> + * @name: Name of the DMA-Heap to find
-> + *
-> + * Returns:
-> + * The DMA-Heap with the provided name.
-> + *
-> + * NOTE: DMA-Heaps returned from this function MUST be released using
-> + * dma_heap_put() when the user is done to enable the heap to be unloade=
-d.
-> + */
-> +struct dma_heap *dma_heap_find(const char *name);
-> +
->  /**
->   * dma_heap_put - drops a reference to a dmabuf heap, potentially freein=
-g it
->   * @heap: the heap whose reference count to decrement
->   */
->  void dma_heap_put(struct dma_heap *heap);
-> =20
-> +/**
-> + * dma_heap_buffer_alloc - Allocate dma-buf from a dma_heap
-> + * @heap:	DMA-Heap to allocate from
-> + * @len:	size to allocate in bytes
-> + * @fd_flags:	flags to set on returned dma-buf fd
-> + * @heap_flags: flags to pass to the dma heap
-> + *
-> + * This is for internal dma-buf allocations only. Free returned buffers =
-with dma_buf_put().
-> + */
-> +struct dma_buf *dma_heap_buffer_alloc(struct dma_heap *heap, size_t len,
-> +				      unsigned int fd_flags,
-> +				      unsigned int heap_flags);
-> +
->  #endif /* _DMA_HEAPS_H */
-
+--oTmTZUPS0C6vLYk7--
