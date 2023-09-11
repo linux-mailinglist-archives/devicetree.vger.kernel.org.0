@@ -2,68 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FD4C79AEBC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D998F79B51A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237241AbjIKUxK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56822 "EHLO
+        id S238321AbjIKUxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:53:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235931AbjIKJqj (ORCPT
+        with ESMTP id S235934AbjIKJqj (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:46:39 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 828F5E4F
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:34 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-403061cdf2bso15611845e9.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:34 -0700 (PDT)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E020E51
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:35 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-31ae6bf91a9so4205491f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694425593; x=1695030393; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694425594; x=1695030394; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gpfWGrPSBuBG7+U0dwFU/lJOZNNMxd815XPw6Rgs8Vs=;
-        b=T3SL7uV5AdPFFeLBv1F2qq1NgAEXjkNRT4PFB+zScyqt0fZvOv7XSflZI9AnLomHVs
-         jZulrZ3Lnj3CMR2xVzCdezXaUJ4sPGo/fZxEV5oU67GZV77vOPdwuscq41oj7rEHxlZR
-         4bweWT3qB7v1ROEK6+by62Vo1U0COpzbXR0RLSf+lks7SotLB7Pic2abQcU4rooHj3Q9
-         tdBA/FDKWkhCCvX7Jdxhw5DoE5lBCMKQYBL96YRl+5HZY4f62+Td7iDxlEtojJaCWtv6
-         tJ0s5Uf2VjNbGvsPfJS2weOtNGaqtajx69kexBc0iYk/rjLhvr3bxi1VJ7TWsNe04Jky
-         nPHA==
+        bh=AR5r3g93Rem7DNpxCNPYXtJX7SM5cWGRWdjy8kq3JwA=;
+        b=Zi7/STSV9/g+grLvAxzksLGbxGcNM1rEHZQIPLG8zq6DY0ndvXYAdnnymoVaQzrVu7
+         YxmwBSoupqVMP9P6q7HPckZBTC+M4u4fqXnLAmvKhCh0mucQGmNWg/7HU/Dgp+wjzwKI
+         PjB2J9Ob/9x4y1szPPDwkpVfjBC8btaZPKY5XqB21xabaHx8HQf8C+AXCxGxImAgHo6l
+         ke3ZbUapLFDB3+iBSOY+lbOTjHpubu96F6xSeycY1kSCWKHKpcGpuAXinI44+TqfnUBg
+         PJW4p2mYSjhh8HTZN1OmqxVaBXRq/mRR+ckPj9B+oC2L7uVUMGO2fl/m3O0gFiCXalxa
+         QdLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694425593; x=1695030393;
+        d=1e100.net; s=20230601; t=1694425594; x=1695030394;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gpfWGrPSBuBG7+U0dwFU/lJOZNNMxd815XPw6Rgs8Vs=;
-        b=s65pOu2nDMDWn7nfFsJv3DnqoCB2/nyhAQ0S0n/hlYvNLUl7SNAzecWYBzm/itPZhz
-         9WPYNgWjT0u+hZy+OezgFyalWDeaBcvt2sTmehs5iu8LW57w939T6xLWhpahjId1APzC
-         g8MtAoAquR1FffAlhffuBQv/jRStyMAjWTzbwKzL9jUU7/9c34nN7sp2Hkmgpx30OF2y
-         6CUguAX2t65pBuS0WZtm61p7O1JJkRmGSMT/FdpcelzXCnWfImM+WcVs/3Yun0vLYgFQ
-         HZrSEmJCi/wC5RDL9RdKC0C/XIpYdqRv0bgaEKaQnh3TVQEbFt7AQVxmzFmD3M5EAfy8
-         y0yg==
-X-Gm-Message-State: AOJu0Yz6QbuAIgFAiw/hwtOVHBsQXxkp3ghUECB0SRgJ1A5V+ZV0rrAd
-        eaXkm3+NQxlJGR+58fIgOWwZBg==
-X-Google-Smtp-Source: AGHT+IFB2NUgPRCR1E53L1RZWLMIv4pvvpcenAmQmhAg3oTkQvuSqfR80muGqdBVaRCoXOqcPSinSw==
-X-Received: by 2002:adf:b345:0:b0:31f:9838:dfc4 with SMTP id k5-20020adfb345000000b0031f9838dfc4mr3521960wrd.33.1694425592923;
-        Mon, 11 Sep 2023 02:46:32 -0700 (PDT)
+        bh=AR5r3g93Rem7DNpxCNPYXtJX7SM5cWGRWdjy8kq3JwA=;
+        b=CNfGkXBdIiBIEpJMvlM1jhZshhszReXJYeP0iMD/0r3h9wY8JbRRaadJOTxd50kh4p
+         h0RARHcRZcQzQvE6yy7XtFY8g7z2WVEOlhAmnFASAqQRwGfEYMJOhMpgCf6t3bbOPj+T
+         zJ73GTSoL29gx0N35XGckTtRsBaA9zvZyCDql7GTBmIZnuOmSELpZ8EutT8GXTPWMNJe
+         nTZQPJAx/+TPzxhoxhLAwuqUt9c0UH9tFu4M1XqT8dAODWjjFbL/udHGsX+Pvtm/o9W+
+         I2OEWSpHuOLQ2maIc3DTMQ0KToM7iRyPoRu03Vd5L5G6jlvAV9yx0v5fVMzyKfhAMXk6
+         bt8w==
+X-Gm-Message-State: AOJu0Yx9qurNe6wJ8n+9IPojkNNa+QW8+G5h8jtBDaVkJzILTV2MQdwx
+        EezGQf1kRoB6EvCn5UlAvTbftA==
+X-Google-Smtp-Source: AGHT+IHIeeGTixGVLQ3w8IGwO+JDDdkg+e9WcxFRAhz+oDKZn61/9t8brHl2PDw0+BRylOKbkUPiTg==
+X-Received: by 2002:adf:ed12:0:b0:317:4cf8:35f9 with SMTP id a18-20020adfed12000000b003174cf835f9mr7111697wro.16.1694425593928;
+        Mon, 11 Sep 2023 02:46:33 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.31
+        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 02:46:32 -0700 (PDT)
+        Mon, 11 Sep 2023 02:46:33 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com,
-        Huqiang Qin <huqiang.qin@amlogic.com>
-Cc:     linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
-References: <20230802033222.4024946-1-huqiang.qin@amlogic.com>
-Subject: Re: (subset) [PATCH V2 0/4] Add watchdog support for Amlogic-T7
- SoCs
-Message-Id: <169442559190.3235506.16709679651395559880.b4-ty@linaro.org>
-Date:   Mon, 11 Sep 2023 11:46:31 +0200
+To:     Sean Young <sean@mess.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        zelong dong <zelong.dong@amlogic.com>
+Cc:     linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Qianggui.Song@amlogic.com, Yonghui.Yu@amlogic.com,
+        kelvin.zhang@amlogic.com
+In-Reply-To: <20230825115310.39993-1-zelong.dong@amlogic.com>
+References: <20230825115310.39993-1-zelong.dong@amlogic.com>
+Subject: Re: (subset) [PATCH 0/3] This patchset adds IR controller driver
+ support for
+Message-Id: <169442559302.3235506.15361466537260729684.b4-ty@linaro.org>
+Date:   Mon, 11 Sep 2023 11:46:33 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -80,23 +85,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Wed, 02 Aug 2023 11:32:18 +0800, Huqiang Qin wrote:
-> Based on the original Amlogic-GXBB watchdog driver, support
-> for Amlogic-T7 watchdog is added.
+On Fri, 25 Aug 2023 19:53:07 +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> [PATCH 1/4]:
->   V1 -> V2: Unchanged.
+> Meson IR Controller supports hardware decoder in Meson-S4 and later
+> SoC. So far, protocol NEC could be decoded by hardware decoder.
 > 
-> [PATCH 2/4]:
->   V1 -> V2: Rename rst_shift to rst and use the BIT() macro
->             to build its initial value.
+> Zelong Dong (3):
+>   media: rc: meson-ir: support rc driver type RC_DRIVER_SCANCODE
+>   dt-bindings: media: Add compatible for Meson-S4 IR Controller
+>   arm64: dts: meson: add IR controller for Meson-S4 SoC
 > 
 > [...]
 
 Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
 
-[4/4] arm64: dts: Add watchdog node for Amlogic-T7 SoCs
-      https://git.kernel.org/amlogic/c/8a63d22183d0d96d742e34730430cc1f286c7092
+[3/3] arm64: dts: meson: add IR controller for Meson-S4 SoC
+      https://git.kernel.org/amlogic/c/dc8bc779feb5e855421215384f23de90a4fcd622
 
 These changes has been applied on the intermediate git tree [1].
 
