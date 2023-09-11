@@ -2,130 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F09DD79BE2D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9266E79B981
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:10:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234094AbjIKUuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:50:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
+        id S233572AbjIKUty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235339AbjIKI1L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:27:11 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A65B110;
-        Mon, 11 Sep 2023 01:27:06 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38B8Qs2C080008;
-        Mon, 11 Sep 2023 03:26:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694420814;
-        bh=nou6XV5HrZutUro+1SS2+mIlpVh2z5I+ijBXzWViANc=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=dNifVKpUiCdzMKhvUZGkw/F2KMBpcyA8jOOBuANQ8jYaBhk6xfA72fFudDdtdpJRo
-         vPtx24qiYDbPOpS3RwlMrOBxIJjpORaRzy3kCF3cpd88G6pq8JKHRfDHKGnvqJDV8U
-         JPIVMKbr/eoYfZK4PEDr4ZK1EgZvqIeFbYLtit8Y=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38B8Qsic062818
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Sep 2023 03:26:54 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Sep 2023 03:26:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Sep 2023 03:26:54 -0500
-Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38B8Qoun005857;
-        Mon, 11 Sep 2023 03:26:50 -0500
-Message-ID: <a5c650c9-3bb5-44d7-8191-8e122f1077df@ti.com>
-Date:   Mon, 11 Sep 2023 13:56:49 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+        with ESMTP id S235342AbjIKI1b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:27:31 -0400
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2087.outbound.protection.outlook.com [40.107.8.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C461FFB;
+        Mon, 11 Sep 2023 01:27:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k+z1kiHeHE0Lqi6YOuG5EpgAq7DxFCw5nEpcNoW/C0xn5G4twVOO01ezvNAmM5+SheUapa0kg4K0nzhsd9aJFtiaFYCdV8QN0GEdF6T8qLshk8BCONIFXPwz/0PHNUmFA9kdeFVR3ic63AYk31hN3qW0wreuAOa2T3LTvyE5KDlHGWKHbKV6KxavUvYQSzrJ2EtFpCJyWqk8RDD2nEdzFx9D9Vsb7VFXVmEVamI7m/fSHPR32Lx+o00Am2SABhDiBVOd27EHfXfPDzFM0VYT0XuVD/YrtKbJ3oyQERWsoWgjYp/le97gqZ+UgQ/EMjhMrF0BZ6v6j08N/xPSfbTRGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Tc2NnA1+1d2DU+ANMDyVXFJRMg/UaaFLG+rQVJqF33I=;
+ b=Q8wEIr09RnOJQd9z86frhPteqWaqg6JX/Qe8B+9W388hbHFNFgGS6NjpWjWrBQNn+vpqKsqE9ojV9bHUH0brcu1UhLXeOGvLeCRww+tQ48vdRKtrsxMp9F0sjkI6PzAEBLDi3RHv6J5NbP8eRoF8Z6ITBZ/Xkys//sTWWyc9TczNpK1xI40Yq3DnatKLvq0oTLQtF1YUD0N7sd7PsMHuh6D+hjiyuksE3vR2Jx1XEnvqua8po0uHgg6QN6cl2avIsKdUNZ6olpGJGba5203tHSYS2xDc1P+Ad/ejFV9aSUoIHHuuaUY4//FuvbeSN/eixCgkWaBBRroBlKfoZM7MRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Tc2NnA1+1d2DU+ANMDyVXFJRMg/UaaFLG+rQVJqF33I=;
+ b=dyfetfzFqIMliQYWiiIjNvqtppeCXVYrMpwK9l8OwqM5tNoRTm+BGobEYwNcD0pkklIwPPQeHmIjir/+J1iycbgkzo1wH8NPpastTE433EhAzMkwa/0gE1j8YtyjPeEJlorgAe9ztyZmdIWNtxuEnX3ipSWjNdxesghbFj/5jWk=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by PA4PR08MB5904.eurprd08.prod.outlook.com (2603:10a6:102:e5::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Mon, 11 Sep
+ 2023 08:27:22 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::bc92:216b:11ed:db63]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::bc92:216b:11ed:db63%6]) with mapi id 15.20.6768.029; Mon, 11 Sep 2023
+ 08:27:21 +0000
+Message-ID: <8d1a49ac-3abc-5b75-34b0-9573971e61da@wolfvision.net>
+Date:   Mon, 11 Sep 2023 10:27:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v3 0/7] arm64: ti: k3-j7: Add the ESM & main domain
- watchdog nodes
-To:     Keerthy <j-keerthy@ti.com>, <robh+dt@kernel.org>, <nm@ti.com>,
-        <vigneshr@ti.com>, <conor+dt@kernel.org>, <kristo@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <u-kumar1@ti.com>
-References: <20230911040942.31031-1-j-keerthy@ti.com>
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2123: convert to YAML
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chris Verges <chrisv@cyberswitching.com>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
+ <f0224983-d276-8d9c-f6ce-bd77f350bc3c@linaro.org>
 Content-Language: en-US
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230911040942.31031-1-j-keerthy@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Javier Carrasco <javier.carrasco@wolfvision.net>
+In-Reply-To: <f0224983-d276-8d9c-f6ce-bd77f350bc3c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR0902CA0052.eurprd09.prod.outlook.com
+ (2603:10a6:802:1::41) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|PA4PR08MB5904:EE_
+X-MS-Office365-Filtering-Correlation-Id: 35963d24-6b8f-4a50-6c99-08dbb2a0eb6a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TrNv2pYnBpSee/dr8ZGJ80bC6FeQhkoAOpM7m0Qda3eHhPd74uyXM0TYpyXda77nAWASZ36aVsAE/wRHz3m9vSbbi2lSnr5GbAdD8sNV03tXEThyKFQ5YKibuUToZ1yOeXKh6ls5tXlR/uqSGp9dVbyQzqfTmsx4qtLLxHjqFMpm7D7GzGFT4kxGZT+iOawPxKAwwlc22DeeVdLIDfp2MSSU/J7XYtxn5lMB8JIhPMgMjyxYPZEWssQd0PdBDGJ+dlnKU2+rAPddwV6BLbV36X1ayiUQDqFmkla8IplhCHRKcrjLpVzPMZT34R/P6LS8+PItnqg25ckBjfSN3iObndB//KIt0+oeTJBCFfPhAcYKrAVFv/Gg7nOiNhzMezRoCG+nLsgvHiT6Df/8DcvLXTtL+pdriXFm6pG9JSgNHyR22BDz3LwnFpqfm2e2svcppCLlS8EtWGavagVf/sGZkghq0ZCvtOMIgN4ruDR3e+PwdiCiKT/5Avlo1JRQ4tysGQbNMs7s8mGeF0veeuHraITNzt09F5dQJz6CaFo6hz4NETCN3wD+sK8pMtOmtt2JS32schqs5t/vnnbSy/baztO9+hbks6hC+Bs10yW9eBz3UWUGU48DPt9xp/BNnon7oOHiHG4ybNSxe8iEUz9fLQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366004)(376002)(396003)(39840400004)(136003)(346002)(451199024)(1800799009)(186009)(31686004)(6486002)(53546011)(6506007)(31696002)(36756003)(86362001)(38100700002)(26005)(2616005)(4744005)(6512007)(478600001)(110136005)(41300700001)(316002)(8676002)(8936002)(5660300002)(4326008)(2906002)(7416002)(44832011)(66556008)(66946007)(66476007)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ODNVWnFpS1JyeTZXNjFBeGw0a3g5dzNFNGt5UjdmZUVheUtUSDlVUlM4aitr?=
+ =?utf-8?B?Qm5FSjFaeHN6NjZaYjFkOWdJclkwSnROZmpneERTSjIzVVZaTFlOdWhuSU9r?=
+ =?utf-8?B?eWNkelZ3cStHQ3p6NThHMzl2WVBEM1Y2Q1N0OGFublJvOTk1eGRJbUNGalpD?=
+ =?utf-8?B?WE9OeHNJNWVINFNUUVViRUQzb0laUlFYOEs0Mk44RkFQMXFwN2p0S3h4VnpO?=
+ =?utf-8?B?VVJpZXk1VXVMMzcrOWxjREpIMC94NElBTFczNmI3YzZrMzdwL2x1aEpnZHU3?=
+ =?utf-8?B?QUFWNmtCSHBLbHg3Q0dJMzBqbnZTMGVjN2RBUWE5eXdPWjRkVExNT0ZZNUhW?=
+ =?utf-8?B?Q2dkOEw4UHZJWHRRcXcxTGYzOVNDL1hEVUF2ZVk1TTBZR3BtVVZxN3Y2ZFlN?=
+ =?utf-8?B?TWlVTFZBVXdVNU0weWpBVm1uY24zOGUyS01Rd0U4TkNGN2h1aWwrenhGNEtQ?=
+ =?utf-8?B?RE1pMW9FSTZWYnI3ZW90emVMdGxrN28vWm1kRmY4SlRRV3gvdmE4bWNmM0RV?=
+ =?utf-8?B?NmpnNTZQSHQyOCtQYXN4ZllkNk1HZElHR3VhMEpmUEdvRzY5UjE2ZlNYRU1N?=
+ =?utf-8?B?aDlJUHhRZk5DTHV1VEpuRzZhLzZBMllvbCtYRzZmOWxOMlg2NjIyYXhHTlhP?=
+ =?utf-8?B?cVlBMmVjUVJ5LzJrT1FKdXRhcDdHS0NmQjZ6dGMvdjBVSUFyYVBiRlZUN1V6?=
+ =?utf-8?B?OEZ3amM2REZDYm5zajZOK0MwdHQxWlVaZkc5NFU4SWxhYVdxNXJoYUNxRnFI?=
+ =?utf-8?B?VW1hVXpiMHBIaEtlZFhCRlliZnBNTGI1Ym9WUThNSWVzcnZQQk94TU9ITGpN?=
+ =?utf-8?B?SlJlVmpSbE1veDdhS28rYUdLVE9PQk9xSnZicGl2dUp2UlcxRTRqdm9hNmlD?=
+ =?utf-8?B?LzBQZmFVZ3dtOWdVNnNjZzExODNYL1VkaHllSUkwS2hRN1hWYmtUK1lrM2Zh?=
+ =?utf-8?B?OWpuMjZUWHg1NnZheGVnYTJ2MUdiQ0QzN0F6SnFONnppMktGa21rbmF3RXI5?=
+ =?utf-8?B?c1pOYUZwWGpsNlA2RkoxdGUvV1FlT0RCaWwxdk43WU9SZ1RYbUU2VjNEK01q?=
+ =?utf-8?B?ZGdrZm9BRGhDa3lBeDQ3WGFMWGpQYSs5RnVFOTBQcnh0NFJiSUQxWE9wWlpS?=
+ =?utf-8?B?NkYxeXBycmdRelFOeHNtY2d5WjBRWmw4cVZVc29pY0dJV3ZVREVobFdTN21W?=
+ =?utf-8?B?ZUdBa3ZWcDg0MEQwOFRmdGZQVHN6RGJlTU9OMmVRcmdpZ3dGVzVLUkdxU1V0?=
+ =?utf-8?B?Vm1vMVFIMXNsMnZITE5FN0YrY2FEQ0xzZVZSM1FHK1ZodFRCMzFRRVhDcHdS?=
+ =?utf-8?B?REZLZU11MkJ0ZG5heEV6OGVORXZlSXpLc2lIVnB5Skp6cEhvM2FaSklyWjU5?=
+ =?utf-8?B?R0lVWXRrRVM4VlBaQUZTMkVKQUQzK1J2cGdSaEl2ekY2dFB0djRxczB3aUY1?=
+ =?utf-8?B?QVZ6NjQ1TEdWMUI5SzdtelFWRmI5aEtFQkZocldhYkZMSFJKMjZiMUtMaGxH?=
+ =?utf-8?B?cnNhVlZQRnhDdlZMbm9lU1ZwWGhGWlhteGdXSWJVSG9KOEdHaEtJdUsxbUJr?=
+ =?utf-8?B?elU4ZTVXMEo0OFhETFZ2ejN3dDMwdklvVHl3czVyRGs0TDM0eHl6bmthZzA0?=
+ =?utf-8?B?Yll6Y0EzVDA5eWZoQlRQZGQ5Ui9vN3F3TE1VRlN2NXVkUFdhTnRDZjhYVlFp?=
+ =?utf-8?B?L1FhZzB1MVBMZXo1UVZTNGVvdE85UXJNeGZkTjR1ekJiNVoya0JqSS9vdXYy?=
+ =?utf-8?B?b00vYWkrVjZmeFg2K0ticldlQ1dUSkFtWUc2ZU5YT0hDSHRDaE9mUjNMT0Yv?=
+ =?utf-8?B?NUl2Rk1hS3EzUjVxODZuTmVOTjJNMVIyVkNndHJCd1EzL3VDUVJsZ0l6NEha?=
+ =?utf-8?B?R2ltTFVUbHhhMzRkSGVpS3Y1cGZRM0ZQZVFiS3d3Y29jRkQyNWthd1NDVGhm?=
+ =?utf-8?B?QVNQNjhpWU45RHowQ3RvOXFKL3JlbWlrUmFNRjhCZkZITTd0ZXhGeXFmSUUy?=
+ =?utf-8?B?ZzRFOWt4aDJUdWNBV3ZXcmpSTW1kY0tTTHRObmpESlRrS3hRRE9aWDlMU2Jw?=
+ =?utf-8?B?c1ZWRGdoZVZ1cUVqUGpkTndMUmNHbStkajllQ1h1SGFSd2Z2Nkc1ZkJiQzli?=
+ =?utf-8?B?a1NJSHRUZUg5TnBwOThybXVxend3NEVMN0ZIZWJBNVFPTktSbjRFTGtMQUtQ?=
+ =?utf-8?Q?9zMhaguvDUmwbJYCxvPYRcw=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35963d24-6b8f-4a50-6c99-08dbb2a0eb6a
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2023 08:27:21.8389
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /OV2+zsZeyU7bxHbSJ6kY7NxT1112ASmC8HWI+JB1rHPWuC5eblZEy3oYBiJgZRgzds+E4soTh4MK2joQx+C4ejVoGlGWl5aqaBc3WR0OLg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR08MB5904
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Keerthy
-
-On 9/11/2023 9:39 AM, Keerthy wrote:
-> The series add the ESM & main domain watchdog nodes for j721s2,
-> j784s4 SOCs.
->
-> Changes in v3:
->
-> 	* Added all the RTI events for MAIN_ESM for j784s4 as 8 instances
-> 	  are enabled.
-> 	* Rebased on top of 6.6-rc1
-> 	* Tested for the watchdog reset
->
-> RESEND series - corrected krzysztof.kozlowski+dt@linaro.org ID
->
-> Changes in v2:
->
->          * Added all the instances of watchdog on j784s4/j721s2
->          * Fixed all 0x0 in dts to 0x00
->          * Fixed couple of ESM event numbers for j721s2
->          * Rebased to linux-next branch
->
-> Keerthy (7):
->    arm64: dts: ti: k3-j721s2: Add ESM instances
->    arm64: dts: ti: k3-j784s4: Add ESM instances
->    arm64: dts: ti: k3-j7200: Add MCU domain ESM instance
->    arm64: dts: ti: k3-j784s4-main: Add the main domain watchdog instances
->    arm64: dts: ti: k3-j784s4-mcu: Add the main domain watchdog instances
->    arm64: dts: ti: k3-j721s2-main: Add the main domain watchdog instances
->    arm64: dts: ti: k3-j721s2-mcu: Add the main domain watchdog instances
-
-Thanks for series,
-
-Two minor suggestions.
-
-1) Order of patches , since J721S2 esm is added first , it will be 
-better to have  watchdog for J721S2 first
-
-2) I understand, to add watchdog entries, for J784S4 and J721S2, you 
-followed ascending device id order
-
-due to that there is mix of entries like watchdog16 coming before 
-watchdog15.
 
 
-Let maintainers to take call on these minor one.
+On 11.09.23 08:17, Krzysztof Kozlowski wrote:
+> On 10/09/2023 13:00, Javier Carrasco wrote:
+>> Convert the existing txt binding to the preferred YAML format.
+>>
+> 
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    spi {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +
+>> +        rtc@3 {
+>> +            compatible = "nxp,pcf2123";
+>> +            reg = <3>;
+>> +            spi-cs-high;
+> 
+> Example should be complete, so preferably also with interrupts.
+> 
+> Anyway:
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+> 
+Thank you for the review. You are right, adding a line to complete the
+example with an interrupt does not cost much. I will add it for v2 and
+wait a few days in case I should change the maintainer.
 
-
-For me, with or without above suggestions fix.
-
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-
-
->   .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      |   6 +
->   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi    |  94 +++++++++
->   .../boot/dts/ti/k3-j721s2-mcu-wakeup.dtsi     |  32 +++
->   arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi    | 189 ++++++++++++++++++
->   .../boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi     |  32 +++
->   5 files changed, 353 insertions(+)
->
+Best regards,
+Javier Carrasco
