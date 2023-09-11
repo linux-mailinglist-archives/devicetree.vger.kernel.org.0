@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56AA579B3FF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96C1579B60D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232154AbjIKUuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56416 "EHLO
+        id S229759AbjIKUt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241464AbjIKPJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:09:29 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C20D8E40
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:09:22 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-31c7912416bso4818886f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:09:22 -0700 (PDT)
+        with ESMTP id S241469AbjIKPJa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:09:30 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA0BFA
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:09:24 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-401187f8071so28914465e9.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:09:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694444961; x=1695049761; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694444962; x=1695049762; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=lYXngHOzN75PoywV4+ppenCMkO0BtlnfambIk5nvgf0=;
-        b=FO9nVqZD3/uKX1Yw25BRFDcSnCyFQuL3X32ZseOV1f884UzFQe3Op75dL+aivvLy5S
-         DszBs7XWkCzpn7KRw02rzP7dc/aXudbFVmkDy/GjMUypF/GiMiCGCE5JdkMLG8zEKWuq
-         LJoASmMVv7trW8JqxKACk3fB3RffvpFqKR/F2R+JjIgStS1QaL08+clhVyBnC4WsubqZ
-         NSenjyTQW3eHl7hdJ9t+BzAG0/EIlhTU/hgxjhZT+2QwgaXAUMNd6KcIkF2Uw7s5vQOu
-         mDKxODcCAEgFe+pd/Vce6i/y8IBJPKPUL4v0Yv7xwchIVhFTieUffRw8F5NovvicC3/1
-         bXxg==
+        bh=bOYptsCrf1diNtyghWnfZLvZu7tELTtIDAUqFPNMvD8=;
+        b=nDQUTuVqNirbN+JZkauDGGsx/C3cOoBtpn6rQEEf+1xn63eqKYNA4YwJCDeWqn1/bF
+         uDDIh5u2ZYKhDnne8viz/EFUHPg9pHiTeOVrIsoi6UphXjE1F73GxiX1DdNvXCzUKFFc
+         ur+JX6Z5CXaviw4I1FZfnIPf3Zc1lWLbLjWh3XkoKRX/OGZTgzhHPNLpP661FdlW3lMk
+         t3RdH+PEz0rYZ+kxPz2y9LO9cS1DpAymt11DJahyiNLgjqWVgv/v8fKwmGAIoD6hzWnF
+         9RBNPfVM2aZzPI+ZJ6OA8Aw8Oi0j3r/uufM55v77msMpqbBl/5bdyWIJrBKxWiAsGKlb
+         /IQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694444961; x=1695049761;
+        d=1e100.net; s=20230601; t=1694444962; x=1695049762;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lYXngHOzN75PoywV4+ppenCMkO0BtlnfambIk5nvgf0=;
-        b=m6pzu65te+0xlO8ioyrl55QVVXhVhTEtB0MfXUeNeUEzoJFNfMwaobb0WwRkgwvCC/
-         8Pm+FO2+2NT/GTUTiIwv+2W5XyR1iP0hjISRkhhchB+NAzl7eAcCMuPTNJLWxN6w5LAC
-         oBfrSRPvxFbT+tpVNB+X6vKqPVwWyVOrFpnLXJLAOeUueJJN4q++N7wM19PNkwt8BkNY
-         DmL8hGp85R2iuRwIGEUP4/hkXtNNBHBEXw7we9kQ1d+ofMkifGVd9WOd5+6D/G0u3yvd
-         cR8irkqG2qnerrDhXX0/3cxHhe3Vrus+to7PuUGtTYya+E8dbEzpNJGorcIafKaJcfBE
-         jcjA==
-X-Gm-Message-State: AOJu0YzIce5oiFehQfLqdeCyxef4Z5qUVfDGpSDYXEwQWziSj00bb9fa
-        ss19eoJrT77g7Lc8icv5zi05qQ==
-X-Google-Smtp-Source: AGHT+IGEvvxL2vFpAriiGl4G3wGQZ/xpQvVGJmjqo5OcJg4NKx2heACN+56vMiFmzWqgfcWcpoS0XQ==
-X-Received: by 2002:a05:6000:118f:b0:319:6001:978c with SMTP id g15-20020a056000118f00b003196001978cmr8510755wrx.53.1694444961129;
-        Mon, 11 Sep 2023 08:09:21 -0700 (PDT)
+        bh=bOYptsCrf1diNtyghWnfZLvZu7tELTtIDAUqFPNMvD8=;
+        b=MqBlpAPvMhYH/ShOIba+Oeau80NbrS2Qj1LUR0+flS48wHuxV4ObHyHonvk1zwa22j
+         QlUoKGTlpR9IhF/7gCsn2XNUCX57BHAgTt4psn1CH0IKLsgmASlmtA94nQ6JE39aULi2
+         EFwums1Nw/BitJZ8pd8jAaxj2XlYuf0JOSWhUvdeDEQe0cizD2amKb8Lki1kMSsRwdM5
+         B3NsncRBF/6QueHnXEuFSflbxXT/WAEds2+9HSZDofWwF6aggp7CSEU4L4Cfgg6BNSm1
+         dtv+KWq8w3g4NtcFaWv3BG/RJLSnyVDOmNNU7sFKTDi8aPKKxY77bQEFFZBFXOBc/Y+4
+         Wgkg==
+X-Gm-Message-State: AOJu0YwNijZTRgG7iFQg8JYrcGN1w7AYuePy2rHhp+9T2Mho4c/Vk4NQ
+        c7qR8zO8cnUgouDqOEX4svBRTZUt0G/n8r3Rsb+Oncpr
+X-Google-Smtp-Source: AGHT+IHvwIKHqGYnGN3IiqndAH93l6WqVDjqInO1zvq/pqTFA0C05t49HJS1dXDWNdJXeVZleDHnqw==
+X-Received: by 2002:a05:600c:2209:b0:3fe:1587:fdf3 with SMTP id z9-20020a05600c220900b003fe1587fdf3mr6762828wml.14.1694444962015;
+        Mon, 11 Sep 2023 08:09:22 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id y18-20020a5d6152000000b0031f3780ce60sm10388691wrt.7.2023.09.11.08.09.20
+        by smtp.gmail.com with ESMTPSA id y18-20020a5d6152000000b0031f3780ce60sm10388691wrt.7.2023.09.11.08.09.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 08:09:20 -0700 (PDT)
+        Mon, 11 Sep 2023 08:09:21 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
 To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
+        linux-pm@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>
-In-Reply-To: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
-References: <20230829020404.4058677-1-xianwei.zhao@amlogic.com>
-Subject: Re: (subset) [PATCH V3 0/6] Power: T7: add power domain driver
-Message-Id: <169444496026.3944766.18031639855172350392.b4-ty@linaro.org>
-Date:   Mon, 11 Sep 2023 17:09:20 +0200
+        Kevin Hilman <khilman@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>
+In-Reply-To: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
+References: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
+Subject: Re: (subset) [PATCH V3 RESEND 0/6] Power: T7: add power domain
+ driver
+Message-Id: <169444496123.3944766.3763051739383485051.b4-ty@linaro.org>
+Date:   Mon, 11 Sep 2023 17:09:21 +0200
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
@@ -78,7 +80,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-On Tue, 29 Aug 2023 10:03:58 +0800, Xianwei Zhao wrote:
+On Mon, 11 Sep 2023 10:52:17 +0800, Xianwei Zhao wrote:
 > First patch is that remove C3 some power domain ALWAYS_ON property.
 > Second patch is that add driver to support power parent node.
 > Third patch is that turn on power if initial power domain with
