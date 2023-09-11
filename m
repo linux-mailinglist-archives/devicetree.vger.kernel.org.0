@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B82579B8B2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:08:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D46079B620
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238186AbjIKUxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35072 "EHLO
+        id S237412AbjIKUvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236914AbjIKLjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:39:40 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EFECDD
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:36 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-5230a22cfd1so5548957a12.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:36 -0700 (PDT)
+        with ESMTP id S236975AbjIKLsT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:48:19 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2645ECDD
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:48:14 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401da71b7c5so49227025e9.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:48:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694432374; x=1695037174; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NH52jm7IMEAL8WOz6GO3ZaoQovB8Mynr78vb+JMDDFY=;
-        b=dlsaDdLmTnO+W0e37aC6HgwwgZarPRRgTspzC1fN4w5DgQ+0cFNdeMzDxbS72s0Huk
-         3JZEVJwZqj4hcWLx6lHYojIuAXmSWTZNHoUAQEXIi1Vb8Bektaz2aZy/28ikywNUTBvP
-         JHblECpaQ6B+l6Yw53krsMwk52pHAhoxXCPfgaEsqxVNOcNAPbP0dF96FQXxG8kI/c+D
-         M9lg1uVpqUpEfm6afMhjQHOCX8QkzBBKSLYDMOu+B+vwv1ps9EP/Cj942BpuS+Lei3nG
-         MXdQX8FtVPt0WSrkvs2pr5AKU40908hFHgAY3lObRCsATw5MOjLdz/3BmQSaTY21uGN5
-         DK1A==
+        d=linaro.org; s=google; t=1694432892; x=1695037692; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=VwBXtpnl2seZq0ac+rqFxMXSK7kQ64QRu+m5l1ngFCY=;
+        b=EFf0STkEsDoJwPKCqc/cQ/SQg8V6LMgWV3Ki0LiEJ8Ln0wUvrDGxN7YreWBoSyW/Uq
+         GDFW6VlHZ5sGG3j1sFfPxfn3prpzSKGKeJnncnQmjYdqKPONR9VNlU6ILQBSW9DS4FtE
+         E1Di5hp41KCbTN09mv0QYXITxcfcjFa6E2VLocCoJNW5TWWqtxNKEpDLP92TYxzRTYm2
+         1M6xBijSnyYMamFDG+qIJ/qRvhrU1y0Tt6o40arviRiGN+hMdBpmqP8oZBicxgYqMB7y
+         HPemNoCwoqlrpr8v0W/X5VHnJDUkQJvD9cK6GU9lctBpXAUyAiS30kriVDEpE+4VW90I
+         YL0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694432374; x=1695037174;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NH52jm7IMEAL8WOz6GO3ZaoQovB8Mynr78vb+JMDDFY=;
-        b=gWCU3WryS5lcfEbAKPZydaAZikhQzDNsy5Ub78HkNjpJY48SVFTV88KU5QeydzqLeB
-         F7eSeJOELF6MuQdEo4ECKQAlRTD5pUPY41ampIx5+TooB49jLSgoJQYYkiKgiWmN+l/x
-         Ady3qO/n93NzuMcEapc6dRSMG5ASeRPFYjCoPIVgOFM8EjSfNpsmyybyV6enJYOMV8G/
-         zUIo+Ffh6s+fAGDhUfe4v+BuFMn3aCmOyGZxaJ7Mx57b9cnH9Un+2nvyVpACzoW5Bwk3
-         PZ0AMD14z+pQV4DgtSkT3iwzOESvUYpos0+YW2disNCD4sro37iYvewZs1jqCwDJEAih
-         DyYg==
-X-Gm-Message-State: AOJu0YxpjmyPxoGVjdejlyKxGwV+TxFvgABcz+i445YLOBc4YKaoi/DV
-        TAI1/1QokWNqJD1eaeYsweufcQ==
-X-Google-Smtp-Source: AGHT+IHQzJx0OOWqneHLnfwmUEWkbPQlTh6C51/9DolgrjBu0no1cVmvFHk2fPX1jxefFnGnxXt14A==
-X-Received: by 2002:aa7:d054:0:b0:522:b112:6254 with SMTP id n20-20020aa7d054000000b00522b1126254mr7592357edo.4.1694432374700;
-        Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id g15-20020a056402180f00b00523b1335618sm4431003edy.97.2023.09.11.04.39.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Protsenko <semen.protsenko@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        JaeHun Jung <jh0801.jung@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] arm64: dts: exynos: Enable USB for E850-96 board
-Date:   Mon, 11 Sep 2023 13:39:25 +0200
-Message-Id: <169443234709.34398.2292674968084168960.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230825215445.28309-1-semen.protsenko@linaro.org>
-References: <20230825215445.28309-1-semen.protsenko@linaro.org>
+        d=1e100.net; s=20230601; t=1694432892; x=1695037692;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VwBXtpnl2seZq0ac+rqFxMXSK7kQ64QRu+m5l1ngFCY=;
+        b=W/R+ZQF5Cqr8aTjDEex+qI3npOPZwPTwresYoEmBG6fOWrAwDPybrIOanX4lSB8vUn
+         OuiTith/I1fxq0v0go3A20AQsNrg7e6xGLdoD6V/DL8sMo1tMu2wuBXCP2XsM8PsFXZk
+         iRldBUPwFHAr/EZ0CeCvis/MimojRi1g9mSlrGJ5/SnCWuM+wFGqIMfAMVdWphQxoffu
+         H+B3FifSN0DgvlLzClJmOsf0Q+f6WG7Tj213x4YU3WR5BoUQQzz3MfJKtsmgzkc7p/Q6
+         w3PAyqVSGds1FLhXLIndlT/k+AfEf3qtuJpPLGf1lIkLtKCanTELUeunmn/o0dktJrTc
+         HW8A==
+X-Gm-Message-State: AOJu0Yy40pY8fum+BcrTBslMGFCzfjQiEyzofsXbHx0W8ombKVDX7YVz
+        gR3//rtBunbWbEJv/008UerVDA==
+X-Google-Smtp-Source: AGHT+IHAvDDw/3BcjPvocX1g7Jb/JITzMNDYISyuqfgRWtXN/Nv9cKpEy9yu4vLAQ1MX2vjcc8eFCQ==
+X-Received: by 2002:a7b:ce06:0:b0:3fc:114:c015 with SMTP id m6-20020a7bce06000000b003fc0114c015mr7852858wmc.39.1694432892513;
+        Mon, 11 Sep 2023 04:48:12 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id q15-20020adfcd8f000000b0031753073abcsm9816108wrj.36.2023.09.11.04.48.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 04:48:11 -0700 (PDT)
+Message-ID: <0940204f-b7b8-01f7-30c4-0589fae5ce24@linaro.org>
+Date:   Mon, 11 Sep 2023 13:48:08 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add Qualcomm SM4450
+Content-Language: en-US
+To:     Tengfei Fan <quic_tengfan@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, djakov@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, catalin.marinas@arm.com, will@kernel.org
+Cc:     arnd@arndb.de, geert+renesas@glider.be, nfraprado@collabora.com,
+        rafal@milecki.pl, peng.fan@nxp.com, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        quic_tsoni@quicinc.com, quic_shashim@quicinc.com,
+        quic_kaushalk@quicinc.com, quic_tdas@quicinc.com,
+        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
+        kernel@quicinc.com
+References: <20230908064427.26999-1-quic_tengfan@quicinc.com>
+ <20230908064427.26999-2-quic_tengfan@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230908064427.26999-2-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,27 +83,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 25 Aug 2023 16:54:43 -0500, Sam Protsenko wrote:
-> This patch series enables USB gadget, USB host and Ethernet support for
-> E850-96 board. The most major change was done in USB PHY driver, as the
-> register layout of PHY block in Exynos850 is very different from
-> Exynos5 one.
+On 08/09/2023 08:44, Tengfei Fan wrote:
+> The Qualcomm SM4450 SoC has several bus fabrics that could be controlled
+> and tuned dynamically according to the bandwidth demand.
 > 
-> Changes in v2:
->   - Removed already applied patches from the patch series
->   - Rebased on top of latest linux-next
->   - Put ranges after compatible in usbdrd node (patch #1)
-> 
-> [...]
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
 
-Applied, thanks!
 
-[1/2] arm64: dts: exynos: Enable USB in Exynos850
-      https://git.kernel.org/krzk/linux/c/2f911ca41e519dc5986f9483d3e15df4802b64f5
-[2/2] arm64: dts: exynos: Enable USB support on E850-96 board
-      https://git.kernel.org/krzk/linux/c/f2951ee8f7bcdb3844ffe6e54b0601ad8fa58640
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
 
 Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Krzysztof
+
