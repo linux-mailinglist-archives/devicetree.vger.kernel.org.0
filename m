@@ -2,208 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AF3879B615
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:04:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 657C279B25B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:58:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237373AbjIKUv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46756 "EHLO
+        id S238121AbjIKUxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:53:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235499AbjIKIpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:45:39 -0400
-X-Greylist: delayed 1802 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 11 Sep 2023 01:45:30 PDT
-Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B19FC125;
-        Mon, 11 Sep 2023 01:45:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=codethink.co.uk; s=imap4-20230908; h=Content-Transfer-Encoding:Content-Type
-        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
-        Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=x7EQntpORruDbHu73j/wMqHGD7q5uvm3F6D92MHR0oo=; b=eYq89mQAS1QqauVzJc1IGH7A1n
-        oyVV8bbVlj36fgloV4BoAgw5trQ9ZNPuUzM4AKaPNnZgr9WZPY7GgUeN+4So/wz0TbpnDzFoWH17S
-        TR9+F4oMSsuMWf6qyT8Y+1vDOov+cwcTGvzpJoE3V3CZLUWcLzLDB5tGZnA8zOd3rq7OWZMnwx+dn
-        S+N3GVOS0hX76Hyq397+UCO+joB9Pkm6Hf6PF3fW8VS2F2Th6AXXXvTCTQIcqWNCFmyEUMX48onrV
-        4KD1GAZIJBcbidsw/4UrD7Y+RA/sTe9ASJa4FotYxW7Td8luvjzPF8thvsoofUBk2NjPVQGJhmAYx
-        hj6vItMQ==;
-Received: from [134.238.52.102] (helo=[10.8.4.124])
-        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1qfbPs-006Iyd-U7; Mon, 11 Sep 2023 08:33:05 +0100
-Message-ID: <d45c3d25-13ca-474f-a3e3-c295d3cea866@codethink.co.uk>
-Date:   Mon, 11 Sep 2023 08:33:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 4/6] pwm: dwc: use clock rate in hz to avoid rounding
- issues
-Content-Language: en-GB
-To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S236822AbjIKLaR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:30:17 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A8B0CDD;
+        Mon, 11 Sep 2023 04:30:07 -0700 (PDT)
+X-UUID: 8bc8f2a0509611ee8051498923ad61e6-20230911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=8Wc0C//ZFIUk4bGiU2mG/6OEkogqZJF2AkljuEJa1ws=;
+        b=d+2g5ouPo5QVJfSMhWLkLzRipzzHXeOdSuygmUeaFR2f9nO1ut4We/6b65sO26W03np04Sl5/tTaY6JdzrFcLfab1pFKmlQ6ettOju4xkirBAsnJ634k9KmNoRwqkM7jsfnpjVC5MnPSaqEpUW0+xU3zZQtM3PdGItYjUJ3RjS4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:c420191b-2253-4087-b703-9dbeefb3a1ea,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:0ad78a4,CLOUDID:2882b3be-14cc-44ca-b657-2d2783296e72,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 8bc8f2a0509611ee8051498923ad61e6-20230911
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
+        (envelope-from <shawn.sung@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1451906846; Mon, 11 Sep 2023 19:30:01 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with ShadowRedundancy id
+ 15.2.1118.7; Mon, 11 Sep 2023 11:29:57 +0000
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 11 Sep 2023 15:42:43 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 15:42:43 +0800
+From:   Hsiao Chien Sung <shawn.sung@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        CK Hu <ck.hu@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com
-References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
- <20230907161242.67190-5-ben.dooks@codethink.co.uk>
- <20230907213419.aqzwoppznj5tx7w6@pengutronix.de>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20230907213419.aqzwoppznj5tx7w6@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Singo Chang <singo.chang@mediatek.com>,
+        "Nancy . Lin" <nancy.lin@mediatek.com>,
+        "Jason-JH . Lin" <jason-jh.lin@mediatek.com>,
+        Hsiao Chien Sung <shawn.sung@mediatek.com>
+Subject: [RESEND PATCH v6 00/20] Add display driver for MT8188 VDOSYS1
+Date:   Mon, 11 Sep 2023 15:42:13 +0800
+Message-ID: <20230911074233.31556-1-shawn.sung@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/09/2023 22:34, Uwe Kleine-König wrote:
-> Hello,
-> 
-> [Dropped William Salmon and Jude Onyenegecha from the list of recipents,
-> their email addresses don't seem to work any more.]
-> 
-> On Thu, Sep 07, 2023 at 05:12:40PM +0100, Ben Dooks wrote:
->> As noted, the clock-rate when not a nice multiple of ns is probably
->> going to end up with inacurate calculations, as well as on a non pci
->> system the rate may change (although we've not put a clock rate
->> change notifier in this code yet) so we also add some quick checks
->> of the rate when we do any calculations with it.
->>
->> Signed-off-by; Ben Dooks <ben.dooks@codethink.co.uk>
->> Reported-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
->> ---
->> v9:
->>   - fixed commit spelling
->>   - changed to use codethink email instead of sifive
->> v8:
->>   - fixup post rename
->>   - move to earlier in series
->> ---
->>   drivers/pwm/pwm-dwc-core.c | 24 +++++++++++++++---------
->>   drivers/pwm/pwm-dwc.h      |  2 +-
->>   2 files changed, 16 insertions(+), 10 deletions(-)
->>
->> diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
->> index 3fc281a78c9a..3b856685029d 100644
->> --- a/drivers/pwm/pwm-dwc-core.c
->> +++ b/drivers/pwm/pwm-dwc-core.c
->> @@ -49,13 +49,14 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
->>   	 * periods and check are the result within HW limits between 1 and
->>   	 * 2^32 periods.
->>   	 */
->> -	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
->> +	tmp = state->duty_cycle * dwc->clk_rate;
-> 
-> This might overflow. You can prevent this by asserting that clk_rate is
-> <= NSEC_PER_SEC and using mul_u64_u64_div_u64.
-> 
->> +	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
->>   	if (tmp < 1 || tmp > (1ULL << 32))
->>   		return -ERANGE;
->>   	low = tmp - 1;
->>   
->> -	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
->> -				    dwc->clk_ns);
->> +	tmp = (state->period - state->duty_cycle) * dwc->clk_rate;
->> +	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
->>   	if (tmp < 1 || tmp > (1ULL << 32))
->>   		return -ERANGE;
->>   	high = tmp - 1;
->> @@ -121,11 +122,14 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->>   			     struct pwm_state *state)
->>   {
->>   	struct dwc_pwm *dwc = to_dwc_pwm(chip);
->> +	unsigned long clk_rate;
->>   	u64 duty, period;
->>   	u32 ctrl, ld, ld2;
->>   
->>   	pm_runtime_get_sync(chip->dev);
->>   
->> +	clk_rate = dwc->clk_rate;
->> +
->>   	ctrl = dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
->>   	ld = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
->>   	ld2 = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
->> @@ -137,17 +141,19 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
->>   	 * based on the timer load-count only.
->>   	 */
->>   	if (ctrl & DWC_TIM_CTRL_PWM) {
->> -		duty = (ld + 1) * dwc->clk_ns;
->> -		period = (ld2 + 1)  * dwc->clk_ns;
->> +		duty = ld + 1;
->> +		period = ld2 + 1;
->>   		period += duty;
->>   	} else {
->> -		duty = (ld + 1) * dwc->clk_ns;
->> +		duty = ld + 1;
->>   		period = duty * 2;
->>   	}
->>   
->> +	duty *= NSEC_PER_SEC;
->> +	period *= NSEC_PER_SEC;
-> 
-> A comment that/why this cannot overflow would be nice. (I didn't check,
-> maybe it can?)
+Resend patch to add devicetree@vger.kernel.org to cc list for
+automated tooling.
 
-I /think/ that as long as NSEC_PER_SEC  2^32 then this shouldn't
-overflow.
+Changes in v6:
+- Separate the commits into smaller ones
+- Add DPI input mode setting
 
-> 
->> +	state->period = DIV_ROUND_CLOSEST_ULL(period, clk_rate);
->> +	state->duty_cycle = DIV_ROUND_CLOSEST_ULL(duty, clk_rate);
-> 
-> Without having thought deeply about this, I think you need to round up
-> here. Hmm, but given that .apply() uses round-closest, too, this needs
-> to be addressed separately.
-> 
-> (The ugly thing about round-closest is that .apply(mypwm,
-> .get_state(mypwm)) isn't idempotent in general. Consider a PWM that can
-> implement period = 41.7ns and period = 42.4 ns. If it's configured with
-> 42.4, .get_state will return period = 42. Reapplying this will configure
-> for 41.7ns. This won't happen with the PCI clkrate, but it might in the
-> of case. Another reason to use rounding-down in .apply is that
-> mul_u64_u64_div_u64 doesn't have a round-nearest variant.)
-> 
->>   	state->polarity = PWM_POLARITY_INVERSED;
->> -	state->period = period;
->> -	state->duty_cycle = duty;
->>   
->>   	pm_runtime_put_sync(chip->dev);
->>   
->> @@ -168,7 +174,7 @@ struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
->>   	if (!dwc)
->>   		return NULL;
->>   
->> -	dwc->clk_ns = 10;
->> +	dwc->clk_rate = NSEC_PER_SEC / 10;
->>   	dwc->chip.dev = dev;
->>   	dwc->chip.ops = &dwc_pwm_ops;
->>   	dwc->chip.npwm = DWC_TIMERS_TOTAL;
->> diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
->> index 64795247c54c..e0a940fd6e87 100644
->> --- a/drivers/pwm/pwm-dwc.h
->> +++ b/drivers/pwm/pwm-dwc.h
->> @@ -42,7 +42,7 @@ struct dwc_pwm_ctx {
->>   struct dwc_pwm {
->>   	struct pwm_chip chip;
->>   	void __iomem *base;
->> -	unsigned int clk_ns;
->> +	unsigned long clk_rate;
-> 
-> Given that clk_ns was only introduced in patch #2 I think it would be
-> cleaner to squash these two patches together.
+Changes in v5:
+- Reuse .clk_enable/.clk_disable in struct mtk_ddp_comp_funcs
+  in mtk_disp_ovl_adaptor.c
+- Adjust commits order
 
-I'll have a look at how much work re-ordering the patches would
-be.
+Changes in v4:
+- Add new functions in mtk_disp_ovl_adaptor.c to enable/disable
+  components and reuse them when clock enable/disable
+- Rename components in mtk_disp_ovl_adaptor.c and sort them in
+  alphabetical order
 
--- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
+Changes in v3:
+- Define macro MMSYS_RST_NR in mtk-mmsys.h and update reset table
+- Fix typos (ETDHR -> ETHDR, VSNYC -> VSYNC)
+- Rebase dt-bindings on linux-next
+- Refine description of Padding
+- Squash reset bit map commits for VDO0 and VDO1 into one
 
-https://www.codethink.co.uk/privacy.html
+Changes in v2:
+- Remove redundant compatibles of MT8188 because it shares the same
+  configuration with MT8195
+- Separate dt-bindings by modules
+- Support reset bit mapping in mmsys driver
+
+Hsiao Chien Sung (20):
+  dt-bindings: display: mediatek: ethdr: Add compatible for MT8188
+  dt-bindings: display: mediatek: mdp-rdma: Add compatible for MT8188
+  dt-bindings: display: mediatek: merge: Add compatible for MT8188
+  dt-bindings: display: mediatek: padding: Add MT8188
+  dt-bindings: arm: mediatek: Add compatible for MT8188
+  dt-bindings: reset: mt8188: Add VDOSYS reset control bits
+  soc: mediatek: Support MT8188 VDOSYS1 in mtk-mmsys
+  soc: mediatek: Support MT8188 VDOSYS1 Padding in mtk-mmsys
+  soc: mediatek: Support reset bit mapping in mmsys driver
+  soc: mediatek: Add MT8188 VDOSYS reset bit map
+  drm/mediatek: Rename OVL_ADAPTOR_TYPE_RDMA
+  drm/mediatek: Refine device table of OVL adaptor
+  drm/mediatek: Sort OVL adaptor components
+  drm/mediatek: Add component ID to component match structure
+  drm/mediatek: Manage component's clock with function pointers
+  drm/mediatek: Make sure the power-on sequence of LARB and RDMA
+  drm/mediatek: Support MT8188 Padding in display driver
+  drm/mediatek: Add Padding to OVL adaptor
+  drm/mediatek: Support MT8188 VDOSYS1 in display driver
+  drm/mediatek: Set DPI input to 1T2P mode
+
+ .../bindings/arm/mediatek/mediatek,mmsys.yaml |   1 +
+ .../display/mediatek/mediatek,ethdr.yaml      |   6 +-
+ .../display/mediatek/mediatek,mdp-rdma.yaml   |   6 +-
+ .../display/mediatek/mediatek,merge.yaml      |   3 +
+ .../display/mediatek/mediatek,padding.yaml    |  81 +++++++
+ drivers/gpu/drm/mediatek/Makefile             |   3 +-
+ drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   3 +
+ .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   | 216 +++++++++---------
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |   2 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   4 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |  20 +-
+ drivers/gpu/drm/mediatek/mtk_padding.c        | 136 +++++++++++
+ drivers/soc/mediatek/mt8188-mmsys.h           | 210 +++++++++++++++++
+ drivers/soc/mediatek/mtk-mmsys.c              |  23 ++
+ drivers/soc/mediatek/mtk-mmsys.h              |  32 +++
+ drivers/soc/mediatek/mtk-mutex.c              |  51 +++++
+ include/dt-bindings/reset/mt8188-resets.h     |  75 ++++++
+ include/linux/soc/mediatek/mtk-mmsys.h        |   8 +
+ 19 files changed, 764 insertions(+), 118 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,padding.yaml
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_padding.c
+
+--
+2.18.0
 
