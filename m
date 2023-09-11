@@ -2,115 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 013E179B2AB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE63079B3EE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:01:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238036AbjIKUxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59702 "EHLO
+        id S235254AbjIKUtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235851AbjIKJl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:41:58 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F7E102
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:41:54 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-52a40cf952dso5589732a12.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:41:54 -0700 (PDT)
+        with ESMTP id S235929AbjIKJqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:46:38 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CFBAED
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:33 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-401f68602a8so46049565e9.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:46:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694425313; x=1695030113; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UXHJJdbxzqcIQ7/jV1cMbzvwmre8W6Km5hkF3onYKso=;
-        b=k85a1QK1aWa6xoz03pigorL7JsMewv16csfPpLTWKePlHQ1RGGYQchIyDa2dp1/0bx
-         g1o3MR0puFlARAKnxSxELvm18CrVxHthMqluavWaElb7uKob2R25uKLIYc7tSfawYRq3
-         VQaJRxJPtd/AN0XdFAP3ZdNO/JyVehfsonJEzTs6ps46DAq/3KID7sir01Q17D4uuil1
-         +zhP2r41W1u4LSybe8yzBFjxKhcE2CJxaIi8DSJtOqcc3tpIMouGrqNzrDldyUDjL0ZU
-         rCSp3PTU2wn2Qukl0Aeb3/3XQz1UYXwIa3fenNN8oE6F09F0NMjD3mNV8q0X+qlq9Y6V
-         IbQQ==
+        d=linaro.org; s=google; t=1694425592; x=1695030392; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+cYuBqqKCr61kF+J0qE32P8LtYpg7LF8EeE5e0c2/vM=;
+        b=scTgVjl2fUFekfxFJ1Pyi7jLCxAF+wDLcR3ThvbLUyS1KajGdJE3pDheyMWTdoblWP
+         pDZFJhMIhhjTvLnttqxuOcyrANd6dzKVpWluLMsBjwlX4sUlrDGwf8DN84h8p7nayYhO
+         NEZgvBGxcxGMApXwDMNEev9y9rC6vmEajY9iPnlgDapmeeH+ESA2yBYhqjjmM8m8l71m
+         JmQsg1kRdWmGMNtNFEiFCtk0N8AMbE5R0YnmCk2so0N5+lf4Z/t6XZ3VExPnCu/ZqpAN
+         dtfuaO+eHE9N3MKfMe0yq7mo2Lb4hBEic2q+7PHMmbJsg+zx/yKQgpXBZSoAhJV67rvU
+         0HEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694425313; x=1695030113;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UXHJJdbxzqcIQ7/jV1cMbzvwmre8W6Km5hkF3onYKso=;
-        b=LOx8X7L3Q+MwuBp2Ji3OeenrkRBAT+VOfYp/sjlXb2xpc6xt1FuN6yxejXdh98wYLu
-         DIgVRXVIWFB+ags6HAcQpTIewxKWdkJMVZdpTd9kN2X0pAmTf97AWx8uyM5e971Iw1mB
-         d/KiLbnVEzR2TDuQR7Y7ImGIiNqcyf3RNtj4z0kx83gVFRXxxvQ+OLH204ICZ/fJTAjk
-         BtrqJCbMLdnYs4VVrwPn3uWB4IRJxn9ut0D6I6TCSkjtEPDuG/NRcgaHXZ8QpXRXfAle
-         A27HxwUXUwK74I6F8ZNDiEL+AJ8UFExxva1CsMzFK5mwL8MMHSF8Yqs9LG9ejdQq+a4F
-         RWhg==
-X-Gm-Message-State: AOJu0YwPidSIKaSJIfTovwptvwyvAed6lgV6uop98fPy9ScZIOeJPRBZ
-        Y0R75K/yipnDSbMC7+dq6CkHrQ==
-X-Google-Smtp-Source: AGHT+IE7iZHF6KNh3bEWf9qZmU+mUmpM+L0mGI9OUUdk7KwOQH7iMgOFaFRxWJXmczhwjhmbN6mLiQ==
-X-Received: by 2002:aa7:de02:0:b0:525:6ab3:dd22 with SMTP id h2-20020aa7de02000000b005256ab3dd22mr7721098edv.38.1694425312792;
-        Mon, 11 Sep 2023 02:41:52 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id r25-20020aa7d599000000b005256d80cdaesm4311321edq.65.2023.09.11.02.41.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 02:41:51 -0700 (PDT)
-Message-ID: <d35a0c54-531a-24a1-dbf6-2b40eac12081@linaro.org>
-Date:   Mon, 11 Sep 2023 11:41:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [RFC PATCH 7/8] dt-bindings: vendor-prefixes: Add fascontek
-Content-Language: en-US
-To:     John Watts <contact@jookia.org>, dri-devel@lists.freedesktop.org
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20230601; t=1694425592; x=1695030392;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+cYuBqqKCr61kF+J0qE32P8LtYpg7LF8EeE5e0c2/vM=;
+        b=S0uy4b8nilJ9TVmBuzVq0ZQKUw5fVwoFaz+U0X2cIr3y01GeXQArRQfiwjt7+r1eRh
+         jbwdhLm30ASAovBRrbI8GY9V3hMBOVj+dPn012FmtYnJvXN5oOHwoDWOG65Hw9M26c+6
+         hV6za1q6mKUKMvh73rSSjWR0fEdzkQk0OLwTXG3XeRbAHG/FsYkwL59StOBAl/cJNVkm
+         R0hqETpoJhkLVDXp6wgM/nkgFWHscm7b7mZIvOJ10O8NrWyHnqg6vo6CqzxsPwYGFV7U
+         dL1b+rY4ohTeSL6BQnnwTWY2C9XwFhrctC7MYwgV2Uc5+8U8KSdTG191Ds9X+ISa6rHc
+         PzSA==
+X-Gm-Message-State: AOJu0YzkUTIAEGTXcOvIvOJszALm4bdxi+ihOk2EfxFMgG/B1FQgJXVL
+        KWvi4V3UPMKeoj/c1s8CxbgIrw==
+X-Google-Smtp-Source: AGHT+IF6Db7IOiAAxmcutp4cngm1dQLW31BDJ9vfe4xSUzSt9h7ay34mes/ebYDzWk0PZc1lOgJSnQ==
+X-Received: by 2002:a05:600c:2a50:b0:402:bda9:74d1 with SMTP id x16-20020a05600c2a5000b00402bda974d1mr7609095wme.8.1694425591809;
+        Mon, 11 Sep 2023 02:46:31 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id d13-20020adff84d000000b00317909f9985sm9503496wrq.113.2023.09.11.02.46.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 02:46:31 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230911090206.3121440-1-contact@jookia.org>
- <20230911090206.3121440-8-contact@jookia.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230911090206.3121440-8-contact@jookia.org>
-Content-Type: text/plain; charset=UTF-8
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Christian Hewitt <christianshewitt@gmail.com>
+In-Reply-To: <20230815092751.1791195-1-christianshewitt@gmail.com>
+References: <20230815092751.1791195-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH 0/3] arm64: dts: amlogic: add more basic audio support
+Message-Id: <169442559097.3235506.12459574457912854518.b4-ty@linaro.org>
+Date:   Mon, 11 Sep 2023 11:46:30 +0200
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 11:02, John Watts wrote:
-> Fascontek manufactures LCD panels such as the FS035VG158.
+Hi,
+
+On Tue, 15 Aug 2023 09:27:48 +0000, Christian Hewitt wrote:
+> This mini-series adds basic audio support to the P200/P201 (GXBB) and U200 (G12A)
+> reference boards. Few people likely have the original reference boards which have
+> extra audio capabilities, but the device-trees are widely [ab]used by users with
+> Android set-top boxes whose hardware is copy/pasted from the reference designs to
+> get working installs. Adding basic audio support does no harm to the real boards
+> and helps the secondary cause.
 > 
-> Signed-off-by: John Watts <contact@jookia.org>
-> ---
+> [...]
 
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[1/3] arm64: dts: meson: add audio playback to p200
+      https://git.kernel.org/amlogic/c/61373cc074128c40d53857803371c4a9384d4200
+[2/3] arm64: dts: meson: add audio playback to p201
+      https://git.kernel.org/amlogic/c/2b2827a19024abcf879c18053ae3f2fc23891ad4
+[3/3] arm64: dts: meson: add audio playback to u200
+      https://git.kernel.org/amlogic/c/cfae4eadb7cd44cb5f17285e18477bed4ae5f03c
 
+These changes has been applied on the intermediate git tree [1].
 
----
+The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
-Best regards,
-Krzysztof
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
