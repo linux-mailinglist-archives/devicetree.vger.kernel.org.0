@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DBD079B70F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB77079BCE2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:15:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235467AbjIKUtU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40888 "EHLO
+        id S234508AbjIKUsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235563AbjIKI7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:59:18 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61C72CCA
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:59:10 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-d7b91422da8so3642003276.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:59:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694422749; x=1695027549; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5j7bzaXTGQxBwdqsbxqml+pJHHm9UN8WsX9mKBjvcIw=;
-        b=Deao1VjAsVhk7tD7KBbWFq3JhmweOLLjzn4VQJg1m2vy6kMAq5PppNa/UFICjkcygW
-         ETiYjKYjW00ykr2HFlDnNV2C7eGVaEbI66bAddlsbiR+Q1/lzaTGwpzbIgPe9LM0s8D9
-         id0RO8+ircRAS77X0EwzdMdetMMbYRqgFNHr1zzlWBtrY484OzrzNGN8/VDSU3102yqY
-         Dc17l5orVjCdMOl5fbg2nAtfLpIh6GyMdP2Np5hOFL2Fp2SxOpdx7Lx12tYsUHjn9GHk
-         UOO3dFBKr1SVx/Zh2In1Sq1xDa8kxZJvF1cO11hbDq8TNurhelf9LFmXgfhIJdXJGVfL
-         U++Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694422749; x=1695027549;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5j7bzaXTGQxBwdqsbxqml+pJHHm9UN8WsX9mKBjvcIw=;
-        b=n8Ylxg0lUdoooETDXk0nI8+GDSMPl7SnEj1n9nyWm4gZItLqC4/yOFtP+OSx3Xg4qb
-         h+viur+6sCWAaCCuzHxnVu8KkbQjPkDIkSdTAkoOwWEpIjuF1q691dcpsAq3D7w2pMcH
-         xrWCKEnjZ4YCnFn2q7B7/6KhRHelFoQavAGZm43hSzIvUeOWLTlBxQlHcihb1epygS3c
-         /H9++lcfi6SLcUeoZdTJd8KWcyZcar/Jpwij8xqkove3N8T0mukTVJ5T8346Z9XmbIGw
-         DPX7Eu64VoffgJLe15aDyuedzZX+7jAbr7KTPezOKJ1klHf1gy/+5T/p0vaXrtkp8L0U
-         5LlA==
-X-Gm-Message-State: AOJu0YwgedJU2KMeVkKe1qSqsL1yFZHAWUfFHGEUUrPc7iR/xYqEXfQ3
-        CiI7tJGEFXayeooUVl+NBswkWkiTt5s0ZVOrwv+Yxg==
-X-Google-Smtp-Source: AGHT+IFrDkhIuonhGPWsSr/0CsH5jkyOknouXdFhWw74YYsKqzq8F0T7V5nmyx3QoBDjukDUHRvrrhaHI0NsT4T/4vs=
-X-Received: by 2002:a25:2e07:0:b0:bcb:9b43:5a89 with SMTP id
- u7-20020a252e07000000b00bcb9b435a89mr8407423ybu.61.1694422749580; Mon, 11 Sep
- 2023 01:59:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230824105703.19612-1-tychang@realtek.com> <20230824105703.19612-2-tychang@realtek.com>
-In-Reply-To: <20230824105703.19612-2-tychang@realtek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 11 Sep 2023 10:58:58 +0200
-Message-ID: <CACRpkda8_nV1UiDO0_qvcc_z8ODQqckwaCGg6A5-Qm0NADi_Ng@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] pinctrl: realtek: Add common pinctrl driver for
- Realtek DHC RTD SoCs
-To:     Tzuyi Chang <tychang@realtek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S235577AbjIKJC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:02:29 -0400
+Received: from out-215.mta0.migadu.com (out-215.mta0.migadu.com [IPv6:2001:41d0:1004:224b::d7])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602EDCCC
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:02:24 -0700 (PDT)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
+        t=1694422942;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=ncMOdzmNge2dDHCrVx7yTH1c7a8W2V4JG4MDc4VOKkU=;
+        b=z3iyY7ndOuW/FUIIBXdRnFOdp9wfaw9gmT1bCa2W30gMzXqJMIIyErsHBSgxs0FLur0BFL
+        1gvz0JJ1jUBeGYvxsh0cBm3IztN10B3UTRzOzWvGdMX5+0WjDkNz0VzPnu7t6++P87W7RD
+        E53rNR2IN2bQzpadeGj7eZpLep3xKmWE/1/gYepn1Yy+aghiQ/OBzROUnl5t20FdW9h/u2
+        B0IlclixsKj0wKcixKfKt45d008w1w2j0IxklcjNu82lXRF5/9raYl19XFLvTb8OSDd/i3
+        s0UjmLAM1eH0306WEODRhnAkJ4LskKZydU3udWRLnodAVdt4KU+u8KHJ6gTYMA==
+From:   John Watts <contact@jookia.org>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Jagan Teki <jagan@edgeble.ai>, John Watts <contact@jookia.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: [RFC PATCH 0/8] Add FS035VG158 panel
+Date:   Mon, 11 Sep 2023 19:01:58 +1000
+Message-ID: <20230911090206.3121440-1-contact@jookia.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tzuyi,
+Hello there,
 
-thanks for the new version! This is starting to look really good.
+I have recently done some work to get a new panel running on the kernel.
 
-On Thu, Aug 24, 2023 at 12:57=E2=80=AFPM Tzuyi Chang <tychang@realtek.com> =
-wrote:
+I am completely new to this kind of work so I don't know how to split my
+patches up, especially as I did some light refactoring and fixing on the way.
+These changes affect these existing LCD panel but should work.
 
-> The RTD SoCs share a similar design for pinmux and pinconfig.
-> This common pinctrl driver supports different variants within the RTD
-> SoCs.
->
-> Signed-off-by: Tzuyi Chang <tychang@realtek.com>
-(...)
-> +static void rtd_pinctrl_update_bits(struct rtd_pinctrl *data, unsigned i=
-nt offset,
-> +                                   unsigned int mask, unsigned int val)
-> +{
-> +       unsigned int reg =3D readl_relaxed(data->base + offset);
-> +
-> +       reg &=3D ~mask;
-> +       reg |=3D (mask & val);
-> +       writel_relaxed(reg, data->base + offset);
-> +}
+I'm also not sure if this device tree yaml should be merged with the existing
+leadtek,ltk035c5444t device tree yaml.
 
-This function is essentially a reimplementation of regmap_update_bits()
-using regmap_mmio with .user_relaxed_mmio property set in the
-config.
+checkpatch has also warned me about updating MAINTAINERS for the device tree
+documentation but I'm not sure if that's relevant here as I have put my name
+in the documentation itself.
 
-Have you considered just using regmap-mmio for this?
+Thanks for your time,
+John.
 
-Yours,
-Linus Walleij
+John Watts (8):
+  drm/panel: nv3052c: Document known register names
+  drm/panel: nv3052c: Add SPI device IDs
+  drm/panel: nv3052c: Sleep for 150ms after reset
+  drm/panel: nv3052c: Wait before entering sleep mode
+  drm/panel: nv3052c: Allow specifying registers per panel
+  drm/panel: nv3052c: Add Fascontek FS035VG158 LCD display
+  dt-bindings: vendor-prefixes: Add fascontek
+  dt-bindings: display: panel: add Fascontek FS035VG158 panel
+
+ .../display/panel/fascontek,fs035vg158.yaml   |  60 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../gpu/drm/panel/panel-newvision-nv3052c.c   | 521 +++++++++++++-----
+ 3 files changed, 444 insertions(+), 139 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
+
+-- 
+2.42.0
+
