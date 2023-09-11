@@ -2,68 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2262D79ADE3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:41:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E10479AD5C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:39:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235413AbjIKUtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47244 "EHLO
+        id S237311AbjIKUv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236374AbjIKKbT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:31:19 -0400
-Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EC63120
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:31:14 -0700 (PDT)
-Received: by mail-pj1-x1036.google.com with SMTP id 98e67ed59e1d1-273e1aec35aso1656489a91.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:31:14 -0700 (PDT)
+        with ESMTP id S236389AbjIKKdo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:33:44 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DA29120
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:33:39 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-401d80f4ef8so45604285e9.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:33:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1694428274; x=1695033074; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=W/uIdUtu+7l5UMbKFZD59eNB3mb3PdH3zACB6TXRSY8=;
-        b=MEM6QiwKGi0DmPacJ752dEVd8lwz5z6RYNEtqqgE8tzQ1Xqj/JP3n8R5OHRndN9xjH
-         ClacmV87N/J2x54EpebbATZfgI9kCiGimmXM/THoqptXKA93Y719WTaLxpefKC4LSqIY
-         dMTHg3pQncgkpzf8Uc4WLsE1eagcrA2q4hdHIjjXQH50TbgqWv2rGSnfwBcx9dIcqQRZ
-         PQuFPKMt0Po7Cc2bEBmCW0AroIpLMhK2BmbIdLrlbtu60Yjpb3FQX6cK34E8ZUYHEpCo
-         bMX4BC0wBaKOWP0i9f+8DGBN1eWTd9I7OsL3X/NdRfrzSWSSnYtQT9fsND+k20nerAG4
-         d00g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694428274; x=1695033074;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1694428417; x=1695033217; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=W/uIdUtu+7l5UMbKFZD59eNB3mb3PdH3zACB6TXRSY8=;
-        b=PeHuc50UPv27+MI1Igl1W301f5ndrxgTLAKBO7h215iPSABIT1MOKDFIcpU24zHrKc
-         95BW50KCrHGCMdA2psKf1HpLZ+c5BjJPRwHxd6Y9H8mIMGaySYP/md76KCYYx3jML7OD
-         n4Jv7LlEZDXfDDT22D3iVaGv2ML3ws9ef/L8THKGqEJExgikwepKIjqvlVTZtMrlsBbi
-         Sg89enpKDh9n9Ii//wM3K3A8X+Qcrbv+U6hJCtmafFlD9TTY2KodB5VcWtPUsKDNdnuM
-         G4okzTe+DlEcLVhbKsrzN5gtIZE83HiUmrJnSqaBEP9ep/CcwdCsYk9AtDpwFoOfX6bg
-         cGbw==
-X-Gm-Message-State: AOJu0Yx5BnzauSFVeGqmQSyLz9YeN6WdjLBdwJ47U0PVNyDQ7BBieH0v
-        fqgZ1nb7CBh50PClVgn+OMHZ85EW5DiJl26niuxic4oIzNss6b94f5I=
-X-Google-Smtp-Source: AGHT+IHZqqMaKWb42G94RFUbOIJRNKvkvFRzVoexrnn+glFoO9u6eRJUbV26Xq1UJ3sAdlXN4LMxSzxm4IvxlQzoXco=
-X-Received: by 2002:a17:90b:1488:b0:268:ac99:4bb4 with SMTP id
- js8-20020a17090b148800b00268ac994bb4mr7192497pjb.46.1694428273778; Mon, 11
- Sep 2023 03:31:13 -0700 (PDT)
+        bh=hd5+bavmQbtOKvL+wey92Vxqp4guJA0VMGCPEUn7ND4=;
+        b=OcN3pzI+cftP7u1zx8oh7h+ytbnm6G1s3UGRke/JIt53C6kjU8cZWmZNwTr97cWyFn
+         cxi8uRmaTCl9ljdxGQZLf1+ivEYaZSxMEf3nm+1eqj0sF+60Nr6/KT+mUQ8YpLOoIOOV
+         joTy8Rw92yPqmxxPnX3kKzVK/6QDbQvwYwCl4kU4BASVvby2G+1yIppS/0O/PeKbgmTP
+         vCuDiK8ZHilHB3EXn/aTzUPeeNUw9IpPgzmM6eRaP8NaOi1s/+WQDYuMupHqX+BhiaZi
+         uVELXkrlikpJQ2pTnIRxKjSE2xyUbAsGo5N2rmAZXJeUSpPo3CLPbv7mjYVCDYuYmIli
+         r/dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694428417; x=1695033217;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=hd5+bavmQbtOKvL+wey92Vxqp4guJA0VMGCPEUn7ND4=;
+        b=VlgLZXVa7o9VfVjSZN1Lvsyh3JRixNGx6xm/A1DdssTRV3nhIqwAJavydVSj6HA1ut
+         I9SJuflQg/FU3rjxtL7jtIwRRRFp9rYdbgBsAq80M6YEfyC/MOA1/v7qPdATQbdeaErA
+         vAp1PAVHhCN0nK5zG02bSXRAI8yc7QrNSJC7na88jg7BN7LwqkLozH19V4GCHzbwooDv
+         LKvDwWXFfO1jCZvYeP7U59pX1d6eltfKiq9wrcJHESinmK4E35hVBAcPpPhygkuRumZA
+         i8t9r78uCuZJ61WPIPPrWhZbSjPZ3QCCD7VIBbK8D1uX/oe92nQLGt374JJFoPv6Cmmw
+         kl5A==
+X-Gm-Message-State: AOJu0Yza2eOjsUXn47VtzPC44ofPFN13W28jytpvJ+nLOJPqvvNUeYJP
+        OpGajcv31evcgJpGAPo+DrP7gA==
+X-Google-Smtp-Source: AGHT+IHVdvs08TyzRIACfwL0Gt+0zksvifLWePCc/mECez0aCu5F00s8w2auWW3JiOasBbnRnPrQnA==
+X-Received: by 2002:a05:600c:2196:b0:401:b493:f7c1 with SMTP id e22-20020a05600c219600b00401b493f7c1mr8249860wme.35.1694428417556;
+        Mon, 11 Sep 2023 03:33:37 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:daaa:8bc3:eeb7:ce8? ([2a01:e0a:982:cbb0:daaa:8bc3:eeb7:ce8])
+        by smtp.gmail.com with ESMTPSA id r17-20020adfce91000000b003198a9d758dsm9726204wrn.78.2023.09.11.03.33.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 03:33:37 -0700 (PDT)
+Message-ID: <d226525d-b025-48c8-8176-4a3356ba23b8@linaro.org>
+Date:   Mon, 11 Sep 2023 12:33:35 +0200
 MIME-Version: 1.0
-References: <20230831101513.2042773-1-Naresh.Solanki@9elements.com> <0b7cb454-4c31-569c-7609-7931e6fb798a@linaro.org>
-In-Reply-To: <0b7cb454-4c31-569c-7609-7931e6fb798a@linaro.org>
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-Date:   Mon, 11 Sep 2023 16:01:03 +0530
-Message-ID: <CABqG17g8QOgU7cObe=4EMLbEC1PeZWxdPXt7zzFs35JGqpRbfg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: i2c: Add custom properties for MAX7357/MAX7358
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Peter Rosin <peda@axentia.se>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 3/3] arch/arm64: dts: meson-s4: add hwrng node
+Content-Language: en-US, fr
+To:     Alexey Romanov <avromanov@salutedevices.com>,
+        narmstrong@baylibre.com, olivia@selenic.com,
+        herbert@gondor.apana.org.au, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        conor@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com, lists@kaiser.cx
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
+        kernel@sberdevices.ru, Alexey Romanov <avromanov@sberdevices.ru>
+References: <20230911101129.10604-1-avromanov@salutedevices.com>
+ <20230911101129.10604-4-avromanov@salutedevices.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20230911101129.10604-4-avromanov@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,87 +109,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi
+On 11/09/2023 12:11, Alexey Romanov wrote:
+> From: Alexey Romanov <avromanov@sberdevices.ru>
+> 
+> Using this node, we can obtain random numbers via
+> hardware random number generator.
+> 
+> Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
+> ---
+>   arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> index f24460186d3d..b3a1ecf36467 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
+> @@ -133,6 +133,11 @@ reset: reset-controller@2000 {
+>   				reg = <0x0 0x2000 0x0 0x98>;
+>   				#reset-cells = <1>;
+>   			};
+> +
+> +			hwrng: rng@440788 {
+> +				compatible = "amlogic,meson-s4-rng";
+> +				reg = <0x0 0x440788 0x0 0x0c>;
+> +			};
+>   		};
+>   	};
+>   };
 
-On Thu, 31 Aug 2023 at 17:33, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 31/08/2023 12:15, Naresh Solanki wrote:
-> > From: Patrick Rudolph <patrick.rudolph@9elements.com>
-> >
-> > Both chips have a configuration register to enable additional
-> > features. These features aren't enabled by default & it's up to
-> > board designer to enable the same.
-> >
-> > Add booleans for:
-> >  - maxim,isolate-stuck-channel
-> >  - maxim,send-flush-out-sequence
-> >  - maxim,preconnection-wiggle-test-enable
-> >
-> > Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> > Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->
-> Subject: still did not improve. You waited exactly 30 minutes for my
-> feedback after sending your response.
-Will update the subject prefix to: 'dt-bindings: i2c: pca954x:'
-Also I'm adding three properties here so I guess 'Add custom
-properties..' should be fine.
-If you have a better suggestion then please let me know.
-
->
->
->
-> > ---
-> > Changes in V2:
-> > - Update properties.
-> > ---
-> >  .../bindings/i2c/i2c-mux-pca954x.yaml         | 31 +++++++++++++++++++
-> >  1 file changed, 31 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > index 2d7bb998b0e9..fa73eadfdf7b 100644
-> > --- a/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > +++ b/Documentation/devicetree/bindings/i2c/i2c-mux-pca954x.yaml
-> > @@ -71,6 +71,23 @@ properties:
-> >      description: A voltage regulator supplying power to the chip. On PCA9846
-> >        the regulator supplies power to VDD2 (core logic) and optionally to VDD1.
-> >
-> > +  maxim,isolate-stuck-channel:
-> > +    type: boolean
-> > +    description: Allows to use non faulty channels while a stuck channel is
-> > +      isolated from the upstream bus. If not set all channels are isolated from
-> > +      the upstream bus until the fault is cleared.
->
-> Nothing improved here. As I said, please provide arguments or drop this
-> property.
-These features cannot be enabled by default because doing so may lead
-to unexpected behavior, such as bus disconnections(although that
-wasn't expected).
-These features should only be enabled after they have been validated
-by the board designer.
-Therefore, they cannot be enabled by default.
-
-Regards,
-Naresh
->
-> > +
-> > +  maxim,send-flush-out-sequence:
-> > +    type: boolean
-> > +    description: Send a flush-out sequence to stuck auxiliary buses
-> > +      automatically after a stuck channel is being detected.
->
-> Ditto
->
-> > +
-> > +  maxim,preconnection-wiggle-test-enable:
-> > +    type: boolean
-> > +    description: Send a STOP condition to the auxiliary buses when the switch
-> > +      register activates a channel to detect a stuck high fault. On fault the
-> > +      channel is isolated from the upstream bus.
->
-> Ditto
->
->
-> Best regards,
-> Krzysztof
->
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
