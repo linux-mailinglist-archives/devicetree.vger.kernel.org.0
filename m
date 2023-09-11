@@ -2,100 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3346A79C15F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE7179C18D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 03:17:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232208AbjILA5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 20:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48492 "EHLO
+        id S233120AbjILBRL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 21:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232408AbjILA5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 20:57:49 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B62719C365;
-        Mon, 11 Sep 2023 17:53:46 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9a64619d8fbso639726966b.0;
-        Mon, 11 Sep 2023 17:53:46 -0700 (PDT)
+        with ESMTP id S234361AbjILBQ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 21:16:59 -0400
+Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1D9EE277
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 17:03:55 -0700 (PDT)
+Received: by mail-ot1-x332.google.com with SMTP id 46e09a7af769-6c0f4ad9eb1so645060a34.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 17:03:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694479944; x=1695084744; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XWTcwow2et7upqcwf54DyK1wVNFfm6M3zpWLMMZDCl4=;
-        b=o2Oh1/rCeX8rHZN2WMmHEjVvCGzUaQ3zbPowULhStxfYG86nXYTXFteHCt4b/7iK4E
-         L3PLr5uecXIsd9czgMEevISeSbbCC0NVI2VreFmnm1QTgosD67J8GQjD8fq8YfmYSD7M
-         PC9DQxnXvp8Z0yhhorq2Eel+Ept6ObM1h6nrbCABx3H7bNkMqmKA6ouXHRK7taPouSBh
-         45klUpwTcfQ76xuOdKLbMnLS+ISTcCrGx7F5AUTFcuiEyjiYOcoBCgDKJKC+Mgu+vxWp
-         m+bT2LRZ22o3nWpggkpnPKYz8dUfVnwPYRgkMccFhc9nuQgUcb1mBoCGaiAa1OafJjih
-         5AvA==
+        d=google.com; s=20230601; t=1694476972; x=1695081772; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e9FHti0UeaT45a62FC88dUwVtXoyU66QnGu8MY083Gc=;
+        b=2M5TCl3sJnO/din1/H7/fJcvWp0idiWyzm5PbzbWrVmQLHJ0LHnW7biRRzOJJXcapE
+         OOWfrWF48g1XF5hTHKyVBLKa9t5DUMAP5aMb/cr+vc4JCCs14MtBjzW1uCkr6qREoE4J
+         w6SHJN1rjp6cNxcFU99Fdix0COoLQhYTV8hswHZL5jfXa3zuF4he9QrqqjL3cwKm5ZtO
+         GP+4Th5KtJNIH8p565Lz7DyTB94bJwMzVeYbzG5RghRlDRmRcitLxtZXoyeLn7qi2W0W
+         9boZtJF1c82qKRKa39/vqTK/1T2YQYTfbR7tyBg5zk/LxCZjed3b/Xz9Nsa8GjhqKo6i
+         xvVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694479944; x=1695084744;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XWTcwow2et7upqcwf54DyK1wVNFfm6M3zpWLMMZDCl4=;
-        b=o66WqNv1R0eX6fUQvkk8P+Nz397cBzAjV98qsMgzxQGoBoFL+sSFsDTqE1ihVe7k4k
-         GkAS4TrTOx/uSbaOHBO0+FC3TRixsjSKPNmOTURBFJAEK3htUJWI1e5+4pb3kZZ/qpM/
-         7Z6s79pgtMtgZu3DZe8nN6xzPln9Es5nzGdrR0DEHzpqAkPyioC+jlnmowhQc5qszRqv
-         E3RDhxXgWFoJCzH3YagxULsCSCkaKesLmdYCL/CrvIMLZ12blT2STMrNKw04J+yUUHiG
-         /iCvVNY6vstSGX1eOq2gOwC7/iJ7JQVF2O+aU813ISID0yIUeQejV71WS94lpiclMH4s
-         us9A==
-X-Gm-Message-State: AOJu0YxRJF7M0m+mBNxwsbTW3O0JIFqtJhnT0C4fKmCAvtJcpwakgeIX
-        oBUxbCOQrENpeAnofWWuxbtw1Y4WLwN7Xw==
-X-Google-Smtp-Source: AGHT+IG4neBUt+ie4pzDoZiQeWUSKTNp1+XgRuVaZj4s2RJQC3CdsSSnlnDEU6xXFuAqvt2am5jxOw==
-X-Received: by 2002:a17:906:30da:b0:99d:fc31:242f with SMTP id b26-20020a17090630da00b0099dfc31242fmr9012606ejb.66.1694472689910;
-        Mon, 11 Sep 2023 15:51:29 -0700 (PDT)
-Received: from skbuf ([188.26.56.202])
-        by smtp.gmail.com with ESMTPSA id dx22-20020a170906a85600b0099d959f9536sm6023945ejb.12.2023.09.11.15.51.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 15:51:29 -0700 (PDT)
-Date:   Tue, 12 Sep 2023 01:51:26 +0300
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20230601; t=1694476972; x=1695081772;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e9FHti0UeaT45a62FC88dUwVtXoyU66QnGu8MY083Gc=;
+        b=Z455w2HsH/gbwDZZj+b2jvs+g5zy2UPdoP3O7ZidFTC5P1Grp4D/Q4PJaKDOZoCbbP
+         lATviepbSsAz5NDilm8Qq0L+rXifZ4s7JTdyO8U6rLkdNSMNoVgLcLLhr865zTAJcLiF
+         LAs0R61xOxVEjkClj9Mp8q0RhFkAODjQL74/mod0xD0nLVMz+HNqX5V7ivUFj1fRNd1I
+         o877G9+vZxVbyUjPhkBNe2NT5DICO9LDnQkjBkkmcF1pOS33+Kv8JYER7YmIygYgIkT9
+         TFY/y1rxQ+0mPcOD597RVReGej2/D7WQ5kPrIFA/mo5/vqxMnVG0+cVl40B51N+BaSfP
+         gmUg==
+X-Gm-Message-State: AOJu0Yx2BCCP7slTea04ireHttFFTapO1d/uvVAKTnhYOscSxwlt17eS
+        xdLjIKAILZVjfqIcsHvjHX3YnTqqy1U9tVpwLOESZiNrG3fuzbgMwZAJ7w==
+X-Google-Smtp-Source: AGHT+IGFOM/4w9EDJt7MB2VEaaVKgVLAWXiT0CbJ/s1mQvZfpoxvSUlNkizqXQqtn0mkteVDRyeHoSWnwX1ZfV5oYr4=
+X-Received: by 2002:a25:ce03:0:b0:d09:f934:f2fe with SMTP id
+ x3-20020a25ce03000000b00d09f934f2femr9212180ybe.18.1694476292641; Mon, 11 Sep
+ 2023 16:51:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230911023038.30649-1-yong.wu@mediatek.com> <20230911023038.30649-2-yong.wu@mediatek.com>
+ <46532644-a38b-98d5-13a1-8b51b9276a1d@amd.com>
+In-Reply-To: <46532644-a38b-98d5-13a1-8b51b9276a1d@amd.com>
+From:   "T.J. Mercier" <tjmercier@google.com>
+Date:   Mon, 11 Sep 2023 16:51:20 -0700
+Message-ID: <CABdmKX0-x53hjkKeSw1oDu2yFTKEXc1z_TFg0EMyWF2aBNbk2w@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dma-buf: heaps: Deduplicate docs and adopt common format
+To:     =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        UNGLinuxDriver@microchip.com,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Landen Chao <Landen.Chao@mediatek.com>,
-        DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Brian Starkey <Brian.Starkey@arm.com>,
+        John Stultz <jstultz@google.com>,
         AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
-        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        <angelogioacchino.delregno@collabora.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linaro-mm-sig@lists.linaro.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
-Message-ID: <20230911225126.rk23g3u3bzo3agby@skbuf>
-References: <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
- <20230813112026.ohsx6srbt2staxma@skbuf>
- <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
- <20230813190157.4y3zoro53qsz43pe@skbuf>
- <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
- <20230814143601.mnpxtcm2zybnbvoh@skbuf>
- <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
- <20230827121235.zog4c3ehu2cyd3jy@skbuf>
- <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
- <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        linux-mediatek@lists.infradead.org, jianjiao.zeng@mediatek.com,
+        kuohong.wang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -103,101 +84,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 09, 2023 at 11:53:50AM +0300, Arınç ÜNAL wrote:
-> What to do:
-> - For mscc,vsc7514-switch, enforce phylink bindings for ports.
-> - For mscc,vsc7512-switch, enforce phylink bindings for user ports.
-
-you can also look at dsa_switches_apply_workarounds[], and if the switch
-isn't there, then you can replace "user ports" with "ports" here and
-everywhere.
-
-> - renesas,rzn1-a5psw.yaml
->   - renesas,r9a06g032-a5psw, renesas,rzn1-a5psw
-> 
-> What to do:
-> - Document "mdio".
-
-Not clear here and for all the schemas quoted below.. is "mdio" not documented already?
-
-> - realtek.yaml
->   - realtek,rtl8365mb
->   - realtek,rtl8366rb
-> 
-> drivers/net/dsa/realtek/realtek-mdio.c:
-> - The DSA subdriver lets the DSA driver register the bus.
-> 
-> What to do:
-> - Document "mdio".
->   - Require "mdio". (Can't do because it's not required for MDIO controlled
->     switches that share the compatible string with SMI controlled switches.
->     This is why I would like Luiz to unify the bus registeration process.)
-> - Document compatible string "realtek,smi-mdio" on "mdio" child node.
->   - Require compatible. (Can't do because the same as above.)
-> - Enforce phylink bindings for user ports. (Can't do because the same as
->   above.)
->   - Enforce phylink bindings for user ports if "mdio" is defined.
-> 
-> ---
-> 
-> - qca8k.yaml
->   - qca,qca8327
->   - qca,qca8328
->   - qca,qca8334
->   - qca,qca8337
-> 
-> drivers/net/dsa/qca/qca8k-8xxx.c:
-> - The DSA subdriver won't let the DSA driver register the bus.
->   - No ds->ops->phy_read() or ds->ops->phy_write().
-> - Registers the bus non-OF-based or OF-based. Registers OF-based if "mdio"
->   child node is defined.
->   - mdio = of_get_child_by_name(priv->dev->of_node, "mdio");
-> 
-> What to do:
-> - Document "mdio".
-> - Enforce phylink bindings for user ports if "mdio" is defined.
-> 
-> ---
-> 
-> - nxp,sja1105.yaml
->   - nxp,sja1105e
->   - nxp,sja1105t
->   - nxp,sja1105p
->   - nxp,sja1105q
->   - nxp,sja1105r
->   - nxp,sja1105s
->   - nxp,sja1110a
->   - nxp,sja1110b
->   - nxp,sja1110c
->   - nxp,sja1110d
-> 
-> What to do:
-> - Document "mdios".
->   - Document child node pattern property under "mdios".
->     - Document "nxp,sja1110-base-tx-mdio" and "nxp,sja1110-base-t1-mdio"
->       compatible strings.
-> ---
-> 
-> - microchip,lan937x.yaml
->   - microchip,lan9370
->   - microchip,lan9371
->   - microchip,lan9372
->   - microchip,lan9373
->   - microchip,lan9374
-> - microchip,ksz.yaml
->   - microchip,ksz8765
->   - microchip,ksz8794
->   - microchip,ksz8795
->   - microchip,ksz8863
->   - microchip,ksz8873
->   - microchip,ksz9477
->   - microchip,ksz9897
->   - microchip,ksz9896
->   - microchip,ksz9567
->   - microchip,ksz8565
->   - microchip,ksz9893
->   - microchip,ksz9563
->   - microchip,ksz8563
-> 
-> What to do:
-> - Document "mdio".
+On Mon, Sep 11, 2023 at 2:36=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+>
+> m 11.09.23 um 04:30 schrieb Yong Wu:
+> > From: "T.J. Mercier" <tjmercier@google.com>
+> >
+> > The docs for dma_heap_get_name were incorrect, and since they were
+> > duplicated in the implementation file they were wrong there too.
+> >
+> > The docs formatting was inconsistent so I tried to make it more
+> > consistent across functions since I'm already in here doing cleanup.
+> >
+> > Remove multiple unused includes.
+> >
+> > Signed-off-by: T.J. Mercier <tjmercier@google.com>
+> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > [Yong: Just add a comment for "priv" to mute build warning]
+> > ---
+> >   drivers/dma-buf/dma-heap.c | 29 +++++++----------------------
+> >   include/linux/dma-heap.h   | 11 +++++------
+> >   2 files changed, 12 insertions(+), 28 deletions(-)
+> >
+> > diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
+> > index 84ae708fafe7..51030f6c9d6e 100644
+> > --- a/drivers/dma-buf/dma-heap.c
+> > +++ b/drivers/dma-buf/dma-heap.c
+> > @@ -7,17 +7,15 @@
+> >    */
+> >
+> >   #include <linux/cdev.h>
+> > -#include <linux/debugfs.h>
+> >   #include <linux/device.h>
+> >   #include <linux/dma-buf.h>
+> > +#include <linux/dma-heap.h>
+> >   #include <linux/err.h>
+> > -#include <linux/xarray.h>
+> >   #include <linux/list.h>
+> > -#include <linux/slab.h>
+> >   #include <linux/nospec.h>
+> > -#include <linux/uaccess.h>
+> >   #include <linux/syscalls.h>
+> > -#include <linux/dma-heap.h>
+> > +#include <linux/uaccess.h>
+> > +#include <linux/xarray.h>
+> >   #include <uapi/linux/dma-heap.h>
+> >
+> >   #define DEVNAME "dma_heap"
+> > @@ -28,9 +26,10 @@
+> >    * struct dma_heap - represents a dmabuf heap in the system
+> >    * @name:           used for debugging/device-node name
+> >    * @ops:            ops struct for this heap
+> > - * @heap_devt                heap device node
+> > - * @list             list head connecting to list of heaps
+> > - * @heap_cdev                heap char device
+> > + * @priv:            private data for this heap
+> > + * @heap_devt:               heap device node
+> > + * @list:            list head connecting to list of heaps
+> > + * @heap_cdev:               heap char device
+> >    *
+> >    * Represents a heap of memory from which buffers can be made.
+> >    */
+> > @@ -192,25 +191,11 @@ static const struct file_operations dma_heap_fops=
+ =3D {
+> >   #endif
+> >   };
+> >
+> > -/**
+> > - * dma_heap_get_drvdata() - get per-subdriver data for the heap
+> > - * @heap: DMA-Heap to retrieve private data for
+> > - *
+> > - * Returns:
+> > - * The per-subdriver data for the heap.
+> > - */
+>
+> Kernel documentation is usually kept on the implementation and not the
+> definition.
+>
+> So I strongly suggest to remove the documentation from the header
+> instead and if there is any additional information in there add it here.
+>
+> Regards,
+> Christian.
+>
+Ok thanks for looking. I'll move all the function docs over to the
+implementation.
