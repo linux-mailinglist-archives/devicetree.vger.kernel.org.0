@@ -2,136 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E46179B5C5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C1CE79ACD8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:38:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233329AbjIKUuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:50:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60484 "EHLO
+        id S230468AbjIKUwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236511AbjIKKsQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:48:16 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D487F1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:48:11 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bceca8a41aso67904331fa.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 03:48:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694429289; x=1695034089; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j0NJnWblCqOTP51XSAQK8tnzGeOeFatQIb5bjkiY0jA=;
-        b=v+MMXu9/Q1EbdaSF3eYLtAp3lF94CqGqA3sve3d/m1Fd/mygRY+QeGZN3sgYRRagnZ
-         K0e9BPcvxCOPoD22avX4y5W5KithIUurrMk9RwSrMndiVj2WSWMPfgvfeaIIaSbRvmdp
-         UdY7Vmx0jKbDo3+4Qyn+KlzgA128jSSpnfXCDksBuUhg2qNT6SHQ1bz/2vgWQYnBStTa
-         Nk651GUm6xGq0Z99Lbz3Wtun6+vt/Sd1Y7tcqf0sikLI6/UKs4AdWXAFLkJVtDFzZr3Z
-         ekM+gkToHm3Z/GJ8Q75rDI/oRAM68QWJu5bowbMVjEmshCHnhql/fO1/ix/lkFOU5sqD
-         51+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694429289; x=1695034089;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j0NJnWblCqOTP51XSAQK8tnzGeOeFatQIb5bjkiY0jA=;
-        b=c1z3lc6t/1D/M4v938y7qiQUG10qdVBV5TeNECiXdFrvp4Pr7t2id0jdm16ZybK++p
-         lNqSkZmJnHa/k1Ghr/ad+p1nZv8cqhndt8/vs//8pHfSWmM+5OtTOi7fSxYshMkphDiC
-         mBpmFDGLTXhSEoplXbzzOLtFcGfyfliYbJFTylgHqeSS7NgMGkvFl0FQkGIHilkt3Qpd
-         0zFiwqLB58thFQc9ewXoDto901k05bf6yKjArpcZV0PZlG7YtU0g/8iAxx61s0jrZfJE
-         nEadzyrPP0aSiwPAoyZqZSFUdt29vdg8QqULLWWvUMMdIDlKRjn4LCzKjODAUXWMu6YM
-         UoMA==
-X-Gm-Message-State: AOJu0YwjlRrS8gd1b9omQRJQ+wodgSeL0snUSiE+jqVwOP1Uxpzo9sUC
-        6tq71Chyh2k350Sr3PESq3k7/A==
-X-Google-Smtp-Source: AGHT+IF1kWFgjhTcfyqVhPg4mnrxV5lAVUVkKc0L/x88oGcAPqEy+maF7vc3htIrGNZH5i4r3ZmbAQ==
-X-Received: by 2002:a2e:9a86:0:b0:2b9:d28c:9c2d with SMTP id p6-20020a2e9a86000000b002b9d28c9c2dmr7295461lji.23.1694429289253;
-        Mon, 11 Sep 2023 03:48:09 -0700 (PDT)
-Received: from [192.168.69.115] (tfy62-h01-176-171-221-76.dsl.sta.abo.bbox.fr. [176.171.221.76])
-        by smtp.gmail.com with ESMTPSA id rp26-20020a170906d97a00b00988be3c1d87sm5122443ejb.116.2023.09.11.03.48.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 03:48:08 -0700 (PDT)
-Message-ID: <c94138d2-1bfa-2815-a766-b7904e35a86f@linaro.org>
-Date:   Mon, 11 Sep 2023 12:48:05 +0200
+        with ESMTP id S236562AbjIKK5i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:57:38 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A697412A;
+        Mon, 11 Sep 2023 03:57:29 -0700 (PDT)
+X-UUID: fcfbd334509111eea33bb35ae8d461a2-20230911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=otZBXVYJ7V2gQhC8KQjEU1AvrlFD4SS/KjjSDlReZ90=;
+        b=PLCuyik820JfOqKGJimjane79iehjqYQPD+7L7kEEOVdABKRTwxdU/r7HBfbfuJd27cXAlrkgTPZFCF+4qI9OZoBE4qWCFO5IxDs5smRC/+id0CMC+cRok6c2cbiH9xgWwgidD5glmsE44wje1tE+ZvE4B+XtiVpeHf4qOHJTxY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:cc131fa0-4323-43a4-b4aa-d471981c96ae,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:95998fef-9a6e-4c39-b73e-f2bc08ca3dc5,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: fcfbd334509111eea33bb35ae8d461a2-20230911
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <shuijing.li@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1931885649; Mon, 11 Sep 2023 18:57:23 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 11 Sep 2023 18:57:21 +0800
+Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 18:57:20 +0800
+From:   Shuijing Li <shuijing.li@mediatek.com>
+To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <matthias.bgg@gmail.com>,
+        <angelogioacchino.delregno@collabora.com>, <jitao.shi@mediatek.com>
+CC:     <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Shuijing Li <shuijing.li@mediatek.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3,1/3] dt-bindings: display: mediatek: dsi: Add compatible for MediaTek MT8188
+Date:   Mon, 11 Sep 2023 18:57:34 +0800
+Message-ID: <20230911105736.11752-2-shuijing.li@mediatek.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230911105736.11752-1-shuijing.li@mediatek.com>
+References: <20230911105736.11752-1-shuijing.li@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
- Gecko/20100101 Thunderbird/102.15.0
-Subject: Re: [PATCH v4 3/4] net: stmmac: Add glue layer for Loongson-1 SoC
-Content-Language: en-US
-To:     Keguang Zhang <keguang.zhang@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Serge Semin <Sergey.Semin@baikalelectronics.ru>
-References: <20230830134241.506464-1-keguang.zhang@gmail.com>
- <20230830134241.506464-4-keguang.zhang@gmail.com>
-From:   =?UTF-8?Q?Philippe_Mathieu-Daud=c3=a9?= <philmd@linaro.org>
-In-Reply-To: <20230830134241.506464-4-keguang.zhang@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--2.152100-8.000000
+X-TMASE-MatchedRID: D0VXqQ1iI8d0BEBFOTiHn2CnlTu2jBBznG8msLIkY3ejxYyRBa/qJcFw
+        gTvxipFajoczmuoPCq0pKcsqLFaS4PYkeosi/YzlghV+E66Bg8C5a0qdOeuId/62HTAiUgV2612
+        iSTkqQN4vzoIuCUru3XNL064ByjGAKnfSXHt7N1niw6uxviJP8r9tsSiUciBlQ5zsaM5qada/lr
+        1yYih0SzMPwdnhe8nZlExlQIQeRG0=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--2.152100-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 7F4BB218B74CDE0E8C4DD2880589892FB0C95ED90133D61D4EC8D9BFB29A4C7F2000:8
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/8/23 15:42, Keguang Zhang wrote:
-> This glue driver is created based on the arch-code
-> implemented earlier with the platform-specific settings.
-> 
-> Use syscon for SYSCON register access.
-> 
-> Partially based on the previous work by Serge Semin.
-> 
-> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
-> ---
-> V3 -> V4: Drop ls1x_dwmac_syscon definition and its instances
->            Drop three redundant fields from the ls1x_dwmac structure
->            Drop the ls1x_dwmac_init() method.
->            Some minor improvements
-> V2 -> V3: Determine the device ID by physical
->            base address(suggested by Serge Semin)
->            Use regmap instead of regmap fields
->            Use syscon_regmap_lookup_by_phandle()
->            Some minor fixes
-> V1 -> V2: Fix the build errors due to CONFIG_OF being unset
->            Change struct reg_field definitions to const
->            Rename the syscon property to "loongson,dwmac-syscon"
->            Add MII PHY mode for LS1C
-> 
->   drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
->   drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->   .../ethernet/stmicro/stmmac/dwmac-loongson1.c | 219 ++++++++++++++++++
->   3 files changed, 231 insertions(+)
->   create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+Add dt-binding documentation of dsi for MediaTek MT8188 SoC.
 
-Squash:
-
--- >8 --
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ff1f273b4f36..2519d06b5aab 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14344,9 +14344,12 @@ MIPS/LOONGSON1 ARCHITECTURE
-  M:	Keguang Zhang <keguang.zhang@gmail.com>
-  L:	linux-mips@vger.kernel.org
-  S:	Maintained
-  F:	Documentation/devicetree/bindings/*/loongson,ls1x-*.yaml
-  F:	Documentation/devicetree/bindings/net/loongson,ls1*.yaml
-  F:	arch/mips/include/asm/mach-loongson32/
-  F:	arch/mips/loongson32/
-  F:	drivers/*/*loongson1*
-+F:	drivers/net/ethernet/stmicro/stmmac/dwmac-loongson1.c
+Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 ---
+ .../devicetree/bindings/display/mediatek/mediatek,dsi.yaml       | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+index 12441b937684..537e5304b730 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
+@@ -30,6 +30,7 @@ properties:
+           - mediatek,mt8173-dsi
+           - mediatek,mt8183-dsi
+           - mediatek,mt8186-dsi
++          - mediatek,mt8188-dsi
+       - items:
+           - enum:
+               - mediatek,mt6795-dsi
+-- 
+2.40.1
+
