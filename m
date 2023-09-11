@@ -2,139 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43F0479B2D8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5D679ACA8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233011AbjIKUvE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Sep 2023 16:51:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
+        id S234169AbjIKUuw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242550AbjIKPrx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:47:53 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C01121;
-        Mon, 11 Sep 2023 08:47:45 -0700 (PDT)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RkrfP5T1Pz67KPR;
-        Mon, 11 Sep 2023 23:46:05 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 11 Sep
- 2023 16:47:42 +0100
-Date:   Mon, 11 Sep 2023 16:47:41 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Herve Codina <herve.codina@bootlin.com>
-CC:     Lizhi Hou <lizhi.hou@amd.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>, <max.zhen@amd.com>, <sonal.santan@amd.com>,
-        <stefano.stabellini@xilinx.com>,
-        =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
-Message-ID: <20230911164741.00003904@Huawei.com>
-In-Reply-To: <20230911173503.0db85e4b@bootlin.com>
-References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
-        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
-        <20230911154856.000076c3@Huawei.com>
-        <20230911173503.0db85e4b@bootlin.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S242596AbjIKPx6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:53:58 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FEAE1AB
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:53:52 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-31ad779e6b3so4633555f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:53:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694447631; x=1695052431; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p3zHV6iao/svbvabAHUWRziqjkkVulJ/SFHDJG1zdw8=;
+        b=Jo1Ez3MVKvg1qxcMEU5pA1KjKQ+RXNTPuCDGSWySWwGVifm9m3pPSGfGHe9//4vDMj
+         KBlmdbEuvnGD4jb4Qsgf1M7pRsUx+MshbpHCjbWGvANGPCoGlvGPgvA9mMTX7qNhvifo
+         Xo0KAUXBfywtLae4R3KS3QjdzLzgRQeBWliqwHiVjCzZMOT/9nK6mZkYAAJLinNapAnV
+         hfYZ7HRJTHg+Dd5yYxGtB5bYSrzxTI/rtwuGeJYrMjXI7Uu28N++OVCHPMX86qdh+s8w
+         GHqg7NpNKrOQ7vQVzFdYoIplw0WmH2+U6NxvBMf8QeiOJbMtpwE8UF94qmThlzxAVh1N
+         2jtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694447631; x=1695052431;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=p3zHV6iao/svbvabAHUWRziqjkkVulJ/SFHDJG1zdw8=;
+        b=uAi6fbm4NUBltbUoAPh/ucZdeiWU3BgIvXMX8+f2x8m6bc1gbUTL7+3EEp13rL845Q
+         pRUUEV5YeAVjA0owXJv74cydVsEPx20CY1jIN9yp4k2dhYFA506/whwdBi/kgabTn49V
+         fCEhIlmwASyZuyrCgVs7S850d+ZNMr3MBdo5RxVsvk9qIZbmslpIc7XzcKx498/M11yc
+         +V47qoiIxZbpCfRBMcJWrkypz0uEeMeb9w8VTCdqsNfl0lbR3nL35/QJK3zct+JQGXcm
+         mX8a2RKHij8PJgMDGcmbNkT6/N3g/bc0qndh7H/ikzvO0jv1zybeh6NJ0ggyJBYSIVIQ
+         CYiw==
+X-Gm-Message-State: AOJu0YzezEXDDx9vgW/dhOp7mHjXZK3I+Hjeggp3PK0OTS6Dg9x1dWgk
+        4QohKFMFLsljxo4CYyUU47wPHg==
+X-Google-Smtp-Source: AGHT+IH9qzC3rYF8IeSOT1RPV7CsdG0ReQBfjcjNjLurVYgv7naSOiSTRp7oUKIY9gGW+TXEpd81cQ==
+X-Received: by 2002:adf:de8a:0:b0:306:46c4:d313 with SMTP id w10-20020adfde8a000000b0030646c4d313mr7882614wrl.28.1694447630648;
+        Mon, 11 Sep 2023 08:53:50 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id n16-20020a05600c3b9000b003fe407ca05bsm14047580wms.37.2023.09.11.08.53.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 08:53:50 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Kevin Hilman <khilman@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230911154541.471484-1-jbrunet@baylibre.com>
+References: <20230911154541.471484-1-jbrunet@baylibre.com>
+Subject: Re: [PATCH 0/5] arm64: dts: meson: u200 audio clean up
+Message-Id: <169444762970.3994411.2239837675633536062.b4-ty@linaro.org>
+Date:   Mon, 11 Sep 2023 17:53:49 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.202.227.76]
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Sep 2023 17:35:03 +0200
-Herve Codina <herve.codina@bootlin.com> wrote:
+Hi,
 
-> Hi Jonathan,
+On Mon, 11 Sep 2023 17:45:36 +0200, Jerome Brunet wrote:
+> This patchset fixes the recently merged audio support for u200 and adds the
+> missing onboard audio devices
 > 
-> On Mon, 11 Sep 2023 15:48:56 +0100
-> Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+> Jerome Brunet (5):
+>   arm64: dts: meson: u200: fix spdif output pin
+>   arm64: dts: meson: u200: add missing audio clock controller
+>   arm64: dts: meson: u200: add spdifout b routes
+>   arm64: dts: meson: u200: use TDM C for HDMI
+>   arm64: dts: meson: u200: add onboard devices
 > 
-> > On Tue, 15 Aug 2023 10:19:57 -0700
-> > Lizhi Hou <lizhi.hou@amd.com> wrote:
-> >   
-> > > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
-> > > spaces from multiple hardware peripherals to its PCI BAR. Normally,
-> > > the PCI core discovers devices and BARs using the PCI enumeration process.
-> > > There is no infrastructure to discover the hardware peripherals that are
-> > > present in a PCI device, and which can be accessed through the PCI BARs.
-> > > 
-> > > Apparently, the device tree framework requires a device tree node for the
-> > > PCI device. Thus, it can generate the device tree nodes for hardware
-> > > peripherals underneath. Because PCI is self discoverable bus, there might
-> > > not be a device tree node created for PCI devices. Furthermore, if the PCI
-> > > device is hot pluggable, when it is plugged in, the device tree nodes for
-> > > its parent bridges are required. Add support to generate device tree node
-> > > for PCI bridges.
-> > > 
-> > > Add an of_pci_make_dev_node() interface that can be used to create device
-> > > tree node for PCI devices.
-> > > 
-> > > Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
-> > > the kernel will generate device tree nodes for PCI bridges unconditionally.
-> > > 
-> > > Initially, add the basic properties for the dynamically generated device
-> > > tree nodes which include #address-cells, #size-cells, device_type,
-> > > compatible, ranges, reg.
-> > > 
-> > > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> > > Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>    
-> > 
-> > I tried to bring this up for a custom PCIe card emulated in QEMU on an ARM ACPI
-> > machine.
-> > 
-> > There are some missing parts that were present in Clements series, but not this
-> > one, particularly creation of the root pci object.
-> > 
-> > Anyhow, hit an intermittent crash...  
-> 
-> I am facing the same issues.
-> 
-> I use a custom PCIe board too but on x86 ACPI machine.
-> 
-> In order to have a working system, I need also to build a DT node for the PCI
-> Host bridge (previously done by Clement's patch) and I am a bit stuck with
-> interrupts.
-> 
-> On your side (ACPI machine) how do you handle this ?
+> [...]
 
-That was next on my list to look at now I've gotten the device tree stuff
-to show up.
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.7/arm64-dt)
 
-> I mean is your PCI host bridge provided by ACPI ? And if so, you probably need
-> to build a DT node for this PCI host bridge and add some interrupt-map,
-> interrupt-map-mask properties in the DT node.
+[1/5] arm64: dts: meson: u200: fix spdif output pin
+      https://git.kernel.org/amlogic/c/66561cb158d0a25054bbcf423d59dd782311f60d
+[2/5] arm64: dts: meson: u200: add missing audio clock controller
+      https://git.kernel.org/amlogic/c/f9dc2d96e1bfb33635df7edf0a1b8572bbb20954
+[3/5] arm64: dts: meson: u200: add spdifout b routes
+      https://git.kernel.org/amlogic/c/4e47ea869289dab588c0152ec90d6eb5bf7f7169
+[4/5] arm64: dts: meson: u200: use TDM C for HDMI
+      https://git.kernel.org/amlogic/c/956236a24aec8364a3ee5d287e23c0c01cfb9c7c
+[5/5] arm64: dts: meson: u200: add onboard devices
+      https://git.kernel.org/amlogic/c/f1decbd5629bf0dbd3af3b2f803f72a27eb01c7f
 
-Agreed. Potentially some other stuff, but interrupts are the thing that
-showed up first as an issue.
+These changes has been applied on the intermediate git tree [1].
 
-Given the only reason I'm looking at this is to potentially solve
-a long term CXL / MCTP over I2C upstreaming problem on QEMU side, I've only
-limited time to throw at this (thought it was a short activity
-for a Friday afternoon :)  Will see if it turns out not too be
-too hard to build the rest.
+The v6.7/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
 
-I can at least boot same system with device tree and check I'm matching
-what is being generated by QEMU.
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
 
-Jonathan
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
 
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
 
-> 
-> Best regards,
-> Hervé
-> 
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+-- 
+Neil
 
