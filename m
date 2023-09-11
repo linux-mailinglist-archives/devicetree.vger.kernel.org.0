@@ -2,77 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD93F79A362
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADB5879A367
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:17:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbjIKGOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:14:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37562 "EHLO
+        id S232777AbjIKGRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:17:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230388AbjIKGOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:14:48 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B948100
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:14:44 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-31aeedbb264so4282612f8f.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:14:44 -0700 (PDT)
+        with ESMTP id S229822AbjIKGRi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:17:38 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E33100
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:17:34 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-401ec23be82so45277525e9.0
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:17:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694412882; x=1695017682; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1694413053; x=1695017853; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M01myCvGGybQr0ULkAIP3dIJ3LGuPKDY+KhnFtqf92A=;
-        b=jcHxqP1KgdUttIE9fNLUGVVh/TFxZFWArTnDPou+nDF0NDIhugWJPLgwP22aj6zfCg
-         nVgWLFd3E8uKiDr6LeDrBNdzU+UL3n4vdlJx0hQzv7wSDtvk+xaWQjSrt8Q4uYoAA7Ab
-         STYGs8G+Wp8axCAHtdRDCZHbSZPo7ZeyVd+XsCv+Htc3dja6nrOZM1Avy63ef7vJqOLq
-         uRM9t0glK5Dd3tIp/PcjKLddo2GJdzjtz1VlgljcfP7aHHzT92MBUypBTuSmgDI9WqAr
-         Wu/lbfvglqUP2CBo0Ieu7V8hTNvtBiQTGYc+Meiv0FGuQ1RtRUikI4LgYiCYTizM2VFs
-         w/Sg==
+        bh=IiC0IE6m0wPl8pl5dOrurkz/p4cSmknmvfdSlln6DIk=;
+        b=uVtQz3GOlfJieNng8T9BmINazQXdAAIGZYglgc5PKQ4n+AlbGHXBa/KOw/ej41/6PK
+         szWngTh94o4FdSWl9QHaT3YFj0rl3yEyc92x+G6EGN6mZJZNjjjrkIb88mHSsLQwmyel
+         Dq/C+XiXROiOnIXAtivxVLKetXMD1WLs7/oLAIExF4eRt3CjdfTZnhwOisblgTv1chCL
+         A02abrbXEM5KesaHmsRu0hLBOOA+UGVDxVaZGwlNWvVDlFSmgKoRGjrAJHqhBZ7Yy6u+
+         s1i14srMUB04Y0h4iavfK9x11ylorF+dpI/fJnfiHLNQtrL9Fax9o/Xtzp9Gl3MbqlzQ
+         Bz6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694412882; x=1695017682;
+        d=1e100.net; s=20230601; t=1694413053; x=1695017853;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M01myCvGGybQr0ULkAIP3dIJ3LGuPKDY+KhnFtqf92A=;
-        b=miwIFhWL2XoNXiPi4Nrgo17d9gbOYO43Bg4beZxvgE1HMm2WLWBBA1we4pi/uSV/RX
-         j6MWw/QIPUC27Hq67jk2wJkCTyqgZT6/xc7FUA9s513m3Or4t6ViiGyFNeOBu8Tw99Kh
-         dbidZrplqT6WyxmfDYsrJckBr9wWLXiSiQDt/ejbaDb+/TpgztrVIyd6XjUiJiFvNgDd
-         Vb2a1jdRc9Ppko4ld8clV+OcFQ6hRjBbMx/li7m8Ippvko8XUvHs9li68Dxmq63ISTlY
-         UwS13H/GMMOqhqE94L7uVwTP9epKuFskz3JMPqj8r6ka9yoBNEFufVRzaK5XM9u41KdZ
-         W7Vw==
-X-Gm-Message-State: AOJu0Yw1VXqFmkTELLDA41l+bsSE6637GiVEtzdAc+TqVXKiDZJQ/jKL
-        Se2NfC73lE2pFX6ebYLN5NVTvw==
-X-Google-Smtp-Source: AGHT+IFDBUWjHA7Xe8ovUewybif0JxZGJ1fhobQq3Glg8TQFwRJZM6rLkFigcMKJzhppzbNcwlrn0w==
-X-Received: by 2002:a5d:5103:0:b0:31c:79c4:9bf3 with SMTP id s3-20020a5d5103000000b0031c79c49bf3mr7252770wrt.49.1694412882382;
-        Sun, 10 Sep 2023 23:14:42 -0700 (PDT)
+        bh=IiC0IE6m0wPl8pl5dOrurkz/p4cSmknmvfdSlln6DIk=;
+        b=EBNMScY/7SMqPOWRH2J2d9zkEVIQCUlhvTdE8U2JJ/8+Vds4Q/2810+YOb7C1wSBF/
+         z5Ai52gD5UAgJ6TVtIt91i17KENcC0BKf9yUqlqKC+sHW4O/51fVurDxDirsfEOScFC2
+         kb/OFEPyHcOXapdAjVcsUPmmOQkrCqfom21Uw1kqKiO8P/Y/uASbtR4dzAgoBpU+TZ6G
+         PvJ5Qk27t8tMUl3gPUQ0FLbiOgpbxQ5TQl0NRM72UrFP7xLHbiqf9ktSt7Me8o4aT5mF
+         zduTOd+9eSEtqENTHxDDE3V1Inv9nGWZByyHm4SQxyOu77jaZp8NhpYAWeqCG1HsXc1k
+         25UQ==
+X-Gm-Message-State: AOJu0YyVpMFmdn3mdrE3FOa567qjuB3BmMGxZyWjVbAroRldnLbovLeU
+        H7/HqmnocTJrZn0CORZTQuSydg==
+X-Google-Smtp-Source: AGHT+IHlyNmlmSt6D4JVp//iLOeraMdK0dpTiYSmwNu+q4Xj+pcPd078PdyE1qDbDo08dGfDkJVTBA==
+X-Received: by 2002:a7b:cb90:0:b0:3fe:dc99:56ea with SMTP id m16-20020a7bcb90000000b003fedc9956eamr7246164wmi.19.1694413052986;
+        Sun, 10 Sep 2023 23:17:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id a10-20020a5d508a000000b00319756d5b80sm8979909wrt.29.2023.09.10.23.14.40
+        by smtp.gmail.com with ESMTPSA id u3-20020a05600c210300b003fe601a7d46sm12143847wml.45.2023.09.10.23.17.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 23:14:41 -0700 (PDT)
-Message-ID: <8ef4aa62-940b-b0b5-60e1-fb42600b776a@linaro.org>
-Date:   Mon, 11 Sep 2023 08:14:40 +0200
+        Sun, 10 Sep 2023 23:17:32 -0700 (PDT)
+Message-ID: <f0224983-d276-8d9c-f6ce-bd77f350bc3c@linaro.org>
+Date:   Mon, 11 Sep 2023 08:17:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: thermal: qoriq-thermal: Adjust
- fsl,tmu-range maxItems
+Subject: Re: [PATCH] dt-bindings: rtc: pcf2123: convert to YAML
 Content-Language: en-US
-To:     Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, amitk@kernel.org,
-        linux-pm@vger.kernel.org, linux-imx@nxp.com,
-        Fabio Estevam <festevam@denx.de>
-References: <20230910125726.1243652-1-festevam@gmail.com>
- <20230910125726.1243652-2-festevam@gmail.com>
+To:     Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chris Verges <chrisv@cyberswitching.com>
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230910125726.1243652-2-festevam@gmail.com>
+In-Reply-To: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,13 +80,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2023 14:57, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
-> 
-> imx93 has a maximum of seven entries for fsl,tmu-range.
+On 10/09/2023 13:00, Javier Carrasco wrote:
+> Convert the existing txt binding to the preferred YAML format.
 > 
 
-Then qoriq should have it constrained to 4 entries.
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        rtc@3 {
+> +            compatible = "nxp,pcf2123";
+> +            reg = <3>;
+> +            spi-cs-high;
+
+Example should be complete, so preferably also with interrupts.
+
+Anyway:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
