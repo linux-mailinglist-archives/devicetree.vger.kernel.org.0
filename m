@@ -2,145 +2,555 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E117879BC8D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC2A79BA23
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbjIKUvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40144 "EHLO
+        id S236926AbjIKUuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237002AbjIKLuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:50:18 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A2ACEB
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:50:12 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-52bcd4db4e6so5685768a12.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:50:11 -0700 (PDT)
+        with ESMTP id S237117AbjIKMBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:01:49 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61DC3CEB
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 05:01:43 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-500a8b2b73eso6917730e87.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 05:01:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694433010; x=1695037810; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9yz3Tc8gsJQ/qI33P4F+un1BjOWwxkJR3o6Jg2I9evc=;
-        b=SWOODFWynvDQxys10Ohi3lE911YGT/L0sPJ8yNGc7+nXtnSY0iVv9YjY/xIkz+tkMm
-         yfo8kTJ65yooksY6W60IFFypNOknIU8AgOHyu6RhF4Q3kaKdLSvP75SJ6h+C9rbnCx5Z
-         tADPIritliY6lUZfEDh2ii3YuQGZwKtz44VuoESNm+BwYWf9RoRlnEjntSWyerR3Qrf6
-         4qlqqmWLBbMuPcZ2CfKL+JCG6l1uybk6d2w5olQAPxC3w0MJJpMKnSA7WqJNgTA7VG8M
-         Z0LQQ8Hydap6mIPele3+MUH6r32qtAiNmHOeaCsEwTC966j6e6iN0hjkZD/nRj6PEREu
-         3wQA==
+        d=linaro.org; s=google; t=1694433701; x=1695038501; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pC9g3Ojb6Hp+QdKVhlnJE1vJVLOuuOOL3GBsQc0fZKI=;
+        b=VOWZiQ34fEnK2Epa4T6zir6WCmenhpdYLeex1UV0R3yaubsO2IQVof8xiOIynk/Bx5
+         QxfHFLaLEb7Q82K1XTDWnHRL6GRYkXapb+ekithuLs1hpGiWKtB7lAAtMuSp5JdCdmk7
+         l3FGRYB2pHkYixQR/qlNs1anbC5ASl8wJt4mhv06cNnD1AKCfrPSLhjaeWWaKpLw3t2B
+         rQXOb+4A8sEobYCyzy6pWk17u7STZRS0xeznHAwcb1hdG85DUs364BxZ+pTuU+63jPZg
+         c9xPhEzbfVG54r6/saxC3/pABz/9tV47u7+TD8yAkia6Q9rgg+v19p4qUvsov7D97rMY
+         eqCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694433010; x=1695037810;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9yz3Tc8gsJQ/qI33P4F+un1BjOWwxkJR3o6Jg2I9evc=;
-        b=MQtJZhkBJug5DPxAHK4KAZiInGAJtoIVmhzcCPQgxPbS/mb6zeewRIk+ysBwTrNW22
-         e4DfBYyAkcbuHTcrIikyiGAcNW9jgN0Y1Z6UTfM5WjqimWzekgXnelo3lJBWLumXNOwE
-         4XqDCmRMm3enlU9Z4dbpnw3RZHzNufSjEUlT6eb1HGSlMb3MtONIhjdy6GlfV54SkDm5
-         r44eFb8TiABeraTnMUiT0NfzC36HZ0CWaa6uVxO0TdTyK47W2B7m+/MNe+NU0WK4nkQO
-         x5HRcm8g6UoXO6dUydPevIYmijD6fgQOl/ew3Hjb+07admGFQndtTN3C5GhjfEBibdli
-         AH2w==
-X-Gm-Message-State: AOJu0YwTVXZpk2b9bR99nhx6ox/oFN0GIHhQXZG2ms2p+LbjE8MhHek+
-        4R1K/Yoq3yvUyj1pYE3thTsNKA==
-X-Google-Smtp-Source: AGHT+IGhePx9Cm4vE0XO0UgIH18ILjd1Ti1Ey6T8c0x1E6XmsJwYns5znI3qcjc7sGukqw1OmcgEXg==
-X-Received: by 2002:a05:6402:240b:b0:52f:736f:b50 with SMTP id t11-20020a056402240b00b0052f736f0b50mr1512908eda.18.1694433010478;
-        Mon, 11 Sep 2023 04:50:10 -0700 (PDT)
-Received: from [192.168.37.232] (178235177061.dynamic-4-waw-k-1-1-0.vectranet.pl. [178.235.177.61])
-        by smtp.gmail.com with ESMTPSA id v12-20020aa7d80c000000b0052c9f1d3cfasm4523644edq.84.2023.09.11.04.50.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 04:50:10 -0700 (PDT)
-Message-ID: <ca53e4cd-1c89-482d-9662-19926efb5b47@linaro.org>
-Date:   Mon, 11 Sep 2023 13:50:06 +0200
+        d=1e100.net; s=20230601; t=1694433701; x=1695038501;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pC9g3Ojb6Hp+QdKVhlnJE1vJVLOuuOOL3GBsQc0fZKI=;
+        b=QoGm3AFZysSytUVtH0hjIFP2BWclE1BwFbZ6CTMs4l+JrSXP9TRfFPU1lQIR2sXFYB
+         Eq2Qktwigkp3uUiDmOa5bA7WBhjga0xwQVj/nO/04MWn+uS8nSOt6R1zFs1bdwBPmicw
+         5htGO11zxLi0SVA0bYoTyelKlBikpBzAEMr8AgVtxo9OKSesXTLl3+MDjHTN2aHob6tI
+         qG8T8KEZd7sYaFwO6rrk+xnMNEqcpFCvrtqo+yqbpNOdX35iXSuelOzQ7G52RZbQl7Mr
+         MfJisGBT5vzv0K7RSSxOR946vcVOAyPu1CJr1wZo40+eZMwE0sbPebOdVtngQkPtAxX1
+         DSog==
+X-Gm-Message-State: AOJu0YwVm4cy+CJ4Z6UPlE+mu52igou3d4aKu1kxHL0/w5M6rBMV+8i3
+        0/muyePZqKyWj7crc7Kk5tdLjg==
+X-Google-Smtp-Source: AGHT+IHN+vkkalfR5LsT9vrPib2C6fURnWeSR6YYiLfYC7AGv+vQOHGlodEJIe0dkor/5CB+NbmM9Q==
+X-Received: by 2002:a05:6512:210b:b0:502:a4f4:ced9 with SMTP id q11-20020a056512210b00b00502a4f4ced9mr5273897lfr.62.1694433701459;
+        Mon, 11 Sep 2023 05:01:41 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id l1-20020a170906938100b009a16975ee5asm5221133ejx.169.2023.09.11.05.01.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 05:01:39 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH RESEND] dt-bindings: mfd: maxim,max8998: Convert to DT schema
+Date:   Mon, 11 Sep 2023 14:01:35 +0200
+Message-Id: <20230911120135.37528-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/9] arm64: dts: qcom: apq8016-sbc: Add overlay for usb
- host mode
-Content-Language: en-US
-To:     Vignesh Raman <vignesh.raman@collabora.com>,
-        dri-devel@lists.freedesktop.org
-Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
-        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
-        daniels@collabora.com, gustavo.padovan@collabora.com,
-        angelogioacchino.delregno@collabora.com, emma@anholt.net,
-        robclark@freedesktop.org, robdclark@google.com, anholt@google.com,
-        robdclark@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        jani.nikula@linux.intel.com, mripard@kernel.org,
-        dmitry.baryshkov@linaro.org, matthias.bgg@gmail.com,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        virtualization@lists.linux-foundation.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230908152225.432139-1-vignesh.raman@collabora.com>
- <20230908152225.432139-3-vignesh.raman@collabora.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20230908152225.432139-3-vignesh.raman@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8.09.2023 17:22, Vignesh Raman wrote:
-> Due to the presence of the fastboot micro cable in the CI farm,
-> it causes the hardware to remain in gadget mode instead of host mode.
-> So it doesn't find the network, which results in failure to mount root
-> fs via NFS.
-> 
-> Add an overlay dtso file that sets the dr_mode to host, allowing
-> the USB controllers to work in host mode. This dtso file will be used
-> in drm-ci, mesa-ci.
-> 
-> Overlay DT file uses the sugar syntax [suggested by Dmitry Baryshkov and Maxime Ripard]
-> 
-> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Suggested-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
-For such a small change, maybe you can just use sed in your
-scripts to alter this?
+Convert the bindings for Maxim MAX8998, National/TI LP3974 Power
+Management IC to DT schema.  Adjust example to real DTS and make second
+interrupt optional (like on s5pv210-aries.dtsi).
 
-Konrad
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+
+Resend:
+Seems patch was not picked up, so resending with Rb tag.
+
+
+
+ .../devicetree/bindings/mfd/max8998.txt       | 125 -------
+ .../bindings/mfd/maxim,max8998.yaml           | 324 ++++++++++++++++++
+ 2 files changed, 324 insertions(+), 125 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max8998.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max8998.yaml
+
+diff --git a/Documentation/devicetree/bindings/mfd/max8998.txt b/Documentation/devicetree/bindings/mfd/max8998.txt
+deleted file mode 100644
+index 4ed52184d081..000000000000
+--- a/Documentation/devicetree/bindings/mfd/max8998.txt
++++ /dev/null
+@@ -1,125 +0,0 @@
+-* Maxim MAX8998, National/TI LP3974 multi-function device
+-
+-The Maxim MAX8998 is a multi-function device which includes voltage/current
+-regulators, real time clock, battery charging controller and several
+-other sub-blocks. It is interfaced using an I2C interface. Each sub-block
+-is addressed by the host system using different i2c slave address.
+-
+-PMIC sub-block
+---------------
+-
+-The PMIC sub-block contains a number of voltage and current regulators,
+-with controllable parameters and dynamic voltage scaling capability.
+-In addition, it includes a real time clock and battery charging controller
+-as well. It is accessible at I2C address 0x66.
+-
+-Required properties:
+-- compatible: Should be one of the following:
+-    - "maxim,max8998" for Maxim MAX8998
+-    - "national,lp3974" or "ti,lp3974" for National/TI LP3974.
+-- reg: Specifies the i2c slave address of the pmic block. It should be 0x66.
+-
+-Optional properties:
+-- interrupts: Interrupt specifiers for two interrupt sources.
+-  - First interrupt specifier is for main interrupt.
+-  - Second interrupt specifier is for power-on/-off interrupt.
+-- max8998,pmic-buck1-dvs-gpios: GPIO specifiers for two host gpios used
+-  for buck 1 dvs. The format of the gpio specifier depends on the gpio
+-  controller.
+-- max8998,pmic-buck2-dvs-gpio: GPIO specifier for host gpio used
+-  for buck 2 dvs. The format of the gpio specifier depends on the gpio
+-  controller.
+-- max8998,pmic-buck1-default-dvs-idx: Default voltage setting selected from
+-  the possible 4 options selectable by the dvs gpios. The value of this
+-  property should be 0, 1, 2 or 3. If not specified or out of range,
+-  a default value of 0 is taken.
+-- max8998,pmic-buck2-default-dvs-idx: Default voltage setting selected from
+-  the possible 2 options selectable by the dvs gpios. The value of this
+-  property should be 0 or 1. If not specified or out of range, a default
+-  value of 0 is taken.
+-- max8998,pmic-buck-voltage-lock: If present, disallows changing of
+-  preprogrammed buck dvfs voltages.
+-
+-Additional properties required if max8998,pmic-buck1-dvs-gpios is defined:
+-- max8998,pmic-buck1-dvs-voltage: An array of 4 voltage values in microvolts
+-  for buck1 regulator that can be selected using dvs gpio.
+-
+-Additional properties required if max8998,pmic-buck2-dvs-gpio is defined:
+-- max8998,pmic-buck2-dvs-voltage: An array of 2 voltage values in microvolts
+-  for buck2 regulator that can be selected using dvs gpio.
+-
+-Regulators: All the regulators of MAX8998 to be instantiated shall be
+-listed in a child node named 'regulators'. Each regulator is represented
+-by a child node of the 'regulators' node.
+-
+-	regulator-name {
+-		/* standard regulator bindings here */
+-	};
+-
+-Following regulators of the MAX8998 PMIC block are supported. Note that
+-the 'n' in regulator name, as in LDOn or BUCKn, represents the LDO or BUCK
+-number as described in MAX8998 datasheet.
+-
+-	- LDOn
+-		  - valid values for n are 2 to 17
+-		  - Example: LDO2, LDO10, LDO17
+-	- BUCKn
+-		  - valid values for n are 1 to 4.
+-		  - Example: BUCK1, BUCK2, BUCK3, BUCK4
+-
+-	- ENVICHG: Battery Charging Current Monitor Output. This is a fixed
+-		   voltage type regulator
+-
+-	- ESAFEOUT1: (ldo19)
+-	- ESAFEOUT2: (ld020)
+-
+-	- CHARGER: main battery charger current control
+-
+-Standard regulator bindings are used inside regulator subnodes. Check
+-  Documentation/devicetree/bindings/regulator/regulator.txt
+-for more details.
+-
+-Example:
+-
+-	pmic@66 {
+-		compatible = "maxim,max8998-pmic";
+-		reg = <0x66>;
+-		interrupt-parent = <&wakeup_eint>;
+-		interrupts = <4 0>, <3 0>;
+-
+-		/* Buck 1 DVS settings */
+-		max8998,pmic-buck1-default-dvs-idx = <0>;
+-		max8998,pmic-buck1-dvs-gpios = <&gpx0 0 1 0 0>, /* SET1 */
+-					       <&gpx0 1 1 0 0>; /* SET2 */
+-		max8998,pmic-buck1-dvs-voltage = <1350000>, <1300000>,
+-						 <1000000>, <950000>;
+-
+-		/* Buck 2 DVS settings */
+-		max8998,pmic-buck2-default-dvs-idx = <0>;
+-		max8998,pmic-buck2-dvs-gpio = <&gpx0 0 3 0 0>; /* SET3 */
+-		max8998,pmic-buck2-dvs-voltage = <1350000>, <1300000>;
+-
+-		/* Regulators to instantiate */
+-		regulators {
+-			ldo2_reg: LDO2 {
+-				regulator-name = "VDD_ALIVE_1.1V";
+-				regulator-min-microvolt = <1100000>;
+-				regulator-max-microvolt = <1100000>;
+-				regulator-always-on;
+-			};
+-
+-			buck1_reg: BUCK1 {
+-				regulator-name = "VDD_ARM_1.2V";
+-				regulator-min-microvolt = <950000>;
+-				regulator-max-microvolt = <1350000>;
+-				regulator-always-on;
+-				regulator-boot-on;
+-			};
+-
+-			charger_reg: CHARGER {
+-				regulator-name = "CHARGER";
+-				regulator-min-microamp = <90000>;
+-				regulator-max-microamp = <800000>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/mfd/maxim,max8998.yaml b/Documentation/devicetree/bindings/mfd/maxim,max8998.yaml
+new file mode 100644
+index 000000000000..f3c3f64fd012
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/maxim,max8998.yaml
+@@ -0,0 +1,324 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/maxim,max8998.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX8998, National/TI LP3974 Power Management IC
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description:
++  The Maxim MAX8998 is a Power Management IC which includes voltage/current
++  regulators, real time clock, battery charging controller and several other
++  sub-blocks. It is interfaced using an I2C interface. Each sub-block is
++  addressed by the host system using different i2c slave address.
++
++properties:
++  compatible:
++    enum:
++      - maxim,max8998
++      - national,lp3974
++      - ti,lp3974
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 1
++    items:
++      - description: Main interrupt
++      - description: Power-on/-off interrupt
++
++  max8998,pmic-buck1-dvs-gpios:
++    maxItems: 2
++    description:
++      Two host gpios used for buck1 DVS.
++
++  max8998,pmic-buck2-dvs-gpio:
++    maxItems: 1
++    description:
++      Host gpio used for buck2 DVS.
++
++  max8998,pmic-buck1-default-dvs-idx:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++    default: 0
++    description:
++      Default voltage setting selected from the possible 4 options selectable
++      by the DVS gpios.
++
++  max8998,pmic-buck2-default-dvs-idx:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++    default: 0
++    description:
++      Default voltage setting selected from the possible 2 options selectable
++      by the DVS GPIOs.
++
++  max8998,pmic-buck-voltage-lock:
++    type: boolean
++    description:
++      If present, disallows changing of preprogrammed buck DVS voltages.
++
++  max8998,pmic-buck1-dvs-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 4
++    description:
++      Four voltage values in microvolts for buck1 regulator that can be
++      selected using DVS GPIO.
++
++  max8998,pmic-buck2-dvs-voltage:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    maxItems: 2
++    description:
++      Two voltage values in microvolts for buck2 regulator that can be
++      selected using DVS GPIO.
++
++  regulators:
++    type: object
++    additionalProperties: false
++
++    properties:
++      CHARGER:
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++        description:
++          CHARGER is main battery charger current control, wrongly represented
++          as regulator.
++
++        properties:
++          regulator-min-microamp:
++            minimum: 90000
++            maximum: 800000
++
++          regulator-max-microamp:
++            minimum: 90000
++            maximum: 800000
++
++          regulator-min-microvolt: false
++          regulator-max-microvolt: false
++
++        required:
++          - regulator-name
++
++    patternProperties:
++      "^(LDO([2-9]|1[0-7])|BUCK[1-4])$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++
++        required:
++          - regulator-name
++
++      "^(EN32KHz-AP|EN32KHz-CP|ENVICHG|ESAFEOUT[12])$":
++        type: object
++        $ref: /schemas/regulator/regulator.yaml#
++        unevaluatedProperties: false
++        description: |
++          EN32KHz-AP and EN32KHz-CP are 32768 Hz clocks, wrongly represented as
++          regulators.
++          ENVICHG is a Battery Charging Current Monitor Output.
++
++        properties:
++          regulator-min-microvolt: false
++          regulator-max-microvolt: false
++
++        required:
++          - regulator-name
++
++dependencies:
++  max8998,pmic-buck1-dvs-gpios: [ "max8998,pmic-buck1-dvs-voltage" ]
++  max8998,pmic-buck2-dvs-gpio: [ "max8998,pmic-buck2-dvs-voltage" ]
++
++required:
++  - compatible
++  - reg
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pmic@66 {
++            compatible = "national,lp3974";
++            reg = <0x66>;
++            interrupts-extended = <&gpx0 7 IRQ_TYPE_LEVEL_LOW>,
++                                  <&gpx2 7 IRQ_TYPE_LEVEL_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&lp3974_irq>;
++
++            max8998,pmic-buck1-default-dvs-idx = <0>;
++            max8998,pmic-buck1-dvs-gpios = <&gpx0 5 GPIO_ACTIVE_HIGH>,
++                                           <&gpx0 6 GPIO_ACTIVE_HIGH>;
++            max8998,pmic-buck1-dvs-voltage = <1100000>, <1000000>,
++                                             <1100000>, <1000000>;
++            max8998,pmic-buck2-default-dvs-idx = <0>;
++            max8998,pmic-buck2-dvs-gpio = <&gpe2 0 GPIO_ACTIVE_HIGH>;
++            max8998,pmic-buck2-dvs-voltage = <1200000>, <1100000>;
++
++            regulators {
++                LDO2 {
++                    regulator-name = "VALIVE_1.2V";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <1200000>;
++                    regulator-always-on;
++                };
++
++                LDO3 {
++                    regulator-name = "VUSB+MIPI_1.1V";
++                    regulator-min-microvolt = <1100000>;
++                    regulator-max-microvolt = <1100000>;
++                    regulator-always-on;
++                };
++
++                LDO4 {
++                    regulator-name = "VADC_3.3V";
++                    regulator-min-microvolt = <3300000>;
++                    regulator-max-microvolt = <3300000>;
++                };
++
++                LDO5 {
++                    regulator-name = "VTF_2.8V";
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
++                };
++
++                LDO6 {
++                    regulator-name = "LDO6";
++                    regulator-min-microvolt = <2000000>;
++                    regulator-max-microvolt = <2000000>;
++                };
++
++                LDO7 {
++                    regulator-name = "VLCD+VMIPI_1.8V";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                LDO8 {
++                    regulator-name = "VUSB+VDAC_3.3V";
++                    regulator-min-microvolt = <3300000>;
++                    regulator-max-microvolt = <3300000>;
++                    regulator-always-on;
++                };
++
++                LDO9 {
++                    regulator-name = "VCC_2.8V";
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
++                    regulator-always-on;
++                };
++
++                LDO10 {
++                    regulator-name = "VPLL_1.1V";
++                    regulator-min-microvolt = <1100000>;
++                    regulator-max-microvolt = <1100000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                LDO11 {
++                    regulator-name = "CAM_AF_3.3V";
++                    regulator-min-microvolt = <3300000>;
++                    regulator-max-microvolt = <3300000>;
++                };
++
++                LDO12 {
++                    regulator-name = "PS_2.8V";
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
++                };
++
++                LDO13 {
++                    regulator-name = "VHIC_1.2V";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <1200000>;
++                };
++
++                LDO14 {
++                    regulator-name = "CAM_I_HOST_1.8V";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                };
++
++                LDO15 {
++                    regulator-name = "CAM_S_DIG+FM33_CORE_1.2V";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <1200000>;
++                };
++
++                LDO16 {
++                    regulator-name = "CAM_S_ANA_2.8V";
++                    regulator-min-microvolt = <2800000>;
++                    regulator-max-microvolt = <2800000>;
++                };
++
++                LDO17 {
++                    regulator-name = "VCC_3.0V_LCD";
++                    regulator-min-microvolt = <3000000>;
++                    regulator-max-microvolt = <3000000>;
++                };
++
++                BUCK1 {
++                    regulator-name = "VINT_1.1V";
++                    regulator-min-microvolt = <750000>;
++                    regulator-max-microvolt = <1500000>;
++                    regulator-boot-on;
++                    regulator-always-on;
++                };
++
++                BUCK2 {
++                    regulator-name = "VG3D_1.1V";
++                    regulator-min-microvolt = <750000>;
++                    regulator-max-microvolt = <1500000>;
++                    regulator-boot-on;
++                };
++
++                BUCK3 {
++                    regulator-name = "VCC_1.8V";
++                    regulator-min-microvolt = <1800000>;
++                    regulator-max-microvolt = <1800000>;
++                    regulator-always-on;
++                };
++
++                BUCK4 {
++                    regulator-name = "VMEM_1.2V";
++                    regulator-min-microvolt = <1200000>;
++                    regulator-max-microvolt = <1200000>;
++                    regulator-always-on;
++                };
++
++                EN32KHz-AP {
++                    regulator-name = "32KHz AP";
++                    regulator-always-on;
++                };
++
++                EN32KHz-CP {
++                    regulator-name = "32KHz CP";
++                };
++
++                ENVICHG {
++                    regulator-name = "VICHG";
++                };
++
++                ESAFEOUT1 {
++                    regulator-name = "SAFEOUT1";
++                };
++
++                ESAFEOUT2 {
++                    regulator-name = "SAFEOUT2";
++                    regulator-boot-on;
++                };
++            };
++        };
++    };
+-- 
+2.34.1
+
