@@ -2,85 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B72F279B50E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1092D79B1F1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233306AbjIKUru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:47:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
+        id S236475AbjIKUtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236934AbjIKLnd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:43:33 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C17AE4B
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:43:28 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-31ae6bf91a9so4317671f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:43:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694432607; x=1695037407; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zhvqmtlPbl/ToiLBkS2C664oW0NpQWmg1Qdfqpzz/ks=;
-        b=h85qjoOzihIC+Jfm/OgJKc4r5B0bSGnKrJPXJzit6opvv+s72AytROOKIJwpVsL0hG
-         6SkGak0t3IIVzqDzPAFSQdHqwZ319hzXuWe/SayI/RLJA7r7hU+xSl4fZYUz8kZ0Ui5j
-         IOzNBPhcW1wOlGRiHqn1Zmfz030RUBC5LmyfA5RIzlFNpye7jCf3s/9nnPUUaMcn1f+n
-         MzeDofjuT9JXein4Qje7K7cCr3piT2UpaaqDoiXDV2DudODEtMluqwHgWBS9RuXlGy3w
-         kB+dOFMqH8gHfLqMFpRyw/GDG875jW7CfRuAkA+31gn1VY5NZvD65PAgLyGuTv4sSNg0
-         1hgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694432607; x=1695037407;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zhvqmtlPbl/ToiLBkS2C664oW0NpQWmg1Qdfqpzz/ks=;
-        b=koZeDEUAsqKKyoZ52iTZMar/3H3kHRrQJv6i24IWXaPNCZqv2ddn5DUyizOj3aaOx8
-         SsrC2qiM1ykel4uSfbaRn5rTPcwtrjSkIFkbHDCMg4QjD5pSUOoPCBFGyO23G1KS6zLO
-         42LUyOwgNlgI9MvXhsoIW8CtQrkaI+DbPk8eBPp7EhuIHAtdKVgO0hbK/mlMLWVnayIL
-         /wRncxEZnayVKTBoX8GjfxkNuzNa4+JgZyPti1oBWKLb5cN4lAma69rFsQRZgEX5fyc2
-         gr+b9n9WdBEheZcvvGGfDxCZPlZUduKx5+j5hPUWcCz5qwmVtUonP3oheNcONejs+1N8
-         ZeJw==
-X-Gm-Message-State: AOJu0YwoVcmso3qU8pX7FQnMypVaaC4eGWEu2Z8PUdk2RMIxX8TG+kBC
-        SyJo37fZonFAJ1KeneoCve+0FQ==
-X-Google-Smtp-Source: AGHT+IHDWHlDL5vz5A1MoSOGg/s1su6sfKxPHNvw4o1B8UIig50Xaff6LXy44TsmqogO5HVIRr8EMQ==
-X-Received: by 2002:a5d:6302:0:b0:316:f3cf:6f12 with SMTP id i2-20020a5d6302000000b00316f3cf6f12mr7051795wru.48.1694432606716;
-        Mon, 11 Sep 2023 04:43:26 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id r15-20020a056000014f00b0031c6dc684f8sm9771891wrx.20.2023.09.11.04.43.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 04:43:25 -0700 (PDT)
-Message-ID: <15898954-3b47-651d-43f4-844f45da171e@linaro.org>
-Date:   Mon, 11 Sep 2023 13:43:23 +0200
+        with ESMTP id S237071AbjIKL53 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:57:29 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F5DECDD;
+        Mon, 11 Sep 2023 04:57:24 -0700 (PDT)
+X-UUID: 5cbeac4e509a11eea33bb35ae8d461a2-20230911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=tuLdObKL/Q0kU3fhDqgWxmRTz7ANfSLsnG5GsDFCkY4=;
+        b=LpJl328nYJ2YCzlRZK/aonXb8/cP60f4oGIJvOqRsPAjBA/+N2VMgOUEw3ZIRyt2cy3SMHwiv6Cf1wdxDWzETkxo8oAAqraPjCkE2y5TEow0QKpcuNvZsQc/7oc5/RfwhaqtpX6ii9uV2NRvDubqJwytrxCwd2XNtGQc75ogZ6Q=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:abd6797e-fca3-4407-8f2d-f57232511c66,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:0ad78a4,CLOUDID:800490ef-9a6e-4c39-b73e-f2bc08ca3dc5,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 5cbeac4e509a11eea33bb35ae8d461a2-20230911
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1170237845; Mon, 11 Sep 2023 19:57:20 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 11 Sep 2023 19:57:19 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 19:57:19 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>,
+        =?UTF-8?q?Bernhard=20Rosenkr=C3=A4nzer?= <bero@baylibre.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+CC:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+Subject: [PATCH v6 1/2] dt-bindings: arm64: dts: mediatek: add mt8395-evk board
+Date:   Mon, 11 Sep 2023 19:57:16 +0800
+Message-ID: <20230911115717.26184-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add Qualcomm SM4450
-Content-Language: en-US
-To:     Tengfei Fan <quic_tengfan@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     will@kernel.org, arnd@arndb.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_kaushalk@quicinc.com,
-        peng.fan@nxp.com, kernel@quicinc.com, catalin.marinas@arm.com,
-        rafal@milecki.pl, krzysztof.kozlowski+dt@linaro.org,
-        nfraprado@collabora.com, quic_shashim@quicinc.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        quic_tingweiz@quicinc.com, quic_aiquny@quicinc.com,
-        linux-pm@vger.kernel.org, quic_tsoni@quicinc.com,
-        geert+renesas@glider.be, andersson@kernel.org, conor+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, agross@kernel.org,
-        quic_tdas@quicinc.com, djakov@kernel.org, konrad.dybcio@linaro.org
-References: <20230908064427.26999-1-quic_tengfan@quicinc.com>
- <20230908064427.26999-2-quic_tengfan@quicinc.com>
- <169415894359.3239551.14338430937225080028.robh@kernel.org>
- <375df554-e661-42ad-8a6f-f862aa05b654@quicinc.com>
- <5f172a8f-ecd7-44b0-9b02-48eb13d40497@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <5f172a8f-ecd7-44b0-9b02-48eb13d40497@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,53 +74,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 12:15, Tengfei Fan wrote:
->>>
->>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
->>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->>>
->>> yamllint warnings/errors:
->>>
->>> dtschema/dtc warnings/errors:
->>> Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sm4450.h: No such file or directory
->>>     18 |         #include <dt-bindings/clock/qcom,gcc-sm4450.h>
->>>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->>> compilation terminated.
->>> make[2]: *** [scripts/Makefile.lib:419: 
->>> Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dtb] Error 1
->>> make[2]: *** Waiting for unfinished jobs....
->>> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: 
->>> dt_binding_check] Error 2
->>> make: *** [Makefile:234: __sub-make] Error 2
->>>
->>> doc reference errors (make refcheckdocs):
->>>
->>> See 
->>> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230908064427.26999-2-quic_tengfan@quicinc.com
->>>
->>> The base for the series is generally the latest rc1. A different 
->>> dependency
->>> should be noted in *this* patch.
->>>
->>> If you already ran 'make dt_binding_check' and didn't see the above
->>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->>> date:
->>>
->>> pip3 install dtschema --upgrade
->>>
->>> Please check and re-submit after running the above command yourself. Note
->>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->>> your schema. However, it must be unset to test all examples with your 
->>> schema.
->>>
->> Thanks review this patch, will setup new env for verify again.
->>
-> this error is due to have dependence with: 
-> https://lore.kernel.org/linux-arm-msm/20230824173410.550126-1-quic_ajipan@quicinc.com/, 
-> will add this link to coverletter.
+1. Add compatible for MT8395.
+2. Add bindings for the MediaTek mt8395-evk board, also known
+as the "Genio 1200-EVK".
 
-The patch should have it for the bot to understand it.
+The MT8195 and MT8395 belong to the same SoC family,
+with only minor differences in their physical characteristics.
+They utilize unique efuse values for differentiation.
 
-Best regards,
-Krzysztof
+The booting process and configurations are managed by boot
+loaders, firmware, and TF-A. Consequently, the part numbers
+and procurement channels vary.
+
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+---
+ Documentation/devicetree/bindings/arm/mediatek.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+Changes for v2:
+ - add more detail description for mt8395.
+ - add bindings for mt8395, and mt8395-evk.
+
+Changes for v3:
+ - add back bindings for mt8195 compatible.
+
+Changes for v4:
+Changes for v5:
+Changes for v6:
+ - No change, update Reviewed-by tag only. Thanks.
+
+diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
+index ae12b1cab9fb..2e8ad49c3479 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek.yaml
++++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
+@@ -248,6 +248,12 @@ properties:
+           - enum:
+               - mediatek,mt8365-evk
+           - const: mediatek,mt8365
++      - description: MediaTek Genio 1200 Boards (Genio 1200 EVK)
++        items:
++          - enum:
++              - mediatek,mt8395-evk
++          - const: mediatek,mt8395
++          - const: mediatek,mt8195
+       - items:
+           - enum:
+               - mediatek,mt8516-pumpkin
+-- 
+2.18.0
 
