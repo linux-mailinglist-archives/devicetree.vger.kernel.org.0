@@ -2,74 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C157979A33F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8882379A34D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:08:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233686AbjIKGDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:03:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56540 "EHLO
+        id S233163AbjIKGIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234213AbjIKGDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:03:34 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C1C1B8;
-        Sun, 10 Sep 2023 23:02:48 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38B62MV3032449;
-        Mon, 11 Sep 2023 01:02:22 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694412142;
-        bh=PqCk36zd1ArgBmbJorVXLrlQP4/2RI28rsxTy1PC71k=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=ZrXZQ0XY0uOvkyws4MC9H9YpJjPr53n2pow6E4U5CR/yZt6cb9Cf5c1rC7p3N1EV3
-         enDQJyeeUOTTjGLNEwpvrhtiLq7O9HXToN1jF64QE+Je7mHiyl/JyR3uI6UaxZudjZ
-         smZmVr2HQhS5SzjcDHIKlnFeHFFzkhqcMiujNutY=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38B62MqY013088
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Sep 2023 01:02:22 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Sep 2023 01:02:22 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Sep 2023 01:02:22 -0500
-Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38B62M5u037605;
-        Mon, 11 Sep 2023 01:02:22 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
-        by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38B62LkV000534;
-        Mon, 11 Sep 2023 01:02:22 -0500
-From:   MD Danish Anwar <danishanwar@ti.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Roger Quadros <rogerq@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Simon Horman <horms@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH net-next v2 2/2] net: ti: icssg-prueth: Add support for half duplex operation
-Date:   Mon, 11 Sep 2023 11:32:00 +0530
-Message-ID: <20230911060200.2164771-3-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230911060200.2164771-1-danishanwar@ti.com>
-References: <20230911060200.2164771-1-danishanwar@ti.com>
+        with ESMTP id S231332AbjIKGIP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:08:15 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86085125
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:08:02 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401d10e3e54so44005975e9.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:08:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694412481; x=1695017281; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=znV8c1nZy2khF5/iHvM02K3LRI4Usqz/zkO1WU9q06M=;
+        b=YAMKnKbSX5WCsl0XXpfPHDg2uAuHDeFTYkEME6roHSzKYifHx+y1PJ9ABftUK+ZLeK
+         JImeM2Pz25h36rpbRx6yq67vKrSVJdBV7SZh1HfDk1uxfu8+lKBRcxc/uxtoZN2al0J7
+         jz3A9xK+2TgUI6BbdhWjRhrhL9jnrdf3zSyA0lf5A0pvtvfLFbRMSP8Nq41zIgprZOXF
+         kqwtgRhxqtEDmAw8EbEmJPRf9lxG5Y4CSZd948n8HXUMzeN4NC7T3ywBLrbtdol4wX/S
+         3cac/wqJor3hE1HIASHRX9noSCBFODnfhbRi8TgRT82A0IutTUMbjFqazH92dOaRdqKF
+         dFbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694412481; x=1695017281;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=znV8c1nZy2khF5/iHvM02K3LRI4Usqz/zkO1WU9q06M=;
+        b=OV0ABE1MiLJFjPESeZiHD43MZDyxk9BUV9nBvakEusumkjnRSFq03GtLgLbIiQtQTM
+         EHCAJEyHwg4Xelng5QFc/h6PPqCJGXWAhwYoXP9riInRq1L6J6kHPHYvyElffJ7KYVqq
+         UcgmEp/CgieTEwcTEHJMwYeGB3fNGM0vh4Z5HaAyDxwVfhoAI85/Eh3rtsxvkeuw53mI
+         QJYPSIEVtgQO1trIkPk6SrW2QDPCouLYf2G6pNYiC85zcXSffEhLiu+OoNfwQ6vDo+fO
+         pvM+iwlJBz+iftBJhQZfvRfiJ81w6rH4F0FmfDbzB+WoU6hBrM4/qePUt8agOL1/WymD
+         Te7Q==
+X-Gm-Message-State: AOJu0YwLlZBlsDChF096Qb/kDFpHgJLRBPmPtS5oCB3VKeNEQgiv2Nvs
+        ivWWbGK+r161oqrxEnJv7o8+h6A3MVCcTyqNw6GPkQ==
+X-Google-Smtp-Source: AGHT+IHMyTBUANYOv0uuLp74+1jLiLUu+Hfx5s3BwTAkzuzS/yebG+o7dj4lGFDQg2Xg4Mlst3xdFA==
+X-Received: by 2002:a05:600c:5128:b0:402:f501:447c with SMTP id o40-20020a05600c512800b00402f501447cmr7275655wms.0.1694412480731;
+        Sun, 10 Sep 2023 23:08:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id e6-20020a05600c218600b003fe1c332810sm12125267wme.33.2023.09.10.23.07.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Sep 2023 23:07:59 -0700 (PDT)
+Message-ID: <fc4bd212-c112-0d42-e94c-c3ba569d2d32@linaro.org>
+Date:   Mon, 11 Sep 2023 08:07:57 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_PASS,SPF_PASS autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm64: dts: mediatek: add mt8395-evk
+ board
+To:     Macpaul Lin <macpaul.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     Bear Wang <bear.wang@mediatek.com>,
+        Pablo Sun <pablo.sun@mediatek.com>,
+        Macpaul Lin <macpaul@gmail.com>
+References: <20230909132819.21626-1-macpaul.lin@mediatek.com>
+ <2318be3d-5687-8b6c-3669-1d2ae1c94d2c@linaro.org>
+ <946ee1c5-77af-3ce0-83ba-2966fab70a5f@mediatek.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <946ee1c5-77af-3ce0-83ba-2966fab70a5f@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,127 +88,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for half duplex operation at 10M and 100M link
-speeds for AM654x/AM64x devices.
-- Driver configures rand_seed, a random number, in DMEM HD_RAND_SEED_OFFSET
-field, which will be used by firmware for Back off time calculation.
-- Driver informs FW about half duplex link operation in DMEM
-PORT_LINK_SPEED_OFFSET field by setting bit 7 for 10/100M HD.
+On 10/09/2023 14:23, Macpaul Lin wrote:
+> 
+> 
+> On 9/10/23 18:56, Krzysztof Kozlowski wrote:
+>> 	
+>>
+>> External email : Please do nost click links or open attachments until you 
+>> have verified the sender or the content.
+>>
+>> On 09/09/2023 15:28, Macpaul Lin wrote:
+>>> 1. Add compatible for MT8395.
+>>> 2. Add bindings for the MediaTek mt8395-evk board, also known
+>>> as the "Genio 1200-EVK".
+>>>
+>>> The MT8195 and MT8395 belong to the same SoC family,
+>>> with only minor differences in their physical characteristics.
+>>> They utilize unique efuse values for differentiation.
+>>>
+>>> The booting process and configurations are managed by boot
+>>> loaders, firmware, and TF-A. Consequently, the part numbers
+>>> and procurement channels vary.
+>>>
+>>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Changes for v4:
+> Changes for v5:
+>   - No change, update Reviewed-by tag only. Thanks.
+> 
+> The explanation is here. The version v4 and v5 are the same.
+> For sending v5 is because "Patch v5 2/2" has been updated and these 2 
+> patches were in the same patch set. I think to update the whole patch 
+> set together with a single modified patch should be a usual operation.
+> Did I miss anything?
 
-Hence, the half duplex operation depends on board design the
-"ti,half-duplex-capable" property has to be enabled for ICSS-G ports if HW
-is capable to perform half duplex.
+Yeah, like not top-posting.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
- drivers/net/ethernet/ti/icssg/icssg_config.c | 14 ++++++++++++++
- drivers/net/ethernet/ti/icssg/icssg_prueth.c | 17 +++++++++++++++--
- drivers/net/ethernet/ti/icssg/icssg_prueth.h |  2 ++
- 3 files changed, 31 insertions(+), 2 deletions(-)
+Why do you change the same line in other patchset?
 
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_config.c b/drivers/net/ethernet/ti/icssg/icssg_config.c
-index 933b84666574..c1da70f247d4 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_config.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_config.c
-@@ -433,6 +433,17 @@ int emac_set_port_state(struct prueth_emac *emac,
- 	return ret;
- }
- 
-+void icssg_config_half_duplex(struct prueth_emac *emac)
-+{
-+	u32 val;
-+
-+	if (!emac->half_duplex)
-+		return;
-+
-+	val = get_random_u32();
-+	writel(val, emac->dram.va + HD_RAND_SEED_OFFSET);
-+}
-+
- void icssg_config_set_speed(struct prueth_emac *emac)
- {
- 	u8 fw_speed;
-@@ -453,5 +464,8 @@ void icssg_config_set_speed(struct prueth_emac *emac)
- 		return;
- 	}
- 
-+	if (emac->duplex == DUPLEX_HALF)
-+		fw_speed |= FW_LINK_SPEED_HD;
-+
- 	writeb(fw_speed, emac->dram.va + PORT_LINK_SPEED_OFFSET);
- }
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-index 410612f43cbd..e736652567cd 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-@@ -1029,6 +1029,8 @@ static void emac_adjust_link(struct net_device *ndev)
- 		 * values
- 		 */
- 		if (emac->link) {
-+			if (emac->duplex == DUPLEX_HALF)
-+				icssg_config_half_duplex(emac);
- 			/* Set the RGMII cfg for gig en and full duplex */
- 			icssg_update_rgmii_cfg(prueth->miig_rt, emac);
- 
-@@ -1147,9 +1149,13 @@ static int emac_phy_connect(struct prueth_emac *emac)
- 		return -ENODEV;
- 	}
- 
-+	if (!emac->half_duplex) {
-+		dev_dbg(prueth->dev, "half duplex mode is not supported\n");
-+		phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
-+		phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
-+	}
-+
- 	/* remove unsupported modes */
--	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
--	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_100baseT_Half_BIT);
- 	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_1000baseT_Half_BIT);
- 	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
- 	phy_remove_link_mode(ndev->phydev, ETHTOOL_LINK_MODE_Asym_Pause_BIT);
-@@ -2113,6 +2119,10 @@ static int prueth_probe(struct platform_device *pdev)
- 				      eth0_node->name);
- 			goto exit_iep;
- 		}
-+
-+		if (of_find_property(eth0_node, "ti,half-duplex-capable", NULL))
-+			prueth->emac[PRUETH_MAC0]->half_duplex = 1;
-+
- 		prueth->emac[PRUETH_MAC0]->iep = prueth->iep0;
- 	}
- 
-@@ -2124,6 +2134,9 @@ static int prueth_probe(struct platform_device *pdev)
- 			goto netdev_exit;
- 		}
- 
-+		if (of_find_property(eth1_node, "ti,half-duplex-capable", NULL))
-+			prueth->emac[PRUETH_MAC1]->half_duplex = 1;
-+
- 		prueth->emac[PRUETH_MAC1]->iep = prueth->iep0;
- 	}
- 
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.h b/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-index 3fe80a8758d3..8b6d6b497010 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.h
-@@ -145,6 +145,7 @@ struct prueth_emac {
- 	struct icss_iep *iep;
- 	unsigned int rx_ts_enabled : 1;
- 	unsigned int tx_ts_enabled : 1;
-+	unsigned int half_duplex : 1;
- 
- 	/* DMA related */
- 	struct prueth_tx_chn tx_chns[PRUETH_MAX_TX_QUEUES];
-@@ -271,6 +272,7 @@ int icssg_config(struct prueth *prueth, struct prueth_emac *emac,
- int emac_set_port_state(struct prueth_emac *emac,
- 			enum icssg_port_state_cmd state);
- void icssg_config_set_speed(struct prueth_emac *emac);
-+void icssg_config_half_duplex(struct prueth_emac *emac);
- 
- /* Buffer queue helpers */
- int icssg_queue_pop(struct prueth *prueth, u8 queue);
--- 
-2.34.1
+> 
+>> Confusing. You just sent a patch changing the same hunk - adding
+>> description, without any explanation.
+>>
+> 
+> The marketing naming rule of MediaTek SOCs are usually confusing people. 
+> I guess the previous patch just confused you. Ha.
+
+?
+
+
+
+Best regards,
+Krzysztof
 
