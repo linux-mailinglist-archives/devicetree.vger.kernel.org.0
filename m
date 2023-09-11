@@ -2,76 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADB5879A367
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E5EA79A370
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:23:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232777AbjIKGRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:17:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33356 "EHLO
+        id S232806AbjIKGX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:23:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjIKGRi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:17:38 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87E33100
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:17:34 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-401ec23be82so45277525e9.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:17:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694413053; x=1695017853; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IiC0IE6m0wPl8pl5dOrurkz/p4cSmknmvfdSlln6DIk=;
-        b=uVtQz3GOlfJieNng8T9BmINazQXdAAIGZYglgc5PKQ4n+AlbGHXBa/KOw/ej41/6PK
-         szWngTh94o4FdSWl9QHaT3YFj0rl3yEyc92x+G6EGN6mZJZNjjjrkIb88mHSsLQwmyel
-         Dq/C+XiXROiOnIXAtivxVLKetXMD1WLs7/oLAIExF4eRt3CjdfTZnhwOisblgTv1chCL
-         A02abrbXEM5KesaHmsRu0hLBOOA+UGVDxVaZGwlNWvVDlFSmgKoRGjrAJHqhBZ7Yy6u+
-         s1i14srMUB04Y0h4iavfK9x11ylorF+dpI/fJnfiHLNQtrL9Fax9o/Xtzp9Gl3MbqlzQ
-         Bz6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694413053; x=1695017853;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IiC0IE6m0wPl8pl5dOrurkz/p4cSmknmvfdSlln6DIk=;
-        b=EBNMScY/7SMqPOWRH2J2d9zkEVIQCUlhvTdE8U2JJ/8+Vds4Q/2810+YOb7C1wSBF/
-         z5Ai52gD5UAgJ6TVtIt91i17KENcC0BKf9yUqlqKC+sHW4O/51fVurDxDirsfEOScFC2
-         kb/OFEPyHcOXapdAjVcsUPmmOQkrCqfom21Uw1kqKiO8P/Y/uASbtR4dzAgoBpU+TZ6G
-         PvJ5Qk27t8tMUl3gPUQ0FLbiOgpbxQ5TQl0NRM72UrFP7xLHbiqf9ktSt7Me8o4aT5mF
-         zduTOd+9eSEtqENTHxDDE3V1Inv9nGWZByyHm4SQxyOu77jaZp8NhpYAWeqCG1HsXc1k
-         25UQ==
-X-Gm-Message-State: AOJu0YyVpMFmdn3mdrE3FOa567qjuB3BmMGxZyWjVbAroRldnLbovLeU
-        H7/HqmnocTJrZn0CORZTQuSydg==
-X-Google-Smtp-Source: AGHT+IHlyNmlmSt6D4JVp//iLOeraMdK0dpTiYSmwNu+q4Xj+pcPd078PdyE1qDbDo08dGfDkJVTBA==
-X-Received: by 2002:a7b:cb90:0:b0:3fe:dc99:56ea with SMTP id m16-20020a7bcb90000000b003fedc9956eamr7246164wmi.19.1694413052986;
-        Sun, 10 Sep 2023 23:17:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id u3-20020a05600c210300b003fe601a7d46sm12143847wml.45.2023.09.10.23.17.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 23:17:32 -0700 (PDT)
-Message-ID: <f0224983-d276-8d9c-f6ce-bd77f350bc3c@linaro.org>
-Date:   Mon, 11 Sep 2023 08:17:30 +0200
+        with ESMTP id S229886AbjIKGX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:23:28 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30262109;
+        Sun, 10 Sep 2023 23:23:23 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A62DC433C7;
+        Mon, 11 Sep 2023 06:23:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694413402;
+        bh=FYOki8zkUBTLpZudZIQoxjbaH31iT+OS5RrD9yP7Kjs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=uiFv+//HeqADmL8H5TS0Iy8FkNOSv/bmVwihFdrYebWrRVWAcS1iEXSoF2U+ThkDG
+         j5H+gPhy0eBm/XjW3YD2etMjvEnL0xgTT/NMHffSuVeIm236NDkeqqDFfiuU9SECii
+         dUsg8/pIm13Dszlj05tn8lEvkz2XSOMHrBb2H7sHosg3vlExILYMCZ0GpCL47rH2Iz
+         mi1q7QRunmblyKo/YlJBTVMwWM9vI5KpnjVZss3ZFW+fxgk2OHfFJkXykHSGnP6U2r
+         LbkiEUc9ZvR4rzvkPtbIa30EvENHRaAWbac9ozU9TcMJzx8K8zzRQhfR+7ZSebhtMT
+         upxgBMRwE/bYg==
+Message-ID: <e2a776f7-411e-a027-f0a8-3b0615c7f06e@kernel.org>
+Date:   Mon, 11 Sep 2023 08:23:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH] dt-bindings: rtc: pcf2123: convert to YAML
+Subject: Re: [PATCH v4 1/3] dt-bindings: Add beaglecc1352
 Content-Language: en-US
-To:     Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chris Verges <chrisv@cyberswitching.com>
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230907-topic-pcf2123_yaml-v1-1-40e82bed2066@gmail.com>
+To:     Ayush Singh <ayushdevel1325@gmail.com>,
+        greybus-dev@lists.linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        gregkh@linuxfoundation.org,
+        Vaishnav M A <vaishnav@beagleboard.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Nishanth Menon <nm@ti.com>
+References: <20230902182845.1840620-1-ayushdevel1325@gmail.com>
+ <20230902182845.1840620-2-ayushdevel1325@gmail.com>
+ <937ea540-09e1-65f2-7165-662bbee2542b@kernel.org>
+ <8c4717f1-36f3-96dc-2335-ec323e3f46df@gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <8c4717f1-36f3-96dc-2335-ec323e3f46df@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,28 +58,82 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2023 13:00, Javier Carrasco wrote:
-> Convert the existing txt binding to the preferred YAML format.
+On 06/09/2023 18:47, Ayush Singh wrote:
+> On 9/4/23 12:44, Krzysztof Kozlowski wrote:
+>> On 02/09/2023 20:28, Ayush Singh wrote:
+>>> Add DT bindings for BeagleCC1352 co-processor UART.
+>> This does not look like UART controller.
+>>
+>>
+>>> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
+>>> ---
+>>>   .../bindings/serial/beaglecc1352.yaml         | 25 +++++++++++++++++++
+>> It's not a serial driver. Don't put it in unrelated directory.
+>>
+>>> @@ -0,0 +1,25 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/serial/beaglecc1352.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: BeaglePlay CC1352 serial UART
+>> How is this serial UART? Of what? The SoC? Do not describe interface but
+>> the device.
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Ayush Singh <ayushdevel1325@gmail.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: beagle,cc1352
+>> No resources? This does not seem useful... Put it then only in trivial
+>> devices if your hardware - hardware, not driver - does not have any
+>> pins, interrupts or other resources.
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    beaglecc1352 {
+>> Node names should be generic. See also an explanation and list of
+>> examples (not exhaustive) in DT specification:
+>> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+>>
+>> Best regards,
+>> Krzysztof
 > 
+> I would like to get some help on how to tackle this particular device 
+> since I cannot seem to find anything similar to this setup. First let me 
+> go over the setup.
+> 
+> The BeaglePlay board has 2 processors. AM625 processor which is the main 
+> processor. This runs the main Linux system. This processor does not have 
+> direct access to SubG.
+> 
+> It also contains a CC1352P7 MCU with it's own flash program memory, ROM 
+> and SRAM. This processor has SubG antenna. It runs it's own OS (Zephyr 
+> by default).
+> 
+> The only way for CC1352P7 and AM625 to communicate is by using that 
+> particular UART which is just a standard 8250 UART. The setup pretty 
+> much looks like 2 boards connected over UART except the UART will always 
+> be static.
+> 
+> I guess it would make most sense to write a CC1352P7 binding in this 
+> case? However, I am not sure how accurate that is since anything from 
+> the Linux side will be interacting with the Zephyr application, and not 
+> the processor. So in all actuality, the processor itself does not matter 
+> at all.
 
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rtc@3 {
-> +            compatible = "nxp,pcf2123";
-> +            reg = <3>;
-> +            spi-cs-high;
-
-Example should be complete, so preferably also with interrupts.
-
-Anyway:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+I think the bindings require specific name and give you proper hint what
+should it be. If you still wonder, it means you still did not test your
+DTS. Such testing is a requirement.
 
 Best regards,
 Krzysztof
