@@ -2,102 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 513DF79BC40
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68FF679BC2F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231481AbjIKUsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44474 "EHLO
+        id S233331AbjIKUw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240373AbjIKOms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 10:42:48 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258E6E40
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:42:44 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-99de884ad25so595086066b.3
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:42:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694443362; x=1695048162; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=6D80ZZPlzZTYiu/9bQG8irFdtGvZCgvK+mghRHHLOSI=;
-        b=rKdRUU+yqZbHkXY7SazbHWkcUqJr0uRUJeAH9JyXUnujnMo6e10jFtNI+Q33qnKkxf
-         CS5pgu02fPxyKA0ykY/KN+dw85vIWyIp3Tna14seZNcUfStYwsFapgGr9bq9uATvyUR6
-         6FLv9khgUothNH10EpZc8oX8BzXZdWsDW9ezu8fO6VpUrmlxZYZL9mjfiYXPHCk5nLQs
-         yGzlThC70CfL4At0yuTK5/r/sRed4xxpQHC2VQFyAJBu4rpuFtsiDOell7VcXPbrzhbt
-         wyQN85513R9BOzHfLfWODF8i6kS6rn1CYVInb+EqUHvO47BYNruaXef6nbJPDjP9jBkc
-         DzHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694443362; x=1695048162;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6D80ZZPlzZTYiu/9bQG8irFdtGvZCgvK+mghRHHLOSI=;
-        b=s+zl5SOFJmT/HQ131CFJP497Ep3fGWt22ZPf2EoClxBpbscZV4bgyZyTvKbXSmw2jS
-         gaqZZYW/CucFB0EF50VdixksRxMQZFerOdeKOj4dX5UkHZk2AZtSpMjVqe4Mo5pm+zdv
-         5DLxehv+2lmik4OEaYskf8WbIpMOG4XWEvR/z5+PtIQTlS7Jo53KUK4aQdLx3YN4sh5l
-         sMumjDzMBa10FoMujStuBQ9jGoCzu0QZF0yWA3oa5EQxZBWPa8awkvtbRgVxjA6CGmRa
-         FXanBCCzY9aSxmqgDFA+YPdnfj7BT1VtEEDtqFAq/jtpRgYFRVRD5D2y7YCqMuLd2dkK
-         fhjw==
-X-Gm-Message-State: AOJu0Yz2A037y0ufLTPn7Qwclu06ksU6hTW4knDCEfPc7Jb2r9KvWrUe
-        zuj2HCYouPUnU0JXP9JDCDU2aQ==
-X-Google-Smtp-Source: AGHT+IGZ6BAm+BNseM9dLIErk0Fd9vodlBsob22D6rHK/pzDdm5HODd0tU/6G4M7A+HhDA5Ec4sUJQ==
-X-Received: by 2002:a17:907:762d:b0:9a1:ec3d:9004 with SMTP id jy13-20020a170907762d00b009a1ec3d9004mr9036507ejc.9.1694443362588;
-        Mon, 11 Sep 2023 07:42:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id k12-20020a17090646cc00b0098669cc16b2sm5429610ejs.83.2023.09.11.07.42.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Sep 2023 07:42:42 -0700 (PDT)
-Message-ID: <f4f0ed21-1e3b-a7c5-79f8-3469c4cfc471@linaro.org>
-Date:   Mon, 11 Sep 2023 16:42:40 +0200
+        with ESMTP id S240620AbjIKOtG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 10:49:06 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95A63E40;
+        Mon, 11 Sep 2023 07:49:00 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RkqLc5GfBz687wh;
+        Mon, 11 Sep 2023 22:47:20 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 11 Sep
+ 2023 15:48:57 +0100
+Date:   Mon, 11 Sep 2023 15:48:56 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Lizhi Hou <lizhi.hou@amd.com>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
+        <max.zhen@amd.com>, <sonal.santan@amd.com>,
+        <stefano.stabellini@xilinx.com>,
+        =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>
+Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
+Message-ID: <20230911154856.000076c3@Huawei.com>
+In-Reply-To: <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
+        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH] fixes the pin settings of two LEDs on board nanopi neo
- plus2
-To:     longqi <longqi90@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Allwinner sunXi SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Allwinner sunXi SoC support" 
-        <linux-sunxi@lists.linux.dev>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230911140959.2046340-1-longqi90@gmail.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230911140959.2046340-1-longqi90@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/09/2023 16:09, longqi wrote:
-> Signed-off-by: longqi <longqi90@gmail.com>
+On Tue, 15 Aug 2023 10:19:57 -0700
+Lizhi Hou <lizhi.hou@amd.com> wrote:
 
-Thank you for your patch. There is something to discuss/improve.
+> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+> spaces from multiple hardware peripherals to its PCI BAR. Normally,
+> the PCI core discovers devices and BARs using the PCI enumeration process.
+> There is no infrastructure to discover the hardware peripherals that are
+> present in a PCI device, and which can be accessed through the PCI BARs.
+> 
+> Apparently, the device tree framework requires a device tree node for the
+> PCI device. Thus, it can generate the device tree nodes for hardware
+> peripherals underneath. Because PCI is self discoverable bus, there might
+> not be a device tree node created for PCI devices. Furthermore, if the PCI
+> device is hot pluggable, when it is plugged in, the device tree nodes for
+> its parent bridges are required. Add support to generate device tree node
+> for PCI bridges.
+> 
+> Add an of_pci_make_dev_node() interface that can be used to create device
+> tree node for PCI devices.
+> 
+> Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
+> the kernel will generate device tree nodes for PCI bridges unconditionally.
+> 
+> Initially, add the basic properties for the dynamically generated device
+> tree nodes which include #address-cells, #size-cells, device_type,
+> compatible, ranges, reg.
+> 
+> Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+I tried to bring this up for a custom PCIe card emulated in QEMU on an ARM ACPI
+machine.
 
-Your commit msg is missing. Please describe the bug or the problem thus
-it will be obvious why this change is needed.
+There are some missing parts that were present in Clements series, but not this
+one, particularly creation of the root pci object.
+
+Anyhow, hit an intermittent crash...
 
 
-Best regards,
-Krzysztof
+> ---
+> +static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
+> +				struct device_node *np)
+> +{
+> +	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
+> +	u32 i, addr_sz[OF_PCI_MAX_INT_PIN], map_sz = 0;
+> +	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
+> +	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
+> +	struct device_node *pnode;
+> +	struct pci_dev *child;
+> +	u32 *int_map, *mapp;
+> +	int ret;
+> +	u8 pin;
+> +
+> +	pnode = pci_device_to_OF_node(pdev->bus->self);
+> +	if (!pnode)
+> +		pnode = pci_bus_to_OF_node(pdev->bus);
+> +
+> +	if (!pnode) {
+> +		pci_err(pdev, "failed to get parent device node");
+> +		return -EINVAL;
+> +	}
+> +
+> +	laddr[0] = cpu_to_be32((pdev->bus->number << 16) | (pdev->devfn << 8));
+> +	for (pin = 1; pin <= OF_PCI_MAX_INT_PIN;  pin++) {
+> +		i = pin - 1;
+> +		out_irq[i].np = pnode;
+> +		out_irq[i].args_count = 1;
+> +		out_irq[i].args[0] = pin;
+> +		ret = of_irq_parse_raw(laddr, &out_irq[i]);
+> +		if (ret) {
+> +			pci_err(pdev, "parse irq %d failed, ret %d", pin, ret);
+> +			continue;
 
+If all the interrupt parsing fails we continue ever time...
+
+> +		}
+> +		ret = of_property_read_u32(out_irq[i].np, "#address-cells",
+> +					   &addr_sz[i]);
+> +		if (ret)
+> +			addr_sz[i] = 0;
+
+This never happens.
+
+> +	}
+> +
+> +	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
+> +		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
+> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
+> +			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
+
+and here we end up derefencing random memory which happens in my case to cause
+a massive allocation sometimes and that fails one of the assertions in the
+allocator.
+
+I'd suggest just setting addr_sz[xxx] = {}; above
+to ensure it's initialized. Then the if(ret) handling should not be needed
+as well as of_property_read_u32 should be side effect free I hope!
+
+> +		}
+> +	}
+> +
+> +	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
+> +	mapp = int_map;
