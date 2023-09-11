@@ -2,224 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E26AE79B7E5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74CED79BAFD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:12:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229908AbjIKUwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41214 "EHLO
+        id S233830AbjIKUsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237931AbjIKNXL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:23:11 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19A8912A;
-        Mon, 11 Sep 2023 06:23:07 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38BCrlmO016521;
-        Mon, 11 Sep 2023 13:22:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=R6/RHIDNrYpB6dU4Qi6RuA4BpfNijF7rWGsQ9YQ01Po=;
- b=VleQknlxy6TXagkecGv67hfIyDV+0xg+oD5olUlv/qNnzonfRnfNfm6YTvKzflYhktmv
- asurtjRJdtwkC+Fi5DL+AAY4coi/3WfjSy+QTAehOlggWMJXHg+I3MeZBNK0RSIp11YC
- BOtLZt6r+OVUj+vHywIFQCgAYAHw05gTLJOvwBAhqmcev4L+akfXtcmwKkFZ0vfO5LjY
- eCrmoGJPeH8lTOXNlIfHbYmUFuBIGkCwHeWhK/MWfwlKgWvp3qvnc1thMEVvwMjoGXLU
- Tn2ZvRzY+pkswzS9BwpH9UmpGW3wgn/pg3VLLNY3FgW7eb9UJ1ZWBPDfCOeAz1B+sa5X 8Q== 
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t22kpg4g9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Sep 2023 13:22:57 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38BDMuBU001025
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Sep 2023 13:22:56 GMT
-Received: from [10.216.10.2] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 11 Sep
- 2023 06:22:51 -0700
-Message-ID: <1f96396a-558b-2272-3a71-04ed7878728a@quicinc.com>
-Date:   Mon, 11 Sep 2023 18:52:46 +0530
+        with ESMTP id S238024AbjIKNei (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:34:38 -0400
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63391106
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:34:33 -0700 (PDT)
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230911133432euoutp015bf76db8cc67c3e91a36a8b7844f3e0f~D24plZPNK2283422834euoutp01Q
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 13:34:32 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230911133432euoutp015bf76db8cc67c3e91a36a8b7844f3e0f~D24plZPNK2283422834euoutp01Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1694439272;
+        bh=/mi0r8mYaalw3knCfTu3gBJk6obrNHW3Nz7s/KCIWgA=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=ZACIlGI+2K8qVA2wGGgkJ4C/t5HRDYg7t2BFIYdgS/atNu/6dHSTZ4pHoAUSMMEgD
+         uZRFAZJ9y9J/SCGSLx0JoFT3tAKlZMPdMIavKgB4IiToeAau8O7r58ojHodiJSGL1S
+         p15VddbXacVKEycNj8sKNWq/fm2QK8/Uwv1e2n4k=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20230911133431eucas1p1028e1babd7fda9c36d15da5ac371d780~D24pUSUXl3154231542eucas1p1H;
+        Mon, 11 Sep 2023 13:34:31 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 9C.41.42423.7671FF46; Mon, 11
+        Sep 2023 14:34:31 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20230911133431eucas1p2631e7060cecb0914933ed45b837cf8eb~D24o3k1BS1712417124eucas1p2g;
+        Mon, 11 Sep 2023 13:34:31 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20230911133431eusmtrp2f45317b7cd9c99c65a5faf1e744acb79~D24o2pvFw0730407304eusmtrp2T;
+        Mon, 11 Sep 2023 13:34:31 +0000 (GMT)
+X-AuditID: cbfec7f2-a3bff7000002a5b7-c7-64ff1767793b
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id A2.2A.14344.7671FF46; Mon, 11
+        Sep 2023 14:34:31 +0100 (BST)
+Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
+        [106.120.51.28]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20230911133430eusmtip1cfb8f5bcad10b64100b515751c11ecd7~D24oSDyBB2147821478eusmtip12;
+        Mon, 11 Sep 2023 13:34:30 +0000 (GMT)
+From:   Mateusz Majewski <m.majewski2@samsung.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Mateusz Majewski <m.majewski2@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Subject: [PATCH v2] ARM: dts: exynos: enable polling in Exynos 4210
+Date:   Mon, 11 Sep 2023 15:34:14 +0200
+Message-ID: <20230911133417.14042-1-m.majewski2@samsung.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/4] firmware: qcom_scm: disable SDI if required
-Content-Language: en-US
-To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        Robert Marko <robimarko@gmail.com>
-CC:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <quic_gurus@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <computersforpeace@gmail.com>
-References: <20230816164641.3371878-1-robimarko@gmail.com>
- <20230816164641.3371878-2-robimarko@gmail.com>
- <ff9ec6f5-9c7c-546b-5814-159d7e2843a8@quicinc.com>
- <CAOX2RU7wbZopGErQ71frXFMz4+Y9QU6SjfrYbZPT_3yd0gU73A@mail.gmail.com>
- <b096db3b-bb2b-5146-9b75-bcc57ae318b0@quicinc.com>
- <005459a2-8daf-1c84-0309-7dd028652909@quicinc.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <005459a2-8daf-1c84-0309-7dd028652909@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ZhUf0EEa9LgWl0l9oLiOJiC5n5dCz3s3
-X-Proofpoint-GUID: ZhUf0EEa9LgWl0l9oLiOJiC5n5dCz3s3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-11_08,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
- lowpriorityscore=0 malwarescore=0 priorityscore=1501 mlxlogscore=999
- spamscore=0 clxscore=1015 phishscore=0 suspectscore=0 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309110122
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPKsWRmVeSWpSXmKPExsWy7djP87rp4v9TDGZNMbd4MG8bm8WaveeY
+        LOYfOcdq0ffiIbPFpsfXWC0u75rDZjHj/D4mi4nHJjNbrD1yl92ide8Rdgcuj02rOtk87lzb
+        w+axeUm9R9+WVYwenzfJBbBGcdmkpOZklqUW6dslcGW8WPaWveApZ8W/a19YGxi7OLoYOTkk
+        BEwktlw/xt7FyMUhJLCCUWLej7+MEM4XRolZj5+yQTifGSUevz3KBtPy/fpOqJbljBJnTi6B
+        amllkphxbQILSBWbgIHEgzfLwKpEBNoZJRbcfcYM4jALdDJJvP86nRWkSljAWeLKu2Z2EJtF
+        QFXi8MMXYDavgI3E9M5WFoh98hLPb92BigtKnJz5BCzODBRv3jobbKiEwBYOicV/IZolBFwk
+        vq/YzQphC0u8Or4FKi4j8X/nfCYIO19ixub3QIM4gOwKibsHvSBMa4mPZ5hBTGYBTYn1u/Qh
+        ih0lLpz7yAZRwSdx460gxAF8EpO2TWeGCPNKdLQJQVSrShzfM4kZwpaWeNJyG2qlh8TH5xB/
+        CwnESlyYNZtxAqPCLCRvzULy1iyEGxYwMq9iFE8tLc5NTy02zEst1ytOzC0uzUvXS87P3cQI
+        TEOn/x3/tINx7quPeocYmTgYDzFKcDArifCWHPqbIsSbklhZlVqUH19UmpNafIhRmoNFSZxX
+        2/ZkspBAemJJanZqakFqEUyWiYNTqoFp1qIFbsy9Gz/1GDLf/7Vku17s+WsFX6IVyrRmzwhv
+        jGc8tYw9kmFZh1fDAbOYvfM43fP03gUm/Wjg/PdSOvpqUpGpYftWlro99S5rZs46tbwkQPTH
+        n4M+5+aGNkR3P8iqFlujPbXu2w43hQC/vz979OW1jn4RWxC/MDD7tiVzA2fmUVWHnS6Ohltk
+        32uK3X+rlHU+Qnp6kPxalW/JbbJ9uifnrqzQDHavfHvny4VHPNo39pqFy20QLL6oa1S2oGTh
+        qvqza6PPV0XrxrNKXGl89e/7jeNhtw4913o7JS+rbPoTpfoz/5Jbg4u2dS62d9l64eHbd3H1
+        u///E7Oe2Zv7YcU+o/dltTZr5p5OO71UiaU4I9FQi7moOBEAtI+1FLIDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBLMWRmVeSWpSXmKPExsVy+t/xu7rp4v9TDLoXS1k8mLeNzWLN3nNM
+        FvOPnGO16HvxkNli0+NrrBaXd81hs5hxfh+TxcRjk5kt1h65y27RuvcIuwOXx6ZVnWwed67t
+        YfPYvKTeo2/LKkaPz5vkAlij9GyK8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1DI3NY62MTJX0
+        7WxSUnMyy1KL9O0S9DJeLHvLXvCUs+LftS+sDYxdHF2MnBwSAiYS36/vZO9i5OIQEljKKHHi
+        7yN2iIS0xOEvU6BsYYk/17rYIIqamSRW/57CDJJgEzCQePBmGVi3iEA3o8ShmbdYQBxmgW4m
+        ie7FjxhBqoQFnCWuvGsGG8UioCpx+OELMJtXwEZiemcrC8QKeYnnt+5AxQUlTs58AhZnBoo3
+        b53NPIGRbxaS1CwkqQWMTKsYRVJLi3PTc4uN9IoTc4tL89L1kvNzNzECo2DbsZ9bdjCufPVR
+        7xAjEwfjIUYJDmYlEd6SQ39ThHhTEiurUovy44tKc1KLDzGaAt03kVlKNDkfGId5JfGGZgam
+        hiZmlgamlmbGSuK8ngUdiUIC6YklqdmpqQWpRTB9TBycUg1M6llfY8uuHLqVE1LL5vTpzN8w
+        7tnhadMWpnAunCyh7nw6cSVLcNGJmpUxu169/NPAWHK+q8X9w5Y/EYEeS5emz2ROkLV7I7nQ
+        YaLmrLf2c+ZP1fv8slR5udgNmyWZsYvqg3ucZNtP3hf5InZMU/nebgdf29UNwV+VCp9v11M+
+        f6mcn+eO7q+rSVO0Zcsuz6td8bylqU+SaecKrVXxrgUhU4w6J+zTnKwbunDam4t7Ymq5nzCE
+        B98tOPfioMoRo9MT/oYrmBwVWK2qoMYtLsQS115kdcvXd8L5inXFCkt4Mp/ONTK/E1fGJPhI
+        NSGdN/OvafGZzfp+19QiX1xQCZuzXyPaufP785bvFbc8NsgpsRRnJBpqMRcVJwIAw1INSwsD
+        AAA=
+X-CMS-MailID: 20230911133431eucas1p2631e7060cecb0914933ed45b837cf8eb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20230911133431eucas1p2631e7060cecb0914933ed45b837cf8eb
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20230911133431eucas1p2631e7060cecb0914933ed45b837cf8eb
+References: <CGME20230911133431eucas1p2631e7060cecb0914933ed45b837cf8eb@eucas1p2.samsung.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+It seems that thermal in Exynos 4210 is broken without this, as it will
+never decrease cooling after increasing it.
 
+Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
+---
+v1 -> v2: Just uploaded separately from all the thermal: exynos:
+  patches with a shorter recipient list, no change otherwise.
 
-On 9/7/2023 12:02 PM, Sricharan Ramabadhran wrote:
-> 
-> <snip ..>
-> 
->>>>> +     int ret;
->>>>> +     struct qcom_scm_desc desc = {
->>>>> +             .svc = QCOM_SCM_SVC_BOOT,
->>>>> +             .cmd = QCOM_SCM_BOOT_SDI_CONFIG,
->>>>> +             .args[0] = 1, /* Disable watchdog debug */
->>>>> +             .args[1] = 0, /* Disable SDI */
->>>>> +             .arginfo = QCOM_SCM_ARGS(2),
->>>>> +             .owner = ARM_SMCCC_OWNER_SIP,
->>>>> +     };
->>>>> +     struct qcom_scm_res res;
->>>>> +
->>>>> +     ret = qcom_scm_clk_enable();
->>>>> +     if (ret)
->>>>> +             return ret;
->>>>> +     ret = qcom_scm_call(__scm->dev, &desc, &res);
->>>>
->>>> Would you not be wanting this call to be atomic ?
->>>
->>> This is implemented based off the downstream 5.4 kernel as I dont have
->>> the SCM docs
->>> so I dont know if its even supported in the atomic version.
->>
->> Ok,.
->>
->> Well, Kernel version does not guarantees us whether certain things
->> are supported or not in the firmware and it is not bound to any
->> particular firmware version;
->>
->> So, whatever firmware version it is running with, we should try to
->> support.
->>
->> Should we implement certain kind of call, if fastcall(atomic) is 
->> supported go-ahead otherwise fallback to slowcalls (interruptible)
->> calls, but this is completely out of the context of this patch.
->>
-> 
->   I replied on older thread, was not in CC here, just saw this.
-> 
->   Agree, atomic api is out of this context and we could take it up
->   separately.
-> 
->>>>
->>>>> +
->>>>> +     qcom_scm_clk_disable();
->>>>> +
->>>>> +     return ret ? : res.result[0];
->>>>> +}
->>>>> +
->>>>>    static int __qcom_scm_set_dload_mode(struct device *dev, bool 
->>>>> enable)
->>>>>    {
->>>>>        struct qcom_scm_desc desc = {
->>>>> @@ -1468,6 +1491,12 @@ static int qcom_scm_probe(struct 
->>>>> platform_device *pdev)
->>>>>        if (download_mode)
->>>>>                qcom_scm_set_download_mode(true);
->>>>>
->>>>> +     /*
->>>>> +      * Disable SDI if indicated by DT that it is enabled by default.
->>>>> +      */
->>>>> +     if (of_property_read_bool(pdev->dev.of_node, 
->>>>> "qcom,sdi-enabled"))
->>>>> +             qcom_scm_disable_sdi();
->>>>
->>>> Why don't we do this call in qcom_scm_shutdown()
->>>> also does it not conflict with above download_mode
->>>> we have enabled download mode but disabling SDI
->>>> means (hard reset) and will not be collecting
->>>> crash dump?
->>>
->>> Because doing it in SCM removal is too late, what if we have a WDT
->>> assertion and not a
->>> regular reboot?
->>> It would mean that the board will get stuck in the debug mode which is
->>> not useful for users and
->>> requires the power to be pulled in order to boot normally again.
->>
->> Agree.
-> 
->   For IPQ chipsets, SDI bit is used like below,
-> 
->     For abnormal resets (like WDT), should be set '1' for valid dump
->     collection.
-> 
->     For reboot, should be cleared to '0' to avoid dump collection which
->     is not required in this case.
-> 
->     For HLOS panic, is a don't care, dumps always get collected and
->     firmware takes care of clearing the SDI bit.
-> 
->     Mukesh,  Can you confirm if its same for msm also ?
+ arch/arm/boot/dts/samsung/exynos4210.dtsi | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-Yes, it is same in MSM as well.
+diff --git a/arch/arm/boot/dts/samsung/exynos4210.dtsi b/arch/arm/boot/dts/samsung/exynos4210.dtsi
+index 0e27c3375e2e..aae185b7f91c 100644
+--- a/arch/arm/boot/dts/samsung/exynos4210.dtsi
++++ b/arch/arm/boot/dts/samsung/exynos4210.dtsi
+@@ -391,8 +391,14 @@ &cpu_alert2 {
+ };
+ 
+ &cpu_thermal {
+-	polling-delay-passive = <0>;
+-	polling-delay = <0>;
++	/* Exynos 4210 supports thermal interrupts, but only for the rising threshold.
++	 * This means that polling is not needed for preventing overheating, but only
++	 * for decreasing cooling when possible. Hence we poll with a high delay.
++	 * Ideally, we would disable polling for the first trip point, but this isn't
++	 * really possible without outrageous hacks.
++	 */
++	polling-delay-passive = <5000>;
++	polling-delay = <5000>;
+ };
+ 
+ &gic {
+-- 
+2.41.0
 
--Mukesh
-
->>
->> Just a wild guess..
->>
->> Can we check if this call __qcom_scm_is_call_available() helps
->> to determine, if the certain soc has this SCM calls supported
->> and if it is there it can be disabled.
->>
->> __qcom_scm_is_call_available(__scm->dev, QCOM_SCM_SVC_BOOT, 
->> QCOM_SCM_BOOT_SDI_CONFIG)
->>
-> 
->   Yes, as i mentioned in other thread, checking using
->   qcom_scm_is_call_available is better. That said, would require
->   testing on all IPQ/MSM socs to confirm if firmware supports it.
-> 
->>>
->>> I am not sure about the download mode, this is where insight from QCA
->>> really help as I am
->>> doing this with very limited docs.
->>
->> Download mode would not be reflected unless it is debug
->> board, whatever you write will not be allowed if it is a
->> secure device.
->>
-> 
->    Yes, 'download mode' bit is similar, but that is used by the firmware
->    to determining whether to collect dumps on non-secure boards.
->    Specifically, 'SDI bit' on some socs is used by firmware to determine
->    if boot is happening from a 'abnormal crash', hence put DDR to
->    self-refresh etc for valid dumps.
-> 
-> Regards,
->   Sricharan
