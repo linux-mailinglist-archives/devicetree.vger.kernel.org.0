@@ -2,104 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D94E79B242
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:58:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E14879AE04
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230012AbjIKUtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
+        id S235161AbjIKUsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47602 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237333AbjIKMjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:39:15 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06CACCEB;
-        Mon, 11 Sep 2023 05:39:09 -0700 (PDT)
-Received: from [192.168.1.23] (unknown [171.76.82.102])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: vignesh)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7697366072FE;
-        Mon, 11 Sep 2023 13:39:01 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694435947;
-        bh=MvnxIayMmPEsq2MzqcxVyvlilHrYAvXUGbuaSX/LxBs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=LZ1l9Qf8rixIpz+94pqn/E7NIehaqLf/Jh8WJCYZmTcCqgTQa2ONJuqnA67jpdhKT
-         X21KmOmasjXROM25ITuqounnLMzzSCjVDiqgkRV15kt1le7Q9n+vNhRFom03J7M9Zl
-         dez0ecWl/mjrXet7A1BYTCEJOzEqwiiN/nTjyI6asZvlUm/uQIxpTaiZ5ofEePomjR
-         +WL4/ZD/aGiRPfDFYvuWIeQ60STYhgwtQo/TZTdpNn6vdUJmPVUoilr+Wjx/dnSWng
-         vV844qIYFJT5iAViLP2AG/G58VNVknnvHlDgnJQ6FRYCESGBwRdR1iSZJqVm7+wFf/
-         YTI7qV/10AamQ==
-Message-ID: <ca518c28-1375-9eaf-ffd4-bedf06810000@collabora.com>
-Date:   Mon, 11 Sep 2023 18:08:57 +0530
+        with ESMTP id S237561AbjIKM7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:59:51 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5ABBFE40;
+        Mon, 11 Sep 2023 05:59:45 -0700 (PDT)
+X-UUID: 11da3b7250a311eea33bb35ae8d461a2-20230911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=h5MlQeYSjp2j/LB9w519bAWy3e+QI9O2SLovvv9dKIs=;
+        b=AbWCZ/B+EqhLS09j9YpCnGhj0+pTRo97qKwvdELJzy3d6N0DqxCc5EpwSjJDERwQy3idDh6CwwilG2/SpRozIKYM8kMFjSVgqpXzruB/47TxmFV1oOrXT6ddtp5NA8lNoQEe0UJrwFAGDxKLqGmVkP+x2bslxf2OB2KSji5zLVw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.31,REQID:b4850ba6-ae1c-4709-84c7-43bbf7766511,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:0ad78a4,CLOUDID:cbc3e4c2-1e57-4345-9d31-31ad9818b39f,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
+        DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 11da3b7250a311eea33bb35ae8d461a2-20230911
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <yunfei.dong@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 585064307; Mon, 11 Sep 2023 20:59:40 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 11 Sep 2023 20:59:38 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 20:59:37 +0800
+From:   Yunfei Dong <yunfei.dong@mediatek.com>
+To:     =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+CC:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        "Steve Cho" <stevecho@chromium.org>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 00/14] add driver to support secure video decoder
+Date:   Mon, 11 Sep 2023 20:59:22 +0800
+Message-ID: <20230911125936.10648-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH v3 2/9] arm64: dts: qcom: apq8016-sbc: Add overlay for usb
- host mode
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        dri-devel@lists.freedesktop.org
-Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
-        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
-        daniels@collabora.com, gustavo.padovan@collabora.com,
-        angelogioacchino.delregno@collabora.com, emma@anholt.net,
-        robclark@freedesktop.org, robdclark@google.com, anholt@google.com,
-        robdclark@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        jani.nikula@linux.intel.com, mripard@kernel.org,
-        dmitry.baryshkov@linaro.org, matthias.bgg@gmail.com,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        virtualization@lists.linux-foundation.org,
-        linux-arm-msm@vger.kernel.org
-References: <20230908152225.432139-1-vignesh.raman@collabora.com>
- <20230908152225.432139-3-vignesh.raman@collabora.com>
- <ca53e4cd-1c89-482d-9662-19926efb5b47@linaro.org>
-From:   Vignesh Raman <vignesh.raman@collabora.com>
-In-Reply-To: <ca53e4cd-1c89-482d-9662-19926efb5b47@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--8.569700-8.000000
+X-TMASE-MatchedRID: /kvX+BAyhRdLbaTfilVXfZqrexa4CbEQUAjrAJWsTe8KA2OoGAlTk54d
+        VMHTNaMULOOktaHND2iW4kxGbzOebKo77AcuQhw7o65WJt1k1O9YMtqMzbYRNmfYlY6RxyOvXA6
+        qLXqEbYuwDEIJD1Y7K9r7qQBGAlkIi8ICQO6ibxQVglQa/gMvfDFcf92WG8u/EvoxTu3fj1s3Bo
+        tHDlVWrHZmxDzqJ8rQkgebTBpa5lDwOTPseUY5HB+WEMjoO9WWfS0Ip2eEHnz3IzXlXlpamPoLR
+        4+zsDTtgUicvJ4MChmMp7Dr14nIYnrpZk2SoHtre7MWlND3CeQUtK2l9hQpvBM3tVf09E8l
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--8.569700-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: B9A27BB1E74839D8447AA282BB12001D619C9E13CF4D50EEB8FA142406C08CEE2000:8
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+In order to support secure video decoder for mt8195/mt8188 h264 driver,
+need to use tee client interface to communicate with optee-os. Firstly,
+open tee context and tee session for each hardware.
 
-On 11/09/23 17:20, Konrad Dybcio wrote:
-> On 8.09.2023 17:22, Vignesh Raman wrote:
->> Due to the presence of the fastboot micro cable in the CI farm,
->> it causes the hardware to remain in gadget mode instead of host mode.
->> So it doesn't find the network, which results in failure to mount root
->> fs via NFS.
->>
->> Add an overlay dtso file that sets the dr_mode to host, allowing
->> the USB controllers to work in host mode. This dtso file will be used
->> in drm-ci, mesa-ci.
->>
->> Overlay DT file uses the sugar syntax [suggested by Dmitry Baryshkov and Maxime Ripard]
->>
->> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Suggested-by: Maxime Ripard <mripard@kernel.org>
->> Signed-off-by: Helen Koike <helen.koike@collabora.com>
->> Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
->> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
->> ---
-> For such a small change, maybe you can just use sed in your
-> scripts to alter this?
+Secondly, allocate two shared memory msg and vsi, msg used to send ipi to
+optee-os and get ack msg from optee-os, vsi used to store syntax for
+hardware decoder.
 
-This was the initial idea 
-https://patchwork.kernel.org/project/linux-mediatek/patch/20230825122435.316272-3-vignesh.raman@collabora.com/
+Thirdly, adding two CID controls: V4L2_CID_MPEG_MTK_SET_SECURE_MODE and
+V4L2_CID_MPEG_MTK_GET_SECURE_HANDLE, get secure handle used for user space
+to convert secure fd to secure handle, set secure mode used to tell decoder
+driver to initialize tee interface to decode secure video.
 
-Since there was a review comment that CI should not make changes to the 
-source tree before building, we went with DT overlay.
+Lastly, re-construct h264 driver to support secure video decoder.
 
-Regards,
-Vignesh
+Patch 1~4  initialize tee related interface and parameters.
+Patch 5~6  allocate/free secure memory.
+Patch 7    map vsi for secure mode.
+Patch 8    support one plane capture buffer.
+Patch 9~10 re-construct h264 driver to support secure mode.
+patch 11   used to convert secure fd to secure handle.
+Patch 12   used to set secure decoder mode.
+Patch 13   disable interrupt.
+Patch 14   support tee decode
+---
+Reference series:
+[1]: v1 of this series is submitted by Yong Wu.
+	message-id: 20230911023038.30649-1-yong.wu@mediatek.com
+
+Yunfei Dong (14):
+  media: mediatek: vcodec: add tee client interface to communiate with
+    optee-os
+  media: mediatek: vcodec: allocate tee share memory
+  media: mediatek: vcodec: send share memory data to optee
+  media: mediatek: vcodec: initialize msg and vsi information
+  media: mediatek: vcodec: using encoder's device to alloc/free memory
+  media: mediatek: vcodec: add interface to allocate/free secure memory
+  media: mediatek: vcodec: using shared memory as vsi address
+  media: medkatek: vcodec: support one plane capture buffer
+  media: medkatek: vcodec: re-construct h264 driver to support svp mode
+  media: medkatek: vcodec: remove parse nal_info in kernel
+  media: medkatek: vcodec: covert secure fd to secure handle
+  media: medkatek: vcodec: set secure mode to decoder driver
+  media: medkatek: vcodec: disable wait interrupt for svp mode
+  media: medkatek: vcodec: support tee decoder
+
+ .../media/platform/mediatek/vcodec/Kconfig    |   1 +
+ .../mediatek/vcodec/common/mtk_vcodec_util.c  | 177 ++++++++-
+ .../mediatek/vcodec/common/mtk_vcodec_util.h  |   3 +
+ .../platform/mediatek/vcodec/decoder/Makefile |   1 +
+ .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  |  24 +-
+ .../vcodec/decoder/mtk_vcodec_dec_drv.c       |   9 +
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   7 +
+ .../vcodec/decoder/mtk_vcodec_dec_hw.c        |  34 +-
+ .../vcodec/decoder/mtk_vcodec_dec_optee.c     | 373 ++++++++++++++++++
+ .../vcodec/decoder/mtk_vcodec_dec_optee.h     | 156 ++++++++
+ .../vcodec/decoder/mtk_vcodec_dec_stateless.c |  80 +++-
+ .../decoder/vdec/vdec_h264_req_common.c       |  16 +-
+ .../decoder/vdec/vdec_h264_req_multi_if.c     | 334 +++++++++-------
+ .../mediatek/vcodec/decoder/vdec_drv_if.c     |   4 +-
+ .../mediatek/vcodec/decoder/vdec_msg_queue.c  |   9 +-
+ .../mediatek/vcodec/decoder/vdec_vpu_if.c     |  54 ++-
+ .../mediatek/vcodec/decoder/vdec_vpu_if.h     |   4 +
+ drivers/media/v4l2-core/v4l2-ctrls-defs.c     |  10 +
+ include/uapi/linux/v4l2-controls.h            |   5 +
+ 19 files changed, 1110 insertions(+), 191 deletions(-)
+ create mode 100644 drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_optee.c
+ create mode 100644 drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec_optee.h
+
+-- 
+2.18.0
+
