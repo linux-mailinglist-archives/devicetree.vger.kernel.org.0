@@ -2,137 +2,455 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC88079B04A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C4EE79ADAE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238434AbjIKUyH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:54:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52442 "EHLO
+        id S237549AbjIKUxk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Sep 2023 16:53:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238023AbjIKNeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:34:23 -0400
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C06CDD
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:34:17 -0700 (PDT)
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20230911133414euoutp0111158bbde708a312f69962b713b22f49~D24ZdrBim2173821738euoutp01o
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 13:34:14 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20230911133414euoutp0111158bbde708a312f69962b713b22f49~D24ZdrBim2173821738euoutp01o
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1694439255;
-        bh=2Tnd5geW05sUAKwPwLdNlu3ET1dwYUIDETcddL3bGaM=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=GGPmtVcb0lnzWV0Y7gExxFVr3iW7ipyKWFfvU2fs854p/pJUl4+jk96k6xqE+lJG5
-         QhlUzpRnVYvINhm9Z5Va+v2GwxWNKo2wmQoGfsB/bxuyTmvOuBomkJKUpVviCnUpf2
-         dze2n+GS0/Zd9vxTObbY7643pa/lZTLP3rPvk7UE=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20230911133414eucas1p21199a978db8ab96180bab694b137c150~D24ZOarSc1713017130eucas1p2W;
-        Mon, 11 Sep 2023 13:34:14 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id F7.8E.11320.6571FF46; Mon, 11
-        Sep 2023 14:34:14 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20230911133414eucas1p116d395f8219ea34c284aa21d46033fa6~D24Y49S6s1288212882eucas1p1o;
-        Mon, 11 Sep 2023 13:34:14 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20230911133414eusmtrp1bf509f49c228e86ba4e998dd58583b61~D24Y4UOSX2520025200eusmtrp1J;
-        Mon, 11 Sep 2023 13:34:14 +0000 (GMT)
-X-AuditID: cbfec7f4-97dff70000022c38-6b-64ff1756f245
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id E5.5B.10549.6571FF46; Mon, 11
-        Sep 2023 14:34:14 +0100 (BST)
-Received: from AMDC4515.eu.corp.samsungelectronics.net (unknown
-        [106.120.51.28]) by eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20230911133413eusmtip1f098d0b8e9796317242ab2b0e35c32d0~D24YSgE5R1486914869eusmtip1X;
-        Mon, 11 Sep 2023 13:34:13 +0000 (GMT)
-From:   Mateusz Majewski <m.majewski2@samsung.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Mateusz Majewski <m.majewski2@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH] arm64: dts: exynos: remove unused TMU alias
-Date:   Mon, 11 Sep 2023 15:33:39 +0200
-Message-ID: <20230911133342.14028-1-m.majewski2@samsung.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S238041AbjIKNfn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:35:43 -0400
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB893106
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:35:37 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-56b2e689968so3114818a12.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:35:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694439336; x=1695044136;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FFSzuCGy52KzjM99XInUlC5S7QkdlRbmWeLPzdzNuao=;
+        b=xDwXzKk92MtBxIMUzy2FLU0NklU3LYmXTUTLR5yFzQ5JeGCzzzn0MrxriBFOiNYkSf
+         9HyUaFnOLpm4M8N/weqHD8sqn/+AMk5ajbLVmogkw8H2YId1kIzyiHSg6KXW+bRe+Tdl
+         kAMVTStrqu7ejz18yBMgxk2zja7HfqzpZ5q311RZZFgV+89lVRIBEThDi/R1bvb6axHm
+         dL8AcdkqMHZcem0uiUbWH5I+eoReMofw0T03iv9vwZ6TRwYoPB3yoCcoPKj7JNPu4Eip
+         sFpfXKZGgnPHUd2xJgKOEtLERlzGjQZYM8nnLjbypUfBP8fmV7xR0K8bUyNisiqn/Bvg
+         Cv8A==
+X-Gm-Message-State: AOJu0YyERWxonjHjqecxU/f+LGABmVumEiWmZ3PCHEVwn/2W7kr5sqOW
+        F/mr9PINTAVIGSgAk1wOWQh+ngKIXj9Q+A==
+X-Google-Smtp-Source: AGHT+IFYJwS3OL5ltL5OlAdSJr7QzNb8zkU5jq4LZ8GwIwT+va2Xc1/wixHDtwpfKQ9+V5JhmkhWZg==
+X-Received: by 2002:a17:90a:e506:b0:274:12f3:d91f with SMTP id t6-20020a17090ae50600b0027412f3d91fmr1983748pjy.15.1694439336103;
+        Mon, 11 Sep 2023 06:35:36 -0700 (PDT)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com. [209.85.210.177])
+        by smtp.gmail.com with ESMTPSA id bx5-20020a17090af48500b002740e66851asm2273802pjb.35.2023.09.11.06.35.31
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 06:35:32 -0700 (PDT)
+Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-68fb70fca9fso944245b3a.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:35:31 -0700 (PDT)
+X-Received: by 2002:a05:6a20:f39d:b0:152:be08:b013 with SMTP id
+ qr29-20020a056a20f39d00b00152be08b013mr6911988pzb.42.1694439330890; Mon, 11
+ Sep 2023 06:35:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLKsWRmVeSWpSXmKPExsWy7djPc7ph4v9TDI51aVg8mLeNzWLN3nNM
-        FvOPnGO16HvxkNli0+NrrBaXd81hs5hxfh+TxcRjk5kt1h65y27RuvcIuwOXx6ZVnWwed67t
-        YfPYvKTeo2/LKkaPz5vkAlijuGxSUnMyy1KL9O0SuDIOvDvPWvCJtWLrvocsDYwfWboYOTkk
-        BEwktn27w9bFyMUhJLCCUeLP7vlMEM4XRonF+48xQjifGSW6Ds1gh2lZt/ohK0RiOaPEjIXP
-        2SGcViaJVYefgQ1mEzCQePBmGVhCRKCdUWLB3WfMIA6zQCeTxPuv01lBqoQFbCQWHd7HDGKz
-        CKhKLLj0nhHE5gWKH1zSzwixT17i+a077BBxQYmTM5+AbWAGijdvnQ02VEJgC4fEs+5FQA4H
-        kOMicXWZK0SvsMSr41ug7paROD25B+rtfIkZm9+zQJRXSNw96AVhWkt8PAM2hFlAU2L9Ln2I
-        YkeJU40NULP5JG68FYTYzycxadt0qDCvREebEES1qsTxPZOYIWxpiSctt5kgSjwkOj+6gYSF
-        BGIlGq73s0xgVJiF5KlZSJ6ahXDCAkbmVYziqaXFuempxUZ5qeV6xYm5xaV56XrJ+bmbGIEp
-        6PS/4192MC5/9VHvECMTB+MhRgkOZiUR3pJDf1OEeFMSK6tSi/Lji0pzUosPMUpzsCiJ82rb
-        nkwWEkhPLEnNTk0tSC2CyTJxcEo1MM084Hi4/9e8EG+D2L1efRPyop7VzWSpz3KaKywe/qRz
-        X3OD8vvVW9Y9m/n+RX6fePJNxV/KP46ZLz68M81y++ZdM2c/+rnYs2VT4pVb6y5fXcQWXWlY
-        yH7k97+SLRbue34tfynkodJ/1HLNmit9Ex/cFbqkcNT1g7XI+o0RB2dHqNVKTJdpNnwTO892
-        wiap2hyxb7xVidWXSh2idla56530unRiVmrOJiOW5r9uc511Ql+2sjwJsC+s5vx34I7rs0Z7
-        qyM9gcaPPxhVf0nw5X+9df3lraF/C9sO7f90Xc7j56yOPp3qo5018RUJWfWTSuq3/gktNGWQ
-        K4627uQtSq+9+/SdqiejGmPSHN6UfCWW4oxEQy3mouJEADmrYSWwAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBLMWRmVeSWpSXmKPExsVy+t/xu7ph4v9TDB5cELR4MG8bm8WaveeY
-        LOYfOcdq0ffiIbPFpsfXWC0u75rDZjHj/D4mi4nHJjNbrD1yl92ide8Rdgcuj02rOtk87lzb
-        w+axeUm9R9+WVYwenzfJBbBG6dkU5ZeWpCpk5BeX2CpFG1oY6RlaWugZmVjqGRqbx1oZmSrp
-        29mkpOZklqUW6dsl6GUceHeeteATa8XWfQ9ZGhg/snQxcnJICJhIrFv9kLWLkYtDSGApo8SM
-        RRcZIRLSEoe/TGGHsIUl/lzrYoMoamaS6JgzFaybTcBA4sGbZewgCRGBbkaJQzNvsYA4zALd
-        TBLdix+BjRIWsJFYdHgfM4jNIqAqseDSe7A4L1D84JJ+qHXyEs9v3WGHiAtKnJz5BGwDM1C8
-        eets5gmMfLOQpGYhSS1gZFrFKJJaWpybnltsqFecmFtcmpeul5yfu4kRGAXbjv3cvINx3quP
-        eocYmTgYDzFKcDArifCWHPqbIsSbklhZlVqUH19UmpNafIjRFOi+icxSosn5wDjMK4k3NDMw
-        NTQxszQwtTQzVhLn9SzoSBQSSE8sSc1OTS1ILYLpY+LglGpg0nYV/VRj3qrZnfFF5Pxel7nH
-        toSWpQtUbWmc/+gB49zlVZtUDtz89LEj2/6r+NEtr04tExS51253fdLaINUG0+9qM7KY+Jzl
-        t/WHLbqnrBY/f3q2f2Suh9vL+8cyL3j9iumTPjPhhICX2crbbiG3pvE15ckdcrv6zEvAbs4T
-        4/P1G8xWigq4SajO6il8fCZmm+6HTvO7IouPKXQoyn/ZfKRraX9xburM4O3bloSwKmX+1636
-        or6FrSm0Piju8sXIrRp2rWnTLXk8dqQ6W3J8bA8T0M3bXDUzlFH6Qt93i1lzpdcttD/2uVh4
-        t5R3Veu7A0cPdTh8DFvS+Ofyp2lz/eVMD6cGOi6/ulVaZtI5JZbijERDLeai4kQA17nomQsD
-        AAA=
-X-CMS-MailID: 20230911133414eucas1p116d395f8219ea34c284aa21d46033fa6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20230911133414eucas1p116d395f8219ea34c284aa21d46033fa6
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20230911133414eucas1p116d395f8219ea34c284aa21d46033fa6
-References: <CGME20230911133414eucas1p116d395f8219ea34c284aa21d46033fa6@eucas1p1.samsung.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230828181941.1609894-1-macroalpha82@gmail.com>
+ <20230828181941.1609894-9-macroalpha82@gmail.com> <20230911004909.6a40e1c0@slackpad.lan>
+In-Reply-To: <20230911004909.6a40e1c0@slackpad.lan>
+Reply-To: wens@csie.org
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Mon, 11 Sep 2023 21:35:19 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66qXS1Yn8fCd9kbgf9mrbpa8A4q=px+0jAX5Z567oYAsg@mail.gmail.com>
+Message-ID: <CAGb2v66qXS1Yn8fCd9kbgf9mrbpa8A4q=px+0jAX5Z567oYAsg@mail.gmail.com>
+Subject: Re: [PATCH V4 8/8] ARM: dts: sunxi: add support for Anbernic RG-Nano
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, airlied@gmail.com, conor+dt@kernel.org,
+        daniel@ffwll.ch, heiko@sntech.de, jagan@edgeble.ai,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        mripard@kernel.org, neil.armstrong@linaro.org, noralf@tronnes.org,
+        robh+dt@kernel.org, sam@ravnborg.org, samuel@sholland.org,
+        uwu@icenowy.me, Chris Morgan <macromorgan@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ID of this alias is checked by the exynos-tmu driver, but isn't used
-anywhere and omitting it does not cause an error. Indeed, this is the
-only Exynos device that defines this alias.
+On Mon, Sep 11, 2023 at 8:07 AM Andre Przywara <andre.przywara@arm.com> wrote:
+>
+> On Mon, 28 Aug 2023 13:19:41 -0500
+> Chris Morgan <macroalpha82@gmail.com> wrote:
+>
+> Hi Chris,
+>
+> thanks for the changes. As Samuel already pointed out, there is now a
+> problem with the RTC...
+>
+> > From: Chris Morgan <macromorgan@hotmail.com>
+> >
+> > The Anbernic RG-Nano is a small portable game device based on the
+> > Allwinner V3s SoC. It has GPIO buttons on the face and side for
+> > input, a single mono speaker, a 240x240 SPI controlled display, a USB-C
+> > OTG port, an SD card slot for booting, and 64MB of RAM included in the
+> > SoC.
+> >
+> > Working/Tested:
+> > - SDMMC
+> > - UART (for debugging)
+> > - Buttons
+> > - Charging/battery/PMIC
+> > - Speaker
+> > - RTC
+> > - USB Host and Gadget*
+> > - Display (at 60hz)
+> >
+> > *There is an issue with the usb_phy where it forces the device to host
+> > mode. Until the phy driver is fixed this can be bypassed by either
+> > removing the phy references from the ohci and ehci nodes or by setting
+> > the usbphy on the ohci and ehci nodes to 1 (which is incorrect).
+> >
+> > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+> > ---
+> >  arch/arm/boot/dts/allwinner/Makefile          |   1 +
+> >  .../allwinner/sun8i-v3s-anbernic-rg-nano.dts  | 284 ++++++++++++++++++
+> >  2 files changed, 285 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> >
+> > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
+> > index 589a1ce1120a..2be83a1edcbb 100644
+> > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > @@ -237,6 +237,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
+> >       sun8i-t113s-mangopi-mq-r-t113.dtb \
+> >       sun8i-t3-cqa3t-bv3.dtb \
+> >       sun8i-v3-sl631-imx179.dtb \
+> > +     sun8i-v3s-anbernic-rg-nano.dtb \
+> >       sun8i-v3s-licheepi-zero.dtb \
+> >       sun8i-v3s-licheepi-zero-dock.dtb \
+> >       sun8i-v40-bananapi-m2-berry.dtb
+> > diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > new file mode 100644
+> > index 000000000000..bcccb0d3f9ce
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-anbernic-rg-nano.dts
+> > @@ -0,0 +1,284 @@
+> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > +
+> > +/dts-v1/;
+> > +#include <dt-bindings/input/linux-event-codes.h>
+> > +#include "sun8i-v3s.dtsi"
+> > +#include "sunxi-common-regulators.dtsi"
+> > +
+> > +/ {
+> > +     model = "Anbernic RG Nano";
+> > +     compatible = "anbernic,rg-nano", "allwinner,sun8i-v3s";
+> > +
+> > +     aliases {
+> > +             serial0 = &uart0;
+> > +     };
+> > +
+> > +     backlight: backlight {
+> > +             compatible = "pwm-backlight";
+> > +             brightness-levels = <0 1 2 3 8 14 21 32 46 60 80 100>;
+> > +             default-brightness-level = <11>;
+> > +             power-supply = <&reg_vcc5v0>;
+> > +             pwms = <&pwm 0 40000 1>;
+> > +     };
+> > +
+> > +     chosen {
+> > +             stdout-path = "serial0:115200n8";
+> > +     };
+> > +
+> > +     gpio_keys: gpio-keys {
+> > +             compatible = "gpio-keys";
+> > +
+> > +             button-a {
+> > +                     gpios = <&gpio_expander 12 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-A";
+> > +                     linux,code = <BTN_EAST>;
+> > +             };
+> > +
+> > +             button-b {
+> > +                     gpios = <&gpio_expander 14 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-B";
+> > +                     linux,code = <BTN_SOUTH>;
+> > +             };
+> > +
+> > +             button-down {
+> > +                     gpios = <&gpio_expander 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "DPAD-DOWN";
+> > +                     linux,code = <BTN_DPAD_DOWN>;
+> > +             };
+> > +
+> > +             button-left {
+> > +                     gpios = <&gpio_expander 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "DPAD-LEFT";
+> > +                     linux,code = <BTN_DPAD_LEFT>;
+> > +             };
+> > +
+> > +             button-right {
+> > +                     gpios = <&gpio_expander 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "DPAD-RIGHT";
+> > +                     linux,code = <BTN_DPAD_RIGHT>;
+> > +             };
+> > +
+> > +             button-se {
+> > +                     gpios = <&gpio_expander 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-SELECT";
+> > +                     linux,code = <BTN_SELECT>;
+> > +             };
+> > +
+> > +             button-st {
+> > +                     gpios = <&gpio_expander 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-START";
+> > +                     linux,code = <BTN_START>;
+> > +             };
+> > +
+> > +             button-tl {
+> > +                     gpios = <&gpio_expander 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-L";
+> > +                     linux,code = <BTN_TL>;
+> > +             };
+> > +
+> > +             button-tr {
+> > +                     gpios = <&gpio_expander 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-R";
+> > +                     linux,code = <BTN_TR>;
+> > +             };
+> > +
+> > +             button-up {
+> > +                     gpios = <&gpio_expander 3 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "DPAD-UP";
+> > +                     linux,code = <BTN_DPAD_UP>;
+> > +             };
+> > +
+> > +             button-x {
+> > +                     gpios = <&gpio_expander 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-X";
+> > +                     linux,code = <BTN_NORTH>;
+> > +             };
+> > +
+> > +             button-y {
+> > +                     gpios = <&gpio_expander 13 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> > +                     label = "BTN-Y";
+> > +                     linux,code = <BTN_WEST>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&ccu {
+> > +     clocks = <&osc24M>, <&osc32k>;
+>
+> Samuel already pointed that out: please don't change that.
+>
+> > +};
+> > +
+> > +&codec {
+> > +     allwinner,audio-routing = "Speaker", "HP",
+> > +                               "MIC1", "Mic",
+> > +                               "Mic", "HBIAS";
+> > +     allwinner,pa-gpios = <&pio 5 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* PF6 */
+> > +     status = "okay";
+> > +};
+> > +
+> > +&ehci {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&i2c0 {
+> > +     status = "okay";
+> > +
+> > +     gpio_expander: gpio@20 {
+> > +             compatible = "nxp,pcal6416";
+> > +             reg = <0x20>;
+> > +             gpio-controller;
+> > +             #gpio-cells = <2>;
+> > +             #interrupt-cells = <2>;
+> > +             interrupt-controller;
+> > +             interrupt-parent = <&pio>;
+> > +             interrupts = <1 3 IRQ_TYPE_EDGE_BOTH>; /* PB3/EINT3 */
+> > +             vcc-supply = <&reg_vcc3v3>;
+> > +     };
+> > +
+> > +     axp209: pmic@34 {
+> > +             reg = <0x34>;
+> > +             interrupt-parent = <&pio>;
+> > +             interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>; /* PB5/EINT5 */
+> > +     };
+> > +
+> > +     pcf8563: rtc@51 {
+> > +             compatible = "nxp,pcf8563";
+> > +             reg = <0x51>;
+> > +     };
+> > +};
+> > +
+> > +#include "axp209.dtsi"
+> > +
+> > +&battery_power_supply {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&mmc0 {
+> > +     broken-cd;
+> > +     bus-width = <4>;
+> > +     disable-wp;
+> > +     vmmc-supply = <&reg_vcc3v3>;
+> > +     vqmmc-supply = <&reg_vcc3v3>;
+> > +     status = "okay";
+> > +};
+> > +
+> > +&ohci {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&pio {
+> > +     clocks = <&ccu CLK_BUS_PIO>, <&osc24M>, <&osc32k>;
+> > +     vcc-pb-supply = <&reg_vcc3v3>;
+> > +     vcc-pc-supply = <&reg_vcc3v3>;
+> > +     vcc-pf-supply = <&reg_vcc3v3>;
+> > +     vcc-pg-supply = <&reg_vcc3v3>;
+> > +
+> > +     spi0_no_miso_pins: spi0-no-miso-pins {
+> > +             pins = "PC1", "PC2", "PC3";
+> > +             function = "spi0";
+> > +     };
+> > +};
+> > +
+> > +&pwm {
+> > +     pinctrl-0 = <&pwm0_pin>;
+> > +     pinctrl-names = "default";
+> > +     status = "okay";
+> > +};
+> > +
+> > +/* DCDC2 wired into vdd-cpu, vdd-sys, and vdd-ephy. */
+> > +&reg_dcdc2 {
+> > +     regulator-always-on;
+> > +     regulator-max-microvolt = <1250000>;
+> > +     regulator-min-microvolt = <1250000>;
+> > +     regulator-name = "vdd-cpu";
+> > +};
+> > +
+> > +/* DCDC3 wired into every 3.3v input that isn't the RTC. */
+> > +&reg_dcdc3 {
+> > +     regulator-always-on;
+> > +     regulator-max-microvolt = <3300000>;
+> > +     regulator-min-microvolt = <3300000>;
+> > +     regulator-name = "vcc-io";
+> > +};
+> > +
+> > +/*
+> > + * LDO1 wired into RTC, voltage is hard-wired at 3.3v and cannot be
+> > + * software modified. Note that setting voltage here to 3.3v for accuracy
+> > + * sake causes an issue with the driver that causes it to fail to probe
+> > + * because of a voltage constraint in the driver.
+> > + */
+> > +&reg_ldo1 {
+> > +     regulator-always-on;
+> > +     regulator-name = "vcc-rtc";
+> > +};
+> > +
+> > +/* LDO2 wired into VCC-PLL and audio codec. */
+> > +&reg_ldo2 {
+> > +     regulator-always-on;
+> > +     regulator-max-microvolt = <3000000>;
+> > +     regulator-min-microvolt = <3000000>;
+> > +     regulator-name = "vcc-pll";
+> > +};
+> > +
+> > +/* LDO3, LDO4, and LDO5 unused. */
+> > +&reg_ldo3 {
+> > +     status = "disabled";
+> > +};
+> > +
+> > +&reg_ldo4 {
+> > +     status = "disabled";
+> > +};
+> > +
+> > +/* External RTC used instead, internal RTC runs fast. */
+> > +&rtc {
+> > +     status = "disabled";
+>
+> So as Samuel mentioned, I don't think you should disable the RTC, even
+> if you have another RTC which provides more accurate time reading.
+> On most Allwinner chips the RTC provides more than just the actual
+> timekeeping functionality, as it also provides various derived clocks.
+>
+> So when you say the "internal RTC runs fast", that sounds like the
+> board does not actually connect an external 32K crystal to the
+> X32KIN/X32KOUT pins?
+> So what happens if you remove the clocks property from the RTC node?
+> If I read the code correctly, that should make the driver aware of the
+> lack of a crystal, which might improve things?
+> The manual seems to somewhat suggest that an external oscillator is
+> mandatory - and we modelled the sun8i-v3s.dtsi base after that. Though
+> I believe the RTC supports using the internal RC oscillator, and
+> omitting the "clocks" property should make the driver switch the RTC
+> over.
+>
+> This is at least my naive and quick interpretation of the code. I am
+> not an Allwinner RTC expert though, so happy to hear Samuel's opinion.
+>
+> Regarding multiple RTCs: I didn't find anything which assigns a
+> priority level to multiple RTCs in the system. What you can do on the
+> userland side is to have a udev rule that links the PCF device to
+> /dev/rtc, so that most tools would use that as a time source.
 
-Signed-off-by: Mateusz Majewski <m.majewski2@samsung.com>
----
- arch/arm64/boot/dts/exynos/exynos7.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+You can add DT aliases to override the numbering, thus making an external
+one rtc0 and the internal one rtc1. See
+arch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts for such an example.
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7.dtsi b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-index 54ed5167d0f6..6ed80ddf3369 100644
---- a/arch/arm64/boot/dts/exynos/exynos7.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos7.dtsi
-@@ -25,7 +25,6 @@ aliases {
- 		pinctrl6 = &pinctrl_fsys0;
- 		pinctrl7 = &pinctrl_fsys1;
- 		pinctrl8 = &pinctrl_bus1;
--		tmuctrl0 = &tmuctrl_0;
- 	};
- 
- 	arm-pmu {
--- 
-2.41.0
+ChenYu
 
+> Cheers,
+> Andre
+>
+> > +};
+> > +
+> > +&spi0 {
+> > +     pinctrl-0 = <&spi0_no_miso_pins>;
+> > +     pinctrl-names = "default";
+> > +     status = "okay";
+> > +
+> > +     display@0 {
+> > +             compatible = "saef,sftc154b", "panel-mipi-dbi-spi";
+> > +             reg = <0>;
+> > +             backlight = <&backlight>;
+> > +             dc-gpios = <&pio 2 0 GPIO_ACTIVE_HIGH>; /* PC0 */
+> > +             reset-gpios = <&pio 1 2 GPIO_ACTIVE_HIGH>; /* PB2 */
+> > +             spi-max-frequency = <100000000>;
+> > +
+> > +             height-mm = <39>;
+> > +             width-mm = <39>;
+> > +
+> > +             /* Set hb-porch to compensate for non-visible area */
+> > +             panel-timing {
+> > +                     hactive = <240>;
+> > +                     vactive = <240>;
+> > +                     hback-porch = <80>;
+> > +                     vback-porch = <0>;
+> > +                     clock-frequency = <0>;
+> > +                     hfront-porch = <0>;
+> > +                     hsync-len = <0>;
+> > +                     vfront-porch = <0>;
+> > +                     vsync-len = <0>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&uart0 {
+> > +     pinctrl-0 = <&uart0_pb_pins>;
+> > +     pinctrl-names = "default";
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb_otg {
+> > +     dr_mode = "otg";
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usb_power_supply {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&usbphy {
+> > +     usb0_id_det-gpios = <&pio 6 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PG5 */
+> > +     status = "okay";
+> > +};
+>
