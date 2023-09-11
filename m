@@ -2,173 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2309279A10E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 03:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F358679A138
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 04:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231907AbjIKBxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 21:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36918 "EHLO
+        id S230036AbjIKCXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 22:23:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229522AbjIKBxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 21:53:48 -0400
-Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DECE1123;
-        Sun, 10 Sep 2023 18:53:40 -0700 (PDT)
-X-SpamFilter-By: ArmorX SpamTrap 5.78 with qID 38B1rHcM5583842, This message is accepted by code: ctloc85258
-Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
-        by rtits2.realtek.com.tw (8.15.2/2.92/5.92) with ESMTPS id 38B1rHcM5583842
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Mon, 11 Sep 2023 09:53:17 +0800
-Received: from RTEXMBS03.realtek.com.tw (172.21.6.96) by
- RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.17; Mon, 11 Sep 2023 09:53:18 +0800
-Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
- RTEXMBS03.realtek.com.tw (172.21.6.96) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.7; Mon, 11 Sep 2023 09:53:18 +0800
-Received: from RTEXMBS04.realtek.com.tw ([fe80::7445:d92b:d0b3:f79c]) by
- RTEXMBS04.realtek.com.tw ([fe80::7445:d92b:d0b3:f79c%5]) with mapi id
- 15.01.2375.007; Mon, 11 Sep 2023 09:53:18 +0800
-From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
-To:     =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 RESEND 1/2] usb: dwc3: core: configure TX/RX threshold for DWC3_IP
-Thread-Topic: [PATCH v2 RESEND 1/2] usb: dwc3: core: configure TX/RX threshold
- for DWC3_IP
-Thread-Index: AQHZ2XPLXhNkYatA80OF+c6YFdmS4bAU8hUg
-Date:   Mon, 11 Sep 2023 01:53:17 +0000
-Message-ID: <08d7c57b71df47aeb1f8c2ece725e22f@realtek.com>
-References: <20230828055212.5600-1-stanley_chang@realtek.com>
-In-Reply-To: <20230828055212.5600-1-stanley_chang@realtek.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-x-originating-ip: [172.21.190.159]
-x-kse-serverinfo: RTEXMBS03.realtek.com.tw, 9
-x-kse-antispam-interceptor-info: fallback
-x-kse-antivirus-interceptor-info: fallback
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229721AbjIKCXJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 22:23:09 -0400
+Received: from bg4.exmail.qq.com (bg4.exmail.qq.com [43.155.65.254])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6348B133;
+        Sun, 10 Sep 2023 19:23:03 -0700 (PDT)
+X-QQ-mid: bizesmtp76t1694398978t70gnb5o
+Received: from [10.4.6.71] ( [221.226.144.218])
+        by bizesmtp.qq.com (ESMTP) with 
+        id ; Mon, 11 Sep 2023 10:22:57 +0800 (CST)
+X-QQ-SSF: 00200000000000B0B000000A0000000
+X-QQ-FEAT: CR3LFp2JE4nXd/yItDfKehEUWKLbEtk1+3/pUXE5dfEQDDgB+X7s0IufsD/Fl
+        dsLeLCPyiDx9YRBvW9jJMqrZlhvIFOKJNl9aTyeiQl5Mr0yHyNEQcbH0XaSv9YIl5yh+jK+
+        J6PyISGNN6f5bj3WRHz+c1WN4lCufPcwjsVyuBXwmzkU393GmhBEpAksVrCzqAhvlbDAo6q
+        kN1HYL5FwCjNxFI5L6R6RNMNyEq1U+c2uGl3w6dfDDZ9IOBh76BB97opYnTFDMNnOkxYJ5z
+        dl6oTOtXhObc34fsk37vZAgekbKyYvci6QHAEYMGQCu5MgwVnPyg+qu13ai9gK/ELV+no2Y
+        BvEntfv5YEMOx+rKLs7+oeV372zu+lQ9PZbOxlx
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 1468014412657663109
+Message-ID: <AF273646FB631DCF+2379e6e1-f44f-39b5-a367-8866077d85c0@tinylab.org>
+Date:   Mon, 11 Sep 2023 10:22:57 +0800
 MIME-Version: 1.0
-X-KSE-AntiSpam-Interceptor-Info: fallback
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.0
+Subject: Re: [PATCH] of/kexec: Omit kaslr-seed when kexecing with nokaslr
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     frowand.list@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230908104458.775740-1-songshuaishuai@tinylab.org>
+ <CAL_JsqJFWTWg9gmO7P8d5-W9VeMtmazhCsQW121LDAWLMAHEnQ@mail.gmail.com>
+From:   Song Shuai <songshuaishuai@tinylab.org>
+In-Reply-To: <CAL_JsqJFWTWg9gmO7P8d5-W9VeMtmazhCsQW121LDAWLMAHEnQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:tinylab.org:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,FORGED_MUA_MOZILLA,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgVGhpbmgsDQoNCkNhbiB5b3UgaGVscCByZXZpZXcgdGhpcyBwYXRjaD8NCg0KVGhhbmtzLA0K
-U3RhbmxleQ0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFN0YW5sZXkg
-Q2hhbmcgPHN0YW5sZXlfY2hhbmdAcmVhbHRlay5jb20+DQo+IFNlbnQ6IE1vbmRheSwgQXVndXN0
-IDI4LCAyMDIzIDE6NTIgUE0NCj4gVG86IFRoaW5oIE5ndXllbiA8VGhpbmguTmd1eWVuQHN5bm9w
-c3lzLmNvbT4NCj4gQ2M6IFN0YW5sZXkgQ2hhbmdbqfeofLx3XSA8c3RhbmxleV9jaGFuZ0ByZWFs
-dGVrLmNvbT47IEdyZWcNCj4gS3JvYWgtSGFydG1hbiA8Z3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5v
-cmc+OyBSb2IgSGVycmluZw0KPiA8cm9iaCtkdEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mIEtvemxv
-d3NraQ0KPiA8a3J6eXN6dG9mLmtvemxvd3NraStkdEBsaW5hcm8ub3JnPjsgQ29ub3IgRG9vbGV5
-IDxjb25vcitkdEBrZXJuZWwub3JnPjsNCj4gRmVsaXBlIEJhbGJpIDxiYWxiaUBrZXJuZWwub3Jn
-PjsgbGludXgtdXNiQHZnZXIua2VybmVsLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5v
-cmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDogW1BBVENIIHYyIFJF
-U0VORCAxLzJdIHVzYjogZHdjMzogY29yZTogY29uZmlndXJlIFRYL1JYIHRocmVzaG9sZCBmb3IN
-Cj4gRFdDM19JUA0KPiANCj4gSW4gU3lub3BzeXMncyBkd2MzIGRhdGEgYm9vazoNCj4gVG8gYXZv
-aWQgdW5kZXJydW4gYW5kIG92ZXJydW4gZHVyaW5nIHRoZSBidXJzdCwgaW4gYSBoaWdoLWxhdGVu
-Y3kgYnVzIHN5c3RlbQ0KPiAobGlrZSBVU0IpLCB0aHJlc2hvbGQgYW5kIGJ1cnN0IHNpemUgY29u
-dHJvbCBpcyBwcm92aWRlZCB0aHJvdWdoIEdUWFRIUkNGRyBhbmQNCj4gR1JYVEhSQ0ZHIHJlZ2lz
-dGVycy4NCj4gDQo+IEluIFJlYWx0ZWsgREhDIFNvQywgRFdDMyBVU0IgMy4wIHVzZXMgQUhCIHN5
-c3RlbSBidXMuIFdoZW4gZHdjMyBpcw0KPiBjb25uZWN0ZWQgd2l0aCBVU0IgMi41RyBFdGhlcm5l
-dCwgdGhlcmUgd2lsbCBiZSBvdmVycnVuIHByb2JsZW0uDQo+IFRoZXJlZm9yZSwgc2V0dGluZyBU
-WC9SWCB0aHJlc2hvbGRzIGNhbiBhdm9pZCB0aGlzIGlzc3VlLg0KPiANCj4gU2lnbmVkLW9mZi1i
-eTogU3RhbmxleSBDaGFuZyA8c3RhbmxleV9jaGFuZ0ByZWFsdGVrLmNvbT4NCj4gLS0tDQo+IHYx
-IHRvIHYyIGNoYW5nZToNCj4gICAgIEFkZCB0aGUgcHJvcGVydGllcyBmb3IgVFgvUlggdGhyZXNo
-b2xkIHNldHRpbmcNCj4gLS0tDQo+ICBkcml2ZXJzL3VzYi9kd2MzL2NvcmUuYyB8IDUxDQo+ICsr
-KysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ICBkcml2ZXJzL3VzYi9k
-d2MzL2NvcmUuaCB8IDEzICsrKysrKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDY0IGluc2Vy
-dGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYyBiL2Ry
-aXZlcnMvdXNiL2R3YzMvY29yZS5jIGluZGV4DQo+IDljNmJmMDU0ZjE1ZC4uMWY3NGE1MzgxNmMz
-IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYw0KPiArKysgYi9kcml2ZXJz
-L3VzYi9kd2MzL2NvcmUuYw0KPiBAQCAtMTI0Niw2ICsxMjQ2LDM5IEBAIHN0YXRpYyBpbnQgZHdj
-M19jb3JlX2luaXQoc3RydWN0IGR3YzMgKmR3YykNCj4gIAkJfQ0KPiAgCX0NCj4gDQo+ICsJaWYg
-KERXQzNfSVBfSVMoRFdDMykpIHsNCj4gKwkJdTggcnhfdGhyX251bSA9IGR3Yy0+cnhfdGhyX251
-bV9wa3Q7DQo+ICsJCXU4IHJ4X21heGJ1cnN0ID0gZHdjLT5yeF9tYXhfYnVyc3Q7DQo+ICsJCXU4
-IHR4X3Rocl9udW0gPSBkd2MtPnR4X3Rocl9udW1fcGt0Ow0KPiArCQl1OCB0eF9tYXhidXJzdCA9
-IGR3Yy0+dHhfbWF4X2J1cnN0Ow0KPiArDQo+ICsJCWlmIChyeF90aHJfbnVtICYmIHJ4X21heGJ1
-cnN0KSB7DQo+ICsJCQlyZWcgPSBkd2MzX3JlYWRsKGR3Yy0+cmVncywgRFdDM19HUlhUSFJDRkcp
-Ow0KPiArCQkJcmVnIHw9IERXQzNfR1JYVEhSQ0ZHX1BLVENOVFNFTDsNCj4gKw0KPiArCQkJcmVn
-ICY9IH5EV0MzX0dSWFRIUkNGR19SWFBLVENOVCh+MCk7DQo+ICsJCQlyZWcgfD0gRFdDM19HUlhU
-SFJDRkdfUlhQS1RDTlQocnhfdGhyX251bSk7DQo+ICsNCj4gKwkJCXJlZyAmPSB+RFdDM19HUlhU
-SFJDRkdfTUFYUlhCVVJTVFNJWkUofjApOw0KPiArCQkJcmVnIHw9IERXQzNfR1JYVEhSQ0ZHX01B
-WFJYQlVSU1RTSVpFKHJ4X21heGJ1cnN0KTsNCj4gKw0KPiArCQkJZHdjM193cml0ZWwoZHdjLT5y
-ZWdzLCBEV0MzX0dSWFRIUkNGRywgcmVnKTsNCj4gKwkJfQ0KPiArDQo+ICsJCWlmICh0eF90aHJf
-bnVtICYmIHR4X21heGJ1cnN0KSB7DQo+ICsJCQlyZWcgPSBkd2MzX3JlYWRsKGR3Yy0+cmVncywg
-RFdDM19HVFhUSFJDRkcpOw0KPiArCQkJcmVnIHw9IERXQzNfR1RYVEhSQ0ZHX1BLVENOVFNFTDsN
-Cj4gKw0KPiArCQkJcmVnICY9IH5EV0MzX0dUWFRIUkNGR19UWFBLVENOVCh+MCk7DQo+ICsJCQly
-ZWcgfD0gRFdDM19HVFhUSFJDRkdfVFhQS1RDTlQodHhfdGhyX251bSk7DQo+ICsNCj4gKwkJCXJl
-ZyAmPSB+RFdDM19HVFhUSFJDRkdfTUFYVFhCVVJTVFNJWkUofjApOw0KPiArCQkJcmVnIHw9IERX
-QzNfR1RYVEhSQ0ZHX01BWFRYQlVSU1RTSVpFKHR4X21heGJ1cnN0KTsNCj4gKw0KPiArCQkJZHdj
-M193cml0ZWwoZHdjLT5yZWdzLCBEV0MzX0dUWFRIUkNGRywgcmVnKTsNCj4gKwkJfQ0KPiArCX0N
-Cj4gKw0KPiAgCXJldHVybiAwOw0KPiANCj4gIGVycl9wb3dlcl9vZmZfcGh5Og0KPiBAQCAtMTM4
-MCw2ICsxNDEzLDEwIEBAIHN0YXRpYyB2b2lkIGR3YzNfZ2V0X3Byb3BlcnRpZXMoc3RydWN0IGR3
-YzMgKmR3YykNCj4gIAl1OAkJCWxwbV9ueWV0X3RocmVzaG9sZDsNCj4gIAl1OAkJCXR4X2RlX2Vt
-cGhhc2lzOw0KPiAgCXU4CQkJaGlyZF90aHJlc2hvbGQ7DQo+ICsJdTgJCQlyeF90aHJfbnVtX3Br
-dCA9IDA7DQo+ICsJdTgJCQlyeF9tYXhfYnVyc3QgPSAwOw0KPiArCXU4CQkJdHhfdGhyX251bV9w
-a3QgPSAwOw0KPiArCXU4CQkJdHhfbWF4X2J1cnN0ID0gMDsNCj4gIAl1OAkJCXJ4X3Rocl9udW1f
-cGt0X3ByZCA9IDA7DQo+ICAJdTgJCQlyeF9tYXhfYnVyc3RfcHJkID0gMDsNCj4gIAl1OAkJCXR4
-X3Rocl9udW1fcGt0X3ByZCA9IDA7DQo+IEBAIC0xNDQyLDYgKzE0NzksMTQgQEAgc3RhdGljIHZv
-aWQgZHdjM19nZXRfcHJvcGVydGllcyhzdHJ1Y3QgZHdjMyAqZHdjKQ0KPiAgCQkJCSJzbnBzLHVz
-YjItbHBtLWRpc2FibGUiKTsNCj4gIAlkd2MtPnVzYjJfZ2FkZ2V0X2xwbV9kaXNhYmxlID0gZGV2
-aWNlX3Byb3BlcnR5X3JlYWRfYm9vbChkZXYsDQo+ICAJCQkJInNucHMsdXNiMi1nYWRnZXQtbHBt
-LWRpc2FibGUiKTsNCj4gKwlkZXZpY2VfcHJvcGVydHlfcmVhZF91OChkZXYsICJzbnBzLHJ4LXRo
-ci1udW0tcGt0IiwNCj4gKwkJCQkmcnhfdGhyX251bV9wa3QpOw0KPiArCWRldmljZV9wcm9wZXJ0
-eV9yZWFkX3U4KGRldiwgInNucHMscngtbWF4LWJ1cnN0IiwNCj4gKwkJCQkmcnhfbWF4X2J1cnN0
-KTsNCj4gKwlkZXZpY2VfcHJvcGVydHlfcmVhZF91OChkZXYsICJzbnBzLHR4LXRoci1udW0tcGt0
-IiwNCj4gKwkJCQkmdHhfdGhyX251bV9wa3QpOw0KPiArCWRldmljZV9wcm9wZXJ0eV9yZWFkX3U4
-KGRldiwgInNucHMsdHgtbWF4LWJ1cnN0IiwNCj4gKwkJCQkmdHhfbWF4X2J1cnN0KTsNCj4gIAlk
-ZXZpY2VfcHJvcGVydHlfcmVhZF91OChkZXYsICJzbnBzLHJ4LXRoci1udW0tcGt0LXByZCIsDQo+
-ICAJCQkJJnJ4X3Rocl9udW1fcGt0X3ByZCk7DQo+ICAJZGV2aWNlX3Byb3BlcnR5X3JlYWRfdTgo
-ZGV2LCAic25wcyxyeC1tYXgtYnVyc3QtcHJkIiwgQEAgLTE1MjMsNg0KPiArMTU2OCwxMiBAQCBz
-dGF0aWMgdm9pZCBkd2MzX2dldF9wcm9wZXJ0aWVzKHN0cnVjdCBkd2MzICpkd2MpDQo+IA0KPiAg
-CWR3Yy0+aGlyZF90aHJlc2hvbGQgPSBoaXJkX3RocmVzaG9sZDsNCj4gDQo+ICsJZHdjLT5yeF90
-aHJfbnVtX3BrdCA9IHJ4X3Rocl9udW1fcGt0Ow0KPiArCWR3Yy0+cnhfbWF4X2J1cnN0ID0gcnhf
-bWF4X2J1cnN0Ow0KPiArDQo+ICsJZHdjLT50eF90aHJfbnVtX3BrdCA9IHR4X3Rocl9udW1fcGt0
-Ow0KPiArCWR3Yy0+dHhfbWF4X2J1cnN0ID0gdHhfbWF4X2J1cnN0Ow0KPiArDQo+ICAJZHdjLT5y
-eF90aHJfbnVtX3BrdF9wcmQgPSByeF90aHJfbnVtX3BrdF9wcmQ7DQo+ICAJZHdjLT5yeF9tYXhf
-YnVyc3RfcHJkID0gcnhfbWF4X2J1cnN0X3ByZDsNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJz
-L3VzYi9kd2MzL2NvcmUuaCBiL2RyaXZlcnMvdXNiL2R3YzMvY29yZS5oIGluZGV4DQo+IGE2OWFj
-NjdkODlmZS4uNjc4MmVjOGJmZDY0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL3VzYi9kd2MzL2Nv
-cmUuaA0KPiArKysgYi9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuaA0KPiBAQCAtMjExLDYgKzIxMSwx
-MSBAQA0KPiAgI2RlZmluZSBEV0MzX0dSWFRIUkNGR19SWFBLVENOVChuKSAoKChuKSAmIDB4Zikg
-PDwgMjQpICAjZGVmaW5lDQo+IERXQzNfR1JYVEhSQ0ZHX1BLVENOVFNFTCBCSVQoMjkpDQo+IA0K
-PiArLyogR2xvYmFsIFRYIFRocmVzaG9sZCBDb25maWd1cmF0aW9uIFJlZ2lzdGVyICovICNkZWZp
-bmUNCj4gK0RXQzNfR1RYVEhSQ0ZHX01BWFRYQlVSU1RTSVpFKG4pICgoKG4pICYgMHhmZikgPDwg
-MTYpICNkZWZpbmUNCj4gK0RXQzNfR1RYVEhSQ0ZHX1RYUEtUQ05UKG4pICgoKG4pICYgMHhmKSA8
-PCAyNCkgI2RlZmluZQ0KPiArRFdDM19HVFhUSFJDRkdfUEtUQ05UU0VMIEJJVCgyOSkNCj4gKw0K
-PiAgLyogR2xvYmFsIFJYIFRocmVzaG9sZCBDb25maWd1cmF0aW9uIFJlZ2lzdGVyIGZvciBEV0Nf
-dXNiMzEgb25seSAqLw0KPiAgI2RlZmluZSBEV0MzMV9HUlhUSFJDRkdfTUFYUlhCVVJTVFNJWkUo
-bikJKCgobikgJiAweDFmKSA8PCAxNikNCj4gICNkZWZpbmUgRFdDMzFfR1JYVEhSQ0ZHX1JYUEtU
-Q05UKG4pCQkoKChuKSAmIDB4MWYpIDw8IDIxKQ0KPiBAQCAtMTA0NSw2ICsxMDUwLDEwIEBAIHN0
-cnVjdCBkd2MzX3NjcmF0Y2hwYWRfYXJyYXkgew0KPiAgICogQHRlc3RfbW9kZV9ucjogdGVzdCBm
-ZWF0dXJlIHNlbGVjdG9yDQo+ICAgKiBAbHBtX255ZXRfdGhyZXNob2xkOiBMUE0gTllFVCByZXNw
-b25zZSB0aHJlc2hvbGQNCj4gICAqIEBoaXJkX3RocmVzaG9sZDogSElSRCB0aHJlc2hvbGQNCj4g
-KyAqIEByeF90aHJfbnVtX3BrdDogVVNCIHJlY2VpdmUgcGFja2V0IGNvdW50DQo+ICsgKiBAcnhf
-bWF4X2J1cnN0OiBtYXggVVNCIHJlY2VpdmUgYnVyc3Qgc2l6ZQ0KPiArICogQHR4X3Rocl9udW1f
-cGt0OiBVU0IgdHJhbnNtaXQgcGFja2V0IGNvdW50DQo+ICsgKiBAdHhfbWF4X2J1cnN0OiBtYXgg
-VVNCIHRyYW5zbWl0IGJ1cnN0IHNpemUNCj4gICAqIEByeF90aHJfbnVtX3BrdF9wcmQ6IHBlcmlv
-ZGljIEVTUyByZWNlaXZlIHBhY2tldCBjb3VudA0KPiAgICogQHJ4X21heF9idXJzdF9wcmQ6IG1h
-eCBwZXJpb2RpYyBFU1MgcmVjZWl2ZSBidXJzdCBzaXplDQo+ICAgKiBAdHhfdGhyX251bV9wa3Rf
-cHJkOiBwZXJpb2RpYyBFU1MgdHJhbnNtaXQgcGFja2V0IGNvdW50IEBAIC0xMjczLDYNCj4gKzEy
-ODIsMTAgQEAgc3RydWN0IGR3YzMgew0KPiAgCXU4CQkJdGVzdF9tb2RlX25yOw0KPiAgCXU4CQkJ
-bHBtX255ZXRfdGhyZXNob2xkOw0KPiAgCXU4CQkJaGlyZF90aHJlc2hvbGQ7DQo+ICsJdTgJCQly
-eF90aHJfbnVtX3BrdDsNCj4gKwl1OAkJCXJ4X21heF9idXJzdDsNCj4gKwl1OAkJCXR4X3Rocl9u
-dW1fcGt0Ow0KPiArCXU4CQkJdHhfbWF4X2J1cnN0Ow0KPiAgCXU4CQkJcnhfdGhyX251bV9wa3Rf
-cHJkOw0KPiAgCXU4CQkJcnhfbWF4X2J1cnN0X3ByZDsNCj4gIAl1OAkJCXR4X3Rocl9udW1fcGt0
-X3ByZDsNCj4gLS0NCj4gMi4zNC4xDQoNCg==
+
+
+在 2023/9/8 22:58, Rob Herring 写道:
+> On Fri, Sep 8, 2023 at 5:45 AM Song Shuai <songshuaishuai@tinylab.org> wrote:
+>>
+>> The chosen node always adds the kaslr-seed property which is needless
+>> for the kernels kexeced with the cmdline contained "nokaslr".
+>>
+>> So omit the kaslr-seed when kexecing with nokaslr.
+> 
+> The kexec'ed kernel can ignore bootargs with CONFIG_CMDLINE_FORCE. So
+> you don't know if kaslr-seed will be used or not.
+> 
+You are correct. In addition, unlike the EFI Stub, Kexec is unable to
+determine whether the kexec'ed kernel supports RANDOMIZE_BASE,
+hence it is appropriate to emit the kaslr-seed unconditionally like
+those out-of-linux bootloaders.
+
+Apologies for bothering you with this incorrect patch.
+
+>> Signed-off-by: Song Shuai <songshuaishuai@tinylab.org>
+>> ---
+>>   drivers/of/kexec.c | 15 ++++++++++++---
+>>   1 file changed, 12 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+>> index f26d2ba8a371..c0d53b10cb70 100644
+>> --- a/drivers/of/kexec.c
+>> +++ b/drivers/of/kexec.c
+>> @@ -19,6 +19,7 @@
+>>   #include <linux/random.h>
+>>   #include <linux/slab.h>
+>>   #include <linux/types.h>
+>> +#include <linux/string.h>
+>>
+>>   #define RNG_SEED_SIZE          128
+>>
+>> @@ -263,6 +264,14 @@ static inline int setup_ima_buffer(const struct kimage *image, void *fdt,
+>>   }
+>>   #endif /* CONFIG_IMA_KEXEC */
+>>
+>> +static bool is_nokaslr_cmdline(const char *cmdline)
+>> +{
+>> +       char *str;
+>> +
+>> +       str = strstr(cmdline, "nokaslr");
+>> +       return str == cmdline || (str > cmdline && *(str - 1) == ' ');
+> 
+> Yet another copy of the same code. That's a clue to refactor into a
+> common function.
+> 
+> Rob
+> 
+
+-- 
+Thanks
+Song Shuai
+
