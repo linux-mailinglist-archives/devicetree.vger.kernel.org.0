@@ -2,123 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E04B79B930
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCDA079B8D4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237461AbjIKUvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44664 "EHLO
+        id S237773AbjIKUvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242450AbjIKPgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:36:25 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69B49E9;
-        Mon, 11 Sep 2023 08:36:19 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BAB6C40004;
-        Mon, 11 Sep 2023 15:35:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1694446577;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=3ANDeLZjV5lzAaJjoCPyh76BQ46mQC+o7bmbGehRwMY=;
-        b=X//OkO1AojU8koknd9JyYVKBEmbSLqFNl9OMqJS8PHtuhmXasUTxRa8dd4d432BoBRTAa3
-        liY5GQszHTiWjz1YCdXghxRFaeAXGSeCDkfyR6aQYey1c/yvEWPjm+16dK+eDv89BWP7tL
-        thlyLBEhWXqlsMO0EZQUsbi5wJLMnJ0W3TB73HdjYnmPjLPkxZdPbZznbdcu42ZCPSzyGO
-        TwqcJkY0YxKFXCdci0kpINnBoVJxuqyPmXj11A4/Y2Y9JnUA1OCp4gjAzmObtaLwXOQmfr
-        /L2yxRRMzThTPfumWfup1XLJeNwYthK0yvuv0qxs3uI/fJGeiuv7Z0oXwQmpLQ==
-Date:   Mon, 11 Sep 2023 17:35:03 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Lizhi Hou <lizhi.hou@amd.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>, <max.zhen@amd.com>, <sonal.santan@amd.com>,
-        <stefano.stabellini@xilinx.com>,
-        =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
-Message-ID: <20230911173503.0db85e4b@bootlin.com>
-In-Reply-To: <20230911154856.000076c3@Huawei.com>
-References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
-        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
-        <20230911154856.000076c3@Huawei.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S242472AbjIKPjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:39:23 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3955AE9
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:39:18 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-402c46c49f4so49429045e9.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:39:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694446756; x=1695051556; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YSc2STShXCH9Hnpec/+sz/z9Go1PR874e8NdMDY9ZvY=;
+        b=pTQAVMI/xOWBOkd1jDvObD1JXOEA0FLFVZEToSQKbjEHAbp9kDzTWq5ixIFFgTlXxv
+         6MQxuNg5tzYqSc8//QWkmqlDXgT2majKAKacVZbgziqCWWMzYLgg/JS0Ii6j+4nHo8UT
+         TVrKMXglKsshKQF/6EyfhG/Mm1Yy7MIj8C4Y7byNhMWJ4DQvlbC1hEsF47PM9TqagRAO
+         VrRwfBFcfg7JU8BfbZhEF5cgU7WhuVx2SQu/DOpLlWTHb7AJQwecDqvFmFJLMKQOd9ep
+         jnAcFEGm0NmYAZ1YRljvi5SR7oT0P0Bc2tVTpquT0NXqjgYuvwh2EiXJ6IIFx+AVuBSE
+         yWfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694446756; x=1695051556;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YSc2STShXCH9Hnpec/+sz/z9Go1PR874e8NdMDY9ZvY=;
+        b=rAu2DWzjsLAS+ZvPIgu9jroDBo0t9yUBqE8Y7V4NWdRz6dTMwr+iP0o+grk9v0Cu5N
+         GehCNxvnXbh3JgNrWM6RuPVX7/LaV49wWxNzsq2frvUlnSSRNauOpJo6pzKkxrRTpIev
+         bdvc5PSWfG+Zbc7DF8ETdy2zDUEggTgk0Wh1AhXRDI+h5d6EmKNe0SE98PhEMAujxn7b
+         9YXkaSZtDjvW2fAaaEqBZ+Lc0hSIvk4yPYR2TD6QwHxcs3UQaX20jCF86mYsTUNmWCu9
+         jD+mbU2oYNSxSF0X7s+Sg8liZRu1O/U8yjXhPTVS/wfcOwAU+DpdMhazUdgQC6Yy9fbN
+         uvTw==
+X-Gm-Message-State: AOJu0Yz6j/R8aFWSLLffjkFVpy27WgiKMYJU5CfS5ujRSehmzegqnQaw
+        ZuQyqMXdmsbxzcWB8li934ZT4WN65+6JeBeWHZrS4A==
+X-Google-Smtp-Source: AGHT+IGKqA7tbD5XE/I4nofk2X4ww4mR/3ag7eG+BQSRZZYdNN4u4HQ/Gr5jBxrQX60qUBtxEdWhUQ==
+X-Received: by 2002:a05:600c:5007:b0:402:f555:6523 with SMTP id n7-20020a05600c500700b00402f5556523mr8937762wmr.9.1694446756685;
+        Mon, 11 Sep 2023 08:39:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id d6-20020a5d4f86000000b0031c77c010e1sm10370281wru.96.2023.09.11.08.39.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 08:39:15 -0700 (PDT)
+Message-ID: <8a812c6c-d26f-57a7-f3e8-d6f7442a9f89@linaro.org>
+Date:   Mon, 11 Sep 2023 17:39:13 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH] arm64: dts: qcom: apq8016-sbc: Add overlay for usb host
+ mode
+Content-Language: en-US
+To:     Vignesh Raman <vignesh.raman@collabora.com>,
+        devicetree@vger.kernel.org
+Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
+        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+        daniels@collabora.com, emma@anholt.net, robdclark@gmail.com,
+        mripard@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230911153207.646160-1-vignesh.raman@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230911153207.646160-1-vignesh.raman@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jonathan,
-
-On Mon, 11 Sep 2023 15:48:56 +0100
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
-
-> On Tue, 15 Aug 2023 10:19:57 -0700
-> Lizhi Hou <lizhi.hou@amd.com> wrote:
+On 11/09/2023 17:32, Vignesh Raman wrote:
+> Due to the presence of the fastboot micro cable in the CI farm,
+> it causes the hardware to remain in gadget mode instead of host mode.
+> So it doesn't find the network, which results in failure to mount root
+> fs via NFS.
 > 
-> > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
-> > spaces from multiple hardware peripherals to its PCI BAR. Normally,
-> > the PCI core discovers devices and BARs using the PCI enumeration process.
-> > There is no infrastructure to discover the hardware peripherals that are
-> > present in a PCI device, and which can be accessed through the PCI BARs.
-> > 
-> > Apparently, the device tree framework requires a device tree node for the
-> > PCI device. Thus, it can generate the device tree nodes for hardware
-> > peripherals underneath. Because PCI is self discoverable bus, there might
-> > not be a device tree node created for PCI devices. Furthermore, if the PCI
-> > device is hot pluggable, when it is plugged in, the device tree nodes for
-> > its parent bridges are required. Add support to generate device tree node
-> > for PCI bridges.
-> > 
-> > Add an of_pci_make_dev_node() interface that can be used to create device
-> > tree node for PCI devices.
-> > 
-> > Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
-> > the kernel will generate device tree nodes for PCI bridges unconditionally.
-> > 
-> > Initially, add the basic properties for the dynamically generated device
-> > tree nodes which include #address-cells, #size-cells, device_type,
-> > compatible, ranges, reg.
-> > 
-> > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
-> > Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>  
+> Add an overlay dtso file that sets the dr_mode to host, allowing the
+> USB controllers to work in host mode. With commit 15d16d6dadf6
+> ("kbuild: Add generic rule to apply fdtoverlay"), overlay target can
+> be used to simplify the build of DTB overlays. It uses fdtoverlay to
+> merge base device tree with the overlay dtso. apq8016-sbc-usb-host.dtb
+> file can be used by drm-ci, mesa-ci.
 > 
-> I tried to bring this up for a custom PCIe card emulated in QEMU on an ARM ACPI
-> machine.
-> 
-> There are some missing parts that were present in Clements series, but not this
-> one, particularly creation of the root pci object.
-> 
-> Anyhow, hit an intermittent crash...
+> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Suggested-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+> Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 
-I am facing the same issues.
+Please use scripts/get_maintainers.pl to get a list of necessary people
+and lists to CC (and consider --no-git-fallback argument). It might
+happen, that command when run on an older kernel, gives you outdated
+entries. Therefore please be sure you base your patches on recent Linux
+kernel.
 
-I use a custom PCIe board too but on x86 ACPI machine.
-
-In order to have a working system, I need also to build a DT node for the PCI
-Host bridge (previously done by Clement's patch) and I am a bit stuck with
-interrupts.
-
-On your side (ACPI machine) how do you handle this ?
-I mean is your PCI host bridge provided by ACPI ? And if so, you probably need
-to build a DT node for this PCI host bridge and add some interrupt-map,
-interrupt-map-mask properties in the DT node.
+You skipped all maintainers, so this patch will be simply ignored.
 
 Best regards,
-Hervé
+Krzysztof
 
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
