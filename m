@@ -2,77 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84BDB79AD18
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:38:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8755679B1FE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234584AbjIKUsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56246 "EHLO
+        id S233444AbjIKUrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:47:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236697AbjIKLOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:14:41 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22EF9CEB;
-        Mon, 11 Sep 2023 04:14:37 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 0103366072FB;
-        Mon, 11 Sep 2023 12:14:34 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1694430875;
-        bh=wCziWKBrYCLn+iQllKVDANcEQ7lNKBoWAymVUANwCco=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=SafZm5o+3vl+C1n72vNwCoE59yHGvzAv4GZYMCY2dItGKGNjoUT/kMolJ0AzxDvs5
-         IV4MBnajK0v+Xv0Ihvttsz5UTUsInsIyqDlnxhJ/z0hfsKWsk5PVYPNQFIpxiIT7j7
-         LG/J2GH54leijlCRY5QwmKYWRpNWCzrY6HNEniTYQO6/ZOw7wWBouz8Ukd9eRmtxtA
-         GecTzamVoYEOk0RGABMREFtAOZD8/SMqEQA5Nuy90iBf9qdNVba8ivmywVNI/YMgHG
-         Sx3wE4XbtQljCEeJ3OJFDdI3XsmQZZayKSyVopWccc7ksZmUbzQgDDqGHGGNIv1Tf/
-         bTobRshmTPG/w==
-Message-ID: <5146679e-3ae8-edc7-69f9-c89ca1e7199b@collabora.com>
-Date:   Mon, 11 Sep 2023 13:14:33 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH v3,1/3] dt-bindings: display: mediatek: dsi: Add
- compatible for MediaTek MT8188
-Content-Language: en-US
-To:     Shuijing Li <shuijing.li@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        with ESMTP id S236898AbjIKLjf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:39:35 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41A20CEB
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:31 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-52e5900cf77so5539900a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694432370; x=1695037170; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2dV5clfovnvmxfWoJFf0sjpcB0l370f7re2S1ptWY3k=;
+        b=gjcGtZtfJeuIYBrMoka+HMEqAGi61AK8GZ0Q+7ve3z+4N+2KzckYZkUr7fLtqchcXq
+         +BfCJjqVZELY6TaCkVgfBc2I6+X71+djSLfV0p85GOhf5+3FY4W6vRT1DqXkmmIQ7Syb
+         DG6Dh0Kj5OexJ12LONNNY5Vn6c8DJLImeESNwfpV3grqpS+5yi+bEQW9+kO/blypMBra
+         /si0+WXaka/JRRjtRZj75lPR2s0rucVxr6uNz2qcaG0rgFTppwxIGhJeYDA0TYSUm9hg
+         amef01Xl8EY53oRyHNjsvqmuWhb9QkAnR0ifDIZzjy2pNLngbhUodLd7tpklP4JMc6Qi
+         5nmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694432370; x=1695037170;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2dV5clfovnvmxfWoJFf0sjpcB0l370f7re2S1ptWY3k=;
+        b=xJkWcPvECdStbW/SzDDNHUD0jDrLGCUBcj9HCv3XYGfSy7lIkl49F2XWvNprAacMUZ
+         PkAwdAXLcREO/gjW2KG/koHOiZ5coRiweuLX5kGYMlKBbE1z5yyfx3ki7Ckz+jGzaI3E
+         FySl35FTJURvwirc95LdyQnid9oB8tvXnv7xX871KjA7yISGnc6056pMozt4paNYzzPj
+         Lg1ZSXpFwxQ9kuEA7LH+wPY8x6pnFkHk3pTI4OzV1YxsBC8XvePEm7g/zrsGqQdsmntR
+         Sws/kt1TzjdZ3Pf4Ra1VtegyR0QVNMLy1B3Qq3WAPqr6247uwE1wD4eTo5cW0Jpbt+Rc
+         HBdQ==
+X-Gm-Message-State: AOJu0YydeErMbSozLy3yVKAuTLNvKjYVh6l2aNkrbn3cWtHYRlC4rd0L
+        ata3mm8UjFzmluMBnIqywvPOlw==
+X-Google-Smtp-Source: AGHT+IGfjOHabCCpFu22I/Ln+ydizv7TNX3FoPbSfKcuPyvjsLJt+HPWHDyz9PVtvK2J6K5QstCFgQ==
+X-Received: by 2002:aa7:d40b:0:b0:523:a45f:419a with SMTP id z11-20020aa7d40b000000b00523a45f419amr7454009edq.41.1694432369717;
+        Mon, 11 Sep 2023 04:39:29 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id g15-20020a056402180f00b00523b1335618sm4431003edy.97.2023.09.11.04.39.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 04:39:28 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Iskren Chernev <me@iskren.info>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Matheus Castello <matheus@castello.eng.br>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Stefan Hansson <newbie13xd@gmail.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230911105736.11752-1-shuijing.li@mediatek.com>
- <20230911105736.11752-2-shuijing.li@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230911105736.11752-2-shuijing.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: (subset) [PATCH v3 4/4] ARM: configs: s5pv210_defconfig: enable IIO required by MAX17040
+Date:   Mon, 11 Sep 2023 13:39:22 +0200
+Message-Id: <169443234710.34398.14080097652916975038.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230731073613.10394-5-clamor95@gmail.com>
+References: <20230731073613.10394-1-clamor95@gmail.com> <20230731073613.10394-5-clamor95@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 11/09/23 12:57, Shuijing Li ha scritto:
-> Add dt-binding documentation of dsi for MediaTek MT8188 SoC.
+
+On Mon, 31 Jul 2023 10:36:13 +0300, Svyatoslav Ryhel wrote:
+> After adding support for passing temperature data from thermal sensor
+> to MAX17040 it got dependency on CONFIG_IIO. From all defconfigs
+> using MAX17040 only s5pv210_defconfig did not have IIO already enabled
+> so let's enable it to avoid regression.
 > 
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> 
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Applied, thanks!
 
+[4/4] ARM: configs: s5pv210_defconfig: enable IIO required by MAX17040
+      https://git.kernel.org/krzk/linux/c/dc836afd2be7618d8c849fd93bd3e15513289b70
 
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
