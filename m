@@ -2,85 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E1879B00B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 118BE79AD11
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235983AbjIKUvg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36252 "EHLO
+        id S233569AbjIKUwf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243845AbjIKSA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 14:00:26 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3F26E0;
-        Mon, 11 Sep 2023 11:00:20 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38BEfMvf012701;
-        Mon, 11 Sep 2023 17:59:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=PeQHtPpk5JOrsMlNiiPboshfw1HH4mh9rMq+8dlgflc=;
- b=iHNrhf/9PKvS8HmRJc/rmi9cmePzZo2vLIAAOuiwsM/QYRFIAPFwvHG0n93gRVi0yw7V
- xIuKe0cdAYYi0fFU4gbnprnJGTP+yg0Q2CQxGrQJ/4PaC3s/LSSfLzjKob5b9zWkuvDR
- 6bHm5Z9movOsm/LRCf4CLZp2fvjlo+Ctgy+EEIYj4T0dRdLjurvzCzoF3bIlY4vGVLJe
- F6MqE+EoCHtvnDd20jVB6IKELKiGqSZ3RLJLtl12WRZq7rtKFGnVc3hj5Ef2H+XpwRXp
- LGKyP6+RWtYx+XAudrSAPy+HpGeVq/jgITdOjPcQ8/j7PukLl6n40c12GKk4nzedhpEu iQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t1whx9ksa-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Sep 2023 17:59:42 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38BHxMGs022130
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 11 Sep 2023 17:59:22 GMT
-Received: from [10.110.109.129] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 11 Sep
- 2023 10:59:21 -0700
-Message-ID: <cbe35766-a805-3791-3ff8-93aef4dc9f4c@quicinc.com>
-Date:   Mon, 11 Sep 2023 10:59:20 -0700
+        with ESMTP id S243949AbjIKS3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 14:29:34 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2051C1A7
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 11:29:29 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-402c80b71ecso15615e9.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 11:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1694456967; x=1695061767; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=sVbKwjvYsKayRQfQqnfoMhqs1+0fnsR+3Q13ar61kcQ=;
+        b=4HX7022e45BIAinXcJeURoZv3iGREnhIjTiEsieHHHJZphMJzLupEXqNTFv1f1WFvA
+         K8O1UI0VTjNroGhxdaMv8q7Z/d2Bv8OItMbtshCdIuh2h5vfgIaNjpfDl7p9hHBtvo4d
+         RFt4EOx/999TyLvYeVtUbsJYDr/BpEltA867IZUs9nQ+qs48tGTM7uH6vdSWBQllMYxS
+         BeqFYAZARYVdH2CGaAocdwl0Ren8Ght0Oq5VUL3fj5bC7xTvJ46tmc2c/BQMMx7m/hMd
+         5e0iNKHw/ZhwBzDwC/Bfszio2H0tXDZixk2gSJhEqYJZ+stKYkYCary0YaodWuzNthvJ
+         FBVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694456967; x=1695061767;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sVbKwjvYsKayRQfQqnfoMhqs1+0fnsR+3Q13ar61kcQ=;
+        b=hlqYsROoKtF13A4YpTiCVd60ritSLgJ82syjKqqPIxMQy8avfhp41uCxoGt2YMyqZI
+         3+EUazY3Cjf+uU11xo+M62lh6MzM2SeZh3aL1qHIyUPZVEJY2GqQ3qNndrNQESMes3ea
+         +X7W5XReABoAIzrc6k6ieptkUXlUeKBoyt9ny0mz1rQTqmDIAJS/rsshnr6gD9o6LWXt
+         r8hOjQoaM4crR/31p29c3bYVPkbcxV7US01Nc6XZGNHwBqdQPO3Rz12Z64Ef5dcunMId
+         C8h8SDfgsKdQa9G9wVSOyxFfdiC/CfmX+w0JmoXTzYLXp5PvQTZaegV1AVUK/jJrkhcW
+         1qeQ==
+X-Gm-Message-State: AOJu0YyHHou8RIqNtDzDHPEXkLxob4ko2ELomducQarWvakod2mj4wvD
+        OrkvJMRVYJTlquvgZ/oCH7vgct6QGK5OeBkOInF4
+X-Google-Smtp-Source: AGHT+IEip61urvwgkKVc4TSjTz4WJ07S5AZ9xWSZrK/2bf3DpFU4C+CemgJRrVeWgKwkbH4wpHkmoqEHFh/enFx67/Q=
+X-Received: by 2002:a05:600c:5122:b0:400:c6de:6a20 with SMTP id
+ o34-20020a05600c512200b00400c6de6a20mr18298wms.3.1694456967402; Mon, 11 Sep
+ 2023 11:29:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v5 18/32] sound: usb: Introduce QC USB SND offloading
- support
-Content-Language: en-US
-To:     Takashi Iwai <tiwai@suse.de>
-CC:     <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <lgirdwood@gmail.com>, <andersson@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
-        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
-        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <agross@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <quic_jackp@quicinc.com>, <quic_plai@quicinc.com>
-References: <20230829210657.9904-1-quic_wcheng@quicinc.com>
- <20230829210657.9904-19-quic_wcheng@quicinc.com>
- <8734zqasmz.wl-tiwai@suse.de>
-From:   Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <8734zqasmz.wl-tiwai@suse.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: U_IGeaWnzPKkXe9MF91P2eA5e-XGQJrg
-X-Proofpoint-ORIG-GUID: U_IGeaWnzPKkXe9MF91P2eA5e-XGQJrg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
- definitions=2023-09-11_13,2023-09-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- suspectscore=0 impostorscore=0 phishscore=0 adultscore=0 mlxlogscore=835
- bulkscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2308100000 definitions=main-2309110165
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+References: <20230911023038.30649-1-yong.wu@mediatek.com> <20230911023038.30649-4-yong.wu@mediatek.com>
+ <803846bc-fd1d-d2ec-2855-456af22c82f8@amd.com>
+In-Reply-To: <803846bc-fd1d-d2ec-2855-456af22c82f8@amd.com>
+From:   John Stultz <jstultz@google.com>
+Date:   Mon, 11 Sep 2023 11:29:15 -0700
+Message-ID: <CANDhNCrQyiFZ+8DnG0iyKBXC0H1698K1a9d2AxOq4whDsZBn+Q@mail.gmail.com>
+Subject: Re: [PATCH 3/9] dma-heap: Provide accessors so that in-kernel drivers
+ can allocate dmabufs from specific heaps
+To:     =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Brian Starkey <Brian.Starkey@arm.com>, tjmercier@google.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linaro-mm-sig@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, jianjiao.zeng@mediatek.com,
+        kuohong.wang@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,88 +84,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Takashi,
+On Mon, Sep 11, 2023 at 3:14=E2=80=AFAM Christian K=C3=B6nig
+<christian.koenig@amd.com> wrote:
+> Am 11.09.23 um 04:30 schrieb Yong Wu:
+> > From: John Stultz <jstultz@google.com>
+> >
+> > This allows drivers who don't want to create their own
+> > DMA-BUF exporter to be able to allocate DMA-BUFs directly
+> > from existing DMA-BUF Heaps.
+> >
+> > There is some concern that the premise of DMA-BUF heaps is
+> > that userland knows better about what type of heap memory
+> > is needed for a pipeline, so it would likely be best for
+> > drivers to import and fill DMA-BUFs allocated by userland
+> > instead of allocating one themselves, but this is still
+> > up for debate.
+>
+> The main design goal of having DMA-heaps in the first place is to avoid
+> per driver allocation and this is not necessary because userland know
+> better what type of memory it wants.
+>
+> The background is rather that we generally want to decouple allocation
+> from having a device driver connection so that we have better chance
+> that multiple devices can work with the same memory.
 
-On 9/7/2023 8:51 AM, Takashi Iwai wrote:
-> On Tue, 29 Aug 2023 23:06:43 +0200,
-> Wesley Cheng wrote:
->>
->> Several Qualcomm SoCs have a dedicated audio DSP, which has the ability to
->> support USB sound devices.  This vendor driver will implement the required
->> handshaking with the DSP, in order to pass along required resources that
->> will be utilized by the DSP's USB SW.  The communication channel used for
->> this handshaking will be using the QMI protocol.  Required resources
->> include:
->> - Allocated secondary event ring address
->> - EP transfer ring address
->> - Interrupter number
->>
->> The above information will allow for the audio DSP to execute USB transfers
->> over the USB bus.  It will also be able to support devices that have an
->> implicit feedback and sync endpoint as well.  Offloading these data
->> transfers will allow the main/applications processor to enter lower CPU
->> power modes, and sustain a longer duration in those modes.
->>
->> Audio offloading is initiated with the following sequence:
->> 1. Userspace configures to route audio playback to USB backend and starts
->> playback on the platform soundcard.
->> 2. The Q6DSP AFE will communicate to the audio DSP to start the USB AFE
->> port.
->> 3. This results in a QMI packet with a STREAM enable command.
->> 4. The QC audio offload driver will fetch the required resources, and pass
->> this information as part of the QMI response to the STREAM enable command.
->> 5. Once the QMI response is received the audio DSP will start queuing data
->> on the USB bus.
->>
->> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
->> ---
->>   sound/usb/Kconfig                 |   15 +
->>   sound/usb/Makefile                |    2 +-
->>   sound/usb/qcom/Makefile           |    2 +
->>   sound/usb/qcom/qc_audio_offload.c | 1813 +++++++++++++++++++++++++++++
->>   4 files changed, 1831 insertions(+), 1 deletion(-)
->>   create mode 100644 sound/usb/qcom/Makefile
->>   create mode 100644 sound/usb/qcom/qc_audio_offload.c
->>
->> diff --git a/sound/usb/Kconfig b/sound/usb/Kconfig
->> index 4a9569a3a39a..da5838656baa 100644
->> --- a/sound/usb/Kconfig
->> +++ b/sound/usb/Kconfig
->> @@ -176,6 +176,21 @@ config SND_BCD2000
->>   	  To compile this driver as a module, choose M here: the module
->>   	  will be called snd-bcd2000.
->>   
->> +config QC_USB_AUDIO_OFFLOAD
-> 
-> Keep SND_ prefix for consistency.  And, at best, align with the module
-> name.
-> 
->> +	tristate "Qualcomm Audio Offload driver"
->> +	depends on QCOM_QMI_HELPERS && SND_USB_AUDIO && USB_XHCI_SIDEBAND
->> +	select SND_PCM
->> +	help
->> +	  Say Y here to enable the Qualcomm USB audio offloading feature.
->> +
->> +	  This module sets up the required QMI stream enable/disable
->> +	  responses to requests generated by the audio DSP.  It passes the
->> +	  USB transfer resource references, so that the audio DSP can issue
->> +	  USB transfers to the host controller.
->> +
->> +	  To compile this driver as a module, choose M here: the module
->> +	  will be called qc-audio-offload.
-> 
-> Hmm, you renamed it differently, no?  In the below:
-> 
->> --- /dev/null
->> +++ b/sound/usb/qcom/Makefile
->> @@ -0,0 +1,2 @@
->> +snd-usb-audio-qmi-objs := usb_audio_qmi_v01.o qc_audio_offload.o
->> +obj-$(CONFIG_QC_USB_AUDIO_OFFLOAD) += snd-usb-audio-qmi.o
-> 
-> ... it's called snd-usb-audio-qmi.
-> 
+Yep, very much agreed, and this is what the comment above is trying to desc=
+ribe.
 
-Will fix this, thanks.
+Ideally user-allocated buffers would be used to ensure driver's don't
+create buffers with constraints that limit which devices the buffers
+might later be shared with.
 
-Thanks
-Wesley Cheng
+However, this patch was created as a hold-over from the old ION logic
+to help vendors transition to dmabuf heaps, as vendors had situations
+where they still wanted to export dmabufs that were not to be
+generally shared and folks wanted to avoid duplication of logic
+already in existing heaps.  At the time, I never pushed it upstream as
+there were no upstream users.  But I think if there is now a potential
+upstream user, it's worth having the discussion to better understand
+the need.
+
+So I think this patch is a little confusing in this series, as I don't
+see much of it actually being used here (though forgive me if I'm
+missing it).
+
+Instead, It seems it get used in a separate patch series here:
+  https://lore.kernel.org/all/20230911125936.10648-1-yunfei.dong@mediatek.c=
+om/
+
+Yong, I appreciate you sending this out! But maybe if the secure heap
+submission doesn't depend on this functionality, I might suggest
+moving this patch (or at least the majority of it) to be part of the
+vcodec series instead?  That way reviewers will have more context for
+how the code being added is used?
+
+thanks
+-john
