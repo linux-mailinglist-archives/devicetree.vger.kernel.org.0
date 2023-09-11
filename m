@@ -2,78 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8319279B017
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B02B179B3AA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:00:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234409AbjIKUsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51116 "EHLO
+        id S234503AbjIKUvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243122AbjIKQvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:51:46 -0400
-Received: from out-230.mta0.migadu.com (out-230.mta0.migadu.com [91.218.175.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5963E115
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 09:51:37 -0700 (PDT)
-Date:   Tue, 12 Sep 2023 02:47:30 +1000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1694451095;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=NJBFtilo+N7MwmK+qDpVaOWLYzmxlK73lqWxMLheTIo=;
-        b=GriUB6QXaNVJraMfYdO0IAoT9YfQyYJZU4vJ0jmLhfLPYQEgcb9DBLLy8UvxVGtx+k70HO
-        AhkiLR2s6cwBbAhR5TqmWDBiiQE959BG4CuRdScGXXiaGWWrRujExTMo9Kn8pla9u7LxKq
-        bVXxuy7nJZpQzOxRB+UZl9YqrInmc0HQbyCcyGDvl9CcXV7/lPqoUmiHUKVifLfCit/iwl
-        z/vdc58PjGGvHNNmyegZW4QGLdOCegI2yKghHQ7wMuSfm1XrccZv2q1eW05BKvy3b/SUO5
-        2P+XZGpMvWSX8a5TPY3dqnM8F8rQ68f2Vv3VhmGhe8o6Kq54uD1PkL+MqTU9Fw==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From:   John Watts <contact@jookia.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org,
+        with ESMTP id S243214AbjIKQ7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:59:39 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA66115
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 09:59:33 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3ff1c397405so55059625e9.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 09:59:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694451572; x=1695056372; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=b6zpEfFwTnyi86KDgClkEQHR3xaNBEnZrwWpoCsbQ28=;
+        b=RARINvHL11MYZnNct4IXAzzWSq8gUqr9PhVeMGIkPC3R9BqpRgy0BsxcLRXruAOMSt
+         VVtucy2AqLK49jwMQCcARNFoVK/Dyy35W+kF/TMM+56izSlT4j8nJYzkLO8d7yQweIWx
+         f984INLuJXGu02LZnlxi/2+yHK1HsNaD16CdZYJ1vlRK7j8xZkM5qCFjW/uefXuVJlVf
+         e1bmkZzCpXuvEwyJuOroR4/l4zspB7PPYWjQ+QmcBwP2QY9uHrLylr3Ro4DD7cAmU2+y
+         MIB2mKPw17L1pwb2mfenuvkxz4yZ4xeqskM8+JwmsQCG+oX7++J9KLLmegjBgnldJEKI
+         tQOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694451572; x=1695056372;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=b6zpEfFwTnyi86KDgClkEQHR3xaNBEnZrwWpoCsbQ28=;
+        b=rYjInXMSDlgpksgZzJ4zoLeFwYljvPR+2s/hZXOt6GSmPU+4tD2EXglre7Gc+MSDF7
+         T0s35xd1iDWUzub0NqGAyDNFGSRFrLLkz8l3jiV4p8A+B/HUOVzfJmaRQNlo/YXLzfyf
+         FtPGuzUABUfWg14ufGncJdN3tIyEn4YdpJs4BTGnf4vpgOKG+w+K0M7wnXYotYd6KQNF
+         xrXd5RtP8gydup7hHt2vx+/pma4jSAjARrhG/KwPIiMV/wZau6qSIIK8BQwbPWPpFFDQ
+         nLUBsczO5MrTH+Um6iKTr+HuflcXWlfOz0+lqZ6tirk2P4Ks76r3BPvn+xCJiiwhfB0E
+         9CvA==
+X-Gm-Message-State: AOJu0YxS0+YWjswWR/Bne6bWoqCgr5in0aw+4imQJhSN4qH8o/CNq4rE
+        fVP51Ttl5qvDSjdU7Sc+cgHLBQ==
+X-Google-Smtp-Source: AGHT+IEd7G9QslE1ZtHxoDPCKdw54RbxizV0I6HFmOXEbzd4jr7xHnnQtJ22ouuYqItKPr+D/yJB6A==
+X-Received: by 2002:a7b:cc95:0:b0:401:2fab:43e8 with SMTP id p21-20020a7bcc95000000b004012fab43e8mr9096813wma.15.1694451572036;
+        Mon, 11 Sep 2023 09:59:32 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:55be:8f7e:5f59:7ed1])
+        by smtp.gmail.com with ESMTPSA id r18-20020a5d6952000000b003141a3c4353sm10655684wrw.30.2023.09.11.09.59.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 09:59:31 -0700 (PDT)
+References: <20230911154541.471484-1-jbrunet@baylibre.com>
+ <20230911154541.471484-6-jbrunet@baylibre.com>
+ <eedc9787-06b7-bac5-a1f5-ba07d23f4ac7@linaro.org>
+User-agent: mu4e 1.8.13; emacs 29.1
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 8/8] dt-bindings: display: panel: add Fascontek
- FS035VG158 panel
-Message-ID: <ZP9Eoh06Sirl_97l@titan>
-References: <20230911090206.3121440-1-contact@jookia.org>
- <20230911090206.3121440-9-contact@jookia.org>
- <e22e61e7-02b1-8127-888d-e470838f4a18@linaro.org>
- <ZP7il27e9cExVWaL@titan>
- <c4d89d97-f8d4-da2e-dea9-6c054cf07eb3@linaro.org>
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 5/5] arm64: dts: meson: u200: add onboard devices
+Date:   Mon, 11 Sep 2023 18:52:44 +0200
+In-reply-to: <eedc9787-06b7-bac5-a1f5-ba07d23f4ac7@linaro.org>
+Message-ID: <1j5y4g4pe4.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c4d89d97-f8d4-da2e-dea9-6c054cf07eb3@linaro.org>
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 11, 2023 at 01:49:39PM +0200, Krzysztof Kozlowski wrote:
-> If the other panel has exactly the same case, then yes, you can do like
-> this. But it depends on the bindings - to which ones do you refer as
-> your tmeplate?
 
-Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
+On Mon 11 Sep 2023 at 17:56, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> 
+> On 11/09/2023 17:45, Jerome Brunet wrote:
+>> Add missing audio devices found on the u200 PCB. This includes
+>> * Lineout connected to the internal DAC
+>> * SPDIF input connected to a coaxial socket
+>> * TDM input decoders allowing output loopback
+>> * TDM A and B output encoders and interfaces
+>> 
+>> TDM A and B link format is set by the related external codec.
+>> Internal audio DAC can hook to any TDM output.
+>> 
+>> This change does not include support necessary the optional the speaker and
+>> PDM Mic headers
+>> 
+>> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+>> ---
+>>  .../boot/dts/amlogic/meson-g12a-u200.dts      | 228 +++++++++++++++++-
+>>  1 file changed, 218 insertions(+), 10 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>> index da66e2e1dffb..9abe37b5b227 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
+>> @@ -9,6 +9,7 @@
+>>  #include <dt-bindings/gpio/gpio.h>
+>>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>> +#include <dt-bindings/sound/meson-g12a-toacodec.h>
+>>  
+>>  / {
+>>  	compatible = "amlogic,u200", "amlogic,g12a";
+>> @@ -19,6 +20,22 @@ aliases {
+>>  		ethernet0 = &ethmac;
+>>  	};
+>>  
+>> +	dioo2133: audio-amplifier-0 {
+>> +		#sound-dai-cells = <0>;
+>> +		compatible = "simple-audio-amplifier";
+>
+> compatible is by convention first property. Do you have different style
+> in Amlogic/Meson?
+>
+>> +		status = "okay";
+>
+> status is by default.
+>
+
+It look odd to me too but this was be consistent with the other codec
+introduced by the change being fixed by this patchset.
+
+>
 > Best regards,
 > Krzysztof
 
-John.
