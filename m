@@ -2,93 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7CAD79B6EC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92B479BC9D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235364AbjIKUtP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Sep 2023 16:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39068 "EHLO
+        id S233997AbjIKUsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244138AbjIKTKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 15:10:37 -0400
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E46DDD;
-        Mon, 11 Sep 2023 12:10:31 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by lithops.sigma-star.at (Postfix) with ESMTP id 616D0635DB56;
-        Mon, 11 Sep 2023 21:10:29 +0200 (CEST)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id BhVzL38_nvWl; Mon, 11 Sep 2023 21:10:28 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by lithops.sigma-star.at (Postfix) with ESMTP id 68B35635DB5A;
-        Mon, 11 Sep 2023 21:10:28 +0200 (CEST)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id am1q5NFYuOSv; Mon, 11 Sep 2023 21:10:28 +0200 (CEST)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-        by lithops.sigma-star.at (Postfix) with ESMTP id 3DA8F635DB56;
-        Mon, 11 Sep 2023 21:10:28 +0200 (CEST)
-Date:   Mon, 11 Sep 2023 21:10:28 +0200 (CEST)
-From:   Richard Weinberger <richard@nod.at>
-To:     Daniel Golle <daniel@makrotopia.org>
-Cc:     linux-mtd <linux-mtd@lists.infradead.org>,
-        chengzhihao1 <chengzhihao1@huawei.com>, robh <robh@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Message-ID: <1097004835.16854.1694459428036.JavaMail.zimbra@nod.at>
-In-Reply-To: <ZP9kJYHMFwZ8GFnA@makrotopia.org>
-References: <cover.1691717480.git.daniel@makrotopia.org> <a640bb10e6fbaeef96efdb9e8b666ca39e993589.1691717480.git.daniel@makrotopia.org> <169263908218.2000617.16931192155432403196.robh@kernel.org> <ZP9kJYHMFwZ8GFnA@makrotopia.org>
-Subject: Re: [PATCH v4 1/8] dt-bindings: mtd: add basic bindings for UBI
+        with ESMTP id S244233AbjIKTod (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 15:44:33 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0122418D;
+        Mon, 11 Sep 2023 12:44:28 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38BDgOw5006536;
+        Mon, 11 Sep 2023 19:44:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=zMmdeVBXvRLbOHJSIxUrgE4tO67oN2RuTYbnjxfjIvw=;
+ b=K7nafr6b5GQkkij0aVTgU5vTyvHl3Y7PyOGvaoq58J4EKkmZaV5ASCGj6wFbC6IHVhcQ
+ 2pLJbwCPfIXJNAxJIPVZrXGB41u2Icj1d5u9pFJThvnTRO58ua5suaknKNhXR7XgCBLH
+ fVGQ3FAG+X7gqnzP6z8nDx2wB1mhXjfkVBXl5jGh265EIM49rav8NnMmEP/7uJT3ifyU
+ D/JkXVZrB4wR00ahXZFkZvpb386xbxHIh/6MsXXF9xvjgXy6JWOZw9JPw9IUEnh5lvcF
+ gh/M5yQU1ag+jDCHhNdg9/WkPUoY+bPa7+99qt6ZBnqrlQN3tOymtB9zHAZnxC9Ekjtz rg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t1xjmsmp7-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Sep 2023 19:44:18 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38BJiHUs017286
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Sep 2023 19:44:17 GMT
+Received: from car-linux11.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 11 Sep 2023 12:44:16 -0700
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+To:     <sudeep.holla@arm.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        Nikunj Kela <quic_nkela@quicinc.com>
+Subject: [PATCH v4 0/4] Add qcom hvc/shmem transport support
+Date:   Mon, 11 Sep 2023 12:43:55 -0700
+Message-ID: <20230911194359.27547-1-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230718160833.36397-1-quic_nkela@quicinc.com>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [195.201.40.130]
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
-Thread-Topic: dt-bindings: mtd: add basic bindings for UBI
-Thread-Index: LBx3qjf2tbmBuBCvCWOgaQQSzR540w==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SPF_PERMERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: c8mjb6HkEqF1SGkD-7uei4nZYu3H1Q4u
+X-Proofpoint-GUID: c8mjb6HkEqF1SGkD-7uei4nZYu3H1Q4u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-11_15,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ phishscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=936
+ malwarescore=0 adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309110181
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
------ Ursprüngliche Mail -----
-> Von: "Daniel Golle" <daniel@makrotopia.org>
-> An: "linux-mtd" <linux-mtd@lists.infradead.org>
-> CC: "chengzhihao1" <chengzhihao1@huawei.com>, "robh" <robh@kernel.org>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Randy
-> Dunlap" <rdunlap@infradead.org>, "Miquel Raynal" <miquel.raynal@bootlin.com>, "richard" <richard@nod.at>, "devicetree"
-> <devicetree@vger.kernel.org>, "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
-> <conor+dt@kernel.org>, "Rob Herring" <robh+dt@kernel.org>, "linux-kernel" <linux-kernel@vger.kernel.org>
-> Gesendet: Montag, 11. September 2023 21:01:57
-> Betreff: Re: [PATCH v4 1/8] dt-bindings: mtd: add basic bindings for UBI
+This change augments smc transport to include support for Qualcomm virtual
+platforms by passing a parameter(capability-id) in the hypervisor call to
+identify which doorbell to assert. This parameter is dynamically generated
+at runtime on the device and insuitable to pass via the devicetree.
 
-> On Mon, Aug 21, 2023 at 12:31:22PM -0500, Rob Herring wrote:
->> On Fri, 11 Aug 2023 02:36:37 +0100, Daniel Golle wrote:
->> > Add basic bindings for UBI devices and volumes.
->> > 
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> 
-> 
-> Patch 3 - 7 have previously been discussed on the mailing list, patch
-> 1 and 2 have been reviewed by Rob, patch 8 ("mtd: ubi: provide NVMEM
-> layer over UBI volumes") still needs review.
-> 
-> Is there anything I can do from my end to have this series moving
-> forward?
-> 
-> Patchwork: https://patchwork.ozlabs.org/project/linux-mtd/list/?series=368347
+The function ID and parameter are stored by firmware in the shmem region.
 
-It is on my review TODO.
+This has been tested on ARM64 virtual Qualcomm platform.
 
-Thanks for your patience,
-//richard
+---
+v4 -> port the changes into smc.c
+
+v3 -> fix the compilation error reported by the test bot,
+      add support for polling based instances
+
+v2 -> use allOf construct in dtb schema,
+      remove wrappers from mutexes,
+      use architecture independent channel layout
+
+v1 -> original patches
+
+Nikunj Kela (4):
+  firmware: arm_scmi: Add polling support for completion in smc
+  dt-bindings: arm: convert nested if-else construct to allOf
+  dt-bindings: arm: Add new compatible for smc/hvc transport for SCMI
+  firmware: arm_scmi: Add qcom hvc/shmem transport support
+
+ .../bindings/firmware/arm,scmi.yaml           | 67 +++++++++++--------
+ drivers/firmware/arm_scmi/Kconfig             | 14 ++++
+ drivers/firmware/arm_scmi/driver.c            |  1 +
+ drivers/firmware/arm_scmi/smc.c               | 62 +++++++++++++++--
+ 4 files changed, 110 insertions(+), 34 deletions(-)
+
+-- 
+2.17.1
+
