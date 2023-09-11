@@ -2,110 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5BBA79A2FA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 07:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A7ED79A301
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 07:46:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230527AbjIKFoD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 01:44:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37918 "EHLO
+        id S234111AbjIKFqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 01:46:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232316AbjIKFoC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 01:44:02 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18F45CE6;
-        Sun, 10 Sep 2023 22:43:55 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38B5hkOS024316;
-        Mon, 11 Sep 2023 00:43:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694411027;
-        bh=O103J3a2New29edXGv3mAv1bSKtchcP1rssqRPD2WPA=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=MVVKOU6vc0VopqjENkB96kn2383V6N8tngb1CinPHS8rKNfZviO+bIjhhzq1Lw79r
-         +USCcx96a6J1ojVdVI09ccRiU4UMJ3qfkOzg+hI33wB2p2NzPs/BWMdnxVXUS+rmW+
-         1mLaJZoCKCQhGOHoD20w/BM3+gIz/rWTW9F98I74=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38B5hklJ094211
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Sep 2023 00:43:46 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Sep 2023 00:43:46 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Sep 2023 00:43:46 -0500
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38B5hk54080516;
-        Mon, 11 Sep 2023 00:43:46 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [10.24.69.199])
-        by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 38B5hjUh024557;
-        Mon, 11 Sep 2023 00:43:46 -0500
-From:   MD Danish Anwar <danishanwar@ti.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Roger Quadros <rogerq@ti.com>,
-        MD Danish Anwar <danishanwar@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Simon Horman <horms@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <srk@ti.com>, <r-gunasekaran@ti.com>,
-        Roger Quadros <rogerq@kernel.org>
-Subject: [PATCH net-next v2 2/2] net: ti: icssg-prueth: Add AM64x icssg support
-Date:   Mon, 11 Sep 2023 11:13:08 +0530
-Message-ID: <20230911054308.2163076-3-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230911054308.2163076-1-danishanwar@ti.com>
-References: <20230911054308.2163076-1-danishanwar@ti.com>
+        with ESMTP id S229596AbjIKFqn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 01:46:43 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E0E1AE;
+        Sun, 10 Sep 2023 22:46:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694411199; x=1725947199;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wWthW3CAQOeR24yqLtHN12hyt+cgqArE3vdOGuNIP74=;
+  b=aGGRWsZJnRY4xxiH+mk4ZOyZXtup42L4hv1pXyKncOUrqwNxWGpCPC3O
+   onFGQIqcqJTRwaVcF3fGVcsBfaSOKlQH3Rh9Xsi/B65XmAQ+Wj9SjMVTO
+   /rhflb0mfG0JKO9K9OBM3SvQP3G5TuJtwbCMfP4GjNkk9xi1u81MS8c28
+   JFruAwDQaDm0n1s7JUO+iCQ9ytKZBSOyiIPlNcLP5duihTSw4K/LYQC1a
+   GbnOCrLbh0/204KtTUziza0134+NMtF/tWNu8/rTkML0oPkKCCl0PcXs2
+   bPt2FJkNE2SI7WEAFLfn+/teQgOHQ0r26jrNgcwQE3WVpvqygzsbCzv3Y
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="375353787"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
+   d="scan'208";a="375353787"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2023 22:46:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="858188074"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
+   d="scan'208";a="858188074"
+Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
+  by fmsmga002.fm.intel.com with ESMTP; 10 Sep 2023 22:46:35 -0700
+Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qfZkn-0005qa-1u;
+        Mon, 11 Sep 2023 05:46:33 +0000
+Date:   Mon, 11 Sep 2023 13:46:22 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Saravanan Sekar <saravanan@linumiz.com>, sravanhome@gmail.com,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux@roeck-us.net, jdelvare@suse.com
+Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Saravanan Sekar <saravanan@linumiz.com>
+Subject: Re: [PATCH 1/3] hwmon: (pmbus/mpq7932) Get page count based on chip
+ info
+Message-ID: <202309111345.BXkwu3pD-lkp@intel.com>
+References: <20230911034150.181880-2-saravanan@linumiz.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230911034150.181880-2-saravanan@linumiz.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add AM64x ICSSG support which is similar to am65x SR2.0, but required:
-- all ring configured in exposed ring mode
-- always fill both original and buffer fields in cppi5 desc
+Hi Saravanan,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
- drivers/net/ethernet/ti/icssg/icssg_prueth.c | 5 +++++
- 1 file changed, 5 insertions(+)
+kernel test robot noticed the following build warnings:
 
-diff --git a/drivers/net/ethernet/ti/icssg/icssg_prueth.c b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-index 410612f43cbd..92b13057d4de 100644
---- a/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-+++ b/drivers/net/ethernet/ti/icssg/icssg_prueth.c
-@@ -2313,8 +2313,13 @@ static const struct prueth_pdata am654_icssg_pdata = {
- 	.quirk_10m_link_issue = 1,
- };
- 
-+static const struct prueth_pdata am64x_icssg_pdata = {
-+	.fdqring_mode = K3_RINGACC_RING_MODE_RING,
-+};
-+
- static const struct of_device_id prueth_dt_match[] = {
- 	{ .compatible = "ti,am654-icssg-prueth", .data = &am654_icssg_pdata },
-+	{ .compatible = "ti,am642-icssg-prueth", .data = &am64x_icssg_pdata },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, prueth_dt_match);
+[auto build test WARNING on groeck-staging/hwmon-next]
+[also build test WARNING on broonie-regulator/for-next linus/master v6.6-rc1 next-20230911]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Saravanan-Sekar/hwmon-pmbus-mpq7932-Get-page-count-based-on-chip-info/20230911-114451
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git hwmon-next
+patch link:    https://lore.kernel.org/r/20230911034150.181880-2-saravanan%40linumiz.com
+patch subject: [PATCH 1/3] hwmon: (pmbus/mpq7932) Get page count based on chip info
+config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20230911/202309111345.BXkwu3pD-lkp@intel.com/config)
+compiler: alpha-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230911/202309111345.BXkwu3pD-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309111345.BXkwu3pD-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/hwmon/pmbus/mpq7932.c: In function 'mpq7932_probe':
+>> drivers/hwmon/pmbus/mpq7932.c:108:23: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     108 |         info->pages = (int)device_get_match_data(&client->dev);
+         |                       ^
+
+
+vim +108 drivers/hwmon/pmbus/mpq7932.c
+
+    95	
+    96	static int mpq7932_probe(struct i2c_client *client)
+    97	{
+    98		struct mpq7932_data *data;
+    99		struct pmbus_driver_info *info;
+   100		struct device *dev = &client->dev;
+   101		int i;
+   102	
+   103		data = devm_kzalloc(dev, sizeof(struct mpq7932_data), GFP_KERNEL);
+   104		if (!data)
+   105			return -ENOMEM;
+   106	
+   107		info = &data->info;
+ > 108		info->pages = (int)device_get_match_data(&client->dev);
+   109		info->format[PSC_VOLTAGE_OUT] = direct;
+   110		info->m[PSC_VOLTAGE_OUT] = 160;
+   111		info->b[PSC_VOLTAGE_OUT] = -33;
+   112		for (i = 0; i < info->pages; i++) {
+   113			info->func[i] = PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT
+   114					| PMBUS_HAVE_STATUS_TEMP;
+   115		}
+   116	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
