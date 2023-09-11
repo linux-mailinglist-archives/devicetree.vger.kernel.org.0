@@ -2,51 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A19F779A279
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 06:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5473379A27C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 06:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233645AbjIKEbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233670AbjIKEbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 11 Sep 2023 00:31:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57560 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232654AbjIKEbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 00:31:45 -0400
+        with ESMTP id S233495AbjIKEbr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 00:31:47 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94AA419C;
-        Sun, 10 Sep 2023 21:31:40 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 33F13C433CA;
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711F810C;
+        Sun, 10 Sep 2023 21:31:41 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 58BE2C433B9;
         Mon, 11 Sep 2023 04:31:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
         s=k20201202; t=1694406700;
-        bh=SIw+eSue1UFQn2baY3FEXr3ZjMwGMuRitqiE1h/CVaA=;
+        bh=zdcZgXW0ruaLVCHmFcQtUtGqAyV2q7CuqMdsj8JHKuo=;
         h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=YpVSARz5QIelhij6aEq5scnc7jfGoaP7WDmjVISeBUbXXkQkQFFUWLwbqhmWiHAJH
-         n6HdbeQwk7BXLDwrFDwwjBncAFqZK9v9hxBmzRwY+r5OMlQREOTL6h8GCiDARITMEY
-         f94caQ2KGFV8qNsWkOQErc1dhETbB9+eDylGkT8+ihwub03elH904ko+TFzM0whqfR
-         NEvzwM4w/W77Tm+qVZbTNxHitdEhdQjXdwA+lEkQw9Cbd7a/VU0mrIKfgJ87Z+uqC0
-         iskML5clmVLaHG7J4zpT5yckb3gtuLTtf7drAD8hY1gNEK0mxNMj5OzBYKL1mrOwfu
-         ebfGyYxieqJpw==
+        b=COLJDnyyEjxhCZBFxpK7LIlk1XtdvbEadTmHY9z4p8ki/idJTloI7wpINVoJOl3by
+         uTAkOWhbvR8voDbwNZSWAXynKhe2amo7pFjTN65/RT/UgjUf9WMolSih5tSxL1CJH5
+         fJfQN0885GhuWGN3TAiTL0dp6urQ9wytnuAPc3cVnok1SdrW9Aw9q4Kr8fuX4JbuVn
+         4/O3QhEYGcwsjY2y0RJoMMELYEfBbyS4Nxxmr9lCzUdmw0NcUCz0t7biZ4FIZeBiPH
+         zrVtmDo0ptK8bDfJdJHOb1cHgHoxgE+semYfT3RCWBYU4uza6q7+vIDg+2z8TAm4QP
+         Jex7WtsQb5JNQ==
 Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 1A4CDE21EC0;
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 456BEE22AFF;
         Mon, 11 Sep 2023 04:31:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2] dt-bindings: usb: connector: disallow additional
- properties
+Subject: Re: [PATCH] platform: Explicitly include correct DT includes
 From:   patchwork-bot+chrome-platform@kernel.org
-Message-Id: <169440670010.22573.6344198116849570684.git-patchwork-notify@kernel.org>
+Message-Id: <169440670028.22573.1520676346126156762.git-patchwork-notify@kernel.org>
 Date:   Mon, 11 Sep 2023 04:31:40 +0000
-References: <20230725102325.76336-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230725102325.76336-1-krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, bleung@chromium.org, groeck@chromium.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        gregkh@linuxfoundation.org, pmalani@chromium.org,
-        waynec@nvidia.com, devicetree@vger.kernel.org,
-        chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org
+References: <20230714174909.4062739-1-robh@kernel.org>
+In-Reply-To: <20230714174909.4062739-1-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     bleung@chromium.org, groeck@chromium.org, hdegoede@redhat.com,
+        markgross@kernel.org, vadimp@nvidia.com,
+        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
@@ -60,22 +56,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 Hello:
 
 This patch was applied to chrome-platform/linux.git (for-kernelci)
-by Rob Herring <robh@kernel.org>:
+by Hans de Goede <hdegoede@redhat.com>:
 
-On Tue, 25 Jul 2023 12:23:25 +0200 you wrote:
-> USB connector bindings is complete, thus no additional properties should
-> be allowed.  Add missing 'reg' property and change additionalProperties
-> to false, so the schema will check for anything not unexpected.  This
-> also allows to drop the 'reg' from other bindings referencing the
-> usb-connector.yaml and make it required.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Fri, 14 Jul 2023 11:49:09 -0600 you wrote:
+> The DT of_device.h and of_platform.h date back to the separate
+> of_platform_bus_type before it as merged into the regular platform bus.
+> As part of that merge prepping Arm DT support 13 years ago, they
+> "temporarily" include each other. They also include platform_device.h
+> and of.h. As a result, there's a pretty much random mix of those include
+> files used throughout the tree. In order to detangle these headers and
+> replace the implicit includes with struct declarations, users need to
+> explicitly include the correct includes.
 > 
 > [...]
 
 Here is the summary with links:
-  - [v2] dt-bindings: usb: connector: disallow additional properties
-    https://git.kernel.org/chrome-platform/c/e251a4e28a27
+  - platform: Explicitly include correct DT includes
+    https://git.kernel.org/chrome-platform/c/b9fe9c9ef97d
 
 You are awesome, thank you!
 -- 
