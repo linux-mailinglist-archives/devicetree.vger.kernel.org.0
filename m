@@ -2,73 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AEC379A582
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 10:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6C2C79A57F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 10:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232649AbjIKIHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 04:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
+        id S230188AbjIKIHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 04:07:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbjIKIHq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:07:46 -0400
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9858BE43;
-        Mon, 11 Sep 2023 01:07:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1694419635; x=1725955635;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=EKc2l8u/kKBul3gNAYJEk/Ck38NKo2uvJewBdyW546M=;
-  b=VgDOe5X5X5zZjI9/qFeeXgVsoidcjZD/MBWaxKlQHE6ljCh++krYezTL
-   IOg/qeNJt9GEBxLWssqnQjenHJ3MBXKjKheoOBuA/LEHx9lgn/yw4/mBK
-   aCIXL4ujaRbeT9vIw5YMJ4SCPNzn8xf18kfV2syze/2dCjhOKmP9wR9x/
-   x5exyaS2510A3iyEJXagvG4sqe6Y04AXcD50cyrhdSZnWnpiMpK0vSMkr
-   n5KEg5UTTAUew2uKACS/kujGRQrReEz0VdtDeLX1fOeC3kqCJ7DQrHe2y
-   47Pdhu7NUxiqwL76anCsbHr4oqqEixlejlBif/3yOulK0Tj6+2eNVWgQC
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="444438887"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
-   d="scan'208";a="444438887"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2023 01:06:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="693005175"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
-   d="scan'208";a="693005175"
-Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 11 Sep 2023 01:06:47 -0700
-Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qfbwS-0005yc-30;
-        Mon, 11 Sep 2023 08:06:44 +0000
-Date:   Mon, 11 Sep 2023 16:05:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>, jianjiao.zeng@mediatek.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        kuohong.wang@mediatek.com, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, tjmercier@google.com,
-        linaro-mm-sig@lists.linaro.org, John Stultz <jstultz@google.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-        Yong Wu <yong.wu@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH 4/9] dma-buf: heaps: Initialise MediaTek secure heap
-Message-ID: <202309111534.u4wfJ4vk-lkp@intel.com>
-References: <20230911023038.30649-5-yong.wu@mediatek.com>
+        with ESMTP id S229546AbjIKIHa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:07:30 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 711E21FC0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:07:02 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-31c73c21113so3817765f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 01:07:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694419613; x=1695024413; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BQAVKqReSVnSI4Ydt6YoC8xFDTISY4VfD72WdfhWLqk=;
+        b=oxhlk0HhipKP6mVF8WeadG0eTzGZCGC3ZXXkP9EBCvDsDf/B1R+8cOCuso7hJfaRix
+         lJmMg8dtkMLJrnuouoLkBkTXLuUvCL9QBwE3dFZXF7WToTdOuMR96zTAtPqM7faqaTME
+         yipDeITm1Vs1JfR+iIk9I9cjgN4KosJsYIJc2WGeLndCxrepFi89qU58jkZcaMDpYDyY
+         7BnONlPK6xwVXinO8Z5XHGi8ZH+uU6eg75K7y2hC5I26VDEWPiB1Rbydo270NxyZC43x
+         XH4lUW8ebWqy45md3dieWx/LIlmUbQedKGf1f4oIzapHxKYelB8SyuP83KT5bEXlBSFJ
+         CZHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694419613; x=1695024413;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BQAVKqReSVnSI4Ydt6YoC8xFDTISY4VfD72WdfhWLqk=;
+        b=lnN8nWWg1e8/LDq706ZSpyqyz8oJbeBG6tm0N/W8kqEHeo7sE5M6qfaa6avryFbCsA
+         osrJnUn1r9CcnIUQu5pRq7pKarMLNt3mG9A/Dk5iFW2i22ov+DhslUcSh/guPFsO+LkT
+         hVE4+X6gvOtiC2MA9dAd2HFdF1aL7S6r6K0zIeY3HmyC9dmUkYvBkYcizWbtzHxqne2m
+         63cmWRJ392Z9HdTFUur3s/ucWMjyG1y0rS0US0+LcG1dwnoXes0hBuvjJdlY4QxMkbUA
+         aEfXHgFTI80M6/moBOHcvlSVSoE7XjI+DII5aHaV0qTeTVDDnkKae6VyAVDAnL81oCao
+         THXw==
+X-Gm-Message-State: AOJu0YwtHE4zhBq4/KVKNcVTvIqjrjMcnb5hx9W0+sx7z1z5F5B1s7JS
+        /cqgyN4kh6cRD8rFrjFnlFEoUQ==
+X-Google-Smtp-Source: AGHT+IEftHwy4siFn4uU6kwdtQfQwwzQkqPdTFYx+b5Hws8/3fiLDhgz05H5RrbONLPKhHuEKen7EA==
+X-Received: by 2002:a5d:624d:0:b0:316:efb9:ffa with SMTP id m13-20020a5d624d000000b00316efb90ffamr6497563wrv.35.1694419613045;
+        Mon, 11 Sep 2023 01:06:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id b13-20020a5d634d000000b0031c5e9c2ed7sm9318751wrw.92.2023.09.11.01.06.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 01:06:52 -0700 (PDT)
+Message-ID: <9ba6da84-6ef9-1f28-75f6-bbdda571771d@linaro.org>
+Date:   Mon, 11 Sep 2023 10:06:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230911023038.30649-5-yong.wu@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v3 0/9] drm: ci: fixes
+Content-Language: en-US
+To:     Vignesh Raman <vignesh.raman@collabora.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
+        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+        daniels@collabora.com, gustavo.padovan@collabora.com,
+        angelogioacchino.delregno@collabora.com, emma@anholt.net,
+        robclark@freedesktop.org, robdclark@google.com, anholt@google.com,
+        robdclark@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+        jani.nikula@linux.intel.com, mripard@kernel.org,
+        dmitry.baryshkov@linaro.org, matthias.bgg@gmail.com,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        virtualization@lists.linux-foundation.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230908152225.432139-1-vignesh.raman@collabora.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230908152225.432139-1-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,46 +87,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yong,
+On 08/09/2023 17:22, Vignesh Raman wrote:
+> The patch series contains improvements, enabling new ci jobs which
+> enables testing for Mediatek MT8173, Qualcomm APQ 8016 and VirtIO GPU,
+> fixing issues with the ci jobs and updating the expectation files.
+> This series is intended for drm branch topic/drm-ci.
 
-kernel test robot noticed the following build errors:
+Please send DTS and defconfig separately. These patches should go via
+subsystem maintainer, not drm.
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on robh/for-next linus/master v6.6-rc1 next-20230911]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Best regards,
+Krzysztof
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yong-Wu/dma-buf-heaps-Deduplicate-docs-and-adopt-common-format/20230911-103308
-base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
-patch link:    https://lore.kernel.org/r/20230911023038.30649-5-yong.wu%40mediatek.com
-patch subject: [PATCH 4/9] dma-buf: heaps: Initialise MediaTek secure heap
-config: openrisc-allmodconfig (https://download.01.org/0day-ci/archive/20230911/202309111534.u4wfJ4vk-lkp@intel.com/config)
-compiler: or1k-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230911/202309111534.u4wfJ4vk-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309111534.u4wfJ4vk-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/dma-buf/heaps/mtk_secure_heap.c:68:27: error: initialization of 'struct dma_buf * (*)(struct dma_heap *, long unsigned int,  long unsigned int,  long unsigned int)' from incompatible pointer type 'struct dma_buf * (*)(struct dma_heap *, size_t,  long unsigned int,  long unsigned int)' {aka 'struct dma_buf * (*)(struct dma_heap *, unsigned int,  long unsigned int,  long unsigned int)'} [-Werror=incompatible-pointer-types]
-      68 |         .allocate       = mtk_sec_heap_allocate,
-         |                           ^~~~~~~~~~~~~~~~~~~~~
-   drivers/dma-buf/heaps/mtk_secure_heap.c:68:27: note: (near initialization for 'mtk_sec_heap_ops.allocate')
-   cc1: some warnings being treated as errors
-
-
-vim +68 drivers/dma-buf/heaps/mtk_secure_heap.c
-
-    66	
-    67	static const struct dma_heap_ops mtk_sec_heap_ops = {
-  > 68		.allocate	= mtk_sec_heap_allocate,
-    69	};
-    70	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
