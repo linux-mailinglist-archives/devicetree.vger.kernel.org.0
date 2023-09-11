@@ -2,43 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5051779A183
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 04:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6161D79A1E8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 05:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229939AbjIKCwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 10 Sep 2023 22:52:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33514 "EHLO
+        id S231917AbjIKDmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 10 Sep 2023 23:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229918AbjIKCwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 22:52:34 -0400
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9494FA;
-        Sun, 10 Sep 2023 19:52:29 -0700 (PDT)
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Mon, 11 Sep 2023
- 10:52:26 +0800
-From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-To:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Neil Armstrong" <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: [PATCH V3 RESEND 0/6] Power: T7: add  power domain driver
-Date:   Mon, 11 Sep 2023 10:52:17 +0800
-Message-ID: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
-X-Mailer: git-send-email 2.37.1
+        with ESMTP id S229517AbjIKDmK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 10 Sep 2023 23:42:10 -0400
+Received: from omta40.uswest2.a.cloudfilter.net (omta40.uswest2.a.cloudfilter.net [35.89.44.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444121A2
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 20:42:05 -0700 (PDT)
+Received: from eig-obgw-6006a.ext.cloudfilter.net ([10.0.30.182])
+        by cmsmtp with ESMTP
+        id fRLXqIlNAbK1VfXoKqywED; Mon, 11 Sep 2023 03:42:04 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+        by cmsmtp with ESMTPS
+        id fXoHqRBifv7I0fXoIqFant; Mon, 11 Sep 2023 03:42:03 +0000
+X-Authority-Analysis: v=2.4 cv=HLPQq6hv c=1 sm=1 tr=0 ts=64fe8c8b
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=CKMxHAookNUaJbGn3r6bzg==:17
+ a=OWjo9vPv0XrRhIrVQ50Ab3nP57M=:19 a=dLZJa+xiwSxG16/P+YVxDGlgEgI=:19
+ a=zNV7Rl7Rt7sA:10 a=oz0wMknONp8A:10 a=fXLTLdlhBoXFRLbt6LEA:9
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+        ; s=default; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=GhflVbz5vM28c/oqiKt0CeuCefN5C4x+tqAreTx3lzA=; b=Zb90C2TYcibGpN5sHqp4Pk4/3U
+        25C82bIalgSFKNCSRoNruk5GJHnN7CtfCMPE6u0HnEXsUU7VqZzo8XboaO8ZUtAcmN7JTIXuRj437
+        xb4qc/15Ex2ZhGdUIFdfEG2KsGU2qyy7Z8hqPzVEWFN0+su9+UBqTQecgo3ZSMoVm3GmIjaBsl4AD
+        Q4pKU48BbDlixZOyz8ovZkC3PguoWBqpEzJZsaQlRZ3AAQ/v67z2uneTNrlidUnpVw/0N7/YIYbWz
+        UIo1VGO1HCskvdGa5wpvSyDVIXk6FHzvWXuHRNLpmcWGsVyt5+NQ5BRT2TYEmSyD4FiJL7aqEri7O
+        5fkzgWnQ==;
+Received: from [103.163.95.214] (port=46382 helo=discovery..)
+        by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.96)
+        (envelope-from <saravanan@linumiz.com>)
+        id 1qfXoG-002lKM-08;
+        Mon, 11 Sep 2023 09:12:00 +0530
+From:   Saravanan Sekar <saravanan@linumiz.com>
+To:     sravanhome@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux@roeck-us.net, jdelvare@suse.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Saravanan Sekar <saravanan@linumiz.com>
+Subject: [PATCH 0/3] Add support for mpq2286 PMIC IC
+Date:   Mon, 11 Sep 2023 09:11:47 +0530
+Message-Id: <20230911034150.181880-1-saravanan@linumiz.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.98.11.200]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 103.163.95.214
+X-Source-L: No
+X-Exim-ID: 1qfXoG-002lKM-08
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: (discovery..) [103.163.95.214]:46382
+X-Source-Auth: saravanan@linumiz.com
+X-Email-Count: 2
+X-Org:  HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfJa/TB8ziFvPjE9mCXnQjALsCIqs/h1zzJVbcvmx1EWY5AWhZsxxwGysSx/BNkNy/19iOjJRJj6+IpAkGGC+pxc+zO3TOddhySYipYYU1ybOIsXgookz
+ ynqQRdEZvrnLmxPozc0cUNwhxsPyalCrPAITMCWpK9dDh287TKOGqmaFlqnxFa/4EBUE5o1Tv/qoNoK76d83msJ5oJu3JMwHLI0=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,39 +85,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-First patch is that remove C3 some power domain ALWAYS_ON property.
-Second patch is that add driver to support power parent node. 
-Third patch is that turn on power if initial power domain with
-"AWAY_ON" property state is off.
+The MPQ2286 is a programmable, high frequency synchronous buck regulator with
+integrated internal high side and low side power MOSFET. Application in
+Automotive compenents such as ADAS, Infotainment, SOC System core, DDR memory.
 
-Other patchs adds power controller driver support for Amlogic T7 SoC.
+Saravanan Sekar (3):
+  hwmon: (pmbus/mpq7932) Get page count based on chip info
+  dt-bindings: regulator: Add mps,mpq2286 power-management IC
+  hwmon: (pmbus/mpq2286) Add a support for mpq2286 Power Management IC
 
-Changes Since v2:
- -Modify subject.
- -Define PWRC_NO_PARENT UINT_MAX
- -Remove modification that transform is_off into 1 or 0 using !!
+ .../bindings/regulator/mps,mpq2286.yaml       | 59 +++++++++++++++++++
+ drivers/hwmon/pmbus/mpq7932.c                 |  9 ++-
+ 2 files changed, 65 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mps,mpq2286.yaml
 
-Changes Since v1:
- -Fix license from "GPL-2.0-only OR .*" to "GPL-2.0-only OR MIT".
- -Modify T7_NIC flag  "ALWAYS_ON"
-
-xianwei.zhao (6):
-  genpd: amlogic: modify some power domains property
-  genpd: amlogic: add driver to support power parent node
-  genpd: amlogic: init power domain state
-  dt-bindings: power: add Amlogic T7 power domains
-  genpd: amlogic: Add support for T7 power domains controller
-  arm64: dts: amlogic: t7: add power domain controller node
-
- .../power/amlogic,meson-sec-pwrc.yaml         |   3 +-
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   6 +
- drivers/genpd/amlogic/meson-secure-pwrc.c     | 127 ++++++++++++++++--
- include/dt-bindings/power/amlogic,t7-pwrc.h   |  63 +++++++++
- 4 files changed, 185 insertions(+), 14 deletions(-)
- create mode 100644 include/dt-bindings/power/amlogic,t7-pwrc.h
-
-
-base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
 -- 
-2.37.1
+2.34.1
 
