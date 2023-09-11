@@ -2,248 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A118279BAEC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9859479BAB2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235802AbjIKUwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51632 "EHLO
+        id S233478AbjIKUu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55484 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237655AbjIKNFb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:05:31 -0400
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0503E0;
-        Mon, 11 Sep 2023 06:05:26 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BD59bk127073;
-        Mon, 11 Sep 2023 08:05:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694437509;
-        bh=1FoHF9ni6Hwn735OpvazjUIK8ceKZ/orTvVXyBvOC8s=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=TBWnProI8OC+E3Cf61uKOn+bBsCwim1O4KsOMHtlrsOjUdXdaTNVprGXTIHGkVxz0
-         iUTKh+tlzPR28kkiOLF3YLrpZMp9kCxdYA4gOBhsYoKOdaVujBu+vznIeUd42BZH7a
-         pSajfMftZWvXRVGq5c6/0VYB5IiIWbGSVALLOWyA=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BD59Te016792
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Sep 2023 08:05:09 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Sep 2023 08:05:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Sep 2023 08:05:08 -0500
-Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BD58nk030651;
-        Mon, 11 Sep 2023 08:05:08 -0500
-Message-ID: <1e1577a5-fb01-c84b-ede0-38058387ec23@ti.com>
-Date:   Mon, 11 Sep 2023 08:05:08 -0500
+        with ESMTP id S237852AbjIKNPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:15:20 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69ED7E40
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:15:14 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2bf8b9c5ca0so17730281fa.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 06:15:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694438112; x=1695042912; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YL6EQgEy3tU456+JOD18a+m3T5ccWapszSBNRkdsmHI=;
+        b=vHXNjYDzKOqcrn+XNPyUE8dUN6iSLRGOgkGduve+2Vl6HYAwqoSmASwtSEPt4r7xld
+         BNp5fZNgi8ZfR76pkGpk9b618vvZretLDMSAtaJTD7cjisIQv5+dIRnaT/D/fpCYBymt
+         OxuqW/rEAZQIJ7jWFUfs7CvKk2m/FvDSZQLv9WJ99w6TnPvuk2ampIYxFXbCbEWH2YMh
+         pr7firIk7xBadI1aqRJ/hTJQbXupUNBfC32kd1lpcB2XRLdsC5BORce6hPvGbiWceJId
+         5rpoia8SGhdZjUhHIt2R6hI73X2M63l3mVnbr1mfKkn0qrExZzmU69F3AZ/3quCKg5Qy
+         q1Xg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694438112; x=1695042912;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YL6EQgEy3tU456+JOD18a+m3T5ccWapszSBNRkdsmHI=;
+        b=dD7M7w0V7H+68nkDBZL6QrhmdHxt+eW7jfdOjMGt5nh8UUPgE8ZsEGO0J7W7e03HLX
+         Lg1LKoLDvcg8t2FPqCWLE3bcNmjZtvU/Xh3aQ6svUizWtYRK4jS5i+yRgE9PkxqF1PM4
+         K+Xp4wjT9+SOqMfIfkA+cjsgwSl4F8SMiJDrjw5AP0/G26Q2+7mAynPikXgURqJ61gSZ
+         WY4HTZ+uv6QQFOpzLHyEuco56QmdSqJocXE8LJ3JzF9zzGZOeoQrzTL8Jp2TVuBuqQEC
+         2/3Vu6kgh3kprHmZj3stxjv0cz55pRFEGnc7xklc4JAJCpjV9F5bhRHKDmh/uMF8uNis
+         uuJw==
+X-Gm-Message-State: AOJu0YzA628BASY7oHUzejEBtfIVxpSFST4mrpSF2Zhts15Gxc+yCUwO
+        nKBmujuklmdEYuEruCctZe4ZBA==
+X-Google-Smtp-Source: AGHT+IHgPjvN+UWeNyYfeTibcUFW047uMqqj3CXvvMBXFOfU+Wn748lBxSTCSiRTpolOZ0ariUm+vA==
+X-Received: by 2002:a05:651c:14b:b0:2bc:da4a:4649 with SMTP id c11-20020a05651c014b00b002bcda4a4649mr8568770ljd.22.1694438112248;
+        Mon, 11 Sep 2023 06:15:12 -0700 (PDT)
+Received: from [10.2.145.31] ([193.65.47.217])
+        by smtp.gmail.com with ESMTPSA id p17-20020a2ea411000000b002b70aff9a97sm1533510ljn.16.2023.09.11.06.15.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 06:15:11 -0700 (PDT)
+Message-ID: <04eb9f71-78f0-41f2-96a6-fc759ba296fa@linaro.org>
+Date:   Mon, 11 Sep 2023 16:15:10 +0300
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Subject: Re: [PATCH 2/3] arm64: dts: ti: am654-base-board: add ICSSG2 Ethernet
- support
-To:     MD Danish Anwar <danishanwar@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Nishanth Menon <nm@ti.com>
-CC:     Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <kristo@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <r-gunasekaran@ti.com>
-References: <20230911071245.2173520-1-danishanwar@ti.com>
- <20230911071245.2173520-3-danishanwar@ti.com>
-Content-Language: en-US
-From:   Andrew Davis <afd@ti.com>
-In-Reply-To: <20230911071245.2173520-3-danishanwar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/6] arm64: dts: qcom: sdm845: Add OPP table support to
+ UFSHC
+Content-Language: en-GB
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        myungjoo.ham@samsung.com, kyungmin.park@samsung.com,
+        cw00.choi@samsung.com, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jejb@linux.ibm.com, martin.petersen@oracle.com
+Cc:     alim.akhtar@samsung.com, avri.altman@wdc.com, bvanassche@acm.org,
+        linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_asutoshd@quicinc.com, quic_cang@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_narepall@quicinc.com,
+        quic_bhaskarv@quicinc.com, quic_richardp@quicinc.com,
+        quic_nguyenb@quicinc.com, quic_ziqichen@quicinc.com,
+        bmasney@redhat.com, krzysztof.kozlowski@linaro.org,
+        linux-kernel@vger.kernel.org
+References: <20230731163357.49045-1-manivannan.sadhasivam@linaro.org>
+ <20230731163357.49045-6-manivannan.sadhasivam@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230731163357.49045-6-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/11/23 2:12 AM, MD Danish Anwar wrote:
-> ICSSG2 provides dual Gigabit Ethernet support.
+On 31/07/2023 19:33, Manivannan Sadhasivam wrote:
+> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> For support SR2.0 ICSSG Ethernet firmware:
-> - provide different firmware blobs and use TX_PRU.
-> - IEP0 is used as PTP Hardware Clock and can only be used for one port.
-> - TX timestamp notification comes via INTC interrupt.
+> UFS host controller, when scaling gears, should choose appropriate
+> performance state of RPMh power domain controller along with clock
+> frequency. So let's add the OPP table support to specify both clock
+> frequency and RPMh performance states replacing the old "freq-table-hz"
+> property.
 > 
-> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> [mani: Splitted pd change and used rpmhpd_opp_low_svs]
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->   .../arm64/boot/dts/ti/k3-am654-base-board.dts | 123 ++++++++++++++++++
-
-Adding this to the base dts? What if I want to use my PRUs for something
-else? These "application nodes" define a single usecase out of many
-possible, and should IMHO always be in overlays so users can select which
-they want easily.
-
-Andrew
-
->   1 file changed, 123 insertions(+)
+>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 42 +++++++++++++++++++++-------
+>   1 file changed, 32 insertions(+), 10 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> index f5c26e9fba98..5cf9546ff9f7 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-> @@ -25,6 +25,8 @@ aliases {
->   		ethernet0 = &cpsw_port1;
->   		mmc0 = &sdhci0;
->   		mmc1 = &sdhci1;
-> +		ethernet1 = &icssg2_emac0;
-> +		ethernet2 = &icssg2_emac1;
->   	};
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 055ca80c0075..2ea6eb44953e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2605,22 +2605,44 @@ ufs_mem_hc: ufshc@1d84000 {
+>   				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+>   				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>,
+>   				<&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+> -			freq-table-hz =
+> -				<50000000 200000000>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<37500000 150000000>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<0 0>,
+> -				<75000000 300000000>;
+> +
+> +			operating-points-v2 = <&ufs_opp_table>;
 >   
->   	chosen {
-> @@ -144,6 +146,72 @@ vtt_supply: regulator-3 {
->   		vin-supply = <&vcc3v3_io>;
->   		gpio = <&wkup_gpio0 28 GPIO_ACTIVE_HIGH>;
->   	};
+>   			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mem_noc SLAVE_EBI1 0>,
+>   					<&gladiator_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+>   			interconnect-names = "ufs-ddr", "cpu-ufs";
+>   
+>   			status = "disabled";
 > +
-> +	/* Dual Ethernet application node on PRU-ICSSG2 */
-> +	icssg2_eth: icssg2-eth {
-> +		compatible = "ti,am654-icssg-prueth";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&icssg2_rgmii_pins_default>;
-> +		sram = <&msmc_ram>;
-> +		ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
-> +			<&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
-> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
-> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
+> +			ufs_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
 > +
-> +		ti,pruss-gp-mux-sel = <2>,      /* MII mode */
-> +				      <2>,
-> +				      <2>,
-> +				      <2>,	/* MII mode */
-> +				      <2>,
-> +				      <2>;
+> +				opp-50000000 {
+> +					opp-hz = /bits/ 64 <50000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <37500000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <75000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+
+I'd say, I'm still slightly unhappy about the 0 clock rates here.
+We need only three clocks here: core, core_clk_unipro and optional 
+ice_core_clk. Can we modify ufshcd_parse_operating_points() to pass only 
+these two or three clock names to devm_pm_opp_set_config() ? The OPP 
+core doesn't need to know about all the rest of the clocks.
+
 > +
-> +		ti,mii-g-rt = <&icssg2_mii_g_rt>;
-> +		ti,mii-rt = <&icssg2_mii_rt>;
-> +		ti,iep = <&icssg2_iep0>, <&icssg2_iep1>;
-> +
-> +		interrupt-parent = <&icssg2_intc>;
-> +		interrupts = <24 0 2>, <25 1 3>;
-> +		interrupt-names = "tx_ts0", "tx_ts1";
-> +
-> +		dmas = <&main_udmap 0xc300>, /* egress slice 0 */
-> +		       <&main_udmap 0xc301>, /* egress slice 0 */
-> +		       <&main_udmap 0xc302>, /* egress slice 0 */
-> +		       <&main_udmap 0xc303>, /* egress slice 0 */
-> +		       <&main_udmap 0xc304>, /* egress slice 1 */
-> +		       <&main_udmap 0xc305>, /* egress slice 1 */
-> +		       <&main_udmap 0xc306>, /* egress slice 1 */
-> +		       <&main_udmap 0xc307>, /* egress slice 1 */
-> +		       <&main_udmap 0x4300>, /* ingress slice 0 */
-> +		       <&main_udmap 0x4301>; /* ingress slice 1 */
-> +
-> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
-> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
-> +			    "rx0", "rx1";
-> +		ethernet-ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			icssg2_emac0: port@0 {
-> +				reg = <0>;
-> +				phy-handle = <&icssg2_phy0>;
-> +				phy-mode = "rgmii-id";
-> +				ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
-> +				/* Filled in by bootloader */
-> +				local-mac-address = [00 00 00 00 00 00];
+> +				opp-200000000 {
+> +					opp-hz = /bits/ 64 <200000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <150000000>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <0>,
+> +						 /bits/ 64 <300000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +				};
 > +			};
-> +			icssg2_emac1: port@1 {
-> +				reg = <1>;
-> +				phy-handle = <&icssg2_phy1>;
-> +				phy-mode = "rgmii-id";
-> +				ti,syscon-rgmii-delay = <&scm_conf 0x4124>;
-> +				/* Filled in by bootloader */
-> +				local-mac-address = [00 00 00 00 00 00];
-> +			};
-> +		};
-> +	};
->   };
+>   		};
 >   
->   &wkup_pmx0 {
-> @@ -300,6 +368,43 @@ usb1_pins_default: usb1-default-pins {
->   			AM65X_IOPAD(0x02c0, PIN_OUTPUT, 0) /* (AC8) USB1_DRVVBUS */
->   		>;
->   	};
-> +
-> +	icssg2_mdio_pins_default: icssg2-mdio-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x0094, PIN_INPUT, 2) /* (AC19) PRG2_PRU0_GPO7.PRG2_MDIO0_MDIO */
-> +			AM65X_IOPAD(0x00c8, PIN_OUTPUT, 2) /* (AE15) PRG2_PRU1_GPO7.PRG2_MDIO0_MDC */
-> +		>;
-> +	};
-> +
-> +	icssg2_rgmii_pins_default: icssg2-rgmii-default-pins {
-> +		pinctrl-single,pins = <
-> +			AM65X_IOPAD(0x00ac, PIN_INPUT, 2) /* (AH15) PRG2_PRU1_GPO0.PRG2_RGMII2_RD0 */
-> +			AM65X_IOPAD(0x00b0, PIN_INPUT, 2) /* (AC16) PRG2_PRU1_GPO1.PRG2_RGMII2_RD1 */
-> +			AM65X_IOPAD(0x00b4, PIN_INPUT, 2) /* (AD17) PRG2_PRU1_GPO2.PRG2_RGMII2_RD2 */
-> +			AM65X_IOPAD(0x00b8, PIN_INPUT, 2) /* (AH14) PRG2_PRU1_GPO3.PRG2_RGMII2_RD3 */
-> +			AM65X_IOPAD(0x00cc, PIN_OUTPUT, 2) /* (AD15) PRG2_PRU1_GPO8.PRG2_RGMII2_TD0 */
-> +			AM65X_IOPAD(0x00d0, PIN_OUTPUT, 2) /* (AF14) PRG2_PRU1_GPO9.PRG2_RGMII2_TD1 */
-> +			AM65X_IOPAD(0x00d4, PIN_OUTPUT, 2) /* (AC15) PRG2_PRU1_GPO10.PRG2_RGMII2_TD2 */
-> +			AM65X_IOPAD(0x00d8, PIN_OUTPUT, 2) /* (AD14) PRG2_PRU1_GPO11.PRG2_RGMII2_TD3 */
-> +			AM65X_IOPAD(0x00dc, PIN_INPUT, 2) /* (AE14) PRG2_PRU1_GPO16.PRG2_RGMII2_TXC */
-> +			AM65X_IOPAD(0x00c4, PIN_OUTPUT, 2) /* (AC17) PRG2_PRU1_GPO6.PRG2_RGMII2_TX_CTL */
-> +			AM65X_IOPAD(0x00c0, PIN_INPUT, 2) /* (AG15) PRG2_PRU1_GPO5.PRG2_RGMII2_RXC */
-> +			AM65X_IOPAD(0x00bc, PIN_INPUT, 2) /* (AG14) PRG2_PRU1_GPO4.PRG2_RGMII2_RX_CTL */
-> +
-> +			AM65X_IOPAD(0x0078, PIN_INPUT, 2) /* (AF18) PRG2_PRU0_GPO0.PRG2_RGMII1_RD0 */
-> +			AM65X_IOPAD(0x007c, PIN_INPUT, 2) /* (AE18) PRG2_PRU0_GPO1.PRG2_RGMII1_RD1 */
-> +			AM65X_IOPAD(0x0080, PIN_INPUT, 2) /* (AH17) PRG2_PRU0_GPO2.PRG2_RGMII1_RD2 */
-> +			AM65X_IOPAD(0x0084, PIN_INPUT, 2) /* (AG18) PRG2_PRU0_GPO3.PRG2_RGMII1_RD3 */
-> +			AM65X_IOPAD(0x0098, PIN_OUTPUT, 2) /* (AH16) PRG2_PRU0_GPO8.PRG2_RGMII1_TD0 */
-> +			AM65X_IOPAD(0x009c, PIN_OUTPUT, 2) /* (AG16) PRG2_PRU0_GPO9.PRG2_RGMII1_TD1 */
-> +			AM65X_IOPAD(0x00a0, PIN_OUTPUT, 2) /* (AF16) PRG2_PRU0_GPO10.PRG2_RGMII1_TD2 */
-> +			AM65X_IOPAD(0x00a4, PIN_OUTPUT, 2) /* (AE16) PRG2_PRU0_GPO11.PRG2_RGMII1_TD3 */
-> +			AM65X_IOPAD(0x00a8, PIN_INPUT, 2) /* (AD16) PRG2_PRU0_GPO16.PRG2_RGMII1_TXC */
-> +			AM65X_IOPAD(0x0090, PIN_OUTPUT, 2) /* (AE17) PRG2_PRU0_GPO6.PRG2_RGMII1_TX_CTL */
-> +			AM65X_IOPAD(0x008c, PIN_INPUT, 2) /* (AF17) PRG2_PRU0_GPO5.PRG2_RGMII1_RXC */
-> +			AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
-> +		>;
-> +	};
->   };
->   
->   &main_pmx1 {
-> @@ -621,3 +726,21 @@ &cpsw_port1 {
->   &dss {
->   	status = "disabled";
->   };
-> +
-> +&icssg2_mdio {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&icssg2_mdio_pins_default>;
-> +
-> +	icssg2_phy0: ethernet-phy@0 {
-> +		reg = <0>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +	};
-> +
-> +	icssg2_phy1: ethernet-phy@3 {
-> +		reg = <3>;
-> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
-> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
-> +	};
-> +};
+>   		ufs_mem_phy: phy@1d87000 {
+
+-- 
+With best wishes
+Dmitry
+
