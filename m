@@ -2,105 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0BB079ACA1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B4D279B29E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236037AbjIKUtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36974 "EHLO
+        id S234396AbjIKUsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242624AbjIKP6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:58:05 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1396D1B6;
-        Mon, 11 Sep 2023 08:58:01 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B36E2C433C7;
-        Mon, 11 Sep 2023 15:57:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694447880;
-        bh=TZqMa028quiSQSHPEyotkXIBKsiJ+ehaCJ4ItKr3fr4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=W9DI1iQ3Ai1faZto8k6V5a1/4EuSBX3Z9Rhu+CEy4exXRelKDiDxPGuleeVzBB6j8
-         Zr4GQ0mpDtzmjzriohiZDwQUQUl0sgid7HA0ay5PGNX2whgHzHoA+95rISUk2M8e9R
-         C3Ey9fveYbYnuNJTS4I//CKT0moZhAXRV1qg+oS4BmTBhjFmDxkDSR3QAF/b5M+adU
-         u4nlkvT5fDj0DTOtk/mtoKUZ828YVQ1M6YH56496f/wKl/wEBdvw3eACJGs5DW1uJv
-         IyIagmBTRQiqw1k86eE0zA20FIl6uE1bvsXDN3H0RO/E61jGCUa4EAg63hFw9b1ZYV
-         9sNCPUtsl6a2A==
-Date:   Mon, 11 Sep 2023 16:57:55 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Mihai Sain <mihai.sain@microchip.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        andre.przywara@arm.com, andrei.simion@microchip.com,
-        jerry.ray@microchip.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        cristian.birsan@microchip.com
-Subject: Re: [PATCH 1/2] dt-bindings: ARM: at91: Document Microchip SAMA5D29
- Curiosity
-Message-ID: <20230911-chevron-overture-002166f20aad@spud>
-References: <20230801111151.6546-1-mihai.sain@microchip.com>
- <20230801-unbalance-baguette-cd0d4e7e0107@spud>
- <d0296fbd-63d9-10af-4326-68857c6580be@microchip.com>
+        with ESMTP id S242659AbjIKQEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:04:22 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B63311AE;
+        Mon, 11 Sep 2023 09:04:16 -0700 (PDT)
+Received: from [192.168.1.23] (unknown [171.76.82.102])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: vignesh)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 04FF86607313;
+        Mon, 11 Sep 2023 17:04:12 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694448255;
+        bh=B/g8SjCnc9xcn+5GHjXJAXRi60F4LL7KKfpFcTnnij0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AqlKCa35OFha/+DbJXxRJ07jLCrWI0leUjTQJnPsEZBFOWCwShOeMN8FLOEUVFBds
+         pnJ1Pg8SEVDE9XQn4ggSrLSqr5bIMHB01tTYp/BUAtgBIIE0UToDt0Xzu8KL0bXIsg
+         gWfp/yi740+09MAC26k2D8zGuSv6pQVOvGZ3L0mfWYMDO1iX4laZjw4mCTkZ2t6HfX
+         Gh3+ze017veMQ4AkPZzi/a2o7idVgFK9AYtYY8YetF4YQXGBLsYdz49V4pIPcxAlhk
+         7ETnZydxymH8cMOcGEff1WQMK9vPWRCF3dSG4xN5yxp0Gv1UgocAakcrtsqXUIxNm7
+         mMATUC/IFzVZA==
+Message-ID: <3c9c1df8-ae3b-9a89-7b1a-a7dcbb835218@collabora.com>
+Date:   Mon, 11 Sep 2023 21:34:08 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="QhFBVfyMkBitxQNP"
-Content-Disposition: inline
-In-Reply-To: <d0296fbd-63d9-10af-4326-68857c6580be@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH] arm64: dts: qcom: apq8016-sbc: Add overlay for usb host
+ mode
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        devicetree@vger.kernel.org
+Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
+        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+        daniels@collabora.com, emma@anholt.net, robdclark@gmail.com,
+        mripard@kernel.org, dmitry.baryshkov@linaro.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230911153207.646160-1-vignesh.raman@collabora.com>
+ <8a812c6c-d26f-57a7-f3e8-d6f7442a9f89@linaro.org>
+From:   Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <8a812c6c-d26f-57a7-f3e8-d6f7442a9f89@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---QhFBVfyMkBitxQNP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 11/09/23 21:09, Krzysztof Kozlowski wrote:
+> 
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC (and consider --no-git-fallback argument). It might
+> happen, that command when run on an older kernel, gives you outdated
+> entries. Therefore please be sure you base your patches on recent Linux
+> kernel.
+> 
+> You skipped all maintainers, so this patch will be simply ignored.
 
-On Mon, Sep 11, 2023 at 05:03:07PM +0200, Nicolas Ferre wrote:
-> On 01/08/2023 at 17:35, Conor Dooley wrote:
-> > > diff --git a/Documentation/devicetree/bindings/arm/atmel-at91.yaml b/=
-Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> > > index dfb8fd089197..89d75fbb1de4 100644
-> > > --- a/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/atmel-at91.yaml
-> > > @@ -79,6 +79,13 @@ properties:
-> > >             - const: atmel,sama5d2
-> > >             - const: atmel,sama5
-> > > +      - description: Microchip SAMA5D29 Curiosity
-> > > +        items:
-> > > +          - const: microchip,sama5d29-curiosity
-> > > +          - const: atmel,sama5d29
-> > > +          - const: atmel,sama5d2
-> > > +          - const: atmel,sama5
-> > What is the benefit of adding the two familial compatibles? Is there
-> > software that actually uses these?
->=20
-> "atmel,sama5d2" is used by arch/arm/mach-at91/sama5.c file
-> "atmel,sama5" is used by drivers/soc/atmel/soc.c file, so yes they are
-> needed to instantiate a sama5d29 SoC.
+Apologies. I think the second time also the patch was ignored.
 
-Okay.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Will use 
+https://www.marcusfolkesson.se/blog/get_maintainers-and-git-send-email/ 
+to populate the correct to and cc list.
 
-Thanks,
-Conor.
+Thanks.
 
---QhFBVfyMkBitxQNP
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Vigesh
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZP85AwAKCRB4tDGHoIJi
-0tq7AQC31b777BGi1fMhydSbFoJ0l4+ytEoMg4vr7HbkC3GOMQD/Y3QYEk4qcMAv
-agWAci9nMQ/vVJ6irhfb07mu4xCpsQw=
-=9YnG
------END PGP SIGNATURE-----
-
---QhFBVfyMkBitxQNP--
