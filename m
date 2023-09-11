@@ -2,164 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C30379BEF0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44D3F79BA03
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236676AbjIKUtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56372 "EHLO
+        id S234698AbjIKUws (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238702AbjIKODK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 10:03:10 -0400
-Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88E72CF0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:03:05 -0700 (PDT)
-Received: by mail-ot1-x333.google.com with SMTP id 46e09a7af769-6c09d760cb9so3110521a34.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:03:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694440985; x=1695045785; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=htSTLHjXjD8vt5EAYXqSVCO6HargxzSV7gX/AB30oB8=;
-        b=pQ8DucXuZEPvnGjYPK6Xp6eHioid+dT2sQzVmKr7+vDnV6OsM7bPZeg4uE8b79zsv5
-         obCWZrboJP2tNwW+xt6Si608UY1uBJcTAqIK7QtpmwX429uEytiJ2w1JSEUMGBR+bQxn
-         DUL8oyRp6vGnqKKJ33js55BqS2bOVPgd24IcsZrHBAkZU92ZFT/mMYkfNktvPLnM3i5H
-         sxkme+ZYw2zigoIehhygpTpYSsxcKOvIs1UKzxKzUMiVd71Fq4cb9XTDmMlPVdtNU4im
-         D0LQchJyidfyTyJKQkLWt87DLb3EZ8oTy+YpobA2Uv3IYGpj+J71umZgbfZncoRxwPBL
-         V3cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694440985; x=1695045785;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=htSTLHjXjD8vt5EAYXqSVCO6HargxzSV7gX/AB30oB8=;
-        b=cThyYboL/5zNSd8r4yA8sU4gm447tMuo8cxywdoLIltmiCtgKpEoakaSKT8yW+4U/z
-         h4rIkqQa5ayPqPpz6CKuZSJxBOUNkLKyj+x3IVeAJ9Nw6cNWzo30h45ESk9AkbbIBeMT
-         2fQc4m9v//gFqyem9TKyS6gxybnTf9NodNq9yBUMWRFvvjKea3RTSUjA2LaTw0xvFOwV
-         q/Ok6SB3xeN3+Y0cSfDVEtssgF5BbYOFaDrX0m5XKgKVCvcKGMPvf5iK6eFO4EJ/k5VD
-         tu6wn9MTHkd+uRr29IkYKLyCvECM8q5LJx4wULldFeR5BSAkmRCOlzeA12WWX8lcU2za
-         WehA==
-X-Gm-Message-State: AOJu0YwJC+3vVo7npCmnEzp5+ks8fM21ZR0w4lj/Qj8A52uz+LT5Z7sw
-        UhcwuWoCr3p2nLxrDPiS/xMPVwRRpmW+T2vEiCJU4A==
-X-Google-Smtp-Source: AGHT+IE9jU1FIU4/f7jfsz9Rxe7QJ58u0dK8sOWYKbT++bpDZ1zCqq2z618I6/2zgrXrXtGljoG5HE5wpdQJfoU3BhM=
-X-Received: by 2002:a05:6830:457:b0:6b9:9e4f:5f4c with SMTP id
- d23-20020a056830045700b006b99e4f5f4cmr9593916otc.29.1694440984758; Mon, 11
- Sep 2023 07:03:04 -0700 (PDT)
+        with ESMTP id S240096AbjIKOg2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 10:36:28 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CEA0F193
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:36:23 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 62DEDD75;
+        Mon, 11 Sep 2023 07:36:59 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F0B323F738;
+        Mon, 11 Sep 2023 07:36:19 -0700 (PDT)
+Date:   Mon, 11 Sep 2023 15:36:17 +0100
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, linux-sunxi@lists.linux.dev,
+        devicetree@vger.kernel.org, airlied@gmail.com, conor+dt@kernel.org,
+        daniel@ffwll.ch, heiko@sntech.de, jagan@edgeble.ai,
+        jernej.skrabec@gmail.com, krzysztof.kozlowski+dt@linaro.org,
+        mripard@kernel.org, neil.armstrong@linaro.org, noralf@tronnes.org,
+        robh+dt@kernel.org, sam@ravnborg.org, samuel@sholland.org,
+        uwu@icenowy.me, Chris Morgan <macromorgan@hotmail.com>
+Subject: Re: [PATCH V4 8/8] ARM: dts: sunxi: add support for Anbernic
+ RG-Nano
+Message-ID: <20230911153617.530ac42b@donnerap.manchester.arm.com>
+In-Reply-To: <CAGb2v66qXS1Yn8fCd9kbgf9mrbpa8A4q=px+0jAX5Z567oYAsg@mail.gmail.com>
+References: <20230828181941.1609894-1-macroalpha82@gmail.com>
+        <20230828181941.1609894-9-macroalpha82@gmail.com>
+        <20230911004909.6a40e1c0@slackpad.lan>
+        <CAGb2v66qXS1Yn8fCd9kbgf9mrbpa8A4q=px+0jAX5Z567oYAsg@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 MIME-Version: 1.0
-References: <20230828140849.21724-1-tmaimon77@gmail.com> <20230828140849.21724-3-tmaimon77@gmail.com>
-In-Reply-To: <20230828140849.21724-3-tmaimon77@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 11 Sep 2023 16:02:53 +0200
-Message-ID: <CACRpkdZk8dKGx2HUoRhkRo6DBkycKh5EkYiGWcFot3OOZnvdpg@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] pinctrl: nuvoton: add NPCM8XX pinctrl and GPIO driver
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
-        joel@jms.id.au, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, j.neuschaefer@gmx.net,
-        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 28, 2023 at 4:09=E2=80=AFPM Tomer Maimon <tmaimon77@gmail.com> =
-wrote:
+On Mon, 11 Sep 2023 21:35:19 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-> Add pinctrl and GPIO controller driver support to Arbel BMC NPCM8XX SoC.
->
-> Arbel BMC NPCM8XX pinctrl driver based on Poleg NPCM7XX, except the
-> pin mux mapping difference the NPCM8XX GPIO supports adjust debounce
-> period time.
->
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Hi Chen-Yu,
 
-As mentioned the patch is already applied, consider the following
-as nitpicks you can address in followup patches.
+[...]
 
-> +struct npcm8xx_gpio {
-> +       struct gpio_chip        gc;
-> +       void __iomem            *base;
-> +       struct debounce_time    debounce;
-> +       int                     irqbase;
+> > Regarding multiple RTCs: I didn't find anything which assigns a
+> > priority level to multiple RTCs in the system. What you can do on the
+> > userland side is to have a udev rule that links the PCF device to
+> > /dev/rtc, so that most tools would use that as a time source.  
+> 
+> You can add DT aliases to override the numbering, thus making an external
+> one rtc0 and the internal one rtc1. See
+> arch/arm/boot/dts/allwinner/sun6i-a31-hummingbird.dts for such an example.
 
-You're not really using this are you? Delete it.
-Also the assignment further down: you do not use it I think.
+Ah, excellent, I somehow missed this. That should indeed solve that
+problem.
 
-> +       int                     irq;
-
-You're not using this either. Delete it.
-
-> +       struct irq_chip         irq_chip;
-
-Not this either. Delete it.
-
-> +static int npcm8xx_dt_node_to_map(struct pinctrl_dev *pctldev,
-> +                                 struct device_node *np_config,
-> +                                 struct pinctrl_map **map,
-> +                                 u32 *num_maps)
-> +{
-> +       return pinconf_generic_dt_node_to_map(pctldev, np_config,
-> +                                             map, num_maps,
-> +                                             PIN_MAP_TYPE_INVALID);
-> +}
-> +
-> +static void npcm8xx_dt_free_map(struct pinctrl_dev *pctldev,
-> +                               struct pinctrl_map *map, u32 num_maps)
-> +{
-> +       kfree(map);
-> +}
-
-Can't you just call the generic functions directly?
-
-> +static const struct pinctrl_ops npcm8xx_pinctrl_ops =3D {
-> +       .get_groups_count =3D npcm8xx_get_groups_count,
-> +       .get_group_name =3D npcm8xx_get_group_name,
-> +       .get_group_pins =3D npcm8xx_get_group_pins,
-> +       .dt_node_to_map =3D npcm8xx_dt_node_to_map,
-> +       .dt_free_map =3D npcm8xx_dt_free_map,
-
-Here?
-
-(...)
-> +static int npcm8xx_gpio_request_enable(struct pinctrl_dev *pctldev,
-> +                                      struct pinctrl_gpio_range *range,
-> +                                      unsigned int offset)
-> +{
-> +       struct npcm8xx_pinctrl *npcm =3D pinctrl_dev_get_drvdata(pctldev)=
-;
-> +       const unsigned int *pin =3D &offset;
-> +       int mode =3D fn_gpio;
-> +
-> +       if (pin[0] >=3D 183 && pin[0] <=3D 189)
-> +               mode =3D pincfg[pin[0]].fn0;
-
-These magic numbers should really be definies.
-
-> +static void npcm8xx_gpio_request_free(struct pinctrl_dev *pctldev,
-> +                                     struct pinctrl_gpio_range *range,
-> +                                     unsigned int offset)
-> +{
-> +       struct npcm8xx_pinctrl *npcm =3D pinctrl_dev_get_drvdata(pctldev)=
-;
-> +       int virq;
-> +
-> +       virq =3D irq_find_mapping(npcm->domain, offset);
-> +       if (virq)
-> +               irq_dispose_mapping(virq);
-> +}
-
-I would just rename "virq" to "irq", it is a Linux IRQ, not really
-"virtual" which is what the "v" sometimes stand for.
-
-Yours,
-Linus Walleij
+Thanks for the heads up!
+Andre
