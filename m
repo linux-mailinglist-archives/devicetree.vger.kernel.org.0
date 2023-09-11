@@ -2,253 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 72A6C79BC96
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1C7379B8A9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238409AbjIKUx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37628 "EHLO
+        id S233799AbjIKUtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241777AbjIKPOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:14:22 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF9B5FA;
-        Mon, 11 Sep 2023 08:14:16 -0700 (PDT)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6E69BC0025;
-        Mon, 11 Sep 2023 15:13:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1694445255;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ojuPiNmXmCazeh3wr8WutwjTo9jG8jJh57glhlUbxKQ=;
-        b=IjcYBOellcOfTpijLCpK9WnTM4/S/aHyvMuAt5a98uJnhkxBmZKIURIgO3VH/+TVpKUVf2
-        aG+r9ONNUgm0rHj8yq6enm0iDDgY7XptJJipf55c1DMLRXAKUjwPa+QVs87DmPJHVL2K/m
-        7Wu0kxenpt3iwns8cXXXFRSxcxoHCSdozRAE1ddfnLZone36fnaQUhOPIL8h4g8sTgDrMi
-        J5/RQinVOdc3JHbQDIlFv8bWneJfngxF6pk6Y6YWiOBCrFNQeIPlldLSgmo+hyHu2TvCPQ
-        XWWAJyKyrx+9XCOhC3y6VaPdoPSK7MWUWFCYv6COmBp6ITiS5UNbvwXWPZSljw==
-Date:   Mon, 11 Sep 2023 17:13:19 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
-        <max.zhen@amd.com>, <sonal.santan@amd.com>,
-        <stefano.stabellini@xilinx.com>
-Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
-Message-ID: <20230911171319.495bb837@bootlin.com>
-In-Reply-To: <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
-References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
-        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        with ESMTP id S242395AbjIKPaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:30:19 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73085CE5
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:30:12 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-5007616b756so7561754e87.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1694446210; x=1695051010; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IewnJfJyIc3JF1ZmFRQB+j/PW2AOwYNqv6ATRNcWgHA=;
+        b=MSsPrJDKE5xoSmNh46Kaa2J0koTBNgoYVM3y3IGS8j/GqYohrp2r34J0cCGJFCoYyb
+         bua0xQOqRN/faoadazGZcAiC6QzRRrg4MMnk+di9x3met538a1jFaNgcHVjkSgLhfvDR
+         JyKxEhWqGjCLD7EGiefBBrT+7fQLd+OrCFqqlh1FuxbwecesoaEyQt1qBS6b93HCDxWD
+         qxupakS10sE8YCdeXS4esjlMNHOf1S0SE3GSOttS9nrryvyei38Zb8ZFYqRaRBX3QDNZ
+         wj7bFjpMn6I0Vgq6PkIGnsHoDRAYokoeBiqka5BowLuuulnO6Y/qgjkIWio6z0QHCS8r
+         pUwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694446210; x=1695051010;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IewnJfJyIc3JF1ZmFRQB+j/PW2AOwYNqv6ATRNcWgHA=;
+        b=t+XB7QbtJhB8Apkf8RpyHJYkJy9rQQ3uRGSHaY7F03dlJXltCDz0UQ4Xui75JniLHw
+         VUofObIX776zYs7iHewJe3FoTqEL23gAZL6YbhR3+aXjmASdbfhF6H7p7j80b2ACWk0d
+         rr6lglEmjkVLRHlO4AwVN1eY4I4Lc/1GTKvCub43Cfg8lvBvoE7inlIcBd7u9HV8TesW
+         bsB2ItG4PQhXZgtFdPiHrpi1FBcgsH10TY2N3TrOIGOsyiofcbqzh5GGprXio30uPYID
+         +hYMcK7gotuto8feG3DGBfaA1WLUMA6eLRteWE99ui14XIZU4myPVLmBSJOVQZ0PNnSX
+         v6gg==
+X-Gm-Message-State: AOJu0YwqGsrZWy+F1Xij8tTS1n2cxXZVI4WJRwvxIzEu+3/odKAdVdlq
+        vn9yMG8NTRsM4O5JMH15J0ps/Q==
+X-Google-Smtp-Source: AGHT+IGk3bVe3SE1qLDOb/MT3TwaHl4EvuUcgJ1iHxbI55reTaiI7wcaDe1/Z2ro+fK9iZ8cENhnaw==
+X-Received: by 2002:a05:6512:1592:b0:4fb:fe97:5e35 with SMTP id bp18-20020a056512159200b004fbfe975e35mr11258000lfb.47.1694446210474;
+        Mon, 11 Sep 2023 08:30:10 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id w5-20020ac25985000000b00500a4679148sm1383886lfn.20.2023.09.11.08.30.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Sep 2023 08:30:09 -0700 (PDT)
+Message-ID: <e95c5633-8a36-4500-8414-70b7b201a85e@linaro.org>
+Date:   Mon, 11 Sep 2023 18:30:09 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 05/10] drm/msm/a6xx: Add skeleton A7xx support
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230628-topic-a7xx_drmmsm-v3-0-4ee67ccbaf9d@linaro.org>
+ <20230628-topic-a7xx_drmmsm-v3-5-4ee67ccbaf9d@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230628-topic-a7xx_drmmsm-v3-5-4ee67ccbaf9d@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lizhi,
-
-On Tue, 15 Aug 2023 10:19:57 -0700
-Lizhi Hou <lizhi.hou@amd.com> wrote:
-...
-> +void of_pci_make_dev_node(struct pci_dev *pdev)
-> +{
-> +	struct device_node *ppnode, *np = NULL;
-> +	const char *pci_type;
-> +	struct of_changeset *cset;
-> +	const char *name;
-> +	int ret;
-> +
-> +	/*
-> +	 * If there is already a device tree node linked to this device,
-> +	 * return immediately.
-> +	 */
-> +	if (pci_device_to_OF_node(pdev))
-> +		return;
-> +
-> +	/* Check if there is device tree node for parent device */
-> +	if (!pdev->bus->self)
-> +		ppnode = pdev->bus->dev.of_node;
+On 23/08/2023 15:55, Konrad Dybcio wrote:
+> A7xx GPUs are - from kernel's POV anyway - basically another generation
+> of A6xx. They build upon the A650/A660_family advancements, skipping some
+> writes (presumably more values are preset correctly on reset), adding
+> some new ones and changing others.
+> 
+> One notable difference is the introduction of a second shadow, called BV.
+> To handle this with the current code, allocate it right after the current
+> RPTR shadow.
+> 
+> BV handling and .submit are mostly based on Jonathan Marek's work.
+> 
+> All A7xx GPUs are assumed to have a GMU.
+> A702 is not an A7xx-class GPU, it's a weird forked A610.
+> 
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
+> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> # sm8450
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c   |  95 +++++--
+>   drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 451 ++++++++++++++++++++++++++++----
+>   drivers/gpu/drm/msm/adreno/adreno_gpu.c |   1 +
+>   drivers/gpu/drm/msm/adreno/adreno_gpu.h |  10 +-
+>   drivers/gpu/drm/msm/msm_ringbuffer.h    |   2 +
+>   5 files changed, 478 insertions(+), 81 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> index 03fa89bf3e4b..75984260898e 100644
+> --- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+> @@ -200,9 +200,10 @@ int a6xx_gmu_wait_for_idle(struct a6xx_gmu *gmu)
+>   
+>   static int a6xx_gmu_start(struct a6xx_gmu *gmu)
+>   {
+> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+> +	u32 mask, reset_val, val;
+>   	int ret;
+> -	u32 val;
+> -	u32 mask, reset_val;
+>   
+>   	val = gmu_read(gmu, REG_A6XX_GMU_CM3_DTCM_START + 0xff8);
+>   	if (val <= 0x20010004) {
+> @@ -218,7 +219,11 @@ static int a6xx_gmu_start(struct a6xx_gmu *gmu)
+>   	/* Set the log wptr index
+>   	 * note: downstream saves the value in poweroff and restores it here
+>   	 */
+> -	gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_PWR_COL_CP_RESP, 0);
+> +	if (adreno_is_a7xx(adreno_gpu))
+> +		gmu_write(gmu, REG_A6XX_GMU_GENERAL_9, 0);
 > +	else
-> +		ppnode = pdev->bus->self->dev.of_node;
-> +	if (!ppnode)
+> +		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_PWR_COL_CP_RESP, 0);
+> +
+>   
+>   	gmu_write(gmu, REG_A6XX_GMU_CM3_SYSRESET, 0);
+>   
+> @@ -518,7 +523,9 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
+>   	if (IS_ERR(pdcptr))
+>   		goto err;
+>   
+> -	if (adreno_is_a650(adreno_gpu) || adreno_is_a660_family(adreno_gpu))
+> +	if (adreno_is_a650(adreno_gpu) ||
+> +	    adreno_is_a660_family(adreno_gpu) ||
+> +	    adreno_is_a7xx(adreno_gpu))
+>   		pdc_in_aop = true;
+>   	else if (adreno_is_a618(adreno_gpu) || adreno_is_a640_family(adreno_gpu))
+>   		pdc_address_offset = 0x30090;
+> @@ -550,7 +557,8 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
+>   	gmu_write_rscc(gmu, REG_A6XX_RSCC_PDC_MATCH_VALUE_HI, 0x4514);
+>   
+>   	/* Load RSC sequencer uCode for sleep and wakeup */
+> -	if (adreno_is_a650_family(adreno_gpu)) {
+> +	if (adreno_is_a650_family(adreno_gpu) ||
+> +	    adreno_is_a7xx(adreno_gpu)) {
+>   		gmu_write_rscc(gmu, REG_A6XX_RSCC_SEQ_MEM_0_DRV0, 0xeaaae5a0);
+>   		gmu_write_rscc(gmu, REG_A6XX_RSCC_SEQ_MEM_0_DRV0 + 1, 0xe1a1ebab);
+>   		gmu_write_rscc(gmu, REG_A6XX_RSCC_SEQ_MEM_0_DRV0 + 2, 0xa2e0a581);
+> @@ -635,11 +643,18 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
+>   /* Set up the idle state for the GMU */
+>   static void a6xx_gmu_power_config(struct a6xx_gmu *gmu)
+>   {
+> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+> +
+>   	/* Disable GMU WB/RB buffer */
+>   	gmu_write(gmu, REG_A6XX_GMU_SYS_BUS_CONFIG, 0x1);
+>   	gmu_write(gmu, REG_A6XX_GMU_ICACHE_CONFIG, 0x1);
+>   	gmu_write(gmu, REG_A6XX_GMU_DCACHE_CONFIG, 0x1);
+>   
+> +	/* A7xx knows better by default! */
+> +	if (adreno_is_a7xx(adreno_gpu))
 > +		return;
 > +
-> +	if (pci_is_bridge(pdev))
-> +		pci_type = "pci";
+>   	gmu_write(gmu, REG_A6XX_GMU_PWR_COL_INTER_FRAME_CTRL, 0x9c40400);
+>   
+>   	switch (gmu->idle_level) {
+> @@ -702,7 +717,7 @@ static int a6xx_gmu_fw_load(struct a6xx_gmu *gmu)
+>   	u32 itcm_base = 0x00000000;
+>   	u32 dtcm_base = 0x00040000;
+>   
+> -	if (adreno_is_a650_family(adreno_gpu))
+> +	if (adreno_is_a650_family(adreno_gpu) || adreno_is_a7xx(adreno_gpu))
+>   		dtcm_base = 0x10004000;
+>   
+>   	if (gmu->legacy) {
+> @@ -751,14 +766,22 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
+>   {
+>   	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+>   	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+> +	u32 fence_range_lower, fence_range_upper;
+>   	int ret;
+>   	u32 chipid;
+>   
+> -	if (adreno_is_a650_family(adreno_gpu)) {
+> +	/* Vote veto for FAL10 */
+> +	if (adreno_is_a650_family(adreno_gpu) || adreno_is_a7xx(adreno_gpu)) {
+>   		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_CX_FALNEXT_INTF, 1);
+>   		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_CX_FAL_INTF, 1);
+>   	}
+>   
+> +	/* Turn on TCM (Tightly Coupled Memory) retention */
+> +	if (adreno_is_a7xx(adreno_gpu))
+> +		a6xx_llc_write(a6xx_gpu, REG_A7XX_CX_MISC_TCM_RET_CNTL, 1);
 > +	else
-> +		pci_type = "dev";
+> +		gmu_write(gmu, REG_A6XX_GMU_GENERAL_7, 1);
 > +
-> +	name = kasprintf(GFP_KERNEL, "%s@%x,%x", pci_type,
-> +			 PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
-> +	if (!name)
-> +		return;
-> +
-> +	cset = kmalloc(sizeof(*cset), GFP_KERNEL);
-> +	if (!cset)
-> +		goto failed;
-> +	of_changeset_init(cset);
-> +
-> +	np = of_changeset_create_node(ppnode, name, cset);
-> +	if (!np)
-> +		goto failed;
-
-The "goto failed" will leak the cset previously allocated.
-
-np->data = cset; (next line) allows to free the cset when the node is destroyed
-(of_node_put() calls). When the node cannot be created, the allocated cset should
-be freed.
-
-> +	np->data = cset;
-> +
-> +	ret = of_pci_add_properties(pdev, cset, np);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	ret = of_changeset_apply(cset);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	pdev->dev.of_node = np;
-> +	kfree(name);
-> +
-> +	return;
-> +
-> +failed:
-> +	if (np)
-> +		of_node_put(np);
-> +	kfree(name);
-> +}
-> +#endif
-> +
->  #endif /* CONFIG_PCI */
->  
-...
-> +static int of_pci_prop_intr_map(struct pci_dev *pdev, struct of_changeset *ocs,
-> +				struct device_node *np)
-> +{
-> +	struct of_phandle_args out_irq[OF_PCI_MAX_INT_PIN];
-> +	u32 i, addr_sz[OF_PCI_MAX_INT_PIN], map_sz = 0;
-> +	__be32 laddr[OF_PCI_ADDRESS_CELLS] = { 0 };
-> +	u32 int_map_mask[] = { 0xffff00, 0, 0, 7 };
-> +	struct device_node *pnode;
-> +	struct pci_dev *child;
-> +	u32 *int_map, *mapp;
-> +	int ret;
-> +	u8 pin;
-> +
-> +	pnode = pci_device_to_OF_node(pdev->bus->self);
-> +	if (!pnode)
-> +		pnode = pci_bus_to_OF_node(pdev->bus);
-> +
-> +	if (!pnode) {
-> +		pci_err(pdev, "failed to get parent device node");
-> +		return -EINVAL;
+>   	if (state == GMU_WARM_BOOT) {
+>   		ret = a6xx_rpmh_start(gmu);
+>   		if (ret)
+> @@ -768,9 +791,6 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
+>   			"GMU firmware is not loaded\n"))
+>   			return -ENOENT;
+>   
+> -		/* Turn on register retention */
+> -		gmu_write(gmu, REG_A6XX_GMU_GENERAL_7, 1);
+> -
+>   		ret = a6xx_rpmh_start(gmu);
+>   		if (ret)
+>   			return ret;
+> @@ -780,6 +800,7 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
+>   			return ret;
+>   	}
+>   
+> +	/* Clear init result to make sure we are getting a fresh value */
+>   	gmu_write(gmu, REG_A6XX_GMU_CM3_FW_INIT_RESULT, 0);
+>   	gmu_write(gmu, REG_A6XX_GMU_CM3_BOOT_CONFIG, 0x02);
+>   
+> @@ -787,8 +808,18 @@ static int a6xx_gmu_fw_start(struct a6xx_gmu *gmu, unsigned int state)
+>   	gmu_write(gmu, REG_A6XX_GMU_HFI_QTBL_ADDR, gmu->hfi.iova);
+>   	gmu_write(gmu, REG_A6XX_GMU_HFI_QTBL_INFO, 1);
+>   
+> +	if (adreno_is_a7xx(adreno_gpu)) {
+> +		fence_range_upper = 0x32;
+> +		fence_range_lower = 0x8a0;
+> +	} else {
+> +		fence_range_upper = 0xa;
+> +		fence_range_lower = 0xa0;
 > +	}
 > +
-> +	laddr[0] = cpu_to_be32((pdev->bus->number << 16) | (pdev->devfn << 8));
-> +	for (pin = 1; pin <= OF_PCI_MAX_INT_PIN;  pin++) {
-> +		i = pin - 1;
-> +		out_irq[i].np = pnode;
-> +		out_irq[i].args_count = 1;
-> +		out_irq[i].args[0] = pin;
-> +		ret = of_irq_parse_raw(laddr, &out_irq[i]);
-> +		if (ret) {
-> +			pci_err(pdev, "parse irq %d failed, ret %d", pin, ret);
-> +			continue;
-> +		}
-> +		ret = of_property_read_u32(out_irq[i].np, "#address-cells",
-> +					   &addr_sz[i]);
-> +		if (ret)
-> +			addr_sz[i] = 0;
-> +	}
+>   	gmu_write(gmu, REG_A6XX_GMU_AHB_FENCE_RANGE_0,
+> -		(1 << 31) | (0xa << 18) | (0xa0));
+> +		  BIT(31) |
+> +		  FIELD_PREP(GENMASK(30, 18), fence_range_upper) |
+> +		  FIELD_PREP(GENMASK(17, 0), fence_range_lower));
 
-if of_irq_parse_raw() fails, addr_sz[i] is not initialized and map_sz bellow is
-computed with uninitialized values.
-On the test I did, this lead to a kernel crash due to the following kcalloc()
-called with incorrect values.
+This fails on arm32 because of the missing #include <linux/bitfields.h>
 
-Are interrupt-map and interrupt-map-mask properties needed in all cases ?
-I mean are they mandatory for the host pci bridge ?
-
-> +
-> +	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
-> +		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
-> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
-> +			map_sz += 5 + addr_sz[i] + out_irq[i].args_count;
-
-of_irq_parse_raw() can fail on some pins.
-Is it correct to set map_sz based on information related to all pins even if
-of_irq_parse_raw() previously failed on some pins ?
-
-> +		}
-> +	}
-> +
-> +	int_map = kcalloc(map_sz, sizeof(u32), GFP_KERNEL);
-> +	mapp = int_map;
-> +
-> +	list_for_each_entry(child, &pdev->subordinate->devices, bus_list) {
-> +		for (pin = 1; pin <= OF_PCI_MAX_INT_PIN; pin++) {
-> +			*mapp = (child->bus->number << 16) |
-> +				(child->devfn << 8);
-> +			mapp += OF_PCI_ADDRESS_CELLS;
-> +			*mapp = pin;
-> +			mapp++;
-> +			i = pci_swizzle_interrupt_pin(child, pin) - 1;
-> +			*mapp = out_irq[i].np->phandle;
-> +			mapp++;
-> +			if (addr_sz[i]) {
-> +				ret = of_property_read_u32_array(out_irq[i].np,
-> +								 "reg", mapp,
-> +								 addr_sz[i]);
-> +				if (ret)
-> +					goto failed;
-> +			}
-> +			mapp += addr_sz[i];
-> +			memcpy(mapp, out_irq[i].args,
-> +			       out_irq[i].args_count * sizeof(u32));
-> +			mapp += out_irq[i].args_count;
-> +		}
-> +	}
-> +
-> +	ret = of_changeset_add_prop_u32_array(ocs, np, "interrupt-map", int_map,
-> +					      map_sz);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	ret = of_changeset_add_prop_u32(ocs, np, "#interrupt-cells", 1);
-> +	if (ret)
-> +		goto failed;
-> +
-> +	ret = of_changeset_add_prop_u32_array(ocs, np, "interrupt-map-mask",
-> +					      int_map_mask,
-> +					      ARRAY_SIZE(int_map_mask));
-> +	if (ret)
-> +		goto failed;
-> +
-> +	kfree(int_map);
-> +	return 0;
-> +
-> +failed:
-> +	kfree(int_map);
-> +	return ret;
-> +}
-> +
-...
-
-Regards,
-Hervé
+>   
+>   	/*
+>   	 * Snapshots toggle the NMI bit which will result in a jump to the NMI
 
 -- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With best wishes
+Dmitry
+
