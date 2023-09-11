@@ -2,184 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EED379A5CB
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 10:17:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AF3879B615
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:04:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232348AbjIKIRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 04:17:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36158 "EHLO
+        id S237373AbjIKUv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231646AbjIKIRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:17:06 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A802CBB;
-        Mon, 11 Sep 2023 01:16:55 -0700 (PDT)
-X-UUID: 8e1f4736507b11ee8051498923ad61e6-20230911
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=bLtsrzjxUtfjRXBTdg7ryD78RZbIUqX7HT6UlqEs7uw=;
-        b=UebW4fkJT4sinEnIj28vlOHdnCLNyrqN35wRKpPbWXzbYjEk4X/G0Ig3TIfNRKKKW0AZ0SKzcd78MAGk483f1viXvf3r18sF9tu9Tpzd+J8UYuZ+q7xkijAZbmQPixncfzCEJ9CxIqOJNWrnIKrJmur3C0OF1ODuCZmqGT+gY10=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:8e07ecf4-4cd3-4904-8247-805cc914e292,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:0b69b1be-14cc-44ca-b657-2d2783296e72,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,
-        DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 8e1f4736507b11ee8051498923ad61e6-20230911
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-        (envelope-from <macpaul.lin@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 332041101; Mon, 11 Sep 2023 16:16:49 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 11 Sep 2023 16:16:47 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Mon, 11 Sep 2023 16:16:45 +0800
-Message-ID: <e697a23e-e677-c97b-269a-a7a11d338d95@mediatek.com>
-Date:   Mon, 11 Sep 2023 16:16:44 +0800
+        with ESMTP id S235499AbjIKIpj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:45:39 -0400
+X-Greylist: delayed 1802 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 11 Sep 2023 01:45:30 PDT
+Received: from imap4.hz.codethink.co.uk (imap4.hz.codethink.co.uk [188.40.203.114])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B19FC125;
+        Mon, 11 Sep 2023 01:45:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=codethink.co.uk; s=imap4-20230908; h=Content-Transfer-Encoding:Content-Type
+        :In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:
+        Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=x7EQntpORruDbHu73j/wMqHGD7q5uvm3F6D92MHR0oo=; b=eYq89mQAS1QqauVzJc1IGH7A1n
+        oyVV8bbVlj36fgloV4BoAgw5trQ9ZNPuUzM4AKaPNnZgr9WZPY7GgUeN+4So/wz0TbpnDzFoWH17S
+        TR9+F4oMSsuMWf6qyT8Y+1vDOov+cwcTGvzpJoE3V3CZLUWcLzLDB5tGZnA8zOd3rq7OWZMnwx+dn
+        S+N3GVOS0hX76Hyq397+UCO+joB9Pkm6Hf6PF3fW8VS2F2Th6AXXXvTCTQIcqWNCFmyEUMX48onrV
+        4KD1GAZIJBcbidsw/4UrD7Y+RA/sTe9ASJa4FotYxW7Td8luvjzPF8thvsoofUBk2NjPVQGJhmAYx
+        hj6vItMQ==;
+Received: from [134.238.52.102] (helo=[10.8.4.124])
+        by imap4.hz.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
+        id 1qfbPs-006Iyd-U7; Mon, 11 Sep 2023 08:33:05 +0100
+Message-ID: <d45c3d25-13ca-474f-a3e3-c295d3cea866@codethink.co.uk>
+Date:   Mon, 11 Sep 2023 08:33:02 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: arm64: dts: mediatek: add description for
- mt8365-evk board
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 4/6] pwm: dwc: use clock rate in hz to avoid rounding
+ issues
+Content-Language: en-GB
+To:     =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-CC:     Bear Wang <bear.wang@mediatek.com>,
-        Pablo Sun <pablo.sun@mediatek.com>,
-        Macpaul Lin <macpaul@gmail.com>
-References: <20230910062852.15415-1-macpaul.lin@mediatek.com>
- <f8864242-daa1-e72f-4759-aac3fa1bbcf2@linaro.org>
- <12bdd17a-98f4-5551-4253-229dc36f0c77@mediatek.com>
- <ef81697f-473e-898e-ec13-4dd255e2e3d7@linaro.org>
- <82a0ab25-a3cc-3e87-e379-9b15b3fbbf76@mediatek.com>
- <649e89c3-343a-c00c-ae89-329833b38981@linaro.org>
-From:   Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <649e89c3-343a-c00c-ae89-329833b38981@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--17.294500-8.000000
-X-TMASE-MatchedRID: +f/wAVSGjujsYbGmK/WYxia1MaKuob8PCJpCCsn6HCHBnyal/eRn3gzR
-        CsGHURLuwpcJm2NYlPAF6GY0Fb6yChLn4nGgmm6XPJAf1AuYU6BbVWMeHOeZaFc/CedjlcvkASS
-        25Kb4JAK/PxUCMpGeRFQXB1s+iArFOkjQDRo1OZRor4yxPAz7WQ2AVSpm3nkDATjAbArJUsiqHZ
-        Z4aC7fIyJtQogTap1vmw8gErCz5evsPLr8JwjnkLGj3LN0+Ey97yrmaqIg0yAwEhHW5KVAz2J+P
-        WmHAknxnlSM1mB4TLLOHyiFumtKQSnixsypv8PSFPowz8xfffSeimGtNywjtpsoi2XrUn/JyeMt
-        MD9QOgChMIDkR/KfwI2j49Ftap9EOwBXM346/+zxKm+NrlRaJHxJwMK8LeRQaDATuz7r6ZYNxer
-        6R4Ih84VxIm5v/HGf
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--17.294500-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 6EEA80FCF1E52590F8061DE403ECC5A07550DF81B15E6C606221868D3A8DE3472000:8
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,SPF_HELO_PASS,
-        SPF_PASS,UNPARSEABLE_RELAY autolearn=ham autolearn_force=no
-        version=3.4.6
+        Greentime Hu <greentime.hu@sifive.com>,
+        jarkko.nikula@linux.intel.com
+References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
+ <20230907161242.67190-5-ben.dooks@codethink.co.uk>
+ <20230907213419.aqzwoppznj5tx7w6@pengutronix.de>
+From:   Ben Dooks <ben.dooks@codethink.co.uk>
+Organization: Codethink Limited.
+In-Reply-To: <20230907213419.aqzwoppznj5tx7w6@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 07/09/2023 22:34, Uwe Kleine-König wrote:
+> Hello,
+> 
+> [Dropped William Salmon and Jude Onyenegecha from the list of recipents,
+> their email addresses don't seem to work any more.]
+> 
+> On Thu, Sep 07, 2023 at 05:12:40PM +0100, Ben Dooks wrote:
+>> As noted, the clock-rate when not a nice multiple of ns is probably
+>> going to end up with inacurate calculations, as well as on a non pci
+>> system the rate may change (although we've not put a clock rate
+>> change notifier in this code yet) so we also add some quick checks
+>> of the rate when we do any calculations with it.
+>>
+>> Signed-off-by; Ben Dooks <ben.dooks@codethink.co.uk>
+>> Reported-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>> ---
+>> v9:
+>>   - fixed commit spelling
+>>   - changed to use codethink email instead of sifive
+>> v8:
+>>   - fixup post rename
+>>   - move to earlier in series
+>> ---
+>>   drivers/pwm/pwm-dwc-core.c | 24 +++++++++++++++---------
+>>   drivers/pwm/pwm-dwc.h      |  2 +-
+>>   2 files changed, 16 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/pwm/pwm-dwc-core.c b/drivers/pwm/pwm-dwc-core.c
+>> index 3fc281a78c9a..3b856685029d 100644
+>> --- a/drivers/pwm/pwm-dwc-core.c
+>> +++ b/drivers/pwm/pwm-dwc-core.c
+>> @@ -49,13 +49,14 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
+>>   	 * periods and check are the result within HW limits between 1 and
+>>   	 * 2^32 periods.
+>>   	 */
+>> -	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, dwc->clk_ns);
+>> +	tmp = state->duty_cycle * dwc->clk_rate;
+> 
+> This might overflow. You can prevent this by asserting that clk_rate is
+> <= NSEC_PER_SEC and using mul_u64_u64_div_u64.
+> 
+>> +	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
+>>   	if (tmp < 1 || tmp > (1ULL << 32))
+>>   		return -ERANGE;
+>>   	low = tmp - 1;
+>>   
+>> -	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+>> -				    dwc->clk_ns);
+>> +	tmp = (state->period - state->duty_cycle) * dwc->clk_rate;
+>> +	tmp = DIV_ROUND_CLOSEST_ULL(tmp, NSEC_PER_SEC);
+>>   	if (tmp < 1 || tmp > (1ULL << 32))
+>>   		return -ERANGE;
+>>   	high = tmp - 1;
+>> @@ -121,11 +122,14 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+>>   			     struct pwm_state *state)
+>>   {
+>>   	struct dwc_pwm *dwc = to_dwc_pwm(chip);
+>> +	unsigned long clk_rate;
+>>   	u64 duty, period;
+>>   	u32 ctrl, ld, ld2;
+>>   
+>>   	pm_runtime_get_sync(chip->dev);
+>>   
+>> +	clk_rate = dwc->clk_rate;
+>> +
+>>   	ctrl = dwc_pwm_readl(dwc, DWC_TIM_CTRL(pwm->hwpwm));
+>>   	ld = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT(pwm->hwpwm));
+>>   	ld2 = dwc_pwm_readl(dwc, DWC_TIM_LD_CNT2(pwm->hwpwm));
+>> @@ -137,17 +141,19 @@ static int dwc_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+>>   	 * based on the timer load-count only.
+>>   	 */
+>>   	if (ctrl & DWC_TIM_CTRL_PWM) {
+>> -		duty = (ld + 1) * dwc->clk_ns;
+>> -		period = (ld2 + 1)  * dwc->clk_ns;
+>> +		duty = ld + 1;
+>> +		period = ld2 + 1;
+>>   		period += duty;
+>>   	} else {
+>> -		duty = (ld + 1) * dwc->clk_ns;
+>> +		duty = ld + 1;
+>>   		period = duty * 2;
+>>   	}
+>>   
+>> +	duty *= NSEC_PER_SEC;
+>> +	period *= NSEC_PER_SEC;
+> 
+> A comment that/why this cannot overflow would be nice. (I didn't check,
+> maybe it can?)
 
+I /think/ that as long as NSEC_PER_SEC  2^32 then this shouldn't
+overflow.
 
-On 9/11/23 15:06, Krzysztof Kozlowski wrote:
-> 	
 > 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
+>> +	state->period = DIV_ROUND_CLOSEST_ULL(period, clk_rate);
+>> +	state->duty_cycle = DIV_ROUND_CLOSEST_ULL(duty, clk_rate);
 > 
-> On 11/09/2023 08:34, Macpaul Lin wrote:
->> On 9/11/23 14:09, Krzysztof Kozlowski wrote:
->>> 
->>>
->>> External email : Please do not click links or open attachments until you 
->>> have verified the sender or the content.
->>>
->>> On 10/09/2023 14:07, Macpaul Lin wrote:
->>>>
->>>>
->>>> On 9/10/23 17:09, Krzysztof Kozlowski wrote:
->>>>>> +      - description: MediaTek Genio 350 Boards (Genio 350 EVK)
->>>>>
->>>>> That's a bit confusing. So all of the boards here will be Genio 350 EVK?
->>>>> I don't get what is the point of this description.
->>>>>
->>>>>
->>>>>> +        items:
->>>>>>            - enum:
->>>>>>                - mediatek,mt8365-evk
->>>>>>            - const: mediatek,mt8365
->>>>
->>>> Thes boards with compatible 'mediatek,mt8365-evk' is indeed used by
->>>
->>> Boards?
->> 
->> I'm not sure if there will be more hardware version released to market.
->> Current the p1v3 is the final version of mt8365-evk.
+> Without having thought deeply about this, I think you need to round up
+> here. Hmm, but given that .apply() uses round-closest, too, this needs
+> to be addressed separately.
 > 
-> Then your code (enum) does not match description. The code is saying:
-> this is for multiple boards based on mt8365.
+> (The ugly thing about round-closest is that .apply(mypwm,
+> .get_state(mypwm)) isn't idempotent in general. Consider a PWM that can
+> implement period = 41.7ns and period = 42.4 ns. If it's configured with
+> 42.4, .get_state will return period = 42. Reapplying this will configure
+> for 41.7ns. This won't happen with the PCI clkrate, but it might in the
+> of case. Another reason to use rounding-down in .apply is that
+> mul_u64_u64_div_u64 doesn't have a round-nearest variant.)
 > 
-> Your description is saying: this is only for 350 boards.
+>>   	state->polarity = PWM_POLARITY_INVERSED;
+>> -	state->period = period;
+>> -	state->duty_cycle = duty;
+>>   
+>>   	pm_runtime_put_sync(chip->dev);
+>>   
+>> @@ -168,7 +174,7 @@ struct dwc_pwm *dwc_pwm_alloc(struct device *dev)
+>>   	if (!dwc)
+>>   		return NULL;
+>>   
+>> -	dwc->clk_ns = 10;
+>> +	dwc->clk_rate = NSEC_PER_SEC / 10;
+>>   	dwc->chip.dev = dev;
+>>   	dwc->chip.ops = &dwc_pwm_ops;
+>>   	dwc->chip.npwm = DWC_TIMERS_TOTAL;
+>> diff --git a/drivers/pwm/pwm-dwc.h b/drivers/pwm/pwm-dwc.h
+>> index 64795247c54c..e0a940fd6e87 100644
+>> --- a/drivers/pwm/pwm-dwc.h
+>> +++ b/drivers/pwm/pwm-dwc.h
+>> @@ -42,7 +42,7 @@ struct dwc_pwm_ctx {
+>>   struct dwc_pwm {
+>>   	struct pwm_chip chip;
+>>   	void __iomem *base;
+>> -	unsigned int clk_ns;
+>> +	unsigned long clk_rate;
 > 
-> Now your email is saying: there is only one 350 board.
-> 
-> Three different versions. Sorry, I am confused.
-> 
+> Given that clk_ns was only introduced in patch #2 I think it would be
+> cleaner to squash these two patches together.
 
-Okay, this description has been modified to support single board.
-Since there is only one type of the hardware is available on the market.
+I'll have a look at how much work re-ordering the patches would
+be.
 
->> 
->>>> Genio 350-EVK, which Baylibre helped to do upstream tasks. The only 
->>>> production version of hardware will be available on the market. The 
->>>> derived version of customer's hardware is not available yet.
->>>>
->>>> The separate patch for renaming mt8365-evk.dts file should be send next 
->>>> week for aligning the naming rules.
->>>
->>> So the description is not correct.
->>>
->>> Anyway, this patch does not make much sense to me considering nothing
->>> like this was merged. You just sent v5 doing the same!
->> 
->> 
->> Sorry I'm confused now.
->> These are independent patches.
->> This patch is for SOC mt83'6'5 and board mt8365-evk, which is not relate 
->> SOC mt83'9'5 and board mt8395-evk.
-> 
-> OK, I see my confusion. mt8365 and mt8395.
-> 
-> Still the description is not matching the code, at least to my limited
-> understanding of the description.
-> 
+-- 
+Ben Dooks				http://www.codethink.co.uk/
+Senior Engineer				Codethink - Providing Genius
 
-patch v2 of this change has been send and rebase with that v5 change.
-This will generate a different base line for the v2 patch for avoiding 
-confusion. :)
+https://www.codethink.co.uk/privacy.html
 
-
-> Best regards,
-> Krzysztof
-> 
-
-Thanks
-Macpaul Lin
