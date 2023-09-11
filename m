@@ -2,714 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4D8879B6AF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A118279BAEC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:12:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231335AbjIKUwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57802 "EHLO
+        id S235802AbjIKUwH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237594AbjIKNAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:00:04 -0400
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3C78E67;
-        Mon, 11 Sep 2023 05:59:57 -0700 (PDT)
-Received: from canpemm500006.china.huawei.com (unknown [172.30.72.53])
-        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4RkmwS23njzrScG;
-        Mon, 11 Sep 2023 20:58:00 +0800 (CST)
-Received: from [10.174.179.200] (10.174.179.200) by
- canpemm500006.china.huawei.com (7.192.105.130) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.31; Mon, 11 Sep 2023 20:59:54 +0800
-Subject: Re: [RFC PATCH net-next 4/6] net: ethernet: implement data
- transaction interface
-To:     Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <corbet@lwn.net>, <steen.hegelund@microchip.com>,
-        <rdunlap@infradead.org>, <horms@kernel.org>,
-        <casper.casan@gmail.com>, <andrew@lunn.ch>
-CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <horatiu.vultur@microchip.com>, <Woojung.Huh@microchip.com>,
-        <Nicolas.Ferre@microchip.com>, <UNGLinuxDriver@microchip.com>,
-        <Thorsten.Kummermehr@microchip.com>
-References: <20230908142919.14849-1-Parthiban.Veerasooran@microchip.com>
- <20230908142919.14849-5-Parthiban.Veerasooran@microchip.com>
-From:   "Ziyang Xuan (William)" <william.xuanziyang@huawei.com>
-Message-ID: <375fa9b4-0fb8-8d4b-8cb5-d8a9240d8f16@huawei.com>
-Date:   Mon, 11 Sep 2023 20:59:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.11.0
+        with ESMTP id S237655AbjIKNFb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 09:05:31 -0400
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0503E0;
+        Mon, 11 Sep 2023 06:05:26 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BD59bk127073;
+        Mon, 11 Sep 2023 08:05:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1694437509;
+        bh=1FoHF9ni6Hwn735OpvazjUIK8ceKZ/orTvVXyBvOC8s=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=TBWnProI8OC+E3Cf61uKOn+bBsCwim1O4KsOMHtlrsOjUdXdaTNVprGXTIHGkVxz0
+         iUTKh+tlzPR28kkiOLF3YLrpZMp9kCxdYA4gOBhsYoKOdaVujBu+vznIeUd42BZH7a
+         pSajfMftZWvXRVGq5c6/0VYB5IiIWbGSVALLOWyA=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BD59Te016792
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 11 Sep 2023 08:05:09 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Sep 2023 08:05:09 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Sep 2023 08:05:08 -0500
+Received: from [10.250.38.120] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BD58nk030651;
+        Mon, 11 Sep 2023 08:05:08 -0500
+Message-ID: <1e1577a5-fb01-c84b-ede0-38058387ec23@ti.com>
+Date:   Mon, 11 Sep 2023 08:05:08 -0500
 MIME-Version: 1.0
-In-Reply-To: <20230908142919.14849-5-Parthiban.Veerasooran@microchip.com>
-Content-Type: text/plain; charset="gbk"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH 2/3] arm64: dts: ti: am654-base-board: add ICSSG2 Ethernet
+ support
+To:     MD Danish Anwar <danishanwar@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth Menon <nm@ti.com>
+CC:     Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <kristo@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <r-gunasekaran@ti.com>
+References: <20230911071245.2173520-1-danishanwar@ti.com>
+ <20230911071245.2173520-3-danishanwar@ti.com>
 Content-Language: en-US
+From:   Andrew Davis <afd@ti.com>
+In-Reply-To: <20230911071245.2173520-3-danishanwar@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.179.200]
-X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
- canpemm500006.china.huawei.com (7.192.105.130)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> The ethernet frame to be sent to MAC-PHY is converted into multiple
-> transmit data chunks. A transmit data chunk consists of a 4-byte data
-> header followed by the transmit data chunk payload.
+On 9/11/23 2:12 AM, MD Danish Anwar wrote:
+> ICSSG2 provides dual Gigabit Ethernet support.
 > 
-> The received ethernet frame from the network is converted into multiple
-> receive data chunks by the MAC-PHY and a receive data chunk consists of
-> the receive data chunk payload followed by a 4-byte data footer at the
-> end.
+> For support SR2.0 ICSSG Ethernet firmware:
+> - provide different firmware blobs and use TX_PRU.
+> - IEP0 is used as PTP Hardware Clock and can only be used for one port.
+> - TX timestamp notification comes via INTC interrupt.
 > 
-> The MAC-PHY shall support a default data chunk payload size of 64 bytes.
-> Data chunk payload sizes of 32, 16, or 8 bytes may also be supported. The
-> data chunk payload is always a multiple of 4 bytes.
-> 
-> The 4-byte data header occurs at the beginning of each transmit data
-> chunk on MOSI and the 4-byte data footer occurs at the end of each
-> receive data chunk on MISO. The data header and footer contain the
-> information needed to determine the validity and location of the transmit
-> and receive frame data within the data chunk payload. Ethernet frames
-> shall be aligned to a 32-bit boundary within the data chunk payload.
-> 
-> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
 > ---
->  drivers/net/ethernet/oa_tc6.c | 425 +++++++++++++++++++++++++++++++++-
->  include/linux/oa_tc6.h        |  65 +++++-
->  2 files changed, 485 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/oa_tc6.c b/drivers/net/ethernet/oa_tc6.c
-> index 65a7317f768d..20138b178185 100644
-> --- a/drivers/net/ethernet/oa_tc6.c
-> +++ b/drivers/net/ethernet/oa_tc6.c
-> @@ -5,6 +5,7 @@
->   * Author: Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
->   */
->  
-> +#include <linux/etherdevice.h>
->  #include <linux/bitfield.h>
->  #include <linux/interrupt.h>
->  #include <linux/oa_tc6.h>
-> @@ -193,17 +194,224 @@ int oa_tc6_perform_ctrl(struct oa_tc6 *tc6, u32 addr, u32 val[], u8 len,
->  	return ret;
->  }
->  
-> +static u16 oa_tc6_prepare_empty_chunk(struct oa_tc6 *tc6, u8 *buf, u8 cp_count)
-> +{
-> +	u32 hdr;
-> +
-> +	/* Prepare empty chunks used for getting interrupt information or if
-> +	 * receive data available.
-> +	 */
-> +	for (u8 i = 0; i < cp_count; i++) {
-> +		hdr = FIELD_PREP(DATA_HDR_DNC, 1);
-> +		hdr |= FIELD_PREP(DATA_HDR_P, oa_tc6_get_parity(hdr));
-> +		hdr = cpu_to_be32(hdr);
-> +		*(u32 *)&buf[i * (tc6->cps + TC6_HDR_SIZE)] = hdr;
-> +		memset(&buf[TC6_HDR_SIZE + (i * (tc6->cps + TC6_HDR_SIZE))], 0,
-> +		       tc6->cps);
-> +	}
-> +
-> +	return cp_count * (tc6->cps + TC6_HDR_SIZE);
-> +}
-> +
-> +static void oa_tc6_rx_eth_ready(struct oa_tc6 *tc6)
-> +{
-> +	struct sk_buff *skb = NULL;
-Unnecessary initialization for skb.
+>   .../arm64/boot/dts/ti/k3-am654-base-board.dts | 123 ++++++++++++++++++
 
-> +
-> +	/* Send the received ethernet packet to network layer */
-> +	skb = netdev_alloc_skb(tc6->netdev, tc6->rxd_bytes + NET_IP_ALIGN);
-> +	if (!skb) {
-> +		tc6->netdev->stats.rx_dropped++;
-> +		netdev_err(tc6->netdev, "Out of memory for rx'd frame");
-> +	} else {
-> +		skb_reserve(skb, NET_IP_ALIGN);
-> +		memcpy(skb_put(skb, tc6->rxd_bytes), &tc6->eth_rx_buf[0],
-> +		       tc6->rxd_bytes);
-> +		skb->protocol = eth_type_trans(skb, tc6->netdev);
-> +		tc6->netdev->stats.rx_packets++;
-> +		tc6->netdev->stats.rx_bytes += tc6->rxd_bytes;
-> +		netif_rx(skb);
-netif_rx() may fail, I think it is good to add check and statistics.
+Adding this to the base dts? What if I want to use my PRUs for something
+else? These "application nodes" define a single usecase out of many
+possible, and should IMHO always be in overlays so users can select which
+they want easily.
 
-> +	}
-> +}
-> +
-> +static int oa_tc6_process_exst(struct oa_tc6 *tc6)
-> +{
-> +	u32 regval;
-> +	int ret;
-> +
-> +	ret = oa_tc6_read_register(tc6, OA_TC6_STS0, &regval, 1);
-> +	if (ret) {
-> +		netdev_err(tc6->netdev, "STS0 register read failed.\n");
-> +		return ret;
-> +	}
-> +	if (regval & TXPE)
-> +		netdev_err(tc6->netdev, "Transmit protocol error\n");
-> +	if (regval & TXBOE)
-> +		netdev_err(tc6->netdev, "Transmit buffer overflow\n");
-> +	if (regval & TXBUE)
-> +		netdev_err(tc6->netdev, "Transmit buffer underflow\n");
-> +	if (regval & RXBOE)
-> +		netdev_err(tc6->netdev, "Receive buffer overflow\n");
-> +	if (regval & LOFE)
-> +		netdev_err(tc6->netdev, "Loss of frame\n");
-> +	if (regval & HDRE)
-> +		netdev_err(tc6->netdev, "Header error\n");
-> +	if (regval & TXFCSE)
-> +		netdev_err(tc6->netdev, "Transmit Frame Check Sequence Error\n");
-> +	ret = oa_tc6_write_register(tc6, OA_TC6_STS0, &regval, 1);
-> +	if (ret)
-> +		netdev_err(tc6->netdev, "STS0 register write failed.\n");
-> +	return ret;
-> +}
-> +
-> +static int oa_tc6_process_rx_chunks(struct oa_tc6 *tc6, u8 *buf, u16 len)
-> +{
-> +	u8 cp_count;
-> +	u8 *payload;
-> +	u32 ftr;
-> +	u16 ebo;
-> +	u16 sbo;
-> +
-> +	/* Calculate the number of chunks received */
-> +	cp_count = len / (tc6->cps + TC6_FTR_SIZE);
-> +
-> +	for (u8 i = 0; i < cp_count; i++) {
-> +		/* Get the footer and payload */
-> +		ftr = *(u32 *)&buf[tc6->cps + (i * (tc6->cps + TC6_FTR_SIZE))];
-> +		ftr = be32_to_cpu(ftr);
-> +		payload = &buf[(i * (tc6->cps + TC6_FTR_SIZE))];
-> +		/* Check for footer parity error */
-> +		if (oa_tc6_get_parity(ftr)) {
-> +			netdev_err(tc6->netdev, "Footer: Parity error\n");
-> +			goto err_exit;
-> +		}
-> +		/* If EXST set in the footer then read STS0 register to get the
-> +		 * status information.
-> +		 */
-> +		if (FIELD_GET(DATA_FTR_EXST, ftr)) {
-> +			if (oa_tc6_process_exst(tc6))
-> +				netdev_err(tc6->netdev, "Failed to process EXST\n");
-> +			goto err_exit;
-> +		}
-> +		if (FIELD_GET(DATA_FTR_HDRB, ftr)) {
-> +			netdev_err(tc6->netdev, "Footer: Received header bad\n");
-> +			goto err_exit;
-> +		}
-> +		if (!FIELD_GET(DATA_FTR_SYNC, ftr)) {
-> +			netdev_err(tc6->netdev, "Footer: Configuration unsync\n");
-> +			goto err_exit;
-> +		}
-> +		/* If Frame Drop is set, indicates that the MAC has detected a
-> +		 * condition for which the SPI host should drop the received
-> +		 * ethernet frame.
-> +		 */
-> +		if (FIELD_GET(DATA_FTR_FD, ftr) && FIELD_GET(DATA_FTR_EV, ftr)) {
-> +			netdev_warn(tc6->netdev, "Footer: Frame drop\n");
-> +			if (FIELD_GET(DATA_FTR_SV, ftr)) {
-> +				goto start_new_frame;
-> +			} else {
-> +				if (tc6->rx_eth_started) {
-> +					tc6->rxd_bytes = 0;
-> +					tc6->rx_eth_started = false;
-> +					tc6->netdev->stats.rx_dropped++;
-> +				}
-> +				continue;
-> +			}
-> +		}
-> +		/* Check for data valid */
-> +		if (FIELD_GET(DATA_FTR_DV, ftr)) {
-> +			/* Check whether both start valid and end valid are in a
-> +			 * single chunk payload means a single chunk payload may
-> +			 * contain an entire ethernet frame.
-> +			 */
-> +			if (FIELD_GET(DATA_FTR_SV, ftr) &&
-> +			    FIELD_GET(DATA_FTR_EV, ftr)) {
-> +				sbo = FIELD_GET(DATA_FTR_SWO, ftr) * 4;
-> +				ebo = FIELD_GET(DATA_FTR_EBO, ftr) + 1;
-> +				if (ebo <= sbo) {
-> +					memcpy(&tc6->eth_rx_buf[tc6->rxd_bytes],
-> +					       &payload[0], ebo);
-> +					tc6->rxd_bytes += ebo;
-> +					oa_tc6_rx_eth_ready(tc6);
-> +					tc6->rxd_bytes = 0;
-> +					memcpy(&tc6->eth_rx_buf[tc6->rxd_bytes],
-> +					       &payload[sbo], tc6->cps - sbo);
-> +					tc6->rxd_bytes += (tc6->cps - sbo);
-> +					goto exit;
-> +				} else {
-> +					memcpy(&tc6->eth_rx_buf[tc6->rxd_bytes],
-> +					       &payload[sbo], ebo - sbo);
-> +					tc6->rxd_bytes += (ebo - sbo);
-> +					oa_tc6_rx_eth_ready(tc6);
-> +					tc6->rxd_bytes = 0;
-> +					goto exit;
-> +				}
-> +			}
-> +start_new_frame:
-> +			/* Check for start valid to start capturing the incoming
-> +			 * ethernet frame.
-> +			 */
-> +			if (FIELD_GET(DATA_FTR_SV, ftr) && !tc6->rx_eth_started) {
-> +				tc6->rxd_bytes = 0;
-> +				tc6->rx_eth_started = true;
-> +				sbo = FIELD_GET(DATA_FTR_SWO, ftr) * 4;
-> +				memcpy(&tc6->eth_rx_buf[tc6->rxd_bytes],
-> +				       &payload[sbo], tc6->cps - sbo);
-> +				tc6->rxd_bytes += (tc6->cps - sbo);
-> +				goto exit;
-> +			}
-> +
-> +			/* Check for end valid and calculate the copy length */
-> +			if (tc6->rx_eth_started) {
-> +				if (FIELD_GET(DATA_FTR_EV, ftr))
-> +					ebo = FIELD_GET(DATA_FTR_EBO, ftr) + 1;
-> +				else
-> +					ebo = tc6->cps;
-> +
-> +				memcpy(&tc6->eth_rx_buf[tc6->rxd_bytes],
-> +				       &payload[0], ebo);
-> +				tc6->rxd_bytes += ebo;
-> +				if (FIELD_GET(DATA_FTR_EV, ftr)) {
-> +					/* If End Valid set then send the
-> +					 * received ethernet frame to n/w.
-> +					 */
-> +					oa_tc6_rx_eth_ready(tc6);
-> +					tc6->rxd_bytes = 0;
-> +					tc6->rx_eth_started = false;
-> +				}
-> +			}
-> +		}
-> +
-> +exit:
-> +		tc6->txc = FIELD_GET(DATA_FTR_TXC, ftr);
-> +		tc6->rca = FIELD_GET(DATA_FTR_RCA, ftr);
-> +	}
-> +	return FTR_OK;
-> +
-> +err_exit:
-> +	if (tc6->rx_eth_started) {
-> +		tc6->rxd_bytes = 0;
-> +		tc6->rx_eth_started = false;
-> +		tc6->netdev->stats.rx_dropped++;
-> +	}
-> +	return FTR_ERR;
-> +}
-> +
->  static int oa_tc6_handler(void *data)
->  {
->  	struct oa_tc6 *tc6 = data;
-> +	bool txc_wait = false;
-> +	u16 tx_pos = 0;
->  	u32 regval;
-> +	u16 len;
->  	int ret;
->  
->  	while (likely(!kthread_should_stop())) {
-> -		wait_event_interruptible(tc6->tc6_wq, tc6->int_flag ||
-> +		wait_event_interruptible(tc6->tc6_wq, tc6->tx_flag ||
-> +					 tc6->int_flag || tc6->rca ||
->  					 kthread_should_stop());
-> -		if (tc6->int_flag) {
-> +		if (tc6->int_flag && !tc6->reset) {
->  			tc6->int_flag = false;
-> +			tc6->reset = true;
->  			ret = oa_tc6_perform_ctrl(tc6, OA_TC6_STS0, &regval, 1,
->  						  false, false);
->  			if (ret) {
-> @@ -227,10 +435,170 @@ static int oa_tc6_handler(void *data)
->  				complete(&tc6->rst_complete);
->  			}
->  		}
-> +
-> +		if (tc6->int_flag || tc6->rca) {
-> +			/* If rca is updated from the previous footer then
-> +			 * prepare the empty chunks equal to rca and perform
-> +			 * SPI transfer to receive the ethernet frame.
-> +			 */
-> +			if (tc6->rca) {
-> +				len = oa_tc6_prepare_empty_chunk(tc6,
-> +								 tc6->spi_tx_buf,
-> +								 tc6->rca);
-> +			} else {
-> +				/* If there is an interrupt then perform a SPI
-> +				 * transfer with a empty chunk to get the
-> +				 * details.
-> +				 */
-> +				tc6->int_flag = false;
-> +				len = oa_tc6_prepare_empty_chunk(tc6,
-> +								 tc6->spi_tx_buf,
-> +								 1);
-> +			}
-> +			/* Perform SPI transfer */
-> +			ret = oa_tc6_spi_transfer(tc6->spi, tc6->spi_tx_buf,
-> +						  tc6->spi_rx_buf, len);
-> +			if (ret) {
-> +				netdev_err(tc6->netdev, "SPI transfer failed\n");
-> +				continue;
-> +			}
-> +			/* Process the received chunks to get the ethernet frame
-> +			 * or interrupt details.
-> +			 */
-> +			if (oa_tc6_process_rx_chunks(tc6, tc6->spi_rx_buf, len))
-> +				continue;
-> +		}
-> +
-> +		/* If there is a tx ethernet frame available */
-> +		if (tc6->tx_flag || txc_wait) {
-> +			tc6->tx_flag = false;
-> +			txc_wait = false;
-> +			len = 0;
-> +			if (!tc6->txc) {
-> +				/* If there is no txc available to transport the
-> +				 * tx ethernet frames then wait for the MAC-PHY
-> +				 * interrupt to get the txc availability.
-> +				 */
-> +				txc_wait = true;
-> +				continue;
-> +			} else if (tc6->txc >= tc6->txc_needed) {
-> +				len = tc6->txc_needed * (tc6->cps + TC6_HDR_SIZE);
-> +			} else {
-> +				len = tc6->txc * (tc6->cps + TC6_HDR_SIZE);
-> +			}
-> +			memcpy(&tc6->spi_tx_buf[0], &tc6->eth_tx_buf[tx_pos],
-> +			       len);
-> +			ret = oa_tc6_spi_transfer(tc6->spi, tc6->spi_tx_buf,
-> +						  tc6->spi_rx_buf, len);
-> +			if (ret) {
-> +				netdev_err(tc6->netdev, "SPI transfer failed\n");
-> +				continue;
-> +			}
-> +			/* Process the received chunks to get the ethernet frame
-> +			 * or status.
-> +			 */
-> +			if (oa_tc6_process_rx_chunks(tc6, tc6->spi_rx_buf,
-> +						     len)) {
-> +				/* In case of error while processing rx chunks
-> +				 * discard the incomplete tx ethernet frame and
-> +				 * resend it.
-> +				 */
-> +				tx_pos = 0;
-> +				tc6->txc_needed = tc6->total_txc_needed;
-> +			} else {
-> +				tx_pos += len;
-> +				tc6->txc_needed = tc6->txc_needed -
-> +						  (len / (tc6->cps + TC6_HDR_SIZE));
-> +				/* If the complete ethernet frame is transmitted
-> +				 * then return the skb and update the details to
-> +				 * n/w layer.
-> +				 */
-> +				if (!tc6->txc_needed) {
-> +					tc6->netdev->stats.tx_packets++;
-> +					tc6->netdev->stats.tx_bytes += tc6->tx_skb->len;
-> +					dev_kfree_skb(tc6->tx_skb);
-> +					tx_pos = 0;
-> +					tc6->tx_skb = NULL;
-> +					if (netif_queue_stopped(tc6->netdev))
-> +						netif_wake_queue(tc6->netdev);
-> +				} else if (tc6->txc) {
-> +					/* If txc is available again and updated
-> +					 * from the previous footer then perform
-> +					 * tx again.
-> +					 */
-> +					tc6->tx_flag = true;
-> +				} else {
-> +					/* If there is no txc then wait for the
-> +					 * interrupt to indicate txc
-> +					 * availability.
-> +					 */
-> +					txc_wait = true;
-> +				}
-> +			}
-> +		}
->  	}
->  	return 0;
->  }
->  
-> +static void oa_tc6_prepare_tx_chunks(struct oa_tc6 *tc6, u8 *buf,
-> +				     struct sk_buff *skb)
-> +{
-> +	bool frame_started = false;
-> +	u16 copied_bytes = 0;
-> +	u16 copy_len;
-> +	u32 hdr;
-> +
-> +	/* Calculate the number tx credit counts needed to transport the tx
-> +	 * ethernet frame.
-> +	 */
-> +	tc6->txc_needed = (skb->len / tc6->cps) + ((skb->len % tc6->cps) ? 1 : 0);
-> +	tc6->total_txc_needed = tc6->txc_needed;
-> +
-> +	for (u8 i = 0; i < tc6->txc_needed; i++) {
-> +		/* Prepare the header for each chunks to be transmitted */
-> +		hdr = FIELD_PREP(DATA_HDR_DNC, 1) |
-> +		      FIELD_PREP(DATA_HDR_DV, 1);
-> +		if (!frame_started) {
-> +			hdr |= FIELD_PREP(DATA_HDR_SV, 1) |
-> +			       FIELD_PREP(DATA_HDR_SWO, 0);
-> +			frame_started = true;
-> +		}
-> +		if ((tc6->cps + copied_bytes) >= skb->len) {
-> +			copy_len = skb->len - copied_bytes;
-> +			hdr |= FIELD_PREP(DATA_HDR_EBO, copy_len - 1) |
-> +			       FIELD_PREP(DATA_HDR_EV, 1);
-> +		} else {
-> +			copy_len = tc6->cps;
-> +		}
-> +		copied_bytes += copy_len;
-> +		hdr |= FIELD_PREP(DATA_HDR_P, oa_tc6_get_parity(hdr));
-> +		hdr = cpu_to_be32(hdr);
-> +		*(u32 *)&buf[i * (tc6->cps + TC6_HDR_SIZE)] = hdr;
-> +		/* Copy the ethernet frame in the chunk payload section */
-> +		memcpy(&buf[TC6_HDR_SIZE + (i * (tc6->cps + TC6_HDR_SIZE))],
-> +		       &skb->data[copied_bytes - copy_len], copy_len);
-> +	}
-> +}
-> +
-> +netdev_tx_t oa_tc6_send_eth_pkt(struct oa_tc6 *tc6, struct sk_buff *skb)
-> +{
-> +	if (tc6->tx_skb) {
-> +		netif_stop_queue(tc6->netdev);
-> +		return NETDEV_TX_BUSY;
-> +	}
-> +
-> +	tc6->tx_skb = skb;
-> +	/* Prepare tx chunks using the tx ethernet frame */
-> +	oa_tc6_prepare_tx_chunks(tc6, tc6->eth_tx_buf, skb);
-> +
-> +	/* Wake tc6 task to perform tx transfer */
-> +	tc6->tx_flag = true;
-> +	wake_up_interruptible(&tc6->tc6_wq);
-> +
-> +	return NETDEV_TX_OK;
-> +}
-> +EXPORT_SYMBOL_GPL(oa_tc6_send_eth_pkt);
-> +
->  static irqreturn_t macphy_irq(int irq, void *dev_id)
->  {
->  	struct oa_tc6 *tc6 = dev_id;
-> @@ -293,6 +661,14 @@ int oa_tc6_configure(struct oa_tc6 *tc6, u8 cps, bool ctrl_prot, bool tx_cut_thr
->  	u32 regval;
->  	int ret;
->  
-> +	/* Read BUFSTS register to get the current txc and rca. */
-> +	ret = oa_tc6_read_register(tc6, OA_TC6_BUFSTS, &regval, 1);
-> +	if (ret)
-> +		return ret;
-> +
-> +	tc6->txc = FIELD_GET(TXC, regval);
-> +	tc6->rca = FIELD_GET(RCA, regval);
-> +
->  	/* Read and configure the IMASK0 register for unmasking the interrupts */
->  	ret = oa_tc6_read_register(tc6, OA_TC6_IMASK0, &regval, 1);
->  	if (ret)
-> @@ -326,7 +702,7 @@ int oa_tc6_configure(struct oa_tc6 *tc6, u8 cps, bool ctrl_prot, bool tx_cut_thr
->  }
->  EXPORT_SYMBOL_GPL(oa_tc6_configure);
->  
-> -struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
-> +struct oa_tc6 *oa_tc6_init(struct spi_device *spi, struct net_device *netdev)
->  {
->  	struct oa_tc6 *tc6;
->  	int ret;
-> @@ -334,11 +710,39 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
->  	if (!spi)
->  		return NULL;
->  
-> +	if (!netdev)
-> +		return NULL;
-> +
->  	tc6 = kzalloc(sizeof(*tc6), GFP_KERNEL);
->  	if (!tc6)
->  		return NULL;
->  
->  	tc6->spi = spi;
-> +	tc6->netdev = netdev;
-> +
-> +	/* Allocate memory for the tx buffer used for SPI transfer. */
-> +	tc6->spi_tx_buf = kzalloc(MAX_ETH_LEN + (OA_TC6_MAX_CPS * TC6_HDR_SIZE),
-> +				  GFP_KERNEL);
-> +	if (!tc6->spi_tx_buf)
-> +		goto err_spi_tx_buf_alloc;
-> +
-> +	/* Allocate memory for the rx buffer used for SPI transfer. */
-> +	tc6->spi_rx_buf = kzalloc(MAX_ETH_LEN + (OA_TC6_MAX_CPS * TC6_FTR_SIZE),
-> +				  GFP_KERNEL);
-> +	if (!tc6->spi_rx_buf)
-> +		goto err_spi_rx_buf_alloc;
-> +
-> +	/* Allocate memory for the tx ethernet chunks to transfer on SPI. */
-> +	tc6->eth_tx_buf = kzalloc(MAX_ETH_LEN + (OA_TC6_MAX_CPS * TC6_HDR_SIZE),
-> +				  GFP_KERNEL);
-> +	if (!tc6->eth_tx_buf)
-> +		goto err_eth_tx_buf_alloc;
-> +
-> +	/* Allocate memory for the rx ethernet packet. */
-> +	tc6->eth_rx_buf = kzalloc(MAX_ETH_LEN + (OA_TC6_MAX_CPS * TC6_FTR_SIZE),
-> +				  GFP_KERNEL);
-> +	if (!tc6->eth_rx_buf)
-> +		goto err_eth_rx_buf_alloc;
->  
->  	/* Used for triggering the OA TC6 task */
->  	init_waitqueue_head(&tc6->tc6_wq);
-> @@ -372,6 +776,14 @@ struct oa_tc6 *oa_tc6_init(struct spi_device *spi)
->  err_macphy_irq:
->  	kthread_stop(tc6->tc6_task);
->  err_tc6_task:
-> +	kfree(tc6->eth_rx_buf);
-> +err_eth_rx_buf_alloc:
-> +	kfree(tc6->eth_tx_buf);
-> +err_eth_tx_buf_alloc:
-> +	kfree(tc6->spi_rx_buf);
-> +err_spi_rx_buf_alloc:
-> +	kfree(tc6->spi_tx_buf);
-> +err_spi_tx_buf_alloc:
->  	kfree(tc6);
->  	return NULL;
->  }
-> @@ -383,8 +795,13 @@ int oa_tc6_deinit(struct oa_tc6 *tc6)
->  
->  	devm_free_irq(&tc6->spi->dev, tc6->spi->irq, tc6);
->  	ret = kthread_stop(tc6->tc6_task);
-> -	if (!ret)
-> +	if (!ret) {
-> +		kfree(tc6->eth_rx_buf);
-> +		kfree(tc6->eth_tx_buf);
-> +		kfree(tc6->spi_rx_buf);
-> +		kfree(tc6->spi_tx_buf);
->  		kfree(tc6);
-> +	}
->  	return ret;
->  }
->  EXPORT_SYMBOL_GPL(oa_tc6_deinit);
-> diff --git a/include/linux/oa_tc6.h b/include/linux/oa_tc6.h
-> index fa29c4e09720..61ac1cdfa7d6 100644
-> --- a/include/linux/oa_tc6.h
-> +++ b/include/linux/oa_tc6.h
-> @@ -6,6 +6,7 @@
->   */
->  
->  #include <linux/spi/spi.h>
-> +#include <linux/netdevice.h>
->  
->  /* Control header */
->  #define CTRL_HDR_DNC	BIT(31)		/* Data-Not-Control */
-> @@ -17,10 +18,36 @@
->  #define CTRL_HDR_LEN	GENMASK(7, 1)	/* Length */
->  #define CTRL_HDR_P	BIT(0)		/* Parity Bit */
->  
-> +/* Data header */
-> +#define DATA_HDR_DNC	BIT(31)		/* Data-Not-Control */
-> +#define DATA_HDR_SEQ	BIT(30)		/* Data Chunk Sequence */
-> +#define DATA_HDR_NORX	BIT(29)		/* No Receive */
-> +#define DATA_HDR_DV	BIT(21)		/* Data Valid */
-> +#define DATA_HDR_SV	BIT(20)		/* Start Valid */
-> +#define DATA_HDR_SWO	GENMASK(19, 16)	/* Start Word Offset */
-> +#define DATA_HDR_EV	BIT(14)		/* End Valid */
-> +#define DATA_HDR_EBO	GENMASK(13, 8)	/* End Byte Offset */
-> +#define DATA_HDR_P	BIT(0)		/* Header Parity Bit */
-> +
-> +/* Data footer */
-> +#define DATA_FTR_EXST	BIT(31)		/* Extended Status */
-> +#define DATA_FTR_HDRB	BIT(30)		/* Received Header Bad */
-> +#define DATA_FTR_SYNC	BIT(29)		/* Configuration Synchronized */
-> +#define DATA_FTR_RCA	GENMASK(28, 24)	/* Receive Chunks Available */
-> +#define DATA_FTR_DV	BIT(21)		/* Data Valid */
-> +#define DATA_FTR_SV	BIT(20)		/* Start Valid */
-> +#define DATA_FTR_SWO	GENMASK(19, 16)	/* Start Word Offset */
-> +#define DATA_FTR_FD	BIT(15)		/* Frame Drop */
-> +#define DATA_FTR_EV	BIT(14)		/* End Valid */
-> +#define DATA_FTR_EBO	GENMASK(13, 8)	/* End Byte Offset */
-> +#define DATA_FTR_TXC	GENMASK(5, 1)	/* Transmit Credits */
-> +#define DATA_FTR_P	BIT(0)		/* Footer Parity Bit */
-> +
->  /* Open Alliance TC6 Standard Control and Status Registers */
->  #define OA_TC6_RESET	0x0003		/* Reset Control and Status Register */
->  #define OA_TC6_CONFIG0	0x0004		/* Configuration Register #0 */
->  #define OA_TC6_STS0	0x0008		/* Status Register #0 */
-> +#define OA_TC6_BUFSTS	0x000B          /* Buffer Status Register */
->  #define OA_TC6_IMASK0	0x000C		/* Interrupt Mask Register #0 */
->  
->  /* RESET register field */
-> @@ -33,6 +60,17 @@
->  #define PROTE		BIT(5)		/* Ctrl read/write Protection Enable */
->  #define CPS		GENMASK(2, 0)	/* Chunk Payload Size */
->  
-> +/* STATUS0 register fields */
-> +#define CDPE		BIT(12)		/* Control Data Protection Error */
-> +#define TXFCSE		BIT(11)		/* Transmit Frame Check Sequence Error */
-> +#define RESETC		BIT(6)		/* Reset Complete */
-> +#define HDRE		BIT(5)		/* Header Error */
-> +#define LOFE		BIT(4)		/* Loss of Framing Error */
-> +#define RXBOE		BIT(3)		/* Receive Buffer Overflow Error */
-> +#define TXBUE		BIT(2)		/* Transmit Buffer Underflow Error */
-> +#define TXBOE		BIT(1)		/* Transmit Buffer Overflow Error */
-> +#define TXPE		BIT(0)		/* Transmit Protocol Error */
-> +
->  /* Unmasking interrupt fields in IMASK0 */
->  #define HDREM		~BIT(5)		/* Header Error Mask */
->  #define LOFEM		~BIT(4)		/* Loss of Framing Error Mask */
-> @@ -44,24 +82,49 @@
->  /* STATUS0 register field */
->  #define RESETC		BIT(6)		/* Reset Complete */
->  
-> +/* BUFSTS register fields */
-> +#define TXC		GENMASK(15, 8)	/* Transmit Credits Available */
-> +#define RCA		GENMASK(7, 0)	/* Receive Chunks Available */
-> +
->  #define TC6_HDR_SIZE	4		/* Ctrl command header size as per OA */
->  #define TC6_FTR_SIZE	4		/* Ctrl command footer size ss per OA */
->  
-> +#define FTR_OK		0
-> +#define FTR_ERR		1
-> +
-> +#define MAX_ETH_LEN	1536
-> +#define OA_TC6_MAX_CPS	64
-> +
->  struct oa_tc6 {
->  	struct completion rst_complete;
->  	struct task_struct *tc6_task;
-> +	struct net_device *netdev;
->  	wait_queue_head_t tc6_wq;
->  	struct spi_device *spi;
-> +	struct sk_buff *tx_skb;
-> +	u8 total_txc_needed;
-> +	bool rx_eth_started;
->  	bool tx_cut_thr;
->  	bool rx_cut_thr;
->  	bool ctrl_prot;
-> +	u8 *spi_tx_buf;
-> +	u8 *spi_rx_buf;
-> +	u8 *eth_tx_buf;
-> +	u8 *eth_rx_buf;
->  	bool int_flag;
-> +	u16 rxd_bytes;
-> +	u8 txc_needed;
-> +	bool tx_flag;
-> +	bool reset;
->  	u8 cps;
-> +	u8 txc;
-> +	u8 rca;
->  };
->  
-> -struct oa_tc6 *oa_tc6_init(struct spi_device *spi);
-> +struct oa_tc6 *oa_tc6_init(struct spi_device *spi, struct net_device *netdev);
->  int oa_tc6_deinit(struct oa_tc6 *tc6);
->  int oa_tc6_write_register(struct oa_tc6 *tc6, u32 addr, u32 value[], u8 len);
->  int oa_tc6_read_register(struct oa_tc6 *tc6, u32 addr, u32 value[], u8 len);
->  int oa_tc6_configure(struct oa_tc6 *tc6, u8 cps, bool ctrl_prot, bool tx_cut_thr,
->  		     bool rx_cut_thr);
-> +netdev_tx_t oa_tc6_send_eth_pkt(struct oa_tc6 *tc6, struct sk_buff *skb);
+Andrew
+
+>   1 file changed, 123 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> index f5c26e9fba98..5cf9546ff9f7 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
+> @@ -25,6 +25,8 @@ aliases {
+>   		ethernet0 = &cpsw_port1;
+>   		mmc0 = &sdhci0;
+>   		mmc1 = &sdhci1;
+> +		ethernet1 = &icssg2_emac0;
+> +		ethernet2 = &icssg2_emac1;
+>   	};
+>   
+>   	chosen {
+> @@ -144,6 +146,72 @@ vtt_supply: regulator-3 {
+>   		vin-supply = <&vcc3v3_io>;
+>   		gpio = <&wkup_gpio0 28 GPIO_ACTIVE_HIGH>;
+>   	};
+> +
+> +	/* Dual Ethernet application node on PRU-ICSSG2 */
+> +	icssg2_eth: icssg2-eth {
+> +		compatible = "ti,am654-icssg-prueth";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&icssg2_rgmii_pins_default>;
+> +		sram = <&msmc_ram>;
+> +		ti,prus = <&pru2_0>, <&rtu2_0>, <&tx_pru2_0>,
+> +			<&pru2_1>, <&rtu2_1>, <&tx_pru2_1>;
+> +		firmware-name = "ti-pruss/am65x-sr2-pru0-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-rtu0-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-txpru0-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-pru1-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-rtu1-prueth-fw.elf",
+> +				"ti-pruss/am65x-sr2-txpru1-prueth-fw.elf";
+> +
+> +		ti,pruss-gp-mux-sel = <2>,      /* MII mode */
+> +				      <2>,
+> +				      <2>,
+> +				      <2>,	/* MII mode */
+> +				      <2>,
+> +				      <2>;
+> +
+> +		ti,mii-g-rt = <&icssg2_mii_g_rt>;
+> +		ti,mii-rt = <&icssg2_mii_rt>;
+> +		ti,iep = <&icssg2_iep0>, <&icssg2_iep1>;
+> +
+> +		interrupt-parent = <&icssg2_intc>;
+> +		interrupts = <24 0 2>, <25 1 3>;
+> +		interrupt-names = "tx_ts0", "tx_ts1";
+> +
+> +		dmas = <&main_udmap 0xc300>, /* egress slice 0 */
+> +		       <&main_udmap 0xc301>, /* egress slice 0 */
+> +		       <&main_udmap 0xc302>, /* egress slice 0 */
+> +		       <&main_udmap 0xc303>, /* egress slice 0 */
+> +		       <&main_udmap 0xc304>, /* egress slice 1 */
+> +		       <&main_udmap 0xc305>, /* egress slice 1 */
+> +		       <&main_udmap 0xc306>, /* egress slice 1 */
+> +		       <&main_udmap 0xc307>, /* egress slice 1 */
+> +		       <&main_udmap 0x4300>, /* ingress slice 0 */
+> +		       <&main_udmap 0x4301>; /* ingress slice 1 */
+> +
+> +		dma-names = "tx0-0", "tx0-1", "tx0-2", "tx0-3",
+> +			    "tx1-0", "tx1-1", "tx1-2", "tx1-3",
+> +			    "rx0", "rx1";
+> +		ethernet-ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			icssg2_emac0: port@0 {
+> +				reg = <0>;
+> +				phy-handle = <&icssg2_phy0>;
+> +				phy-mode = "rgmii-id";
+> +				ti,syscon-rgmii-delay = <&scm_conf 0x4120>;
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +			icssg2_emac1: port@1 {
+> +				reg = <1>;
+> +				phy-handle = <&icssg2_phy1>;
+> +				phy-mode = "rgmii-id";
+> +				ti,syscon-rgmii-delay = <&scm_conf 0x4124>;
+> +				/* Filled in by bootloader */
+> +				local-mac-address = [00 00 00 00 00 00];
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &wkup_pmx0 {
+> @@ -300,6 +368,43 @@ usb1_pins_default: usb1-default-pins {
+>   			AM65X_IOPAD(0x02c0, PIN_OUTPUT, 0) /* (AC8) USB1_DRVVBUS */
+>   		>;
+>   	};
+> +
+> +	icssg2_mdio_pins_default: icssg2-mdio-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM65X_IOPAD(0x0094, PIN_INPUT, 2) /* (AC19) PRG2_PRU0_GPO7.PRG2_MDIO0_MDIO */
+> +			AM65X_IOPAD(0x00c8, PIN_OUTPUT, 2) /* (AE15) PRG2_PRU1_GPO7.PRG2_MDIO0_MDC */
+> +		>;
+> +	};
+> +
+> +	icssg2_rgmii_pins_default: icssg2-rgmii-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM65X_IOPAD(0x00ac, PIN_INPUT, 2) /* (AH15) PRG2_PRU1_GPO0.PRG2_RGMII2_RD0 */
+> +			AM65X_IOPAD(0x00b0, PIN_INPUT, 2) /* (AC16) PRG2_PRU1_GPO1.PRG2_RGMII2_RD1 */
+> +			AM65X_IOPAD(0x00b4, PIN_INPUT, 2) /* (AD17) PRG2_PRU1_GPO2.PRG2_RGMII2_RD2 */
+> +			AM65X_IOPAD(0x00b8, PIN_INPUT, 2) /* (AH14) PRG2_PRU1_GPO3.PRG2_RGMII2_RD3 */
+> +			AM65X_IOPAD(0x00cc, PIN_OUTPUT, 2) /* (AD15) PRG2_PRU1_GPO8.PRG2_RGMII2_TD0 */
+> +			AM65X_IOPAD(0x00d0, PIN_OUTPUT, 2) /* (AF14) PRG2_PRU1_GPO9.PRG2_RGMII2_TD1 */
+> +			AM65X_IOPAD(0x00d4, PIN_OUTPUT, 2) /* (AC15) PRG2_PRU1_GPO10.PRG2_RGMII2_TD2 */
+> +			AM65X_IOPAD(0x00d8, PIN_OUTPUT, 2) /* (AD14) PRG2_PRU1_GPO11.PRG2_RGMII2_TD3 */
+> +			AM65X_IOPAD(0x00dc, PIN_INPUT, 2) /* (AE14) PRG2_PRU1_GPO16.PRG2_RGMII2_TXC */
+> +			AM65X_IOPAD(0x00c4, PIN_OUTPUT, 2) /* (AC17) PRG2_PRU1_GPO6.PRG2_RGMII2_TX_CTL */
+> +			AM65X_IOPAD(0x00c0, PIN_INPUT, 2) /* (AG15) PRG2_PRU1_GPO5.PRG2_RGMII2_RXC */
+> +			AM65X_IOPAD(0x00bc, PIN_INPUT, 2) /* (AG14) PRG2_PRU1_GPO4.PRG2_RGMII2_RX_CTL */
+> +
+> +			AM65X_IOPAD(0x0078, PIN_INPUT, 2) /* (AF18) PRG2_PRU0_GPO0.PRG2_RGMII1_RD0 */
+> +			AM65X_IOPAD(0x007c, PIN_INPUT, 2) /* (AE18) PRG2_PRU0_GPO1.PRG2_RGMII1_RD1 */
+> +			AM65X_IOPAD(0x0080, PIN_INPUT, 2) /* (AH17) PRG2_PRU0_GPO2.PRG2_RGMII1_RD2 */
+> +			AM65X_IOPAD(0x0084, PIN_INPUT, 2) /* (AG18) PRG2_PRU0_GPO3.PRG2_RGMII1_RD3 */
+> +			AM65X_IOPAD(0x0098, PIN_OUTPUT, 2) /* (AH16) PRG2_PRU0_GPO8.PRG2_RGMII1_TD0 */
+> +			AM65X_IOPAD(0x009c, PIN_OUTPUT, 2) /* (AG16) PRG2_PRU0_GPO9.PRG2_RGMII1_TD1 */
+> +			AM65X_IOPAD(0x00a0, PIN_OUTPUT, 2) /* (AF16) PRG2_PRU0_GPO10.PRG2_RGMII1_TD2 */
+> +			AM65X_IOPAD(0x00a4, PIN_OUTPUT, 2) /* (AE16) PRG2_PRU0_GPO11.PRG2_RGMII1_TD3 */
+> +			AM65X_IOPAD(0x00a8, PIN_INPUT, 2) /* (AD16) PRG2_PRU0_GPO16.PRG2_RGMII1_TXC */
+> +			AM65X_IOPAD(0x0090, PIN_OUTPUT, 2) /* (AE17) PRG2_PRU0_GPO6.PRG2_RGMII1_TX_CTL */
+> +			AM65X_IOPAD(0x008c, PIN_INPUT, 2) /* (AF17) PRG2_PRU0_GPO5.PRG2_RGMII1_RXC */
+> +			AM65X_IOPAD(0x0088, PIN_INPUT, 2) /* (AG17) PRG2_PRU0_GPO4.PRG2_RGMII1_RX_CTL */
+> +		>;
+> +	};
+>   };
+>   
+>   &main_pmx1 {
+> @@ -621,3 +726,21 @@ &cpsw_port1 {
+>   &dss {
+>   	status = "disabled";
+>   };
+> +
+> +&icssg2_mdio {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&icssg2_mdio_pins_default>;
+> +
+> +	icssg2_phy0: ethernet-phy@0 {
+> +		reg = <0>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +	};
+> +
+> +	icssg2_phy1: ethernet-phy@3 {
+> +		reg = <3>;
+> +		ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_00_NS>;
+> +		ti,fifo-depth = <DP83867_PHYCR_FIFO_DEPTH_4_B_NIB>;
+> +	};
+> +};
