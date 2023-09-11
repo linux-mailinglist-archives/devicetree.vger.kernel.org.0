@@ -2,133 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4492D79C328
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 04:42:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476D579C2C1
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 04:28:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239547AbjILCmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 22:42:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51412 "EHLO
+        id S237926AbjILC2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 22:28:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239562AbjILCmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 22:42:01 -0400
+        with ESMTP id S237741AbjILC2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 22:28:02 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C031DECDBF;
-        Mon, 11 Sep 2023 19:07:26 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B91DFC433B7;
-        Mon, 11 Sep 2023 21:12:11 +0000 (UTC)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9823611AA48;
+        Mon, 11 Sep 2023 18:52:25 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFAA7C43215;
+        Mon, 11 Sep 2023 21:46:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694466732;
-        bh=kfFJiK11CgqnTMgWoMWBupbFPFhRWMiQL21d/DKb1us=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=eBtzp/W9ZhHr3ggf7b3a4tayeR2b2ppfOPgNyldC1EQRjOl823JaStktZnuABYkZg
-         V6t0WFNQSA3wTHiS6h8RdR9doxnuZMfSCDVp9jzCoKS+OwzdTVO7qUhhbgJDmbabxv
-         rw2J2kTXNiSmH+CkFzWUKShn8Ir+V5/MmFtjbPJ80w2OIks1LFvFHmcRyKH2QMgLyN
-         6zw/HOwkgTqCW0tDKD1Wk8ytzUQ2iO+RQACJ5B6/3baDV6YLVc62WaRmPeIVJ5DRkz
-         PPQyAjP35khnrV1k6rYGjRZH0QrKt9O8tBTEhRQJB/CBp7aUlvTIdojeeCzYmsvox2
-         DYhs0iasqyUVg==
-Received: (nullmailer pid 2121880 invoked by uid 1000);
-        Mon, 11 Sep 2023 21:12:10 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
+        s=k20201202; t=1694468761;
+        bh=A93qPH1BvZpug+kRF/tIkw7aL3cJtamMq810m6gI13w=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZnLmBUYqXzg8bTl7kfUw7AkOW9M7cMNX9QlQPNt+JziqdnnQYyh8mJoRQjGE4lIUp
+         Rx7w5aALRJTaKDc+C7Iwpefrbu0XsmvQBonjJbsO18Q7TphiCT76LJcsSjUf1LKOET
+         7VGGKU8ya+KdfTwa8plNdvnMaQ4sP3Hz2oBHyeguwKTLupuGDNN8VVO6AHfIwjYdIS
+         r3n6+5swJPnrUGgFBsyG91kYbi7P4ArM8RVxVMN1HLvZSlk6/a4vMpgwuopIbu8JTW
+         M2enhTIKSEsydFLWW01xNMWazav3+d7TpqOjj/hTgfnEzMfE+fJJ+XW1OJVPyrv1qb
+         SJrI6kXcw1FAw==
+Received: (nullmailer pid 2200995 invoked by uid 1000);
+        Mon, 11 Sep 2023 21:45:59 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Matyas <daniel.matyas@analog.com>
-Cc:     linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org
-In-Reply-To: <20230911083735.11795-1-daniel.matyas@analog.com>
-References: <20230911083735.11795-1-daniel.matyas@analog.com>
-Message-Id: <169446673046.2121732.14000050385044553124.robh@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: Describe changes to the device
- tree
-Date:   Mon, 11 Sep 2023 16:12:10 -0500
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        David Jander <david@protonic.nl>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx: Add imx8mm-prt8mm.dtb to build
+Date:   Mon, 11 Sep 2023 16:45:37 -0500
+Message-Id: <20230911214547.2200528-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+imx8mm-prt8mm.dts was not getting built. Add it to the build.
 
-On Mon, 11 Sep 2023 11:37:34 +0300, Daniel Matyas wrote:
-> Added new attributes to the device tree:
-> 	- adi,comp-int
-> 	- adi,alrm-pol
-> 	- adi,flt-q
-> 
-> These modify the corresponding bits in the configuration register.
-> 
-> Signed-off-by: Daniel Matyas <daniel.matyas@analog.com>
-> ---
->  .../bindings/hwmon/adi,max31827.yaml          | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
+Fixes: 58497d7a13ed ("arm64: dts: imx: add Protonic PRT8MM board")
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ arch/arm64/boot/dts/freescale/Makefile | 1 +
+ 1 file changed, 1 insertion(+)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,alrm-pol: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,alrm-pol: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,alrm-pol: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,flt-q: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,flt-q: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,flt-q: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,comp-int: 'oneOf' conditional failed, one must be fixed:
-	'type' is a required property
-		hint: A vendor boolean property can use "type: boolean"
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,comp-int: 'oneOf' conditional failed, one must be fixed:
-		'enum' is a required property
-		'const' is a required property
-		hint: A vendor string property with exact values has an implicit type
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/hwmon/adi,max31827.yaml: properties:adi,comp-int: 'oneOf' conditional failed, one must be fixed:
-		'$ref' is a required property
-		'allOf' is a required property
-		hint: A vendor property needs a $ref to types.yaml
-		from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-	hint: Vendor specific properties must have a type and description unless they have a defined, common suffix.
-	from schema $id: http://devicetree.org/meta-schemas/vendor-props.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230911083735.11795-1-daniel.matyas@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index c6872b7e9471..0935626c3dfb 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -65,6 +65,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-kontron-bl-osm-s.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-mx8menlo.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-nitrogen-r2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phg.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-prt8mm.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-rdk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-tqma8mqml-mba8mx.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
+-- 
+2.40.1
 
