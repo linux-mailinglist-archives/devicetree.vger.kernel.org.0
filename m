@@ -2,95 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F82279AE6F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D79779AD2D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233376AbjIKUrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:47:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49778 "EHLO
+        id S234971AbjIKUsd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244204AbjIKThJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 15:37:09 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E1DB12A;
-        Mon, 11 Sep 2023 12:37:04 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcc14ea414so79331141fa.0;
-        Mon, 11 Sep 2023 12:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1694461022; x=1695065822; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TtHFkIB4HjNpruap74rc4M+x6RD0lNjgWaeMc48DnVQ=;
-        b=RYAdqzSwjA0vXLzI3rZNNLL4KCYHTAHIeYRfpWdCJu63dUoVm6o3krh88pduVUNn61
-         y1IwaQ+okTDekJQ6k+cTQfuHS/vokebki+R3dLwSTBnRoDEmg1CHaNGNf5NQRyJQ2mJo
-         FZaa8OsklGbHt82x9/m7asFqgSP19t8buxTkTmXQ5jpftTS6EpCoyNPKTwB/KWX0DgYY
-         QGzMtHUfGtb2UtqEIFZnAX19CIZxE+DqHfDTMrXa3+Qc8mTj7OrmhBUNy1QVXpaY1cVZ
-         EUPZNjpwJaVKiPmXyYvYPUSnvWc9L63prLf2+v4JvaC7vk7kMmVYzPls6SlZ2F7zFgO3
-         puZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694461022; x=1695065822;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TtHFkIB4HjNpruap74rc4M+x6RD0lNjgWaeMc48DnVQ=;
-        b=mFg343KDZOAIWdS+XegH3w6JWq+wO4ObzLpabNoCg++S0cMBCUPgLS/Z2pUma8Roaz
-         x/gcJegtI6WXzwzebzIJ8qnPFQ+Oabm6vylyCmlSILVk2Zxr3VO7vy0088G8QRdTMpGQ
-         78AnPKPoZhEc2PabJ0Q5ZYz3hah/+4cimc9L3vQnlUajJmAeS7zppze0Sv1FAcz9R64N
-         UNm6lKnD11wqL25an6q92YJxl5KzxNQP1LcT3NOeuEtvmZ8IAmv8rhFGj3501HVgZnj/
-         nxdDxrKMGZ3MW0vCteEWdIPggX8R+WLQEixEm0DryRtVYKiwaY8Pj85e5tSsrWIkSkPW
-         r0xQ==
-X-Gm-Message-State: AOJu0Yz+L9sonq7qoqrZtUv5X3h00O/PrTKI1PdIufZ8SN8pgBoOzJb2
-        X0V7+y4xwMvt1MScjVMT2G9aqAbM+iMAr8qyotk=
-X-Google-Smtp-Source: AGHT+IEHONmFCXlIl8CtsQ1p//AgYvzN0oFymF5kb+m/A+LqIbbN2JHzQ3n/Wj2UhSy7rLEgh8So+tK68vdnGyP+3QY=
-X-Received: by 2002:a2e:8297:0:b0:2bc:e330:660b with SMTP id
- y23-20020a2e8297000000b002bce330660bmr9020360ljg.9.1694461022242; Mon, 11 Sep
- 2023 12:37:02 -0700 (PDT)
+        with ESMTP id S244237AbjIKToi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 15:44:38 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D86918D;
+        Mon, 11 Sep 2023 12:44:34 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38BJSpZs016187;
+        Mon, 11 Sep 2023 19:44:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=qcppdkim1;
+ bh=kxo6YzH9eE3FtnDbczOy69opAxVkAeFdpBT9zrHMX8k=;
+ b=VVCD2qLS2EaiPntJh/5eoW52dbhaFAmU0KtPa7ufTQQ6yvhMqfsdlqxTsk6m0knt+vdC
+ nsBc8P5kg3fED/U2UV36oue6of0IG5L4DuaAFGpqj1g80dB2xHWZGwKT3UpcZVCr6ytb
+ zti1GbB5Ur77ZxNpnL3tr53XTex21ItFZMWUYzXOVncPzL5UDwhtFrg+JQ0GYtRG/BZ4
+ cWirOatNBuDNUNN2lPyYbtQ58NSv/sCxobp26L5qLeCVT7saKtbhYYA7rEVvf0IptMuC
+ 6jAytRFwuCEwuDq1NZE3AQrxnS3NMacXWcf2boApmwtmkZIAMMLtkAxr7LMjMBNt46Ev 7Q== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t25yx0hjx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Sep 2023 19:44:26 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38BJiPUh022547
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Sep 2023 19:44:25 GMT
+Received: from car-linux11.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Mon, 11 Sep 2023 12:44:24 -0700
+From:   Nikunj Kela <quic_nkela@quicinc.com>
+To:     <sudeep.holla@arm.com>
+CC:     <cristian.marussi@arm.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        Nikunj Kela <quic_nkela@quicinc.com>
+Subject: [PATCH v4 3/4] dt-bindings: arm: Add new compatible for smc/hvc transport for SCMI
+Date:   Mon, 11 Sep 2023 12:43:58 -0700
+Message-ID: <20230911194359.27547-4-quic_nkela@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20230911194359.27547-1-quic_nkela@quicinc.com>
+References: <20230718160833.36397-1-quic_nkela@quicinc.com>
+ <20230911194359.27547-1-quic_nkela@quicinc.com>
 MIME-Version: 1.0
-References: <20230828140849.21724-1-tmaimon77@gmail.com> <CACRpkdY0C7S_VjZ8CKxj9MOv401jUPesvwKwHyCfHM+p8jRSOg@mail.gmail.com>
-In-Reply-To: <CACRpkdY0C7S_VjZ8CKxj9MOv401jUPesvwKwHyCfHM+p8jRSOg@mail.gmail.com>
-From:   Tomer Maimon <tmaimon77@gmail.com>
-Date:   Mon, 11 Sep 2023 22:36:50 +0300
-Message-ID: <CAP6Zq1gd7j7c3RuB+E4S65JNhOmEEZOMgn2AqXwO29f=BRKXzA@mail.gmail.com>
-Subject: Re: [PATCH v7 0/2] pinctrl: nuvoton: add pinmux and GPIO driver for NPCM8XX
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
-        joel@jms.id.au, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, j.neuschaefer@gmx.net,
-        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: qF5iy2JemLgJWWScj9h8d_OVYnJgXrbw
+X-Proofpoint-GUID: qF5iy2JemLgJWWScj9h8d_OVYnJgXrbw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-11_15,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ clxscore=1015 mlxlogscore=999 bulkscore=0 lowpriorityscore=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 adultscore=0
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2308100000 definitions=main-2309110180
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks a lot Linus
-appreciate it :-)
+Introduce compatible "qcom,scmi-hvc-shmem" for SCMI smc/hvc
+transport channel for Qualcomm virtual platforms.
+The compatible mandates a shared memory channel.
 
-On Mon, 11 Sept 2023 at 16:53, Linus Walleij <linus.walleij@linaro.org> wro=
-te:
->
-> On Mon, Aug 28, 2023 at 4:08=E2=80=AFPM Tomer Maimon <tmaimon77@gmail.com=
-> wrote:
->
-> > This patch set adds pinmux and GPIO controller for the Arbel NPCM8XX
-> > Baseboard Management Controller (BMC).
->
-> Patches applied. I can send some more nitpicky comments about
-> patch 2/2 but they are not serious enough to warrant a resend of the
-> patches, it is better to touch it up in-tree, if at all.
->
-> Good work with this driver, and also good patience since you
-> iterated 7 versions and polished everything up so it's really nice
-> and shiny now!
->
-> Yours,
-> Linus Walleij
+Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/firmware/arm,scmi.yaml       | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+index 8d54ea768d38..4090240f45b1 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+@@ -45,6 +45,9 @@ properties:
+       - description: SCMI compliant firmware with OP-TEE transport
+         items:
+           - const: linaro,scmi-optee
++      - description: SCMI compliant firmware with Qualcomm hvc/shmem transport
++        items:
++          - const: qcom,scmi-hvc-shmem
+ 
+   interrupts:
+     description:
+@@ -320,6 +323,15 @@ allOf:
+       required:
+         - linaro,optee-channel-id
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: qcom,scmi-hvc-shmem
++    then:
++      required:
++        - shmem
++
+ examples:
+   - |
+     firmware {
+-- 
+2.17.1
+
