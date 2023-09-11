@@ -2,108 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2370479B8E5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9089479BB01
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232106AbjIKUtt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59958 "EHLO
+        id S236753AbjIKUxL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:53:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244242AbjIKTsD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 15:48:03 -0400
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [IPv6:2a0a:edc0:2:b01:1d::104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A29BF1A5
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 12:47:58 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qfmt0-0001wQ-C2; Mon, 11 Sep 2023 21:47:54 +0200
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qfmsy-005cTP-2P; Mon, 11 Sep 2023 21:47:52 +0200
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1qfmsx-000lo0-DE; Mon, 11 Sep 2023 21:47:51 +0200
-Date:   Mon, 11 Sep 2023 21:47:51 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Ben Dooks <ben.dooks@codethink.co.uk>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
+        with ESMTP id S244359AbjIKULM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 16:11:12 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DB69CD;
+        Mon, 11 Sep 2023 13:11:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+ s=s31663417; t=1694463047; x=1695067847; i=frank-w@public-files.de;
+ bh=HHmkmeHxY0x6YELBcMZPjeob1XxmshaXuwNwkwj92vI=;
+ h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:Referenc
+ es;
+ b=Iap7nAKROgCwPmgSJaT8FhHs91+z7oHAU69G6ls+/qVzqNoGrfyDZHaBLgx/H0FGpaKzJpR
+ LYFmccw0XPcDmlv15+9lVD5UaJxwg/yANyTP4UKS42eepBTNUqqvd2JWz7BEToMGHGDe13rAb
+ if4GTYf7GIrqXmfTvw9GSB21OHBjOjrcJZAHWdFK9sq7F4UrTeDynd7ctyNTxMyQTjd6ZUO2X
+ AYLgHe3grA1iXG1ve5r1xNUuVJRK6B2l+LCLSIFfa/Fn4g7BbAhXQX1jASr579QhyXL0SuTxH
+ O5Rq7DC9fU1oVHEF9udVIk3na59vHtsKw7k8n1kupn7etcgk+ipA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([217.61.151.158]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MbRfl-1q4Ghb3kSX-00bwPd; Mon, 11
+ Sep 2023 22:10:47 +0200
+Date:   Mon, 11 Sep 2023 22:10:46 +0200
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Wunderlich <linux@fw-web.de>
+CC:     linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        jarkko.nikula@linux.intel.com
-Subject: Re: [PATCH v9 4/6] pwm: dwc: use clock rate in hz to avoid rounding
- issues
-Message-ID: <20230911194751.mohdwipo74ccgail@pengutronix.de>
-References: <20230907161242.67190-1-ben.dooks@codethink.co.uk>
- <20230907161242.67190-5-ben.dooks@codethink.co.uk>
- <20230907213419.aqzwoppznj5tx7w6@pengutronix.de>
- <d45c3d25-13ca-474f-a3e3-c295d3cea866@codethink.co.uk>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1=5D_arm64=3A_dts=3A_mt7986=3A_add_?= =?US-ASCII?Q?overlay_for_SATA_power_socket_on_BPI-R3?=
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <CAL_Jsq+f9bq5Mab9m1pzDeiw304TMeNDmJk+ofG6M8J9QD3cvQ@mail.gmail.com>
+References: <20230901072730.13571-1-linux@fw-web.de> <CAL_Jsq+f9bq5Mab9m1pzDeiw304TMeNDmJk+ofG6M8J9QD3cvQ@mail.gmail.com>
+Message-ID: <76060BF0-B432-4BB8-A5C8-39EFF3D628EA@public-files.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="uwxa5sotju3k4kg3"
-Content-Disposition: inline
-In-Reply-To: <d45c3d25-13ca-474f-a3e3-c295d3cea866@codethink.co.uk>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:9L+xgTcJUdckurYVAOzn9vZIma2+w/AOEA09dsu3M0K0DzZShi7
+ VMW6t5/tANLoeS4Hinp4N/v7pvljhATwL/lTUV/rWrxw3eO9SLDmTwd/tyPbl4mZdG0reVe
+ FUUu7oR3lsutQgDwNwXNRkZOredEJ6fbpp0/IhKyC9+oGTFjX9rG/lwaJXUfDMbl/4z3J1g
+ q5ARG/5K+J9M6iOYXFHxg==
+UI-OutboundReport: notjunk:1;M01:P0:Ss/nr+jQw9E=;KQ95qghdY1pu9I5xgPu52kh2iwU
+ 5qVj231gP+5kSSXN4Z0SJ5EsFE2m0mpGMqEqdyxUsSFy8MIn3oCTG3z0OYRKlp7YK38y64GW2
+ DHLibRH5iTfl5rjCWTuw76PdbctbUkQmJ6E/76dzmMSoKSGrsjgDE1wz6BGYOVN9wK0TbGn5H
+ T05pICixPkzfU6ETBzAtcB3106/duTjXsDRdgG8cC1QTEUIKpHeBf5lYIN5Ts0dVH7hKu2OkT
+ ZCgaEejYh/XXOxckIX3S6AJH6cTWPEz2H7JwNb+swKSl66QrXb6Kg99U+IsrM+D91aqnF5dQD
+ N/6XMSdHuMzTjQ8BvEiqD+JxzETcvIrFKSCu6pEceRSeUaAtCRqLAjP26IL/Ap61MdmGSNynv
+ LfJlVGWdD6Y+4ba65zu2qecPGJ5Ij+51rXT9eICi5upd3z3mcn+Ur2mVDYGbSAfO9NT2/+KxQ
+ LMCVEGfG/fjVpE/zqVoxg1i1MZDwTSX8icHod80r5GyF265w81nz6pul4J+944YAPXtBfe7hS
+ 4X2hvFB7UZG8wvwPV3rBU6jYwRHb6I0faSayNUvkMn4ln0P+KVQ7spZ17tvlJB+ZkDYPmXjfX
+ 3nhH3+tkTnrWXQyihRESXgacVpkcfMfnSmLSudCDq8R9Lgk8eJ+m+gwvXDgVOjHERq17jF8oU
+ CJX1CJD+hcmw4JD2lBHOwujuJrqpapRh3T9eHRwRaVY259Jj/wcDi0fcpYrPMdHjoE1ep/0KB
+ Fjt5eI1tFaUoLFLeXyXL1cl34mAVpuNFhFqJtBcO0ngQ2311tgZX7UNm+ejJNep+3t53KucCb
+ FKtRgI09Dphvz/QhN6R7fySZcgavIFgYPcJssLFRsqSGNgEnMUwkLnY3LpkAW8iy4qgOiG9YY
+ N/SdjSjuMXbH76KKn5ty2cWu+zabHnhKu0Amqca77mvKJ36pwNGldiZznteKhiXTsX2lxtbBr
+ lD0MtA==
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am 11=2E September 2023 21:51:42 MESZ schrieb Rob Herring <robh+dt@kernel=
+=2Eorg>:
+>On Fri, Sep 1, 2023 at 2:27=E2=80=AFAM Frank Wunderlich <linux@fw-web=2Ed=
+e> wrote:
+>>
+>> From: Frank Wunderlich <frank-w@public-files=2Ede>
+>>
+>> Bananapi R3 has a Power socket entended for using external SATA drives=
+=2E
+>> This Socket is off by default but can be switched with gpio 8=2E
+>>
+>> Add an overlay to activate it=2E
+>>
+>> Signed-off-by: Frank Wunderlich <frank-w@public-files=2Ede>
+>> ---
+>>  arch/arm64/boot/dts/mediatek/Makefile         |  1 +
+>>  =2E=2E=2E/mt7986a-bananapi-bpi-r3-sata=2Edtso         | 39 +++++++++++=
+++++++++
+>>  2 files changed, 40 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r=
+3-sata=2Edtso
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/dt=
+s/mediatek/Makefile
+>> index c99c3372a4b5=2E=2E822d3e36d3df 100644
+>> --- a/arch/arm64/boot/dts/mediatek/Makefile
+>> +++ b/arch/arm64/boot/dts/mediatek/Makefile
+>> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi=
+-r3-emmc=2Edtbo
+>>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nand=2Edtbo
+>>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nor=2Edtbo
+>>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-sd=2Edtbo
+>> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-sata=2Edtbo
+>
+>The requirement for overlays is they have a target base dt in tree and
+>that you apply the overlay to it=2E All these existing overlays have the
+>same problem which I pointed out when you submitted them=2E Please fix
+>the existing ones before adding more=2E
+>
+>
+>Rob
 
---uwxa5sotju3k4kg3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Rob,
 
-Hello Ben,
+i do not understand the problem as there is a target base dt=2E=2E=2Emt798=
+6a-bananapi-bpi-r3=2Edtb=2E
 
-On Mon, Sep 11, 2023 at 08:33:02AM +0100, Ben Dooks wrote:
-> On 07/09/2023 22:34, Uwe Kleine-K=F6nig wrote:
-> > > +	duty *=3D NSEC_PER_SEC;
-> > > +	period *=3D NSEC_PER_SEC;
-> >=20
-> > A comment that/why this cannot overflow would be nice. (I didn't check,
-> > maybe it can?)
->=20
-> I /think/ that as long as NSEC_PER_SEC  2^32 then this shouldn't
-> overflow.
+Do you mean that overlays should be merged with basedt at compiletime?
 
-I guess NSEC_PER_SEC won't change in the near future :-)
+We pack the base-dt and all overlays into one fit image and let uboot dyna=
+mically select the combination to apply=2E E=2Eg=2E check if emmc is availa=
+ble, if yes apply emmc overlay else the sd one,same for nand/nor=2E
 
-double checking and writing the result down in a comment would be
-appreciated.
+Else i do not know *how* to fix as i don't see it as broken=2E
 
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---uwxa5sotju3k4kg3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEyBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmT/buYACgkQj4D7WH0S
-/k7fkAf1HwAtY7KGch3Cs4SdN1Y6smI/ObhPJ69Yi+fc+PidJZKGgdJO4OOaWNmD
-cH1uqZwbQMe7W3ktv1bM7ZE85/IK9krstGiFKnEoiDSxzUqggCXo3yLr9jHuslzB
-OxwIreyiCJWTOp6L2DixbWd8JEm+RxVDjx4ZfOr+G45m4bT9Eic1pZVvw1HR/cL6
-LuAFKvhcqYygQ7WOa8ts1ZqkfmQ/vdR5fLCde7AUY7Y9r/fyB9fmmmiekxTX4HG1
-VGGanMyG2afGK3XVMimFeuezH1LZwr0b6JI7+CSFqzMHxy4MHdvjsubO4K7vTuWx
-PZBP5tENw1htEY5LYD0Jlr7hqzew
-=wPVQ
------END PGP SIGNATURE-----
-
---uwxa5sotju3k4kg3--
+regards Frank
