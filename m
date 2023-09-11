@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C87B079BED7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 260BC79BF39
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233131AbjIKUwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51868 "EHLO
+        id S236249AbjIKUvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:51:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242853AbjIKQZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:25:55 -0400
+        with ESMTP id S242855AbjIKQZ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 12:25:56 -0400
 Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 855EFCCA;
-        Mon, 11 Sep 2023 09:25:50 -0700 (PDT)
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BGPeKB083440;
-        Mon, 11 Sep 2023 11:25:40 -0500
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B91CCD;
+        Mon, 11 Sep 2023 09:25:51 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38BGPf1i083445;
+        Mon, 11 Sep 2023 11:25:41 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694449540;
-        bh=xXNNi9ecgv9n4lP0nkXFlMFa2mNAsjzCTU9VoQct/FE=;
+        s=ti-com-17Q1; t=1694449541;
+        bh=Gtm+mXYPgVZpSSr81aO2pE+EKYHz4E/w2OpQOzWOZcM=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=VTI4bWQBA/DjcNP4McbwHGzxW5LB6s8OXC1gJWlvyLhCNldrWAdvJeXgxJybfUWAJ
-         jUKC/zTKgXSfRSG3cNpFKXmh37SJV4lfn7uIKjqhXkIjtaCme96iJskcKMbWneIVdU
-         TQyy4FKuj3nntkrNwWnIiYhfg4eWru7ktYjnEqdE=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BGPeN7022338
+        b=A5W/b+gvN9KQcwL1orGCS1aewxzHCvneQfgW/OBylG6YpOwZerCNq88ntYJiKd71R
+         ah5pnNEJz81t1+DwAvZglKNulozugTs2dSKdtlziqTB/JjibGd8VxX+xbzaDdspTC+
+         auGFp+mCtJ9r4diITGtP444Xa+NIGwj6gt15LN6Q=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38BGPewQ022099
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
         Mon, 11 Sep 2023 11:25:40 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
  Sep 2023 11:25:40 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
  Frontend Transport; Mon, 11 Sep 2023 11:25:40 -0500
-Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BGPeo8012541;
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38BGPe8F012544;
         Mon, 11 Sep 2023 11:25:40 -0500
 From:   Nishanth Menon <nm@ti.com>
 To:     Conor Dooley <conor+dt@kernel.org>,
@@ -49,9 +49,9 @@ CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Tom Rini <trini@konsulko.com>, Bryan <bb@ti.com>,
         Praneeth <praneeth@ti.com>,
         Robert Nelson <robertcnelson@gmail.com>
-Subject: [PATCH 1/3] arm64: dts: ti: k3-am625: Add boot phase tags marking
-Date:   Mon, 11 Sep 2023 11:25:33 -0500
-Message-ID: <20230911162535.1044560-2-nm@ti.com>
+Subject: [PATCH 2/3] arm64: dts: ti: k3-am625-beagleplay: Add boot phase tags marking
+Date:   Mon, 11 Sep 2023 11:25:34 -0500
+Message-ID: <20230911162535.1044560-3-nm@ti.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20230911162535.1044560-1-nm@ti.com>
 References: <20230911162535.1044560-1-nm@ti.com>
@@ -73,169 +73,216 @@ bootph-all as phase tag was added to dt-schema
 (dtschema/schemas/bootph.yaml) to describe various node usage during
 boot phases with DT.
 
-On TI K3 AM625 SoC, only secure_proxy_sa3 and esm nodes are
-exclusively used by R5 bootloader, rest of the dts nodes with bootph-* are
-used by later boot stages also.
-
-Add bootph-all for all other nodes that are used in the bootloader on
-K3 AM625 SoC, and bootph-pre-ram is not needed specifically for any
-other node in kernel dts.
+Describe the same for beagleplay boot devices.
 
 Signed-off-by: Nishanth Menon <nm@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi   | 10 ++++++++++
- arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi    |  2 ++
- arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi |  2 ++
- arch/arm64/boot/dts/ti/k3-am62.dtsi        |  3 +++
- 4 files changed, 17 insertions(+)
+ .../arm64/boot/dts/ti/k3-am625-beagleplay.dts | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 284b90c94da8..ac760d9b831d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -81,6 +81,7 @@ audio_refclk1: clock-controller@82e4 {
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+index 7cfdf562b53b..f646d1ec4c05 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -46,6 +46,7 @@ chosen {
  	};
  
- 	dmss: bus@48000000 {
-+		bootph-all;
- 		compatible = "simple-mfd";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -90,6 +91,7 @@ dmss: bus@48000000 {
- 		ti,sci-dev-id = <25>;
- 
- 		secure_proxy_main: mailbox@4d000000 {
-+			bootph-all;
- 			compatible = "ti,am654-secure-proxy";
- 			#mbox-cells = <1>;
- 			reg-names = "target_data", "rt", "scfg";
-@@ -165,6 +167,7 @@ main_pktdma: dma-controller@485c0000 {
- 	};
- 
- 	dmsc: system-controller@44043000 {
-+		bootph-all;
- 		compatible = "ti,k2g-sci";
- 		ti,host-id = <12>;
- 		mbox-names = "rx", "tx";
-@@ -174,16 +177,19 @@ dmsc: system-controller@44043000 {
- 		reg = <0x00 0x44043000 0x00 0xfe0>;
- 
- 		k3_pds: power-controller {
-+			bootph-all;
- 			compatible = "ti,sci-pm-domain";
- 			#power-domain-cells = <2>;
- 		};
- 
- 		k3_clks: clock-controller {
-+			bootph-all;
- 			compatible = "ti,k2g-sci-clk";
- 			#clock-cells = <2>;
- 		};
- 
- 		k3_reset: reset-controller {
-+			bootph-all;
- 			compatible = "ti,sci-reset";
- 			#reset-cells = <2>;
- 		};
-@@ -202,6 +208,7 @@ crypto: crypto@40900000 {
- 	};
- 
- 	secure_proxy_sa3: mailbox@43600000 {
+ 	memory@80000000 {
 +		bootph-pre-ram;
- 		compatible = "ti,am654-secure-proxy";
- 		#mbox-cells = <1>;
- 		reg-names = "target_data", "rt", "scfg";
-@@ -217,6 +224,7 @@ secure_proxy_sa3: mailbox@43600000 {
+ 		device_type = "memory";
+ 		/* 2G RAM */
+ 		reg = <0x00000000 0x80000000 0x00000000 0x80000000>;
+@@ -83,6 +84,7 @@ wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9db00000 {
  	};
  
- 	main_pmx0: pinctrl@f4000 {
+ 	vsys_5v0: regulator-1 {
 +		bootph-all;
- 		compatible = "pinctrl-single";
- 		reg = <0x00 0xf4000 0x00 0x2ac>;
- 		#pinctrl-cells = <1>;
-@@ -225,12 +233,14 @@ main_pmx0: pinctrl@f4000 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vsys_5v0";
+ 		regulator-min-microvolt = <5000000>;
+@@ -93,6 +95,7 @@ vsys_5v0: regulator-1 {
+ 
+ 	vdd_3v3: regulator-2 {
+ 		/* output of TLV62595DMQR-U12 */
++		bootph-all;
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vdd_3v3";
+ 		regulator-min-microvolt = <3300000>;
+@@ -118,6 +121,7 @@ wlan_en: regulator-3 {
+ 
+ 	vdd_3v3_sd: regulator-4 {
+ 		/* output of TPS22918DBVR-U21 */
++		bootph-all;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&vdd_3v3_sd_pins_default>;
+ 
+@@ -132,6 +136,7 @@ vdd_3v3_sd: regulator-4 {
  	};
  
- 	main_esm: esm@420000 {
-+		bootph-pre-ram;
- 		compatible = "ti,j721e-esm";
- 		reg = <0x00 0x420000 0x00 0x1000>;
- 		ti,esm-pins = <160>, <161>, <162>, <163>, <177>, <178>;
+ 	vdd_sd_dv: regulator-5 {
++		bootph-all;
+ 		compatible = "regulator-gpio";
+ 		regulator-name = "sd_hs200_switch";
+ 		pinctrl-names = "default";
+@@ -146,9 +151,11 @@ vdd_sd_dv: regulator-5 {
  	};
  
- 	main_timer0: timer@2400000 {
+ 	leds {
 +		bootph-all;
- 		compatible = "ti,am654-timer";
- 		reg = <0x00 0x2400000 0x00 0x400>;
- 		interrupts = <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-index 80a3e1db26a9..0e0b234581c6 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-mcu.dtsi
-@@ -7,6 +7,7 @@
+ 		compatible = "gpio-leds";
  
- &cbass_mcu {
- 	mcu_pmx0: pinctrl@4084000 {
-+		bootph-all;
- 		compatible = "pinctrl-single";
- 		reg = <0x00 0x04084000 0x00 0x88>;
- 		#pinctrl-cells = <1>;
-@@ -15,6 +16,7 @@ mcu_pmx0: pinctrl@4084000 {
- 	};
- 
- 	mcu_esm: esm@4100000 {
-+		bootph-pre-ram;
- 		compatible = "ti,j721e-esm";
- 		reg = <0x00 0x4100000 0x00 0x1000>;
- 		ti,esm-pins = <0>, <1>, <2>, <85>;
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-index eae052887186..fef76f52a52e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-@@ -7,6 +7,7 @@
- 
- &cbass_wakeup {
- 	wkup_conf: syscon@43000000 {
-+		bootph-all;
- 		compatible = "syscon", "simple-mfd";
- 		reg = <0x00 0x43000000 0x00 0x20000>;
- 		#address-cells = <1>;
-@@ -14,6 +15,7 @@ wkup_conf: syscon@43000000 {
- 		ranges = <0x0 0x00 0x43000000 0x20000>;
- 
- 		chipid: chipid@14 {
+ 		led-0 {
 +			bootph-all;
- 			compatible = "ti,am654-chipid";
- 			reg = <0x14 0x4>;
- 		};
-diff --git a/arch/arm64/boot/dts/ti/k3-am62.dtsi b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-index 11f14eef2d44..f1e15206e1ce 100644
---- a/arch/arm64/boot/dts/ti/k3-am62.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62.dtsi
-@@ -47,6 +47,7 @@ pmu: pmu {
- 	};
- 
- 	cbass_main: bus@f0000 {
-+		bootph-all;
- 		compatible = "simple-bus";
- 		#address-cells = <2>;
- 		#size-cells = <2>;
-@@ -86,6 +87,7 @@ cbass_main: bus@f0000 {
- 			 <0x00 0x43000000 0x00 0x43000000 0x00 0x00020000>;
- 
- 		cbass_mcu: bus@4000000 {
-+			bootph-all;
- 			compatible = "simple-bus";
- 			#address-cells = <2>;
- 			#size-cells = <2>;
-@@ -93,6 +95,7 @@ cbass_mcu: bus@4000000 {
+ 			gpios = <&main_gpio0 3 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "heartbeat";
+ 			function = LED_FUNCTION_HEARTBEAT;
+@@ -156,6 +163,7 @@ led-0 {
  		};
  
- 		cbass_wakeup: bus@b00000 {
+ 		led-1 {
 +			bootph-all;
- 			compatible = "simple-bus";
- 			#address-cells = <2>;
- 			#size-cells = <2>;
+ 			gpios = <&main_gpio0 4 GPIO_ACTIVE_HIGH>;
+ 			linux,default-trigger = "disk-activity";
+ 			function = LED_FUNCTION_DISK_ACTIVITY;
+@@ -163,16 +171,19 @@ led-1 {
+ 		};
+ 
+ 		led-2 {
++			bootph-all;
+ 			gpios = <&main_gpio0 5 GPIO_ACTIVE_HIGH>;
+ 			function = LED_FUNCTION_CPU;
+ 		};
+ 
+ 		led-3 {
++			bootph-all;
+ 			gpios = <&main_gpio0 6 GPIO_ACTIVE_HIGH>;
+ 			function = LED_FUNCTION_LAN;
+ 		};
+ 
+ 		led-4 {
++			bootph-all;
+ 			gpios = <&main_gpio0 9 GPIO_ACTIVE_HIGH>;
+ 			function = LED_FUNCTION_WLAN;
+ 		};
+@@ -245,6 +256,7 @@ cpsw3g_phy1: ethernet-phy@1 {
+ 
+ &main_pmx0 {
+ 	gpio0_pins_default: gpio0-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x0004, PIN_INPUT, 7) /* (G25) OSPI0_LBCLKO.GPIO0_1 */
+ 			AM62X_IOPAD(0x0008, PIN_INPUT, 7) /* (J24) OSPI0_DQS.GPIO0_2 */
+@@ -264,6 +276,7 @@ AM62X_IOPAD(0x00ac, PIN_INPUT, 7) /* (L21) GPMC0_CSn1.GPIO0_42 */
+ 	};
+ 
+ 	vdd_sd_dv_pins_default: vdd-sd-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x0244, PIN_OUTPUT, 7) /* (C17) MMC1_SDWP.GPIO1_49 */
+ 		>;
+@@ -283,6 +296,7 @@ AM62X_IOPAD(0x01ec, PIN_INPUT_PULLUP, 0) /* (A17) I2C1_SDA */
+ 	};
+ 
+ 	local_i2c_pins_default: local-i2c-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x01e0, PIN_INPUT_PULLUP, 0) /* (B16) I2C0_SCL */
+ 			AM62X_IOPAD(0x01e4, PIN_INPUT_PULLUP, 0) /* (A16) I2C0_SDA */
+@@ -321,6 +335,7 @@ AM62X_IOPAD(0x012c, PIN_OUTPUT, 0) /* (AD19) RGMII1_TX_CTL */
+ 	};
+ 
+ 	emmc_pins_default: emmc-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x0220, PIN_INPUT, 0) /* (Y3) MMC0_CMD */
+ 			AM62X_IOPAD(0x0218, PIN_INPUT, 0) /* (AB1) MMC0_CLK */
+@@ -336,12 +351,14 @@ AM62X_IOPAD(0x01f8, PIN_INPUT, 0) /* (AC2) MMC0_DAT7 */
+ 	};
+ 
+ 	vdd_3v3_sd_pins_default: vdd-3v3-sd-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x01c4, PIN_INPUT, 7) /* (B14) SPI0_D1_GPIO1_19 */
+ 		>;
+ 	};
+ 
+ 	sd_pins_default: sd-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x023c, PIN_INPUT, 0) /* (A21) MMC1_CMD */
+ 			AM62X_IOPAD(0x0234, PIN_INPUT, 0) /* (B22) MMC1_CLK */
+@@ -418,6 +435,7 @@ AM62X_IOPAD(0x0198, PIN_INPUT, 1) /* (A19) MCASP0_AXR2.SPI2_D1 */
+ 	};
+ 
+ 	mikrobus_gpio_pins_default: mikrobus-gpio-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x019c, PIN_INPUT, 7) /* (B18) MCASP0_AXR1.GPIO1_9 */
+ 			AM62X_IOPAD(0x01a0, PIN_INPUT, 7) /* (E18) MCASP0_AXR0.GPIO1_10 */
+@@ -426,6 +444,7 @@ AM62X_IOPAD(0x01a8, PIN_INPUT, 7) /* (D20) MCASP0_AFSX.GPIO1_12 */
+ 	};
+ 
+ 	console_pins_default: console-default-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x01c8, PIN_INPUT, 0) /* (D14) UART0_RXD */
+ 			AM62X_IOPAD(0x01cc, PIN_OUTPUT, 0) /* (E14) UART0_TXD */
+@@ -597,6 +616,7 @@ &cpsw3g_mdio {
+ };
+ 
+ &main_gpio0 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gpio0_pins_default>;
+ 	gpio-line-names = "BL_EN_3V3", "SPE_PO_EN", "RTC_INT",	/* 0-2 */
+@@ -616,6 +636,7 @@ &main_gpio0 {
+ };
+ 
+ &main_gpio1 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&mikrobus_gpio_pins_default>;
+ 	gpio-line-names = "", "", "", "", "",			/* 0-4 */
+@@ -633,6 +654,7 @@ &main_gpio1 {
+ };
+ 
+ &main_i2c0 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&local_i2c_pins_default>;
+ 	clock-frequency = <400000>;
+@@ -651,6 +673,7 @@ rtc: rtc@68 {
+ 	};
+ 
+ 	tps65219: pmic@30 {
++		bootph-all;
+ 		compatible = "ti,tps65219";
+ 		reg = <0x30>;
+ 		buck1-supply = <&vsys_5v0>;
+@@ -801,6 +824,7 @@ &main_spi2 {
+ };
+ 
+ &sdhci0 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&emmc_pins_default>;
+ 	ti,driver-strength-ohm = <50>;
+@@ -810,6 +834,7 @@ &sdhci0 {
+ 
+ &sdhci1 {
+ 	/* SD/MMC */
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&sd_pins_default>;
+ 
+@@ -850,6 +875,7 @@ wlcore: wlcore@2 {
+ };
+ 
+ &main_uart0 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&console_pins_default>;
+ 	status = "okay";
 -- 
 2.40.0
 
