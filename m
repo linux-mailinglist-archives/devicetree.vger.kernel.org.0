@@ -2,61 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C4179A52B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 09:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AEC379A582
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 10:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234933AbjIKH47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 03:56:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46586 "EHLO
+        id S232649AbjIKIHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 04:07:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229617AbjIKH44 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 03:56:56 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EF4112B;
-        Mon, 11 Sep 2023 00:56:39 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B94B3C433C9;
-        Mon, 11 Sep 2023 07:56:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694418999;
-        bh=J4By/wtMEr2AEoDW7IigfXfEKp7/CeZK5KPE57g83AQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZfX6RyGjkbCon6qIymrUuDUmd4zyiw+oq+3UYAwwiRejb+bjeMBacGLrJVk1rq0/6
-         Epnri0SlLSNT0lEAGHQvpMVuUcd2/RK9resXaAfohLmxGBCzZIIHrx7Agczwvu/Ee0
-         31czy6K1CbffAHojh735ol2bgE4CnY66hmjm0pn6F1mBdWN8voaI8Q2HEOHpFLNRzl
-         yvcxdQ6OE9Fl21SakZehyM4rsYmRvesVp8JReZTn2jV8YMCT5/x7nK38rZarLkg1A/
-         1oa4bIIvcvkevd5EzXEXDw5eyXcW9i0t/nR43VM6KtPIonud2mgDSNbNgw3I3uFC5u
-         oKb6l2ve2JxUQ==
-Date:   Mon, 11 Sep 2023 09:56:36 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Vignesh Raman <vignesh.raman@collabora.com>
-Cc:     dri-devel@lists.freedesktop.org, helen.koike@collabora.com,
-        guilherme.gallo@collabora.com, sergi.blanch.torne@collabora.com,
-        david.heidelberg@collabora.com, daniels@collabora.com,
-        gustavo.padovan@collabora.com,
-        angelogioacchino.delregno@collabora.com, emma@anholt.net,
-        robclark@freedesktop.org, robdclark@google.com, anholt@google.com,
-        robdclark@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
-        jani.nikula@linux.intel.com, dmitry.baryshkov@linaro.org,
-        matthias.bgg@gmail.com, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        virtualization@lists.linux-foundation.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v3 2/9] arm64: dts: qcom: apq8016-sbc: Add overlay for
- usb host mode
-Message-ID: <n7pfq63xblrijh7azhqj4zytnq6tuym6dwdw6rrwznnizpoy5p@7vsgezhgs3jg>
-References: <20230908152225.432139-1-vignesh.raman@collabora.com>
- <20230908152225.432139-3-vignesh.raman@collabora.com>
+        with ESMTP id S229823AbjIKIHq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 04:07:46 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9858BE43;
+        Mon, 11 Sep 2023 01:07:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694419635; x=1725955635;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EKc2l8u/kKBul3gNAYJEk/Ck38NKo2uvJewBdyW546M=;
+  b=VgDOe5X5X5zZjI9/qFeeXgVsoidcjZD/MBWaxKlQHE6ljCh++krYezTL
+   IOg/qeNJt9GEBxLWssqnQjenHJ3MBXKjKheoOBuA/LEHx9lgn/yw4/mBK
+   aCIXL4ujaRbeT9vIw5YMJ4SCPNzn8xf18kfV2syze/2dCjhOKmP9wR9x/
+   x5exyaS2510A3iyEJXagvG4sqe6Y04AXcD50cyrhdSZnWnpiMpK0vSMkr
+   n5KEg5UTTAUew2uKACS/kujGRQrReEz0VdtDeLX1fOeC3kqCJ7DQrHe2y
+   47Pdhu7NUxiqwL76anCsbHr4oqqEixlejlBif/3yOulK0Tj6+2eNVWgQC
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="444438887"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
+   d="scan'208";a="444438887"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2023 01:06:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="693005175"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; 
+   d="scan'208";a="693005175"
+Received: from lkp-server01.sh.intel.com (HELO 59b3c6e06877) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 11 Sep 2023 01:06:47 -0700
+Received: from kbuild by 59b3c6e06877 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qfbwS-0005yc-30;
+        Mon, 11 Sep 2023 08:06:44 +0000
+Date:   Mon, 11 Sep 2023 16:05:45 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        christian.koenig@amd.com, Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, jianjiao.zeng@mediatek.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        kuohong.wang@mediatek.com, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, tjmercier@google.com,
+        linaro-mm-sig@lists.linaro.org, John Stultz <jstultz@google.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        Yong Wu <yong.wu@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Initialise MediaTek secure heap
+Message-ID: <202309111534.u4wfJ4vk-lkp@intel.com>
+References: <20230911023038.30649-5-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="gagdd2k3ghthyhjr"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230908152225.432139-3-vignesh.raman@collabora.com>
+In-Reply-To: <20230911023038.30649-5-yong.wu@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,73 +76,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Yong,
 
---gagdd2k3ghthyhjr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+kernel test robot noticed the following build errors:
 
-On Fri, Sep 08, 2023 at 08:52:18PM +0530, Vignesh Raman wrote:
-> Due to the presence of the fastboot micro cable in the CI farm,
-> it causes the hardware to remain in gadget mode instead of host mode.
-> So it doesn't find the network, which results in failure to mount root
-> fs via NFS.
->=20
-> Add an overlay dtso file that sets the dr_mode to host, allowing
-> the USB controllers to work in host mode. This dtso file will be used
-> in drm-ci, mesa-ci.
->=20
-> Overlay DT file uses the sugar syntax [suggested by Dmitry Baryshkov and =
-Maxime Ripard]
->=20
-> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Suggested-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
-> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
-> ---
->=20
-> v3:
->   - New patch in the series to add device tree overlay in arch/arm64/boot=
-/dts/qcom
->=20
-> ---
->  arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso | 8 ++++++++
->  1 file changed, 8 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso b/arch/ar=
-m64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
-> new file mode 100644
-> index 000000000000..a82c26b7eae8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/apq8016-sbc-usb-host.dtso
-> @@ -0,0 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +&usb {
-> +         dr_mode =3D "host";
-> +};
-> --=20
-> 2.40.1
->=20
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on robh/for-next linus/master v6.6-rc1 next-20230911]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-You need to add it to the Makefile too
+url:    https://github.com/intel-lab-lkp/linux/commits/Yong-Wu/dma-buf-heaps-Deduplicate-docs-and-adopt-common-format/20230911-103308
+base:   git://anongit.freedesktop.org/drm/drm-misc drm-misc-next
+patch link:    https://lore.kernel.org/r/20230911023038.30649-5-yong.wu%40mediatek.com
+patch subject: [PATCH 4/9] dma-buf: heaps: Initialise MediaTek secure heap
+config: openrisc-allmodconfig (https://download.01.org/0day-ci/archive/20230911/202309111534.u4wfJ4vk-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230911/202309111534.u4wfJ4vk-lkp@intel.com/reproduce)
 
-Maxime
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309111534.u4wfJ4vk-lkp@intel.com/
 
---gagdd2k3ghthyhjr
-Content-Type: application/pgp-signature; name="signature.asc"
+All errors (new ones prefixed by >>):
 
------BEGIN PGP SIGNATURE-----
+>> drivers/dma-buf/heaps/mtk_secure_heap.c:68:27: error: initialization of 'struct dma_buf * (*)(struct dma_heap *, long unsigned int,  long unsigned int,  long unsigned int)' from incompatible pointer type 'struct dma_buf * (*)(struct dma_heap *, size_t,  long unsigned int,  long unsigned int)' {aka 'struct dma_buf * (*)(struct dma_heap *, unsigned int,  long unsigned int,  long unsigned int)'} [-Werror=incompatible-pointer-types]
+      68 |         .allocate       = mtk_sec_heap_allocate,
+         |                           ^~~~~~~~~~~~~~~~~~~~~
+   drivers/dma-buf/heaps/mtk_secure_heap.c:68:27: note: (near initialization for 'mtk_sec_heap_ops.allocate')
+   cc1: some warnings being treated as errors
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZP7INAAKCRDj7w1vZxhR
-xV6IAQCox48qewzlkPPyfIUdU1lcyOF2tjZGlIie1OkEy+YwewD9HSiqWhPcaU05
-UcmcRvKlRMTRddoOLVSVlt6zHhBNPgI=
-=Cw8P
------END PGP SIGNATURE-----
 
---gagdd2k3ghthyhjr--
+vim +68 drivers/dma-buf/heaps/mtk_secure_heap.c
+
+    66	
+    67	static const struct dma_heap_ops mtk_sec_heap_ops = {
+  > 68		.allocate	= mtk_sec_heap_allocate,
+    69	};
+    70	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
