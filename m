@@ -2,140 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC3F79C1DA
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 03:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0F4779BC74
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234909AbjILBqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 21:46:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44924 "EHLO
+        id S235221AbjIKXEN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 19:04:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235573AbjILBqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 21:46:19 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4149713AF20;
-        Mon, 11 Sep 2023 16:43:22 -0700 (PDT)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38525C433BA;
-        Mon, 11 Sep 2023 21:06:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1694466391;
-        bh=emY+8OOcII6sxAHBz/ueLAdDUaQM+gjoMKh7SHfBk1M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Tfe97YsfXcfKG5h/8G4yZP+eRv0qt8cCoMlRBYzI0MAfyU4DdQKymBPxuPSEvuPyB
-         NyC0hnNLkbs5Xs860kSiFKoD1O2W84hsUijA9DTiJASMNBiq/3de5qPC8geSoEVkRh
-         SOfkxgUYfuplCjC8lFKGCdKsBWZx0wUj1yxHCvvPupYNdxSflhB/yvVNrBC5LG9KW0
-         5RpQhlAzzCN6IIeJnUGhm+FyS/qgBH9LkYKRnYkOFZEr9T8o9eFhtADqBv5xIUvccf
-         45ua3df6Lrc7W2v1XbZqdzyaREJIExUwp3zVzXT5fvES8+qwNRnEJ9AQSwd0BH7X8I
-         v1AsIuZW5dzIg==
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-500913779f5so8460595e87.2;
-        Mon, 11 Sep 2023 14:06:31 -0700 (PDT)
-X-Gm-Message-State: AOJu0YzNNkdb0zoBno1uD67kyz5MBGNE55W7/3LxJ4khZi0vAZQ9rFY8
-        5rP0ejFBLZf3pZyE75ymcUyRHlHWIgHQJeC1DA==
-X-Google-Smtp-Source: AGHT+IFIlnCjhKkjK04xViV3+eFz0aY5IAvCPJkUT/P8yaXEYd0nahR4SLre1VfiOPhvbszphcoq47BjPmOBQ6Yktoc=
-X-Received: by 2002:a05:6512:3496:b0:500:863e:fc57 with SMTP id
- v22-20020a056512349600b00500863efc57mr7380863lfr.25.1694466389428; Mon, 11
- Sep 2023 14:06:29 -0700 (PDT)
+        with ESMTP id S1352370AbjIKVpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 17:45:04 -0400
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7C4F5252;
+        Mon, 11 Sep 2023 14:16:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1694466969; x=1726002969;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wdu/qy8147uIVVSTXdWZn2iHz/+9TqVoz5bgFNXyio4=;
+  b=d6DhgI3elWCUDyG9EI14WLd+3/UzzR1WqFxMD6DmKA+iNVTK9QH+m47S
+   eeHy0G+EkP9ZnXHkRhcbjcTgV43wKZ39qQu/BLWzwiZ5PC8BC5GC8aFVf
+   Q9j/jmQXxlsXZj3Gu7BgYc0Iecf/SW+T1nvw4f1Obd8jNJzsFW75C8YNW
+   WgRMnnLIdRygpD52cQUrR9zVkN8n7KxNHfHH9Vhi4kvapfkQtOkiFOsxd
+   vYVqbmKG+uEATN4MSUCsCBYcnOIyfbv1sG0JGDK69Q7h5xV5rcBPDikn1
+   9wsqjFvj37S+SAKcF3bTM9bLPFgi9B4ByS83hCgCO3xPF6Q0rqAdl+lzA
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378115893"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; 
+   d="scan'208";a="378115893"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2023 14:13:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="858492595"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; 
+   d="scan'208";a="858492595"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2023 14:13:47 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qfoE4-008QR8-1H;
+        Tue, 12 Sep 2023 00:13:44 +0300
+Date:   Tue, 12 Sep 2023 00:13:44 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Herve Codina <herve.codina@bootlin.com>,
+        Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org, max.zhen@amd.com, sonal.santan@amd.com,
+        stefano.stabellini@xilinx.com,
+        =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
+Message-ID: <ZP+DCFqQIKth5eAL@smile.fi.intel.com>
+References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
+ <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+ <20230911154856.000076c3@Huawei.com>
+ <20230911173503.0db85e4b@bootlin.com>
+ <20230911164741.00003904@Huawei.com>
+ <20230911172256.00002ee3@Huawei.com>
 MIME-Version: 1.0
-References: <20230901072730.13571-1-linux@fw-web.de> <CAL_Jsq+f9bq5Mab9m1pzDeiw304TMeNDmJk+ofG6M8J9QD3cvQ@mail.gmail.com>
- <76060BF0-B432-4BB8-A5C8-39EFF3D628EA@public-files.de>
-In-Reply-To: <76060BF0-B432-4BB8-A5C8-39EFF3D628EA@public-files.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 11 Sep 2023 16:06:16 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJSi=kJSix=f3787ULZnaCy_Y26Phdhy5y9fat_vkDuUw@mail.gmail.com>
-Message-ID: <CAL_JsqJSi=kJSix=f3787ULZnaCy_Y26Phdhy5y9fat_vkDuUw@mail.gmail.com>
-Subject: Re: [PATCH v1] arm64: dts: mt7986: add overlay for SATA power socket
- on BPI-R3
-To:     frank-w@public-files.de
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230911172256.00002ee3@Huawei.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 11, 2023 at 3:11=E2=80=AFPM Frank Wunderlich
-<frank-w@public-files.de> wrote:
->
-> Am 11. September 2023 21:51:42 MESZ schrieb Rob Herring <robh+dt@kernel.o=
-rg>:
-> >On Fri, Sep 1, 2023 at 2:27=E2=80=AFAM Frank Wunderlich <linux@fw-web.de=
-> wrote:
-> >>
-> >> From: Frank Wunderlich <frank-w@public-files.de>
-> >>
-> >> Bananapi R3 has a Power socket entended for using external SATA drives=
-.
-> >> This Socket is off by default but can be switched with gpio 8.
-> >>
-> >> Add an overlay to activate it.
-> >>
-> >> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> >> ---
-> >>  arch/arm64/boot/dts/mediatek/Makefile         |  1 +
-> >>  .../mt7986a-bananapi-bpi-r3-sata.dtso         | 39 ++++++++++++++++++=
-+
-> >>  2 files changed, 40 insertions(+)
-> >>  create mode 100644 arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-=
-r3-sata.dtso
-> >>
-> >> diff --git a/arch/arm64/boot/dts/mediatek/Makefile b/arch/arm64/boot/d=
-ts/mediatek/Makefile
-> >> index c99c3372a4b5..822d3e36d3df 100644
-> >> --- a/arch/arm64/boot/dts/mediatek/Makefile
-> >> +++ b/arch/arm64/boot/dts/mediatek/Makefile
-> >> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bp=
-i-r3-emmc.dtbo
-> >>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nand.dtbo
-> >>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-nor.dtbo
-> >>  dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-sd.dtbo
-> >> +dtb-$(CONFIG_ARCH_MEDIATEK) +=3D mt7986a-bananapi-bpi-r3-sata.dtbo
-> >
-> >The requirement for overlays is they have a target base dt in tree and
-> >that you apply the overlay to it. All these existing overlays have the
-> >same problem which I pointed out when you submitted them. Please fix
-> >the existing ones before adding more.
-> >
-> >
-> >Rob
->
-> Hi Rob,
->
-> i do not understand the problem as there is a target base dt...mt7986a-ba=
-nanapi-bpi-r3.dtb.
->
-> Do you mean that overlays should be merged with basedt at compiletime?
+On Mon, Sep 11, 2023 at 05:22:56PM +0100, Jonathan Cameron wrote:
+> On Mon, 11 Sep 2023 16:47:41 +0100
+> Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+> > On Mon, 11 Sep 2023 17:35:03 +0200
+> > Herve Codina <herve.codina@bootlin.com> wrote:
+> > > On Mon, 11 Sep 2023 15:48:56 +0100
+> > > Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+> > > > On Tue, 15 Aug 2023 10:19:57 -0700
+> > > > Lizhi Hou <lizhi.hou@amd.com> wrote:
 
-Yes, because we want to know an overlay can actually apply to what's upstre=
-am.
+> > > > > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+> > > > > spaces from multiple hardware peripherals to its PCI BAR. Normally,
+> > > > > the PCI core discovers devices and BARs using the PCI enumeration process.
+> > > > > There is no infrastructure to discover the hardware peripherals that are
+> > > > > present in a PCI device, and which can be accessed through the PCI BARs.
+> > > > > 
+> > > > > Apparently, the device tree framework requires a device tree node for the
+> > > > > PCI device. Thus, it can generate the device tree nodes for hardware
+> > > > > peripherals underneath. Because PCI is self discoverable bus, there might
+> > > > > not be a device tree node created for PCI devices. Furthermore, if the PCI
+> > > > > device is hot pluggable, when it is plugged in, the device tree nodes for
+> > > > > its parent bridges are required. Add support to generate device tree node
+> > > > > for PCI bridges.
+> > > > > 
+> > > > > Add an of_pci_make_dev_node() interface that can be used to create device
+> > > > > tree node for PCI devices.
+> > > > > 
+> > > > > Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
+> > > > > the kernel will generate device tree nodes for PCI bridges unconditionally.
+> > > > > 
+> > > > > Initially, add the basic properties for the dynamically generated device
+> > > > > tree nodes which include #address-cells, #size-cells, device_type,
+> > > > > compatible, ranges, reg.
+> > > > > 
+> > > > > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> > > > > Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>      
+> > > > 
+> > > > I tried to bring this up for a custom PCIe card emulated in QEMU on an ARM ACPI
+> > > > machine.
+> > > > 
+> > > > There are some missing parts that were present in Clements series, but not this
+> > > > one, particularly creation of the root pci object.
+> > > > 
+> > > > Anyhow, hit an intermittent crash...    
+> > > 
+> > > I am facing the same issues.
+> > > 
+> > > I use a custom PCIe board too but on x86 ACPI machine.
+> > > 
+> > > In order to have a working system, I need also to build a DT node for the PCI
+> > > Host bridge (previously done by Clement's patch) and I am a bit stuck with
+> > > interrupts.
+> > > 
+> > > On your side (ACPI machine) how do you handle this ?  
+> > 
+> > That was next on my list to look at now I've gotten the device tree stuff
+> > to show up.
+> > 
+> > > I mean is your PCI host bridge provided by ACPI ? And if so, you probably need
+> > > to build a DT node for this PCI host bridge and add some interrupt-map,
+> > > interrupt-map-mask properties in the DT node.  
+> > 
+> > Agreed. Potentially some other stuff, but interrupts are the thing that
+> > showed up first as an issue.
+> > 
+> > Given the only reason I'm looking at this is to potentially solve
+> > a long term CXL / MCTP over I2C upstreaming problem on QEMU side, I've only
+> > limited time to throw at this (thought it was a short activity
+> > for a Friday afternoon :)  Will see if it turns out not too be
+> > too hard to build the rest.
+> > 
+> > I can at least boot same system with device tree and check I'm matching
+> > what is being generated by QEMU.
+> 
+> So, I'm not really sure how to approach this.  It seems 'unwise'/'unworkable' to
+> instantiate the device tree blob for the interrupt controller we already have
+> ACPI for and without that I have nothing to route to.
+> 
+> Or can we just ignore the interrupt map stuff completely and instead
+> rely on instantiating an interrupt controller on the card (that under
+> the hood uses non DT paths to make interrupts actually happen?)
+> 
+> That path to me seems workable and keeps the boundary of ACPI vs DT
+> actually getting used within the card specific driver.
+> 
+> Suggestions welcome!
 
-> We pack the base-dt and all overlays into one fit image and let uboot dyn=
-amically select the combination to apply. E.g. check if emmc is available, =
-if yes apply emmc overlay else the sd one,same for nand/nor.
+Interestingly I haven't got your message in the thread via `b4`.
+Anyways, I think that was has been discussed at some point and
+DT appears just to be handy blob format to be supplied along with
+the device as "description of its configuration". Whatever format
+is chosen it should be available for ACPI/DT/etc platforms and
+be uniform. ACPI also supports overlays (as a debug feature, though)
+but would it make sense to have AML (compiled ASL) for ACPI and DTB
+for DT platforms and etc for etc platforms with duplicative data
+inside with all limitations of the each of those formats and their
+respective parsers/interpreters?
 
-That's irrelevant.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Though do you really want to wait until that point to find out you
-made some mistake in your overlay that it doesn't apply when you could
-find out much sooner?
 
-> Else i do not know *how* to fix as i don't see it as broken.
-
-You need what I pointed out last time[1].
-
-Rob
-
-[1] https://lore.kernel.org/all/CAL_JsqK_3xxD0DFwipXO85P=3Dq=3DEYjUdjE1_8g1=
-MKtvw3vVzx5A@mail.gmail.com/
