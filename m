@@ -2,167 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1FF079C1CE
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 03:43:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3346A79C15F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236100AbjILBna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 21:43:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36048 "EHLO
+        id S232208AbjILA5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 20:57:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236118AbjILBnP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 21:43:15 -0400
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2079.outbound.protection.outlook.com [40.107.105.79])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FC3184441;
-        Mon, 11 Sep 2023 18:19:48 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dyrSLZ2f4LUKlV8ph8lH/du4H2GPdfIK9Y+F8x2qXl5F0JqvOLa0ESiOI9pj53FHha+U1qjhFpMvGmmkeALzXLptXF5eiQLg70dskjytZjhli+qqFwxx7WXswSBvC0ksI3ynicC7QWDNsbOLDP913Mvd1sSbLL6YwvI4AgkuZTsYRlQdOryC+n8aC3Fvo8H8GDo+kqVVdama5WQZxnRBVmDQrYnl85E0loAhhh9Dr+YXs1uVnY/2sM6GwjVtLxQe9u9jUY6RkMoiZr5/jul4YUURAGGuiuWZSv8mAP6hEQWjIVX/L3WWb0wEroRtXACJV6ozyD9ovoL+XPnkFsrXag==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9Ki8/sXqreC+2zRFfvdl3VjIOQVNkHugK+w91ZpOhYk=;
- b=l03Ot5rJqecrYg1JVCIw3VJHiQI+tAmunCvTX+yTKLuwrQbn4aVGOngwCE+ahxjRjRtEeOJW4bEkOSUvqhUfvR+eGpikT2Uyv9NUPJEtC0i6CUhwfeAJGS1pQ4cFPdfzuiTWXC5bWaVDMtx0mLKzDlgjgeDi9WwhonjHoAeOFMFLsFu1x6rOPaMjzr1ZibbZut7DU/1iP7KdNdr8TmjSrgOGi0JtYuqUjZARCg8KZ2FiBhInZWEkkEeph3O6hn1k6j1vZokrt2z0fyWsMFJRqvq4ChmrT6RUtQfQOJf1DLwu73+e5+Fyr4MKumyy0iQwst8Jph4Yx1Xj9tZKNkyL2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9Ki8/sXqreC+2zRFfvdl3VjIOQVNkHugK+w91ZpOhYk=;
- b=DcxoU2uPcXnYSLQCs0RXl++Y0WraafTT4iC0xDDjtu9JKoECdH4v1rcUDRZvlnLxhChRGMqiq2euLwVqaz4w/0d6olop9Spwa4Vch/gzCJ0YTUaFYxe3qC4r/IDptMC1I/z9RwRmkOz/9CxHkzl6AVNCDKHTOWMzHyAue82Yz24=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
- by VE1PR04MB7310.eurprd04.prod.outlook.com (2603:10a6:800:1a2::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.34; Mon, 11 Sep
- 2023 22:45:31 +0000
-Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::ad2:49f8:14b:25c7]) by DU2PR04MB8774.eurprd04.prod.outlook.com
- ([fe80::ad2:49f8:14b:25c7%7]) with mapi id 15.20.6768.029; Mon, 11 Sep 2023
- 22:45:30 +0000
-From:   "Iuliana Prodan (OSS)" <iuliana.prodan@oss.nxp.com>
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "S.J. Wang" <shengjiu.wang@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Mpuaudiosw <Mpuaudiosw@nxp.com>,
-        Iuliana Prodan <iuliana.prodan@nxp.com>
-Cc:     linux-imx <linux-imx@nxp.com>, linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        LnxRevLi <LnxRevLi@nxp.com>
-Subject: [PATCH 2/2] arm64: dts: imx8mp: add reserve-memory nodes for DSP
-Date:   Tue, 12 Sep 2023 01:44:52 +0300
-Message-Id: <20230911224452.15739-3-iuliana.prodan@oss.nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230911224452.15739-1-iuliana.prodan@oss.nxp.com>
-References: <20230911224452.15739-1-iuliana.prodan@oss.nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: AM4PR05CA0012.eurprd05.prod.outlook.com (2603:10a6:205::25)
- To DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
+        with ESMTP id S232408AbjILA5t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 20:57:49 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B62719C365;
+        Mon, 11 Sep 2023 17:53:46 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9a64619d8fbso639726966b.0;
+        Mon, 11 Sep 2023 17:53:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694479944; x=1695084744; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XWTcwow2et7upqcwf54DyK1wVNFfm6M3zpWLMMZDCl4=;
+        b=o2Oh1/rCeX8rHZN2WMmHEjVvCGzUaQ3zbPowULhStxfYG86nXYTXFteHCt4b/7iK4E
+         L3PLr5uecXIsd9czgMEevISeSbbCC0NVI2VreFmnm1QTgosD67J8GQjD8fq8YfmYSD7M
+         PC9DQxnXvp8Z0yhhorq2Eel+Ept6ObM1h6nrbCABx3H7bNkMqmKA6ouXHRK7taPouSBh
+         45klUpwTcfQ76xuOdKLbMnLS+ISTcCrGx7F5AUTFcuiEyjiYOcoBCgDKJKC+Mgu+vxWp
+         m+bT2LRZ22o3nWpggkpnPKYz8dUfVnwPYRgkMccFhc9nuQgUcb1mBoCGaiAa1OafJjih
+         5AvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694479944; x=1695084744;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XWTcwow2et7upqcwf54DyK1wVNFfm6M3zpWLMMZDCl4=;
+        b=o66WqNv1R0eX6fUQvkk8P+Nz397cBzAjV98qsMgzxQGoBoFL+sSFsDTqE1ihVe7k4k
+         GkAS4TrTOx/uSbaOHBO0+FC3TRixsjSKPNmOTURBFJAEK3htUJWI1e5+4pb3kZZ/qpM/
+         7Z6s79pgtMtgZu3DZe8nN6xzPln9Es5nzGdrR0DEHzpqAkPyioC+jlnmowhQc5qszRqv
+         E3RDhxXgWFoJCzH3YagxULsCSCkaKesLmdYCL/CrvIMLZ12blT2STMrNKw04J+yUUHiG
+         /iCvVNY6vstSGX1eOq2gOwC7/iJ7JQVF2O+aU813ISID0yIUeQejV71WS94lpiclMH4s
+         us9A==
+X-Gm-Message-State: AOJu0YxRJF7M0m+mBNxwsbTW3O0JIFqtJhnT0C4fKmCAvtJcpwakgeIX
+        oBUxbCOQrENpeAnofWWuxbtw1Y4WLwN7Xw==
+X-Google-Smtp-Source: AGHT+IG4neBUt+ie4pzDoZiQeWUSKTNp1+XgRuVaZj4s2RJQC3CdsSSnlnDEU6xXFuAqvt2am5jxOw==
+X-Received: by 2002:a17:906:30da:b0:99d:fc31:242f with SMTP id b26-20020a17090630da00b0099dfc31242fmr9012606ejb.66.1694472689910;
+        Mon, 11 Sep 2023 15:51:29 -0700 (PDT)
+Received: from skbuf ([188.26.56.202])
+        by smtp.gmail.com with ESMTPSA id dx22-20020a170906a85600b0099d959f9536sm6023945ejb.12.2023.09.11.15.51.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 15:51:29 -0700 (PDT)
+Date:   Tue, 12 Sep 2023 01:51:26 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        UNGLinuxDriver@microchip.com,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Landen Chao <Landen.Chao@mediatek.com>,
+        DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, mithat.guner@xeront.com,
+        erkin.bozoglu@xeront.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 2/4] dt-bindings: net: dsa: document internal MDIO bus
+Message-ID: <20230911225126.rk23g3u3bzo3agby@skbuf>
+References: <47b61929-5c2d-4906-b153-2046a94858c8@arinc9.com>
+ <20230813112026.ohsx6srbt2staxma@skbuf>
+ <8a8e14f1-0493-4298-a2cc-6e7ae7929334@arinc9.com>
+ <20230813190157.4y3zoro53qsz43pe@skbuf>
+ <f5f468c1-b5a2-4336-b1d9-fd82da95b21d@arinc9.com>
+ <20230814143601.mnpxtcm2zybnbvoh@skbuf>
+ <0cee0928-74c9-4048-8cd8-70bfbfafd9b2@arinc9.com>
+ <20230827121235.zog4c3ehu2cyd3jy@skbuf>
+ <676d1a2b-6ffa-4aff-8bed-a749c373f5b3@arinc9.com>
+ <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8774:EE_|VE1PR04MB7310:EE_
-X-MS-Office365-Filtering-Correlation-Id: fbddd0da-b626-49d4-cfce-08dbb318cd31
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: gsLtTqEg1fixbUoaeGGQacuOGn1EbwAE1j2fSCoRXvIAFPGdkpkncM29IcXaRyoAfvAjSbyowgb5AlahDFMB6s1v6S8utOlZN/Qulvd6ENzegETnBrpIShrr9+K/k585uQNC48JKlsrHICLHsqLxcjh6pzeWKwnBw0+E3CBf0+tTlAP3/9pjug91jeVuXCiJ4ENyjYJGuFtwIjslXtrGpa+JObaMPsU639bfm2wzURcTySo9Y9WnXyBrhrJp16/IyDGg10a/x3hegs7rRQ2r0V5cQEBGdLzvO50SP222pSTzGaZTpf2QqiqLgU0tZz12BFZ1Q5iO+a2fnhBGABBOLMz31Ww9sGXd6VXX/Rnw/WuLAQT4mrqhnZfgqxBXehqPoG7/9qoWJEB6Acx1wJvr+v6UV9Scso0DzujZ/3SgNR7qFuculHmrpse+OYLaxrJkpwxj+gkQLJ2thXI6s9urHQhW1dWWBRf0kdbnKwbWDp66KCNA/LCg3iwGj8jf5Hp2D6DIlBIh5Xjl8lAEnk8TjQeT4ilO3B3XViJBh1pe8cdW1b7fqHFpjiwKam3feKYV0/Yu8SuWLkP1gk7edBhK+M4amVb4stHH3EsV+UfsVGEzAPfL9C0SH97DPDqlCBMkXgJUvU4b1YuivrXfQ8pPTP/HkXkFgefM9tF4+wQCBNw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(346002)(376002)(396003)(136003)(366004)(39860400002)(451199024)(186009)(1800799009)(6506007)(6486002)(52116002)(6512007)(6666004)(921005)(86362001)(38100700002)(38350700002)(2616005)(1076003)(26005)(316002)(7416002)(41300700001)(66556008)(66946007)(66476007)(54906003)(4326008)(8936002)(8676002)(110136005)(478600001)(5660300002)(2906002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nz9vH80WUt6ZVsjqDZDpluLEf/vYQnDNyeb+xdOhQLhzPtWwmHzLbfKmPeHj?=
- =?us-ascii?Q?Aoba+p8UJ+uJxCyeolpK5ku75bRCBrC2u8W6kvRjKqvhk0An/ZK8hH8HF/yA?=
- =?us-ascii?Q?vMly3mDIOSPeELFhlNadhBNNapkGQJziRX5Ws4kusOPeX/jwupcDC0QJMxIz?=
- =?us-ascii?Q?yDFBdP83oLhKNJqX8Mk8nYvJhl8BD8ceerU/zTkGgnC88twLtnyr+zZy2wGw?=
- =?us-ascii?Q?3ChEDEiFuKAKJvlzlSgTmrM/SQ8ewmdSrxefal1nfPcfO6GwGv5dPu1Bh2zM?=
- =?us-ascii?Q?leKzjaHyz8qdvulBd69YbYglRZ6lbC9Bvekm81VcHw/2jaANn3VCKx2WYa9q?=
- =?us-ascii?Q?+6HyD11hVBFec3xWG/eHN1mJVgzIlA39Mspz4KVPUdrxtkzPBUnTr/WgWBzS?=
- =?us-ascii?Q?Y42QxTSWHJTX5z4pSEW/2oSGHIUXtQ8LpEQzgcsR7t62gmSMbVHi2G38Vyji?=
- =?us-ascii?Q?qUPCozVuaucXQeO6KJO2w3caGPw8aHbNW4FC8TNSFQOrpeShJk3u97zWEQxD?=
- =?us-ascii?Q?4ycc9I6tTOA+OBHrHJDBWJJDrMT/rx9OGD+PgkRgstk93LN8ywJxNQl9jDfK?=
- =?us-ascii?Q?fsYOn2B993cYEoF/6fBBw95X1Ts3kzSWI5mzag/FpWrXy5PE6sOhZUAYrYZx?=
- =?us-ascii?Q?idZmNfuhmiErNED/lYvGp1eep24qkFx0npS9+X/mQJgyWSo8zf++ckGm1ujI?=
- =?us-ascii?Q?I3PM+MlJgNOg1Ydl8caWNwQqqS2/KaFwkDbjSBcDSVLgERtgdXPDpX4ytx5Q?=
- =?us-ascii?Q?9s0+gAZJLwGkXVNhFD8P0B6CnWTlwodbVolfe67dkGPCUyj6ndspUg4MZwkR?=
- =?us-ascii?Q?m1Zyqkn3m8LR5/5tkHkRfwCWJ0tedTPNbdLyeesQPLtVngeYXQkR8BDgRgIh?=
- =?us-ascii?Q?mvxduCH+VEgrVhTo8TdnDy5e7fEhyjjLxTd+lUICBqQIGWNx4VLsxY2s/Red?=
- =?us-ascii?Q?W1P+xkPLDjiKzsii07sDTsRD5zOQjZfezdDHGonZJIydq0XqKLAejt8UJ1gV?=
- =?us-ascii?Q?nWozBotfllA4C3u/Ji0UW9PDfHDvGyaT4tc/jDRaWv6nTpCxbsHm8eBXZeDL?=
- =?us-ascii?Q?cIBhviq8E9FxdjNOiNhhzQyo9KuNcRr0RYeP8gFyqZbgxjDFuvRqFqLNMtiE?=
- =?us-ascii?Q?H3lec0KcpROMo4wFJrhENFEONuaDa4C6FX6fM0cA2Bl0b4lZI0XnJ/YHXe8Y?=
- =?us-ascii?Q?2pldF3wN6O0Jdv0/QUpwwAXufO4wMK+0XuKM8xP8JZLOm7Vweys0GruhN/kE?=
- =?us-ascii?Q?B069V4ren2nVWeH5NjHaVv8Ie0to76ImgDnVTz/tyL9AdVbkF6PipC1XmiIo?=
- =?us-ascii?Q?pEV94HclGxPjL1/0ST6caUQ6MOwir8c4FfwVVKE/dVVjF0jngCloKgI3EFFF?=
- =?us-ascii?Q?S7lF4mEZhR/xJJWI5HdMEzUNQKkdhevYXHyS5VZOeKhM2TPRsbEQMUusaGZu?=
- =?us-ascii?Q?huLEREikz2PXrcdVR075/fvxagH3rorhdOVh8DGN+AHlODjS1i7owL6x4fbo?=
- =?us-ascii?Q?xZD5xfGj8drWWDDF1Xy/t9canUG7xIPFK8HIe2YdPkKdYf6j8hZc18YmT0Co?=
- =?us-ascii?Q?+enw85+cZQ2CT62i6RBsvgkHQDvTGjUY+/av/xrgp4eYlId03Z12Ss4fsCqR?=
- =?us-ascii?Q?OA=3D=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fbddd0da-b626-49d4-cfce-08dbb318cd31
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2023 22:45:30.8399
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KZY0liBpdN8mNdexybfCqpHjXvxzS4957UymEmVWA3qWNhWwDLYYtI/n6IGJBjMzecYYy2JJyvmp6ehfTps/6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7310
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87325ce9-595a-4dda-a6a1-b5927d25719b@arinc9.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Iuliana Prodan <iuliana.prodan@nxp.com>
+On Sat, Sep 09, 2023 at 11:53:50AM +0300, Arınç ÜNAL wrote:
+> What to do:
+> - For mscc,vsc7514-switch, enforce phylink bindings for ports.
+> - For mscc,vsc7512-switch, enforce phylink bindings for user ports.
 
-Add the reserve-memory nodes used by DSP when the rpmsg
-feature is enabled.
-These can be later used in a dsp node, like:
-dsp: dsp@3b6e8000 {
-	compatible = "fsl,imx8mp-dsp";
-	reg = <0x3b6e8000 0x88000>;
-	mbox-names = "tx0", "rx0", "rxdb0";
-	mboxes = <&mu2 2 0>, <&mu2 2 1>,
-		<&mu2 3 0>, <&mu2 3 1>;
-	memory-region = <&dsp_vdev0buffer>, <&dsp_vdev0vring0>,
-		<&dsp_vdev0vring1>, <&dsp_reserved>;
-	status = "okay";
-};
+you can also look at dsa_switches_apply_workarounds[], and if the switch
+isn't there, then you can replace "user ports" with "ports" here and
+everywhere.
 
-Signed-off-by: Iuliana Prodan <iuliana.prodan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+> - renesas,rzn1-a5psw.yaml
+>   - renesas,r9a06g032-a5psw, renesas,rzn1-a5psw
+> 
+> What to do:
+> - Document "mdio".
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index cc406bb338fe..eedc1921af62 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -210,6 +210,18 @@
- 		dsp_reserved: dsp@92400000 {
- 			reg = <0 0x92400000 0 0x2000000>;
- 			no-map;
-+		dsp_vdev0vring0: vdev0vring0@942f0000 {
-+			reg = <0 0x942f0000 0 0x8000>;
-+			no-map;
-+		};
-+		dsp_vdev0vring1: vdev0vring1@942f8000 {
-+			reg = <0 0x942f8000 0 0x8000>;
-+			no-map;
-+		};
-+		dsp_vdev0buffer: vdev0buffer@94300000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x94300000 0 0x100000>;
-+			no-map;
- 		};
- 	};
- 
--- 
-2.17.1
+Not clear here and for all the schemas quoted below.. is "mdio" not documented already?
 
+> - realtek.yaml
+>   - realtek,rtl8365mb
+>   - realtek,rtl8366rb
+> 
+> drivers/net/dsa/realtek/realtek-mdio.c:
+> - The DSA subdriver lets the DSA driver register the bus.
+> 
+> What to do:
+> - Document "mdio".
+>   - Require "mdio". (Can't do because it's not required for MDIO controlled
+>     switches that share the compatible string with SMI controlled switches.
+>     This is why I would like Luiz to unify the bus registeration process.)
+> - Document compatible string "realtek,smi-mdio" on "mdio" child node.
+>   - Require compatible. (Can't do because the same as above.)
+> - Enforce phylink bindings for user ports. (Can't do because the same as
+>   above.)
+>   - Enforce phylink bindings for user ports if "mdio" is defined.
+> 
+> ---
+> 
+> - qca8k.yaml
+>   - qca,qca8327
+>   - qca,qca8328
+>   - qca,qca8334
+>   - qca,qca8337
+> 
+> drivers/net/dsa/qca/qca8k-8xxx.c:
+> - The DSA subdriver won't let the DSA driver register the bus.
+>   - No ds->ops->phy_read() or ds->ops->phy_write().
+> - Registers the bus non-OF-based or OF-based. Registers OF-based if "mdio"
+>   child node is defined.
+>   - mdio = of_get_child_by_name(priv->dev->of_node, "mdio");
+> 
+> What to do:
+> - Document "mdio".
+> - Enforce phylink bindings for user ports if "mdio" is defined.
+> 
+> ---
+> 
+> - nxp,sja1105.yaml
+>   - nxp,sja1105e
+>   - nxp,sja1105t
+>   - nxp,sja1105p
+>   - nxp,sja1105q
+>   - nxp,sja1105r
+>   - nxp,sja1105s
+>   - nxp,sja1110a
+>   - nxp,sja1110b
+>   - nxp,sja1110c
+>   - nxp,sja1110d
+> 
+> What to do:
+> - Document "mdios".
+>   - Document child node pattern property under "mdios".
+>     - Document "nxp,sja1110-base-tx-mdio" and "nxp,sja1110-base-t1-mdio"
+>       compatible strings.
+> ---
+> 
+> - microchip,lan937x.yaml
+>   - microchip,lan9370
+>   - microchip,lan9371
+>   - microchip,lan9372
+>   - microchip,lan9373
+>   - microchip,lan9374
+> - microchip,ksz.yaml
+>   - microchip,ksz8765
+>   - microchip,ksz8794
+>   - microchip,ksz8795
+>   - microchip,ksz8863
+>   - microchip,ksz8873
+>   - microchip,ksz9477
+>   - microchip,ksz9897
+>   - microchip,ksz9896
+>   - microchip,ksz9567
+>   - microchip,ksz8565
+>   - microchip,ksz9893
+>   - microchip,ksz9563
+>   - microchip,ksz8563
+> 
+> What to do:
+> - Document "mdio".
