@@ -2,121 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD6B679B2FD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 918DC79ADBA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235989AbjIKUwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41596 "EHLO
+        id S232599AbjIKUwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:52:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239897AbjIKObI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 10:31:08 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BE3E54
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:31:02 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id 3f1490d57ef6-d801c83325fso2855127276.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 07:31:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694442662; x=1695047462; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=MRMbduXBtm2u3hpR450ozQ9ET1j6hRdg7A226yfqXL4=;
-        b=IV60T76h5W9/i/guaWR4U3emnwbgbSJJC3vrAhyqCyMzYnggSjL/CPbSdCMJE01WdY
-         uXwFGBxMdGvBsx3Qxc5p1AGgTD+VIYFCt0T+dnQ6/8+0ey0RBp73QeaeMkxqrEl23eBL
-         AxqVz2NLI9ojxbv6xIbQhLsGEEMykQBJglD6oVVv+NZggCYAw2wU4DJhk/EzpqqT4l4z
-         9rA9e9vLg4P0PbhKbzFovKVUQ9A0iOimkPqXIiKdA3EtagA8a/MCo0DhuemZ0e+PZ8EA
-         oj1s3O84DNyg+OxXCY3RgzFuP64at/H4/MeLsTq8PDfQooE1vYsXLwz/xjuNFujN/kmY
-         e6lw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694442662; x=1695047462;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=MRMbduXBtm2u3hpR450ozQ9ET1j6hRdg7A226yfqXL4=;
-        b=nH906+U3D0gvMc15ma/DhJYQl28WyiuBU/1Jbp3trA+1g9ap3xgGjzAsMxHmsxDQAV
-         lha9ZSwJZBx1Al5qBW+5MRmoK7fMnTvKBRBPFf4PkEqdrAsxCsEZc9YmyJp8bTHLgFeQ
-         Cfb0nUww9j48+c0zszeyKt5oXvD9RuCDmjOOc08mYo7jXoKUhkKhHB+IGxTaYYKskY3R
-         YY5HLJkRMMZJDYDWc6Cc7MfVzeOTs7EWA4YrWVMXjyWvQPy3L6I5Ecl323/fs9FSnIYI
-         e9haNcpqozvhx6TNnLoymo5gKdL+l1aQ7diVwvHTTwiuph+sVaIAUxWfQ5womVbCb6z9
-         kYbg==
-X-Gm-Message-State: AOJu0YxKGGBykaSxmkC5gU3thOGFJCxQam/mN8TGfYXlnaVdiJNcMHtG
-        VGR69YxOuV1gR9XJeJJTXkKfm7E1pjn0/8TIivMLD1y5G6ZMsMFyDsc=
-X-Google-Smtp-Source: AGHT+IHM9lDnQetC5LLtRbUDBIR/L+NWqkeueFcXF7OnhW3zZVv6Wnt9N3vGRRwv0ZYdb7tOzOpDbqjMCh4fQJ5M7tk=
-X-Received: by 2002:a25:7392:0:b0:d7e:761d:cc83 with SMTP id
- o140-20020a257392000000b00d7e761dcc83mr7054140ybc.14.1694442661879; Mon, 11
- Sep 2023 07:31:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
-In-Reply-To: <20230911025223.3433776-1-xianwei.zhao@amlogic.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 11 Sep 2023 16:30:25 +0200
-Message-ID: <CAPDyKFqTs=mRnBRREbT+WFj_4qTLd8LTKigY_1TAZOqGGUKk3A@mail.gmail.com>
-Subject: Re: [PATCH V3 RESEND 0/6] Power: T7: add power domain driver
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S240769AbjIKOxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 10:53:18 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5FB4125;
+        Mon, 11 Sep 2023 07:53:13 -0700 (PDT)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F83AC433C9;
+        Mon, 11 Sep 2023 14:53:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1694443993;
+        bh=r9uAvsPMKBSoSZ444LBXcq13Ir5ZTBEHNT1xJjzBGFg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hiv8gQ/ZYufnMz2KaRZus5/1orM/jtGnWu5LVFSbHJ954tPfsmPbHTIMqpgUuiugV
+         qF5A8hVnABogiH+bNSNyzHV8LnEF6gR9EkVqyAZpMaR/lYUBzHjliH1npBvhJbJim2
+         DZeKzgrqAFjbhE3r8UkoDZ4lsv68/b2nJXLBqQWhHTitFZsZrKRN1kEZIJK4MrfxcM
+         8/OLxe6fzLQgqDvTDTGxachfQjgs7QryIGdbkwum6FKbjosVVH6D8ygk+bDwEGVenu
+         OcFovyIxw403Mr+x5YiqRhr/g7zdmjPbbFkam8H25zwVDnU+XDVxIxxmhvGb6sN/Gv
+         52z0vfn5QJROQ==
+Received: (nullmailer pid 1240952 invoked by uid 1000);
+        Mon, 11 Sep 2023 14:53:10 -0000
+Date:   Mon, 11 Sep 2023 09:53:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        kernel@pengutronix.de, Eric Dumazet <edumazet@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-kernel@vger.kernel.org, Paolo Abeni <pabeni@redhat.com>,
+        netdev@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arun Ramadoss <arun.ramadoss@microchip.com>,
+        devicetree@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, UNGLinuxDriver@microchip.com
+Subject: Re: [RFC net-next v3 1/2] dt-bindings: net: dsa: microchip: Update
+ ksz device tree bindings for drive strength
+Message-ID: <169444399004.1240880.4980375902161136424.robh@kernel.org>
+References: <20230907090943.2385053-1-o.rempel@pengutronix.de>
+ <20230907090943.2385053-2-o.rempel@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230907090943.2385053-2-o.rempel@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 11 Sept 2023 at 04:52, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->
-> First patch is that remove C3 some power domain ALWAYS_ON property.
-> Second patch is that add driver to support power parent node.
-> Third patch is that turn on power if initial power domain with
-> "AWAY_ON" property state is off.
->
-> Other patchs adds power controller driver support for Amlogic T7 SoC.
->
-> Changes Since v2:
->  -Modify subject.
->  -Define PWRC_NO_PARENT UINT_MAX
->  -Remove modification that transform is_off into 1 or 0 using !!
->
-> Changes Since v1:
->  -Fix license from "GPL-2.0-only OR .*" to "GPL-2.0-only OR MIT".
->  -Modify T7_NIC flag  "ALWAYS_ON"
->
-> xianwei.zhao (6):
->   genpd: amlogic: modify some power domains property
->   genpd: amlogic: add driver to support power parent node
->   genpd: amlogic: init power domain state
->   dt-bindings: power: add Amlogic T7 power domains
->   genpd: amlogic: Add support for T7 power domains controller
->   arm64: dts: amlogic: t7: add power domain controller node
->
->  .../power/amlogic,meson-sec-pwrc.yaml         |   3 +-
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   |   6 +
->  drivers/genpd/amlogic/meson-secure-pwrc.c     | 127 ++++++++++++++++--
->  include/dt-bindings/power/amlogic,t7-pwrc.h   |  63 +++++++++
->  4 files changed, 185 insertions(+), 14 deletions(-)
->  create mode 100644 include/dt-bindings/power/amlogic,t7-pwrc.h
->
->
-> base-commit: 413f5c02929bb33042bbc4ee233166550a5fca70
-> --
-> 2.37.1
->
 
-Patch 1 to 5, applied for next!
+On Thu, 07 Sep 2023 11:09:42 +0200, Oleksij Rempel wrote:
+> Extend device tree bindings to support drive strength configuration for the
+> ksz* switches. Introduced properties:
+> - microchip,hi-drive-strength-microamp: Controls the drive strength for
+>   high-speed interfaces like GMII/RGMII and more.
+> - microchip,lo-drive-strength-microamp: Governs the drive strength for
+>   low-speed interfaces such as LEDs, PME_N, and others.
+> - microchip,io-drive-strength-microamp: Controls the drive strength for
+>   for undocumented Pads on KSZ88xx variants.
+> 
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  .../bindings/net/dsa/microchip,ksz.yaml       | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
 
-The DT patch (patch4), is available on an immutable branch "genpd_dt" too.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-From now on, I will continue to put changes for genpd DT bindings on
-the above branch, to allow SoC maintainers to pull it in to manage
-potential dependent updates to DTS files.
-
-Kind regards
-Uffe
