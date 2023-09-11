@@ -2,112 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA0A679AD85
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:40:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D94E79B242
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234540AbjIKUw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:52:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59274 "EHLO
+        id S230012AbjIKUtv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237169AbjIKMIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:08:07 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B1DEE40;
-        Mon, 11 Sep 2023 05:07:54 -0700 (PDT)
-X-UUID: d2d1606a509b11ee8051498923ad61e6-20230911
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=9wHsu6QK8j5amC0/tT25cR9KRmRujOA/cZ7HnorYPuw=;
-        b=rVGLJEQTQPGWGUiq8IcNuwdv99bZOmlRUNasnlL35N3ngrlAYBA89DcW/LcEn3++YmODYNaogVoOvpKwzksu6FCVHEC1K+cZNc0oQ3/+xkn5ti9OXyAHDXcXH57Ui1Lch9Cm2tlyjZUw6dfa893Re/j7lO5eqtkaqqyuZc7j/rc=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.31,REQID:890bfee5-2388-4f7d-8a51-cced3c4640d2,IP:0,U
-        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-        release,TS:0
-X-CID-META: VersionHash:0ad78a4,CLOUDID:62c4b3be-14cc-44ca-b657-2d2783296e72,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
-        NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: d2d1606a509b11ee8051498923ad61e6-20230911
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
-        (envelope-from <shuijing.li@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 7897648; Mon, 11 Sep 2023 20:07:48 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.194) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 11 Sep 2023 20:07:44 +0800
-Received: from mszsdhlt06.gcn.mediatek.inc (10.16.6.206) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 11 Sep 2023 20:07:44 +0800
-From:   Shuijing Li <shuijing.li@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
-        <airlied@gmail.com>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <matthias.bgg@gmail.com>,
-        <angelogioacchino.delregno@collabora.com>, <jitao.shi@mediatek.com>
-CC:     <dri-devel@lists.freedesktop.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Shuijing Li <shuijing.li@mediatek.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v4,1/3] dt-bindings: display: mediatek: dsi: Add compatible for MediaTek MT8188
-Date:   Mon, 11 Sep 2023 20:07:58 +0800
-Message-ID: <20230911120800.17369-2-shuijing.li@mediatek.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230911120800.17369-1-shuijing.li@mediatek.com>
-References: <20230911120800.17369-1-shuijing.li@mediatek.com>
+        with ESMTP id S237333AbjIKMjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 08:39:15 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06CACCEB;
+        Mon, 11 Sep 2023 05:39:09 -0700 (PDT)
+Received: from [192.168.1.23] (unknown [171.76.82.102])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: vignesh)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 7697366072FE;
+        Mon, 11 Sep 2023 13:39:01 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694435947;
+        bh=MvnxIayMmPEsq2MzqcxVyvlilHrYAvXUGbuaSX/LxBs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LZ1l9Qf8rixIpz+94pqn/E7NIehaqLf/Jh8WJCYZmTcCqgTQa2ONJuqnA67jpdhKT
+         X21KmOmasjXROM25ITuqounnLMzzSCjVDiqgkRV15kt1le7Q9n+vNhRFom03J7M9Zl
+         dez0ecWl/mjrXet7A1BYTCEJOzEqwiiN/nTjyI6asZvlUm/uQIxpTaiZ5ofEePomjR
+         +WL4/ZD/aGiRPfDFYvuWIeQ60STYhgwtQo/TZTdpNn6vdUJmPVUoilr+Wjx/dnSWng
+         vV844qIYFJT5iAViLP2AG/G58VNVknnvHlDgnJQ6FRYCESGBwRdR1iSZJqVm7+wFf/
+         YTI7qV/10AamQ==
+Message-ID: <ca518c28-1375-9eaf-ffd4-bedf06810000@collabora.com>
+Date:   Mon, 11 Sep 2023 18:08:57 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--1.638800-8.000000
-X-TMASE-MatchedRID: hnk2xlnUc9Z0BEBFOTiHn+kl7sFIBh9I93UikzCN9VvoFeE5MSxNMeLz
-        NWBegCW2wgn7iDBesS1YF3qW3Je6+2TMuZrm0Jfal612unRyXrsN1AmZz7z7AWn/k0faUV6Qb5f
-        XcSeeNuX3dtVU5kia0c2z3SYzc/6leVeLeFgfYAcv6uLEbWaS14SVUZZHNLr+RgV6Hsqyx11QaO
-        NuZ6Jr4g9k3l8EaYIcovpDXVQHzIN+3BndfXUhXQ==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--1.638800-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: AB19D45CAEC37A9EBBEC0381B6DFF087AE322211D1DA098A19BC895401226DF02000:8
-X-MTK:  N
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,RDNS_NONE,
-        SPF_HELO_PASS,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH v3 2/9] arm64: dts: qcom: apq8016-sbc: Add overlay for usb
+ host mode
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
+        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+        daniels@collabora.com, gustavo.padovan@collabora.com,
+        angelogioacchino.delregno@collabora.com, emma@anholt.net,
+        robclark@freedesktop.org, robdclark@google.com, anholt@google.com,
+        robdclark@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+        jani.nikula@linux.intel.com, mripard@kernel.org,
+        dmitry.baryshkov@linaro.org, matthias.bgg@gmail.com,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        virtualization@lists.linux-foundation.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230908152225.432139-1-vignesh.raman@collabora.com>
+ <20230908152225.432139-3-vignesh.raman@collabora.com>
+ <ca53e4cd-1c89-482d-9662-19926efb5b47@linaro.org>
+From:   Vignesh Raman <vignesh.raman@collabora.com>
+In-Reply-To: <ca53e4cd-1c89-482d-9662-19926efb5b47@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dt-binding documentation of dsi for MediaTek MT8188 SoC.
+Hi Konrad,
 
-Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- .../devicetree/bindings/display/mediatek/mediatek,dsi.yaml       | 1 +
- 1 file changed, 1 insertion(+)
+On 11/09/23 17:20, Konrad Dybcio wrote:
+> On 8.09.2023 17:22, Vignesh Raman wrote:
+>> Due to the presence of the fastboot micro cable in the CI farm,
+>> it causes the hardware to remain in gadget mode instead of host mode.
+>> So it doesn't find the network, which results in failure to mount root
+>> fs via NFS.
+>>
+>> Add an overlay dtso file that sets the dr_mode to host, allowing
+>> the USB controllers to work in host mode. This dtso file will be used
+>> in drm-ci, mesa-ci.
+>>
+>> Overlay DT file uses the sugar syntax [suggested by Dmitry Baryshkov and Maxime Ripard]
+>>
+>> Suggested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> Suggested-by: Maxime Ripard <mripard@kernel.org>
+>> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+>> Signed-off-by: David Heidelberg <david.heidelberg@collabora.com>
+>> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
+>> ---
+> For such a small change, maybe you can just use sed in your
+> scripts to alter this?
 
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
-index 12441b937684..537e5304b730 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dsi.yaml
-@@ -30,6 +30,7 @@ properties:
-           - mediatek,mt8173-dsi
-           - mediatek,mt8183-dsi
-           - mediatek,mt8186-dsi
-+          - mediatek,mt8188-dsi
-       - items:
-           - enum:
-               - mediatek,mt6795-dsi
--- 
-2.40.1
+This was the initial idea 
+https://patchwork.kernel.org/project/linux-mediatek/patch/20230825122435.316272-3-vignesh.raman@collabora.com/
 
+Since there was a review comment that CI should not make changes to the 
+source tree before building, we went with DT overlay.
+
+Regards,
+Vignesh
