@@ -2,60 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C764C79B746
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F185E79BD0E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:15:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235664AbjIKUtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:49:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36594 "EHLO
+        id S235434AbjIKUtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236824AbjIKLa0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:30:26 -0400
-Received: from sanan-e.com (unknown [218.107.219.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1BDD4CE5;
-        Mon, 11 Sep 2023 04:30:19 -0700 (PDT)
+        with ESMTP id S236912AbjIKLji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 07:39:38 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68239CDD
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-52a49a42353so5663614a12.2
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 04:39:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sanan-e.com; s=dkim; h=Received:Content-Type:MIME-Version:
-        Content-Transfer-Encoding:Content-Description:Subject:To:From:
-        Date:Reply-To:Message-Id; bh=qcS40TKk7lDEkm1RQbO1KTL2NSc/wnLNi62
-        pjzED0xE=; b=faNw1aaSq76JOKgzMYxguvIy0gpKpd6RSnohmjllVxluTWjnY2i
-        W9Y8BNvcfAw2ud7KTyG3ZSmUlkCB5OAo1LMzwkgTw34k1cDbO5x+zLvoMhFFXz/+
-        HyhD5u5mZxI9CpLGhIS3vSDgpCebIyGAiXZeDb+oCWlqkwebIKnjvgiU=
-Received: from [156.96.56.92] (unknown [128.14.67.204])
-        by MailDR (Coremail) with SMTP id AQAAfwDXgwjW9v5kPFGbAA--.1353S105;
-        Mon, 11 Sep 2023 19:29:30 +0800 (CST)
-Content-Type: text/plain; charset="iso-8859-1"
+        d=linaro.org; s=google; t=1694432373; x=1695037173; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CNTfpAlLwJmILsM2ML8AYXqOfMhJFlBtfc+NKYRir1U=;
+        b=ghEBbB1urKJGeO8Bdy6HofhhQiZ1S9/1NhPG7BsncRMDGG0s5wlXonQOGlxx3mCzEp
+         TilWMdnEyOCs0gkiHJmjCkgpyd7ExzLF/Tu34fhN8/6+VnBwsxwCzeWgexmuIvBaMw8Z
+         dJ82hwi84usc0wlEKfbGtWoTaNixYew8o60dxoh0hKzNbt9GXjAKhoJTD/+sQdS8BdUS
+         d3ZU+GHBp4Vlq1QX7zPgn44yoRm1EpADc37AqjLbxRr1uhgKl1FBR4lg4ahRVeRfWtZz
+         9+FRq50oD3WMRi4cIC8zBX2iQY5tOmdmeVnRLUW9Fn7kwgZ7sPR2rb45+qfElWJ2n8v5
+         qPQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694432373; x=1695037173;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CNTfpAlLwJmILsM2ML8AYXqOfMhJFlBtfc+NKYRir1U=;
+        b=Eeeo9ccEzi8W7JqsGho6eEtuxom7DOIZycUaEOeRPjoHtSCOSoHKsv2yH11D99t9Fe
+         DpISCF6hCaEz6jsHR5p/OKQnxlJk7tMxOpDFMKFV1MMzW96dK/8M/kyl1mI5gDbr2uCY
+         1ajP0yVct6Iuati5vf5sGMi8TGiOx70DMWfmoEi8MoqWJ2GxMRt/SOMvDLVyv1rzx2EM
+         Ojkvrldw+MmjybBenj2RIITWHMYAph794tOQwtbZVWZFQOV1p82NJ7t12KKZVP8HuStf
+         Cpvubt1cQ8OL4LolJbtFIsjNHmC0LB69dDH+FZdQ6ERU0uWisIdiDP+P92TcTP/7gw/Z
+         4iag==
+X-Gm-Message-State: AOJu0Yyf3yEU1hnTD/vTAtmaDfbmVKkMnvbSkamX4ggpRYzdkbagfnkZ
+        1qy73xgjCqm26akop37/GYpBlg==
+X-Google-Smtp-Source: AGHT+IHwEnPhO+VHQG0S+VrfAHaLii+tG8XXkAqNaOPbo0YVPvNOqmH3dpTLzyBvYyQwoxAyv+FnFA==
+X-Received: by 2002:a05:6402:1254:b0:522:3ef1:b10 with SMTP id l20-20020a056402125400b005223ef10b10mr7390345edw.6.1694432373037;
+        Mon, 11 Sep 2023 04:39:33 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.214.188])
+        by smtp.gmail.com with ESMTPSA id g15-20020a056402180f00b00523b1335618sm4431003edy.97.2023.09.11.04.39.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Sep 2023 04:39:32 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        arm@kernel.org, soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH] arm64: defconfig: enable syscon-poweroff driver
+Date:   Mon, 11 Sep 2023 13:39:24 +0200
+Message-Id: <169443234708.34398.6225536362107834291.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
+References: <20230901115732.45854-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Description: Mail message body
-Subject: Help
-To:     Recipients <olena@sanan-e.com>
-From:   olena@sanan-e.com
-Date:   Mon, 11 Sep 2023 04:29:15 -0700
-Reply-To: olenasheve73@gmail.com
-X-CM-TRANSID: AQAAfwDXgwjW9v5kPFGbAA--.1353S105
-Message-Id: <64FEFA3A.470498.70031@sanan-e.com>
-Authentication-Results: MailDR; spf=neutral smtp.mail=olena@sanan-e.co
-        m;
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-        VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjDUYxBIdaVFxhVjvjDU0xZFpf9x0zRUUUUUUUUU
-        =
-X-Spam-Status: No, score=4.7 required=5.0 tests=BAYES_50,DKIM_INVALID,
-        DKIM_SIGNED,FREEMAIL_FORGED_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L4,
-        RCVD_IN_VALIDITY_RPBL,SPF_HELO_PASS,SPF_PASS autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-I am a Ukrainian, I have funds for investment, can you please help me reloc=
-ate and invest in your country? Thank you as i possibly wait to hear from y=
-ou, =
 
-Olena.
+On Fri, 01 Sep 2023 13:57:32 +0200, Krzysztof Kozlowski wrote:
+> Enable the generic syscon-poweroff driver used on all Exynos ARM64 SoCs
+> (e.g. Exynos5433) and few APM SoCs.
+> 
+> 
 
+Applied, thanks!
+
+[1/1] arm64: defconfig: enable syscon-poweroff driver
+      https://git.kernel.org/krzk/linux/c/471eed5ad217fc8e83089e708d5cf5a1d0b205f7
+
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
