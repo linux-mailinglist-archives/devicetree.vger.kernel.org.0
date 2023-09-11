@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57FB979A2C1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 07:22:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AF9879A2D5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 07:26:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233622AbjIKFWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 01:22:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34050 "EHLO
+        id S229446AbjIKF0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 01:26:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjIKFW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 01:22:28 -0400
+        with ESMTP id S233987AbjIKF0p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 01:26:45 -0400
 Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A763C1AD;
-        Sun, 10 Sep 2023 22:22:23 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D923CCB;
+        Sun, 10 Sep 2023 22:26:35 -0700 (PDT)
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38B5M3fo017105;
-        Mon, 11 Sep 2023 00:22:03 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 38B5QTb6018067;
+        Mon, 11 Sep 2023 00:26:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1694409723;
-        bh=5cleaUm8YNGL9skVPFyhu64T32xBmrMgeDzWV8+lHHA=;
-        h=From:To:CC:Subject:Date;
-        b=RtOkScFHmQvAo+KHupaq0vrTFCwd76M5HK3I1jKqIxtKizyGag/fON/GCzie0XcsN
-         23a1hb5P0ueiVe6UPlmZOqZ9BaxiDQVcoqOK+y3aIctXQnX5yrkkSVnQemJ9sWpNit
-         PTSvN7GnMXX2FrxPwbY3O8bz3V6WcbJD/72ExGJ0=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38B5M3I6114607
+        s=ti-com-17Q1; t=1694409989;
+        bh=HvhxSOFRQX0iMubBivgYbIGT+oXRDG8Cl5SMk+EbhME=;
+        h=Date:CC:Subject:To:References:From:In-Reply-To;
+        b=WpPc5pMM/t698uXIzp01p1w3mr0yWyKatTFFOHVDvTeupnZSK9OeSsxNZYnDMAdf6
+         tOG3ipOd7+UEUtDimQfRmn9H27CpzI0pXKJ+2YvecxTD+J550Zzqx8gtUoUoYSejy5
+         zT0FsFsHCGSOe+oHiBjeZV13FUP3U44OFMQbHICM=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 38B5QTeu116861
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 11 Sep 2023 00:22:03 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 11 Sep 2023 00:26:29 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Sep 2023 00:22:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2023 00:26:29 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Sep 2023 00:22:02 -0500
-Received: from uda0492258.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38B5LwrA043443;
-        Mon, 11 Sep 2023 00:21:59 -0500
-From:   Siddharth Vadapalli <s-vadapalli@ti.com>
-To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ Frontend Transport; Mon, 11 Sep 2023 00:26:29 -0500
+Received: from [172.24.227.9] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 38B5QP7x018037;
+        Mon, 11 Sep 2023 00:26:25 -0500
+Message-ID: <25ba2e12-00a2-61bd-022e-7258c0ffb89b@ti.com>
+Date:   Mon, 11 Sep 2023 10:56:24 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <afd@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <r-gunasekaran@ti.com>,
         <srk@ti.com>, <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j721s2-evm-gesi: Specify base dtb for overlay file
-Date:   Mon, 11 Sep 2023 10:51:58 +0530
-Message-ID: <20230911052158.89185-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
+Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-j721s2: Add overlay to enable
+ main CPSW2G with GESI
+To:     Rob Herring <robh+dt@kernel.org>
+References: <20230726065407.378455-1-s-vadapalli@ti.com>
+ <20230726065407.378455-3-s-vadapalli@ti.com>
+ <CAL_JsqJ7zHHMiZiSfM+Du3d-rG9VetkEvbBXHYN5=JUcg2irAA@mail.gmail.com>
+Content-Language: en-US
+From:   Siddharth Vadapalli <s-vadapalli@ti.com>
+In-Reply-To: <CAL_JsqJ7zHHMiZiSfM+Du3d-rG9VetkEvbBXHYN5=JUcg2irAA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,36 +72,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Specify the base dtb file k3-j721s2-common-proc-board.dtb on which the
-k3-j721s2-evm-gesi-exp-board.dtbo overlay has to be applied. Name the
-resulting dtb as k3-j721s2-evm.dtb.
+Hello Rob,
 
-Fixes: cac04e27f093 ("arm64: dts: ti: k3-j721s2: Add overlay to enable main CPSW2G with GESI")
-Reported-by: Rob Herring <robh+dt@kernel.org>
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+On 09/09/23 03:47, Rob Herring wrote:
+> On Wed, Jul 26, 2023 at 1:54 AM Siddharth Vadapalli <s-vadapalli@ti.com> wrote:
+>>
+>> From: Kishon Vijay Abraham I <kishon@ti.com>
+>>
+>> The MAIN CPSW2G instance of CPSW on J721S2 SoC can be enabled with the GESI
+>> Expansion Board connected to the J7 Common-Proc-Board. Use the overlay
+>> to enable this.
+>>
+>> Add alias for the MAIN CPSW2G port to enable kernel to fetch MAC address
+>> directly from U-Boot.
+>>
+>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> Reviewed-by: Ravi Gunasekaran <r-gunasekaran@ti.com>
+>> ---
+>>  arch/arm64/boot/dts/ti/Makefile               |  2 +
+>>  .../dts/ti/k3-j721s2-evm-gesi-exp-board.dtso  | 85 +++++++++++++++++++
+>>  2 files changed, 87 insertions(+)
+>>  create mode 100644 arch/arm64/boot/dts/ti/k3-j721s2-evm-gesi-exp-board.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>> index 6dd7b6f1d6ab..019a8be19b93 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+>>  # Boards with J721s2 SoC
+>>  dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
+>>  dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
+>> +dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
+> 
+> Overlays need to be applied to something. That's done like this:
+> 
+> foo-dtbs := base.dtb k3-am62x-sk-hdmi-audio.dtbo
+> dtb-y += foo.dtb
+> 
+> Please send a fix for this.
 
-Note: This patch is based on linux-next tagged next-20230911.
+I have posted the fix at:
+https://lore.kernel.org/r/20230911052158.89185-1-s-vadapalli@ti.com/
 
- arch/arm64/boot/dts/ti/Makefile | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> Rob
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index e7b8e2e7f083..ef8ca50fbb36 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -63,9 +63,9 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
- 
- # Boards with J721s2 SoC
-+k3-j721s2-evm-dtbs := k3-j721s2-common-proc-board.dtb k3-j721s2-evm-gesi-exp-board.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am68-sk-base-board.dtb
--dtb-$(CONFIG_ARCH_K3) += k3-j721s2-common-proc-board.dtb
--dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-gesi-exp-board.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm.dtb
- 
- # Boards with J784s4 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
 -- 
-2.34.1
-
+Regards,
+Siddharth.
