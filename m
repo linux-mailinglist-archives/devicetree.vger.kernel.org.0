@@ -2,30 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB77079BCE2
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:15:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0866B79BA29
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:11:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234508AbjIKUsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51666 "EHLO
+        id S233671AbjIKUuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:50:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235577AbjIKJC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:02:29 -0400
-Received: from out-215.mta0.migadu.com (out-215.mta0.migadu.com [IPv6:2001:41d0:1004:224b::d7])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602EDCCC
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:02:24 -0700 (PDT)
+        with ESMTP id S235581AbjIKJCs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:02:48 -0400
+Received: from out-229.mta1.migadu.com (out-229.mta1.migadu.com [95.215.58.229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98804CCC
+        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:02:42 -0700 (PDT)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1694422942;
+        t=1694422961;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=ncMOdzmNge2dDHCrVx7yTH1c7a8W2V4JG4MDc4VOKkU=;
-        b=z3iyY7ndOuW/FUIIBXdRnFOdp9wfaw9gmT1bCa2W30gMzXqJMIIyErsHBSgxs0FLur0BFL
-        1gvz0JJ1jUBeGYvxsh0cBm3IztN10B3UTRzOzWvGdMX5+0WjDkNz0VzPnu7t6++P87W7RD
-        E53rNR2IN2bQzpadeGj7eZpLep3xKmWE/1/gYepn1Yy+aghiQ/OBzROUnl5t20FdW9h/u2
-        B0IlclixsKj0wKcixKfKt45d008w1w2j0IxklcjNu82lXRF5/9raYl19XFLvTb8OSDd/i3
-        s0UjmLAM1eH0306WEODRhnAkJ4LskKZydU3udWRLnodAVdt4KU+u8KHJ6gTYMA==
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ekcF3Bi8RuigTkjZz8yzaTQ4wC4D41rIRScarwtkG1A=;
+        b=Rx1r9SCTGSwY+YD2ad9mfOyDPYx1WNVtFqwZXiCvMHLHoy8kAJe697YPbr/Mp2BpRHLik5
+        /DOx4El0C+uDkEI9kDmJTmfzQ8/UB5TQ3HZkDIotigbp+PKxMp2QokuMq0prVCfGGroD+M
+        CFuwGn1sezZV47xjpD0lo/UfDowOnsYoYD47rHXsdXKKqVesf8qaeniH//MCFpTufLsFOe
+        QE9zywaXZtjq/REHTCCXNYAnTFQxXMSjFnIbI9MUrUjZD/NRHNbt38ZE9YIaG9k/ilE+XD
+        Rl7F4KRQNQTS1uuY5BUd84Nx2ugwIFwwGWLJZeS+a+3vAthZ5oIs3h8cVNfSIA==
 From:   John Watts <contact@jookia.org>
 To:     dri-devel@lists.freedesktop.org
 Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
@@ -40,9 +41,11 @@ Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
         Chris Morgan <macromorgan@hotmail.com>,
         Jagan Teki <jagan@edgeble.ai>, John Watts <contact@jookia.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 0/8] Add FS035VG158 panel
-Date:   Mon, 11 Sep 2023 19:01:58 +1000
-Message-ID: <20230911090206.3121440-1-contact@jookia.org>
+Subject: [RFC PATCH 2/8] drm/panel: nv3052c: Add SPI device IDs
+Date:   Mon, 11 Sep 2023 19:02:00 +1000
+Message-ID: <20230911090206.3121440-3-contact@jookia.org>
+In-Reply-To: <20230911090206.3121440-1-contact@jookia.org>
+References: <20230911090206.3121440-1-contact@jookia.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -55,40 +58,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello there,
+SPI drivers needs their own list of compatible device IDs in order
+for automatic module loading to work. Add those for this driver.
 
-I have recently done some work to get a new panel running on the kernel.
+Signed-off-by: John Watts <contact@jookia.org>
+---
+ drivers/gpu/drm/panel/panel-newvision-nv3052c.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-I am completely new to this kind of work so I don't know how to split my
-patches up, especially as I did some light refactoring and fixing on the way.
-These changes affect these existing LCD panel but should work.
-
-I'm also not sure if this device tree yaml should be merged with the existing
-leadtek,ltk035c5444t device tree yaml.
-
-checkpatch has also warned me about updating MAINTAINERS for the device tree
-documentation but I'm not sure if that's relevant here as I have put my name
-in the documentation itself.
-
-Thanks for your time,
-John.
-
-John Watts (8):
-  drm/panel: nv3052c: Document known register names
-  drm/panel: nv3052c: Add SPI device IDs
-  drm/panel: nv3052c: Sleep for 150ms after reset
-  drm/panel: nv3052c: Wait before entering sleep mode
-  drm/panel: nv3052c: Allow specifying registers per panel
-  drm/panel: nv3052c: Add Fascontek FS035VG158 LCD display
-  dt-bindings: vendor-prefixes: Add fascontek
-  dt-bindings: display: panel: add Fascontek FS035VG158 panel
-
- .../display/panel/fascontek,fs035vg158.yaml   |  60 ++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- .../gpu/drm/panel/panel-newvision-nv3052c.c   | 521 +++++++++++++-----
- 3 files changed, 444 insertions(+), 139 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/fascontek,fs035vg158.yaml
-
+diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+index 589431523ce7..90dea21f9856 100644
+--- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
++++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
+@@ -465,6 +465,12 @@ static const struct nv3052c_panel_info ltk035c5444t_panel_info = {
+ 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
+ };
+ 
++static const struct spi_device_id nv3052c_ids[] = {
++	{ "ltk035c5444t", },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(spi, nv3052c_ids);
++
+ static const struct of_device_id nv3052c_of_match[] = {
+ 	{ .compatible = "leadtek,ltk035c5444t", .data = &ltk035c5444t_panel_info },
+ 	{ /* sentinel */ }
+@@ -476,6 +482,7 @@ static struct spi_driver nv3052c_driver = {
+ 		.name = "nv3052c",
+ 		.of_match_table = nv3052c_of_match,
+ 	},
++	.id_table = nv3052c_ids,
+ 	.probe = nv3052c_probe,
+ 	.remove = nv3052c_remove,
+ };
 -- 
 2.42.0
 
