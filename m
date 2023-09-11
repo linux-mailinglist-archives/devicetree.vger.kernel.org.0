@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8882379A34D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F11679A352
+	for <lists+devicetree@lfdr.de>; Mon, 11 Sep 2023 08:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233163AbjIKGIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 02:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53754 "EHLO
+        id S229905AbjIKGJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 02:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231332AbjIKGIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:08:15 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86085125
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:08:02 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-401d10e3e54so44005975e9.2
-        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:08:02 -0700 (PDT)
+        with ESMTP id S230042AbjIKGJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 02:09:18 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 792F7FE
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:09:14 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-402d0eda361so47118845e9.0
+        for <devicetree@vger.kernel.org>; Sun, 10 Sep 2023 23:09:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1694412481; x=1695017281; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1694412553; x=1695017353; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=znV8c1nZy2khF5/iHvM02K3LRI4Usqz/zkO1WU9q06M=;
-        b=YAMKnKbSX5WCsl0XXpfPHDg2uAuHDeFTYkEME6roHSzKYifHx+y1PJ9ABftUK+ZLeK
-         JImeM2Pz25h36rpbRx6yq67vKrSVJdBV7SZh1HfDk1uxfu8+lKBRcxc/uxtoZN2al0J7
-         jz3A9xK+2TgUI6BbdhWjRhrhL9jnrdf3zSyA0lf5A0pvtvfLFbRMSP8Nq41zIgprZOXF
-         kqwtgRhxqtEDmAw8EbEmJPRf9lxG5Y4CSZd948n8HXUMzeN4NC7T3ywBLrbtdol4wX/S
-         3cac/wqJor3hE1HIASHRX9noSCBFODnfhbRi8TgRT82A0IutTUMbjFqazH92dOaRdqKF
-         dFbw==
+        bh=zWcdRs7/4PDNa35mC9WiHzYrOk8ak/seb1it3OwsXbs=;
+        b=LZ8kMsArYlIUajJpjwTV/inX900P9eNJuRYaop3j2HHVccpspwbVYsRT/TYABotozy
+         uHf/OxTMS+HJ4JyN55HzetD8RozpBiw0j/AkAJ3jA08sC6ecgU3TWfeiJKzKS0HTmkTx
+         wp/VuSzzzOzpsp5+7Wo259+mrn0K8SxjwPov036vSHq/xICfqNcFVN6tR3kZPJCP4+YY
+         yUzdZPsaaxV6XGGoymIbekg+0No5w+iD/14ultcu287ce2PFNBnajKnrMX6hZSFTlozW
+         yhuCIJdFIr7CSLYVVmm7s/mTc9UUxIYa2H7/wrzSSBfG0g1yvzf4XrcLbLjPEjhkhjsm
+         ol4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694412481; x=1695017281;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1694412553; x=1695017353;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=znV8c1nZy2khF5/iHvM02K3LRI4Usqz/zkO1WU9q06M=;
-        b=OV0ABE1MiLJFjPESeZiHD43MZDyxk9BUV9nBvakEusumkjnRSFq03GtLgLbIiQtQTM
-         EHCAJEyHwg4Xelng5QFc/h6PPqCJGXWAhwYoXP9riInRq1L6J6kHPHYvyElffJ7KYVqq
-         UcgmEp/CgieTEwcTEHJMwYeGB3fNGM0vh4Z5HaAyDxwVfhoAI85/Eh3rtsxvkeuw53mI
-         QJYPSIEVtgQO1trIkPk6SrW2QDPCouLYf2G6pNYiC85zcXSffEhLiu+OoNfwQ6vDo+fO
-         pvM+iwlJBz+iftBJhQZfvRfiJ81w6rH4F0FmfDbzB+WoU6hBrM4/qePUt8agOL1/WymD
-         Te7Q==
-X-Gm-Message-State: AOJu0YwLlZBlsDChF096Qb/kDFpHgJLRBPmPtS5oCB3VKeNEQgiv2Nvs
-        ivWWbGK+r161oqrxEnJv7o8+h6A3MVCcTyqNw6GPkQ==
-X-Google-Smtp-Source: AGHT+IHMyTBUANYOv0uuLp74+1jLiLUu+Hfx5s3BwTAkzuzS/yebG+o7dj4lGFDQg2Xg4Mlst3xdFA==
-X-Received: by 2002:a05:600c:5128:b0:402:f501:447c with SMTP id o40-20020a05600c512800b00402f501447cmr7275655wms.0.1694412480731;
-        Sun, 10 Sep 2023 23:08:00 -0700 (PDT)
+        bh=zWcdRs7/4PDNa35mC9WiHzYrOk8ak/seb1it3OwsXbs=;
+        b=bAo5oAUi2byxapw//HZxknQVjmmrlA7mVmL6IS3VhaWVFi+dzC4FvMWOOJ+HCgHg4B
+         RcqEAx6MS8bya8UtqoPKbnTxM0frDtZK8LIbNuigEG7lHwfe9BwafhOxC9qtSTH4zOBr
+         k0pROE6knftNloEt74RFK3DtG5cQ4Okk9Pl0aXmVqLEjDZryV8cULad/pevCQklfrWfB
+         efomrAfSk6G6a78NQf+PMTtsCgNBa908xNnLMfJpaSpnDyOvEBuu56oz5NA3xH9fWMet
+         1o/TPgXzLbgycGhq8LIg1hHHNJJFCPO6WMx5BbaJ/2u8gr/NZ5ENB78TQuJhfcP6nude
+         LfuA==
+X-Gm-Message-State: AOJu0YyJ8nDIvM2ZEKFRGHK5L0qzAxhNgxGny121/sgXM/Ff4drp3lF/
+        ZjDn7ATLIOesuEyjX7wPsSfvZw==
+X-Google-Smtp-Source: AGHT+IG4W706F67nRSS4jrADVmi+lVT+lP0BNJIguoVA2dZItMhEsHe6WItR7qXF+U7xSCxn069nAw==
+X-Received: by 2002:a5d:4c50:0:b0:31a:ed75:75d6 with SMTP id n16-20020a5d4c50000000b0031aed7575d6mr6938145wrt.15.1694412552884;
+        Sun, 10 Sep 2023 23:09:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.214.188])
-        by smtp.gmail.com with ESMTPSA id e6-20020a05600c218600b003fe1c332810sm12125267wme.33.2023.09.10.23.07.58
+        by smtp.gmail.com with ESMTPSA id d16-20020adff2d0000000b0031981c500aasm8950963wrp.25.2023.09.10.23.09.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Sep 2023 23:07:59 -0700 (PDT)
-Message-ID: <fc4bd212-c112-0d42-e94c-c3ba569d2d32@linaro.org>
-Date:   Mon, 11 Sep 2023 08:07:57 +0200
+        Sun, 10 Sep 2023 23:09:12 -0700 (PDT)
+Message-ID: <ef81697f-473e-898e-ec13-4dd255e2e3d7@linaro.org>
+Date:   Mon, 11 Sep 2023 08:09:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.0
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm64: dts: mediatek: add mt8395-evk
- board
+Subject: Re: [PATCH] dt-bindings: arm64: dts: mediatek: add description for
+ mt8365-evk board
+Content-Language: en-US
 To:     Macpaul Lin <macpaul.lin@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -70,75 +71,53 @@ To:     Macpaul Lin <macpaul.lin@mediatek.com>,
 Cc:     Bear Wang <bear.wang@mediatek.com>,
         Pablo Sun <pablo.sun@mediatek.com>,
         Macpaul Lin <macpaul@gmail.com>
-References: <20230909132819.21626-1-macpaul.lin@mediatek.com>
- <2318be3d-5687-8b6c-3669-1d2ae1c94d2c@linaro.org>
- <946ee1c5-77af-3ce0-83ba-2966fab70a5f@mediatek.com>
-Content-Language: en-US
+References: <20230910062852.15415-1-macpaul.lin@mediatek.com>
+ <f8864242-daa1-e72f-4759-aac3fa1bbcf2@linaro.org>
+ <12bdd17a-98f4-5551-4253-229dc36f0c77@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <946ee1c5-77af-3ce0-83ba-2966fab70a5f@mediatek.com>
+In-Reply-To: <12bdd17a-98f4-5551-4253-229dc36f0c77@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/09/2023 14:23, Macpaul Lin wrote:
+On 10/09/2023 14:07, Macpaul Lin wrote:
 > 
 > 
-> On 9/10/23 18:56, Krzysztof Kozlowski wrote:
->> 	
+> On 9/10/23 17:09, Krzysztof Kozlowski wrote:
+>>> +      - description: MediaTek Genio 350 Boards (Genio 350 EVK)
 >>
->> External email : Please do nost click links or open attachments until you 
->> have verified the sender or the content.
+>> That's a bit confusing. So all of the boards here will be Genio 350 EVK?
+>> I don't get what is the point of this description.
 >>
->> On 09/09/2023 15:28, Macpaul Lin wrote:
->>> 1. Add compatible for MT8395.
->>> 2. Add bindings for the MediaTek mt8395-evk board, also known
->>> as the "Genio 1200-EVK".
->>>
->>> The MT8195 and MT8395 belong to the same SoC family,
->>> with only minor differences in their physical characteristics.
->>> They utilize unique efuse values for differentiation.
->>>
->>> The booting process and configurations are managed by boot
->>> loaders, firmware, and TF-A. Consequently, the part numbers
->>> and procurement channels vary.
->>>
->>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> 
-> Changes for v4:
-> Changes for v5:
->   - No change, update Reviewed-by tag only. Thanks.
-> 
-> The explanation is here. The version v4 and v5 are the same.
-> For sending v5 is because "Patch v5 2/2" has been updated and these 2 
-> patches were in the same patch set. I think to update the whole patch 
-> set together with a single modified patch should be a usual operation.
-> Did I miss anything?
-
-Yeah, like not top-posting.
-
-Why do you change the same line in other patchset?
-
-> 
->> Confusing. You just sent a patch changing the same hunk - adding
->> description, without any explanation.
 >>
+>>> +        items:
+>>>            - enum:
+>>>                - mediatek,mt8365-evk
+>>>            - const: mediatek,mt8365
 > 
-> The marketing naming rule of MediaTek SOCs are usually confusing people. 
-> I guess the previous patch just confused you. Ha.
+> Thes boards with compatible 'mediatek,mt8365-evk' is indeed used by
 
-?
+Boards?
 
+> Genio 350-EVK, which Baylibre helped to do upstream tasks. The only 
+> production version of hardware will be available on the market. The 
+> derived version of customer's hardware is not available yet.
+> 
+> The separate patch for renaming mt8365-evk.dts file should be send next 
+> week for aligning the naming rules.
 
+So the description is not correct.
+
+Anyway, this patch does not make much sense to me considering nothing
+like this was merged. You just sent v5 doing the same!
 
 Best regards,
 Krzysztof
