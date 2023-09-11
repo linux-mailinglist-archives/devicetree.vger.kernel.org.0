@@ -2,116 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A0AF79ADCC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD39579B132
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:51:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230441AbjIKUxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:53:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52544 "EHLO
+        id S235052AbjIKUse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:48:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236297AbjIKKLu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:11:50 -0400
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A315E5F;
-        Mon, 11 Sep 2023 03:11:46 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id D08AB12000B;
-        Mon, 11 Sep 2023 13:11:44 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru D08AB12000B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-        s=mail; t=1694427104;
-        bh=HYf8McE/KgI584XKTUFEDPyTBWG+zEFIbhzlJzNcCy8=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-        b=v0tywm2JIPy+EBcifQD3Y3fOPnMctuB/aWu0AxdYkxB4xbiCMf71+hkUYQgE3ZQZQ
-         lKnlVI3tRmeVCqJ+qjfdIHvw/Dk1qa+CzCfZZ5ZgMWYMfMuwWgDGG2PmiE4rKJ7tN1
-         cTI/mm2aebxherGFmqirEzpJ9VnE9kVBHIQEbUm3jb6Rv27HR+OSvsdXFdbkHoPMYo
-         cslJFMnGGQToMHsq52TwBbqqtjfx5DFp4Pg4IVS1MDnvQqy8ZpT3oHA5TBgSDxX5vU
-         l3yC2lGxtDqc7zzlKmIywFMH3TZxhtSj2se9HqrHO8yVJa8YdUmf7Z1tB7iKii46dK
-         81Catdd4NF3Qg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Mon, 11 Sep 2023 13:11:44 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Mon, 11 Sep 2023 13:11:43 +0300
-From:   Alexey Romanov <avromanov@salutedevices.com>
-To:     <narmstrong@baylibre.com>, <neil.armstrong@linaro.org>,
-        <olivia@selenic.com>, <herbert@gondor.apana.org.au>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <conor@kernel.org>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <f.fainelli@gmail.com>, <hkallweit1@gmail.com>, <lists@kaiser.cx>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <kernel@sberdevices.ru>,
-        Alexey Romanov <avromanov@sberdevices.ru>
-Subject: [PATCH v3 3/3] arch/arm64: dts: meson-s4: add hwrng node
-Date:   Mon, 11 Sep 2023 13:11:29 +0300
-Message-ID: <20230911101129.10604-4-avromanov@salutedevices.com>
-X-Mailer: git-send-email 2.33.0
-In-Reply-To: <20230911101129.10604-1-avromanov@salutedevices.com>
-References: <20230911101129.10604-1-avromanov@salutedevices.com>
+        with ESMTP id S236323AbjIKKQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 06:16:42 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E086E69;
+        Mon, 11 Sep 2023 03:16:38 -0700 (PDT)
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 38BAFa4h027624;
+        Mon, 11 Sep 2023 10:16:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=LdFrAlvzPKBbLcF+PjGVstvmsDqiyhErhlETAHTBnvM=;
+ b=Sy2Ilr63oalu31epkcKToiBe8kahqsOOw8WEmQ5aQIL1hn2c4lhfOIDQUfGLvRiBW5YG
+ MptiKIZg9rGo3tQskTynrv4tFJ6x0X8cYAltm7Sm1CwNEP0oMZCK8Seczz6a7EWEvRxE
+ hrDC4n2XS7Q9vOF/U092hPnOC89ft5RFI82J5QwI0gK6/LA8N76pr2D/wP+FnXOVrhkG
+ h6tKzi11rwF3w/N5BPSsBD3t50V9seSWJ5QFaScrULQzhvmCucVpHltaMDs8GhCyODjR
+ 9DcxtczrVobnnweyNQt0niaZsE7DIOG4ON6JlfbMlEMPg7u5BtSzi2/qap8hPn7vy2g5 Wg== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3t20yy0012-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Sep 2023 10:16:11 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 38BAGAWL007457
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 11 Sep 2023 10:16:10 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.36; Mon, 11 Sep
+ 2023 03:16:01 -0700
+Message-ID: <5f172a8f-ecd7-44b0-9b02-48eb13d40497@quicinc.com>
+Date:   Mon, 11 Sep 2023 18:15:44 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: Add Qualcomm SM4450
+From:   Tengfei Fan <quic_tengfan@quicinc.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <will@kernel.org>, <arnd@arndb.de>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_kaushalk@quicinc.com>,
+        <peng.fan@nxp.com>, <kernel@quicinc.com>,
+        <catalin.marinas@arm.com>, <rafal@milecki.pl>,
+        <krzysztof.kozlowski+dt@linaro.org>, <nfraprado@collabora.com>,
+        <quic_shashim@quicinc.com>, <robh+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_tingweiz@quicinc.com>,
+        <quic_aiquny@quicinc.com>, <linux-pm@vger.kernel.org>,
+        <quic_tsoni@quicinc.com>, <geert+renesas@glider.be>,
+        <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <agross@kernel.org>,
+        <quic_tdas@quicinc.com>, <djakov@kernel.org>,
+        <konrad.dybcio@linaro.org>
+References: <20230908064427.26999-1-quic_tengfan@quicinc.com>
+ <20230908064427.26999-2-quic_tengfan@quicinc.com>
+ <169415894359.3239551.14338430937225080028.robh@kernel.org>
+ <375df554-e661-42ad-8a6f-f862aa05b654@quicinc.com>
+In-Reply-To: <375df554-e661-42ad-8a6f-f862aa05b654@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 179766 [Sep 11 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 530 530 ecb1547b3f72d1df4c71c0b60e67ba6b4aea5432, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;salutedevices.com:7.1.1, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/09/11 06:02:00 #21866861
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: qxoaG2xWMLC40vtljendagrAt4UdPG-R
+X-Proofpoint-GUID: qxoaG2xWMLC40vtljendagrAt4UdPG-R
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.267,Aquarius:18.0.957,Hydra:6.0.601,FMLib:17.11.176.26
+ definitions=2023-09-11_06,2023-09-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ mlxscore=0 mlxlogscore=862 bulkscore=0 malwarescore=0 priorityscore=1501
+ suspectscore=0 clxscore=1015 spamscore=0 adultscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2308100000
+ definitions=main-2309110094
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alexey Romanov <avromanov@sberdevices.ru>
 
-Using this node, we can obtain random numbers via
-hardware random number generator.
 
-Signed-off-by: Alexey Romanov <avromanov@sberdevices.ru>
----
- arch/arm64/boot/dts/amlogic/meson-s4.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+在 9/8/2023 4:25 PM, Tengfei Fan 写道:
+> 
+> 
+> 在 9/8/2023 3:42 PM, Rob Herring 写道:
+>>
+>> On Fri, 08 Sep 2023 14:44:25 +0800, Tengfei Fan wrote:
+>>> The Qualcomm SM4450 SoC has several bus fabrics that could be controlled
+>>> and tuned dynamically according to the bandwidth demand.
+>>>
+>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>> ---
+>>>   .../interconnect/qcom,sm4450-rpmh.yaml        | 133 ++++++++++++++
+>>>   .../dt-bindings/interconnect/qcom,sm4450.h    | 163 ++++++++++++++++++
+>>>   2 files changed, 296 insertions(+)
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.yaml
+>>>   create mode 100644 include/dt-bindings/interconnect/qcom,sm4450.h
+>>>
+>>
+>> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+>>
+>> yamllint warnings/errors:
+>>
+>> dtschema/dtc warnings/errors:
+>> Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dts:18:18: fatal error: dt-bindings/clock/qcom,gcc-sm4450.h: No such file or directory
+>>     18 |         #include <dt-bindings/clock/qcom,gcc-sm4450.h>
+>>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> compilation terminated.
+>> make[2]: *** [scripts/Makefile.lib:419: 
+>> Documentation/devicetree/bindings/interconnect/qcom,sm4450-rpmh.example.dtb] Error 1
+>> make[2]: *** Waiting for unfinished jobs....
+>> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1500: 
+>> dt_binding_check] Error 2
+>> make: *** [Makefile:234: __sub-make] Error 2
+>>
+>> doc reference errors (make refcheckdocs):
+>>
+>> See 
+>> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230908064427.26999-2-quic_tengfan@quicinc.com
+>>
+>> The base for the series is generally the latest rc1. A different 
+>> dependency
+>> should be noted in *this* patch.
+>>
+>> If you already ran 'make dt_binding_check' and didn't see the above
+>> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+>> date:
+>>
+>> pip3 install dtschema --upgrade
+>>
+>> Please check and re-submit after running the above command yourself. Note
+>> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+>> your schema. However, it must be unset to test all examples with your 
+>> schema.
+>>
+> Thanks review this patch, will setup new env for verify again.
+> 
+this error is due to have dependence with: 
+https://lore.kernel.org/linux-arm-msm/20230824173410.550126-1-quic_ajipan@quicinc.com/, 
+will add this link to coverletter.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-index f24460186d3d..b3a1ecf36467 100644
---- a/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-s4.dtsi
-@@ -133,6 +133,11 @@ reset: reset-controller@2000 {
- 				reg = <0x0 0x2000 0x0 0x98>;
- 				#reset-cells = <1>;
- 			};
-+
-+			hwrng: rng@440788 {
-+				compatible = "amlogic,meson-s4-rng";
-+				reg = <0x0 0x440788 0x0 0x0c>;
-+			};
- 		};
- 	};
- };
 -- 
-2.25.1
-
+Thx and BRs,
+Tengfei Fan
