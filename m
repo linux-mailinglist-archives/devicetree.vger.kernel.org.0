@@ -2,142 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 19CDF79B506
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B13F79B563
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 02:03:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235619AbjIKUvL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45448 "EHLO
+        id S234770AbjIKUtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:49:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235595AbjIKJDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:03:11 -0400
-Received: from out-211.mta1.migadu.com (out-211.mta1.migadu.com [IPv6:2001:41d0:203:375::d3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4310FCD1
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 02:03:06 -0700 (PDT)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jookia.org; s=key1;
-        t=1694422984;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ICC/SzyHwq6OWg2Vbcao+ENYPJZEyCaFguUig4QftpI=;
-        b=zDWg5jC2P6F0x0iELGO62R3P8c638vuT/a7cEaoY5Uuy8K6n2rNcqYHcvMflGSOz7hmpXC
-        clmQSzjrLcwD9IHkIjIKuaR8VkkAG+2POyviG/5e86djVfoqxYgj2cwa8u/2nQSXcTohqf
-        +mUoIofWCtok+FoHwXPMG/VQUAxRO/fx5fUiq1RMWmCx2zx+2LniQ6PPVuEUz8caQSNOxe
-        D9jDXe0O3dVub+j0ZETWRC4qZFWtXiuXDfU72zDrtpbxfvbxEvW/nIR6oLN3cQ0aPvLPDh
-        2Ypki3ORVtzkxwYYAfABmeXbTXP/Kd2e0OHuea/2MhKoPdKl5NF2N3Bb43UkvQ==
-From:   John Watts <contact@jookia.org>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Jagan Teki <jagan@edgeble.ai>, John Watts <contact@jookia.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC PATCH 5/8] drm/panel: nv3052c: Allow specifying registers per panel
-Date:   Mon, 11 Sep 2023 19:02:03 +1000
-Message-ID: <20230911090206.3121440-6-contact@jookia.org>
-In-Reply-To: <20230911090206.3121440-1-contact@jookia.org>
-References: <20230911090206.3121440-1-contact@jookia.org>
+        with ESMTP id S235616AbjIKJFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 05:05:09 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA3FCCC;
+        Mon, 11 Sep 2023 02:05:03 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 6979A6607083;
+        Mon, 11 Sep 2023 10:05:00 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1694423101;
+        bh=jo+lZBQFX99dvsGk7KaxmmTzA/MbOTJVrWbivOzXhRs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=mtbHD9qpBwnAOBT1Pf31tPa8e9/mfxJdawdT3LzaggZOVj+Q/9ZsDK+j9T7vgPg1v
+         0QF3yxm7I/3uMSaQTZRMno7orv74HXfIgajTkAMwer/tSo0iizWjtv6JROGXyIs9jC
+         kNlRnJxDA33hBYDTunhybVndN9vhcQMJMRqLs5TLJF3IIFM7dYh27QKsAqfAVEShsS
+         7l9+nrqOq46Mo+H+nE+6uNUVzi/R3h0KQCa0iybQJSo3K6DC/3w3YXqCHGk5rXha5I
+         4DyIE6Z56+o2dgGaNicFofHW4X4zNVtwlhrzcfesJPBf1i6cSs6cvwNZEoILKNf4Zm
+         uvECARebonWfA==
+Message-ID: <3cc94def-04b7-fdf7-622d-96db0fdd95c7@collabora.com>
+Date:   Mon, 11 Sep 2023 11:04:57 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_NONE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+Subject: Re: [PATCH v3 6/9] arm64: defconfig: Enable DA9211 regulator
+To:     Vignesh Raman <vignesh.raman@collabora.com>,
+        dri-devel@lists.freedesktop.org
+Cc:     helen.koike@collabora.com, guilherme.gallo@collabora.com,
+        sergi.blanch.torne@collabora.com, david.heidelberg@collabora.com,
+        daniels@collabora.com, gustavo.padovan@collabora.com,
+        emma@anholt.net, robclark@freedesktop.org, robdclark@google.com,
+        anholt@google.com, robdclark@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, jani.nikula@linux.intel.com, mripard@kernel.org,
+        dmitry.baryshkov@linaro.org, matthias.bgg@gmail.com,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        virtualization@lists.linux-foundation.org,
+        linux-arm-msm@vger.kernel.org
+References: <20230908152225.432139-1-vignesh.raman@collabora.com>
+ <20230908152225.432139-7-vignesh.raman@collabora.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230908152225.432139-7-vignesh.raman@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Panel initialization registers are per-display and not tied to the
-controller itself. Different panels will specify their own registers.
-Attach the sequences to the panel info struct so future panels
-can specify their own sequences.
+Il 08/09/23 17:22, Vignesh Raman ha scritto:
+> Mediatek mt8173 board fails to boot with DA9211 regulator disabled.
+> Enabling CONFIG_REGULATOR_DA9211=y in drm-ci fixes the issue.
+> 
+> So enable it in the defconfig since kernel-ci also requires it.
+> 
+> Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Vignesh Raman <vignesh.raman@collabora.com>
 
-Signed-off-by: John Watts <contact@jookia.org>
----
- .../gpu/drm/panel/panel-newvision-nv3052c.c   | 25 ++++++++++++-------
- 1 file changed, 16 insertions(+), 9 deletions(-)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-index 307335d0f1fc..b2ad9b3a5eb7 100644
---- a/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-+++ b/drivers/gpu/drm/panel/panel-newvision-nv3052c.c
-@@ -20,11 +20,18 @@
- #include <drm/drm_modes.h>
- #include <drm/drm_panel.h>
- 
-+struct nv3052c_reg {
-+	u8 cmd;
-+	u8 val;
-+};
-+
- struct nv3052c_panel_info {
- 	const struct drm_display_mode *display_modes;
- 	unsigned int num_modes;
- 	u16 width_mm, height_mm;
- 	u32 bus_format, bus_flags;
-+	const struct nv3052c_reg *panel_regs;
-+	int panel_regs_len;
- };
- 
- struct nv3052c {
-@@ -36,12 +43,7 @@ struct nv3052c {
- 	struct gpio_desc *reset_gpio;
- };
- 
--struct nv3052c_reg {
--	u8 cmd;
--	u8 val;
--};
--
--static const struct nv3052c_reg nv3052c_panel_regs[] = {
-+static const struct nv3052c_reg ltk035c5444t_panel_regs[] = {
- 	// EXTC Command set enable, select page 1
- 	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x01 },
- 	// Mostly unknown registers
-@@ -244,6 +246,7 @@ static inline struct nv3052c *to_nv3052c(struct drm_panel *panel)
- static int nv3052c_prepare(struct drm_panel *panel)
- {
- 	struct nv3052c *priv = to_nv3052c(panel);
-+	const struct nv3052c_reg *panel_regs = priv->panel_info->panel_regs;
- 	struct mipi_dbi *dbi = &priv->dbi;
- 	unsigned int i;
- 	int err;
-@@ -260,9 +263,11 @@ static int nv3052c_prepare(struct drm_panel *panel)
- 	gpiod_set_value_cansleep(priv->reset_gpio, 0);
- 	msleep(150);
- 
--	for (i = 0; i < ARRAY_SIZE(nv3052c_panel_regs); i++) {
--		err = mipi_dbi_command(dbi, nv3052c_panel_regs[i].cmd,
--				       nv3052c_panel_regs[i].val);
-+	int panel_regs_len = priv->panel_info->panel_regs_len;
-+
-+	for (i = 0; i < panel_regs_len; i++) {
-+		err = mipi_dbi_command(dbi, panel_regs[i].cmd,
-+				       panel_regs[i].val);
- 
- 		if (err) {
- 			dev_err(priv->dev, "Unable to set register: %d\n", err);
-@@ -466,6 +471,8 @@ static const struct nv3052c_panel_info ltk035c5444t_panel_info = {
- 	.height_mm = 64,
- 	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
-+	.panel_regs = ltk035c5444t_panel_regs,
-+	.panel_regs_len = ARRAY_SIZE(ltk035c5444t_panel_regs),
- };
- 
- static const struct spi_device_id nv3052c_ids[] = {
--- 
-2.42.0
+> ---
+> 
+> v3:
+>    - New patch in the series to enable CONFIG_REGULATOR_DA9211 in defconfig
+> 
+> ---
+>   arch/arm64/configs/defconfig | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> index a25d783dfb95..ef22b532b63a 100644
+> --- a/arch/arm64/configs/defconfig
+> +++ b/arch/arm64/configs/defconfig
+> @@ -711,6 +711,7 @@ CONFIG_REGULATOR_AXP20X=y
+>   CONFIG_REGULATOR_BD718XX=y
+>   CONFIG_REGULATOR_BD9571MWV=y
+>   CONFIG_REGULATOR_CROS_EC=y
+> +CONFIG_REGULATOR_DA9211=m
+>   CONFIG_REGULATOR_FAN53555=y
+>   CONFIG_REGULATOR_GPIO=y
+>   CONFIG_REGULATOR_HI6421V530=y
 
