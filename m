@@ -2,182 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9897A79B021
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F82279AE6F
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234078AbjIKUsJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:48:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41938 "EHLO
+        id S233376AbjIKUrv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 11 Sep 2023 16:47:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243973AbjIKSeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 14:34:19 -0400
-Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2651BB;
-        Mon, 11 Sep 2023 11:34:07 -0700 (PDT)
-Received: from mxbox3.masterlogin.de (unknown [192.168.10.78])
-        by mxout3.routing.net (Postfix) with ESMTP id 8F86460546;
-        Mon, 11 Sep 2023 18:34:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1694457245;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=E/Gp1HOJQpVt6kzdG1jbBjVVoqID2dO0BkBbfKI/SKo=;
-        b=T3GbUsbwnNVvUGY8yPZLniV/AUr8EG6aIW6ALp3mgTsJWef6nYUREpaG8EOemJtykiHkQ5
-        eTAS+00g8kHtMzUm+FHLwKOp/uKUm3tO1MDyJEZoSTxBFuRlLubzs8VwykqborcfnTnBc1
-        iSDMWmVoR0c/Z+OrRYdz9sCwYAJkhYs=
-Received: from frank-G5.. (fttx-pool-217.61.151.158.bambit.de [217.61.151.158])
-        by mxbox3.masterlogin.de (Postfix) with ESMTPSA id A9F8636077E;
-        Mon, 11 Sep 2023 18:34:04 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Daniel Golle <daniel@makrotopia.org>
-Subject: [RFC v1 3/3] thermal/drivers/mediatek/lvts_thermal: add mt7988 support
-Date:   Mon, 11 Sep 2023 20:33:54 +0200
-Message-Id: <20230911183354.11487-4-linux@fw-web.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230911183354.11487-1-linux@fw-web.de>
-References: <20230911183354.11487-1-linux@fw-web.de>
+        with ESMTP id S244204AbjIKThJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 15:37:09 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E1DB12A;
+        Mon, 11 Sep 2023 12:37:04 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2bcc14ea414so79331141fa.0;
+        Mon, 11 Sep 2023 12:37:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1694461022; x=1695065822; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TtHFkIB4HjNpruap74rc4M+x6RD0lNjgWaeMc48DnVQ=;
+        b=RYAdqzSwjA0vXLzI3rZNNLL4KCYHTAHIeYRfpWdCJu63dUoVm6o3krh88pduVUNn61
+         y1IwaQ+okTDekJQ6k+cTQfuHS/vokebki+R3dLwSTBnRoDEmg1CHaNGNf5NQRyJQ2mJo
+         FZaa8OsklGbHt82x9/m7asFqgSP19t8buxTkTmXQ5jpftTS6EpCoyNPKTwB/KWX0DgYY
+         QGzMtHUfGtb2UtqEIFZnAX19CIZxE+DqHfDTMrXa3+Qc8mTj7OrmhBUNy1QVXpaY1cVZ
+         EUPZNjpwJaVKiPmXyYvYPUSnvWc9L63prLf2+v4JvaC7vk7kMmVYzPls6SlZ2F7zFgO3
+         puZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1694461022; x=1695065822;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TtHFkIB4HjNpruap74rc4M+x6RD0lNjgWaeMc48DnVQ=;
+        b=mFg343KDZOAIWdS+XegH3w6JWq+wO4ObzLpabNoCg++S0cMBCUPgLS/Z2pUma8Roaz
+         x/gcJegtI6WXzwzebzIJ8qnPFQ+Oabm6vylyCmlSILVk2Zxr3VO7vy0088G8QRdTMpGQ
+         78AnPKPoZhEc2PabJ0Q5ZYz3hah/+4cimc9L3vQnlUajJmAeS7zppze0Sv1FAcz9R64N
+         UNm6lKnD11wqL25an6q92YJxl5KzxNQP1LcT3NOeuEtvmZ8IAmv8rhFGj3501HVgZnj/
+         nxdDxrKMGZ3MW0vCteEWdIPggX8R+WLQEixEm0DryRtVYKiwaY8Pj85e5tSsrWIkSkPW
+         r0xQ==
+X-Gm-Message-State: AOJu0Yz+L9sonq7qoqrZtUv5X3h00O/PrTKI1PdIufZ8SN8pgBoOzJb2
+        X0V7+y4xwMvt1MScjVMT2G9aqAbM+iMAr8qyotk=
+X-Google-Smtp-Source: AGHT+IEHONmFCXlIl8CtsQ1p//AgYvzN0oFymF5kb+m/A+LqIbbN2JHzQ3n/Wj2UhSy7rLEgh8So+tK68vdnGyP+3QY=
+X-Received: by 2002:a2e:8297:0:b0:2bc:e330:660b with SMTP id
+ y23-20020a2e8297000000b002bce330660bmr9020360ljg.9.1694461022242; Mon, 11 Sep
+ 2023 12:37:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: a4e93b6f-45bb-4e0f-b9a9-b41ceba0b075
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SPF_TEMPERROR
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230828140849.21724-1-tmaimon77@gmail.com> <CACRpkdY0C7S_VjZ8CKxj9MOv401jUPesvwKwHyCfHM+p8jRSOg@mail.gmail.com>
+In-Reply-To: <CACRpkdY0C7S_VjZ8CKxj9MOv401jUPesvwKwHyCfHM+p8jRSOg@mail.gmail.com>
+From:   Tomer Maimon <tmaimon77@gmail.com>
+Date:   Mon, 11 Sep 2023 22:36:50 +0300
+Message-ID: <CAP6Zq1gd7j7c3RuB+E4S65JNhOmEEZOMgn2AqXwO29f=BRKXzA@mail.gmail.com>
+Subject: Re: [PATCH v7 0/2] pinctrl: nuvoton: add pinmux and GPIO driver for NPCM8XX
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, avifishman70@gmail.com, tali.perry1@gmail.com,
+        joel@jms.id.au, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, j.neuschaefer@gmx.net,
+        openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+Thanks a lot Linus
+appreciate it :-)
 
-Add Support for mediatek fologic 880/MT7988.
-
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- drivers/thermal/mediatek/lvts_thermal.c | 73 +++++++++++++++++++++++++
- 1 file changed, 73 insertions(+)
-
-diff --git a/drivers/thermal/mediatek/lvts_thermal.c b/drivers/thermal/mediatek/lvts_thermal.c
-index c1004b4da3b6..48b257a3c80e 100644
---- a/drivers/thermal/mediatek/lvts_thermal.c
-+++ b/drivers/thermal/mediatek/lvts_thermal.c
-@@ -82,6 +82,8 @@
- #define LVTS_GOLDEN_TEMP_DEFAULT	50
- #define LVTS_COEFF_A_MT8195			-250460
- #define LVTS_COEFF_B_MT8195			250460
-+#define LVTS_COEFF_A_MT7988			-204650
-+#define LVTS_COEFF_B_MT7988			204650
- 
- #define LVTS_MSR_IMMEDIATE_MODE		0
- #define LVTS_MSR_FILTERED_MODE		1
-@@ -1272,6 +1274,67 @@ static int lvts_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+/*
-+ * LVTS MT7988
-+ */
-+#define LVTS_HW_SHUTDOWN_MT7988	117000
-+//enum mt7988_lvts_domain { MT7988_AP_DOMAIN, MT7988_NUM_DOMAIN };
-+
-+enum mt7988_lvts_sensor_enum {
-+	MT7988_TS3_0,
-+	MT7988_TS3_1,
-+	MT7988_TS3_2,
-+	MT7988_TS3_3,
-+	MT7988_TS4_0,
-+	MT7988_TS4_1,
-+	MT7988_TS4_2,
-+	MT7988_TS4_3,
-+	MT7988_NUM_TS
-+};
-+
-+//Efuse base : 0x11f50000
-+//lvts offset in efuse : 0x918 (set in efuse dts node as calibration data)
-+//offsets:
-+//918 = LVTS_3_0_COUNT_R
-+//91C = LVTS_3_1_COUNT_R
-+//920 = LVTS_3_2_COUNT_R
-+//924 = LVTS_3_3_COUNT_R
-+//928 = LVTS_3_COUNT_RC
-+
-+//92C = LVTS_4_0_COUNT_R
-+//930 = LVTS_4_1_COUNT_R
-+//934 = LVTS_4_2_COUNT_R
-+//938 = LVTS_4_3_COUNT_R
-+//93C = LVTS_4_COUNT_RC
-+
-+static const struct lvts_ctrl_data mt7988_lvts_data_ctrl[] = {
-+	{
-+		.cal_offset = { 0x00, 0x04, 0x08, 0x0c }, //918,91C,920,924
-+		.lvts_sensor = {
-+			{ .dt_id = MT7988_TS3_0 },
-+			{ .dt_id = MT7988_TS3_1 },
-+			{ .dt_id = MT7988_TS3_2 },
-+			{ .dt_id = MT7988_TS3_3 }
-+		},
-+		.num_lvts_sensor = 4,
-+		.offset = 0x0,
-+		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT7988,
-+	},
-+	{
-+		.cal_offset = { 0x14, 0x18, 0x1c, 0x20 }, //92C,930,934,938
-+		.lvts_sensor = {
-+			{ .dt_id = MT7988_TS4_0},
-+			{ .dt_id = MT7988_TS4_1},
-+			{ .dt_id = MT7988_TS4_2},
-+			{ .dt_id = MT7988_TS4_3}
-+		},
-+		.num_lvts_sensor = 4,
-+		.offset = 0x100,
-+		.hw_tshut_temp = LVTS_HW_SHUTDOWN_MT7988,
-+	}
-+};
-+
-+//MT8195
- static const struct lvts_ctrl_data mt8195_lvts_mcu_data_ctrl[] = {
- 	{
- 		.cal_offset = { 0x04, 0x07 },
-@@ -1351,6 +1414,15 @@ static const struct lvts_ctrl_data mt8195_lvts_ap_data_ctrl[] = {
- 	}
- };
- 
-+static const struct lvts_data mt7988_lvts_data = {
-+	.lvts_ctrl	= mt7988_lvts_data_ctrl,
-+	.num_lvts_ctrl	= ARRAY_SIZE(mt7988_lvts_data_ctrl),
-+	.coeff = {
-+		.a = LVTS_COEFF_A_MT7988,
-+		.b = LVTS_COEFF_B_MT7988,
-+	},
-+};
-+
- static const struct lvts_data mt8195_lvts_mcu_data = {
- 	.lvts_ctrl	= mt8195_lvts_mcu_data_ctrl,
- 	.num_lvts_ctrl	= ARRAY_SIZE(mt8195_lvts_mcu_data_ctrl),
-@@ -1372,6 +1444,7 @@ static const struct lvts_data mt8195_lvts_ap_data = {
- };
- 
- static const struct of_device_id lvts_of_match[] = {
-+	{ .compatible = "mediatek,mt7988-lvts", .data = &mt7988_lvts_data },
- 	{ .compatible = "mediatek,mt8195-lvts-mcu", .data = &mt8195_lvts_mcu_data },
- 	{ .compatible = "mediatek,mt8195-lvts-ap", .data = &mt8195_lvts_ap_data },
- 	{},
--- 
-2.34.1
-
+On Mon, 11 Sept 2023 at 16:53, Linus Walleij <linus.walleij@linaro.org> wro=
+te:
+>
+> On Mon, Aug 28, 2023 at 4:08=E2=80=AFPM Tomer Maimon <tmaimon77@gmail.com=
+> wrote:
+>
+> > This patch set adds pinmux and GPIO controller for the Arbel NPCM8XX
+> > Baseboard Management Controller (BMC).
+>
+> Patches applied. I can send some more nitpicky comments about
+> patch 2/2 but they are not serious enough to warrant a resend of the
+> patches, it is better to touch it up in-tree, if at all.
+>
+> Good work with this driver, and also good patience since you
+> iterated 7 versions and polished everything up so it's really nice
+> and shiny now!
+>
+> Yours,
+> Linus Walleij
