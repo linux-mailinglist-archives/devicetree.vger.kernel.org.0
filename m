@@ -2,422 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C232579AD2C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:38:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43F0479B2D8
+	for <lists+devicetree@lfdr.de>; Tue, 12 Sep 2023 01:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237682AbjIKUvl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 11 Sep 2023 16:51:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57348 "EHLO
+        id S233011AbjIKUvE convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 11 Sep 2023 16:51:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242535AbjIKPqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:46:03 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B04F18D
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:45:58 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-400a087b0bfso49375355e9.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Sep 2023 08:45:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1694447157; x=1695051957; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cSIzaGY4JTGWQViW6JO82zhUaR3rfht5CJdLlOs6lcQ=;
-        b=ozHdDp991UdVNd+uAa4UswhG3Y5KdOcj/MrJUzT+mWfILc/zixDwhsINbrPRv6dA+D
-         A8nJR+jDWhZIg3TjoJnFJBtfGQWK41f8xRMNSNm9ihm3S1nGcd6CN+cUSiE0BxdN/8uv
-         yQLJTIoWvhqvSdltBkoauUuWXpq1DhFzElTtgG97izwO2Gj0PXWeQMwD6gii4l8CeGEY
-         IJ45cBXUw+ODgZBCKKo3ODYyoa7xEvkF/260odw2u9DSB+8unGlgsIPRBqjvgA4ac2ZC
-         UoqcgK58b+h93wU4vUoCae1oS6TnLlbPVtqlgfzzKBD2j5lTANy3PveH+4YcA07hznpc
-         Ybcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1694447157; x=1695051957;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cSIzaGY4JTGWQViW6JO82zhUaR3rfht5CJdLlOs6lcQ=;
-        b=nUrzFaELeX2ola9aa8R74NUj4QoJNurNyV3RaYQn4oXoC7gnA+69z9Q9BeTtusroEH
-         wTRaj5zAdYTV6euvkVGJ9fHbkb4CjliPChFbxcC90ziR+lN9Etk/oc4Tk/q0K/cjp9CI
-         gK6rdAA/Mbsdq9YSzZggChyRCuCeKTh35t4p+VNDbyJg9JIaGstjV6GKHGhQoOqCtEZq
-         41FmECu1Amevl+GFYp7NzRmktSYY5mWoE/Bw/h0cVll9Zl8bdTTD1Sj369bKx07t+zWt
-         jpSATzoQ52rmTwwKGkBvOxygQ7LMbeIsl8h8N/tuoBeblLGEYFXpy98HVvFAhvovJ+8D
-         50IQ==
-X-Gm-Message-State: AOJu0YxYwX/O/v9SQwiglujq8CdTgsq8eRplE11UZFo4fHkHtJGWhbei
-        7kVvBYw9qLIVrvE6+fpfET3d9w==
-X-Google-Smtp-Source: AGHT+IGhLPBA7FSbST65jTdBOh+qXxiGny/m9t3mksHt37rJQNayJyIdmGOMbsoTZtN+Egf8qMpPjA==
-X-Received: by 2002:a05:600c:204c:b0:401:23fc:1f92 with SMTP id p12-20020a05600c204c00b0040123fc1f92mr8964501wmg.25.1694447156746;
-        Mon, 11 Sep 2023 08:45:56 -0700 (PDT)
-Received: from toaster.lan ([2a01:e0a:3c5:5fb1:55be:8f7e:5f59:7ed1])
-        by smtp.googlemail.com with ESMTPSA id q12-20020a05600c040c00b003fe539b83f2sm13616255wmb.42.2023.09.11.08.45.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Sep 2023 08:45:56 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        Christian Hewitt <christianshewitt@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH 5/5] arm64: dts: meson: u200: add onboard devices
-Date:   Mon, 11 Sep 2023 17:45:41 +0200
-Message-Id: <20230911154541.471484-6-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230911154541.471484-1-jbrunet@baylibre.com>
-References: <20230911154541.471484-1-jbrunet@baylibre.com>
+        with ESMTP id S242550AbjIKPrx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 11 Sep 2023 11:47:53 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2C01121;
+        Mon, 11 Sep 2023 08:47:45 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4RkrfP5T1Pz67KPR;
+        Mon, 11 Sep 2023 23:46:05 +0800 (CST)
+Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.31; Mon, 11 Sep
+ 2023 16:47:42 +0100
+Date:   Mon, 11 Sep 2023 16:47:41 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Herve Codina <herve.codina@bootlin.com>
+CC:     Lizhi Hou <lizhi.hou@amd.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <robh@kernel.org>, <max.zhen@amd.com>, <sonal.santan@amd.com>,
+        <stefano.stabellini@xilinx.com>,
+        =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?= <clement.leger@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH V13 2/5] PCI: Create device tree node for bridge
+Message-ID: <20230911164741.00003904@Huawei.com>
+In-Reply-To: <20230911173503.0db85e4b@bootlin.com>
+References: <1692120000-46900-1-git-send-email-lizhi.hou@amd.com>
+        <1692120000-46900-3-git-send-email-lizhi.hou@amd.com>
+        <20230911154856.000076c3@Huawei.com>
+        <20230911173503.0db85e4b@bootlin.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.202.227.76]
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing audio devices found on the u200 PCB. This includes
-* Lineout connected to the internal DAC
-* SPDIF input connected to a coaxial socket
-* TDM input decoders allowing output loopback
-* TDM A and B output encoders and interfaces
+On Mon, 11 Sep 2023 17:35:03 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-TDM A and B link format is set by the related external codec.
-Internal audio DAC can hook to any TDM output.
+> Hi Jonathan,
+> 
+> On Mon, 11 Sep 2023 15:48:56 +0100
+> Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+> 
+> > On Tue, 15 Aug 2023 10:19:57 -0700
+> > Lizhi Hou <lizhi.hou@amd.com> wrote:
+> >   
+> > > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+> > > spaces from multiple hardware peripherals to its PCI BAR. Normally,
+> > > the PCI core discovers devices and BARs using the PCI enumeration process.
+> > > There is no infrastructure to discover the hardware peripherals that are
+> > > present in a PCI device, and which can be accessed through the PCI BARs.
+> > > 
+> > > Apparently, the device tree framework requires a device tree node for the
+> > > PCI device. Thus, it can generate the device tree nodes for hardware
+> > > peripherals underneath. Because PCI is self discoverable bus, there might
+> > > not be a device tree node created for PCI devices. Furthermore, if the PCI
+> > > device is hot pluggable, when it is plugged in, the device tree nodes for
+> > > its parent bridges are required. Add support to generate device tree node
+> > > for PCI bridges.
+> > > 
+> > > Add an of_pci_make_dev_node() interface that can be used to create device
+> > > tree node for PCI devices.
+> > > 
+> > > Add a PCI_DYNAMIC_OF_NODES config option. When the option is turned on,
+> > > the kernel will generate device tree nodes for PCI bridges unconditionally.
+> > > 
+> > > Initially, add the basic properties for the dynamically generated device
+> > > tree nodes which include #address-cells, #size-cells, device_type,
+> > > compatible, ranges, reg.
+> > > 
+> > > Acked-by: Bjorn Helgaas <bhelgaas@google.com>
+> > > Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>    
+> > 
+> > I tried to bring this up for a custom PCIe card emulated in QEMU on an ARM ACPI
+> > machine.
+> > 
+> > There are some missing parts that were present in Clements series, but not this
+> > one, particularly creation of the root pci object.
+> > 
+> > Anyhow, hit an intermittent crash...  
+> 
+> I am facing the same issues.
+> 
+> I use a custom PCIe board too but on x86 ACPI machine.
+> 
+> In order to have a working system, I need also to build a DT node for the PCI
+> Host bridge (previously done by Clement's patch) and I am a bit stuck with
+> interrupts.
+> 
+> On your side (ACPI machine) how do you handle this ?
 
-This change does not include support necessary the optional the speaker and
-PDM Mic headers
+That was next on my list to look at now I've gotten the device tree stuff
+to show up.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../boot/dts/amlogic/meson-g12a-u200.dts      | 228 +++++++++++++++++-
- 1 file changed, 218 insertions(+), 10 deletions(-)
+> I mean is your PCI host bridge provided by ACPI ? And if so, you probably need
+> to build a DT node for this PCI host bridge and add some interrupt-map,
+> interrupt-map-mask properties in the DT node.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-index da66e2e1dffb..9abe37b5b227 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-u200.dts
-@@ -9,6 +9,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/gpio/meson-g12a-gpio.h>
- #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-+#include <dt-bindings/sound/meson-g12a-toacodec.h>
- 
- / {
- 	compatible = "amlogic,u200", "amlogic,g12a";
-@@ -19,6 +20,22 @@ aliases {
- 		ethernet0 = &ethmac;
- 	};
- 
-+	dioo2133: audio-amplifier-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "simple-audio-amplifier";
-+		status = "okay";
-+		enable-gpios = <&gpio_ao GPIOAO_2 GPIO_ACTIVE_HIGH>;
-+		VCC-supply = <&vcc_5v>;
-+		sound-name-prefix = "10U2";
-+	};
-+
-+	spdif_dir: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dir";
-+		status = "okay";
-+		sound-name-prefix = "DIR";
-+	};
-+
- 	spdif_dit: audio-codec-1 {
- 		#sound-dai-cells = <0>;
- 		compatible = "linux,spdif-dit";
-@@ -159,17 +176,71 @@ vddcpu: regulator-vddcpu {
- 	sound {
- 		compatible = "amlogic,axg-sound-card";
- 		model = "U200";
--		audio-aux-devs = <&tdmout_c>;
--		audio-routing = "TDMOUT_C IN 0", "FRDDR_A OUT 2",
-+		audio-widgets = "Line", "Lineout";
-+		audio-aux-devs = <&tdmout_a>, <&tdmout_b>, <&tdmout_c>,
-+				 <&tdmin_a>, <&tdmin_b>, <&tdmin_c>,
-+				 <&tdmin_lb>, <&dioo2133>;
-+		audio-routing = "TDMOUT_A IN 0", "FRDDR_A OUT 0",
-+				"TDMOUT_A IN 1", "FRDDR_B OUT 0",
-+				"TDMOUT_A IN 2", "FRDDR_C OUT 0",
-+				"TDM_A Playback", "TDMOUT_A OUT",
-+				"TDMOUT_B IN 0", "FRDDR_A OUT 1",
-+				"TDMOUT_B IN 1", "FRDDR_B OUT 1",
-+				"TDMOUT_B IN 2", "FRDDR_C OUT 1",
-+				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDMOUT_C IN 0", "FRDDR_A OUT 2",
- 				"TDMOUT_C IN 1", "FRDDR_B OUT 2",
- 				"TDMOUT_C IN 2", "FRDDR_C OUT 2",
--				"TDM_B Playback", "TDMOUT_B OUT",
-+				"TDM_C Playback", "TDMOUT_C OUT",
- 				"SPDIFOUT IN 0", "FRDDR_A OUT 3",
- 				"SPDIFOUT IN 1", "FRDDR_B OUT 3",
- 				"SPDIFOUT IN 2", "FRDDR_C OUT 3",
- 				"SPDIFOUT_B IN 0", "FRDDR_A OUT 4",
- 				"SPDIFOUT_B IN 1", "FRDDR_B OUT 4",
--				"SPDIFOUT_B IN 2", "FRDDR_C OUT 4";
-+				"SPDIFOUT_B IN 2", "FRDDR_C OUT 4",
-+				"TDMIN_A IN 0", "TDM_A Capture",
-+				"TDMIN_A IN 1", "TDM_B Capture",
-+				"TDMIN_A IN 2", "TDM_C Capture",
-+				"TDMIN_A IN 3", "TDM_A Loopback",
-+				"TDMIN_A IN 4", "TDM_B Loopback",
-+				"TDMIN_A IN 5", "TDM_C Loopback",
-+				"TDMIN_B IN 0", "TDM_A Capture",
-+				"TDMIN_B IN 1", "TDM_B Capture",
-+				"TDMIN_B IN 2", "TDM_C Capture",
-+				"TDMIN_B IN 3", "TDM_A Loopback",
-+				"TDMIN_B IN 4", "TDM_B Loopback",
-+				"TDMIN_B IN 5", "TDM_C Loopback",
-+				"TDMIN_C IN 0", "TDM_A Capture",
-+				"TDMIN_C IN 1", "TDM_B Capture",
-+				"TDMIN_C IN 2", "TDM_C Capture",
-+				"TDMIN_C IN 3", "TDM_A Loopback",
-+				"TDMIN_C IN 4", "TDM_B Loopback",
-+				"TDMIN_C IN 5", "TDM_C Loopback",
-+				"TDMIN_LB IN 3", "TDM_A Capture",
-+				"TDMIN_LB IN 4", "TDM_B Capture",
-+				"TDMIN_LB IN 5", "TDM_C Capture",
-+				"TDMIN_LB IN 0", "TDM_A Loopback",
-+				"TDMIN_LB IN 1", "TDM_B Loopback",
-+				"TDMIN_LB IN 2", "TDM_C Loopback",
-+				"TODDR_A IN 0", "TDMIN_A OUT",
-+				"TODDR_B IN 0", "TDMIN_A OUT",
-+				"TODDR_C IN 0", "TDMIN_A OUT",
-+				"TODDR_A IN 1", "TDMIN_B OUT",
-+				"TODDR_B IN 1", "TDMIN_B OUT",
-+				"TODDR_C IN 1", "TDMIN_B OUT",
-+				"TODDR_A IN 2", "TDMIN_C OUT",
-+				"TODDR_B IN 2", "TDMIN_C OUT",
-+				"TODDR_C IN 2", "TDMIN_C OUT",
-+				"TODDR_A IN 3", "SPDIFIN Capture",
-+				"TODDR_B IN 3", "SPDIFIN Capture",
-+				"TODDR_C IN 3", "SPDIFIN Capture",
-+				"TODDR_A IN 6", "TDMIN_LB OUT",
-+				"TODDR_B IN 6", "TDMIN_LB OUT",
-+				"TODDR_C IN 6", "TDMIN_LB OUT",
-+				"10U2 INL", "ACODEC LOLP",
-+				"10U2 INR", "ACODEC LORP",
-+				"Lineout", "10U2 OUTL",
-+				"Lineout", "10U2 OUTR";
- 
- 		assigned-clocks = <&clkc CLKID_MPLL2>,
- 				  <&clkc CLKID_MPLL0>,
-@@ -191,8 +262,52 @@ dai-link-2 {
- 			sound-dai = <&frddr_c>;
- 		};
- 
--		/* 8ch hdmi interface */
- 		dai-link-3 {
-+			sound-dai = <&toddr_a>;
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&toddr_b>;
-+		};
-+
-+		dai-link-5 {
-+			sound-dai = <&toddr_c>;
-+		};
-+
-+		/* Connected to the WIFI/BT chip */
-+		dai-link-6 {
-+			sound-dai = <&tdmif_a>;
-+			dai-format = "dsp_a";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&toacodec TOACODEC_IN_A>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_A>;
-+			};
-+		};
-+
-+		/* Connected to the onboard AD82584F DAC */
-+		dai-link-7 {
-+			sound-dai = <&tdmif_b>;
-+			dai-format = "i2s";
-+			dai-tdm-slot-tx-mask-0 = <1 1>;
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&toacodec TOACODEC_IN_B>;
-+			};
-+
-+			codec-1 {
-+				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_B>;
-+			};
-+		};
-+
-+		/* 8ch HDMI interface */
-+		dai-link-8 {
- 			sound-dai = <&tdmif_c>;
- 			dai-format = "i2s";
- 			dai-tdm-slot-tx-mask-0 = <1 1>;
-@@ -201,13 +316,17 @@ dai-link-3 {
- 			dai-tdm-slot-tx-mask-3 = <1 1>;
- 			mclk-fs = <256>;
- 
--			codec {
-+			codec-0 {
-+				sound-dai = <&toacodec TOACODEC_IN_C>;
-+			};
-+
-+			codec-1 {
- 				sound-dai = <&tohdmitx TOHDMITX_I2S_IN_C>;
- 			};
- 		};
- 
--		/* spdif hdmi or toslink interface */
--		dai-link-4 {
-+		/* spdif hdmi and coax output */
-+		dai-link-9 {
- 			sound-dai = <&spdifout>;
- 
- 			codec-0 {
-@@ -220,7 +339,7 @@ codec-1 {
- 		};
- 
- 		/* spdif hdmi interface */
--		dai-link-5 {
-+		dai-link-10 {
- 			sound-dai = <&spdifout_b>;
- 
- 			codec {
-@@ -229,16 +348,38 @@ codec {
- 		};
- 
- 		/* hdmi glue */
--		dai-link-6 {
-+		dai-link-11 {
- 			sound-dai = <&tohdmitx TOHDMITX_I2S_OUT>;
- 
- 			codec {
- 				sound-dai = <&hdmi_tx>;
- 			};
- 		};
-+
-+		/* internal codec glue */
-+		dai-link-12 {
-+			sound-dai = <&toacodec TOACODEC_OUT>;
-+
-+			codec {
-+				sound-dai = <&acodec>;
-+			};
-+		};
-+
-+		/* spdif coax input */
-+		dai-link-13 {
-+			sound-dai = <&spdifin>;
-+
-+			codec {
-+				sound-dai = <&spdif_dir>;
-+			};
-+		};
- 	};
- };
- 
-+&acodec {
-+	status = "okay";
-+};
-+
- &arb {
- 	status = "okay";
- };
-@@ -402,6 +543,12 @@ &sd_emmc_c {
- 	vqmmc-supply = <&flash_1v8>;
- };
- 
-+&spdifin {
-+	pinctrl-0 = <&spdif_in_h_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
- &spdifout {
- 	pinctrl-0 = <&spdif_ao_out_pins>;
- 	pinctrl-names = "default";
-@@ -412,14 +559,75 @@ &spdifout_b {
- 	status = "okay";
- };
- 
-+&tdmif_a {
-+	pinctrl-0 = <&tdm_a_fs_pins>, <&tdm_a_sclk_pins>, <&tdm_a_dout0_pins> ;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&tdmif_b {
-+	pinctrl-0 = <&mclk0_a_pins>, <&tdm_b_fs_pins>, <&tdm_b_sclk_pins>,
-+		    <&tdm_b_dout0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	assigned-clocks = <&clkc_audio AUD_CLKID_TDM_MCLK_PAD0>,
-+			  <&clkc_audio AUD_CLKID_TDM_SCLK_PAD1>,
-+			  <&clkc_audio AUD_CLKID_TDM_LRCLK_PAD1>;
-+	assigned-clock-parents = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
-+				 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+				 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
-+	assigned-clock-rates = <0>, <0>, <0>;
-+};
-+
- &tdmif_c {
- 	status = "okay";
- };
- 
-+&tdmin_a {
-+	status = "okay";
-+};
-+
-+&tdmin_b {
-+	status = "okay";
-+};
-+
-+&tdmin_c {
-+	status = "okay";
-+};
-+
-+&tdmin_lb {
-+	status = "okay";
-+};
-+
-+&tdmout_a {
-+	status = "okay";
-+};
-+
-+&tdmout_b {
-+	status = "okay";
-+};
-+
- &tdmout_c {
- 	status = "okay";
- };
- 
-+&toacodec {
-+	status = "okay";
-+};
-+
-+&toddr_a {
-+	status = "okay";
-+};
-+
-+&toddr_b {
-+	status = "okay";
-+};
-+
-+&toddr_c {
-+	status = "okay";
-+};
-+
- &tohdmitx {
- 	status = "okay";
- };
--- 
-2.40.1
+Agreed. Potentially some other stuff, but interrupts are the thing that
+showed up first as an issue.
+
+Given the only reason I'm looking at this is to potentially solve
+a long term CXL / MCTP over I2C upstreaming problem on QEMU side, I've only
+limited time to throw at this (thought it was a short activity
+for a Friday afternoon :)  Will see if it turns out not too be
+too hard to build the rest.
+
+I can at least boot same system with device tree and check I'm matching
+what is being generated by QEMU.
+
+Jonathan
+
+
+> 
+> Best regards,
+> Hervé
+> 
 
